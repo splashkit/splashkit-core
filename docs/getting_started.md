@@ -1,11 +1,11 @@
 ---
 layout: docs
-title:  "Get Started with Splash Kit!"
+title:  "Get Started with SplashKit!"
 date:   2015-11-30 15:14:48
 categories: tutorial
 ---
 
-Splash Kit is designed to help make learning to program fun and engaging. Using Splash Kit you will be able to start marking 
+SplashKit is designed to help make learning to program fun and engaging. Using SplashKit you will be able to start marking 
 
 <div>
   <!-- Nav tabs -->
