@@ -1,0 +1,14 @@
+# Site settings
+title: Splashkit
+email: admin@splashkit.io
+description: > # this means to ignore newlines until "baseurl:"
+  Use Splashkit to jumpstart your programming education!
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://splashkit.io" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+exclude: [ Gemfile, Gemfile.lock ]
+
+sass:
+    style: :compressed
