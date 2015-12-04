@@ -8,7 +8,7 @@ url: "http://splashkit.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
-exclude: [ Gemfile, Gemfile.lock ]
+exclude: [ Gemfile, Gemfile.lock, CNAME ]
 
 sass:
     style: :compressed
