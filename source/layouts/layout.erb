@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Bootstrap support for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title><%= current_page.data.title || "The Middleman" %></title>
+
+    <%= stylesheet_link_tag "main" %>
+    <%= javascript_include_tag  "main" %>
+  </head>
+
+  <body class="<%= page_classes %>">
+    <nav>
+      <!-- global navigation here -->
+    </nav>
+    <header>
+      <!-- global header here -->
+    </header>
+    <main class="container-fluid">
+      <%= yield %>
+    </main>
+    <footer>
+      <!-- global footer here -->
+      &copy; My Company 2015
+    </footer>
+  </body>
+</html>

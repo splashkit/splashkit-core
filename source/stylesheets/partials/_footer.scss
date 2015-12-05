@@ -1,0 +1,10 @@
+body > footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 3em;
+  color: $footer-color;
+  background-color: $footer-bg;
+}

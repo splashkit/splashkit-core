@@ -1,0 +1,16 @@
+// Import third-party vendor code
+// Bootstrap variables here:
+//   https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+@import "compass";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "vendor/normalise";
+
+// Import modules - website-wide applicability
+@import "modules/colors";
+@import "modules/typography";
+
+// Import partials - applies to components such as a class or element
+@import "partials/anchor";
+@import "partials/body";
+@import "partials/footer";

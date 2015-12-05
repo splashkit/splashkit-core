@@ -1,0 +1,17 @@
+// Font weights
+$thin:    200;
+$light:   300;
+$regular: 400;
+$medium:  500;
+$bold:    600;
+
+/* Import a custom font out of the fonts directory like so:
+
+@font-face {
+  src:          url('/fonts/MyFont-Thin.otf');
+  font-family: 'My Font';
+  font-style:   normal;
+  font-weight:  $thin;
+}
+
+*/
