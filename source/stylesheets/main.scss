@@ -3,6 +3,7 @@
 //   https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
 @import "vendor/normalise";
 @import "vendor/pygments-github";
+@import "vendor/font-awesome";
 @import "compass";
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -14,4 +15,5 @@
 // Import partials - applies to components such as a class or element
 @import "partials/anchor";
 @import "partials/body";
+@import "partials/code-snippet";
 @import "partials/footer";
