@@ -1,0 +1,17 @@
+.code-snippet .tab-content .tab-pane {
+  // Code snippet loading indicator
+  script[data-gist]:last-child {
+    display: block;
+    width: 100%;
+    height: 140px;
+    background: url('/images/spinner.svg') center no-repeat;
+  }
+  script[data-gist]:last-child, .gist-file {
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
+    border-radius: 3px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top: none;
+  }
+}

@@ -22,6 +22,9 @@ gem 'middleman-autoprefixer', '2.6.1'
 # Boostrap as SASS (require false is important)
 gem 'bootstrap-sass', '3.3.6', :require => false
 
+# Grab jQuery
+gem 'jquery-middleman', '3.1.2'
+
 # Middleman redcarpet engine + syntax highlighter for middleman
 gem 'redcarpet', '3.3.3'
 gem 'middleman-syntax', '2.0.0'
