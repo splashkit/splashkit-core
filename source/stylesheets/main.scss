@@ -2,6 +2,7 @@
 // Bootstrap variables here:
 //   https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
 @import "vendor/normalise";
+@import "vendor/pygments-github";
 @import "compass";
 @import "bootstrap-sprockets";
 @import "bootstrap";
