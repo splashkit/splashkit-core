@@ -16,6 +16,8 @@
 		940864591D37A78C009EA048 /* backend_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864571D37A78C009EA048 /* backend_types.h */; };
 		9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645A1D37B6AF009EA048 /* utils_driver.cpp */; };
 		9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408645B1D37B6AF009EA048 /* utils_driver.h */; };
+		940864601D384C27009EA048 /* graphics_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645E1D384C27009EA048 /* graphics_driver.cpp */; };
+		940864611D384C27009EA048 /* graphics_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408645F1D384C27009EA048 /* graphics_driver.h */; };
 		9420549E1D3463BA001ED922 /* resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9420549C1D3463BA001ED922 /* resources.cpp */; };
 		9420549F1D3463BA001ED922 /* resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 9420549D1D3463BA001ED922 /* resources.h */; };
 		942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942371EE1D1D548A0020CCE2 /* audio_driver.cpp */; };
@@ -85,6 +87,8 @@
 		940864571D37A78C009EA048 /* backend_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backend_types.h; sourceTree = "<group>"; };
 		9408645A1D37B6AF009EA048 /* utils_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils_driver.cpp; sourceTree = "<group>"; };
 		9408645B1D37B6AF009EA048 /* utils_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_driver.h; sourceTree = "<group>"; };
+		9408645E1D384C27009EA048 /* graphics_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics_driver.cpp; sourceTree = "<group>"; };
+		9408645F1D384C27009EA048 /* graphics_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics_driver.h; sourceTree = "<group>"; };
 		9420549C1D3463BA001ED922 /* resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources.cpp; sourceTree = "<group>"; };
 		9420549D1D3463BA001ED922 /* resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources.h; sourceTree = "<group>"; };
 		942371DC1D1D540C0020CCE2 /* libsplashkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsplashkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +233,8 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				9408645E1D384C27009EA048 /* graphics_driver.cpp */,
+				9408645F1D384C27009EA048 /* graphics_driver.h */,
 				942371EE1D1D548A0020CCE2 /* audio_driver.cpp */,
 				942371EF1D1D548A0020CCE2 /* audio_driver.h */,
 				9423721A1D1D57D20020CCE2 /* core_driver.cpp */,
@@ -308,6 +314,7 @@
 			files = (
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
+				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
@@ -396,6 +403,7 @@
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
+				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
 			);
@@ -516,6 +524,9 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_mixer\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,6 +555,9 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_mixer\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
