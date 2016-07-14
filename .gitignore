@@ -1,0 +1,9 @@
+projects/Xcode/DerivedData/
+coresdk/external/SDL
+coresdk/external/SDL_gfx
+coresdk/external/SDL_image
+coresdk/external/SDL_mixer
+coresdk/external/SDL_net
+coresdk/external/SDL_ttf
+coresdk/external/setup.log
+coresdk/include
