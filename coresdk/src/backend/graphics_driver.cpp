@@ -27,52 +27,9 @@ using namespace std;
 #include "core_driver.h"
 #include "graphics_driver.h"
 
-typedef unsigned int uint;
-
-struct sk_window_data
-{
-    int close_requested;
-    int has_focus;
-    int mouse_over;
-    int shown;
-};
-
-
-struct sk_window_be
-{
-    SDL_Window *    window;
-    SDL_Renderer *  renderer;
-    SDL_Texture *   backing;
-    bool            clipped;
-    SDL_Rect        clip;
-    unsigned int    idx;
-
-    // Event data store
-    sk_window_data  event_data;
-    sk_drawing_surface *surface;
-};
-
-struct sk_bitmap_be
-{
-    // 1 texture per open window
-    SDL_Texture **  texture;
-    SDL_Surface *   surface;
-    bool            clipped;
-    SDL_Rect        clip;
-
-    bool            drawable; // can be drawn on
-};
-
-typedef void *pointer;
-
-
 unsigned int _sk_renderer_count(sk_drawing_surface *surface);
 SDL_Renderer * _sk_prepared_renderer(sk_drawing_surface* surface, unsigned int idx);
 void _sk_complete_render(sk_drawing_surface* surface, unsigned int idx);
-
-sk_window_be *_sk_get_window_with_id(unsigned int window_id);
-sk_window_be *_sk_get_window_with_pointer(pointer p);
-
 
 
 static sk_window_be ** _sk_open_windows = NULL;

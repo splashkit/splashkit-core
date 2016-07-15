@@ -15,44 +15,33 @@
 #include <SDL.h>
 #endif
 
-struct sk_color
+#include "backend_types.h"
+
+typedef unsigned int uint;
+
+struct sk_window_be
 {
-    float r, g, b, a;
+    SDL_Window *    window;
+    SDL_Renderer *  renderer;
+    SDL_Texture *   backing;
+    bool            clipped;
+    SDL_Rect        clip;
+    unsigned int    idx;
+    
+    // Event data store
+    sk_window_data  event_data;
+    sk_drawing_surface *surface;
 };
 
-//
-// A list of the available kinds of drawing surface.
-// Drivers must support drawing onto these.
-//
-enum sk_drawing_surface_kind
+struct sk_bitmap_be
 {
-    SGDS_Unknown = 0,   // Unknown, so do not draw onto this!
-    SGDS_Window = 1,    // A window
-    SGDS_Bitmap = 2     // A surface, bitmap, or texture
-};
-
-//
-// A drawing surface is something the user can draw onto.
-// The driver is then required to provide the ability to
-// perform the requested drawing actions on the different
-// kinds of drawing surface.
-//
-struct sk_drawing_surface
-{
-    sk_drawing_surface_kind kind;
-    int width;
-    int height;
-
-    // private data used by the backend
-    void * _data;
-};
-
-enum sk_renderer_flip
-{
-	sk_FLIP_NONE = 0,
-	sk_FLIP_HORIZONTAL = 1,
-	sk_FLIP_VERTICAL = 2,
-	sk_FLIP_BOTH = 3
+    // 1 texture per open window
+    SDL_Texture **  texture;
+    SDL_Surface *   surface;
+    bool            clipped;
+    SDL_Rect        clip;
+    
+    bool            drawable; // can be drawn on
 };
 
 sk_drawing_surface sk_open_window(const char *title, int width, int height);
@@ -99,6 +88,10 @@ void sk_resize(sk_drawing_surface *surface, int width, int height);
 
 int sk_save_png(sk_drawing_surface * surface, const char *filename);
 
+struct sk_window_be;
+
+sk_window_be *_sk_get_window_with_id(unsigned int window_id);
+sk_window_be *_sk_get_window_with_pointer(pointer p);
 
 
 

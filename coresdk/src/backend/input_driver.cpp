@@ -1,6 +1,5 @@
 //
-//  SGSDL2Input.cpp
-//  sgsdl2
+//  Input_driver.cpp
 //
 //  Created by Andrew Cain on 7/12/2013.
 //  Copyright (c) 2013 Andrew Cain. All rights reserved.
@@ -12,15 +11,16 @@
 #include <SDL.h>
 #endif
 
-#include "SGSDL2Core.h"
-#include "SGSDL2Input.h"
-#include "SGSDL2Graphics.h"
+#include "backend_types.h"
+#include "core_driver.h"
+#include "input_driver.h"
+#include "graphics_driver.h"
 
-#include "sgBackendUtils.h"
+sk_input_callbacks _input_callbacks = { nullptr };
 
-void _sgsdl2_handle_window_event(SDL_Event * event)
+void _sk_handle_window_event(SDL_Event * event)
 {
-    sg_window_be *window = _sgsdl2_get_window_with_id(event->window.windowID);
+    sk_window_be *window = _sk_get_window_with_id(event->window.windowID);
 
     if (! window) {
         return;
@@ -43,16 +43,16 @@ void _sgsdl2_handle_window_event(SDL_Event * event)
 //            SDL_Log("Window %d moved to %d,%d",
 //                    event->window.windowID, event->window.data1,
 //                    event->window.data2);
-            if (_functions.input_callbacks.handle_window_move)
+            if (_input_callbacks.handle_window_move)
             {
-                _functions.input_callbacks.handle_window_move(_sgsdl2_get_window_with_id(event->window.windowID), event->window.data1, event->window.data2);
+                _input_callbacks.handle_window_move(_sk_get_window_with_id(event->window.windowID), event->window.data1, event->window.data2);
             }
 
             break;
         case SDL_WINDOWEVENT_RESIZED:
-            if (_functions.input_callbacks.handle_window_resize)
+            if (_input_callbacks.handle_window_resize)
             {
-                _functions.input_callbacks.handle_window_resize(_sgsdl2_get_window_with_id(event->window.windowID), event->window.data1, event->window.data2);
+                _input_callbacks.handle_window_resize(_sk_get_window_with_id(event->window.windowID), event->window.data1, event->window.data2);
             }
 
             break;
@@ -95,9 +95,9 @@ void _sgsdl2_handle_window_event(SDL_Event * event)
     }
 }
 
-void sgsdl2_process_events()
+void sk_process_events()
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     SDL_Event event;
 
     while (SDL_WaitEventTimeout(&event, 0))
@@ -106,97 +106,96 @@ void sgsdl2_process_events()
         {
             case SDL_WINDOWEVENT:
             {
-                _sgsdl2_handle_window_event(&event);
+                _sk_handle_window_event(&event);
                 break;
             }
 
             case SDL_QUIT:
             {
                 // Use callback to inform front end of quit
-                if (_functions.input_callbacks.do_quit)
+                if (_input_callbacks.do_quit)
                 {
-                    _functions.input_callbacks.do_quit();
+                    _input_callbacks.do_quit();
                 }
                 break;
             }
 
             case SDL_KEYDOWN:
             {
-                if (_functions.input_callbacks.handle_key_down)
+                if (_input_callbacks.handle_key_down)
                 {
                     int key_code = static_cast<int>(event.key.keysym.sym);
-                    _functions.input_callbacks.handle_key_down(key_code);
+                    _input_callbacks.handle_key_down(key_code);
                 }
                 break;
             }
 
             case SDL_KEYUP:
             {
-                if (_functions.input_callbacks.handle_key_up)
+                if (_input_callbacks.handle_key_up)
                 {
                     int key_code = static_cast<int>(event.key.keysym.sym);
-                    _functions.input_callbacks.handle_key_up(key_code);
+                    _input_callbacks.handle_key_up(key_code);
                 }
                 break;
             }
 
             case SDL_MOUSEBUTTONUP:
             {
-                if (_functions.input_callbacks.handle_mouse_up)
+                if (_input_callbacks.handle_mouse_up)
                 {
                     int mouse_button = event.button.button;
-                    _functions.input_callbacks.handle_mouse_up(mouse_button);
+                    _input_callbacks.handle_mouse_up(mouse_button);
                 }
                 break;
             }
 
             case SDL_MOUSEBUTTONDOWN:
             {
-                if (_functions.input_callbacks.handle_mouse_down)
+                if (_input_callbacks.handle_mouse_down)
                 {
                     int mouse_button = event.button.button;
-                    _functions.input_callbacks.handle_mouse_down(mouse_button);
+                    _input_callbacks.handle_mouse_down(mouse_button);
                 }
                 break;
             }
-            
+
             case SDL_MOUSEWHEEL:
             {
-                if (_functions.input_callbacks.handle_mouse_wheel)
+                if (_input_callbacks.handle_mouse_wheel)
                 {
-                    _functions.input_callbacks.handle_mouse_wheel(event.wheel.x, event.wheel.y);
+                    _input_callbacks.handle_mouse_wheel(event.wheel.x, event.wheel.y);
                 }
                 break;
             }
-            
+
             case SDL_TEXTEDITING:
             {
-                if (_functions.input_callbacks.handle_input_text)
+                if (_input_callbacks.handle_input_text)
                 {
                   char* text = event.edit.text;
-                  _functions.input_callbacks.handle_input_text(text);
+                  _input_callbacks.handle_input_text(text);
                 }
                 break;
             }
             case SDL_TEXTINPUT:
             {
-                if (_functions.input_callbacks.handle_input_text)
+                if (_input_callbacks.handle_input_text)
                 {
                   char* text = event.text.text;
-                  _functions.input_callbacks.handle_input_text(text);
+                  _input_callbacks.handle_input_text(text);
                 }
                 break;
             }
-
         }
     }
 }
 
-int sgsdl2_window_close_requested(sg_drawing_surface* surf)
+int sk_window_close_requested(sk_drawing_surface* surf)
 {
   if (surf->kind == SGDS_Window)
   {
-    if (static_cast<sg_window_be*>(surf->_data)->event_data.close_requested)
+    if (static_cast<sk_window_be*>(surf->_data)->event_data.close_requested)
     {
       return -1;
     }
@@ -204,9 +203,9 @@ int sgsdl2_window_close_requested(sg_drawing_surface* surf)
   return 0;
 }
 
-int sgsdl2_key_pressed(int key_code)
+int sk_key_pressed(int key_code)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
 
     const Uint8 *keys;
     int key_scancode = SDL_GetScancodeFromKey(key_code);
@@ -222,16 +221,16 @@ int sgsdl2_key_pressed(int key_code)
 
 
 
-void sgsdl2_start_unicode_text_input(int x, int y, int w, int h)
+void sk_start_unicode_text_input(int x, int y, int w, int h)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     SDL_Rect rect = {x,y,w,h};
     SDL_SetTextInputRect(&rect);
 
     SDL_StartTextInput();
 }
 
-void sgsdl2_warp_mouse(sg_drawing_surface *surface, int x, int y)
+void sk_warp_mouse(sk_drawing_surface *surface, int x, int y)
 {
     if ( ! surface || ! surface->_data ) return;
 
@@ -239,8 +238,8 @@ void sgsdl2_warp_mouse(sg_drawing_surface *surface, int x, int y)
     {
         case SGDS_Window:
         {
-            sg_window_be * window_be;
-            window_be = static_cast<sg_window_be *>(surface->_data);
+            sk_window_be * window_be;
+            window_be = static_cast<sk_window_be *>(surface->_data);
 
             SDL_WarpMouseInWindow(window_be->window, x, y);
             break;
@@ -254,13 +253,13 @@ void sgsdl2_warp_mouse(sg_drawing_surface *surface, int x, int y)
     }
 }
 
-pointer sgsdl2_focus_window()
+pointer sk_focus_window()
 {
-    internal_sgsdl2_init();
-    return _sgsdl2_get_window_with_pointer(SDL_GetMouseFocus());
+    internal_sk_init();
+    return _sk_get_window_with_pointer(SDL_GetMouseFocus());
 }
 
-void sgsdl2_window_position(sg_drawing_surface *surface, int *x, int *y)
+void sk_window_position(sk_drawing_surface *surface, int *x, int *y)
 {
     if ( ! surface || ! surface->_data ) return;
 
@@ -268,8 +267,8 @@ void sgsdl2_window_position(sg_drawing_surface *surface, int *x, int *y)
     {
         case SGDS_Window:
         {
-            sg_window_be * window_be;
-            window_be = (sg_window_be *)surface->_data;
+            sk_window_be * window_be;
+            window_be = (sk_window_be *)surface->_data;
 
             SDL_GetWindowPosition(window_be->window, x, y);
             break;
@@ -283,9 +282,9 @@ void sgsdl2_window_position(sg_drawing_surface *surface, int *x, int *y)
     }
 }
 
-sg_window_data sgsdl2_get_window_event_data(sg_drawing_surface *surface)
+sk_window_data sk_get_window_event_data(sk_drawing_surface *surface)
 {
-    sg_window_data result = { 0, 0, 0, 0 };
+    sk_window_data result = { 0, 0, 0, 0 };
 
     if ( ! surface || ! surface->_data ) return result;
 
@@ -293,8 +292,8 @@ sg_window_data sgsdl2_get_window_event_data(sg_drawing_surface *surface)
     {
         case SGDS_Window:
         {
-            sg_window_be * window_be;
-            window_be = (sg_window_be *)surface->_data;
+            sk_window_be * window_be;
+            window_be = (sk_window_be *)surface->_data;
 
             return window_be->event_data;
         }
@@ -304,7 +303,7 @@ sg_window_data sgsdl2_get_window_event_data(sg_drawing_surface *surface)
     }
 }
 
-void sgsdl2_move_window(sg_drawing_surface *surface, int x, int y)
+void sk_move_window(sk_drawing_surface *surface, int x, int y)
 {
     if ( ! surface || ! surface->_data ) return;
 
@@ -312,8 +311,8 @@ void sgsdl2_move_window(sg_drawing_surface *surface, int x, int y)
     {
         case SGDS_Window:
         {
-            sg_window_be * window_be;
-            window_be = (sg_window_be *)surface->_data;
+            sk_window_be * window_be;
+            window_be = (sk_window_be *)surface->_data;
 
             SDL_SetWindowPosition(window_be->window, x, y);
 
@@ -322,22 +321,4 @@ void sgsdl2_move_window(sg_drawing_surface *surface, int x, int y)
 
         default: ;
     }
-}
-
-
-void sgsdl2_load_input_fns(sg_interface *functions)
-{
-    functions->input.process_events = & sgsdl2_process_events;
-    functions->input.window_close_requested = & sgsdl2_window_close_requested;
-    functions->input.key_pressed= &sgsdl2_key_pressed;
-    functions->input.mouse_state = &SDL_GetMouseState;  // call it directly
-    functions->input.mouse_relative_state = &SDL_GetRelativeMouseState;
-    functions->input.mouse_cursor_state = &SDL_ShowCursor; // 0 hide, 1 show, -1 query
-    functions->input.start_unicode_text_input = &sgsdl2_start_unicode_text_input;
-    functions->input.stop_unicode_text_input = &SDL_StopTextInput;
-    functions->input.warp_mouse = &sgsdl2_warp_mouse;
-    functions->input.focus_window = &sgsdl2_focus_window;
-    functions->input.window_position = &sgsdl2_window_position;
-    functions->input.get_window_event_data = &sgsdl2_get_window_event_data;
-    functions->input.move_window = &sgsdl2_move_window;
 }
