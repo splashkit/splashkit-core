@@ -19,8 +19,8 @@
 using namespace std;
 
 static window _primary_window = nullptr;
-static window _current_window = nullptr;
-static map<string, window> _windows;
+window _current_window = nullptr;
+map<string, window> _windows;
 
 window open_window(string caption, int width, int height)
 {

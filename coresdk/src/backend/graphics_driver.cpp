@@ -1260,13 +1260,13 @@ sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y)
 // Circles
 //
 
-void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius)
 {
-    if ( ! surface || ! surface->_data || data_sz != 3) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 3 values = 1 point + radius
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int r = static_cast<int>(data[2]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int r = static_cast<int>(radius);
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1295,13 +1295,13 @@ void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float *data, int 
     }
 }
 
-void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius)
 {
-    if ( ! surface || ! surface->_data || data_sz != 3) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 3 values = 1 point + radius
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int r = static_cast<int>(data[2]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int r = static_cast<int>(radius);
 
     unsigned int count = _sk_renderer_count(surface);
 

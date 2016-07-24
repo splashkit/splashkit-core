@@ -73,18 +73,5 @@ void fill_circle(color clr, circle &c,drawing_options opts);
 /// @sn fill_circleColor:%s data:%s
 void fill_circle(color clr, circle &c);
 
-/// Fill a circle at a given point using the passed in drawing options.
-///
-/// @lib fill_circleAtPointWithOpts
-/// @sn fill_circleColor:%s at:%s radius:%s opts:%s
-void fill_circle(color clr, point_2d pt, float radius, drawing_options opts);
-
-/// Fill a circle in the game.
-///
-/// @lib fill_circleAtPoint
-/// @sn fill_circleColor:%s at:%s radius:%s
-void fill_circle(color clr, point_2d pt, float radius);
-
-
 
 #endif /* graphics_hpp */

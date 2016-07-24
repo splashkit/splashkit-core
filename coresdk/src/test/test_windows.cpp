@@ -12,6 +12,7 @@
 #include "input.h"
 #include "utils_driver.h"
 
+#include "graphics.h"
 
 void run_windows_tests()
 {
@@ -22,6 +23,11 @@ void run_windows_tests()
     while ( ! quit_requested() )
     {
         process_events();
+        
+        draw_circle(COLOR_RED, 10, 10, 10);
+        fill_circle(COLOR_GREEN, 50, 10, 10);
+        
+        refresh_screen();
     }
     
     close_window(window_named("Hello World"));

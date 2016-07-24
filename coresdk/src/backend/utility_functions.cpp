@@ -74,3 +74,4 @@ string path_from(std::initializer_list<string> list, string filename)
     
     return result + filename;
 }
+

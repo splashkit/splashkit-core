@@ -71,8 +71,10 @@ void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int
 void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y);
-void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
-void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
+
+void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
+void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
+
 void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 
 void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz);

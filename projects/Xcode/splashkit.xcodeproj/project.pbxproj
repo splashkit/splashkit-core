@@ -82,6 +82,8 @@
 		9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5A91D448ABC0039B3AF /* drawing_options.h */; };
 		9424B5AE1D44910B0039B3AF /* images.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5AC1D44910B0039B3AF /* images.cpp */; };
 		9424B5AF1D44910B0039B3AF /* images.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5AD1D44910B0039B3AF /* images.h */; };
+		9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5B01D449C4F0039B3AF /* camera.cpp */; };
+		9424B5B31D449C4F0039B3AF /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5B11D449C4F0039B3AF /* camera.h */; };
 		94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +184,8 @@
 		9424B5A91D448ABC0039B3AF /* drawing_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawing_options.h; sourceTree = "<group>"; };
 		9424B5AC1D44910B0039B3AF /* images.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = images.cpp; sourceTree = "<group>"; };
 		9424B5AD1D44910B0039B3AF /* images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = images.h; sourceTree = "<group>"; };
+		9424B5B01D449C4F0039B3AF /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		9424B5B11D449C4F0039B3AF /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources_tests.cpp; sourceTree = "<group>"; };
 		94F7F7701D3661CA005D3C8C /* resources_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources_tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -331,6 +335,8 @@
 				9424B5A51D4444F40039B3AF /* random.h */,
 				9424B5AC1D44910B0039B3AF /* images.cpp */,
 				9424B5AD1D44910B0039B3AF /* images.h */,
+				9424B5B01D449C4F0039B3AF /* camera.cpp */,
+				9424B5B11D449C4F0039B3AF /* camera.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				940864761D38FED0009EA048 /* sk_input_backend.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
+				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				9408646D1D38F09B009EA048 /* test_windows.hpp in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
@@ -497,6 +504,7 @@
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
+				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				940864751D38FED0009EA048 /* sk_input_backend.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
