@@ -65,25 +65,25 @@ sound_effect sound_effect_named(string name)
 sound_effect load_sound_effect(string name, string filename)
 {
     if (has_sound_effect(name)) return sound_effect_named(name);
-    
-    string filePath = path_to_resource(filename, AUDIO_RESOURCE);
-    
+
+    string file_path = path_to_resource(filename, AUDIO_RESOURCE);
+
     sound_effect result = new _sound_data();
-    
+
     result->id = AUDIO_PTR;
-    result->filename = filePath;
+    result->filename = file_path;
     result->name = name;
-    result->effect = sk_load_sound_data(filePath, SGSD_SOUND_EFFECT);
+    result->effect = sk_load_sound_data(file_path, SGSD_SOUND_EFFECT);
 
     // Unable to load sound effect
     if ( ! result->effect._data )
     {
         result->id = NONE_PTR;
         delete result;
-        raise_warning ( cat({ "Error loading sound data for ", name, " (", filePath, ")"}) );
+        raise_warning ( cat({ "Error loading sound data for ", name, " (", file_path, ")"}) );
         return nullptr;
     }
-    
+
     _sound_effects[name] = result;
     return result;
 }
@@ -106,9 +106,9 @@ void delete_sound_effect(sound_effect effect)
 void delete_all_sound_effects()
 {
     string name;
-    
+
     size_t sz = _sound_effects.size();
-    
+
     for(size_t i = 0; i < sz; i++)
     {
         sound_effect effect = _sound_effects.begin()->second;

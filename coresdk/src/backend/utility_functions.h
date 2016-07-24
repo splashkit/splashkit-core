@@ -54,4 +54,13 @@ FinalAction<F> finally(F f)
     return FinalAction<F>(f);
 }
 
+pointer_identifier ptr_kind(void *p);
+
+_bitmap_data *to_bitmap_ptr(void *b);
+_window_data *to_window_ptr(void *w);
+
+sk_drawing_surface *to_surface_ptr(void *p);
+void xy_from_opts(drawing_options &opts, float &x, float &y);
+
+
 #endif /* utility_functions_hpp */

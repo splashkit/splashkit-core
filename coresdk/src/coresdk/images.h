@@ -9,17 +9,47 @@
 #ifndef images_hpp
 #define images_hpp
 
-/// The bitmap type is a pointer to a BitmapData. The BitmapData record
-/// contains the data used by the SwinGame API to represent
-/// bitmaps. You can create new bitmaps in memory for drawing operatings
-/// using the `CreateBitmap` function. This can then be optimised for drawing
-/// to the screen using the `OptimiseBitmap` routine. Also see the `DrawBitmap`
-/// routines.
+#include "drawing_options.h"
+#include "types.h"
+
+#include <string>
+using namespace std;
+
+/// Loads and returns a bitmap. The supplied ``filename`` is used to
+/// locate the Bitmap to load. The supplied ``name`` indicates the
+/// name to use to refer to this Bitmap in SwinGame. The `Bitmap` can then be
+/// retrieved by passing this ``name`` to the `BitmapNamed` function.
+///
+/// @lib
+/// @sn loadBitmapNamed:%s fromFile:%s
 ///
 /// @class Bitmap
-/// @pointer_wrapper
-/// @field pointer: pointer
-typedef struct _bitmap_data *bitmap;
+/// @constructor
+/// @csn initWithName:%s fromFile:%s
+bitmap load_bitmap(string name, string filename);
+
+/// Determines if SwinGame has a bitmap loaded for the supplied name.
+/// This checks against all bitmaps loaded, those loaded without a name
+/// are assigned the filename as a default.
+///
+bool has_bitmap(string name);
+
+/// Returns the `Bitmap` that has been loaded with the specified name,
+/// see `LoadBitmapNamed`.
+///
+bitmap bitmap_named(string name);
+
+/// Releases the SwinGame resources associated with the bitmap of the
+/// specified ``name``.
+///
+void delete_bitmap(bitmap to_delete);
+
+void delete_all_bitmaps();
+
+void draw_bitmap(bitmap bmp, float x, float y);
+
+void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts);
+
 
 
 #endif /* images_hpp */

@@ -10,7 +10,7 @@
 #define drawing_options_hpp
 
 #include "geometry.h"
-#include "images.h"
+#include "types.h"
 #include "window_manager.h"
 
 /// Determines the effect of the camera on a drawing operation.
