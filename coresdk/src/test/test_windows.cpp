@@ -11,17 +11,14 @@
 #include "window_manager.h"
 #include "input.h"
 #include "images.h"
-#include "utils_driver.h"
-
 #include "graphics.h"
+#include "utils.h"
 
 void run_windows_tests()
 {
     open_window("Hello World", 800, 600);
     
     bitmap light = load_bitmap("light", "on_med.png");
-    
-    sk_delay(2500);
     
     while ( ! quit_requested() )
     {
@@ -31,6 +28,8 @@ void run_windows_tests()
         fill_circle(COLOR_GREEN, 50, 10, 10);
         
         draw_bitmap(light, 10, 100);
+        draw_bitmap("light", 75, 100);
+        draw_bitmap("fred", 75, 100);
         
         refresh_screen();
     }
@@ -38,5 +37,5 @@ void run_windows_tests()
     delete_bitmap(light);
     close_window(window_named("Hello World"));
     
-    sk_delay(500);
+    delay(500);
 }

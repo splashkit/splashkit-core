@@ -50,6 +50,9 @@ void draw_bitmap(bitmap bmp, float x, float y);
 
 void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts);
 
+void draw_bitmap(string name, float x, float y);
+
+void draw_bitmap(string name, float x, float y, drawing_options opts);
 
 
 #endif /* images_hpp */

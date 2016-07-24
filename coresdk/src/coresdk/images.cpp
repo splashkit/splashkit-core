@@ -142,6 +142,12 @@ void draw_bitmap(bitmap bmp, float x, float y)
 
 void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts)
 {
+    if ( ! VALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Error trying to draw bitmap: passed in bmp is an invalid bitmap pointer.");
+        return;
+    }
+        
     float src_data[4];
     float dst_data[7];
     sk_renderer_flip flip;
@@ -189,3 +195,12 @@ void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts)
     sk_draw_bitmap(&bmp->image.surface, dest, src_data, 4, dst_data, 7, flip);
 }
 
+void draw_bitmap(string name, float x, float y)
+{
+    draw_bitmap(bitmap_named(name), x, y, option_defaults());
+}
+
+void draw_bitmap(string name, float x, float y, drawing_options opts)
+{
+    draw_bitmap(bitmap_named(name), x, y, opts);
+}
