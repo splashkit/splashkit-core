@@ -78,6 +78,10 @@
 		9424B5A31D4442220039B3AF /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5A11D4442220039B3AF /* types.h */; };
 		9424B5A61D4444F40039B3AF /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5A41D4444F40039B3AF /* random.cpp */; };
 		9424B5A71D4444F40039B3AF /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5A51D4444F40039B3AF /* random.h */; };
+		9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5A81D448ABC0039B3AF /* drawing_options.cpp */; };
+		9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5A91D448ABC0039B3AF /* drawing_options.h */; };
+		9424B5AE1D44910B0039B3AF /* images.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5AC1D44910B0039B3AF /* images.cpp */; };
+		9424B5AF1D44910B0039B3AF /* images.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5AD1D44910B0039B3AF /* images.h */; };
 		94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +178,10 @@
 		9424B5A11D4442220039B3AF /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		9424B5A41D4444F40039B3AF /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
 		9424B5A51D4444F40039B3AF /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		9424B5A81D448ABC0039B3AF /* drawing_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drawing_options.cpp; sourceTree = "<group>"; };
+		9424B5A91D448ABC0039B3AF /* drawing_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawing_options.h; sourceTree = "<group>"; };
+		9424B5AC1D44910B0039B3AF /* images.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = images.cpp; sourceTree = "<group>"; };
+		9424B5AD1D44910B0039B3AF /* images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = images.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources_tests.cpp; sourceTree = "<group>"; };
 		94F7F7701D3661CA005D3C8C /* resources_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources_tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +309,8 @@
 			children = (
 				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
 				942372201D1D5D4E0020CCE2 /* audio.h */,
+				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
+				9424B5A91D448ABC0039B3AF /* drawing_options.h */,
 				9420549C1D3463BA001ED922 /* resources.cpp */,
 				9420549D1D3463BA001ED922 /* resources.h */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
@@ -319,6 +329,8 @@
 				9424B5A11D4442220039B3AF /* types.h */,
 				9424B5A41D4444F40039B3AF /* random.cpp */,
 				9424B5A51D4444F40039B3AF /* random.h */,
+				9424B5AC1D44910B0039B3AF /* images.cpp */,
+				9424B5AD1D44910B0039B3AF /* images.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -384,6 +396,7 @@
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
+				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
 				940864761D38FED0009EA048 /* sk_input_backend.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
@@ -393,6 +406,7 @@
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
+				9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */,
 				9424B5A71D4444F40039B3AF /* random.h in Headers */,
 				9424B59F1D4441CF0039B3AF /* color.h in Headers */,
 				9423721D1D1D57D20020CCE2 /* core_driver.h in Headers */,
@@ -477,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9423721C1D1D57D20020CCE2 /* core_driver.cpp in Sources */,
+				9424B5AE1D44910B0039B3AF /* images.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
@@ -492,6 +507,7 @@
 				940864641D38B756009EA048 /* window_manager.cpp in Sources */,
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
+				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
 			);

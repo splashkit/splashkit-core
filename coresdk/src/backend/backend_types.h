@@ -9,6 +9,7 @@
 #ifndef BackendTypes_hpp
 #define BackendTypes_hpp
 
+#include "drawing_options.h"
 #include "geometry.h"
 #include "color.h"
 
@@ -125,5 +126,20 @@ struct _window_data
     //    bool        text_cancelled;
 };
 
+struct _bitmap_data
+{
+    pointer_identifier  id;
+    image_data          image;
+    string              filename, name;
+    
+    //Used for bitmaps that are made up of cells
+    int cell_w;      // The width of a cell
+    int cell_h;      // The height of a cell
+    int cell_cols;   // The columns of cells in the bitmap
+    int cell_rows;   // The rows of cells in the bitmap
+    int cell_count;  // The total number of cells in the bitmap
+    
+    bool *pixel_mask;   // Pixel mask used for pixel level collisions
+};
 
 #endif /* BackendTypes_hpp */

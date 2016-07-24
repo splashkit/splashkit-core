@@ -52,7 +52,19 @@ struct rectangle
     float width, height;
 };
 
+/// Circles have a center point and a radius. This means that, unlike other shapes
+/// like the `Rectangle`, the circle extends out both left and right, and up and down
+/// from the point you position it at.
+///
+/// @struct Circle
+struct circle
+{
+    point_2d center;
+    float radius;
+};
 
+
+rectangle rectangle_from(float x, float y, float width, float height);
 
 
 #endif /* geometry_hpp */

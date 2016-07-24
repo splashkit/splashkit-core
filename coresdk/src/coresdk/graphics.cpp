@@ -29,11 +29,11 @@ void refresh_screen(unsigned int target_fps)
     {
         refresh_window(kv.second);
     }
-    
+
     unsigned int now = current_ticks();
     unsigned int delta = now - _last_update_time;
     unsigned int delay_time;
-    
+
     //dont sleep if 5ms remaining...
     while ((target_fps > 0) and ((delta + 8) * target_fps < 1000))
     {
@@ -42,7 +42,63 @@ void refresh_screen(unsigned int target_fps)
         now = current_ticks();
         delta = now - _last_update_time;
     }
-    
+
     _last_update_time = now;
+}
+
+//----------------------------------------------------------------------------
+// Circle drawing
+//----------------------------------------------------------------------------
+
+
+void draw_circle(color clr, float x, float y, float radius, drawing_options opts)
+{
+    
+}
+
+void draw_circle(color clr, float x, float y, float radius)
+{
+    
+}
+
+void draw_circle(color clr, circle &c, drawing_options opts)
+{
+    
+}
+
+void draw_circle(color clr, circle &c)
+{
+    
+}
+
+
+void fill_circle(color clr, float x, float y, float radius, drawing_options opts)
+{
+    
+}
+
+void fill_circle(color clr, float x, float y, float radius)
+{
+    
+}
+
+void fill_circle(color clr, circle &c,drawing_options opts)
+{
+    
+}
+
+void fill_circle(color clr, circle &c)
+{
+    
+}
+
+void fill_circle(color clr, point_2d pt, float radius, drawing_options opts)
+{
+    
+}
+
+void fill_circle(color clr, point_2d pt, float radius)
+{
+    
 }
 
