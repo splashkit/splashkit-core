@@ -92,6 +92,7 @@ window open_window(string caption, int width, int height)
 
 void refresh_window(window wind)
 {
+    //TODO: DrawCollectedText(w);
     sk_refresh_window(&wind->image.surface);
 }
 

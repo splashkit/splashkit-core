@@ -10,6 +10,7 @@
 #define BackendTypes_hpp
 
 #include "geometry.h"
+#include "color.h"
 
 #include <string>
 #include <vector>
@@ -45,10 +46,7 @@ enum pointer_identifier
     NONE_PTR =          0x4e4f4e45  //'NONE';
 };
 
-struct sk_color
-{
-    float r, g, b, a;
-};
+typedef color sk_color;
 
 //
 // A list of the available kinds of drawing surface.
