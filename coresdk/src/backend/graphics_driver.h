@@ -96,5 +96,9 @@ sk_window_be *_sk_get_window_with_id(unsigned int window_id);
 sk_window_be *_sk_get_window_with_pointer(pointer p);
 
 
+unsigned int _sk_renderer_count(sk_drawing_surface *surface);
+SDL_Renderer * _sk_prepared_renderer(sk_drawing_surface *surface, unsigned int idx);
+void _sk_complete_render(sk_drawing_surface *surface, unsigned int idx);
+
 
 #endif /* defined(graphics_driver) */

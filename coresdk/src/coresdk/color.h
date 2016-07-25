@@ -14,11 +14,6 @@
 
 using namespace std;
 
-struct color
-{
-    float r, g, b, a;
-};
-
 /// Creates and returns a random color where the color and its opacity are random.
 ///
 color random_color();

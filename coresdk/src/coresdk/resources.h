@@ -17,6 +17,7 @@ enum resource_kind
 {
     AUDIO_RESOURCE,
     IMAGE_RESOURCE,
+    FONT_RESOURCE,
     OTHER_RESOURCE
 };
 

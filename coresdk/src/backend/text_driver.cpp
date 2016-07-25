@@ -17,47 +17,50 @@
 #include <SDL2_gfxPrimitives.h>
 #endif
 
-#include "SGSDL2Text.h"
-#include "SGSDL2Graphics.h"
-#include "sgBackendTypes.h"
+#include "text_driver.h"
+#include "graphics_driver.h"
+#include "backend_types.h"
+#include "core_driver.h"
 
-#include "SGSDL2Core.h"
-
-void sgsdl2_init_text()
+void sk_init_text()
 {
     if (TTF_Init() == -1)
     {
-        std::cout << "Text loading is broken." << std::endl;
+        std::cerr << "Text loading is broken." << std::endl;
         exit(-1);
     }
 }
 
-void sgsdl2_finalize_text()
+void sk_finalize_text()
 {
     TTF_Quit();
 }
 
-sg_font_data sgsdl2_load_font(const char * filename, int font_size)
+sk_font_data sk_load_font(const char * filename, int font_size)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
 
-    sg_font_data font;
-    font.kind = SGFT_TTF;
+    sk_font_data font;
+    font.kind = SKFT_TTF;
     font._data = TTF_OpenFont(filename, font_size);
+    if (!font._data)
+    {
+        cerr << "Error loading font " << SDL_GetError() << endl;
+    }
     return font;
 }
 
-void sgsdl2_close_font(sg_font_data* font)
+void sk_close_font(sk_font_data* font)
 {
     if (font && font->_data)
     {
         TTF_CloseFont(static_cast<TTF_Font *>(font->_data));
-        font->kind = SGFT_UNKNOWN;
+        font->kind = SKFT_UNKNOWN;
         font->_data = NULL;
     }
 }
 
-int sgsdl2_text_line_skip(sg_font_data* font)
+int sk_text_line_skip(sk_font_data* font)
 {
     if (font && font->_data)
         return TTF_FontLineSkip(static_cast<TTF_Font *>(font->_data));
@@ -65,7 +68,7 @@ int sgsdl2_text_line_skip(sg_font_data* font)
         return 0;
 }
 
-int sgsdl2_text_size(sg_font_data* font, char* text, int* w, int* h)
+int sk_text_size(sk_font_data* font, char* text, int* w, int* h)
 {
     if (font && font->_data)
         return TTF_SizeText(static_cast<TTF_Font *>(font->_data), text, w, h);
@@ -73,13 +76,13 @@ int sgsdl2_text_size(sg_font_data* font, char* text, int* w, int* h)
         return 0;
 }
 
-void sgsdl2_set_font_style(sg_font_data* font,int style)
+void sk_set_font_style(sk_font_data* font,int style)
 {
     if (font && font->_data)
         TTF_SetFontStyle(static_cast<TTF_Font *>(font->_data), style);
 }
 
-int sgsdl2_get_font_style(sg_font_data* font)
+int sk_get_font_style(sk_font_data* font)
 {
     if (font && font->_data)
         return TTF_GetFontStyle(static_cast<TTF_Font *>(font->_data));
@@ -87,17 +90,17 @@ int sgsdl2_get_font_style(sg_font_data* font)
         return 0;
 }
 
-void _sgsdl2_draw_bitmap_text( sg_drawing_surface * surface,
+void _sk_draw_bitmap_text( sk_drawing_surface * surface,
                                float x, float y,
                                const char * text,
-                               sg_color clr )
+                               sk_color clr )
 {
-    internal_sgsdl2_init();
-    unsigned int count = _sgsdl2_renderer_count(surface);
+    internal_sk_init();
+    unsigned int count = _sk_renderer_count(surface);
 
     for (unsigned int i = 0; i < count; i++)
     {
-        SDL_Renderer *renderer = _sgsdl2_prepared_renderer(surface, i);
+        SDL_Renderer *renderer = _sk_prepared_renderer(surface, i);
         stringRGBA(renderer,
                    static_cast<Sint16>(x),
                    static_cast<Sint16>(y),
@@ -106,21 +109,21 @@ void _sgsdl2_draw_bitmap_text( sg_drawing_surface * surface,
                    static_cast<Uint8>(clr.g * 255),
                    static_cast<Uint8>(clr.b * 255),
                    static_cast<Uint8>(clr.a * 255) );
-        _sgsdl2_complete_render(surface, i);
+        _sk_complete_render(surface, i);
     }
 
 }
 
-void sgsdl2_draw_text(
-        sg_drawing_surface * surface,
-        sg_font_data* font,
+void sk_draw_text(
+        sk_drawing_surface * surface,
+        sk_font_data* font,
         float x, float y,
         const char * text,
-        sg_color clr)
+        sk_color clr)
 {
     if (!font) // draw bitmap based text -- no font
     {
-        _sgsdl2_draw_bitmap_text(surface, x, y, text, clr);
+        _sk_draw_bitmap_text(surface, x, y, text, clr);
         return;
     }
     if (! (font && font->_data)) return; // error with font
@@ -142,11 +145,11 @@ void sgsdl2_draw_text(
     }
     else
     {
-        unsigned int count = _sgsdl2_renderer_count(surface);
+        unsigned int count = _sk_renderer_count(surface);
 
         for (unsigned int i = 0; i < count; i++)
         {
-            SDL_Renderer *renderer = _sgsdl2_prepared_renderer(surface, i);
+            SDL_Renderer *renderer = _sk_prepared_renderer(surface, i);
             text_texture = SDL_CreateTextureFromSurface(renderer, text_surface);
             if (text_texture == NULL)
             {
@@ -162,22 +165,11 @@ void sgsdl2_draw_text(
 
                 SDL_RenderCopy(renderer, text_texture, NULL, &rect);
 
-                _sgsdl2_complete_render(surface, i);
+                _sk_complete_render(surface, i);
 
                 SDL_DestroyTexture(text_texture);
             }
         }
         SDL_FreeSurface(text_surface);
     }
-}
-
-void sgsdl2_load_text_fns(sg_interface *functions)
-{
-    functions->text.load_font = &sgsdl2_load_font;
-    functions->text.close_font = &sgsdl2_close_font;
-    functions->text.text_line_skip = &sgsdl2_text_line_skip;
-    functions->text.text_size = &sgsdl2_text_size;
-    functions->text.get_font_style = &sgsdl2_get_font_style;
-    functions->text.set_font_style = &sgsdl2_set_font_style;
-    functions->text.draw_text = &sgsdl2_draw_text;
 }

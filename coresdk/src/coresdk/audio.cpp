@@ -68,6 +68,12 @@ sound_effect load_sound_effect(string name, string filename)
 
     string file_path = path_to_resource(filename, AUDIO_RESOURCE);
 
+    if ( ! file_exists(file_path) )
+    {
+        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+        return nullptr;
+    }
+    
     sound_effect result = new _sound_data();
 
     result->id = AUDIO_PTR;

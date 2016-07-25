@@ -12,6 +12,7 @@
 #endif
 
 #include "core_driver.h"
+#include "text_driver.h"
 
 #include <stdlib.h>
 
@@ -60,7 +61,7 @@ void internal_sk_init()
     sk_setup_displays();
     sk_init_audio();
 
-//    sk_init_text();
+    sk_init_text();
 
 
 //    sgsdk2_init_web();

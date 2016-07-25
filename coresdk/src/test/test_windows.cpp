@@ -13,11 +13,13 @@
 #include "images.h"
 #include "graphics.h"
 #include "utils.h"
+#include "text.h"
 
 void run_windows_tests()
 {
     open_window("Hello World", 800, 600);
     
+    font fnt = load_font("hara", "hara.ttf", 64);
     bitmap light = load_bitmap("light", "on_med.png");
     
     while ( ! quit_requested() )
@@ -29,7 +31,9 @@ void run_windows_tests()
         
         draw_bitmap(light, 10, 100);
         draw_bitmap("light", 75, 100);
-        draw_bitmap("fred", 75, 100);
+        //draw_bitmap("fred", 75, 100);
+        
+        draw_text("Hello World", COLOR_BLUE, fnt, 200, 100);
         
         refresh_screen();
     }

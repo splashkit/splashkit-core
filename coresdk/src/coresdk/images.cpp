@@ -72,6 +72,12 @@ bitmap load_bitmap(string name, string filename)
     
     string file_path = path_to_resource(filename, IMAGE_RESOURCE);
     
+    if ( ! file_exists(file_path) )
+    {
+        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+        return nullptr;
+    }
+    
     surface = sk_load_bitmap(file_path.c_str());
     if ( not surface._data )
     {

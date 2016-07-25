@@ -86,6 +86,12 @@
 		9424B5B31D449C4F0039B3AF /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5B11D449C4F0039B3AF /* camera.h */; };
 		9424B5B81D44FBDF0039B3AF /* Lines.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5B51D44FBA60039B3AF /* Lines.png */; };
 		9424B5B91D44FBDF0039B3AF /* on_med.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5B61D44FBA60039B3AF /* on_med.png */; };
+		9424B5BE1D4619430039B3AF /* hara.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5BB1D46191D0039B3AF /* hara.ttf */; };
+		9424B5BF1D4619450039B3AF /* LeagueGothic.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */; };
+		9424B5C21D4619620039B3AF /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C01D4619620039B3AF /* text.cpp */; };
+		9424B5C31D4619620039B3AF /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C11D4619620039B3AF /* text.h */; };
+		9424B5C71D461FE00039B3AF /* text_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C51D461FE00039B3AF /* text_driver.h */; };
+		9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C41D461FE00039B3AF /* text_driver.cpp */; };
 		94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +119,17 @@
 			files = (
 				9424B5B81D44FBDF0039B3AF /* Lines.png in CopyFiles */,
 				9424B5B91D44FBDF0039B3AF /* on_med.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9424B5BD1D4619340039B3AF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Resources/fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				9424B5BE1D4619430039B3AF /* hara.ttf in CopyFiles */,
+				9424B5BF1D4619450039B3AF /* LeagueGothic.otf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +218,12 @@
 		9424B5B11D449C4F0039B3AF /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		9424B5B51D44FBA60039B3AF /* Lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lines.png; sourceTree = "<group>"; };
 		9424B5B61D44FBA60039B3AF /* on_med.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on_med.png; sourceTree = "<group>"; };
+		9424B5BB1D46191D0039B3AF /* hara.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hara.ttf; sourceTree = "<group>"; };
+		9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeagueGothic.otf; sourceTree = "<group>"; };
+		9424B5C01D4619620039B3AF /* text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
+		9424B5C11D4619620039B3AF /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
+		9424B5C41D461FE00039B3AF /* text_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_driver.cpp; sourceTree = "<group>"; };
+		9424B5C51D461FE00039B3AF /* text_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_driver.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources_tests.cpp; sourceTree = "<group>"; };
 		94F7F7701D3661CA005D3C8C /* resources_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources_tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +276,7 @@
 		940864481D37A511009EA048 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9424B5BA1D46187C0039B3AF /* fonts */,
 				9424B5B41D44FB980039B3AF /* images */,
 				940864491D37A518009EA048 /* sounds */,
 			);
@@ -305,6 +329,8 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				9424B5C41D461FE00039B3AF /* text_driver.cpp */,
+				9424B5C51D461FE00039B3AF /* text_driver.h */,
 				9408646E1D38F7EC009EA048 /* input_driver.cpp */,
 				9408646F1D38F7EC009EA048 /* input_driver.h */,
 				9408645E1D384C27009EA048 /* graphics_driver.cpp */,
@@ -353,6 +379,8 @@
 				9424B5AD1D44910B0039B3AF /* images.h */,
 				9424B5B01D449C4F0039B3AF /* camera.cpp */,
 				9424B5B11D449C4F0039B3AF /* camera.h */,
+				9424B5C01D4619620039B3AF /* text.cpp */,
+				9424B5C11D4619620039B3AF /* text.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -414,6 +442,15 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		9424B5BA1D46187C0039B3AF /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9424B5BB1D46191D0039B3AF /* hara.ttf */,
+				9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -424,6 +461,8 @@
 				940864691D38BA14009EA048 /* geometry.h in Headers */,
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
+				9424B5C31D4619620039B3AF /* text.h in Headers */,
+				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
@@ -473,6 +512,7 @@
 				942372281D1D68E30020CCE2 /* Frameworks */,
 				942372291D1D68E30020CCE2 /* CopyFiles */,
 				9424B5B71D44FBCA0039B3AF /* CopyFiles */,
+				9424B5BD1D4619340039B3AF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -525,6 +565,8 @@
 			files = (
 				9423721C1D1D57D20020CCE2 /* core_driver.cpp in Sources */,
 				9424B5AE1D44910B0039B3AF /* images.cpp in Sources */,
+				9424B5C21D4619620039B3AF /* text.cpp in Sources */,
+				9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
@@ -662,6 +704,7 @@
 				GCC_WARN_SHADOW = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_ttf\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_mixer\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
@@ -694,6 +737,7 @@
 				GCC_WARN_SHADOW = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_ttf\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_mixer\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
