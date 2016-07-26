@@ -60,6 +60,30 @@ http_response http_get(string url, unsigned short port)
     return response;
 }
 
+void save_response_to_file(http_response response, string filename)
+{
+    ofstream file(filename, ios::binary);
+    file.write(response->data.data,response->data.size);
+    file.close();
+}
+
+string http_response_to_string(http_response response)
+{
+    if ( ! VALID_PTR(response, HTTP_RESPONSE_PTR))
+    {
+        raise_warning("Attempt to convert invalid http response to a string");
+        return "";
+    }
+    
+    string result = "";
+
+    for (int i = 0; i < response->data.size; i++)
+    {
+        // WriteLn(response^.data.data[i]);
+        result += response->data.data[i];
+    }
+    return result;
+}
 
 bitmap download_image(string name, string url, unsigned short port)
 {
@@ -73,14 +97,28 @@ bitmap download_image(string name, string url, unsigned short port)
     
     char *tmpname = strdup("/tmp/splashkit.image.XXXXXX");
     mkstemp(tmpname);
-    ofstream file(tmpname, ios::binary);
+    save_response_to_file(response, tmpname);
     free(tmpname);
-    file.write(response->data.data,response->data.size);
-    file.close();
     
     bitmap result = load_bitmap(name, tmpname);
     remove(tmpname);
     
+    delete_response(response);
+    
     return result;
+}
+
+void delete_response (http_response response)
+{
+    if ( VALID_PTR(response, HTTP_RESPONSE_PTR))
+    {
+        sk_free_response(&response->data);
+        response->id = NONE_PTR;
+        delete(response);
+    }
+    else
+    {
+        raise_warning("Attempting to delete a http response with an invalid pointer.");
+    }
 }
 

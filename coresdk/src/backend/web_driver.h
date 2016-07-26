@@ -19,6 +19,6 @@ sk_http_response sk_http_get(const char *host, unsigned short port);
 sk_http_response sk_http_put(const char *host, unsigned short port, const char *body);
 sk_http_response sk_http_delete(const char *host, unsigned short port, const char *body);
 sk_http_response sk_http_make_request(sk_http_request request);
-
+void sk_free_response(sk_http_response *response);
 
 #endif /* defined(__sgsdl2__SGSDL2Web__) */
