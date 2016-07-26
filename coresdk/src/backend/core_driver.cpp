@@ -20,7 +20,7 @@
 //using namespace std;
 
 #include "audio_driver.h"
-
+#include "web_driver.h"
 
 // Storage for the system data
 sk_system_data _sk_system_data;
@@ -63,8 +63,7 @@ void internal_sk_init()
 
     sk_init_text();
 
-
-//    sgsdk2_init_web();
+    sk_init_web();
 //
 //    sk_network_init();
 }

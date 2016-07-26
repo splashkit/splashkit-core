@@ -156,5 +156,30 @@ struct sk_font_data
     void * _data;
 };
 
+enum sk_http_method
+{
+    HTTP_GET,
+    HTTP_POST,
+    HTTP_PUT,
+    HTTP_DELETE
+};
+
+struct sk_http_request
+{
+    sk_http_method request_type;
+    const char *url;
+    unsigned short port;
+    const char *body;
+    bool to_file;
+    const char *filename;
+};
+
+struct sk_http_response
+{
+    unsigned short status;
+    unsigned int size;
+    char *data;
+};
+
 
 #endif /* BackendTypes_hpp */

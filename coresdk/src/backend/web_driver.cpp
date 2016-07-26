@@ -1,13 +1,13 @@
 //
-//  SGSDL2Web.cpp
-//  sgsdl2
+//  skWeb.cpp
+//  sk
 //
 //  Created by Andrew Cain on 1/05/2015.
 //  Copyright (c) 2015 Andrew Cain. All rights reserved.
 //
 
-#include "SGSDL2Core.h"
-#include "SGSDL2Web.h"
+#include "web_driver.h"
+#include "core_driver.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +18,7 @@
 static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
 {
     size_t realsize = size * nmemb;
-    sg_http_response *mem = (sg_http_response *)userp;
+    sk_http_response *mem = (sk_http_response *)userp;
 
     mem->data = (char *)realloc(mem->data, mem->size + realsize + 1);
     if(mem->data == NULL) {
@@ -34,11 +34,17 @@ static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, v
     return realsize;
 }
 
-typedef struct request_stream
+size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+    size_t written;
+    written = fwrite(ptr, size, nmemb, stream);
+    return written;
+}
+
+struct request_stream
 {
     const char *body;
     unsigned long at;
-} request_stream;
+};
 
 /* NOTE: check note regarding reading if this does not work on Windows with libcurl as a
  DLL -- you MUST also provide a read callback with CURLOPT_READFUNCTION.
@@ -68,21 +74,21 @@ static size_t read_request_body(void *ptr, size_t size, size_t nmemb, void *stre
     return 0;
 }
 
-void sgsdk2_init_web()
+void sk_init_web()
 {
     curl_global_init(CURL_GLOBAL_ALL);
 }
 
-void sgsdl2_finalise_web()
+void sk_finalise_web()
 {
     curl_global_cleanup();
 }
 
 //TODO: fix code duplication here...
 
-sg_http_response sgsdl2_http_post(const char *host, unsigned short port, const char *body)
+sk_http_response sk_http_post(const char *host, unsigned short port, const char *body)
 {
-    sg_http_response result = { 500, 0, NULL };
+    sk_http_response result = { 500, 0, NULL };
     CURL *curl_handle;
     CURLcode res;
 
@@ -141,9 +147,9 @@ sg_http_response sgsdl2_http_post(const char *host, unsigned short port, const c
     return result;
 }
 
-sg_http_response sgsdl2_http_get(const char *host, unsigned short port)
+sk_http_response sk_http_get(const char *host, unsigned short port)
 {
-    sg_http_response result = { 500, 0, NULL };
+    sk_http_response result = { 500, 0, NULL };
     CURL *curl_handle;
     CURLcode res;
 
@@ -188,9 +194,9 @@ sg_http_response sgsdl2_http_get(const char *host, unsigned short port)
     return result;
 }
 
-sg_http_response sgsdl2_http_put(const char *host, unsigned short port, const char *body)
+sk_http_response sk_http_put(const char *host, unsigned short port, const char *body)
 {
-    sg_http_response result = { 500, 0, NULL };
+    sk_http_response result = { 500, 0, NULL };
     CURL *curl_handle;
     CURLcode res;
 
@@ -257,9 +263,9 @@ sg_http_response sgsdl2_http_put(const char *host, unsigned short port, const ch
     return result;
 }
 
-sg_http_response sgsdl2_http_delete(const char *host, unsigned short port, const char *body)
+sk_http_response sk_http_delete(const char *host, unsigned short port, const char *body)
 {
-    sg_http_response result = { 500, 0, NULL };
+    sk_http_response result = { 500, 0, NULL };
     CURL *curl_handle;
     CURLcode res;
 
@@ -316,25 +322,25 @@ sg_http_response sgsdl2_http_delete(const char *host, unsigned short port, const
     return result;
 }
 
-sg_http_response sgsdl2_http_request(sg_http_request request)
+sk_http_response sk_http_make_request(sk_http_request request)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     
     switch (request.request_type) {
         case HTTP_GET:
-            return sgsdl2_http_get(request.url, request.port);
+            return sk_http_get(request.url, request.port);
         case HTTP_POST:
-            return sgsdl2_http_post(request.url, request.port, request.body);
+            return sk_http_post(request.url, request.port, request.body);
         case HTTP_PUT:
-            return sgsdl2_http_put(request.url, request.port, request.body);
+            return sk_http_put(request.url, request.port, request.body);
         case HTTP_DELETE:
-            return sgsdl2_http_delete(request.url, request.port, request.body);
+            return sk_http_delete(request.url, request.port, request.body);
         default:
             return { 500, 0, NULL };
     }
 }
 
-void sgsdl2_free_response(sg_http_response *response)
+void sk_free_response(sk_http_response *response)
 {
     if ( response && response->size > 0 )
     {
@@ -345,11 +351,3 @@ void sgsdl2_free_response(sg_http_response *response)
     }
 }
 
-
-void sgsdl2_load_web_fns(sg_interface *functions)
-{
-    curl_global_init(CURL_GLOBAL_ALL);
-
-    functions->web.http_request = & sgsdl2_http_request;
-    functions->web.free_response = & sgsdl2_free_response;
-}

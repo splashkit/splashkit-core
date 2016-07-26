@@ -92,6 +92,10 @@
 		9424B5C31D4619620039B3AF /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C11D4619620039B3AF /* text.h */; };
 		9424B5C71D461FE00039B3AF /* text_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C51D461FE00039B3AF /* text_driver.h */; };
 		9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C41D461FE00039B3AF /* text_driver.cpp */; };
+		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
+		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
+		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
+		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
 		94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +228,10 @@
 		9424B5C11D4619620039B3AF /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		9424B5C41D461FE00039B3AF /* text_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_driver.cpp; sourceTree = "<group>"; };
 		9424B5C51D461FE00039B3AF /* text_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_driver.h; sourceTree = "<group>"; };
+		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
+		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
+		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
+		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources_tests.cpp; sourceTree = "<group>"; };
 		94F7F7701D3661CA005D3C8C /* resources_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources_tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -329,6 +337,8 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				94C7491A1D478813006A9052 /* web_driver.cpp */,
+				94C7491B1D478813006A9052 /* web_driver.h */,
 				9424B5C41D461FE00039B3AF /* text_driver.cpp */,
 				9424B5C51D461FE00039B3AF /* text_driver.h */,
 				9408646E1D38F7EC009EA048 /* input_driver.cpp */,
@@ -381,6 +391,8 @@
 				9424B5B11D449C4F0039B3AF /* camera.h */,
 				9424B5C01D4619620039B3AF /* text.cpp */,
 				9424B5C11D4619620039B3AF /* text.h */,
+				94C749201D478BBB006A9052 /* web.cpp */,
+				94C749211D478BBB006A9052 /* web.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -477,6 +489,8 @@
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
+				94C749231D478BBB006A9052 /* web.h in Headers */,
+				94C7491D1D478813006A9052 /* web_driver.h in Headers */,
 				9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */,
 				9424B5A71D4444F40039B3AF /* random.h in Headers */,
 				9424B59F1D4441CF0039B3AF /* color.h in Headers */,
@@ -571,11 +585,13 @@
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
+				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				940864751D38FED0009EA048 /* sk_input_backend.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
+				94C749221D478BBB006A9052 /* web.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,
 				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,
@@ -757,6 +773,7 @@
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
 				);
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -769,6 +786,7 @@
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
 				);
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

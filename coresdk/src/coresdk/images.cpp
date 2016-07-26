@@ -70,12 +70,17 @@ bitmap load_bitmap(string name, string filename)
     sk_drawing_surface surface;
     bitmap result = nullptr;
     
-    string file_path = path_to_resource(filename, IMAGE_RESOURCE);
+    string file_path = filename;
     
     if ( ! file_exists(file_path) )
     {
-        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
-        return nullptr;
+        file_path = path_to_resource(filename, IMAGE_RESOURCE);
+        
+        if ( ! file_exists(file_path) )
+        {
+            raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+            return nullptr;
+        }
     }
     
     surface = sk_load_bitmap(file_path.c_str());
