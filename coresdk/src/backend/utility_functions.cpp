@@ -138,7 +138,10 @@ sk_drawing_surface *to_surface_ptr(void *p)
         return &b->image.surface;
     }
     else
+    {
+        raise_warning("Attempting to draw to a surface that does not exist.");
         return  nullptr;
+    }
 }
 
 void xy_from_opts(drawing_options &opts, float &x, float &y)

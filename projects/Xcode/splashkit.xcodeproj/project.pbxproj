@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 868012981D483D9400AE3694 /* test_graphics.cpp */; };
 		940864501D37A575009EA048 /* 280.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644A1D37A550009EA048 /* 280.mp3 */; };
 		940864511D37A578009EA048 /* 30248__streety__sword7.flac in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644B1D37A550009EA048 /* 30248__streety__sword7.flac */; };
 		940864521D37A57B009EA048 /* energize_my_mind.mod in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644C1D37A550009EA048 /* energize_my_mind.mod */; };
@@ -140,6 +141,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		868012981D483D9400AE3694 /* test_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_graphics.cpp; sourceTree = "<group>"; };
+		868012991D483D9400AE3694 /* test_graphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_graphics.hpp; sourceTree = "<group>"; };
 		9408644A1D37A550009EA048 /* 280.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 280.mp3; sourceTree = "<group>"; };
 		9408644B1D37A550009EA048 /* 30248__streety__sword7.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = 30248__streety__sword7.flac; sourceTree = "<group>"; };
 		9408644C1D37A550009EA048 /* energize_my_mind.mod */ = {isa = PBXFileReference; lastKnownFileType = file; path = energize_my_mind.mod; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 				94F7F7701D3661CA005D3C8C /* resources_tests.h */,
 				9408646A1D38F09B009EA048 /* test_windows.cpp */,
 				9408646B1D38F09B009EA048 /* test_windows.hpp */,
+				868012981D483D9400AE3694 /* test_graphics.cpp */,
+				868012991D483D9400AE3694 /* test_graphics.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 			files = (
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */,
+				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* audio_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

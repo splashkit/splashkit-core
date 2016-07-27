@@ -931,15 +931,15 @@ void sk_draw_aabb_rect(sk_drawing_surface *surface, sk_color clr, float *data, i
     }
 }
 
-void sk_fill_aabb_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
     if ( (! surface) || (! surface->_data)  ) return;
-    if ( data_sz != 4 ) return;
+    
     SDL_Rect rect = {
-        static_cast<int>(data[0]),
-        static_cast<int>(data[1]),
-        static_cast<int>(data[2]),
-        static_cast<int>(data[3])
+        static_cast<int>(x),
+        static_cast<int>(y),
+        static_cast<int>(width),
+        static_cast<int>(height)
     };
 
     unsigned int count = _sk_renderer_count(surface);
