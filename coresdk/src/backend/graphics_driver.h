@@ -61,7 +61,7 @@ void sk_close_drawing_surface(sk_drawing_surface *surface);
 void sk_clear_drawing_surface(sk_drawing_surface *surface, sk_color clr);
 void sk_refresh_window(sk_drawing_surface *window);
 
-void sk_draw_aabb_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
+void sk_draw_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height);
 void sk_fill_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height);
 void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
