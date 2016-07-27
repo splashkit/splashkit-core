@@ -14,7 +14,7 @@ static bool _do_seed = true;
 
 float rnd()
 {
-    return rnd(RAND_MAX) / RAND_MAX;
+    return rnd(RAND_MAX) / static_cast<float>(RAND_MAX);
 }
 
 int rnd(int ubound)
