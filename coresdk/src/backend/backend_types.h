@@ -170,7 +170,6 @@ struct sk_http_request
     const char *url;
     unsigned short port;
     const char *body;
-    bool to_file;
     const char *filename;
 };
 
