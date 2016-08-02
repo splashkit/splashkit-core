@@ -42,9 +42,9 @@ bitmap bitmap_named(string name);
 /// Releases the SwinGame resources associated with the bitmap of the
 /// specified ``name``.
 ///
-void delete_bitmap(bitmap to_delete);
+void free_bitmap(bitmap to_delete);
 
-void delete_all_bitmaps();
+void free_all_bitmaps();
 
 void draw_bitmap(bitmap bmp, float x, float y);
 

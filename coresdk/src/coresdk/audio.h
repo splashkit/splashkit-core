@@ -74,7 +74,7 @@ sound_effect sound_effect_named(string name);
 ///
 /// @class SoundEffect
 /// @destructor
-void delete_sound_effect(sound_effect effect);
+void free_sound_effect(sound_effect effect);
 
 /// Releases all of the sound effects that have been loaded.
 ///
@@ -82,7 +82,7 @@ void delete_sound_effect(sound_effect effect);
 ///
 /// @class Audio
 /// @method DeleteAllSoundEffects
-void delete_all_sound_effects();
+void free_all_sound_effects();
 
 /// This version of PlaySoundEffect allows you to control both the number
 /// of times the `SoundEffect` is repeated, and its playback volume.

@@ -103,12 +103,12 @@ bitmap download_image(string name, string url, unsigned short port)
     bitmap result = load_bitmap(name, tmpname);
     remove(tmpname);
     
-    delete_response(response);
+    free_response(response);
     
     return result;
 }
 
-void delete_response (http_response response)
+void free_response (http_response response)
 {
     if ( VALID_PTR(response, HTTP_RESPONSE_PTR))
     {

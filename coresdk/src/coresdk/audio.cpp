@@ -94,7 +94,7 @@ sound_effect load_sound_effect(string name, string filename)
     return result;
 }
 
-void delete_sound_effect(sound_effect effect)
+void free_sound_effect(sound_effect effect)
 {
     if ( VALID_PTR(effect, AUDIO_PTR) )
     {
@@ -109,7 +109,7 @@ void delete_sound_effect(sound_effect effect)
     }
 }
 
-void delete_all_sound_effects()
+void free_all_sound_effects()
 {
     string name;
 
@@ -120,7 +120,7 @@ void delete_all_sound_effects()
         sound_effect effect = _sound_effects.begin()->second;
         if (VALID_PTR(effect, AUDIO_PTR))
         {
-            delete_sound_effect(effect);
+            free_sound_effect(effect);
         }
         else
         {

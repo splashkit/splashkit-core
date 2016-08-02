@@ -48,7 +48,7 @@ void run_windows_tests()
         refresh_screen();
     }
     
-    delete_bitmap(light);
+    free_bitmap(light);
     close_window(window_named("Hello World"));
     
     delay(500);
