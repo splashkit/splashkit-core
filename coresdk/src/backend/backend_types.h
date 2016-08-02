@@ -27,10 +27,10 @@ typedef void *pointer;
 /// Convert a string for each to hex: http://www.unit-conversion.info/texttools/hexadecimal/#data
 enum pointer_identifier
 {
-    DATABASE_PTR =          0x44415442, //"DATB"
-    AUDIO_PTR =             0x41554449, //"AUDI"
-    MUSIC_PTR =             0x4d555349, //'MUSI'
-    ANIMATION_PTR =         0x414e494d, //'ANIM'
+    DATABASE_PTR =          0x44415442, //'DATB';
+    AUDIO_PTR =             0x41554449, //'AUDI';
+    MUSIC_PTR =             0x4d555349, //'MUSI';
+    ANIMATION_PTR =         0x414e494d, //'ANIM';
     ANIMATION_SCRIPT_PTR =  0x41534352, //'ASCR';
     BITMAP_PTR =            0x424d502a, //'BMP*';
     SPRITE_PTR =            0x53505254, //'SPRT';
