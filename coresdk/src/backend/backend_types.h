@@ -21,7 +21,7 @@ typedef void *pointer;
 
 /// An identifier for the splashkit pointers.
 /// Each resource will start with an identifier to
-/// Make sure that the dereferenced pointers are likely
+/// Ensure that the dereferenced pointers are likely
 /// to refer to the right type of data...
 ///
 /// Convert a string for each to hex: http://www.unit-conversion.info/texttools/hexadecimal/#data
