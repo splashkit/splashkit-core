@@ -1,12 +1,13 @@
 //
-//  SGSDL2Network.cpp
-//  sgsdl2
+//  skNetwork.cpp
+//  sk
 //
 //  Created by Andrew Cain on 16/11/2014.
 //  Copyright (c) 2014 Andrew Cain. All rights reserved.
 //
 
-#include "SGSDL2Network.h"
+#include "core_driver.h"
+#include "network_driver.h"
 
 #include <stdio.h>
 
@@ -21,12 +22,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "SGSDL2Core.h"
-
 // This set keeps track of all of the sockets to see if there is activity
 SDLNet_SocketSet _sockets; // allocate on setup of functions.
 
-void sg_network_init()
+void sk_network_init()
 {
     SDLNet_Init();
     _sockets = SDLNet_AllocSocketSet(1024);
@@ -37,13 +36,13 @@ void sg_network_init()
     }
 }
 
-sg_network_connection sgsdl2_open_udp_connection(unsigned short port)
+sk_network_connection sk_open_udp_connection(unsigned short port)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     
     UDPsocket svr;
     
-    sg_network_connection result;
+    sk_network_connection result;
     result.kind = SGCK_UNKNOWN;
     result._socket = NULL;
     
@@ -64,14 +63,14 @@ sg_network_connection sgsdl2_open_udp_connection(unsigned short port)
     return result;
 }
 
-sg_network_connection sgsdl2_open_tcp_connection(const char *host, unsigned short port)
+sk_network_connection sk_open_tcp_connection(const char *host, unsigned short port)
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     
     IPaddress addr;
     TCPsocket client;
     
-    sg_network_connection result;
+    sk_network_connection result;
     result.kind = SGCK_UNKNOWN;
     result._socket = NULL;
     
@@ -96,7 +95,7 @@ sg_network_connection sgsdl2_open_tcp_connection(const char *host, unsigned shor
     return result;
 }
 
-int sgsdl2_send_bytes(sg_network_connection *con, char *buffer, int size)
+int sk_send_bytes(sk_network_connection *con, char *buffer, int size)
 {
     // not entry point...
 //    printf("Sending %d\n", size);
@@ -110,7 +109,7 @@ int sgsdl2_send_bytes(sg_network_connection *con, char *buffer, int size)
     return sent;
 }
 
-int sgsdl2_send_udp_message(sg_network_connection *con, const char *host, unsigned short port, const char *buffer, int size)
+int sk_send_udp_message(sk_network_connection *con, const char *host, unsigned short port, const char *buffer, int size)
 {
     // Not entry point.
     UDPpacket packet;
@@ -121,7 +120,7 @@ int sgsdl2_send_udp_message(sg_network_connection *con, const char *host, unsign
     return SDLNet_UDP_Send((UDPsocket)con->_socket, -1, &packet);
 }
 
-void sgsdl2_read_udp_message(sg_network_connection *con, unsigned int *host, unsigned short *port, char *buffer, unsigned int *size)
+void sk_read_udp_message(sk_network_connection *con, unsigned int *host, unsigned short *port, char *buffer, unsigned int *size)
 {
 //    printf("Reading up to %d bytes\n", *size);
     
@@ -147,13 +146,13 @@ void sgsdl2_read_udp_message(sg_network_connection *con, unsigned int *host, uns
     SDLNet_FreePacket(packet);
 }
 
-int sgsdl2_read_bytes(sg_network_connection *con, char *buffer, int size)
+int sk_read_bytes(sk_network_connection *con, char *buffer, int size)
 {
     // not entry point
     return SDLNet_TCP_Recv((TCPsocket)con->_socket, buffer, size);
 }
 
-void sgsdl2_close_connection(sg_network_connection *con)
+void sk_close_connection(sk_network_connection *con)
 {
     // not entry point
     if ( con->kind == SGCK_TCP )
@@ -170,7 +169,7 @@ void sgsdl2_close_connection(sg_network_connection *con)
     con->kind = SGCK_UNKNOWN;
 }
 
-unsigned int sgsdl2_network_address(sg_network_connection *con)
+unsigned int sk_network_address(sk_network_connection *con)
 {
     IPaddress *remote;
     if (con->kind == SGCK_TCP)
@@ -180,7 +179,7 @@ unsigned int sgsdl2_network_address(sg_network_connection *con)
     return SDLNet_Read32(&remote->host);
 }
 
-unsigned int sgsdl2_get_network_port(sg_network_connection *con)
+unsigned int sk_get_network_port(sk_network_connection *con)
 {
     IPaddress *remote;
     if (con->kind == SGCK_TCP)
@@ -190,9 +189,9 @@ unsigned int sgsdl2_get_network_port(sg_network_connection *con)
     return SDLNet_Read16(&remote->port);
 }
 
-sg_network_connection sgsdl2_accept_connection(sg_network_connection *con)
+sk_network_connection sk_accept_connection(sk_network_connection *con)
 {
-    sg_network_connection result;
+    sk_network_connection result;
     result._socket = NULL;
     result.kind = SGCK_UNKNOWN;
     
@@ -207,14 +206,14 @@ sg_network_connection sgsdl2_accept_connection(sg_network_connection *con)
     return result;
 }
 
-unsigned int sgsdl2_network_has_data()
+unsigned int sk_network_has_data()
 {
-    internal_sgsdl2_init();
+    internal_sk_init();
     if (SDLNet_CheckSockets(_sockets, 0) > 0) return 1;
     else return 0;
 }
 
-unsigned int sgsdl2_connection_has_data(sg_network_connection *con)
+unsigned int sk_connection_has_data(sk_network_connection *con)
 {
     int got = SDLNet_SocketReady(con->_socket);
 
@@ -223,22 +222,4 @@ unsigned int sgsdl2_connection_has_data(sg_network_connection *con)
         return 1;
     else
         return 0;
-}
-
-void sgsdl2_load_network_fns(sg_interface *functions)
-{
-    functions->network.open_tcp_connection = &sgsdl2_open_tcp_connection;
-    functions->network.open_udp_connection = &sgsdl2_open_udp_connection;
-    functions->network.read_bytes = &sgsdl2_read_bytes;
-    functions->network.send_bytes = &sgsdl2_send_bytes;
-    functions->network.close_connection = &sgsdl2_close_connection;
-    functions->network.network_address = &sgsdl2_network_address;
-    functions->network.accept_new_connection = &sgsdl2_accept_connection;
-    functions->network.network_has_data = &sgsdl2_network_has_data;
-    functions->network.connection_has_data = &sgsdl2_connection_has_data;
-    functions->network.network_port = &sgsdl2_get_network_port;
-    functions->network.send_udp_message = &sgsdl2_send_udp_message;
-    functions->network.read_udp_message = &sgsdl2_read_udp_message;
-    
-//    printf("Network port C: %p = %p\n", functions->network.network_port, &sgsdl2_get_network_port);
 }

@@ -111,15 +111,9 @@ font load_font(string name, string filename, int size)
 
 void _print_strings(void *dest, font fnt, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
 {
-    float pts[5];
-    
     if (bg_clr.a > 0)
     {
-        pts[0] = rc.x;
-        pts[1] = rc.y;
-        pts[2] = rc.width;
-        pts[3] = rc.height;
-        sk_fill_aabb_rect(to_surface_ptr(dest), bg_clr, pts, 4);
+        sk_fill_aabb_rect(to_surface_ptr(dest), bg_clr, rc.x, rc.y, rc.width, rc.height);
     }
     
     sk_draw_text(to_surface_ptr(dest), &fnt->font, rc.x, rc.y, str.c_str(), fg_clr);

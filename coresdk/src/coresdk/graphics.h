@@ -73,5 +73,26 @@ void fill_circle(color clr, circle &c,drawing_options opts);
 /// @sn fill_circleColor:%s data:%s
 void fill_circle(color clr, circle &c);
 
+/// Draw a rectangle using the supplied drawing options.
+///
+/// @lib DrawRectangleOpts
+/// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
+void draw_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
+
+/// Draw a rectangle onto the current window.
+///
+/// @lib DrawRectangle
+/// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s
+void draw_rectangle(color clr, float x, float y, float width, float height);
+
+/// Fill a rectangle using the supplied drawing options.
+///
+/// @lib FillRectangleOpts
+/// @sn fillRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
+void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
+
+/// Fill a rectangle onto the current window.
+///
+void fill_rectangle(color clr, float x, float y, float width, float height);
 
 #endif /* graphics_hpp */
