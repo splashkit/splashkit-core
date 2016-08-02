@@ -6,8 +6,8 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#ifndef BackendTypes_hpp
-#define BackendTypes_hpp
+#ifndef BackendTypes_h
+#define BackendTypes_h
 
 #include "drawing_options.h"
 #include "geometry.h"
@@ -182,4 +182,4 @@ struct sk_http_response
 };
 
 
-#endif /* BackendTypes_hpp */
+#endif /* BackendTypes_h */
