@@ -11,6 +11,7 @@
 #include "utility_functions.h"
 #include <fstream>
 #include <cstdio>
+#include <cstring>
 
 #include "images.h"
 
@@ -53,7 +54,7 @@ sk_http_response make_request (sk_http_method request_type, string url, unsigned
 http_response http_get(string url, unsigned short port)
 {
     http_response response;
-    
+
     response = new(_http_response_data);
     response->id = HTTP_RESPONSE_PTR;
     response->data = make_request(HTTP_GET, url, port, "");
@@ -74,7 +75,7 @@ string http_response_to_string(http_response response)
         raise_warning("Attempt to convert invalid http response to a string");
         return "";
     }
-    
+
     string result = "";
 
     for (int i = 0; i < response->data.size; i++)
@@ -88,23 +89,23 @@ string http_response_to_string(http_response response)
 bitmap download_image(string name, string url, unsigned short port)
 {
     http_response response = http_get(url, port);
-    
+
     if ( response->data.status < 200 || response->data.status >= 300 )
     {
         raise_warning("Unable to download image from " + url + " got status " + to_string(response->data.status));
         return nullptr;
     }
-    
+
     char *tmpname = strdup("/tmp/splashkit.image.XXXXXX");
     mkstemp(tmpname);
     save_response_to_file(response, tmpname);
     free(tmpname);
-    
+
     bitmap result = load_bitmap(name, tmpname);
     remove(tmpname);
-    
+
     delete_response(response);
-    
+
     return result;
 }
 
@@ -121,4 +122,3 @@ void delete_response (http_response response)
         raise_warning("Attempting to delete a http response with an invalid pointer.");
     }
 }
-
