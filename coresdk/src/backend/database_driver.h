@@ -1,5 +1,5 @@
 //
-//  database_driver.hpp
+//  database_driver.h
 //  splashkit
 //
 //  Created by Jake Renzella on 2/08/2016.

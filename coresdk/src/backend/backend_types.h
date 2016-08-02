@@ -1,5 +1,5 @@
 //
-//  BackendTypes.hpp
+//  BackendTypes.h
 //  splashkit
 //
 //  Created by Andrew Cain on 14/07/2016.

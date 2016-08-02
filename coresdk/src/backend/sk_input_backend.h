@@ -1,5 +1,5 @@
 //
-//  sk_input_backend.hpp
+//  sk_input_backend.h
 //  splashkit
 //
 //  Created by Andrew Cain on 15/07/2016.

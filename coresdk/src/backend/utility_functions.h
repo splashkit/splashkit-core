@@ -1,5 +1,5 @@
 //
-//  utility_functions.hpp
+//  utility_functions.h
 //  splashkit
 //
 //  Created by Andrew Cain on 29/06/2016.
