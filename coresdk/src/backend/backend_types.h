@@ -96,7 +96,7 @@ struct sk_window_data
 struct image_data
 {
     sk_drawing_surface surface;  // The actual bitmap image
-    vector<rectangle> clipStack;         // The clipping rectangle history for the bitmap
+    vector<rectangle> clipStack; // The clipping rectangle history for the bitmap
 };
 
 struct _window_data
