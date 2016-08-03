@@ -16,8 +16,6 @@ using namespace std;
 #define sk_audio
 
 /**
- * \typedef SoundEffect
- *
  * The `sound_effect` type is used to refer to sound effects that can be
  * played by the SplashKit audio code. Sound effects are:
  *
