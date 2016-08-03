@@ -163,7 +163,7 @@ void free_all_sound_effects();
  *
  * \param effect   The effect indicates which sound effect to start playing.
  * \param times    Controls the number of times the sound effect is played.
- * \param vol      Indicates the percentage of the original volume to play the
+ * \param volume   Indicates the percentage of the original volume to play the
  *                 `sound_effect` at. This must be between `0` and `1`.
  *
  * \internal
