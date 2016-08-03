@@ -1,9 +1,10 @@
 /**
- * \headerfile audio.h
- * \brief SplashKit Audio allows you to load and play music and sound effects.
- * \author Andrew Cain
+ * @header Audio
+ * @author Andrew Cain
+ * @brief SplashKit Audio allows you to load and play music and sound effects.
  *
  * # SplashKit Audio
+ *
  * The SplashKit's audio library allows you to easily load and play music and
  * sound effects within your programs. To get started with audio the first
  * thing you need to do is load a sound effect or music file. You can do this
@@ -21,7 +22,9 @@ using namespace std;
  * played by the SplashKit audio code. Sound effects are:
  *
  *   - loaded with `load_sound_effect`,
+ *
  *   - played using `play_sound_effect`,
+ *
  *   - and must be released using `delete_sound_effect` (to release a specific
  *     sound effect) or `delete_all_sound_effects` (to release all loaded
  *     sound effects).
@@ -36,125 +39,108 @@ using namespace std;
  * To stop a `sound_effect` playing use `stop_sound_effect`. This will stop all
  * instances of this one sound effect from playing.
  *
- * \note Use `music` for background music for your games.
+ * Use `music` for background music for your games.
  *
- * \internal
- *   [class] SoundEffect
- *   [pointer_wrapper]
- *   [field] pointer: pointer
- * \endinternal
+ * @attribute class             SoundEffect
+ * @attribute pointer_wrapper   true
+ * @attribute field             pointer: pointer
  */
 typedef struct _sound_data *sound_effect;
 
 /**
  * Starts the SplashKit audio system working.
  *
- * \internal
- *   [class] Audio
- *   [method] Open
- * \endinternal
+ * @attribute class  Audio
+ * @attribute method Open
  */
 void open_audio();
 
 /**
  * Turns off audio, stopping all current sounds effects and music.
  *
- * \internal
- *   [class]  Audio
- *   [method] Close
- * \endinternal
+ * @attribute class  Audio
+ * @attribute method Close
  */
 void close_audio();
 
 /**
  * Checks if SplashKit audio currently ready to be used.
  *
- * \returns Returns `true` if the audio has been initalised.
+ * Should this return `false`, you may want to use `open_audio`
+ * to enable audio.
  *
- * \note Should this return `false`, you may want to use `open_audio` to enable
- *       audio.
+ * @returns Returns `true` if the audio has been initalised.
  *
- * \internal
- *   [class]  Audio
- *   [getter] Ready
- * \endinternal
+ * @attribute class   Audio
+ * @attribute getter  Ready
  */
 bool audio_ready();
 
 /**
- * Loads and returns a sound effect. The supplied `filename` is used to
- * locate the sound effect to load. The supplied `name` indicates the
- * name to use to refer to this `sound_effect`. The `sound_effect` can then be
- * retrieved by passing this `name` to the `sound_effect_named` function.
+ * @brief Loads and returns a sound effect.
  *
- * \param name      The name used to refer to the sound effect.
- * \param filename  The filename used to locate the sound effect to use.
+ * The supplied `filename` is used to locate the sound effect to load. The
+ * supplied `name` indicates the name to use to refer to this `sound_effect`.
+ * The `sound_effect` can then be retrieved by passing this `name` to
+ * the `sound_effect_named` function.
  *
- * \returns A new `sound_effect` with the initialised values provided.
+ * @param name      The name used to refer to the sound effect.
+ * @param filename  The filename used to locate the sound effect to use.
  *
- * \internal
- *   [class] SoundEffect
- *   [constructor]
- * \endinternal
+ * @returns A new `sound_effect` with the initialised values provided.
+ *
+ * @attribute class         SoundEffect
+ * @attribute constructor   true
  */
 sound_effect load_sound_effect(string name, string filename);
 
 /**
  * Determines if SplashKit has a sound effect loaded for the supplied name.
  * This checks against all sounds loaded, those loaded without a name
- * are assigned the filename as a default.
+ * are assigned the filename as a default. If this returns `false`, you may
+ * want to use `load_sound_effect` to load in a specific sound effect and give
+ * it the desired name.
  *
- * \param name The name to check if a sound effect is loaded.
+ * @param name The name to check if a sound effect is loaded.
  *
- * \returns Returns `true` if there is a sound effect with the given `name` has
+ * @returns Returns `true` if there is a sound effect with the given `name` has
  *          has been loaded.
  *
- * \note If this returns `false`, you may want to use `load_sound_effect` to
- *       load in a specific sound effect and give it the desired name.
- *
- * \internal
- *   [class]  Audio
- *   [method] HasSoundEffect
- * \endinternal
+ * @attribute class  Audio
+ * @attribute method HasSoundEffect
  */
 bool has_sound_effect(string name);
 
 /**
  * Retrieves a `sound_effect` that has been loaded into SplashKit.
  *
- * \param name The name of the sound effect to return.
+ * @param name The name of the sound effect to return.
  *
- * \returns Returns the `sound_effect` that has been loaded with the specified
+ * @returns Returns the `sound_effect` that has been loaded with the specified
  *          `name` using `load_sound_effect`.
  *
- * \internal
- *   [class]  Audio
- *   [method] SoundEffectNamed
- * \endinternal
+ * @attribute class  Audio
+ * @attribute method SoundEffectNamed
  */
 sound_effect sound_effect_named(string name);
 
 /**
  * Releases the SplashKit resources associated with the sound effect.
  *
- * \param effect The `sound_effect` whose resources should be released.
+ * @param effect The `sound_effect` whose resources should be released.
  *
- * \internal
- *   [lib]
- *   [class] SoundEffect
- *   [destructor]
- * \endinternal
+ * @attribute lib         true
+ * @attribute class       SoundEffect
+ * @attribute destructor  true
  */
 void free_sound_effect(sound_effect effect);
 
 /**
  * Releases all of the sound effects that have been loaded.
  *
- * \internal
- *   [lib]
- *   [class] Audio
- *   [method] FreeAllSoundEffects
- * \endinternal
+ * @attribute lib     true
+ * @attribute class   Audio
+ * @attribute method  FreeAllSoundEffects
  */
 void free_all_sound_effects();
 
@@ -162,16 +148,15 @@ void free_all_sound_effects();
  * This version of `play_sound_effect` allows you to control both the number
  * of times the `sound_effect` is repeated and its playback volume.
  *
- * \param effect   The effect indicates which sound effect to start playing.
- * \param times    Controls the number of times the sound effect is played.
- * \param volume   Indicates the percentage of the original volume to play the
+ * @param effect   The effect indicates which sound effect to start playing.
+ * @param times    Controls the number of times the sound effect is played.
+ * @param volume   Indicates the percentage of the original volume to play the
  *                 `sound_effect` at. This must be between `0` and `1`.
  *
- * \internal
- *   [lib]
- *   [class]    SoundEffect
- *   [overload] Play PlayWithLoopsAndVolume
- * \endinternal
+ * @attribute lib       true
+ * @attribute class     SoundEffect
+ * @attribute overload  Play
+ * @attribute overload  PlayWithLoopsAndVolume
  */
 void play_sound_effect(sound_effect effect, int times, float volume);
 
