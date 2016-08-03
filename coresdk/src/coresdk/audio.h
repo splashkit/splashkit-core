@@ -42,7 +42,7 @@ using namespace std;
  *   [class] SoundEffect
  *   [pointer_wrapper]
  *   [field] pointer: pointer
- * \endintenral
+ * \endinternal
  */
 typedef struct _sound_data *sound_effect;
 
@@ -52,7 +52,7 @@ typedef struct _sound_data *sound_effect;
  * \internal
  *   [class] Audio
  *   [method] Open
- * \endintenral
+ * \endinternal
  */
 void open_audio();
 
@@ -62,7 +62,7 @@ void open_audio();
  * \internal
  *   [class]  Audio
  *   [method] Close
- * \endintenral
+ * \endinternal
  */
 void close_audio();
 
@@ -77,7 +77,7 @@ void close_audio();
  * \internal
  *   [class]  Audio
  *   [getter] Ready
- * \endintenral
+ * \endinternal
  */
 bool audio_ready();
 
@@ -95,7 +95,7 @@ bool audio_ready();
  * \internal
  *   [class] SoundEffect
  *   [constructor]
- * \endintenral
+ * \endinternal
  */
 sound_effect load_sound_effect(string name, string filename);
 
@@ -115,7 +115,7 @@ sound_effect load_sound_effect(string name, string filename);
  * \internal
  *   [class]  Audio
  *   [method] HasSoundEffect
- * \endintenral
+ * \endinternal
  */
 bool has_sound_effect(string name);
 
@@ -130,7 +130,7 @@ bool has_sound_effect(string name);
  * \internal
  *   [class]  Audio
  *   [method] SoundEffectNamed
- * \endintenral
+ * \endinternal
  */
 sound_effect sound_effect_named(string name);
 
@@ -143,7 +143,7 @@ sound_effect sound_effect_named(string name);
  *   [lib]
  *   [class] SoundEffect
  *   [destructor]
- * \endintenral
+ * \endinternal
  */
 void free_sound_effect(sound_effect effect);
 
@@ -154,7 +154,7 @@ void free_sound_effect(sound_effect effect);
  *   [lib]
  *   [class] Audio
  *   [method] FreeAllSoundEffects
- * \endintenral
+ * \endinternal
  */
 void free_all_sound_effects();
 
@@ -171,7 +171,7 @@ void free_all_sound_effects();
  *   [lib]
  *   [class]    SoundEffect
  *   [overload] Play PlayWithLoopsAndVolume
- * \endintenral
+ * \endinternal
  */
 void play_sound_effect(sound_effect effect, int times, float volume);
 
