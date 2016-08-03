@@ -9,6 +9,6 @@
 #ifndef database_h
 #define database_h
 
-#include <stdio.h>
+typedef struct _database *database;
 
 #endif /* database_h */

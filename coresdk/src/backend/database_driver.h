@@ -9,7 +9,16 @@
 #ifndef database_driver_h
 #define database_driver_h
 
+#include "sqlite3.h"
+#include <string>
+using namespace std;
+
+typedef struct sk_database
+{
+    // private data used by backend
+    sqlite3* _data;
+} sk_database;
+
+sk_database sk_load_database(string db_file_name);
 
 #endif /* database_driver_h */
-
-
