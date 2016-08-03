@@ -1,6 +1,7 @@
 /**
  * \headerfile audio.h
  * \brief SplashKit Audio allows you to load and play music and sound effects.
+ * \author Andrew Cain
  *
  * # SplashKit Audio
  * The SplashKit's audio library allows you to easily load and play music and
