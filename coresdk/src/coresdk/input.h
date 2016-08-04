@@ -185,5 +185,8 @@ void process_events();
 /// @lib
 bool quit_requested();
 
+/// Cancels a quit request, ensuring the quit requested will return false.
+///
+void reset_quit();
 
 #endif /* input_hpp */
