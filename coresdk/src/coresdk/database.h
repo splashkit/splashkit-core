@@ -37,11 +37,22 @@ void reset_result_query(query_result result);
 
 int query_column_for_int(query_result result, int col);
 
+double query_column_for_double(query_result result, int col);
+
 string query_column_for_string(query_result result, int col);
 
 bool query_column_for_bool(query_result result, int col);
 
+string query_type_of_col(query_result result, int col);
+
+bool query_success(query_result result);
+
 database open_database(string name, string filename);
 
+void free_database(database db_to_close);
+
+void free_database(string name_of_db_to_close);
+
+void free_all_databases();
 
 #endif /* database_h */

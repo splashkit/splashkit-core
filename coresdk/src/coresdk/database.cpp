@@ -106,6 +106,11 @@ int query_column_for_int(query_result result, int col)
     return sk_query_read_column_int(*result, col);
 }
 
+double query_column_for_double(query_result result, int col)
+{
+    return sk_query_read_column_double(*result, col);
+}
+
 string query_column_for_string(query_result result, int col)
 {
     return sk_query_read_column_text(*result, col);
@@ -114,6 +119,16 @@ string query_column_for_string(query_result result, int col)
 bool query_column_for_bool(query_result result, int col)
 {
     return sk_query_read_column_bool(*result, col);
+}
+
+string query_type_of_col(query_result result, int col)
+{
+    return sk_query_type_of_column(*result, col);
+}
+
+bool query_success(query_result result)
+{
+    return sk_query_success(*result);
 }
 
 database open_database(string name, string filename)
@@ -140,4 +155,45 @@ database open_database(string name, string filename)
     
     _databases[name] = result;
     return result;
+}
+
+void free_database(database db_to_close)
+{
+    if ( VALID_PTR(db_to_close, DATABASE_PTR) )
+    {
+        _databases.erase(db_to_close->name);
+        sk_close_database(db_to_close->database);
+        db_to_close->id = NONE_PTR;  // ensure future use of this pointer will fail...
+        delete(db_to_close);
+    }
+    else
+    {
+        raise_warning("Delete sound effect called without valid sound effect");
+    }
+}
+
+void free_database(string name_of_db_to_close)
+{
+    free_database(database_named(name_of_db_to_close));
+}
+
+void free_all_databases()
+{
+    string name;
+    
+    size_t sz = _databases.size();
+    
+    for(size_t i = 0; i < sz; i++)
+    {
+        database db_to_close = _databases.begin()->second;
+        if (VALID_PTR(db_to_close, DATABASE_PTR))
+        {
+            free_database(db_to_close);
+        }
+        else
+        {
+            raise_warning("Database contained an invalid pointer");
+            _databases.erase(_databases.begin());
+        }
+    }
 }

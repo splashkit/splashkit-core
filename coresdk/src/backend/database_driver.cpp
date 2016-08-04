@@ -107,6 +107,17 @@ int sk_query_read_column_int(sk_query_result result, int col)
     return false;
 }
 
+double sk_query_read_column_double(sk_query_result result, int col)
+{
+    if (result._result == SQLITE_ROW)
+    {
+        return sqlite3_column_double(sqlite3_stmt_from_void(result._stmt), col);
+    }
+    
+    raise_warning("Failed to read double from column");
+    return false;
+}
+
 string sk_query_read_column_text(sk_query_result result, int col)
 {
     if (result._result == SQLITE_ROW)
@@ -127,6 +138,34 @@ void sk_finalise_query(sk_query_result result)
     }
 }
 
+
+string sk_query_type_of_column(sk_query_result result, int col)
+{
+    if (result._result == SQLITE_ROW)
+    {
+        int data = sqlite3_column_type(sqlite3_stmt_from_void(result._stmt), col);
+        
+        switch(data)
+        {
+            case 1 :
+                return "INTEGER";
+                break;
+            case 2 :
+                return "FLOAT";
+                break;
+            case 3 :
+                return "TEXT";
+                break;
+            case 5 :
+                return "NULL";
+                break;
+            default :
+                raise_warning("Unkown type in column");
+        }
+    }
+    raise_warning("Failed to read type of column");
+    return "";
+}
 
 bool sk_query_read_column_bool(sk_query_result result, int col)
 {
