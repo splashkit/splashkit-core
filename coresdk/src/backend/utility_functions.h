@@ -1,13 +1,13 @@
 //
-//  utility_functions.hpp
+//  utility_functions.h
 //  splashkit
 //
 //  Created by Andrew Cain on 29/06/2016.
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#ifndef utility_functions_hpp
-#define utility_functions_hpp
+#ifndef utility_functions_h
+#define utility_functions_h
 
 #include "backend_types.h"
 
@@ -63,4 +63,4 @@ sk_drawing_surface *to_surface_ptr(void *p);
 void xy_from_opts(drawing_options &opts, float &x, float &y);
 
 
-#endif /* utility_functions_hpp */
+#endif /* utility_functions_h */

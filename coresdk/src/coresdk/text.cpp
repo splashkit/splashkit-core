@@ -38,7 +38,7 @@ font font_named(string name)
         return nullptr;
 }
 
-void delete_font(font fnt)
+void free_font(font fnt)
 {
     if ( VALID_PTR(fnt, FONT_PTR) )
     {
@@ -53,7 +53,7 @@ void delete_font(font fnt)
     }
 }
 
-void delete_all_fonts()
+void free_all_fonts()
 {
     string name;
     
@@ -64,7 +64,7 @@ void delete_all_fonts()
         font fnt = _fonts.begin()->second;
         if (VALID_PTR(fnt, FONT_PTR))
         {
-            delete_font(fnt);
+            free_font(fnt);
         }
         else
         {

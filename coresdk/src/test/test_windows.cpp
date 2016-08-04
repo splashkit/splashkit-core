@@ -30,6 +30,7 @@ void run_windows_tests()
 
     bitmap test = download_image("blah", "http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);
     
+    cout << "Expecting bad bitmap pointer error: " << endl;
     draw_bitmap("fred", 75, 100);
     
     while ( ! quit_requested() )
@@ -48,7 +49,7 @@ void run_windows_tests()
         refresh_screen();
     }
     
-    delete_bitmap(light);
+    free_bitmap(light);
     close_window(window_named("Hello World"));
     
     delay(500);

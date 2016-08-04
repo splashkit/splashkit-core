@@ -89,6 +89,13 @@
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
 		94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */; };
+		F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
+		F86951931D508BF100E1BCC9 /* database_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951911D508BF100E1BCC9 /* database_driver.h */; };
+		F86951961D5093F800E1BCC9 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951941D5093F800E1BCC9 /* database.cpp */; };
+		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
+		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
+		F869519C1D51C84A00E1BCC9 /* test_database.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F869519A1D51C84A00E1BCC9 /* test_database.hpp */; };
+		F86951C51D52C59600E1BCC9 /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F86951C41D52C59600E1BCC9 /* libsqlite.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -219,6 +226,13 @@
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* resources_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources_tests.cpp; sourceTree = "<group>"; };
 		94F7F7701D3661CA005D3C8C /* resources_tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources_tests.h; sourceTree = "<group>"; };
+		F86951901D508BF100E1BCC9 /* database_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_driver.cpp; sourceTree = "<group>"; };
+		F86951911D508BF100E1BCC9 /* database_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_driver.h; sourceTree = "<group>"; };
+		F86951941D5093F800E1BCC9 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
+		F86951951D5093F800E1BCC9 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
+		F869519A1D51C84A00E1BCC9 /* test_database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_database.hpp; sourceTree = "<group>"; };
+		F86951C41D52C59600E1BCC9 /* libsqlite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsqlite.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86951C51D52C59600E1BCC9 /* libsqlite.a in Frameworks */,
 				9423724F1D1D6A7D0020CCE2 /* libbz2.a in Frameworks */,
 				942372501D1D6A7D0020CCE2 /* libFLAC.a in Frameworks */,
 				942372581D1D6A7D0020CCE2 /* libSDL2_mixer.a in Frameworks */,
@@ -318,6 +333,8 @@
 				940864571D37A78C009EA048 /* backend_types.h */,
 				940864731D38FED0009EA048 /* sk_input_backend.cpp */,
 				940864741D38FED0009EA048 /* sk_input_backend.h */,
+				F86951901D508BF100E1BCC9 /* database_driver.cpp */,
+				F86951911D508BF100E1BCC9 /* database_driver.h */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -355,6 +372,8 @@
 				9424B5C11D4619620039B3AF /* text.h */,
 				94C749201D478BBB006A9052 /* web.cpp */,
 				94C749211D478BBB006A9052 /* web.h */,
+				F86951941D5093F800E1BCC9 /* database.cpp */,
+				F86951951D5093F800E1BCC9 /* database.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -371,6 +390,8 @@
 				9408646B1D38F09B009EA048 /* test_windows.hpp */,
 				868012981D483D9400AE3694 /* test_graphics.cpp */,
 				868012991D483D9400AE3694 /* test_graphics.hpp */,
+				F86951991D51C84A00E1BCC9 /* test_database.cpp */,
+				F869519A1D51C84A00E1BCC9 /* test_database.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -394,6 +415,7 @@
 				942372421D1D6A7D0020CCE2 /* libogg.a */,
 				942372431D1D6A7D0020CCE2 /* libpng16.a */,
 				942372441D1D6A7D0020CCE2 /* libSDL2.a */,
+				F86951C41D52C59600E1BCC9 /* libsqlite.a */,
 				942372451D1D6A7D0020CCE2 /* libSDL2_gfx.a */,
 				942372461D1D6A7D0020CCE2 /* libSDL2_image.a */,
 				942372471D1D6A7D0020CCE2 /* libSDL2_mixer.a */,
@@ -421,6 +443,8 @@
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
+				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
+				F86951971D5093F800E1BCC9 /* database.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
@@ -433,6 +457,7 @@
 				9408646D1D38F09B009EA048 /* test_windows.hpp in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
+				F869519C1D51C84A00E1BCC9 /* test_database.hpp in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
 				94C749231D478BBB006A9052 /* web.h in Headers */,
@@ -532,7 +557,9 @@
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
+				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
 				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
+				F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				940864751D38FED0009EA048 /* sk_input_backend.cpp in Sources */,
@@ -548,6 +575,7 @@
 				940864791D390134009EA048 /* input.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
+				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,8 +701,11 @@
 					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
+					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -706,8 +737,11 @@
 					"\"$(SRCROOT)/../../coresdk/external/SDL_gfx\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
+					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
 			};

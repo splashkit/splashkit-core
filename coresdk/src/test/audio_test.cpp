@@ -33,15 +33,15 @@ void run_audio_tests()
     delay(500);
 
     play_sound_effect(sound_effect_named("test"), 1, 1.0f);
-
+    
     delay(5000);
 
-    delete_sound_effect(s1);
+    free_sound_effect(s1);
 
     load_sound_effect("test2", "error.wav");
     load_sound_effect("test3", "30248__streety__sword7.flac");
 
-    delete_all_sound_effects();
+    free_all_sound_effects();
 
     cout << "    Closing audio..." << endl;
     close_audio();

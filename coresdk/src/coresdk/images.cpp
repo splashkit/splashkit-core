@@ -110,7 +110,7 @@ bitmap load_bitmap(string name, string filename)
     return result;
 }
 
-void delete_bitmap(bitmap bmp)
+void free_bitmap(bitmap bmp)
 {
     if ( VALID_PTR(bmp, BITMAP_PTR) )
     {
@@ -125,7 +125,7 @@ void delete_bitmap(bitmap bmp)
     }
 }
 
-void delete_all_bitmaps()
+void free_all_bitmaps()
 {
     string name;
     
@@ -136,7 +136,7 @@ void delete_all_bitmaps()
         bitmap bmp = _bitmaps.begin()->second;
         if (VALID_PTR(bmp, BITMAP_PTR))
         {
-            delete_bitmap(bmp);
+            free_bitmap(bmp);
         }
         else
         {

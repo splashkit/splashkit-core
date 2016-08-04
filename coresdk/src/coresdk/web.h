@@ -23,6 +23,6 @@ bitmap download_image(string name, string url, unsigned short port);
 
 string http_response_to_string(http_response response);
 void save_response_to_file(http_response response, string path);
-void delete_response (http_response response);
+void free_response (http_response response);
 
 #endif /* web_hpp */
