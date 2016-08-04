@@ -138,7 +138,6 @@ void sk_finalise_query(sk_query_result result)
     }
 }
 
-
 string sk_query_type_of_column(sk_query_result result, int col)
 {
     if (result._result == SQLITE_ROW)
