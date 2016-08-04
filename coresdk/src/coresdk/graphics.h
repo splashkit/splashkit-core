@@ -95,4 +95,37 @@ void fill_rectangle(color clr, float x, float y, float width, float height, draw
 ///
 void fill_rectangle(color clr, float x, float y, float width, float height);
 
+
+//---------------------------------------------------------------------------------------------------------
+// Triangle Drawing...
+//---------------------------------------------------------------------------------------------------------
+
+/// Draw a triangle onto a destination bitmap.
+///
+/// @lib DrawTriangleOpts
+/// @sn drawTriangleColor:%s atX1:%s y1:%s x2:%s y2:%s x3:%s y3:%s opts:%s
+void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+/// Draw a triangle in the game.
+///
+/// @lib
+/// @sn drawTriangleColor:%s atX1:%s y1:%s x2:%s y2:%s x3:%s y3:%s
+///
+/// @doc_idx 0
+void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+///// Draw a triangle onto a destination bitmap.
+/////
+///// @lib DrawTriangleStructOpts
+///// @sn drawTriangleColor:%s data:%s opts:%s
+//procedure DrawTriangle(clr : Color; const tri: Triangle; const opts : DrawingOptions); overload;
+//
+///// Draw a triangle in the game.
+/////
+///// @lib DrawTriangleStruct
+///// @sn drawTriangleColor:%s data:%s
+//procedure DrawTriangle(clr : Color; const tri: Triangle);
+
+
+
 #endif /* graphics_hpp */

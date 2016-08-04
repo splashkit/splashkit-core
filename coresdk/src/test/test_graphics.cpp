@@ -23,7 +23,9 @@ void run_graphics_test()
 
         fill_rectangle(random_rgb_color(128), rnd() * 800, rnd() * 600, rnd() * 100, rnd() * 50);
         draw_rectangle(random_rgb_color(128), rnd() * 800, rnd() * 600, rnd() * 100, rnd() * 50);
-
+        
+        draw_triangle(random_rgb_color(128), rnd() * 800, rnd() * 600, rnd() * 800, rnd() * 600, rnd() * 800, rnd() * 600);
+        
         refresh_screen();
     }
 
