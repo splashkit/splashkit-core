@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 
+#include "input.h"
+
 #include "test_windows.hpp"
 #include "audio_test.hpp"
 #include "resources_tests.h"
@@ -17,8 +19,14 @@
 int main()
 {
     run_graphics_test();
+    reset_quit();
+    
     run_windows_tests();
+    reset_quit();
+    
     run_resources_tests();
+    reset_quit();
+    
     run_audio_tests();
     run_database_tests();
     

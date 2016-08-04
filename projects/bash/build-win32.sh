@@ -2,47 +2,36 @@
 
 echo "Ensure you run this from the mingw 32 shell of Msys2"
 
-ALL_SDL2_LIBS="-L../../coresdk/lib/win32 -L/mingw32/lib -L/usr/lib -lSDL2main -Wl,--no-undefined"
+rm -rf ./out/win32
+mkdir -p ./out/win32
 
-DLLS=`cd ../../coresdk/lib/win32;ls -d *.dll | awk -F . '{split($1,patharr,"/"); idx=1; while(patharr[idx+1] != "") { idx++ } printf("../../lib/win32/%s.dll ", patharr[idx]) }'`
+CORE_SDK_PATH="../../coresdk"
 
-echo $DLLS
+ALL_SDL2_LIBS="-L${CORE_SDK_PATH}/lib/win32 -L/mingw32/lib -L/usr/lib -lSDL2main -Wl,--no-undefined"
 
-INC_SDL="-I/mingw32/include -I/mingw32/include/libpng16 -I../../external/SDL/include -I../../external/SDL_gfx -I../../external/SDL_image -I../../external/SDL_mixer -I../../external/SDL_net -I../../external/SDL_ttf -I../../lib/win_inc"
+DLLS=`cd ../../coresdk/lib/win32;ls -d *.dll | awk -F . '{split($1,patharr,"/"); idx=1; while(patharr[idx+1] != "") { idx++ } printf("../../coresdk/lib/win32/%s.dll ", patharr[idx]) }'`
 
-OTHER_LIB="-lstdc++ -lpthread"
+# echo $DLLS
 
-echo $ALL_SDL2_LIBS
+INC_SDL="-I/mingw32/include -I/mingw32/include/libpng16 -I${CORE_SDK_PATH}/external/SDL/include -I${CORE_SDK_PATH}/external/SDL_gfx -I${CORE_SDK_PATH}/external/SDL_image -I${CORE_SDK_PATH}/external/SDL_mixer -I${CORE_SDK_PATH}/external/SDL_net -I${CORE_SDK_PATH}/external/SDL_ttf -I${CORE_SDK_PATH}/lib/win_inc"
+
+OTHER_LIB="-lpthread"
+
+# echo $ALL_SDL2_LIBS
+
 echo "Creating shared library"
-g++ -m32 -static-libstdc++ -static-libgcc ${INC_SDL} -L/mingw32/bin -Wl,-Bdynamic ${DLLS} -shared -DBUILDING_DLL -std=c++11 -o libSGSDL2-32.dll -L/mingw32/lib -I/mingw32/include -I/mingw32/include/SDL2 -I../../../Core/include/ -I../../../Core/src ../../../SGSDL2/src/*.cpp ../../../Core/src/*.cpp -Wl,-Bstatic ${ALL_SDL2_LIBS} ${OTHER_LIB} -static-libstdc++ -static-libgcc -Wl,--out-implib,libSGSDL2-32.dll.a -static-libstdc++ -static-libgcc
+g++ -m32 ${INC_SDL} -L/mingw32/bin -Wl,-Bdynamic ${DLLS} -shared -DBUILDING_DLL -DWINDOWS -std=c++14 -o ./out/win32/libSplashKit-32.dll -L/mingw32/lib -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/backend/ ${CORE_SDK_PATH}/src/coresdk/*.cpp ${CORE_SDK_PATH}/src/backend/*.cpp ${ALL_SDL2_LIBS} ${OTHER_LIB} -Wl,--out-implib,./out/win32/libSplashKit-32.dll.a -static-libstdc++ -static-libgcc
 
 
+echo "Copying in dlls"
+cp ${CORE_SDK_PATH}/lib/win32/*.dll ./out/win32
 
-# echo "Creating static library"
-# echo " - compile backend code"
-# mkdir sgsdl2
-# cd sgsdl2
-# g++ ${INC_SDL} -c -DBUILDING_DLL -DCURL_STATICLIB -std=c++11 -L/mingw32/lib -I/mingw32/include -I/mingw32/include/SDL2 -I../../../../Core/include/ -I../../../../Core/src ../../../../SGSDL2/src/*.cpp ../../../../Core/src/*.cpp -static -static-libstdc++ -static-libgcc ${ALL_SDL2_LIBS} -liconv -lmodplug -lFLAC -lvorbisfile -lvorbis -logg -lmodplug -lmikmod -lpthread -lstdc++ -lIphlpapi
-# cd ..
-#
-# echo " - merge other SDL2 libraries"
-# LIBS_ARR=($ALL_SDL2_LIBS)
-# for lib_file in "${SDL_LIBS[@]}"
-# do
-#   mkdir "$lib_file"
-#   cd "$lib_file"
-#   ar -x /mingw32/lib/lib${lib_file}.a
-#   ar r ../libSGSDL2-32.a *.o
-#   cd ..
-#   rm -rf "$lib_file"
-# done
-#
-# ar r libSGSDL2-32.a sgsdl2/*.o
-# rm -rf sgsdl2
-#
-# ranlib libSGSDL2-32.a
+echo "Compiling test program"
+g++ -std=c++14 ${CORE_SDK_PATH}/src/test/*.cpp -I${CORE_SDK_PATH}/src/coresdk \
+-I${CORE_SDK_PATH}/src/test \
+ -L./out/win32 -lSplashKit-32 \
+ -Wl,-Bstatic -lpthread \
+ -g -o ./out/win32/RunTests.exe
 
-cp libSGSDL2-32.dll ../../../../CoreSDK/lib/win32/libSGSDL2.dll
-cp libSGSDL2-32.dll.a ../../../../CoreSDK/lib/win32/libSGSDL2.dll.a
-cp ../../lib/win32/*.dll ../../../../CoreSDK/lib/win32/
-# cp libSGSDL2-32.a ../../../../CoreSDK/staticlib/win32/libSGSDL2.a
+echo "Copying resources"
+cp -r ${CORE_SDK_PATH}/src/test/Resources ./out/win32

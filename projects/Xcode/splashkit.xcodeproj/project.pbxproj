@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 868012981D483D9400AE3694 /* test_graphics.cpp */; };
-		940864501D37A575009EA048 /* 280.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644A1D37A550009EA048 /* 280.mp3 */; };
-		940864511D37A578009EA048 /* 30248__streety__sword7.flac in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644B1D37A550009EA048 /* 30248__streety__sword7.flac */; };
-		940864521D37A57B009EA048 /* energize_my_mind.mod in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644C1D37A550009EA048 /* energize_my_mind.mod */; };
-		940864531D37A57F009EA048 /* error.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644D1D37A550009EA048 /* error.wav */; };
-		940864541D37A585009EA048 /* superman_1.mid in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644E1D37A550009EA048 /* superman_1.mid */; };
-		940864551D37A588009EA048 /* test.ogg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9408644F1D37A550009EA048 /* test.ogg */; };
+		878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		940864591D37A78C009EA048 /* backend_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864571D37A78C009EA048 /* backend_types.h */; };
 		9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645A1D37B6AF009EA048 /* utils_driver.cpp */; };
 		9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408645B1D37B6AF009EA048 /* utils_driver.h */; };
@@ -85,10 +80,6 @@
 		9424B5AF1D44910B0039B3AF /* images.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5AD1D44910B0039B3AF /* images.h */; };
 		9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5B01D449C4F0039B3AF /* camera.cpp */; };
 		9424B5B31D449C4F0039B3AF /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5B11D449C4F0039B3AF /* camera.h */; };
-		9424B5B81D44FBDF0039B3AF /* Lines.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5B51D44FBA60039B3AF /* Lines.png */; };
-		9424B5B91D44FBDF0039B3AF /* on_med.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5B61D44FBA60039B3AF /* on_med.png */; };
-		9424B5BE1D4619430039B3AF /* hara.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5BB1D46191D0039B3AF /* hara.ttf */; };
-		9424B5BF1D4619450039B3AF /* LeagueGothic.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */; };
 		9424B5C21D4619620039B3AF /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C01D4619620039B3AF /* text.cpp */; };
 		9424B5C31D4619620039B3AF /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C11D4619620039B3AF /* text.h */; };
 		9424B5C71D461FE00039B3AF /* text_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C51D461FE00039B3AF /* text_driver.h */; };
@@ -108,18 +99,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		878BAFEA1D52DF3B00483C3E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		942372291D1D68E30020CCE2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = Resources/sounds;
 			dstSubfolderSpec = 16;
 			files = (
-				940864501D37A575009EA048 /* 280.mp3 in CopyFiles */,
-				940864511D37A578009EA048 /* 30248__streety__sword7.flac in CopyFiles */,
-				940864521D37A57B009EA048 /* energize_my_mind.mod in CopyFiles */,
-				940864531D37A57F009EA048 /* error.wav in CopyFiles */,
-				940864541D37A585009EA048 /* superman_1.mid in CopyFiles */,
-				940864551D37A588009EA048 /* test.ogg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +124,6 @@
 			dstPath = Resources/images;
 			dstSubfolderSpec = 7;
 			files = (
-				9424B5B81D44FBDF0039B3AF /* Lines.png in CopyFiles */,
-				9424B5B91D44FBDF0039B3AF /* on_med.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +133,6 @@
 			dstPath = Resources/fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				9424B5BE1D4619430039B3AF /* hara.ttf in CopyFiles */,
-				9424B5BF1D4619450039B3AF /* LeagueGothic.otf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,12 +141,7 @@
 /* Begin PBXFileReference section */
 		868012981D483D9400AE3694 /* test_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_graphics.cpp; sourceTree = "<group>"; };
 		868012991D483D9400AE3694 /* test_graphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_graphics.hpp; sourceTree = "<group>"; };
-		9408644A1D37A550009EA048 /* 280.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 280.mp3; sourceTree = "<group>"; };
-		9408644B1D37A550009EA048 /* 30248__streety__sword7.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = 30248__streety__sword7.flac; sourceTree = "<group>"; };
-		9408644C1D37A550009EA048 /* energize_my_mind.mod */ = {isa = PBXFileReference; lastKnownFileType = file; path = energize_my_mind.mod; sourceTree = "<group>"; };
-		9408644D1D37A550009EA048 /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
-		9408644E1D37A550009EA048 /* superman_1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = superman_1.mid; sourceTree = "<group>"; };
-		9408644F1D37A550009EA048 /* test.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.ogg; sourceTree = "<group>"; };
+		878BAFE91D52DF3000483C3E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../coresdk/src/test/Resources; sourceTree = "<group>"; };
 		940864571D37A78C009EA048 /* backend_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backend_types.h; sourceTree = "<group>"; };
 		9408645A1D37B6AF009EA048 /* utils_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils_driver.cpp; sourceTree = "<group>"; };
 		9408645B1D37B6AF009EA048 /* utils_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_driver.h; sourceTree = "<group>"; };
@@ -230,10 +216,6 @@
 		9424B5AD1D44910B0039B3AF /* images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = images.h; sourceTree = "<group>"; };
 		9424B5B01D449C4F0039B3AF /* camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
 		9424B5B11D449C4F0039B3AF /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
-		9424B5B51D44FBA60039B3AF /* Lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lines.png; sourceTree = "<group>"; };
-		9424B5B61D44FBA60039B3AF /* on_med.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = on_med.png; sourceTree = "<group>"; };
-		9424B5BB1D46191D0039B3AF /* hara.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hara.ttf; sourceTree = "<group>"; };
-		9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeagueGothic.otf; sourceTree = "<group>"; };
 		9424B5C01D4619620039B3AF /* text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
 		9424B5C11D4619620039B3AF /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		9424B5C41D461FE00039B3AF /* text_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_driver.cpp; sourceTree = "<group>"; };
@@ -299,33 +281,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		940864481D37A511009EA048 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9424B5BA1D46187C0039B3AF /* fonts */,
-				9424B5B41D44FB980039B3AF /* images */,
-				940864491D37A518009EA048 /* sounds */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		940864491D37A518009EA048 /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-				9408644A1D37A550009EA048 /* 280.mp3 */,
-				9408644B1D37A550009EA048 /* 30248__streety__sword7.flac */,
-				9408644C1D37A550009EA048 /* energize_my_mind.mod */,
-				9408644D1D37A550009EA048 /* error.wav */,
-				9408644E1D37A550009EA048 /* superman_1.mid */,
-				9408644F1D37A550009EA048 /* test.ogg */,
-			);
-			name = sounds;
-			sourceTree = "<group>";
-		};
 		942371D31D1D540C0020CCE2 = {
 			isa = PBXGroup;
 			children = (
-				940864481D37A511009EA048 /* Resources */,
+				878BAFE91D52DF3000483C3E /* Resources */,
 				9423723D1D1D6A7D0020CCE2 /* Libraries */,
 				942371EC1D1D548A0020CCE2 /* Src */,
 				942371DD1D1D540C0020CCE2 /* Products */,
@@ -472,24 +431,6 @@
 			path = ../../coresdk/lib/mac;
 			sourceTree = "<group>";
 		};
-		9424B5B41D44FB980039B3AF /* images */ = {
-			isa = PBXGroup;
-			children = (
-				9424B5B51D44FBA60039B3AF /* Lines.png */,
-				9424B5B61D44FBA60039B3AF /* on_med.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
-		9424B5BA1D46187C0039B3AF /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				9424B5BB1D46191D0039B3AF /* hara.ttf */,
-				9424B5BC1D46191D0039B3AF /* LeagueGothic.otf */,
-			);
-			name = fonts;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -538,6 +479,7 @@
 				942371D81D1D540C0020CCE2 /* Sources */,
 				942371D91D1D540C0020CCE2 /* Frameworks */,
 				942371DA1D1D540C0020CCE2 /* Headers */,
+				878BAFEA1D52DF3B00483C3E /* CopyFiles */,
 			);
 			buildRules = (
 			);

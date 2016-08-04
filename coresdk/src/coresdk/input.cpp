@@ -94,3 +94,8 @@ bool quit_requested()
     return _sk_quit;
 }
 
+void reset_quit()
+{
+    _sk_quit = false;
+}
+
