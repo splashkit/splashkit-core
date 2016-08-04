@@ -20,7 +20,7 @@ void run_database_tests()
     database db = database_named("test1");
     
     bool result = has_database("test1");
-    printf(result ? "Database Opened\n\n" : "Database Not Opened\n\n");
+    cout << (result ? "Database Opened\n\n" : "Database Not Opened\n\n");
     
 
     cursor = run_sql(db, "DROP TABLE friends;");
@@ -32,15 +32,14 @@ void run_database_tests()
     
     cursor = run_sql("test1", "garbage_queryfkdsafjkdls :(");
     result = query_success(cursor);
-    printf(result ? "Query successful\n" : "Query unsuccessful\n");
+    cout << (result ? "Query successful\n" : "Query unsuccessful\n");
     
     cout << "Testing good query..." << endl;
     cursor = run_sql("test1", "select * from friends;");
     result = query_success(cursor);
-    printf(result ? "Query successful\n" : "Query unsuccessful\n");
+    cout << (result ? "Query successful\n" : "Query unsuccessful\n");
     
     cout << endl << endl;
-    
     
     cout << "data in index 0 should be 10001 and is: " << query_column_for_int(cursor, 0) << endl;
     cout << "data in index 1 should be Jake Renzella and is: " << query_column_for_string(cursor, 1) << endl;
@@ -60,5 +59,5 @@ void run_database_tests()
     free_database("test1");
     
     result = has_database("test1");
-    printf(result ? "Database Opened\n" : "Database Not Opened\n");
+    cout << (result ? "Database Opened\n" : "Database Not Opened\n");
 }

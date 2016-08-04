@@ -16,10 +16,10 @@
 
 int main()
 {
- //   run_graphics_test();
-  //  run_windows_tests();
-   // run_resources_tests();
-  //  run_audio_tests();
+    run_graphics_test();
+    run_windows_tests();
+    run_resources_tests();
+    run_audio_tests();
     run_database_tests();
     
     return 0;
