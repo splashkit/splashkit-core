@@ -69,7 +69,7 @@ void free_query_result(query_result query)
         auto index = std::distance(_queries_vector.begin(), it);
         sk_finalise_query(*_queries_vector.at(index));
         _queries_vector.erase(it);
-        //delete(query);
+        delete(query);
     }
     else
     {
