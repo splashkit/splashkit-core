@@ -23,6 +23,8 @@ database open_database(string name, string filename);
 
 query_result run_sql(database db, string sql);
 
+query_result run_sql(string database_name, string sql);
+
 void free_all_query_results();
 
 void free_query_result(query_result query);
@@ -40,7 +42,6 @@ string query_column_for_string(query_result result, int col);
 bool query_column_for_bool(query_result result, int col);
 
 database open_database(string name, string filename);
-
 
 
 #endif /* database_h */

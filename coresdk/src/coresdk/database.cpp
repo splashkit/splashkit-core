@@ -54,6 +54,11 @@ query_result run_sql(database db, string sql)
     return result;
 }
 
+query_result run_sql(string database_name, string sql)
+{
+    return run_sql(database_named(database_name), sql);
+}
+
 void free_query_result(query_result query)
 {
     std::vector<query_result>::iterator it;
@@ -70,9 +75,7 @@ void free_query_result(query_result query)
     {
         raise_warning("Not able to remove query as it is not found in _queries_vector\n");
     }
-    
 }
-
 
 void free_all_query_results()
 {
