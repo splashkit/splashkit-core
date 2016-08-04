@@ -39,25 +39,23 @@ using namespace std;
  *
  * Use `music` for background music for your games.
  *
- * @attribute class             SoundEffect
- * @attribute pointer_wrapper   true
- * @attribute field             pointer: pointer
+ * @attribute class sound_effect
  */
 typedef struct _sound_data *sound_effect;
 
 /**
  * Starts the SplashKit audio system working.
  *
- * @attribute class  Audio
- * @attribute method Open
+ * @attribute class  audio
+ * @attribute method open
  */
 void open_audio();
 
 /**
  * Turns off audio, stopping all current sounds effects and music.
  *
- * @attribute class  Audio
- * @attribute method Close
+ * @attribute class  audio
+ * @attribute method close
  */
 void close_audio();
 
@@ -69,8 +67,8 @@ void close_audio();
  *
  * @returns Returns `true` if the audio has been initalised.
  *
- * @attribute class   Audio
- * @attribute getter  Ready
+ * @attribute class   audio
+ * @attribute getter  is_ready
  */
 bool audio_ready();
 
@@ -87,8 +85,8 @@ bool audio_ready();
  *
  * @returns A new `sound_effect` with the initialised values provided.
  *
- * @attribute class         SoundEffect
- * @attribute constructor   true
+ * @attribute class       sound_effect
+ * @attribute constructor true
  */
 sound_effect load_sound_effect(string name, string filename);
 
@@ -104,8 +102,8 @@ sound_effect load_sound_effect(string name, string filename);
  * @returns Returns `true` if there is a sound effect with the given `name` has
  *          has been loaded.
  *
- * @attribute class  Audio
- * @attribute method HasSoundEffect
+ * @attribute class   audio
+ * @attribute method  has_sound_effect
  */
 bool has_sound_effect(string name);
 
@@ -117,8 +115,8 @@ bool has_sound_effect(string name);
  * @returns Returns the `sound_effect` that has been loaded with the specified
  *          `name` using `load_sound_effect`.
  *
- * @attribute class  Audio
- * @attribute method SoundEffectNamed
+ * @attribute class   audio
+ * @attribute method  sound_effect_named
  */
 sound_effect sound_effect_named(string name);
 
@@ -127,18 +125,17 @@ sound_effect sound_effect_named(string name);
  *
  * @param effect The `sound_effect` whose resources should be released.
  *
- * @attribute lib         true
- * @attribute class       SoundEffect
+ * @attribute class       sound_effect
  * @attribute destructor  true
+ * @attribute self        effect
  */
 void free_sound_effect(sound_effect effect);
 
 /**
  * Releases all of the sound effects that have been loaded.
  *
- * @attribute lib     true
- * @attribute class   Audio
- * @attribute method  FreeAllSoundEffects
+ * @attribute class   audio
+ * @attribute method  free_all_sound_effects
  */
 void free_all_sound_effects();
 
@@ -151,10 +148,10 @@ void free_all_sound_effects();
  * @param volume   Indicates the percentage of the original volume to play the
  *                 `sound_effect` at. This must be between `0` and `1`.
  *
- * @attribute lib       true
- * @attribute class     SoundEffect
- * @attribute overload  Play
- * @attribute overload  PlayWithLoopsAndVolume
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute unique  play_with_loops_and_volume
+ * @attribute self    effect
  */
 void play_sound_effect(sound_effect effect, int times, float volume);
 
