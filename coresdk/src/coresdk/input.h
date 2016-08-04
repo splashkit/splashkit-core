@@ -97,7 +97,7 @@ enum key_code
     X_KEY = 120,
     Y_KEY = 121,
     Z_KEY = 122,
-    free_KEY = 127,
+    DELETE_KEY = 127,
     KEY_PAD0 = 256,
     KEY_PAD1 = 257,
     KEY_PAD2 = 258,
