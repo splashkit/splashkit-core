@@ -12,13 +12,15 @@
 #include "audio_test.hpp"
 #include "resources_tests.h"
 #include "test_graphics.hpp"
+#include "test_database.hpp"
 
 int main()
 {
-    run_graphics_test();
-    run_windows_tests();
-    run_resources_tests();
-    run_audio_tests();
+ //   run_graphics_test();
+  //  run_windows_tests();
+   // run_resources_tests();
+  //  run_audio_tests();
+    run_database_tests();
     
     return 0;
 }

@@ -39,17 +39,16 @@ database database_named(string name)
         return nullptr;
 }
 
-database load_database(string name, string filename)
+void run_sql(database db, string sql)
+{
+    sk_prepare_statement(db->database, sql);
+}
+
+database open_database(string name, string filename)
 {
     if (has_database(name)) return database_named(name);
     
     string file_path = path_to_resource(filename, DATABASE_RESOURCE);
-    
-    if ( ! file_exists(file_path) )
-    {
-        raise_warning(cat({ "Unable to locate database file for ", name, " (", file_path, ")"}));
-        return nullptr;
-    }
     
     database result = new _database();
     
