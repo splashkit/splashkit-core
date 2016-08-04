@@ -20,7 +20,7 @@ sqlite3_stmt *sqlite3_stmt_from_void(void *ptr)
     return static_cast<sqlite3_stmt*>(ptr);
 }
 
-sk_database sk_load_database(string db_file_path)
+sk_database sk_open_database(string db_file_path)
 {
     sk_database result;
     int rc;
@@ -38,25 +38,25 @@ sk_database sk_load_database(string db_file_path)
     return result;
 }
 
-void sk_close_database(sk_database db)
+int sk_close_database(sk_database db)
 {
     int rc = sqlite3_close_v2(sqlite3_from_void(db._data));
     if (rc != SQLITE_OK)
     {
         raise_warning("Could not close database");
     }
+    return rc;
 }
 
 sk_query_result sk_prepare_statement(sk_database db, string sql)
 {
-
     const char* sql_char = sql.c_str();
     int size_sql_inc_null = static_cast<int>(strlen(sql_char) + 1);
     
     sqlite3 *data = sqlite3_from_void(db._data);
     sqlite3_stmt *statement;
     
-    sk_query_result result;
+    sk_query_result result = { NULL } ;
     
     result._result = sqlite3_prepare_v2(data, sql_char, size_sql_inc_null, &statement, nullptr);
     result._stmt = statement;
@@ -69,17 +69,17 @@ sk_query_result sk_prepare_statement(sk_database db, string sql)
     return result;
 }
 
-bool query_has_data(sk_query_result result)
+bool sk_query_has_data(sk_query_result result)
 {
     return result._result == SQLITE_ROW;
 }
 
-bool query_success(sk_query_result result)
+bool sk_query_success(sk_query_result result)
 {
     return result._result == SQLITE_ROW || result._result == SQLITE_OK || result._result == SQLITE_DONE;
 }
 
-bool query_get_next_row(sk_query_result result)
+bool sk_query_get_next_row(sk_query_result result)
 {
     if (result._result == SQLITE_ROW)
     {
@@ -91,13 +91,12 @@ bool query_get_next_row(sk_query_result result)
     return false;
 }
 
-//CHECK THIS ACTUALLY WILL EDIT RESULT
-void reset_query_statement(sk_query_result result)
+void sk_reset_query_statement(sk_query_result result)
 {
     sqlite3_reset(sqlite3_stmt_from_void(result._stmt));
 }
 
-int query_read_column_int(sk_query_result result, int col)
+int sk_query_read_column_int(sk_query_result result, int col)
 {
     if (result._result == SQLITE_ROW)
     {
@@ -108,7 +107,7 @@ int query_read_column_int(sk_query_result result, int col)
     return false;
 }
 
-string query_read_column_text(sk_query_result result, int col)
+string sk_query_read_column_text(sk_query_result result, int col)
 {
     if (result._result == SQLITE_ROW)
     {
@@ -129,7 +128,7 @@ void sk_finalise_query(sk_query_result result)
 }
 
 
-bool query_read_column_bool(sk_query_result result, int col)
+bool sk_query_read_column_bool(sk_query_result result, int col)
 {
     if (result._result == SQLITE_ROW)
     {
