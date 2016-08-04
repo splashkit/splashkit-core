@@ -1054,14 +1054,14 @@ void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int da
 //  Triangles
 //
 
-void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
-    if ( ! surface || ! surface->_data || data_sz != 6) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 6 values = 3 points
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int x2 = static_cast<int>(data[2]), y2 = static_cast<int>(data[3]);
-    int x3 = static_cast<int>(data[4]), y3 = static_cast<int>(data[5]);
+    int px1 = static_cast<int>(x1), py1 = static_cast<int>(y1);
+    int px2 = static_cast<int>(x2), py2 = static_cast<int>(y2);
+    int px3 = static_cast<int>(x3), py3 = static_cast<int>(y3);
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1074,9 +1074,9 @@ void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float *data, in
             static_cast<Uint8>(clr.b * 255),
             static_cast<Uint8>(clr.a * 255));
 
-        SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
-        SDL_RenderDrawLine(renderer, x2, y2, x3, y3);
-        SDL_RenderDrawLine(renderer, x3, y3, x1, y1);
+        SDL_RenderDrawLine(renderer, px1, py1, px2, py2);
+        SDL_RenderDrawLine(renderer, px2, py2, px3, py3);
+        SDL_RenderDrawLine(renderer, px3, py3, px1, py1);
 
         _sk_complete_render(surface, i);
     }
