@@ -27,6 +27,7 @@ void run_database_tests()
 
     cursor = run_sql(db, "CREATE TABLE friends (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, weight REAL, isStudent BOOL);");
     cursor = run_sql(db, "INSERT INTO friends VALUES (10001, \"Jake Renzella\", 21, 32.43, 1);");
+    cursor = run_sql(db, "INSERT INTO friends VALUES (20002, \"Andrew Cain\", 19, 42.43, 0);");
     
     cout << "Testing garbage query..." << endl;
     
@@ -52,6 +53,21 @@ void run_database_tests()
     cout << "data type in index 2 should be INTEGER and is: " << query_type_of_col(cursor, 2) << endl;
     cout << "data type in index 3 should be FLOAT and is: " << query_type_of_col(cursor, 3) << endl;
     cout << "data type in index 4 should be BOOL(INTEGER) and is: " << query_type_of_col(cursor, 4) << endl << endl;
+    
+    get_next_row(cursor);
+    
+    cout << "data in index 0 should be 20002 and is: " << query_column_for_int(cursor, 0) << endl;
+    cout << "data in index 1 should be Andrew Cain and is: " << query_column_for_string(cursor, 1) << endl;
+    cout << "data in index 2 should be 19 and is: " << query_column_for_int(cursor, 2) << endl;
+    cout << "data in index 3 should be 42.43 and is: " << query_column_for_double(cursor, 3) << endl;
+    cout << "data in index 4 should be false and is: " << query_column_for_bool(cursor, 4) << endl << endl;
+    
+    cout << "data type in index 0 should be INTEGER and is: " << query_type_of_col(cursor, 0) << endl;
+    cout << "data type in index 1 should be TEXT and is: " << query_type_of_col(cursor, 1) << endl;
+    cout << "data type in index 2 should be INTEGER and is: " << query_type_of_col(cursor, 2) << endl;
+    cout << "data type in index 3 should be FLOAT and is: " << query_type_of_col(cursor, 3) << endl;
+    cout << "data type in index 4 should be BOOL(INTEGER) and is: " << query_type_of_col(cursor, 4) << endl << endl;
+    
     
     free_all_query_results();
     
