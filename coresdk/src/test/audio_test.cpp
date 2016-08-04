@@ -34,7 +34,7 @@ void run_audio_tests()
 
     play_sound_effect(sound_effect_named("test"), 1, 1.0f);
     
-    sk_delay(5000);
+    delay(5000);
 
     free_sound_effect(s1);
 
