@@ -37,14 +37,24 @@ bool has_database(string name)
 database database_named(string name)
 {
     if (has_database(name))
+    {
         return _databases[name];
+    }
     else
+    {
         return nullptr;
+    }
+}
+
+int rows_changed(database db)
+{
+    return sk_rows_affected(db->database);
 }
 
 query_result run_sql(database db, string sql)
 {
     sk_query_result temp_result = sk_prepare_statement(db->database, sql);
+    sk_step_statement(&temp_result);
 
     query_result result = new sk_query_result();
     *result = temp_result;
@@ -61,7 +71,7 @@ query_result run_sql(string database_name, string sql)
 
 void free_query_result(query_result query)
 {
-    std::vector<query_result>::iterator it;
+    vector<query_result>::iterator it;
     
     it = find (_queries_vector.begin(), _queries_vector.end(), query);
     if (it != _queries_vector.end())
@@ -79,26 +89,28 @@ void free_query_result(query_result query)
 
 void free_all_query_results()
 {
-    
     auto it = std::begin(_queries_vector);
-    
     while (it != std::end(_queries_vector))
     {
         auto index = std::distance(_queries_vector.begin(), it);
         free_query_result(_queries_vector.at(index));
     }
-
     _queries_vector.clear();
 }
 
-void get_next_row(query_result result)
+bool get_next_row(query_result result)
 {
-    sk_query_get_next_row(*result);
+    return sk_query_get_next_row(result);
 }
 
-void reset_result_query(query_result result)
+bool has_row(query_result result)
 {
-    sk_reset_query_statement(*result);
+    return sk_query_has_data(*result);
+}
+
+void reset_query_result(query_result result)
+{
+    sk_reset_query_statement(result);
 }
 
 int query_column_for_int(query_result result, int col)
@@ -159,7 +171,7 @@ database open_database(string name, string filename)
 
 void free_database(database db_to_close)
 {
-    if ( VALID_PTR(db_to_close, DATABASE_PTR) )
+    if (VALID_PTR(db_to_close, DATABASE_PTR))
     {
         _databases.erase(db_to_close->name);
         sk_close_database(db_to_close->database);
@@ -179,8 +191,6 @@ void free_database(string name_of_db_to_close)
 
 void free_all_databases()
 {
-    string name;
-    
     size_t sz = _databases.size();
     
     for(size_t i = 0; i < sz; i++)
