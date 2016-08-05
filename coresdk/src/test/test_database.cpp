@@ -51,9 +51,7 @@ void run_database_tests()
     cout << endl << endl;
     
     //--------------------------------------------------------------
-    
-    cursor = run_sql("test1", "select * from friends;");
-    cout << "Expect 0 rows to have been changed: " << rows_changed(cursor) << endl;
+
 
     
     for (reset_query_result(cursor); has_row(cursor); get_next_row(cursor))
@@ -78,7 +76,6 @@ void run_database_tests()
     
     cursor = run_sql(db, "DELETE FROM friends;");
     cout << "Expect 4 rows to have been deleted: " << rows_changed(db) << endl;
-    cout << "Expect 4 rows to have been deleted: " << rows_changed(cursor) << endl;
 
     cursor = run_sql("test1", "select * from friends;");
 

@@ -51,11 +51,6 @@ int rows_changed(database db)
     return sk_rows_affected(db->database);
 }
 
-int rows_changed(query_result result)
-{
-    return result->_num_rows_affected;
-}
-
 query_result run_sql(database db, string sql)
 {
     sk_query_result temp_result = sk_prepare_statement(db->database, sql);
@@ -63,8 +58,6 @@ query_result run_sql(database db, string sql)
 
     query_result result = new sk_query_result();
     *result = temp_result;
-    
-    result->_num_rows_affected = rows_changed(db);
     
     _queries_vector.push_back(result);
     
