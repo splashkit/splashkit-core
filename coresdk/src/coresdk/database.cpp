@@ -37,9 +37,13 @@ bool has_database(string name)
 database database_named(string name)
 {
     if (has_database(name))
+    {
         return _databases[name];
+    }
     else
+    {
         return nullptr;
+    }
 }
 
 int rows_changed(database db)
@@ -74,7 +78,7 @@ query_result run_sql(string database_name, string sql)
 
 void free_query_result(query_result query)
 {
-    std::vector<query_result>::iterator it;
+    vector<query_result>::iterator it;
     
     it = find (_queries_vector.begin(), _queries_vector.end(), query);
     if (it != _queries_vector.end())
@@ -92,15 +96,12 @@ void free_query_result(query_result query)
 
 void free_all_query_results()
 {
-    
     auto it = std::begin(_queries_vector);
-    
     while (it != std::end(_queries_vector))
     {
         auto index = std::distance(_queries_vector.begin(), it);
         free_query_result(_queries_vector.at(index));
     }
-
     _queries_vector.clear();
 }
 
@@ -177,7 +178,7 @@ database open_database(string name, string filename)
 
 void free_database(database db_to_close)
 {
-    if ( VALID_PTR(db_to_close, DATABASE_PTR) )
+    if (VALID_PTR(db_to_close, DATABASE_PTR))
     {
         _databases.erase(db_to_close->name);
         sk_close_database(db_to_close->database);
@@ -197,8 +198,6 @@ void free_database(string name_of_db_to_close)
 
 void free_all_databases()
 {
-    string name;
-    
     size_t sz = _databases.size();
     
     for(size_t i = 0; i < sz; i++)
