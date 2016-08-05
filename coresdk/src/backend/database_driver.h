@@ -22,6 +22,7 @@ struct sk_query_result
 {
     void *_stmt;
     int _result;
+    int _num_rows_affected;
 };
 
 /**

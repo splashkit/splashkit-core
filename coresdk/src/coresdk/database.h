@@ -21,6 +21,8 @@ database database_named(string name);
 
 int rows_changed(database db);
 
+int rows_changed(query_result result);
+
 database open_database(string name, string filename);
 
 query_result run_sql(database db, string sql);

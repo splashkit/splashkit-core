@@ -41,6 +41,7 @@ void run_database_tests()
     cursor = run_sql("test1", "garbage_queryfkdsafjkdls :(");
     result = query_success(cursor);
     cout << (result ? "Query successful\n" : "Query unsuccessful\n");
+    
 
     cout << "Testing good query..." << endl;
     result = query_success(cursor);
@@ -72,8 +73,9 @@ void run_database_tests()
         get_next_row(cursor);
     }
     
-    run_sql(db, "DELETE FROM friends;");
+    cursor = run_sql(db, "DELETE FROM friends;");
     cout << "Expect 4 rows to have been deleted: " << rows_changed(db) << endl;
+    cout << "Expect 4 rows to have been deleted: " << rows_changed(cursor) << endl;
 
     cursor = run_sql("test1", "select * from friends;");
 
