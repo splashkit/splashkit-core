@@ -42,9 +42,15 @@ database database_named(string name)
         return nullptr;
 }
 
+int rows_changed(database db)
+{
+    return sk_rows_affected(db->database);
+}
+
 query_result run_sql(database db, string sql)
 {
     sk_query_result temp_result = sk_prepare_statement(db->database, sql);
+    sk_step_statement(&temp_result);
 
     query_result result = new sk_query_result();
     *result = temp_result;
@@ -91,14 +97,19 @@ void free_all_query_results()
     _queries_vector.clear();
 }
 
-void get_next_row(query_result result)
+bool get_next_row(query_result result)
 {
-    sk_query_get_next_row(*result);
+    return sk_query_get_next_row(result);
 }
 
-void reset_result_query(query_result result)
+bool has_row(query_result result)
 {
-    sk_reset_query_statement(*result);
+    return sk_query_has_data(*result);
+}
+
+void reset_query_result(query_result result)
+{
+    sk_reset_query_statement(result);
 }
 
 int query_column_for_int(query_result result, int col)

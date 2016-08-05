@@ -48,6 +48,12 @@ int sk_close_database(sk_database db)
     return rc;
 }
 
+int sk_step_statement(sk_query_result *result)
+{
+    sqlite3_stmt *stmt = sqlite3_stmt_from_void(result->_stmt);
+    return result->_result = sqlite3_step(stmt);
+}
+
 sk_query_result sk_prepare_statement(sk_database db, string sql)
 {
     const char* sql_char = sql.c_str();
@@ -56,15 +62,10 @@ sk_query_result sk_prepare_statement(sk_database db, string sql)
     sqlite3 *data = sqlite3_from_void(db._data);
     sqlite3_stmt *statement;
     
-    sk_query_result result = { NULL } ;
+    sk_query_result result;
     
     result._result = sqlite3_prepare_v2(data, sql_char, size_sql_inc_null, &statement, nullptr);
     result._stmt = statement;
-    
-    if (result._result == SQLITE_OK)
-    {
-        result._result = sqlite3_step(statement);
-    }
     
     return result;
 }
@@ -79,21 +80,21 @@ bool sk_query_success(sk_query_result result)
     return result._result == SQLITE_ROW || result._result == SQLITE_OK || result._result == SQLITE_DONE;
 }
 
-bool sk_query_get_next_row(sk_query_result result)
+int sk_rows_affected(sk_database db)
 {
-    if (result._result == SQLITE_ROW)
-    {
-        sqlite3_stmt *stmt = sqlite3_stmt_from_void(result._stmt);
-        result._result = sqlite3_step(stmt);
-        return true;
-    }
-    raise_warning("Attempt to read a row from a query without data");
-    return false;
+    return sqlite3_changes(sqlite3_from_void(db._data));
 }
 
-void sk_reset_query_statement(sk_query_result result)
+bool sk_query_get_next_row(sk_query_result *result)
 {
-    sqlite3_reset(sqlite3_stmt_from_void(result._stmt));
+    sk_step_statement(result);
+    return sk_query_has_data(*result);
+}
+
+void sk_reset_query_statement(sk_query_result *result)
+{
+    sqlite3_reset(sqlite3_stmt_from_void(result->_stmt));
+    sk_step_statement(result);
 }
 
 int sk_query_read_column_int(sk_query_result result, int col)

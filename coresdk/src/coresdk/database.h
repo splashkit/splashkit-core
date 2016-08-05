@@ -19,6 +19,8 @@ bool has_database(string name);
 
 database database_named(string name);
 
+int rows_changed(database db);
+
 database open_database(string name, string filename);
 
 query_result run_sql(database db, string sql);
@@ -29,11 +31,11 @@ void free_all_query_results();
 
 void free_query_result(query_result query);
 
-void free_all_query_results();
+bool get_next_row(query_result result);
 
-void get_next_row(query_result result);
+bool has_row(query_result result);
 
-void reset_result_query(query_result result);
+void reset_query_result(query_result result);
 
 int query_column_for_int(query_result result, int col);
 
