@@ -18,16 +18,16 @@
 
 int main()
 {
-//    run_graphics_test();
-//    reset_quit();
-//    
-//    run_windows_tests();
-//    reset_quit();
-//    
-//    run_resources_tests();
-//    reset_quit();
-//    
-//    run_audio_tests();
+    run_graphics_test();
+    reset_quit();
+    
+    run_windows_tests();
+    reset_quit();
+    
+    run_resources_tests();
+    reset_quit();
+    
+    run_audio_tests();
     run_database_tests();
     
     return 0;
