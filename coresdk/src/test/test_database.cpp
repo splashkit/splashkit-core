@@ -44,6 +44,7 @@ void run_database_tests()
     
 
     cout << "Testing good query..." << endl;
+    cursor = run_sql("test1", "select * from friends;");
     result = query_success(cursor);
     cout << (result ? "Query successful\n" : "Query unsuccessful\n");
     
