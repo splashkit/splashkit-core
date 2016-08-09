@@ -99,11 +99,11 @@ bitmap download_image(string name, string url, unsigned short port)
     char *tmpname = strdup("/tmp/splashkit.image.XXXXXX");
     mkstemp(tmpname);
     save_response_to_file(response, tmpname);
-    free(tmpname);
 
     bitmap result = load_bitmap(name, tmpname);
-    remove(tmpname);
-    
+    remove(tmpname); // Delete the file
+
+    free(tmpname);
     free_response(response);
 
     return result;
