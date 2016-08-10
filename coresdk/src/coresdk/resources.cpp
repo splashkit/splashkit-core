@@ -21,6 +21,9 @@
 #include <windows.h>
 #endif
 
+#ifdef __linux__
+#include <linux/limits.h>
+#endif
 
 static bool     _has_resources_path = false;
 static string   _resources_path = "";

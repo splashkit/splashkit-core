@@ -10,6 +10,10 @@
 #include "utility_functions.h"
 #include "database_driver.h"
 
+#ifdef __linux__
+#include <string.h>
+#endif
+
 sqlite3 *sqlite3_from_void(void *ptr)
 {
     return static_cast<sqlite3*>(ptr);
