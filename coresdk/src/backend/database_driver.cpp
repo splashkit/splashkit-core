@@ -9,6 +9,7 @@
 #include <sqlite3.h>
 #include "utility_functions.h"
 #include "database_driver.h"
+#include <cstring>
 
 sqlite3 *sqlite3_from_void(void *ptr)
 {
