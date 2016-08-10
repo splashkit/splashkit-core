@@ -104,6 +104,8 @@ font load_font(string name, string filename, int size)
         delete result;
         result = nullptr;
         raise_warning("LoadFont failed: " + name + " (" + file_path + ")");
+    } else {
+        _fonts.insert(std::make_pair(name, result));
     }
 
     return result;
