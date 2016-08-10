@@ -27,6 +27,4 @@ g++ -std=c++1y ${CORE_SDK_PATH}/src/test/*.cpp -I${CORE_SDK_PATH}/src/coresdk \
 echo "Copying resources"
 cp -r ${CORE_SDK_PATH}/src/test/Resources ./out/linux
 
-echo "Running tests"
-export LD_LIBRARY_PATH="out/linux/"
-./out/linux/runtests
+cp ./out/linux/libsplashkit.so /usr/lib/libsplashkit.so

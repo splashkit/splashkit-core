@@ -23,6 +23,7 @@
 
 #ifdef __linux__
 #include <linux/limits.h>
+#include <libgen.h>
 #endif
 
 static bool     _has_resources_path = false;
@@ -117,6 +118,8 @@ void _guess_resources_path()
 #elif __linux__
         if(readlink( "/proc/self/exe", exePath, PATH_MAX ))
         {
+            // Strips the executable name from the path
+            dirname(exePath);
             if( _try_set_resource_path(exePath) ) return;
         }
         
