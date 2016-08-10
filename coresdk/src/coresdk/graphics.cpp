@@ -140,7 +140,7 @@ void draw_rectangle(color clr, float x, float y, float width, float height, draw
         }
         
         xy_from_opts(opts, x, y);
-        sk_draw_aabb_rect(surface, clr, x, y, width, height);
+        sk_draw_aa_rect(surface, clr, x, y, width, height);
     }
 }
 
@@ -172,7 +172,7 @@ void fill_rectangle(color clr, float x, float y, float width, float height, draw
         }
         
         xy_from_opts(opts, x, y);
-        sk_fill_aabb_rect(surface, clr, x, y, width, height);
+        sk_fill_aa_rect(surface, clr, x, y, width, height);
     }
 }
 
