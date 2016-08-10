@@ -902,7 +902,7 @@ unsigned int _sk_renderer_count(sk_drawing_surface *surface)
 //  Rectangles
 //
 
-void sk_draw_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+void sk_draw_aa_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
     if ( (! surface) || (! surface->_data) ) return;
 
@@ -930,7 +930,7 @@ void sk_draw_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float
     }
 }
 
-void sk_fill_aabb_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+void sk_fill_aa_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
     if ( (! surface) || (! surface->_data)  ) return;
     
