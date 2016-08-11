@@ -184,7 +184,7 @@ void fill_rectangle(color clr, float x, float y, float width, float height)
 
 
 //----------------------------------------------------------------------------
-// Rectangle drawing
+// Triangle drawing
 //----------------------------------------------------------------------------
 
 void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
@@ -199,11 +199,32 @@ void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, 
         xy_from_opts(opts, x2, y2);
         xy_from_opts(opts, x3, y3);
 
-        sk_draw_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        sk_draw_aa_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
     }
 }
 
 void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
     draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
+}
+
+void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+{
+    sk_drawing_surface *surface;
+
+    surface = to_surface_ptr(opts.dest);
+
+    if (surface)
+    {
+        xy_from_opts(opts, x1, y1);
+        xy_from_opts(opts, x2, y2);
+        xy_from_opts(opts, x3, y3);
+
+        sk_fill_aa_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+    }
+}
+
+void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+{
+    fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
 }
