@@ -1054,7 +1054,7 @@ void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int da
 //  Triangles
 //
 
-void sk_draw_aa_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
     if ( ! surface || ! surface->_data ) return;
 
@@ -1082,7 +1082,7 @@ void sk_draw_aa_triangle(sk_drawing_surface *surface, sk_color clr, float x1, fl
     }
 }
 
-void sk_fill_aa_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
     if ( ! surface || ! surface->_data ) return;
 
