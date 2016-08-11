@@ -126,8 +126,8 @@ void _guess_resources_path()
 #elif WINDOWS
         if (GetModuleFileName( NULL, exePath, MAX_PATH ))
         {
-            if(_try_set_resources_path(exePath);
-            return
+            if(_try_set_resources_path(exePath))
+            return;
         }
 #endif
 
