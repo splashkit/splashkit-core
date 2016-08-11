@@ -140,5 +140,36 @@ void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, 
 /// @doc_idx 0
 void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 
+//---------------------------------------------------------------------------------------------------------
+// Line Drawing...
+//---------------------------------------------------------------------------------------------------------
+
+/// Draw a line onto a destination bitmap.
+///
+/// @lib DrawLineOpts
+/// @sn drawLineColor:%s atX1:%s y1:%s x2:%s y2:%s opts:%s
+void draw_line(color clr, float x1, float y1, float x2, float y2, drawing_options opts);
+
+/// Draw a line in the game.
+///
+/// @lib
+/// @sn drawLineColor:%s atX1:%s y1:%s x2:%s y2:%s
+///
+/// @doc_idx 0
+void draw_line(color clr, float x1, float y1, float x2, float y2);
+
+///// Draw a line onto a destination bitmap.
+/////
+///// @lib DrawLineStructOpts
+///// @sn drawLineColor:%s data:%s opts:%s
+//procedure DrawLine(clr : Color; const tri: Line; const opts : DrawingOptions); overload;
+//
+///// Draw a line in the game.
+/////
+///// @lib DrawLineStruct
+///// @sn drawLineColor:%s data:%s
+//procedure DrawLine(clr : Color; const tri: Line);
+
+
 
 #endif /* graphics_hpp */

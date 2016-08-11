@@ -66,7 +66,6 @@ void sk_fill_aa_rect(sk_drawing_surface *surface, sk_color clr, float x, float y
 void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 
-
 void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
@@ -77,7 +76,7 @@ sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y);
 void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
 void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
 
-void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
+void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, int line_width);
 
 void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz);
 void sk_clear_clip_rect(sk_drawing_surface *surface);
