@@ -61,8 +61,6 @@ void test_font_styles()
     draw_text("Text draws in BOLD weee!", COLOR_BLACK, fnt, 0, 50);
     set_font_style(fnt, UNDERLINE_FONT);
     draw_text("Text draws with UNDERLINES weee!", COLOR_BLACK, fnt, 0, 75);
-    set_font_style(fnt, ITALIC_FONT|UNDERLINE_FONT);
-    draw_text("Text draws with ITALICS AND UNDERLINES weee!", COLOR_BLACK, fnt, 0, 100);
 }
 
 void run_text_test()

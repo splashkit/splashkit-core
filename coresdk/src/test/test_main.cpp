@@ -19,6 +19,9 @@
 
 int main()
 {
+    run_text_test();
+    reset_quit();
+    
     run_graphics_test();
     reset_quit();
     
@@ -30,9 +33,6 @@ int main()
     
     run_audio_tests();
     run_database_tests();
-    
-    run_text_test();
-    reset_quit();
     
     return 0;
 }
