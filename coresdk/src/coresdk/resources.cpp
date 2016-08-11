@@ -38,7 +38,7 @@ void set_resources_path(string path)
 
 /// Try to set the resource path by exploring sub directories and parent
 /// directories of the supplied path.
-bool _try_set_resource_path(string path)
+bool _try_set_resources_path(string path)
 {
     string tmpPath;
     
@@ -85,7 +85,7 @@ void _guess_resources_path()
     
     if(getcwd(cwd, PATH_MAX))
     {
-        if ( _try_set_resource_path(cwd)) return;
+        if ( _try_set_resources_path(cwd)) return;
         
 #ifdef __APPLE__
         // search bundle
@@ -106,7 +106,7 @@ void _guess_resources_path()
 
                     // Default bundle location
                     path = string(bndlPath) + "/Contents/MacOS";
-                    if ( _try_set_resource_path(path) )
+                    if ( _try_set_resources_path(path) )
                     {
                         return;
                     }
@@ -120,7 +120,7 @@ void _guess_resources_path()
         {
             // Strips the executable name from the path
             dirname(exePath);
-            if( _try_set_resource_path(exePath) ) return;
+            if( _try_set_resources_path(exePath) ) return;
         }
         
 #elif WINDOWS
