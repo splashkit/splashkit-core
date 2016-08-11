@@ -1082,14 +1082,14 @@ void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float
     }
 }
 
-void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
-    if ( ! surface || ! surface->_data || data_sz != 6) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 6 values = 3 points
-    float x1 = data[0], y1 = data[1];
-    float x2 = data[2], y2 = data[3];
-    float x3 = data[4], y3 = data[5];
+    int px1 = static_cast<int>(x1), py1 = static_cast<int>(y1);
+    int px2 = static_cast<int>(x2), py2 = static_cast<int>(y2);
+    int px3 = static_cast<int>(x3), py3 = static_cast<int>(y3);
 
 
     unsigned int count = _sk_renderer_count(surface);
@@ -1099,9 +1099,9 @@ void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, in
         SDL_Renderer *renderer = _sk_prepared_renderer(surface, i);
         Uint8 a = static_cast<Uint8>(clr.a * 255);
         filledTrigonRGBA(renderer,
-                         static_cast<Sint16>(x1), static_cast<Sint16>(y1),
-                         static_cast<Sint16>(x2), static_cast<Sint16>(y2),
-                         static_cast<Sint16>(x3), static_cast<Sint16>(y3),
+                         static_cast<Sint16>(px1), static_cast<Sint16>(py1),
+                         static_cast<Sint16>(px2), static_cast<Sint16>(py2),
+                         static_cast<Sint16>(px3), static_cast<Sint16>(py3),
                          static_cast<Uint8>(clr.r * 255),
                          static_cast<Uint8>(clr.g * 255),
                          static_cast<Uint8>(clr.b * 255),
@@ -1334,16 +1334,16 @@ void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y,
 // Lines
 //
 
-void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, int line_width)
 {
-    if ( ! surface || ! surface->_data || data_sz != 5) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 2 points
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int x2 = static_cast<int>(data[2]), y2 = static_cast<int>(data[3]);
+    int px1 = static_cast<int>(x1), py1 = static_cast<int>(y1);
+    int px2 = static_cast<int>(x2), py2 = static_cast<int>(y2);
 
     // 5th value = width (scale)
-    int w = static_cast<int>(data[4]);
+    int w = static_cast<int>(line_width);
 
     if ( w == 0 ) return;
 

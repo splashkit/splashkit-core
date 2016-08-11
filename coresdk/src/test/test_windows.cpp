@@ -40,6 +40,11 @@ void run_windows_tests()
         draw_circle(COLOR_RED, 10, 10, 10);
         fill_circle(COLOR_GREEN, 50, 10, 10);
         
+        draw_rectangle(COLOR_RED, 10, 50, 10, 10);
+        fill_rectangle(COLOR_GREEN, 50, 50, 10, 10);
+        draw_triangle(COLOR_RED, 10, 100, 5, 110, 15, 110);
+        fill_triangle(COLOR_GREEN, 50, 100, 45, 110, 55, 110);
+
         draw_bitmap(test, 0, 0);
         draw_bitmap(light, 10, 100);
         draw_bitmap("light", 75, 100);
