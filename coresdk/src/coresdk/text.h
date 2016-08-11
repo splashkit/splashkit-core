@@ -26,6 +26,10 @@ using namespace std;
 /// @class Font
 /// @constructor
 /// @csn initWithFontName:%s andSize:%s
+void set_font_style(font fnt, font_style style);
+
+font_style get_font_style(font fnt);
+
 font load_font(string name, string filename, int size);
 
 bool has_font(string name);

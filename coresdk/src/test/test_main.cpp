@@ -15,9 +15,13 @@
 #include "resources_tests.h"
 #include "test_graphics.hpp"
 #include "test_database.hpp"
+#include "test_text.hpp"
 
 int main()
 {
+    run_text_test();
+    reset_quit();
+    
     run_graphics_test();
     reset_quit();
     
