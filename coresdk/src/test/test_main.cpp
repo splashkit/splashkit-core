@@ -15,6 +15,7 @@
 #include "resources_tests.h"
 #include "test_graphics.hpp"
 #include "test_database.hpp"
+#include "test_text.hpp"
 
 int main()
 {
@@ -29,6 +30,9 @@ int main()
     
     run_audio_tests();
     run_database_tests();
+    
+    run_text_test();
+    reset_quit();
     
     return 0;
 }

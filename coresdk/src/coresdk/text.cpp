@@ -74,6 +74,30 @@ void free_all_fonts()
     }
 }
 
+void set_font_style(font fnt, font_style style) 
+{
+    if (!VALID_PTR(fnt, FONT_PTR))
+    {
+        raise_warning("Attempting to set style on invalid font.");
+        return;
+    }
+
+    sk_set_font_style(&fnt->font, style);
+}
+
+font_style get_font_style(font fnt) 
+{
+    if (!VALID_PTR(fnt, FONT_PTR)) {
+        raise_warning("Attempting to get font style on invalid font.");
+        return NORMAL_FONT; // Add NONE to font_style enum?
+    }
+
+    int style = sk_get_font_style(&fnt->font);
+
+    // Should the backend not just return a font_style instead of an int?
+    return static_cast<font_style>(sk_get_font_style(&fnt->font));
+}
+
 font load_font(string name, string filename, int size)
 {
     if (has_font(name)) return font_named(name);

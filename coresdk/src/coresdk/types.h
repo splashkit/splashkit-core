@@ -43,6 +43,14 @@ enum font_style
     UNDERLINE_FONT   = 4
 };
 
+/// Provides an overload that allows combining font styles with the bit or 
+/// operator.
+/// Source: http://stackoverflow.com/a/1448478
+inline font_style operator|(font_style a, font_style b)
+{
+    return static_cast<font_style>(static_cast<int>(a) | static_cast<int>(b));
+}
+
 /// Use font alignment for certain drawing operations. With these
 /// operations you specify the area to draw in as well as the alignment
 /// within that area. See DrawTextLines.

@@ -76,10 +76,15 @@ int sk_text_size(sk_font_data* font, char* text, int* w, int* h)
         return 0;
 }
 
-void sk_set_font_style(sk_font_data* font,int style)
+void sk_set_font_style(sk_font_data* font, int style)
 {
-    if (font && font->_data)
+    if (font && font->_data) 
+    {
         TTF_SetFontStyle(static_cast<TTF_Font *>(font->_data), style);
+    }
+    else {
+        cerr << "Error setting font style in sk_set_font_style" << endl;
+    }
 }
 
 int sk_get_font_style(sk_font_data* font)
