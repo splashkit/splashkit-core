@@ -38,6 +38,7 @@ Temporary Items
 ## Build generated
 build/
 DerivedData/
+test_database
 
 ## Various settings
 *.pbxuser
@@ -66,3 +67,17 @@ coresdk/external/SDL_ttf
 coresdk/external/setup.log
 coresdk/include
 projects/bash/out
+
+### CLion JetBrains IDE ###
+.idea
+CMakeLists.txt
+
+### vim ###
+swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
