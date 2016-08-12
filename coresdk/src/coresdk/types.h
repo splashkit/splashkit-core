@@ -63,7 +63,7 @@ enum font_alignment
 /// @class Font
 /// @pointer_wrapper
 /// @field pointer: pointer
-typedef struct _font_data *font;
+typedef struct sk_font_data *font;
 
 typedef struct _animation_script_data *animation_script;
 typedef struct _animation_data *animation;

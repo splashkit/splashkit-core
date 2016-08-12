@@ -15,12 +15,13 @@ void sk_init_text();
 void sk_finalize_text();
 
 
-sk_font_data sk_load_font(const char * filename, int font_size);
+sk_font_data* sk_load_font(const char * filename, int font_size);
+bool sk_contains_valid_font(sk_font_data* font);
 void sk_close_font(sk_font_data* font);
-int sk_text_line_skip(sk_font_data* font);
-int sk_text_size(sk_font_data* font, char* text, int* w, int* h);
-void sk_set_font_style(sk_font_data* font,int style);
-int sk_get_font_style(sk_font_data* font);
+int sk_text_line_skip(sk_font_data* font, int font_size);
+int sk_text_size(sk_font_data* font, int font_size, char* text, int* w, int* h);
+void sk_set_font_style(sk_font_data* font, int font_size, int style);
+int sk_get_font_style(sk_font_data* font, int font_size);
 void _sk_draw_bitmap_text( sk_drawing_surface * surface,
                           float x, float y,
                           const char * text,
@@ -28,6 +29,7 @@ void _sk_draw_bitmap_text( sk_drawing_surface * surface,
 void sk_draw_text(
                   sk_drawing_surface * surface,
                   sk_font_data* font,
+                  int font_size,
                   float x, float y,
                   const char * text,
                   sk_color clr);

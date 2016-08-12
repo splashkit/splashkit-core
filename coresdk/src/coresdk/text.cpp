@@ -18,13 +18,6 @@
 
 static map<string, font> _fonts;
 
-struct _font_data
-{
-    string              name;
-    pointer_identifier  id;
-    sk_font_data        font;
-};
-
 bool has_font(string name)
 {
     return _fonts.count(name) > 0;
@@ -43,7 +36,7 @@ void free_font(font fnt)
     if ( VALID_PTR(fnt, FONT_PTR) )
     {
         _fonts.erase(fnt->name);
-        sk_close_font(&fnt->font);
+        sk_close_font(fnt);
         fnt->id = NONE_PTR;  // ensure future use of this pointer will fail...
         delete(fnt);
     }
@@ -74,7 +67,7 @@ void free_all_fonts()
     }
 }
 
-void set_font_style(font fnt, font_style style) 
+void set_font_style(font fnt, int font_size, font_style style)
 {
     if (!VALID_PTR(fnt, FONT_PTR))
     {
@@ -82,10 +75,10 @@ void set_font_style(font fnt, font_style style)
         return;
     }
 
-    sk_set_font_style(&fnt->font, style);
+    sk_set_font_style(fnt, font_size, style);
 }
 
-font_style get_font_style(font fnt) 
+font_style get_font_style(font fnt, int font_size)
 {
     if (!VALID_PTR(fnt, FONT_PTR)) {
         raise_warning("Attempting to get font style on invalid font.");
@@ -93,14 +86,12 @@ font_style get_font_style(font fnt)
     }
 
     // Should the backend not just return a font_style instead of an int?
-    return static_cast<font_style>(sk_get_font_style(&fnt->font));
+    return static_cast<font_style>(sk_get_font_style(fnt, font_size));
 }
 
-font load_font(string name, string filename, int size)
+font load_font(string name, string filename, int font_size)
 {
     if (has_font(name)) return font_named(name);
-    
-    font result;
 
     string file_path = path_to_resource(filename, FONT_RESOURCE);
     
@@ -114,14 +105,12 @@ font load_font(string name, string filename, int size)
             return nullptr;
         }
     }
+
+
+    font result = sk_load_font(file_path.c_str(), font_size);
+    result->name = name; // Need to clean this up, name is set to filename in sk_load_font
     
-    result = new _font_data;
-    result->id = FONT_PTR;
-    result->name = name;
-    
-    result->font = sk_load_font(file_path.c_str(), size);
-    
-    if ( ! result->font._data)
+    if (!sk_contains_valid_font(result))
     {
         delete result;
         result = nullptr;
@@ -133,17 +122,17 @@ font load_font(string name, string filename, int size)
     return result;
 }
 
-void _print_strings(void *dest, font fnt, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
+void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
 {
     if (bg_clr.a > 0)
     {
         sk_fill_aa_rect(to_surface_ptr(dest), bg_clr, rc.x, rc.y, rc.width, rc.height);
     }
     
-    sk_draw_text(to_surface_ptr(dest), &fnt->font, rc.x, rc.y, str.c_str(), fg_clr);
+    sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
 }
 
-void draw_text(string text, color clr, font fnt, float x, float y, drawing_options opts)
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts)
 {
     rectangle rect;
     if ( ! VALID_PTR(fnt, FONT_PTR) )
@@ -161,12 +150,12 @@ void draw_text(string text, color clr, font fnt, float x, float y, drawing_optio
     rect.width = -1;
     rect.height = -1;
     
-    _print_strings(opts.dest, fnt, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
+    _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
 }
 
-void draw_text(string text, color clr, font fnt, float x, float y)
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y)
 {
-    draw_text(text, clr, fnt, x, y, option_defaults());
+    draw_text(text, clr, fnt, font_size, x, y, option_defaults());
 }
 
 void draw_text(string text, color clr, float x, float y, drawing_options opts)

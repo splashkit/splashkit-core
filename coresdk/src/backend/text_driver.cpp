@@ -21,6 +21,7 @@
 #include "graphics_driver.h"
 #include "backend_types.h"
 #include "core_driver.h"
+#include "utility_functions.h"
 
 void sk_init_text()
 {
@@ -36,61 +37,85 @@ void sk_finalize_text()
     TTF_Quit();
 }
 
-sk_font_data sk_load_font(const char * filename, int font_size)
+sk_font_data* sk_load_font(const char * filename, int font_size)
 {
     internal_sk_init();
 
-    sk_font_data font;
-    font.kind = SKFT_TTF;
-    font._data = TTF_OpenFont(filename, font_size);
-    if (!font._data)
+    sk_font_data *font = new sk_font_data;
+    font->id = FONT_PTR;
+    font->filename = filename;
+
+    printf("Before\n");
+    font->_data[font_size] = TTF_OpenFont(filename, font_size);
+    printf("Seg fault here?\n");
+    if (!font->_data[font_size])
     {
         cerr << "Error loading font " << SDL_GetError() << endl;
     }
     return font;
 }
 
+bool sk_contains_valid_font(sk_font_data* font) {
+    for (auto const it : font->_data) {
+        if (it.second) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void sk_close_font(sk_font_data* font)
 {
-    if (font && font->_data)
+    if (VALID_PTR(font, FONT_PTR))
     {
-        TTF_CloseFont(static_cast<TTF_Font *>(font->_data));
-        font->kind = SKFT_UNKNOWN;
-        font->_data = NULL;
+        for (auto const it : font->_data) {
+            if (it.second) {
+                TTF_CloseFont(static_cast<TTF_Font *>(it.second));
+
+            }
+        }
+
+        font->name = "";
+        font->id = NONE_PTR;
     }
 }
 
-int sk_text_line_skip(sk_font_data* font)
+int sk_text_line_skip(sk_font_data* font, int font_size)
 {
-    if (font && font->_data)
-        return TTF_FontLineSkip(static_cast<TTF_Font *>(font->_data));
-    else
+    if (VALID_PTR(font, FONT_PTR)) {
+        return TTF_FontLineSkip(static_cast<TTF_Font *>(font->_data[font_size]));
+    }
+    else {
         return 0;
+    }
 }
 
-int sk_text_size(sk_font_data* font, char* text, int* w, int* h)
+int sk_text_size(sk_font_data* font, int font_size, char* text, int* w, int* h)
 {
-    if (font && font->_data)
-        return TTF_SizeText(static_cast<TTF_Font *>(font->_data), text, w, h);
-    else
+    if (VALID_PTR(font, FONT_PTR)) {
+        return TTF_SizeText(static_cast<TTF_Font *>(font->_data[font_size]), text, w, h);
+    }
+    else {
         return 0;
+    }
 }
 
-void sk_set_font_style(sk_font_data* font, int style)
+void sk_set_font_style(sk_font_data* font, int font_size, int style)
 {
-    if (font && font->_data) 
+    if (VALID_PTR(font, FONT_PTR))
     {
-        TTF_SetFontStyle(static_cast<TTF_Font *>(font->_data), style);
+        TTF_SetFontStyle(static_cast<TTF_Font *>(font->_data[font_size]), style);
     }
     else {
         cerr << "Error setting font style in sk_set_font_style" << endl;
     }
 }
 
-int sk_get_font_style(sk_font_data* font)
+int sk_get_font_style(sk_font_data* font, int font_size)
 {
-    if (font && font->_data)
-        return TTF_GetFontStyle(static_cast<TTF_Font *>(font->_data));
+    if (VALID_PTR(font, FONT_PTR))
+        return TTF_GetFontStyle(static_cast<TTF_Font *>(font->_data[font_size]));
     else
         return 0;
 }
@@ -122,6 +147,7 @@ void _sk_draw_bitmap_text( sk_drawing_surface * surface,
 void sk_draw_text(
         sk_drawing_surface * surface,
         sk_font_data* font,
+        int font_size,
         float x, float y,
         const char * text,
         sk_color clr)
@@ -131,7 +157,10 @@ void sk_draw_text(
         _sk_draw_bitmap_text(surface, x, y, text, clr);
         return;
     }
-    if (! (font && font->_data)) return; // error with font
+    if (! (VALID_PTR(font, FONT_PTR))) return; // error with font
+
+    // Check that the font size has been loaded and create if not
+    font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
 
     SDL_Surface * text_surface = NULL;
     SDL_Texture * text_texture = NULL;
@@ -142,7 +171,7 @@ void sk_draw_text(
     sdl_color.b = static_cast<Uint8>(clr.b * 255);
     sdl_color.a = static_cast<Uint8>(clr.a * 255);
 
-    text_surface = TTF_RenderText_Blended(static_cast<TTF_Font *>(font->_data), text, sdl_color);
+    text_surface = TTF_RenderText_Blended(static_cast<TTF_Font *>(font->_data[font_size]), text, sdl_color);
 
     if (text_surface == NULL)
     {

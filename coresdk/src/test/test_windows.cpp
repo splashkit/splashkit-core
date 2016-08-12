@@ -44,7 +44,7 @@ void run_windows_tests()
         draw_bitmap(light, 10, 100);
         draw_bitmap("light", 75, 100);
         
-        draw_text("Hello World", COLOR_BLUE, fnt, 200, 100);
+        draw_text("Hello World", COLOR_BLUE, fnt, 64, 200, 100);
         
         refresh_screen();
     }

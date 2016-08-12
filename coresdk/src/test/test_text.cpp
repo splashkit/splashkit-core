@@ -40,7 +40,7 @@ void test_load_font()
     cout << "Has hara.ttf (expect 1): " << has_font("hara") << endl;
     cout << "Has LeagueGothic.otf (expect 1): " << has_font("leaguegothic") << endl;
 
-    draw_text("Text draws weee!", COLOR_BLACK, fnt, 0, 0);
+    draw_text("Text draws weee!", COLOR_BLACK, fnt, 25, 0, 0);
 }
 
 void test_font_styles()
@@ -49,18 +49,30 @@ void test_font_styles()
     
     font fnt = font_named("leaguegothic");
     
-    font_style style = get_font_style(fnt);
+    font_style style = get_font_style(fnt, 25);
     cout << "Initial font style: " << stringify_font_style(style) << endl;
     
-    set_font_style(fnt, ITALIC_FONT);
-    style = get_font_style(fnt);
+    set_font_style(fnt, 25, ITALIC_FONT);
+    style = get_font_style(fnt, 25);
     cout << "After setting the font style to ITALIC: " << stringify_font_style(style) << endl;
     
-    draw_text("Text draws in ITALICS weee!", COLOR_BLACK, fnt, 0, 25);
-    set_font_style(fnt, BOLD_FONT);
-    draw_text("Text draws in BOLD weee!", COLOR_BLACK, fnt, 0, 50);
-    set_font_style(fnt, UNDERLINE_FONT);
-    draw_text("Text draws with UNDERLINES weee!", COLOR_BLACK, fnt, 0, 75);
+    draw_text("Text draws in ITALICS weee!", COLOR_BLACK, fnt, 25, 0, 25);
+    set_font_style(fnt, 25, BOLD_FONT);
+    draw_text("Text draws in BOLD weee!", COLOR_BLACK, fnt, 25, 0, 50);
+    set_font_style(fnt, 25, UNDERLINE_FONT);
+    draw_text("Text draws with UNDERLINES weee!", COLOR_BLACK, fnt, 25, 0, 75);
+}
+
+void test_font_auto_load()
+{
+    font fnt = font_named("leaguegothic");
+
+    draw_text(
+            "Drawing text with a font size that was not explictly loaded first.",
+            COLOR_BLACK,
+            fnt,
+            15,
+            0, 100);
 }
 
 void run_text_test()
@@ -70,7 +82,8 @@ void run_text_test()
     cout << "Testing text API" << endl;
     test_load_font();
     test_font_styles();
-    
+    test_font_auto_load();
+
     refresh_screen();
     delay(3000);
 

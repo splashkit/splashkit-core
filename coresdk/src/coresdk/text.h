@@ -26,19 +26,19 @@ using namespace std;
 /// @class Font
 /// @constructor
 /// @csn initWithFontName:%s andSize:%s
-void set_font_style(font fnt, font_style style);
+void set_font_style(font fnt, int font_size, font_style style);
 
-font_style get_font_style(font fnt);
+font_style get_font_style(font fnt, int font_size);
 
-font load_font(string name, string filename, int size);
+font load_font(string name, string filename, int font_size);
 
 bool has_font(string name);
 
 font font_named(string name);
 
-void draw_text(string text, color clr, font fnt, float x, float y, drawing_options opts);
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts);
 
-void draw_text(string text, color clr, font fnt, float x, float y);
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y);
 
 void draw_text(string text, color clr, float x, float y, drawing_options opts);
 
