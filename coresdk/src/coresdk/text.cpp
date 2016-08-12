@@ -168,3 +168,9 @@ void draw_text(string text, color clr, font fnt, float x, float y)
 {
     draw_text(text, clr, fnt, x, y, option_defaults());
 }
+
+void draw_text(string text, color clr, float x, float y, drawing_options opts)
+{
+    xy_from_opts(opts, x, y);
+    sk_draw_text(to_surface_ptr(opts.dest), nullptr, x, y, text.c_str(), clr);
+}

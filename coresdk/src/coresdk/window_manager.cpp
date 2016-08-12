@@ -139,6 +139,11 @@ void close_window(window wind)
     delete(wind);
 }
 
+void close_window(string name)
+{
+    close_window(window_named(name));
+}
+
 bool has_window(string caption)
 {
     return _windows.count(caption) > 0;

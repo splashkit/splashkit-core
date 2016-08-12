@@ -17,12 +17,16 @@
 #include "test_database.hpp"
 #include "test_text.hpp"
 #include "test_animation.hpp"
+#include "test_timers.hpp"
 
 int main()
 {
     run_text_test();
     reset_quit();
 
+    run_timer_test();
+    reset_quit();
+    
     run_animation_test();
     reset_quit();
     

@@ -634,12 +634,12 @@ color color_moccasin()
     return rgba_color(1.0f, 228, 181, 1.0f);
 }
 
-color color_Navajo_white()
+color color_navajo_white()
 {
     return rgba_color(1.0f, 222, 173, 1.0f);
 }
 
-color color_Navy()
+color color_navy()
 {
     return rgba_color(0, 0, 0.5f, 1.0f);
 }

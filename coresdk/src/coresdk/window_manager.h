@@ -26,6 +26,8 @@ window open_window(string caption, int width, int height);
 
 void close_window(window wind);
 
+void close_window(string name);
+
 bool has_window(string caption);
 
 window window_named(string caption);

@@ -31,6 +31,10 @@
 		941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A311D5CBE30003112B2 /* test_animation.cpp */; };
 		941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A341D5D6FE2003112B2 /* test_text.cpp */; };
 		941C8A371D5D6FE2003112B2 /* test_text.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A351D5D6FE2003112B2 /* test_text.hpp */; };
+		941C8A3A1D5DD668003112B2 /* timers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A381D5DD668003112B2 /* timers.cpp */; };
+		941C8A3B1D5DD668003112B2 /* timers.h in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A391D5DD668003112B2 /* timers.h */; };
+		941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */; };
+		941C8A3F1D5DFDC6003112B2 /* test_timers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A3D1D5DFDC6003112B2 /* test_timers.hpp */; };
 		9420549E1D3463BA001ED922 /* resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9420549C1D3463BA001ED922 /* resources.cpp */; };
 		9420549F1D3463BA001ED922 /* resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 9420549D1D3463BA001ED922 /* resources.h */; };
 		942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942371EE1D1D548A0020CCE2 /* audio_driver.cpp */; };
@@ -170,6 +174,10 @@
 		941C8A321D5CBE30003112B2 /* test_animation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_animation.hpp; sourceTree = "<group>"; };
 		941C8A341D5D6FE2003112B2 /* test_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_text.cpp; sourceTree = "<group>"; };
 		941C8A351D5D6FE2003112B2 /* test_text.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_text.hpp; sourceTree = "<group>"; };
+		941C8A381D5DD668003112B2 /* timers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timers.cpp; sourceTree = "<group>"; };
+		941C8A391D5DD668003112B2 /* timers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timers.h; sourceTree = "<group>"; };
+		941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_timers.cpp; sourceTree = "<group>"; };
+		941C8A3D1D5DFDC6003112B2 /* test_timers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_timers.hpp; sourceTree = "<group>"; };
 		9420549C1D3463BA001ED922 /* resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources.cpp; sourceTree = "<group>"; };
 		9420549D1D3463BA001ED922 /* resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources.h; sourceTree = "<group>"; };
 		942371DC1D1D540C0020CCE2 /* libsplashkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsplashkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +395,8 @@
 				94C749211D478BBB006A9052 /* web.h */,
 				F86951941D5093F800E1BCC9 /* database.cpp */,
 				F86951951D5093F800E1BCC9 /* database.h */,
+				941C8A381D5DD668003112B2 /* timers.cpp */,
+				941C8A391D5DD668003112B2 /* timers.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -409,6 +419,8 @@
 				F869519A1D51C84A00E1BCC9 /* test_database.hpp */,
 				941C8A311D5CBE30003112B2 /* test_animation.cpp */,
 				941C8A321D5CBE30003112B2 /* test_animation.hpp */,
+				941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */,
+				941C8A3D1D5DFDC6003112B2 /* test_timers.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -470,6 +482,7 @@
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
 				940864761D38FED0009EA048 /* sk_input_backend.h in Headers */,
+				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
@@ -478,6 +491,7 @@
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				F869519C1D51C84A00E1BCC9 /* test_database.hpp in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
+				941C8A3F1D5DFDC6003112B2 /* test_timers.hpp in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
 				94C749231D478BBB006A9052 /* web.h in Headers */,
 				94C7491D1D478813006A9052 /* web_driver.h in Headers */,
@@ -579,6 +593,7 @@
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
 				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
 				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
+				941C8A3A1D5DD668003112B2 /* timers.cpp in Sources */,
 				F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
@@ -586,6 +601,7 @@
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web.cpp in Sources */,
+				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,
 				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,
