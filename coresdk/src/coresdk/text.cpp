@@ -122,6 +122,16 @@ font load_font(string name, string filename, int font_size)
     return result;
 }
 
+void font_load_size(string name, int font_size)
+{
+    if (_fonts.count(name) > 0) {
+        font fnt = _fonts[name];
+        sk_add_font_size(fnt, font_size);
+    } else {
+        raise_warning("font_load_size failed: font named \"" + name + "\" does not exist.");
+    }
+}
+
 void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
 {
     if (bg_clr.a > 0)

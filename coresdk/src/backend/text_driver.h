@@ -16,6 +16,7 @@ void sk_finalize_text();
 
 
 sk_font_data* sk_load_font(const char * filename, int font_size);
+void sk_add_font_size(sk_font_data *font, int font_size);
 bool sk_contains_valid_font(sk_font_data* font);
 void sk_close_font(sk_font_data* font);
 int sk_text_line_skip(sk_font_data* font, int font_size);

@@ -73,6 +73,20 @@ void test_font_auto_load()
             fnt,
             15,
             0, 100);
+
+
+    cout << "The next line should fail as the font has not been loaded." << endl;
+    cout << flush;
+    font_load_size("fail", 20);
+
+    font_load_size("leaguegothic", 50);
+    draw_text(
+            "Preloaded...",
+            COLOR_BLACK,
+            fnt,
+            50,
+            0, 115
+    );
 }
 
 void run_text_test()

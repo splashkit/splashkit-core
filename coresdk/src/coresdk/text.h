@@ -32,6 +32,8 @@ font_style get_font_style(font fnt, int font_size);
 
 font load_font(string name, string filename, int font_size);
 
+void font_load_size(string name, int font_size);
+
 bool has_font(string name);
 
 font font_named(string name);

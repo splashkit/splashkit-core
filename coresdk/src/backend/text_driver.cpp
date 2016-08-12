@@ -45,17 +45,27 @@ sk_font_data* sk_load_font(const char * filename, int font_size)
     font->id = FONT_PTR;
     font->filename = filename;
 
-    printf("Before\n");
-    font->_data[font_size] = TTF_OpenFont(filename, font_size);
-    printf("Seg fault here?\n");
-    if (!font->_data[font_size])
-    {
-        cerr << "Error loading font " << SDL_GetError() << endl;
-    }
+    sk_add_font_size(font, font_size);
+
     return font;
 }
 
-bool sk_contains_valid_font(sk_font_data* font) {
+void sk_add_font_size(sk_font_data *font, int font_size) {
+    if (VALID_PTR(font, FONT_PTR))
+    {
+        font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
+        if (!font->_data[font_size]) {
+            cerr << "Error loading font " << SDL_GetError() << endl;
+        }
+    }
+    else
+    {
+        cerr << "Trying to load font size for an invalid font" << endl;
+    }
+}
+
+bool sk_contains_valid_font(sk_font_data* font)
+{
     for (auto const it : font->_data) {
         if (it.second) {
             return true;
@@ -78,6 +88,10 @@ void sk_close_font(sk_font_data* font)
 
         font->name = "";
         font->id = NONE_PTR;
+    }
+    else
+    {
+        cerr << "Trying to close font that is not a valid font." << endl;
     }
 }
 
@@ -160,7 +174,9 @@ void sk_draw_text(
     if (! (VALID_PTR(font, FONT_PTR))) return; // error with font
 
     // Check that the font size has been loaded and create if not
-    font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
+    if (font->_data.count(font_size) == 0) {
+        font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
+    }
 
     SDL_Surface * text_surface = NULL;
     SDL_Texture * text_texture = NULL;
