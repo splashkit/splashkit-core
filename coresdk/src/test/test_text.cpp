@@ -34,8 +34,8 @@ void test_load_font()
     cout << "Has hara.ttf (expect 0): " << has_font("hara") << endl;
     cout << "Has LeagueGothic.otf (expect 0): " << has_font("leaguegothic") << endl;
 
-    load_font("hara", "hara.ttf", 25);
-    font fnt = load_font("leaguegothic", "LeagueGothic.otf", 25);
+    load_font("hara", "hara.ttf");
+    font fnt = load_font("leaguegothic", "LeagueGothic.otf");
 
     cout << "Has hara.ttf (expect 1): " << has_font("hara") << endl;
     cout << "Has LeagueGothic.otf (expect 1): " << has_font("leaguegothic") << endl;

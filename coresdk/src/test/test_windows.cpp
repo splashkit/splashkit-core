@@ -23,7 +23,7 @@ void run_windows_tests()
 {
     open_window("Hello World", 800, 600);
     
-    font fnt = load_font("hara", "hara.ttf", 64);
+    font fnt = load_font("hara", "hara.ttf");
     bitmap light = load_bitmap("light", "on_med.png");
     
 //    http_response response = http_get("http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);

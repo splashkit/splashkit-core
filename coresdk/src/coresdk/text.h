@@ -30,7 +30,7 @@ void set_font_style(font fnt, int font_size, font_style style);
 
 font_style get_font_style(font fnt, int font_size);
 
-font load_font(string name, string filename, int font_size);
+font load_font(string name, string filename);
 
 void font_load_size(string name, int font_size);
 

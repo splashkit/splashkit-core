@@ -89,7 +89,7 @@ font_style get_font_style(font fnt, int font_size)
     return static_cast<font_style>(sk_get_font_style(fnt, font_size));
 }
 
-font load_font(string name, string filename, int font_size)
+font load_font(string name, string filename)
 {
     if (has_font(name)) return font_named(name);
 
@@ -106,8 +106,7 @@ font load_font(string name, string filename, int font_size)
         }
     }
 
-
-    font result = sk_load_font(file_path.c_str(), font_size);
+    font result = sk_load_font(file_path.c_str(), 64);
     result->name = name; // Need to clean this up, name is set to filename in sk_load_font
     
     if (!sk_contains_valid_font(result))
