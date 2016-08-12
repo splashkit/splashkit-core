@@ -43,4 +43,6 @@ void run_animation_test()
     }
     
     free_animation_script(kermit);
+    free_bitmap(frog);
+    close_window(window_named("Test Animation"));
 }
