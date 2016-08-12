@@ -16,18 +16,30 @@
 #include "audio.h"
 #include "input.h"
 
+#include <vector>
+#include <iostream>
+using namespace std;
+
 void run_animation_test()
 {
-    open_audio();
+    vector<string> sequence = { "Walkfront", "WalkLeft", "WalkRight", "WALKBACK", "dance" };
+    
+    cout << "Script should not be loaded: " << has_animation_script("kermit");
+    
     animation_script kermit = load_animation_script("kermit", "kermit.txt");
-    animation anim = create_animation(kermit, "dance");
+    
+    cout << "Script should be loaded: " << has_animation_script("kermit");
+    
+    animation anim = create_animation(kermit, 4);
     
     open_window("Test Animation", 600, 600);
     
     bitmap frog = load_bitmap("frog", "frog.png");
     bitmap_set_cell_details(frog, 73, 105, 4, 4, 16);
     
-    for (int i = 0; i < 60 * 20; i++)
+    auto it = sequence.begin();
+    
+    while( not quit_requested() )
     {
         process_events();
         
@@ -36,6 +48,15 @@ void run_animation_test()
         draw_bitmap(frog, 100, 100, option_with_animation(anim));
         
         update_animation(anim);
+        
+        if ( animation_ended(anim) )
+        {
+            if ( it == sequence.end() ) break;
+            
+            assign_animation(anim, kermit, *it);
+            
+            it++;
+        }
         
         refresh_screen();
         

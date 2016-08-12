@@ -19,8 +19,15 @@ void run_audio_tests()
 {
     cout << "Starting Audio Tests..." << endl;
 
-    cout << "    Is audio ready? " << audio_ready() << endl;
+    cout << "    Audio should be ready? " << audio_ready() << endl;
+    
+    cout << "    Closing audio..." << endl;
+    close_audio();
 
+    cout << "    Audio should not be ready? " << audio_ready() << endl;
+
+    delay(500);
+    
     cout << "    Opening audio..." << endl;
     open_audio();
 

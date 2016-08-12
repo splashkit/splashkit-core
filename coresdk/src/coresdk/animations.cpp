@@ -539,7 +539,16 @@ bool has_animation_script(string name)
 }
 
 
-int animation_count(animation_script script);
+int animation_count(animation_script script)
+{
+    if( INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
+    {
+        raise_warning("Attempting to get number of animations from invalid animation script");
+        return 0;
+    }
+    
+    return static_cast<int>(script->animations.size());
+}
 
 int animation_current_cell(animation anim)
 {
@@ -553,16 +562,46 @@ int animation_current_cell(animation anim)
         return -1;
 }
 
-vector_2d animation_current_vector(animation anim);
+vector_2d animation_current_vector(animation anim)
+{
+    if ( INVALID_PTR(anim, ANIMATION_PTR))
+    {
+        raise_warning("Attempting to get name of invalid animation data.");
+        return vector_to(0,0);
+    }
+    
+    if ( ! animation_ended(anim) )
+        return anim->current_frame->movement;
+    else
+        return vector_to(0,0);
+}
 
 bool animation_ended(animation anim)
 {
     return (not VALID_PTR(anim, ANIMATION_PTR)) || (anim->current_frame == nullptr);
 }
 
-bool animation_entered_frame(animation anim);
+bool animation_entered_frame(animation anim)
+{
+    if ( INVALID_PTR(anim, ANIMATION_PTR))
+    {
+        raise_warning("Attempting to check if animation entered a new frame with invalid animation data.");
+        return false;
+    }
+    
+    return anim->entered_frame;
+}
 
-float animation_frame_time(animation anim);
+float animation_frame_time(animation anim)
+{
+    if ( INVALID_PTR(anim, ANIMATION_PTR))
+    {
+        raise_warning("Attempting to get frame time with invalid animation data.");
+        return 0;
+    }
+    
+    return anim->frame_time;
+}
 
 bool has_animation_named(animation_script script, string name)
 {
@@ -592,7 +631,16 @@ int animation_index(animation_script script, string name)
     return script->animation_ids[to_lower(name)];
 }
 
-string animation_name(animation temp);
+string animation_name(animation temp)
+{
+    if ( INVALID_PTR(temp, ANIMATION_PTR))
+    {
+        raise_warning("Attempting to get name of invalid animation data.");
+        return "";
+    }
+    
+    return temp->animation_name;
+}
 
 string animation_name(animation_script temp, int idx)
 {
@@ -616,7 +664,6 @@ string animation_script_name(animation_script script)
     if (VALID_PTR(script, ANIMATION_SCRIPT_PTR)) return script->name;
     return "";
 }
-
 
 void assign_animation(animation anim, animation_script script, int idx, bool with_sound)
 {
@@ -651,13 +698,20 @@ void assign_animation(animation anim, animation_script script, int idx, bool wit
     restart_animation(anim, with_sound);
 }
 
-void assign_animation(animation anim, animation_script script, int idx);
+void assign_animation(animation anim, animation_script script, int idx)
+{
+    assign_animation(anim, script, idx, true);
+}
 
-void assign_animation(animation anim, animation_script script, string name);
+void assign_animation(animation anim, animation_script script, string name)
+{
+    assign_animation(anim, script, animation_index(script, name), true);
+}
 
-void assign_animation(animation anim, animation_script script, string name, bool with_sound);
-
-
+void assign_animation(animation anim, animation_script script, string name, bool with_sound)
+{
+    assign_animation(anim, script, animation_index(script, name), with_sound);
+}
 
 animation create_animation(animation_script script, int idx, bool with_sound)
 {

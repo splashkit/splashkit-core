@@ -66,6 +66,7 @@ void internal_sk_init()
     sk_init_web();
 //
 //    sk_network_init();
+    open_audio();
 }
 
 void sk_setup_display(int idx, sk_display &disp)
