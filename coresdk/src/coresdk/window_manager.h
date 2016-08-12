@@ -9,6 +9,7 @@
 #ifndef window_manager_hpp
 #define window_manager_hpp
 
+#include "color.h"
 #include <string>
 using namespace std;
 
@@ -30,5 +31,7 @@ bool has_window(string caption);
 window window_named(string caption);
 
 void refresh_window(window wind);
+
+void clear_window(window wind, color clr);
 
 #endif /* window_manager_hpp */

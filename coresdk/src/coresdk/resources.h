@@ -16,6 +16,7 @@ using namespace std;
 enum resource_kind
 {
     AUDIO_RESOURCE,
+    ANIMATION_RESOURCE,
     DATABASE_RESOURCE,
     IMAGE_RESOURCE,
     FONT_RESOURCE,

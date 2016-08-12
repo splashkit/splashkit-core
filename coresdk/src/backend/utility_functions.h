@@ -23,6 +23,10 @@ bool file_exists(string path);
 bool directory_exists(string path);
 
 #define VALID_PTR(p,pkind) ( (p) and p->id == pkind )
+#define INVALID_PTR(p,pkind) ( not VALID_PTR(p,pkind) )
+
+#define ASSIGNED(ptr) ( ptr != nullptr )
+
 
 string cat(std::initializer_list<string> list);
 
@@ -54,6 +58,8 @@ FinalAction<F> finally(F f)
     return FinalAction<F>(f);
 }
 
+string trim(const string& str);
+
 pointer_identifier ptr_kind(void *p);
 
 _bitmap_data *to_bitmap_ptr(void *b);
@@ -62,5 +68,22 @@ _window_data *to_window_ptr(void *w);
 sk_drawing_surface *to_surface_ptr(void *p);
 void xy_from_opts(drawing_options &opts, float &x, float &y);
 
+void process_range(string value_in, vector<int> &result);
+
+string extract_delimited(int index, string value, char delim);
+string extract_delimited_with_ranges(int index, string value);
+
+int count_delimiter(string value, char delimiter);
+int count_delimiter_with_ranges(string value, char delimiter);
+
+int str_to_int(string str, bool allow_empty = true, int empty_value = 0);
+float str_to_float(string str, bool allow_empty = true, float empty_value = 0.0f);
+float str_to_double(string str, bool allow_empty = true, double empty_value = 0.0);
+
+bool try_str_to_int(string str, int &result);
+bool try_str_to_float(string str, float &result);
+bool try_str_to_double(string str, double &result);
+
+string to_lower (string str);
 
 #endif /* utility_functions_h */

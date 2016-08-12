@@ -92,13 +92,30 @@ window open_window(string caption, int width, int height)
 
 void refresh_window(window wind)
 {
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to refresh an invalid window!");
+        return;
+    }
+    
     //TODO: DrawCollectedText(w);
     sk_refresh_window(&wind->image.surface);
 }
 
+void clear_window(window wind, color clr)
+{
+    if ( not VALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to clear an invalid window!");
+        return;
+    }
+    
+    sk_clear_drawing_surface(&wind->image.surface, clr);
+}
+
 void close_window(window wind)
 {
-    if ( ! VALID_PTR(wind, WINDOW_PTR) )
+    if ( not VALID_PTR(wind, WINDOW_PTR) )
     {
         raise_warning("Close window called without valid window parameter");
         return;

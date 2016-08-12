@@ -100,4 +100,6 @@ void free_all_sound_effects();
 /// @doc_details
 void play_sound_effect(sound_effect effect, int times, float volume);
 
+void play_sound_effect(sound_effect effect);
+
 #endif

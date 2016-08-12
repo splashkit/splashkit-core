@@ -26,6 +26,11 @@
 		940864761D38FED0009EA048 /* sk_input_backend.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864741D38FED0009EA048 /* sk_input_backend.h */; };
 		940864791D390134009EA048 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940864771D390134009EA048 /* input.cpp */; };
 		9408647A1D390134009EA048 /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864781D390134009EA048 /* input.h */; };
+		941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
+		941C8A301D5B2EC1003112B2 /* animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A2E1D5B2EC1003112B2 /* animations.h */; };
+		941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A311D5CBE30003112B2 /* test_animation.cpp */; };
+		941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A341D5D6FE2003112B2 /* test_text.cpp */; };
+		941C8A371D5D6FE2003112B2 /* test_text.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A351D5D6FE2003112B2 /* test_text.hpp */; };
 		9420549E1D3463BA001ED922 /* resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9420549C1D3463BA001ED922 /* resources.cpp */; };
 		9420549F1D3463BA001ED922 /* resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 9420549D1D3463BA001ED922 /* resources.h */; };
 		942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942371EE1D1D548A0020CCE2 /* audio_driver.cpp */; };
@@ -159,6 +164,12 @@
 		940864741D38FED0009EA048 /* sk_input_backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sk_input_backend.h; sourceTree = "<group>"; };
 		940864771D390134009EA048 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
 		940864781D390134009EA048 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		941C8A2D1D5B2EC1003112B2 /* animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = animations.cpp; sourceTree = "<group>"; };
+		941C8A2E1D5B2EC1003112B2 /* animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animations.h; sourceTree = "<group>"; };
+		941C8A311D5CBE30003112B2 /* test_animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_animation.cpp; sourceTree = "<group>"; };
+		941C8A321D5CBE30003112B2 /* test_animation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_animation.hpp; sourceTree = "<group>"; };
+		941C8A341D5D6FE2003112B2 /* test_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_text.cpp; sourceTree = "<group>"; };
+		941C8A351D5D6FE2003112B2 /* test_text.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_text.hpp; sourceTree = "<group>"; };
 		9420549C1D3463BA001ED922 /* resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources.cpp; sourceTree = "<group>"; };
 		9420549D1D3463BA001ED922 /* resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources.h; sourceTree = "<group>"; };
 		942371DC1D1D540C0020CCE2 /* libsplashkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsplashkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,6 +353,8 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
+				941C8A2E1D5B2EC1003112B2 /* animations.h */,
 				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
 				942372201D1D5D4E0020CCE2 /* audio.h */,
 				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
@@ -381,6 +394,8 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				941C8A341D5D6FE2003112B2 /* test_text.cpp */,
+				941C8A351D5D6FE2003112B2 /* test_text.hpp */,
 				942372321D1D69260020CCE2 /* audio_test.cpp */,
 				942372331D1D69260020CCE2 /* audio_test.hpp */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
@@ -392,6 +407,8 @@
 				868012991D483D9400AE3694 /* test_graphics.hpp */,
 				F86951991D51C84A00E1BCC9 /* test_database.cpp */,
 				F869519A1D51C84A00E1BCC9 /* test_database.hpp */,
+				941C8A311D5CBE30003112B2 /* test_animation.cpp */,
+				941C8A321D5CBE30003112B2 /* test_animation.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -445,9 +462,11 @@
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
 				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
+				941C8A301D5B2EC1003112B2 /* animations.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
+				941C8A371D5D6FE2003112B2 /* test_text.hpp in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
 				940864761D38FED0009EA048 /* sk_input_backend.h in Headers */,
@@ -556,6 +575,7 @@
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
+				941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
 				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
 				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
@@ -574,6 +594,7 @@
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
+				941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
 				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
@@ -588,6 +609,7 @@
 				94F7F7711D3661CA005D3C8C /* resources_tests.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* audio_test.cpp in Sources */,
+				941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

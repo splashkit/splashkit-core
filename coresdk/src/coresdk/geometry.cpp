@@ -18,3 +18,13 @@ rectangle rectangle_from(float x, float y, float width, float height)
     
     return result;
 }
+
+vector_2d vector_to(float x, float y)
+{
+    vector_2d result;
+    
+    result.x = x;
+    result.y = y;
+    
+    return result;
+}

@@ -55,4 +55,7 @@ void draw_bitmap(string name, float x, float y);
 void draw_bitmap(string name, float x, float y, drawing_options opts);
 
 
+rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
+void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
+
 #endif /* images_hpp */

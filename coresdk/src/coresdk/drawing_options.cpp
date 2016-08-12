@@ -29,6 +29,7 @@ drawing_options option_defaults()
 	result.part 			= rectangle_from(0,0,1,1);
 	result.camera	 		= DRAW_DEFAULT;
 	result.line_width 		= 1;
+    result.anim             = nullptr;
 
     return result;
 }
@@ -176,5 +177,16 @@ drawing_options option_line_width(int width)
 drawing_options option_line_width(int width, drawing_options opts)
 {
     opts.line_width = width;
+    return opts;
+}
+
+drawing_options option_with_animation(animation anim)
+{
+    return option_with_animation(anim, option_defaults());
+}
+
+drawing_options option_with_animation(animation anim, drawing_options opts)
+{
+    opts.anim = anim;
     return opts;
 }

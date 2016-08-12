@@ -92,8 +92,6 @@ font_style get_font_style(font fnt)
         return NORMAL_FONT; // Add NONE to font_style enum?
     }
 
-    int style = sk_get_font_style(&fnt->font);
-
     // Should the backend not just return a font_style instead of an int?
     return static_cast<font_style>(sk_get_font_style(&fnt->font));
 }

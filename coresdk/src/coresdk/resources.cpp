@@ -148,9 +148,10 @@ string path_to_resources(resource_kind kind)
     
     switch(kind)
     {
-        case AUDIO_RESOURCE: return path_from({ path, "sounds" });
-        case IMAGE_RESOURCE: return path_from({ path, "images" });
-        case FONT_RESOURCE:  return path_from({ path, "fonts" });
+        case AUDIO_RESOURCE:        return path_from({ path, "sounds" });
+        case IMAGE_RESOURCE:        return path_from({ path, "images" });
+        case FONT_RESOURCE:         return path_from({ path, "fonts" });
+        case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
         default: return path;
     }
 }

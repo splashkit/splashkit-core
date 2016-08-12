@@ -153,3 +153,8 @@ void play_sound_effect(sound_effect effect, int times, float volume)
     //play the effect, seaching for a channel
     sk_play_sound(&effect->effect, loops, volume);
 }
+
+void play_sound_effect(sound_effect effect)
+{
+    play_sound_effect(effect, 1, 1.0f);
+}

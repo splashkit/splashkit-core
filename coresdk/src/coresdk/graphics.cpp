@@ -21,6 +21,7 @@
 using namespace std;
 
 extern map<string, window> _windows;
+extern window _current_window;
 
 static unsigned int _last_update_time = 0;
 
@@ -50,6 +51,11 @@ void refresh_screen(unsigned int target_fps)
     }
 
     _last_update_time = now;
+}
+
+void clear_screen(color clr)
+{
+    clear_window(_current_window, clr);
 }
 
 //----------------------------------------------------------------------------

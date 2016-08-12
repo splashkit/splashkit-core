@@ -13,6 +13,8 @@
 #include <SDL_mixer.h>
 #endif
 
+#include <iostream>
+
 #include "audio_driver.h"
 #include "core_driver.h"
 
@@ -92,7 +94,13 @@ sk_sound_data sk_load_sound_data(string filename, sk_sound_kind kind)
         }
 
         case SGSD_UNKNOWN:
-            break;
+        default:
+            return result;
+    }
+    
+    if(result._data == nullptr)
+    {
+        cerr << Mix_GetError() << endl;
     }
 
     return result;

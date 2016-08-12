@@ -12,39 +12,7 @@
 #include "geometry.h"
 #include "types.h"
 #include "window_manager.h"
-
-/// Determines the effect of the camera on a drawing operation.
-/// `DRAW_TO_SCREEN` means camera has no affect.
-/// `DRAW_TO_WORLD` means camera has an affect.
-/// `DRAW_DEFAULT` means camera has an affect only if drawn to the screen.
-/// @enum DrawingDest
-enum drawing_dest
-{
-   DRAW_TO_SCREEN,  // no camera effect
-   DRAW_TO_WORLD,   // camera effect
-   DRAW_DEFAULT     // camera effect on screen, but not on bitmaps
-};
-
-/// The drawing options struct contains the data that can
-/// be used to provide different options to various drawing
-/// operations.
-///
-/// @struct DrawingOptions
-struct drawing_options
-{
-    void *dest;             // The bitmap or window used to draw on to
-    float scale_x;          // Scale data
-    float scale_y;          //
-    float angle;            // Angle for rotations
-    float anchor_offset_x;  // Centre point for rotations
-    float anchor_offset_y;  //
-    bool  flip_x;           // Flip data
-    bool  flip_y;           //
-    bool  is_part;          // Draw just a part?
-    rectangle part;         // Part to draw
-    drawing_dest camera;    // Draw to world or screen coordinates (camera has effect?)
-    int line_width;         // Specify the width of line drawings.
-};
+#include "animations.h"
 
 /// Returns a DrawingOptions with default values.
 drawing_options option_defaults();
@@ -178,6 +146,8 @@ drawing_options option_line_width(int width);
 /// @lib OptionLineWidthOpts
 drawing_options option_line_width(int width, drawing_options opts);
 
+drawing_options option_with_animation(animation anim);
+drawing_options option_with_animation(animation anim, drawing_options opts);
 
 
 #endif /* drawing_options_hpp */

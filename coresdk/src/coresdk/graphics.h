@@ -13,6 +13,10 @@
 #include "drawing_options.h"
 #include "geometry.h"
 
+//---------------------------------------------------------------------------------------------------------
+// Screen management...
+//---------------------------------------------------------------------------------------------------------
+
 /// Refreshes the current drawing on all open windows. This must be called to display
 /// anything to the screen. This will show all drawing operations, as well
 /// as any text being entered by the user. This will add in delays to limit the framerate
@@ -25,6 +29,12 @@ void refresh_screen();
 /// Refresh with a target FPS. This will delay a period of time that will
 /// approximately meet the targetted frames per second.
 void refresh_screen(unsigned int target_fps);
+
+void clear_screen(color clr);
+
+//---------------------------------------------------------------------------------------------------------
+// Circle Drawing...
+//---------------------------------------------------------------------------------------------------------
 
 /// Draw a circle using the supplied drawing options.
 ///

@@ -11,10 +11,12 @@
 
 #include "drawing_options.h"
 #include "geometry.h"
+#include "audio.h"
 #include "color.h"
 
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 typedef void *pointer;
@@ -179,6 +181,42 @@ struct sk_http_response
     unsigned short status;
     unsigned int size;
     char *data;
+};
+
+struct animation_frame
+{
+    int index;                // The index of the frame in the animation template
+    int cell_index;           // Which cell of the current bitmap is drawn
+    sound_effect sound;       // Which sound should be played on entry
+    float duration;           // How long should this animation frame play for
+    vector_2d movement;          // Movement data associated with the frame
+    animation_frame *next;    // What is the next frame in this animation
+};
+
+struct _animation_data
+{
+    pointer_identifier id;
+    animation_frame *first_frame;       // Where did it start?
+    animation_frame *current_frame;     // Where is the animation up to
+    animation_frame *last_frame;        // The last frame used, so last image can be drawn
+    float frame_time;                   // How long have we spent in this frame?
+    bool entered_frame;                 // Did we just enter this frame? (can be used for sound playing)
+    animation_script script;            // Which script was it created from?
+    string animation_name;              // The name of the animation - when it was started
+};
+
+struct _animation_script_data
+{
+    pointer_identifier id;
+    string name;           // The name of the animation template so it can be retrieved from resources
+    string filename;       // The filename from which this template was loaded
+    
+    map<string, int> animation_ids;     // A map that links names to indexes
+    vector<string> animation_names;     // The names of the animations
+    vector<int> animations;             // The starting index of the animations in this template.
+    vector<animation_frame> frames;  // The frames of the animations within this template.
+    
+    vector<animation>   anim_objs;         // The animations created from this script
 };
 
 
