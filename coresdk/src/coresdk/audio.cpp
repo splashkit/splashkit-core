@@ -1,13 +1,3 @@
-/// \file audio.cpp
-/// \brief SplashKit Audio allows you to load and play music and sound effects.
-///
-/// # SplashKit Audio
-/// The SplashKit's audio library allows you to easily load and play music and
-/// sound effects within your programs. To get started with audio the first
-/// thing you need to do is load a sound effect or music file. You can do this
-/// by calling the load_sound_effect(string name) function to the
-/// load_music(string name) function.
-
 #include "audio_driver.h"
 #include "audio.h"
 #include "resources.h"
@@ -29,21 +19,18 @@ struct _sound_data
     string filename, name;
 };
 
-/// Start the SplashKit audio system working.
 void open_audio()
 {
     sk_open_audio();
     _sk_audio_open = true;
 }
 
-/// Shutdown audio, stopping all current sounds effects and music.
 void close_audio()
 {
     _sk_audio_open = false;
     sk_close_audio();
 }
 
-/// Is the audio currently ready to be used.
 bool audio_ready()
 {
     return _sk_audio_open;
@@ -73,7 +60,7 @@ sound_effect load_sound_effect(string name, string filename)
         raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
         return nullptr;
     }
-    
+
     sound_effect result = new _sound_data();
 
     result->id = AUDIO_PTR;
@@ -140,17 +127,17 @@ void play_sound_effect(sound_effect effect, int times, float volume)
         return;
     }
 
-    //dont play if loops = 0
+    // dont play if loops = 0
     if (times <= 0) return;
 
-    //correct volume to be between 0 and 1
+    // correct volume to be between 0 and 1
     if (volume < 0) volume = 0;
     else if (volume > 1) volume = 1;
 
-    //alter repeats for multiple loops
+    // alter repeats for multiple loops
     int loops = times - 1;
 
-    //play the effect, seaching for a channel
+    // play the effect, seaching for a channel
     sk_play_sound(&effect->effect, loops, volume);
 }
 
