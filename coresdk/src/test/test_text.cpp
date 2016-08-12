@@ -79,7 +79,9 @@ void test_font_auto_load()
     cout << flush;
     font_load_size("fail", 20);
 
+    cout << "Checking is size 50 exists. Should be false: " << font_has_size("leaguegothic", 50) << endl;
     font_load_size("leaguegothic", 50);
+    cout << "Checking if size 50 exists. Should be true: " << font_has_size("leaguegothic", 50) << endl;
     draw_text(
             "Preloaded...",
             COLOR_BLACK,

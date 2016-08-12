@@ -36,6 +36,8 @@ void font_load_size(string name, int font_size);
 
 bool has_font(string name);
 
+bool font_has_size(string name, int font_size);
+
 font font_named(string name);
 
 void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts);

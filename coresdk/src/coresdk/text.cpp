@@ -23,6 +23,14 @@ bool has_font(string name)
     return _fonts.count(name) > 0;
 }
 
+bool font_has_size(string name, int font_size)
+{
+    bool font_exists = has_font(name);
+    bool font_size_exists = _fonts[name]->_data.count(font_size) > 0;
+
+    return font_exists and font_size_exists;
+}
+
 font font_named(string name)
 {
     if (has_font(name))
