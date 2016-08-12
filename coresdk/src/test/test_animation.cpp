@@ -30,7 +30,7 @@ void run_animation_test()
     
     cout << "Script should be loaded: " << has_animation_script("kermit");
     
-    animation anim = create_animation(kermit, 4);
+    animation anim = create_animation(kermit, "MoonWalkBack");
     
     open_window("Test Animation", 600, 600);
     

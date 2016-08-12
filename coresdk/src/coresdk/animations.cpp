@@ -36,6 +36,8 @@ struct id_data
     int start_id;
 };
 
+int animation_index(animation_script temp, string name);
+
 animation_script load_animation_script(string name, string filename)
 {
     animation_script result;
@@ -713,6 +715,19 @@ void assign_animation(animation anim, animation_script script, string name, bool
     assign_animation(anim, script, animation_index(script, name), with_sound);
 }
 
+void assign_animation(animation anim, string script_name, string name)
+{
+    animation_script script = animation_script_named(script_name);
+    assign_animation(anim, script, animation_index(script, name), true);
+}
+
+void assign_animation(animation anim, string script_name, string name, bool with_sound)
+{
+    animation_script script = animation_script_named(script_name);
+    assign_animation(anim, script, animation_index(script, name), with_sound);
+}
+
+
 animation create_animation(animation_script script, int idx, bool with_sound)
 {
     animation result = nullptr;
@@ -760,6 +775,16 @@ animation create_animation(animation_script script, string name, bool with_sound
 animation create_animation(animation_script script, string name)
 {
     return create_animation(script, animation_index(script, name), true);
+}
+
+animation create_animation(string script_name, string name, bool with_sound)
+{
+    return create_animation(animation_script_named(script_name), name, with_sound);
+}
+
+animation create_animation(string script_name, string name)
+{
+    return create_animation(animation_script_named(script_name), name, true);
 }
 
 void restart_animation(animation anim)
