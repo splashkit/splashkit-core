@@ -56,7 +56,7 @@ void test_font_styles()
     style = get_font_style(fnt);
     cout << "After setting the font style to ITALIC: " << stringify_font_style(style) << endl;
     
-    draw_text("Text draws in ITALICS weee!", COLOR_BLACK, fnt, 25, 0, 25);
+    draw_text("Text draws in ITALIC weee!", COLOR_BLACK, fnt, 25, 0, 25);
     set_font_style(fnt, BOLD_FONT);
     draw_text("Text draws in BOLD weee!", COLOR_BLACK, fnt, 25, 0, 50);
     set_font_style(fnt, UNDERLINE_FONT);
@@ -68,7 +68,7 @@ void test_font_auto_load()
     font fnt = font_named("leaguegothic");
 
     draw_text(
-            "Drawing text with a font size that was not explictly loaded first.",
+            "Drawing text with a font size that was not explictly loaded first. (UNDERLINE)",
             COLOR_BLACK,
             fnt,
             15,
@@ -83,12 +83,23 @@ void test_font_auto_load()
     font_load_size("leaguegothic", 50);
     cout << "Checking if size 50 exists. Should be true: " << font_has_size("leaguegothic", 50) << endl;
     draw_text(
-            "Preloaded...",
+            "Preloaded... (UNDERLINE)",
             COLOR_BLACK,
             fnt,
             50,
             0, 115
     );
+
+    set_font_style(fnt, BOLD_FONT);
+    draw_text("Test... (BOLD)", COLOR_BLACK, fnt, 35, 0, 165);
+
+    set_font_style(fnt, ITALIC_FONT);
+    draw_text("Test... (ITALIC)", COLOR_BLACK, fnt, 40, 0, 200);
+    for (int n : {0, 1, 2})
+    {
+        draw_text("Already loaded... (ITALIC)", COLOR_BLACK, fnt, 15, 0, 240 + n * 15);
+    }
+
 }
 
 void run_text_test()

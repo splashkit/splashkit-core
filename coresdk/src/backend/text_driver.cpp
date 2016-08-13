@@ -68,6 +68,13 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
         {
             // Load the font for the given size.
             ttf_font = TTF_OpenFont(font->filename.c_str(), font_size);
+
+            if (font->_data.size() > 0)
+            {
+                int font_style = TTF_GetFontStyle(static_cast<TTF_Font*>(font->_data.begin()->second));
+                TTF_SetFontStyle(ttf_font, font_style);
+            }
+
             font->_data[font_size] = ttf_font;
 
             if (!font->_data[font_size])
