@@ -18,13 +18,9 @@
 
 static map<string, font> _fonts;
 
-bool has_font(font fnt) {
-    if (VALID_PTR(fnt, FONT_PTR))
-    {
-        return _fonts.count(fnt->name) > 0;
-    }
-
-    return false;
+bool has_font(font fnt)
+{
+    return VALID_PTR(fnt, FONT_PTR) and _fonts.count(fnt->name) > 0;
 }
 
 bool has_font(string name)
@@ -32,13 +28,8 @@ bool has_font(string name)
     return has_font(_fonts.find(name)->second);
 }
 
-bool _valid_font(font fnt, int font_size)
-{
-    return VALID_PTR(fnt, FONT_PTR) and has_font(fnt);
-}
-
 bool font_has_size(font fnt, int font_size) {
-    if (_valid_font(fnt, font_size))
+    if (has_font(fnt))
     {
         return fnt->_data.count(font_size) > 0;
     }
@@ -57,7 +48,7 @@ bool font_has_size(string name, int font_size)
 
 void font_load_size(font fnt, int font_size)
 {
-    if (_valid_font(fnt, font_size))
+    if (has_font(fnt))
     {
         sk_add_font_size(fnt, font_size);
     }
