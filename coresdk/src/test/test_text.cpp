@@ -49,17 +49,17 @@ void test_font_styles()
     
     font fnt = font_named("leaguegothic");
     
-    font_style style = get_font_style(fnt, 25);
+    font_style style = get_font_style(fnt);
     cout << "Initial font style: " << stringify_font_style(style) << endl;
     
-    set_font_style(fnt, 25, ITALIC_FONT);
-    style = get_font_style(fnt, 25);
+    set_font_style(fnt, ITALIC_FONT);
+    style = get_font_style(fnt);
     cout << "After setting the font style to ITALIC: " << stringify_font_style(style) << endl;
     
     draw_text("Text draws in ITALICS weee!", COLOR_BLACK, fnt, 25, 0, 25);
-    set_font_style(fnt, 25, BOLD_FONT);
+    set_font_style(fnt, BOLD_FONT);
     draw_text("Text draws in BOLD weee!", COLOR_BLACK, fnt, 25, 0, 50);
-    set_font_style(fnt, 25, UNDERLINE_FONT);
+    set_font_style(fnt, UNDERLINE_FONT);
     draw_text("Text draws with UNDERLINES weee!", COLOR_BLACK, fnt, 25, 0, 75);
 }
 

@@ -51,10 +51,12 @@ sk_font_data* sk_load_font(const char * filename, int font_size)
 }
 
 void sk_add_font_size(sk_font_data *font, int font_size) {
-    if (VALID_PTR(font, FONT_PTR))
+    if (VALID_PTR(font, FONT_PTR) and font->_data.count(font_size) == 0)
     {
         font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
-        if (!font->_data[font_size]) {
+
+        if (!font->_data[font_size])
+        {
             cerr << "Error loading font " << SDL_GetError() << endl;
         }
     }
@@ -64,10 +66,41 @@ void sk_add_font_size(sk_font_data *font, int font_size) {
     }
 }
 
+/**
+ * Returns the font for the given size. Loads the font size if not loaded.
+ */
+TTF_Font* _get_font(sk_font_data* font, int font_size)
+{
+    TTF_Font* ttf_font = nullptr;
+
+    if (VALID_PTR(font, FONT_PTR))
+    {
+        // If the font size already is exists
+        if (font->_data.count(font_size) > 0)
+        {
+            ttf_font = static_cast<TTF_Font *>(font->_data[font_size]);
+        }
+        else
+        {
+            // Load the font for the given size.
+            ttf_font = TTF_OpenFont(font->filename.c_str(), font_size);
+            font->_data[font_size] = ttf_font;
+        }
+    }
+    else
+    {
+        raise_warning("Trying to _get_font for invalid font pointer.");
+    }
+
+    return ttf_font;
+}
+
 bool sk_contains_valid_font(sk_font_data* font)
 {
-    for (auto const it : font->_data) {
-        if (it.second) {
+    for (auto const it : font->_data)
+    {
+        if (it.second)
+        {
             return true;
         }
     }
@@ -79,10 +112,11 @@ void sk_close_font(sk_font_data* font)
 {
     if (VALID_PTR(font, FONT_PTR))
     {
-        for (auto const it : font->_data) {
-            if (it.second) {
+        for (auto const it : font->_data)
+        {
+            if (it.second)
+            {
                 TTF_CloseFont(static_cast<TTF_Font *>(it.second));
-
             }
         }
 
@@ -97,41 +131,58 @@ void sk_close_font(sk_font_data* font)
 
 int sk_text_line_skip(sk_font_data* font, int font_size)
 {
-    if (VALID_PTR(font, FONT_PTR)) {
-        return TTF_FontLineSkip(static_cast<TTF_Font *>(font->_data[font_size]));
+    TTF_Font* ttf_font = _get_font(font, font_size);
+
+    if (ttf_font)
+    {
+        return TTF_FontLineSkip(ttf_font);
     }
-    else {
+    else
+    {
         return 0;
     }
 }
 
 int sk_text_size(sk_font_data* font, int font_size, char* text, int* w, int* h)
 {
-    if (VALID_PTR(font, FONT_PTR)) {
-        return TTF_SizeText(static_cast<TTF_Font *>(font->_data[font_size]), text, w, h);
+    TTF_Font* ttf_font = _get_font(font, font_size);
+
+    if (ttf_font)
+    {
+        return TTF_SizeText(ttf_font, text, w, h);
     }
-    else {
+    else
+    {
         return 0;
     }
 }
 
 void sk_set_font_style(sk_font_data* font, int font_size, int style)
 {
-    if (VALID_PTR(font, FONT_PTR))
+    TTF_Font* ttf_font = _get_font(font, font_size);
+
+    if (ttf_font)
     {
-        TTF_SetFontStyle(static_cast<TTF_Font *>(font->_data[font_size]), style);
+        TTF_SetFontStyle(ttf_font, style);
     }
-    else {
+    else
+    {
         cerr << "Error setting font style in sk_set_font_style" << endl;
     }
 }
 
 int sk_get_font_style(sk_font_data* font, int font_size)
 {
-    if (VALID_PTR(font, FONT_PTR))
-        return TTF_GetFontStyle(static_cast<TTF_Font *>(font->_data[font_size]));
+    TTF_Font* ttf_font = _get_font(font, font_size);
+
+    if (ttf_font)
+    {
+        return TTF_GetFontStyle(ttf_font);
+    }
     else
+    {
         return 0;
+    }
 }
 
 void _sk_draw_bitmap_text( sk_drawing_surface * surface,
@@ -171,12 +222,10 @@ void sk_draw_text(
         _sk_draw_bitmap_text(surface, x, y, text, clr);
         return;
     }
-    if (! (VALID_PTR(font, FONT_PTR))) return; // error with font
 
-    // Check that the font size has been loaded and create if not
-    if (font->_data.count(font_size) == 0) {
-        font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
-    }
+    TTF_Font* ttf_font = _get_font(font, font_size);
+
+    if (!ttf_font) return; // error with font
 
     SDL_Surface * text_surface = NULL;
     SDL_Texture * text_texture = NULL;

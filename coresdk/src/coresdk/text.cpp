@@ -18,26 +18,70 @@
 
 static map<string, font> _fonts;
 
-bool has_font(string name)
-{
-    return _fonts.count(name) > 0;
-}
-
-bool font_has_size(string name, int font_size)
-{
-    if (has_font(name)) {
-        return _fonts[name]->_data.count(font_size) > 0;
+bool has_font(font fnt) {
+    if (VALID_PTR(fnt, FONT_PTR))
+    {
+        return _fonts.count(fnt->name) > 0;
     }
 
     return false;
 }
 
+bool has_font(string name)
+{
+    return has_font(_fonts.find(name)->second);
+}
+
+bool _valid_font(font fnt, int font_size)
+{
+    return VALID_PTR(fnt, FONT_PTR) and has_font(fnt);
+}
+
+bool font_has_size(font fnt, int font_size) {
+    if (_valid_font(fnt, font_size))
+    {
+        return fnt->_data.count(font_size) > 0;
+    }
+    else
+    {
+        raise_warning("Asking if font has size on invalid font.");
+    }
+
+    return false;
+}
+
+bool font_has_size(string name, int font_size)
+{
+    return font_has_size(_fonts.find(name)->second, font_size);
+}
+
+void font_load_size(font fnt, int font_size)
+{
+    if (_valid_font(fnt, font_size))
+    {
+        sk_add_font_size(fnt, font_size);
+    }
+    else
+    {
+        raise_warning("font_load_size failed: font does not exist.");
+    }
+}
+
+void font_load_size(string name, int font_size)
+{
+    return font_load_size(_fonts.find(name)->second, font_size);
+}
+
 font font_named(string name)
 {
     if (has_font(name))
+    {
         return _fonts[name];
+    }
     else
+    {
         return nullptr;
+    }
 }
 
 void free_font(font fnt)
@@ -76,7 +120,7 @@ void free_all_fonts()
     }
 }
 
-void set_font_style(font fnt, int font_size, font_style style)
+void set_font_style(font fnt, font_style style)
 {
     if (!VALID_PTR(fnt, FONT_PTR))
     {
@@ -84,18 +128,34 @@ void set_font_style(font fnt, int font_size, font_style style)
         return;
     }
 
-    sk_set_font_style(fnt, font_size, style);
+    for (auto const it : fnt->_data)
+    {
+        sk_set_font_style(fnt, it.first, style);
+    }
 }
 
-font_style get_font_style(font fnt, int font_size)
+void set_font_style(string name, font_style style)
 {
-    if (!VALID_PTR(fnt, FONT_PTR)) {
+    set_font_style(_fonts.find(name)->second, style);
+}
+
+font_style get_font_style(font fnt)
+{
+    if (!VALID_PTR(fnt, FONT_PTR))
+    {
         raise_warning("Attempting to get font style on invalid font.");
         return NORMAL_FONT; // Add NONE to font_style enum?
     }
 
+    int font_size = fnt->_data.begin()->first;
+
     // Should the backend not just return a font_style instead of an int?
     return static_cast<font_style>(sk_get_font_style(fnt, font_size));
+}
+
+font_style get_font_style(string name)
+{
+    return get_font_style(_fonts.find(name)->second);
 }
 
 font load_font(string name, string filename)
@@ -123,21 +183,12 @@ font load_font(string name, string filename)
         delete result;
         result = nullptr;
         raise_warning("LoadFont failed: " + name + " (" + file_path + ")");
-    } else {
+    } else
+    {
         _fonts.insert(std::make_pair(name, result));
     }
 
     return result;
-}
-
-void font_load_size(string name, int font_size)
-{
-    if (_fonts.count(name) > 0) {
-        font fnt = _fonts[name];
-        sk_add_font_size(fnt, font_size);
-    } else {
-        raise_warning("font_load_size failed: font named \"" + name + "\" does not exist.");
-    }
 }
 
 void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
@@ -179,5 +230,5 @@ void draw_text(string text, color clr, font fnt, int font_size, float x, float y
 void draw_text(string text, color clr, float x, float y, drawing_options opts)
 {
     xy_from_opts(opts, x, y);
-    sk_draw_text(to_surface_ptr(opts.dest), nullptr, x, y, text.c_str(), clr);
+    sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
 }
