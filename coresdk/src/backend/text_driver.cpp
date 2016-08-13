@@ -50,22 +50,6 @@ sk_font_data* sk_load_font(const char * filename, int font_size)
     return font;
 }
 
-void sk_add_font_size(sk_font_data *font, int font_size) {
-    if (VALID_PTR(font, FONT_PTR) and font->_data.count(font_size) == 0)
-    {
-        font->_data[font_size] = TTF_OpenFont(font->filename.c_str(), font_size);
-
-        if (!font->_data[font_size])
-        {
-            cerr << "Error loading font " << SDL_GetError() << endl;
-        }
-    }
-    else
-    {
-        cerr << "Trying to load font size for an invalid font" << endl;
-    }
-}
-
 /**
  * Returns the font for the given size. Loads the font size if not loaded.
  */
@@ -85,6 +69,11 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
             // Load the font for the given size.
             ttf_font = TTF_OpenFont(font->filename.c_str(), font_size);
             font->_data[font_size] = ttf_font;
+
+            if (!font->_data[font_size])
+            {
+                cerr << "Error loading font " << SDL_GetError() << endl;
+            }
         }
     }
     else
@@ -93,6 +82,10 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
     }
 
     return ttf_font;
+}
+
+void sk_add_font_size(sk_font_data *font, int font_size) {
+    _get_font(font, font_size);
 }
 
 bool sk_contains_valid_font(sk_font_data* font)
