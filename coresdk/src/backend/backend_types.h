@@ -145,18 +145,14 @@ struct _bitmap_data
     bool *pixel_mask;   // Pixel mask used for pixel level collisions
 };
 
-enum sk_font_kind
-{
-    SKFT_UNKNOWN = 0,
-    SKFT_TTF = 1
-};
-
 struct sk_font_data
 {
-    sk_font_kind kind;
-    
-    // private data used by backend
-    void * _data;
+    pointer_identifier  id;
+    string              name;
+    string              filename;
+
+    // TTF_Font Private Data
+    map<int, void *> _data;
 };
 
 enum sk_http_method

@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <locale>
+#include <algorithm>
 
 
 using namespace std;
