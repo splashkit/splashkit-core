@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 868012981D483D9400AE3694 /* test_graphics.cpp */; };
 		878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
+		94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94006A3D1D612C4F003E8A32 /* test_input.cpp */; };
+		94006A401D612C4F003E8A32 /* test_input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 94006A3E1D612C4F003E8A32 /* test_input.hpp */; };
 		940864591D37A78C009EA048 /* backend_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864571D37A78C009EA048 /* backend_types.h */; };
 		9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645A1D37B6AF009EA048 /* utils_driver.cpp */; };
 		9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408645B1D37B6AF009EA048 /* utils_driver.h */; };
@@ -151,6 +153,8 @@
 		868012981D483D9400AE3694 /* test_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_graphics.cpp; sourceTree = "<group>"; };
 		868012991D483D9400AE3694 /* test_graphics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_graphics.hpp; sourceTree = "<group>"; };
 		878BAFE91D52DF3000483C3E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../coresdk/src/test/Resources; sourceTree = "<group>"; };
+		94006A3D1D612C4F003E8A32 /* test_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_input.cpp; sourceTree = "<group>"; };
+		94006A3E1D612C4F003E8A32 /* test_input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_input.hpp; sourceTree = "<group>"; };
 		940864571D37A78C009EA048 /* backend_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backend_types.h; sourceTree = "<group>"; };
 		9408645A1D37B6AF009EA048 /* utils_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils_driver.cpp; sourceTree = "<group>"; };
 		9408645B1D37B6AF009EA048 /* utils_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_driver.h; sourceTree = "<group>"; };
@@ -421,6 +425,8 @@
 				941C8A321D5CBE30003112B2 /* test_animation.hpp */,
 				941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */,
 				941C8A3D1D5DFDC6003112B2 /* test_timers.hpp */,
+				94006A3D1D612C4F003E8A32 /* test_input.cpp */,
+				94006A3E1D612C4F003E8A32 /* test_input.hpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				941C8A3F1D5DFDC6003112B2 /* test_timers.hpp in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
+				94006A401D612C4F003E8A32 /* test_input.hpp in Headers */,
 				94C749231D478BBB006A9052 /* web.h in Headers */,
 				94C7491D1D478813006A9052 /* web_driver.h in Headers */,
 				9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */,
@@ -601,6 +608,7 @@
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web.cpp in Sources */,
+				94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */,
 				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,

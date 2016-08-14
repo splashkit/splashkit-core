@@ -76,6 +76,8 @@ void _sk_handle_window_event(SDL_Event * event)
             break;
         case SDL_WINDOWEVENT_FOCUS_GAINED:
             window->event_data.has_focus = true;
+            if (_input_callbacks.handle_window_gain_focus)
+                _input_callbacks.handle_window_gain_focus(window);
 //            SDL_Log("Window %d gained keyboard focus",
 //                    event->window.windowID);
             break;
@@ -174,7 +176,9 @@ void sk_process_events()
                 if (_input_callbacks.handle_input_text)
                 {
                   char* text = event.edit.text;
-                  _input_callbacks.handle_input_text(text);
+                  int cursor = event.edit.start;
+                  int selection_len = event.edit.length;
+                  _input_callbacks.handle_editing_text(text, cursor, selection_len);
                 }
                 break;
             }
@@ -322,3 +326,16 @@ void sk_move_window(sk_drawing_surface *surface, int x, int y)
         default: ;
     }
 }
+
+void sk_start_reading_text(float x, float y, float width, float height)
+{
+    SDL_Rect rect = {
+        static_cast<int>(x),
+        static_cast<int>(y),
+        static_cast<int>(width),
+        static_cast<int>(height)
+    };
+    SDL_SetTextInputRect(&rect);
+    SDL_StartTextInput();
+}
+

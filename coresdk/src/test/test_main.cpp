@@ -18,9 +18,13 @@
 #include "test_text.hpp"
 #include "test_animation.hpp"
 #include "test_timers.hpp"
+#include "test_input.hpp"
 
 int main()
 {
+    run_input_test();
+    reset_quit();
+    
     run_text_test();
     reset_quit();
 

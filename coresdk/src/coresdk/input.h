@@ -9,6 +9,8 @@
 #ifndef input_hpp
 #define input_hpp
 
+#include "types.h"
+
 /// A mouse can have many different types of buttons. Most people know
 /// about the simple Left and Right buttons, but there is also a Middle
 /// button (sometimes part of a scoll wheel).
@@ -188,5 +190,10 @@ bool quit_requested();
 /// Cancels a quit request, ensuring the quit requested will return false.
 ///
 void reset_quit();
+
+/**
+ *
+ */
+void start_reading_text(rectangle rect);
 
 #endif /* input_hpp */

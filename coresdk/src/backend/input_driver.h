@@ -16,6 +16,8 @@ typedef void (sk_intp_proc)( int ms );
 typedef void (sk_int_intp_proc)( int x, int y );
 typedef void (sk_charp_proc)(char* text);
 typedef void (sk_window_xy_proc)(pointer window, int x, int y);
+typedef void (sk_window_proc)(pointer window);
+typedef void (sk_charp_int_int_proc)(char * text, int x, int y);
 
 struct sk_input_callbacks
 {
@@ -29,9 +31,11 @@ struct sk_input_callbacks
     sk_int_intp_proc * handle_mouse_wheel;
 
     sk_charp_proc * handle_input_text;
+    sk_charp_int_int_proc * handle_editing_text;
 
     sk_window_xy_proc * handle_window_resize;
     sk_window_xy_proc *handle_window_move;
+    sk_window_proc *handle_window_gain_focus;
 };
 
 extern sk_input_callbacks _input_callbacks;
@@ -46,5 +50,6 @@ void sk_window_position(sk_drawing_surface *surface, int *x, int *y);
 sk_window_data sk_get_window_event_data(sk_drawing_surface *surface);
 void sk_move_window(sk_drawing_surface *surface, int x, int y);
 
+void sk_start_reading_text(float x, float y, float width, float height);
 
 #endif /* defined(__sgsdl2__SGSDL2Input__) */

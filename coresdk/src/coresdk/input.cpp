@@ -70,6 +70,16 @@ void handle_window_move(pointer p, int x, int y)
     cout << "move: " << x << ":" << y << endl;
 }
 
+void handle_window_gain_focus(pointer p)
+{
+    cout << "window gained focus: " << endl;
+}
+
+void handle_editing_text(char *text, int cursor, int selection_length)
+{
+    cout << "editing text: " << text << " " << cursor << " selection " << selection_length << endl;
+}
+
 void process_events()
 {
     // Ensure callbacks are registered
@@ -82,8 +92,10 @@ void process_events()
         _input_callbacks.handle_mouse_down    = nullptr;
         _input_callbacks.handle_mouse_wheel   = &process_mouse_wheel_callback; // click occurs on up
         _input_callbacks.handle_input_text    = &handle_input_text_callback;
+        _input_callbacks.handle_editing_text  = &handle_editing_text;
         _input_callbacks.handle_window_resize = &handle_window_resize;
         _input_callbacks.handle_window_move   = &handle_window_move;
+        _input_callbacks.handle_window_gain_focus = &handle_window_gain_focus;
     }
 
     sk_process_events();
@@ -97,5 +109,10 @@ bool quit_requested()
 void reset_quit()
 {
     _sk_quit = false;
+}
+
+void start_reading_text(rectangle rect)
+{
+    sk_start_reading_text(rect.x, rect.y, rect.width, rect.height);
 }
 
