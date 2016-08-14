@@ -28,7 +28,8 @@ bool has_font(string name)
     return has_font(_fonts.find(name)->second);
 }
 
-bool font_has_size(font fnt, int font_size) {
+bool font_has_size(font fnt, int font_size)
+{
     if (has_font(fnt))
     {
         return fnt->_data.count(font_size) > 0;
@@ -43,7 +44,10 @@ bool font_has_size(font fnt, int font_size) {
 
 bool font_has_size(string name, int font_size)
 {
-    return font_has_size(_fonts.find(name)->second, font_size);
+    if ( has_font(name) )
+        return font_has_size(font_named(name), font_size);
+    else
+        return false;
 }
 
 void font_load_size(font fnt, int font_size)
@@ -60,7 +64,8 @@ void font_load_size(font fnt, int font_size)
 
 void font_load_size(string name, int font_size)
 {
-    return font_load_size(_fonts.find(name)->second, font_size);
+    if ( has_font(name) )
+        return font_load_size(font_named(name), font_size);
 }
 
 font font_named(string name)
@@ -127,7 +132,8 @@ void set_font_style(font fnt, font_style style)
 
 void set_font_style(string name, font_style style)
 {
-    set_font_style(_fonts.find(name)->second, style);
+    if ( has_font(name) )
+        set_font_style(font_named(name), style);
 }
 
 font_style get_font_style(font fnt)
@@ -146,7 +152,10 @@ font_style get_font_style(font fnt)
 
 font_style get_font_style(string name)
 {
-    return get_font_style(_fonts.find(name)->second);
+    if ( has_font(name) )
+        return get_font_style(font_named(name));
+    else
+        return NORMAL_FONT;
 }
 
 font load_font(string name, string filename)
@@ -167,7 +176,6 @@ font load_font(string name, string filename)
     }
 
     font result = sk_load_font(file_path.c_str(), 64);
-    result->name = name; // Need to clean this up, name is set to filename in sk_load_font
     
     if (!sk_contains_valid_font(result))
     {
@@ -176,7 +184,8 @@ font load_font(string name, string filename)
         raise_warning("LoadFont failed: " + name + " (" + file_path + ")");
     } else
     {
-        _fonts.insert(std::make_pair(name, result));
+        _fonts[name] = result;
+        result->name = name; // Need to clean this up, name is set to filename in sk_load_font
     }
 
     return result;

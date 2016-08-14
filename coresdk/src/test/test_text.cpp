@@ -112,7 +112,7 @@ void run_text_test()
     test_font_auto_load();
 
     refresh_screen();
-    delay(3000);
+    delay(5000);
 
     close_window(window_named("Test Text"));
 }

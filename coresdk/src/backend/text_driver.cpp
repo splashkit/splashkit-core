@@ -47,6 +47,13 @@ sk_font_data* sk_load_font(const char * filename, int font_size)
 
     sk_add_font_size(font, font_size);
 
+    if ( font->_data.size() == 0 ) // failed to load font
+    {
+        font->id = NONE_PTR;
+        delete(font);
+        font = nullptr;
+    }
+    
     return font;
 }
 
@@ -69,6 +76,12 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
             // Load the font for the given size.
             ttf_font = TTF_OpenFont(font->filename.c_str(), font_size);
 
+            if (!ttf_font)
+            {
+                cerr << "Error loading font " << SDL_GetError() << endl;
+                return nullptr;
+            }
+            
             if (font->_data.size() > 0)
             {
                 int font_style = TTF_GetFontStyle(static_cast<TTF_Font*>(font->_data.begin()->second));
@@ -76,11 +89,6 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
             }
 
             font->_data[font_size] = ttf_font;
-
-            if (!font->_data[font_size])
-            {
-                cerr << "Error loading font " << SDL_GetError() << endl;
-            }
         }
     }
     else
@@ -91,12 +99,15 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
     return ttf_font;
 }
 
-void sk_add_font_size(sk_font_data *font, int font_size) {
+void sk_add_font_size(sk_font_data *font, int font_size)
+{
     _get_font(font, font_size);
 }
 
 bool sk_contains_valid_font(sk_font_data* font)
 {
+    if ( INVALID_PTR(font, FONT_PTR) ) return false;
+    
     for (auto const it : font->_data)
     {
         if (it.second)
