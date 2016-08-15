@@ -15,8 +15,175 @@
 #include "core_driver.h"
 #include "input_driver.h"
 #include "graphics_driver.h"
+#include "window_manager.h"
 
 sk_input_callbacks _input_callbacks = { nullptr };
+
+bool _sk_quit = false;
+extern map<string, window> _windows;
+
+void _stop_reading_text(window current)
+{
+    if ( sk_get_window_event_data(&current->image.surface).has_focus )
+    {
+        SDL_StopTextInput();
+    }
+    current->reading_text = false;
+}
+
+void _handle_key_type(SDL_Keycode code)
+{
+    if ( not SDL_IsTextInputActive() ) return;
+    
+    window current = window_with_focus();
+    if ( not current ) return;
+    
+    switch (code)
+    {
+        case SDLK_BACKSPACE:
+        {
+            if ( current->composition.size() > 0 )
+                current->composition.pop_back();
+            else if ( current->input_text.size() > 0 )
+                current->input_text.pop_back();
+            break;
+        }
+        
+        case SDLK_KP_ENTER:
+        case SDLK_RETURN:
+        case SDLK_RETURN2:
+        {
+            _stop_reading_text(current);
+            current->cancelled_text_reading = false;
+            break;
+        }
+        
+        case SDLK_c:
+        {
+#ifdef __APPLE__
+            if ( SDL_GetModState() & KMOD_GUI )
+#else
+            if (SDL_GetModState() & KMOD_CTRL)
+#endif
+            {
+                SDL_SetClipboardText( current->input_text.c_str() );
+            }
+            break;
+        }
+            
+        case SDLK_v:
+        {
+#ifdef __APPLE__
+            if ( SDL_GetModState() & KMOD_GUI )
+#else
+            if (SDL_GetModState() & KMOD_CTRL)
+#endif
+            {
+                current->input_text += SDL_GetClipboardText( );
+            }
+            break;
+        }
+            
+        case SDLK_ESCAPE:
+        {
+            _stop_reading_text(current);
+            current->cancelled_text_reading = true;
+            current->input_text = "";
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+void _handle_input_text_callback(char *input)
+{
+    window current = window_with_focus();
+    if ( not current ) return;
+
+    current->composition = "";
+    current->cursor = 0;
+    current->input_text += input;
+}
+
+void _handle_editing_text(char *text, int cursor, int selection_length)
+{
+    window current = window_with_focus();
+    if ( not current ) return;
+    
+    current->composition = string(text);
+    current->cursor = cursor;
+}
+
+void sk_start_reading_text(window wind, float x, float y, float width, float height)
+{
+    SDL_Rect rect = {
+        static_cast<int>(x),
+        static_cast<int>(y),
+        static_cast<int>(width),
+        static_cast<int>(height)
+    };
+
+    wind->composition = "";
+    wind->input_text = "";
+    wind->cursor = 0;
+    wind->input_area = rectangle_from(x, y, width, height);
+    wind->reading_text = true;
+    
+    if ( sk_get_window_event_data(&wind->image.surface).has_focus )
+    {
+        SDL_SetTextInputRect(&rect);
+        SDL_StartTextInput();
+    }
+}
+
+string sk_end_reading_text()
+{
+    window current = current_window();
+    if ( not current ) return "";
+   
+    _stop_reading_text(current);
+    
+    return current->input_text;
+}
+
+window window_for_window_be(sk_window_be *data)
+{
+    for(auto win_itr : _windows)
+    {
+        window wind = win_itr.second;
+        if ( wind->image.surface._data == data ) return wind;
+    }
+    
+    return nullptr;
+}
+
+void _handle_new_focus(sk_window_be *data)
+{
+    window wind = window_for_window_be(data);
+    
+    if ( not wind ) return;
+    
+    if ( wind->reading_text )
+    {
+        SDL_Rect rect;
+        
+        rect.x = static_cast<int>(wind->input_area.x);
+        rect.y = static_cast<int>(wind->input_area.y);
+        rect.w = static_cast<int>(wind->input_area.width);
+        rect.h = static_cast<int>(wind->input_area.height);
+        SDL_SetTextInputRect(&rect);
+        SDL_StartTextInput();
+    }
+    else
+    {
+        if ( SDL_IsTextInputActive() )
+        {
+            SDL_StopTextInput();
+        }
+    }
+}
 
 void _sk_handle_window_event(SDL_Event * event)
 {
@@ -76,6 +243,7 @@ void _sk_handle_window_event(SDL_Event * event)
             break;
         case SDL_WINDOWEVENT_FOCUS_GAINED:
             window->event_data.has_focus = true;
+            _handle_new_focus(window);
             if (_input_callbacks.handle_window_gain_focus)
                 _input_callbacks.handle_window_gain_focus(window);
 //            SDL_Log("Window %d gained keyboard focus",
@@ -137,6 +305,7 @@ void sk_process_events()
                 if (_input_callbacks.handle_key_up)
                 {
                     int key_code = static_cast<int>(event.key.keysym.sym);
+                    _handle_key_type(event.key.keysym.sym);
                     _input_callbacks.handle_key_up(key_code);
                 }
                 break;
@@ -175,19 +344,24 @@ void sk_process_events()
             {
                 if (_input_callbacks.handle_input_text)
                 {
-                  char* text = event.edit.text;
-                  int cursor = event.edit.start;
-                  int selection_len = event.edit.length;
-                  _input_callbacks.handle_editing_text(text, cursor, selection_len);
+                    char* text = event.edit.text;
+                    int cursor = event.edit.start;
+                    int selection_len = event.edit.length;
+
+                    _handle_editing_text(text, cursor, selection_len);
+                    _input_callbacks.handle_editing_text(text, cursor, selection_len);
                 }
                 break;
             }
+                
             case SDL_TEXTINPUT:
             {
                 if (_input_callbacks.handle_input_text)
                 {
-                  char* text = event.text.text;
-                  _input_callbacks.handle_input_text(text);
+                    char* text = event.text.text;
+
+                    _handle_input_text_callback(text);
+                    _input_callbacks.handle_input_text(text);
                 }
                 break;
             }
@@ -325,17 +499,5 @@ void sk_move_window(sk_drawing_surface *surface, int x, int y)
 
         default: ;
     }
-}
-
-void sk_start_reading_text(float x, float y, float width, float height)
-{
-    SDL_Rect rect = {
-        static_cast<int>(x),
-        static_cast<int>(y),
-        static_cast<int>(width),
-        static_cast<int>(height)
-    };
-    SDL_SetTextInputRect(&rect);
-    SDL_StartTextInput();
 }
 

@@ -44,10 +44,7 @@ bool font_has_size(font fnt, int font_size)
 
 bool font_has_size(string name, int font_size)
 {
-    if ( has_font(name) )
-        return font_has_size(font_named(name), font_size);
-    else
-        return false;
+    return font_has_size(font_named(name), font_size);
 }
 
 void font_load_size(font fnt, int font_size)
@@ -241,4 +238,22 @@ void draw_text(string text, color clr, float x, float y, drawing_options opts)
 {
     xy_from_opts(opts, x, y);
     sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
+}
+
+int text_length(string text, font fnt, int font_size)
+{
+    if ( INVALID_PTR(fnt, FONT_PTR) )
+    {
+        raise_warning("Attempting to get string length with invalid font");
+        return 0;
+    }
+    
+    int w = 0, h = 0;
+    sk_text_size(fnt, font_size, text.c_str(), &w, &h);
+    return w;
+}
+
+int text_length(string text, string fnt, int font_size)
+{
+    return text_length(text, font_named(fnt), font_size);
 }

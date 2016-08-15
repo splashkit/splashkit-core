@@ -154,13 +154,13 @@ int sk_text_line_skip(sk_font_data* font, int font_size)
     }
 }
 
-int sk_text_size(sk_font_data* font, int font_size, char* text, int* w, int* h)
+int sk_text_size(sk_font_data* font, int font_size, string text, int* w, int* h)
 {
     TTF_Font* ttf_font = _get_font(font, font_size);
 
     if (ttf_font)
     {
-        return TTF_SizeText(ttf_font, text, w, h);
+        return TTF_SizeText(ttf_font, text.c_str(), w, h);
     }
     else
     {

@@ -32,6 +32,15 @@ bool has_window(string caption);
 
 window window_named(string caption);
 
+window window_with_focus();
+
+window current_window();
+
+void set_current_window(window wind);
+
+void set_current_window(string name);
+
+
 void refresh_window(window wind);
 
 void clear_window(window wind, color clr);

@@ -12,7 +12,6 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 #include "input_driver.h"
-#include "sk_input_backend.h"
 
 #include <map>
 
@@ -50,11 +49,6 @@ window open_window(string caption, int width, int height)
     result->open = true;
     result->fullscreen = false;
     result->border = true;
-    
-    result->eventData.close_requested = false;
-    result->eventData.has_focus = false;
-    result->eventData.mouse_over = false;
-    result->eventData.shown = true;
     
     result->screen_rect = { 0, 0, float(width), float(height) };
     
@@ -157,3 +151,36 @@ window window_named(string caption)
         return nullptr;
 }
 
+window window_with_focus()
+{
+    for (auto win_itr: _windows)
+    {
+        if (sk_get_window_event_data(&win_itr.second->image.surface).has_focus)
+        {
+            return win_itr.second;
+        }
+    }
+    
+    return current_window();
+}
+
+window current_window()
+{
+    return _current_window;
+}
+
+void set_current_window(window wind)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to set active window to an invalid window value");
+        return;
+    }
+    
+    _current_window = wind;
+}
+
+void set_current_window(string name)
+{
+    set_current_window(window_named(name));
+}

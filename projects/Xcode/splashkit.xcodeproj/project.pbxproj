@@ -24,8 +24,6 @@
 		9408646D1D38F09B009EA048 /* test_windows.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9408646B1D38F09B009EA048 /* test_windows.hpp */; };
 		940864701D38F7EC009EA048 /* input_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408646E1D38F7EC009EA048 /* input_driver.cpp */; };
 		940864711D38F7EC009EA048 /* input_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408646F1D38F7EC009EA048 /* input_driver.h */; };
-		940864751D38FED0009EA048 /* sk_input_backend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940864731D38FED0009EA048 /* sk_input_backend.cpp */; };
-		940864761D38FED0009EA048 /* sk_input_backend.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864741D38FED0009EA048 /* sk_input_backend.h */; };
 		940864791D390134009EA048 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940864771D390134009EA048 /* input.cpp */; };
 		9408647A1D390134009EA048 /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864781D390134009EA048 /* input.h */; };
 		941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
@@ -168,8 +166,6 @@
 		9408646B1D38F09B009EA048 /* test_windows.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_windows.hpp; sourceTree = "<group>"; };
 		9408646E1D38F7EC009EA048 /* input_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_driver.cpp; sourceTree = "<group>"; };
 		9408646F1D38F7EC009EA048 /* input_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_driver.h; sourceTree = "<group>"; };
-		940864731D38FED0009EA048 /* sk_input_backend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sk_input_backend.cpp; sourceTree = "<group>"; };
-		940864741D38FED0009EA048 /* sk_input_backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sk_input_backend.h; sourceTree = "<group>"; };
 		940864771D390134009EA048 /* input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
 		940864781D390134009EA048 /* input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
 		941C8A2D1D5B2EC1003112B2 /* animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = animations.cpp; sourceTree = "<group>"; };
@@ -354,8 +350,6 @@
 				942372721D239BF70020CCE2 /* utility_functions.cpp */,
 				942372731D239BF70020CCE2 /* utility_functions.h */,
 				940864571D37A78C009EA048 /* backend_types.h */,
-				940864731D38FED0009EA048 /* sk_input_backend.cpp */,
-				940864741D38FED0009EA048 /* sk_input_backend.h */,
 				F86951901D508BF100E1BCC9 /* database_driver.cpp */,
 				F86951911D508BF100E1BCC9 /* database_driver.h */,
 			);
@@ -487,7 +481,6 @@
 				941C8A371D5D6FE2003112B2 /* test_text.hpp in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
-				940864761D38FED0009EA048 /* sk_input_backend.h in Headers */,
 				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
@@ -604,7 +597,6 @@
 				F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
-				940864751D38FED0009EA048 /* sk_input_backend.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web.cpp in Sources */,

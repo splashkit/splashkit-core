@@ -89,10 +89,10 @@ enum sk_renderer_flip
 
 struct sk_window_data
 {
-    int close_requested;
-    int has_focus;
-    int mouse_over;
-    int shown;
+    bool close_requested;
+    bool has_focus;
+    bool mouse_over;
+    bool shown;
 };
 
 struct image_data
@@ -113,20 +113,18 @@ struct _window_data
     bool    fullscreen;
     bool    border;
     
-    sk_window_data  eventData;
-    
     rectangle   screen_rect;
     
     string temp_string;
     int max_string_len;
     
-    //    bitmap  text_bitmap;
-    //    bitmap  cursor_bitmap;
-    //    font    text_font;
-    //    sk_color    fore_color, background_color;
-    //    rectangle   input_area; // area for input text
-    //    bool        reading_string;
-    //    bool        text_cancelled;
+    rectangle   input_area;
+    string      input_text;
+    string      composition;
+    int         cursor;
+    int         composition_length;
+    bool        reading_text;
+    bool        cancelled_text_reading;
 };
 
 struct _bitmap_data

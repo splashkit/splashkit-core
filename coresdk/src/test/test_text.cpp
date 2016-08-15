@@ -119,4 +119,5 @@ void run_text_test()
     delay(5000);
 
     close_window(window_named("Test Text"));
+    free_all_fonts();
 }

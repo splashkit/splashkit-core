@@ -11,6 +11,10 @@
 
 #include "backend_types.h"
 
+typedef struct _window_data *window;
+
+extern bool _sk_quit;
+
 typedef void (sk_empty_procedure)( void );
 typedef void (sk_intp_proc)( int ms );
 typedef void (sk_int_intp_proc)( int x, int y );
@@ -50,6 +54,6 @@ void sk_window_position(sk_drawing_surface *surface, int *x, int *y);
 sk_window_data sk_get_window_event_data(sk_drawing_surface *surface);
 void sk_move_window(sk_drawing_surface *surface, int x, int y);
 
-void sk_start_reading_text(float x, float y, float width, float height);
+void sk_start_reading_text(window wind, float x, float y, float width, float height);
 
 #endif /* defined(__sgsdl2__SGSDL2Input__) */

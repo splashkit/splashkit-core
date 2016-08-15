@@ -9,8 +9,9 @@
 #include "input.h"
 
 #include "input_driver.h"
-#include "sk_input_backend.h"
 #include "geometry.h"
+#include "text.h"
+#include "utility_functions.h"
 
 #include <vector>
 #include <iostream>
@@ -40,11 +41,6 @@ void _handle_key_down_callback(int code)
     cout << "key down: " << code << endl;
 }
 
-void _handle_key_up_callback(int code)
-{
-    cout << "key up: " << code << endl;
-}
-
 void _process_mouse_up_event(int code)
 {
     cout << "mouse up: " << code << endl;
@@ -55,9 +51,43 @@ void process_mouse_wheel_callback(int x, int y)
     cout << "mouse wheel: " << x << ":" << y << endl;
 }
 
+// occurs as text entry is accepted
 void handle_input_text_callback(char *input)
 {
-    cout << "input text: " << input << endl;
+}
+
+void handle_editing_text(char *text, int cursor, int selection_length)
+{
+}
+
+void draw_collected_text(color clr, font fnt, int font_size, float x, float y, drawing_options opts)
+{
+    window current = current_window();
+    if ( not current ) return;
+    
+    string ct = current->input_text;
+    draw_text(ct, clr, fnt, font_size, x, y, opts);
+    font_style style = get_font_style(fnt);
+    
+    set_font_style(fnt, static_cast<font_style>(static_cast<int>(style) | static_cast<int>(UNDERLINE_FONT)));
+    draw_text(current->composition, clr, fnt, font_size, x + text_length(ct, fnt, font_size), y, opts);
+    
+    set_font_style(fnt, style);
+}
+
+bool reading_text()
+{
+    return reading_text(current_window());
+}
+
+bool reading_text(window wind)
+{
+    return VALID_PTR(wind, WINDOW_PTR) and wind->reading_text;
+}
+
+void _handle_key_up_callback(int code)
+{
+    cout << "key up: " << code << endl;
 }
 
 void handle_window_resize(pointer p, int width, int height)
@@ -73,11 +103,6 @@ void handle_window_move(pointer p, int x, int y)
 void handle_window_gain_focus(pointer p)
 {
     cout << "window gained focus: " << endl;
-}
-
-void handle_editing_text(char *text, int cursor, int selection_length)
-{
-    cout << "editing text: " << text << " " << cursor << " selection " << selection_length << endl;
 }
 
 void process_events()
@@ -113,6 +138,33 @@ void reset_quit()
 
 void start_reading_text(rectangle rect)
 {
-    sk_start_reading_text(rect.x, rect.y, rect.width, rect.height);
+    start_reading_text(current_window(), rect);
+}
+
+void start_reading_text(window wind, rectangle rect)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to start reading text with invalid window");
+        return;
+    }
+    
+    sk_start_reading_text(wind, rect.x, rect.y, rect.width, rect.height);
+}
+
+string text_input()
+{
+    return text_input(current_window());
+}
+
+string text_input(window wind)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR) )
+    {
+        raise_warning("Attempting to read input text from invalid window");
+        return "";
+    }
+    
+    return wind->input_text + wind->composition;
 }
 

@@ -37,6 +37,10 @@ font_style get_font_style(string name);
 
 font load_font(string name, string filename);
 
+void free_font(font fnt);
+
+void free_all_fonts();
+
 void font_load_size(font fnt, int font_size);
 
 void font_load_size(string name, int font_size);
@@ -59,8 +63,9 @@ void draw_text(string text, color clr, string fnt, int font_size, float x, float
 
 void draw_text(string text, color clr, string fnt, int font_size, float x, float y);
 
-
-
 void draw_text(string text, color clr, float x, float y, drawing_options opts);
+
+int text_length(string text, font fnt, int font_size);
+int text_length(string text, string fnt, int font_size);
 
 #endif /* text_hpp */

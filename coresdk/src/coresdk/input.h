@@ -10,6 +10,7 @@
 #define input_hpp
 
 #include "types.h"
+#include "window_manager.h"
 
 /// A mouse can have many different types of buttons. Most people know
 /// about the simple Left and Right buttons, but there is also a Middle
@@ -195,5 +196,18 @@ void reset_quit();
  *
  */
 void start_reading_text(rectangle rect);
+
+void start_reading_text(window wind, rectangle rect);
+
+void draw_collected_text(color clr, font fnt, int font_size, float x, float y, drawing_options opts);
+
+bool reading_text();
+
+bool reading_text(window wind);
+
+string text_input();
+
+string text_input(window wind);
+
 
 #endif /* input_hpp */
