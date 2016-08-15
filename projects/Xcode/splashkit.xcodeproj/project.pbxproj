@@ -105,6 +105,8 @@
 		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
 		F869519C1D51C84A00E1BCC9 /* test_database.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F869519A1D51C84A00E1BCC9 /* test_database.hpp */; };
 		F86951C51D52C59600E1BCC9 /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F86951C41D52C59600E1BCC9 /* libsqlite.a */; };
+		FCB6B3BB1D61423E00011965 /* music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB6B3B91D61423E00011965 /* music.cpp */; };
+		FCB6B3BC1D61423E00011965 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB6B3BA1D61423E00011965 /* music.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -252,6 +254,8 @@
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
 		F869519A1D51C84A00E1BCC9 /* test_database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_database.hpp; sourceTree = "<group>"; };
 		F86951C41D52C59600E1BCC9 /* libsqlite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsqlite.a; sourceTree = "<group>"; };
+		FCB6B3B91D61423E00011965 /* music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music.cpp; sourceTree = "<group>"; };
+		FCB6B3BA1D61423E00011965 /* music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +401,8 @@
 				F86951951D5093F800E1BCC9 /* database.h */,
 				941C8A381D5DD668003112B2 /* timers.cpp */,
 				941C8A391D5DD668003112B2 /* timers.h */,
+				FCB6B3B91D61423E00011965 /* music.cpp */,
+				FCB6B3BA1D61423E00011965 /* music.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				9408646D1D38F09B009EA048 /* test_windows.hpp in Headers */,
+				FCB6B3BC1D61423E00011965 /* music.h in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				F869519C1D51C84A00E1BCC9 /* test_database.hpp in Headers */,
@@ -614,6 +621,7 @@
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
 				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
+				FCB6B3BB1D61423E00011965 /* music.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
