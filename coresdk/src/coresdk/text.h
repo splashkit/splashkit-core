@@ -55,6 +55,12 @@ void draw_text(string text, color clr, font fnt, int font_size, float x, float y
 
 void draw_text(string text, color clr, font fnt, int font_size, float x, float y);
 
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y, drawing_options opts);
+
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y);
+
+
+
 void draw_text(string text, color clr, float x, float y, drawing_options opts);
 
 #endif /* text_hpp */

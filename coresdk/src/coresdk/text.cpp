@@ -227,6 +227,16 @@ void draw_text(string text, color clr, font fnt, int font_size, float x, float y
     draw_text(text, clr, fnt, font_size, x, y, option_defaults());
 }
 
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y, drawing_options opts)
+{
+    draw_text(text, clr, font_named(fnt), font_size, x, y, opts);
+}
+
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y)
+{
+    draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
+}
+
 void draw_text(string text, color clr, float x, float y, drawing_options opts)
 {
     xy_from_opts(opts, x, y);

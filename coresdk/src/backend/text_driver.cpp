@@ -247,7 +247,7 @@ void sk_draw_text(
     sdl_color.b = static_cast<Uint8>(clr.b * 255);
     sdl_color.a = static_cast<Uint8>(clr.a * 255);
 
-    text_surface = TTF_RenderText_Blended(static_cast<TTF_Font *>(font->_data[font_size]), text, sdl_color);
+    text_surface = TTF_RenderUTF8_Blended(static_cast<TTF_Font *>(font->_data[font_size]), text, sdl_color);
 
     if (text_surface == NULL)
     {
