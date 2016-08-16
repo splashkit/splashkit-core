@@ -36,7 +36,11 @@ void run_input_test()
         
         set_current_window(w1);
         
-        clear_screen(COLOR_WHITE);
+        if ( not text_entry_cancelled(w1) )
+            clear_screen(COLOR_WHITE);
+        else
+            clear_screen(COLOR_PERU);
+        
         draw_text("Enter english string: ", COLOR_NAVY, "hara", 18, 30, 50);
         draw_collected_text(COLOR_BLACK, font_named("hara"), 18, 230, 50, option_defaults());
         

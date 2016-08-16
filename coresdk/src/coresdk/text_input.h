@@ -25,6 +25,10 @@ bool reading_text();
 
 bool reading_text(window wind);
 
+bool text_entry_cancelled();
+
+bool text_entry_cancelled(window wind);
+
 string text_input();
 
 string text_input(window wind);

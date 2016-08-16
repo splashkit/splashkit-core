@@ -72,3 +72,19 @@ string text_input(window wind)
     
     return wind->input_text + wind->composition;
 }
+
+bool text_entry_cancelled()
+{
+    return text_entry_cancelled(current_window());
+}
+
+bool text_entry_cancelled(window wind)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR) )
+    {
+        raise_warning("Attempting to check if text entry cancelled on invalid window");
+        return false;
+    }
+    
+    return wind->cancelled_text_reading;
+}
