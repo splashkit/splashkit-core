@@ -11,6 +11,7 @@
 #include "input.h"
 #include "graphics.h"
 #include "text.h"
+#include "mouse_input.h"
 
 void run_input_test()
 {
@@ -44,6 +45,19 @@ void run_input_test()
             draw_text(text_input(w1), COLOR_BLUE, "hara", 18, 30, 110);
         }
         
+        string location = "Mouse location: ";
+        location += to_string(mouse_x()) + ":" + to_string(mouse_y());
+        
+        string left_clicked = "Left click status: ";
+        left_clicked += to_string(mouse_clicked(LEFT_BUTTON)) + " up: " + to_string(mouse_up(LEFT_BUTTON)) + " down: " + to_string(mouse_down(LEFT_BUTTON));
+        
+        string right_clicked = "Right click status: ";
+        right_clicked += to_string(mouse_clicked(RIGHT_BUTTON)) + " up: " + to_string(mouse_up(RIGHT_BUTTON)) + " down: " + to_string(mouse_down(RIGHT_BUTTON));
+        
+        draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
+        draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
+        draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+        
         set_current_window(w2);
         clear_screen(COLOR_WHEAT);
         draw_text("Enter Japanese string: ", COLOR_NAVY, "hara", 18, 30, 50);
@@ -54,6 +68,11 @@ void run_input_test()
             draw_text(string("Read: "), COLOR_BLUE, "hara", 18, 30, 80);
             draw_text(text_input(w2), COLOR_BLUE, "taroko", 18, 30, 110);
         }
+        
+        draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
+        draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
+        draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+
         
         refresh_screen();
     }
