@@ -12,6 +12,11 @@
 #include <string>
 using namespace std;
 
+/**
+ * These are the key codes you can use to check details of keyboard actions.
+ * See `key_down`, `key_up`, `key_typed`, and `key_released` functions.
+ * You can get a string representation of these keys using `key_name`.
+ */
 enum key_code
 {
     UNKNOWN_KEY = 0,
@@ -86,23 +91,23 @@ enum key_code
     Y_KEY = 121,
     Z_KEY = 122,
     DELETE_KEY = 127,
-    KEY_PAD0 = 256,
-    KEY_PAD1 = 257,
-    KEY_PAD2 = 258,
-    KEY_PAD3 = 259,
-    KEY_PAD4 = 260,
-    KEY_PAD5 = 261,
-    KEY_PAD6 = 262,
-    KEY_PAD7 = 263,
-    KEY_PAD8 = 264,
-    KEY_PAD9 = 265,
-    KEY_PAD_PERIOD = 266,
-    KEY_PAD_DIVIDE = 267,
-    KEY_PAD_MULTIPLY = 268,
-    KEY_PAD_MINUS = 269,
-    KEY_PAD_PLUS = 270,
-    KEY_PAD_ENTER = 271,
-    KEY_PAD_EQUALS = 272,
+    KEYPAD_0 = 256,
+    KEYPAD_1 = 257,
+    KEYPAD_2 = 258,
+    KEYPAD_3 = 259,
+    KEYPAD_4 = 260,
+    KEYPAD_5 = 261,
+    KEYPAD_6 = 262,
+    KEYPAD_7 = 263,
+    KEYPAD_8 = 264,
+    KEYPAD_9 = 265,
+    KEYPAD_PERIOD = 266,
+    KEYPAD_DIVIDE = 267,
+    KEYPAD_MULTIPLY = 268,
+    KEYPAD_MINUS = 269,
+    KEYPAD_PLUS = 270,
+    KEYPAD_ENTER = 271,
+    KEYPAD_EQUALS = 272,
     UP_KEY = 273,
     DOWN_KEY = 274,
     RIGHT_KEY = 275,
@@ -154,6 +159,11 @@ enum key_code
     OPTION_KEY = 327
 };
 
+/**
+ *  The `key_callback` is a function pointer used to register your code with SplashKit
+ *  or keyboard related events. See `register_callback_on_key_down`,
+ *  `register_callback_on_key_up`, and `register_callback_on_key_typed`
+ */
 typedef void (key_callback)(key_code code);
 
 /**
@@ -199,16 +209,40 @@ string key_name(key_code key);
  */
 bool key_up(key_code key);
 
+/**
+ *  Register the passed in callback function to receive notification of key down
+ *  calls. This will be called in response to `process_events`, for each key that
+ *  the user presses down.
+ */
 void register_callback_on_key_down(key_callback *callback);
 
+/**
+ *  Register the passed in callback function to receive notification of key up
+ *  calls. This will be called in response to `process_events`, for each key that
+ *  the user releases.
+ */
 void register_callback_on_key_up(key_callback *callback);
 
+/**
+ *  Register the passed in callback function to receive notification of key typed
+ *  calls. This will be called in response to `process_events`, when the user initially
+ *  presses a key down.
+ */
 void register_callback_on_key_typed(key_callback *callback);
 
+/**
+ *  Remove the registered callback from receiving events related to key down actions.
+ */
 void deregister_callback_on_key_down(key_callback *callback);
 
+/**
+ *  Remove the registered callback from receiving events related to key up actions.
+ */
 void deregister_callback_on_key_up(key_callback *callback);
 
+/**
+ *  Remove the registered callback from receiving events related to key typed actions.
+ */
 void deregister_callback_on_key_typed(key_callback *callback);
 
 
