@@ -61,8 +61,7 @@ void font_load_size(font fnt, int font_size)
 
 void font_load_size(string name, int font_size)
 {
-    if ( has_font(name) )
-        return font_load_size(font_named(name), font_size);
+    return font_load_size(font_named(name), font_size);
 }
 
 font font_named(string name)
@@ -129,8 +128,7 @@ void set_font_style(font fnt, font_style style)
 
 void set_font_style(string name, font_style style)
 {
-    if ( has_font(name) )
-        set_font_style(font_named(name), style);
+    set_font_style(font_named(name), style);
 }
 
 font_style get_font_style(font fnt)
@@ -149,10 +147,7 @@ font_style get_font_style(font fnt)
 
 font_style get_font_style(string name)
 {
-    if ( has_font(name) )
-        return get_font_style(font_named(name));
-    else
-        return NORMAL_FONT;
+    return get_font_style(font_named(name));
 }
 
 font load_font(string name, string filename)
