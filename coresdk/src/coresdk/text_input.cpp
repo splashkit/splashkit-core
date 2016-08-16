@@ -43,10 +43,20 @@ bool reading_text(window wind)
 
 void start_reading_text(rectangle rect)
 {
-    start_reading_text(current_window(), rect);
+    start_reading_text(current_window(), rect, "");
+}
+
+void start_reading_text(rectangle rect, string initial_text)
+{
+    start_reading_text(current_window(), rect, initial_text);
 }
 
 void start_reading_text(window wind, rectangle rect)
+{
+    start_reading_text(wind, rect, "");
+}
+
+void start_reading_text(window wind, rectangle rect, string initial_text)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
@@ -54,7 +64,7 @@ void start_reading_text(window wind, rectangle rect)
         return;
     }
     
-    sk_start_reading_text(wind, rect.x, rect.y, rect.width, rect.height);
+    sk_start_reading_text(wind, rect.x, rect.y, rect.width, rect.height, initial_text);
 }
 
 string text_input()
@@ -88,3 +98,4 @@ bool text_entry_cancelled(window wind)
     
     return wind->cancelled_text_reading;
 }
+

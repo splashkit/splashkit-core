@@ -28,7 +28,7 @@ void run_input_test()
     
     set_current_window(w2);
     
-    start_reading_text(rect);
+    start_reading_text(rect, "教育漢字カ");
     
     while ( reading_text(w1) || reading_text(w2) )
     {

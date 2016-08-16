@@ -54,7 +54,7 @@ void sk_window_position(sk_drawing_surface *surface, int *x, int *y);
 sk_window_data sk_get_window_event_data(sk_drawing_surface *surface);
 void sk_move_window(sk_drawing_surface *surface, int x, int y);
 
-void sk_start_reading_text(window wind, float x, float y, float width, float height);
+void sk_start_reading_text(window wind, float x, float y, float width, float height, string initial_text);
 
 void sk_mouse_position(float &x, float &y);
 void sk_mouse_movement(float &x, float &y);

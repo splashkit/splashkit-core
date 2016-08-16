@@ -116,7 +116,7 @@ void _handle_editing_text(char *text, int cursor, int selection_length)
     current->cursor = cursor;
 }
 
-void sk_start_reading_text(window wind, float x, float y, float width, float height)
+void sk_start_reading_text(window wind, float x, float y, float width, float height, string initial_text)
 {
     SDL_Rect rect = {
         static_cast<int>(x),
@@ -126,7 +126,7 @@ void sk_start_reading_text(window wind, float x, float y, float width, float hei
     };
 
     wind->composition = "";
-    wind->input_text = "";
+    wind->input_text = initial_text;
     wind->cursor = 0;
     wind->input_area = rectangle_from(x, y, width, height);
     wind->reading_text = true;
