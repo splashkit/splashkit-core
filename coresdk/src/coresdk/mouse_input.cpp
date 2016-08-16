@@ -18,6 +18,13 @@ bool _mouse_button_clicked[6] = { false };
 vector_2d _wheel_scroll = {0,0};
 map<int, bool> _button_clicked;
 
+void _mouse_start_process_events()
+{
+    //called at the start of process events -- used to clear state
+    
+    _wheel_scroll = vector_to(0,0);
+    _button_clicked.clear();
+}
 
 void _process_mouse_up_event(int code)
 {

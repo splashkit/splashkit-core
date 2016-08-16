@@ -10,6 +10,7 @@
 #define sgsdl2_SGSDL2Input_h
 
 #include "backend_types.h"
+#include "keyboard_input.h"
 
 typedef struct _window_data *window;
 
@@ -27,8 +28,8 @@ struct sk_input_callbacks
 {
     sk_empty_procedure * do_quit;
 
-    sk_intp_proc * handle_key_down;
-    sk_intp_proc * handle_key_up;
+    key_callback * handle_key_down;
+    key_callback * handle_key_up;
 
     sk_intp_proc * handle_mouse_up;
     sk_intp_proc * handle_mouse_down;
@@ -62,5 +63,7 @@ void sk_mouse_movement(float &x, float &y);
 bool sk_mouse_button_down(uint32_t button);
 
 bool sk_show_mouse(int value);
+
+string sk_key_name(uint32_t key);
 
 #endif /* defined(__sgsdl2__SGSDL2Input__) */

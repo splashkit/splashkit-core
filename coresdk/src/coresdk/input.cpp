@@ -12,26 +12,16 @@
 #include "geometry.h"
 #include "text.h"
 #include "utility_functions.h"
+#include "keyboard_input.h"
 
 #include <vector>
 #include <map>
 #include <iostream>
 using namespace std;
 
-
-extern bool _mouse_button_clicked[];
-extern vector_2d _wheel_scroll;
-extern map<int, bool> _button_clicked;
-
-
 void quit()
 {
     _sk_quit = true;
-}
-
-void _handle_key_down_callback(int code)
-{
-    cout << "key down: " << code << endl;
 }
 
 
@@ -60,9 +50,12 @@ void handle_window_gain_focus(pointer p)
 }
 
 // In keyboard input
-void _handle_key_up_callback(int code);
+void _keyboard_start_process_events();
+void _handle_key_up_callback(key_code code);
+void _handle_key_down_callback(key_code code);
 
 // In mouse input
+void _mouse_start_process_events();
 void _process_mouse_up_event(int code);
 void _process_mouse_wheel_callback(int x, int y);
 
@@ -85,8 +78,8 @@ void process_events()
     }
     
     // Reset event tracking data
-    _wheel_scroll = vector_to(0,0);
-    _button_clicked.clear();
+    _keyboard_start_process_events();
+    _mouse_start_process_events();
     
     sk_process_events();
 }

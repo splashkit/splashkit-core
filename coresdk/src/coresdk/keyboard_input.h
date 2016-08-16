@@ -9,6 +9,9 @@
 #ifndef keyboard_input_hpp
 #define keyboard_input_hpp
 
+#include <string>
+using namespace std;
+
 enum key_code
 {
     UNKNOWN_KEY = 0,
@@ -150,5 +153,63 @@ enum key_code
     WINDOWS_KEY = 326,
     OPTION_KEY = 327
 };
+
+typedef void (key_callback)(key_code code);
+
+/**
+ *  Returns true when the key requested is being held down. This is updated
+ *  as part of the `process_events` call. Use the key codes from `key_code`
+ *  to specify the key to be checked.
+ */
+bool key_down(key_code key);
+
+/**
+ *  Returns true when the key requested is just pressed down. This is updated
+ *  as part of the `process_events` call. Use the key codes from `key_code`
+ *  to specify the key to be checked. this will only occur once for that key that is
+ *  pressed and will not return true again until the key is released and presssed down again
+ */
+bool key_typed(key_code key);
+
+/**
+ *  Returns true if the specified key was released since the last time
+ *  `process_events` was called. This occurs only once for the key that is
+ *  released and will not return true again until the key is pressed down and
+ *  released again.
+ */
+bool key_released(key_code key);
+
+/**
+ *  Checks to see if any key has been pressed since the last time
+ *  `process_events` was called.
+ */
+bool any_key_pressed();
+
+/**
+ *  The `key_name` function returns a string name for a given `key_code`. For
+ *  example, `COMMA_KEY` returns the string 'Comma'. This function could be used
+ *  to display more meaningful key names for configuring game controls, etc.
+ */
+string key_name(key_code key);
+
+/**
+ *  Returns false when the key requested is being held down. This is updated
+ *  as part of the `process_events` call. Use the key codes from `key_code`
+ *  to specify the key to be checked.
+ */
+bool key_up(key_code key);
+
+void register_callback_on_key_down(key_callback *callback);
+
+void register_callback_on_key_up(key_callback *callback);
+
+void register_callback_on_key_typed(key_callback *callback);
+
+void deregister_callback_on_key_down(key_callback *callback);
+
+void deregister_callback_on_key_up(key_callback *callback);
+
+void deregister_callback_on_key_typed(key_callback *callback);
+
 
 #endif /* keyboard_input_hpp */

@@ -15,18 +15,106 @@
 #include <map>
 using namespace std;
 
-struct key_down_data
-{
-    int code;
-    int keyChar;
-};
+static map<key_code, bool> _keys_down;
+static map<key_code, bool> _keys_just_typed; // i.e. those that have just gone down
+static map<key_code, bool> _keys_released; // i.e. those that have just gone down
+static bool _key_pressed = false;
 
-static vector<key_down_data> _keys_down;
-static vector<int> _keys_just_typed; // i.e. those that have just gone down
-static vector<int> _keys_released; // i.e. those that have just gone down
-bool _key_pressed = false;
+static vector<key_callback *> _on_key_down;
+static vector<key_callback *> _on_key_up;
+static vector<key_callback *> _on_key_typed;
 
-void _handle_key_up_callback(int code)
+void register_callback_on_key_down(key_callback *callback)
 {
-//    cout << "key up: " << code << endl;
+    _on_key_down.push_back(callback);
+}
+
+void register_callback_on_key_up(key_callback *callback)
+{
+    _on_key_up.push_back(callback);
+}
+
+void register_callback_on_key_typed(key_callback *callback)
+{
+    _on_key_typed.push_back(callback);
+}
+
+void deregister_callback_on_key_down(key_callback *callback)
+{
+    _on_key_down.erase(std::remove(_on_key_down.begin(), _on_key_down.end(), callback), _on_key_down.end());
+}
+
+void deregister_callback_on_key_up(key_callback *callback)
+{
+    _on_key_up.erase(std::remove(_on_key_up.begin(), _on_key_up.end(), callback), _on_key_up.end());
+}
+
+void deregister_callback_on_key_typed(key_callback *callback)
+{
+    _on_key_typed.erase(std::remove(_on_key_typed.begin(), _on_key_typed.end(), callback), _on_key_typed.end());
+}
+
+void _raise_key_event(vector<key_callback *> &list, key_code code)
+{
+    for(auto callback: list )
+    {
+        try {
+            callback(code);
+        } catch (...) {}
+    }
+}
+
+void _keyboard_start_process_events()
+{
+    _key_pressed = false;
+    _keys_just_typed.clear();
+    _keys_released.clear();
+}
+
+void _handle_key_up_callback(key_code code)
+{
+    _keys_released[code] = true;
+    _keys_down[code] = false;
+    _raise_key_event(_on_key_up, code);
+}
+
+void _handle_key_down_callback(key_code code)
+{
+    if(not key_down(code))
+    {
+        _keys_down[code] = true;
+        _keys_just_typed[code] = true;
+        _raise_key_event(_on_key_typed, code);
+    }
+    _raise_key_event(_on_key_down, code);
+}
+
+bool key_down(key_code key)
+{
+    return _keys_down.count(key) > 0 and _keys_down[key];
+}
+
+bool key_typed(key_code key)
+{
+    return _keys_just_typed.count(key) > 0 and _keys_just_typed[key] ;
+}
+
+bool key_released(key_code key)
+{
+    return _keys_released.count(key) > 0 and _keys_released[key] ;
+}
+
+bool any_key_pressed()
+{
+    return _key_pressed;
+}
+
+string key_name(key_code key)
+{
+    return sk_key_name(key);
+}
+
+bool key_up(key_code key)
+{
+    return not key_down(key);
 }
