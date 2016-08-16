@@ -8,9 +8,10 @@
 
 #include "test_input.hpp"
 
-#include "input.h"
 #include "graphics.h"
 #include "text.h"
+#include "input.h"
+#include "text_input.h"
 #include "mouse_input.h"
 
 void run_input_test()
