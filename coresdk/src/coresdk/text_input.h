@@ -29,6 +29,10 @@ bool reading_text();
 
 bool reading_text(window wind);
 
+void end_reading_text();
+
+void end_reading_text(window wind);
+
 bool text_entry_cancelled();
 
 bool text_entry_cancelled(window wind);

@@ -99,3 +99,19 @@ bool text_entry_cancelled(window wind)
     return wind->cancelled_text_reading;
 }
 
+void end_reading_text()
+{
+    end_reading_text(current_window());
+}
+
+void end_reading_text(window wind)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR) )
+    {
+        raise_warning("Ending reading text with invalid window");
+        return;
+    }
+    
+    wind->reading_text = false;
+}
+
