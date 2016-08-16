@@ -3,9 +3,14 @@
 
 1. Install brew  run this command in your terminal window 
  ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
+ ```brew cask install atom```
+ ```brew install git svn mercurial```
+
 2. Install XCode 
-Clone the repositry (details coming soon)
-3.  Install Command Line Tools
+Install Command Line Tools
+
+3.  Clone the repositry (details coming soon)
+
 
 
 </content>
