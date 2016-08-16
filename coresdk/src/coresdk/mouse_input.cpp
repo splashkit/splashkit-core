@@ -26,8 +26,24 @@ vector_2d mouse_position_vector()
 
 point_2d mouse_position()
 {
+    window wind = current_window();
+    window focus = window_with_focus();
+    
     point_2d result;
     sk_mouse_position(result.x, result.y);
+    
+    if (wind and focus and wind != focus )
+    {
+        // Asking for mouse location when another window is in focus -- change based on that window
+        int wx, wy, fx, fy;
+        
+        sk_window_position(&wind->image.surface, &wx, &wy);
+        sk_window_position(&focus->image.surface, &fx, &fy);
+        
+        result.x += fx - wx;
+        result.y += fy - wy;
+    }
+    
     return result;
 }
 

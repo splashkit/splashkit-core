@@ -69,10 +69,13 @@ void run_input_test()
             draw_text(text_input(w2), COLOR_BLUE, "taroko", 18, 30, 110);
         }
         
+        // Get location of mouse in W2
+        location = "Mouse location: ";
+        location += to_string(mouse_x()) + ":" + to_string(mouse_y());
+        
         draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
         draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
         draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
-
         
         refresh_screen();
     }

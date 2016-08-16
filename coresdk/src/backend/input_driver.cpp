@@ -521,13 +521,12 @@ void sk_mouse_movement(float &x, float &y)
 
 bool sk_mouse_button_down(uint32_t button)
 {
-    int lx = 0, ly = 0;
-    
-    return (SDL_GetMouseState(&lx, &ly) & ( (1 << static_cast<byte>(button)) - 1)) > 0 ;
+    int state = SDL_GetMouseState(nullptr, nullptr);
+    return state & SDL_BUTTON(button);
 }
 
-bool sk_show_mouse(int value)
+bool sk_show_mouse(int visible)
 {
-    return SDL_ShowCursor(value) != 0;
+    return SDL_ShowCursor(visible ? 1: 0) != 0;
 }
 
