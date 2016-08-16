@@ -12,21 +12,6 @@
 #include "types.h"
 #include "window_manager.h"
 
-/// A mouse can have many different types of buttons. Most people know
-/// about the simple Left and Right buttons, but there is also a Middle
-/// button (sometimes part of a scoll wheel).
-///
-/// @enum MouseButton
-enum MouseButton
-{
-    NO_BUTTON,
-    LEFT_BUTTON,
-    MIDDLE_BUTTON,
-    RIGHT_BUTTON,
-    MOUSE_X1_BUTTON,
-    MOUSE_X2_BUTTON
-};
-
 enum key_code
 {
     UNKNOWN_KEY = 0,

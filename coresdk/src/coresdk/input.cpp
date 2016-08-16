@@ -14,6 +14,7 @@
 #include "utility_functions.h"
 
 #include <vector>
+#include <map>
 #include <iostream>
 using namespace std;
 
@@ -28,7 +29,9 @@ static vector<int> _keys_just_typed; // i.e. those that have just gone down
 static vector<int> _keys_released; // i.e. those that have just gone down
 bool _key_pressed = false;
 bool _mouse_button_clicked[6] = { false };
+
 vector_2d _wheel_scroll = {0,0};
+map<int, bool> _button_clicked;
 
 
 void quit()
@@ -43,11 +46,14 @@ void _handle_key_down_callback(int code)
 
 void _process_mouse_up_event(int code)
 {
+    _button_clicked[code] = true;
     cout << "mouse up: " << code << endl;
 }
 
 void process_mouse_wheel_callback(int x, int y)
 {
+    _wheel_scroll.x += x;
+    _wheel_scroll.y += y;
     cout << "mouse wheel: " << x << ":" << y << endl;
 }
 
@@ -122,6 +128,10 @@ void process_events()
         _input_callbacks.handle_window_move   = &handle_window_move;
         _input_callbacks.handle_window_gain_focus = &handle_window_gain_focus;
     }
+    
+    // Reset event tracking data
+    _wheel_scroll = vector_to(0,0);
+    _button_clicked.clear();
 
     sk_process_events();
 }

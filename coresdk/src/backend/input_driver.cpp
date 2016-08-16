@@ -501,3 +501,33 @@ void sk_move_window(sk_drawing_surface *surface, int x, int y)
     }
 }
 
+void sk_mouse_position(float &x, float &y)
+{
+    int lx = 0, ly = 0;
+    
+    SDL_GetMouseState(&lx, &ly);
+    x = lx;
+    y = ly;
+}
+
+void sk_mouse_movement(float &x, float &y)
+{
+    int lx = 0, ly = 0;
+    
+    SDL_GetRelativeMouseState(&lx, &ly);
+    x = lx;
+    y = ly;
+}
+
+bool sk_mouse_button_down(uint32_t button)
+{
+    int lx = 0, ly = 0;
+    
+    return (SDL_GetMouseState(&lx, &ly) & ( (1 << static_cast<byte>(button)) - 1)) > 0 ;
+}
+
+bool sk_show_mouse(int value)
+{
+    return SDL_ShowCursor(value) != 0;
+}
+

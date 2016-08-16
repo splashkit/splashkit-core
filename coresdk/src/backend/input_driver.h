@@ -56,4 +56,11 @@ void sk_move_window(sk_drawing_surface *surface, int x, int y);
 
 void sk_start_reading_text(window wind, float x, float y, float width, float height);
 
+void sk_mouse_position(float &x, float &y);
+void sk_mouse_movement(float &x, float &y);
+
+bool sk_mouse_button_down(uint32_t button);
+
+bool sk_show_mouse(int value);
+
 #endif /* defined(__sgsdl2__SGSDL2Input__) */

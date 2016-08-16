@@ -11,6 +11,8 @@
 		878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94006A3D1D612C4F003E8A32 /* test_input.cpp */; };
 		94006A401D612C4F003E8A32 /* test_input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 94006A3E1D612C4F003E8A32 /* test_input.hpp */; };
+		94006A471D61CC83003E8A32 /* mouse_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94006A451D61CC83003E8A32 /* mouse_input.cpp */; };
+		94006A481D61CC83003E8A32 /* mouse_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94006A461D61CC83003E8A32 /* mouse_input.h */; };
 		940864591D37A78C009EA048 /* backend_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864571D37A78C009EA048 /* backend_types.h */; };
 		9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645A1D37B6AF009EA048 /* utils_driver.cpp */; };
 		9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408645B1D37B6AF009EA048 /* utils_driver.h */; };
@@ -153,6 +155,8 @@
 		878BAFE91D52DF3000483C3E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../coresdk/src/test/Resources; sourceTree = "<group>"; };
 		94006A3D1D612C4F003E8A32 /* test_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_input.cpp; sourceTree = "<group>"; };
 		94006A3E1D612C4F003E8A32 /* test_input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_input.hpp; sourceTree = "<group>"; };
+		94006A451D61CC83003E8A32 /* mouse_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mouse_input.cpp; sourceTree = "<group>"; };
+		94006A461D61CC83003E8A32 /* mouse_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mouse_input.h; sourceTree = "<group>"; };
 		940864571D37A78C009EA048 /* backend_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backend_types.h; sourceTree = "<group>"; };
 		9408645A1D37B6AF009EA048 /* utils_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils_driver.cpp; sourceTree = "<group>"; };
 		9408645B1D37B6AF009EA048 /* utils_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils_driver.h; sourceTree = "<group>"; };
@@ -395,6 +399,8 @@
 				F86951951D5093F800E1BCC9 /* database.h */,
 				941C8A381D5DD668003112B2 /* timers.cpp */,
 				941C8A391D5DD668003112B2 /* timers.h */,
+				94006A451D61CC83003E8A32 /* mouse_input.cpp */,
+				94006A461D61CC83003E8A32 /* mouse_input.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
+				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
 				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
@@ -586,6 +593,7 @@
 				9424B5AE1D44910B0039B3AF /* images.cpp in Sources */,
 				9424B5C21D4619620039B3AF /* text.cpp in Sources */,
 				9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */,
+				94006A471D61CC83003E8A32 /* mouse_input.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
