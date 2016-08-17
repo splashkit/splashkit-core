@@ -13,52 +13,54 @@
 #include "drawing_options.h"
 #include "geometry.h"
 
-
-/// Draw a circle using the supplied drawing options.
-///
+/**
+ *  Draw a circle using the supplied drawing options. The circle is centred on its x, y
+ *  coordinates, and has the provided radius. This will use `drawing_options` to determine
+ *  the destination.
+ */
 void draw_circle(color clr, float x, float y, float radius, drawing_options opts);
 
-/// Draw a circle onto the current window.
-///
+/**
+ *  Draw a circle onto the current window. The circle is centred on its x, y
+ *  coordinates, and has the provided radius.
+ */
 void draw_circle(color clr, float x, float y, float radius);
 
-/// Draw a circle onto a destination bitmap.
-///
-/// @lib draw_circleStructOpts
-/// @sn draw_circleColor:%s data:%s opts:%s
-void draw_circle(color clr, circle &c, drawing_options opts);
+/**
+ *  Draw a circle with the provided drawing options, which may include options related to
+ *  the drawing destination.
+ */
+void draw_circle(color clr, const circle &c, drawing_options opts);
 
-/// Draw a circle in the game.
-///
-/// @lib draw_circleStruct
-/// @sn draw_circleColor:%s data:%s
-void draw_circle(color clr, circle &c);
+/**
+ *  Draw a circle on the current window. The circle is centred on its x, y
+ *  coordinates, and has the provided radius.
+ */
+void draw_circle(color clr, const circle &c);
 
-
-/// Fill a circle onto a destination bitmap.
-///
-/// @lib fill_circleOpts
-/// @sn fill_circleColor:%s atX:%s y:%s radius:%s opts:%s
+/**
+ *  Fill a circle using the supplied drawing options. The circle is centred on its x, y
+ *  coordinates, and has the provided radius. This will use `drawing_options` to determine
+ *  the destination.
+ */
 void fill_circle(color clr, float x, float y, float radius, drawing_options opts);
 
-/// Fill a circle in the game.
-///
-/// @lib
-/// @sn fill_circleColor:%s atX:%s y:%s radius:%s
-///
-/// @doc_idx 0
+/**
+ *  Fill a circle onto the current window. The circle is centred on its x, y
+ *  coordinates, and has the provided radius.
+ */
 void fill_circle(color clr, float x, float y, float radius);
 
-/// Fill a circle onto a destination bitmap.
-///
-/// @lib fill_circleStructOpts
-/// @sn fill_circleColor:%s data:%s opts:%s
-void fill_circle(color clr, circle &c,drawing_options opts);
+/**
+ *  Fill a circle with the provided drawing options, which may include options related to
+ *  the drawing destination.
+ */
+void fill_circle(color clr, const circle &c, drawing_options opts);
 
-/// Fill a circle in the game.
-///
-/// @lib fill_circleStruct
-/// @sn fill_circleColor:%s data:%s
-void fill_circle(color clr, circle &c);
+/**
+ *  Draw a circle on the current window. The circle is centred on its x, y
+ *  coordinates, and has the provided radius.
+ */
+void fill_circle(color clr, const circle &c);
 
 #endif /* circle_drawing_hpp */
