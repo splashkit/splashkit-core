@@ -9,6 +9,7 @@
 #ifndef keyboard_input_hpp
 #define keyboard_input_hpp
 
+#include <algorithm>
 #include <string>
 using namespace std;
 
