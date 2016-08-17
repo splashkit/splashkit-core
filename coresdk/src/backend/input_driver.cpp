@@ -116,7 +116,7 @@ void _handle_editing_text(char *text, int cursor, int selection_length)
     current->cursor = cursor;
 }
 
-void sk_start_reading_text(window wind, float x, float y, float width, float height)
+void sk_start_reading_text(window wind, float x, float y, float width, float height, string initial_text)
 {
     SDL_Rect rect = {
         static_cast<int>(x),
@@ -126,7 +126,7 @@ void sk_start_reading_text(window wind, float x, float y, float width, float hei
     };
 
     wind->composition = "";
-    wind->input_text = "";
+    wind->input_text = initial_text;
     wind->cursor = 0;
     wind->input_area = rectangle_from(x, y, width, height);
     wind->reading_text = true;
@@ -294,7 +294,7 @@ void sk_process_events()
             {
                 if (_input_callbacks.handle_key_down)
                 {
-                    int key_code = static_cast<int>(event.key.keysym.sym);
+                    key_code key_code = static_cast<enum key_code>(event.key.keysym.sym);
                     _input_callbacks.handle_key_down(key_code);
                 }
                 break;
@@ -304,7 +304,7 @@ void sk_process_events()
             {
                 if (_input_callbacks.handle_key_up)
                 {
-                    int key_code = static_cast<int>(event.key.keysym.sym);
+                    key_code key_code = static_cast<enum key_code>(event.key.keysym.sym);
                     _handle_key_type(event.key.keysym.sym);
                     _input_callbacks.handle_key_up(key_code);
                 }
@@ -528,5 +528,10 @@ bool sk_mouse_button_down(uint32_t button)
 bool sk_show_mouse(int visible)
 {
     return SDL_ShowCursor(visible ? 1: 0) != 0;
+}
+
+string sk_key_name(uint32_t key)
+{
+    return string(SDL_GetKeyName(key));
 }
 
