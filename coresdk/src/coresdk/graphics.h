@@ -59,5 +59,20 @@ void take_screenshot(window wind, const string &basename);
 
 void save_bitmap(bitmap bmp, const string &basename);
 
+int number_of_displays();
+
+display display_details(unsigned int index);
+
+string display_name(display disp);
+
+int display_width(display disp);
+
+int display_height(display disp);
+
+int display_x(display disp);
+
+int display_y(display disp);
+
+
 
 #endif /* graphics_hpp */

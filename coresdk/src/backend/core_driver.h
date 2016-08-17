@@ -8,6 +8,8 @@
 #ifndef sk_CoreDriver_h
 #define sk_CoreDriver_h
 
+#include "backend_types.h"
+
 typedef struct sk_audiospec
 {
     int audio_rate;
@@ -23,8 +25,9 @@ typedef struct sk_mode
     int width, height, refresh_rate;
 } sk_mode;
 
-typedef struct sk_display
+struct sk_display
 {
+    pointer_identifier id;
     const char *    name;
     int             x, y;
     int             width, height, refresh_rate;
@@ -34,7 +37,7 @@ typedef struct sk_display
 
     // private data used by the backend
     void * _data;
-} sk_display;
+};
 
 
 typedef struct sk_system_data
@@ -45,10 +48,7 @@ typedef struct sk_system_data
     
 } sk_system_data;
 
-//
-// Storage for the system data
-//
-extern sk_system_data _sk_system_data;
+sk_system_data *sk_read_system_data();
 
 void internal_sk_init();
 

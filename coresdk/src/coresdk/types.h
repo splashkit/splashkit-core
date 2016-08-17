@@ -164,5 +164,13 @@ struct drawing_options
     animation anim;         // The animation for bitmap drawing
 };
 
+/**
+ * Each display value represents a physical display attached to the computer.
+ * You can use this to query the displays position and size.
+ *
+ * @attribute class display
+ */
+typedef struct sk_display *display;
+
 
 #endif /* types_hpp */

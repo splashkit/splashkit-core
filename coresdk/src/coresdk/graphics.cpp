@@ -14,6 +14,7 @@
 #include "utility_functions.h"
 
 #include "graphics_driver.h"
+#include "core_driver.h"
 
 #include <map>
 
@@ -116,4 +117,88 @@ void save_bitmap(bitmap bmp, const string &basename)
     }
     
     _save_surface(bmp->image, basename);
+}
+
+int number_of_displays()
+{
+    sk_system_data *data = sk_read_system_data();
+    
+    if ( not data )
+    {
+        raise_warning("Failed to load system data");
+        return 0;
+    }
+    
+    return data->num_displays;
+}
+
+display display_details(unsigned int index)
+{
+    sk_system_data *data = sk_read_system_data();
+    
+    if ( not data )
+    {
+        raise_warning("Failed to load system data");
+        return 0;
+    }
+    
+    if ( index < data->num_displays )
+        return &data->displays[index];
+    else
+        return nullptr;
+}
+
+string display_name(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get name of invalid display");
+        return "";
+    }
+    
+    return string(disp->name);
+}
+
+int display_width(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get width of invalid display");
+        return 0;
+    }
+    
+    return disp->width;
+}
+
+int display_height(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get height of invalid display");
+        return 0;
+    }
+    
+    return disp->height;
+}
+
+int display_x(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get x of invalid display");
+        return 0;
+    }
+    
+    return disp->x;
+}
+
+int display_y(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get y of invalid display");
+        return 0;
+    }
+    
+    return disp->y;
 }
