@@ -6,6 +6,9 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
+#include <iostream>
+using namespace std;
+
 #include "input.h"
 #include "graphics.h"
 #include "geometry.h"
@@ -37,6 +40,9 @@ void test_circle_drawing(window w1)
         
         refresh_screen();
     }
+    cout << "Saving circles screenshot to desktop" << endl;
+    take_screenshot("circles");
+    
     reset_timer(t);
     clear_screen(COLOR_WHITE);
     draw_text("Filling Circles", COLOR_TOMATO, "myfont", 18, 30, 30);
@@ -55,6 +61,8 @@ void test_circle_drawing(window w1)
         
         refresh_screen();
     }
+    cout << "Saving filled circles screenshot to desktop" << endl;
+    take_screenshot(current_window(), "filled circles");
     
     reset_timer(t);
     clear_screen(COLOR_WHITE);
@@ -88,7 +96,10 @@ void test_circle_drawing(window w1)
         
         refresh_screen();
     }
+    cout << "Saving circles bitmap to desktop" << endl;
+    save_bitmap(bmp, "circle bitmap");
     
+    free_bitmap(bmp);
     free_timer(t);
 }
 
@@ -187,6 +198,7 @@ void test_triangle_drawing(window w1)
         refresh_screen();
     }
     
+    free_bitmap(bmp);
     free_timer(t);
 }
 
@@ -263,6 +275,7 @@ void test_aa_rect_drawing(window w1)
         refresh_screen();
     }
     
+    free_bitmap(bmp);
     free_timer(t);
 }
 

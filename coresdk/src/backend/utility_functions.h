@@ -32,6 +32,8 @@ string cat(std::initializer_list<string> list);
 
 string path_from(std::initializer_list<string> list, string filename = string(""));
 
+string path_to_user_home();
+
 // finally mechanism from: http://stackoverflow.com/questions/161177/does-c-support-finally-blocks-and-whats-this-raii-i-keep-hearing-about
 template <typename F>
 struct FinalAction

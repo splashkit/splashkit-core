@@ -44,8 +44,20 @@ int screen_width();
  */
 int screen_height();
 
+/// Saves the current screen a bitmap file. The file will be saved into the
+/// current directory.
+///
+/// @param basename   The base name for the screen shot. e.g. "GemCollector"
+///
+/// Side Effects:
+/// - Saves the current screen image to a bitmap file.
+///
+/// @lib TakeScreenshot
+void take_screenshot(const string &basename);
 
+void take_screenshot(window wind, const string &basename);
 
+void save_bitmap(bitmap bmp, const string &basename);
 
 
 #endif /* graphics_hpp */

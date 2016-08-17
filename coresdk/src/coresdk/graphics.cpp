@@ -67,3 +67,53 @@ int screen_height()
     return window_height(current_window());
 }
 
+void _save_surface(image_data &image, string basename)
+{
+    string path = path_from( {path_to_user_home(), "Desktop"} );
+    
+    if (not directory_exists(path))
+    {
+        path = path_to_user_home();
+    }
+    
+    string filename = basename + ".png";
+    
+    int i = 1;
+    
+    while (file_exists( path_from({path}, filename)))
+    {
+        filename = basename + to_string(i) + ".png";
+        i = i + 1;
+    }
+    
+    path = path_from( { path }, filename);
+    
+    sk_save_png(&image.surface, path.c_str());
+}
+
+void take_screenshot(const string &basename)
+{
+    take_screenshot(current_window(), basename);
+}
+
+void take_screenshot(window wind, const string &basename)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to save screenshot of invalid window");
+        return;
+    }
+    
+    _save_surface(wind->image, basename);
+}
+
+void save_bitmap(bitmap bmp, const string &basename)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to save image of invalid bitmap");
+        return;
+    }
+    
+    _save_surface(bmp->image, basename);
+}
