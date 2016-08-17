@@ -95,6 +95,12 @@
 		9424B5C31D4619620039B3AF /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C11D4619620039B3AF /* text.h */; };
 		9424B5C71D461FE00039B3AF /* text_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C51D461FE00039B3AF /* text_driver.h */; };
 		9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C41D461FE00039B3AF /* text_driver.cpp */; };
+		94444B321D644AE40059BF3B /* circle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B301D644AE40059BF3B /* circle_drawing.cpp */; };
+		94444B331D644AE40059BF3B /* circle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B311D644AE40059BF3B /* circle_drawing.h */; };
+		94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B341D644B680059BF3B /* rectangle_drawing.cpp */; };
+		94444B371D644B680059BF3B /* rectangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B351D644B680059BF3B /* rectangle_drawing.h */; };
+		94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B381D644BB50059BF3B /* triangle_drawing.cpp */; };
+		94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B391D644BB50059BF3B /* triangle_drawing.h */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
@@ -247,6 +253,12 @@
 		9424B5C11D4619620039B3AF /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		9424B5C41D461FE00039B3AF /* text_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_driver.cpp; sourceTree = "<group>"; };
 		9424B5C51D461FE00039B3AF /* text_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_driver.h; sourceTree = "<group>"; };
+		94444B301D644AE40059BF3B /* circle_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circle_drawing.cpp; sourceTree = "<group>"; };
+		94444B311D644AE40059BF3B /* circle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circle_drawing.h; sourceTree = "<group>"; };
+		94444B341D644B680059BF3B /* rectangle_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle_drawing.cpp; sourceTree = "<group>"; };
+		94444B351D644B680059BF3B /* rectangle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle_drawing.h; sourceTree = "<group>"; };
+		94444B381D644BB50059BF3B /* triangle_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle_drawing.cpp; sourceTree = "<group>"; };
+		94444B391D644BB50059BF3B /* triangle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangle_drawing.h; sourceTree = "<group>"; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
@@ -371,26 +383,20 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				94444B2F1D6449FF0059BF3B /* Drawing Related */,
+				94444B2E1D64496F0059BF3B /* Input Related */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
 				941C8A2E1D5B2EC1003112B2 /* animations.h */,
 				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
 				942372201D1D5D4E0020CCE2 /* audio.h */,
-				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
-				9424B5A91D448ABC0039B3AF /* drawing_options.h */,
 				9420549C1D3463BA001ED922 /* resources.cpp */,
 				9420549D1D3463BA001ED922 /* resources.h */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
 				940864631D38B756009EA048 /* window_manager.h */,
 				940864661D38BA14009EA048 /* geometry.cpp */,
 				940864671D38BA14009EA048 /* geometry.h */,
-				940864771D390134009EA048 /* input.cpp */,
-				940864781D390134009EA048 /* input.h */,
-				9424B5941D436A0A0039B3AF /* graphics.cpp */,
-				9424B5951D436A0A0039B3AF /* graphics.h */,
 				9424B5981D436C850039B3AF /* utils.cpp */,
 				9424B5991D436C850039B3AF /* utils.h */,
-				9424B59C1D4441CF0039B3AF /* color.cpp */,
-				9424B59D1D4441CF0039B3AF /* color.h */,
 				9424B5A01D4442220039B3AF /* types.cpp */,
 				9424B5A11D4442220039B3AF /* types.h */,
 				9424B5A41D4444F40039B3AF /* random.cpp */,
@@ -407,12 +413,6 @@
 				F86951951D5093F800E1BCC9 /* database.h */,
 				941C8A381D5DD668003112B2 /* timers.cpp */,
 				941C8A391D5DD668003112B2 /* timers.h */,
-				94006A451D61CC83003E8A32 /* mouse_input.cpp */,
-				94006A461D61CC83003E8A32 /* mouse_input.h */,
-				94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */,
-				94F66BEF1D62F70C004D8F8C /* keyboard_input.h */,
-				94F66BF21D62F75E004D8F8C /* text_input.cpp */,
-				94F66BF31D62F75E004D8F8C /* text_input.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -478,6 +478,40 @@
 			path = ../../coresdk/lib/mac;
 			sourceTree = "<group>";
 		};
+		94444B2E1D64496F0059BF3B /* Input Related */ = {
+			isa = PBXGroup;
+			children = (
+				940864771D390134009EA048 /* input.cpp */,
+				940864781D390134009EA048 /* input.h */,
+				94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */,
+				94F66BEF1D62F70C004D8F8C /* keyboard_input.h */,
+				94006A451D61CC83003E8A32 /* mouse_input.cpp */,
+				94006A461D61CC83003E8A32 /* mouse_input.h */,
+				94F66BF21D62F75E004D8F8C /* text_input.cpp */,
+				94F66BF31D62F75E004D8F8C /* text_input.h */,
+			);
+			name = "Input Related";
+			sourceTree = "<group>";
+		};
+		94444B2F1D6449FF0059BF3B /* Drawing Related */ = {
+			isa = PBXGroup;
+			children = (
+				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
+				9424B5A91D448ABC0039B3AF /* drawing_options.h */,
+				9424B5941D436A0A0039B3AF /* graphics.cpp */,
+				9424B5951D436A0A0039B3AF /* graphics.h */,
+				9424B59C1D4441CF0039B3AF /* color.cpp */,
+				9424B59D1D4441CF0039B3AF /* color.h */,
+				94444B301D644AE40059BF3B /* circle_drawing.cpp */,
+				94444B311D644AE40059BF3B /* circle_drawing.h */,
+				94444B341D644B680059BF3B /* rectangle_drawing.cpp */,
+				94444B351D644B680059BF3B /* rectangle_drawing.h */,
+				94444B381D644BB50059BF3B /* triangle_drawing.cpp */,
+				94444B391D644BB50059BF3B /* triangle_drawing.h */,
+			);
+			name = "Drawing Related";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -502,10 +536,13 @@
 				941C8A371D5D6FE2003112B2 /* test_text.hpp in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
+				94444B371D644B680059BF3B /* rectangle_drawing.h in Headers */,
 				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
+				94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
+				94444B331D644AE40059BF3B /* circle_drawing.h in Headers */,
 				9408646D1D38F09B009EA048 /* test_windows.hpp in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
@@ -611,7 +648,9 @@
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
+				94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */,
 				941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */,
+				94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
 				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
 				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
@@ -635,6 +674,7 @@
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
 				94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */,
 				941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */,
+				94444B321D644AE40059BF3B /* circle_drawing.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
 				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
