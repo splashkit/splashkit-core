@@ -26,6 +26,10 @@ void draw_rectangle(color clr, float x, float y, float width, float height, draw
 /// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s
 void draw_rectangle(color clr, float x, float y, float width, float height);
 
+void draw_rectangle(color clr, const rectangle rect, drawing_options opts);
+
+void draw_rectangle(color clr, const rectangle rect);
+
 /// Fill a rectangle using the supplied drawing options.
 ///
 /// @lib FillRectangleOpts
@@ -35,6 +39,10 @@ void fill_rectangle(color clr, float x, float y, float width, float height, draw
 /// Fill a rectangle onto the current window.
 ///
 void fill_rectangle(color clr, float x, float y, float width, float height);
+
+void fill_rectangle(color clr, const rectangle rect, drawing_options opts);
+
+void fill_rectangle(color clr, const rectangle rect);
 
 
 #endif /* rectangle_drawing_hpp */

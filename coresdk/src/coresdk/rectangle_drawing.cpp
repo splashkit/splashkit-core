@@ -51,6 +51,16 @@ void draw_rectangle(color clr, float x, float y, float width, float height)
     draw_rectangle(clr, x, y, width, height, option_defaults());
 }
 
+void draw_rectangle(color clr, const rectangle rect, drawing_options opts)
+{
+    draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, opts);
+}
+
+void draw_rectangle(color clr, const rectangle rect)
+{
+    draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
+}
+
 void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts)
 {
     if ( width == 0 || height == 0 ) return;
@@ -81,4 +91,14 @@ void fill_rectangle(color clr, float x, float y, float width, float height, draw
 void fill_rectangle(color clr, float x, float y, float width, float height)
 {
     fill_rectangle(clr, x, y, width, height, option_defaults());
+}
+
+void fill_rectangle(color clr, const rectangle rect, drawing_options opts)
+{
+    fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, opts);
+}
+
+void fill_rectangle(color clr, const rectangle rect)
+{
+    fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
 }
