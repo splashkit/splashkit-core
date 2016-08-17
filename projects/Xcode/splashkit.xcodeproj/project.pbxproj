@@ -496,10 +496,10 @@
 		94444B2F1D6449FF0059BF3B /* Drawing Related */ = {
 			isa = PBXGroup;
 			children = (
-				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
-				9424B5A91D448ABC0039B3AF /* drawing_options.h */,
 				9424B5941D436A0A0039B3AF /* graphics.cpp */,
 				9424B5951D436A0A0039B3AF /* graphics.h */,
+				9424B5A81D448ABC0039B3AF /* drawing_options.cpp */,
+				9424B5A91D448ABC0039B3AF /* drawing_options.h */,
 				9424B59C1D4441CF0039B3AF /* color.cpp */,
 				9424B59D1D4441CF0039B3AF /* color.h */,
 				94444B301D644AE40059BF3B /* circle_drawing.cpp */,

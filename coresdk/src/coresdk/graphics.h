@@ -9,6 +9,8 @@
 #ifndef graphics_hpp
 #define graphics_hpp
 
+#include "drawing_options.h"
+
 #include "circle_drawing.h"
 #include "rectangle_drawing.h"
 #include "triangle_drawing.h"

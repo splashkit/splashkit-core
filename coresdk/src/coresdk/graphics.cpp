@@ -9,7 +9,6 @@
 #include "graphics.h"
 #include "window_manager.h"
 #include "utils.h"
-#include "drawing_options.h"
 #include "camera.h"
 
 #include "utility_functions.h"
