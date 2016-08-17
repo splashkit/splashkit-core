@@ -122,6 +122,14 @@ struct circle
     float radius;
 };
 
+/**
+ * A triangle consists of three points
+ */
+struct triangle
+{
+    point_2d points[3];
+};
+
 /// Determines the effect of the camera on a drawing operation.
 /// `DRAW_TO_SCREEN` means camera has no affect.
 /// `DRAW_TO_WORLD` means camera has an affect.

@@ -92,6 +92,104 @@ void test_circle_drawing(window w1)
     free_timer(t);
 }
 
+void test_triangle_drawing(window w1)
+{
+    timer t = create_timer("shape drawing timer");
+    start_timer(t);
+    
+    clear_screen(COLOR_WHITE);
+    draw_text("Drawing Triangles", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+            draw_triangle(random_rgb_color(128),
+                          rnd() * screen_width(), rnd() * screen_height(),
+                          rnd() * screen_width(), rnd() * screen_height(),
+                          rnd() * screen_width(), rnd() * screen_height());
+        else
+        {
+            triangle tri = triangle_from(rnd() * screen_width(), rnd() * screen_height(),
+                                         rnd() * screen_width(), rnd() * screen_height(),
+                                         rnd() * screen_width(), rnd() * screen_height());
+            draw_triangle(random_rgb_color(128), tri);
+        }
+        
+        refresh_screen();
+    }
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Filling Triangles", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+            fill_triangle(random_rgb_color(128),
+                          rnd() * screen_width(), rnd() * screen_height(),
+                          rnd() * screen_width(), rnd() * screen_height(),
+                          rnd() * screen_width(), rnd() * screen_height());
+        else
+        {
+            triangle tri = triangle_from(rnd() * screen_width(), rnd() * screen_height(),
+                                         rnd() * screen_width(), rnd() * screen_height(),
+                                         rnd() * screen_width(), rnd() * screen_height());
+            fill_triangle(random_rgb_color(128), tri);
+        }
+        
+        refresh_screen();
+    }
+    
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Draw Triangles to Bitmap", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    bitmap bmp = create_bitmap("bitmap", 300, 300);
+    drawing_options opts = option_draw_to(bmp);
+    
+    clear_bitmap(bmp, COLOR_WHEAT);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+        {
+            draw_triangle(random_rgb_color(128),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          opts);
+            fill_triangle(random_rgb_color(128),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                          opts);
+        }
+        else
+        {
+            triangle tri = triangle_from(rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                                         rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                                         rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp));
+            fill_triangle(random_rgb_color(128), tri, opts);
+            
+            tri = triangle_from(rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                                rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp),
+                                rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp));
+            draw_triangle(random_rgb_color(128), tri, opts);
+        }
+        
+        draw_bitmap(bmp, 150, 150);
+        
+        refresh_screen();
+    }
+    
+    free_timer(t);
+}
+
 void test_aa_rect_drawing(window w1)
 {
     timer t = create_timer("shape drawing timer");
@@ -176,6 +274,7 @@ void run_shape_drawing_test()
     
     test_circle_drawing(w1);
     test_aa_rect_drawing(w1);
+    test_triangle_drawing(w1);
     
     close_window(w1);
 }

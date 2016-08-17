@@ -28,17 +28,21 @@ void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, 
 /// @doc_idx 0
 void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 
-///// Draw a triangle onto a destination bitmap.
-/////
-///// @lib DrawTriangleStructOpts
-///// @sn drawTriangleColor:%s data:%s opts:%s
-//procedure DrawTriangle(clr : Color; const tri: Triangle; const opts : DrawingOptions); overload;
-//
-///// Draw a triangle in the game.
-/////
-///// @lib DrawTriangleStruct
-///// @sn drawTriangleColor:%s data:%s
-//procedure DrawTriangle(clr : Color; const tri: Triangle);
+
+void draw_triangle(color clr, const triangle &tri, drawing_options opts);
+
+void draw_triangle(color clr, const triangle &tri);
+
+
+void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+
+void fill_triangle(color clr, const triangle &tri, drawing_options opts);
+
+void fill_triangle(color clr, const triangle &tri);
+
 
 
 #endif /* triangle_drawing_hpp */

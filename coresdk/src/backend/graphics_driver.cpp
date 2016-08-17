@@ -1082,15 +1082,9 @@ void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float
     }
 }
 
-void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_triangle(sk_drawing_surface *surface, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
-    if ( ! surface || ! surface->_data || data_sz != 6) return;
-
-    // 6 values = 3 points
-    float x1 = data[0], y1 = data[1];
-    float x2 = data[2], y2 = data[3];
-    float x3 = data[4], y3 = data[5];
-
+    if ( ! surface || ! surface->_data ) return;
 
     unsigned int count = _sk_renderer_count(surface);
 

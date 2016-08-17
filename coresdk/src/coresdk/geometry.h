@@ -22,5 +22,8 @@ circle circle_at(const point_2d &pt, float radius);
 
 circle circle_at(float x, float y, float radius);
 
+triangle triangle_from(float x1, float y1, float x2, float y2, float x3, float y3);
+
+triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
 
 #endif /* geometry_hpp */
