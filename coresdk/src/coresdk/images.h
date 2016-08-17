@@ -54,6 +54,19 @@ void draw_bitmap(string name, float x, float y);
 
 void draw_bitmap(string name, float x, float y, drawing_options opts);
 
+bitmap create_bitmap(string name, int width, int height);
+
+void clear_bitmap(bitmap bmp, color clr);
+
+void clear_bitmap(string name, color clr);
+
+int bitmap_width(bitmap bmp);
+
+int bitmap_width(string name);
+
+int bitmap_height(bitmap bmp);
+
+int bitmap_height(string name);
 
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
