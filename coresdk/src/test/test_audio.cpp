@@ -8,8 +8,6 @@
 
 #include "audio.h"
 
-#include "audio_test.hpp"
-
 #include "utils.h"
 
 #include <iostream>

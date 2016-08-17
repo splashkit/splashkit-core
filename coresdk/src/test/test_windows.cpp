@@ -6,8 +6,6 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "test_windows.hpp"
-
 #include "window_manager.h"
 #include "input.h"
 #include "images.h"

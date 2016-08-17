@@ -6,8 +6,6 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "test_timers.hpp"
-
 #include "window_manager.h"
 #include "text.h"
 #include "color.h"

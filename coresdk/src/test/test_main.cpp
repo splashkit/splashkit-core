@@ -10,15 +10,7 @@
 
 #include "input.h"
 
-#include "test_windows.hpp"
-#include "audio_test.hpp"
-#include "resources_tests.h"
-#include "test_graphics.hpp"
-#include "test_database.hpp"
-#include "test_text.hpp"
-#include "test_animation.hpp"
-#include "test_timers.hpp"
-#include "test_input.hpp"
+#include "test_main.h"
 
 int main()
 {
