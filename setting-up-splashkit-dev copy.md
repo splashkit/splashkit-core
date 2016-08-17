@@ -29,9 +29,10 @@ Requires
   -  using `cd` go to the directory location: ```splashkit/coresdk/external```
   -  Run setup.sh with  ```./setup.sh```
   -  Go to the ```coresdk/project``` folder and open in XCode.
-  -  Build and Run from in XCode.  
+  -  Build and Run from in XCode.
 
 
 ### Windows
 
 1. MSys2
+1.1  
