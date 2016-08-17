@@ -28,3 +28,24 @@ vector_2d vector_to(float x, float y)
     
     return result;
 }
+
+point_2d point_at(float x, float y)
+{
+    point_2d result;
+    result.x = x;
+    result.y = y;
+    return result;
+}
+
+circle circle_at(const point_2d &pt, float radius)
+{
+    circle result;
+    result.center = pt;
+    result.radius = radius;
+    return result;
+}
+
+circle circle_at(float x, float y, float radius)
+{
+    return circle_at(point_at(x, y), radius);
+}

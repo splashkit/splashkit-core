@@ -34,7 +34,15 @@ void refresh_screen(unsigned int target_fps);
 
 void clear_screen(color clr);
 
+/**
+ * Returns the width of the current window.
+ */
+int screen_width();
 
+/**
+ * Returns the height of the current window.
+ */
+int screen_height();
 
 
 

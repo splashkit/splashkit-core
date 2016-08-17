@@ -56,3 +56,14 @@ void clear_screen(color clr)
 {
     clear_window(_current_window, clr);
 }
+
+int screen_width()
+{
+    return window_width(current_window());
+}
+
+int screen_height()
+{
+    return window_height(current_window());
+}
+

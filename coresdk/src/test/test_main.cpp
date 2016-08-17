@@ -14,25 +14,7 @@
 
 int main()
 {
-    run_input_test();
-    reset_quit();
-    
-    run_text_test();
-    reset_quit();
-
-    run_timer_test();
-    reset_quit();
-    
-    run_animation_test();
-    reset_quit();
-    
-    run_graphics_test();
-    reset_quit();
-    
-    run_windows_tests();
-    reset_quit();
-    
-    run_resources_tests();
+    run_shape_drawing_test();
     reset_quit();
     
     run_audio_tests();

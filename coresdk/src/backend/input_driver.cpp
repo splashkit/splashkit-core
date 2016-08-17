@@ -462,7 +462,7 @@ void sk_window_position(sk_drawing_surface *surface, int *x, int *y)
 
 sk_window_data sk_get_window_event_data(sk_drawing_surface *surface)
 {
-    sk_window_data result = { 0, 0, 0, 0 };
+    sk_window_data result = { true, 0, 0, 0 };
 
     if ( ! surface || ! surface->_data ) return result;
 
