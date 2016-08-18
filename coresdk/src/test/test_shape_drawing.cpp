@@ -342,16 +342,94 @@ void test_aa_rect_drawing(window w1)
     free_timer(t);
 }
 
+void test_ellipse_drawing(window w1)
+{
+    timer t = create_timer("shape drawing timer");
+    start_timer(t);
+    
+    clear_screen(COLOR_WHITE);
+    draw_text("Drawing Ellipse", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+            draw_ellipse(random_rgb_color(128), rnd() * screen_width() - 100, rnd() * screen_height() - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+        else
+        {
+            rectangle r = rectangle_from(rnd() * window_width(w1) - 100, rnd() * window_height("Test Shape Drawing") - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+            draw_ellipse(random_rgb_color(128), r);
+        }
+        
+        refresh_screen();
+    }
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Filling Ellipses", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+            fill_ellipse(random_rgb_color(128), rnd() * screen_width() - 100, rnd() * screen_height() - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+        else
+        {
+            rectangle r = rectangle_from(rnd() * window_width(w1) - 100, rnd() * window_height("Test Shape Drawing") - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+            fill_ellipse(random_rgb_color(128), r);
+        }
+        
+        refresh_screen();
+    }
+    
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Draw Ellipses to Bitmap", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    bitmap bmp = create_bitmap("bitmap", 300, 300);
+    drawing_options opts = option_draw_to(bmp);
+    
+    clear_bitmap(bmp, COLOR_WHEAT);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+        {
+            draw_ellipse(random_rgb_color(128), rnd() * screen_width() - 100, rnd() * screen_height() - 100, 1 + rnd() * 200, 1 + rnd() * 200, opts);
+            fill_ellipse(random_rgb_color(128), rnd() * screen_width() - 100, rnd() * screen_height() - 100, 1 + rnd() * 200, 1 + rnd() * 200, opts);
+        }
+        else
+        {
+            rectangle r = rectangle_from(rnd() * window_width(w1) - 100, rnd() * window_height("Test Shape Drawing") - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+            draw_ellipse(random_rgb_color(128), r, opts);
+            
+            r = rectangle_from(rnd() * window_width(w1) - 100, rnd() * window_height("Test Shape Drawing") - 100, 1 + rnd() * 200, 1 + rnd() * 200);
+            fill_ellipse(random_rgb_color(128), r, opts);
+        }
+        
+        draw_bitmap(bmp, 150, 150);
+        
+        refresh_screen();
+    }
+    
+    free_bitmap(bmp);
+    free_timer(t);
+}
+
 void run_shape_drawing_test()
 {
     window w1 = open_window("Test Shape Drawing", 600, 600);
     
     load_font("myfont", "hara.ttf");
     
-    test_circle_drawing(w1);
-    test_aa_rect_drawing(w1);
-    test_triangle_drawing(w1);
-    test_quad_drawing(w1);
+//    test_circle_drawing(w1);
+//    test_aa_rect_drawing(w1);
+//    test_triangle_drawing(w1);
+//    test_quad_drawing(w1);
+    test_ellipse_drawing(w1);
     
     close_window(w1);
 }

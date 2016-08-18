@@ -100,6 +100,8 @@
 		94444B3E1D644F950059BF3B /* test_shape_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; };
+		94B57A5F1D65A5D500CE7D55 /* ellipse_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */; };
+		94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
@@ -254,6 +256,8 @@
 		94444B401D644FE10059BF3B /* test_main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_main.h; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
 		94AC3DB11D657F45002920A5 /* point_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_drawing.h; sourceTree = "<group>"; };
+		94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ellipse_drawing.cpp; sourceTree = "<group>"; };
+		94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ellipse_drawing.h; sourceTree = "<group>"; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
@@ -496,6 +500,8 @@
 				94444B391D644BB50059BF3B /* triangle_drawing.h */,
 				94AC3DB01D657F45002920A5 /* point_drawing.cpp */,
 				94AC3DB11D657F45002920A5 /* point_drawing.h */,
+				94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */,
+				94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */,
 			);
 			name = "Drawing Related";
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				94444B331D644AE40059BF3B /* circle_drawing.h in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
+				94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
@@ -627,6 +634,7 @@
 				9423721C1D1D57D20020CCE2 /* core_driver.cpp in Sources */,
 				9424B5AE1D44910B0039B3AF /* images.cpp in Sources */,
 				9424B5C21D4619620039B3AF /* text.cpp in Sources */,
+				94B57A5F1D65A5D500CE7D55 /* ellipse_drawing.cpp in Sources */,
 				9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */,
 				94006A471D61CC83003E8A32 /* mouse_input.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,

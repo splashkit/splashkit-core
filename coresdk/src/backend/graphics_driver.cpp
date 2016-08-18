@@ -1126,13 +1126,13 @@ void sk_fill_triangle(sk_drawing_surface *surface, color clr, float x1, float y1
 //  Ellipse
 //
 
-void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1158,13 +1158,13 @@ void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int
     }
 }
 
-void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     unsigned int count = _sk_renderer_count(surface);
 
