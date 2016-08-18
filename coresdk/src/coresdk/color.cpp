@@ -15,16 +15,6 @@
 
 #include "utility_functions.h"
 
-template< typename _t >
-std::string int_to_hex( _t i )
-{
-    std::stringstream stream;
-    stream << "0x"
-    << std::setfill ('0') << std::setw(sizeof(_t)*2)
-    << std::hex << i;
-    return stream.str();
-}
-
 color random_color()
 {
     return rgba_color(rnd(), rnd(), rnd(), rnd());
@@ -173,8 +163,14 @@ void hsb_value_of(color c, float &h, float &s, float &b)
 
 string color_to_string(color c)
 {
-    stringstream result;
-    result << '#' << hex << std::setfill ('0') << std::setw(2) << static_cast<int>(red_of(c)) << static_cast<int>(green_of(c)) << static_cast<int>(blue_of(c)) << static_cast<int>(alpha_of(c));
+    ostringstream result;
+    
+    result << '#' << hex << std::setfill ('0');
+    result << std::setw(2) << static_cast<int>(red_of(c));
+    result << std::setw(2) << static_cast<int>(green_of(c));
+    result << std::setw(2) << static_cast<int>(blue_of(c));
+    result << std::setw(2) << static_cast<int>(alpha_of(c));
+    
     return result.str();
 }
 

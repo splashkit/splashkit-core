@@ -61,7 +61,7 @@ void test_clipping(window w1)
     reset_clip(bmp);
     
     clear_window(w1, COLOR_SILVER);
-    draw_text("Blue > Green > Red from top left of bmp", COLOR_BLACK, 10, 10);
+    draw_text("B > G > R from top left of bmp", COLOR_BLACK, 10, 10);
     draw_bitmap(bmp, 100, 100);
     refresh_screen();
     delay(3000);
