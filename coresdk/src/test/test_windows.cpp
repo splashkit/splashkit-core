@@ -19,13 +19,13 @@ using namespace std;
 
 void run_windows_tests()
 {
-    open_window("Hello World", 800, 600);
+    window w1 = open_window("Hello World", 800, 600);
     
     font fnt = load_font("hara", "hara.ttf");
     bitmap light = load_bitmap("light", "on_med.png");
     
-//    http_response response = http_get("http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);
-
+    window_set_icon(w1, light);
+    
     bitmap test = download_image("blah", "http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);
     
     cout << "Expecting bad bitmap pointer error: " << endl;

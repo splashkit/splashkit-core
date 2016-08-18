@@ -80,6 +80,6 @@ int window_height(window wind);
  */
 int window_height(string name);
 
-
+void window_set_icon(window wind, bitmap bmp);
 
 #endif /* window_manager_hpp */

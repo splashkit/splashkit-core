@@ -53,7 +53,7 @@ sk_drawing_surface sk_load_bitmap(const char * filename);
 
 void sk_draw_bitmap( sk_drawing_surface * src, sk_drawing_surface * dst, float * src_data, int src_data_sz, float * dst_data, int dst_data_sz, sk_renderer_flip flip );
 
-
+void sk_set_icon(sk_drawing_surface *surface, sk_drawing_surface *icon);
 
 
 void sk_close_drawing_surface(sk_drawing_surface *surface);

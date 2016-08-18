@@ -84,6 +84,22 @@ window open_window(string caption, int width, int height)
     return result;
 }
 
+void window_set_icon(window wind, bitmap bmp)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to set icon for an invalid window!");
+        return;
+    }
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to set icon with an invalid bitmap!");
+        return;
+    }
+    
+    sk_set_icon(&wind->image.surface, &bmp->image.surface);
+}
+
 void refresh_window(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
@@ -92,7 +108,6 @@ void refresh_window(window wind)
         return;
     }
     
-    //TODO: DrawCollectedText(w);
     sk_refresh_window(&wind->image.surface);
 }
 

@@ -752,6 +752,17 @@ void sk_close_drawing_surface(sk_drawing_surface *surface)
     surface->_data = NULL;
 }
 
+void sk_set_icon(sk_drawing_surface *surface, sk_drawing_surface *icon)
+{
+    if ( surface->kind != SGDS_Window || icon->kind != SGDS_Bitmap ) return;
+    
+    sk_window_be *wind = static_cast<sk_window_be *>(surface->_data);
+    sk_bitmap_be *bmp = static_cast<sk_bitmap_be *>(icon->_data);
+    
+    SDL_SetWindowIcon(wind->window, bmp->surface);
+}
+
+
 void _sk_do_clear(SDL_Renderer *renderer, sk_color clr)
 {
     SDL_SetRenderDrawColor(renderer,
