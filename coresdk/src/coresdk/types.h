@@ -111,6 +111,11 @@ struct rectangle
     float width, height;
 };
 
+struct quad
+{
+    point_2d points[4];
+};
+
 /// Circles have a center point and a radius. This means that, unlike other shapes
 /// like the `Rectangle`, the circle extends out both left and right, and up and down
 /// from the point you position it at.

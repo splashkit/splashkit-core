@@ -202,6 +202,69 @@ void test_triangle_drawing(window w1)
     free_timer(t);
 }
 
+void test_quad_drawing(window w1)
+{
+    timer t = create_timer("shape drawing timer");
+    start_timer(t);
+    
+    clear_screen(COLOR_WHITE);
+    draw_text("Drawing Quads", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    point_2d tl;
+    quad q;
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        tl = random_screen_point();
+        q = quad_from(tl, point_at(tl.x + 100, tl.y + 25), point_at(tl.x + 25, tl.y + 100), point_at(tl.x + 125, tl.y + 125));
+        
+        if ( timer_ticks(t) < 1500)
+            draw_quad(random_rgb_color(128), q);
+        else
+        {
+            fill_quad(random_rgb_color(128), q);
+        }
+        
+        refresh_screen();
+    }
+    
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Draw Triangles to Bitmap", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    bitmap bmp = create_bitmap("bitmap", 300, 300);
+    drawing_options opts = option_draw_to(bmp);
+    
+    clear_bitmap(bmp, COLOR_WHEAT);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        tl = random_screen_point();
+        q = quad_from(tl, point_at(tl.x + 100, tl.y + 25), point_at(tl.x + 25, tl.y + 100), point_at(tl.x + 125, tl.y + 125));
+
+        
+        if ( timer_ticks(t) < 1500)
+        {
+            draw_quad(random_rgb_color(128), q, opts);
+        }
+        else
+        {
+            fill_quad(random_rgb_color(128), q, opts);
+        }
+        
+        draw_bitmap(bmp, 150, 150);
+        
+        refresh_screen();
+    }
+    
+    free_bitmap(bmp);
+    free_timer(t);
+}
+
 void test_aa_rect_drawing(window w1)
 {
     timer t = create_timer("shape drawing timer");
@@ -288,6 +351,7 @@ void run_shape_drawing_test()
     test_circle_drawing(w1);
     test_aa_rect_drawing(w1);
     test_triangle_drawing(w1);
+    test_quad_drawing(w1);
     
     close_window(w1);
 }

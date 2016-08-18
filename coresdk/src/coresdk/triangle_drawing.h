@@ -43,6 +43,4 @@ void fill_triangle(color clr, const triangle &tri, drawing_options opts);
 
 void fill_triangle(color clr, const triangle &tri);
 
-
-
 #endif /* triangle_drawing_hpp */

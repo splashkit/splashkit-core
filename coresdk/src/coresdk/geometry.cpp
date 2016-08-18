@@ -7,6 +7,9 @@
 //
 
 #include "geometry.h"
+#include "window_manager.h"
+#include "graphics.h"
+#include "random.h"
 
 rectangle rectangle_from(float x, float y, float width, float height)
 {
@@ -65,5 +68,30 @@ triangle triangle_from(point_2d p1, point_2d p2, point_2d p3)
     result.points[0] = p1;
     result.points[1] = p2;
     result.points[2] = p3;
+    return result;
+}
+
+quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4)
+{
+    quad result;
+    
+    result.points[0] = p1;
+    result.points[1] = p2;
+    result.points[2] = p3;
+    result.points[3] = p4;
+    
+    return result;
+}
+
+point_2d random_screen_point()
+{
+    return random_window_point(current_window());
+}
+
+point_2d random_window_point(window wind)
+{
+    point_2d result;
+    result.x = rnd() * screen_width();
+    result.y = rnd() * screen_height();
     return result;
 }

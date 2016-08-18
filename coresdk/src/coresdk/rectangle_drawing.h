@@ -44,5 +44,11 @@ void fill_rectangle(color clr, const rectangle rect, drawing_options opts);
 
 void fill_rectangle(color clr, const rectangle rect);
 
+void draw_quad(color clr, const quad &q);
+void draw_quad(color clr, const quad &q, drawing_options opts);
+
+void fill_quad(color clr, const quad &q);
+void fill_quad(color clr, const quad &q, drawing_options opts);
+
 
 #endif /* rectangle_drawing_hpp */

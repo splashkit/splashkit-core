@@ -102,3 +102,52 @@ void fill_rectangle(color clr, const rectangle rect)
 {
     fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
 }
+
+void draw_quad(color clr, const quad &q)
+{
+    draw_quad(clr, q, option_defaults());
+}
+
+void draw_quad(color clr, const quad &q, drawing_options opts)
+{
+    sk_drawing_surface *surface;
+    
+    surface = to_surface_ptr(opts.dest);
+    
+    if (surface)
+    {
+        float pts[8];
+        for(int i = 0; i < 4; i++)
+        {
+            pts[i * 2] = q.points[i].x;
+            pts[i * 2 + 1] = q.points[i].y;
+            xy_from_opts(opts, pts[i * 2], pts[i * 2 + 1]);
+        }
+        sk_draw_rect(surface, clr, pts, 8);
+    }
+}
+
+void fill_quad(color clr, const quad &q)
+{
+    fill_quad(clr, q, option_defaults());
+}
+
+void fill_quad(color clr, const quad &q, drawing_options opts)
+{
+    sk_drawing_surface *surface;
+    
+    surface = to_surface_ptr(opts.dest);
+    
+    if (surface)
+    {
+        float pts[8];
+        for(int i = 0; i < 4; i++)
+        {
+            pts[i * 2] = q.points[i].x;
+            pts[i * 2 + 1] = q.points[i].y;
+            xy_from_opts(opts, pts[i * 2], pts[i * 2 + 1]);
+        }
+        sk_fill_rect(surface, clr, pts, 8);
+    }
+}
+
