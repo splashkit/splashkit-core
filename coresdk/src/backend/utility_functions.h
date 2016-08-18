@@ -27,6 +27,8 @@ bool directory_exists(string path);
 
 #define ASSIGNED(ptr) ( ptr != nullptr )
 
+#define MIN(a,b) ( a < b ? a : b )
+#define MAX(a,b) ( a > b ? a : b )
 
 string cat(std::initializer_list<string> list);
 

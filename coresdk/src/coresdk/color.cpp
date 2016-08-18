@@ -13,6 +13,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include "utility_functions.h"
+
 template< typename _t >
 std::string int_to_hex( _t i )
 {
@@ -67,20 +69,6 @@ color rgb_color(float red, float green, float blue)
 {
     return rgba_color(red, green, blue, 1.0f);
 }
-
-/// returns color to string.
-///
-string color_to_string(color c)
-{
-    string r, g, b, a;
-    r =  static_cast<byte>(c.r * 1.0f);
-    g =  static_cast<byte>(c.g * 1.0f);
-    b =  static_cast<byte>(c.b * 1.0f);
-    a =  static_cast<byte>(c.a * 1.0f);
-
-    return string("#") + int_to_hex(r) + int_to_hex(g) + int_to_hex(b) + int_to_hex(a);
-}
-
 
 /// _returs a color from a combination of hue, saturation, and brightness.
 ///
@@ -142,6 +130,130 @@ color hsb_color(float hue, float saturation, float brightness)
     }
 
     return rgb_color(red, green, blue);
+}
+
+void hsb_value_of(color c, float &h, float &s, float &b)
+{
+    float rf, gf, bf;
+    float min_rgb, max_rgb, delta;
+
+    h = 0.0 ;
+    
+    rf = c.r;
+    gf = c.g;
+    bf = c.b;
+    
+    min_rgb = MIN(MIN(rf, gf), bf);
+    max_rgb = MAX(MAX(rf, gf), bf);
+    delta = (max_rgb - min_rgb);
+    
+    b = max_rgb;
+    if (max_rgb != 0.0)
+        s = delta / max_rgb;
+    else
+        s = 0.0;
+    
+    if (s != 0.0)
+    {
+        if (rf == max_rgb) h = (gf - bf) / delta;
+        else if (gf == max_rgb) h = 2.0 + (bf - rf) / delta;
+        else if (bf == max_rgb) h = 4.0 + (rf - gf) / delta;
+        else raise_warning("Error converting color to hsb");
+    }
+    else
+    {
+        h = -1.0;
+    }
+    
+    h = h * 60 ;
+    if (h < 0.0) h += 360.0;
+    
+    h = h / 360.0;
+}
+
+string color_to_string(color c)
+{
+    stringstream result;
+    result << '#' << hex << std::setfill ('0') << std::setw(2) << static_cast<int>(red_of(c)) << static_cast<int>(green_of(c)) << static_cast<int>(blue_of(c)) << static_cast<int>(alpha_of(c));
+    return result.str();
+}
+
+color string_to_color(string str)
+{
+    if (str[0] != '#' || not ( str.length() == 7 || str.length() == 9 ))
+    {
+        raise_warning("Color string needs to start with a # and be 7 or 9 characters long");
+        return COLOR_WHITE;
+    }
+    
+    unsigned int clr_int;
+    byte r, g, b, a;
+    
+    str.erase(str.begin());     // Remove the #
+    
+    stringstream ss;
+    ss << hex << str;
+    ss >> clr_int;
+    
+    r = static_cast<byte>(clr_int >> 24);
+    g = static_cast<byte>(clr_int >> 16);
+    b = static_cast<byte>(clr_int >> 8);
+    
+    if ( str.length() == 8 )
+        a = static_cast<byte>(clr_int >> 0);
+    else
+        a = 255;
+
+    
+    return rgba_color(r, g, b, a);
+}
+
+byte transparency_of(color c)
+{
+    return static_cast<byte>(255 * c.a);
+}
+
+byte alpha_of(color c)
+{
+    return static_cast<byte>(255 * c.a);
+}
+
+byte red_of(color c)
+{
+    return static_cast<byte>(255 * c.r);
+}
+
+byte green_of(color c)
+{
+    return static_cast<byte>(255 * c.g);
+}
+
+byte blue_of(color c)
+{
+    return static_cast<byte>(255 * c.b);
+}
+
+
+float hue_of(color c)
+{
+    float h, s, b;
+    hsb_value_of(c, h, s, b);
+    return h;
+}
+
+
+float saturation_of(color c)
+{
+    float h, s, b;
+    hsb_value_of(c, h, s, b);
+    return s;
+}
+
+float brightness_of(color c)
+{
+    float h, s, b;
+    hsb_value_of(c, h, s, b);
+    return b;
 }
 
 color color_grey()
