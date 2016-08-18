@@ -111,6 +111,19 @@ struct rectangle
     float width, height;
 };
 
+/// Quads (Quadrilaterals) are shapes with 4 sides, but unlike `Rectangle`, these shapes can have axis that
+/// do not line up with screen/bitmap axis.
+///
+/// Points should be constructed with the top left as the first point, top right as the second,
+/// bottom left as the third, and bottom right as the last point. Other orders may give unexpected
+/// outcomes.
+///
+/// @struct Quad
+struct quad
+{
+    point_2d points[4];
+};
+
 /// Circles have a center point and a radius. This means that, unlike other shapes
 /// like the `Rectangle`, the circle extends out both left and right, and up and down
 /// from the point you position it at.

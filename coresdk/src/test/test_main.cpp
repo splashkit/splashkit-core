@@ -32,9 +32,11 @@ int main()
         cout << "  8: Text" << endl;
         cout << "  9: Timers" << endl;
         cout << " 10: Windows" << endl;
+        cout << " 11: Physics" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
         
+//        cin.ignore(INT_MAX);
         cin >> opt;
         
         switch (opt) {
@@ -68,7 +70,9 @@ int main()
             case 10:
                 run_windows_tests();
                 break;
-                
+            case 11:
+                run_physics_test();
+                break;
             default:
                 break;
         }
