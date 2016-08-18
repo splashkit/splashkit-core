@@ -10,14 +10,12 @@
 #define geometry_hpp
 
 #include "types.h"
-#include "window_manager.h"
-#include "images.h"
+#include "point_geometry.h"
 
 rectangle rectangle_from(float x, float y, float width, float height);
 
 vector_2d vector_to(float x, float y);
 
-point_2d point_at(float x, float y);
 
 circle circle_at(const point_2d &pt, float radius);
 
@@ -29,11 +27,6 @@ triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
 
 quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4);
 
-point_2d random_screen_point();
-
-point_2d random_window_point(window wind);
-
-point_2d random_bitmap_point(bitmap bmp);
 
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
 

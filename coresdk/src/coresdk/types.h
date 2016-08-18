@@ -135,6 +135,15 @@ struct triangle
     point_2d points[3];
 };
 
+/**
+ * A line goes from a start point to an end point.
+ */
+struct line
+{
+    point_2d start_point;
+    point_2d end_point;
+};
+
 /// Determines the effect of the camera on a drawing operation.
 /// `DRAW_TO_SCREEN` means camera has no affect.
 /// `DRAW_TO_WORLD` means camera has an affect.
