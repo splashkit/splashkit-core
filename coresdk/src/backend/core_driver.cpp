@@ -74,6 +74,8 @@ void sk_setup_display(int idx, sk_display &disp)
     SDL_DisplayMode mode;
     SDL_Rect rect;
 
+    disp.id = DISPLAY_PTR;
+    
     disp.name = SDL_GetDisplayName(idx);
 
     SDL_GetCurrentDisplayMode(idx, &mode);

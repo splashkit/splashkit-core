@@ -23,6 +23,8 @@
 static Mix_Chunk * _sk_sound_channels[SG_MAX_CHANNELS];
 static sk_sound_data * _current_music  = NULL;
 
+// access system data from core driver
+extern sk_system_data _sk_system_data;
 
 void sk_init_audio()
 {

@@ -6,8 +6,6 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "test_text.hpp"
-
 #include "text.h"
 #include "graphics.h"
 #include "input.h"

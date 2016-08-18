@@ -12,6 +12,11 @@
 #include "types.h"
 #include "window_manager.h"
 
+#include "text_input.h"
+#include "mouse_input.h"
+#include "keyboard_input.h"
+
+
 /// ProcessEvents allows SplashKit to react to user interactions. This
 /// procedure checks the current keyboard and mouse states and should be
 /// called once within your game loop to check user interaction.

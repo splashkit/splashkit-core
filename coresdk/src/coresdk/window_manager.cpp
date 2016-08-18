@@ -184,3 +184,51 @@ void set_current_window(string name)
 {
     set_current_window(window_named(name));
 }
+
+bool window_close_requested(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to check if invalid window closed");
+        return true;
+    }
+    
+    return sk_get_window_event_data(&wind->image.surface).close_requested;
+}
+
+bool window_close_requested(string name)
+{
+    return window_close_requested(window_named(name));
+}
+
+int window_width(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to get width of invalid window");
+        return true;
+    }
+
+    return wind->image.surface.width;
+}
+
+int window_width(string name)
+{
+    return window_width(window_named(name));
+}
+
+int window_height(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to get height of invalid window");
+        return true;
+    }
+    
+    return wind->image.surface.height;
+}
+
+int window_height(string name)
+{
+    return window_height(window_named(name));
+}

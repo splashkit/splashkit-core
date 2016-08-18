@@ -6,8 +6,6 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "resources_tests.h"
-
 #include "resources.h"
 #include <iostream>
 

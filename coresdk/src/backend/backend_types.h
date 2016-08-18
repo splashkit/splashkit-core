@@ -47,6 +47,7 @@ enum pointer_identifier
     CONNECTION_PTR =        0x434f4e50, //'CONP';
     MESSAGE_PTR =           0x4d534750, //'MSGP';
     SERVER_SOCKET_PTR =     0x53565253, //'SVRS';
+    DISPLAY_PTR =           0x44495350, //'DISP';
     NONE_PTR =              0x4e4f4e45  //'NONE';
 };
 

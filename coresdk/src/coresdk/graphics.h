@@ -9,9 +9,11 @@
 #ifndef graphics_hpp
 #define graphics_hpp
 
-#include "color.h"
 #include "drawing_options.h"
-#include "geometry.h"
+
+#include "circle_drawing.h"
+#include "rectangle_drawing.h"
+#include "triangle_drawing.h"
 
 //---------------------------------------------------------------------------------------------------------
 // Screen management...
@@ -32,109 +34,44 @@ void refresh_screen(unsigned int target_fps);
 
 void clear_screen(color clr);
 
-//---------------------------------------------------------------------------------------------------------
-// Circle Drawing...
-//---------------------------------------------------------------------------------------------------------
+/**
+ * Returns the width of the current window.
+ */
+int screen_width();
 
-/// Draw a circle using the supplied drawing options.
+/**
+ * Returns the height of the current window.
+ */
+int screen_height();
+
+/// Saves the current screen a bitmap file. The file will be saved into the
+/// current directory.
 ///
-void draw_circle(color clr, float x, float y, float radius, drawing_options opts);
-
-/// Draw a circle onto the current window.
+/// @param basename   The base name for the screen shot. e.g. "GemCollector"
 ///
-void draw_circle(color clr, float x, float y, float radius);
-
-/// Draw a circle onto a destination bitmap.
+/// Side Effects:
+/// - Saves the current screen image to a bitmap file.
 ///
-/// @lib draw_circleStructOpts
-/// @sn draw_circleColor:%s data:%s opts:%s
-void draw_circle(color clr, circle &c, drawing_options opts);
+/// @lib TakeScreenshot
+void take_screenshot(const string &basename);
 
-/// Draw a circle in the game.
-///
-/// @lib draw_circleStruct
-/// @sn draw_circleColor:%s data:%s
-void draw_circle(color clr, circle &c);
+void take_screenshot(window wind, const string &basename);
 
+void save_bitmap(bitmap bmp, const string &basename);
 
-/// Fill a circle onto a destination bitmap.
-///
-/// @lib fill_circleOpts
-/// @sn fill_circleColor:%s atX:%s y:%s radius:%s opts:%s
-void fill_circle(color clr, float x, float y, float radius, drawing_options opts);
+int number_of_displays();
 
-/// Fill a circle in the game.
-///
-/// @lib
-/// @sn fill_circleColor:%s atX:%s y:%s radius:%s
-///
-/// @doc_idx 0
-void fill_circle(color clr, float x, float y, float radius);
+display display_details(unsigned int index);
 
-/// Fill a circle onto a destination bitmap.
-///
-/// @lib fill_circleStructOpts
-/// @sn fill_circleColor:%s data:%s opts:%s
-void fill_circle(color clr, circle &c,drawing_options opts);
+string display_name(display disp);
 
-/// Fill a circle in the game.
-///
-/// @lib fill_circleStruct
-/// @sn fill_circleColor:%s data:%s
-void fill_circle(color clr, circle &c);
+int display_width(display disp);
 
-/// Draw a rectangle using the supplied drawing options.
-///
-/// @lib DrawRectangleOpts
-/// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
-void draw_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
+int display_height(display disp);
 
-/// Draw a rectangle onto the current window.
-///
-/// @lib DrawRectangle
-/// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s
-void draw_rectangle(color clr, float x, float y, float width, float height);
+int display_x(display disp);
 
-/// Fill a rectangle using the supplied drawing options.
-///
-/// @lib FillRectangleOpts
-/// @sn fillRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
-void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
-
-/// Fill a rectangle onto the current window.
-///
-void fill_rectangle(color clr, float x, float y, float width, float height);
-
-
-//---------------------------------------------------------------------------------------------------------
-// Triangle Drawing...
-//---------------------------------------------------------------------------------------------------------
-
-/// Draw a triangle onto a destination bitmap.
-///
-/// @lib DrawTriangleOpts
-/// @sn drawTriangleColor:%s atX1:%s y1:%s x2:%s y2:%s x3:%s y3:%s opts:%s
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
-
-/// Draw a triangle in the game.
-///
-/// @lib
-/// @sn drawTriangleColor:%s atX1:%s y1:%s x2:%s y2:%s x3:%s y3:%s
-///
-/// @doc_idx 0
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
-
-///// Draw a triangle onto a destination bitmap.
-/////
-///// @lib DrawTriangleStructOpts
-///// @sn drawTriangleColor:%s data:%s opts:%s
-//procedure DrawTriangle(clr : Color; const tri: Triangle; const opts : DrawingOptions); overload;
-//
-///// Draw a triangle in the game.
-/////
-///// @lib DrawTriangleStruct
-///// @sn drawTriangleColor:%s data:%s
-//procedure DrawTriangle(clr : Color; const tri: Triangle);
+int display_y(display disp);
 
 
 

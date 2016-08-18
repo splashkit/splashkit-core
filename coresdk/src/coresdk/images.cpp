@@ -110,6 +110,36 @@ bitmap load_bitmap(string name, string filename)
     return result;
 }
 
+bitmap create_bitmap(string name, int width, int height)
+{
+    bitmap result = new(_bitmap_data);
+    
+    result->id = BITMAP_PTR;
+    result->image.surface = sk_create_bitmap(width, height);
+    
+    result->cell_w     = width;
+    result->cell_h     = height;
+    result->cell_cols  = 1;
+    result->cell_rows  = 1;
+    result->cell_count = 1;
+    
+    result->filename   = "";
+    
+    int idx = 0;
+    string key = name;
+    while (has_bitmap(key))
+    {
+        key = name + to_string(idx);
+        idx++;
+    }
+
+    result->name       = key;
+    
+    _bitmaps[key] = result;
+    
+    return result;
+}
+
 void free_bitmap(bitmap bmp)
 {
     if ( VALID_PTR(bmp, BITMAP_PTR) )
@@ -145,6 +175,23 @@ void free_all_bitmaps()
         }
     }
 }
+
+void clear_bitmap(bitmap bmp, color clr)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to clear invalid bitmap");
+        return;
+    }
+    
+    sk_clear_drawing_surface(&bmp->image.surface, clr);
+}
+
+void clear_bitmap(string name, color clr)
+{
+    clear_bitmap(bitmap_named(name), clr);
+}
+
 
 void draw_bitmap(bitmap bmp, float x, float y)
 {
@@ -254,4 +301,36 @@ void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int
     bmp->cell_cols  = columns;
     bmp->cell_rows  = rows;
     bmp->cell_count = count;
+}
+
+int bitmap_width(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get width of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->image.surface.width;
+}
+
+int bitmap_width(string name)
+{
+    return bitmap_width(bitmap_named(name));
+}
+
+int bitmap_height(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get height of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->image.surface.height;
+}
+
+int bitmap_height(string name)
+{
+    return bitmap_height(bitmap_named(name));
 }

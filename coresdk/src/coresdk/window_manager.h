@@ -40,9 +40,46 @@ void set_current_window(window wind);
 
 void set_current_window(string name);
 
+bool window_close_requested(window wind);
+
+bool window_close_requested(string name);
 
 void refresh_window(window wind);
 
 void clear_window(window wind, color clr);
+
+/**
+ * Returns the width of the window in pixels.
+ *
+ * @attribute class window
+ * @attribute getter width
+ */
+int window_width(window wind);
+
+/**
+ * Returns the width of the window with the indicated name in pixels.
+ *
+ * @attribute class window
+ * @attribute getter width
+ */
+int window_width(string name);
+
+/**
+ * Returns the height of the window in pixels.
+ *
+ * @attribute class window
+ * @attribute getter height
+ */
+int window_height(window wind);
+
+/**
+ * Returns the height of the window with the indicated name in pixels.
+ *
+ * @attribute class window
+ * @attribute getter height
+ */
+int window_height(string name);
+
+
 
 #endif /* window_manager_hpp */

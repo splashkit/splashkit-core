@@ -6,14 +6,9 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "test_input.hpp"
-
 #include "graphics.h"
 #include "text.h"
 #include "input.h"
-#include "text_input.h"
-#include "mouse_input.h"
-#include "keyboard_input.h"
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 

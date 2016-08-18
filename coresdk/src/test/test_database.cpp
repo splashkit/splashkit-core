@@ -6,7 +6,6 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "test_database.hpp"
 #include "database.h"
 #include "utils_driver.h"
 #include <iostream>

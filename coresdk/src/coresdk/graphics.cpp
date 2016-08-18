@@ -9,12 +9,12 @@
 #include "graphics.h"
 #include "window_manager.h"
 #include "utils.h"
-#include "drawing_options.h"
 #include "camera.h"
 
 #include "utility_functions.h"
 
 #include "graphics_driver.h"
+#include "core_driver.h"
 
 #include <map>
 
@@ -58,158 +58,147 @@ void clear_screen(color clr)
     clear_window(_current_window, clr);
 }
 
-//----------------------------------------------------------------------------
-// Circle drawing
-//----------------------------------------------------------------------------
-
-
-void draw_circle(color clr, float x, float y, float radius, drawing_options opts)
+int screen_width()
 {
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    xy_from_opts(opts, x, y);
-    
-    if (surface)
-        sk_draw_circle(surface, clr, x, y, radius);
+    return window_width(current_window());
 }
 
-void draw_circle(color clr, float x, float y, float radius)
+int screen_height()
 {
-    draw_circle(clr, x, y, radius, option_defaults());
+    return window_height(current_window());
 }
 
-void draw_circle(color clr, circle &c, drawing_options opts)
+void _save_surface(image_data &image, string basename)
 {
-    draw_circle(clr, c.center.x, c.center.y, c.radius, opts);
-}
-
-void draw_circle(color clr, circle &c)
-{
-    draw_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
-}
-
-
-void fill_circle(color clr, float x, float y, float radius, drawing_options opts)
-{
-    sk_drawing_surface *surface;
+    string path = path_from( {path_to_user_home(), "Desktop"} );
     
-    surface = to_surface_ptr(opts.dest);
-    
-    xy_from_opts(opts, x, y);
-    
-    if (surface)
-        sk_fill_circle(surface, clr, x, y, radius);
-}
-
-void fill_circle(color clr, float x, float y, float radius)
-{
-    fill_circle(clr, x, y, radius, option_defaults());
-}
-
-void fill_circle(color clr, circle &c,drawing_options opts)
-{
-    fill_circle(clr, c.center.x, c.center.y, c.radius, opts);
-}
-
-void fill_circle(color clr, circle &c)
-{
-    fill_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
-}
-
-
-//----------------------------------------------------------------------------
-// Rectangle drawing
-//----------------------------------------------------------------------------
-
-void draw_rectangle(color clr, float x, float y, float width, float height, drawing_options opts)
-{
-    if ( width == 0 || height == 0 ) return;
-    
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    if (surface)
+    if (not directory_exists(path))
     {
-        if (width < 0)
-        {
-            x = x + width; //move back by width
-            width = -width;
-        }
-        
-        if (height < 0)
-        {
-            y = y + height; //move up by height
-            height = -height;
-        }
-        
-        xy_from_opts(opts, x, y);
-        sk_draw_aa_rect(surface, clr, x, y, width, height);
+        path = path_to_user_home();
     }
-}
-
-void draw_rectangle(color clr, float x, float y, float width, float height)
-{
-    draw_rectangle(clr, x, y, width, height, option_defaults());
-}
-
-void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts)
-{
-    if ( width == 0 || height == 0 ) return;
     
-    sk_drawing_surface *surface;
+    string filename = basename + ".png";
     
-    surface = to_surface_ptr(opts.dest);
+    int i = 1;
     
-    if (surface)
+    while (file_exists( path_from({path}, filename)))
     {
-        if (width < 0)
-        {
-            x = x + width; //move back by width
-            width = -width;
-        }
-        
-        if (height < 0)
-        {
-            y = y + height; //move up by height
-            height = -height;
-        }
-        
-        xy_from_opts(opts, x, y);
-        sk_fill_aa_rect(surface, clr, x, y, width, height);
+        filename = basename + to_string(i) + ".png";
+        i = i + 1;
     }
+    
+    path = path_from( { path }, filename);
+    
+    sk_save_png(&image.surface, path.c_str());
 }
 
-void fill_rectangle(color clr, float x, float y, float width, float height)
+void take_screenshot(const string &basename)
 {
-    fill_rectangle(clr, x, y, width, height, option_defaults());
+    take_screenshot(current_window(), basename);
 }
 
-
-
-//----------------------------------------------------------------------------
-// Rectangle drawing
-//----------------------------------------------------------------------------
-
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+void take_screenshot(window wind, const string &basename)
 {
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    if (surface)
+    if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        xy_from_opts(opts, x1, y1);
-        xy_from_opts(opts, x2, y2);
-        xy_from_opts(opts, x3, y3);
-
-        sk_draw_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        raise_warning("Attempting to save screenshot of invalid window");
+        return;
     }
+    
+    _save_surface(wind->image, basename);
 }
 
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+void save_bitmap(bitmap bmp, const string &basename)
 {
-    draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to save image of invalid bitmap");
+        return;
+    }
+    
+    _save_surface(bmp->image, basename);
+}
+
+int number_of_displays()
+{
+    sk_system_data *data = sk_read_system_data();
+    
+    if ( not data )
+    {
+        raise_warning("Failed to load system data");
+        return 0;
+    }
+    
+    return data->num_displays;
+}
+
+display display_details(unsigned int index)
+{
+    sk_system_data *data = sk_read_system_data();
+    
+    if ( not data )
+    {
+        raise_warning("Failed to load system data");
+        return 0;
+    }
+    
+    if ( index < data->num_displays )
+        return &data->displays[index];
+    else
+        return nullptr;
+}
+
+string display_name(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get name of invalid display");
+        return "";
+    }
+    
+    return string(disp->name);
+}
+
+int display_width(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get width of invalid display");
+        return 0;
+    }
+    
+    return disp->width;
+}
+
+int display_height(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get height of invalid display");
+        return 0;
+    }
+    
+    return disp->height;
+}
+
+int display_x(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get x of invalid display");
+        return 0;
+    }
+    
+    return disp->x;
+}
+
+int display_y(display disp)
+{
+    if ( INVALID_PTR(disp, DISPLAY_PTR) )
+    {
+        raise_warning("Attempting to get y of invalid display");
+        return 0;
+    }
+    
+    return disp->y;
 }
