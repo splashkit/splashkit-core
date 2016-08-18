@@ -1195,12 +1195,9 @@ void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int
 // Pixel
 //
 
-void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float x, float y)
 {
-    if ( ! surface || ! surface->_data || data_sz != 2) return;
-
-    // 2 values = 1 point
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
+    if ( ! surface || ! surface->_data ) return;
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1223,7 +1220,7 @@ void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int d
         // when multisample is 1, but without multisample 1
         // double buffer causes flicker
         //
-        SDL_RenderDrawPoint(renderer, x1, y1);
+        SDL_RenderDrawPoint(renderer, x, y);
 
         _sk_complete_render(surface, i);
     }

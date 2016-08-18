@@ -14,6 +14,7 @@
 #include "circle_drawing.h"
 #include "rectangle_drawing.h"
 #include "triangle_drawing.h"
+#include "point_drawing.h"
 
 //---------------------------------------------------------------------------------------------------------
 // Screen management...
