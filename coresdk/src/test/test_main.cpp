@@ -28,18 +28,20 @@ int main()
         cout << "  4: Geometry" << endl;
         cout << "  5: Graphics" << endl;
         cout << "  6: Input" << endl;
-        cout << "  7: Resources" << endl;
-        cout << "  8: Shape drawing" << endl;
-        cout << "  9: Text" << endl;
-        cout << " 10: Timers" << endl;
-        cout << " 11: Windows" << endl;
+        cout << "  7: Physics" << endl;
+        cout << "  8: Resources" << endl;
+        cout << "  9: Shape drawing" << endl;
+        cout << " 10: Text" << endl;
+        cout << " 11: Timers" << endl;
+        cout << " 12: Windows" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
-        
+
+//        cin.ignore(INT_MAX);
         cin >> opt;
         cin.clear();
         cin.ignore(INT_MAX,'\n');
-        
+
         switch (opt) {
             case 1:
                 run_animation_test();
@@ -60,25 +62,27 @@ int main()
                 run_input_test();
                 break;
             case 7:
-                run_resources_tests();
+                run_physics_test();
                 break;
             case 8:
-                run_shape_drawing_test();
+                run_resources_tests();
                 break;
             case 9:
-                run_text_test();
+                run_shape_drawing_test();
                 break;
             case 10:
-                run_timer_test();
+                run_text_test();
                 break;
             case 11:
+                run_timer_test();
+                break;
+            case 12:
                 run_windows_tests();
                 break;
-                
             default:
                 break;
         }
-        
+
         reset_quit();
     } while (opt != -1);
     return 0;

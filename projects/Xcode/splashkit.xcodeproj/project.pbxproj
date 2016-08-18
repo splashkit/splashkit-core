@@ -10,6 +10,11 @@
 		16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16238ACA1D669A2E00A88176 /* rectangle_geometry.cpp */; };
 		16238ACD1D669A2E00A88176 /* rectangle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 16238ACB1D669A2E00A88176 /* rectangle_geometry.h */; };
 		16238ACF1D669D4D00A88176 /* test_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16238ACE1D669D4D00A88176 /* test_geometry.cpp */; };
+		4129D23B1D653F6E000BFD0C /* physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4129D2391D653F6E000BFD0C /* physics.cpp */; };
+		4129D23C1D653F6E000BFD0C /* physics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4129D23A1D653F6E000BFD0C /* physics.h */; };
+		4129D23F1D65404C000BFD0C /* matrix_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4129D23D1D65404C000BFD0C /* matrix_2d.cpp */; };
+		4129D2401D65404C000BFD0C /* matrix_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 4129D23E1D65404C000BFD0C /* matrix_2d.h */; };
+		4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4129D2411D65460F000BFD0C /* test_physics.cpp */; };
 		8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 868012981D483D9400AE3694 /* test_graphics.cpp */; };
 		878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94006A3D1D612C4F003E8A32 /* test_input.cpp */; };
@@ -29,7 +34,6 @@
 		940864711D38F7EC009EA048 /* input_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9408646F1D38F7EC009EA048 /* input_driver.h */; };
 		940864791D390134009EA048 /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940864771D390134009EA048 /* input.cpp */; };
 		9408647A1D390134009EA048 /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 940864781D390134009EA048 /* input.h */; };
-		941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
 		941C8A301D5B2EC1003112B2 /* animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 941C8A2E1D5B2EC1003112B2 /* animations.h */; };
 		941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A311D5CBE30003112B2 /* test_animation.cpp */; };
 		941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A341D5D6FE2003112B2 /* test_text.cpp */; };
@@ -119,6 +123,7 @@
 		94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BEF1D62F70C004D8F8C /* keyboard_input.h */; };
 		94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BF21D62F75E004D8F8C /* text_input.cpp */; };
 		94F66BF51D62F75E004D8F8C /* text_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BF31D62F75E004D8F8C /* text_input.h */; };
+		94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
 		94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* test_resources.cpp */; };
 		F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
 		F86951931D508BF100E1BCC9 /* database_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951911D508BF100E1BCC9 /* database_driver.h */; };
@@ -172,6 +177,11 @@
 		16238ACA1D669A2E00A88176 /* rectangle_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle_geometry.cpp; sourceTree = "<group>"; };
 		16238ACB1D669A2E00A88176 /* rectangle_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle_geometry.h; sourceTree = "<group>"; };
 		16238ACE1D669D4D00A88176 /* test_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_geometry.cpp; sourceTree = "<group>"; };
+		4129D2391D653F6E000BFD0C /* physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physics.cpp; sourceTree = "<group>"; };
+		4129D23A1D653F6E000BFD0C /* physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physics.h; sourceTree = "<group>"; };
+		4129D23D1D65404C000BFD0C /* matrix_2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix_2d.cpp; sourceTree = "<group>"; };
+		4129D23E1D65404C000BFD0C /* matrix_2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_2d.h; sourceTree = "<group>"; };
+		4129D2411D65460F000BFD0C /* test_physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_physics.cpp; sourceTree = "<group>"; };
 		868012981D483D9400AE3694 /* test_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_graphics.cpp; sourceTree = "<group>"; };
 		878BAFE91D52DF3000483C3E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../coresdk/src/test/Resources; sourceTree = "<group>"; };
 		94006A3D1D612C4F003E8A32 /* test_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_input.cpp; sourceTree = "<group>"; };
@@ -339,6 +349,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4129D2381D653F57000BFD0C /* Physics Related */ = {
+			isa = PBXGroup;
+			children = (
+				4129D2391D653F6E000BFD0C /* physics.cpp */,
+				4129D23A1D653F6E000BFD0C /* physics.h */,
+				4129D23D1D65404C000BFD0C /* matrix_2d.cpp */,
+				4129D23E1D65404C000BFD0C /* matrix_2d.h */,
+			);
+			name = "Physics Related";
+			sourceTree = "<group>";
+		};
 		942371D31D1D540C0020CCE2 = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				94B57A691D66736500CE7D55 /* Geometry Related */,
+				4129D2381D653F57000BFD0C /* Physics Related */,
 				94444B2F1D6449FF0059BF3B /* Drawing Related */,
 				94444B2E1D64496F0059BF3B /* Input Related */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
@@ -447,6 +469,7 @@
 				94006A3D1D612C4F003E8A32 /* test_input.cpp */,
 				94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */,
 				16238ACE1D669D4D00A88176 /* test_geometry.cpp */,
+				4129D2411D65460F000BFD0C /* test_physics.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -558,10 +581,12 @@
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
 				94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */,
 				94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */,
+				4129D2401D65404C000BFD0C /* matrix_2d.h in Headers */,
 				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
 				941C8A301D5B2EC1003112B2 /* animations.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
+				4129D23C1D653F6E000BFD0C /* physics.h in Headers */,
 				94F66BF51D62F75E004D8F8C /* text_input.h in Headers */,
 				94B57A681D65CCF300CE7D55 /* clipping.h in Headers */,
 				94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */,
@@ -679,10 +704,10 @@
 				94006A471D61CC83003E8A32 /* mouse_input.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
+				4129D23B1D653F6E000BFD0C /* physics.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */,
 				94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */,
-				941C8A2F1D5B2EC1003112B2 /* animations.cpp in Sources */,
 				94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
 				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
@@ -700,10 +725,12 @@
 				94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */,
 				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
+				94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */,
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,
 				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,
 				940864701D38F7EC009EA048 /* input_driver.cpp in Sources */,
 				940864641D38B756009EA048 /* window_manager.cpp in Sources */,
+				4129D23F1D65404C000BFD0C /* matrix_2d.cpp in Sources */,
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
@@ -723,6 +750,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
+				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
