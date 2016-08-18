@@ -16,6 +16,7 @@
 #include "triangle_drawing.h"
 #include "point_drawing.h"
 #include "ellipse_drawing.h"
+#include "line_drawing.h"
 
 //---------------------------------------------------------------------------------------------------------
 // Screen management...

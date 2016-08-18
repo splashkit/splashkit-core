@@ -1336,16 +1336,16 @@ void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y,
 // Lines
 //
 
-void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float size)
 {
-    if ( ! surface || ! surface->_data || data_sz != 5) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 2 points
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int x2 = static_cast<int>(data[2]), y2 = static_cast<int>(data[3]);
+    int x1i = static_cast<int>(x1), y1i = static_cast<int>(y1);
+    int x2i = static_cast<int>(x2), y2i = static_cast<int>(y2);
 
     // 5th value = width (scale)
-    int w = static_cast<int>(data[4]);
+    int w = static_cast<int>(size);
 
     if ( w == 0 ) return;
 
@@ -1363,15 +1363,15 @@ void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int da
                 static_cast<Uint8>(clr.b * 255),
                 static_cast<Uint8>(clr.a * 255));
 
-            SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+            SDL_RenderDrawLine(renderer, x1i, y1i, x2i, y2i);
         }
         else
         {
             thickLineRGBA(renderer,
-                          static_cast<Sint16>(x1),
-                          static_cast<Sint16>(y1),
-                          static_cast<Sint16>(x2),
-                          static_cast<Sint16>(y2),
+                          static_cast<Sint16>(x1i),
+                          static_cast<Sint16>(y1i),
+                          static_cast<Sint16>(x2i),
+                          static_cast<Sint16>(y2i),
                           static_cast<Uint8>(w),
                           static_cast<Uint8>(clr.r * 255),
                           static_cast<Uint8>(clr.g * 255),

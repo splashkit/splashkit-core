@@ -95,3 +95,11 @@ point_2d random_window_point(window wind)
     result.y = rnd() * screen_height();
     return result;
 }
+
+point_2d random_bitmap_point(bitmap bmp)
+{
+    point_2d result;
+    result.x = rnd() * bitmap_width(bmp);
+    result.y = rnd() * bitmap_height(bmp);
+    return result;
+}

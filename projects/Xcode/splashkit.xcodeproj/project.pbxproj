@@ -102,6 +102,8 @@
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; };
 		94B57A5F1D65A5D500CE7D55 /* ellipse_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */; };
 		94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */; };
+		94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A611D65C7B200CE7D55 /* line_drawing.cpp */; };
+		94B57A641D65C7B200CE7D55 /* line_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A621D65C7B200CE7D55 /* line_drawing.h */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
@@ -258,6 +260,8 @@
 		94AC3DB11D657F45002920A5 /* point_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_drawing.h; sourceTree = "<group>"; };
 		94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ellipse_drawing.cpp; sourceTree = "<group>"; };
 		94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ellipse_drawing.h; sourceTree = "<group>"; };
+		94B57A611D65C7B200CE7D55 /* line_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = line_drawing.cpp; sourceTree = "<group>"; };
+		94B57A621D65C7B200CE7D55 /* line_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_drawing.h; sourceTree = "<group>"; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 				94AC3DB11D657F45002920A5 /* point_drawing.h */,
 				94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */,
 				94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */,
+				94B57A611D65C7B200CE7D55 /* line_drawing.cpp */,
+				94B57A621D65C7B200CE7D55 /* line_drawing.h */,
 			);
 			name = "Drawing Related";
 			sourceTree = "<group>";
@@ -514,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				940864691D38BA14009EA048 /* geometry.h in Headers */,
+				94B57A641D65C7B200CE7D55 /* line_drawing.h in Headers */,
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
@@ -649,6 +656,7 @@
 				941C8A3A1D5DD668003112B2 /* timers.cpp in Sources */,
 				F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
+				94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */,
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,

@@ -11,7 +11,7 @@
 
 #include "types.h"
 #include "window_manager.h"
-
+#include "images.h"
 
 rectangle rectangle_from(float x, float y, float width, float height);
 
@@ -32,5 +32,7 @@ quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4);
 point_2d random_screen_point();
 
 point_2d random_window_point(window wind);
+
+point_2d random_bitmap_point(bitmap bmp);
 
 #endif /* geometry_hpp */

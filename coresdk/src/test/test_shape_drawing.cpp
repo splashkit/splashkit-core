@@ -419,17 +419,72 @@ void test_ellipse_drawing(window w1)
     free_timer(t);
 }
 
+void test_line_drawing(window w1)
+{
+    timer t = create_timer("shape drawing timer");
+    start_timer(t);
+    
+    clear_screen(COLOR_WHITE);
+    draw_text("Drawing Lines", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        if ( timer_ticks(t) < 1500)
+            draw_line(random_rgb_color(128), rnd() * screen_width(), rnd() * screen_height(), rnd() * screen_width(), rnd() * screen_height());
+        else
+            draw_line(random_rgb_color(128), random_screen_point(), random_screen_point());
+        
+        refresh_screen();
+    }
+    
+    reset_timer(t);
+    clear_screen(COLOR_WHITE);
+    draw_text("Draw Lines to Bitmap", COLOR_TOMATO, "myfont", 18, 30, 30);
+    
+    bitmap bmp = create_bitmap("bitmap", 300, 300);
+    drawing_options opts = option_draw_to(bmp);
+    
+    clear_bitmap(bmp, COLOR_WHEAT);
+    
+    while( not window_close_requested(w1) and timer_ticks(t) < 3000 )
+    {
+        process_events();
+        
+        opts.line_width = rnd(5) + 1;
+        
+        if ( timer_ticks(t) < 1500)
+        {
+            draw_line(random_rgb_color(128), rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp), rnd() * bitmap_width(bmp), rnd() * bitmap_height(bmp), opts);
+        }
+        else
+        {
+            draw_line(random_rgb_color(128), random_bitmap_point(bmp), random_bitmap_point(bmp), opts);
+        }
+        
+        draw_bitmap(bmp, 150, 150);
+        
+        refresh_screen();
+    }
+    
+    free_bitmap(bmp);
+    free_timer(t);
+}
+
+
 void run_shape_drawing_test()
 {
     window w1 = open_window("Test Shape Drawing", 600, 600);
     
     load_font("myfont", "hara.ttf");
     
-//    test_circle_drawing(w1);
-//    test_aa_rect_drawing(w1);
-//    test_triangle_drawing(w1);
-//    test_quad_drawing(w1);
+    test_circle_drawing(w1);
+    test_aa_rect_drawing(w1);
+    test_triangle_drawing(w1);
+    test_quad_drawing(w1);
     test_ellipse_drawing(w1);
+    test_line_drawing(w1);
     
     close_window(w1);
 }
