@@ -1387,13 +1387,13 @@ void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1,
 // Clipping
 //
 
-void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz)
+void sk_set_clip_rect(sk_drawing_surface *surface, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     switch (surface->kind) {
         case SGDS_Window:

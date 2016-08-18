@@ -10,6 +10,7 @@
 #include "window_manager.h"
 #include "graphics.h"
 #include "random.h"
+#include "utility_functions.h"
 
 rectangle rectangle_from(float x, float y, float width, float height)
 {
@@ -20,6 +21,45 @@ rectangle rectangle_from(float x, float y, float width, float height)
     result.height = height;
     
     return result;
+}
+
+rectangle intersection(const rectangle &rect1, const rectangle &rect2)
+{
+    float r, l, b, t;
+    
+    b = MIN(rectangle_bottom(rect1), rectangle_bottom(rect2));
+    t = MAX(rectangle_top(rect1), rectangle_top(rect2));
+    r = MIN(rectangle_right(rect1), rectangle_right(rect2));
+    l = MAX(rectangle_left(rect1), rectangle_left(rect2));
+    
+    if ((r < l) or (b < t))
+        return rectangle_from(0, 0, 0, 0);
+    else
+        return rectangle_from(l, t, r - l, b - t);
+}
+
+float rectangle_top(const rectangle &rect)
+{
+    if ( rect.height >= 0) return rect.y;
+    else return rect.y + rect.height;
+}
+
+float rectangle_bottom(const rectangle &rect)
+{
+    if ( rect.height >= 0) return rect.y + rect.height;
+    else return rect.y;
+}
+
+float rectangle_left(const rectangle &rect)
+{
+    if ( rect.width >= 0) return rect.x;
+    else return rect.x + rect.width;
+}
+
+float rectangle_right(const rectangle &rect)
+{
+    if ( rect.width >= 0) return rect.x + rect.width;
+    else return rect.x;
 }
 
 vector_2d vector_to(float x, float y)

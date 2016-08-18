@@ -35,4 +35,11 @@ point_2d random_window_point(window wind);
 
 point_2d random_bitmap_point(bitmap bmp);
 
+rectangle intersection(const rectangle &rect1, const rectangle &rect2);
+
+float rectangle_top(const rectangle &rect);
+float rectangle_bottom(const rectangle &rect);
+float rectangle_left(const rectangle &rect);
+float rectangle_right(const rectangle &rect);
+
 #endif /* geometry_hpp */

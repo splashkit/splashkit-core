@@ -17,6 +17,7 @@
 #include "point_drawing.h"
 #include "ellipse_drawing.h"
 #include "line_drawing.h"
+#include "clipping.h"
 
 //---------------------------------------------------------------------------------------------------------
 // Screen management...

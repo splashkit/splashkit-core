@@ -12,9 +12,60 @@
 #include "color.h"
 #include "random.h"
 #include "text.h"
+#include "utils.h"
 
 #include <iostream>
 using namespace std;
+
+void test_clipping(window w1)
+{
+    clear_window(w1, COLOR_WHITE_SMOKE);
+    draw_text("White Smoke Bottom Right", COLOR_BLACK, 10, 280);
+    
+    set_clip(w1, rectangle_from(0, 0, 250, 250));
+    clear_window(w1, COLOR_RED);
+    draw_text("Testing Clipping", COLOR_BLACK, 10, 10);
+    draw_text("Red Top Left", COLOR_BLACK, 10, 20);
+    
+    push_clip(rectangle_from(50, 50, 250, 250));
+    clear_window(w1, COLOR_GREEN);
+    
+    push_clip(rectangle_from(145, 0, 10, 300));
+    clear_window(w1, COLOR_GOLD);
+    
+    pop_clip();
+    push_clip(rectangle_from(0, 145, 300, 10));
+    clear_window(w1, COLOR_GOLD);
+    
+    reset_clip();
+    
+    refresh_screen();
+    delay(3000);
+    
+    bitmap bmp = create_bitmap("bmp", 100, 100);
+    set_clip(bmp, rectangle_from(0, 0, 75, 75));
+    clear_bitmap(bmp, COLOR_RED);
+    push_clip(bmp, rectangle_from(0, 0, 50, 50));
+    clear_bitmap(bmp, COLOR_GREEN);
+    
+    push_clip(bmp, rectangle_from(20, 0, 10, 100));
+    clear_bitmap(bmp, COLOR_GOLD);
+    pop_clip(bmp);
+    
+    push_clip(bmp, rectangle_from(0, 20, 100, 10));
+    clear_bitmap(bmp, COLOR_GOLD);
+    pop_clip(bmp);
+    
+    push_clip(bmp, rectangle_from(0, 0, 25, 25));
+    clear_bitmap(bmp, COLOR_BLUE);
+    reset_clip(bmp);
+    
+    clear_window(w1, COLOR_SILVER);
+    draw_text("Blue > Green > Red from top left of bmp", COLOR_BLACK, 10, 10);
+    draw_bitmap(bmp, 100, 100);
+    refresh_screen();
+    delay(3000);
+}
 
 void run_graphics_test()
 {
@@ -33,6 +84,8 @@ void run_graphics_test()
     }
     
     window w1 = open_window("Testing Graphics", 300, 300);
+    
+    test_clipping(w1);
     
     color in_clr = string_to_color("#ffeebbaa");
     

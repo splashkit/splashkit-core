@@ -79,7 +79,7 @@ void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y,
 
 void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float size);
 
-void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz);
+void sk_set_clip_rect(sk_drawing_surface *surface, float x, float y, float width, float height);
 void sk_clear_clip_rect(sk_drawing_surface *surface);
 
 void sk_to_pixels(sk_drawing_surface *surface, int *pixels, int sz);
