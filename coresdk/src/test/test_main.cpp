@@ -36,6 +36,8 @@ int main()
         cout << " Select test to run: ";
         
         cin >> opt;
+        cin.clear();
+        cin.ignore(INT_MAX,'\n');
         
         switch (opt) {
             case 1:
