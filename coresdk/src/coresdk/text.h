@@ -65,6 +65,8 @@ void draw_text(string text, color clr, string fnt, int font_size, float x, float
 
 void draw_text(string text, color clr, float x, float y, drawing_options opts);
 
+void draw_text(string text, color clr, float x, float y);
+
 int text_length(string text, font fnt, int font_size);
 int text_length(string text, string fnt, int font_size);
 

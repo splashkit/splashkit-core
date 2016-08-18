@@ -235,6 +235,11 @@ void draw_text(string text, color clr, float x, float y, drawing_options opts)
     sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
 }
 
+void draw_text(string text, color clr, float x, float y)
+{
+    draw_text(text, clr, x, y, option_defaults());
+}
+
 int text_length(string text, font fnt, int font_size)
 {
     if ( INVALID_PTR(fnt, FONT_PTR) )
