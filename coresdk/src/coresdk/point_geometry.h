@@ -17,6 +17,11 @@
 point_2d point_at(float x, float y);
 
 /**
+ *  Returns a point representing the origin.
+ */
+point_2d point_at_origin();
+
+/**
  *  Calculate the `point_2d` that is offset from the `start_point` by the `offset`
  */
 point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset);
@@ -60,7 +65,7 @@ bool same_point(const point_2d &pt1, const point_2d &pt2);
 /**
  *  Returns the angle between two points in degrees.
  */
-float CalculateAngleBetween(const point_2d &pt1, const point_2d &pt2);
+float calculate_angle_between(const point_2d &pt1, const point_2d &pt2);
 
 /**
  *  Returns the distance between two points.

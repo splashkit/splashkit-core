@@ -10,6 +10,37 @@
 using namespace std;
 
 #include "geometry.h"
+#include "window_manager.h"
+#include "graphics.h"
+#include "input.h"
+
+void test_points()
+{
+    point_2d p = point_at(10, 20);
+    cout << "Point is at 10,20" << endl;
+    cout << point_to_string(p) << endl;
+    
+    window w1 = open_window("Point Tests", 600, 600);
+    
+    triangle t1 = triangle_from(10, 10, 50, 50, 70, 55);
+    
+    while (not quit_requested())
+    {
+        process_events();
+        
+        clear_screen(COLOR_WHEAT);
+        
+        if ( point_in_triangle(mouse_position(), t1) )
+        {
+            fill_triangle(COLOR_TAN, t1);
+        }
+        draw_triangle(COLOR_RED, t1);
+        
+        refresh_screen();
+    }
+    
+    close_window(w1);
+}
 
 void run_geometry_test()
 {
@@ -31,4 +62,6 @@ void run_geometry_test()
     
     cout << "Intersection should be 15,30 25x30" << endl;
     cout << "Intersection is " << rectangle_to_string(intersect) << endl;
+    
+    test_points();
 }
