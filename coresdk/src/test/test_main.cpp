@@ -25,13 +25,14 @@ int main()
         cout << "  1: Animations" << endl;
         cout << "  2: Audio" << endl;
         cout << "  3: Databse" << endl;
-        cout << "  4: Graphics" << endl;
-        cout << "  5: Input" << endl;
-        cout << "  6: Resources" << endl;
-        cout << "  7: Shape drawing" << endl;
-        cout << "  8: Text" << endl;
-        cout << "  9: Timers" << endl;
-        cout << " 10: Windows" << endl;
+        cout << "  4: Geometry" << endl;
+        cout << "  5: Graphics" << endl;
+        cout << "  6: Input" << endl;
+        cout << "  7: Resources" << endl;
+        cout << "  8: Shape drawing" << endl;
+        cout << "  9: Text" << endl;
+        cout << " 10: Timers" << endl;
+        cout << " 11: Windows" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
         
@@ -50,24 +51,27 @@ int main()
                 run_database_tests();
                 break;
             case 4:
-                run_graphics_test();
+                run_geometry_test();
                 break;
             case 5:
-                run_input_test();
+                run_graphics_test();
                 break;
             case 6:
-                run_resources_tests();
+                run_input_test();
                 break;
             case 7:
-                run_shape_drawing_test();
+                run_resources_tests();
                 break;
             case 8:
-                run_text_test();
+                run_shape_drawing_test();
                 break;
             case 9:
-                run_timer_test();
+                run_text_test();
                 break;
             case 10:
+                run_timer_test();
+                break;
+            case 11:
                 run_windows_tests();
                 break;
                 

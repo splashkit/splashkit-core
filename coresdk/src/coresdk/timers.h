@@ -49,6 +49,9 @@ timer timer_named(string name);
 
 /**
  * Checks if SplashKit has a timer with the indicated name.
+ *
+ * @attribute class timers
+ * @attribute method has_timer
  */
 bool has_timer(string name);
 
