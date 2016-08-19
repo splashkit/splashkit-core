@@ -11,8 +11,8 @@
 
 #include "types.h"
 #include "point_geometry.h"
+#include "rectangle_geometry.h"
 
-rectangle rectangle_from(float x, float y, float width, float height);
 
 vector_2d vector_to(float x, float y);
 
@@ -28,11 +28,5 @@ triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
 quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4);
 
 
-rectangle intersection(const rectangle &rect1, const rectangle &rect2);
-
-float rectangle_top(const rectangle &rect);
-float rectangle_bottom(const rectangle &rect);
-float rectangle_left(const rectangle &rect);
-float rectangle_right(const rectangle &rect);
 
 #endif /* geometry_hpp */
