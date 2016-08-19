@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16238ACA1D669A2E00A88176 /* rectangle_geometry.cpp */; };
 		16238ACD1D669A2E00A88176 /* rectangle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 16238ACB1D669A2E00A88176 /* rectangle_geometry.h */; };
+		16238ACF1D669D4D00A88176 /* test_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16238ACE1D669D4D00A88176 /* test_geometry.cpp */; };
 		8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 868012981D483D9400AE3694 /* test_graphics.cpp */; };
 		878BAFEB1D52DF4000483C3E /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94006A3D1D612C4F003E8A32 /* test_input.cpp */; };
@@ -170,6 +171,7 @@
 /* Begin PBXFileReference section */
 		16238ACA1D669A2E00A88176 /* rectangle_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle_geometry.cpp; sourceTree = "<group>"; };
 		16238ACB1D669A2E00A88176 /* rectangle_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rectangle_geometry.h; sourceTree = "<group>"; };
+		16238ACE1D669D4D00A88176 /* test_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_geometry.cpp; sourceTree = "<group>"; };
 		868012981D483D9400AE3694 /* test_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_graphics.cpp; sourceTree = "<group>"; };
 		878BAFE91D52DF3000483C3E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../../coresdk/src/test/Resources; sourceTree = "<group>"; };
 		94006A3D1D612C4F003E8A32 /* test_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_input.cpp; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */,
 				94006A3D1D612C4F003E8A32 /* test_input.cpp */,
 				94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */,
+				16238ACE1D669D4D00A88176 /* test_geometry.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
 				941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */,
+				16238ACF1D669D4D00A88176 /* test_geometry.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
