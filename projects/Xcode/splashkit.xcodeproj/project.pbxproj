@@ -98,6 +98,8 @@
 		9424B5C31D4619620039B3AF /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C11D4619620039B3AF /* text.h */; };
 		9424B5C71D461FE00039B3AF /* text_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5C51D461FE00039B3AF /* text_driver.h */; };
 		9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5C41D461FE00039B3AF /* text_driver.cpp */; };
+		943AF76F1D67F53100DBEA84 /* line_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 943AF76D1D67F53000DBEA84 /* line_geometry.cpp */; };
+		943AF7701D67F53100DBEA84 /* line_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 943AF76E1D67F53000DBEA84 /* line_geometry.h */; };
 		94444B321D644AE40059BF3B /* circle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B301D644AE40059BF3B /* circle_drawing.cpp */; };
 		94444B331D644AE40059BF3B /* circle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B311D644AE40059BF3B /* circle_drawing.h */; };
 		94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B341D644B680059BF3B /* rectangle_drawing.cpp */; };
@@ -270,6 +272,8 @@
 		9424B5C11D4619620039B3AF /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		9424B5C41D461FE00039B3AF /* text_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_driver.cpp; sourceTree = "<group>"; };
 		9424B5C51D461FE00039B3AF /* text_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_driver.h; sourceTree = "<group>"; };
+		943AF76D1D67F53000DBEA84 /* line_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = line_geometry.cpp; sourceTree = "<group>"; };
+		943AF76E1D67F53000DBEA84 /* line_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_geometry.h; sourceTree = "<group>"; };
 		94444B301D644AE40059BF3B /* circle_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circle_drawing.cpp; sourceTree = "<group>"; };
 		94444B311D644AE40059BF3B /* circle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circle_drawing.h; sourceTree = "<group>"; };
 		94444B341D644B680059BF3B /* rectangle_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle_drawing.cpp; sourceTree = "<group>"; };
@@ -566,6 +570,8 @@
 				94B57A6B1D66738300CE7D55 /* point_geometry.h */,
 				16238ACA1D669A2E00A88176 /* rectangle_geometry.cpp */,
 				16238ACB1D669A2E00A88176 /* rectangle_geometry.h */,
+				943AF76D1D67F53000DBEA84 /* line_geometry.cpp */,
+				943AF76E1D67F53000DBEA84 /* line_geometry.h */,
 			);
 			name = "Geometry Related";
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
 				94C749231D478BBB006A9052 /* web.h in Headers */,
+				943AF7701D67F53100DBEA84 /* line_geometry.h in Headers */,
 				94C7491D1D478813006A9052 /* web_driver.h in Headers */,
 				9424B5AB1D448ABC0039B3AF /* drawing_options.h in Headers */,
 				9424B5A71D4444F40039B3AF /* random.h in Headers */,
@@ -733,6 +740,7 @@
 				94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */,
 				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
+				943AF76F1D67F53100DBEA84 /* line_geometry.cpp in Sources */,
 				94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */,
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,
 				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,

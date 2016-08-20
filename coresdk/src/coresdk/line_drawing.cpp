@@ -32,12 +32,12 @@ void draw_line(color clr, float x1, float y1, float x2, float y2, drawing_option
     }
 }
 
-void draw_line(color clr, point_2d pt1, point_2d pt2)
+void draw_line(color clr, const line &l)
 {
-    draw_line(clr, pt1.x, pt1.y, pt2.x, pt2.y, option_defaults());
+    draw_line(clr, l.start_point.x, l.start_point.y, l.end_point.x, l.end_point.y, option_defaults());
 }
 
-void draw_line(color clr, point_2d pt1, point_2d pt2, drawing_options opts)
+void draw_line(color clr, const line &l, drawing_options opts)
 {
-    draw_line(clr, pt1.x, pt1.y, pt2.x, pt2.y, opts);
+    draw_line(clr, l.start_point.x, l.start_point.y, l.end_point.x, l.end_point.y, opts);
 }

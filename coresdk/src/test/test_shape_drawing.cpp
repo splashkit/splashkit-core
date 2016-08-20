@@ -434,7 +434,7 @@ void test_line_drawing(window w1)
         if ( timer_ticks(t) < 1500)
             draw_line(random_rgb_color(128), rnd() * screen_width(), rnd() * screen_height(), rnd() * screen_width(), rnd() * screen_height());
         else
-            draw_line(random_rgb_color(128), random_screen_point(), random_screen_point());
+            draw_line(random_rgb_color(128), line_from(random_screen_point(), random_screen_point()));
         
         refresh_screen();
     }
@@ -460,7 +460,7 @@ void test_line_drawing(window w1)
         }
         else
         {
-            draw_line(random_rgb_color(128), random_bitmap_point(bmp), random_bitmap_point(bmp), opts);
+            draw_line(random_rgb_color(128), line_from(random_bitmap_point(bmp), random_bitmap_point(bmp)), opts);
         }
         
         draw_bitmap(bmp, 150, 150);

@@ -16,7 +16,7 @@
 void draw_line(color clr, float x1, float y1, float x2, float y2);
 void draw_line(color clr, float x1, float y1, float x2, float y2, drawing_options opts);
 
-void draw_line(color clr, point_2d pt1, point_2d pt2);
-void draw_line(color clr, point_2d pt1, point_2d pt2, drawing_options opts);
+void draw_line(color clr, const line &l);
+void draw_line(color clr, const line &l, drawing_options opts);
 
 #endif /* line_drawing_h */

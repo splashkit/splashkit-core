@@ -12,7 +12,18 @@
 #include "graphics.h"
 #include "vector_2d.h"
 
+#include "geometry.h"
+
+#include "utility_functions.h"
+
 #include <cmath>
+
+// Used in checking point similarities
+#define SMALL 0.9
+// smallest positive value: less than that to be considered zero
+#define EPS   0.01
+// and its square
+#define EPSEPS 0.0001
 
 point_2d point_at(float x, float y)
 {
@@ -104,15 +115,69 @@ bool point_in_rectangle(const point_2d &pt, const rectangle &rect)
     else return true;
 }
 
+bool same_point(const point_2d &pt1, const point_2d &pt2)
+{
+    return static_cast<int>(pt1.x) == static_cast<int>(pt2.x) and static_cast<int>(pt1.y) == static_cast<int>(pt2.y);
+}
+
 bool point_in_circle(const point_2d &pt, const circle &c)
 {
     return point_point_distance(c.center, pt) <= abs(c.radius);
 }
 
-/**
- *  Returns true if point `pt` is on the line `l`.
- */
-bool point_on_line(const point_2d &pt, const line &l);
+bool point_on_line(const point_2d &pt, const line &l)
+{
+    auto simple_comparison_x_same = [&] ()
+    {
+        float min_y, max_y;
+        
+        min_y = MIN(l.start_point.y, l.end_point.y);
+        max_y = MAX(l.start_point.y, l.end_point.y);
+    
+        return (pt.x >= l.start_point.x - SMALL) and (pt.x <= l.start_point.x + SMALL) and (pt.y >= min_y) and (pt.y <= max_y);
+    };
+    
+    auto simple_comparison_y_same = [&] ()
+    {
+        float min_x, max_x;
+    
+        min_x = MIN(l.start_point.x, l.end_point.x);
+        max_x = MAX(l.start_point.x, l.end_point.x);
+    
+        return (pt.y >= l.start_point.y - SMALL) and (pt.y <= l.start_point.y + SMALL) and (pt.x >= min_x) and (pt.x <= max_x);
+    };
+    
+    float sq_line_mag, lx, ly, m, c;
+    
+    //Lines Magnitude must be at least 0.0001
+    sq_line_mag = line_length_squared(l);
+    if (sq_line_mag < 1.0)
+    {
+        return same_point(pt, l.start_point) or same_point(pt, l.end_point);
+    }
+    
+    //Obtain the other variables for the Line Algorithm
+    if ( l.end_point.x == l.start_point.x )
+    {
+        return simple_comparison_x_same();
+    }
+    if ( l.end_point.y == l.start_point.y)
+    {
+        return simple_comparison_y_same();
+    }
+    
+    m = (l.end_point.y - l.start_point.y) / (l.end_point.x - l.start_point.x);
+    c = l.start_point.y - (m * l.start_point.x);
+    
+    ly = (m * pt.x) + c;
+    lx = (pt.y - c) / m;
+    
+    return (lx >= pt.x - SMALL) and
+        (lx <= pt.x + SMALL) and
+        (ly >= pt.y - SMALL) and
+        (ly <= pt.y + SMALL) and
+        point_in_rectangle(pt, rectangle_around(l));
+}
 
 /**
  *  Returns True of `pt1` is at the same point as `pt2`.

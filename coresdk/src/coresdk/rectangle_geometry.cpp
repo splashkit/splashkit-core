@@ -11,6 +11,7 @@
 #include "utility_functions.h"
 
 #include <sstream>
+#include <cmath>
 
 rectangle rectangle_from(float x, float y, float width, float height)
 {
@@ -20,6 +21,16 @@ rectangle rectangle_from(float x, float y, float width, float height)
     result.width = width;
     result.height = height;
     
+    return result;
+}
+
+rectangle rectangle_around(const line &l)
+{
+    rectangle result;
+    result.x = MIN(l.start_point.x, l.end_point.x);
+    result.y = MIN(l.start_point.y, l.end_point.y);
+    result.width = ceil(MAX(l.start_point.x, l.end_point.x) - result.x);
+    result.height = ceil(MAX(l.start_point.y, l.end_point.y) - result.y);
     return result;
 }
 

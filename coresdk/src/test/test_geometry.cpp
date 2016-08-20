@@ -26,6 +26,7 @@ void test_points()
     rectangle r1 = rectangle_from(200, 200, -75, -100);
     circle c1 = circle_at(300, 300, 100);
     circle c2 = circle_at(300, 300, -10);
+    line l = line_from(point_at_origin(), random_screen_point());
     
     while (not quit_requested())
     {
@@ -57,6 +58,13 @@ void test_points()
             fill_circle(COLOR_RED, c2);
         }
         draw_circle(COLOR_RED, c2);
+        
+        if ( point_on_line(mouse_position(), l))
+        {
+            fill_circle(COLOR_RED, circle_at(l.start_point, 5));
+            fill_circle(COLOR_RED, circle_at(l.end_point, 5));
+        }
+        draw_line(COLOR_RED, l);
         
         refresh_screen();
     }

@@ -15,6 +15,8 @@ using namespace std;
 
 rectangle rectangle_from(float x, float y, float width, float height);
 
+rectangle rectangle_around(const line &l);
+
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
 
 float rectangle_top(const rectangle &rect);
@@ -26,5 +28,7 @@ float rectangle_right(const rectangle &rect);
  *  Get a text representation of the passed in rectangle.
  */
 string rectangle_to_string(const rectangle &rect);
+
+
 
 #endif /* rectangle_geometry_H */

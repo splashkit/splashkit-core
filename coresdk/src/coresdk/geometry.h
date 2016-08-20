@@ -12,6 +12,7 @@
 #include "types.h"
 #include "point_geometry.h"
 #include "rectangle_geometry.h"
+#include "line_geometry.h"
 
 
 vector_2d vector_to(float x, float y);
