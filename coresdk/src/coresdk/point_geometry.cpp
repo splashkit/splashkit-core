@@ -93,15 +93,19 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri)
     return ((u > 0) and (v > 0) and (u + v < 1));
 }
 
-/**
- *  Returns true if point `pt` is in the Rectangle `rect`.
- */
-bool point_in_rect(const point_2d &pt, const rectangle &rect);
+bool point_in_rectangle(const point_2d &pt, const rectangle &rect)
+{
+    if (pt.x < rectangle_left(rect)) return false;
+    else if (pt.x > rectangle_right(rect)) return false;
+    else if (pt.y < rectangle_top(rect)) return false;
+    else if (pt.y > rectangle_bottom(rect)) return false;
+    else return true;
+}
 
 /**
  *  Returns true if the point `pt` is in the circle `c`.
  */
-bool point_in_circle(const point_2d pt, const circle &c);
+bool point_in_circle(const point_2d &pt, const circle &c);
 
 /**
  *  Returns true if point `pt` is on the line `l`.

@@ -31,10 +31,19 @@ point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset);
  */
 string point_to_string(const point_2d &pt);
 
+/**
+ *  Returns a random point on the current window.
+ */
 point_2d random_screen_point();
 
+/**
+ *  Returns a random point on the provided window.
+ */
 point_2d random_window_point(window wind);
 
+/**
+ *  Returns a random point within the bounds of the bitmap.
+ */
 point_2d random_bitmap_point(bitmap bmp);
 
 /**
@@ -45,12 +54,12 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri);
 /**
  *  Returns true if point `pt` is in the Rectangle `rect`.
  */
-bool point_in_rect(const point_2d &pt, const rectangle &rect);
+bool point_in_rectangle(const point_2d &pt, const rectangle &rect);
 
 /**
  *  Returns true if the point `pt` is in the circle `c`.
  */
-bool point_in_circle(const point_2d pt, const circle &c);
+bool point_in_circle(const point_2d &pt, const circle &c);
 
 /**
  *  Returns true if point `pt` is on the line `l`.

@@ -23,6 +23,7 @@ void test_points()
     window w1 = open_window("Point Tests", 600, 600);
     
     triangle t1 = triangle_from(10, 10, 50, 50, 70, 55);
+    rectangle r1 = rectangle_from(200, 200, -75, -100);
     
     while (not quit_requested())
     {
@@ -35,6 +36,13 @@ void test_points()
             fill_triangle(COLOR_TAN, t1);
         }
         draw_triangle(COLOR_RED, t1);
+
+        if ( point_in_rectangle(mouse_position(), r1) )
+        {
+            fill_rectangle(COLOR_TAN, r1);
+        }
+        draw_rectangle(COLOR_RED, r1);
+
         
         refresh_screen();
     }
