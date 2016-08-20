@@ -24,6 +24,8 @@ void test_points()
     
     triangle t1 = triangle_from(10, 10, 50, 50, 70, 55);
     rectangle r1 = rectangle_from(200, 200, -75, -100);
+    circle c1 = circle_at(300, 300, 100);
+    circle c2 = circle_at(300, 300, -10);
     
     while (not quit_requested())
     {
@@ -43,6 +45,18 @@ void test_points()
         }
         draw_rectangle(COLOR_RED, r1);
 
+        if ( point_in_circle(mouse_position(), c1) )
+        {
+            fill_circle(COLOR_TAN, c1);
+        }
+        draw_circle(COLOR_RED, c1);
+        
+        
+        if ( point_in_circle(mouse_position(), c2) )
+        {
+            fill_circle(COLOR_RED, c2);
+        }
+        draw_circle(COLOR_RED, c2);
         
         refresh_screen();
     }

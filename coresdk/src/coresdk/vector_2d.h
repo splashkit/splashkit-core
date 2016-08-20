@@ -38,4 +38,14 @@ vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2);
  */
 float dot_product(const vector_2d &v1, const vector_2d &v2);
 
+/**
+ * Returns the squared magnitude (or "length") of the vector.
+ */
+float vector_magnitude_sqared(const vector_2d &v);
+
+/**
+ * Returns the magnitude (or "length") of the vector.
+ */
+float vector_magnitude(const vector_2d &v);
+
 #endif /* vector_2d_h */

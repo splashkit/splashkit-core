@@ -12,6 +12,8 @@
 #include "graphics.h"
 #include "vector_2d.h"
 
+#include <cmath>
+
 point_2d point_at(float x, float y)
 {
     point_2d result;
@@ -102,10 +104,10 @@ bool point_in_rectangle(const point_2d &pt, const rectangle &rect)
     else return true;
 }
 
-/**
- *  Returns true if the point `pt` is in the circle `c`.
- */
-bool point_in_circle(const point_2d &pt, const circle &c);
+bool point_in_circle(const point_2d &pt, const circle &c)
+{
+    return point_point_distance(c.center, pt) <= abs(c.radius);
+}
 
 /**
  *  Returns true if point `pt` is on the line `l`.
@@ -125,5 +127,9 @@ float calculate_angle_between(const point_2d &pt1, const point_2d &pt2);
 /**
  *  Returns the distance between two points.
  */
-float point_point_distance(const point_2d &pt1, const point_2d pt2);
+float point_point_distance(const point_2d &pt1, const point_2d pt2)
+{
+    vector_2d temp = vector_point_to_point(pt1, pt2);
+    return vector_magnitude(temp);
+}
 

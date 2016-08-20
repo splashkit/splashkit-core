@@ -18,6 +18,8 @@
 
 #include "graphics_driver.h"
 
+#include <cmath>
+
 
 void draw_circle(color clr, float x, float y, float radius, drawing_options opts)
 {
@@ -29,7 +31,7 @@ void draw_circle(color clr, float x, float y, float radius, drawing_options opts
     
     if (surface)
     {
-        sk_draw_circle(surface, clr, x, y, radius);
+        sk_draw_circle(surface, clr, x, y, abs(radius));
     }
 }
 
@@ -58,7 +60,7 @@ void fill_circle(color clr, float x, float y, float radius, drawing_options opts
     xy_from_opts(opts, x, y);
     
     if (surface)
-        sk_fill_circle(surface, clr, x, y, radius);
+        sk_fill_circle(surface, clr, x, y, abs(radius));
 }
 
 void fill_circle(color clr, float x, float y, float radius)
