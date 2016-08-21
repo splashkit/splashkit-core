@@ -72,26 +72,28 @@ void test_points()
     close_window(w1);
 }
 
-void run_geometry_test()
+void test_rectangle()
 {
-    rectangle r;
-    
-    r = rectangle_from(10, 20, 30, 40);
+    auto r = rectangle_from(10, 20, 30, 40);
     
     cout << "Created rectangle 10,20 30x40" << endl;
     cout << rectangle_to_string(r) << endl;
     
-    cout << "Top    (should be 20) " << rectangle_top(r) << endl;
-    cout << "Bottom (should be 60) " << rectangle_bottom(r) << endl;
-    cout << "Left   (should be 10) " << rectangle_left(r) << endl;
-    cout << "Right  (should be 40) " << rectangle_right(r) << endl;
+    cout << "Top    (should be 20): " << rectangle_top(r) << endl;
+    cout << "Bottom (should be 60): " << rectangle_bottom(r) << endl;
+    cout << "Left   (should be 10): " << rectangle_left(r) << endl;
+    cout << "Right  (should be 40): " << rectangle_right(r) << endl;
     
-    rectangle intersect;
+    auto center = rectangle_center(r);
+    cout << "Center (should be 25,40): " << center.x << "," << center.y << endl;
     
-    intersect = intersection(r, rectangle_from(15, 30, 100, 100));
-    
+    auto intersect = intersection(r, rectangle_from(15, 30, 100, 100));
     cout << "Intersection should be 15,30 25x30" << endl;
     cout << "Intersection is " << rectangle_to_string(intersect) << endl;
-    
+}
+
+void run_geometry_test()
+{
+    test_rectangle();
     test_points();
 }
