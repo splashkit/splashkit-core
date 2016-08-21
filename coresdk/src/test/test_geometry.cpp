@@ -30,7 +30,7 @@ void test_points()
     
     cout << "Angle of line is " << point_point_angle(point_at_origin(), l.end_point) << endl;
     
-    while (not quit_requested())
+    while (not window_close_requested(w1))
     {
         process_events();
         
@@ -74,26 +74,59 @@ void test_points()
     close_window(w1);
 }
 
-void run_geometry_test()
+void test_rectangle()
 {
-    rectangle r;
-    
-    r = rectangle_from(10, 20, 30, 40);
+    auto r1 = rectangle_from(10, 20, 30, 40);
+    auto r2 = rectangle_from(15, 30, 100, 100);
     
     cout << "Created rectangle 10,20 30x40" << endl;
-    cout << rectangle_to_string(r) << endl;
+    cout << rectangle_to_string(r1) << endl;
     
-    cout << "Top    (should be 20) " << rectangle_top(r) << endl;
-    cout << "Bottom (should be 60) " << rectangle_bottom(r) << endl;
-    cout << "Left   (should be 10) " << rectangle_left(r) << endl;
-    cout << "Right  (should be 40) " << rectangle_right(r) << endl;
+    cout << "Top    (should be 20): " << rectangle_top(r1) << endl;
+    cout << "Bottom (should be 60): " << rectangle_bottom(r1) << endl;
+    cout << "Left   (should be 10): " << rectangle_left(r1) << endl;
+    cout << "Right  (should be 40): " << rectangle_right(r1) << endl;
     
-    rectangle intersect;
+    auto center = rectangle_center(r1);
+    cout << "Center (should be 25,40): " << center.x << "," << center.y << endl;
     
-    intersect = intersection(r, rectangle_from(15, 30, 100, 100));
-    
+    auto intersect = intersection(r1, r2);
     cout << "Intersection should be 15,30 25x30" << endl;
     cout << "Intersection is " << rectangle_to_string(intersect) << endl;
     
+    auto t1 = triangle_from(300, 300, 350, 350, 370, 355);
+    auto t2 = triangle_from(300, 100, 250, 250, 150, 250);
+    auto c1 = circle_at(450, 450, 50);
+    auto r3 = rectangle_around(t1);
+    auto r4 = rectangle_around(t2);
+    auto r5 = rectangle_around(c1);
+    
+    
+    window w1 = open_window("Rectangle Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        clear_screen(COLOR_WHEAT);
+        
+        draw_rectangle(COLOR_RED, r1);
+        draw_rectangle(COLOR_RED, r2);
+        draw_rectangle(COLOR_YELLOW, intersect);
+        
+        draw_triangle(COLOR_RED, t1);
+        draw_triangle(COLOR_RED, t2);
+        draw_circle(COLOR_RED, c1);
+        
+        draw_rectangle(COLOR_RED, r3);
+        draw_rectangle(COLOR_RED, r4);
+        draw_rectangle(COLOR_RED, r5);
+        
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
+void run_geometry_test()
+{
+    test_rectangle();
     test_points();
 }

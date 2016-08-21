@@ -2,7 +2,7 @@
 //  rectangle_geometry.cpp
 //  splashkit
 //
-//  Created by Jacob on 19/08/2016.
+//  Created by Jacob Milligan on 19/08/2016.
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
@@ -24,6 +24,29 @@ rectangle rectangle_from(float x, float y, float width, float height)
     return result;
 }
 
+rectangle rectangle_from(const point_2d pt1, const point_2d pt2)
+{
+    rectangle result;
+    result.x = pt1.x;
+    result.y = pt1.y;
+    result.width = ceil(pt2.x - pt1.x);
+    result.height = ceil(pt2.y - pt1.y);
+    return result;
+}
+
+rectangle rectangle_from(const point_2d pt, const float width, const float height)
+{
+    return rectangle_from(pt.x, pt.y, width, height);
+}
+
+point_2d rectangle_center(const rectangle &rect)
+{
+    point_2d result;
+    result.x = rect.x + (rect.width / 2);
+    result.y = rect.y + (rect.height / 2);
+    return result;
+}
+
 rectangle rectangle_around(const line &l)
 {
     rectangle result;
@@ -31,6 +54,47 @@ rectangle rectangle_around(const line &l)
     result.y = MIN(l.start_point.y, l.end_point.y);
     result.width = ceil(MAX(l.start_point.x, l.end_point.x) - result.x);
     result.height = ceil(MAX(l.start_point.y, l.end_point.y) - result.y);
+    return result;
+}
+
+rectangle rectangle_around(const circle &c)
+{
+    rectangle result;
+    result.x = c.center.x - c.radius;
+    result.y = c.center.y - c.radius;
+    result.width = ceil(2 * c.radius);
+    result.height = result.width;
+    return result;
+}
+
+rectangle rectangle_around(const triangle &t)
+{
+    rectangle result;
+    
+    float minX = t.points[0].x, maxX = t.points[0].x;
+    float minY = t.points[0].y, maxY = t.points[0].y;
+    
+    for ( int i = 0; i < 3; i++ ) {
+        
+        if ( t.points[i].x < minX ) {
+            minX = t.points[i].x;
+        } else if ( t.points[i].x > maxX ) {
+            maxX = t.points[i].x;
+        }
+        
+        if ( t.points[i].y < minY ) {
+            minY = t.points[i].y;
+        } else if ( t.points[i].y > maxY ) {
+            maxY = t.points[i].y;
+        }
+        
+    }
+    
+    result.x = minX;
+    result.y = minY;
+    result.width = ceil(maxX - minX);
+    result.height = ceil(maxY - minY);
+    
     return result;
 }
 

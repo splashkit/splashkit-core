@@ -2,7 +2,7 @@
 //  rectangle_geometry.h
 //  splashkit
 //
-//  Created by Jacob on 19/08/2016.
+//  Created by Jacob Milligan on 19/08/2016.
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
@@ -11,11 +11,44 @@
 
 #include "types.h"
 #include <string>
+
 using namespace std;
 
+/**
+ * Returns a rectangle from a given x,y location with the specified width
+ * and height.
+ */
 rectangle rectangle_from(float x, float y, float width, float height);
 
+/**
+ * Returns a rectangle with pt1 and pt2 defining the two distant edge points.
+ */
+rectangle rectangle_from(const point_2d pt1, const point_2d pt2);
+
+/**
+ * Returns a rectangle at the specified point with a given width and height
+ */
+rectangle rectangle_from(const point_2d pt, const float width, const float height);
+
+/**
+ * Returns the center point of a given rectangle
+ */
+point_2d rectangle_center(const rectangle &rect);
+
+/**
+ * Returns a rectangle that surrounds a given line segment
+ */
 rectangle rectangle_around(const line &l);
+
+/**
+ * Returns a rectangle that surrounds a given circle
+ */
+rectangle rectangle_around(const circle &c);
+
+/**
+ * Returns a rectangle that surrounds a given triangle
+ */
+rectangle rectangle_around(const triangle &t);
 
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
 
