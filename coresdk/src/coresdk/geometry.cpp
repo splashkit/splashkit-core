@@ -12,15 +12,24 @@
 #include "random.h"
 #include "utility_functions.h"
 
-vector_2d vector_to(float x, float y)
+#include <cmath>
+
+float cosine(float angle)
 {
-    vector_2d result;
-    
-    result.x = x;
-    result.y = y;
-    
-    return result;
+    return cos(deg_to_rad(angle));
 }
+
+float sine(float angle)
+{
+    return sin(deg_to_rad(angle));
+}
+
+float tangent(float angle)
+{
+    return tan(deg_to_rad(angle));
+}
+
+
 
 circle circle_at(const point_2d &pt, float radius)
 {

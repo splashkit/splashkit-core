@@ -16,6 +16,11 @@ using namespace std;
 
 #include <initializer_list>
 
+// smallest positive value: less than that to be considered zero
+#define EPS   0.01
+// and its square
+#define EPSEPS 0.0001
+
 void raise_warning( string message );
 
 bool file_exists(string path);
@@ -91,5 +96,7 @@ bool try_str_to_double(string str, double &result);
 string to_lower (string str);
 
 float rad_to_deg(float radians);
+
+float deg_to_rad(float degrees);
 
 #endif /* utility_functions_h */

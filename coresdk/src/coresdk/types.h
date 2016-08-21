@@ -96,7 +96,11 @@ struct point_2d
 /// @field x: Single
 /// @field y: Single
 /// @sameas Point2D
-typedef point_2d vector_2d;
+struct vector_2d
+{
+    float x;
+    float y;
+};
 
 /// Rectangles are simple rectangle shapes that exist at a point and have a set width
 /// and height. This means that the rectangle always has edges that follow the sides of

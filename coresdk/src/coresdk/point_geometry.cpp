@@ -20,10 +20,6 @@
 
 // Used in checking point similarities
 #define SMALL 1.4
-// smallest positive value: less than that to be considered zero
-#define EPS   0.01
-// and its square
-#define EPSEPS 0.0001
 
 point_2d point_at(float x, float y)
 {
