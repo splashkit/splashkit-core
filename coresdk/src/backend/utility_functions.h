@@ -90,4 +90,6 @@ bool try_str_to_double(string str, double &result);
 
 string to_lower (string str);
 
+float rad_to_deg(float radians);
+
 #endif /* utility_functions_h */

@@ -74,7 +74,7 @@ rectangle rectangle_around(const triangle &t)
     float minX = t.points[0].x, maxX = t.points[0].x;
     float minY = t.points[0].y, maxY = t.points[0].y;
     
-    for ( int i = 0; i < 2; i++ ) {
+    for ( int i = 0; i < 3; i++ ) {
         
         if ( t.points[i].x < minX ) {
             minX = t.points[i].x;
