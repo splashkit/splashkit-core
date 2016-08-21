@@ -13,6 +13,8 @@
 #include "geometry.h"
 #include "audio.h"
 #include "color.h"
+#include "concurrency_utils.h"
+#include "civetweb.h"
 
 #include <string>
 #include <vector>
@@ -178,6 +180,25 @@ struct sk_http_response
     char *data;
 };
 
+struct sk_web_server
+{
+    struct mg_context *ctx;
+    struct mg_callbacks callbacks;
+};
+
+struct sk_server_response
+{
+    string message;
+};
+
+struct sk_server_request
+{
+    string uri;
+    semaphore control;
+
+    sk_server_response* response;
+};
+
 struct animation_frame
 {
     int index;                // The index of the frame in the animation template
@@ -213,6 +234,5 @@ struct _animation_script_data
     
     vector<animation>   anim_objs;         // The animations created from this script
 };
-
 
 #endif /* BackendTypes_h */

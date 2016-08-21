@@ -9,7 +9,7 @@ CORE_SDK_PATH="../../coresdk"
 
 ALL_SDL2_LIBS="-lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_gfx -lSDL2_image -lSDL2_net -Wl,--no-undefined"
 
-OTHER_LIB="-lpthread -lbz2 -lFLAC -lsmpeg2 -lvorbis -lz -lpng16 -lvorbisfile -lmikmod -logg -lwebp -lfreetype -lcurl -lsqlite3"
+OTHER_LIB="-lpthread -lbz2 -lFLAC -lsmpeg2 -lvorbis -lz -lpng16 -lvorbisfile -lmikmod -logg -lwebp -lfreetype -lcurl -lsqlite3 -ldl"
 
 # echo $ALL_SDL2_LIBS
 
