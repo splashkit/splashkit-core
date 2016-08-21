@@ -67,6 +67,13 @@ bool point_in_circle(const point_2d &pt, const circle &c);
 bool point_on_line(const point_2d &pt, const line &l);
 
 /**
+ * Returns true when the point `pt` is on the line `l`. The
+ * proximity value is used to set the sensitivity -- higher values
+ * effectively make the line thicker.
+ */
+bool point_on_line(const point_2d &pt, const line &l, float proximity);
+
+/**
  *  Returns True of `pt1` is at the same point as `pt2`.
  */
 bool same_point(const point_2d &pt1, const point_2d &pt2);
@@ -74,7 +81,7 @@ bool same_point(const point_2d &pt1, const point_2d &pt2);
 /**
  *  Returns the angle between two points in degrees.
  */
-float calculate_angle_between(const point_2d &pt1, const point_2d &pt2);
+float point_point_angle(const point_2d &pt1, const point_2d &pt2);
 
 /**
  *  Returns the distance between two points.

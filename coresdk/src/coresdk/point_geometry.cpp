@@ -19,7 +19,7 @@
 #include <cmath>
 
 // Used in checking point similarities
-#define SMALL 0.9
+#define SMALL 1.4
 // smallest positive value: less than that to be considered zero
 #define EPS   0.01
 // and its square
@@ -127,6 +127,11 @@ bool point_in_circle(const point_2d &pt, const circle &c)
 
 bool point_on_line(const point_2d &pt, const line &l)
 {
+    return point_on_line(pt, l, SMALL);
+}
+
+bool point_on_line(const point_2d &pt, const line &l, float proximity)
+{
     auto simple_comparison_x_same = [&] ()
     {
         float min_y, max_y;
@@ -134,7 +139,7 @@ bool point_on_line(const point_2d &pt, const line &l)
         min_y = MIN(l.start_point.y, l.end_point.y);
         max_y = MAX(l.start_point.y, l.end_point.y);
     
-        return (pt.x >= l.start_point.x - SMALL) and (pt.x <= l.start_point.x + SMALL) and (pt.y >= min_y) and (pt.y <= max_y);
+        return (pt.x >= l.start_point.x - proximity) and (pt.x <= l.start_point.x + proximity) and (pt.y >= min_y) and (pt.y <= max_y);
     };
     
     auto simple_comparison_y_same = [&] ()
@@ -144,7 +149,7 @@ bool point_on_line(const point_2d &pt, const line &l)
         min_x = MIN(l.start_point.x, l.end_point.x);
         max_x = MAX(l.start_point.x, l.end_point.x);
     
-        return (pt.y >= l.start_point.y - SMALL) and (pt.y <= l.start_point.y + SMALL) and (pt.x >= min_x) and (pt.x <= max_x);
+        return (pt.y >= l.start_point.y - proximity) and (pt.y <= l.start_point.y + proximity) and (pt.x >= min_x) and (pt.x <= max_x);
     };
     
     float sq_line_mag, lx, ly, m, c;
@@ -172,22 +177,41 @@ bool point_on_line(const point_2d &pt, const line &l)
     ly = (m * pt.x) + c;
     lx = (pt.y - c) / m;
     
-    return (lx >= pt.x - SMALL) and
-        (lx <= pt.x + SMALL) and
-        (ly >= pt.y - SMALL) and
-        (ly <= pt.y + SMALL) and
+    return (lx >= pt.x - proximity) and
+        (lx <= pt.x + proximity) and
+        (ly >= pt.y - proximity) and
+        (ly <= pt.y + proximity) and
         point_in_rectangle(pt, rectangle_around(l));
 }
 
 /**
- *  Returns True of `pt1` is at the same point as `pt2`.
- */
-bool same_point(const point_2d &pt1, const point_2d &pt2);
-
-/**
  *  Returns the angle between two points in degrees.
  */
-float calculate_angle_between(const point_2d &pt1, const point_2d &pt2);
+float point_point_angle(const point_2d &pt1, const point_2d &pt2)
+{
+    float o, a, oa, rads, result;
+    
+    if ((pt1.x == pt2.x) and (pt2.y < pt1.y)) return -90;
+    else if ((pt1.x == pt2.x) and (pt2.y >= pt1.y)) return 90;
+    else if ((pt1.y == pt2.y) and (pt2.x < pt1.x)) return 180;
+    else if ((pt1.y == pt2.y) and (pt2.x >= pt1.x)) return 0;
+    else
+    {
+        o = (pt2.y - pt1.y);
+        a = (pt2.x - pt1.x);
+        oa = o / a;
+        rads = atan(oa);
+        result = rad_to_deg(rads);
+    
+        if(pt2.x < pt1.x)
+        {
+            if (pt2.y < pt1.y) result = result - 180;
+            else result = result + 180;
+        }
+        
+        return result;
+    }
+}
 
 /**
  *  Returns the distance between two points.

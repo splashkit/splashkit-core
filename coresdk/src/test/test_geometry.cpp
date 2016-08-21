@@ -28,6 +28,8 @@ void test_points()
     circle c2 = circle_at(300, 300, -10);
     line l = line_from(point_at_origin(), random_screen_point());
     
+    cout << "Angle of line is " << point_point_angle(point_at_origin(), l.end_point) << endl;
+    
     while (not quit_requested())
     {
         process_events();

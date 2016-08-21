@@ -23,6 +23,8 @@
 
 using namespace std;
 
+#define PI 3.141592653589793238L
+
 template <typename T>
 bool is_valid_pointer(T ptr, pointer_identifier id)
 {
@@ -510,4 +512,9 @@ void process_range(string value_in, vector<int> &result)
 
         i++;
     }
+}
+
+float rad_to_deg(float radians)
+{
+    return radians * 180 / PI;
 }
