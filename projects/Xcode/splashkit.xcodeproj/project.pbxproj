@@ -107,6 +107,8 @@
 		94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B381D644BB50059BF3B /* triangle_drawing.cpp */; };
 		94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B391D644BB50059BF3B /* triangle_drawing.h */; };
 		94444B3E1D644F950059BF3B /* test_shape_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */; };
+		949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 949478B81D6AEC0E00A44614 /* circle_geometry.cpp */; };
+		949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 949478B91D6AEC0E00A44614 /* circle_geometry.h */; };
 		94A069A91D66F44900C26E6F /* vector_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A069A71D66F44900C26E6F /* vector_2d.cpp */; };
 		94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A069A81D66F44900C26E6F /* vector_2d.h */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
@@ -282,6 +284,8 @@
 		94444B391D644BB50059BF3B /* triangle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangle_drawing.h; sourceTree = "<group>"; };
 		94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_shape_drawing.cpp; sourceTree = "<group>"; };
 		94444B401D644FE10059BF3B /* test_main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_main.h; sourceTree = "<group>"; };
+		949478B81D6AEC0E00A44614 /* circle_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circle_geometry.cpp; sourceTree = "<group>"; };
+		949478B91D6AEC0E00A44614 /* circle_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circle_geometry.h; sourceTree = "<group>"; };
 		94A069A71D66F44900C26E6F /* vector_2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector_2d.cpp; sourceTree = "<group>"; };
 		94A069A81D66F44900C26E6F /* vector_2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_2d.h; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 				16238ACB1D669A2E00A88176 /* rectangle_geometry.h */,
 				943AF76D1D67F53000DBEA84 /* line_geometry.cpp */,
 				943AF76E1D67F53000DBEA84 /* line_geometry.h */,
+				949478B81D6AEC0E00A44614 /* circle_geometry.cpp */,
+				949478B91D6AEC0E00A44614 /* circle_geometry.h */,
 			);
 			name = "Geometry Related";
 			sourceTree = "<group>";
@@ -601,6 +607,7 @@
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				4129D23C1D653F6E000BFD0C /* physics.h in Headers */,
 				94F66BF51D62F75E004D8F8C /* text_input.h in Headers */,
+				949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */,
 				94B57A681D65CCF300CE7D55 /* clipping.h in Headers */,
 				94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
@@ -750,6 +757,7 @@
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
+				949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */,
 				94B57A671D65CCF300CE7D55 /* clipping.cpp in Sources */,
 				94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */,
 				941C8A361D5D6FE2003112B2 /* test_text.cpp in Sources */,

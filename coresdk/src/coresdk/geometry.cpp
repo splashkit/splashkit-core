@@ -29,21 +29,6 @@ float tangent(float angle)
     return tan(deg_to_rad(angle));
 }
 
-
-
-circle circle_at(const point_2d &pt, float radius)
-{
-    circle result;
-    result.center = pt;
-    result.radius = radius;
-    return result;
-}
-
-circle circle_at(float x, float y, float radius)
-{
-    return circle_at(point_at(x, y), radius);
-}
-
 triangle triangle_from(float x1, float y1, float x2, float y2, float x3, float y3)
 {
     triangle result;

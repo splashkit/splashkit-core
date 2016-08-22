@@ -231,12 +231,53 @@ vector_2d vector_out_of_rect_from_point(const point_2d &pt, const rectangle &rec
 //{
 //    
 //}
-//
-//vector_2d vector_out_of_circle_from_point(const point_2d &pt, const circle &c, const vector_2d &velocity)
-//{
-//    
-//}
-//
+
+vector_2d vector_out_of_circle_from_point(const point_2d &pt, const circle &c, const vector_2d &velocity)
+{
+    float dx, dy, cx, cy;
+    float a, b, c1, det, t, mv_out;
+    point_2d ipt2;
+    
+    // If the point is not in the radius of the circle, return a zero vector
+    if (point_point_distance(pt, center_point(c)) > c.radius)
+    {
+        return vector_to(0, 0);
+    }
+    
+    // Calculate the determinant (and components) from the center circle and
+    // the point+velocity details
+    cx = c.center.x;
+    cy = c.center.y;
+    dx = velocity.x;
+    dy = velocity.y;
+    
+    a = dx * dx + dy * dy;
+    b = 2 * (dx * (pt.x - cx) + dy * (pt.y - cy));
+    c1 = (pt.x - cx) * (pt.x - cx) + (pt.y - cy) * (pt.y - cy) - c.radius * c.radius;
+    
+    det = b * b - 4 * a * c1;
+    
+    // If the determinate is very small, return a zero vector
+    if ((det <= 0) or (a == 0))
+        return vector_to(0, 0);
+    else
+    {
+        // Calculate the vector required to "push" the vector out of the circle
+        t = (-b - sqrt(det)) / (2 * a);
+        ipt2.x = pt.x + t * dx;
+        ipt2.y = pt.y + t * dy;
+        
+        mv_out = point_point_distance(pt, ipt2) + 1.42; // sqrt 2
+        return vector_multiply(unit_vector(vector_invert(velocity)), mv_out);
+    }
+}
+
+vector_2d vector_out_of_circle_from_circle(const circle &src, const circle &bounds, const vector_2d &velocity)
+{
+    circle c = circle_at(center_point(bounds), bounds.radius + src.radius);
+    return vector_out_of_circle_from_point(center_point(src), c, velocity);
+}
+
 //vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect, const vector_2d &velocity)
 //{
 //    
