@@ -39,6 +39,11 @@ point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset)
     return point_at(start_point.x + offset.x, start_point.y + offset.y);
 }
 
+point_2d point_offset_from_origin(const vector_2d &offset)
+{
+    return point_offset_by(point_at_origin(), offset);
+}
+
 string point_to_string(const point_2d &pt)
 {
     return "Pt @" + to_string(pt.x) + ":" + to_string(pt.y);

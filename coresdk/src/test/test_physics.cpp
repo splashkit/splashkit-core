@@ -51,7 +51,10 @@ void do_test_vector()
             l = line_from(mouse_position(), v1);
             
             draw_line(COLOR_RED, l);
-            draw_circle(COLOR_RED, circle_at(l.end_point, 10));
+//            draw_circle(COLOR_RED, circle_at(l.end_point, 10));
+            
+            v1 = vector_out_of_rect_from_circle(mouse_circle, r1, velocity);
+            draw_circle(COLOR_RED, circle_at(point_offset_by(mouse_position(), v1), 10));
         }
         
         if ( point_in_circle(mouse_position(), c))
