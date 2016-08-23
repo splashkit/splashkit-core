@@ -373,12 +373,120 @@ vector_2d vector_over_lines_from_circle(const circle &c, const vector<line> line
     return v_out; //vector_to(ceil(v_out.x), ceil(v_out.y));
 }
 
+vector<point_2d> points_from(const rectangle &rect)
+{
+    vector<point_2d> result;
+    result.push_back(point_at(rect.x, rect.y));
+    result.push_back(point_at(rect.x + rect.width, rect.y));
+    result.push_back(point_at(rect.x, rect.y + rect.height));
+    result.push_back(point_at(rect.x + rect.width, rect.y + rect.height));
+    return result;
+}
 
-//vector_2d vector_out_of_rect_from_rect(const rectangle &src, const rectangle &bounds, const vector_2d &velocity)
-//{
-//    int max_idx = 0;
-//    return vector_over_lines_from_lines(lines_from(src), lines_from(bounds), velocity, max_idx);
-//}
+vector<point_2d> points_from(const line &l)
+{
+    vector<point_2d> result;
+    result.push_back(l.start_point);
+    result.push_back(l.end_point);
+    return result;
+}
+
+vector_2d vector_over_lines_from_lines(const vector<line> &src_lines, const vector<line> &bound_lines, const vector_2d &velocity, int &max_idx)
+{
+    vector_2d ray, v_out;
+    int i, j, k;
+    float max_dist;
+    vector<point_2d> ln_points, bound_ln_points;
+    bool both_did_hit;
+    
+    // Search from the start_pt for the ray
+    auto ray_from_pt_hit_line = [&] (point_2d start_pt, const line &to_line, vector_2d my_ray)
+    {
+        point_2d pt_on_line;
+        float dist;
+        
+        //DrawCircle(ColorWhite, pts[j], 2);
+        
+        // Cast my_ray back from start_pt to find line pts... out on pt_on_line
+        // pt_on_line is then the point that the ray intersects with the line
+        if ( ray_intersection_point(start_pt, my_ray, to_line, pt_on_line) )
+        {
+            if (not point_on_line(pt_on_line, to_line))
+                return false; //this points ray misses the line
+            
+            // FillCircle(ColorRed, start_pt, 2);
+            // DrawCircle(ColorRed, pt_on_line, 2);
+            // DrawLine(ColorRed, start_pt, pt_on_line);
+            
+            // Calculate the distance from the point on the line to the point being tested
+            dist = point_point_distance(pt_on_line, start_pt);
+            
+            // Check if the distance is the new max distance
+            if ((dist > max_dist) or (max_idx == -1))
+            {
+                max_dist = dist;
+                max_idx = i;  //  We hit with the current line
+                if (vectors_equal(my_ray, ray)) // if we are searching back...
+                    v_out = vector_point_to_point(start_pt, pt_on_line);
+                else // if we are searching forward (using velocity)
+                    v_out = vector_point_to_point(pt_on_line, start_pt);
+                v_out = vector_multiply(unit_vector(v_out), vector_magnitude(v_out) + 1); //TODO: check this further
+            }
+            return true;
+        }
+        return false;
+    };
+    
+    // Cast ray searching back from pts... looking for the impact point
+    ray = vector_invert(velocity);  // the ray
+    v_out = vector_to(0,0);          // the vector out (from the point to over the line, i.e. moving the point along this vector moves it back over the line)
+    
+    // Indicate no find so far....
+    max_idx = -1;
+    max_dist = -1;
+    
+    //
+    //  Search all lines for hit points - cast ray back from line ends and find where these intersect with the bound lines
+    //
+    for (i = 0; i < bound_lines.size(); i++)
+    {
+        //WriteLn('Testing bound line: ', LineToString(bound_lines[i]));
+        bound_ln_points = points_from(bound_lines[i]);
+        
+        // for all source lines...
+        for (j = 0; j < src_lines.size(); j++)
+        {
+            //WriteLn('Testing src line: ', LineToString(src_lines[j]));
+            
+            // Get the points from the srcLine
+            ln_points = points_from(src_lines[j]);
+            both_did_hit = true;
+            
+            for (k = 0; k < ln_points.size(); k++)
+            {
+                //WriteLn('Point ', k, ' in line is at ', PointToString(ln_points[k]));
+                both_did_hit = ray_from_pt_hit_line(ln_points[k], bound_lines[i], ray) and both_did_hit;
+            }
+            
+            if (both_did_hit) continue;
+            
+            // Search from the bound line to the source
+            
+            for (k = 0; k < bound_ln_points.size(); k++)
+            {
+                ray_from_pt_hit_line(bound_ln_points[k], src_lines[j], velocity);
+            }
+        }
+    }
+    
+    return v_out;
+}
+
+vector_2d vector_out_of_rect_from_rect(const rectangle &src, const rectangle &bounds, const vector_2d &velocity)
+{
+    int max_idx = 0;
+    return vector_over_lines_from_lines(lines_from(src), lines_from(bounds), velocity, max_idx);
+}
 
 vector_2d vector_out_of_circle_from_point(const point_2d &pt, const circle &c, const vector_2d &velocity)
 {

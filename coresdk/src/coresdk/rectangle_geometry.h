@@ -31,6 +31,11 @@ rectangle rectangle_from(const point_2d pt1, const point_2d pt2);
 rectangle rectangle_from(const point_2d pt, const float width, const float height);
 
 /**
+ *  Returns a rectangle that is moved by the provided vector.
+ */
+rectangle rectangle_offset_by(const rectangle &rect, const vector_2d &offset);
+
+/**
  * Returns the center point of a given rectangle
  */
 point_2d rectangle_center(const rectangle &rect);

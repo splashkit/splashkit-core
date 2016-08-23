@@ -18,7 +18,7 @@ void do_test_vector()
 {
     window w1 = open_window("Vector Test", 600, 600);
     
-    rectangle r1 = rectangle_from(50, 50, 200, 200);
+    rectangle r1 = rectangle_from(50, 50, 200, 200), mouse_rect;
     vector_2d v1 = vector_to(0,0);
     circle c = circle_at(300, 300, 50), mouse_circle;
     line l;
@@ -27,6 +27,7 @@ void do_test_vector()
     while( not window_close_requested(w1))
     {
         mouse_circle = circle_at(mouse_position(), 10);
+        mouse_rect = rectangle_from(mouse_x() - 2, mouse_y() - 2, 5, 5);
         
         process_events();
         
@@ -44,6 +45,7 @@ void do_test_vector()
         draw_circle(COLOR_GREEN, c);
         
         draw_circle(COLOR_RED, mouse_circle);
+        draw_rectangle(COLOR_RED, mouse_rect);
         
         if ( point_in_rectangle(mouse_position(), r1))
         {
@@ -55,6 +57,9 @@ void do_test_vector()
             
             v1 = vector_out_of_rect_from_circle(mouse_circle, r1, velocity);
             draw_circle(COLOR_RED, circle_at(point_offset_by(mouse_position(), v1), 10));
+            
+            v1 = vector_out_of_rect_from_rect(mouse_rect, r1, velocity);
+            draw_rectangle(COLOR_RED, rectangle_offset_by(mouse_rect, v1));
         }
         
         if ( point_in_circle(mouse_position(), c))

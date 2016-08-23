@@ -39,6 +39,14 @@ rectangle rectangle_from(const point_2d pt, const float width, const float heigh
     return rectangle_from(pt.x, pt.y, width, height);
 }
 
+rectangle rectangle_offset_by(const rectangle &rect, const vector_2d &offset)
+{
+    rectangle result = rect;
+    result.x += offset.x;
+    result.y += offset.y;
+    return result;
+}
+
 point_2d rectangle_center(const rectangle &rect)
 {
     point_2d result;
