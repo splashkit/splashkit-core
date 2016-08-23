@@ -8,9 +8,10 @@
 
 #include "quad_geometry.h"
 #include "types.h"
+#include "rectangle_geometry.h"
 
 
-
+ 
 quad quad_from(float x_top_left,float y_top_left,float x_top_right,float y_top_right, float x_bottom_left,float y_bottom_left,float x_bottom_right,float y_bottom_right)
 {
     quad result;
@@ -24,3 +25,18 @@ quad quad_from(float x_top_left,float y_top_left,float x_top_right,float y_top_r
     result.points[3].y = y_bottom_right;
     return result;
 }
+
+
+
+quad quad_from(const rectangle &rect)
+{
+    quad result;
+    result = quad_from(
+                       rectangle_left(rect), rectangle_top(rect),
+                       rectangle_right(rect), rectangle_top(rect),
+                       rectangle_left(rect), rectangle_bottom(rect),
+                       rectangle_right(rect), rectangle_bottom(rect) );
+    return result;
+}
+
+
