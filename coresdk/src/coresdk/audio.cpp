@@ -9,7 +9,6 @@
 
 using namespace std;
 
-static bool _sk_audio_open = false;
 static map<string, sound_effect> _sound_effects;
 
 struct _sound_data
@@ -22,18 +21,16 @@ struct _sound_data
 void open_audio()
 {
     sk_open_audio();
-    _sk_audio_open = true;
 }
 
 void close_audio()
 {
-    _sk_audio_open = false;
     sk_close_audio();
 }
 
 bool audio_ready()
 {
-    return _sk_audio_open;
+    return sk_audio_is_open();
 }
 
 bool has_sound_effect(string name)
