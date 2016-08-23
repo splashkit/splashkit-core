@@ -47,3 +47,52 @@ string matrix_to_string(const matrix_2d &matrix)
     result << " ------------------------------";
     return result.str();
 }
+
+
+matrix_2d matrix_multiply(const matrix_2d &m1,const matrix_2d &m2)
+{
+    
+    matrix_2d result;
+    result.elements[0][0] = m1.elements[0][0] * m2.elements[0][0] +
+                            m1.elements[0][1] * m2.elements[1][0] +
+                            m1.elements[0][2] * m2.elements[2][0];
+    
+    result.elements[0][1] = m1.elements[0][0] * m2.elements[0][1] +
+                            m1.elements[0][1] * m2.elements[1][1] +
+                            m1.elements[0][2] * m2.elements[2][1];
+    
+    result.elements[0][2] = m1.elements[0][0] * m2.elements[0][2] +
+                            m1.elements[0][1] * m2.elements[1][2] +
+                            m1.elements[0][2] * m2.elements[2][2];
+    
+    result.elements[1][0] = m1.elements[1][0] * m2.elements[0][0] +
+                            m1.elements[1][1] * m2.elements[1][0] +
+                            m1.elements[1][2] * m2.elements[2][0];
+    
+    result.elements[1][1] = m1.elements[1][0] * m2.elements[0][1] +
+                            m1.elements[1][1] * m2.elements[1][1] +
+                            m1.elements[1][2] * m2.elements[2][1];
+    
+    result.elements[1][2] = m1.elements[1][0] * m2.elements[0][2] +
+                            m1.elements[1][1] * m2.elements[1][2] +
+                            m1.elements[1][2] * m2.elements[2][2];
+    
+    result.elements[2][0] = m1.elements[2][0] * m2.elements[0][0] +
+                            m1.elements[2][1] * m2.elements[1][0] +
+                            m1.elements[2][2] * m2.elements[2][0];
+   
+    result.elements[2][1] = m1.elements[2][0] * m2.elements[0][1] +
+                            m1.elements[2][1] * m2.elements[1][1] +
+                            m1.elements[2][2] * m2.elements[2][1];
+    
+    result.elements[2][2] = m1.elements[2][0] * m2.elements[0][2] +
+                            m1.elements[2][1] * m2.elements[1][2] +
+                            m1.elements[2][2] * m2.elements[2][2];
+    
+
+
+    return result;
+}
+
+
+

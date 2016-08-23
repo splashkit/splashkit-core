@@ -185,4 +185,12 @@ matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const 
 /// @csn description
 string matrix_to_string(const matrix_2d &matrix);
 
+/**
+ * 
+ */
+matrix_2d matrix_multiply(const matrix_2d  &m1,const matrix_2d &m2);
+
+
+
+
 #endif /* matrix_2d_h */

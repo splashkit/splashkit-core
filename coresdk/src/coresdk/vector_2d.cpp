@@ -539,3 +539,14 @@ vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect,
     int max_idx;
     return vector_over_lines_from_circle(c, lines_from(rect), velocity, max_idx);
 }
+
+vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v)
+{
+    
+    vector_2d result;
+    result.x = v.x * m.elements[0][0]  +  v.y * m.elements[0][1] + m.elements[0][2];
+    result.y = v.x * m.elements[1][0]  +  v.y * m.elements[1][1] + m.elements[1][2];
+    
+
+    return result;
+}

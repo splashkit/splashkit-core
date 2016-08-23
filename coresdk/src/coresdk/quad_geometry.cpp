@@ -9,7 +9,8 @@
 #include "quad_geometry.h"
 #include "types.h"
 #include "rectangle_geometry.h"
-
+#include "matrix_2d.h"
+#include "vector_2d.h"
 
  
 quad quad_from(float x_top_left,float y_top_left,float x_top_right,float y_top_right, float x_bottom_left,float y_bottom_left,float x_bottom_right,float y_bottom_right)
@@ -37,6 +38,23 @@ quad quad_from(const rectangle &rect)
                        rectangle_left(rect), rectangle_bottom(rect),
                        rectangle_right(rect), rectangle_bottom(rect) );
     return result;
+}
+
+point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts)
+{
+    point_2d result;
+    result.x = pts.x * m.elements[0][0]  +  pts.y * m.elements[0][1] + m.elements[0][2];
+    result.y = pts.x * m.elements[1][0]  +  pts.y * m.elements[1][1] + m.elements[1][2];
+    
+    return result;
+}
+
+void apply_matrix(const matrix_2d &m, quad &q)
+{
+    for(int i = 0; i < 4; i++)
+    {
+        q.points[i] = matrix_multiply(m, q.points[i]);
+    }
 }
 
 
