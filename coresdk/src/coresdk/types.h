@@ -9,6 +9,9 @@
 #ifndef types_hpp
 #define types_hpp
 
+#include <string>
+using namespace std;
+
 typedef unsigned char byte;
 
 struct color
