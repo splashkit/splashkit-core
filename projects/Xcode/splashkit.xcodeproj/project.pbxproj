@@ -113,6 +113,8 @@
 		94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A069A81D66F44900C26E6F /* vector_2d.h */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; };
+		94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */; };
+		94AC3DB71D6BF0D8002920A5 /* quad_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB51D6BF0D8002920A5 /* quad_geometry.h */; };
 		94B57A5F1D65A5D500CE7D55 /* ellipse_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */; };
 		94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */; };
 		94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A611D65C7B200CE7D55 /* line_drawing.cpp */; };
@@ -290,6 +292,8 @@
 		94A069A81D66F44900C26E6F /* vector_2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_2d.h; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
 		94AC3DB11D657F45002920A5 /* point_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_drawing.h; sourceTree = "<group>"; };
+		94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quad_geometry.cpp; sourceTree = "<group>"; };
+		94AC3DB51D6BF0D8002920A5 /* quad_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quad_geometry.h; sourceTree = "<group>"; };
 		94B57A5D1D65A5D500CE7D55 /* ellipse_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ellipse_drawing.cpp; sourceTree = "<group>"; };
 		94B57A5E1D65A5D500CE7D55 /* ellipse_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ellipse_drawing.h; sourceTree = "<group>"; };
 		94B57A611D65C7B200CE7D55 /* line_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = line_drawing.cpp; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 				943AF76E1D67F53000DBEA84 /* line_geometry.h */,
 				949478B81D6AEC0E00A44614 /* circle_geometry.cpp */,
 				949478B91D6AEC0E00A44614 /* circle_geometry.h */,
+				94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */,
+				94AC3DB51D6BF0D8002920A5 /* quad_geometry.h */,
 			);
 			name = "Geometry Related";
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				94B57A681D65CCF300CE7D55 /* clipping.h in Headers */,
 				94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
+				94AC3DB71D6BF0D8002920A5 /* quad_geometry.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
@@ -741,6 +748,7 @@
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
+				94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web.cpp in Sources */,
 				94006A3F1D612C4F003E8A32 /* test_input.cpp in Sources */,
