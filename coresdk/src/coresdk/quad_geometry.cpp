@@ -40,21 +40,6 @@ quad quad_from(const rectangle &rect)
     return result;
 }
 
-point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts)
-{
-    point_2d result;
-    result.x = pts.x * m.elements[0][0]  +  pts.y * m.elements[0][1] + m.elements[0][2];
-    result.y = pts.x * m.elements[1][0]  +  pts.y * m.elements[1][1] + m.elements[1][2];
-    
-    return result;
-}
 
-void apply_matrix(const matrix_2d &m, quad &q)
-{
-    for(int i = 0; i < 4; i++)
-    {
-        q.points[i] = matrix_multiply(m, q.points[i]);
-    }
-}
 
 

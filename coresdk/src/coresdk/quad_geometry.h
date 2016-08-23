@@ -23,16 +23,6 @@ quad quad_from(float x_top_left, float y_top_left, float x_top_right, float y_to
  */
 quad quad_from(const rectangle &rect);
 
-/**
- * Use a matrix to transform all of the points in a quad.
- */
-void apply_matrix(const matrix_2d m, quad _quad);
-
-/**
- *  Multiplying matrix by point_2d and returning as point_2d.
- */
-
-point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts);
 
 
 #endif /* quad_geometry_h */
