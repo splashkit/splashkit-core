@@ -12,42 +12,92 @@
 #include <mutex>
 #include <thread>
 #include <condition_variable>
+#include <queue>
 
 using namespace std;
 
-class semaphore {
+class semaphore
+{
 private:
-    mutex mut;
-    condition_variable condition;
-    int tokens;
+    mutex _mutex;
+    condition_variable _cv;
+    int _tokens;
 
 public:
     semaphore()
     {
-        tokens = 0;
+        _tokens = 0;
     }
 
     semaphore(int tokens)
     {
-        this->tokens = tokens;
+        _tokens = tokens;
     }
 
     void acquire()
     {
-        unique_lock<mutex> lock(mut);
-        while (tokens <= 0)
+        unique_lock<mutex> lock(_mutex);
+        while (_tokens <= 0)
         {
-            condition.wait(lock);
+            _cv.wait(lock);
         }
-        tokens--;
+        _tokens--;
     }
 
     void release(int num = 1)
     {
-        lock_guard<mutex> lock(mut);
-        tokens += num;
-        condition.notify_all();
+        lock_guard<mutex> lock(_mutex);
+        _tokens += num;
+        _cv.notify_all();
     }
+};
+
+template <typename T>
+class channel
+{
+private:
+    queue<T> _queue;
+    semaphore _take_permission;
+    mutex _mutex;
+
+    T dequeue()
+    {
+        T data = _queue.front();
+        _queue.pop();
+        return data;
+    }
+
+public:
+    void put(T data)
+    {
+        unique_lock<mutex> lock(_mutex);
+        _queue.push(data);
+        lock.unlock();
+
+        _take_permission.release();
+    }
+
+    T take()
+    {
+        _take_permission.acquire();
+
+        lock_guard<mutex> lock(_mutex);
+        return dequeue();
+    }
+
+    bool try_take(T& data)
+    {
+        lock_guard<mutex> lock(_mutex);
+        if (_queue.empty())
+        {
+            return false;
+        }
+
+        _take_permission.acquire();
+        data = dequeue();
+        return true;
+    }
+
 };
 
 #endif // sgsdl2_SGSDL2ConcurrencyUtils_h

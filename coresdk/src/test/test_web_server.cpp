@@ -31,8 +31,9 @@ void run_web_server_tests()
             cout << "Request is invalid.\n";
         }
 
-        cout << "Matching routes\n";
-        if (request_get_uri(request).find("/stop") != string::npos)
+        string uri = request_get_uri(request);
+        cout << "Matching routes for " << uri << "\n";
+        if (uri.find("/stop") != string::npos)
         {
             cout << "Matched to the stop route\n";
             send_response(request, "Goodbye");

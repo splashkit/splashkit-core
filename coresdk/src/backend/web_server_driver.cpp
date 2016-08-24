@@ -7,14 +7,13 @@
 //
 
 #include "web_server_driver.h"
-
-#include "blockingconcurrentqueue.h"
+#include "concurrency_utils.h"
 
 #include <iostream>
 #include <cstring>
 
 static sk_server_request* last_request = nullptr;
-static moodycamel::ConcurrentQueue<sk_server_request*> request_queue;
+static channel<sk_server_request*> request_queue;
 
 static int begin_request_handler(struct mg_connection *conn)
 {
@@ -23,7 +22,7 @@ static int begin_request_handler(struct mg_connection *conn)
     sk_server_request *r = new sk_server_request;
     r->uri = request_info->request_uri;
 
-    request_queue.enqueue(r); // Add request to concurrent queue
+    request_queue.put(r); // Add request to concurrent queue
     r->control.acquire(); // Waits until user returns response.
 
     // Send HTTP reply to the client
@@ -71,7 +70,7 @@ bool sk_has_waiting_requests(sk_web_server *server)
 
     // Try to get a new request from the queue and set the last request if one exists
     sk_server_request *request;
-    bool success = request_queue.try_dequeue(request);
+    bool success = request_queue.try_take(request);
 
     if (success)
     {
@@ -109,7 +108,7 @@ void sk_stop_web_server(sk_web_server *server)
     }
 
     sk_server_request *request;
-    while (request_queue.try_dequeue(request))
+    while (request_queue.try_take(request))
     {
         sk_flush_request(request);
     }
