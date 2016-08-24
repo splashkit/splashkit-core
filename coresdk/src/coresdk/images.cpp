@@ -257,6 +257,17 @@ void draw_bitmap(string name, float x, float y, drawing_options opts)
     draw_bitmap(bitmap_named(name), x, y, opts);
 }
 
+rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt)
+{
+    if ( INVALID_PTR(src, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get bitmap cell rectangle from invalid image");
+        return rectangle_from(0, 0, 0, 0);
+    }
+    
+    return rectangle_from(pt, src->cell_w, src->cell_h);
+}
+
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell)
 {
     rectangle result;

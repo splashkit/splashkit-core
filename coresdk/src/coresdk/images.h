@@ -68,7 +68,18 @@ int bitmap_height(bitmap bmp);
 
 int bitmap_height(string name);
 
+/**
+ *  Returns a rectangle that will encompass the bitmap cell if it were drawn
+ *  on at the indicated point.
+ *
+ * @param src   The bitmap to get the details from
+ * @param pt    The point details for the rectangle.
+ * @returns     A rectangle at pt, with width and height from the bitmap's cell details.
+ */
+rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
+
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
+
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
 
 #endif /* images_hpp */

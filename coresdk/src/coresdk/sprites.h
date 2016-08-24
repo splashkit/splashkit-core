@@ -451,7 +451,7 @@ int sprite_visible_layer_id(sprite s, int idx);
  * @attribute method layer_offset
  * @attribute unique layer_named_offset
  */
-point_2d sprite_layer_offset(sprite s, const string &name);
+vector_2d sprite_layer_offset(sprite s, const string &name);
 
 /**
  * Gets the offset of the specified layer.
@@ -463,7 +463,7 @@ point_2d sprite_layer_offset(sprite s, const string &name);
  * @attribute class sprite
  * @attribute method layer_offset
  */
-point_2d  sprite_layer_offset(sprite s, int idx);
+vector_2d  sprite_layer_offset(sprite s, int idx);
 
 /**
  * Sets the offset of the specified layer. The offset is used when the layer
@@ -477,7 +477,7 @@ point_2d  sprite_layer_offset(sprite s, int idx);
  * @attribute method set_layer_offset
  * @attribute unique set_layer_named_offset
  */
-void sprite_set_layer_offset(sprite s, const string &name, const point_2d &value);
+void sprite_set_layer_offset(sprite s, const string &name, const vector_2d &value);
 
 /**
  * Sets the offset of the specified layer.
@@ -490,7 +490,7 @@ void sprite_set_layer_offset(sprite s, const string &name, const point_2d &value
  * @attribute method Set_layer_offset
  * @attribute unique Set_layer_named_offset
  */
-void sprite_set_layer_offset(sprite s, int idx, const point_2d &value);
+void sprite_set_layer_offset(sprite s, int idx, const vector_2d &value);
 
 /**
  * Returns the index of the n'th (idx parameter) visible layer.

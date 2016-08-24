@@ -50,6 +50,25 @@ bool erase_from_vector(vector<T> &v, T value)
     }
 }
 
+template <typename T>
+int index_of (vector<T> vec, T value)
+{
+    auto result = find(vec.begin(), vec.end(), value);
+    
+    if ( result == vec.end() ) return -1;
+    else return static_cast<int>(result - vec.begin());
+}
+
+template <typename T>
+void move_range(std::vector<T> & v, size_t start, size_t length, size_t dst)
+{
+    const size_t final_dst = dst > start ? dst - length : dst;
+    
+    std::vector<T> tmp(v.begin() + start, v.begin() + start + length);
+    v.erase(v.begin() + start, v.begin() + start + length);
+    v.insert(v.begin() + final_dst, tmp.begin(), tmp.end());
+}
+
 #define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
 size_t sz = collection.size();\
 for(size_t i = 0; i < sz; i++)\
