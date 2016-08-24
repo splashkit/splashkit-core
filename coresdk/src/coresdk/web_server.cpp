@@ -6,6 +6,7 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
+#include <backend/utility_functions.h>
 #include "web_server.h"
 #include "web_server_driver.h"
 
@@ -21,16 +22,34 @@ web_server start_web_server()
 
 bool has_waiting_requests(web_server server)
 {
+    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    {
+        raise_warning("has_waiting_requests called on an invalid server");
+        return false;
+    }
+
     return sk_has_waiting_requests(server);
 }
 
 void stop_web_server(web_server server)
 {
+    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    {
+        raise_warning("stop_web_server called on an invalid server");
+        return;
+    }
+
     sk_stop_web_server(server);
 }
 
 server_request next_web_request(web_server server)
 {
+    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    {
+        raise_warning("next_web_request called on an invalid server");
+        return nullptr;
+    }
+
     if (has_waiting_requests(server))
     {
         return sk_get_request(server);
@@ -43,6 +62,17 @@ server_request next_web_request(web_server server)
 
 void send_response(server_request r, server_response resp)
 {
+    if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+    {
+        raise_warning("send_response called on an invalid request");
+        return;
+    }
+    else if (INVALID_PTR(resp, WEB_SERVER_RESPONSE_PTR))
+    {
+        raise_warning("send_response called on an invalid response");
+        return;
+    }
+
     r->response = resp;
     r->control.release();
 }
@@ -50,6 +80,7 @@ void send_response(server_request r, server_response resp)
 void send_response(server_request r, string message)
 {
     server_response resp = new sk_server_response;
+    resp->id = WEB_SERVER_RESPONSE_PTR;
     resp->message = message;
 
     send_response(r, resp);
@@ -57,5 +88,11 @@ void send_response(server_request r, string message)
 
 string request_get_uri(server_request r)
 {
+    if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+    {
+        raise_warning("request_get_uri called on an invalid request");
+        return "";
+    }
+
     return r->uri;
 }

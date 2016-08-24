@@ -20,6 +20,7 @@ static int begin_request_handler(struct mg_connection *conn)
     const struct mg_request_info *request_info = mg_get_request_info(conn);
 
     sk_server_request *r = new sk_server_request;
+    r->id = WEB_SERVER_REQUEST_PTR;
     r->uri = request_info->request_uri;
 
     request_queue.put(r); // Add request to concurrent queue
@@ -45,13 +46,14 @@ static int begin_request_handler(struct mg_connection *conn)
 void sk_flush_request(sk_server_request *request)
 {
     request->response = new sk_server_response;
+    request->response->id = WEB_SERVER_RESPONSE_PTR;
     request->response->message = "Server is stopping.";
     request->control.release();
 }
 
 /*
  * Copy's and returns the request from the last_request object
- * and sets it to null so it can't be retrieved again.
+ * and sets the variable to null so it can't be retrieved again.
  */
 sk_server_request* sk_get_request(sk_web_server *server)
 {
@@ -84,6 +86,7 @@ bool sk_has_waiting_requests(sk_web_server *server)
 sk_web_server* sk_start_web_server(string port)
 {
     sk_web_server *server = new sk_web_server;
+    server->id = WEB_SERVER_PTR;
 
     // List of options. Last element must be NULL.
     const char *options[] = {"listening_ports", port.c_str(), NULL};
