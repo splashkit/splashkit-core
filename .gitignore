@@ -70,7 +70,7 @@ projects/bash/out
 
 ### CLion JetBrains IDE ###
 .idea
-CMakeLists.txt
+/CMakeLists.txt
 
 ### vim ###
 swap
