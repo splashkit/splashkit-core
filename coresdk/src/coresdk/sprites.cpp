@@ -245,6 +245,11 @@ void free_sprite(sprite s)
     delete s;
 }
 
+void free_all_sprites()
+{
+    FREE_ALL_FROM_MAP(_sprites, SPRITE_PTR, free_sprite);
+}
+
 
 //-----------------------------------------------------------------------------
 // Sprite fetching functions
@@ -262,5 +267,7 @@ sprite sprite_named(const string &name)
     else
         return nullptr;
 }
+
+
 
 
