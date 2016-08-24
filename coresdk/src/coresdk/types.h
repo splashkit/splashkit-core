@@ -14,6 +14,14 @@ using namespace std;
 
 typedef unsigned char byte;
 
+/**
+ * The free notifier can be registered with the system. It is called every
+ * time a resource is freed.
+ *
+ * @param pointer   The pointer to the resource that is being freed.
+ */
+typedef void (free_notifier)(void *pointer);
+
 struct color
 {
     float r, g, b, a;

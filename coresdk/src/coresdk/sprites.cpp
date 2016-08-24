@@ -13,6 +13,8 @@
 #include "timers.h"
 #include "vector_2d.h"
 
+#include "resource_event_notifications.h"
+
 #include <map>
 #include <vector>
 using namespace std;
@@ -205,3 +207,17 @@ sprite create_sprite(const string &name, bitmap layer, animation_script ani)
     return result;
 }
 
+
+
+bool has_sprite(const string &name)
+{
+    return _sprites.count(name) > 0;
+}
+
+sprite sprite_named(const string &name)
+{
+    if (has_sprite(name))
+        return _sprites[name];
+    else
+        return nullptr;
+}
