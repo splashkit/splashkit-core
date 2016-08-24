@@ -12,6 +12,9 @@
 #include <string>
 using namespace std;
 
+/**
+ *
+ */
 typedef struct _timer_data *timer;
 
 /**
@@ -76,7 +79,7 @@ void start_timer(string name);
 /**
  * Stop the timer. The time is reset to 0 and you must
  * recall start to begin the timer ticking again.
- * 
+ *
  * @attribute class timer
  * @attribute method stop
  */

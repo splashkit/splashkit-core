@@ -19,6 +19,8 @@ using namespace std;
  *  operations that need to be performed on Vectors. You can translate,
  *  rotate and scale, and combine these together into a single matrix
  *  that can then be applied to vectors and points.
+ *
+ * @param elements foo bar qux
  */
 struct matrix_2d
 {

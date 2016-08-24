@@ -20,6 +20,9 @@ using namespace std;
 /// @class Window
 /// @pointer_wrapper
 /// @field pointer: pointer
+/**
+ *
+ */
 typedef struct _window_data *window;
 
 window open_window(string caption, int width, int height);

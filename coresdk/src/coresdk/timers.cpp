@@ -225,7 +225,7 @@ bool timer_paused(timer to_get)
         raise_warning("Attempting to check pause from invalid timer");
         return 0;
     }
-    
+
     return to_get->paused;
 }
 
@@ -241,7 +241,7 @@ bool timer_started(timer to_get)
         raise_warning("Attempting to check started from invalid timer");
         return 0;
     }
-    
+
     return to_get->started;
 }
 

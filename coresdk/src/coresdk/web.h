@@ -14,7 +14,14 @@
 #include <string>
 using namespace std;
 
+/**
+ *
+ */
 typedef struct _http_request_data *http_request;
+
+/**
+ *
+ */
 typedef struct _http_response_data *http_response;
 
 http_response http_get(string url, unsigned short port);
