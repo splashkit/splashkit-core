@@ -21,12 +21,7 @@ void register_event_handler(free_notifier *handler)
 
 void deregister_event_handler(free_notifier *handler)
 {
-    auto it = find (_free_event_handlers.begin(), _free_event_handlers.end(), handler);
-    if (it != _free_event_handlers.end())
-    {
-        _free_event_handlers.erase(it);
-    }
-    else
+    if (not erase_from_vector(_free_event_handlers, handler))
     {
         raise_warning("Not able to deregister handler -- handler not registered.");
     }

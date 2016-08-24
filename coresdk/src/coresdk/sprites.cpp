@@ -207,7 +207,48 @@ sprite create_sprite(const string &name, bitmap layer, animation_script ani)
     return result;
 }
 
+//-----------------------------------------------------------------------------
+// Free sprites
+//-----------------------------------------------------------------------------
 
+void free_sprite(sprite s)
+{
+    if (INVALID_PTR(s, SPRITE_PTR))
+    {
+        raise_warning("Attempting to free invalid sprite");
+        return;
+    }
+    
+    //Dispose sprite
+    notify_handlers_of_free(s);
+    
+    // Free pointers
+    if (ASSIGNED(s->animation_info))
+        free_animation(s->animation_info);
+    
+    // nil pointers to resources managed by sgResources
+    s->script = nullptr;
+    
+    //Free buffered rotation image
+    s->collision_bitmap = nullptr;
+    
+    if ( not erase_from_vector(s->pack, s) )
+    {
+        raise_warning("Error removing sprite from sprite pack!");
+    }
+    
+    // Remove from hashtable
+    // Write_ln('Freeing sprite named: ', s->name);
+    _sprites.erase(s->name);
+    
+    s->id = NONE_PTR;
+    delete s;
+}
+
+
+//-----------------------------------------------------------------------------
+// Sprite fetching functions
+//-----------------------------------------------------------------------------
 
 bool has_sprite(const string &name)
 {
@@ -221,3 +262,5 @@ sprite sprite_named(const string &name)
     else
         return nullptr;
 }
+
+

@@ -35,6 +35,21 @@ bool directory_exists(string path);
 #define MIN(a,b) ( a < b ? a : b )
 #define MAX(a,b) ( a > b ? a : b )
 
+template <typename T>
+bool erase_from_vector(vector<T> &v, T value)
+{
+    auto it = find (v.begin(), v.end(), value);
+    if (it != v.end())
+    {
+        v.erase(it);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 string cat(std::initializer_list<string> list);
 
 string path_from(std::initializer_list<string> list, string filename = string(""));
