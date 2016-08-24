@@ -85,6 +85,8 @@ void free_query_result(query_result query)
         return;
     }
 
+    notify_handlers_of_free(query);
+    
     vector<query_result>::iterator it;
     
     it = find (_queries_vector.begin(), _queries_vector.end(), query);
@@ -109,46 +111,98 @@ void free_all_query_results()
 
 bool get_next_row(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to get next row.");
+        return false;
+    }
     return sk_query_get_next_row(result);
 }
 
 bool has_row(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to check has row.");
+        return false;
+    }
+    
     return sk_query_has_data(result);
 }
 
 void reset_query_result(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to reset.");
+        return;
+    }
+    
     sk_reset_query_statement(result);
 }
 
 int query_column_for_int(query_result result, int col)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
+    
     return sk_query_read_column_int(result, col);
 }
 
 double query_column_for_double(query_result result, int col)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
+    
     return sk_query_read_column_double(result, col);
 }
 
 string query_column_for_string(query_result result, int col)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return "";
+    }
+    
     return sk_query_read_column_text(result, col);
 }
 
 bool query_column_for_bool(query_result result, int col)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return false;
+    }
+    
     return sk_query_read_column_bool(result, col);
 }
 
 string query_type_of_col(query_result result, int col)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return "";
+    }
+    
     return sk_query_type_of_column(result, col);
 }
 
 bool query_success(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
     return sk_query_success(result);
 }
 
