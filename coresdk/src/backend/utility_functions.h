@@ -50,6 +50,39 @@ bool erase_from_vector(vector<T> &v, T value)
     }
 }
 
+#define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
+size_t sz = collection.size();\
+for(size_t i = 0; i < sz; i++)\
+{\
+    auto resource = collection.begin()->second;\
+    if (VALID_PTR(resource, ptr_kind))\
+    {\
+        fn(resource);\
+    }\
+    else\
+    {\
+        raise_warning("Splashkit contains invalid ##ptr_kind !");\
+        collection.erase(collection.begin());\
+    }\
+}
+
+#define FREE_ALL_FROM_VECTOR(collection, ptr_kind, fn )\
+size_t sz = collection.size();\
+for(size_t i = 0; i < sz; i++)\
+{\
+auto resource = *collection.begin();\
+if (VALID_PTR(resource, ptr_kind))\
+{\
+fn(resource);\
+}\
+else\
+{\
+raise_warning("Splashkit contains invalid ##ptr_kind !");\
+collection.erase(collection.begin());\
+}\
+}
+
+
 string cat(std::initializer_list<string> list);
 
 string path_from(std::initializer_list<string> list, string filename = string(""));

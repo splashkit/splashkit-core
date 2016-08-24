@@ -48,6 +48,7 @@ enum pointer_identifier
     MESSAGE_PTR =           0x4d534750, //'MSGP';
     SERVER_SOCKET_PTR =     0x53565253, //'SVRS';
     DISPLAY_PTR =           0x44495350, //'DISP';
+    QUERY_PTR =             0x51555259, //'QURY';
     NONE_PTR =              0x4e4f4e45  //'NONE';
 };
 
