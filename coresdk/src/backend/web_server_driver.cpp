@@ -23,13 +23,8 @@ static int begin_request_handler(struct mg_connection *conn)
     sk_server_request *r = new sk_server_request;
     r->uri = request_info->request_uri;
 
-    request_queue.enqueue(r);
+    request_queue.enqueue(r); // Add request to concurrent queue
     r->control.acquire(); // Waits until user returns response.
-
-    char content[100];
-
-    int content_length = snprintf(content, sizeof(content),
-                                  r->response->message.c_str());
 
     // Send HTTP reply to the client
     mg_printf(conn,
@@ -38,9 +33,10 @@ static int begin_request_handler(struct mg_connection *conn)
               "Content-Length: %d\r\n" // Always set Content-Length
               "\r\n"
               "%s",
-              content_length, content);
+              r->response->message.length(), r->response->message.c_str());
 
     // Remove the request
+    delete r->response;
     delete r;
 
     // Non-zero return means civetweb has replied to client
