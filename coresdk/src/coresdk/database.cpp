@@ -253,19 +253,5 @@ void free_database(string name_of_db_to_close)
 
 void free_all_databases()
 {
-    size_t sz = _databases.size();
-    
-    for(size_t i = 0; i < sz; i++)
-    {
-        database db_to_close = _databases.begin()->second;
-        if (VALID_PTR(db_to_close, DATABASE_PTR))
-        {
-            free_database(db_to_close);
-        }
-        else
-        {
-            raise_warning("Database contained an invalid pointer");
-            _databases.erase(_databases.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_databases, DATABASE_PTR, free_database);
 }

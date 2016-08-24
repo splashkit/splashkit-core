@@ -4,6 +4,8 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
+#include "resource_event_notifications.h"
+
 #include <iostream>
 #include <map>
 
@@ -82,6 +84,8 @@ void free_sound_effect(sound_effect effect)
 {
     if ( VALID_PTR(effect, AUDIO_PTR) )
     {
+        notify_handlers_of_free(effect);
+        
         _sound_effects.erase(effect->name);
         sk_close_sound_data(&effect->effect);
         effect->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -95,23 +99,7 @@ void free_sound_effect(sound_effect effect)
 
 void free_all_sound_effects()
 {
-    string name;
-
-    size_t sz = _sound_effects.size();
-
-    for(size_t i = 0; i < sz; i++)
-    {
-        sound_effect effect = _sound_effects.begin()->second;
-        if (VALID_PTR(effect, AUDIO_PTR))
-        {
-            free_sound_effect(effect);
-        }
-        else
-        {
-            raise_warning("Sound effects contained an invalid pointer");
-            _sound_effects.erase(_sound_effects.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_sound_effects, AUDIO_PTR, free_sound_effect);
 }
 
 void play_sound_effect(sound_effect effect, int times, float volume)

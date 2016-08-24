@@ -13,6 +13,8 @@
 #include "utility_functions.h"
 #include "resources.h"
 
+#include "resource_event_notifications.h"
+
 #include <map>
 #include <cstdlib>
 
@@ -144,6 +146,8 @@ void free_bitmap(bitmap bmp)
 {
     if ( VALID_PTR(bmp, BITMAP_PTR) )
     {
+        notify_handlers_of_free(bmp);
+        
         _bitmaps.erase(bmp->name);
         sk_close_drawing_surface(&bmp->image.surface);
         bmp->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -157,23 +161,7 @@ void free_bitmap(bitmap bmp)
 
 void free_all_bitmaps()
 {
-    string name;
-
-    size_t sz = _bitmaps.size();
-
-    for(size_t i = 0; i < sz; i++)
-    {
-        bitmap bmp = _bitmaps.begin()->second;
-        if (VALID_PTR(bmp, BITMAP_PTR))
-        {
-            free_bitmap(bmp);
-        }
-        else
-        {
-            raise_warning("Bitmaps contained an invalid pointer");
-            _bitmaps.erase(_bitmaps.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_bitmaps, BITMAP_PTR, free_bitmap);
 }
 
 void clear_bitmap(bitmap bmp, color clr)
