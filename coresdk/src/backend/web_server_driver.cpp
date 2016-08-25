@@ -15,7 +15,7 @@
 static sk_server_request* last_request = nullptr;
 static channel<sk_server_request*> request_queue;
 
-static int begin_request_handler(struct mg_connection *conn)
+static int begin_request_handler(struct mg_connection *conn, string port)
 {
     const struct mg_request_info *request_info = mg_get_request_info(conn);
 
@@ -34,6 +34,8 @@ static int begin_request_handler(struct mg_connection *conn)
               "\r\n"
               "%s",
               r->response->message.length(), r->response->message.c_str());
+
+    cout << "Send reply on port " << port << "\n";
 
     // Remove the request
     delete r->response;
@@ -93,7 +95,9 @@ sk_web_server* sk_start_web_server(string port)
 
     // Prepare callbacks structure. We have only one callback, the rest are NULL.
     memset(&server->callbacks, 0, sizeof(server->callbacks));
-    server->callbacks.begin_request = begin_request_handler;
+    server->callbacks.begin_request = [port](mg_connection* c) {
+        return begin_request_handler(c, port);
+    };
 
     // Start the web server.
     server->ctx = mg_start(&server->callbacks, NULL, options);
