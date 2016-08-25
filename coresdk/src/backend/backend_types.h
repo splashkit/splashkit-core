@@ -183,13 +183,6 @@ struct sk_http_response
     char *data;
 };
 
-struct sk_web_server
-{
-    pointer_identifier id;
-    struct mg_context *ctx;
-    struct mg_callbacks callbacks;
-};
-
 struct sk_server_response
 {
     pointer_identifier id;
@@ -203,6 +196,18 @@ struct sk_server_request
     semaphore control;
 
     sk_server_response* response;
+};
+
+struct sk_web_server
+{
+    pointer_identifier id;
+    struct mg_context *ctx;
+    struct mg_callbacks callbacks;
+
+    sk_server_request* last_request;
+    channel<sk_server_request*> request_queue;
+
+    string port;
 };
 
 struct animation_frame
