@@ -11,6 +11,8 @@
 #include "test_main.h"
 
 #include <iostream>
+#include <climits>
+
 using namespace std;
 
 int main()
@@ -24,7 +26,7 @@ int main()
         cout << " -1: Quit" << endl;
         cout << "  1: Animations" << endl;
         cout << "  2: Audio" << endl;
-        cout << "  3: Databse" << endl;
+        cout << "  3: Database" << endl;
         cout << "  4: Geometry" << endl;
         cout << "  5: Graphics" << endl;
         cout << "  6: Input" << endl;
@@ -34,6 +36,7 @@ int main()
         cout << " 10: Text" << endl;
         cout << " 11: Timers" << endl;
         cout << " 12: Windows" << endl;
+        cout << " 13: Web Server" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
 
@@ -79,6 +82,8 @@ int main()
             case 12:
                 run_windows_tests();
                 break;
+            case 13:
+                run_web_server_tests();
             default:
                 break;
         }

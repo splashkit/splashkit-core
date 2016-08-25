@@ -15,6 +15,7 @@
 using namespace std;
 
 #include <initializer_list>
+#include <algorithm>
 
 // smallest positive value: less than that to be considered zero
 #define EPS   0.01

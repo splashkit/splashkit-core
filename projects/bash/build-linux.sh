@@ -9,7 +9,7 @@ CORE_SDK_PATH="../../coresdk"
 
 ALL_SDL2_LIBS="-lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_gfx -lSDL2_image -lSDL2_net -Wl,--no-undefined"
 
-OTHER_LIB="-lpthread -lbz2 -lFLAC -lsmpeg2 -lvorbis -lz -lpng16 -lvorbisfile -lmikmod -logg -lwebp -lfreetype -lcurl -lsqlite3"
+OTHER_LIB="-lpthread -lbz2 -lFLAC -lsmpeg2 -lvorbis -lz -lpng16 -lvorbisfile -lmikmod -logg -lwebp -lfreetype -lcurl -lsqlite3 -ldl"
 
 # echo $ALL_SDL2_LIBS
 
@@ -29,7 +29,14 @@ function run_test_program {
 
 function build_shared_library {
     echo "Creating shared library"
-    g++ -shared -g -std=c++1y -o ./out/linux/libsplashkit.so -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/backend/ ${CORE_SDK_PATH}/src/coresdk/*.cpp ${CORE_SDK_PATH}/src/backend/*.cpp ${ALL_SDL2_LIBS} ${OTHER_LIB} -fPIC
+    g++ -shared -g -std=c++1y -o ./out/linux/libsplashkit.so \
+        -I${CORE_SDK_PATH}/external/civetweb/include \
+        -I${CORE_SDK_PATH}/src/coresdk/ \
+        -I${CORE_SDK_PATH}/src/backend/ \
+        ${CORE_SDK_PATH}/external/civetweb/src/civetweb.c \
+        ${CORE_SDK_PATH}/src/coresdk/*.cpp \
+        ${CORE_SDK_PATH}/src/backend/*.cpp \
+        ${ALL_SDL2_LIBS} ${OTHER_LIB} -fPIC -fpermissive
 
 
     echo "Fails without root: Installing library manually into /usr/lib"
