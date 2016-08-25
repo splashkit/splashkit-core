@@ -32,7 +32,7 @@ before_install:
     - pushd smpeg2-2.0.0 && CFLAGS=-Wno-narrowing ./configure --prefix=/usr && make && sudo make install && popd
 branches:
     only:
-        - final_travis
+        - develop
 before_script:
     cd projects/cmake/
 script:
