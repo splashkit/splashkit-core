@@ -68,7 +68,46 @@ int bitmap_height(bitmap bmp);
 
 int bitmap_height(string name);
 
+/**
+ * Returns the width of each cell in this bitmap.
+ *
+ * @param bmp   The bitmap to get the details from.
+ * @returns     The width of each cells in bmp
+ */
+int bitmap_cell_width(bitmap bmp);
+
+/**
+ * Returns the height of each cell in this bitmap.
+ *
+ * @param bmp   The bitmap to get the details from.
+ * @returns     The height of each cells in bmp
+ */
+int bitmap_cell_height(bitmap bmp);
+
+
+/**
+ *  Returns a rectangle that will encompass the bitmap cell if it were drawn
+ *  at the indicated point.
+ *
+ * @param src   The bitmap to get the details from
+ * @param pt    The point details for the rectangle.
+ * @returns     A rectangle at pt, with width and height from the bitmap's cell details.
+ */
+rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
+
+/**
+ * Returns a circle that will encompass the bitmap cell if it were drawn
+ * at the indicated point, with the provided scale.
+ *
+ * @param bmp   The bitmap to get the details from.
+ * @param pt    The point indicating the location of the bitmap.
+ * @param scale The scaling factor for the bitmap drawing.
+ * @returns     A circle that will encompass the bitmap cell.
+ */
+circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
+
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
+
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
 
 #endif /* images_hpp */

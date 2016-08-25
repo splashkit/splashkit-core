@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-typedef struct _database *database;
+typedef struct sk_database *database;
 typedef struct sk_query_result *query_result;
 
 bool has_database(string name);

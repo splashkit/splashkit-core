@@ -13,14 +13,24 @@
 #include "point_geometry.h"
 #include "rectangle_geometry.h"
 #include "line_geometry.h"
+#include "circle_geometry.h"
+
+/**
+ *  Returns the cosine of the supplied angle (in degrees).
+ */
+float cosine(float degrees);
+
+/**
+ *  Returns the sine of the supplied angle (in degrees).
+ */
+float sine(float degrees);
+
+/**
+ *  Returns the tangent of the supplied angle (in degrees).
+ */
+float tangent(float degrees);
 
 
-vector_2d vector_to(float x, float y);
-
-
-circle circle_at(const point_2d &pt, float radius);
-
-circle circle_at(float x, float y, float radius);
 
 triangle triangle_from(float x1, float y1, float x2, float y2, float x3, float y3);
 

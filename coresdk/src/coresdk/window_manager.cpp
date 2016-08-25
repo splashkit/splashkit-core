@@ -13,6 +13,8 @@
 #include "utility_functions.h"
 #include "input_driver.h"
 
+#include "resource_event_notifications.h"
+
 #include <map>
 
 using namespace std;
@@ -124,11 +126,13 @@ void clear_window(window wind, color clr)
 
 void close_window(window wind)
 {
-    if ( not VALID_PTR(wind, WINDOW_PTR) )
+    if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
         raise_warning("Close window called without valid window parameter");
         return;
     }
+    
+    notify_handlers_of_free(wind);
     
     if ( wind == _current_window )
         _current_window = _primary_window;
@@ -151,6 +155,11 @@ void close_window(window wind)
 void close_window(string name)
 {
     close_window(window_named(name));
+}
+
+void close_all_windows()
+{
+    FREE_ALL_FROM_MAP(_windows, WINDOW_PTR, close_window);
 }
 
 bool has_window(string caption)

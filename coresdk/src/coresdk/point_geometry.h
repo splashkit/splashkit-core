@@ -27,6 +27,11 @@ point_2d point_at_origin();
 point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset);
 
 /**
+ *  Returns the point offset from the origin by the provided vector.
+ */
+point_2d point_offset_from_origin(const vector_2d &offset);
+
+/**
  *  Get a text description of the `point_2d`.
  */
 string point_to_string(const point_2d &pt);

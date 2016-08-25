@@ -31,6 +31,11 @@ rectangle rectangle_from(const point_2d pt1, const point_2d pt2);
 rectangle rectangle_from(const point_2d pt, const float width, const float height);
 
 /**
+ *  Returns a rectangle that is moved by the provided vector.
+ */
+rectangle rectangle_offset_by(const rectangle &rect, const vector_2d &offset);
+
+/**
  * Returns the center point of a given rectangle
  */
 point_2d rectangle_center(const rectangle &rect);
@@ -50,7 +55,24 @@ rectangle rectangle_around(const circle &c);
  */
 rectangle rectangle_around(const triangle &t);
 
+/**
+ * Returns a rectangle that represents the intersection of two rectangles.
+ *
+ * @param rect1     The first rectangle
+ * @param rect2     The second rectangle
+ * @returns         The intersection of rect1 and rect2.
+ */
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
+
+
+/**
+ * Returns true if the two rectangles intersect.
+ *
+ * @param rect1     The first rectangle
+ * @param rect2     The second rectangle
+ * @returns         True when rect1 and rect2 intersect.
+ */
+bool rectangles_intersect(const rectangle &rect1, const rectangle &rect2);
 
 float rectangle_top(const rectangle &rect);
 float rectangle_bottom(const rectangle &rect);

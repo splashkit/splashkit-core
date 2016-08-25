@@ -10,6 +10,7 @@
 #include "types.h"
 #include "audio.h"
 #include "resources.h"
+#include "vector_2d.h"
 
 #include "utility_functions.h"
 

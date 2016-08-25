@@ -8,6 +8,7 @@
 
 #include "mouse_input.h"
 #include "input_driver.h"
+#include "vector_2d.h"
 
 #include <vector>
 #include <map>

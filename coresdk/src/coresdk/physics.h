@@ -9,6 +9,7 @@
 #ifndef physics_hpp
 #define physics_hpp
 
-#include <stdio.h>
+#include "matrix_2d.h"
+#include "vector_2d.h"
 
 #endif /* physics_hpp */

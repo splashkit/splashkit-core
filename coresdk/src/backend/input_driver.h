@@ -64,6 +64,6 @@ bool sk_mouse_button_down(uint32_t button);
 
 bool sk_show_mouse(int value);
 
-string sk_key_name(uint32_t key);
+string sk_key_name(key_code key);
 
 #endif /* defined(__sgsdl2__SGSDL2Input__) */
