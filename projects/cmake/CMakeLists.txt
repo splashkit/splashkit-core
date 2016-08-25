@@ -10,12 +10,12 @@ file(GLOB SOURCE_FILES
         ../../coresdk/src/backend/*.h
         ../../coresdk/src/test/*.cpp
         ../../coresdk/src/test/*.h
-        ../../coresdk/src/external/*.c)
+        ../../coresdk/external/civetweb/src/civetweb.cpp)
 
 include_directories(../../coresdk/src)
 include_directories(../../coresdk/src/coresdk)
 include_directories(../../coresdk/src/backend)
 include_directories(../../coresdk/src/test)
-include_directories(../../coresdk/src/external)
+include_directories(../../coresdk/external/civetweb/include)
 
 add_library(splashkit ${SOURCE_FILES})
