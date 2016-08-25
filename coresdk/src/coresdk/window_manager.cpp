@@ -12,7 +12,8 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 #include "input_driver.h"
-#include "sk_input_backend.h"
+
+#include "resource_event_notifications.h"
 
 #include <map>
 
@@ -51,11 +52,6 @@ window open_window(string caption, int width, int height)
     result->fullscreen = false;
     result->border = true;
     
-    result->eventData.close_requested = false;
-    result->eventData.has_focus = false;
-    result->eventData.mouse_over = false;
-    result->eventData.shown = true;
-    
     result->screen_rect = { 0, 0, float(width), float(height) };
     
     result->temp_string = "";
@@ -90,6 +86,22 @@ window open_window(string caption, int width, int height)
     return result;
 }
 
+void window_set_icon(window wind, bitmap bmp)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to set icon for an invalid window!");
+        return;
+    }
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to set icon with an invalid bitmap!");
+        return;
+    }
+    
+    sk_set_icon(&wind->image.surface, &bmp->image.surface);
+}
+
 void refresh_window(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
@@ -98,7 +110,6 @@ void refresh_window(window wind)
         return;
     }
     
-    //TODO: DrawCollectedText(w);
     sk_refresh_window(&wind->image.surface);
 }
 
@@ -115,11 +126,13 @@ void clear_window(window wind, color clr)
 
 void close_window(window wind)
 {
-    if ( not VALID_PTR(wind, WINDOW_PTR) )
+    if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
         raise_warning("Close window called without valid window parameter");
         return;
     }
+    
+    notify_handlers_of_free(wind);
     
     if ( wind == _current_window )
         _current_window = _primary_window;
@@ -144,6 +157,11 @@ void close_window(string name)
     close_window(window_named(name));
 }
 
+void close_all_windows()
+{
+    FREE_ALL_FROM_MAP(_windows, WINDOW_PTR, close_window);
+}
+
 bool has_window(string caption)
 {
     return _windows.count(caption) > 0;
@@ -157,3 +175,84 @@ window window_named(string caption)
         return nullptr;
 }
 
+window window_with_focus()
+{
+    for (auto win_itr: _windows)
+    {
+        if (sk_get_window_event_data(&win_itr.second->image.surface).has_focus)
+        {
+            return win_itr.second;
+        }
+    }
+    
+    return current_window();
+}
+
+window current_window()
+{
+    return _current_window;
+}
+
+void set_current_window(window wind)
+{
+    if ( INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to set active window to an invalid window value");
+        return;
+    }
+    
+    _current_window = wind;
+}
+
+void set_current_window(string name)
+{
+    set_current_window(window_named(name));
+}
+
+bool window_close_requested(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to check if invalid window closed");
+        return true;
+    }
+    
+    return sk_get_window_event_data(&wind->image.surface).close_requested;
+}
+
+bool window_close_requested(string name)
+{
+    return window_close_requested(window_named(name));
+}
+
+int window_width(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to get width of invalid window");
+        return true;
+    }
+
+    return wind->image.surface.width;
+}
+
+int window_width(string name)
+{
+    return window_width(window_named(name));
+}
+
+int window_height(window wind)
+{
+    if (INVALID_PTR(wind, WINDOW_PTR))
+    {
+        raise_warning("Attempting to get height of invalid window");
+        return true;
+    }
+    
+    return wind->image.surface.height;
+}
+
+int window_height(string name)
+{
+    return window_height(window_named(name));
+}

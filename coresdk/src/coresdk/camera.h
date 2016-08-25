@@ -53,6 +53,36 @@ float to_screen_x(float world_x);
 ///
 float to_screen_y(float world_y);
 
+/**
+ * Convert the passed in world coordinates to screen coordinates.
+ *
+ * @param pt    The point to convert - this should be in world coordinates.
+ * @returns     A point that represents pt in screen coordinates.
+ */
+point_2d to_screen(const point_2d &pt);
+
+/**
+ * Convert the rectangle in world coordinates to screen coordinates.
+ *
+ * @param rect  The rectangle to convert - this should be in world coordinates.
+ * @returns     A rectangle that represents rect in screen coordinates.
+ */
+rectangle to_screen(const rectangle &rect);
+
+/**
+ * Returns a vector that can transform points from world to screen coordinates.
+ *
+ * @returns A vector representing the distance and direction points need 
+ *          to move to map from world to screen coordinates.
+ */
+vector_2d vector_world_to_screen();
+
+/**
+ * Returns a rectangle that represents the dimensions of the window.
+ *
+ * @returns     A rectangle representing the dimensions of the current window.
+ */
+rectangle screen_rectangle();
 
 //---------------------------------------------------------------------------
 // Screen-To-World Translation
@@ -65,6 +95,14 @@ float to_world_x(float screen_x);
 /// Translate a screen y value (based on the camera) to a world y value
 ///
 float to_world_y(float screen_y);
+
+/**
+ * Converts the passed in point from screen coordinates to world coordinates.
+ *
+ * @param pt    The point in screen coordinates.
+ * @returns     The same point in world coordinates.
+ */
+point_2d to_world(const point_2d &pt);
 
 
 #endif /* camera_hpp */

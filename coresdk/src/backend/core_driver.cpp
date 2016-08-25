@@ -27,6 +27,7 @@ sk_system_data _sk_system_data;
 
 
 void sk_setup_displays();
+void _init_key_maps();
 
 void internal_sk_init()
 {
@@ -64,8 +65,12 @@ void internal_sk_init()
     sk_init_text();
 
     sk_init_web();
+    
 //
 //    sk_network_init();
+    
+    _init_key_maps();
+    
     open_audio();
 }
 
@@ -74,6 +79,8 @@ void sk_setup_display(int idx, sk_display &disp)
     SDL_DisplayMode mode;
     SDL_Rect rect;
 
+    disp.id = DISPLAY_PTR;
+    
     disp.name = SDL_GetDisplayName(idx);
 
     SDL_GetCurrentDisplayMode(idx, &mode);

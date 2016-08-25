@@ -23,10 +23,20 @@
 static Mix_Chunk * _sk_sound_channels[SG_MAX_CHANNELS];
 static sk_sound_data * _current_music  = NULL;
 
+// access system data from core driver
+extern sk_system_data _sk_system_data;
+
+static bool _sk_audio_open = false;
 
 void sk_init_audio()
 {
     Mix_Init(~0);
+}
+
+bool sk_audio_is_open()
+{
+    internal_sk_init();
+    return _sk_audio_open;
 }
 
 void sk_open_audio()
@@ -44,6 +54,8 @@ void sk_open_audio()
     _sk_system_data.audio_specs.audio_format = format;
 
     Mix_AllocateChannels(SG_MAX_CHANNELS);
+    
+    _sk_audio_open = true;
 }
 
 void sk_close_audio()
@@ -54,6 +66,7 @@ void sk_close_audio()
     {
         sk_audiospec empty = { 0, 0, 0, 0 };
         _sk_system_data.audio_specs = empty;
+        _sk_audio_open = false;
     }
 }
 

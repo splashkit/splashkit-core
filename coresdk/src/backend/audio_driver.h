@@ -34,6 +34,7 @@ typedef struct sk_sound_data
 void sk_init_audio();
 void sk_open_audio();
 void sk_close_audio();
+bool sk_audio_is_open();
 
 int sk_get_channel(sk_sound_data *sound);
 

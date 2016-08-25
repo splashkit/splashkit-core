@@ -13,6 +13,8 @@
 #include "utility_functions.h"
 #include "resources.h"
 
+#include "resource_event_notifications.h"
+
 #include <map>
 #include <cstdlib>
 
@@ -59,7 +61,13 @@ bitmap bitmap_named(string name)
     if (has_bitmap(name))
         return _bitmaps[name];
     else
+    {
+        string filename = path_to_resource(name, IMAGE_RESOURCE);
+        
+        if ( file_exists(filename) or file_exists(name))
+            return load_bitmap(name, name);
         return nullptr;
+    }
 }
 
 
@@ -110,10 +118,42 @@ bitmap load_bitmap(string name, string filename)
     return result;
 }
 
+bitmap create_bitmap(string name, int width, int height)
+{
+    bitmap result = new(_bitmap_data);
+    
+    result->id = BITMAP_PTR;
+    result->image.surface = sk_create_bitmap(width, height);
+    
+    result->cell_w     = width;
+    result->cell_h     = height;
+    result->cell_cols  = 1;
+    result->cell_rows  = 1;
+    result->cell_count = 1;
+    
+    result->filename   = "";
+    
+    int idx = 0;
+    string key = name;
+    while (has_bitmap(key))
+    {
+        key = name + to_string(idx);
+        idx++;
+    }
+
+    result->name       = key;
+    
+    _bitmaps[key] = result;
+    
+    return result;
+}
+
 void free_bitmap(bitmap bmp)
 {
     if ( VALID_PTR(bmp, BITMAP_PTR) )
     {
+        notify_handlers_of_free(bmp);
+        
         _bitmaps.erase(bmp->name);
         sk_close_drawing_surface(&bmp->image.surface);
         bmp->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -127,24 +167,25 @@ void free_bitmap(bitmap bmp)
 
 void free_all_bitmaps()
 {
-    string name;
-
-    size_t sz = _bitmaps.size();
-
-    for(size_t i = 0; i < sz; i++)
-    {
-        bitmap bmp = _bitmaps.begin()->second;
-        if (VALID_PTR(bmp, BITMAP_PTR))
-        {
-            free_bitmap(bmp);
-        }
-        else
-        {
-            raise_warning("Bitmaps contained an invalid pointer");
-            _bitmaps.erase(_bitmaps.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_bitmaps, BITMAP_PTR, free_bitmap);
 }
+
+void clear_bitmap(bitmap bmp, color clr)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to clear invalid bitmap");
+        return;
+    }
+    
+    sk_clear_drawing_surface(&bmp->image.surface, clr);
+}
+
+void clear_bitmap(string name, color clr)
+{
+    clear_bitmap(bitmap_named(name), clr);
+}
+
 
 void draw_bitmap(bitmap bmp, float x, float y)
 {
@@ -222,6 +263,26 @@ void draw_bitmap(string name, float x, float y, drawing_options opts)
     draw_bitmap(bitmap_named(name), x, y, opts);
 }
 
+rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt)
+{
+    if ( INVALID_PTR(src, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get bitmap cell rectangle from invalid image");
+        return rectangle_from(0, 0, 0, 0);
+    }
+    
+    return rectangle_from(pt, src->cell_w, src->cell_h);
+}
+
+vector_2d bitmap_cell_offset(bitmap src, int cell)
+{
+    if ( (not VALID_PTR(src, BITMAP_PTR)) or (cell >= src->cell_count) or (cell < 0) )
+        return vector_to(0,0);
+    return vector_to(
+        (cell % src->cell_cols) * src->cell_w,
+        (cell - (cell % src->cell_cols)) / src->cell_cols * src->cell_h);
+}
+
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell)
 {
     rectangle result;
@@ -241,6 +302,17 @@ rectangle bitmap_rectangle_of_cell(bitmap src, int cell)
     return result;
 }
 
+circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR) )
+    {
+        raise_warning("Attempting to get cell circle from invalid bitmap");
+        return circle_at(0, 0, 0);
+    }
+    
+    return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h) / 2.0f * scale);
+}
+
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count)
 {
     if ( not VALID_PTR(bmp, BITMAP_PTR))
@@ -254,4 +326,84 @@ void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int
     bmp->cell_cols  = columns;
     bmp->cell_rows  = rows;
     bmp->cell_count = count;
+}
+
+int bitmap_width(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get width of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->image.surface.width;
+}
+
+int bitmap_width(string name)
+{
+    return bitmap_width(bitmap_named(name));
+}
+
+int bitmap_height(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to get height of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->image.surface.height;
+}
+
+int bitmap_height(string name)
+{
+    return bitmap_height(bitmap_named(name));
+}
+
+int bitmap_cell_width(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to read details of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->cell_w;
+}
+
+int bitmap_cell_height(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to read details of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->cell_h;
+}
+
+int bitmap_cell_count(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        return 0;
+    }
+    
+    return bmp->cell_count;
+}
+
+bool pixel_drawn_at_point(bitmap bmp, float x, float y)
+{
+    int px = round(x);
+    int py = round(y);
+    
+    if ( INVALID_PTR(bmp, BITMAP_PTR) or px < 0 or px >= bitmap_width(bmp) or py < 0 or py >= bitmap_height(bmp) ) return false;
+    
+    return bmp->pixel_mask[px + py * bmp->image.surface.width];
+}
+
+bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y)
+{
+    vector_2d offset = bitmap_cell_offset(bmp, cell);
+    return pixel_drawn_at_point(bmp, x + offset.x, y + offset.y);
 }

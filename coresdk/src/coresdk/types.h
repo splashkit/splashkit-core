@@ -9,7 +9,18 @@
 #ifndef types_hpp
 #define types_hpp
 
+#include <string>
+using namespace std;
+
 typedef unsigned char byte;
+
+/**
+ * The free notifier can be registered with the system. It is called every
+ * time a resource is freed.
+ *
+ * @param pointer   The pointer to the resource that is being freed.
+ */
+typedef void (free_notifier)(void *pointer);
 
 struct color
 {
@@ -63,7 +74,7 @@ enum font_alignment
 /// @class Font
 /// @pointer_wrapper
 /// @field pointer: pointer
-typedef struct _font_data *font;
+typedef struct sk_font_data *font;
 
 typedef struct _animation_script_data *animation_script;
 typedef struct _animation_data *animation;
@@ -96,7 +107,11 @@ struct point_2d
 /// @field x: Single
 /// @field y: Single
 /// @sameas Point2D
-typedef point_2d vector_2d;
+struct vector_2d
+{
+    float x;
+    float y;
+};
 
 /// Rectangles are simple rectangle shapes that exist at a point and have a set width
 /// and height. This means that the rectangle always has edges that follow the sides of
@@ -111,6 +126,19 @@ struct rectangle
     float width, height;
 };
 
+/// Quads (Quadrilaterals) are shapes with 4 sides, but unlike `Rectangle`, these shapes can have axis that
+/// do not line up with screen/bitmap axis.
+///
+/// Points should be constructed with the top left as the first point, top right as the second,
+/// bottom left as the third, and bottom right as the last point. Other orders may give unexpected
+/// outcomes.
+///
+/// @struct Quad
+struct quad
+{
+    point_2d points[4];
+};
+
 /// Circles have a center point and a radius. This means that, unlike other shapes
 /// like the `Rectangle`, the circle extends out both left and right, and up and down
 /// from the point you position it at.
@@ -120,6 +148,23 @@ struct circle
 {
     point_2d center;
     float radius;
+};
+
+/**
+ * A triangle consists of three points
+ */
+struct triangle
+{
+    point_2d points[3];
+};
+
+/**
+ * A line goes from a start point to an end point.
+ */
+struct line
+{
+    point_2d start_point;
+    point_2d end_point;
 };
 
 /// Determines the effect of the camera on a drawing operation.
@@ -155,6 +200,14 @@ struct drawing_options
     int line_width;         // Specify the width of line drawings.
     animation anim;         // The animation for bitmap drawing
 };
+
+/**
+ * Each display value represents a physical display attached to the computer.
+ * You can use this to query the displays position and size.
+ *
+ * @attribute class display
+ */
+typedef struct sk_display *display;
 
 
 #endif /* types_hpp */

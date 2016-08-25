@@ -33,9 +33,10 @@ color random_rgb_color(byte alpha);
 ///
 color rgba_color(byte red, byte green, byte blue, byte alpha);
 
-/// Gets a color given its color components. Each of the components has
-/// a value between 0 and 1
-///
+/**
+ *  Gets a color given its color components. Each of the components has
+ *  a value between 0 and 1.0.
+ */
 color rgba_color(float red, float green, float blue, float alpha);
 
 /// Gets a color given its RGB components. Each of the components has
@@ -48,9 +49,6 @@ color rgb_color(byte red, byte green, byte blue);
 ///
 color rgb_color(float red, float green, float blue);
 
-/// returns color to string.
-///
-string color_to_string(color c);
 
 /// Returs a color from a combination of hue, saturation, and brightness.
 ///
@@ -58,6 +56,76 @@ string color_to_string(color c);
 /// @returns The matching color
 ///
 color hsb_color(float hue, float saturation, float brightness);
+
+/**
+ *  Returns a string representation of the color.
+ *  Format will be a hex string starting with a #,
+ *  followed by the red, green, blue, and alpha
+ *  values of the color.
+ */
+string color_to_string(color c);
+
+/**
+ *  Returns a color for the passed in color string.
+ *  The format must be #, followed by the hex values
+ *  for the red, green, blue, and alpha components
+ *  of the color.
+ */
+color string_to_color(string str);
+
+/// Get the transpareny value of the color.
+///
+/// @lib
+///
+/// @doc_group colors
+byte transparency_of(color c);
+
+/**
+ * Returns the alpha of the supplied color.
+ */
+byte alpha_of(color c);
+
+/// Get the red value of ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+byte red_of(color c);
+
+/// Get the green value of ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+byte green_of(color c);
+
+/// Get the blue value of ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+byte blue_of(color c);
+
+/// Get the hue of the ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+float hue_of(color c);
+
+/// Get the saturation of the ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+float saturation_of(color c);
+
+/// Get the brightness of the ``color``.
+///
+/// @lib
+///
+/// @doc_group colors
+float brightness_of(color c);
 
 #define COLOR_SWINBURNE_RED color_swinburne_red()
 #define COLOR_GREY color_grey()

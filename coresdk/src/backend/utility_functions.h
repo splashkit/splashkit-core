@@ -15,6 +15,12 @@
 using namespace std;
 
 #include <initializer_list>
+#include <algorithm>
+
+// smallest positive value: less than that to be considered zero
+#define EPS   0.01
+// and its square
+#define EPSEPS 0.0001
 
 void raise_warning( string message );
 
@@ -27,10 +33,102 @@ bool directory_exists(string path);
 
 #define ASSIGNED(ptr) ( ptr != nullptr )
 
+#define MIN(a,b) ( a < b ? a : b )
+#define MAX(a,b) ( a > b ? a : b )
+
+template <typename T>
+bool erase_from_vector(vector<T> &v, T value)
+{
+    auto it = find (v.begin(), v.end(), value);
+    if (it != v.end())
+    {
+        v.erase(it);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <typename T>
+int index_of (vector<T> vec, T value)
+{
+    auto result = find(vec.begin(), vec.end(), value);
+    
+    if ( result == vec.end() ) return -1;
+    else return static_cast<int>(result - vec.begin());
+}
+
+template <typename K, typename V>
+bool key_of_value(const map<K,V> &map, const V &value, K &result)
+{
+    auto find_result = std::find_if(std::begin(map),
+                                    std::end(map),
+                                    [&](const std::pair<K, V> &pair)
+                                    {
+                                        return pair.second == value;
+                                    });
+    
+    if (find_result != std::end(map))
+    {
+        result = find_result->first;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+template <typename T>
+void move_range(std::vector<T> & v, size_t start, size_t length, size_t dst)
+{
+    const size_t final_dst = dst > start ? dst - length : dst;
+    
+    std::vector<T> tmp(v.begin() + start, v.begin() + start + length);
+    v.erase(v.begin() + start, v.begin() + start + length);
+    v.insert(v.begin() + final_dst, tmp.begin(), tmp.end());
+}
+
+#define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
+size_t sz = collection.size();\
+for(size_t i = 0; i < sz; i++)\
+{\
+    auto resource = collection.begin()->second;\
+    if (VALID_PTR(resource, ptr_kind))\
+    {\
+        fn(resource);\
+    }\
+    else\
+    {\
+        raise_warning("Splashkit contains invalid ##ptr_kind !");\
+        collection.erase(collection.begin());\
+    }\
+}
+
+#define FREE_ALL_FROM_VECTOR(collection, ptr_kind, fn )\
+size_t sz = collection.size();\
+for(size_t i = 0; i < sz; i++)\
+{\
+auto resource = *collection.begin();\
+if (VALID_PTR(resource, ptr_kind))\
+{\
+fn(resource);\
+}\
+else\
+{\
+raise_warning("Splashkit contains invalid ##ptr_kind !");\
+collection.erase(collection.begin());\
+}\
+}
+
 
 string cat(std::initializer_list<string> list);
 
 string path_from(std::initializer_list<string> list, string filename = string(""));
+
+string path_to_user_home();
 
 // finally mechanism from: http://stackoverflow.com/questions/161177/does-c-support-finally-blocks-and-whats-this-raii-i-keep-hearing-about
 template <typename F>
@@ -85,5 +183,9 @@ bool try_str_to_float(string str, float &result);
 bool try_str_to_double(string str, double &result);
 
 string to_lower (string str);
+
+float rad_to_deg(float radians);
+
+float deg_to_rad(float degrees);
 
 #endif /* utility_functions_h */

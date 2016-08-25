@@ -26,21 +26,48 @@ using namespace std;
 /// @class Font
 /// @constructor
 /// @csn initWithFontName:%s andSize:%s
+
 void set_font_style(font fnt, font_style style);
+
+void set_font_style(string name, font_style style);
 
 font_style get_font_style(font fnt);
 
-font load_font(string name, string filename, int size);
+font_style get_font_style(string name);
+
+font load_font(string name, string filename);
+
+void free_font(font fnt);
+
+void free_all_fonts();
+
+void font_load_size(font fnt, int font_size);
+
+void font_load_size(string name, int font_size);
+
+bool has_font(font fnt);
 
 bool has_font(string name);
 
+bool font_has_size(font fnt, int font_size);
+
+bool font_has_size(string name, int font_size);
+
 font font_named(string name);
 
-void draw_text(string text, color clr, font fnt, float x, float y, drawing_options opts);
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts);
 
-void draw_text(string text, color clr, font fnt, float x, float y);
+void draw_text(string text, color clr, font fnt, int font_size, float x, float y);
+
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y, drawing_options opts);
+
+void draw_text(string text, color clr, string fnt, int font_size, float x, float y);
 
 void draw_text(string text, color clr, float x, float y, drawing_options opts);
 
+void draw_text(string text, color clr, float x, float y);
+
+int text_length(string text, font fnt, int font_size);
+int text_length(string text, string fnt, int font_size);
 
 #endif /* text_hpp */

@@ -12,6 +12,8 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
+#include "resource_event_notifications.h"
+
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -21,13 +23,6 @@ using namespace std;
 
 static map<string, database> _databases;
 static vector<query_result> _queries_vector;
-
-struct _database
-{
-    pointer_identifier id;
-    sk_database database;
-    string filename, name;
-};
 
 bool has_database(string name)
 {
@@ -48,16 +43,29 @@ database database_named(string name)
 
 int rows_changed(database db)
 {
-    return sk_rows_affected(db->database);
+    if ( INVALID_PTR(db, DATABASE_PTR))
+    {
+        raise_warning("Attempting to access rows changes on invalid database.");
+        return 0;
+    }
+    
+    return sk_rows_affected(db);
 }
 
 query_result run_sql(database db, string sql)
 {
-    sk_query_result temp_result = sk_prepare_statement(db->database, sql);
-    sk_step_statement(&temp_result);
+    if ( INVALID_PTR(db, DATABASE_PTR))
+    {
+        raise_warning("Attempting to run query on invalid database.");
+        return nullptr;
+    }
+    
+    sk_query_result temp_result = sk_prepare_statement(db, sql);
 
     query_result result = new sk_query_result();
     *result = temp_result;
+
+    sk_step_statement(result);
     
     _queries_vector.push_back(result);
     
@@ -71,13 +79,21 @@ query_result run_sql(string database_name, string sql)
 
 void free_query_result(query_result query)
 {
+    if ( INVALID_PTR(query, QUERY_PTR))
+    {
+        raise_warning("Attempting to free invalid query.");
+        return;
+    }
+
+    notify_handlers_of_free(query);
+    
     vector<query_result>::iterator it;
     
     it = find (_queries_vector.begin(), _queries_vector.end(), query);
     if (it != _queries_vector.end())
     {
         auto index = std::distance(_queries_vector.begin(), it);
-        sk_finalise_query(*_queries_vector.at(index));
+        sk_finalise_query(_queries_vector.at(index));
         _queries_vector.erase(it);
         delete(query);
     }
@@ -89,58 +105,105 @@ void free_query_result(query_result query)
 
 void free_all_query_results()
 {
-    auto it = std::begin(_queries_vector);
-    while (it != std::end(_queries_vector))
-    {
-        auto index = std::distance(_queries_vector.begin(), it);
-        free_query_result(_queries_vector.at(index));
-    }
+    FREE_ALL_FROM_VECTOR(_queries_vector, QUERY_PTR, free_query_result);
     _queries_vector.clear();
 }
 
 bool get_next_row(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to get next row.");
+        return false;
+    }
     return sk_query_get_next_row(result);
 }
 
 bool has_row(query_result result)
 {
-    return sk_query_has_data(*result);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to check has row.");
+        return false;
+    }
+    
+    return sk_query_has_data(result);
 }
 
 void reset_query_result(query_result result)
 {
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to reset.");
+        return;
+    }
+    
     sk_reset_query_statement(result);
 }
 
 int query_column_for_int(query_result result, int col)
 {
-    return sk_query_read_column_int(*result, col);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
+    
+    return sk_query_read_column_int(result, col);
 }
 
 double query_column_for_double(query_result result, int col)
 {
-    return sk_query_read_column_double(*result, col);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
+    
+    return sk_query_read_column_double(result, col);
 }
 
 string query_column_for_string(query_result result, int col)
 {
-    return sk_query_read_column_text(*result, col);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return "";
+    }
+    
+    return sk_query_read_column_text(result, col);
 }
 
 bool query_column_for_bool(query_result result, int col)
 {
-    return sk_query_read_column_bool(*result, col);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return false;
+    }
+    
+    return sk_query_read_column_bool(result, col);
 }
 
 string query_type_of_col(query_result result, int col)
 {
-    return sk_query_type_of_column(*result, col);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return "";
+    }
+    
+    return sk_query_type_of_column(result, col);
 }
 
 bool query_success(query_result result)
 {
-    return sk_query_success(*result);
+    if ( INVALID_PTR(result, QUERY_PTR))
+    {
+        raise_warning("Attempting to access invalid query to read row.");
+        return 0;
+    }
+    return sk_query_success(result);
 }
 
 database open_database(string name, string filename)
@@ -149,21 +212,18 @@ database open_database(string name, string filename)
     
     string file_path = path_to_resource(filename, DATABASE_RESOURCE);
     
-    database result = new _database();
+    database result = new sk_database();
+    
+    if ( not sk_open_database(file_path, result) )
+    {
+        raise_warning("Failed to open database " + file_path);
+        delete result;
+        return nullptr;
+    }
     
     result->id = DATABASE_PTR;
     result->filename = file_path;
     result->name = name;
-    result->database = sk_open_database(file_path);
-    
-    // Unable to load database
-    if ( ! result->database._data )
-    {
-        result->id = NONE_PTR;
-        delete result;
-        raise_warning ( cat({ "Error loading database ", name, " at (", file_path, ")"}) );
-        return nullptr;
-    }
     
     _databases[name] = result;
     return result;
@@ -173,8 +233,10 @@ void free_database(database db_to_close)
 {
     if (VALID_PTR(db_to_close, DATABASE_PTR))
     {
+        notify_handlers_of_free(db_to_close);
+        
         _databases.erase(db_to_close->name);
-        sk_close_database(db_to_close->database);
+        sk_close_database(db_to_close);
         db_to_close->id = NONE_PTR;  // ensure future use of this pointer will fail...
         delete(db_to_close);
     }
@@ -191,19 +253,5 @@ void free_database(string name_of_db_to_close)
 
 void free_all_databases()
 {
-    size_t sz = _databases.size();
-    
-    for(size_t i = 0; i < sz; i++)
-    {
-        database db_to_close = _databases.begin()->second;
-        if (VALID_PTR(db_to_close, DATABASE_PTR))
-        {
-            free_database(db_to_close);
-        }
-        else
-        {
-            raise_warning("Database contained an invalid pointer");
-            _databases.erase(_databases.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_databases, DATABASE_PTR, free_database);
 }

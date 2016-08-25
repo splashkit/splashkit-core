@@ -9,66 +9,55 @@
 #include "input.h"
 
 #include "input_driver.h"
-#include "sk_input_backend.h"
 #include "geometry.h"
+#include "text.h"
+#include "utility_functions.h"
+#include "keyboard_input.h"
 
 #include <vector>
+#include <map>
 #include <iostream>
 using namespace std;
-
-struct key_down_data
-{
-    int code;
-    int keyChar;
-};
-
-static vector<key_down_data> _keys_down;
-static vector<int> _keys_just_typed; // i.e. those that have just gone down
-static vector<int> _keys_released; // i.e. those that have just gone down
-bool _key_pressed = false;
-bool _mouse_button_clicked[6] = { false };
-vector_2d _wheel_scroll = {0,0};
-
 
 void quit()
 {
     _sk_quit = true;
 }
 
-void _handle_key_down_callback(int code)
-{
-    cout << "key down: " << code << endl;
-}
 
-void _handle_key_up_callback(int code)
-{
-    cout << "key up: " << code << endl;
-}
-
-void _process_mouse_up_event(int code)
-{
-    cout << "mouse up: " << code << endl;
-}
-
-void process_mouse_wheel_callback(int x, int y)
-{
-    cout << "mouse wheel: " << x << ":" << y << endl;
-}
-
+// occurs as text entry is accepted
 void handle_input_text_callback(char *input)
 {
-    cout << "input text: " << input << endl;
+}
+
+void handle_editing_text(char *text, int cursor, int selection_length)
+{
 }
 
 void handle_window_resize(pointer p, int width, int height)
 {
-    cout << "resize: " << width << "x" << height << endl;
+//    cout << "resize: " << width << "x" << height << endl;
 }
 
 void handle_window_move(pointer p, int x, int y)
 {
-    cout << "move: " << x << ":" << y << endl;
+//    cout << "move: " << x << ":" << y << endl;
 }
+
+void handle_window_gain_focus(pointer p)
+{
+//    cout << "window gained focus: " << endl;
+}
+
+// In keyboard input
+void _keyboard_start_process_events();
+void _handle_key_up_callback(key_code code);
+void _handle_key_down_callback(key_code code);
+
+// In mouse input
+void _mouse_start_process_events();
+void _process_mouse_up_event(int code);
+void _process_mouse_wheel_callback(int x, int y);
 
 void process_events()
 {
@@ -80,12 +69,18 @@ void process_events()
         _input_callbacks.handle_key_up        = &_handle_key_up_callback;
         _input_callbacks.handle_mouse_up      = &_process_mouse_up_event; // click occurs on up
         _input_callbacks.handle_mouse_down    = nullptr;
-        _input_callbacks.handle_mouse_wheel   = &process_mouse_wheel_callback; // click occurs on up
-        _input_callbacks.handle_input_text    = &handle_input_text_callback;
-        _input_callbacks.handle_window_resize = &handle_window_resize;
-        _input_callbacks.handle_window_move   = &handle_window_move;
+        _input_callbacks.handle_mouse_wheel   = &_process_mouse_wheel_callback; // click occurs on up
+        _input_callbacks.handle_input_text    = nullptr;
+        _input_callbacks.handle_editing_text  = nullptr;
+        _input_callbacks.handle_window_resize = nullptr;
+        _input_callbacks.handle_window_move   = nullptr;
+        _input_callbacks.handle_window_gain_focus = nullptr;
     }
-
+    
+    // Reset event tracking data
+    _keyboard_start_process_events();
+    _mouse_start_process_events();
+    
     sk_process_events();
 }
 

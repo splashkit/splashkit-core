@@ -12,6 +12,8 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
+#include "resource_event_notifications.h"
+
 #include <map>
 using namespace std;
 
@@ -59,34 +61,18 @@ void free_timer(timer to_free)
         return;
     }
 
+    notify_handlers_of_free(to_free);
+    
     _timers.erase(to_lower(to_free->name));
 
     to_free->id = NONE_PTR;
 
     delete(to_free);
-
-    //CallFreeNotifier(tmr);
 }
 
 void free_all_timers()
 {
-    string name;
-
-    size_t sz = _timers.size();
-
-    for(size_t i = 0; i < sz; i++)
-    {
-        timer effect = _timers.begin()->second;
-        if (VALID_PTR(effect, AUDIO_PTR))
-        {
-            free_timer(effect);
-        }
-        else
-        {
-            raise_warning("Timers contained an invalid pointer");
-            _timers.erase(_timers.begin());
-        }
-    }
+    FREE_ALL_FROM_MAP(_timers, TIMER_PTR, free_timer);
 }
 
 timer timer_named(string name)

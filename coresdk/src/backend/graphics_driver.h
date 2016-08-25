@@ -53,7 +53,7 @@ sk_drawing_surface sk_load_bitmap(const char * filename);
 
 void sk_draw_bitmap( sk_drawing_surface * src, sk_drawing_surface * dst, float * src_data, int src_data_sz, float * dst_data, int dst_data_sz, sk_renderer_flip flip );
 
-
+void sk_set_icon(sk_drawing_surface *surface, sk_drawing_surface *icon);
 
 
 void sk_close_drawing_surface(sk_drawing_surface *surface);
@@ -67,19 +67,19 @@ void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, float *data, int da
 void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
 
 void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+void sk_fill_triangle(sk_drawing_surface *surface, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 
-void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
-void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
-void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
-void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
+void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height);
+void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height);
+void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float x, float y);
 sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y);
 
 void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
 void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius);
 
-void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz);
+void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float size);
 
-void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz);
+void sk_set_clip_rect(sk_drawing_surface *surface, float x, float y, float width, float height);
 void sk_clear_clip_rect(sk_drawing_surface *surface);
 
 void sk_to_pixels(sk_drawing_surface *surface, int *pixels, int sz);

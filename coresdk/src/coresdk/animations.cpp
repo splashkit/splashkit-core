@@ -10,9 +10,11 @@
 #include "types.h"
 #include "audio.h"
 #include "resources.h"
+#include "vector_2d.h"
 
 #include "utility_functions.h"
 
+#include <algorithm>
 #include <cctype>
 #include <iostream>
 #include <fstream>
@@ -568,7 +570,6 @@ vector_2d animation_current_vector(animation anim)
 {
     if ( INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to get name of invalid animation data.");
         return vector_to(0,0);
     }
     

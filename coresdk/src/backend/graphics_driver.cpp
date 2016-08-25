@@ -752,6 +752,17 @@ void sk_close_drawing_surface(sk_drawing_surface *surface)
     surface->_data = NULL;
 }
 
+void sk_set_icon(sk_drawing_surface *surface, sk_drawing_surface *icon)
+{
+    if ( surface->kind != SGDS_Window || icon->kind != SGDS_Bitmap ) return;
+    
+    sk_window_be *wind = static_cast<sk_window_be *>(surface->_data);
+    sk_bitmap_be *bmp = static_cast<sk_bitmap_be *>(icon->_data);
+    
+    SDL_SetWindowIcon(wind->window, bmp->surface);
+}
+
+
 void _sk_do_clear(SDL_Renderer *renderer, sk_color clr)
 {
     SDL_SetRenderDrawColor(renderer,
@@ -1082,15 +1093,9 @@ void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float
     }
 }
 
-void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_triangle(sk_drawing_surface *surface, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
 {
-    if ( ! surface || ! surface->_data || data_sz != 6) return;
-
-    // 6 values = 3 points
-    float x1 = data[0], y1 = data[1];
-    float x2 = data[2], y2 = data[3];
-    float x3 = data[4], y3 = data[5];
-
+    if ( ! surface || ! surface->_data ) return;
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1121,13 +1126,13 @@ void sk_fill_triangle(sk_drawing_surface *surface, sk_color clr, float *data, in
 //  Ellipse
 //
 
-void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1153,13 +1158,13 @@ void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int
     }
 }
 
-void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1190,12 +1195,9 @@ void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float *data, int
 // Pixel
 //
 
-void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float x, float y)
 {
-    if ( ! surface || ! surface->_data || data_sz != 2) return;
-
-    // 2 values = 1 point
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
+    if ( ! surface || ! surface->_data ) return;
 
     unsigned int count = _sk_renderer_count(surface);
 
@@ -1218,7 +1220,7 @@ void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float *data, int d
         // when multisample is 1, but without multisample 1
         // double buffer causes flicker
         //
-        SDL_RenderDrawPoint(renderer, x1, y1);
+        SDL_RenderDrawPoint(renderer, x, y);
 
         _sk_complete_render(surface, i);
     }
@@ -1334,16 +1336,16 @@ void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y,
 // Lines
 //
 
-void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float size)
 {
-    if ( ! surface || ! surface->_data || data_sz != 5) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 2 points
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int x2 = static_cast<int>(data[2]), y2 = static_cast<int>(data[3]);
+    int x1i = static_cast<int>(x1), y1i = static_cast<int>(y1);
+    int x2i = static_cast<int>(x2), y2i = static_cast<int>(y2);
 
     // 5th value = width (scale)
-    int w = static_cast<int>(data[4]);
+    int w = static_cast<int>(size);
 
     if ( w == 0 ) return;
 
@@ -1361,15 +1363,15 @@ void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int da
                 static_cast<Uint8>(clr.b * 255),
                 static_cast<Uint8>(clr.a * 255));
 
-            SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+            SDL_RenderDrawLine(renderer, x1i, y1i, x2i, y2i);
         }
         else
         {
             thickLineRGBA(renderer,
-                          static_cast<Sint16>(x1),
-                          static_cast<Sint16>(y1),
-                          static_cast<Sint16>(x2),
-                          static_cast<Sint16>(y2),
+                          static_cast<Sint16>(x1i),
+                          static_cast<Sint16>(y1i),
+                          static_cast<Sint16>(x2i),
+                          static_cast<Sint16>(y2i),
                           static_cast<Uint8>(w),
                           static_cast<Uint8>(clr.r * 255),
                           static_cast<Uint8>(clr.g * 255),
@@ -1385,13 +1387,13 @@ void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float *data, int da
 // Clipping
 //
 
-void sk_set_clip_rect(sk_drawing_surface *surface, float *data, int data_sz)
+void sk_set_clip_rect(sk_drawing_surface *surface, float x, float y, float width, float height)
 {
-    if ( ! surface || ! surface->_data || data_sz != 4) return;
+    if ( ! surface || ! surface->_data ) return;
 
     // 4 values = 1 point w + h
-    int x1 = static_cast<int>(data[0]), y1 = static_cast<int>(data[1]);
-    int w = static_cast<int>(data[2]), h = static_cast<int>(data[3]);
+    int x1 = static_cast<int>(x), y1 = static_cast<int>(y);
+    int w = static_cast<int>(width), h = static_cast<int>(height);
 
     switch (surface->kind) {
         case SGDS_Window:

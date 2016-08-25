@@ -14,9 +14,16 @@
 #include <iostream>
 #include <string>
 #include <locale>
+#include <algorithm>
+
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 
 
 using namespace std;
+
+#define PI 3.141592653589793238L
 
 template <typename T>
 bool is_valid_pointer(T ptr, pointer_identifier id)
@@ -41,6 +48,13 @@ string directory_of(const string filename)
     size_t found;
     found = filename.find_last_of("/\\");
     return filename.substr(0, found);
+}
+
+string path_to_user_home()
+{
+    struct passwd *pw = getpwuid(getuid());
+    
+    return string(pw->pw_dir);
 }
 
 void raise_warning( string message )
@@ -498,4 +512,14 @@ void process_range(string value_in, vector<int> &result)
 
         i++;
     }
+}
+
+float rad_to_deg(float radians)
+{
+    return radians * 180 / PI;
+}
+
+float deg_to_rad(float degrees)
+{
+    return degrees * PI / 180;
 }
