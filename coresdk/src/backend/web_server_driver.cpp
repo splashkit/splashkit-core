@@ -8,14 +8,14 @@
 
 #include "web_server_driver.h"
 #include "concurrency_utils.h"
+#include "utility_functions.h"
 
 #include <iostream>
 #include <cstring>
 
-static sk_server_request* last_request = nullptr;
-static channel<sk_server_request*> request_queue;
+static map<string, sk_web_server*> servers;
 
-static int begin_request_handler(struct mg_connection *conn)
+static int begin_request_handler(struct mg_connection *conn, string port)
 {
     const struct mg_request_info *request_info = mg_get_request_info(conn);
 
@@ -23,7 +23,13 @@ static int begin_request_handler(struct mg_connection *conn)
     r->id = WEB_SERVER_REQUEST_PTR;
     r->uri = request_info->request_uri;
 
-    request_queue.put(r); // Add request to concurrent queue
+    if (servers.find(port) == servers.end())
+    {
+        raise_warning("Request handler called on non-existent server");
+        return -1;
+    }
+
+    servers.at(port)->request_queue.put(r); // Add request to concurrent queue
     r->control.acquire(); // Waits until user returns response.
 
     // Send HTTP reply to the client
@@ -33,7 +39,8 @@ static int begin_request_handler(struct mg_connection *conn)
               "Content-Length: %d\r\n" // Always set Content-Length
               "\r\n"
               "%s",
-              r->response->message.length(), r->response->message.c_str());
+              r->response->message.length(),
+              r->response->message.c_str());
 
     // Remove the request
     delete r->response;
@@ -57,26 +64,26 @@ void sk_flush_request(sk_server_request *request)
  */
 sk_server_request* sk_get_request(sk_web_server *server)
 {
-    sk_server_request* request = last_request;
-    last_request = nullptr;
+    sk_server_request* request = server->last_request;
+    server->last_request = nullptr;
     return request;
 }
 
 bool sk_has_waiting_requests(sk_web_server *server)
 {
     // If we already have a request from the channel, get it.
-    if (last_request)
+    if (server->last_request)
     {
         return true;
     }
 
     // Try to get a new request from the queue and set the last request if one exists
     sk_server_request *request;
-    bool success = request_queue.try_take(request);
+    bool success = server->request_queue.try_take(request);
 
     if (success)
     {
-        last_request = request;
+        server->last_request = request;
         return true;
     }
 
@@ -85,18 +92,29 @@ bool sk_has_waiting_requests(sk_web_server *server)
 
 sk_web_server* sk_start_web_server(string port)
 {
+    if (servers.find(port) != servers.end())
+    {
+        raise_warning("Server already started on port " + port);
+        return nullptr;
+    }
+
     sk_web_server *server = new sk_web_server;
     server->id = WEB_SERVER_PTR;
+    server->port = port;
 
     // List of options. Last element must be NULL.
     const char *options[] = {"listening_ports", port.c_str(), NULL};
 
     // Prepare callbacks structure. We have only one callback, the rest are NULL.
     memset(&server->callbacks, 0, sizeof(server->callbacks));
-    server->callbacks.begin_request = begin_request_handler;
+    server->callbacks.begin_request = [port](mg_connection* c) {
+        return begin_request_handler(c, port);
+    };
 
     // Start the web server.
     server->ctx = mg_start(&server->callbacks, NULL, options);
+
+    servers[port] = server;
 
     return server;
 }
@@ -104,17 +122,27 @@ sk_web_server* sk_start_web_server(string port)
 void sk_stop_web_server(sk_web_server *server)
 {
     // Clear requests
-    if (last_request)
+    if (server->last_request)
     {
-        sk_flush_request(last_request);
-        delete last_request;
+        sk_flush_request(server->last_request);
+        delete server->last_request;
     }
 
     sk_server_request *request;
-    while (request_queue.try_take(request))
+    while (server->request_queue.try_take(request))
     {
         sk_flush_request(request);
     }
 
     mg_stop(server->ctx);
+
+    auto it = servers.find(server->port);
+    if (it != servers.end())
+    {
+        servers.erase(it);
+    }
+    else
+    {
+        raise_warning("Tried to remove from servers map a server which did not exist.");
+    }
 }

@@ -39,6 +39,14 @@ rectangle rectangle_from(const point_2d pt, const float width, const float heigh
     return rectangle_from(pt.x, pt.y, width, height);
 }
 
+rectangle rectangle_offset_by(const rectangle &rect, const vector_2d &offset)
+{
+    rectangle result = rect;
+    result.x += offset.x;
+    result.y += offset.y;
+    return result;
+}
+
 point_2d rectangle_center(const rectangle &rect)
 {
     point_2d result;
@@ -120,6 +128,12 @@ rectangle intersection(const rectangle &rect1, const rectangle &rect2)
         return rectangle_from(0, 0, 0, 0);
     else
         return rectangle_from(l, t, r - l, b - t);
+}
+
+bool rectangles_intersect(const rectangle &rect1, const rectangle &rect2)
+{
+    rectangle intersect = intersection(rect1, rect2);
+    return abs(intersect.width) + abs(intersect.height) == 0;
 }
 
 float rectangle_top(const rectangle &rect)

@@ -53,6 +53,7 @@ enum pointer_identifier
     MESSAGE_PTR =               0x4d534750, //'MSGP';
     SERVER_SOCKET_PTR =         0x53565253, //'SVRS';
     DISPLAY_PTR =               0x44495350, //'DISP';
+    QUERY_PTR =                 0x51555259, //'QURY';
     NONE_PTR =                  0x4e4f4e45  //'NONE';
 };
 
@@ -183,13 +184,6 @@ struct sk_http_response
     char *data;
 };
 
-struct sk_web_server
-{
-    pointer_identifier id;
-    struct mg_context *ctx;
-    struct mg_callbacks callbacks;
-};
-
 struct sk_server_response
 {
     pointer_identifier id;
@@ -203,6 +197,18 @@ struct sk_server_request
     semaphore control;
 
     sk_server_response* response;
+};
+
+struct sk_web_server
+{
+    pointer_identifier id;
+    struct mg_context *ctx;
+    struct mg_callbacks callbacks;
+
+    sk_server_request* last_request;
+    channel<sk_server_request*> request_queue;
+
+    string port;
 };
 
 struct animation_frame

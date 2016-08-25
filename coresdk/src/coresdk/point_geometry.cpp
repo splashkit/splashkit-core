@@ -20,10 +20,6 @@
 
 // Used in checking point similarities
 #define SMALL 1.4
-// smallest positive value: less than that to be considered zero
-#define EPS   0.01
-// and its square
-#define EPSEPS 0.0001
 
 point_2d point_at(float x, float y)
 {
@@ -41,6 +37,11 @@ point_2d point_at_origin()
 point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset)
 {
     return point_at(start_point.x + offset.x, start_point.y + offset.y);
+}
+
+point_2d point_offset_from_origin(const vector_2d &offset)
+{
+    return point_offset_by(point_at_origin(), offset);
 }
 
 string point_to_string(const point_2d &pt)
@@ -77,10 +78,10 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri)
     float inv_denom, u, v;
     
     //Convert Points to vectors
-    p = vector_to_point(pt);
-    a = vector_to_point(tri.points[0]);
-    b = vector_to_point(tri.points[1]);
-    c = vector_to_point(tri.points[2]);
+    p = vector_to(pt);
+    a = vector_to(tri.points[0]);
+    b = vector_to(tri.points[1]);
+    c = vector_to(tri.points[2]);
     
     // Compute vectors
     v0 = vector_subtract(c, a);

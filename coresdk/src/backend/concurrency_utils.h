@@ -44,6 +44,17 @@ public:
         _tokens--;
     }
 
+    bool try_acquire()
+    {
+        lock_guard<mutex> lock(_mutex);
+        if (_tokens == 0) {
+            return false;
+        }
+
+        _tokens--;
+        return true;
+    }
+
     void release(int num = 1)
     {
         lock_guard<mutex> lock(_mutex);
@@ -87,15 +98,14 @@ public:
 
     bool try_take(T& data)
     {
-        lock_guard<mutex> lock(_mutex);
-        if (_queue.empty())
+        if (_take_permission.try_acquire())
         {
-            return false;
+            lock_guard<mutex> lock(_mutex);
+            data = dequeue();
+            return true;
         }
 
-        _take_permission.acquire();
-        data = dequeue();
-        return true;
+        return false;
     }
 
 };

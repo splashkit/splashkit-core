@@ -518,3 +518,8 @@ float rad_to_deg(float radians)
 {
     return radians * 180 / PI;
 }
+
+float deg_to_rad(float degrees)
+{
+    return degrees * PI / 180;
+}

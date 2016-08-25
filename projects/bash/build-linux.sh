@@ -30,10 +30,10 @@ function run_test_program {
 function build_shared_library {
     echo "Creating shared library"
     g++ -shared -g -std=c++1y -o ./out/linux/libsplashkit.so \
-        -I${CORE_SDK_PATH}/src/external/ \
+        -I${CORE_SDK_PATH}/external/civetweb/include \
         -I${CORE_SDK_PATH}/src/coresdk/ \
         -I${CORE_SDK_PATH}/src/backend/ \
-        ${CORE_SDK_PATH}/src/external/*.c \
+        ${CORE_SDK_PATH}/external/civetweb/src/civetweb.c \
         ${CORE_SDK_PATH}/src/coresdk/*.cpp \
         ${CORE_SDK_PATH}/src/backend/*.cpp \
         ${ALL_SDL2_LIBS} ${OTHER_LIB} -fPIC -fpermissive

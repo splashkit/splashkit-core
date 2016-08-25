@@ -9,7 +9,18 @@
 #ifndef types_hpp
 #define types_hpp
 
+#include <string>
+using namespace std;
+
 typedef unsigned char byte;
+
+/**
+ * The free notifier can be registered with the system. It is called every
+ * time a resource is freed.
+ *
+ * @param pointer   The pointer to the resource that is being freed.
+ */
+typedef void (free_notifier)(void *pointer);
 
 struct color
 {
@@ -96,7 +107,11 @@ struct point_2d
 /// @field x: Single
 /// @field y: Single
 /// @sameas Point2D
-typedef point_2d vector_2d;
+struct vector_2d
+{
+    float x;
+    float y;
+};
 
 /// Rectangles are simple rectangle shapes that exist at a point and have a set width
 /// and height. This means that the rectangle always has edges that follow the sides of

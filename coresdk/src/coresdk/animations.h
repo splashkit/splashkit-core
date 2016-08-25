@@ -47,6 +47,10 @@ animation create_animation(animation_script script, string name);
 
 animation create_animation(string script_name, string name);
 
+animation create_animation(animation_script script, int idx, bool with_sound);
+
+animation create_animation(string script_name, int idx);
+
 
 void free_animation(animation ani);
 
@@ -59,7 +63,12 @@ void assign_animation(animation anim, string script_name, string name);
 
 void assign_animation(animation anim, string script_name, string name, bool with_sound);
 
+void assign_animation(animation anim, animation_script script, int idx);
 
+void assign_animation(animation anim, animation_script script, int idx, bool with_sound);
+
+
+int animation_index(animation_script script, string name);
 
 string animation_name(animation temp);
 
