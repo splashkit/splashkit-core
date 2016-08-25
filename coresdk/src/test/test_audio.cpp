@@ -7,6 +7,7 @@
 //
 
 #include "audio.h"
+#include "music.h"
 
 #include "utils.h"
 
@@ -47,6 +48,13 @@ void run_audio_tests()
     load_sound_effect("test3", "30248__streety__sword7.flac");
 
     free_all_sound_effects();
+    
+    load_music("dance", "dancingFrog.wav");
+    
+    cout << "Playing music..." << endl;
+    play_music(music_named("dance"), 1, 1.0f);
+    
+    delay(5000);
 
     cout << "    Closing audio..." << endl;
     close_audio();
