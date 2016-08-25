@@ -8,6 +8,9 @@
 
 #include "camera.h"
 
+#include "vector_2d.h"
+#include "graphics.h"
+
 static float _camera_x = 0;
 static float _camera_y = 0;
 
@@ -58,6 +61,25 @@ float to_screen_y(float world_y)
     return world_y - _camera_y;
 }
 
+point_2d to_screen(point_2d pt)
+{
+    return point_at(pt.x - _camera_x, pt.y - _camera_y);
+}
+
+vector_2d vector_world_to_screen()
+{
+    return vector_to(-_camera_x, -_camera_y);
+}
+
+rectangle to_screen(const rectangle &rect)
+{
+    return rectangle_offset_by(rect, vector_world_to_screen());
+}
+
+rectangle screen_rectangle()
+{
+    return rectangle_from(0, 0, screen_width(), screen_height());
+}
 
 //---------------------------------------------------------------------------
 // Screen-To-World Translation

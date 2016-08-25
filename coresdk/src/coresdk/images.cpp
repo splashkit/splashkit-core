@@ -287,6 +287,17 @@ rectangle bitmap_rectangle_of_cell(bitmap src, int cell)
     return result;
 }
 
+circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR) )
+    {
+        raise_warning("Attempting to get cell circle from invalid bitmap");
+        return circle_at(0, 0, 0);
+    }
+    
+    return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h));
+}
+
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count)
 {
     if ( not VALID_PTR(bmp, BITMAP_PTR))
@@ -332,4 +343,26 @@ int bitmap_height(bitmap bmp)
 int bitmap_height(string name)
 {
     return bitmap_height(bitmap_named(name));
+}
+
+int bitmap_cell_width(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to read details of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->cell_w;
+}
+
+int bitmap_cell_height(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        raise_warning("Attempting to read details of invalid bitmap");
+        return 0;
+    }
+    
+    return bmp->cell_h;
 }

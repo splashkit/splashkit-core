@@ -25,7 +25,7 @@ vector_2d vector_to(float x, float y)
     return { x, y };
 }
 
-vector_2d vector_to_point(const point_2d &p1)
+vector_2d vector_to(const point_2d &p1)
 {
     vector_2d result;
     result.x = p1.x;

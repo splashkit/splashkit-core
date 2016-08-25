@@ -59,6 +59,27 @@ int index_of (vector<T> vec, T value)
     else return static_cast<int>(result - vec.begin());
 }
 
+template <typename K, typename V>
+bool key_of_value(const map<K,V> &map, const V &value, K &result)
+{
+    auto find_result = std::find_if(std::begin(map),
+                                    std::end(map),
+                                    [&](const std::pair<K, V> &pair)
+                                    {
+                                        return pair.second == value;
+                                    });
+    
+    if (find_result != std::end(map))
+    {
+        result = find_result->first;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 template <typename T>
 void move_range(std::vector<T> & v, size_t start, size_t length, size_t dst)
 {

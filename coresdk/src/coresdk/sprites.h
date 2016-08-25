@@ -74,6 +74,15 @@ typedef void (sprite_event_handler) (sprite s, sprite_event_kind evt);
  */
 typedef void (sprite_function)(sprite s);
 
+/**
+ *  The sprite single function is used with sprite packs to provide a 
+ *  procedure to be called for each of the Sprites in the sprite pack,
+ *  where a float value is required.
+ *
+ * @param s The sprite being passed to the sprite function.
+ */
+typedef void (sprite_float_function)(sprite s, float f);
+
 
 //---------------------------------------------------------------------------
 // sprite creation routines
@@ -208,14 +217,14 @@ void free_all_sprites();
  *
  * @param handler The function to call when any sprite raises an event
  */
-void call_on_sprite_event(sprite_event_handler handler);
+void call_on_sprite_event(sprite_event_handler *handler);
 
 /**
  * Removes an global event handler, stopping events calling the indicated void.
  *
  * @param handler The function to remove from the list of sprite event handlers.
  */
-void stop_calling_on_sprite_event(sprite_event_handler handler);
+void stop_calling_on_sprite_event(sprite_event_handler *handler);
 
 /**
  * Register a procedure to call when events occur on the sprite.
@@ -226,7 +235,7 @@ void stop_calling_on_sprite_event(sprite_event_handler handler);
  * @attribute class sprite
  * @attribute method call_on_event
  */
-void sprite_call_on_event(sprite s, sprite_event_handler handler);
+void sprite_call_on_event(sprite s, sprite_event_handler *handler);
 
 /**
  * Removes an event handler from the sprite, stopping events from this
@@ -238,7 +247,7 @@ void sprite_call_on_event(sprite s, sprite_event_handler handler);
  * @attribute class sprite
  * @attribute method stop_calling_on_event
  */
-void sprite_stop_calling_on_event(sprite s, sprite_event_handler handler);
+void sprite_stop_calling_on_event(sprite s, sprite_event_handler *handler);
 
 
 //---------------------------------------------------------------------------
@@ -1668,31 +1677,6 @@ void sprite_set_scale(sprite s, float value);
 int sprite_value_count(sprite s);
 
 /**
- * Returns the names of all of the values of the sprite
- *
- * @param s   The sprite to get the details from.
- * @param idx The index of the value.
- * @returns   The name of the value at that index for the sprite.
- *
- * @attribute class sprite
- * @attribute method value_name_at
- */
-string sprite_value_name(sprite s, int idx);
-
-/**
- * Returns the sprite's value at the index specified
- *
- * @param s   The sprite to get the details from.
- * @param idx The index of the value to get
- * @returns   The value from the sprite's data store at the index.
- *
- * @attribute class sprite
- * @attribute method value
- * @attribute unique value_at
- */
-float sprite_value(sprite s, int index);
-
-/**
  * Returns the indicated value of the sprite
  *
  * @param s     The sprite to get the details from.
@@ -1743,17 +1727,13 @@ void sprite_add_value(sprite s, const string &name, float init_val);
 void sprite_set_value(sprite s, const string &name, float val);
 
 /**
- * Assigns a value to the sprite.
+ * Indicates if the sprite has a value with the given name.
  *
- * @param s   The sprite to change.
- * @param idx The index of the value to change
- * @param val The value to store in the sprite
- *
- * @attribute class sprite
- * @attribute method set_value
+ * @param s     The sprite to get the details from.
+ * @param name  The name of the value to check.
+ * @returns     True if the sprite has a value with that name.
  */
-void sprite_set_value(sprite s, int idx, float val);
-
+bool sprite_has_value(sprite s, string name);
 
 
 //---------------------------------------------------------------------------
@@ -1795,11 +1775,18 @@ void update_all_sprites();
 void update_all_sprites(float pct);
 
 /**
- * Call the supplied function for all sprites.
+ * Call the supplied function for all sprites in the current pack.
  *
  * @param fn The sprite function to call on all sprites.
  */
 void call_for_all_sprites(sprite_function fn);
+
+/**
+ * Call the supplied function for all sprites in the current pack.
+ *
+ * @param fn The sprite function to call on all sprites.
+ */
+void call_for_all_sprites(sprite_float_function fn, float val);
 
 /**
  * Create a new sprite_pack with a given name. This pack can then be
@@ -1809,6 +1796,13 @@ void call_for_all_sprites(sprite_function fn);
  * @param name The name of the new sprite pack.
  */
 void create_sprite_pack(const string &name);
+
+/**
+ * Frees the sprite pack and all of its sprites.
+ *
+ * @param name The name of the sprite pack to destroy.
+ */
+void free_sprite_pack(const string &name);
 
 /**
  * Indicates if a given sprite_pack has already been created.

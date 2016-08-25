@@ -87,3 +87,8 @@ float ray_circle_intersect_distance(const point_2d &ray_origin, const vector_2d 
         // return the distance to the (first) intersection point
         return (v - sqrt(d));
 }
+
+bool circles_intersect(circle c1, circle c2)
+{
+    return point_point_distance(c1.center, c2.center) < c1.radius + c2.radius;
+}

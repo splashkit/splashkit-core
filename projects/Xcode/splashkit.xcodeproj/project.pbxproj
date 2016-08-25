@@ -131,6 +131,8 @@
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
+		94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699331D6E8B3400FBFA28 /* collisions.cpp */; };
+		94E699361D6E8B3400FBFA28 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699341D6E8B3400FBFA28 /* collisions.h */; };
 		94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */; };
 		94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BEF1D62F70C004D8F8C /* keyboard_input.h */; };
 		94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BF21D62F75E004D8F8C /* text_input.cpp */; };
@@ -316,6 +318,8 @@
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
+		94E699331D6E8B3400FBFA28 /* collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisions.cpp; sourceTree = "<group>"; };
+		94E699341D6E8B3400FBFA28 /* collisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisions.h; sourceTree = "<group>"; };
 		94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard_input.cpp; sourceTree = "<group>"; };
 		94F66BEF1D62F70C004D8F8C /* keyboard_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_input.h; sourceTree = "<group>"; };
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 				4129D23E1D65404C000BFD0C /* matrix_2d.h */,
 				94A069A71D66F44900C26E6F /* vector_2d.cpp */,
 				94A069A81D66F44900C26E6F /* vector_2d.h */,
+				94E699331D6E8B3400FBFA28 /* collisions.cpp */,
+				94E699341D6E8B3400FBFA28 /* collisions.h */,
 			);
 			name = "Physics Related";
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				16238ACD1D669A2E00A88176 /* rectangle_geometry.h in Headers */,
 				94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */,
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
+				94E699361D6E8B3400FBFA28 /* collisions.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
@@ -778,6 +785,7 @@
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */,
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
+				94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */,

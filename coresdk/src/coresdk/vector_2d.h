@@ -29,7 +29,7 @@ vector_2d vector_to(float x, float y);
  *  Returns a new `vector_2d` using the x and y value of a `point_2d` parameter.
  *  This is a vector from the origin to that point.
  */
-vector_2d vector_to_point(const point_2d &p1);
+vector_2d vector_to(const point_2d &p1);
 
 /**
  *  Returns a `vector_2d` created from the difference from the `p1` to

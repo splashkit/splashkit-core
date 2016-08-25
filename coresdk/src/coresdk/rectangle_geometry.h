@@ -55,7 +55,24 @@ rectangle rectangle_around(const circle &c);
  */
 rectangle rectangle_around(const triangle &t);
 
+/**
+ * Returns a rectangle that represents the intersection of two rectangles.
+ *
+ * @param rect1     The first rectangle
+ * @param rect2     The second rectangle
+ * @returns         The intersection of rect1 and rect2.
+ */
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
+
+
+/**
+ * Returns true if the two rectangles intersect.
+ *
+ * @param rect1     The first rectangle
+ * @param rect2     The second rectangle
+ * @returns         True when rect1 and rect2 intersect.
+ */
+bool rectangles_intersect(const rectangle &rect1, const rectangle &rect2);
 
 float rectangle_top(const rectangle &rect);
 float rectangle_bottom(const rectangle &rect);

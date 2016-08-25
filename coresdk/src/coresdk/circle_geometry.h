@@ -15,6 +15,15 @@ circle circle_at(const point_2d &pt, float radius);
 
 circle circle_at(float x, float y, float radius);
 
+/**
+ * Detects if two circles intersect. This can be used to detect collisions between
+ * bounding circles.
+ *
+ * @param c1    The circle to test if intersects with c2
+ * @param c2    The circle to test if intersects with c1
+ * @returns     True if the two circles do intersect
+ */
+bool circles_intersect(circle c1, circle c2);
 
 /**
  *  Returns the center point of the circle.
