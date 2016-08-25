@@ -134,6 +134,17 @@
 		94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699331D6E8B3400FBFA28 /* collisions.cpp */; };
 		94E699361D6E8B3400FBFA28 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699341D6E8B3400FBFA28 /* collisions.h */; };
 		94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699371D6F05FB00FBFA28 /* test_sprites.cpp */; };
+		94E6993E1D6F380800FBFA28 /* test_web_server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E6993C1D6F380300FBFA28 /* test_web_server.cpp */; };
+		94E699411D6F381C00FBFA28 /* web_server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E6993F1D6F381C00FBFA28 /* web_server.cpp */; };
+		94E699421D6F381C00FBFA28 /* web_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699401D6F381C00FBFA28 /* web_server.h */; };
+		94E699461D6F384200FBFA28 /* network_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699441D6F384200FBFA28 /* network_driver.cpp */; };
+		94E699471D6F384200FBFA28 /* network_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699451D6F384200FBFA28 /* network_driver.h */; };
+		94E6994A1D6F384A00FBFA28 /* web_server_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699481D6F384A00FBFA28 /* web_server_driver.cpp */; };
+		94E6994B1D6F384A00FBFA28 /* web_server_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699491D6F384A00FBFA28 /* web_server_driver.h */; };
+		94E6994D1D6F385200FBFA28 /* concurrency_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E6994C1D6F385200FBFA28 /* concurrency_utils.h */; };
+		94E6995F1D6F39EA00FBFA28 /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */; };
+		94E699611D6F3A1100FBFA28 /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699601D6F3A1100FBFA28 /* civetweb.h */; };
+		94E699621D6F3A3800FBFA28 /* libcivetweb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E699531D6F395500FBFA28 /* libcivetweb.a */; };
 		94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */; };
 		94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BEF1D62F70C004D8F8C /* keyboard_input.h */; };
 		94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BF21D62F75E004D8F8C /* text_input.cpp */; };
@@ -322,6 +333,17 @@
 		94E699331D6E8B3400FBFA28 /* collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisions.cpp; sourceTree = "<group>"; };
 		94E699341D6E8B3400FBFA28 /* collisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisions.h; sourceTree = "<group>"; };
 		94E699371D6F05FB00FBFA28 /* test_sprites.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_sprites.cpp; sourceTree = "<group>"; };
+		94E6993C1D6F380300FBFA28 /* test_web_server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_web_server.cpp; sourceTree = "<group>"; };
+		94E6993F1D6F381C00FBFA28 /* web_server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_server.cpp; sourceTree = "<group>"; };
+		94E699401D6F381C00FBFA28 /* web_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_server.h; sourceTree = "<group>"; };
+		94E699441D6F384200FBFA28 /* network_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network_driver.cpp; sourceTree = "<group>"; };
+		94E699451D6F384200FBFA28 /* network_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network_driver.h; sourceTree = "<group>"; };
+		94E699481D6F384A00FBFA28 /* web_server_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_server_driver.cpp; sourceTree = "<group>"; };
+		94E699491D6F384A00FBFA28 /* web_server_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_server_driver.h; sourceTree = "<group>"; };
+		94E6994C1D6F385200FBFA28 /* concurrency_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = concurrency_utils.h; sourceTree = "<group>"; };
+		94E699531D6F395500FBFA28 /* libcivetweb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcivetweb.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
+		94E699601D6F3A1100FBFA28 /* civetweb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = civetweb.h; path = ../../../coresdk/external/civetweb/include/civetweb.h; sourceTree = "<group>"; };
 		94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard_input.cpp; sourceTree = "<group>"; };
 		94F66BEF1D62F70C004D8F8C /* keyboard_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_input.h; sourceTree = "<group>"; };
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
@@ -360,6 +382,7 @@
 				9423725E1D1D6A7D0020CCE2 /* libwebp.a in Frameworks */,
 				942372591D1D6A7D0020CCE2 /* libSDL2_net.a in Frameworks */,
 				942372511D1D6A7D0020CCE2 /* libfreetype.a in Frameworks */,
+				94E699621D6F3A3800FBFA28 /* libcivetweb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +400,13 @@
 				942372631D1D6B430020CCE2 /* CoreAudio.framework in Frameworks */,
 				942372611D1D6B3C0020CCE2 /* CoreVideo.framework in Frameworks */,
 				9423723C1D1D6A5F0020CCE2 /* libsplashkit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94E699501D6F395500FBFA28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +434,7 @@
 				878BAFE91D52DF3000483C3E /* Resources */,
 				9423723D1D1D6A7D0020CCE2 /* Libraries */,
 				942371EC1D1D548A0020CCE2 /* Src */,
+				94E699541D6F395500FBFA28 /* civetweb */,
 				942371DD1D1D540C0020CCE2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -413,6 +444,7 @@
 			children = (
 				942371DC1D1D540C0020CCE2 /* libsplashkit.a */,
 				9423722B1D1D68E30020CCE2 /* tests */,
+				94E699531D6F395500FBFA28 /* libcivetweb.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -431,6 +463,11 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				94E6994C1D6F385200FBFA28 /* concurrency_utils.h */,
+				94E699481D6F384A00FBFA28 /* web_server_driver.cpp */,
+				94E699491D6F384A00FBFA28 /* web_server_driver.h */,
+				94E699441D6F384200FBFA28 /* network_driver.cpp */,
+				94E699451D6F384200FBFA28 /* network_driver.h */,
 				94C7491A1D478813006A9052 /* web_driver.cpp */,
 				94C7491B1D478813006A9052 /* web_driver.h */,
 				9424B5C41D461FE00039B3AF /* text_driver.cpp */,
@@ -459,6 +496,7 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				94E699431D6F382000FBFA28 /* Network Related */,
 				94AC3DBC1D6C0D86002920A5 /* Sprite Related */,
 				94B57A691D66736500CE7D55 /* Geometry Related */,
 				4129D2381D653F57000BFD0C /* Physics Related */,
@@ -497,6 +535,7 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
 				94444B401D644FE10059BF3B /* test_main.h */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
 				941C8A341D5D6FE2003112B2 /* test_text.cpp */,
@@ -623,6 +662,24 @@
 			name = "Geometry Related";
 			sourceTree = "<group>";
 		};
+		94E699431D6F382000FBFA28 /* Network Related */ = {
+			isa = PBXGroup;
+			children = (
+				94E6993F1D6F381C00FBFA28 /* web_server.cpp */,
+				94E699401D6F381C00FBFA28 /* web_server.h */,
+			);
+			name = "Network Related";
+			sourceTree = "<group>";
+		};
+		94E699541D6F395500FBFA28 /* civetweb */ = {
+			isa = PBXGroup;
+			children = (
+				94E699601D6F3A1100FBFA28 /* civetweb.h */,
+				94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */,
+			);
+			path = civetweb;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -640,6 +697,7 @@
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
+				94E6994D1D6F385200FBFA28 /* concurrency_utils.h in Headers */,
 				94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */,
 				94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */,
 				4129D2401D65404C000BFD0C /* matrix_2d.h in Headers */,
@@ -652,14 +710,17 @@
 				94AC3DC01D6C0DA0002920A5 /* sprites.h in Headers */,
 				94F66BF51D62F75E004D8F8C /* text_input.h in Headers */,
 				949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */,
+				94E699471D6F384200FBFA28 /* network_driver.h in Headers */,
 				94B57A681D65CCF300CE7D55 /* clipping.h in Headers */,
 				94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
 				94AC3DB71D6BF0D8002920A5 /* quad_geometry.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
+				94E699421D6F381C00FBFA28 /* web_server.h in Headers */,
 				9424B59B1D436C850039B3AF /* utils.h in Headers */,
 				94444B371D644B680059BF3B /* rectangle_drawing.h in Headers */,
+				94E6994B1D6F384A00FBFA28 /* web_server_driver.h in Headers */,
 				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
 				94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
@@ -679,6 +740,14 @@
 				9424B5A71D4444F40039B3AF /* random.h in Headers */,
 				9424B59F1D4441CF0039B3AF /* color.h in Headers */,
 				9423721D1D1D57D20020CCE2 /* core_driver.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94E699511D6F395500FBFA28 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94E699611D6F3A1100FBFA28 /* civetweb.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +791,23 @@
 			productReference = 9423722B1D1D68E30020CCE2 /* tests */;
 			productType = "com.apple.product-type.tool";
 		};
+		94E699521D6F395500FBFA28 /* civetweb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94E6995B1D6F395500FBFA28 /* Build configuration list for PBXNativeTarget "civetweb" */;
+			buildPhases = (
+				94E6994F1D6F395500FBFA28 /* Sources */,
+				94E699501D6F395500FBFA28 /* Frameworks */,
+				94E699511D6F395500FBFA28 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = civetweb;
+			productName = civetweb;
+			productReference = 94E699531D6F395500FBFA28 /* libcivetweb.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -735,6 +821,9 @@
 						CreatedOnToolsVersion = 7.3;
 					};
 					9423722A1D1D68E30020CCE2 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					94E699521D6F395500FBFA28 = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -753,6 +842,7 @@
 			targets = (
 				942371DB1D1D540C0020CCE2 /* splashkit */,
 				9423722A1D1D68E30020CCE2 /* tests */,
+				94E699521D6F395500FBFA28 /* civetweb */,
 			);
 		};
 /* End PBXProject section */
@@ -803,8 +893,10 @@
 				9424B59E1D4441CF0039B3AF /* color.cpp in Sources */,
 				940864601D384C27009EA048 /* graphics_driver.cpp in Sources */,
 				940864701D38F7EC009EA048 /* input_driver.cpp in Sources */,
+				94E699461D6F384200FBFA28 /* network_driver.cpp in Sources */,
 				940864641D38B756009EA048 /* window_manager.cpp in Sources */,
 				4129D23F1D65404C000BFD0C /* matrix_2d.cpp in Sources */,
+				94E699411D6F381C00FBFA28 /* web_server.cpp in Sources */,
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
@@ -815,6 +907,7 @@
 				94444B321D644AE40059BF3B /* circle_drawing.cpp in Sources */,
 				94444B3E1D644F950059BF3B /* test_shape_drawing.cpp in Sources */,
 				942372021D1D548A0020CCE2 /* audio_driver.cpp in Sources */,
+				94E6994A1D6F384A00FBFA28 /* web_server_driver.cpp in Sources */,
 				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
 			);
@@ -830,8 +923,17 @@
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
+				94E6993E1D6F380800FBFA28 /* test_web_server.cpp in Sources */,
 				941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */,
 				16238ACF1D669D4D00A88176 /* test_geometry.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94E6994F1D6F395500FBFA28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94E6995F1D6F39EA00FBFA28 /* civetweb.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,6 +1048,8 @@
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
+					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -982,6 +1086,8 @@
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_image/external/libpng-1.6.2\"",
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
+					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
+					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1017,6 +1123,26 @@
 			};
 			name = Release;
 		};
+		94E6995C1D6F395500FBFA28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94E6995D1D6F395500FBFA28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1046,6 +1172,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		94E6995B1D6F395500FBFA28 /* Build configuration list for PBXNativeTarget "civetweb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94E6995C1D6F395500FBFA28 /* Debug */,
+				94E6995D1D6F395500FBFA28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

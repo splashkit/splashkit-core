@@ -36,7 +36,7 @@ static int begin_request_handler(struct mg_connection *conn, string port)
     mg_printf(conn,
               "HTTP/1.1 200 OK\r\n"
               "Content-Type: text/plain\r\n"
-              "Content-Length: %d\r\n" // Always set Content-Length
+              "Content-Length: %lu\r\n" // Always set Content-Length
               "\r\n"
               "%s",
               r->response->message.length(),

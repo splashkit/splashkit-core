@@ -12,8 +12,6 @@
 
 #include "backend_types.h"
 
-static int begin_request_handler(struct mg_connection *conn);
-
 void sk_flush_request(sk_server_request *request);
 
 sk_server_request* sk_get_request(sk_web_server *server);
