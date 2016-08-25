@@ -1,10 +1,10 @@
-//
-//  matrix_2d.hpp
-//  splashkit
-//
-//  Created by Clancy Light Townsend on 18/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header matrix_2d
+ * @author Andrew Cain
+ * @author Clancy Light Townsend
+ * @brief Provides matrix functions to work on 2d coordinates.
+ *
+ */
 
 #ifndef matrix_2d_h
 #define matrix_2d_h
@@ -25,182 +25,132 @@ struct matrix_2d
     float elements[3][3];
 };
 
-/// Use a matrix to transform all of the points in a quad.
-///
-/// @lib ApplyMatrixToquad
-/// @sn matrix:%s applyToquad:%s
-///
-/// @class matrix_2d
-/// @method ApplyTo
-/// @updatesArrayParam 2
-/// @csn applyToquad:%s
-void apply_matrix(const matrix_2d &matrix, quad &q);
-
-/// Returns the identity matrix. When a matrix_2d or Vector is multiplied by
-/// the identity matrix the result is the original matrix or vector.
-///
-/// @lib
-///
-/// @class matrix_2d
-/// @static
-/// @method IdentityMatrix
+/**
+ * Returns the identity matrix. When a matrix_2d or Vector is multiplied by
+ * the identity matrix the result is the original matrix or vector.
+ *
+ * @returns     An identify matrix.
+ */
 matrix_2d identity_matrix();
 
-/// Returns a matrix that can be used to translate 2d points. Moving them
-/// by dx and dy.
-///
-/// @lib
-/// @sn translationMatrixDx:%s dy:%s
-///
-/// @class matrix_2d
-/// @static
-/// @method TranslationMatrix
-/// @csn translationMatrixDx:%s dy:%s
-///
-/// @doc_idx 0
+/**
+ * Returns a matrix that can be used to translate 2d points. Moving them
+ * by dx and dy.
+ *
+ * @param dx    The amount to move points along the x axis.
+ * @param dy    The amount to move points along the y axis.
+ * @returns     A matrix that will move points by dx, dy
+ */
 matrix_2d translation_matrix(float dx, float dy);
 
-/// Returns a translation matric used to translate 2d points by the
-/// distance in the point_2d.
-///
-/// @lib TranslationMatrixPt
-/// @sn translationMatrix:%s
-///
-/// @class matrix_2d
-/// @static
-/// @overload TranslationMatrix TranslationMatrixWithPoint
-/// @csn translationMatrix:%s
-matrix_2d translation_matrix(point_2d pt);
-
-/// Returns a matrix that can be used to scale 2d points (both x and y).
-///
-/// @lib
-/// @sn scaleMatrix:%s
-///
-/// @class matrix_2d
-/// @static
-/// @method ScaleMatrix
-///
-/// @doc_idx 0
-matrix_2d scale_matrix(float scale);
-
-/// Create a scale matrix that scales x and y to
-/// different degrees.
-///
-/// @lib ScaleMatrixByPoint
-/// @sn scaleMatricByPoint:%s
-///
-/// @class matrix_2d
-/// @static
-/// @overload ScaleMatrix ScaleMatrixWithPoint
-/// @csn scaleMatrixByPoint:%s
-matrix_2d scale_matrix(point_2d scale);
-
-/// Returns a rotation matrix that rotates 2d points by the angle.
-///
-/// @lib
-///
-/// @class matrix_2d
-/// @static
-/// @method RotationMatrix
-matrix_2d rotation_matrix(float deg);
-
-/// Create a matrix that can scale, rotate then translate geometry points.
-///
-/// @lib
-/// @sn matrixToScale:%s rotate:%s translate:%s
-///
-/// @class matrix_2d
-/// @static
-/// @method ScaleRotateTranslateMatrix
-/// @csn matrixToScale:%s rotate:%s translate:%s
-matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate);
-
-///// Multiplies the two `matrix_2d` parameters, ``m1`` by ``m2``, and returns
-///// the result as a new `matrix_2d`. Use this to combine the effects to two
-///// matrix transformations.
-/////
-///// @lib
-///// @sn matrix:%s multiplyByMatrix:%s
-/////
-///// @class matrix_2d
-///// @method Multiply
-///// @csn multiplyByMatrix:%s
-//function MatrixMultiply(const m1, m2: matrix_2d): matrix_2d; overload;
-//
-///// Multiplies the `Vector` parameter ``v`` with the `matrix_2d` ``m`` and
-///// returns the result as a `Vector`. Use this to transform the vector with
-///// the matrix (to apply scaling, rotation or translation effects).
-/////
-///// @lib MatrixMultiplyVector
-///// @sn matrix:%s multiplyByVector:%s
-/////
-///// @class matrix_2d
-///// @overload Multiply MultiplyVector
-///// @csn multiplyByVector:%s
-//function MatrixMultiply(const m: matrix_2d; const v: Vector): Vector; overload;
-//
-///// Calculate the inverse of a matrix.
-/////
-///// @lib
-/////
-///// @class matrix_2d
-///// @method Inverse
-//function MatrixInverse(const m: matrix_2d): matrix_2d;
-//
-///// Use a matrix to transform all of the points in a triangle.
-/////
-///// @lib
-///// @sn matrix:%s applyToTriangle:%s
-/////
-///// @class matrix_2d
-///// @method ApplyTo
-///// @updatesArrayParam 2
-///// @csn applyToTriangle:%s
-//void ApplyMatrix(const m: matrix_2d; var tri: Triangle);
-//
-//{$ifdef FPC}
-///// Multiply matrix by the vector.
-/////
-///// @class matrix_2d
-///// @calls MatrixMultiplyVector
-//operator * (const m: matrix_2d; const v: Vector) r : Vector;
-//{$endif}
-//
-//{$ifdef FPC}
-///// Multiply the two matricies together.
-/////
-///// @class matrix_2d
-///// @calls MatrixMultiply
-//operator * (const m1, m2: matrix_2d) r : matrix_2d;
-//{$endif}
-//
-
-/// This function returns a string representation of a Matrix.
-///
-/// @lib
-///
-/// @class matrix_2d
-/// @method ToString
-/// @csn description
-string matrix_to_string(const matrix_2d &matrix);
+/**
+ * Returns a translation matric used to translate 2d points by the
+ * distance in the point_2d.
+ *
+ * @param pt    The point to translate to.
+ * @returns     A matrix that will move points by amount in pt
+ */
+matrix_2d translation_matrix(const point_2d &pt);
 
 /**
- *  Multiply matrix_2d by another matrix_2d and return a matrix result as a new matrix_2d,
+ * Returns a matrix that can be used to scale 2d points (both x and y).
+ *
+ * @param scale The amount to scale points by.
+ * @returns     A matrix to scale points by.
+ */
+matrix_2d scale_matrix(float scale);
+
+/**
+ * Create a scale matrix that scales x and y to
+ * different degrees.
+ *
+ * @param scale The amount to scale, with separate x and y components.
+ * @returns     A matrix that will scale points based on scale parameter.
+ */
+matrix_2d scale_matrix(const point_2d &scale);
+
+/**
+ * Returns a rotation matrix that rotates 2d points by the angle.
+ *
+ * @param deg   The amount to rotate points
+ * @returns     A matrix that encodes the rotation by a number of degrees.
+ */
+matrix_2d rotation_matrix(float deg);
+
+/**
+ * Create a matrix that can scale, rotate then translate geometry points.
+ *
+ * @param scale     The amount to scale
+ * @param deg       The amount to rotate
+ * @param translate The amount to move
+ * @returns         A matrix that will scale, rotate, and translate.
+ */
+matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate);
+
+/**
+ *  Multiplies the two `matrix_2d` parameters, ``m1`` by ``m2``, and returns
+ *  the result as a new `matrix_2d`. Use this to combine the effects to two
+ *  matrix transformations.
+ *
+ * @param m1    The first matrix
+ * @param m2    The second matrix
+ * @returns     The result of multiplying m1 by m2
  */
 matrix_2d matrix_multiply(const matrix_2d  &m1,const matrix_2d &m2);
 
+
+/**
+ *  Multiplies the `Vector` parameter ``v`` with the `matrix_2d` ``m`` and
+ *  returns the result as a `Vector`. Use this to transform the vector with
+ *  the matrix (to apply scaling, rotation or translation effects).
+ *
+ * @param m     The matrix with the transformation to apply.
+ * @param v     The vector to be transformed.
+ * @returns     A new vector, the result of applying the transformation to v.
+ */
+vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v);
+
+/**
+ *  Multiplies the `point_2d` parameter `v with the `matrix_2d` `m and
+ *  returns the result as a `point_2d`. Use this to transform the vector with
+ *  the matrix (to apply scaling, rotation or translation effects).
+ *
+ * @param m     The matrix with the transformation to apply.
+ * @param v     The point to be transformed.
+ * @returns     A new point, the result of applying the transformation to pt.
+ */
+point_2d matrix_multiply(const matrix_2d &m, const point_2d &pt);
+
+/**
+ *  Calculate the inverse of a matrix.
+ *
+ * @param m     The matrix to invert.
+ * @returns     A matrix that is the inverse of m
+ */
+matrix_2d matrix_inverse(const matrix_2d &m);
+
+/**
+ * Use a matrix to transform all of the points in a triangle.
+ *
+ * @param m     The matrix to be applied to the triangle.
+ * @param tri   The triangle to tranform.
+ */
+void apply_matrix(const matrix_2d &m, triangle &tri);
+
 /**
  * Use a matrix to transform all of the points in a quad.
+ *
+ * @param matrix    The matrix with the transformations needed.
+ * @param q         The quad to transform.
  */
-void apply_matrix(const matrix_2d m, quad _quad);
+void apply_matrix(const matrix_2d &matrix, quad &q);
 
 /**
- *  Multiplying matrix by point_2d and returning as point_2d.
+ * This function returns a string representation of a Matrix.
+ *
+ * @param matrix    The matrix to convert to a string.
+ * @returns         A string representation of the matrix.
  */
-
-point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts);
-
-
+string matrix_to_string(const matrix_2d &matrix);
 
 #endif /* matrix_2d_h */

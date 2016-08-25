@@ -10,7 +10,6 @@
 #define vector_2d_h
 
 #include "types.h"
-#include "matrix_2d.h"
 
 #include <string>
 using namespace std;
@@ -159,11 +158,6 @@ vector_2d vector_out_of_circle_from_circle(const circle &src, const circle &boun
  *  given that the circle is moving at the specified velocity.
  */
 vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect, const vector_2d &velocity);
-
-/**
- *  Multiply a matrix by a vector.  return as vector
- */
-vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v);
 
 
 #endif /* vector_2d_h */
