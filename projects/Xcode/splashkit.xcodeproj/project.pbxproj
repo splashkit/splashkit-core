@@ -133,6 +133,7 @@
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
 		94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699331D6E8B3400FBFA28 /* collisions.cpp */; };
 		94E699361D6E8B3400FBFA28 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699341D6E8B3400FBFA28 /* collisions.h */; };
+		94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699371D6F05FB00FBFA28 /* test_sprites.cpp */; };
 		94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */; };
 		94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BEF1D62F70C004D8F8C /* keyboard_input.h */; };
 		94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BF21D62F75E004D8F8C /* text_input.cpp */; };
@@ -320,6 +321,7 @@
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
 		94E699331D6E8B3400FBFA28 /* collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisions.cpp; sourceTree = "<group>"; };
 		94E699341D6E8B3400FBFA28 /* collisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisions.h; sourceTree = "<group>"; };
+		94E699371D6F05FB00FBFA28 /* test_sprites.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_sprites.cpp; sourceTree = "<group>"; };
 		94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard_input.cpp; sourceTree = "<group>"; };
 		94F66BEF1D62F70C004D8F8C /* keyboard_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_input.h; sourceTree = "<group>"; };
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */,
 				16238ACE1D669D4D00A88176 /* test_geometry.cpp */,
 				4129D2411D65460F000BFD0C /* test_physics.cpp */,
+				94E699371D6F05FB00FBFA28 /* test_sprites.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 			files = (
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
+				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,

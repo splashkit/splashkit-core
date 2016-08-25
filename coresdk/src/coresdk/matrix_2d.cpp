@@ -95,6 +95,7 @@ matrix_2d rotation_matrix(float deg)
 matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate)
 {
     float rads = deg_to_rad(-deg);
+
     matrix_2d result;
     result.elements[0][0] = cos(rads) * scale.x;
     result.elements[0][1] = sin(rads);
@@ -114,8 +115,8 @@ matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const 
 matrix_2d matrix_inverse(const matrix_2d &m)
 {
     float det =  m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
-    m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
-    m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
+                 m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
+                 m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
 
     float invdet;
     if (det == 0) //cant actually compute inverse!
@@ -157,19 +158,16 @@ string matrix_to_string(const matrix_2d &matrix)
     return result.str();
 }
 
-
-matrix_2d matrix_multiply(const matrix_2d &m1,const matrix_2d &m2)
+matrix_2d matrix_multiply(const matrix_2d &m2, const matrix_2d &m1)
 {
-
     matrix_2d result;
+
     result.elements[0][0] = m1.elements[0][0] * m2.elements[0][0] +
                             m1.elements[0][1] * m2.elements[1][0] +
                             m1.elements[0][2] * m2.elements[2][0];
-
     result.elements[0][1] = m1.elements[0][0] * m2.elements[0][1] +
                             m1.elements[0][1] * m2.elements[1][1] +
                             m1.elements[0][2] * m2.elements[2][1];
-
     result.elements[0][2] = m1.elements[0][0] * m2.elements[0][2] +
                             m1.elements[0][1] * m2.elements[1][2] +
                             m1.elements[0][2] * m2.elements[2][2];
@@ -177,11 +175,9 @@ matrix_2d matrix_multiply(const matrix_2d &m1,const matrix_2d &m2)
     result.elements[1][0] = m1.elements[1][0] * m2.elements[0][0] +
                             m1.elements[1][1] * m2.elements[1][0] +
                             m1.elements[1][2] * m2.elements[2][0];
-
     result.elements[1][1] = m1.elements[1][0] * m2.elements[0][1] +
                             m1.elements[1][1] * m2.elements[1][1] +
                             m1.elements[1][2] * m2.elements[2][1];
-
     result.elements[1][2] = m1.elements[1][0] * m2.elements[0][2] +
                             m1.elements[1][1] * m2.elements[1][2] +
                             m1.elements[1][2] * m2.elements[2][2];
@@ -189,35 +185,31 @@ matrix_2d matrix_multiply(const matrix_2d &m1,const matrix_2d &m2)
     result.elements[2][0] = m1.elements[2][0] * m2.elements[0][0] +
                             m1.elements[2][1] * m2.elements[1][0] +
                             m1.elements[2][2] * m2.elements[2][0];
-
     result.elements[2][1] = m1.elements[2][0] * m2.elements[0][1] +
                             m1.elements[2][1] * m2.elements[1][1] +
                             m1.elements[2][2] * m2.elements[2][1];
-
     result.elements[2][2] = m1.elements[2][0] * m2.elements[0][2] +
                             m1.elements[2][1] * m2.elements[1][2] +
                             m1.elements[2][2] * m2.elements[2][2];
-
-
-
     return result;
 }
+
 point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts)
 {
     point_2d result;
-    result.x = pts.x * m.elements[0][0]  +  pts.y * m.elements[0][1] + m.elements[0][2];
-    result.y = pts.x * m.elements[1][0]  +  pts.y * m.elements[1][1] + m.elements[1][2];
+
+    result.x = pts.x * m.elements[0][0] + pts.y * m.elements[0][1] + m.elements[0][2];
+    result.y = pts.x * m.elements[1][0] + pts.y * m.elements[1][1] + m.elements[1][2];
 
     return result;
 }
 
 vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v)
 {
-
     vector_2d result;
+
     result.x = v.x * m.elements[0][0]  +  v.y * m.elements[0][1] + m.elements[0][2];
     result.y = v.x * m.elements[1][0]  +  v.y * m.elements[1][1] + m.elements[1][2];
-
 
     return result;
 }

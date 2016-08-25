@@ -33,10 +33,11 @@ int main()
         cout << "  7: Physics" << endl;
         cout << "  8: Resources" << endl;
         cout << "  9: Shape drawing" << endl;
-        cout << " 10: Text" << endl;
-        cout << " 11: Timers" << endl;
-        cout << " 12: Windows" << endl;
+        cout << " 10: Sprite tests" << endl;
+        cout << " 11: Text" << endl;
+        cout << " 12: Timers" << endl;
         cout << " 13: Web Server" << endl;
+        cout << " 14: Windows" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
 
@@ -74,16 +75,19 @@ int main()
                 run_shape_drawing_test();
                 break;
             case 10:
-                run_text_test();
+                run_sprite_test();
                 break;
             case 11:
-                run_timer_test();
+                run_text_test();
                 break;
             case 12:
-                run_windows_tests();
+                run_timer_test();
                 break;
             case 13:
                 run_web_server_tests();
+            case 14:
+                run_windows_tests();
+                break;
             default:
                 break;
         }

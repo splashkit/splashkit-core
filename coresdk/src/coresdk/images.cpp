@@ -61,7 +61,13 @@ bitmap bitmap_named(string name)
     if (has_bitmap(name))
         return _bitmaps[name];
     else
+    {
+        string filename = path_to_resource(name, IMAGE_RESOURCE);
+        
+        if ( file_exists(filename) or file_exists(name))
+            return load_bitmap(name, name);
         return nullptr;
+    }
 }
 
 
@@ -268,6 +274,15 @@ rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt)
     return rectangle_from(pt, src->cell_w, src->cell_h);
 }
 
+vector_2d bitmap_cell_offset(bitmap src, int cell)
+{
+    if ( (not VALID_PTR(src, BITMAP_PTR)) or (cell >= src->cell_count) or (cell < 0) )
+        return vector_to(0,0);
+    return vector_to(
+        (cell % src->cell_cols) * src->cell_w,
+        (cell - (cell % src->cell_cols)) / src->cell_cols * src->cell_h);
+}
+
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell)
 {
     rectangle result;
@@ -295,7 +310,7 @@ circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
         return circle_at(0, 0, 0);
     }
     
-    return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h));
+    return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h) / 2.0f * scale);
 }
 
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count)
@@ -365,4 +380,30 @@ int bitmap_cell_height(bitmap bmp)
     }
     
     return bmp->cell_h;
+}
+
+int bitmap_cell_count(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        return 0;
+    }
+    
+    return bmp->cell_count;
+}
+
+bool pixel_drawn_at_point(bitmap bmp, float x, float y)
+{
+    int px = round(x);
+    int py = round(y);
+    
+    if ( INVALID_PTR(bmp, BITMAP_PTR) or px < 0 or px >= bitmap_width(bmp) or py < 0 or py >= bitmap_height(bmp) ) return false;
+    
+    return bmp->pixel_mask[px + py * bmp->image.surface.width];
+}
+
+bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y)
+{
+    vector_2d offset = bitmap_cell_offset(bmp, cell);
+    return pixel_drawn_at_point(bmp, x + offset.x, y + offset.y);
 }

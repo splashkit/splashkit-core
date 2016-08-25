@@ -143,6 +143,11 @@ sprite create_sprite(bitmap layer)
     return create_sprite(layer, nullptr);
 }
 
+sprite create_sprite(string bitmap_name)
+{
+    return create_sprite(bitmap_named(bitmap_name), nullptr);
+}
+
 sprite create_sprite(const string &bitmap_name, const string &animation_name)
 {
     return create_sprite(bitmap_named(bitmap_name), animation_script_named(animation_name));
@@ -1194,15 +1199,15 @@ matrix_2d  sprite_location_matrix(sprite s)
 
     matrix_2d anchor_matrix = translation_matrix(sprite_anchor_point(s));
 
-    result = matrix_multiply(matrix_inverse(anchor_matrix), result);
-    result = matrix_multiply(rotation_matrix(sprite_rotation(s)), result);
-    result = matrix_multiply(anchor_matrix, result);
+    result = matrix_multiply(result, matrix_inverse(anchor_matrix));
+    result = matrix_multiply(result, rotation_matrix(sprite_rotation(s)));
+    result = matrix_multiply(result, anchor_matrix);
 
     float new_x = sprite_x(s) - (w * scale / 2.0) + (w / 2.0);
     float new_y = sprite_y(s) - (h * scale / 2.0) + (h / 2.0);
-    result = matrix_multiply(translation_matrix(new_x / scale, new_y / scale), result);
+    result = matrix_multiply(result, translation_matrix(new_x / scale, new_y / scale));
 
-    return matrix_multiply(scale_matrix(scale), result);
+    return matrix_multiply(result, scale_matrix(scale));
 }
 
 //---------------------------------------------------------------------------
@@ -1484,13 +1489,23 @@ bool  sprite_on_screen_at(sprite s, float x, float y)
 
 bool  sprite_on_screen_at(sprite s, const point_2d &pt)
 {
+    return sprite_at(s, to_world(pt));
+}
+
+bool  sprite_at(sprite s, const point_2d &pt)
+{
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
         raise_warning("Attempting to use invalid sprite");
         return false;
     }
     
-    return bitmap_point_collision( s->collision_bitmap, sprite_location_matrix(s), pt );
+    if ( not point_in_circle(pt, sprite_collision_circle(s)) )
+        return false;
+    else if ( bitmap_cell_count(s->collision_bitmap) > 1 )
+        return bitmap_point_collision( s->collision_bitmap, sprite_current_cell(s), sprite_location_matrix(s), pt );
+    else
+        return bitmap_point_collision( s->collision_bitmap, sprite_location_matrix(s), pt );
 }
 
 rectangle  sprite_collision_rectangle(sprite s)

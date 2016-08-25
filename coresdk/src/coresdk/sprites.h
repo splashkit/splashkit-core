@@ -106,6 +106,24 @@ typedef void (sprite_float_function)(sprite s, float f);
 sprite create_sprite(bitmap layer);
 
 /**
+ * Creates a sprite for the passed in bitmap image. The sprite will use the
+ * cell information within the bitmap if it is animated at a later stage.
+ *
+ * This version of create_sprite will initialise the sprite to use
+ * pixel level collisions, no animations, and have one layer named 'layer1'.
+ * This version of the constructor will assign a default name to the sprite
+ * for resource management purposes.
+ *
+ * @param bitmap_name   The name of the bitmap to use as the sprite's layer
+ * @returns       The new sprite with image.
+ *
+ * @attribute class sprite
+ * @attribute constructor true
+ */
+sprite create_sprite(string name);
+
+
+/**
  * Creates a sprite. The bitmap_name is used to indicate the bitmap the sprite
  * will use, and the animation_name is used to indicate which animation_script
  * to use.
@@ -1518,6 +1536,14 @@ int  sprite_current_cell(sprite s);
 //---------------------------------------------------------------------------
 // sprite collision details
 //---------------------------------------------------------------------------
+
+/**
+ * Determines if a sprite is at a given point.
+ *
+ * @param s     The sprite to test
+ * @param pt    The point to check (in world coordinates)
+ */
+bool  sprite_at(sprite s, const point_2d &pt);
 
 /**
  * Returns the bitmap used by the sprite to determine if it has collided with

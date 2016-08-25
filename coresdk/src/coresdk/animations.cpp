@@ -570,7 +570,6 @@ vector_2d animation_current_vector(animation anim)
 {
     if ( INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to get name of invalid animation data.");
         return vector_to(0,0);
     }
     

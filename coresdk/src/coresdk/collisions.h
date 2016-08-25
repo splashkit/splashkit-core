@@ -26,4 +26,19 @@
  */
 bool bitmap_point_collision( bitmap bmp, const matrix_2d &translation, const point_2d &pt );
 
+/**
+ * Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
+ * at the passed in point.
+ *
+ * @param bmp           The bitmap to test.
+ * @param cell          The cell of the bitmap to check.
+ * @param translation   The translation matrix that represents the position, scale,
+ *                      and rotation of the bitmap when it is drawn.
+ * @param pt            The point in the resulting drawing that is being tested.
+ * @returns             True if drawing the bitmap, using the passed in translation,
+ *                      will draw a pixel at the indicated point.
+ */
+bool bitmap_point_collision( bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt );
+
+
 #endif /* collisions_h */

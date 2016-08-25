@@ -61,7 +61,7 @@ float to_screen_y(float world_y)
     return world_y - _camera_y;
 }
 
-point_2d to_screen(point_2d pt)
+point_2d to_screen(const point_2d &pt)
 {
     return point_at(pt.x - _camera_x, pt.y - _camera_y);
 }
@@ -93,4 +93,9 @@ float to_world_x(float screen_x)
 float to_world_y(float screen_y)
 {
     return screen_y + _camera_y;
+}
+
+point_2d to_world(const point_2d &pt)
+{
+    return point_at(pt.x + _camera_x, pt.y + _camera_y);
 }

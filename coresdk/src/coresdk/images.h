@@ -11,6 +11,7 @@
 
 #include "drawing_options.h"
 #include "types.h"
+#include "physics.h"
 
 #include <string>
 using namespace std;
@@ -84,6 +85,15 @@ int bitmap_cell_width(bitmap bmp);
  */
 int bitmap_cell_height(bitmap bmp);
 
+/**
+ * Returns a vector that represents the movement needed to get to a given
+ * cell within a bitmap.
+ * 
+ * @param src   The bitmap with the cell details.
+ * @param cell  The index of the cell
+ * @returns     The offset needed to get to the cell from the top left of the bitmap.
+ */
+vector_2d bitmap_cell_offset(bitmap src, int cell);
 
 /**
  *  Returns a rectangle that will encompass the bitmap cell if it were drawn
@@ -109,5 +119,34 @@ circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
+
+/**
+ * Returns the number of cells within the bitmap.
+ *
+ * @param bmp   The bitmap to check.
+ * @returns     The number of individual cells within the bitmap.
+ */
+int bitmap_cell_count(bitmap bmp);
+
+/**
+ * Check if the bitmap has a pixel drawn at the indicated point.
+ *
+ * @param bmp   The bitmap to check.
+ * @param x     The x coordinate within the bitmap to check
+ * @param y     The y coordinate within the bitmap to check
+ * @returns     True if the pixel at that point in the bitmap is drawn.
+ */
+bool pixel_drawn_at_point(bitmap bmp, float x, float y);
+
+/**
+ * Check if the bitmap has a pixel drawn at the indicated point in the cell.
+ *
+ * @param bmp   The bitmap to check.
+ * @param cell  The bitmap cell to check.
+ * @param x     The x coordinate within the bitmap to check
+ * @param y     The y coordinate within the bitmap to check
+ * @returns     True if the pixel at that point in the bitmap's cell is drawn.
+ */
+bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
 
 #endif /* images_hpp */

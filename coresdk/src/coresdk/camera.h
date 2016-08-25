@@ -96,5 +96,13 @@ float to_world_x(float screen_x);
 ///
 float to_world_y(float screen_y);
 
+/**
+ * Converts the passed in point from screen coordinates to world coordinates.
+ *
+ * @param pt    The point in screen coordinates.
+ * @returns     The same point in world coordinates.
+ */
+point_2d to_world(const point_2d &pt);
+
 
 #endif /* camera_hpp */

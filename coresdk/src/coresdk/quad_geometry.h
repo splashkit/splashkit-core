@@ -24,5 +24,6 @@ quad quad_from(float x_top_left, float y_top_left, float x_top_right, float y_to
 quad quad_from(const rectangle &rect);
 
 
+quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4);
 
 #endif /* quad_geometry_h */
