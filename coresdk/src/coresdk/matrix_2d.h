@@ -185,4 +185,22 @@ matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const 
 /// @csn description
 string matrix_to_string(const matrix_2d &matrix);
 
+/**
+ *  Multiply matrix_2d by another matrix_2d and return a matrix result as a new matrix_2d,
+ */
+matrix_2d matrix_multiply(const matrix_2d  &m1,const matrix_2d &m2);
+
+/**
+ * Use a matrix to transform all of the points in a quad.
+ */
+void apply_matrix(const matrix_2d m, quad _quad);
+
+/**
+ *  Multiplying matrix by point_2d and returning as point_2d.
+ */
+
+point_2d matrix_multiply(const matrix_2d &m, const point_2d &pts);
+
+
+
 #endif /* matrix_2d_h */
