@@ -110,8 +110,8 @@ void run_text_test()
     test_font_styles();
     test_font_auto_load();
     
-    load_font("taroko", "Taroko.ttf");
-    draw_text("タロ子フォント 教育漢字カ", COLOR_BLACK, "taroko", 30, 0, 280);
+    load_font("kochi", "kochi-gothic-subst.ttf");
+    draw_text("スプラッシュ・キット", COLOR_BLACK, "kochi", 30, 0, 280);
 
     refresh_screen();
     delay(5000);

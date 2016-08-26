@@ -22,7 +22,6 @@ using namespace std;
 
 static map<string, bitmap> _bitmaps;
 
-
 void setup_collision_mask(_bitmap_data *bmp)
 {
     int *pixels;

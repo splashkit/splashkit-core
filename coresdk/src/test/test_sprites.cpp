@@ -6,12 +6,13 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "window_manager.h"
-#include "input.h"
-#include "sprites.h"
-#include "images.h"
+#include "collisions.h"
 #include "geometry.h"
 #include "graphics.h"
+#include "images.h"
+#include "input.h"
+#include "sprites.h"
+#include "window_manager.h"
 
 void run_sprite_test()
 {
@@ -90,25 +91,35 @@ void run_sprite_test()
         fill_triangle(COLOR_BLUE, tri_b);
         // FillQuad(RGBAColor(0,0,255,62), q);
 
-//        if ( sprite_rect_collision(sprt, r) )
-//            fill_rectangle(COLOR_PINK, r);
-//        else
+        if (sprite_rect_collision(sprt, r))
+		{
+            fill_rectangle(COLOR_PINK, r);
+		}
+        else
+		{
             draw_rectangle(COLOR_PURPLE, r);
+		}
 
         draw_bitmap("ufo.png", 400, 300);
 
-//        if ( sprite_bitmap_collision(sprt, bitmap_named("ufo.png"), 400, 300) )
-//            draw_rectangle(COLOR_PURPLE, 400, 300, bitmap_width(bitmap_named("ufo.png")), bitmap_height(bitmap_named("ufo.png")));
+        if (sprite_bitmap_collision(sprt, bitmap_named("ufo.png"), 400, 300))
+		{
+            draw_rectangle(COLOR_PURPLE, 400, 300, bitmap_width(bitmap_named("ufo.png")), bitmap_height(bitmap_named("ufo.png")));
+		}
 
-        if ( sprite_at(sprt, mouse_position()) )
+        if (sprite_at(sprt, mouse_position()))
+		{
             fill_circle(COLOR_YELLOW, sprite_collision_circle(sprt));
+		}
 
         draw_sprite(sprt);
         draw_sprite(s2);
         update_sprite(sprt);
 
-//        if ( sprite_collision(sprt, s2) )
-//            draw_circle(COLOR_RED, sprite_collision_circle(s2));
+        if (sprite_collision(sprt, s2))
+		{
+            draw_circle(COLOR_RED, sprite_collision_circle(s2));
+		}
 
         draw_circle(COLOR_GREEN, sprite_collision_circle(sprt));
         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(sprt));

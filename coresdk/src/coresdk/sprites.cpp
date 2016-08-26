@@ -6,23 +6,20 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "sprites.h"
-
-#include "utility_functions.h"
-#include "backend_types.h"
-#include "timers.h"
-#include "vector_2d.h"
-#include "images.h"
-#include "geometry.h"
 #include "animations.h"
-#include "mouse_input.h"
+#include "backend_types.h"
 #include "camera.h"
 #include "collisions.h"
-
+#include "geometry.h"
+#include "images.h"
+#include "mouse_input.h"
 #include "resource_event_notifications.h"
+#include "sprites.h"
+#include "timers.h"
+#include "utility_functions.h"
+#include "vector_2d.h"
 
 #include <cmath>
-
 #include <map>
 #include <vector>
 using namespace std;
@@ -88,7 +85,6 @@ struct _sprite_data
     }
 };
 
-
 //-----------------------------------------------------------------------------
 // Event Utility Code
 //-----------------------------------------------------------------------------
@@ -118,18 +114,16 @@ void sprite_raise_event(sprite s, sprite_event_kind evt)
     }
 }
 
-
 //-----------------------------------------------------------------------------
 // Vector stuff...
 //-----------------------------------------------------------------------------
 
-
-vector_2d  vector_from_to(sprite s1, sprite s2)
+vector_2d vector_from_to(sprite s1, sprite s2)
 {
     return vector_point_to_point(center_point(s1), center_point(s2));
 }
 
-vector_2d  vector_from_center_sprite_to_point(sprite s, const point_2d &pt)
+vector_2d vector_from_center_sprite_to_point(sprite s, const point_2d &pt)
 {
     return vector_point_to_point(center_point(s), pt);
 }
@@ -283,7 +277,6 @@ void free_all_sprites()
     FREE_ALL_FROM_MAP(_sprites, SPRITE_PTR, free_sprite);
 }
 
-
 //-----------------------------------------------------------------------------
 // Sprite fetching functions
 //-----------------------------------------------------------------------------
@@ -305,8 +298,7 @@ sprite sprite_named(const string &name)
 // Sprite layer code
 //-----------------------------------------------------------------------------
 
-
-int  sprite_add_layer(sprite s, bitmap new_layer, const string &layer_names)
+int sprite_add_layer(sprite s, bitmap new_layer, const string &layer_names)
 {
     if( INVALID_PTR(new_layer, BITMAP_PTR) )
     {
@@ -354,7 +346,7 @@ bool sprite_has_layer(sprite s, int idx)
     }
 }
 
-bitmap  sprite_layer(sprite s, const string &name)
+bitmap sprite_layer(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) )
     {
@@ -366,7 +358,7 @@ bitmap  sprite_layer(sprite s, const string &name)
     }
 }
 
-bitmap  sprite_layer(sprite s, int idx)
+bitmap sprite_layer(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) )
     {
@@ -376,7 +368,7 @@ bitmap  sprite_layer(sprite s, int idx)
     return s->layers[idx];
 }
 
-int  sprite_layer_index(sprite s, const string &name)
+int sprite_layer_index(sprite s, const string &name)
 {
     if( not sprite_has_layer(s, name) )
         return -1;
@@ -384,7 +376,7 @@ int  sprite_layer_index(sprite s, const string &name)
         return s->layer_names[name];
 }
 
-string  sprite_layer_name(sprite s, int idx)
+string sprite_layer_name(sprite s, int idx)
 {
     if ( sprite_has_layer(s, idx) )
     {
@@ -401,7 +393,7 @@ string  sprite_layer_name(sprite s, int idx)
     }
 }
 
-int  sprite_show_layer(sprite s, const string &name)
+int sprite_show_layer(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) )
         return -1;
@@ -409,7 +401,7 @@ int  sprite_show_layer(sprite s, const string &name)
         return sprite_show_layer(s, s->layer_names[name]);
 }
 
-int  sprite_show_layer(sprite s, int id)
+int sprite_show_layer(sprite s, int id)
 {
     if( not sprite_has_layer(s, id) )
         return -1;
@@ -458,7 +450,7 @@ void sprite_toggle_layer_visible(sprite s, int id)
         sprite_hide_layer(s, id);
 }
 
-int  sprite_layer_count(sprite s)
+int sprite_layer_count(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -468,7 +460,7 @@ int  sprite_layer_count(sprite s)
     else return static_cast<int>(s->layers.size());
 }
 
-int  sprite_visible_layer_count(sprite s)
+int sprite_visible_layer_count(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -496,13 +488,13 @@ int sprite_visible_layer_id(sprite s, int idx)
         return s->visible_layers[idx];
 }
 
-vector_2d  sprite_layer_offset(sprite s, const string &name)
+vector_2d sprite_layer_offset(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) ) return vector_to(0,0);
     else return sprite_layer_offset(s, s->layer_names[name]);
 }
 
-vector_2d  sprite_layer_offset(sprite s, int idx)
+vector_2d sprite_layer_offset(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) ) return vector_to(0,0);
     else return s->layer_offsets[idx];
@@ -527,7 +519,7 @@ int sprite_visible_index_of_layer(sprite s, const string &name)
     else return sprite_visible_index_of_layer(s, s->layer_names[name]);
 }
 
-int  sprite_visible_index_of_layer(sprite s, int id)
+int sprite_visible_index_of_layer(sprite s, int id)
 {
     if ( not sprite_has_layer(s, id) )
         return -1;
@@ -535,7 +527,7 @@ int  sprite_visible_index_of_layer(sprite s, int id)
         return index_of(s->visible_layers, id);
 }
 
-int  sprite_visible_layer(sprite s, int idx)
+int sprite_visible_layer(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) ) return -1;
     else return s->visible_layers[idx];
@@ -573,7 +565,7 @@ void sprite_bring_layer_to_front(sprite s, int visible_layer)
         move_range(s->visible_layers, sprite_visible_index_of_layer(s, visible_layer), 1, 0 );
 }
 
-rectangle  sprite_layer_rectangle(sprite s, const string &name)
+rectangle sprite_layer_rectangle(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) )
         return rectangle_from(0,0,0,0);
@@ -581,7 +573,7 @@ rectangle  sprite_layer_rectangle(sprite s, const string &name)
         return sprite_layer_rectangle(s, s->layer_names[name]);
 }
 
-rectangle  sprite_layer_rectangle(sprite s, int idx)
+rectangle sprite_layer_rectangle(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) )
         return rectangle_from(0,0,0,0);
@@ -600,7 +592,7 @@ circle sprite_layer_circle(sprite s, const string &name)
     else return sprite_layer_circle(s, s->layer_names[name]);
 }
 
-circle  sprite_layer_circle(sprite s, int idx)
+circle sprite_layer_circle(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) )
         return circle_at(0, 0, 0);
@@ -608,7 +600,7 @@ circle  sprite_layer_circle(sprite s, int idx)
         return bitmap_cell_circle(s->layers[idx], center_point(s), sprite_scale(s));
 }
 
-int  sprite_layer_height(sprite s, const string &name)
+int sprite_layer_height(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) )
         return 0;
@@ -616,7 +608,7 @@ int  sprite_layer_height(sprite s, const string &name)
         return sprite_layer_height(s, s->layer_names[name]);
 }
 
-int  sprite_layer_height(sprite s, int idx)
+int sprite_layer_height(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) )
         return 0;
@@ -624,7 +616,7 @@ int  sprite_layer_height(sprite s, int idx)
         return bitmap_cell_height(s->layers[idx]);
 }
 
-int  sprite_layer_width(sprite s, const string &name)
+int sprite_layer_width(sprite s, const string &name)
 {
     if ( not sprite_has_layer(s, name) )
         return 0;
@@ -632,7 +624,7 @@ int  sprite_layer_width(sprite s, const string &name)
         return sprite_layer_width(s, s->layer_names[name]);
 }
 
-int  sprite_layer_width(sprite s, int idx)
+int sprite_layer_width(sprite s, int idx)
 {
     if ( not sprite_has_layer(s, idx) )
         return 0;
@@ -640,7 +632,7 @@ int  sprite_layer_width(sprite s, int idx)
         return bitmap_cell_width(s->layers[idx]);
 }
 
-int  sprite_width(sprite s)
+int sprite_width(sprite s)
 {
     return sprite_layer_width(s, 0);
 }
@@ -650,7 +642,7 @@ int  sprite_height(sprite s)
     return sprite_layer_height(s, 0);
 }
 
-point_2d  center_point(sprite s)
+point_2d center_point(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -772,7 +764,7 @@ void update_sprite_animation(sprite s, float pct, bool with_sound)
     move_sprite(s, animation_current_vector(s->animation_info), pct);
 }
 
-rectangle  sprite_current_cell_rectangle(sprite s)
+rectangle sprite_current_cell_rectangle(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -785,7 +777,7 @@ rectangle  sprite_current_cell_rectangle(sprite s)
     }
 }
 
-int  sprite_current_cell(sprite s)
+int sprite_current_cell(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -796,7 +788,7 @@ int  sprite_current_cell(sprite s)
         return animation_current_cell(s->animation_info);
 }
 
-bool  sprite_animation_has_ended(sprite s)
+bool sprite_animation_has_ended(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) ) return false;
     else return animation_ended(s->animation_info);
@@ -896,7 +888,7 @@ void draw_sprite(sprite s, float x_offset, float y_offset)
     }
 }
 
-rectangle  sprite_screen_rectangle(sprite s)
+rectangle sprite_screen_rectangle(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) or INVALID_PTR(s->animation_info, ANIMATION_PTR) )
         return rectangle_from(0,0,0,0);
@@ -904,7 +896,7 @@ rectangle  sprite_screen_rectangle(sprite s)
         return to_screen(sprite_layer_rectangle(s, 0));
 }
 
-point_2d  sprite_anchor_point(sprite s)
+point_2d sprite_anchor_point(sprite s)
 {
     if ( VALID_PTR(s, SPRITE_PTR) )
     {
@@ -928,7 +920,6 @@ void sprite_set_anchor_point(sprite s, const point_2d &pt)
         raise_warning("Attempting to set anchor point of invalid sprite");
     }
 }
-
 
 //-----------------------------------------------------------------------------
 // Sprite Movement
@@ -1014,7 +1005,7 @@ void move_sprite(sprite s, float pct)
         move_sprite(s, s->velocity, pct);
 }
 
-vector_2d  sprite_velocity(sprite s)
+vector_2d sprite_velocity(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -1054,7 +1045,7 @@ void sprite_set_x(sprite s, float value)
     s->position.x = value;
 }
 
-float  sprite_x(sprite s)
+float sprite_x(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -1074,7 +1065,7 @@ void sprite_set_y(sprite s, float value)
     s->position.y = value;
 }
 
-float  sprite_y(sprite s)
+float sprite_y(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
@@ -1084,7 +1075,7 @@ float  sprite_y(sprite s)
     return s->position.y;
 }
 
-point_2d  sprite_position(sprite s)
+point_2d sprite_position(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return point_at(0,0);
@@ -1102,7 +1093,7 @@ void sprite_set_dx(sprite s, float value)
     if ( VALID_PTR(s, SPRITE_PTR) ) s->velocity.x = value;
 }
 
-float  sprite_dx(sprite s)
+float sprite_dx(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1116,7 +1107,7 @@ void sprite_set_dy(sprite s, float value)
         s->velocity.y = value;
 }
 
-float  sprite_dy(sprite s)
+float sprite_dy(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1124,7 +1115,7 @@ float  sprite_dy(sprite s)
         return s->velocity.y;
 }
 
-float  sprite_speed(sprite s)
+float sprite_speed(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1138,7 +1129,7 @@ void sprite_set_speed(sprite s, float value)
         s->velocity = vector_multiply(unit_vector(s->velocity), value);
 }
 
-float  sprite_heading(sprite s)
+float sprite_heading(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1152,7 +1143,7 @@ void sprite_set_heading(sprite s, float value)
         s->velocity = vector_from_angle(value, vector_magnitude(s->velocity));
 }
 
-bool  sprite_move_from_anchor_point(sprite s)
+bool sprite_move_from_anchor_point(sprite s)
 {
     if ( VALID_PTR(s, SPRITE_PTR) )
         return s->position_at_anchor_point;
@@ -1183,7 +1174,7 @@ void sprite_move_to(sprite s, const point_2d &pt, int taking_seconds)
     s->last_update = timer_ticks(_sprite_timer);
 }
 
-matrix_2d  sprite_location_matrix(sprite s)
+matrix_2d sprite_location_matrix(sprite s)
 {
     matrix_2d result = identity_matrix();
 
@@ -1214,7 +1205,7 @@ matrix_2d  sprite_location_matrix(sprite s)
 // Sprite values
 //---------------------------------------------------------------------------
 
-float  sprite_mass(sprite s)
+float sprite_mass(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1228,7 +1219,7 @@ void sprite_set_mass(sprite s, float value)
         s->values[MASS_KEY] = value;
 }
 
-float  sprite_rotation(sprite s)
+float sprite_rotation(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1254,7 +1245,7 @@ void sprite_set_rotation(sprite s, float value)
     }
 }
 
-float  sprite_scale(sprite s)
+float sprite_scale(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return 0;
@@ -1292,7 +1283,7 @@ bool sprite_has_value(sprite s, string name)
     return s->values.count(name) > 0;
 }
 
-float  sprite_value(sprite s, const string &name)
+float sprite_value(sprite s, const string &name)
 {
     if ( not sprite_has_value(s, name) )
     {
@@ -1414,7 +1405,7 @@ void update_all_sprites()
     update_all_sprites(1.0);
 }
 
-bool  has_sprite_pack(const string &name)
+bool has_sprite_pack(const string &name)
 {
     return _sprite_packs.count(name) > 0;
 }
@@ -1432,7 +1423,7 @@ void create_sprite_pack(const string &name)
     }
 }
 
-string  current_sprite_pack()
+string current_sprite_pack()
 {
     return _current_pack;
 }
@@ -1473,7 +1464,7 @@ void free_all_sprite_packs()
 // sprite collision details
 //---------------------------------------------------------------------------
 
-bool  sprite_offscreen(sprite s)
+bool sprite_offscreen(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR))
         return false;
@@ -1482,33 +1473,22 @@ bool  sprite_offscreen(sprite s)
 }
 
 
-bool  sprite_on_screen_at(sprite s, float x, float y)
+bool sprite_on_screen_at(sprite s, float x, float y)
 {
     return sprite_on_screen_at(s, point_at(x, y));
 }
 
-bool  sprite_on_screen_at(sprite s, const point_2d &pt)
+bool sprite_on_screen_at(sprite s, const point_2d &pt)
 {
     return sprite_at(s, to_world(pt));
 }
 
-bool  sprite_at(sprite s, const point_2d &pt)
+bool sprite_at(sprite s, const point_2d &pt)
 {
-    if ( INVALID_PTR(s, SPRITE_PTR) )
-    {
-        raise_warning("Attempting to use invalid sprite");
-        return false;
-    }
-    
-    if ( not point_in_circle(pt, sprite_collision_circle(s)) )
-        return false;
-    else if ( bitmap_cell_count(s->collision_bitmap) > 1 )
-        return bitmap_point_collision( s->collision_bitmap, sprite_current_cell(s), sprite_location_matrix(s), pt );
-    else
-        return bitmap_point_collision( s->collision_bitmap, sprite_location_matrix(s), pt );
+	return sprite_point_collision(s, pt);
 }
 
-rectangle  sprite_collision_rectangle(sprite s)
+rectangle sprite_collision_rectangle(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return rectangle_from(0,0,0,0);
@@ -1550,7 +1530,7 @@ rectangle  sprite_collision_rectangle(sprite s)
     }
 }
 
-circle  sprite_collision_circle(sprite s)
+circle sprite_collision_circle(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) or INVALID_PTR(s->collision_bitmap, BITMAP_PTR) )
         return circle_at(0, 0, 0);
@@ -1558,7 +1538,7 @@ circle  sprite_collision_circle(sprite s)
         return bitmap_cell_circle(s->collision_bitmap, center_point(s), sprite_scale(s));
 }
 
-collision_test_kind  sprite_collision_kind(sprite s)
+collision_test_kind sprite_collision_kind(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return AABB_COLLISIONS;
@@ -1571,7 +1551,7 @@ void sprite_set_collision_kind(sprite s, collision_test_kind value)
     if ( VALID_PTR(s, SPRITE_PTR) ) s->collision_kind = value;
 }
 
-bitmap  sprite_collision_bitmap(sprite s)
+bitmap sprite_collision_bitmap(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
         return nullptr;
