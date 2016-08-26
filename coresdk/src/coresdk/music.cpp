@@ -107,7 +107,7 @@ music music_named(string name)
         return nullptr;
 }
 
-void play_music(music data, int loops, float pct)
+void play_music(music data, int times, float volume)
 {
     if ( !audio_ready() )
         return;
@@ -118,7 +118,101 @@ void play_music(music data, int loops, float pct)
         return;
     }
     
-    sk_play_sound(&data->audio, loops, pct);
+    sk_play_sound(&data->audio, times, volume);
 }
 
+void play_music(music data)
+{
+    play_music(data, 1, 1.0f);
+}
 
+void play_music(music data, int times)
+{
+    play_music(data, times, 1.0f);
+}
+
+void play_music(string name, int times)
+{
+    play_music(music_named(name), times, 1.0f);
+}
+
+void play_music(string name)
+{
+    play_music(music_named(name), 1, 1.0f);
+}
+
+void fade_music_in(music data, int times, int ms)
+{
+    if ( !audio_ready() )
+        return;
+    
+    if ( INVALID_PTR(data, MUSIC_PTR) )
+    {
+        raise_warning("Attempting to play music with invalid data");
+        return;
+    }
+    
+    sk_fade_in(&data->audio, times, ms);
+}
+
+void fade_music_in(music data, int ms)
+{
+    fade_music_in(data, 1, ms);
+}
+
+void fade_music_in(string name, int times, int ms)
+{
+    fade_music_in(music_named(name), times, ms);
+}
+
+void fade_music_in(string name, int ms)
+{
+    fade_music_in(music_named(name), 1, ms);
+}
+
+void fade_music_out(int ms)
+{
+    sk_fade_music_out(ms);
+}
+
+void pause_music()
+{
+    sk_pause_music();
+}
+
+void resume_music()
+{
+    sk_resume_music();
+}
+
+void stop_music()
+{
+    sk_stop_music();
+}
+
+bool music_playing()
+{
+    return sk_music_playing();
+}
+
+void set_music_volume(float volume)
+{
+    sk_set_music_vol(volume);
+}
+
+float music_volume()
+{
+    return sk_music_vol();
+}
+
+string music_name(music data)
+{
+    if (INVALID_PTR(data, MUSIC_PTR)) return "";
+    return data->name;
+}
+
+string music_filename(music data)
+{
+    if (INVALID_PTR(data, MUSIC_PTR)) return "";
+    return data->filename;
+}
