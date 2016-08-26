@@ -48,6 +48,18 @@ sound_effect sound_effect_named(string name)
         return nullptr;
 }
 
+string sound_effect_name(sound_effect effect)
+{
+    if (INVALID_PTR(effect, AUDIO_PTR)) return "";
+    return effect->name;
+}
+
+string sound_effect_filename(sound_effect effect)
+{
+    if (INVALID_PTR(effect, AUDIO_PTR)) return "";
+    return effect->filename;
+}
+
 sound_effect load_sound_effect(string name, string filename)
 {
     if (has_sound_effect(name)) return sound_effect_named(name);
@@ -131,5 +143,66 @@ void play_sound_effect(sound_effect effect)
     play_sound_effect(effect, 1, 1.0f);
 }
 
+void play_sound_effect(sound_effect effect, int times)
+{
+    play_sound_effect(effect, times, 1.0f);
+}
 
+void play_sound_effect(sound_effect effect, float volume)
+{
+    play_sound_effect(effect, 1, volume);
+}
 
+void play_sound_effect(string name, int times, float volume)
+{
+    play_sound_effect(sound_effect_named(name), times, volume);
+}
+
+void play_sound_effect(string name, int times)
+{
+    play_sound_effect(sound_effect_named(name), times, 1.0f);
+}
+
+void play_sound_effect(string name)
+{
+    play_sound_effect(sound_effect_named(name), 1, 1.0f);
+}
+
+void play_sound_effect(string name, float volume)
+{
+    play_sound_effect(sound_effect_named(name), 1, volume);
+}
+
+bool sound_effect_playing(sound_effect effect)
+{
+    if ( INVALID_PTR(effect, AUDIO_PTR) ) return false;
+    
+    return sk_sound_playing(&effect->effect);
+}
+
+bool sound_effect_playing(string name)
+{
+    return sound_effect_playing(sound_effect_named(name));
+}
+
+void stop_sound_effect(sound_effect effect)
+{
+    if (VALID_PTR(effect, AUDIO_PTR))
+        sk_stop_sound(&effect->effect);
+}
+
+void stop_sound_effect(string name)
+{
+    stop_sound_effect(sound_effect_named(name));
+}
+
+void fade_sound_effect_out(sound_effect effect, int ms)
+{
+    if (VALID_PTR(effect, AUDIO_PTR))
+        sk_fade_out(&effect->effect, ms);
+}
+
+void fade_all_sound_effects_out(int ms)
+{
+    sk_fade_all_sound_effects_out(ms);
+}

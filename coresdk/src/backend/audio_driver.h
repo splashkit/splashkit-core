@@ -70,7 +70,7 @@ void sk_stop_music();
 
 void sk_stop_sound(sk_sound_data *sound);
 
-float sk_music_playing();
+bool sk_music_playing();
 
 sk_sound_data * sk_current_music();
 

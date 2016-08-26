@@ -8,6 +8,8 @@
  * thing you need to do is load a sound effect or music file. You can do this
  * by calling the `load_sound_effect(string name)` function to the
  * `load_music(string name)` function.
+ *
+ * @attribute static audio
  */
 #include <string>
 using namespace std;
@@ -45,17 +47,11 @@ typedef struct _sound_data *sound_effect;
 
 /**
  * Starts the SplashKit audio system working.
- *
- * @attribute class  audio
- * @attribute method open
  */
 void open_audio();
 
 /**
  * Turns off audio, stopping all current sounds effects and music.
- *
- * @attribute class  audio
- * @attribute method close
  */
 void close_audio();
 
@@ -67,8 +63,9 @@ void close_audio();
  *
  * @returns Returns `true` if the audio has been initalised.
  *
- * @attribute class   audio
+ * @attribute static  audio
  * @attribute getter  is_ready
+ * @attribute self    audio
  */
 bool audio_ready();
 
@@ -85,8 +82,9 @@ bool audio_ready();
  *
  * @returns A new `sound_effect` with the initialised values provided.
  *
- * @attribute class       sound_effect
- * @attribute constructor true
+ * @attribute class         sound_effect
+ * @attribute constructor   true
+ * @attribute self          effect
  */
 sound_effect load_sound_effect(string name, string filename);
 
@@ -101,9 +99,6 @@ sound_effect load_sound_effect(string name, string filename);
  *
  * @returns Returns `true` if there is a sound effect with the given `name` has
  *          has been loaded.
- *
- * @attribute class   audio
- * @attribute method  has_sound_effect
  */
 bool has_sound_effect(string name);
 
@@ -114,11 +109,60 @@ bool has_sound_effect(string name);
  *
  * @returns Returns the `sound_effect` that has been loaded with the specified
  *          `name` using `load_sound_effect`.
- *
- * @attribute class   audio
- * @attribute method  sound_effect_named
  */
 sound_effect sound_effect_named(string name);
+
+/**
+ * Returns the name of the 'sound_effect' that has been loaded by SplashKit
+ *
+ * @param effect The 'sound_effect' to check
+ *
+ * @returns Returns the name of the 'sound_effect' that has been loaded
+ *
+ * @attribute class     sound_effect
+ * @attribute getter    name
+ * @attribute self      effect
+ */
+string sound_effect_name(sound_effect effect);
+
+/**
+ * Returns the filename of the 'sound_effect' that has been loaded by SplashKit
+ *
+ * @param effect The 'sound_effect' to check
+ *
+ * @returns Returns the filename of the 'sound_effect' that has been loaded
+ *
+ * @attribute class     sound_effect
+ * @attribute getter    filename
+ * @attribute self      effect
+ */
+string sound_effect_filename(sound_effect effect);
+
+/**
+ * Checks whether the 'sound_effect' is currently playing
+ *
+ * @param effect The 'sound_effect' to be tested.
+ *
+ * @returns Returns whether the "sound_effect" is currently playing or not
+ *
+ * @attribute class     sound_effect
+ * @attribute getter    filename
+ * @attribute self      effect
+ */
+bool sound_effect_playing(sound_effect effect);
+
+/**
+ * Checks whether the 'sound_effect' that matches the name is currently playing
+ *
+ * @param name The name of the 'sound_effect'
+ *
+ * @returns Returns whether the "sound_effect" that matches the name is currently playing or not
+ *
+ * @attribute class     sound_effect
+ * @attribute getter    is_playing
+ * @attribute self      effect
+ */
+bool sound_effect_playing(string name);
 
 /**
  * Releases the SplashKit resources associated with the sound effect.
@@ -134,8 +178,6 @@ void free_sound_effect(sound_effect effect);
 /**
  * Releases all of the sound effects that have been loaded.
  *
- * @attribute class   audio
- * @attribute method  free_all_sound_effects
  */
 void free_all_sound_effects();
 
@@ -150,11 +192,145 @@ void free_all_sound_effects();
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute unique  play_with_loops_and_volume
+ * @attribute unique  play_sound_effect_with_loops_and_volume
  * @attribute self    effect
  */
 void play_sound_effect(sound_effect effect, int times, float volume);
 
+/**
+ * Plays a sound effect once at full volume.
+ *
+ * @param effect   The effect indicates which sound effect to start playing.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ */
 void play_sound_effect(sound_effect effect);
+
+/**
+ * Plays a sound effect once at full volume.
+ *
+ * @param effect    The effect indicates which sound effect to start playing.
+ * @param times     Controls the number of times the sound effect is played.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+*/
+void play_sound_effect(sound_effect effect, int times);
+
+/**
+ * Plays a sound effect once at playback volume.
+ *
+ * @param effect    The effect indicates which sound effect to start playing.
+ * @param volume    Indicates the percentage of the original volume to play the
+ *                 `sound_effect` at. This must be between `0` and `1`.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ */
+void play_sound_effect(sound_effect effect, float volume);
+
+/**
+ * Plays a sound effect for a specified number of times and playback volume.
+ *
+ * @param name      The name of the effect to play.
+ * @param times     Controls the number of times the sound effect is played.
+ * @param volume    Indicates the percentage of the original volume to play the
+ *                 `sound_effect` at. This must be between `0` and `1`.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ */
+void play_sound_effect(string name, int times, float volume);
+
+/**
+ * Plays a sound effect for a specified number of times at full volume.
+ *
+ * @param name      The name of the effect to play.
+ * @param times     Controls the number of times the sound effect is played.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ *
+ */
+void play_sound_effect(string name, int times);
+
+/**
+ * Plays a sound effect once at full volume.
+ *
+ * @param name      The name of the effect to play.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ *
+ */
+void play_sound_effect(string name);
+
+/**
+ * Plays a sound effect once at full volume.
+ *
+ * @param name      The name of the effect to play.
+ * @param volume    The volume to play the 'sound_effect'
+ *
+ * @attribute class   sound_effect
+ * @attribute method  play
+ * @attribute self    effect
+ *
+ */
+void play_sound_effect(string name, float volume);
+
+/**
+ * Stops the 'sound_effect' if it is currently playing
+ *
+ * @param effect      The 'sound_effect' to stop.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  stop
+ * @attribute self    effect
+ *
+ */
+void stop_sound_effect(sound_effect effect);
+
+/**
+ * Stops the 'sound_effect' that matches the name, if it is currently playing.
+ *
+ * @param name      The name of the 'sound_effect' to stop.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  stop
+ * @attribute self    effect
+ *
+ */
+void stop_sound_effect(string name);
+
+/**
+ * Fades out the 'sound_effect' over the specified milliseconds.
+ *
+ * @param effect      The 'sound_effect' to fade out.
+ * @param ms          The number of milliseconds to fade out the 'sound_effect'.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  fade_out
+ * @attribute self    effect
+ *
+ */
+void fade_sound_effect_out(sound_effect effect, int ms);
+
+/**
+ * Fades out all 'sound_effect's over the specified milliseconds.
+ *
+ * @param ms      The number of milliseconds to fade out all sound effects.
+ *
+ * @attribute class   sound_effect
+ * @attribute method  fade_out
+ * @attribute self    effect
+ */
+void fade_all_sound_effects_out(int ms);
 
 #endif
