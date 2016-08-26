@@ -379,7 +379,7 @@ void _handle_key_type(SDL_Keycode code)
     }
 }
 
-void _handle_input_text_callback(char *input)
+void _handle_input_text(char *input)
 {
     window current = window_with_focus();
     if ( not current ) return;
@@ -624,26 +624,24 @@ void sk_process_events()
 
             case SDL_TEXTEDITING:
             {
-                if (_input_callbacks.handle_input_text)
+                if (&_handle_editing_text)
                 {
                     char* text = event.edit.text;
                     int cursor = event.edit.start;
                     int selection_len = event.edit.length;
 
                     _handle_editing_text(text, cursor, selection_len);
-                    _input_callbacks.handle_editing_text(text, cursor, selection_len);
                 }
                 break;
             }
 
             case SDL_TEXTINPUT:
             {
-                if (_input_callbacks.handle_input_text)
+                if (&_handle_input_text)
                 {
                     char* text = event.text.text;
 
-                    _handle_input_text_callback(text);
-                    _input_callbacks.handle_input_text(text);
+                    _handle_input_text(text);
                 }
                 break;
             }
