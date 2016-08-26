@@ -51,4 +51,6 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y);
 
 bool sprite_rect_collision(sprite s, const rectangle& rect);
 
+bool sprite_collision(sprite s1, sprite s2);
+
 #endif /* collisions_h */

@@ -194,3 +194,24 @@ bool sprite_rect_collision(sprite s, const rectangle& rect)
 
 	return bitmap_rect_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
 }
+
+bool sprite_collision(sprite s1, sprite s2)
+{
+	if (!rectangles_intersect(sprite_collision_rectangle(s1), sprite_collision_rectangle(s2)))
+	{
+		return false;
+	}
+
+	if (sprite_collision_kind(s1) == AABB_COLLISIONS)
+	{
+		return sprite_rect_collision(s2, sprite_collision_rectangle(s1));
+	}
+
+	if (sprite_collision_kind(s2) == AABB_COLLISIONS)
+	{
+		return sprite_rect_collision(s1, sprite_collision_rectangle(s2));
+	}
+
+	return _collision_within_bitmap_images_with_translation(sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
+															sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2));
+}
