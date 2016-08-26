@@ -92,8 +92,8 @@ bool _step_through_pixels (
             x_b = round(pos_in_b.x);
             y_b = round(pos_in_b.y);
 
-            fill_circle(COLOR_MAGENTA, x_b + 300, y_b + 300, 2);
-            refresh_screen();
+            // fill_circle(COLOR_MAGENTA, x_b + 300, y_b + 300, 2);
+            // refresh_screen();
             // delay(10);
 
             // If the pixel lies within the bounds of B
@@ -187,7 +187,10 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
 
 bool sprite_rect_collision(sprite s, const rectangle& rect)
 {
-	// TODO: Implement
+	if (!rectangles_intersect(sprite_collision_rectangle(s), rect))
+	{
+		return false;
+	}
 
-	return false;
+	return bitmap_rect_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
 }
