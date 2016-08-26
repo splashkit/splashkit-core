@@ -19,3 +19,8 @@ include_directories(../../coresdk/src/test)
 include_directories(../../coresdk/external/civetweb/include)
 
 add_library(splashkit ${SOURCE_FILES})
+add_executable(splashkit_test ${SOURCE_FILES})
+
+add_custom_command(TARGET splashkit_test PRE_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ../../coresdk/src/test/Resources $<TARGET_FILE_DIR:splashkit_test>/Resources)
