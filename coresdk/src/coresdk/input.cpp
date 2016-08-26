@@ -24,16 +24,6 @@ void quit()
     _sk_quit = true;
 }
 
-
-// occurs as text entry is accepted
-void handle_input_text_callback(char *input)
-{
-}
-
-void handle_editing_text(char *text, int cursor, int selection_length)
-{
-}
-
 void handle_window_resize(pointer p, int width, int height)
 {
 //    cout << "resize: " << width << "x" << height << endl;
@@ -70,7 +60,7 @@ void process_events()
         _input_callbacks.handle_mouse_up      = &_process_mouse_up_event; // click occurs on up
         _input_callbacks.handle_mouse_down    = nullptr;
         _input_callbacks.handle_mouse_wheel   = &_process_mouse_wheel_callback; // click occurs on up
-        _input_callbacks.handle_input_text    = nullptr;
+		_input_callbacks.handle_input_text    = nullptr;
         _input_callbacks.handle_editing_text  = nullptr;
         _input_callbacks.handle_window_resize = nullptr;
         _input_callbacks.handle_window_move   = nullptr;
@@ -93,4 +83,3 @@ void reset_quit()
 {
     _sk_quit = false;
 }
-

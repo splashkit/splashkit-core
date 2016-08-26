@@ -39,13 +39,13 @@ void run_input_test()
     window w2 = open_window("Test Input Window 2", 600, 600);
     
     load_font("hara", "hara.ttf");
-    load_font("taroko", "Taroko.ttf");
+    load_font("kochi", "kochi-gothic-subst");
     
     start_reading_text(rect);
     
     set_current_window(w2);
     
-    start_reading_text(rect, "教育漢字カ");
+    start_reading_text(rect, "スプラッシュ・キット");
     
     color back = COLOR_WHEAT;
     
@@ -101,12 +101,12 @@ void run_input_test()
         
         clear_screen(back);
         draw_text("Enter Japanese string: ", COLOR_NAVY, "hara", 18, 30, 50);
-        draw_collected_text(COLOR_BLACK, font_named("taroko"), 18, 230, 50, option_defaults());
+        draw_collected_text(COLOR_BLACK, font_named("kochi"), 18, 230, 50, option_defaults());
         
         if ( not reading_text(w2) )
         {
             draw_text(string("Read: "), COLOR_BLUE, "hara", 18, 30, 80);
-            draw_text(text_input(w2), COLOR_BLUE, "taroko", 18, 30, 110);
+            draw_text(text_input(w2), COLOR_BLUE, "kochi", 18, 30, 110);
         }
         
         // Get location of mouse in W2

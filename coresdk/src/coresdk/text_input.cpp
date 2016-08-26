@@ -114,4 +114,3 @@ void end_reading_text(window wind)
     
     wind->reading_text = false;
 }
-
