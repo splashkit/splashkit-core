@@ -185,6 +185,22 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
 	return sprite_bitmap_collision(s, bmp, 0, x, y);
 }
 
+bool sprite_point_collision(sprite s, const point_2d &pt)
+{
+	if (!point_in_circle(pt, sprite_collision_circle(s)))
+	{
+		return false;
+	}
+	else if (bitmap_cell_count(sprite_collision_bitmap(s)) > 1)
+	{
+		return bitmap_point_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), pt);
+	}
+	else
+	{
+		return bitmap_point_collision(sprite_collision_bitmap(s), sprite_location_matrix(s), pt);
+	}
+}
+
 bool sprite_rect_collision(sprite s, const rectangle& rect)
 {
 	if (!rectangles_intersect(sprite_collision_rectangle(s), rect))

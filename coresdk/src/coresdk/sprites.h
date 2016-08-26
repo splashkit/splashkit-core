@@ -13,8 +13,8 @@
 #ifndef sprites_h
 #define sprites_h
 
-#include "types.h"
 #include "matrix_2d.h"
+#include "types.h"
 
 /**
  *  This enumeration contains a list of all of the different kinds of
@@ -83,7 +83,6 @@ typedef void (sprite_function)(sprite s);
  */
 typedef void (sprite_float_function)(sprite s, float f);
 
-
 //---------------------------------------------------------------------------
 // sprite creation routines
 //---------------------------------------------------------------------------
@@ -121,7 +120,6 @@ sprite create_sprite(bitmap layer);
  * @attribute constructor true
  */
 sprite create_sprite(string name);
-
 
 /**
  * Creates a sprite. The bitmap_name is used to indicate the bitmap the sprite
@@ -198,7 +196,6 @@ sprite create_sprite(const string &name, bitmap layer, animation_script ani);
  */
 void free_sprite(sprite s);
 
-
 //---------------------------------------------------------------------------
 // sprite Resource management code
 //---------------------------------------------------------------------------
@@ -211,7 +208,7 @@ void free_sprite(sprite s);
  * @param name  The name of the sprite to locate.
  * @returns     True if you have created a sprite with this name.
  */
-bool  has_sprite(const string &name);
+bool has_sprite(const string &name);
 
 /**
  * Returns the `sprite` with the specified name.
@@ -267,7 +264,6 @@ void sprite_call_on_event(sprite s, sprite_event_handler *handler);
  */
 void sprite_stop_calling_on_event(sprite s, sprite_event_handler *handler);
 
-
 //---------------------------------------------------------------------------
 // layer code
 //---------------------------------------------------------------------------
@@ -284,7 +280,7 @@ void sprite_stop_calling_on_event(sprite s, sprite_event_handler *handler);
  * @attribute class sprite
  * @attribute method add_layer
  */
-int  sprite_add_layer(sprite s, bitmap new_layer, const string &layer_name);
+int sprite_add_layer(sprite s, bitmap new_layer, const string &layer_name);
 
 /**
  * Returns the bitmap of the indicated layer of the sprite.
@@ -319,7 +315,7 @@ bitmap sprite_layer(sprite s, int idx);
  * @attribute class sprite
  * @attribute method Index_of_layer
  */
-int  sprite_layer_index(sprite s, const string &name);
+int sprite_layer_index(sprite s, const string &name);
 
 /**
  * Returns the name of the specified layer.
@@ -344,7 +340,7 @@ string sprite_layer_name(sprite s, int idx);
  * @attribute method show_layer
  * @attribute unique show_layer_named
  */
-int  sprite_show_layer(sprite s, const string &name);
+int sprite_show_layer(sprite s, const string &name);
 
 /**
  * Show the specified layer of the sprite.
@@ -356,7 +352,7 @@ int  sprite_show_layer(sprite s, const string &name);
  * @attribute class sprite
  * @attribute method show_layer
  */
-int  sprite_show_layer(sprite s, int id);
+int sprite_show_layer(sprite s, int id);
 
 /**
  * Hide the specified layer of the sprite.
@@ -417,7 +413,7 @@ void sprite_toggle_layer_visible(sprite s, int id);
  * @attribute method visible_index_of_layer
  * @attribute unique visible_index_of_layer_named
  */
-int  sprite_visible_index_of_layer(sprite s, const string &name);
+int sprite_visible_index_of_layer(sprite s, const string &name);
 
 /**
  * Returns the index (z-order) of the sprite's layer.
@@ -490,7 +486,7 @@ vector_2d sprite_layer_offset(sprite s, const string &name);
  * @attribute class sprite
  * @attribute method layer_offset
  */
-vector_2d  sprite_layer_offset(sprite s, int idx);
+vector_2d sprite_layer_offset(sprite s, int idx);
 
 /**
  * Sets the offset of the specified layer. The offset is used when the layer
@@ -585,7 +581,7 @@ void sprite_bring_layer_to_front(sprite s, int visible_layer);
  * @attribute class sprite
  * @attribute method rectangle_for_layer_named
  */
-rectangle  sprite_layer_rectangle(sprite s, const string &name);
+rectangle sprite_layer_rectangle(sprite s, const string &name);
 
 /**
  * Gets a rectangle that surrounds the indicated layer.
@@ -597,7 +593,7 @@ rectangle  sprite_layer_rectangle(sprite s, const string &name);
  * @attribute class sprite
  * @attribute method rectangle_for_layer
  */
-rectangle  sprite_layer_rectangle(sprite s, int idx);
+rectangle sprite_layer_rectangle(sprite s, int idx);
 
 /**
  * Returns the collision rectangle for the specified sprite.
@@ -632,7 +628,7 @@ circle sprite_layer_circle(sprite s, const string &name);
  * @attribute class sprite
  * @attribute method circle_for_layer
  */
-circle  sprite_layer_circle(sprite s, int idx);
+circle sprite_layer_circle(sprite s, int idx);
 
 /**
  * Gets a circle in the bounds of the base layer of the indicated sprite.
@@ -643,7 +639,7 @@ circle  sprite_layer_circle(sprite s, int idx);
  * @attribute class sprite
  * @attribute method circle
  */
-circle  sprite_circle(sprite s);
+circle sprite_circle(sprite s);
 
 /**
  * Gets a circle in the bounds of the indicated sprite's collision rectangle.
@@ -654,7 +650,7 @@ circle  sprite_circle(sprite s);
  * @attribute class sprite
  * @attribute method collision_circle
  */
-circle  sprite_collision_circle(sprite s);
+circle sprite_collision_circle(sprite s);
 
 /**
  * Returns a matrix that can be used to transform points into the coordinate
@@ -667,7 +663,7 @@ circle  sprite_collision_circle(sprite s);
  * @attribute class sprite
  * @attribute getter location_matrix
  */
-matrix_2d  sprite_location_matrix(sprite s);
+matrix_2d sprite_location_matrix(sprite s);
 
 //---------------------------------------------------------------------------
 // sprite animation code
@@ -768,8 +764,6 @@ void sprite_start_animation(sprite s, int idx, bool with_sound);
  * @attribute method animation_name
  */
 string sprite_animation_name(sprite s);
-
-
 
 //---------------------------------------------------------------------------
 // sprite Update code
@@ -905,9 +899,7 @@ void update_sprite_animation(sprite s, float pct, bool with_sound);
  * @attribute class sprite
  * @attribute getter animation_has_ended
  */
-bool  sprite_animation_has_ended(sprite s);
-
-
+bool sprite_animation_has_ended(sprite s);
 
 //---------------------------------------------------------------------------
 // Positioning code
@@ -938,8 +930,7 @@ vector_2d vector_from_to(sprite s1, sprite s2);
  * @attribute method vector_to
  * @attribute unique vector_to_point
  */
-vector_2d  vector_from_center_sprite_to_point(sprite s, const point_2d &pt);
-
+vector_2d vector_from_center_sprite_to_point(sprite s, const point_2d &pt);
 
 //---------------------------------------------------------------------------
 // drawing code
@@ -989,7 +980,6 @@ void draw_sprite(sprite s, float x_offset, float y_offset);
  * @attribute unique draw_offsetpoint
  */
 void draw_sprite(sprite s, const point_2d &position);
-
 
 //---------------------------------------------------------------------------
 // movement code
@@ -1081,7 +1071,6 @@ void move_sprite_to(sprite s, float x, float y);
  */
 void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds);
 
-
 //---------------------------------------------------------------------------
 // sprite Screen Position Tests
 //---------------------------------------------------------------------------
@@ -1114,7 +1103,7 @@ bool sprite_on_screen_at(sprite s, float x, float y);
  * @attribute method on_screen_at
  * @attribute unique on_screen_at_point
  */
-bool  sprite_on_screen_at(sprite s, const point_2d &pt);
+bool sprite_on_screen_at(sprite s, const point_2d &pt);
 
 /**
  * Returns true if the sprite is entirely off the current screen.
@@ -1124,7 +1113,7 @@ bool  sprite_on_screen_at(sprite s, const point_2d &pt);
  * @attribute class sprite
  * @attribute method offscreen
  */
-bool  sprite_offscreen(sprite s);
+bool sprite_offscreen(sprite s);
 
 //---------------------------------------------------------------------------
 // sprite Width and Heigth - centerpoint
@@ -1139,7 +1128,7 @@ bool  sprite_offscreen(sprite s);
  * @attribute class sprite
  * @attribute getter Height
  */
-int  sprite_height(sprite s);
+int sprite_height(sprite s);
 
 /**
  * The height of a given layer of the sprite (aligned to the Y axis).
@@ -1152,7 +1141,7 @@ int  sprite_height(sprite s);
  * @attribute method layer_height
  * @attribute unique layer_named_height
  */
-int  sprite_layer_height(sprite s, const string &name);
+int sprite_layer_height(sprite s, const string &name);
 
 /**
  * The height of a given layer of the sprite (aligned to the Y axis).
@@ -1211,7 +1200,7 @@ int sprite_layer_width(sprite s, int idx);
  * @attribute class sprite
  * @attribute getter center_point
  */
-point_2d  center_point(sprite s);
+point_2d center_point(sprite s);
 
 /**
  * Returns the anchor point of the sprite. This is the point around which the
@@ -1224,7 +1213,7 @@ point_2d  center_point(sprite s);
  * @attribute class sprite
  * @attribute getter anchor_point
  */
-point_2d  sprite_anchor_point(sprite s);
+point_2d sprite_anchor_point(sprite s);
 
 /**
  * Allows you to set the anchor point for the sprite. This is the point around
@@ -1267,8 +1256,6 @@ bool sprite_move_from_anchor_point(sprite s);
  */
 void sprite_set_move_from_anchor_point(sprite s, bool value);
 
-
-
 //---------------------------------------------------------------------------
 // sprite velocity
 //---------------------------------------------------------------------------
@@ -1283,7 +1270,7 @@ void sprite_set_move_from_anchor_point(sprite s, bool value);
  * @attribute class sprite
  * @attribute getter velocity
  */
-vector_2d  sprite_velocity(sprite s);
+vector_2d sprite_velocity(sprite s);
 
 /**
  * Sets the current velocity of the sprite. When the sprite is updated
@@ -1310,7 +1297,6 @@ void sprite_set_velocity(sprite s, const vector_2d &value);
  */
 void sprite_add_to_velocity(sprite s, const vector_2d &value);
 
-
 //---------------------------------------------------------------------------
 // sprite Cell_count
 //---------------------------------------------------------------------------
@@ -1325,7 +1311,7 @@ void sprite_add_to_velocity(sprite s, const vector_2d &value);
  * @attribute class sprite
  * @attribute getter current_cell_rectangle
  */
-rectangle  sprite_current_cell_rectangle(sprite s);
+rectangle sprite_current_cell_rectangle(sprite s);
 
 /**
  * Returns the rectangle representing the location of the sprite on the
@@ -1337,8 +1323,7 @@ rectangle  sprite_current_cell_rectangle(sprite s);
  * @attribute class sprite
  * @attribute getter Screen_rectangle
  */
-rectangle  sprite_screen_rectangle(sprite s);
-
+rectangle sprite_screen_rectangle(sprite s);
 
 //---------------------------------------------------------------------------
 // sprite X,Y
@@ -1386,7 +1371,7 @@ void sprite_set_y(sprite s, float value);
  * @attribute class sprite
  * @attribute getter y
  */
-float  sprite_y(sprite s);
+float sprite_y(sprite s);
 
 //---------------------------------------------------------------------------
 // sprite position
@@ -1401,7 +1386,7 @@ float  sprite_y(sprite s);
  * @attribute class sprite
  * @attribute getter Position
  */
-point_2d  sprite_position(sprite s);
+point_2d sprite_position(sprite s);
 
 /**
  * Sets the sprite's position.
@@ -1413,8 +1398,6 @@ point_2d  sprite_position(sprite s);
  * @setter Position
  */
 void sprite_set_position(sprite s, const point_2d &value);
-
-
 
 //---------------------------------------------------------------------------
 // sprite dx,dy
@@ -1440,7 +1423,7 @@ void sprite_set_dx(sprite s, float value);
  * @attribute class sprite
  * @attribute getter dx
  */
-float  sprite_dx(sprite s);
+float sprite_dx(sprite s);
 
 /**
  * Sets the Y value of the sprite's velocity.
@@ -1464,8 +1447,6 @@ void sprite_set_dy(sprite s, float value);
  */
 float sprite_dy(sprite s);
 
-
-
 //---------------------------------------------------------------------------
 // sprite speed and heading
 //---------------------------------------------------------------------------
@@ -1479,7 +1460,7 @@ float sprite_dy(sprite s);
  * @attribute class sprite
  * @attribute getter speed
  */
-float  sprite_speed(sprite s);
+float sprite_speed(sprite s);
 
 /**
  * Alters the speed of the sprite without effecting the direction.
@@ -1501,7 +1482,7 @@ void sprite_set_speed(sprite s, float value);
  * @attribute class sprite
  * @attribute getter heading
  */
-float  sprite_heading(sprite s);
+float sprite_heading(sprite s);
 
 /**
  * Alters the direction the sprite is heading without changing the speed.
@@ -1529,9 +1510,7 @@ void sprite_set_heading(sprite s, float value);
  * @attribute class sprite
  * @attribute getter current_cell
  */
-int  sprite_current_cell(sprite s);
-
-
+int sprite_current_cell(sprite s);
 
 //---------------------------------------------------------------------------
 // sprite collision details
@@ -1543,7 +1522,7 @@ int  sprite_current_cell(sprite s);
  * @param s     The sprite to test
  * @param pt    The point to check (in world coordinates)
  */
-bool  sprite_at(sprite s, const point_2d &pt);
+bool sprite_at(sprite s, const point_2d &pt);
 
 /**
  * Returns the bitmap used by the sprite to determine if it has collided with
@@ -1555,7 +1534,7 @@ bool  sprite_at(sprite s, const point_2d &pt);
  * @attribute class sprite
  * @attribute getter collision_bitmap
  */
-bitmap  sprite_collision_bitmap(sprite s);
+bitmap sprite_collision_bitmap(sprite s);
 
 /**
  * Sets the bitmap used by the sprite to determine if it has collided with
@@ -1580,7 +1559,7 @@ void sprite_set_collision_bitmap(sprite s, bitmap bmp);
  * @attribute class sprite
  * @attribute getter collision_kind
  */
-collision_test_kind  sprite_collision_kind(sprite s);
+collision_test_kind sprite_collision_kind(sprite s);
 
 /**
  * Sets the kind of collision used with this sprite. This is used when
@@ -1593,8 +1572,6 @@ collision_test_kind  sprite_collision_kind(sprite s);
  * @setter collision_kind
  */
 void sprite_set_collision_kind(sprite s, collision_test_kind value);
-
-
 
 //---------------------------------------------------------------------------
 // sprite mass
@@ -1623,8 +1600,6 @@ float sprite_mass(sprite s);
  * @setter mass
  */
 void sprite_set_mass(sprite s, float value);
-
-
 
 //---------------------------------------------------------------------------
 // sprite rotation
@@ -1655,8 +1630,6 @@ float sprite_rotation(sprite s);
  */
 void sprite_set_rotation(sprite s, float value);
 
-
-
 //---------------------------------------------------------------------------
 // sprite scale
 //---------------------------------------------------------------------------
@@ -1685,8 +1658,6 @@ float sprite_scale(sprite s);
  */
 void sprite_set_scale(sprite s, float value);
 
-
-
 //---------------------------------------------------------------------------
 // sprite value code
 //---------------------------------------------------------------------------
@@ -1712,7 +1683,7 @@ int sprite_value_count(sprite s);
  * @attribute class sprite
  * @attribute method value
  */
-float  sprite_value(sprite s, const string &name);
+float sprite_value(sprite s, const string &name);
 
 /**
  * Adds a new kind of value to the sprite
@@ -1761,7 +1732,6 @@ void sprite_set_value(sprite s, const string &name, float val);
  */
 bool sprite_has_value(sprite s, string name);
 
-
 //---------------------------------------------------------------------------
 // sprite name
 //---------------------------------------------------------------------------
@@ -1777,7 +1747,6 @@ bool sprite_has_value(sprite s, string name);
  * @attribute getter name
  */
 string sprite_name(sprite s);
-
 
 //---------------------------------------------------------------------------
 // sprite Packs
@@ -1836,7 +1805,7 @@ void free_sprite_pack(const string &name);
  * @param name The name for the sprite pack.
  * @returns True if a sprite pack exists with the indicated name.
  */
-bool  has_sprite_pack(const string &name);
+bool has_sprite_pack(const string &name);
 
 /**
  * Selects the named sprite_pack (if it has been created). The
@@ -1852,6 +1821,6 @@ void select_sprite_pack(const string &name);
  *
  * @returns The name of the current sprite pack.
  */
-string  current_sprite_pack();
+string current_sprite_pack();
 
 #endif /* sprites_h */
