@@ -159,7 +159,4 @@ vector_2d vector_out_of_circle_from_circle(const circle &src, const circle &boun
  */
 vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect, const vector_2d &velocity);
 
-
 #endif /* vector_2d_h */
-
-

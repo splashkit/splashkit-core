@@ -97,8 +97,8 @@ void run_sprite_test()
 
         draw_bitmap("ufo.png", 400, 300);
 
-//        if ( sprite_bitmap_collision(sprt, bitmap_named("ufo.png"), 400, 300) )
-//            draw_rectangle(COLOR_PURPLE, 400, 300, bitmap_width(bitmap_named("ufo.png")), bitmap_height(bitmap_named("ufo.png")));
+        if ( sprite_bitmap_collision(sprt, bitmap_named("ufo.png"), 400, 300) )
+            draw_rectangle(COLOR_PURPLE, 400, 300, bitmap_width(bitmap_named("ufo.png")), bitmap_height(bitmap_named("ufo.png")));
 
         if ( sprite_at(sprt, mouse_position()) )
             fill_circle(COLOR_YELLOW, sprite_collision_circle(sprt));
