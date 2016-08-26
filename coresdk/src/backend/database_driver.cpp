@@ -74,7 +74,7 @@ sk_query_result sk_prepare_statement(sk_database *db, string sql)
     
     result._result = sqlite3_prepare_v2(data, sql_char, size_sql_inc_null, &statement, nullptr);
     result._stmt = statement;
-    
+    result.id = QUERY_PTR;
     return result;
 }
 
