@@ -6,12 +6,13 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "window_manager.h"
-#include "input.h"
-#include "sprites.h"
-#include "images.h"
+#include "collisions.h"
 #include "geometry.h"
 #include "graphics.h"
+#include "images.h"
+#include "input.h"
+#include "sprites.h"
+#include "window_manager.h"
 
 void run_sprite_test()
 {
@@ -90,10 +91,14 @@ void run_sprite_test()
         fill_triangle(COLOR_BLUE, tri_b);
         // FillQuad(RGBAColor(0,0,255,62), q);
 
-//        if ( sprite_rect_collision(sprt, r) )
-//            fill_rectangle(COLOR_PINK, r);
-//        else
+        if (sprite_rect_collision(sprt, r))
+		{
+            fill_rectangle(COLOR_PINK, r);
+		}
+        else
+		{
             draw_rectangle(COLOR_PURPLE, r);
+		}
 
         draw_bitmap("ufo.png", 400, 300);
 

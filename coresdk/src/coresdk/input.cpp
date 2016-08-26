@@ -8,11 +8,11 @@
 
 #include "input.h"
 
-#include "input_driver.h"
 #include "geometry.h"
+#include "input_driver.h"
+#include "keyboard_input.h"
 #include "text.h"
 #include "utility_functions.h"
-#include "keyboard_input.h"
 
 #include <vector>
 #include <map>

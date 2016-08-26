@@ -7,8 +7,8 @@
 //
 
 #include "collisions.h"
-#include "sprites.h"
 #include "physics.h"
+#include "sprites.h"
 #include "utility_functions.h"
 
 #include <cmath>
@@ -92,8 +92,8 @@ bool _step_through_pixels (
             x_b = round(pos_in_b.x);
             y_b = round(pos_in_b.y);
 
-            // fill_circle(COLOR_MAGENTA, x_b + 300, y_b + 300, 2);
-            // refresh_screen();
+            fill_circle(COLOR_MAGENTA, x_b + 300, y_b + 300, 2);
+            refresh_screen();
             // delay(10);
 
             // If the pixel lies within the bounds of B
@@ -183,4 +183,11 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y)
 bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
 {
 	return sprite_bitmap_collision(s, bmp, 0, x, y);
+}
+
+bool sprite_rect_collision(sprite s, const rectangle& rect)
+{
+	// TODO: Implement
+
+	return false;
 }

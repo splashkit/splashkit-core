@@ -7,8 +7,8 @@
 //
 
 #include "graphics.h"
-#include "text.h"
 #include "input.h"
+#include "text.h"
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 

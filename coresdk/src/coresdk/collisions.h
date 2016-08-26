@@ -9,8 +9,8 @@
 #ifndef collisions_h
 #define collisions_h
 
-#include "matrix_2d.h"
 #include "images.h"
+#include "matrix_2d.h"
 #include "sprites.h"
 #include "types.h"
 
@@ -48,5 +48,7 @@ bool bitmap_rect_collision(bitmap bmp, int cell, const point_2d& pt, const recta
 bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y);
 
 bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y);
+
+bool sprite_rect_collision(sprite s, const rectangle& rect);
 
 #endif /* collisions_h */
