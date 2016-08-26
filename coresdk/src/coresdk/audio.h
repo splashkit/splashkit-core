@@ -8,6 +8,8 @@
  * thing you need to do is load a sound effect or music file. You can do this
  * by calling the `load_sound_effect(string name)` function to the
  * `load_music(string name)` function.
+ *
+ * @attribute static audio
  */
 #include <string>
 using namespace std;

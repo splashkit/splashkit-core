@@ -30,7 +30,7 @@ struct color
 /// @pointer_wrapper
 /// @field pointer: pointer
 /**
- *
+ * @class bitmap
  */
 typedef struct _bitmap_data *bitmap;
 
@@ -76,17 +76,17 @@ enum font_alignment
 /// @pointer_wrapper
 /// @field pointer: pointer
 /**
- *
+ * @class font
  */
 typedef struct sk_font_data *font;
 
 /**
- *
+ * @class animation_script
  */
 typedef struct _animation_script_data *animation_script;
 
 /**
- *
+ * @class animation
  */
 typedef struct _animation_data *animation;
 
