@@ -29,7 +29,7 @@ public:
         _tokens = 0;
     }
 
-    semaphore(int tokens)
+    explicit semaphore(int tokens)
     {
         _tokens = tokens;
     }
