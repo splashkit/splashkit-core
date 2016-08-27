@@ -17,17 +17,17 @@ static map<string, sk_web_server*> servers;
 
 static int begin_request_handler(struct mg_connection *conn, string port)
 {
-    const struct mg_request_info *request_info = mg_get_request_info(conn);
-
-    sk_server_request *r = new sk_server_request;
-    r->id = WEB_SERVER_REQUEST_PTR;
-    r->uri = request_info->request_uri;
-
     if (servers.find(port) == servers.end())
     {
         raise_warning("Request handler called on non-existent server");
         return -1;
     }
+
+    const struct mg_request_info *request_info = mg_get_request_info(conn);
+
+    sk_server_request *r = new sk_server_request;
+    r->id = WEB_SERVER_REQUEST_PTR;
+    r->uri = request_info->request_uri;
 
     servers.at(port)->request_queue.put(r); // Add request to concurrent queue
     r->control.acquire(); // Waits until user returns response.
