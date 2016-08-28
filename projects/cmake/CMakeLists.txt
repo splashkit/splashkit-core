@@ -6,7 +6,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 file(GLOB SOURCE_FILES
         ../../coresdk/src/coresdk/*.cpp
-        ../../coresdk/src/coresdk/*.h
         ../../coresdk/src/backend/*.cpp
         ../../coresdk/src/backend/*.h
         ../../coresdk/external/civetweb/src/civetweb.cpp)
@@ -16,13 +15,17 @@ file(GLOB TEST_SOURCE_FILES
         ../../coresdk/src/test/*.h
 )
 
+file(GLOB INCLUDE_FILES
+        ../../coresdk/src/coresdk/*.h
+)
+
 include_directories(../../coresdk/src)
 include_directories(../../coresdk/src/coresdk)
 include_directories(../../coresdk/src/backend)
 include_directories(../../coresdk/src/test)
 include_directories(../../coresdk/external/civetweb/include)
 
-add_library(splashkit SHARED ${SOURCE_FILES})
+add_library(splashkit SHARED ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(splashkit ${LIB_FLAGS})
 
 add_executable(splashkit_test ${TEST_SOURCE_FILES})
@@ -32,3 +35,6 @@ target_link_libraries(splashkit_test ${LIB_FLAGS})
 add_custom_command(TARGET splashkit_test PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ../../coresdk/src/test/Resources $<TARGET_FILE_DIR:splashkit_test>/Resources)
+
+install(TARGETS splashkit DESTINATION lib)
+install(FILES ${INCLUDE_FILES} DESTINATION include/splashkit)
