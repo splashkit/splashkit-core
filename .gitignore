@@ -90,3 +90,6 @@ cmake_install.cmake
 libsplashkit.a
 splashkit_test
 projects/cmake/Resources
+
+# Splashkit
+libsplashkit.so

@@ -22,7 +22,7 @@ include_directories(../../coresdk/src/backend)
 include_directories(../../coresdk/src/test)
 include_directories(../../coresdk/external/civetweb/include)
 
-add_library(splashkit STATIC ${SOURCE_FILES})
+add_library(splashkit SHARED ${SOURCE_FILES})
 target_link_libraries(splashkit ${LIB_FLAGS})
 
 add_executable(splashkit_test ${TEST_SOURCE_FILES})
