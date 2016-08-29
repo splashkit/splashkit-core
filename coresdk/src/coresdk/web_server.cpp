@@ -50,13 +50,6 @@ server_request next_web_request(web_server server)
         return nullptr;
     }
 
-    if (has_waiting_requests(server))
-    {
-        return sk_get_request(server);
-    }
-
-    while (!has_waiting_requests(server)) { } // Add a proper wait here?
-
     return sk_get_request(server);
 }
 
@@ -84,6 +77,9 @@ void send_response(server_request r, string message)
     resp->message = message;
 
     send_response(r, resp);
+    
+    resp->response_sent.acquire();
+    delete resp;
 }
 
 string request_get_uri(server_request r)

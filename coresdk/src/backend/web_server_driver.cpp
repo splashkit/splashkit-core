@@ -49,14 +49,16 @@ static int begin_request_handler(struct mg_connection *conn)
     mg_printf(conn,
               "HTTP/1.1 200 OK\r\n"
               "Content-Type: text/plain\r\n"
+              "Connection: close\r\n"
               "Content-Length: %lu\r\n" // Always set Content-Length
               "\r\n"
               "%s",
               r->response->message.length(),
               r->response->message.c_str());
 
+    r->response->response_sent.release();
+    
     // Remove the request
-    delete r->response;
     delete r;
 
     // Non-zero return means civetweb has replied to client
@@ -77,8 +79,18 @@ void sk_flush_request(sk_server_request *request)
  */
 sk_server_request* sk_get_request(sk_web_server *server)
 {
-    sk_server_request* request = server->last_request;
-    server->last_request = nullptr;
+    sk_server_request* request;
+    
+    if ( server->last_request )
+    {
+        request = server->last_request;
+        server->last_request = nullptr;
+    }
+    else
+    {
+        request = server->request_queue.take();
+    }
+    
     return request;
 }
 
@@ -114,6 +126,7 @@ sk_web_server* sk_start_web_server(string port)
     sk_web_server *server = new sk_web_server;
     server->id = WEB_SERVER_PTR;
     server->port = port;
+    server->last_request = nullptr;
 
     // List of options. Last element must be NULL.
     const char *options[] = {"listening_ports", port.c_str(), NULL};

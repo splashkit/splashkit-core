@@ -188,6 +188,7 @@ struct sk_server_response
 {
     pointer_identifier id;
     string message;
+    semaphore response_sent;
 };
 
 struct sk_server_request
