@@ -122,14 +122,16 @@ string path_from(std::initializer_list<string> list, string filename)
 #endif
 
     string result("");
-
+    bool first = true;
     for ( string elem : list )
     {
-        if(elem.find(PATH_SEP) == 0)
+        if(elem.find(PATH_SEP) == 0 and not first)
             elem.erase(0,1);
         result += elem;
         if(elem.find_last_of(PATH_SEP) < elem.length() - 1)
              result += PATH_SEP;
+        
+        first = false;
     }
 
     return result + filename;
