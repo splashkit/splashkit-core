@@ -86,6 +86,7 @@ int main()
                 break;
             case 13:
                 run_web_server_tests();
+                break;
             case 14:
                 run_windows_tests();
                 break;
