@@ -38,6 +38,7 @@ int main()
         cout << " 12: Timers" << endl;
         cout << " 13: Web Server" << endl;
         cout << " 14: Windows" << endl;
+        cout << " 15: Bundles" << endl;
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
 
@@ -87,6 +88,9 @@ int main()
                 run_web_server_tests();
             case 14:
                 run_windows_tests();
+                break;
+            case 15:
+                run_bundle_test();
                 break;
             default:
                 break;

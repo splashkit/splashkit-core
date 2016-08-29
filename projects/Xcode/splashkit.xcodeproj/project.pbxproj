@@ -140,6 +140,9 @@
 		94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; };
 		94DF47001D7402C800E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; };
 		94DF47011D7402CD00E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
+		94DF47051D740C0B00E3D9AF /* sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF47031D740C0B00E3D9AF /* sound.cpp */; };
+		94DF47061D740C0B00E3D9AF /* sound.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF47041D740C0B00E3D9AF /* sound.h */; };
+		94DF47091D74132A00E3D9AF /* test_bundles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF47071D74132A00E3D9AF /* test_bundles.cpp */; };
 		94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699331D6E8B3400FBFA28 /* collisions.cpp */; };
 		94E699361D6E8B3400FBFA28 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699341D6E8B3400FBFA28 /* collisions.h */; };
 		94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699371D6F05FB00FBFA28 /* test_sprites.cpp */; };
@@ -345,6 +348,9 @@
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
 		94DF46F91D74027E00E3D9AF /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
 		94DF46FB1D74028900E3D9AF /* civetweb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = civetweb.h; path = ../../../coresdk/external/civetweb/include/civetweb.h; sourceTree = "<group>"; };
+		94DF47031D740C0B00E3D9AF /* sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound.cpp; sourceTree = "<group>"; };
+		94DF47041D740C0B00E3D9AF /* sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound.h; sourceTree = "<group>"; };
+		94DF47071D74132A00E3D9AF /* test_bundles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_bundles.cpp; sourceTree = "<group>"; };
 		94E699331D6E8B3400FBFA28 /* collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisions.cpp; sourceTree = "<group>"; };
 		94E699341D6E8B3400FBFA28 /* collisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisions.h; sourceTree = "<group>"; };
 		94E699371D6F05FB00FBFA28 /* test_sprites.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_sprites.cpp; sourceTree = "<group>"; };
@@ -517,6 +523,7 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				94DF47021D740B0700E3D9AF /* Sound Related */,
 				94A02AAA1D73B432002E0353 /* Resource Related */,
 				94E699431D6F382000FBFA28 /* Network Related */,
 				94AC3DBC1D6C0D86002920A5 /* Sprite Related */,
@@ -526,8 +533,6 @@
 				94444B2E1D64496F0059BF3B /* Input Related */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
 				941C8A2E1D5B2EC1003112B2 /* animations.h */,
-				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
-				942372201D1D5D4E0020CCE2 /* audio.h */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
 				940864631D38B756009EA048 /* window_manager.h */,
 				9424B5981D436C850039B3AF /* utils.cpp */,
@@ -548,8 +553,6 @@
 				F86951951D5093F800E1BCC9 /* database.h */,
 				941C8A381D5DD668003112B2 /* timers.cpp */,
 				941C8A391D5DD668003112B2 /* timers.h */,
-				FCB6B3B91D61423E00011965 /* music.cpp */,
-				FCB6B3BA1D61423E00011965 /* music.h */,
 			);
 			path = coresdk;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				16238ACE1D669D4D00A88176 /* test_geometry.cpp */,
 				4129D2411D65460F000BFD0C /* test_physics.cpp */,
 				94E699371D6F05FB00FBFA28 /* test_sprites.cpp */,
+				94DF47071D74132A00E3D9AF /* test_bundles.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -706,6 +710,19 @@
 			path = ../../../projects/Xcode/sqlite;
 			sourceTree = "<group>";
 		};
+		94DF47021D740B0700E3D9AF /* Sound Related */ = {
+			isa = PBXGroup;
+			children = (
+				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
+				942372201D1D5D4E0020CCE2 /* audio.h */,
+				FCB6B3B91D61423E00011965 /* music.cpp */,
+				FCB6B3BA1D61423E00011965 /* music.h */,
+				94DF47031D740C0B00E3D9AF /* sound.cpp */,
+				94DF47041D740C0B00E3D9AF /* sound.h */,
+			);
+			name = "Sound Related";
+			sourceTree = "<group>";
+		};
 		94E699431D6F382000FBFA28 /* Network Related */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +777,7 @@
 				94B57A681D65CCF300CE7D55 /* clipping.h in Headers */,
 				94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */,
 				940864711D38F7EC009EA048 /* input_driver.h in Headers */,
+				94DF47061D740C0B00E3D9AF /* sound.h in Headers */,
 				94AC3DB71D6BF0D8002920A5 /* quad_geometry.h in Headers */,
 				940864611D384C27009EA048 /* graphics_driver.h in Headers */,
 				9424B5AF1D44910B0039B3AF /* images.h in Headers */,
@@ -958,6 +976,7 @@
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
 				94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
+				94DF47051D740C0B00E3D9AF /* sound.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
 				94A02AAD1D73B452002E0353 /* bundles.cpp in Sources */,
 				94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */,
@@ -1000,6 +1019,7 @@
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
+				94DF47091D74132A00E3D9AF /* test_bundles.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
