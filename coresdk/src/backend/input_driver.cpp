@@ -726,7 +726,7 @@ void sk_window_position(sk_drawing_surface *surface, int *x, int *y)
         case SGDS_Window:
         {
             sk_window_be * window_be;
-            window_be = (sk_window_be *)surface->_data;
+            window_be = static_cast<sk_window_be *>(surface->_data);
 
             SDL_GetWindowPosition(window_be->window, x, y);
             break;
@@ -751,7 +751,7 @@ sk_window_data sk_get_window_event_data(sk_drawing_surface *surface)
         case SGDS_Window:
         {
             sk_window_be * window_be;
-            window_be = (sk_window_be *)surface->_data;
+            window_be = static_cast<sk_window_be *>(surface->_data);
 
             return window_be->event_data;
         }
@@ -770,7 +770,7 @@ void sk_move_window(sk_drawing_surface *surface, int x, int y)
         case SGDS_Window:
         {
             sk_window_be * window_be;
-            window_be = (sk_window_be *)surface->_data;
+            window_be = static_cast<sk_window_be *>(surface->_data);
 
             SDL_SetWindowPosition(window_be->window, x, y);
 
