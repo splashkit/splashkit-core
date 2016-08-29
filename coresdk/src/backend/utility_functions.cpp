@@ -16,10 +16,17 @@
 #include <locale>
 #include <algorithm>
 
+#include <cstdlib>
+
 #include <unistd.h>
 #include <sys/types.h>
-#include <pwd.h>
 
+#ifndef WINDOWS
+  #include <pwd.h>
+#else
+  #include <Windows.h>
+  #include <Shlobj.h>
+#endif
 
 using namespace std;
 
@@ -50,11 +57,32 @@ string directory_of(const string filename)
     return filename.substr(0, found);
 }
 
+string get_env_var(const string &name)
+{
+    char * val = getenv( name.c_str() );
+    return val == NULL ? string("") : string(val);
+}
+
 string path_to_user_home()
 {
+#ifndef WINDOWS
     struct passwd *pw = getpwuid(getuid());
-    
     return string(pw->pw_dir);
+#else
+    WCHAR path[MAX_PATH];
+    if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, path)))
+    {
+        char ch[260];
+        char DefChar = ' ';
+        WideCharToMultiByte(CP_ACP,0,path,-1, ch,260,&DefChar, NULL);
+
+        return string(ch);
+    }
+    else
+    {
+        return get_env_var("HOMEDRIVE") + get_env_var("HomePath");
+    }
+#endif
 }
 
 void raise_warning( string message )
@@ -78,10 +106,10 @@ string to_lower (string str)
 {
     string result = "";
     locale loc;
-    
+
     for(auto elem : str)
         result += std::tolower(elem,loc);
-    
+
     return result;
 }
 
@@ -197,7 +225,7 @@ string extract_delimited(int index, string value, char delimiter)
     int at_index = 1; // 1 based
     int i;
     string result;
-    
+
     for (i = 0; i < value.length(); i++)
     {
         if( at_index >= index ) break; // past delimeter
@@ -206,7 +234,7 @@ string extract_delimited(int index, string value, char delimiter)
             at_index++;
         }
     }
-    
+
     for (; i < value.length(); i++)
     {
         if( value[i] != delimiter )
@@ -215,7 +243,7 @@ string extract_delimited(int index, string value, char delimiter)
         }
         else break;
     }
-    
+
     return result;
 }
 
@@ -255,10 +283,10 @@ string extract_delimited_with_ranges(int index, string value)
             in_range = false;
         else if ((not in_range) and (value[i] == '['))
             in_range = true;
-        
+
         result += value[i];
     }
-    
+
     return result;
 }
 
@@ -435,7 +463,7 @@ float str_to_double(string str, bool allow_empty, double empty_value)
 string trim(const string& str)
 {
     if (str.length() == 0) return str;
-    
+
     size_t first = str.find_first_not_of(' ');
     size_t last = str.find_last_not_of(' ');
     return str.substr(first, (last-first+1));

@@ -15,8 +15,21 @@
 
 static map<string, sk_web_server*> servers;
 
-static int begin_request_handler(struct mg_connection *conn, string port)
+struct _web_server_ctx_data
 {
+    string port;
+};
+
+static int begin_request_handler(struct mg_connection *conn)
+{
+    _web_server_ctx_data *user_data;
+    user_data = static_cast<_web_server_ctx_data *>(mg_get_user_data(mg_get_context(conn)));
+    if ( not user_data )
+    {
+        raise_warning("Request handler called within invalid user data. Contact splashkit dev team.");
+    }
+
+    string port = user_data->port;
     if (servers.find(port) == servers.end())
     {
         raise_warning("Request handler called on non-existent server");
@@ -105,14 +118,15 @@ sk_web_server* sk_start_web_server(string port)
     // List of options. Last element must be NULL.
     const char *options[] = {"listening_ports", port.c_str(), NULL};
 
+    _web_server_ctx_data *user_data = new _web_server_ctx_data();
+    user_data->port = port;
+
     // Prepare callbacks structure. We have only one callback, the rest are NULL.
     memset(&server->callbacks, 0, sizeof(server->callbacks));
-    server->callbacks.begin_request = [port](mg_connection* c) {
-        return begin_request_handler(c, port);
-    };
+    server->callbacks.begin_request = &begin_request_handler;
 
     // Start the web server.
-    server->ctx = mg_start(&server->callbacks, NULL, options);
+    server->ctx = mg_start(&server->callbacks, user_data, options);
 
     servers[port] = server;
 
@@ -132,6 +146,12 @@ void sk_stop_web_server(sk_web_server *server)
     while (server->request_queue.try_take(request))
     {
         sk_flush_request(request);
+    }
+
+    _web_server_ctx_data *user_data = static_cast<_web_server_ctx_data *>(mg_get_user_data(server->ctx));
+    if ( user_data )
+    {
+        delete user_data;
     }
 
     mg_stop(server->ctx);
