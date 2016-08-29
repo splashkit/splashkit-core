@@ -125,6 +125,8 @@ string path_from(std::initializer_list<string> list, string filename)
 
     for ( string elem : list )
     {
+        if(elem.find(PATH_SEP) == 0)
+            elem.erase(0,1);
         result += elem;
         if(elem.find_last_of(PATH_SEP) < elem.length() - 1)
              result += PATH_SEP;
