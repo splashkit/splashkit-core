@@ -109,6 +109,8 @@
 		94444B3E1D644F950059BF3B /* test_shape_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */; };
 		949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 949478B81D6AEC0E00A44614 /* circle_geometry.cpp */; };
 		949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 949478B91D6AEC0E00A44614 /* circle_geometry.h */; };
+		94A02AAD1D73B452002E0353 /* bundles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A02AAB1D73B452002E0353 /* bundles.cpp */; };
+		94A02AAE1D73B452002E0353 /* bundles.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A02AAC1D73B452002E0353 /* bundles.h */; };
 		94A069A91D66F44900C26E6F /* vector_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A069A71D66F44900C26E6F /* vector_2d.cpp */; };
 		94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A069A81D66F44900C26E6F /* vector_2d.h */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
@@ -127,13 +129,17 @@
 		94B57A681D65CCF300CE7D55 /* clipping.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A661D65CCF300CE7D55 /* clipping.h */; };
 		94B57A6C1D66738300CE7D55 /* point_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A6A1D66738300CE7D55 /* point_geometry.cpp */; };
 		94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A6B1D66738300CE7D55 /* point_geometry.h */; };
-		94C0D0A31D73B2080099387A /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C0D0A11D73B2080099387A /* sqlite3.h */; };
-		94C0D0A41D73B2130099387A /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94C0D0A01D73B2080099387A /* sqlite3.c */; };
 		94C0D0A51D73B22C0099387A /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C0D0951D73B1E50099387A /* libsqlite.a */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
+		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
+		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
+		94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F91D74027E00E3D9AF /* civetweb.cpp */; };
+		94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; };
+		94DF47001D7402C800E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; };
+		94DF47011D7402CD00E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699331D6E8B3400FBFA28 /* collisions.cpp */; };
 		94E699361D6E8B3400FBFA28 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699341D6E8B3400FBFA28 /* collisions.h */; };
 		94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699371D6F05FB00FBFA28 /* test_sprites.cpp */; };
@@ -145,8 +151,6 @@
 		94E6994A1D6F384A00FBFA28 /* web_server_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E699481D6F384A00FBFA28 /* web_server_driver.cpp */; };
 		94E6994B1D6F384A00FBFA28 /* web_server_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699491D6F384A00FBFA28 /* web_server_driver.h */; };
 		94E6994D1D6F385200FBFA28 /* concurrency_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E6994C1D6F385200FBFA28 /* concurrency_utils.h */; };
-		94E6995F1D6F39EA00FBFA28 /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */; };
-		94E699611D6F3A1100FBFA28 /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E699601D6F3A1100FBFA28 /* civetweb.h */; };
 		94E699621D6F3A3800FBFA28 /* libcivetweb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E699531D6F395500FBFA28 /* libcivetweb.a */; };
 		94F66BF01D62F70C004D8F8C /* keyboard_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */; };
 		94F66BF11D62F70C004D8F8C /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BEF1D62F70C004D8F8C /* keyboard_input.h */; };
@@ -312,6 +316,8 @@
 		94444B401D644FE10059BF3B /* test_main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_main.h; sourceTree = "<group>"; };
 		949478B81D6AEC0E00A44614 /* circle_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circle_geometry.cpp; sourceTree = "<group>"; };
 		949478B91D6AEC0E00A44614 /* circle_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circle_geometry.h; sourceTree = "<group>"; };
+		94A02AAB1D73B452002E0353 /* bundles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bundles.cpp; sourceTree = "<group>"; };
+		94A02AAC1D73B452002E0353 /* bundles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bundles.h; sourceTree = "<group>"; };
 		94A069A71D66F44900C26E6F /* vector_2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector_2d.cpp; sourceTree = "<group>"; };
 		94A069A81D66F44900C26E6F /* vector_2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_2d.h; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
@@ -331,12 +337,14 @@
 		94B57A6A1D66738300CE7D55 /* point_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_geometry.cpp; sourceTree = "<group>"; };
 		94B57A6B1D66738300CE7D55 /* point_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_geometry.h; sourceTree = "<group>"; };
 		94C0D0951D73B1E50099387A /* libsqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsqlite.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		94C0D0A01D73B2080099387A /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
-		94C0D0A11D73B2080099387A /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
+		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
+		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
+		94DF46F91D74027E00E3D9AF /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
+		94DF46FB1D74028900E3D9AF /* civetweb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = civetweb.h; path = ../../../coresdk/external/civetweb/include/civetweb.h; sourceTree = "<group>"; };
 		94E699331D6E8B3400FBFA28 /* collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collisions.cpp; sourceTree = "<group>"; };
 		94E699341D6E8B3400FBFA28 /* collisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collisions.h; sourceTree = "<group>"; };
 		94E699371D6F05FB00FBFA28 /* test_sprites.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_sprites.cpp; sourceTree = "<group>"; };
@@ -349,8 +357,6 @@
 		94E699491D6F384A00FBFA28 /* web_server_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_server_driver.h; sourceTree = "<group>"; };
 		94E6994C1D6F385200FBFA28 /* concurrency_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = concurrency_utils.h; sourceTree = "<group>"; };
 		94E699531D6F395500FBFA28 /* libcivetweb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcivetweb.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
-		94E699601D6F3A1100FBFA28 /* civetweb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = civetweb.h; path = ../../../coresdk/external/civetweb/include/civetweb.h; sourceTree = "<group>"; };
 		94F66BEE1D62F70C004D8F8C /* keyboard_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard_input.cpp; sourceTree = "<group>"; };
 		94F66BEF1D62F70C004D8F8C /* keyboard_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_input.h; sourceTree = "<group>"; };
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
@@ -511,6 +517,7 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				94A02AAA1D73B432002E0353 /* Resource Related */,
 				94E699431D6F382000FBFA28 /* Network Related */,
 				94AC3DBC1D6C0D86002920A5 /* Sprite Related */,
 				94B57A691D66736500CE7D55 /* Geometry Related */,
@@ -521,8 +528,6 @@
 				941C8A2E1D5B2EC1003112B2 /* animations.h */,
 				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
 				942372201D1D5D4E0020CCE2 /* audio.h */,
-				9420549C1D3463BA001ED922 /* resources.cpp */,
-				9420549D1D3463BA001ED922 /* resources.h */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
 				940864631D38B756009EA048 /* window_manager.h */,
 				9424B5981D436C850039B3AF /* utils.cpp */,
@@ -650,6 +655,17 @@
 			name = "Drawing Related";
 			sourceTree = "<group>";
 		};
+		94A02AAA1D73B432002E0353 /* Resource Related */ = {
+			isa = PBXGroup;
+			children = (
+				9420549C1D3463BA001ED922 /* resources.cpp */,
+				9420549D1D3463BA001ED922 /* resources.h */,
+				94A02AAB1D73B452002E0353 /* bundles.cpp */,
+				94A02AAC1D73B452002E0353 /* bundles.h */,
+			);
+			name = "Resource Related";
+			sourceTree = "<group>";
+		};
 		94AC3DBC1D6C0D86002920A5 /* Sprite Related */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,8 +699,8 @@
 		94C0D0961D73B1E50099387A /* sqlite */ = {
 			isa = PBXGroup;
 			children = (
-				94C0D0A01D73B2080099387A /* sqlite3.c */,
-				94C0D0A11D73B2080099387A /* sqlite3.h */,
+				94DF46F51D74024700E3D9AF /* sqlite3.c */,
+				94DF46F61D74024700E3D9AF /* sqlite3.h */,
 			);
 			name = sqlite;
 			path = ../../../projects/Xcode/sqlite;
@@ -702,8 +718,8 @@
 		94E699541D6F395500FBFA28 /* civetweb */ = {
 			isa = PBXGroup;
 			children = (
-				94E699601D6F3A1100FBFA28 /* civetweb.h */,
-				94E6995E1D6F39EA00FBFA28 /* civetweb.cpp */,
+				94DF46FB1D74028900E3D9AF /* civetweb.h */,
+				94DF46F91D74027E00E3D9AF /* civetweb.cpp */,
 			);
 			name = civetweb;
 			path = ../../../projects/Xcode/civetweb;
@@ -722,6 +738,7 @@
 				94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */,
 				942372751D239BF70020CCE2 /* utility_functions.h in Headers */,
 				94E699361D6E8B3400FBFA28 /* collisions.h in Headers */,
+				94A02AAE1D73B452002E0353 /* bundles.h in Headers */,
 				940864591D37A78C009EA048 /* backend_types.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
@@ -751,8 +768,10 @@
 				94444B371D644B680059BF3B /* rectangle_drawing.h in Headers */,
 				94E6994B1D6F384A00FBFA28 /* web_server_driver.h in Headers */,
 				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
+				94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */,
 				94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
+				94DF47001D7402C800E3D9AF /* civetweb.h in Headers */,
 				94F6B7511D6D220F00C529EB /* resource_event_notifications.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
@@ -760,7 +779,6 @@
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				94444B331D644AE40059BF3B /* circle_drawing.h in Headers */,
 				94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */,
-				94C0D0A31D73B2080099387A /* sqlite3.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
 				9420549F1D3463BA001ED922 /* resources.h in Headers */,
@@ -778,6 +796,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF47011D7402CD00E3D9AF /* sqlite3.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,7 +804,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E699611D6F3A1100FBFA28 /* civetweb.h in Headers */,
+				94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +959,7 @@
 				94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				9424B59A1D436C850039B3AF /* utils.cpp in Sources */,
+				94A02AAD1D73B452002E0353 /* bundles.cpp in Sources */,
 				94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */,
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web.cpp in Sources */,
@@ -993,7 +1013,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94C0D0A41D73B2130099387A /* sqlite3.c in Sources */,
+				94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,7 +1021,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E6995F1D6F39EA00FBFA28 /* civetweb.cpp in Sources */,
+				94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,6 +1288,7 @@
 				94C0D09E1D73B1E50099387A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94E6995B1D6F395500FBFA28 /* Build configuration list for PBXNativeTarget "civetweb" */ = {
 			isa = XCConfigurationList;

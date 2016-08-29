@@ -148,11 +148,16 @@ string path_to_resources(resource_kind kind)
     
     switch(kind)
     {
-        case AUDIO_RESOURCE:        return path_from({ path, "sounds" });
+        case SOUND_RESOURCE:        return path_from({ path, "sounds" });
+        case MUSIC_RESOURCE:        return path_from({ path, "sounds" });
+        case BUNDLE_RESOURCE:       return path_from({ path, "bundles" });
         case IMAGE_RESOURCE:        return path_from({ path, "images" });
         case FONT_RESOURCE:         return path_from({ path, "fonts" });
         case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
-        default: return path;
+        case OTHER_RESOURCE:        return path;
+        default:
+            raise_warning("Attempting to get path to unknown resource kind.");
+            return path;
     }
 }
                

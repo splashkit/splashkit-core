@@ -30,7 +30,7 @@ music load_music(string name, string filename)
 {
     if (has_music(name)) return music_named(name);
     
-    string file_path = path_to_resource(filename, AUDIO_RESOURCE);
+    string file_path = path_to_resource(filename, MUSIC_RESOURCE);
     
     if ( ! file_exists(file_path) )
     {

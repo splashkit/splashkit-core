@@ -157,6 +157,7 @@ FinalAction<F> finally(F f)
 }
 
 string trim(const string& str);
+void to_upper(string &str);
 
 pointer_identifier ptr_kind(void *p);
 

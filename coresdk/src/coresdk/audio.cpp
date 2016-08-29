@@ -64,7 +64,7 @@ sound_effect load_sound_effect(string name, string filename)
 {
     if (has_sound_effect(name)) return sound_effect_named(name);
 
-    string file_path = path_to_resource(filename, AUDIO_RESOURCE);
+    string file_path = path_to_resource(filename, SOUND_RESOURCE);
 
     if ( ! file_exists(file_path) )
     {

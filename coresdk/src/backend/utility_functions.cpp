@@ -441,6 +441,11 @@ string trim(const string& str)
     return str.substr(first, (last-first+1));
 }
 
+void to_upper(string &str)
+{
+    for (auto & c: str) c = toupper(c);
+}
+
 int sign(int value)
 {
     if (value < 0) return -1;
