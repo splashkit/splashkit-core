@@ -21,6 +21,11 @@
 #include <windows.h>
 #endif
 
+// Appveyor MSYS hack...
+#if !defined(__APPLE_) && !defined(__linux__)
+#define PATH_MAX 1024
+#endif
+
 #ifdef __linux__
 #include <linux/limits.h>
 #include <libgen.h>
