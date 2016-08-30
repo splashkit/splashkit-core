@@ -9,6 +9,7 @@
 #ifndef types_hpp
 #define types_hpp
 
+// PLEASE DO NOT PARSE ME!
 typedef unsigned char byte;
 
 /**
@@ -30,7 +31,7 @@ struct color
 /// @pointer_wrapper
 /// @field pointer: pointer
 /**
- * @class bitmap
+ * @attribute class bitmap
  */
 typedef struct _bitmap_data *bitmap;
 
@@ -76,17 +77,17 @@ enum font_alignment
 /// @pointer_wrapper
 /// @field pointer: pointer
 /**
- * @class font
+ * @attribute class font
  */
 typedef struct sk_font_data *font;
 
 /**
- * @class animation_script
+ * @attribute class animation_script
  */
 typedef struct _animation_script_data *animation_script;
 
 /**
- * @class animation
+ * @attribute class animation
  */
 typedef struct _animation_data *animation;
 

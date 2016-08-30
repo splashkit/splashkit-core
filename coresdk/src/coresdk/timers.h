@@ -13,7 +13,7 @@
 using namespace std;
 
 /**
- * @class Timer
+ * @attribute class Timer
  */
 typedef struct _timer_data *timer;
 

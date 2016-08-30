@@ -15,12 +15,12 @@
 using namespace std;
 
 /**
- * @class http_request
+ * @attribute class http_request
  */
 typedef struct _http_request_data *http_request;
 
 /**
- * @class http_response
+ * @attribute class http_response
  */
 typedef struct _http_response_data *http_response;
 

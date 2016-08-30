@@ -21,7 +21,7 @@ using namespace std;
 /// @pointer_wrapper
 /// @field pointer: pointer
 /**
- * @class window
+ * @attribute class window
  */
 typedef struct _window_data *window;
 

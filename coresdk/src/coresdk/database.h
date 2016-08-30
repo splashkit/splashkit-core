@@ -13,12 +13,12 @@
 using namespace std;
 
 /**
- * @class database
+ * @attribute class database
  */
 typedef struct _database *database;
 
 /**
- * @class query_result
+ * @attribute class query_result
  */
 typedef struct sk_query_result *query_result;
 
