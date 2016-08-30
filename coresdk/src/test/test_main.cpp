@@ -12,11 +12,43 @@
 
 #include <iostream>
 #include <climits>
+#include <functional>
+#include <utility>
+#include <string>
+#include <vector>
 
 using namespace std;
 
+vector<pair<string, function<void()>>> tests;
+
+void add_test(string name, function<void()> f)
+{
+    tests.push_back({name, f});
+}
+
+void setup_tests()
+{
+    add_test("Animations", run_animation_test);
+    add_test("Audio", run_audio_tests);
+    add_test("Database", run_database_tests);
+    add_test("Geometry", run_geometry_test);
+    add_test("Graphics", run_graphics_test);
+    add_test("Input", run_input_test);
+    add_test("Physics", run_physics_test);
+    add_test("Resources", run_resources_tests);
+    add_test("Shape drawing", run_shape_drawing_test);
+    add_test("Sprite tests", run_sprite_test);
+    add_test("Text", run_text_test);
+    add_test("Timers", run_timer_test);
+    add_test("Web Server", run_web_server_tests);
+    add_test("Windows", run_windows_tests);
+    add_test("Bundles", run_bundle_test);
+}
+
 int main()
 {
+    setup_tests();
+
     int opt;
     do
     {
@@ -24,21 +56,12 @@ int main()
         cout << " SplashKit Dev Tests " << endl;
         cout << "---------------------" << endl;
         cout << " -1: Quit" << endl;
-        cout << "  1: Animations" << endl;
-        cout << "  2: Audio" << endl;
-        cout << "  3: Database" << endl;
-        cout << "  4: Geometry" << endl;
-        cout << "  5: Graphics" << endl;
-        cout << "  6: Input" << endl;
-        cout << "  7: Physics" << endl;
-        cout << "  8: Resources" << endl;
-        cout << "  9: Shape drawing" << endl;
-        cout << " 10: Sprite tests" << endl;
-        cout << " 11: Text" << endl;
-        cout << " 12: Timers" << endl;
-        cout << " 13: Web Server" << endl;
-        cout << " 14: Windows" << endl;
-        cout << " 15: Bundles" << endl;
+
+        for (int i = 0; i < tests.size(); ++i)
+        {
+            cout << " " << i << ": " << tests[i].first << endl;
+        }
+
         cout << "---------------------" << endl;
         cout << " Select test to run: ";
 
@@ -47,57 +70,13 @@ int main()
         cin.clear();
         cin.ignore(INT_MAX,'\n');
 
-        switch (opt) {
-            case 1:
-                run_animation_test();
-                break;
-            case 2:
-                run_audio_tests();
-                break;
-            case 3:
-                run_database_tests();
-                break;
-            case 4:
-                run_geometry_test();
-                break;
-            case 5:
-                run_graphics_test();
-                break;
-            case 6:
-                run_input_test();
-                break;
-            case 7:
-                run_physics_test();
-                break;
-            case 8:
-                run_resources_tests();
-                break;
-            case 9:
-                run_shape_drawing_test();
-                break;
-            case 10:
-                run_sprite_test();
-                break;
-            case 11:
-                run_text_test();
-                break;
-            case 12:
-                run_timer_test();
-                break;
-            case 13:
-                run_web_server_tests();
-                break;
-            case 14:
-                run_windows_tests();
-                break;
-            case 15:
-                run_bundle_test();
-                break;
-            default:
-                break;
+        if (opt >= 0 && opt < tests.size())
+        {
+            tests[opt].second();
         }
 
         reset_quit();
     } while (opt != -1);
     return 0;
 }
+

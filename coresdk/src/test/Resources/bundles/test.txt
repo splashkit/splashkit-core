@@ -4,7 +4,7 @@
 ANIM,WalkingScript,kermit.txt
 
 // Load a bitmap with the frog
-BITMAP,FrogBmp,Frog.png, 73, 105, 4, 4, 16
+BITMAP,FrogBmp,frog.png, 73, 105, 4, 4, 16
 
 // Load a font
 FONT,hara,hara.ttf
