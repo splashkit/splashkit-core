@@ -12,7 +12,6 @@
 
 #include <iostream>
 #include <climits>
-#include <map>
 #include <functional>
 #include <utility>
 #include <string>
