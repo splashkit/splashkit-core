@@ -39,10 +39,15 @@ void set_camera_y(float y)
     _camera_y = y;
 }
 
-void set_camera_pos(point_2d pos)
+void set_camera_position(point_2d pos)
 {
     _camera_x = pos.x;
     _camera_y = pos.y;
+}
+
+point_2d camera_position()
+{
+    return point_at(_camera_x, _camera_y);
 }
 
 
