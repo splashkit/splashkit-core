@@ -1,0 +1,26 @@
+platform:
+    - x64
+
+environment:
+    matrix:
+        - HOST_ARCH_ARG: --host=x86_64-w64-mingw32
+          MSYS_BITS: 64
+          ADD_PATH: /mingw64/bin
+
+install:
+    - C:\"Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
+    - if defined MSYS_BITS set PATH=C:\msys64\mingw%MSYS_BITS%\bin;C:\msys64\usr\bin;%PATH%
+    - C:\msys64\usr\bin\bash -lc "pacman --sync --noconfirm pacman-mirrors"
+    - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm"
+    - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm" # Hackity hack hacks
+    #- C:\msys64\usr\bin\bash -lc "pacman --noconfirm base-devel mingw-w64-{x86_64,i686}-toolchain"
+    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S make wget tar patch dos2unix diffutils ca-certificates mingw-w64-x86_64-ca-certificates mingw-w64-x86_64-gcc mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-libpng cmake svn mercurial"
+
+build_script:
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git clone --depth 10 https://github.com/splashkit/splashkit --recursive"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git submodule update --init --recursive"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/coresdk/external; ./setup.sh"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake ."
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
+
+test: off
