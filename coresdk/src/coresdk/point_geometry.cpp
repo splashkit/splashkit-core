@@ -78,10 +78,10 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri)
     float inv_denom, u, v;
     
     //Convert Points to vectors
-    p = vector_to_point(pt);
-    a = vector_to_point(tri.points[0]);
-    b = vector_to_point(tri.points[1]);
-    c = vector_to_point(tri.points[2]);
+    p = vector_to(pt);
+    a = vector_to(tri.points[0]);
+    b = vector_to(tri.points[1]);
+    c = vector_to(tri.points[2]);
     
     // Compute vectors
     v0 = vector_subtract(c, a);

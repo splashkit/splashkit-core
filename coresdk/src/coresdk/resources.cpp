@@ -21,6 +21,11 @@
 #include <windows.h>
 #endif
 
+// Appveyor MSYS hack...
+#if !defined(__APPLE_) && !defined(__linux__)
+#define PATH_MAX 1024
+#endif
+
 #ifdef __linux__
 #include <linux/limits.h>
 #include <libgen.h>
@@ -126,8 +131,8 @@ void _guess_resources_path()
 #elif WINDOWS
         if (GetModuleFileName( NULL, exePath, MAX_PATH ))
         {
-            if(_try_set_resources_path(exePath);
-            return
+            if(_try_set_resource_path(exePath))
+                return;
         }
 #endif
 
@@ -148,11 +153,16 @@ string path_to_resources(resource_kind kind)
     
     switch(kind)
     {
-        case AUDIO_RESOURCE:        return path_from({ path, "sounds" });
+        case SOUND_RESOURCE:        return path_from({ path, "sounds" });
+        case MUSIC_RESOURCE:        return path_from({ path, "sounds" });
+        case BUNDLE_RESOURCE:       return path_from({ path, "bundles" });
         case IMAGE_RESOURCE:        return path_from({ path, "images" });
         case FONT_RESOURCE:         return path_from({ path, "fonts" });
         case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
-        default: return path;
+        case OTHER_RESOURCE:        return path;
+        default:
+            raise_warning("Attempting to get path to unknown resource kind.");
+            return path;
     }
 }
                

@@ -80,9 +80,58 @@ void do_test_vector()
 void run_physics_test()
 {
     matrix_2d matrix = identity_matrix();
+    matrix_2d inv_matrix = matrix_inverse(matrix);
     
     cout << "Identity Matrix" << endl;
     cout << matrix_to_string(matrix) << endl;
+    cout << endl << " inverse " << endl;
+    cout << matrix_to_string(inv_matrix) << endl;
+    
+    matrix = scale_matrix(4);
+    inv_matrix = matrix_inverse(matrix);
+    
+    cout << "Scale Matrix - 4x" << endl;
+    cout << matrix_to_string(matrix) << endl;
+    cout << endl << " inverse " << endl;
+    cout << matrix_to_string(inv_matrix) << endl;
+    cout << endl << " check... " << endl;
+    cout << matrix_to_string(matrix_multiply(matrix, inv_matrix)) << endl;
+    
+    matrix = rotation_matrix(45);
+    inv_matrix = matrix_inverse(matrix);
+    
+    cout << "Rotation Matrix - 45deg" << endl;
+    cout << matrix_to_string(matrix) << endl;
+    cout << endl << " inverse " << endl;
+    cout << matrix_to_string(inv_matrix) << endl;
+    cout << endl << " check... " << endl;
+    cout << matrix_to_string(matrix_multiply(matrix, inv_matrix)) << endl;
+    
+    matrix = translation_matrix(100, -100);
+    inv_matrix = matrix_inverse(matrix);
+    
+    cout << "Translation Matrix - 100,-100" << endl;
+    cout << matrix_to_string(matrix) << endl;
+    cout << endl << " inverse " << endl;
+    cout << matrix_to_string(inv_matrix) << endl;
+    cout << endl << " check... " << endl;
+    cout << matrix_to_string(matrix_multiply(matrix, inv_matrix)) << endl;
+    
+    cout << "Rotate 45%" << endl;
+    cout << matrix_to_string(rotation_matrix(45)) << endl;
+    
+    cout << "translate 10,10" << endl;
+    cout << matrix_to_string(translation_matrix(10, 10)) << endl;
+    
+    matrix = matrix_multiply(rotation_matrix(45), translation_matrix(10, 10)); //scale_rotate_translate_matrix(point_at(4, 4), 89, point_at(100, -100));
+    inv_matrix = matrix_inverse(matrix);
+    
+    cout << "Combination" << endl;
+    cout << matrix_to_string(matrix) << endl;
+    cout << endl << " inverse " << endl;
+    cout << matrix_to_string(inv_matrix) << endl;
+    cout << endl << " check... " << endl;
+    cout << matrix_to_string(matrix_multiply(matrix, inv_matrix)) << endl;
     
     do_test_vector();
 }

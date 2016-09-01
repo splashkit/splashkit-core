@@ -14,7 +14,7 @@
 #include "rectangle_geometry.h"
 #include "line_geometry.h"
 #include "circle_geometry.h"
-
+#include "quad_geometry.h"
 /**
  *  Returns the cosine of the supplied angle (in degrees).
  */
@@ -36,7 +36,6 @@ triangle triangle_from(float x1, float y1, float x2, float y2, float x3, float y
 
 triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
 
-quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4);
 
 
 

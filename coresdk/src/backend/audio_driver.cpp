@@ -368,15 +368,15 @@ void sk_stop_sound(sk_sound_data *sound)
     }
 }
 
-float sk_music_playing()
+bool sk_music_playing()
 {
     internal_sk_init();
     if ( Mix_PlayingMusic() ) {
-        return -1.0f;
+        return true;
     }
     else
     {
-        return 0.0f;
+        return false;
     }
 }
 

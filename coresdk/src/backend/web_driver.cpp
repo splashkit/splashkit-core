@@ -18,7 +18,7 @@
 static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
 {
     size_t realsize = size * nmemb;
-    sk_http_response *mem = (sk_http_response *)userp;
+    sk_http_response *mem = static_cast<sk_http_response *>(userp);
 
     mem->data = (char *)realloc(mem->data, mem->size + realsize + 1);
     if(mem->data == NULL) {
@@ -53,7 +53,7 @@ struct request_stream
 static size_t read_request_body(void *ptr, size_t size, size_t nmemb, void *stream)
 {
     // not actually a
-    request_stream *request = (request_stream *)stream;
+    request_stream *request = static_cast<request_stream *>(stream);
 
     unsigned long str_len = strlen(request->body);
 

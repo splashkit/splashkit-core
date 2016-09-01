@@ -13,6 +13,8 @@
 #include "geometry.h"
 #include "audio.h"
 #include "color.h"
+#include "concurrency_utils.h"
+#include "civetweb.h"
 
 #include <string>
 #include <vector>
@@ -29,26 +31,30 @@ typedef void *pointer;
 /// Convert a string for each to hex: http://www.unit-conversion.info/texttools/hexadecimal/#data
 enum pointer_identifier
 {
-    DATABASE_PTR =          0x44415442, //'DATB';
-    AUDIO_PTR =             0x41554449, //'AUDI';
-    MUSIC_PTR =             0x4d555349, //'MUSI';
-    ANIMATION_PTR =         0x414e494d, //'ANIM';
-    ANIMATION_SCRIPT_PTR =  0x41534352, //'ASCR';
-    BITMAP_PTR =            0x424d502a, //'BMP*';
-    SPRITE_PTR =            0x53505254, //'SPRT';
-    REGION_PTR =            0x52454749, //'REGI';
-    PANEL_PTR =             0x50414e4c, //'PANL';
-    ARDUINO_PTR =           0x41524455, //'ARDU';
-    TIMER_PTR =             0x54494d52, //'TIMR';
-    FONT_PTR =              0x464f4e54, //'FONT';
-    WINDOW_PTR =            0x57494e44, //'WIND';
-    HTTP_REQUEST_PTR =      0x48524551, //'HREQ';
-    HTTP_RESPONSE_PTR =     0x48524553, //'HRES';
-    CONNECTION_PTR =        0x434f4e50, //'CONP';
-    MESSAGE_PTR =           0x4d534750, //'MSGP';
-    SERVER_SOCKET_PTR =     0x53565253, //'SVRS';
-    DISPLAY_PTR =           0x44495350, //'DISP';
-    NONE_PTR =              0x4e4f4e45  //'NONE';
+    DATABASE_PTR =              0x44415442, //'DATB';
+    AUDIO_PTR =                 0x41554449, //'AUDI';
+    MUSIC_PTR =                 0x4d555349, //'MUSI';
+    ANIMATION_PTR =             0x414e494d, //'ANIM';
+    ANIMATION_SCRIPT_PTR =      0x41534352, //'ASCR';
+    BITMAP_PTR =                0x424d502a, //'BMP*';
+    SPRITE_PTR =                0x53505254, //'SPRT';
+    REGION_PTR =                0x52454749, //'REGI';
+    PANEL_PTR =                 0x50414e4c, //'PANL';
+    ARDUINO_PTR =               0x41524455, //'ARDU';
+    TIMER_PTR =                 0x54494d52, //'TIMR';
+    FONT_PTR =                  0x464f4e54, //'FONT';
+    WINDOW_PTR =                0x57494e44, //'WIND';
+    HTTP_REQUEST_PTR =          0x48524551, //'HREQ';
+    HTTP_RESPONSE_PTR =         0x48524553, //'HRES';
+    WEB_SERVER_PTR =            0x57535652, //'WSVR';
+    WEB_SERVER_REQUEST_PTR =    0x57524551, //'WREQ';
+    WEB_SERVER_RESPONSE_PTR =   0x57524553, //'WRES';
+    CONNECTION_PTR =            0x434f4e50, //'CONP';
+    MESSAGE_PTR =               0x4d534750, //'MSGP';
+    SERVER_SOCKET_PTR =         0x53565253, //'SVRS';
+    DISPLAY_PTR =               0x44495350, //'DISP';
+    QUERY_PTR =                 0x51555259, //'QURY';
+    NONE_PTR =                  0x4e4f4e45  //'NONE';
 };
 
 typedef color sk_color;
@@ -178,6 +184,34 @@ struct sk_http_response
     char *data;
 };
 
+struct sk_server_response
+{
+    pointer_identifier id;
+    string message;
+    semaphore response_sent;
+};
+
+struct sk_server_request
+{
+    pointer_identifier id;
+    string uri;
+    semaphore control;
+
+    sk_server_response* response;
+};
+
+struct sk_web_server
+{
+    pointer_identifier id;
+    struct mg_context *ctx;
+    struct mg_callbacks callbacks;
+
+    sk_server_request* last_request;
+    channel<sk_server_request*> request_queue;
+
+    string port;
+};
+
 struct animation_frame
 {
     int index;                // The index of the frame in the animation template
@@ -213,6 +247,5 @@ struct _animation_script_data
     
     vector<animation>   anim_objs;         // The animations created from this script
 };
-
 
 #endif /* BackendTypes_h */

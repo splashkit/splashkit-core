@@ -130,6 +130,13 @@ rectangle intersection(const rectangle &rect1, const rectangle &rect2)
         return rectangle_from(l, t, r - l, b - t);
 }
 
+bool rectangles_intersect(const rectangle& rect1, const rectangle& rect2)
+{
+    rectangle intersect = intersection(rect1, rect2);
+
+    return (abs(intersect.width) + abs(intersect.height)) != 0;
+}
+
 float rectangle_top(const rectangle &rect)
 {
     if ( rect.height >= 0) return rect.y;

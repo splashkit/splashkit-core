@@ -455,6 +455,9 @@ animation_script load_animation_script(string name, string filename)
 
     build_frame_lists();
     check_animation_loops();
+    
+    _animation_scripts[name] = result;
+    
     return result;
 }
 
@@ -480,6 +483,8 @@ void free_animation_script(animation_script script_to_free)
     {
         free_animation(script_to_free->anim_objs[i]);
     }
+    
+    _animation_scripts.erase(script_to_free->name);
     
     script_to_free->id = NONE_PTR;
     delete(script_to_free);
@@ -570,7 +575,6 @@ vector_2d animation_current_vector(animation anim)
 {
     if ( INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to get name of invalid animation data.");
         return vector_to(0,0);
     }
     

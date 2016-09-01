@@ -15,6 +15,10 @@
 
 #include "images.h"
 
+#ifdef WINDOWS
+  #include <Windows.h>
+#endif
+
 struct _http_header_data
 {
     string name;
@@ -96,8 +100,22 @@ bitmap download_image(string name, string url, unsigned short port)
         return nullptr;
     }
 
-    char *tmpname = strdup("/tmp/splashkit.image.XXXXXX");
+    char *tmpname;
+
+#ifndef WINDOWS
+    tmpname = strdup("/tmp/splashkit.image.XXXXXX");
     mkstemp(tmpname);
+#else
+    char fname[L_tmpnam];
+    tmpnam (fname);
+    char tmppath[261] = {0};
+    GetTempPath(260, tmppath);
+
+    tmpname = strdup(tmppath);
+    string fpath = path_from({tmpname, fname});
+    tmpname = strdup(fpath.c_str());
+    raise_warning(tmpname);
+#endif
     save_response_to_file(response, tmpname);
 
     bitmap result = load_bitmap(name, tmpname);

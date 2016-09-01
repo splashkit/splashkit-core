@@ -1,0 +1,22 @@
+// This is a test bundle
+
+// Load the Walking script from kermit.txt
+ANIM,WalkingScript,kermit.txt
+
+// Load a bitmap with the frog
+BITMAP,FrogBmp,frog.png, 73, 105, 4, 4, 16
+
+// Load a font
+FONT,hara,hara.ttf
+
+// Load a sound
+SOUND,error,error.wav
+
+// Load music
+MUSIC,background,energize_my_mind.mod
+
+// Create timer
+TIMER,my timer
+
+// Another bundle
+BUNDLE,blah,blah.txt

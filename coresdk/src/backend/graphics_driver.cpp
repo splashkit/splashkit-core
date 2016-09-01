@@ -32,10 +32,10 @@ SDL_Renderer * _sk_prepared_renderer(sk_drawing_surface* surface, unsigned int i
 void _sk_complete_render(sk_drawing_surface* surface, unsigned int idx);
 
 
-static sk_window_be ** _sk_open_windows = NULL;
+static sk_window_be ** _sk_open_windows = nullptr;
 static unsigned int _sk_num_open_windows = 0;
 
-static sk_bitmap_be ** _sk_open_bitmaps = NULL;
+static sk_bitmap_be ** _sk_open_bitmaps = nullptr;
 static unsigned int _sk_num_open_bitmaps = 0;
 
 //
@@ -60,7 +60,7 @@ sk_window_be *_sk_get_window_with_pointer(pointer p)
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 
@@ -80,7 +80,7 @@ void _sk_restore_default_render_target(sk_window_be *window_be, sk_bitmap_be *fr
     }
     else if ( from_bmp && from_bmp->clipped )
     {
-        SDL_RenderSetClipRect(window_be->renderer, NULL);
+        SDL_RenderSetClipRect(window_be->renderer, nullptr);
     }
 }
 
@@ -113,7 +113,7 @@ void _sk_make_drawable(sk_bitmap_be *bitmap)
 
         SDL_Texture *orig_tex = bitmap->texture[i];
 
-        SDL_QueryTexture(orig_tex, NULL, &access, &w, &h);
+        SDL_QueryTexture(orig_tex, nullptr, &access, &w, &h);
 
         if ( access == SDL_TEXTUREACCESS_TARGET ) continue; // already target
 
@@ -123,7 +123,7 @@ void _sk_make_drawable(sk_bitmap_be *bitmap)
 
         // Draw onto new texture
         SDL_SetRenderTarget(renderer, tex);
-        SDL_RenderCopy(renderer, orig_tex, NULL, NULL);
+        SDL_RenderCopy(renderer, orig_tex, nullptr, nullptr);
 
         // Destroy old
         SDL_DestroyTexture(orig_tex);
@@ -133,7 +133,7 @@ void _sk_make_drawable(sk_bitmap_be *bitmap)
 
     // Remove surface
     SDL_FreeSurface(bitmap->surface);
-    bitmap->surface = NULL;
+    bitmap->surface = nullptr;
 
     // Set drawable
     bitmap->drawable = true;
@@ -149,7 +149,7 @@ void _sk_make_drawable(sk_bitmap_be *bitmap)
 // The initial window is used when drawing to a bitmap without having any open windows
 // as a window is required in order for drawing operations to be performed.
 static bool _sk_has_initial_window = false;
-static sk_window_be * _sk_initial_window = NULL;
+static sk_window_be * _sk_initial_window = nullptr;
 
 //forward declare functions needed for window open
 void _sk_present_window(sk_window_be *window_be);
@@ -187,8 +187,8 @@ void _sk_create_initial_window()
 //    std::cout << "Initial Renderer is " << _sk_initial_window->renderer << std::endl;
 
     // The user cannot draw onto this window!
-    _sk_initial_window->backing = NULL;
-    _sk_initial_window->surface = NULL;
+    _sk_initial_window->backing = nullptr;
+    _sk_initial_window->surface = nullptr;
 
     _sk_initial_window->event_data.close_requested = false;
     _sk_initial_window->event_data.has_focus = false;
@@ -215,7 +215,7 @@ void _sk_create_initial_window()
     SDL_RenderPresent(_sk_initial_window->renderer);
     SDL_PumpEvents();
 
-    SDL_Texture ** textures = NULL;
+    SDL_Texture ** textures = nullptr;
 
     for (uint bmp_idx = 0; bmp_idx < _sk_num_open_bitmaps; bmp_idx++)
     {
@@ -248,20 +248,20 @@ SDL_Texture* _sk_copy_texture(SDL_Texture *src_tex, SDL_Renderer *src_renderer, 
 	void *pixels;
 	int w, h;
 
-	SDL_QueryTexture(src_tex, NULL, NULL, &w, &h);
+	SDL_QueryTexture(src_tex, nullptr, nullptr, &w, &h);
 	pixels = malloc(static_cast<size_t>(4 * w * h));
 
 	SDL_SetRenderTarget(src_renderer, src_tex);
-	SDL_RenderReadPixels(src_renderer, NULL, SDL_PIXELFORMAT_RGBA8888, pixels, 4 * w);
+	SDL_RenderReadPixels(src_renderer, nullptr, SDL_PIXELFORMAT_RGBA8888, pixels, 4 * w);
 
 	SDL_Texture *tex = SDL_CreateTexture(dest_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
 	SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_BLEND);
 
-	SDL_UpdateTexture(tex, NULL, pixels, 4 * w);
+	SDL_UpdateTexture(tex, nullptr, pixels, 4 * w);
 	free(pixels);
 
 	// Restore default target
-	SDL_SetRenderTarget(src_renderer, NULL);
+	SDL_SetRenderTarget(src_renderer, nullptr);
 
 	return tex;
 }
@@ -292,9 +292,9 @@ void _sk_add_window(sk_window_be * window)
     // expand array
     _sk_num_open_windows++;
 
-    sk_window_be ** windows = NULL;
+    sk_window_be ** windows = nullptr;
     windows = static_cast<sk_window_be **>(realloc(_sk_open_windows, sizeof(sk_window_be*) * _sk_num_open_windows));
-    if ( windows == NULL )
+    if ( windows == nullptr )
     {
         // out of memory exception!
         exit(-1);
@@ -307,7 +307,7 @@ void _sk_add_window(sk_window_be * window)
 
     // create textures for new window
 
-    SDL_Texture ** textures = NULL;
+    SDL_Texture ** textures = nullptr;
     sk_bitmap_be *current_bmp;
 
     for (unsigned int i = 0; i < _sk_num_open_bitmaps; i++)
@@ -325,7 +325,7 @@ void _sk_add_window(sk_window_be * window)
         else // first window... copy surface
         {
             current_bmp->texture[0] = SDL_CreateTextureFromSurface(window->renderer, current_bmp->surface );
-            //TODO: Could the surface be null here?
+            //TODO: Could the surface be nullptr here?
         }
     }
 }
@@ -397,7 +397,7 @@ void _sk_restore_surfaces()
         if ( ! _sk_open_bitmaps[i]->surface )
         {
             int w, h;
-            SDL_QueryTexture(_sk_open_bitmaps[i]->texture[0], NULL, NULL, &w, &h);
+            SDL_QueryTexture(_sk_open_bitmaps[i]->texture[0], nullptr, nullptr, &w, &h);
 
             int sz = 4 * w * h;
             int pixels[w * h];
@@ -491,7 +491,7 @@ void _sk_remove_window(sk_window_be * window_be)
     else
     {
         free(_sk_open_windows);
-        _sk_open_windows = NULL;
+        _sk_open_windows = nullptr;
     }
 
 }
@@ -509,13 +509,13 @@ void _sk_destroy_window(sk_window_be *window_be)
     SDL_DestroyWindow(window_be->window);
 
     window_be->idx = UINT_MAX;
-    window_be->renderer = NULL;
-    window_be->window = NULL;
-    window_be->backing = NULL;
+    window_be->renderer = nullptr;
+    window_be->window = nullptr;
+    window_be->backing = nullptr;
 
     if ( _sk_initial_window == window_be )
     {
-        _sk_initial_window = NULL;
+        _sk_initial_window = nullptr;
         _sk_has_initial_window = false;
     }
 
@@ -524,7 +524,7 @@ void _sk_destroy_window(sk_window_be *window_be)
 
 void _sk_destroy_initial_window()
 {
-    if (_sk_initial_window != NULL)
+    if (_sk_initial_window != nullptr)
     {
         _sk_destroy_window(_sk_initial_window);
     }
@@ -587,7 +587,7 @@ void _sk_remove_bitmap(sk_bitmap_be *bitmap_be)
     else
     {
         free(_sk_open_bitmaps);
-        _sk_open_bitmaps = NULL;
+        _sk_open_bitmaps = nullptr;
     }
 
     if ( _sk_num_open_bitmaps > 0 && ! _sk_num_open_bitmaps )
@@ -604,7 +604,7 @@ void _sk_destroy_bitmap(sk_bitmap_be *bitmap_be)
     for (unsigned int bmp_idx = 0; bmp_idx < _sk_num_open_windows; bmp_idx++)
     {
         SDL_DestroyTexture(bitmap_be->texture[bmp_idx]);
-        bitmap_be->texture[bmp_idx] = NULL;
+        bitmap_be->texture[bmp_idx] = nullptr;
     }
     free(bitmap_be->texture);
 
@@ -613,8 +613,8 @@ void _sk_destroy_bitmap(sk_bitmap_be *bitmap_be)
         SDL_FreeSurface(bitmap_be->surface);
     }
 
-    bitmap_be->surface = NULL;
-    bitmap_be->texture = NULL;
+    bitmap_be->surface = nullptr;
+    bitmap_be->texture = nullptr;
 
     free(bitmap_be);
 }
@@ -685,7 +685,7 @@ void sk_refresh_window(sk_drawing_surface *window);
 sk_drawing_surface sk_open_window(const char *title, int width, int height)
 {
     internal_sk_init();
-    sk_drawing_surface  result = { SGDS_Unknown, 0, 0, NULL };
+    sk_drawing_surface  result = { SGDS_Unknown, 0, 0, nullptr };
 
     sk_window_be *      window_be;
 
@@ -749,7 +749,7 @@ void sk_close_drawing_surface(sk_drawing_surface *surface)
     }
 
     surface->kind = SGDS_Unknown;
-    surface->_data = NULL;
+    surface->_data = nullptr;
 }
 
 void sk_set_icon(sk_drawing_surface *surface, sk_drawing_surface *icon)
@@ -833,11 +833,11 @@ void _sk_present_window(sk_window_be *window_be)
 {
     if ( window_be && window_be->backing )
     {
-        SDL_SetRenderTarget(window_be->renderer, NULL);
+        SDL_SetRenderTarget(window_be->renderer, nullptr);
 
-        SDL_RenderCopy(window_be->renderer, window_be->backing, NULL, NULL);
+        SDL_RenderCopy(window_be->renderer, window_be->backing, nullptr, nullptr);
         SDL_RenderPresent(window_be->renderer);
-        _sk_restore_default_render_target(window_be, NULL);
+        _sk_restore_default_render_target(window_be, nullptr);
     }
 }
 
@@ -846,7 +846,7 @@ void sk_refresh_window(sk_drawing_surface *window)
     if ( (! window) || window->kind != SGDS_Window ) return;
 
     sk_window_be * window_be;
-    window_be = (sk_window_be *)window->_data;
+    window_be = static_cast<sk_window_be *>(window->_data);
 
     _sk_present_window(window_be);
 }
@@ -870,11 +870,11 @@ SDL_Renderer * _sk_prepared_renderer(sk_drawing_surface *surface, unsigned int i
 
             if (idx < _sk_num_open_windows)
                 return _sk_open_windows[idx]->renderer;
-            else return NULL;
+            else return nullptr;
         }
 
         case SGDS_Unknown:
-            return NULL;
+            return nullptr;
     }
 }
 
@@ -1445,7 +1445,7 @@ void sk_clear_clip_rect(sk_drawing_surface *surface)
 
             window_be->clipped = false;
             window_be->clip = { 0, 0, surface->width, surface->height };
-            SDL_RenderSetClipRect(window_be->renderer, NULL);
+            SDL_RenderSetClipRect(window_be->renderer, nullptr);
             //SDL_RenderPresent(window_be->renderer);
             break;
         }
@@ -1658,7 +1658,7 @@ void sk_resize(sk_drawing_surface *surface, int width, int height)
             SDL_Texture * old = window_be->backing;
 
             // Set renderer to draw onto window
-            SDL_SetRenderTarget(window_be->renderer, NULL);
+            SDL_SetRenderTarget(window_be->renderer, nullptr);
 
             // Change window size
             SDL_SetWindowSize(window_be->window, width, height);
@@ -1666,7 +1666,7 @@ void sk_resize(sk_drawing_surface *surface, int width, int height)
             surface->height = height;
 
             // Clear new window surface
-            SDL_RenderSetClipRect(window_be->renderer, NULL);
+            SDL_RenderSetClipRect(window_be->renderer, nullptr);
             SDL_SetRenderDrawColor(window_be->renderer, 120, 120, 120, 255);
             SDL_RenderClear(window_be->renderer);
 
@@ -1676,7 +1676,7 @@ void sk_resize(sk_drawing_surface *surface, int width, int height)
             // Copy across old display data
             SDL_SetRenderTarget(window_be->renderer, window_be->backing);
             SDL_RenderClear(window_be->renderer);
-            SDL_RenderCopy(window_be->renderer, old, NULL, &dst);
+            SDL_RenderCopy(window_be->renderer, old, nullptr, &dst);
             SDL_RenderPresent(window_be->renderer);
 
             // Restore clipping
@@ -1726,20 +1726,20 @@ int sk_save_png(sk_drawing_surface * surface, const char *filename)
     // Opening output file
     fp = fopen(filename, "wb");
 
-    if (fp == NULL) return 0;
+    if (fp == nullptr) return 0;
 
     // Initializing png structures and callbacks
-    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, &png_user_error, &png_user_warn);
-    if (png_ptr == NULL)
+    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, &png_user_error, &png_user_warn);
+    if (png_ptr == nullptr)
     {
         fclose(fp);
         return 0;
     }
 
     info_ptr = png_create_info_struct(png_ptr);
-    if (info_ptr == NULL)
+    if (info_ptr == nullptr)
     {
-        png_destroy_write_struct(&png_ptr, NULL);
+        png_destroy_write_struct(&png_ptr, nullptr);
         fclose(fp);
         return 0;
     }
@@ -1772,7 +1772,7 @@ int sk_save_png(sk_drawing_surface * surface, const char *filename)
     }
 
     png_write_image(png_ptr, row_pointers);
-    png_write_end(png_ptr, info_ptr); // was ptr and NULL
+    png_write_end(png_ptr, info_ptr); // was ptr and nullptr
 
     // Cleaning out...
     png_free(png_ptr, row_pointers);
@@ -1796,7 +1796,7 @@ sk_drawing_surface sk_create_bitmap(int width, int height)
     internal_sk_init();
     if ( _sk_num_open_windows == 0 ) _sk_create_initial_window();
 
-    sk_drawing_surface result = { SGDS_Unknown, 0, 0, NULL };
+    sk_drawing_surface result = { SGDS_Unknown, 0, 0, nullptr };
 
     result.kind = SGDS_Bitmap;
     sk_bitmap_be *data = static_cast<sk_bitmap_be *>(malloc(sizeof(sk_bitmap_be)));
@@ -1808,7 +1808,7 @@ sk_drawing_surface sk_create_bitmap(int width, int height)
     data->clipped = false;
     data->clip = {0, 0, width, height};
     data->drawable = true;
-    data->surface = NULL;
+    data->surface = nullptr;
     data->texture = static_cast<SDL_Texture **>(malloc(sizeof(SDL_Texture*) * _sk_num_open_windows));
 
     for (unsigned int i = 0; i < _sk_num_open_windows; i++)
@@ -1830,7 +1830,7 @@ sk_drawing_surface sk_create_bitmap(int width, int height)
 sk_drawing_surface sk_load_bitmap(const char * filename)
 {
     internal_sk_init();
-    sk_drawing_surface result = { SGDS_Unknown, 0, 0, NULL };
+    sk_drawing_surface result = { SGDS_Unknown, 0, 0, nullptr };
 
     SDL_Surface *surface;
 
@@ -1848,7 +1848,7 @@ sk_drawing_surface sk_load_bitmap(const char * filename)
     if (_sk_num_open_windows > 0)
         data->texture = static_cast<SDL_Texture **>(malloc(sizeof(SDL_Texture*) * _sk_num_open_windows));
     else
-        data->texture = NULL;
+        data->texture = nullptr;
 
     for (unsigned int i = 0; i < _sk_num_open_windows; i++)
     {

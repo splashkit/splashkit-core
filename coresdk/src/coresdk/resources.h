@@ -18,11 +18,14 @@ using namespace std;
  */
 enum resource_kind
 {
-    AUDIO_RESOURCE,
+    SOUND_RESOURCE,
+    MUSIC_RESOURCE,
     ANIMATION_RESOURCE,
+    BUNDLE_RESOURCE,
     DATABASE_RESOURCE,
     IMAGE_RESOURCE,
     FONT_RESOURCE,
+    TIMER_RESOURCE,
     OTHER_RESOURCE
 };
 

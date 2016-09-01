@@ -1,0 +1,32 @@
+language: generic
+
+addons:
+    apt:
+        packages:
+            - g++-6
+        sources:
+            - llvm-toolchain-precise-3.8
+            - ubuntu-toolchain-r-test
+matrix:
+    include:
+        - os: linux
+          dist: trusty
+          compiler: gcc
+          sudo: required
+          env: COMPILER_NAME=gcc CXX=g++-6 CC=gcc-6
+        - os: osx
+          osx_image: xcode7.3
+          compiler: clang
+
+before_install:
+    - ./.travis/install.sh
+
+branches:
+    only:
+        - develop
+
+before_script:
+    cd projects/cmake/
+
+script:
+    - cmake CMakeLists.txt && make -j 2

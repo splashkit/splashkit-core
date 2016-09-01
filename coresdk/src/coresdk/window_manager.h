@@ -31,6 +31,11 @@ void close_window(window wind);
 
 void close_window(string name);
 
+/**
+ * Close all of the windows that are currently open.
+ */
+void close_all_windows();
+
 bool has_window(string caption);
 
 window window_named(string caption);

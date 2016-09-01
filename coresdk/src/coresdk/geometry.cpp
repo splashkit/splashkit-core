@@ -47,15 +47,3 @@ triangle triangle_from(point_2d p1, point_2d p2, point_2d p3)
     return result;
 }
 
-quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4)
-{
-    quad result;
-    
-    result.points[0] = p1;
-    result.points[1] = p2;
-    result.points[2] = p3;
-    result.points[3] = p4;
-    
-    return result;
-}
-

@@ -70,7 +70,7 @@ projects/bash/out
 
 ### CLion JetBrains IDE ###
 .idea
-CMakeLists.txt
+/CMakeLists.txt
 
 ### vim ###
 swap
@@ -81,3 +81,15 @@ swap
 *~
 # auto-generated tag files
 tags
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+libsplashkit.a
+splashkit_test
+projects/cmake/Resources
+
+# Splashkit
+libsplashkit.so
