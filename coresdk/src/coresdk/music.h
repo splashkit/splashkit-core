@@ -3,7 +3,7 @@
  * @author Jon Meyers
  * @brief SplashKit Audio allows you to load and play music and sound effects.
  *
- * The SplashKit's audio library allows you to easily load and play music and
+ * The SplashKit`s audio library allows you to easily load and play music and
  * sound effects within your programs. To get started with audio the first
  * thing you need to do is load a sound effect or music file. You can do this
  * by calling the `load_sound_effect(string name)` function to the
@@ -26,7 +26,6 @@
  * playing music and switch to the new track.
  *
  * @attribute class music
- *
  */
 typedef struct _music_data *music;
 
@@ -48,7 +47,7 @@ music load_music(string name, string filename);
  *
  * @attribute class       music
  * @attribute destructor  true
- * @attribute self        music
+ * @attribute self        effect
  */
 void free_music(music effect);
 
@@ -57,8 +56,6 @@ void free_music(music effect);
  *
  * @attribute class   music
  * @attribute method  free_all_music
- * @attribute self    music
- *
  */
 void free_all_music();
 
@@ -73,103 +70,94 @@ void free_all_music();
  *
  * @returns Returns `true` if there is a music file with the given `name` has
  *          has been loaded.
- *
  */
 bool has_music(string name);
 
 /**
- * Retrieves a 'music' that has been loaded into SplashKit.
+ * Retrieves a `music` that has been loaded into SplashKit.
  *
- * @param name The name of the music file to return.
+ * @param name  The name of the music file to return.
  *
  * @returns Returns the `music` that has been loaded with the specified
  *          `name` using `load_music`.
- *
  */
 music music_named(string name);
 
 /**
  * Plays a music file for a specified number of times and playback volume.
  *
- * @param data      The name of the 'music' to play.
+ * @param data      The name of the `music` to play.
  * @param times     Controls the number of times the music is played.
  * @param volume    Indicates the percentage of the original volume to play the
- *                 `music` at. This must be between `0` and `1`.
+ *                  `music` at. This must be between `0` and `1`.
  *
  * @attribute class   music
  * @attribute method  play
  * @attribute self    data
- *
  */
 void play_music(music data, int times, float volume);
 
 /**
  * Plays a music file once at full volume.
  *
- * @param data      The name of the 'music' to play.
+ * @param data The name of the `music` to play.
  *
  * @attribute class   music
  * @attribute method  play
  * @attribute self    data
- *
  */
 void play_music(music data);
 
 /**
  * Plays a music file a specified number of times at full volume.
  *
- * @param data      The name of the 'music' to play.
+ * @param data      The name of the `music` to play.
  * @param times     Controls the number of times the music is played.
  *
  * @attribute class   music
  * @attribute method  play
  * @attribute self    data
- *
  */
 void play_music(music data, int times);
 
 /**
  * Plays the music file that matches the name a specified number of times at full volume.
  *
- * @param name      The name of the 'music' to play.
+ * @param name      The name of the `music` to play.
  * @param times     Controls the number of times the music is played.
- *
  */
 void play_music(string name, int times);
 
 /**
  * Plays the music file that matches the name once at full volume.
  *
- * @param name      The name of the 'music' to play.
- *
+ * @param name  The name of the `music` to play.
  */
 void play_music(string name);
 
 /**
- * Fades music up to full volume over a specified number of milliseconds 
+ * Fades music up to full volume over a specified number of milliseconds
  * for a specified number of times.
  *
- * @param data      The name of the 'music' to play.
+ * @param data      The name of the `music` to play.
  * @param times     Controls the number of times the music is played.
- * @param ms        How many milliseconds it takes to fade the 'music' to full volume
+ * @param ms        How many milliseconds it takes to fade the `music` to full volume
  *
  * @attribute class   music
  * @attribute method  fade_in
  * @attribute self    data
- *
  */
 void fade_music_in(music data, int times, int ms);
 
 /**
  * Fades music up to full volume over a specified number of milliseconds.
  *
- * @param data      The name of the 'music' to play.
- * @param ms        How many milliseconds it takes to fade the 'music' to full volume
+ * @param data      The name of the `music` to play.
+ * @param ms        How many milliseconds it takes to fade the `music` to full volume
  *
  * @attribute class   music
  * @attribute method  fade_in
  * @attribute self    data
- *
  */
 void fade_music_in(music data, int ms);
 
@@ -177,35 +165,30 @@ void fade_music_in(music data, int ms);
  * Fades music file matching the name to full volume over a specified number of milliseconds
  * and loops a specified number of times
  *
- * @param name      The name of the 'music' file to play.
+ * @param name      The name of the `music` file to play.
  * @param times     Controls the number of times the music is played.
- * @param ms        How many milliseconds it takes to fade the 'music' to full volume
+ * @param ms        How many milliseconds it takes to fade the `music` to full volume
  *
  * @attribute class   music
  * @attribute method  fade_in
- * @attribute self    music
- *
  */
 void fade_music_in(string name, int times, int ms);
 
 /**
  * Fades music file matching the name to full volume over a specified number of milliseconds
  *
- * @param name      The name of the 'music' file to play.
- * @param ms        How many milliseconds it takes to fade the 'music' to full volume
+ * @param name      The name of the `music` file to play.
+ * @param ms        How many milliseconds it takes to fade the `music` to full volume
  *
  * @attribute class   music
  * @attribute method  fade_in
- * @attribute self    music
- *
  */
 void fade_music_in(string name, int ms);
 
 /**
  * Fades music outover a specified number of milliseconds
  *
- * @param ms        How many milliseconds it takes to fade the 'music' out
- *
+ * @param ms        How many milliseconds it takes to fade the `music` out
  */
 void fade_music_out(int ms);
 
@@ -235,7 +218,7 @@ void stop_music();
 bool music_playing();
 
 /**
- * Sets the volume of the currently playing 'music'. Must be between 0 and 1, e.g. 0.1 is 10%.
+ * Sets the volume of the currently playing `music`. Must be between 0 and 1, e.g. 0.1 is 10%.
  *
  * @param volume    Indicates the percentage of the original volume to play the
  *                 `music` at. This must be between `0` and `1`.
@@ -244,9 +227,9 @@ bool music_playing();
 void set_music_volume(float volume);
 
 /**
- * Returns the volume of the currently playing 'music'.
+ * Returns the volume of the currently playing `music`.
  *
- * @returns Returns the percentage of the currently playing 'music'.
+ * @returns Returns the percentage of the currently playing `music`.
  *
  */
 float music_volume();
@@ -254,10 +237,10 @@ float music_volume();
 /**
  * Returns the name that SplashKit uses to refer to this music data
  *
- * @returns Returns a string with the name of the 'music' that SplashKit refers to.
+ * @returns Returns a string with the name of the `music` that SplashKit refers to.
  *
  * @attribute class   music
- * @attribute getter  name 
+ * @attribute getter  name
  * @attribute self    data
  *
  */
@@ -266,7 +249,7 @@ string music_name(music data);
 /**
  * Returns the filename the of the music data
  *
- * @returns Returns a string with the filename of the 'music' file.
+ * @returns Returns a string with the filename of the `music` file.
  *
  * @attribute class   music
  * @attribute getter  filename

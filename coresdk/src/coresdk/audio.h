@@ -33,9 +33,7 @@ void close_audio();
  *
  * @returns Returns `true` if the audio has been initalised.
  *
- * @attribute static  audio
- * @attribute getter  is_ready
- * @attribute self    audio
+ * @attribute getter is_ready
  */
 bool audio_ready();
 

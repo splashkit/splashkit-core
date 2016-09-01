@@ -9,14 +9,6 @@
 #ifndef types_hpp
 #define types_hpp
 
-<<<<<<< HEAD
-// PLEASE DO NOT PARSE ME!
-typedef unsigned char byte;
-
-/**
- * colors
- */
-=======
 #include <string>
 using namespace std;
 
@@ -30,7 +22,9 @@ typedef unsigned char byte;
  */
 typedef void (free_notifier)(void *pointer);
 
->>>>>>> develop
+/**
+ * color
+ */
 struct color
 {
     float r, g, b, a;

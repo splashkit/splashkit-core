@@ -15,8 +15,19 @@
 
 using namespace std;
 
+/**
+ * @attribute class web_server
+ */
 typedef struct sk_web_server *web_server;
+
+/**
+ * @attribute class server_request
+ */
 typedef struct sk_server_request *server_request;
+
+/**
+ * @attribute class server_response
+ */
 typedef struct sk_server_response *server_response;
 
 web_server start_web_server(string port);
