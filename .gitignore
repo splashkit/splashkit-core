@@ -1,6 +1,3 @@
-
-# Created by https://www.gitignore.io/api/osx,xcode
-
 ### OSX ###
 *.DS_Store
 .AppleDouble
@@ -31,16 +28,12 @@ Temporary Items
 
 
 ### Xcode ###
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## Build generated
+# Build generated
 build/
 DerivedData/
-test_database
 
-## Various settings
+# Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -51,22 +44,10 @@ test_database
 !default.perspectivev3
 xcuserdata/
 
-## Other
+# Other
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-
-## Original
-projects/Xcode/DerivedData/
-coresdk/external/SDL
-coresdk/external/SDL_gfx
-coresdk/external/SDL_image
-coresdk/external/SDL_mixer
-coresdk/external/SDL_net
-coresdk/external/SDL_ttf
-coresdk/external/setup.log
-coresdk/include
-projects/bash/out
 
 ### CLion JetBrains IDE ###
 .idea
@@ -82,14 +63,10 @@ swap
 # auto-generated tag files
 tags
 
-# CMake
-CMakeCache.txt
-CMakeFiles/
-Makefile
-cmake_install.cmake
-libsplashkit.a
-splashkit_test
-projects/cmake/Resources
+### CMake ###
+projects/cmake/
+!CMakeLists.txt
 
-# Splashkit
-libsplashkit.so
+### Generated Folders ###
+bin/
+out/
