@@ -65,7 +65,6 @@ tags
 
 ### CMake ###
 projects/cmake/
-!CMakeLists.txt
 CMakeCache.txt
 CMakeFiles/
 Makefile
