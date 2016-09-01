@@ -1,6 +1,3 @@
-[submodule "coresdk/external/civetweb"]
-	path = coresdk/external/civetweb
-	url = https://github.com/jarmstrong/civetweb
-[submodule "coresdk/external/sqlite"]
-	path = coresdk/external/sqlite
-	url = https://github.com/splashkit/sqlite.git
+[submodule "coresdk/external"]
+	path = coresdk/external
+	url = https://github.com/splashkit/splashkit-external
