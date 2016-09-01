@@ -66,6 +66,13 @@ void set_camera_position(point_2d pos);
  */
 point_2d camera_position();
 
+/**
+ * Returns the center of the screen in world coordinates.
+ *
+ * @returns The center of the screen in world coordinates.
+ */
+point_2d screen_center();
+
 //---------------------------------------------------------------------------
 // World-To-Screen Translation
 //---------------------------------------------------------------------------

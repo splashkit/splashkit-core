@@ -50,6 +50,11 @@ point_2d camera_position()
     return point_at(_camera_x, _camera_y);
 }
 
+point_2d screen_center()
+{
+    return point_at(_camera_x + screen_width() / 2.0f, _camera_y + screen_height() / 2.0f);
+}
+
 
 
 //---------------------------------------------------------------------------
@@ -103,4 +108,61 @@ float to_world_y(float screen_y)
 point_2d to_world(const point_2d &pt)
 {
     return point_at(pt.x + _camera_x, pt.y + _camera_y);
+}
+
+
+//---------------------------------------------------------------------------
+// Screen tests
+//---------------------------------------------------------------------------
+
+bool rect_on_screen(const rectangle &rect)
+{
+    return rectangles_intersect(to_screen(rect), screen_rectangle());
+}
+
+bool point_on_screen(const point_2d &pt)
+{
+    return point_in_rectangle(pt, screen_rectangle());
+}
+
+
+//---------------------------------------------------------------------------
+// Camera movement
+//---------------------------------------------------------------------------
+
+void move_camera_to(float x, float y)
+{
+    _camera_x = x;
+    _camera_y = y;
+}
+
+void move_camera_to(const point_2d &pt)
+{
+    move_camera_to(pt.x, pt.y);
+}
+
+void move_camera_by(float dx, float dy)
+{
+    _camera_x += dx;
+    _camera_y += dy;
+}
+
+void move_camera_by(const vector_2d &offset)
+{
+    move_camera_by(offset.x, offset.y);
+}
+
+void center_camera_on(sprite s, float offset_x, float offset_y)
+{
+    point_2d center = sprite_position(s);
+    
+    float sc_x = center.x + offset_x - (screen_width() / 2);
+    float sc_y = center.y + offset_y - (screen_height() / 2);
+
+    move_camera_to(sc_x, sc_y);
+}
+
+void center_camera_on(sprite s, const vector_2d &offset)
+{
+    center_camera_on(s, offset.x, offset.y);
 }
