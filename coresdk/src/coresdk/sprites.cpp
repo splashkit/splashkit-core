@@ -1159,7 +1159,7 @@ void sprite_set_move_from_anchor_point(sprite s, bool value)
     }
 }
 
-void sprite_move_to(sprite s, const point_2d &pt, int taking_seconds)
+void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
