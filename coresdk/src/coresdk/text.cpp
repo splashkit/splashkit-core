@@ -42,7 +42,7 @@ bool font_has_size(font fnt, int font_size)
     return false;
 }
 
-bool font_has_size(string name, int font_size)
+bool font_has_size(const string &name, int font_size)
 {
     return font_has_size(font_named(name), font_size);
 }
@@ -59,7 +59,7 @@ void font_load_size(font fnt, int font_size)
     }
 }
 
-void font_load_size(string name, int font_size)
+void font_load_size(const string &name, int font_size)
 {
     return font_load_size(font_named(name), font_size);
 }
@@ -130,7 +130,7 @@ void set_font_style(font fnt, font_style style)
     }
 }
 
-void set_font_style(string name, font_style style)
+void set_font_style(const string &name, font_style style)
 {
     set_font_style(font_named(name), style);
 }
@@ -149,12 +149,12 @@ font_style get_font_style(font fnt)
     return static_cast<font_style>(sk_get_font_style(fnt, font_size));
 }
 
-font_style get_font_style(string name)
+font_style get_font_style(const string &name)
 {
     return get_font_style(font_named(name));
 }
 
-font load_font(string name, string filename)
+font load_font(string name, const string &filename)
 {
     if (has_font(name)) return font_named(name);
 
@@ -197,7 +197,7 @@ void _print_strings(void *dest, font fnt, int font_size, string str, rectangle r
     sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
 }
 
-void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts)
+void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
 {
     rectangle rect;
     if ( ! VALID_PTR(fnt, FONT_PTR) )
@@ -218,33 +218,33 @@ void draw_text(string text, color clr, font fnt, int font_size, float x, float y
     _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
 }
 
-void draw_text(string text, color clr, font fnt, int font_size, float x, float y)
+void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
 {
     draw_text(text, clr, fnt, font_size, x, y, option_defaults());
 }
 
-void draw_text(string text, color clr, string fnt, int font_size, float x, float y, drawing_options opts)
+void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
 {
     draw_text(text, clr, font_named(fnt), font_size, x, y, opts);
 }
 
-void draw_text(string text, color clr, string fnt, int font_size, float x, float y)
+void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
 {
     draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
 }
 
-void draw_text(string text, color clr, float x, float y, drawing_options opts)
+void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
 {
     xy_from_opts(opts, x, y);
     sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
 }
 
-void draw_text(string text, color clr, float x, float y)
+void draw_text(const string &text, const color &clr, float x, float y)
 {
     draw_text(text, clr, x, y, option_defaults());
 }
 
-int text_length(string text, font fnt, int font_size)
+int text_length(const string &text, font fnt, int font_size)
 {
     if ( INVALID_PTR(fnt, FONT_PTR) )
     {
@@ -257,7 +257,7 @@ int text_length(string text, font fnt, int font_size)
     return w;
 }
 
-int text_length(string text, string fnt, int font_size)
+int text_length(const string &text, const string &fnt, int font_size)
 {
     return text_length(text, font_named(fnt), font_size);
 }

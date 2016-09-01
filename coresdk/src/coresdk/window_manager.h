@@ -29,7 +29,7 @@ window open_window(string caption, int width, int height);
 
 void close_window(window wind);
 
-void close_window(string name);
+void close_window(const string &name);
 
 /**
  * Close all of the windows that are currently open.
@@ -46,11 +46,11 @@ window current_window();
 
 void set_current_window(window wind);
 
-void set_current_window(string name);
+void set_current_window(const string &name);
 
 bool window_close_requested(window wind);
 
-bool window_close_requested(string name);
+bool window_close_requested(const string &name);
 
 void refresh_window(window wind);
 
@@ -70,7 +70,7 @@ int window_width(window wind);
  * @attribute class window
  * @attribute getter width
  */
-int window_width(string name);
+int window_width(const string &name);
 
 /**
  * Returns the height of the window in pixels.
@@ -86,7 +86,7 @@ int window_height(window wind);
  * @attribute class window
  * @attribute getter height
  */
-int window_height(string name);
+int window_height(const string &name);
 
 void window_set_icon(window wind, bitmap bmp);
 

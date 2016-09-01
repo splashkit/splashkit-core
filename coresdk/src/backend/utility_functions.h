@@ -165,7 +165,7 @@ _bitmap_data *to_bitmap_ptr(void *b);
 _window_data *to_window_ptr(void *w);
 
 sk_drawing_surface *to_surface_ptr(void *p);
-void xy_from_opts(drawing_options &opts, float &x, float &y);
+void xy_from_opts(const drawing_options &opts, float &x, float &y);
 
 void process_range(string value_in, vector<int> &result);
 

@@ -152,7 +152,7 @@ void close_window(window wind)
     delete(wind);
 }
 
-void close_window(string name)
+void close_window(const string &name)
 {
     close_window(window_named(name));
 }
@@ -204,7 +204,7 @@ void set_current_window(window wind)
     _current_window = wind;
 }
 
-void set_current_window(string name)
+void set_current_window(const string &name)
 {
     set_current_window(window_named(name));
 }
@@ -220,7 +220,7 @@ bool window_close_requested(window wind)
     return sk_get_window_event_data(&wind->image.surface).close_requested;
 }
 
-bool window_close_requested(string name)
+bool window_close_requested(const string &name)
 {
     return window_close_requested(window_named(name));
 }
@@ -236,7 +236,7 @@ int window_width(window wind)
     return wind->image.surface.width;
 }
 
-int window_width(string name)
+int window_width(const string &name)
 {
     return window_width(window_named(name));
 }
@@ -252,7 +252,7 @@ int window_height(window wind)
     return wind->image.surface.height;
 }
 
-int window_height(string name)
+int window_height(const string &name)
 {
     return window_height(window_named(name));
 }
