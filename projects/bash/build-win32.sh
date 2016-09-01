@@ -2,8 +2,8 @@
 
 echo "Ensure you run this from the mingw 32 shell of Msys2"
 
-rm -rf ./out/win32
-mkdir -p ./out/win32
+rm -rf ../../out/win32
+mkdir -p ../../out/win32
 
 CORE_SDK_PATH="../../coresdk"
 
