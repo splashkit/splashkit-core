@@ -17,7 +17,7 @@
 
 #include <map>
 #include <cstdlib>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
