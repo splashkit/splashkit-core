@@ -24,5 +24,6 @@ void run_physics_test();
 void run_web_server_tests();
 void run_sprite_test();
 void run_bundle_test();
+void run_camera_test();
 
 #endif /* test_main_h */

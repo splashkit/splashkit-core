@@ -230,7 +230,7 @@ int window_width(window wind)
     if (INVALID_PTR(wind, WINDOW_PTR))
     {
         raise_warning("Attempting to get width of invalid window");
-        return true;
+        return 0;
     }
 
     return wind->image.surface.width;
@@ -246,7 +246,7 @@ int window_height(window wind)
     if (INVALID_PTR(wind, WINDOW_PTR))
     {
         raise_warning("Attempting to get height of invalid window");
-        return true;
+        return 0;
     }
     
     return wind->image.surface.height;

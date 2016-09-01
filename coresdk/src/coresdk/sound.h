@@ -63,7 +63,6 @@ typedef struct _sound_data *sound_effect;
  *
  * @attribute class         sound_effect
  * @attribute constructor   true
- * @attribute self          effect
  */
 sound_effect load_sound_effect(string name, string filename);
 
@@ -92,11 +91,11 @@ bool has_sound_effect(string name);
 sound_effect sound_effect_named(string name);
 
 /**
- * Returns the name of the 'sound_effect' that has been loaded by SplashKit
+ * Returns the name of the `sound_effect` that has been loaded by SplashKit
  *
- * @param effect The 'sound_effect' to check
+ * @param effect The `sound_effect` to check
  *
- * @returns Returns the name of the 'sound_effect' that has been loaded
+ * @returns Returns the name of the `sound_effect` that has been loaded
  *
  * @attribute class     sound_effect
  * @attribute getter    name
@@ -105,11 +104,11 @@ sound_effect sound_effect_named(string name);
 string sound_effect_name(sound_effect effect);
 
 /**
- * Returns the filename of the 'sound_effect' that has been loaded by SplashKit
+ * Returns the filename of the `sound_effect` that has been loaded by SplashKit
  *
- * @param effect The 'sound_effect' to check
+ * @param effect The `sound_effect` to check
  *
- * @returns Returns the filename of the 'sound_effect' that has been loaded
+ * @returns Returns the filename of the `sound_effect` that has been loaded
  *
  * @attribute class     sound_effect
  * @attribute getter    filename
@@ -118,9 +117,9 @@ string sound_effect_name(sound_effect effect);
 string sound_effect_filename(sound_effect effect);
 
 /**
- * Checks whether the 'sound_effect' is currently playing
+ * Checks whether the `sound_effect` is currently playing
  *
- * @param effect The 'sound_effect' to be tested.
+ * @param effect The `sound_effect` to be tested.
  *
  * @returns Returns whether the "sound_effect" is currently playing or not
  *
@@ -131,15 +130,14 @@ string sound_effect_filename(sound_effect effect);
 bool sound_effect_playing(sound_effect effect);
 
 /**
- * Checks whether the 'sound_effect' that matches the name is currently playing
+ * Checks whether the `sound_effect` that matches the name is currently playing
  *
- * @param name The name of the 'sound_effect'
+ * @param name The name of the `sound_effect`
  *
  * @returns Returns whether the "sound_effect" that matches the name is currently playing or not
  *
  * @attribute class     sound_effect
  * @attribute getter    is_playing
- * @attribute self      effect
  */
 bool sound_effect_playing(string name);
 
@@ -171,7 +169,7 @@ void free_all_sound_effects();
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute unique  play_sound_effect_with_loops_and_volume
+ * @attribute suffix  with_loops_and_volume
  * @attribute self    effect
  */
 void play_sound_effect(sound_effect effect, int times, float volume);
@@ -222,7 +220,6 @@ void play_sound_effect(sound_effect effect, float volume);
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute self    effect
  */
 void play_sound_effect(string name, int times, float volume);
 
@@ -234,8 +231,6 @@ void play_sound_effect(string name, int times, float volume);
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute self    effect
- *
  */
 void play_sound_effect(string name, int times);
 
@@ -246,8 +241,6 @@ void play_sound_effect(string name, int times);
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute self    effect
- *
  */
 void play_sound_effect(string name);
 
@@ -255,60 +248,50 @@ void play_sound_effect(string name);
  * Plays a sound effect once at full volume.
  *
  * @param name      The name of the effect to play.
- * @param volume    The volume to play the 'sound_effect'
+ * @param volume    The volume to play the `sound_effect`
  *
  * @attribute class   sound_effect
  * @attribute method  play
- * @attribute self    effect
- *
  */
 void play_sound_effect(string name, float volume);
 
 /**
- * Stops the 'sound_effect' if it is currently playing
+ * Stops the `sound_effect` if it is currently playing
  *
- * @param effect      The 'sound_effect' to stop.
+ * @param effect      The `sound_effect` to stop.
  *
  * @attribute class   sound_effect
  * @attribute method  stop
  * @attribute self    effect
- *
  */
 void stop_sound_effect(sound_effect effect);
 
 /**
- * Stops the 'sound_effect' that matches the name, if it is currently playing.
+ * Stops the `sound_effect` that matches the name, if it is currently playing.
  *
- * @param name      The name of the 'sound_effect' to stop.
+ * @param name      The name of the `sound_effect` to stop.
  *
  * @attribute class   sound_effect
  * @attribute method  stop
- * @attribute self    effect
- *
  */
 void stop_sound_effect(string name);
 
 /**
- * Fades out the 'sound_effect' over the specified milliseconds.
+ * Fades out the `sound_effect` over the specified milliseconds.
  *
- * @param effect      The 'sound_effect' to fade out.
- * @param ms          The number of milliseconds to fade out the 'sound_effect'.
+ * @param effect      The `sound_effect` to fade out.
+ * @param ms          The number of milliseconds to fade out the `sound_effect`.
  *
  * @attribute class   sound_effect
  * @attribute method  fade_out
  * @attribute self    effect
- *
  */
 void fade_sound_effect_out(sound_effect effect, int ms);
 
 /**
- * Fades out all 'sound_effect's over the specified milliseconds.
+ * Fades out all `sound_effect`s over the specified milliseconds.
  *
- * @param ms      The number of milliseconds to fade out all sound effects.
- *
- * @attribute class   sound_effect
- * @attribute method  fade_out
- * @attribute self    effect
+ * @param ms The number of milliseconds to fade out all sound effects.
  */
 void fade_all_sound_effects_out(int ms);
 

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#ifndef images_hpp
-#define images_hpp
+#ifndef images_h
+#define images_h
 
 #include "drawing_options.h"
 #include "types.h"
@@ -70,6 +70,15 @@ int bitmap_height(bitmap bmp);
 int bitmap_height(string name);
 
 /**
+ * This returns a point that represents the center of the bitmap in local
+ * space.
+ *
+ * @param bmp   The bitmap to get the center of.
+ * @returns     A point in the center of the bitmap.
+ */
+point_2d bitmap_center(bitmap bmp);
+
+/**
  * Returns the width of each cell in this bitmap.
  *
  * @param bmp   The bitmap to get the details from.
@@ -84,6 +93,15 @@ int bitmap_cell_width(bitmap bmp);
  * @returns     The height of each cells in bmp
  */
 int bitmap_cell_height(bitmap bmp);
+
+/**
+ * This returns a point that represents the center of a cell from this
+ * bitmap in local space.
+ *
+ * @param bmp   The bitmap to get the center of.
+ * @returns     A point in the center of a cell for this bitmap.
+ */
+point_2d bitmap_cell_center(bitmap bmp);
 
 /**
  * Returns a vector that represents the movement needed to get to a given
@@ -149,4 +167,4 @@ bool pixel_drawn_at_point(bitmap bmp, float x, float y);
  */
 bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
 
-#endif /* images_hpp */
+#endif /* images_h */
