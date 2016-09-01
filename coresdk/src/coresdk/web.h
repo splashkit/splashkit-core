@@ -24,9 +24,9 @@ typedef struct _http_request_data *http_request;
  */
 typedef struct _http_response_data *http_response;
 
-http_response http_get(string url, unsigned short port);
+http_response http_get(const string &url, unsigned short port);
 
-bitmap download_image(string name, string url, unsigned short port);
+bitmap download_image(const string &name, const string &url, unsigned short port);
 
 string http_response_to_string(http_response response);
 void save_response_to_file(http_response response, string path);

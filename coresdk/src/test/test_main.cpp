@@ -21,7 +21,7 @@ using namespace std;
 
 vector<pair<string, function<void()>>> tests;
 
-void add_test(string name, function<void()> f)
+void add_test(const string &name, const function<void()> &f)
 {
     tests.push_back({name, f});
 }

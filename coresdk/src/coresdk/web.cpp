@@ -55,7 +55,7 @@ sk_http_response make_request (sk_http_method request_type, string url, unsigned
     return sk_http_make_request(request);
 }
 
-http_response http_get(string url, unsigned short port)
+http_response http_get(const string &url, unsigned short port)
 {
     http_response response;
 
@@ -90,7 +90,7 @@ string http_response_to_string(http_response response)
     return result;
 }
 
-bitmap download_image(string name, string url, unsigned short port)
+bitmap download_image(const string &name, const string &url, unsigned short port)
 {
     http_response response = http_get(url, port);
 

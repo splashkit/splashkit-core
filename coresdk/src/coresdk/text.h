@@ -29,13 +29,13 @@ using namespace std;
 
 void set_font_style(font fnt, font_style style);
 
-void set_font_style(string name, font_style style);
+void set_font_style(const string &name, font_style style);
 
 font_style get_font_style(font fnt);
 
-font_style get_font_style(string name);
+font_style get_font_style(const string &name);
 
-font load_font(string name, string filename);
+font load_font(const string &name, const string &filename);
 
 void free_font(font fnt);
 
@@ -43,7 +43,7 @@ void free_all_fonts();
 
 void font_load_size(font fnt, int font_size);
 
-void font_load_size(string name, int font_size);
+void font_load_size(const string &name, int font_size);
 
 bool has_font(font fnt);
 
@@ -51,23 +51,28 @@ bool has_font(string name);
 
 bool font_has_size(font fnt, int font_size);
 
-bool font_has_size(string name, int font_size);
+bool font_has_size(const string &name, int font_size);
 
 font font_named(string name);
 
-void draw_text(string text, color clr, font fnt, int font_size, float x, float y, drawing_options opts);
+void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
 
-void draw_text(string text, color clr, font fnt, int font_size, float x, float y);
+void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y);
 
-void draw_text(string text, color clr, string fnt, int font_size, float x, float y, drawing_options opts);
+void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
 
-void draw_text(string text, color clr, string fnt, int font_size, float x, float y);
+void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
 
-void draw_text(string text, color clr, float x, float y, drawing_options opts);
+void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts);
 
-void draw_text(string text, color clr, float x, float y);
+void draw_text(const string &text, const color &clr, const string &fnt, float x, float y);
 
-int text_length(string text, font fnt, int font_size);
-int text_length(string text, string fnt, int font_size);
+void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts);
+
+void draw_text(const string &text, const color &clr, float x, float y);
+
+int text_length(const string &text, font fnt, int font_size);
+
+int text_length(const string &text, string fnt, int font_size);
 
 #endif /* text_hpp */

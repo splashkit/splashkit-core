@@ -204,7 +204,7 @@ sk_drawing_surface *to_surface_ptr(void *p)
     }
 }
 
-void xy_from_opts(drawing_options &opts, float &x, float &y)
+void xy_from_opts(const drawing_options &opts, float &x, float &y)
 {
     // check cases where drawn without camera...
     switch (opts.camera)
