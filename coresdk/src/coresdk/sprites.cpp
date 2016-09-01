@@ -137,7 +137,7 @@ sprite create_sprite(bitmap layer)
     return create_sprite(layer, nullptr);
 }
 
-sprite create_sprite(string bitmap_name)
+sprite create_sprite(const string &bitmap_name)
 {
     return create_sprite(bitmap_named(bitmap_name), nullptr);
 }
@@ -882,8 +882,8 @@ void draw_sprite(sprite s, float x_offset, float y_offset)
         idx = s->visible_layers[i];
         draw_bitmap(
             sprite_layer(s, idx),
-            s->position.x + x_offset + s->layer_offsets[idx].x,
-            s->position.y + y_offset + s->layer_offsets[idx].y,
+            s->position.x - s->anchor_point.x + x_offset + s->layer_offsets[idx].x,
+            s->position.y -s->anchor_point.y + y_offset + s->layer_offsets[idx].y,
             opts);
     }
 }
@@ -919,6 +919,15 @@ void sprite_set_anchor_point(sprite s, const point_2d &pt)
     {
         raise_warning("Attempting to set anchor point of invalid sprite");
     }
+}
+
+point_2d sprite_anchor_position(sprite s)
+{
+    point_2d result = sprite_position(s);
+    point_2d anchor = sprite_anchor_point(s);
+    result.x += anchor.x;
+    result.y += anchor.y;
+    return result;
 }
 
 //-----------------------------------------------------------------------------
@@ -1085,7 +1094,10 @@ point_2d sprite_position(sprite s)
 
 void sprite_set_position(sprite s, const point_2d &value)
 {
-    if ( VALID_PTR(s, SPRITE_PTR) ) s->position = value;
+    if ( VALID_PTR(s, SPRITE_PTR) )
+    {
+        s->position = value;
+    }
 }
 
 void sprite_set_dx(sprite s, float value)

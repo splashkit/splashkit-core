@@ -119,7 +119,7 @@ sprite create_sprite(bitmap layer);
  * @attribute class sprite
  * @attribute constructor true
  */
-sprite create_sprite(string name);
+sprite create_sprite(const string &bitmap_name);
 
 /**
  * Creates a sprite. The bitmap_name is used to indicate the bitmap the sprite
@@ -1227,6 +1227,15 @@ point_2d sprite_anchor_point(sprite s);
  * @setter anchor_point
  */
 void sprite_set_anchor_point(sprite s, const point_2d &pt);
+
+/**
+ * The sprite anchor position, is the location of the anchor point in world
+ * coordinates, based upon the position of the sprite.
+ *
+ * @params s The sprite to find where the anchor is in world coordinates
+ * @returns The location of the sprite's anchor point positioned at the sprite's location
+ */
+point_2d sprite_anchor_position(sprite s);
 
 /**
  * Indicates if the sprite is moved from its anchor point, or from its top left.

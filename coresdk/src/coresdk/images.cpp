@@ -360,6 +360,11 @@ int bitmap_height(string name)
     return bitmap_height(bitmap_named(name));
 }
 
+point_2d bitmap_center(bitmap bmp)
+{
+    return point_at(bitmap_width(bmp) / 2.0f, bitmap_height(bmp) / 2.0f);
+}
+
 int bitmap_cell_width(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
@@ -381,6 +386,12 @@ int bitmap_cell_height(bitmap bmp)
     
     return bmp->cell_h;
 }
+
+point_2d bitmap_cell_center(bitmap bmp)
+{
+    return point_at(bitmap_cell_width(bmp) / 2.0f, bitmap_cell_height(bmp) / 2.0f);
+}
+
 
 int bitmap_cell_count(bitmap bmp)
 {
