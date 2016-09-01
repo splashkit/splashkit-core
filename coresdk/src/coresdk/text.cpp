@@ -154,7 +154,7 @@ font_style get_font_style(const string &name)
     return get_font_style(font_named(name));
 }
 
-font load_font(string name, const string &filename)
+font load_font(const string &name, const string &filename)
 {
     if (has_font(name)) return font_named(name);
 
@@ -231,6 +231,16 @@ void draw_text(const string &text, const color &clr, const string &fnt, int font
 void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
 {
     draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
+}
+
+void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts)
+{
+    draw_text(text, clr, fnt, 64, x, y, opts);
+}
+
+void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
+{
+    draw_text(text, clr, fnt, 64, x, y);
 }
 
 void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
