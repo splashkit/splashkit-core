@@ -72,6 +72,10 @@ font font_named(string name)
     }
     else
     {
+        string filename = path_to_resource(name, FONT_RESOURCE);
+        
+        if ( file_exists(filename) or file_exists(name))
+            return load_font(name, name);
         return nullptr;
     }
 }

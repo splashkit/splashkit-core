@@ -104,7 +104,13 @@ music music_named(string name)
     if (has_music(name))
         return _music[name];
     else
+    {
+        string filename = path_to_resource(name, MUSIC_RESOURCE);
+        
+        if ( file_exists(filename) or file_exists(name))
+            return load_music(name, name);
         return nullptr;
+    }
 }
 
 void play_music(music data, int times, float volume)

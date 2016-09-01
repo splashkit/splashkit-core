@@ -81,7 +81,10 @@ sound_effect load_sound_effect(string name, string filename);
 bool has_sound_effect(string name);
 
 /**
- * Retrieves a `sound_effect` that has been loaded into SplashKit.
+ * Retrieves a `sound_effect` that has been loaded into SplashKit. If the
+ * sound effect has not been loaded, this will attempt to use the name to
+ * locate the file for you. If a file can be found, the sound effect is loaded
+ * and returned.
  *
  * @param name The name of the sound effect to return.
  *

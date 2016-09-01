@@ -38,7 +38,13 @@ sound_effect sound_effect_named(string name)
     if (has_sound_effect(name))
         return _sound_effects[name];
     else
+    {
+        string filename = path_to_resource(name, SOUND_RESOURCE);
+        
+        if ( file_exists(filename) or file_exists(name))
+            return load_sound_effect(name, name);
         return nullptr;
+    }
 }
 
 string sound_effect_name(sound_effect effect)
