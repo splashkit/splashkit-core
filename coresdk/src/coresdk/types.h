@@ -22,6 +22,9 @@ typedef unsigned char byte;
  */
 typedef void (free_notifier)(void *pointer);
 
+/**
+ * color
+ */
 struct color
 {
     float r, g, b, a;
@@ -37,6 +40,9 @@ struct color
 /// @class Bitmap
 /// @pointer_wrapper
 /// @field pointer: pointer
+/**
+ * @attribute class bitmap
+ */
 typedef struct _bitmap_data *bitmap;
 
 /// Use font styles to set the style of a font. Setting the style is time
@@ -46,6 +52,9 @@ typedef struct _bitmap_data *bitmap;
 /// bold and italic.
 ///
 /// @enum font_style
+/**
+ *
+ */
 enum font_style
 {
     NORMAL_FONT      = 0,
@@ -59,6 +68,9 @@ enum font_style
 /// within that area. See DrawTextLines.
 ///
 /// @enum font_alignment
+/**
+ *
+ */
 enum font_alignment
 {
     ALIGN_LEFT   = 1,
@@ -74,21 +86,30 @@ enum font_alignment
 /// @class Font
 /// @pointer_wrapper
 /// @field pointer: pointer
+/**
+ * @attribute class font
+ */
 typedef struct sk_font_data *font;
 
+/**
+ * @attribute class animation_script
+ */
 typedef struct _animation_script_data *animation_script;
+
+/**
+ * @attribute class animation
+ */
 typedef struct _animation_data *animation;
 
-/// A Point2D represents an location in Cartesian coordinates (x,y).
-/// The x value represents the distance from the left edge of the window or bitmap, increasing
-/// in value as you travel right. The y value represents the distance from the top
-/// edge of the window or bitmap, and increases as you travel down toward the bottom.
-///
-/// Point2D is a great way to keep track of the location of something in a 2D space like
-/// a Window or Bitmap.
-///
-/// @struct Point2D
-/// @sameas Vector
+/**
+ * A Point2D represents an location in Cartesian coordinates (x,y).
+ * The x value represents the distance from the left edge of the window or bitmap, increasing
+ * in value as you travel right. The y value represents the distance from the top
+ * edge of the window or bitmap, and increases as you travel down toward the bottom.
+ *
+ * Point2D is a great way to keep track of the location of something in a 2D space like
+ * a Window or Bitmap.
+ */
 struct point_2d
 {
     float x, y;
@@ -107,6 +128,9 @@ struct point_2d
 /// @field x: Single
 /// @field y: Single
 /// @sameas Point2D
+/**
+ *
+ */
 struct vector_2d
 {
     float x;
@@ -120,6 +144,9 @@ struct vector_2d
 /// this position.
 ///
 /// @struct Rectangle
+/**
+ *
+ */
 struct rectangle
 {
     float x, y;
@@ -134,6 +161,9 @@ struct rectangle
 /// outcomes.
 ///
 /// @struct Quad
+/**
+ *
+ */
 struct quad
 {
     point_2d points[4];
@@ -144,6 +174,9 @@ struct quad
 /// from the point you position it at.
 ///
 /// @struct Circle
+/**
+ *
+ */
 struct circle
 {
     point_2d center;
@@ -172,6 +205,9 @@ struct line
 /// `DRAW_TO_WORLD` means camera has an affect.
 /// `DRAW_DEFAULT` means camera has an affect only if drawn to the screen.
 /// @enum DrawingDest
+/**
+ *
+ */
 enum drawing_dest
 {
     DRAW_TO_SCREEN,  // no camera effect
@@ -184,6 +220,9 @@ enum drawing_dest
 /// operations.
 ///
 /// @struct DrawingOptions
+/**
+ *
+ */
 struct drawing_options
 {
     void *dest;             // The bitmap or window used to draw on to
