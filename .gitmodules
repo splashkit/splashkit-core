@@ -1,0 +1,3 @@
+[submodule "coresdk/external"]
+	path = coresdk/external
+	url = https://github.com/splashkit/splashkit-external
