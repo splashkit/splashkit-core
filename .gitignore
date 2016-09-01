@@ -66,6 +66,13 @@ tags
 ### CMake ###
 projects/cmake/
 !CMakeLists.txt
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+libsplashkit.a
+splashkit_test
+projects/cmake/Resources
 
 ### Generated Folders ###
 bin/
