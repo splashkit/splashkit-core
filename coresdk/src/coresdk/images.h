@@ -35,9 +35,15 @@ bitmap load_bitmap(string name, string filename);
 ///
 bool has_bitmap(string name);
 
-/// Returns the `Bitmap` that has been loaded with the specified name,
-/// see `LoadBitmapNamed`.
-///
+/**
+ * Returns the `bitmap` that has been loaded with the specified name,
+ * see `load_bitmap`. This will attempt to load the bitmap if it has not
+ * been loaded.
+ *
+ * @param  name The name of the bitmap to check.
+ * @return      The bitmap with the name specified, which may refer to nothing
+ *              if the bitmap has not been loaded.
+ */
 bitmap bitmap_named(string name);
 
 /// Releases the SwinGame resources associated with the bitmap of the
@@ -57,6 +63,24 @@ void draw_bitmap(string name, float x, float y, drawing_options opts);
 
 bitmap create_bitmap(string name, int width, int height);
 
+/**
+ * Returns the filename from which the bitmap was loaded. This will be an empty
+ * string for created bitmaps.
+ *
+ * @param  bmp The bitmap to get the filename from.
+ * @return     The file name of the bitmap.
+ */
+string bitmap_filename(bitmap bmp);
+
+/**
+ * Returns the name of the bitmap was loaded. This is the name you can use to
+ * access this bitmap.
+ *
+ * @param  bmp The bitmap to get the name from.
+ * @return     The name of the bitmap.
+ */
+string bitmap_name(bitmap bmp);
+
 void clear_bitmap(bitmap bmp, color clr);
 
 void clear_bitmap(string name, color clr);
@@ -65,8 +89,22 @@ int bitmap_width(bitmap bmp);
 
 int bitmap_width(string name);
 
+/**
+ * Returns the total height of the bitmap. If the bitmap contains cells, you ca
+ * get the height of a cell using `bitmap_cell_height`.
+ *
+ * @param  bmp The bitmap to get the details from.
+ * @return     The height of the bitmap.
+ */
 int bitmap_height(bitmap bmp);
 
+/**
+ * Returns the total height of the bitmap. If the bitmap contains cells, you ca
+ * get the height of a cell using `bitmap_cell_height`.
+ *
+ * @param  name The name of the bitmap to get the details from.
+ * @return      The height of the bitmap.
+ */
 int bitmap_height(string name);
 
 /**
@@ -95,6 +133,15 @@ int bitmap_cell_width(bitmap bmp);
 int bitmap_cell_height(bitmap bmp);
 
 /**
+ * Returns the number of rows of cells in the bitmap. These details are set in
+ * `bitmap_set_cell_details`.
+ *
+ * @param  bmp The bitmap to get the details from.
+ * @return     The number of rows of cells in the bitmap.
+ */
+int bitmap_cell_rows(bitmap bmp);
+
+/**
  * This returns a point that represents the center of a cell from this
  * bitmap in local space.
  *
@@ -106,7 +153,7 @@ point_2d bitmap_cell_center(bitmap bmp);
 /**
  * Returns a vector that represents the movement needed to get to a given
  * cell within a bitmap.
- * 
+ *
  * @param src   The bitmap with the cell details.
  * @param cell  The index of the cell
  * @returns     The offset needed to get to the cell from the top left of the bitmap.
@@ -124,6 +171,14 @@ vector_2d bitmap_cell_offset(bitmap src, int cell);
 rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
 
 /**
+ *  Returns a rectangle that will encompass a cell of the bitmap.
+ *
+ * @param src   The bitmap to get the details from
+ * @returns     A rectangle with width and height from the bitmap's cell details.
+ */
+rectangle bitmap_cell_rectangle(bitmap src);
+
+/**
  * Returns a circle that will encompass the bitmap cell if it were drawn
  * at the indicated point, with the provided scale.
  *
@@ -133,6 +188,45 @@ rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
  * @returns     A circle that will encompass the bitmap cell.
  */
 circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
+
+/**
+ * Returns a circle that will encompass the bitmap cell if it were drawn
+ * at the indicated point.
+ *
+ * @param bmp   The bitmap to get the details from.
+ * @param pt    The point indicating the location of the bitmap.
+ * @returns     A circle that will encompass the bitmap cell.
+ */
+circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
+
+/**
+ * Returns a circle that will encompass the bitmap cell if it were drawn
+ * at the indicated point.
+ *
+ * @param bmp   The bitmap to get the details from.
+ * @param x     The the x location of the bitmap.
+ * @param y     The the y location of the bitmap.
+ * @returns     A circle that will encompass the bitmap cell.
+ */
+circle bitmap_cell_circle(bitmap bmp, float x, float y);
+
+/**
+ * Returns a circle that will encompass the entire bitamp.
+ *
+ * @param  bmp The bitmap to encompass.
+ * @param  pt  The point where the bitmap is located.
+ * @return     A circle that surrounds the bitmap.
+ */
+circle bitmap_circle(bitmap bmp, const point_2d &pt);
+
+/**
+ * Returns the number of cell columns in the bitmap.
+ * This is setup using `bitmap_set_cell_details`
+ *
+ * @param  bmp The bitmap to check
+ * @return     The number of cell columns
+ */
+int bitmap_cell_columns(bitmap bmp);
 
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 

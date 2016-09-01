@@ -170,6 +170,20 @@ void free_all_bitmaps()
     FREE_ALL_FROM_MAP(_bitmaps, BITMAP_PTR, free_bitmap);
 }
 
+string bitmap_filename(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR)) return "";
+    
+    return bmp->filename;
+}
+
+string bitmap_name(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR)) return "";
+    
+    return bmp->name;
+}
+
 void clear_bitmap(bitmap bmp, color clr)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
@@ -274,6 +288,11 @@ rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt)
     return rectangle_from(pt, src->cell_w, src->cell_h);
 }
 
+rectangle bitmap_cell_rectangle(bitmap src)
+{
+    return bitmap_cell_rectangle(src, point_at(0, 0));
+}
+
 vector_2d bitmap_cell_offset(bitmap src, int cell)
 {
     if ( (not VALID_PTR(src, BITMAP_PTR)) or (cell >= src->cell_count) or (cell < 0) )
@@ -311,6 +330,46 @@ circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
     }
     
     return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h) / 2.0f * scale);
+}
+
+circle bitmap_cell_circle(bitmap bmp, const point_2d pt)
+{
+    return bitmap_cell_circle(bmp, pt, 1);
+}
+
+circle bitmap_cell_circle(bitmap bmp, float x, float y)
+{
+    return bitmap_cell_circle(bmp, point_at(x, y), 1);
+}
+
+circle bitmap_circle(bitmap bmp, const point_2d &pt)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        return circle_at(0,0,0);
+    }
+    
+    return circle_at(pt, MAX(bmp->image.surface.width, bmp->image.surface.height));
+}
+
+int bitmap_cell_columns(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        return 0;
+    }
+    
+    return bmp->cell_cols;
+}
+
+int bitmap_cell_rows(bitmap bmp)
+{
+    if ( INVALID_PTR(bmp, BITMAP_PTR))
+    {
+        return 0;
+    }
+    
+    return bmp->cell_rows;
 }
 
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count)
