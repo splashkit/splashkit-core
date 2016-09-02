@@ -64,7 +64,8 @@ swap
 tags
 
 ### CMake ###
-projects/cmake/
+projects/cmake/*
+!CMakeLists.txt
 CMakeCache.txt
 CMakeFiles/
 Makefile
