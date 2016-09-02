@@ -185,8 +185,8 @@ bool try_str_to_double(string str, double &result);
 
 string to_lower (string str);
 
-float rad_to_deg(float radians);
+double rad_to_deg(double radians);
 
-float deg_to_rad(float degrees);
+double deg_to_rad(double degrees);
 
 #endif /* utility_functions_h */

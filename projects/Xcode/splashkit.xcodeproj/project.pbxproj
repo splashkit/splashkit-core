@@ -135,6 +135,7 @@
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
+		94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
 		94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F91D74027E00E3D9AF /* civetweb.cpp */; };
@@ -346,6 +347,7 @@
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
+		94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_cave_escape.cpp; sourceTree = "<group>"; };
 		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
 		94DF46F91D74027E00E3D9AF /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
 				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
 				94444B401D644FE10059BF3B /* test_main.h */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
@@ -1000,6 +1003,7 @@
 				94E699411D6F381C00FBFA28 /* web_server.cpp in Sources */,
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
+				94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
 				949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */,
 				94B57A671D65CCF300CE7D55 /* clipping.cpp in Sources */,
