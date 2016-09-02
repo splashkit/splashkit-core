@@ -82,6 +82,16 @@ timer timer_named(string name)
     return _timers[to_lower(name)];
 }
 
+bool has_timer(timer t)
+{
+    if (VALID_PTR(t, TIMER_PTR))
+    {
+        return has_timer(t->name);
+    }
+
+    return false;
+}
+
 bool has_timer(string name)
 {
     return _timers.count(to_lower(name)) > 0;

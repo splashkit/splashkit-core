@@ -214,6 +214,13 @@ sprite create_sprite(const string &name, bitmap layer, animation_script ani)
     result->destination = point_at(0,0);
     result->moving_vec = vector_to(0,0);
     result->arrive_in_sec = 0;
+
+    if (!has_timer(_sprite_timer))
+    {
+        _sprite_timer = create_timer("*SK* SpriteTimer");
+        start_timer(_sprite_timer);
+    }
+
     result->last_update = timer_ticks(_sprite_timer);
 
     // Write_ln("adding for ", name, " ", Hex_str(obj));
@@ -688,7 +695,11 @@ void sprite_start_animation(sprite s, const string &named, bool with_sound)
         raise_warning("Attempting to use invalid sprite");
         return;
     }
-    if ( INVALID_PTR(s->script, ANIMATION_SCRIPT_PTR) ) return;
+    if ( INVALID_PTR(s->script, ANIMATION_SCRIPT_PTR) )
+    {
+        raise_warning("Attempting to use invalid animation script");
+        return;
+    }
 
     int idx = animation_index(s->script, named);
     if ((idx < 0) or (idx >= animation_count(s->script)))
@@ -1018,6 +1029,7 @@ vector_2d sprite_velocity(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return vector_to(0,0);
     }
 
@@ -1028,6 +1040,7 @@ void sprite_set_velocity(sprite s, const vector_2d &value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return;
     }
 
@@ -1038,6 +1051,7 @@ void sprite_add_to_velocity(sprite s, const vector_2d &value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return;
     }
 
@@ -1048,6 +1062,7 @@ void sprite_set_x(sprite s, float value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return;
     }
 
@@ -1058,6 +1073,7 @@ float sprite_x(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return 0;
     }
 
@@ -1068,6 +1084,7 @@ void sprite_set_y(sprite s, float value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return;
     }
 
@@ -1078,6 +1095,7 @@ float sprite_y(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
+        raise_warning("Attempting to use invalid sprite");
         return 0;
     }
 
@@ -1087,9 +1105,14 @@ float sprite_y(sprite s)
 point_2d sprite_position(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
+    {
+        raise_warning("Attempting to use invalid sprite");
         return point_at(0,0);
+    }
     else
+    {
         return s->position;
+    }
 }
 
 void sprite_set_position(sprite s, const point_2d &value)
@@ -1098,33 +1121,61 @@ void sprite_set_position(sprite s, const point_2d &value)
     {
         s->position = value;
     }
+    else
+    {
+        raise_warning("Attempting to use invalid sprite");
+    }
 }
 
 void sprite_set_dx(sprite s, float value)
 {
-    if ( VALID_PTR(s, SPRITE_PTR) ) s->velocity.x = value;
+    if ( VALID_PTR(s, SPRITE_PTR) )
+    {
+        s->velocity.x = value;
+    }
+    else
+    {
+        raise_warning("Attempting to use invalid sprite");
+    }
 }
 
 float sprite_dx(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
+    {
+        raise_warning("Attempting to use invalid sprite");
         return 0;
+    }
     else
+    {
         return s->velocity.x;
+    }
+
 }
 
 void sprite_set_dy(sprite s, float value)
 {
     if ( VALID_PTR(s, SPRITE_PTR) )
+    {
         s->velocity.y = value;
+    }
+    else
+    {
+        raise_warning("Attempting to use invalid sprite");
+    }
 }
 
 float sprite_dy(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
+    {
+        raise_warning("Attempting to use invalid sprite");
         return 0;
+    }
     else
+    {
         return s->velocity.y;
+    }
 }
 
 float sprite_speed(sprite s)
@@ -1220,9 +1271,15 @@ matrix_2d sprite_location_matrix(sprite s)
 float sprite_mass(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
+    {
+        raise_warning("sprite_mass: Attempting to use invalid sprite");
         return 0;
+    }
     else
+    {
         return s->values[MASS_KEY];
+    }
+
 }
 
 void sprite_set_mass(sprite s, float value)
@@ -1234,9 +1291,15 @@ void sprite_set_mass(sprite s, float value)
 float sprite_rotation(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
+    {
+        raise_warning("sprite_rotation: Attempting to use invalid sprite");
         return 0;
+    }
     else
+    {
         return s->values[ROTATION_KEY];
+    }
+
 }
 
 void sprite_set_rotation(sprite s, float value)
@@ -1254,6 +1317,10 @@ void sprite_set_rotation(sprite s, float value)
         }
 
         s->values[ROTATION_KEY] = value;
+    }
+    else
+    {
+        raise_warning("sprite_set_rotation: Attempting to use invalid sprite");
     }
 }
 
