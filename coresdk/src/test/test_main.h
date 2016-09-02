@@ -25,5 +25,6 @@ void run_web_server_tests();
 void run_sprite_test();
 void run_bundle_test();
 void run_camera_test();
+void test_cave_escape();
 
 #endif /* test_main_h */
