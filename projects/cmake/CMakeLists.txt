@@ -61,12 +61,11 @@ else()
                    -lFLAC \
                    -lvorbis \
                    -lz \
-                   -lpng16 \
+                   -lpng12 \
                    -lvorbisfile \
                    -lmikmod \
                    -logg \
                    -lwebp \
-                   -lsmpeg2 \
                    -lfreetype \
                    -lcurl \
                    -lsqlite3 \
