@@ -1,7 +1,8 @@
 #!/bin/bash
 if [[ -z "$DOC_TEST_ONLY" ]]; then
-  cmake projects/cmake
-  make -j 2 -C projects/cmake sktest
+  cd projects/cmake
+  cmake CMakeLists.txt
+  make -j 2
 else
   echo "Running HeaderDoc validator..."
   tools/translator/translate -v -i .
