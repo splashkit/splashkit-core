@@ -6,7 +6,5 @@ if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
     sudo apt-get install libflac-dev libwebp-dev libvorbis-dev libpng-dev
 else
     echo "Installing macOS Dependencies"
-    if [[ -n "$DOC_TEST_ONLY" ]]; then
-      bundle install --gemfile tools/translator/Gemfile
-    fi
+    # None!
 fi
