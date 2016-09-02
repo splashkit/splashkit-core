@@ -24,9 +24,8 @@ before_install:
 branches:
     only:
         - develop
-
-before_script:
-    cd projects/cmake/
+        - test/ci-for-doc
 
 script:
-    - cmake CMakeLists.txt && make -j 2
+    - cmake projects/cmake && make -j 2 -C projects/cmake
+    - .travis/validate.sh
