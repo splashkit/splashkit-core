@@ -64,13 +64,12 @@ swap
 tags
 
 ### CMake ###
-projects/cmake/*
-!CMakeLists.txt
 CMakeCache.txt
 CMakeFiles/
 Makefile
 cmake_install.cmake
 libsplashkit.a
+libsplashkit.ao
 splashkit_test
 projects/cmake/Resources
 
