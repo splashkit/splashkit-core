@@ -243,9 +243,9 @@ void assign_animation(animation anim, animation_script script, string name, bool
  * @param script_name   The name of the `animation_script` to assign the `animation` to.
  * @param name          The name of the `animation` to be assigned.
  *
- * @attribute class animation
- * @attribute method assign
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    assign
+ * @attribute self      anim
  */
 void assign_animation(animation anim, string script_name, string name);
 
@@ -259,9 +259,9 @@ void assign_animation(animation anim, string script_name, string name);
  * @param name          The name of the `animation` to be assigned
  * @param with_sound    Denotes whether the `animation` should play audio.
  *
- * @attribute class animation
- * @attribute method assign
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    assign
+ * @attribute self      anim
  */
 void assign_animation(animation anim, string script_name, string name, bool with_sound);
 
@@ -272,9 +272,9 @@ void assign_animation(animation anim, string script_name, string name, bool with
  * @param script        The `animation_script` to assign the `animation` to.
  * @param idx           The index of the `animation` to create.
  *
- * @attribute class animation
- * @attribute method assign
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    assign
+ * @attribute self      anim
  */
 void assign_animation(animation anim, animation_script script, int idx);
 
@@ -288,9 +288,9 @@ void assign_animation(animation anim, animation_script script, int idx);
  * @param idx           The index of the `animation` to create.
  * @param with_sound    Denotes whether the `animation` should play audio.
  *
- * @attribute class animation
- * @attribute method assign
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    assign
+ * @attribute self      anim
  */
 void assign_animation(animation anim, animation_script script, int idx, bool with_sound);
 
@@ -301,9 +301,9 @@ void assign_animation(animation anim, animation_script script, int idx, bool wit
  * @param script        The `animation_script` to look for the `animation` in.
  * @param name          The name of the `animation` to look for.
  *
- * @attribute class animation_script
- * @attribute getter animation_index
- * @attribute self script
+ * @attribute class     animation_script
+ * @attribute getter    animation_index
+ * @attribute self      script
  *
  * @returns Returns the index of the `animation` in the `animation_script`
  */
@@ -314,9 +314,9 @@ int animation_index(animation_script script, string name);
  *
  * @param temp          The `animation` to search for.
  *
- * @attribute class animation
- * @attribute getter name
- * @attribute self animation
+ * @attribute class     animation
+ * @attribute getter    name
+ * @attribute self a    nimation
  *
  * @returns Returns the name of the `animation` in the `animation_script`.
  */
@@ -328,9 +328,9 @@ string animation_name(animation temp);
  *
  * @param anim          The `animation` to return the cell of.
  *
- * @attribute class animation
- * @attribute getter current_cell
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute getter    current_cell
+ * @attribute self      anim
  *
  * @returns Returns the current cell of the animation passed to the method.
  */
@@ -341,9 +341,9 @@ int animation_current_cell(animation anim);
  *
  * @param anim          The animation to check.
  *
- * @attribute class animation
- * @attribute method ended
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    ended
+ * @attribute self      anim
  *
  * @returns Returns a `bool` denoting whether the `animation` has ended.
  */
@@ -355,9 +355,9 @@ bool animation_ended(animation anim);
  *
  * @param anim          The animation to check.
  *
- * @attribute class animation
- * @attribute method entered_frame
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    entered_frame
+ * @attribute self      anim
  *
  * @returns Returns a `bool` denoting whether the `animation` has ended.
  */
@@ -369,9 +369,9 @@ bool animation_entered_frame(animation anim);
  *
  * @param anim          The animation to check.
  *
- * @attribute class animation
- * @attribute method frame_time
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    frame_time
+ * @attribute self      anim
  *
  * @returns Returns the amount of time spent in the current frame as a `float`.
  */
@@ -382,9 +382,9 @@ float animation_frame_time(animation anim);
  *
  * @param anim          The animation to check the vector of.
  *
- * @attribute class animation
- * @attribute method current_vector
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    current_vector
+ * @attribute self      anim
  *
  * @returns Returns the `vector_2d` assigned to the current frame in the animation.
  */
@@ -395,9 +395,9 @@ vector_2d animation_current_vector(animation anim);
  *
  * @param anim          The `animation` to restart.
  *
- * @attribute class animation
- * @attribute method restart
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    restart
+ * @attribute self      anim
  */
 void restart_animation(animation anim);
 
@@ -408,9 +408,9 @@ void restart_animation(animation anim);
  * @param anim          The `animation` to restart.
  * @param with_sound    Denotes whether the `animation` should play audio.
  *
- * @attribute class animation
- * @attribute method restart
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    restart
+ * @attribute self      anim
  */
 void restart_animation(animation anim, bool with_sound);
 
@@ -421,9 +421,9 @@ void restart_animation(animation anim, bool with_sound);
  *
  * @param anim          The `animation` to update.
  *
- * @attribute class animation
- * @attribute method update
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    update
+ * @attribute self      anim
  */
 void update_animation(animation anim);
 
@@ -435,9 +435,9 @@ void update_animation(animation anim);
  * @param anim          The `animation` to update.
  * @param pct           The amount that the frame time will be incremented
  *
- * @attribute class animation
- * @attribute method update
- * @attribute self anim
+ * @attribute class     animation
+ * @attribute method    update
+ * @attribute self      anim
  */
 void update_animation(animation anim, float pct);
 
