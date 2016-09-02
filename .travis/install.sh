@@ -6,8 +6,10 @@ if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
     sudo apt-get install libflac-dev libwebp-dev libvorbis-dev libpng-dev
 else
     echo "Installing macOS Dependencies"
-    rvm install 2.3.1
-    rvm --default use 2.3.1
-    gem install bundler
-    bundle install --path tools/translator
+    if [[ -z "$DOC_TEST_ONLY" ]]; then
+      rvm install 2.3.1
+      rvm --default use 2.3.1
+      gem install bundler
+      bundle install --path tools/translator
+    fi
 fi
