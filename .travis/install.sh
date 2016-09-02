@@ -7,9 +7,8 @@ if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
 else
     echo "Installing macOS Dependencies"
     if [[ -z "$DOC_TEST_ONLY" ]]; then
-      rvm install 2.3.1
       rvm --default use 2.3.1
       gem install bundler
-      bundle install --path tools/translator
+      bundle install --gemfile tools/translator/Gemfile
     fi
 fi
