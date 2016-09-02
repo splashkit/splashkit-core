@@ -75,7 +75,7 @@ typedef void (sprite_event_handler) (sprite s, sprite_event_kind evt);
 typedef void (sprite_function)(sprite s);
 
 /**
- *  The sprite single function is used with sprite packs to provide a 
+ *  The sprite single function is used with sprite packs to provide a
  *  procedure to be called for each of the Sprites in the sprite pack,
  *  where a float value is required.
  *
@@ -1783,14 +1783,14 @@ void update_all_sprites(float pct);
  *
  * @param fn The sprite function to call on all sprites.
  */
-void call_for_all_sprites(sprite_function fn);
+void call_for_all_sprites(sprite_function *fn);
 
 /**
  * Call the supplied function for all sprites in the current pack.
  *
  * @param fn The sprite function to call on all sprites.
  */
-void call_for_all_sprites(sprite_float_function fn, float val);
+void call_for_all_sprites(sprite_float_function *fn, float val);
 
 /**
  * Create a new sprite_pack with a given name. This pack can then be

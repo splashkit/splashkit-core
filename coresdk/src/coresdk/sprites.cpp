@@ -1402,12 +1402,12 @@ void update_all_sprites(float pct)
     call_for_all_sprites(&_update_sprite_pct, pct);
 }
 
-void call_for_all_sprites(sprite_function fn)
+void call_for_all_sprites(sprite_function *fn)
 {
     _call_for_all_sprites(current_pack(), fn);
 }
 
-void call_for_all_sprites(sprite_float_function fn, float val)
+void call_for_all_sprites(sprite_float_function *fn, float val)
 {
     _call_for_all_sprites(current_pack(), fn, val);
 }
@@ -1497,7 +1497,7 @@ bool sprite_on_screen_at(sprite s, const point_2d &pt)
 
 bool sprite_at(sprite s, const point_2d &pt)
 {
-	return sprite_point_collision(s, pt);
+    return sprite_point_collision(s, pt);
 }
 
 rectangle sprite_collision_rectangle(sprite s)
