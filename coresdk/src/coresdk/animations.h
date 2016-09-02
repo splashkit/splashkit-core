@@ -1,7 +1,11 @@
 /**
  * @header Animations
  * @author Andrew Cain
- * @brief Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each Animation generates a number sequence that can then be used when drawing bitmaps.
+ * @brief Animations in SplashKit can be used to move between cells in
+ *        bitmaps and sprites. Each animation generates a number sequence
+ *        that can then be used when drawing bitmaps.
+ *
+ * @attribute static animation
  */
 
 #ifndef animations_h
@@ -23,6 +27,7 @@ using namespace std;
  *
  * @returns Returns the newly loaded `animation_script`.
  *
+ * @attribute class animation_script
  * @attribute constructor true
  */
 animation_script load_animation_script(string name, string filename);
@@ -109,7 +114,7 @@ bool has_animation_named(animation_script script, string name);
  *
  * @returns Returns an `int` equal to the total number of animations in the script.
  *
- * @attribute class     animation
+ * @attribute class     animation_script
  * @attribute getter    animation_count
  * @attribute self      script
  */
@@ -199,10 +204,10 @@ animation create_animation(string script_name, int idx);
  *
  * @param ani           The `animation` to be disposed of.
  *
- * @attribute class     animation
- * @attribute method    free
- * @attribute destructor true
- * @attribute self      ani
+ * @attribute class       animation
+ * @attribute destructor  true
+ * @attribute method      free
+ * @attribute self        ani
  */
 void free_animation(animation ani);
 
@@ -316,7 +321,7 @@ int animation_index(animation_script script, string name);
  *
  * @attribute class     animation
  * @attribute getter    name
- * @attribute self a    nimation
+ * @attribute self      temp
  *
  * @returns Returns the name of the `animation` in the `animation_script`.
  */

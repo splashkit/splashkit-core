@@ -11,7 +11,7 @@ set(SK_BIN "../../bin")
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
-    set(LIB_FLAGS "-L../../coresdk/lib/mac \
+    set(LIB_FLAGS "-L${SK_LIB}/mac \
                    -framework IOKit \
                    -framework ForceFeedback \
                    -framework CoreFoundation \
@@ -44,7 +44,7 @@ if (APPLE)
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(LIB_FLAGS "-L../../coresdk/lib/win64 \
+    set(LIB_FLAGS "-L${SK_LIB}/win64 \
                    -L/mingw64/lib \
                    -L/usr/lib \
                    -lSDL2main")
