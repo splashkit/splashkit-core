@@ -50,3 +50,10 @@ quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4)
     return result;
 }
 
+quad quad_from(const rectangle &rect, const matrix_2d &transform)
+{
+    quad result = quad_from(rect);
+    apply_matrix(transform, result);
+    return result;
+}
+

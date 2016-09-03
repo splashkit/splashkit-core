@@ -116,6 +116,13 @@ bool point_in_rectangle(const point_2d &pt, const rectangle &rect)
     else return true;
 }
 
+bool point_in_quad(const point_2d &pt, const quad &q)
+{
+    return
+        point_in_triangle(pt, triangle_from(q.points[0], q.points[1], q.points[2])) or
+        point_in_triangle(pt, triangle_from(q.points[3], q.points[1], q.points[2]));
+}
+
 bool same_point(const point_2d &pt1, const point_2d &pt2)
 {
     return static_cast<int>(pt1.x) == static_cast<int>(pt2.x) and static_cast<int>(pt1.y) == static_cast<int>(pt2.y);

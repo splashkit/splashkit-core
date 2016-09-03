@@ -41,9 +41,7 @@ void _process_mouse_wheel_callback(int x, int y)
 
 vector_2d mouse_position_vector()
 {
-    vector_2d result;
-    sk_mouse_position(result.x, result.y);
-    return result;
+    return vector_to(mouse_position());
 }
 
 point_2d mouse_position()
@@ -81,9 +79,9 @@ float mouse_y()
 
 vector_2d mouse_movement()
 {
-    vector_2d result;
-    sk_mouse_movement(result.x, result.y);
-    return result;
+    point_2d pt;
+    sk_mouse_movement(pt.x, pt.y);    
+    return vector_to(pt);
 }
 
 vector_2d mouse_wheel_scroll()
