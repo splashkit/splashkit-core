@@ -12,16 +12,19 @@
 #include "backend_types.h"
 
 #include <string>
-using namespace std;
-
 #include <initializer_list>
 #include <algorithm>
+
+#include <easylogging++.h>
+
+using namespace std;
 
 // smallest positive value: less than that to be considered zero
 #define EPS   0.01
 // and its square
 #define EPSEPS 0.0001
 
+[[deprecated]]
 void raise_warning( string message );
 
 bool file_exists(string path);

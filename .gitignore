@@ -76,3 +76,5 @@ projects/cmake/Resources
 ### Generated Folders ###
 bin/
 out/
+
+logs/
