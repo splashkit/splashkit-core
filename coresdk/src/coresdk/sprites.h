@@ -1789,6 +1789,8 @@ void call_for_all_sprites(sprite_function *fn);
  * Call the supplied function for all sprites in the current pack.
  *
  * @param fn The sprite function to call on all sprites.
+ * @attribute class
+ * @attribute static
  */
 void call_for_all_sprites(sprite_float_function *fn, float val);
 

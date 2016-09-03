@@ -17,16 +17,20 @@ matrix:
         - os: osx
           osx_image: xcode7.3
           compiler: clang
+        - os: osx
+          osx_image: xcode7.3
+          language: ruby
+          rvm: 2.3.1
+          gemfile: tools/translator/Gemfile
+          env: DOC_TEST_ONLY=1
 
 before_install:
-    - ./.travis/install.sh
+    - .travis/install.sh
 
 branches:
     only:
         - develop
-
-before_script:
-    cd projects/cmake/
+        - test/ci-for-doc
 
 script:
-    - cmake CMakeLists.txt && make -j 2
+    - .travis/run.sh
