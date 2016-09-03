@@ -36,7 +36,7 @@ bool font_has_size(font fnt, int font_size)
     }
     else
     {
-        raise_warning("Asking if font has size on invalid font.");
+        LOG(WARNING) << "Asking if font has size on invalid font.";
     }
 
     return false;
@@ -55,7 +55,7 @@ void font_load_size(font fnt, int font_size)
     }
     else
     {
-        raise_warning("font_load_size failed: font does not exist.");
+        LOG(WARNING) << "font_load_size failed: font does not exist.";
     }
 }
 
@@ -91,7 +91,7 @@ void free_font(font fnt)
     }
     else
     {
-        raise_warning("Delete font called without valid font");
+        LOG(WARNING) << "Delete font called without valid font";
     }
 }
 
@@ -110,7 +110,7 @@ void free_all_fonts()
         }
         else
         {
-            raise_warning("Fonts contained an invalid pointer");
+            LOG(WARNING) << "Fonts contained an invalid pointer";
             _fonts.erase(_fonts.begin());
         }
     }
@@ -120,7 +120,7 @@ void set_font_style(font fnt, font_style style)
 {
     if (!VALID_PTR(fnt, FONT_PTR))
     {
-        raise_warning("Attempting to set style on invalid font.");
+        LOG(WARNING) << "Attempting to set style on invalid font.";
         return;
     }
 
@@ -139,7 +139,7 @@ font_style get_font_style(font fnt)
 {
     if (!VALID_PTR(fnt, FONT_PTR))
     {
-        raise_warning("Attempting to get font style on invalid font.");
+        LOG(WARNING) << "Attempting to get font style on invalid font.";
         return NORMAL_FONT; // Add NONE to font_style enum?
     }
 
@@ -166,7 +166,7 @@ font load_font(const string &name, const string &filename)
     
         if ( ! file_exists(file_path) )
         {
-            raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
             return nullptr;
         }
     }
@@ -177,7 +177,7 @@ font load_font(const string &name, const string &filename)
     {
         delete result;
         result = nullptr;
-        raise_warning("LoadFont failed: " + name + " (" + file_path + ")");
+        LOG(WARNING) << "LoadFont failed: " + name + " (" + file_path + ")";
     } else
     {
         _fonts[name] = result;
@@ -202,7 +202,7 @@ void draw_text(const string &text, const color &clr, font fnt, int font_size, fl
     rectangle rect;
     if ( ! VALID_PTR(fnt, FONT_PTR) )
     {
-        raise_warning("Error attempting to draw text with invalid font.");
+        LOG(WARNING) << "Error attempting to draw text with invalid font.";
         return;
     }
     
@@ -258,7 +258,7 @@ int text_length(const string &text, font fnt, int font_size)
 {
     if ( INVALID_PTR(fnt, FONT_PTR) )
     {
-        raise_warning("Attempting to get string length with invalid font");
+        LOG(WARNING) << "Attempting to get string length with invalid font";
         return 0;
     }
     

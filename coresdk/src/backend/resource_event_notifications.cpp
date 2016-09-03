@@ -23,7 +23,7 @@ void deregister_event_handler(free_notifier *handler)
 {
     if (not erase_from_vector(_free_event_handlers, handler))
     {
-        raise_warning("Not able to deregister handler -- handler not registered.");
+        LOG(WARNING) << "Not able to deregister handler -- handler not registered.";
     }
 }
 

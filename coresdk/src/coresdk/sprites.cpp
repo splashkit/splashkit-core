@@ -96,7 +96,7 @@ void sprite_raise_event(sprite s, sprite_event_kind evt)
 {
     if( ( INVALID_PTR(s, SPRITE_PTR) ) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
     int i;
@@ -235,7 +235,7 @@ string sprite_name(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return"";
     }
     return s->name;
@@ -249,7 +249,7 @@ void free_sprite(sprite s)
 {
     if( (INVALID_PTR(s, SPRITE_PTR)) )
     {
-        raise_warning("Attempting to free invalid sprite");
+        LOG(WARNING) << "Attempting to free invalid sprite";
         return;
     }
 
@@ -268,7 +268,7 @@ void free_sprite(sprite s)
 
     if( ( not erase_from_vector(s->pack, s) ) )
     {
-        raise_warning("Error removing sprite from sprite pack!");
+        LOG(WARNING) << "Error removing sprite from sprite pack!";
     }
 
     // Remove from hashtable
@@ -309,13 +309,13 @@ int sprite_add_layer(sprite s, bitmap new_layer, const string &layer_names)
 {
     if( INVALID_PTR(new_layer, BITMAP_PTR) )
     {
-        raise_warning("Cannot add non-existing bitmap as layer to sprite");
+        LOG(WARNING) << "Cannot add non-existing bitmap as layer to sprite";
         return -1;
     }
 
     if( INVALID_PTR(s, SPRITE_PTR)  )
     {
-        raise_warning("No sprite to add layer to");
+        LOG(WARNING) << "No sprite to add layer to";
         return -1;
     }
 
@@ -331,7 +331,7 @@ bool sprite_has_layer(sprite s, const string &name)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to access layer details of invalid sprite");
+        LOG(WARNING) << "Attempting to access layer details of invalid sprite";
         return false;
     }
     else
@@ -344,7 +344,7 @@ bool sprite_has_layer(sprite s, int idx)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to access layer details of invalid sprite");
+        LOG(WARNING) << "Attempting to access layer details of invalid sprite";
         return false;
     }
     else
@@ -394,7 +394,7 @@ string sprite_layer_name(sprite s, int idx)
         string result = "";
         if ( not key_of_value(s->layer_names, idx, result) )
         {
-            raise_warning("Sprite has invalid state. Please report this issue to the SplashKit dev team.");
+            LOG(WARNING) << "Sprite has invalid state. Please report this issue to the SplashKit dev team.";
         }
         return result;
     }
@@ -461,7 +461,7 @@ int sprite_layer_count(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to access layer details of invalid sprite");
+        LOG(WARNING) << "Attempting to access layer details of invalid sprite";
         return -1;
     }
     else return static_cast<int>(s->layers.size());
@@ -471,7 +471,7 @@ int sprite_visible_layer_count(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to access layer details of invalid sprite");
+        LOG(WARNING) << "Attempting to access layer details of invalid sprite";
         return -1;
     }
     else return static_cast<int>(s->visible_layers.size());
@@ -481,7 +481,7 @@ bool sprite_has_visible_layer(sprite s, int idx)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to access layer details of invalid sprite");
+        LOG(WARNING) << "Attempting to access layer details of invalid sprite";
         return false;
     }
     else
@@ -674,7 +674,7 @@ void sprite_replay_animation(sprite s, bool with_sound)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to replay animation with invalid sprite");
+        LOG(WARNING) << "Attempting to replay animation with invalid sprite";
         return;
     }
 
@@ -692,19 +692,19 @@ void sprite_start_animation(sprite s, const string &named, bool with_sound)
 
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
     if ( INVALID_PTR(s->script, ANIMATION_SCRIPT_PTR) )
     {
-        raise_warning("Attempting to use invalid animation script");
+        LOG(WARNING) << "Attempting to use invalid animation script";
         return;
     }
 
     int idx = animation_index(s->script, named);
     if ((idx < 0) or (idx >= animation_count(s->script)))
     {
-        raise_warning("Unable to create animation \"" + named + "\" for sprite " + s->name + " from script " + animation_script_name(s->script));
+        LOG(WARNING) << "Unable to create animation \"" + named + "\" for sprite " + s->name + " from script " + animation_script_name(s->script);
         return;
     }
 
@@ -720,14 +720,14 @@ void sprite_start_animation(sprite s, int idx, bool with_sound)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
     if ( INVALID_PTR(s->script, ANIMATION_SCRIPT_PTR)) return;
     if ( (idx < 0) or (idx >= animation_count(s->script)))
     {
-        raise_warning("Unable to create animation no. " + to_string(idx) + " for sprite " + s->name + " from script " + animation_script_name(s->script));
+        LOG(WARNING) << "Unable to create animation no. " + to_string(idx) + " for sprite " + s->name + " from script " + animation_script_name(s->script);
         return;
     }
 
@@ -767,7 +767,7 @@ void update_sprite_animation(sprite s, float pct, bool with_sound)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -779,7 +779,7 @@ rectangle sprite_current_cell_rectangle(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to get details from invalid sprite.");
+        LOG(WARNING) << "Attempting to get details from invalid sprite.";
         return rectangle_from(0,0,0,0);
     }
     else
@@ -792,7 +792,7 @@ int sprite_current_cell(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to get details from invalid sprite.");
+        LOG(WARNING) << "Attempting to get details from invalid sprite.";
         return -1;
     }
     else
@@ -867,7 +867,7 @@ void draw_sprite(sprite s, float x_offset, float y_offset)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -915,7 +915,7 @@ point_2d sprite_anchor_point(sprite s)
     }
     else
     {
-        raise_warning("Attempting to get anchor point of invalid sprite");
+        LOG(WARNING) << "Attempting to get anchor point of invalid sprite";
         return point_at(0,0);
     }
 }
@@ -928,7 +928,7 @@ void sprite_set_anchor_point(sprite s, const point_2d &pt)
     }
     else
     {
-        raise_warning("Attempting to set anchor point of invalid sprite");
+        LOG(WARNING) << "Attempting to set anchor point of invalid sprite";
     }
 }
 
@@ -954,7 +954,7 @@ void move_sprite(sprite s, const vector_2d &distance, float pct)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("No sprite supplied to move_sprite");
+        LOG(WARNING) << "No sprite supplied to move_sprite";
         return;
     }
 
@@ -1000,7 +1000,7 @@ void move_sprite_to(sprite s, float x, float y)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("No sprite supplied");
+        LOG(WARNING) << "No sprite supplied";
         return;
     }
 
@@ -1029,7 +1029,7 @@ vector_2d sprite_velocity(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return vector_to(0,0);
     }
 
@@ -1040,7 +1040,7 @@ void sprite_set_velocity(sprite s, const vector_2d &value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1051,7 +1051,7 @@ void sprite_add_to_velocity(sprite s, const vector_2d &value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1062,7 +1062,7 @@ void sprite_set_x(sprite s, float value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1073,7 +1073,7 @@ float sprite_x(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return 0;
     }
 
@@ -1084,7 +1084,7 @@ void sprite_set_y(sprite s, float value)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1095,7 +1095,7 @@ float sprite_y(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return 0;
     }
 
@@ -1106,7 +1106,7 @@ point_2d sprite_position(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return point_at(0,0);
     }
     else
@@ -1123,7 +1123,7 @@ void sprite_set_position(sprite s, const point_2d &value)
     }
     else
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
     }
 }
 
@@ -1135,7 +1135,7 @@ void sprite_set_dx(sprite s, float value)
     }
     else
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
     }
 }
 
@@ -1143,7 +1143,7 @@ float sprite_dx(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return 0;
     }
     else
@@ -1161,7 +1161,7 @@ void sprite_set_dy(sprite s, float value)
     }
     else
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
     }
 }
 
@@ -1169,7 +1169,7 @@ float sprite_dy(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return 0;
     }
     else
@@ -1226,7 +1226,7 @@ void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1243,7 +1243,7 @@ matrix_2d sprite_location_matrix(sprite s)
 
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return result;
     }
 
@@ -1272,7 +1272,7 @@ float sprite_mass(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("sprite_mass: Attempting to use invalid sprite");
+        LOG(WARNING) << "sprite_mass: Attempting to use invalid sprite";
         return 0;
     }
     else
@@ -1292,7 +1292,7 @@ float sprite_rotation(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("sprite_rotation: Attempting to use invalid sprite");
+        LOG(WARNING) << "sprite_rotation: Attempting to use invalid sprite";
         return 0;
     }
     else
@@ -1320,7 +1320,7 @@ void sprite_set_rotation(sprite s, float value)
     }
     else
     {
-        raise_warning("sprite_set_rotation: Attempting to use invalid sprite");
+        LOG(WARNING) << "sprite_set_rotation: Attempting to use invalid sprite";
     }
 }
 
@@ -1344,7 +1344,7 @@ int sprite_value_count(sprite s)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return -1;
     }
 
@@ -1355,7 +1355,7 @@ bool sprite_has_value(sprite s, string name)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return false;
     }
 
@@ -1380,7 +1380,7 @@ void sprite_add_value(sprite s, const string &name, float init_val)
 {
     if ( INVALID_PTR(s, SPRITE_PTR) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1393,7 +1393,7 @@ void sprite_set_value(sprite s, const string &name, float val)
 {
     if ( not sprite_has_value(s, name) )
     {
-        raise_warning("Attempting to use invalid sprite");
+        LOG(WARNING) << "Attempting to use invalid sprite";
         return;
     }
 
@@ -1498,7 +1498,7 @@ void create_sprite_pack(const string &name)
     }
     else
     {
-        raise_warning("The sprite_pack " + name + " already exists");
+        LOG(WARNING) << "The sprite_pack " + name + " already exists";
     }
 }
 
@@ -1512,7 +1512,7 @@ void select_sprite_pack(const string &name)
     if ( has_sprite_pack(name) )
         _current_pack = name;
     else
-        raise_warning("No sprite_pack named " + name + " to select.");
+        LOG(WARNING) << "No sprite_pack named " + name + " to select.";
 }
 
 void free_sprite_pack(const string &name)

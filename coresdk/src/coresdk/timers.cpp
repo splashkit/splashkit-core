@@ -57,7 +57,7 @@ void free_timer(timer to_free)
 {
     if ( INVALID_PTR(to_free, TIMER_PTR) )
     {
-        raise_warning("Trying to free timer with invalid pointer");
+        LOG(WARNING) << "Trying to free timer with invalid pointer";
         return;
     }
 
@@ -101,7 +101,7 @@ void start_timer(timer to_start)
 {
     if (INVALID_PTR(to_start, TIMER_PTR))
     {
-        raise_warning("Attempting to start invalid timer");
+        LOG(WARNING) << "Attempting to start invalid timer";
         return;
     }
 
@@ -119,7 +119,7 @@ void stop_timer(timer to_stop)
 {
     if (INVALID_PTR(to_stop, TIMER_PTR))
     {
-        raise_warning("Attempting to stop invalid timer");
+        LOG(WARNING) << "Attempting to stop invalid timer";
         return;
     }
 
@@ -136,7 +136,7 @@ void pause_timer(timer to_pause)
 {
     if (INVALID_PTR(to_pause, TIMER_PTR))
     {
-        raise_warning("Attempting to pause invalid timer");
+        LOG(WARNING) << "Attempting to pause invalid timer";
         return;
     }
 
@@ -156,7 +156,7 @@ void resume_timer(timer to_resume)
 {
     if (INVALID_PTR(to_resume, TIMER_PTR))
     {
-        raise_warning("Attempting to resume invalid timer");
+        LOG(WARNING) << "Attempting to resume invalid timer";
         return;
     }
 
@@ -177,7 +177,7 @@ void reset_timer(timer tmr)
 {
     if (INVALID_PTR(tmr, TIMER_PTR))
     {
-        raise_warning("Attempting to reset invalid timer");
+        LOG(WARNING) << "Attempting to reset invalid timer";
         return;
     }
 
@@ -194,7 +194,7 @@ unsigned int timer_ticks(timer to_get)
 {
     if (INVALID_PTR(to_get, TIMER_PTR))
     {
-        raise_warning("Attempting to get time from invalid timer");
+        LOG(WARNING) << "Attempting to get time from invalid timer";
         return 0;
     }
 
@@ -218,7 +218,7 @@ bool timer_paused(timer to_get)
 {
     if (INVALID_PTR(to_get, TIMER_PTR))
     {
-        raise_warning("Attempting to check pause from invalid timer");
+        LOG(WARNING) << "Attempting to check pause from invalid timer";
         return 0;
     }
 
@@ -234,7 +234,7 @@ bool timer_started(timer to_get)
 {
     if (INVALID_PTR(to_get, TIMER_PTR))
     {
-        raise_warning("Attempting to check started from invalid timer");
+        LOG(WARNING) << "Attempting to check started from invalid timer";
         return 0;
     }
 

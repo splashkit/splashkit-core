@@ -112,7 +112,7 @@ vector_2d vector_normal(const vector_2d &v)
     
     if (magnitude == 0)
     {
-        raise_warning("Attempting to get normal of null/zero vector");
+        LOG(WARNING) << "Attempting to get normal of null/zero vector";
         return { 0,0 };
     }
     
@@ -284,7 +284,7 @@ vector_2d vector_over_lines_from_circle(const circle &c, const vector<line> line
     // the hit location etc. Return a 0,0 vector.
     if ( vector_magnitude(velocity) == 0 )
     {
-        raise_warning("Attempting to determine collision with a zero/null vector.");
+        LOG(WARNING) << "Attempting to determine collision with a zero/null vector.";
         // velocity has no magnitude, so it can be returned
         return velocity;
     }

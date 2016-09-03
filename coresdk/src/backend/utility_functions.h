@@ -25,7 +25,7 @@ using namespace std;
 #define EPSEPS 0.0001
 
 [[deprecated]]
-void raise_warning( string message );
+void raise_warning(string message);
 
 bool file_exists(string path);
 
@@ -58,7 +58,7 @@ template <typename T>
 int index_of (vector<T> vec, T value)
 {
     auto result = find(vec.begin(), vec.end(), value);
-    
+
     if ( result == vec.end() ) return -1;
     else return static_cast<int>(result - vec.begin());
 }
@@ -72,7 +72,7 @@ bool key_of_value(const map<K,V> &map, const V &value, K &result)
                                     {
                                         return pair.second == value;
                                     });
-    
+
     if (find_result != std::end(map))
     {
         result = find_result->first;
@@ -88,7 +88,7 @@ template <typename T>
 void move_range(std::vector<T> & v, size_t start, size_t length, size_t dst)
 {
     const size_t final_dst = dst > start ? dst - length : dst;
-    
+
     std::vector<T> tmp(v.begin() + start, v.begin() + start + length);
     v.erase(v.begin() + start, v.begin() + start + length);
     v.insert(v.begin() + final_dst, tmp.begin(), tmp.end());
@@ -105,7 +105,7 @@ for(size_t i = 0; i < sz; i++)\
     }\
     else\
     {\
-        raise_warning("Splashkit contains invalid ##ptr_kind !");\
+        LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !";\
         collection.erase(collection.begin());\
     }\
 }
@@ -121,7 +121,7 @@ fn(resource);\
 }\
 else\
 {\
-raise_warning("Splashkit contains invalid ##ptr_kind !");\
+LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !";\
 collection.erase(collection.begin());\
 }\
 }

@@ -34,7 +34,7 @@ music load_music(string name, string filename)
     
     if ( ! file_exists(file_path) )
     {
-        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+        LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
         return nullptr;
     }
     
@@ -50,7 +50,7 @@ music load_music(string name, string filename)
     {
         result->id = NONE_PTR;
         delete result;
-        raise_warning ( cat({ "Error loading sound data for ", name, " (", file_path, ")"}) );
+        LOG(WARNING) << cat({ "Error loading sound data for ", name, " (", file_path, ")"});
         return nullptr;
     }
     
@@ -69,7 +69,7 @@ void free_music(music effect)
     }
     else
     {
-        raise_warning("Delete music called without valid music");
+        LOG(WARNING) << "Delete music called without valid music";
     }
 }
 
@@ -88,7 +88,7 @@ void free_all_music()
         }
         else
         {
-            raise_warning("Music contained an invalid pointer");
+            LOG(WARNING) << "Music contained an invalid pointer";
             _music.erase(_music.begin());
         }
     }
@@ -120,7 +120,7 @@ void play_music(music data, int times, float volume)
     
     if ( INVALID_PTR(data, MUSIC_PTR) )
     {
-        raise_warning("Attempting to play music with invalid data");
+        LOG(WARNING) << "Attempting to play music with invalid data";
         return;
     }
     
@@ -154,7 +154,7 @@ void fade_music_in(music data, int times, int ms)
     
     if ( INVALID_PTR(data, MUSIC_PTR) )
     {
-        raise_warning("Attempting to play music with invalid data");
+        LOG(WARNING) << "Attempting to play music with invalid data";
         return;
     }
     

@@ -86,7 +86,7 @@ bitmap load_bitmap(string name, string filename)
 
         if ( ! file_exists(file_path) )
         {
-            raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
             return nullptr;
         }
     }
@@ -94,7 +94,7 @@ bitmap load_bitmap(string name, string filename)
     surface = sk_load_bitmap(file_path.c_str());
     if ( not surface._data )
     {
-        raise_warning ( cat({ "Error loading image for ", name, " (", file_path, ")"}) );
+        LOG(WARNING) <<  cat({ "Error loading image for ", name, " (", file_path, ")"}) ;
         return nullptr;
     }
 
@@ -161,7 +161,7 @@ void free_bitmap(bitmap bmp)
     }
     else
     {
-        raise_warning("Delete bitmap called without valid bitmap");
+        LOG(WARNING) << "Delete bitmap called without valid bitmap";
     }
 }
 
@@ -188,7 +188,7 @@ void clear_bitmap(bitmap bmp, color clr)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to clear invalid bitmap");
+        LOG(WARNING) << "Attempting to clear invalid bitmap";
         return;
     }
     
@@ -210,7 +210,7 @@ void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Error trying to draw bitmap: passed in bmp is an invalid bitmap pointer.");
+        LOG(WARNING) << "Error trying to draw bitmap: passed in bmp is an invalid bitmap pointer.";
         return;
     }
 
@@ -281,7 +281,7 @@ rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt)
 {
     if ( INVALID_PTR(src, BITMAP_PTR))
     {
-        raise_warning("Attempting to get bitmap cell rectangle from invalid image");
+        LOG(WARNING) << "Attempting to get bitmap cell rectangle from invalid image";
         return rectangle_from(0, 0, 0, 0);
     }
     
@@ -325,7 +325,7 @@ circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to get cell circle from invalid bitmap");
+        LOG(WARNING) << "Attempting to get cell circle from invalid bitmap";
         return circle_at(0, 0, 0);
     }
     
@@ -376,7 +376,7 @@ void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int
 {
     if ( not VALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Trying to set cell details of invalid bitmap.");
+        LOG(WARNING) << "Trying to set cell details of invalid bitmap.";
         return;
     }
 
@@ -391,7 +391,7 @@ int bitmap_width(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to get width of invalid bitmap");
+        LOG(WARNING) << "Attempting to get width of invalid bitmap";
         return 0;
     }
     
@@ -407,7 +407,7 @@ int bitmap_height(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to get height of invalid bitmap");
+        LOG(WARNING) << "Attempting to get height of invalid bitmap";
         return 0;
     }
     
@@ -428,7 +428,7 @@ int bitmap_cell_width(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to read details of invalid bitmap");
+        LOG(WARNING) << "Attempting to read details of invalid bitmap";
         return 0;
     }
     
@@ -439,7 +439,7 @@ int bitmap_cell_height(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to read details of invalid bitmap");
+        LOG(WARNING) << "Attempting to read details of invalid bitmap";
         return 0;
     }
     

@@ -93,7 +93,7 @@ TTF_Font* _get_font(sk_font_data* font, int font_size)
     }
     else
     {
-        raise_warning("Trying to _get_font for invalid font pointer.");
+        LOG(WARNING) << "Trying to _get_font for invalid font pointer.";
     }
 
     return ttf_font;

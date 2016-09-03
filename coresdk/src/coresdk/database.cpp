@@ -45,7 +45,7 @@ int rows_changed(database db)
 {
     if ( INVALID_PTR(db, DATABASE_PTR))
     {
-        raise_warning("Attempting to access rows changes on invalid database.");
+        LOG(WARNING) << "Attempting to access rows changes on invalid database.";
         return 0;
     }
     
@@ -56,7 +56,7 @@ query_result run_sql(database db, string sql)
 {
     if ( INVALID_PTR(db, DATABASE_PTR))
     {
-        raise_warning("Attempting to run query on invalid database.");
+        LOG(WARNING) << "Attempting to run query on invalid database.";
         return nullptr;
     }
     
@@ -81,7 +81,7 @@ void free_query_result(query_result query)
 {
     if ( INVALID_PTR(query, QUERY_PTR))
     {
-        raise_warning("Attempting to free invalid query.");
+        LOG(WARNING) << "Attempting to free invalid query.";
         return;
     }
 
@@ -99,7 +99,7 @@ void free_query_result(query_result query)
     }
     else
     {
-        raise_warning("Not able to remove query as it is not found in _queries_vector\n");
+        LOG(WARNING) << "Not able to remove query as it is not found in _queries_vector\n";
     }
 }
 
@@ -113,7 +113,7 @@ bool get_next_row(query_result result)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to get next row.");
+        LOG(WARNING) << "Attempting to access invalid query to get next row.";
         return false;
     }
     return sk_query_get_next_row(result);
@@ -123,7 +123,7 @@ bool has_row(query_result result)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to check has row.");
+        LOG(WARNING) << "Attempting to access invalid query to check has row.";
         return false;
     }
     
@@ -134,7 +134,7 @@ void reset_query_result(query_result result)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to reset.");
+        LOG(WARNING) << "Attempting to access invalid query to reset.";
         return;
     }
     
@@ -145,7 +145,7 @@ int query_column_for_int(query_result result, int col)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return 0;
     }
     
@@ -156,7 +156,7 @@ double query_column_for_double(query_result result, int col)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return 0;
     }
     
@@ -167,7 +167,7 @@ string query_column_for_string(query_result result, int col)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return "";
     }
     
@@ -178,7 +178,7 @@ bool query_column_for_bool(query_result result, int col)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return false;
     }
     
@@ -189,7 +189,7 @@ string query_type_of_col(query_result result, int col)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return "";
     }
     
@@ -200,7 +200,7 @@ bool query_success(query_result result)
 {
     if ( INVALID_PTR(result, QUERY_PTR))
     {
-        raise_warning("Attempting to access invalid query to read row.");
+        LOG(WARNING) << "Attempting to access invalid query to read row.";
         return 0;
     }
     return sk_query_success(result);
@@ -216,7 +216,7 @@ database open_database(string name, string filename)
     
     if ( not sk_open_database(file_path, result) )
     {
-        raise_warning("Failed to open database " + file_path);
+        LOG(WARNING) << "Failed to open database " + file_path;
         delete result;
         return nullptr;
     }
@@ -242,7 +242,7 @@ void free_database(database db_to_close)
     }
     else
     {
-        raise_warning("Delete sound effect called without valid sound effect");
+        LOG(WARNING) << "Delete sound effect called without valid sound effect";
     }
 }
 

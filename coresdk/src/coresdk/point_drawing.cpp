@@ -44,7 +44,7 @@ color get_pixel(bitmap bmp, float x, float y)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to get pixel from invalid bitmap");
+        LOG(WARNING) << "Attempting to get pixel from invalid bitmap";
         return COLOR_WHITE;
     }
     
@@ -60,7 +60,7 @@ color get_pixel(window wnd, float x, float y)
 {
     if ( INVALID_PTR(wnd, WINDOW_PTR) )
     {
-        raise_warning("Attempting to get pixel from invalid window");
+        LOG(WARNING) << "Attempting to get pixel from invalid window";
         return COLOR_WHITE;
     }
     

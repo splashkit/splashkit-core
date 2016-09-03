@@ -102,7 +102,7 @@ string path_to_user_home()
  */
 void raise_warning( string message )
 {
-    LOG(WARNING) << message << endl;
+    LOG(WARNING) << message;
 }
 
 string cat(std::initializer_list<string> list)
@@ -174,7 +174,7 @@ _window_data *to_window_ptr(void *w)
 
     if (result and (result->id != WINDOW_PTR) )
     {
-        raise_warning("Attempted to access a Window that appears to be an invalid pointer\n");
+        LOG(WARNING) << "Attempted to access a Window that appears to be an invalid pointer\n";
         result = nullptr;
     }
 
@@ -187,7 +187,7 @@ _bitmap_data *to_bitmap_ptr(void *b)
 
     if (result and (result->id != BITMAP_PTR) )
     {
-        raise_warning("Attempted to access a Bitmap that appears to be an invalid pointer\n");
+        LOG(WARNING) << "Attempted to access a Bitmap that appears to be an invalid pointer\n";
         result = nullptr;
     }
 
@@ -214,7 +214,7 @@ sk_drawing_surface *to_surface_ptr(void *p)
     }
     else
     {
-        raise_warning("Attempting to draw to a surface that does not exist.");
+        LOG(WARNING) << "Attempting to draw to a surface that does not exist.";
         return  nullptr;
     }
 }
@@ -368,7 +368,7 @@ int str_to_int(string str, bool allow_empty, int empty_value)
     if ( ! try_str_to_int(str, result) )
     {
         // scan found a number followed by something... so its not a whole number
-        raise_warning("Attempted to convert " + str + " to an integer.");
+        LOG(WARNING) << "Attempted to convert " + str + " to an integer.";
 
         try
         {
@@ -416,7 +416,7 @@ float str_to_float(string str, bool allow_empty, float empty_value)
     if ( not try_str_to_float(str, result) )
     {
         // scan found a number followed by something... so its not a whole number
-        raise_warning("Attempted to convert " + str + " to an real number (float).");
+        LOG(WARNING) << "Attempted to convert " + str + " to an real number (float).";
 
         try
         {
@@ -464,7 +464,7 @@ float str_to_double(string str, bool allow_empty, double empty_value)
     if ( not try_str_to_double(str, result) )
     {
         // scan found a number followed by something... so its not a whole number
-        raise_warning("Attempted to convert " + str + " to an real number (double).");
+        LOG(WARNING) << "Attempted to convert " + str + " to an real number (double).";
 
         try
         {
@@ -550,7 +550,7 @@ void process_range(string value_in, vector<int> &result)
                 high_part = -str_to_int(extract_delimited(3, part, '-'));
             else
             {
-                raise_warning("Error in range.");
+                LOG(WARNING) << "Error in range.";
                 result.clear();
                 return;
             }

@@ -67,7 +67,7 @@ sound_effect load_sound_effect(string name, string filename)
     
     if ( ! file_exists(file_path) )
     {
-        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+        LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
         return nullptr;
     }
     
@@ -83,7 +83,7 @@ sound_effect load_sound_effect(string name, string filename)
     {
         result->id = NONE_PTR;
         delete result;
-        raise_warning ( cat({ "Error loading sound data for ", name, " (", file_path, ")"}) );
+        LOG(WARNING) <<  cat({ "Error loading sound data for ", name, " (", file_path, ")"}) ;
         return nullptr;
     }
     
@@ -104,7 +104,7 @@ void free_sound_effect(sound_effect effect)
     }
     else
     {
-        raise_warning("Delete sound effect called without valid sound effect");
+        LOG(WARNING) << "Delete sound effect called without valid sound effect";
     }
 }
 
@@ -119,7 +119,7 @@ void play_sound_effect(sound_effect effect, int times, float volume)
     
     if ( ! VALID_PTR(effect, AUDIO_PTR) )
     {
-        raise_warning("Play Sound Effect called, but no valid sound effect supplied");
+        LOG(WARNING) << "Play Sound Effect called, but no valid sound effect supplied";
         return;
     }
     

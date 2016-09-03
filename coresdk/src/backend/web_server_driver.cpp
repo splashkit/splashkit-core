@@ -9,7 +9,6 @@
 #include "web_server_driver.h"
 #include "concurrency_utils.h"
 #include "utility_functions.h"
-#include "core_driver.h"
 
 #include <iostream>
 #include <cstring>
@@ -27,13 +26,13 @@ static int begin_request_handler(struct mg_connection *conn)
     user_data = static_cast<_web_server_ctx_data *>(mg_get_user_data(mg_get_context(conn)));
     if ( not user_data )
     {
-        raise_warning("Request handler called within invalid user data. Contact splashkit dev team.");
+        LOG(WARNING) << "Request handler called within invalid user data. Contact splashkit dev team.";
     }
 
     string port = user_data->port;
     if (servers.find(port) == servers.end())
     {
-        raise_warning("Request handler called on non-existent server");
+        LOG(WARNING) << "Request handler called on non-existent server";
         return -1;
     }
 
@@ -118,11 +117,11 @@ bool sk_has_waiting_requests(sk_web_server *server)
 
 sk_web_server* sk_start_web_server(string port)
 {
-    internal_sk_init();
+
 
     if (servers.find(port) != servers.end())
     {
-        raise_warning("Server already started on port " + port);
+        LOG(WARNING) << "Server already started on port " + port;
         return nullptr;
     }
 
@@ -179,6 +178,6 @@ void sk_stop_web_server(sk_web_server *server)
     }
     else
     {
-        raise_warning("Tried to remove from servers map a server which did not exist.");
+        LOG(WARNING) << "Tried to remove from servers map a server which did not exist.";
     }
 }

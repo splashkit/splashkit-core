@@ -61,7 +61,7 @@ void load_resource_bundle(const string &name, const string &filename)
 {
     if ( has_resource_bundle(name) )
     {
-        raise_warning("Attempting to load resource bundle twice.");
+        LOG(WARNING) << "Attempting to load resource bundle twice.";
         return;
     }
 
@@ -69,7 +69,7 @@ void load_resource_bundle(const string &name, const string &filename)
 
     if ( ! file_exists(path) )
     {
-        raise_warning(cat({ "Unable to locate bundle file for ", name, " (", path, ")"}));
+        LOG(WARNING) << cat({ "Unable to locate bundle file for ", name, " (", path, ")"});
         return;
     }
 
@@ -86,7 +86,7 @@ void load_resource_bundle(const string &name, const string &filename)
         int num_delim = count_delimiter(line, ',');
         if ( num_delim > 2 and num_delim != 7 )
         {
-            raise_warning("Incorrect cell options for bitmap " + line_name + " at " + to_string(line_no) + " of bundle " + name );
+            LOG(WARNING) << "Incorrect cell options for bitmap " + line_name + " at " + to_string(line_no) + " of bundle " + name;
             return;
         }
         else if ( num_delim == 2 ) return;
@@ -109,19 +109,19 @@ void load_resource_bundle(const string &name, const string &filename)
 
         if ( kind == OTHER_RESOURCE )
         {
-            raise_warning("Unknown resource type at line " + to_string(line_no) + " of bundle " + name );
+            LOG(WARNING) << "Unknown resource type at line " + to_string(line_no) + " of bundle " + name;
             return;
         }
 
         if ( line_name.length() == 0 )
         {
-            raise_warning("Name missing for resource at line " + to_string(line_no) + " of bundle " + name );
+            LOG(WARNING) << "Name missing for resource at line " + to_string(line_no) + " of bundle " + name;
             return;
         }
 
         if ( line_path.length() == 0 && kind != TIMER_RESOURCE )
         {
-            raise_warning("Name missing for resource at line " + to_string(line_no) + " of bundle " + name );
+            LOG(WARNING) << "Name missing for resource at line " + to_string(line_no) + " of bundle " + name;
             return;
         }
 
@@ -179,7 +179,7 @@ void free_resource_bundle(const string name)
 {
     if ( ! has_resource_bundle(name) )
     {
-        raise_warning("Attempting to free unloaded resource bundle named " + name );
+        LOG(WARNING) << "Attempting to free unloaded resource bundle named " + name;
         return;
     }
     
