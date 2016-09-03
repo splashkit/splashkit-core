@@ -20,7 +20,7 @@ void sk_init_logging()
     conf.setToDefault();
     conf.setGlobally(
             ConfigurationType::Format,
-            "(%datetime{%d/%m/%Y}) %level-> %msg");
+            "(%datetime{%d/%m/%Y}) %level -> %msg");
     conf.setGlobally(ConfigurationType::Filename, "logs/splashkit.log");
 
     Loggers::reconfigureLogger("default", conf);

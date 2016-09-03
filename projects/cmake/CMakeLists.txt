@@ -99,6 +99,7 @@ include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
+include_directories("${SK_EXT}/json")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)

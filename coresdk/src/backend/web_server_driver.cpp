@@ -9,6 +9,7 @@
 #include "web_server_driver.h"
 #include "concurrency_utils.h"
 #include "utility_functions.h"
+#include "core_driver.h"
 
 #include <iostream>
 #include <cstring>
@@ -117,7 +118,7 @@ bool sk_has_waiting_requests(sk_web_server *server)
 
 sk_web_server* sk_start_web_server(string port)
 {
-
+    internal_sk_init();
 
     if (servers.find(port) != servers.end())
     {
