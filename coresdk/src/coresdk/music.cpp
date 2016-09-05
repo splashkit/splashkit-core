@@ -26,7 +26,7 @@ struct _music_data
     string filename, name;
 };
 
-music load_music(string name, string filename)
+music load_music(const string &name, const string &filename)
 {
     if (has_music(name)) return music_named(name);
     
@@ -94,12 +94,12 @@ void free_all_music()
     }
 }
 
-bool has_music(string name)
+bool has_music(const string &name)
 {
     return _music.count(name) > 0;
 }
 
-music music_named(string name)
+music music_named(const string &name)
 {
     if (has_music(name))
         return _music[name];
@@ -137,12 +137,12 @@ void play_music(music data, int times)
     play_music(data, times, 1.0f);
 }
 
-void play_music(string name, int times)
+void play_music(const string &name, int times)
 {
     play_music(music_named(name), times, 1.0f);
 }
 
-void play_music(string name)
+void play_music(const string &name)
 {
     play_music(music_named(name), 1, 1.0f);
 }
@@ -166,12 +166,12 @@ void fade_music_in(music data, int ms)
     fade_music_in(data, 1, ms);
 }
 
-void fade_music_in(string name, int times, int ms)
+void fade_music_in(const string &name, int times, int ms)
 {
     fade_music_in(music_named(name), times, ms);
 }
 
-void fade_music_in(string name, int ms)
+void fade_music_in(const string &name, int ms)
 {
     fade_music_in(music_named(name), 1, ms);
 }
