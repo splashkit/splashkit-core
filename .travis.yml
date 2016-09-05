@@ -30,7 +30,6 @@ before_install:
 branches:
     only:
         - develop
-        - test/ci-for-doc
 
 script:
     - .travis/run.sh
