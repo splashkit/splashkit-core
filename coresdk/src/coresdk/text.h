@@ -75,4 +75,6 @@ int text_length(const string &text, font fnt, int font_size);
 
 int text_length(const string &text, string fnt, int font_size);
 
+
+
 #endif /* text_hpp */
