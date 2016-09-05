@@ -9,186 +9,58 @@
 #ifndef SPLASHKIT_JSON_CPP
 #define SPLASHKIT_JSON_CPP
 
+#include "json_driver.h"
+
 #include <string>
 #include <vector>
-#include <map>
 
-#include <easylogging++.h>
-#include <json.hpp>
-
-#include "backend/core_driver.h"
-
-using backend_json = nlohmann::json;
 using namespace std;
 
-struct sk_json
-{
-    backend_json data;
-};
+json create_json();
 
-typedef struct sk_json *json;
+json create_json(string json_string);
 
-json create_json() {
-    internal_sk_init();
+void free_all_json();
 
-    return new sk_json;
-};
+void json_to_file(json j, const string& filename);
 
-json create_json(string json_string)
-{
-    json j = create_json();
-    j->data = backend_json::parse(json_string);
-    return j;
-}
+json json_from_file(const string& filename);
 
-string json_to_string(json j)
-{
-    return j->data.dump(4);
-};
+string json_to_string(json j);
 
-json json_from_file(string filename)
-{};
+json json_from_string(const string &j_string);
 
-void json_to_file(json j)
-{};
+void json_add_string(json j, string key, string value);
 
-void json_add_string(json j, string key, string value)
-{
-    j->data[key] = value;
-};
+void json_add_number(json j, string key, double value);
 
-void json_add_number(json j, string key, int value)
-{
-    j->data[key] = value;
-}
+void json_add_bool(json j, string key, bool value);
 
-void json_add_number(json j, string key, double value)
-{
-    j->data[key] = value;
-}
+void json_add_object(json j, string key, json object);
 
-void json_add_array(json j, string key, int value[])
-{
-    j->data[key] = value;
-}
+void json_add_array(json j, string key, vector<string> value);
 
-void json_add_array(json j, string key, double value[])
-{
-    j->data[key] = value;
-}
+void json_add_array(json j, string key, vector<double> value);
 
-void json_add_array(json j, string key, bool value[])
-{
-    j->data[key] = value;
-}
+void json_add_array(json j, string key, vector<bool> value);
 
-void json_add_array(json j, string key, string value[], int size)
-{
-    backend_json a;
+void json_add_array(json j, string key, vector<json> value);
 
-    for (int i = 0; i < size; ++i)
-    {
-        a.push_back(value[i]);
-    }
+double json_read_number(json j, string key);
 
-    j->data[key] = a;
-}
+string json_read_string(json j, string key);
 
-void json_add_array(json j, string key, json value[])
-{
-    for (auto& e : j->data)
-    {
+bool json_read_bool(json j, string key);
 
-    }
+json json_read_object(json j, string key);
 
-    j->data[key] = value;
-}
+void json_read_array(json j, string key, vector<double> &out);
 
-void json_add_object(json j, string key, json object)
-{
-    j->data[key] = object->data;
-}
+void json_read_array(json j, string key, vector<json> &out);
 
-string json_read_string(json j, string key)
-{
-    return j->data[key];
-}
+void json_read_array(json j, string key, vector<string> &out);
 
-double json_read_number(json j, string key)
-{
-    return j->data[key];
-}
+void json_read_array(json j, string key, vector<bool> &out);
 
-void json_read_number(json j, string key, int &out)
-{
-    out = j->data[key];
-}
-
-void json_read_number(json j, string key, double &out)
-{
-    out = j->data[key];
-}
-
-void json_read_array(json j, string key, int out[])
-{
-
-
-    /*
-    backend_json json_array = j->data[key];
-
-    out = new int[json_array.size()];
-    for (int i = 0; i < json_array.size(); ++i)
-    {
-        out[i] = json_array.at(i);
-    }
-     */
-}
-
-void json_read_array(json j, string key, double out[])
-{
-    backend_json json_array = j->data[key];
-
-    out = new double[json_array.size()];
-    for (int i = 0; i < json_array.size(); ++i)
-    {
-        out[i] = json_array.at(i);
-    }
-}
-
-void json_read_array(json j, string key, bool out[])
-{
-    backend_json json_array = j->data[key];
-
-    out = new bool[json_array.size()];
-    for (int i = 0; i < json_array.size(); ++i)
-    {
-        out[i] = json_array.at(i);
-    }
-}
-
-void json_read_array(json j, string key, string out[])
-{
-    backend_json json_array = j->data[key];
-
-    out = new string[json_array.size()];
-    for (int i = 0; i < json_array.size(); ++i)
-    {
-        out[i] = json_array.at(i);
-    }
-}
-
-void json_read_array(json j, string key, json out[])
-{
-    backend_json json_array = j->data[key];
-
-
-}
-
-json json_read_object(json j, string key)
-{
-    json result = new sk_json;
-    result->data = j->data[key];
-    return result;
-}
 
 #endif //SPLASHKIT_JSON_CPP
