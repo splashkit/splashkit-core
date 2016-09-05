@@ -46,6 +46,7 @@ void setup_tests()
     add_test("Windows", run_windows_tests);
     add_test("JSON", run_json_test);
     add_test("Cave Escape", test_cave_escape);
+    add_test("Networking", run_networking_test);
 }
 
 int main()
