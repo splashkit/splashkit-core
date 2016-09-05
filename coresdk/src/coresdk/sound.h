@@ -64,7 +64,7 @@ typedef struct _sound_data *sound_effect;
  * @attribute class         sound_effect
  * @attribute constructor   true
  */
-sound_effect load_sound_effect(string name, string filename);
+sound_effect load_sound_effect(const string &name, const string &filename);
 
 /**
  * Determines if SplashKit has a sound effect loaded for the supplied name.
@@ -78,7 +78,7 @@ sound_effect load_sound_effect(string name, string filename);
  * @returns Returns `true` if there is a sound effect with the given `name` has
  *          has been loaded.
  */
-bool has_sound_effect(string name);
+bool has_sound_effect(const string &name);
 
 /**
  * Retrieves a `sound_effect` that has been loaded into SplashKit. If the
@@ -91,7 +91,7 @@ bool has_sound_effect(string name);
  * @returns Returns the `sound_effect` that has been loaded with the specified
  *          `name` using `load_sound_effect`.
  */
-sound_effect sound_effect_named(string name);
+sound_effect sound_effect_named(const string &name);
 
 /**
  * Returns the name of the `sound_effect` that has been loaded by SplashKit
@@ -142,7 +142,7 @@ bool sound_effect_playing(sound_effect effect);
  * @attribute class     sound_effect
  * @attribute getter    is_playing
  */
-bool sound_effect_playing(string name);
+bool sound_effect_playing(const string &name);
 
 /**
  * Releases the SplashKit resources associated with the sound effect.
@@ -224,7 +224,7 @@ void play_sound_effect(sound_effect effect, float volume);
  * @attribute class   sound_effect
  * @attribute method  play
  */
-void play_sound_effect(string name, int times, float volume);
+void play_sound_effect(const string &name, int times, float volume);
 
 /**
  * Plays a sound effect for a specified number of times at full volume.
@@ -235,7 +235,7 @@ void play_sound_effect(string name, int times, float volume);
  * @attribute class   sound_effect
  * @attribute method  play
  */
-void play_sound_effect(string name, int times);
+void play_sound_effect(const string &name, int times);
 
 /**
  * Plays a sound effect once at full volume.
@@ -245,7 +245,7 @@ void play_sound_effect(string name, int times);
  * @attribute class   sound_effect
  * @attribute method  play
  */
-void play_sound_effect(string name);
+void play_sound_effect(const string &name);
 
 /**
  * Plays a sound effect once at full volume.
@@ -256,7 +256,7 @@ void play_sound_effect(string name);
  * @attribute class   sound_effect
  * @attribute method  play
  */
-void play_sound_effect(string name, float volume);
+void play_sound_effect(const string &name, float volume);
 
 /**
  * Stops the `sound_effect` if it is currently playing
@@ -277,7 +277,7 @@ void stop_sound_effect(sound_effect effect);
  * @attribute class   sound_effect
  * @attribute method  stop
  */
-void stop_sound_effect(string name);
+void stop_sound_effect(const string &name);
 
 /**
  * Fades out the `sound_effect` over the specified milliseconds.

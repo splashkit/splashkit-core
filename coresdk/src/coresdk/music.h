@@ -38,7 +38,7 @@ typedef struct _music_data *music;
  * @attribute class         music
  * @attribute constructor   true
  */
-music load_music(string name, string filename);
+music load_music(const string &name, const string &filename);
 
 /**
  * Releases the SplashKit resources associated with music.
@@ -71,7 +71,7 @@ void free_all_music();
  * @returns Returns `true` if there is a music file with the given `name` has
  *          has been loaded.
  */
-bool has_music(string name);
+bool has_music(const string &name);
 
 /**
  * Retrieves a `music` that has been loaded into SplashKit.
@@ -81,7 +81,7 @@ bool has_music(string name);
  * @returns Returns the `music` that has been loaded with the specified
  *          `name` using `load_music`.
  */
-music music_named(string name);
+music music_named(const string &name);
 
 /**
  * Plays a music file for a specified number of times and playback volume.
@@ -126,14 +126,14 @@ void play_music(music data, int times);
  * @param name      The name of the `music` to play.
  * @param times     Controls the number of times the music is played.
  */
-void play_music(string name, int times);
+void play_music(const string &name, int times);
 
 /**
  * Plays the music file that matches the name once at full volume.
  *
  * @param name  The name of the `music` to play.
  */
-void play_music(string name);
+void play_music(const string &name);
 
 /**
  * Fades music up to full volume over a specified number of milliseconds
@@ -172,7 +172,7 @@ void fade_music_in(music data, int ms);
  * @attribute class   music
  * @attribute method  fade_in
  */
-void fade_music_in(string name, int times, int ms);
+void fade_music_in(const string &name, int times, int ms);
 
 /**
  * Fades music file matching the name to full volume over a specified number of milliseconds
@@ -183,7 +183,7 @@ void fade_music_in(string name, int times, int ms);
  * @attribute class   music
  * @attribute method  fade_in
  */
-void fade_music_in(string name, int ms);
+void fade_music_in(const string &name, int ms);
 
 /**
  * Fades music outover a specified number of milliseconds
