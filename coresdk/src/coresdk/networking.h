@@ -43,7 +43,7 @@ string hex_to_dec_string(const string &a_hex);
  *
  * @return hexadecimal representation of the supplied decimal integer
  */
-string dec_to_hex(unsigned int a_dec);
+string dec_to_hex(unsigned long int a_dec);
 
 /**
  * @brief Converts an ipv4 address string to hex representation
@@ -79,7 +79,7 @@ unsigned int ipv4_to_dec(const string &a_ip);
  *
  * @return ipv4 address string in X.X.X.X format
  */
-string ipv4_to_str(uint32_t ip);
+string ipv4_to_str(unsigned long int ip);
 
 /**
  * @brief Returns the ipv4 string for the current computer's ip

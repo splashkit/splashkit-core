@@ -3,13 +3,6 @@
 #include <iomanip>
 #include "networking.h"
 
-string dec_to_hex(unsigned int a_dec)
-{
-    stringstream hex_string;
-    hex_string << "0x" << uppercase << hex << a_dec;
-    return hex_string.str();
-}
-
 string hex_str_to_ipv4(const string &a_hex)
 {
     stringstream ipv4_string;
@@ -36,6 +29,13 @@ string hex_to_dec_string(const string &a_hex)
         dec += c_val * pow(16, (a_hex.length() - i - 1));
     }
     return to_string(dec);
+}
+
+string dec_to_hex(unsigned long int a_dec)
+{
+    stringstream hex_string;
+    hex_string << "0x" << uppercase << hex << a_dec;
+    return hex_string.str();
 }
 
 unsigned int ipv4_to_dec(const string &a_ip)
@@ -71,7 +71,7 @@ string ipv4_to_hex(const string& a_ip)
     return hex_string.str();
 }
 
-string ipv4_to_str(uint32_t ip)
+string ipv4_to_str(unsigned long int ip)
 {
     stringstream ip_string;
     ip_string << ((ip >> 24) & 0xFF) << ".";
