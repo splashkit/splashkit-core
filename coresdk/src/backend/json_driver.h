@@ -27,8 +27,6 @@ struct sk_json
     backend_json data;
 };
 
-typedef struct sk_json *json;
-
 template <typename T>
 void sk_json_add_value(json j, string key, T value)
 {

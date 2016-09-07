@@ -9,12 +9,12 @@
 #ifndef SPLASHKIT_JSON_CPP
 #define SPLASHKIT_JSON_CPP
 
-#include "json_driver.h"
-
 #include <string>
 #include <vector>
 
 using namespace std;
+
+typedef struct sk_json *json;
 
 json create_json();
 

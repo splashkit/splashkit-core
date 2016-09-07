@@ -7,6 +7,7 @@
 //
 
 #include "json.h"
+#include "json_driver.h"
 #include "resources.h"
 #include "utility_functions.h"
 #include "core_driver.h"
