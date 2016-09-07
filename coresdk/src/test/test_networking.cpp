@@ -10,6 +10,16 @@
 
 void run_encoding_decoding_tests()
 {
+    // Incomplete ip address tests
+    assert(ipv4_to_hex("127.0.0") == "0x7F000000");
+    assert(ipv4_to_str(ipv4_to_dec("127.0.0")) == "127.0.0.0");
+    assert(ipv4_to_str(ipv4_to_dec("127,0.0")) == "127.0.0.0");
+    assert(ipv4_to_str(ipv4_to_dec("")) == "0.0.0.0");
+
+    int too_small_int = 4000;
+    assert(ipv4_to_str(too_small_int) == "0.0.15.160");
+
+    // Complete ip address tests
     assert(ipv4_to_str(ipv4_to_dec(TEST_IP)) == TEST_IP);
     assert(dec_to_hex(ipv4_to_dec(TEST_IP)) == TEST_IP_HEX);
     assert(ipv4_to_hex(TEST_IP) == TEST_IP_HEX);
