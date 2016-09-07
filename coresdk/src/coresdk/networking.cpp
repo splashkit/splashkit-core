@@ -43,7 +43,7 @@ unsigned int ipv4_to_dec(const string &a_ip) {
     return result;
 }
 
-string ipv4_to_str(uint32_t ip) {
+string ipv4_to_str(unsigned int ip) {
     stringstream ip_string;
     ip_string << ((ip >> 24) & 0xFF) << ".";
     ip_string << ((ip >> 16) & 0xFF) << ".";
