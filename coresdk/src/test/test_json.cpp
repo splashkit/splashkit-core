@@ -10,8 +10,7 @@
 #define SPLASHKIT_TEST_JSON_H
 
 #include <vector>
-#include <easylogging++.h>
-
+#include <iostream>
 
 #include "json.h"
 
@@ -43,13 +42,13 @@ json create_person()
 void test_to_string()
 {
     json person = create_person();
-    LOG(DEBUG) << json_to_string(person);
+    cout << json_to_string(person) << endl;
 }
 
 template <typename T>
 void test(T expected, T actual)
 {
-    LOG(DEBUG) << "Expected: " << expected << " -> Actual: " << actual;
+    cout << "Expected: " << expected << " -> Actual: " << actual << endl;
 }
 
 void test_read_values(json person)
@@ -75,13 +74,13 @@ void save_person_to_file(string filename)
 {
     json j = create_person();
 
-    LOG(DEBUG) << "Saving person to Resources/json/" + filename;
+    cout << "Saving person to Resources/json/" + filename << endl;
     json_to_file(j, filename);
 }
 
 json create_person_from_file(string filename)
 {
-    LOG(DEBUG) << "Reading " << filename << " from disk";
+    cout << "Reading " << filename << " from disk" << endl;
     json j = json_from_file(filename);
     return j;
 }
@@ -92,7 +91,7 @@ void run_json_test()
     test_read_values(create_person());
     save_person_to_file("person.json");
     json person = create_person_from_file("person.json");
-    LOG(DEBUG) << "Testing read for json from file";
+    cout << "Testing read for json from file" << endl;
     test_read_values(person);
     free_all_json();
 }
