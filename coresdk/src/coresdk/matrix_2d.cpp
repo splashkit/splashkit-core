@@ -122,7 +122,7 @@ matrix_2d matrix_inverse(const matrix_2d &m)
     if (det == 0) //cant actually compute inverse!
     {
         invdet = 3.4E38;
-        raise_warning("Unable to compute inverse of matrix.");
+        LOG(WARNING) << "Unable to compute inverse of matrix.";
     }
     else
         invdet = 1 / det;

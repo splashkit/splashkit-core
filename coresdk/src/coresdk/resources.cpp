@@ -161,7 +161,7 @@ string path_to_resources(resource_kind kind)
         case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
         case OTHER_RESOURCE:        return path;
         default:
-            raise_warning("Attempting to get path to unknown resource kind.");
+            LOG(WARNING) << "Attempting to get path to unknown resource kind.";
             return path;
     }
 }

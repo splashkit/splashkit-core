@@ -148,7 +148,7 @@ void hsb_value_of(color c, float &h, float &s, float &b)
         if (rf == max_rgb) h = (gf - bf) / delta;
         else if (gf == max_rgb) h = 2.0 + (bf - rf) / delta;
         else if (bf == max_rgb) h = 4.0 + (rf - gf) / delta;
-        else raise_warning("Error converting color to hsb");
+        else LOG(WARNING) << "Error converting color to hsb";
     }
     else
     {
@@ -178,7 +178,7 @@ color string_to_color(string str)
 {
     if (str[0] != '#' || not ( str.length() == 7 || str.length() == 9 ))
     {
-        raise_warning("Color string needs to start with a # and be 7 or 9 characters long");
+        LOG(WARNING) << "Color string needs to start with a # and be 7 or 9 characters long";
         return COLOR_WHITE;
     }
     

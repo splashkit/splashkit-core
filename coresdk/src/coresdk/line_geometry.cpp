@@ -82,7 +82,7 @@ point_2d closest_point_on_line(const point_2d from_pt, const line &l)
     sq_line_mag = line_length_squared(l);
     if ( sq_line_mag < EPSEPS)
     {
-        raise_warning("Cannot determine intersection point on line, line is too short");
+        LOG(WARNING) << "Cannot determine intersection point on line, line is too short";
         return point_at(0,0);
     }
     

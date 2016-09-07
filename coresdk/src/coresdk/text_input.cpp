@@ -60,7 +60,7 @@ void start_reading_text(window wind, rectangle rect, string initial_text)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to start reading text with invalid window");
+        LOG(WARNING) << "Attempting to start reading text with invalid window";
         return;
     }
     
@@ -76,7 +76,7 @@ string text_input(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
-        raise_warning("Attempting to read input text from invalid window");
+        LOG(WARNING) << "Attempting to read input text from invalid window";
         return "";
     }
     
@@ -92,7 +92,7 @@ bool text_entry_cancelled(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
-        raise_warning("Attempting to check if text entry cancelled on invalid window");
+        LOG(WARNING) << "Attempting to check if text entry cancelled on invalid window";
         return false;
     }
     
@@ -108,7 +108,7 @@ void end_reading_text(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
-        raise_warning("Ending reading text with invalid window");
+        LOG(WARNING) << "Ending reading text with invalid window";
         return;
     }
     

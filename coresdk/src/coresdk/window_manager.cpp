@@ -90,12 +90,12 @@ void window_set_icon(window wind, bitmap bmp)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to set icon for an invalid window!");
+        LOG(WARNING) << "Attempting to set icon for an invalid window!";
         return;
     }
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to set icon with an invalid bitmap!");
+        LOG(WARNING) << "Attempting to set icon with an invalid bitmap!";
         return;
     }
     
@@ -106,7 +106,7 @@ void refresh_window(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to refresh an invalid window!");
+        LOG(WARNING) << "Attempting to refresh an invalid window!";
         return;
     }
     
@@ -117,7 +117,7 @@ void clear_window(window wind, color clr)
 {
     if ( not VALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to clear an invalid window!");
+        LOG(WARNING) << "Attempting to clear an invalid window!";
         return;
     }
     
@@ -128,7 +128,7 @@ void close_window(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR) )
     {
-        raise_warning("Close window called without valid window parameter");
+        LOG(WARNING) << "Close window called without valid window parameter";
         return;
     }
     
@@ -197,7 +197,7 @@ void set_current_window(window wind)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to set active window to an invalid window value");
+        LOG(WARNING) << "Attempting to set active window to an invalid window value";
         return;
     }
     
@@ -213,7 +213,7 @@ bool window_close_requested(window wind)
 {
     if (INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to check if invalid window closed");
+        LOG(WARNING) << "Attempting to check if invalid window closed";
         return true;
     }
     
@@ -229,7 +229,7 @@ int window_width(window wind)
 {
     if (INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to get width of invalid window");
+        LOG(WARNING) << "Attempting to get width of invalid window";
         return 0;
     }
 
@@ -245,7 +245,7 @@ int window_height(window wind)
 {
     if (INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to get height of invalid window");
+        LOG(WARNING) << "Attempting to get height of invalid window";
         return 0;
     }
     

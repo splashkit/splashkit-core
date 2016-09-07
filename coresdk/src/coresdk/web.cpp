@@ -76,7 +76,7 @@ string http_response_to_string(http_response response)
 {
     if ( ! VALID_PTR(response, HTTP_RESPONSE_PTR))
     {
-        raise_warning("Attempt to convert invalid http response to a string");
+        LOG(WARNING) << "Attempt to convert invalid http response to a string";
         return "";
     }
 
@@ -96,7 +96,7 @@ bitmap download_image(const string &name, const string &url, unsigned short port
 
     if ( response->data.status < 200 || response->data.status >= 300 )
     {
-        raise_warning("Unable to download image from " + url + " got status " + to_string(response->data.status));
+        LOG(WARNING) << "Unable to download image from " + url + " got status " + to_string(response->data.status);
         return nullptr;
     }
 
@@ -114,7 +114,7 @@ bitmap download_image(const string &name, const string &url, unsigned short port
     tmpname = strdup(tmppath);
     string fpath = path_from({tmpname, fname});
     tmpname = strdup(fpath.c_str());
-    raise_warning(tmpname);
+    LOG(WARNING) << tmpname;
 #endif
     save_response_to_file(response, tmpname);
 
@@ -137,6 +137,6 @@ void free_response (http_response response)
     }
     else
     {
-        raise_warning("Attempting to delete a http response with an invalid pointer.");
+        LOG(WARNING) << "Attempting to delete a http response with an invalid pointer.";
     }
 }

@@ -98,6 +98,7 @@ include_directories("${SK_SRC}/coresdk")
 include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
+include_directories("${SK_EXT}/easyloggingpp")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
@@ -119,6 +120,9 @@ if (MSYS)
     include_directories("${SK_LIB}/win_inc")
     include_directories("${SK_EXT}/sqlite")
 endif()
+
+# MACRO DEFINITIONS #
+add_definitions(-DELPP_THREAD_SAFE)
 
 #### END SETUP ####
 #### SplashKit STATIC LIBRARY ####

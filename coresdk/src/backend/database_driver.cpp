@@ -51,7 +51,7 @@ int sk_close_database(sk_database *db)
     int rc = sqlite3_close_v2(sqlite3_from_void(db->_data));
     if (rc != SQLITE_OK)
     {
-        raise_warning("Could not close database");
+        LOG(WARNING) << "Could not close database";
     }
     return rc;
 }
@@ -112,7 +112,7 @@ int sk_query_read_column_int(sk_query_result *result, int col)
         return sqlite3_column_int(sqlite3_stmt_from_void(result->_stmt), col);
     }
     
-    raise_warning("Failed to read column as int");
+    LOG(WARNING) << "Failed to read column as int";
     return 0;
 }
 
@@ -123,7 +123,7 @@ double sk_query_read_column_double(sk_query_result *result, int col)
         return sqlite3_column_double(sqlite3_stmt_from_void(result->_stmt), col);
     }
     
-    raise_warning("Failed to read double from column");
+    LOG(WARNING) << "Failed to read double from column";
     return 0.0;
 }
 
@@ -134,7 +134,7 @@ string sk_query_read_column_text(sk_query_result *result, int col)
         const unsigned char* data = sqlite3_column_text(sqlite3_stmt_from_void(result->_stmt), col);
         return string(reinterpret_cast<const char *>(data));
     }
-    raise_warning("Failed to read column as text");
+    LOG(WARNING) << "Failed to read column as text";
     return "";
 }
 
@@ -143,7 +143,7 @@ void sk_finalise_query(sk_query_result *result)
     int rc = sqlite3_finalize(sqlite3_stmt_from_void(result->_stmt));
     if (rc != SQLITE_OK)
     {
-        raise_warning("Failed to finalise query statement");
+        LOG(WARNING) << "Failed to finalise query statement";
     }
 }
 
@@ -168,10 +168,10 @@ string sk_query_type_of_column(sk_query_result *result, int col)
                 return "NULL";
                 break;
             default :
-                raise_warning("Unkown type in column");
+                LOG(WARNING) << "Unkown type in column";
         }
     }
-    raise_warning("Failed to read type of column");
+    LOG(WARNING) << "Failed to read type of column";
     return "";
 }
 
@@ -182,6 +182,6 @@ bool sk_query_read_column_bool(sk_query_result *result, int col)
         return sqlite3_column_int(sqlite3_stmt_from_void(result->_stmt), col) != 0;
     }
     
-    raise_warning("Failed to read column as boolean");
+    LOG(WARNING) << "Failed to read column as boolean";
     return false;
 }
