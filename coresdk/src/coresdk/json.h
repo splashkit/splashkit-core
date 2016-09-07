@@ -81,6 +81,8 @@ void free_json(json j);
 
 /**
  * Releases all of the `json` objects which have been loaded.
+ *
+ * @attribute static json
  */
 void free_all_json();
 
