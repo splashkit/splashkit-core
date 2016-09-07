@@ -943,7 +943,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1180,6 +1180,7 @@
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1218,6 +1219,7 @@
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1297,7 +1299,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,
