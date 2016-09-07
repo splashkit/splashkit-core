@@ -159,6 +159,7 @@ string path_to_resources(resource_kind kind)
         case IMAGE_RESOURCE:        return path_from({ path, "images" });
         case FONT_RESOURCE:         return path_from({ path, "fonts" });
         case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
+        case JSON_RESOURCE:         return path_from({ path, "json" });
         case OTHER_RESOURCE:        return path;
         default:
             LOG(WARNING) << "Attempting to get path to unknown resource kind.";
