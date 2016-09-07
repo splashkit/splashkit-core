@@ -67,6 +67,7 @@ struct _sprite_data
 
     point_2d            anchor_point;
     bool                position_at_anchor_point;
+    bool                draw_at_anchor_point;
 
     bool                is_moving;          // Used for events to indicate the sprite is moving
     point_2d            destination;        // The destination the sprite is moving to
@@ -185,6 +186,7 @@ sprite create_sprite(const string &name, bitmap layer, animation_script ani)
 
     result->anchor_point = point_at(bitmap_width(layer) / 2, bitmap_height(layer) / 2);
     result->position_at_anchor_point = false;
+    result->draw_at_anchor_point = false;
 
     // Set the first layer as visible.
     result->visible_layers.push_back(0);                //The first layer (at idx 0) is drawn
@@ -891,11 +893,18 @@ void draw_sprite(sprite s, float x_offset, float y_offset)
     for (int i = 0; i < s->visible_layers.size(); i++)
     {
         idx = s->visible_layers[i];
-        draw_bitmap(
-            sprite_layer(s, idx),
-            s->position.x - s->anchor_point.x + x_offset + s->layer_offsets[idx].x,
-            s->position.y -s->anchor_point.y + y_offset + s->layer_offsets[idx].y,
-            opts);
+        if ( s->draw_at_anchor_point )
+            draw_bitmap(
+                sprite_layer(s, idx),
+                s->position.x - s->anchor_point.x + x_offset + s->layer_offsets[idx].x,
+                s->position.y -s->anchor_point.y + y_offset + s->layer_offsets[idx].y,
+                opts);
+        else
+            draw_bitmap(
+                sprite_layer(s, idx),
+                s->position.x + x_offset + s->layer_offsets[idx].x,
+                s->position.y + y_offset + s->layer_offsets[idx].y,
+                opts);
     }
 }
 
@@ -1220,6 +1229,18 @@ void sprite_set_move_from_anchor_point(sprite s, bool value)
     {
         s->position_at_anchor_point = value;
     }
+}
+
+bool sprite_draw_at_anchor_point(sprite s)
+{
+    if ( INVALID_PTR(s, SPRITE_PTR)) return false;
+    return s->draw_at_anchor_point;
+}
+
+void sprite_set_draw_at_anchor_point(sprite s, bool value)
+{
+    if ( INVALID_PTR(s, SPRITE_PTR) ) return;
+    s->draw_at_anchor_point = value;
 }
 
 void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds)

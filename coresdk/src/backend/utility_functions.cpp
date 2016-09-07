@@ -566,12 +566,12 @@ void process_range(string value_in, vector<int> &result)
     }
 }
 
-float rad_to_deg(float radians)
+double rad_to_deg(double radians)
 {
     return radians * 180 / PI;
 }
 
-float deg_to_rad(float degrees)
+double deg_to_rad(double degrees)
 {
     return degrees * PI / 180;
 }

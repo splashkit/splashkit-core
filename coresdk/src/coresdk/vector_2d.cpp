@@ -63,7 +63,7 @@ vector_2d vector_add(const vector_2d &v1, const vector_2d &v2)
 
 vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2)
 {
-    return { v2.x - v1.x, v2.y - v1.y };
+    return { v1.x - v2.x, v1.y - v2.y };
 }
 
 vector_2d vector_multiply(const vector_2d &v1, float s)

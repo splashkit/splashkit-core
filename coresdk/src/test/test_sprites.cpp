@@ -23,6 +23,8 @@ void run_sprite_test()
     quad q;
 
     open_window("Sprite Rotation", 600, 600);
+    
+    hide_mouse();
 
     sprt = create_sprite("rocket_sprt.png");
     sprite_set_move_from_anchor_point(sprt, true);
@@ -91,9 +93,12 @@ void run_sprite_test()
         fill_triangle(COLOR_BLUE, tri_b);
         // FillQuad(RGBAColor(0,0,255,62), q);
 
+        draw_sprite(sprt);
+        draw_sprite(s2);
+        
         if (sprite_rect_collision(sprt, r))
 		{
-            fill_rectangle(COLOR_PINK, r);
+            draw_rectangle(COLOR_RED, r);
 		}
         else
 		{
@@ -109,11 +114,15 @@ void run_sprite_test()
 
         if (sprite_at(sprt, mouse_position()))
 		{
-            fill_circle(COLOR_YELLOW, sprite_collision_circle(sprt));
+            draw_circle(COLOR_RED, sprite_collision_circle(sprt));
+            draw_circle(COLOR_RED, mouse_x(), mouse_y(), 1);
 		}
+        else
+        {
+            draw_circle(COLOR_PLUM, mouse_x(), mouse_y(), 1);
+            draw_circle(COLOR_GREEN, sprite_collision_circle(sprt));
+        }
 
-        draw_sprite(sprt);
-        draw_sprite(s2);
         update_sprite(sprt);
 
         if (sprite_collision(sprt, s2))
@@ -121,13 +130,14 @@ void run_sprite_test()
             draw_circle(COLOR_RED, sprite_collision_circle(s2));
 		}
 
-        draw_circle(COLOR_GREEN, sprite_collision_circle(sprt));
         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(sprt));
 
         draw_line(COLOR_GREEN, line_from(center_point(sprt), matrix_multiply(rotation_matrix(sprite_rotation(sprt)), vector_multiply(sprite_velocity(sprt), 30.0))));
 
         refresh_screen();
     }
+    
+    show_mouse();
     
     close_all_windows();
 }

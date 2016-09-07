@@ -62,6 +62,15 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri);
 bool point_in_rectangle(const point_2d &pt, const rectangle &rect);
 
 /**
+ *  Tests if a point is in a quad.
+ *
+ * @param pt    The point to test.
+ * @param q     The quad to check if the point is within.
+ * @return      True if pt lies within the area of q.
+ */
+bool point_in_quad(const point_2d &pt, const quad &q);
+
+/**
  *  Returns true if the point `pt` is in the circle `c`.
  */
 bool point_in_circle(const point_2d &pt, const circle &c);
