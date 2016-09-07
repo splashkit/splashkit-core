@@ -39,9 +39,50 @@ using namespace std;
  * Start a line with a // to have it ignored when the bundle is loaded. This
  * can be used to add comments to your bundle.
  *
- * To load an **animation** use the format: ANIM,name,filename. For example, the
- * following will load an animation named "WalkingScript" that loads the
- * animation from "kermit.txt" in your games animation Resources.
+ *
+ * -  To load an **animation** use the format: ANIM,name,filename. For example, the
+ *    following will load an animation named "WalkingScript" that loads the
+ *    animation from "kermit.txt" in your games animation Resources.
+ *
+ *    ANIM,WalkingScript,kermit.txt
+ *
+ * -  To load a **bitmap** use the format: BMP,name,filename. For example, the
+ *    following will load a bitmap named "Logo" using the "Logo.png" file.
+ *
+ *    BITMAP,Logo,logo.png
+ *
+ * -  To load a **bitmap** that has a number of cells, you can extend the
+ *    bitmap format with the cell details. This has the format:
+ *    BMP,name,filename,cell-width,cell-height,columns,rows,count. The following
+ *    will setup the "Player" bitmap to have cells that are 75 pixels wide, and
+ *    42 pixels height. There are 4 columns in 1 row, giving a total of 4 cells.
+ *
+ *    BITMAP,Player,player.png,75,42,4,1,4
+ *
+ * -  To load a font use FONT,name,filename. For example, the following loads a
+ *    font named "GameFont" that represents the "demolition.otf".
+ *
+ *    FONT,GameFont,demolition.otf
+ *
+ * -  To load music, use MUSIC,name,filename. The following loads "GameMusic"
+ *    for the "magical_night.ogg" file.
+ *
+ *    MUSIC,GameMusic,magical_night.ogg
+ *
+ * -  To load a sound effect, use SOUND,name,filename. For example the following
+ *    loads "error" from the "error.wav" file.
+ *
+ *    SOUND,error,error.wav
+ *
+ * -  To create a timer use TIMER,name. The following creates a timer named as
+ *    "my timer".
+ *
+ *    TIMER,my timer
+ *
+ * -  You can also load another resource bundle using BUNDLE,name,filename.
+ *    The following loads "another bundle" from the "another.txt" file.
+ *
+ *    BUNDLE,another bundle,another.txt
  */
 void load_resource_bundle(const string &name, const string &filename);
 
