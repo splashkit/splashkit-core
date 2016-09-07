@@ -52,6 +52,6 @@ unsigned int ipv4_to_dec(const string &a_ip);
  *
  * @return ipv4 address string in X.X.X.X format
  */
-string ipv4_to_str(uint32_t ip);
+string ipv4_to_str(unsigned int ip);
 
 #endif //SPLASHKIT_NETWORKING_H
