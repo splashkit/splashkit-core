@@ -176,6 +176,8 @@
 		FAAC94021D8016F100B73558 /* json_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94011D8016F100B73558 /* json_driver.h */; };
 		FAAC94051D801C1C00B73558 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94031D801C1C00B73558 /* networking.cpp */; };
 		FAAC94061D801C1C00B73558 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94041D801C1C00B73558 /* networking.h */; };
+		FAAC94091D801C9600B73558 /* logging_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94071D801C9600B73558 /* logging_driver.cpp */; };
+		FAAC940A1D801C9600B73558 /* logging_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94081D801C9600B73558 /* logging_driver.h */; };
 		FCB6B3BB1D61423E00011965 /* music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB6B3B91D61423E00011965 /* music.cpp */; };
 		FCB6B3BC1D61423E00011965 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB6B3BA1D61423E00011965 /* music.h */; };
 /* End PBXBuildFile section */
@@ -402,6 +404,8 @@
 		FAAC94011D8016F100B73558 /* json_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_driver.h; sourceTree = "<group>"; };
 		FAAC94031D801C1C00B73558 /* networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
 		FAAC94041D801C1C00B73558 /* networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		FAAC94071D801C9600B73558 /* logging_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging_driver.cpp; sourceTree = "<group>"; };
+		FAAC94081D801C9600B73558 /* logging_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging_driver.h; sourceTree = "<group>"; };
 		FCB6B3B91D61423E00011965 /* music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music.cpp; sourceTree = "<group>"; };
 		FCB6B3BA1D61423E00011965 /* music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -517,6 +521,8 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				FAAC94071D801C9600B73558 /* logging_driver.cpp */,
+				FAAC94081D801C9600B73558 /* logging_driver.h */,
 				FAAC94011D8016F100B73558 /* json_driver.h */,
 				94E6994C1D6F385200FBFA28 /* concurrency_utils.h */,
 				94E699481D6F384A00FBFA28 /* web_server_driver.cpp */,
@@ -801,6 +807,7 @@
 				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
 				94AC3DBB1D6BF11E002920A5 /* triangle_geometry.h in Headers */,
+				FAAC940A1D801C9600B73558 /* logging_driver.h in Headers */,
 				941C8A301D5B2EC1003112B2 /* animations.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				4129D23C1D653F6E000BFD0C /* physics.h in Headers */,
@@ -999,6 +1006,7 @@
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				4129D23B1D653F6E000BFD0C /* physics.cpp in Sources */,
 				FAAC93FF1D8016D500B73558 /* json.cpp in Sources */,
+				FAAC94091D801C9600B73558 /* logging_driver.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */,
 				94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */,
