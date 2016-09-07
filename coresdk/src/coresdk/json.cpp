@@ -208,3 +208,8 @@ void json_read_array(json j, string key, vector<json>& out)
         out.push_back(wj);
     }
 }
+
+bool json_has_key(json j, string key)
+{
+    return j->data.count(key) > 0;
+}

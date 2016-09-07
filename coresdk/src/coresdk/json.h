@@ -62,5 +62,6 @@ void json_read_array(json j, string key, vector<string> &out);
 
 void json_read_array(json j, string key, vector<bool> &out);
 
+bool json_has_key(json j, string key);
 
 #endif //SPLASHKIT_JSON_CPP

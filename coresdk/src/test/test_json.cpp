@@ -12,6 +12,8 @@
 #include <vector>
 #include <iostream>
 
+#include "easylogging++.h"
+
 #include "json.h"
 
 using namespace std;
@@ -85,14 +87,30 @@ json create_person_from_file(string filename)
     return j;
 }
 
+void test_has_key(json person)
+{
+    LOG(DEBUG) << "Testing has key";
+    test(true, json_has_key(person, "lastName"));
+    test(false, json_has_key(person, "postalCode"));
+    test(true, json_has_key(person, "addresses"));
+    json addresses = json_read_object(person, "addresses");
+    test(true, json_has_key(addresses, "postalCode"));
+}
+
 void run_json_test()
 {
     test_to_string();
+
     test_read_values(create_person());
+
     save_person_to_file("person.json");
+
     json person = create_person_from_file("person.json");
     cout << "Testing read for json from file" << endl;
     test_read_values(person);
+
+    test_has_key(person);
+
     free_all_json();
 }
 
