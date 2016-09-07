@@ -1,5 +1,5 @@
 //
-//  json.cpp
+//  test_json.cpp
 //  splashkit
 //
 //  Created by James Armstrong & Jake Renzella on 03/09/2016.

@@ -1,10 +1,18 @@
-//
-//  json.h
-//  splashkit
-//
-//  Created by James Armstrong & Jake Renzella on 03/09/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Json
+ * @author James Armstrong
+ * @author Jake Renzella
+ * @brief SplashKit Json allows you to create and read JSON objects.
+ *
+ * Splashkit's JSON library allows you to easily create or read JSON objects and
+ * manipulate them to/from a JSON string or from a file containing a JSON
+ * string. Create a new JSON object with a call to `create_json()` and
+ * read or write data to it by calling methods like
+ * `json_add_string(json j, string key, string value)` and
+ * `json_read_string(json j, string key)`.
+ *
+ * @attribute static json
+ */
 
 #ifndef SPLASHKIT_JSON_CPP
 #define SPLASHKIT_JSON_CPP
@@ -14,6 +22,15 @@
 
 using namespace std;
 
+/**
+ * The `json` type is used to refer to JSON objects that can be
+ * manipulated by the SplashKit json code.
+ *
+ * All `json` objects created must be released with `free_all_json()`
+ * before the program ends.
+ *
+ * @attribute class json
+ */
 typedef struct sk_json *json;
 
 json create_json();
