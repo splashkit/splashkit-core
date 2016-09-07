@@ -37,6 +37,8 @@ json create_json();
 
 json create_json(string json_string);
 
+void free_json(json j);
+
 void free_all_json();
 
 void json_to_file(json j, const string& filename);

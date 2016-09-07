@@ -111,6 +111,9 @@ void run_json_test()
 
     test_has_key(person);
 
+    free_json(person);
+    test_read_values(person);
+
     free_all_json();
 }
 
