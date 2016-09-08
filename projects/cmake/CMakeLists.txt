@@ -8,6 +8,11 @@ set(SK_LIB "../../coresdk/lib")
 set(SK_OUT "../../out")
 set(SK_BIN "../../bin")
 
+if (WIN32 OR MSYS OR MINGW)
+  SET(MSYS "true")
+  add_definitions(-DWINDOWS)
+endif()
+
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
@@ -98,6 +103,8 @@ include_directories("${SK_SRC}/coresdk")
 include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
+include_directories("${SK_EXT}/easyloggingpp")
+include_directories("${SK_EXT}/json")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
@@ -120,6 +127,9 @@ if (MSYS)
     include_directories("${SK_EXT}/sqlite")
 endif()
 
+# MACRO DEFINITIONS #
+add_definitions(-DELPP_THREAD_SAFE)
+
 #### END SETUP ####
 #### SplashKit STATIC LIBRARY ####
 add_library(SplashKit STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
@@ -127,17 +137,21 @@ add_library(SplashKit STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
 
 if (MSYS)
-    target_link_libraries(SplashKit SDL2_mixer.dll
-                                    SDL2_image.dll
-                                    SDL2_net.dll
-                                    libcivetweb.dll
-                                    SDL2.dll
-                                    SDL2_ttf.dll
-                                    SDL2_ttf.dll
-                                    libcurl.dll
-                                    libSDL2_gfx-1-0-0.dll
-                                    libpng16-16.dll
-                                    libsqlite.dll)
+    link_directories("${SK_LIB}/win64")
+    target_link_libraries(SplashKit SDL2_mixer
+                                    SDL2_image
+                                    SDL2_net
+                                    libcivetweb
+                                    SDL2
+                                    SDL2_ttf
+                                    SDL2_ttf
+                                    libcurl
+                                    libSDL2_gfx-1-0-0
+                                    libpng16-16
+                                    libsqlite
+                                    pthread
+                                    stdc++
+                                    ws2_32)
 endif()
 
 # SET OUTPUT TO /path/to/splashkit/out/lib
@@ -162,6 +176,12 @@ set_target_properties(sktest
 add_custom_command(TARGET sktest
     PRE_BUILD COMMAND
     ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources" $<TARGET_FILE_DIR:sktest>/Resources)
+
+if (MSYS)
+    add_custom_command(TARGET sktest
+        PRE_BUILD COMMAND
+        ${CMAKE_COMMAND} -E copy "${SK_LIB}/win64/*.dll" $<TARGET_FILE_DIR:sktest>)
+endif()
 
 #### END sktest EXECUTABLE ####
 

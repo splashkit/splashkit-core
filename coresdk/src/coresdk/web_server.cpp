@@ -24,7 +24,7 @@ bool has_waiting_requests(web_server server)
 {
     if (INVALID_PTR(server, WEB_SERVER_PTR))
     {
-        raise_warning("has_waiting_requests called on an invalid server");
+        LOG(WARNING) << "has_waiting_requests called on an invalid server";
         return false;
     }
 
@@ -35,7 +35,7 @@ void stop_web_server(web_server server)
 {
     if (INVALID_PTR(server, WEB_SERVER_PTR))
     {
-        raise_warning("stop_web_server called on an invalid server");
+        LOG(WARNING) << "stop_web_server called on an invalid server";
         return;
     }
 
@@ -46,7 +46,7 @@ server_request next_web_request(web_server server)
 {
     if (INVALID_PTR(server, WEB_SERVER_PTR))
     {
-        raise_warning("next_web_request called on an invalid server");
+        LOG(WARNING) << "next_web_request called on an invalid server";
         return nullptr;
     }
 
@@ -57,12 +57,12 @@ void send_response(server_request r, server_response resp)
 {
     if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
     {
-        raise_warning("send_response called on an invalid request");
+        LOG(WARNING) << "send_response called on an invalid request";
         return;
     }
     else if (INVALID_PTR(resp, WEB_SERVER_RESPONSE_PTR))
     {
-        raise_warning("send_response called on an invalid response");
+        LOG(WARNING) << "send_response called on an invalid response";
         return;
     }
 
@@ -86,7 +86,7 @@ string request_get_uri(server_request r)
 {
     if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
     {
-        raise_warning("request_get_uri called on an invalid request");
+        LOG(WARNING) << "request_get_uri called on an invalid request";
         return "";
     }
 

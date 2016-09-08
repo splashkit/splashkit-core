@@ -13,6 +13,10 @@
 #include <string>
 using namespace std;
 
+#ifdef HELP_KEY
+  #undef HELP_KEY
+#endif
+
 /**
  * These are the key codes you can use to check details of keyboard actions.
  * See `key_down`, `key_up`, `key_typed`, and `key_released` functions.

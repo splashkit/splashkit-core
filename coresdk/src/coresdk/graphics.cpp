@@ -101,7 +101,7 @@ void take_screenshot(window wind, const string &basename)
 {
     if ( INVALID_PTR(wind, WINDOW_PTR))
     {
-        raise_warning("Attempting to save screenshot of invalid window");
+        LOG(WARNING) << "Attempting to save screenshot of invalid window";
         return;
     }
     
@@ -112,7 +112,7 @@ void save_bitmap(bitmap bmp, const string &basename)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR))
     {
-        raise_warning("Attempting to save image of invalid bitmap");
+        LOG(WARNING) << "Attempting to save image of invalid bitmap";
         return;
     }
     
@@ -125,7 +125,7 @@ int number_of_displays()
     
     if ( not data )
     {
-        raise_warning("Failed to load system data");
+        LOG(WARNING) << "Failed to load system data";
         return 0;
     }
     
@@ -138,7 +138,7 @@ display display_details(unsigned int index)
     
     if ( not data )
     {
-        raise_warning("Failed to load system data");
+        LOG(WARNING) << "Failed to load system data";
         return 0;
     }
     
@@ -152,7 +152,7 @@ string display_name(display disp)
 {
     if ( INVALID_PTR(disp, DISPLAY_PTR) )
     {
-        raise_warning("Attempting to get name of invalid display");
+        LOG(WARNING) << "Attempting to get name of invalid display";
         return "";
     }
     
@@ -163,7 +163,7 @@ int display_width(display disp)
 {
     if ( INVALID_PTR(disp, DISPLAY_PTR) )
     {
-        raise_warning("Attempting to get width of invalid display");
+        LOG(WARNING) << "Attempting to get width of invalid display";
         return 0;
     }
     
@@ -174,7 +174,7 @@ int display_height(display disp)
 {
     if ( INVALID_PTR(disp, DISPLAY_PTR) )
     {
-        raise_warning("Attempting to get height of invalid display");
+        LOG(WARNING) << "Attempting to get height of invalid display";
         return 0;
     }
     
@@ -185,7 +185,7 @@ int display_x(display disp)
 {
     if ( INVALID_PTR(disp, DISPLAY_PTR) )
     {
-        raise_warning("Attempting to get x of invalid display");
+        LOG(WARNING) << "Attempting to get x of invalid display";
         return 0;
     }
     
@@ -196,7 +196,7 @@ int display_y(display disp)
 {
     if ( INVALID_PTR(disp, DISPLAY_PTR) )
     {
-        raise_warning("Attempting to get y of invalid display");
+        LOG(WARNING) << "Attempting to get y of invalid display";
         return 0;
     }
     

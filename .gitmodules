@@ -3,4 +3,4 @@
 	url = https://github.com/splashkit/splashkit-external
 [submodule "tools/translator"]
 	path = tools/translator
-	url = https://github.com/alexcu/splashkit-translator
+	url = https://github.com/splashkit/splashkit-translator

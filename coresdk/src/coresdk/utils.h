@@ -18,6 +18,4 @@ void delay(unsigned int milliseconds);
 ///
 unsigned int current_ticks();
 
-
-
 #endif /* utils_hpp */

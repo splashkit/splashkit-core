@@ -133,8 +133,8 @@ struct point_2d
  */
 struct vector_2d
 {
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 /// Rectangles are simple rectangle shapes that exist at a point and have a set width

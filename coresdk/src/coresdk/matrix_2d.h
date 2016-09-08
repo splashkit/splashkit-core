@@ -24,7 +24,7 @@ using namespace std;
  */
 struct matrix_2d
 {
-    float elements[3][3];
+    double elements[3][3];
 };
 
 /**

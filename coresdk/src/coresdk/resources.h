@@ -26,6 +26,7 @@ enum resource_kind
     IMAGE_RESOURCE,
     FONT_RESOURCE,
     TIMER_RESOURCE,
+    JSON_RESOURCE,
     OTHER_RESOURCE
 };
 

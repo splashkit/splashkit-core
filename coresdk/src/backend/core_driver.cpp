@@ -13,6 +13,7 @@
 
 #include "core_driver.h"
 #include "text_driver.h"
+#include "logging_driver.h"
 
 #include <stdlib.h>
 
@@ -65,6 +66,8 @@ void internal_sk_init()
     sk_init_text();
 
     sk_init_web();
+
+    sk_init_logging();
     
 //
 //    sk_network_init();

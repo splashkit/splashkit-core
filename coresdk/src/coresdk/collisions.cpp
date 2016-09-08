@@ -17,6 +17,8 @@
 #include "graphics.h"
 #include "utils.h"
 
+//#define DEBUG_STEP
+
 // Step over pixels in the two areas based on the supplied matrix
 //
 // See http://www.austincc.edu/cchrist1/GAME1343/TransformedCollision/TransformedCollision.htm
@@ -28,10 +30,11 @@ bool _step_through_pixels (
     function<bool(int, int, int, int)> end_fn )
 {
     bool a_is_1;
-    float h_a, w_a;
-    float h_b, w_b;
+    double h_a, w_a;
+    double h_b, w_b;
     matrix_2d transform_a_to_b;
     
+    // Determine the smaller area to step through.
     if ( w1 * h1 <= w2 * h2 ) // use bitmap 1 as the one to scan
     {
         a_is_1 = true;
@@ -65,14 +68,12 @@ bool _step_through_pixels (
     // This variable will be reused to keep track of the start of each row
     y_pos_in_b = matrix_multiply(transform_a_to_b, vector_to(0,0));
     
-	// draw_rectangle(COLOR_BLUE, y_pos_in_b.x + 300, y_pos_in_b.y + 300, w1, h1);
-
     // When a point moves in A's local space, it moves in B's local space with a
     // fixed direction and distance proportional to the movement in A.
     // This algorithm steps through A one pixel at a time along A's X and Y axes
     // Calculate the analogous steps in B:
     step_x = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(1, 0)), y_pos_in_b);
-    step_y = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(0, -1)), y_pos_in_b); // y inverted for drawing
+    step_y = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(0, 1)), y_pos_in_b); // y inverted for drawing
 
     int x_b, y_b;
     
@@ -89,13 +90,9 @@ bool _step_through_pixels (
             // positionInB = transform_a_to_b * vector_to(xA, yA);
 
             // Round to the nearest pixel
-            x_b = round(pos_in_b.x);
-            y_b = round(pos_in_b.y);
-
-            // fill_circle(COLOR_MAGENTA, x_b + 300, y_b + 300, 2);
-            // refresh_screen();
-            // delay(10);
-
+            x_b = trunc(pos_in_b.x);
+            y_b = trunc(pos_in_b.y);
+            
             // If the pixel lies within the bounds of B
             if  ( (0 <= x_b) and (x_b < w_b) and (0 <= y_b) and (y_b < h_b) )
             {
@@ -124,6 +121,21 @@ bool _collision_within_bitmap_images_with_translation(bitmap bmp1, int c1, const
 								bitmap_cell_width(bmp2), bitmap_cell_height(bmp2), matrix2,
 								[&] (int ax, int ay, int bx, int by)
 								{
+#if DEBUG_STEP
+                                    point_2d apt, bpt;
+                                    apt = matrix_multiply(matrix1, point_at(ax,ay));
+                                    if ( pixel_drawn_at_point(bmp1, c1, ax, ay) )
+                                        draw_circle(COLOR_RED, apt.x, apt.y, 3);
+                                    bpt = matrix_multiply(matrix2, point_at(bx,by));
+                                    if ( pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                        draw_circle(COLOR_PINK, bpt.x, bpt.y, 2);
+                                    
+                                    if ( pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                    {
+                                        fill_circle(COLOR_GREEN, apt.x, apt.y, 1);
+                                        fill_circle(COLOR_YELLOW, bpt.x, bpt.y, 3);
+                                    }
+#endif
 									return pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by);
 								});
 }
@@ -135,8 +147,19 @@ bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d& translation, 
         return false;
     }
     
+    if ( not point_in_quad(pt, quad_from(bitmap_cell_rectangle(bmp), translation)) )
+    {
+        return false;
+    }
+    
     return _step_through_pixels(1, 1, translation_matrix(pt.x, pt.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
     {
+#if DEBUG_STEP
+        point_2d bpt;
+        bpt = matrix_multiply(translation, point_at(bx,by));
+        if ( pixel_drawn_at_point(bmp, cell, bx, by) )
+            fill_rectangle(COLOR_PINK, bpt.x, bpt.y, translation.elements[0][0], translation.elements[1][1] );
+#endif
         return pixel_drawn_at_point(bmp, cell, bx, by);
     });
 }
@@ -228,6 +251,7 @@ bool sprite_collision(sprite s1, sprite s2)
 		return sprite_rect_collision(s1, sprite_collision_rectangle(s2));
 	}
 
-	return _collision_within_bitmap_images_with_translation(sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
-															sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2));
+	return _collision_within_bitmap_images_with_translation (
+            sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
+			sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2) );
 }

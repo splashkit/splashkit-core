@@ -33,12 +33,12 @@ float line_length_squared(const line &l)
 
 line line_from(const vector_2d &v)
 {
-    return { {0,0}, {v.x, v.y} };
+    return { {0,0}, {static_cast<float>(v.x), static_cast<float>(v.y)} };
 }
 
 line line_from(const point_2d pt, const vector_2d &v)
 {
-    return { {pt.x, pt.y}, {pt.x + v.x, pt.y + v.y} };
+    return { {pt.x, pt.y}, {static_cast<float>(pt.x + v.x), static_cast<float>(pt.y + v.y)} };
 }
 
 bool line_intersection_point(const line &line1, const line &line2, point_2d &pt)
@@ -82,7 +82,7 @@ point_2d closest_point_on_line(const point_2d from_pt, const line &l)
     sq_line_mag = line_length_squared(l);
     if ( sq_line_mag < EPSEPS)
     {
-        raise_warning("Cannot determine intersection point on line, line is too short");
+        LOG(WARNING) << "Cannot determine intersection point on line, line is too short";
         return point_at(0,0);
     }
     

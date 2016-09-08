@@ -135,6 +135,7 @@
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
+		94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
 		94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F91D74027E00E3D9AF /* civetweb.cpp */; };
@@ -170,6 +171,13 @@
 		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
 		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
 		FA3821BD1D7930FA00AD1C2B /* libSplashKit.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKit.a */; };
+		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
+		FAAC94001D8016D500B73558 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC93FE1D8016D500B73558 /* json.h */; };
+		FAAC94021D8016F100B73558 /* json_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94011D8016F100B73558 /* json_driver.h */; };
+		FAAC94051D801C1C00B73558 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94031D801C1C00B73558 /* networking.cpp */; };
+		FAAC94061D801C1C00B73558 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94041D801C1C00B73558 /* networking.h */; };
+		FAAC94091D801C9600B73558 /* logging_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94071D801C9600B73558 /* logging_driver.cpp */; };
+		FAAC940A1D801C9600B73558 /* logging_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94081D801C9600B73558 /* logging_driver.h */; };
 		FCB6B3BB1D61423E00011965 /* music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB6B3B91D61423E00011965 /* music.cpp */; };
 		FCB6B3BC1D61423E00011965 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB6B3BA1D61423E00011965 /* music.h */; };
 /* End PBXBuildFile section */
@@ -359,6 +367,7 @@
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
+		94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_cave_escape.cpp; sourceTree = "<group>"; };
 		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
 		94DF46F91D74027E00E3D9AF /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
@@ -390,6 +399,13 @@
 		F86951941D5093F800E1BCC9 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
 		F86951951D5093F800E1BCC9 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
+		FAAC93FD1D8016D500B73558 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
+		FAAC93FE1D8016D500B73558 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		FAAC94011D8016F100B73558 /* json_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_driver.h; sourceTree = "<group>"; };
+		FAAC94031D801C1C00B73558 /* networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
+		FAAC94041D801C1C00B73558 /* networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		FAAC94071D801C9600B73558 /* logging_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging_driver.cpp; sourceTree = "<group>"; };
+		FAAC94081D801C9600B73558 /* logging_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging_driver.h; sourceTree = "<group>"; };
 		FCB6B3B91D61423E00011965 /* music.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = music.cpp; sourceTree = "<group>"; };
 		FCB6B3BA1D61423E00011965 /* music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = music.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -505,6 +521,9 @@
 		942371ED1D1D548A0020CCE2 /* backend */ = {
 			isa = PBXGroup;
 			children = (
+				FAAC94071D801C9600B73558 /* logging_driver.cpp */,
+				FAAC94081D801C9600B73558 /* logging_driver.h */,
+				FAAC94011D8016F100B73558 /* json_driver.h */,
 				94E6994C1D6F385200FBFA28 /* concurrency_utils.h */,
 				94E699481D6F384A00FBFA28 /* web_server_driver.cpp */,
 				94E699491D6F384A00FBFA28 /* web_server_driver.h */,
@@ -546,6 +565,8 @@
 				4129D2381D653F57000BFD0C /* Physics Related */,
 				94444B2F1D6449FF0059BF3B /* Drawing Related */,
 				94444B2E1D64496F0059BF3B /* Input Related */,
+				FAAC93FD1D8016D500B73558 /* json.cpp */,
+				FAAC93FE1D8016D500B73558 /* json.h */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
 				941C8A2E1D5B2EC1003112B2 /* animations.h */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
@@ -575,6 +596,7 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
 				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
 				94444B401D644FE10059BF3B /* test_main.h */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
@@ -742,6 +764,8 @@
 		94E699431D6F382000FBFA28 /* Network Related */ = {
 			isa = PBXGroup;
 			children = (
+				FAAC94031D801C1C00B73558 /* networking.cpp */,
+				FAAC94041D801C1C00B73558 /* networking.h */,
 				94E6993F1D6F381C00FBFA28 /* web_server.cpp */,
 				94E699401D6F381C00FBFA28 /* web_server.h */,
 			);
@@ -783,10 +807,12 @@
 				F86951931D508BF100E1BCC9 /* database_driver.h in Headers */,
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
 				94AC3DBB1D6BF11E002920A5 /* triangle_geometry.h in Headers */,
+				FAAC940A1D801C9600B73558 /* logging_driver.h in Headers */,
 				941C8A301D5B2EC1003112B2 /* animations.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				4129D23C1D653F6E000BFD0C /* physics.h in Headers */,
 				94AC3DC01D6C0DA0002920A5 /* sprites.h in Headers */,
+				FAAC94061D801C1C00B73558 /* networking.h in Headers */,
 				94F66BF51D62F75E004D8F8C /* text_input.h in Headers */,
 				949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */,
 				94E699471D6F384200FBFA28 /* network_driver.h in Headers */,
@@ -808,10 +834,12 @@
 				94DF47001D7402C800E3D9AF /* civetweb.h in Headers */,
 				94F6B7511D6D220F00C529EB /* resource_event_notifications.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
+				FAAC94001D8016D500B73558 /* json.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				FCB6B3BC1D61423E00011965 /* music.h in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
 				94444B331D644AE40059BF3B /* circle_drawing.h in Headers */,
+				FAAC94021D8016F100B73558 /* json_driver.h in Headers */,
 				94B57A601D65A5D500CE7D55 /* ellipse_drawing.h in Headers */,
 				942372031D1D548A0020CCE2 /* audio_driver.h in Headers */,
 				9424B5971D436A0A0039B3AF /* graphics.h in Headers */,
@@ -940,7 +968,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -972,10 +1000,13 @@
 				94B57A6C1D66738300CE7D55 /* point_geometry.cpp in Sources */,
 				9424B5C81D4625170039B3AF /* text_driver.cpp in Sources */,
 				94A069A91D66F44900C26E6F /* vector_2d.cpp in Sources */,
+				FAAC94051D801C1C00B73558 /* networking.cpp in Sources */,
 				94006A471D61CC83003E8A32 /* mouse_input.cpp in Sources */,
 				9408646C1D38F09B009EA048 /* test_windows.cpp in Sources */,
 				9424B5A21D4442220039B3AF /* types.cpp in Sources */,
 				4129D23B1D653F6E000BFD0C /* physics.cpp in Sources */,
+				FAAC93FF1D8016D500B73558 /* json.cpp in Sources */,
+				FAAC94091D801C9600B73558 /* logging_driver.cpp in Sources */,
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */,
 				94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */,
@@ -1014,6 +1045,7 @@
 				94E699411D6F381C00FBFA28 /* web_server.cpp in Sources */,
 				9424B5A61D4444F40039B3AF /* random.cpp in Sources */,
 				940864791D390134009EA048 /* input.cpp in Sources */,
+				94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */,
 				9424B5AA1D448ABC0039B3AF /* drawing_options.cpp in Sources */,
 				949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */,
 				94B57A671D65CCF300CE7D55 /* clipping.cpp in Sources */,
@@ -1176,6 +1208,8 @@
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
+					"\"$(SRCROOT)/../../coresdk/external/json\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1214,6 +1248,8 @@
 					"\"$(SRCROOT)/../../coresdk/external/sqlite\"",
 					"\"$(SRCROOT)/../../coresdk/external/civetweb/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_net\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
+					"\"$(SRCROOT)/../../coresdk/external/json\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1293,7 +1329,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,

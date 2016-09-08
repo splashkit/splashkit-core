@@ -53,7 +53,7 @@ animation_script load_animation_script(string name, string filename)
 
     if ( ! file_exists(path) )
     {
-        raise_warning(cat({ "Unable to locate animation file for ", name, " (", path, ")"}));
+        LOG(WARNING) << cat({ "Unable to locate animation file for ", name, " (", path, ")"});
         return nullptr;
     }
 
@@ -87,7 +87,7 @@ animation_script load_animation_script(string name, string filename)
 
         if (rows[my_row.id].id != -1)
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". A frame with id " + to_string(my_row.id) + " already exists.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A frame with id " + to_string(my_row.id) + " already exists.";
             return false;
         }
         else
@@ -107,7 +107,7 @@ animation_script load_animation_script(string name, string filename)
         {
             if (ids[j].name == my_id.name)
             {
-                raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". The id " + my_id.name + " already exists.");
+                LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". The id " + my_id.name + " already exists.";
                 return false;
             }
         }
@@ -122,7 +122,7 @@ animation_script load_animation_script(string name, string filename)
 //
 //        if (count_delimiter(data, ',') != 3)
 //        {
-//            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". A frame must have 4 values separated as id,cell,dur,next");
+//            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A frame must have 4 values separated as id,cell,dur,next");
 //            return false;
 //        }
 //
@@ -144,7 +144,7 @@ animation_script load_animation_script(string name, string filename)
 
         if ( count_delimiter_with_ranges(data, ',') != 3 )
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". A multi-frame must have 4 values separated as id-range,cell-range,dur,next");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A multi-frame must have 4 values separated as id-range,cell-range,dur,next";
             return false;
         }
 
@@ -153,7 +153,7 @@ animation_script load_animation_script(string name, string filename)
 
         if (id_range.size() != cell_range.size())
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". The range of cells and ids is not the same length.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". The range of cells and ids is not the same length.";
             return false;
         }
 
@@ -185,7 +185,7 @@ animation_script load_animation_script(string name, string filename)
 
         if (count_delimiter_with_ranges(data, ',') != 1)
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". An id must have 2 values separated as name,start-id");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". An id must have 2 values separated as name,start-id";
             return false;
         }
 
@@ -202,7 +202,7 @@ animation_script load_animation_script(string name, string filename)
 
         if (count_delimiter(data, ',') != 2)
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". A sound must have three parts frame #,sound name,sound file.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A sound must have three parts frame #,sound name,sound file.";
             return;
         }
 
@@ -214,7 +214,7 @@ animation_script load_animation_script(string name, string filename)
         {
             if(load_sound_effect(snd_id, snd_file) == nullptr)
             {
-                raise_warning("At line " + to_string(line_no) + " in animation " + filename + ": Cannot find " + snd_id + " sound file " + snd_file);
+                LOG(WARNING) << "At line " + to_string(line_no) + " in animation " + filename + ": Cannot find " + snd_id + " sound file " + snd_file;
                 return;
             }
         }
@@ -222,7 +222,7 @@ animation_script load_animation_script(string name, string filename)
         if (id >= 0 && id < rows.size())
             rows[id].snd = sound_effect_named(snd_id);
         else
-            raise_warning("At line " + to_string(line_no) + " in animation " + filename + ": No frame with id " + to_string(id) + " for sound file " + snd_file);
+            LOG(WARNING) << "At line " + to_string(line_no) + " in animation " + filename + ": No frame with id " + to_string(id) + " for sound file " + snd_file;
     };
 
     auto process_vector = [&]()
@@ -234,7 +234,7 @@ animation_script load_animation_script(string name, string filename)
 
         if (count_delimiter(data, ',') != 2)
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". A vector must have three parts frame #s, x value, y value.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A vector must have three parts frame #s, x value, y value.";
             return;
         }
 
@@ -244,13 +244,13 @@ animation_script load_animation_script(string name, string filename)
 
         if (not try_str_to_float(x_val, x))
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". X value must be a number.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". X value must be a number.";
             return;
         }
 
         if (not try_str_to_float(y_val, y))
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". Y value must be a number.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". Y value must be a number.";
             return;
         }
 
@@ -276,7 +276,7 @@ animation_script load_animation_script(string name, string filename)
         // Verify that id is a single char
         if (line_id.length() != 1)
         {
-            raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". Error with frame #: " + line_id + ". This should be a single character.");
+            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". Error with frame #: " + line_id + ". This should be a single character.";
             return;
         }
 
@@ -299,7 +299,7 @@ animation_script load_animation_script(string name, string filename)
                 process_vector();
                 break;
             default:
-                raise_warning("Error at line " + to_string(line_no) + " in animation " + filename + ". Error with id: " + line_id + ". This should be one of f,m,i, s, or v.");
+                LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". Error with id: " + line_id + ". This should be one of f,m,i, s, or v.";
                 return;
         }
     };
@@ -308,7 +308,7 @@ animation_script load_animation_script(string name, string filename)
     {
         // We have the data ready, now lets create the linked lists...
         result = new(_animation_script_data);
-        
+
         result->id          = ANIMATION_SCRIPT_PTR;
         result->name        = name;        // name taken from parameter of DoLoadAnimationScript
         result->filename    = filename;    // filename also taken from parameter
@@ -338,7 +338,7 @@ animation_script load_animation_script(string name, string filename)
             {
                 free_animation_script(result);
                 result = nullptr;
-                raise_warning("Error in animation " + filename + ". Error with frame: " + to_string(j) + ". Next is outside of available frames.");
+                LOG(WARNING) << "Error in animation " + filename + ". Error with frame: " + to_string(j) + ". Next is outside of available frames.";
                 return;
             }
             else
@@ -380,7 +380,7 @@ animation_script load_animation_script(string name, string filename)
         animation_frame *current;
 
         done = true;
-        
+
         if (!result) return;
 
         // check for all positive
@@ -403,7 +403,7 @@ animation_script load_animation_script(string name, string filename)
             if (sum_loop(current) == 0)
             {
                 free_animation_script(result);
-                raise_warning("Error in animation " + filename + ". Animation contains a loop with duration 0 starting at cell " + to_string(current->index));
+                LOG(WARNING) << "Error in animation " + filename + ". Animation contains a loop with duration 0 starting at cell " + to_string(current->index);
                 return;
             }
         }
@@ -423,10 +423,10 @@ animation_script load_animation_script(string name, string filename)
         //Verify that the line has the right version
         if ((line != "SwinGame Animation #v1") and (line != "SplashKit Animation"))
         {
-            raise_warning("Error in animation " + filename + ". Animation files must start with 'SplashKit Animation'");
+            LOG(WARNING) << "Error in animation " + filename + ". Animation files must start with 'SplashKit Animation'";
             return false;
         }
-        
+
         return true;
     };
 
@@ -437,7 +437,7 @@ animation_script load_animation_script(string name, string filename)
 
     if (not verify_version())
     {
-        raise_warning("Error loading animation script: " + path);
+        LOG(WARNING) << "Error loading animation script: " + path;
         return nullptr;
     }
 
@@ -455,9 +455,9 @@ animation_script load_animation_script(string name, string filename)
 
     build_frame_lists();
     check_animation_loops();
-    
+
     _animation_scripts[name] = result;
-    
+
     return result;
 }
 
@@ -474,18 +474,18 @@ void free_animation_script(animation_script script_to_free)
 {
     if (not VALID_PTR(script_to_free, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempt to free invalid animation script.");
+        LOG(WARNING) << "Attempt to free invalid animation script.";
         return;
     }
-    
+
     // Must use downto as animations are removed from the array in FreeAnimation!
     for (int i = static_cast<int>(script_to_free->anim_objs.size()) - 1; i >= 0; i--)
     {
         free_animation(script_to_free->anim_objs[i]);
     }
-    
+
     _animation_scripts.erase(script_to_free->name);
-    
+
     script_to_free->id = NONE_PTR;
     delete(script_to_free);
 }
@@ -498,9 +498,9 @@ void free_animation_script(string name)
 void free_all_animation_scripts()
 {
     string name;
-    
+
     size_t sz = _animation_scripts.size();
-    
+
     for(size_t i = 0; i < sz; i++)
     {
         animation_script script = _animation_scripts.begin()->second;
@@ -510,7 +510,7 @@ void free_all_animation_scripts()
         }
         else
         {
-            raise_warning("Animation Scripts contained an invalid pointer");
+            LOG(WARNING) << "Animation Scripts contained an invalid pointer";
             _animation_scripts.erase(_animation_scripts.begin());
         }
     }
@@ -519,16 +519,16 @@ void free_all_animation_scripts()
 void _remove_animation(animation_script script, animation ani)
 {
     auto it = std::find(script->anim_objs.begin(), script->anim_objs.end(), ani);
-    
+
     if (it != script->anim_objs.end())
     {
         using std::swap;
-        
+
         swap(*it, script->anim_objs.back());
         script->anim_objs.pop_back();
     }
     else
-        raise_warning("Could not remove animation! " + animation_script_name(script));
+        LOG(WARNING) << "Could not remove animation! " + animation_script_name(script);
 }
 
 void free_animation(animation ani)
@@ -537,7 +537,7 @@ void free_animation(animation ani)
     {
         _remove_animation(ani->script, ani);
         ani->id = NONE_PTR;
-    
+
         delete(ani); //ani may have been overridden by last call...
     }
 }
@@ -552,10 +552,10 @@ int animation_count(animation_script script)
 {
     if( INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to get number of animations from invalid animation script");
+        LOG(WARNING) << "Attempting to get number of animations from invalid animation script";
         return 0;
     }
-    
+
     return static_cast<int>(script->animations.size());
 }
 
@@ -577,7 +577,7 @@ vector_2d animation_current_vector(animation anim)
     {
         return vector_to(0,0);
     }
-    
+
     if ( ! animation_ended(anim) )
         return anim->current_frame->movement;
     else
@@ -593,10 +593,10 @@ bool animation_entered_frame(animation anim)
 {
     if ( INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to check if animation entered a new frame with invalid animation data.");
+        LOG(WARNING) << "Attempting to check if animation entered a new frame with invalid animation data.";
         return false;
     }
-    
+
     return anim->entered_frame;
 }
 
@@ -604,10 +604,10 @@ float animation_frame_time(animation anim)
 {
     if ( INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to get frame time with invalid animation data.");
+        LOG(WARNING) << "Attempting to get frame time with invalid animation data.";
         return 0;
     }
-    
+
     return anim->frame_time;
 }
 
@@ -615,10 +615,10 @@ bool has_animation_named(animation_script script, string name)
 {
     if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to get animation name from invalid animation script.");
+        LOG(WARNING) << "Attempting to get animation name from invalid animation script.";
         return false;
     }
-    
+
     return script->animation_ids.count(to_lower(name)) > 0;
 }
 
@@ -626,16 +626,16 @@ int animation_index(animation_script script, string name)
 {
     if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to get index from invalid animation script.");
+        LOG(WARNING) << "Attempting to get index from invalid animation script.";
         return -1;
     }
-    
+
     if ( not has_animation_named(script, name) )
     {
-        raise_warning("No animation with name " + name + " in script " + animation_script_name(script) + ".");
+        LOG(WARNING) << "No animation with name " + name + " in script " + animation_script_name(script) + ".";
         return -1;
     }
-    
+
     return script->animation_ids[to_lower(name)];
 }
 
@@ -643,10 +643,10 @@ string animation_name(animation temp)
 {
     if ( INVALID_PTR(temp, ANIMATION_PTR))
     {
-        raise_warning("Attempting to get name of invalid animation data.");
+        LOG(WARNING) << "Attempting to get name of invalid animation data.";
         return "";
     }
-    
+
     return temp->animation_name;
 }
 
@@ -654,16 +654,16 @@ string animation_name(animation_script temp, int idx)
 {
     if (INVALID_PTR(temp, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to get animation name from invalid animation script");
+        LOG(WARNING) << "Attempting to get animation name from invalid animation script";
         return "";
     }
-    
+
     if ( idx < 0 or idx >= temp->animation_names.size())
     {
-        raise_warning("Attempting to get an animation that is not within range 0-" + to_string(temp->animations.size()-1) + ".");
+        LOG(WARNING) << "Attempting to get an animation that is not within range 0-" + to_string(temp->animations.size()-1) + ".";
         return "";
     }
-    
+
     return temp->animation_names[idx];
 }
 
@@ -677,22 +677,22 @@ void assign_animation(animation anim, animation_script script, int idx, bool wit
 {
     if (INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to setup an assign animation for invalid animation");
+        LOG(WARNING) << "Attempting to setup an assign animation for invalid animation";
         return;
     }
-        
+
     if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to setup an assign animation for invalid animation script");
+        LOG(WARNING) << "Attempting to setup an assign animation for invalid animation script";
         return;
     }
-    
+
     if ((idx < 0) or (idx >= script->animations.size()))
     {
-        raise_warning("Assigning an animation frame that is not within range 0-" + to_string(script->animations.size()-1) + ".");
+        LOG(WARNING) << "Assigning an animation frame that is not within range 0-" + to_string(script->animations.size()-1) + ".";
         return;
     }
-    
+
     // Animation is being assigned to another script
     if (anim->script != script)
     {
@@ -700,7 +700,7 @@ void assign_animation(animation anim, animation_script script, int idx, bool wit
             _remove_animation(anim->script, anim);   // remove from old script
         script->anim_objs.push_back(anim);       // add to new script
     }
-    
+
     anim->first_frame        = &script->frames[script->animations[idx]];
     anim->animation_name     = animation_name(script, idx);
     restart_animation(anim, with_sound);
@@ -737,21 +737,21 @@ void assign_animation(animation anim, string script_name, string name, bool with
 animation create_animation(animation_script script, int idx, bool with_sound)
 {
     animation result = nullptr;
-    
+
     if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
     {
-        raise_warning("Attempting to create animation from invalid script");
+        LOG(WARNING) << "Attempting to create animation from invalid script";
         return result;
     }
-    
+
     if ((idx < 0) or (idx >= script->animations.size()))
     {
-        raise_warning("Unable to create animation number " + to_string(idx) + " from script " + script->name);
+        LOG(WARNING) << "Unable to create animation number " + to_string(idx) + " from script " + script->name;
         return result;
     }
-    
+
     result = new(_animation_data);
-    
+
     result->id = ANIMATION_PTR;
     result->current_frame = nullptr;
     result->last_frame = nullptr;
@@ -760,11 +760,11 @@ animation create_animation(animation_script script, int idx, bool with_sound)
     result->animation_name = animation_name(script, idx);
     result->script = script;
     result->frame_time = 0;
-    
+
     script->anim_objs.push_back(result);
-    
+
     assign_animation(result, script, idx, with_sound);
-    
+
     return result;
 }
 
@@ -802,15 +802,15 @@ void restart_animation(animation anim, bool with_sound)
 {
     if (INVALID_PTR(anim, ANIMATION_PTR))
     {
-        raise_warning("Attempting to restart an invalid animation.");
+        LOG(WARNING) << "Attempting to restart an invalid animation.";
         return;
     }
-    
+
     anim->current_frame  = anim->first_frame;
     anim->last_frame     = anim->first_frame;
     anim->frame_time     = 0;
     anim->entered_frame  = true;
-    
+
     if (with_sound and ASSIGNED(anim->current_frame) and ASSIGNED(anim->current_frame->sound))
         play_sound_effect(anim->current_frame->sound);
 }
@@ -828,27 +828,33 @@ void update_animation(animation anim, float pct)
 void update_animation(animation anim, float pct, bool with_sound)
 {
     if (animation_ended(anim)) return;
-    
+
     anim->frame_time     = anim->frame_time + pct;
-    
+
     if (anim->frame_time >= anim->current_frame->duration)
     {
         anim->frame_time = anim->frame_time - anim->current_frame->duration;    //reduce the time
         anim->last_frame = anim->current_frame;                                 //store last frame
         anim->current_frame = anim->current_frame->next;                        //get the next frame
-    
+
         //if assigned(anim^.currentFrame) then
         //WriteLn('Frame ', HexStr(anim^.currentFrame), ' Vector ', PointToString(anim^.currentFrame^.movement));
-    
+
         if (ASSIGNED(anim->current_frame) and ASSIGNED(anim->current_frame->sound) and with_sound)
         {
             play_sound_effect(anim->current_frame->sound);
         }
-        
+
         anim->entered_frame  = true;
     }
     else
     {
         anim->entered_frame  = false;
     }
+}
+
+animation create_animation(string script_name, int idx)
+{
+  // TODO: To implement!
+  return nullptr;
 }

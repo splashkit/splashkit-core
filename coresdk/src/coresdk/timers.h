@@ -51,6 +51,14 @@ void free_all_timers();
 timer timer_named(string name);
 
 /**
+ * Checks if SplashKit is aware of the given timer.
+ *
+ * @attribute class timers
+ * @attribute method has_timer
+ */
+bool has_timer(timer t);
+
+/**
  * Checks if SplashKit has a timer with the indicated name.
  *
  * @attribute class timers

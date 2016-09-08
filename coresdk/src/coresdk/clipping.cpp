@@ -38,7 +38,7 @@ void push_clip(bitmap bmp, const rectangle &r)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to push clip rect to invalid bitmap");
+        LOG(WARNING) << "Attempting to push clip rect to invalid bitmap";
         return;
     }
     
@@ -49,7 +49,7 @@ void push_clip(window wnd, const rectangle &r)
 {
     if ( INVALID_PTR(wnd, WINDOW_PTR) )
     {
-        raise_warning("Attempting to push clip rect to invalid window");
+        LOG(WARNING) << "Attempting to push clip rect to invalid window";
         return;
     }
     
@@ -71,7 +71,7 @@ void reset_clip(window wnd)
 {
     if ( INVALID_PTR(wnd, WINDOW_PTR) )
     {
-        raise_warning("Attempting to reset clip rect of invalid window");
+        LOG(WARNING) << "Attempting to reset clip rect of invalid window";
         return;
     }
     
@@ -82,7 +82,7 @@ void reset_clip(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to reset clip rect of invalid bitmap");
+        LOG(WARNING) << "Attempting to reset clip rect of invalid bitmap";
         return;
     }
     
@@ -110,7 +110,7 @@ void _pop_clip(image_data &img)
 {
     if ( img.clip_stack.size() == 0 )
     {
-        raise_warning("Attempting to pop clip from bitmap or window where clipping is not set");
+        LOG(WARNING) << "Attempting to pop clip from bitmap or window where clipping is not set";
         return;
     }
     
@@ -136,7 +136,7 @@ void pop_clip(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to pop clip rect of invalid bitmap");
+        LOG(WARNING) << "Attempting to pop clip rect of invalid bitmap";
         return;
     }
     
@@ -147,7 +147,7 @@ void pop_clip(window wnd)
 {
     if ( INVALID_PTR(wnd, WINDOW_PTR) )
     {
-        raise_warning("Attempting to pop clip rect of invalid window");
+        LOG(WARNING) << "Attempting to pop clip rect of invalid window";
         return;
     }
     
@@ -166,7 +166,7 @@ rectangle current_clip(bitmap bmp)
 {
     if ( INVALID_PTR(bmp, BITMAP_PTR) )
     {
-        raise_warning("Attempting to read clip rect of invalid bitmap");
+        LOG(WARNING) << "Attempting to read clip rect of invalid bitmap";
         return rectangle_from(0, 0, 0, 0);
     }
     
@@ -177,7 +177,7 @@ rectangle current_clip(window wnd)
 {
     if ( INVALID_PTR(wnd, WINDOW_PTR) )
     {
-        raise_warning("Attempting to read clip rect of invalid window");
+        LOG(WARNING) << "Attempting to read clip rect of invalid window";
         return rectangle_from(0, 0, 0, 0);
     }
     

@@ -28,12 +28,12 @@ struct _sound_data
 };
 #include "sound.h"
 
-bool has_sound_effect(string name)
+bool has_sound_effect(const string &name)
 {
     return _sound_effects.count(name) > 0;
 }
 
-sound_effect sound_effect_named(string name)
+sound_effect sound_effect_named(const string &name)
 {
     if (has_sound_effect(name))
         return _sound_effects[name];
@@ -59,7 +59,7 @@ string sound_effect_filename(sound_effect effect)
     return effect->filename;
 }
 
-sound_effect load_sound_effect(string name, string filename)
+sound_effect load_sound_effect(const string &name, const string &filename)
 {
     if (has_sound_effect(name)) return sound_effect_named(name);
     
@@ -67,7 +67,7 @@ sound_effect load_sound_effect(string name, string filename)
     
     if ( ! file_exists(file_path) )
     {
-        raise_warning(cat({ "Unable to locate file for ", name, " (", file_path, ")"}));
+        LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
         return nullptr;
     }
     
@@ -83,7 +83,7 @@ sound_effect load_sound_effect(string name, string filename)
     {
         result->id = NONE_PTR;
         delete result;
-        raise_warning ( cat({ "Error loading sound data for ", name, " (", file_path, ")"}) );
+        LOG(WARNING) <<  cat({ "Error loading sound data for ", name, " (", file_path, ")"}) ;
         return nullptr;
     }
     
@@ -104,7 +104,7 @@ void free_sound_effect(sound_effect effect)
     }
     else
     {
-        raise_warning("Delete sound effect called without valid sound effect");
+        LOG(WARNING) << "Delete sound effect called without valid sound effect";
     }
 }
 
@@ -119,7 +119,7 @@ void play_sound_effect(sound_effect effect, int times, float volume)
     
     if ( ! VALID_PTR(effect, AUDIO_PTR) )
     {
-        raise_warning("Play Sound Effect called, but no valid sound effect supplied");
+        LOG(WARNING) << "Play Sound Effect called, but no valid sound effect supplied";
         return;
     }
     
@@ -152,22 +152,22 @@ void play_sound_effect(sound_effect effect, float volume)
     play_sound_effect(effect, 1, volume);
 }
 
-void play_sound_effect(string name, int times, float volume)
+void play_sound_effect(const string &name, int times, float volume)
 {
     play_sound_effect(sound_effect_named(name), times, volume);
 }
 
-void play_sound_effect(string name, int times)
+void play_sound_effect(const string &name, int times)
 {
     play_sound_effect(sound_effect_named(name), times, 1.0f);
 }
 
-void play_sound_effect(string name)
+void play_sound_effect(const string &name)
 {
     play_sound_effect(sound_effect_named(name), 1, 1.0f);
 }
 
-void play_sound_effect(string name, float volume)
+void play_sound_effect(const string &name, float volume)
 {
     play_sound_effect(sound_effect_named(name), 1, volume);
 }
@@ -179,7 +179,7 @@ bool sound_effect_playing(sound_effect effect)
     return sk_sound_playing(&effect->effect);
 }
 
-bool sound_effect_playing(string name)
+bool sound_effect_playing(const string &name)
 {
     return sound_effect_playing(sound_effect_named(name));
 }
@@ -190,7 +190,7 @@ void stop_sound_effect(sound_effect effect)
         sk_stop_sound(&effect->effect);
 }
 
-void stop_sound_effect(string name)
+void stop_sound_effect(const string &name)
 {
     stop_sound_effect(sound_effect_named(name));
 }

@@ -22,7 +22,7 @@
 #endif
 
 // Appveyor MSYS hack...
-#if !defined(__APPLE_) && !defined(__linux__)
+#ifndef PATH_MAX
 #define PATH_MAX 1024
 #endif
 
@@ -46,7 +46,7 @@ void set_resources_path(string path)
 bool _try_set_resource_path(string path)
 {
     string tmpPath;
-    
+
     // test in current location: cwd
     tmpPath = path_from( { path, "Resources" } );
     if (directory_exists(tmpPath))
@@ -54,7 +54,7 @@ bool _try_set_resource_path(string path)
         set_resources_path(tmpPath);
         return true;
     }
-    
+
     // in the parent directory: eg. bin
     tmpPath = path_from( { path, "..", "Resources"} );
     if (directory_exists(tmpPath))
@@ -62,7 +62,7 @@ bool _try_set_resource_path(string path)
         set_resources_path(tmpPath);
         return true;
     }
-    
+
     // in the parent's parent: bin/Debug
     tmpPath = path_from( { path, "..", "..", "Resources"});
     if (directory_exists(tmpPath))
@@ -70,7 +70,7 @@ bool _try_set_resource_path(string path)
         set_resources_path(tmpPath);
         return true;
     }
-    
+
     return false;
 }
 
@@ -78,7 +78,7 @@ void _guess_resources_path()
 {
     string      path;
     char        cwd[PATH_MAX];
-    
+
 #ifdef __APPLE__
     char        bndlPath[PATH_MAX];
     CFBundleRef mainBundle = nullptr;
@@ -87,11 +87,11 @@ void _guess_resources_path()
 #else
     char        exePath[PATH_MAX];
 #endif
-    
+
     if(getcwd(cwd, PATH_MAX))
     {
         if ( _try_set_resource_path(cwd)) return;
-        
+
 #ifdef __APPLE__
         // search bundle
         mainBundle = CFBundleGetMainBundle();
@@ -117,9 +117,9 @@ void _guess_resources_path()
                     }
                 }
             }
-            
+
         }
-        
+
 #elif __linux__
         if(readlink( "/proc/self/exe", exePath, PATH_MAX ))
         {
@@ -127,7 +127,7 @@ void _guess_resources_path()
             dirname(exePath);
             if( _try_set_resource_path(exePath) ) return;
         }
-        
+
 #elif WINDOWS
         if (GetModuleFileName( NULL, exePath, MAX_PATH ))
         {
@@ -146,11 +146,11 @@ string path_to_resources()
     if ( ! _has_resources_path ) _guess_resources_path();
     return _resources_path;
 }
-               
+
 string path_to_resources(resource_kind kind)
 {
     string path = path_to_resources();
-    
+
     switch(kind)
     {
         case SOUND_RESOURCE:        return path_from({ path, "sounds" });
@@ -159,13 +159,14 @@ string path_to_resources(resource_kind kind)
         case IMAGE_RESOURCE:        return path_from({ path, "images" });
         case FONT_RESOURCE:         return path_from({ path, "fonts" });
         case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
+        case JSON_RESOURCE:         return path_from({ path, "json" });
         case OTHER_RESOURCE:        return path;
         default:
-            raise_warning("Attempting to get path to unknown resource kind.");
+            LOG(WARNING) << "Attempting to get path to unknown resource kind.";
             return path;
     }
 }
-               
+
 string path_to_resource(const string filename, resource_kind kind)
 {
     return path_from( { path_to_resources(kind) }, filename );
