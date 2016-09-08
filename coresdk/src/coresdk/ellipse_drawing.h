@@ -12,21 +12,22 @@
 #include "color.h"
 #include "drawing_options.h"
 #include "geometry.h"
+namespace splashkit_lib
+{
+    void draw_ellipse(color clr, float x, float y, float width, float height, drawing_options opts);
 
-void draw_ellipse(color clr, float x, float y, float width, float height, drawing_options opts);
+    void draw_ellipse(color clr, float x, float y, float width, float height);
 
-void draw_ellipse(color clr, float x, float y, float width, float height);
+    void draw_ellipse(color clr, const rectangle rect, drawing_options opts);
 
-void draw_ellipse(color clr, const rectangle rect, drawing_options opts);
+    void draw_ellipse(color clr, const rectangle rect);
 
-void draw_ellipse(color clr, const rectangle rect);
+    void fill_ellipse(color clr, float x, float y, float width, float height, drawing_options opts);
 
-void fill_ellipse(color clr, float x, float y, float width, float height, drawing_options opts);
+    void fill_ellipse(color clr, float x, float y, float width, float height);
 
-void fill_ellipse(color clr, float x, float y, float width, float height);
+    void fill_ellipse(color clr, const rectangle rect, drawing_options opts);
 
-void fill_ellipse(color clr, const rectangle rect, drawing_options opts);
-
-void fill_ellipse(color clr, const rectangle rect);
-
+    void fill_ellipse(color clr, const rectangle rect);
+}
 #endif /* ellipse_drawing_h */

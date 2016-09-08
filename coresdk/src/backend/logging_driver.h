@@ -8,7 +8,8 @@
 
 #ifndef SPLASHKIT_LOGGING_DRIVER_H
 #define SPLASHKIT_LOGGING_DRIVER_H
-
-void sk_init_logging();
-
+namespace splashkit_lib
+{
+    void sk_init_logging();
+}
 #endif //SPLASHKIT_LOGGING_DRIVER_H

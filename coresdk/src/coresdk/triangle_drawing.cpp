@@ -17,81 +17,83 @@
 #include "utility_functions.h"
 
 #include "graphics_driver.h"
-
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+namespace splashkit_lib
 {
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    if (surface)
+    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
     {
-        xy_from_opts(opts, x1, y1);
-        xy_from_opts(opts, x2, y2);
-        xy_from_opts(opts, x3, y3);
-        
-        sk_draw_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        sk_drawing_surface *surface;
+
+        surface = to_surface_ptr(opts.dest);
+
+        if (surface)
+        {
+            xy_from_opts(opts, x1, y1);
+            xy_from_opts(opts, x2, y2);
+            xy_from_opts(opts, x3, y3);
+
+            sk_draw_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        }
     }
-}
 
-void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
-{
-    draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
-}
-
-void draw_triangle(color clr, const triangle &tri, drawing_options opts)
-{
-    draw_triangle(clr,
-                  tri.points[0].x, tri.points[0].y,
-                  tri.points[1].x, tri.points[1].y,
-                  tri.points[2].x, tri.points[2].y,
-                  opts);
-}
-
-void draw_triangle(color clr, const triangle &tri)
-{
-    draw_triangle(clr,
-                  tri.points[0].x, tri.points[0].y,
-                  tri.points[1].x, tri.points[1].y,
-                  tri.points[2].x, tri.points[2].y,
-                  option_defaults());
-}
-
-void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
-{
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    if (surface)
+    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
     {
-        xy_from_opts(opts, x1, y1);
-        xy_from_opts(opts, x2, y2);
-        xy_from_opts(opts, x3, y3);
-        
-        sk_fill_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
     }
-}
 
-void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
-{
-    fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
-}
+    void draw_triangle(color clr, const triangle &tri, drawing_options opts)
+    {
+        draw_triangle(clr,
+                      tri.points[0].x, tri.points[0].y,
+                      tri.points[1].x, tri.points[1].y,
+                      tri.points[2].x, tri.points[2].y,
+                      opts);
+    }
 
-void fill_triangle(color clr, const triangle &tri, drawing_options opts)
-{
-    fill_triangle(clr,
-                  tri.points[0].x, tri.points[0].y,
-                  tri.points[1].x, tri.points[1].y,
-                  tri.points[2].x, tri.points[2].y,
-                  opts);
-}
+    void draw_triangle(color clr, const triangle &tri)
+    {
+        draw_triangle(clr,
+                      tri.points[0].x, tri.points[0].y,
+                      tri.points[1].x, tri.points[1].y,
+                      tri.points[2].x, tri.points[2].y,
+                      option_defaults());
+    }
 
-void fill_triangle(color clr, const triangle &tri)
-{
-    fill_triangle(clr,
-                  tri.points[0].x, tri.points[0].y,
-                  tri.points[1].x, tri.points[1].y,
-                  tri.points[2].x, tri.points[2].y,
-                  option_defaults());
+    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    {
+        sk_drawing_surface *surface;
+
+        surface = to_surface_ptr(opts.dest);
+
+        if (surface)
+        {
+            xy_from_opts(opts, x1, y1);
+            xy_from_opts(opts, x2, y2);
+            xy_from_opts(opts, x3, y3);
+
+            sk_fill_triangle(surface, clr, x1, y1, x2, y2, x3, y3);
+        }
+    }
+
+    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    {
+        fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
+    }
+
+    void fill_triangle(color clr, const triangle &tri, drawing_options opts)
+    {
+        fill_triangle(clr,
+                      tri.points[0].x, tri.points[0].y,
+                      tri.points[1].x, tri.points[1].y,
+                      tri.points[2].x, tri.points[2].y,
+                      opts);
+    }
+
+    void fill_triangle(color clr, const triangle &tri)
+    {
+        fill_triangle(clr,
+                      tri.points[0].x, tri.points[0].y,
+                      tri.points[1].x, tri.points[1].y,
+                      tri.points[2].x, tri.points[2].y,
+                      option_defaults());
+    }
 }

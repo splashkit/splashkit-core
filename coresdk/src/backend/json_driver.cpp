@@ -7,12 +7,14 @@
 //
 
 #include "json_driver.h"
-
-void sk_delete_json(json j)
+namespace splashkit_lib
 {
-    if (VALID_PTR(j, JSON_PTR))
+    void sk_delete_json(json j)
     {
-        j->id = NONE_PTR;
-        delete j;
+        if (VALID_PTR(j, JSON_PTR))
+        {
+            j->id = NONE_PTR;
+            delete j;
+        }
     }
 }

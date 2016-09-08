@@ -16,7 +16,7 @@
 #include "input.h"
 #include "random.h"
 
-using namespace std;
+using namespace splashkit_lib;
 
 #define GRAVITY 0.08
 #define MAX_SPEED 5

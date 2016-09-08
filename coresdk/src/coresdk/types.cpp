@@ -7,5 +7,3 @@
 //
 
 #include "types.h"
-
-

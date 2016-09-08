@@ -16,6 +16,7 @@
 
 #include <iostream>
 using namespace std;
+using namespace splashkit_lib;
 
 void test_clipping(window w1)
 {

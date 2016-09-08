@@ -12,29 +12,31 @@
 #include <string>
 
 using namespace std;
-
-/**
- *
- */
-enum resource_kind
+namespace splashkit_lib
 {
-    SOUND_RESOURCE,
-    MUSIC_RESOURCE,
-    ANIMATION_RESOURCE,
-    BUNDLE_RESOURCE,
-    DATABASE_RESOURCE,
-    IMAGE_RESOURCE,
-    FONT_RESOURCE,
-    TIMER_RESOURCE,
-    JSON_RESOURCE,
-    OTHER_RESOURCE
-};
+    /**
+     *
+     */
+    enum resource_kind
+    {
+        SOUND_RESOURCE,
+        MUSIC_RESOURCE,
+        ANIMATION_RESOURCE,
+        BUNDLE_RESOURCE,
+        DATABASE_RESOURCE,
+        IMAGE_RESOURCE,
+        FONT_RESOURCE,
+        TIMER_RESOURCE,
+        JSON_RESOURCE,
+        OTHER_RESOURCE
+    };
 
-void set_resources_path(string path);
-string path_to_resources();
+    void set_resources_path(string path);
+    string path_to_resources();
 
-string path_to_resources(resource_kind kind);
+    string path_to_resources(resource_kind kind);
 
-string path_to_resource(const string filename, resource_kind kind);
-
+    string path_to_resource(const string filename, resource_kind kind);
+    
+}
 #endif /* resources_hpp */

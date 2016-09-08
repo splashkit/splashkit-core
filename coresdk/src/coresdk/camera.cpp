@@ -10,159 +10,161 @@
 
 #include "vector_2d.h"
 #include "graphics.h"
-
-static float _camera_x = 0;
-static float _camera_y = 0;
-
-
-//---------------------------------------------------------------------------
-// Camera - position
-//---------------------------------------------------------------------------
-
-float camera_x()
+namespace splashkit_lib
 {
-    return _camera_x;
-}
-
-float camera_y()
-{
-    return _camera_y;
-}
-
-void set_camera_x(float x)
-{
-    _camera_x = x;
-}
-
-void set_camera_y(float y)
-{
-    _camera_y = y;
-}
-
-void set_camera_position(point_2d pos)
-{
-    _camera_x = pos.x;
-    _camera_y = pos.y;
-}
-
-point_2d camera_position()
-{
-    return point_at(_camera_x, _camera_y);
-}
-
-point_2d screen_center()
-{
-    return point_at(_camera_x + screen_width() / 2.0f, _camera_y + screen_height() / 2.0f);
-}
+    static float _camera_x = 0;
+    static float _camera_y = 0;
 
 
+    //---------------------------------------------------------------------------
+    // Camera - position
+    //---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
-// World-To-Screen Translation
-//---------------------------------------------------------------------------
+    float camera_x()
+    {
+        return _camera_x;
+    }
 
-float to_screen_x(float world_x)
-{
-    return world_x - _camera_x;
-}
+    float camera_y()
+    {
+        return _camera_y;
+    }
 
-float to_screen_y(float world_y)
-{
-    return world_y - _camera_y;
-}
+    void set_camera_x(float x)
+    {
+        _camera_x = x;
+    }
 
-point_2d to_screen(const point_2d &pt)
-{
-    return point_at(pt.x - _camera_x, pt.y - _camera_y);
-}
+    void set_camera_y(float y)
+    {
+        _camera_y = y;
+    }
 
-vector_2d vector_world_to_screen()
-{
-    return vector_to(-_camera_x, -_camera_y);
-}
+    void set_camera_position(point_2d pos)
+    {
+        _camera_x = pos.x;
+        _camera_y = pos.y;
+    }
 
-rectangle to_screen(const rectangle &rect)
-{
-    return rectangle_offset_by(rect, vector_world_to_screen());
-}
+    point_2d camera_position()
+    {
+        return point_at(_camera_x, _camera_y);
+    }
 
-rectangle screen_rectangle()
-{
-    return rectangle_from(0, 0, screen_width(), screen_height());
-}
-
-//---------------------------------------------------------------------------
-// Screen-To-World Translation
-//---------------------------------------------------------------------------
-
-float to_world_x(float screen_x)
-{
-    return screen_x + _camera_x;
-}
-
-float to_world_y(float screen_y)
-{
-    return screen_y + _camera_y;
-}
-
-point_2d to_world(const point_2d &pt)
-{
-    return point_at(pt.x + _camera_x, pt.y + _camera_y);
-}
+    point_2d screen_center()
+    {
+        return point_at(_camera_x + screen_width() / 2.0f, _camera_y + screen_height() / 2.0f);
+    }
 
 
-//---------------------------------------------------------------------------
-// Screen tests
-//---------------------------------------------------------------------------
 
-bool rect_on_screen(const rectangle &rect)
-{
-    return rectangles_intersect(to_screen(rect), screen_rectangle());
-}
+    //---------------------------------------------------------------------------
+    // World-To-Screen Translation
+    //---------------------------------------------------------------------------
 
-bool point_on_screen(const point_2d &pt)
-{
-    return point_in_rectangle(pt, screen_rectangle());
-}
+    float to_screen_x(float world_x)
+    {
+        return world_x - _camera_x;
+    }
+
+    float to_screen_y(float world_y)
+    {
+        return world_y - _camera_y;
+    }
+
+    point_2d to_screen(const point_2d &pt)
+    {
+        return point_at(pt.x - _camera_x, pt.y - _camera_y);
+    }
+
+    vector_2d vector_world_to_screen()
+    {
+        return vector_to(-_camera_x, -_camera_y);
+    }
+
+    rectangle to_screen(const rectangle &rect)
+    {
+        return rectangle_offset_by(rect, vector_world_to_screen());
+    }
+
+    rectangle screen_rectangle()
+    {
+        return rectangle_from(0, 0, screen_width(), screen_height());
+    }
+
+    //---------------------------------------------------------------------------
+    // Screen-To-World Translation
+    //---------------------------------------------------------------------------
+
+    float to_world_x(float screen_x)
+    {
+        return screen_x + _camera_x;
+    }
+
+    float to_world_y(float screen_y)
+    {
+        return screen_y + _camera_y;
+    }
+
+    point_2d to_world(const point_2d &pt)
+    {
+        return point_at(pt.x + _camera_x, pt.y + _camera_y);
+    }
 
 
-//---------------------------------------------------------------------------
-// Camera movement
-//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    // Screen tests
+    //---------------------------------------------------------------------------
 
-void move_camera_to(float x, float y)
-{
-    _camera_x = x;
-    _camera_y = y;
-}
+    bool rect_on_screen(const rectangle &rect)
+    {
+        return rectangles_intersect(to_screen(rect), screen_rectangle());
+    }
 
-void move_camera_to(const point_2d &pt)
-{
-    move_camera_to(pt.x, pt.y);
-}
+    bool point_on_screen(const point_2d &pt)
+    {
+        return point_in_rectangle(pt, screen_rectangle());
+    }
 
-void move_camera_by(float dx, float dy)
-{
-    _camera_x += dx;
-    _camera_y += dy;
-}
 
-void move_camera_by(const vector_2d &offset)
-{
-    move_camera_by(offset.x, offset.y);
-}
+    //---------------------------------------------------------------------------
+    // Camera movement
+    //---------------------------------------------------------------------------
 
-void center_camera_on(sprite s, float offset_x, float offset_y)
-{
-    point_2d center = sprite_position(s);
+    void move_camera_to(float x, float y)
+    {
+        _camera_x = x;
+        _camera_y = y;
+    }
+
+    void move_camera_to(const point_2d &pt)
+    {
+        move_camera_to(pt.x, pt.y);
+    }
+
+    void move_camera_by(float dx, float dy)
+    {
+        _camera_x += dx;
+        _camera_y += dy;
+    }
     
-    float sc_x = center.x + offset_x - (screen_width() / 2);
-    float sc_y = center.y + offset_y - (screen_height() / 2);
-
-    move_camera_to(sc_x, sc_y);
-}
-
-void center_camera_on(sprite s, const vector_2d &offset)
-{
-    center_camera_on(s, offset.x, offset.y);
+    void move_camera_by(const vector_2d &offset)
+    {
+        move_camera_by(offset.x, offset.y);
+    }
+    
+    void center_camera_on(sprite s, float offset_x, float offset_y)
+    {
+        point_2d center = sprite_position(s);
+        
+        float sc_x = center.x + offset_x - (screen_width() / 2);
+        float sc_y = center.y + offset_y - (screen_height() / 2);
+        
+        move_camera_to(sc_x, sc_y);
+    }
+    
+    void center_camera_on(sprite s, const vector_2d &offset)
+    {
+        center_camera_on(s, offset.x, offset.y);
+    }
 }

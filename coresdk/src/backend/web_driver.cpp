@@ -14,340 +14,341 @@
 #include <string.h>
 
 #include <curl/curl.h>
-
-static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
+namespace splashkit_lib
 {
-    size_t realsize = size * nmemb;
-    sk_http_response *mem = static_cast<sk_http_response *>(userp);
+    static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, void *userp)
+    {
+        size_t realsize = size * nmemb;
+        sk_http_response *mem = static_cast<sk_http_response *>(userp);
 
-    mem->data = (char *)realloc(mem->data, mem->size + realsize + 1);
-    if(mem->data == NULL) {
-        /* out of memory! */
-        printf("not enough memory (realloc returned NULL)\n");
+        mem->data = (char *)realloc(mem->data, mem->size + realsize + 1);
+        if(mem->data == NULL) {
+            /* out of memory! */
+            printf("not enough memory (realloc returned NULL)\n");
+            return 0;
+        }
+
+        memcpy(&(mem->data[mem->size]), contents, realsize);
+        mem->size += realsize;
+        mem->data[mem->size] = 0;
+
+        return realsize;
+    }
+
+    size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+        size_t written;
+        written = fwrite(ptr, size, nmemb, stream);
+        return written;
+    }
+
+    struct request_stream
+    {
+        const char *body;
+        unsigned long at;
+    };
+
+    /* NOTE: check note regarding reading if this does not work on Windows with libcurl as a
+     DLL -- you MUST also provide a read callback with CURLOPT_READFUNCTION.
+     Failing to do so will give you a crash since a DLL may not use the
+     variable's memory when passed in to it from an app like this. */
+    static size_t read_request_body(void *ptr, size_t size, size_t nmemb, void *stream)
+    {
+        // not actually a
+        request_stream *request = static_cast<request_stream *>(stream);
+
+        unsigned long str_len = strlen(request->body);
+
+        if (str_len - request->at > 0)
+        {
+            size_t len = str_len - request->at;
+            size_t max_read = nmemb * size;
+            size_t to_read;
+
+            if (max_read > len) to_read = len;
+            else to_read = max_read;
+
+            strncpy((char*)ptr, request->body + request->at, sizeof(char) * to_read);
+            request->at += to_read;
+            return to_read;
+        }
+
         return 0;
     }
 
-    memcpy(&(mem->data[mem->size]), contents, realsize);
-    mem->size += realsize;
-    mem->data[mem->size] = 0;
-
-    return realsize;
-}
-
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
-    size_t written;
-    written = fwrite(ptr, size, nmemb, stream);
-    return written;
-}
-
-struct request_stream
-{
-    const char *body;
-    unsigned long at;
-};
-
-/* NOTE: check note regarding reading if this does not work on Windows with libcurl as a
- DLL -- you MUST also provide a read callback with CURLOPT_READFUNCTION.
- Failing to do so will give you a crash since a DLL may not use the
- variable's memory when passed in to it from an app like this. */
-static size_t read_request_body(void *ptr, size_t size, size_t nmemb, void *stream)
-{
-    // not actually a
-    request_stream *request = static_cast<request_stream *>(stream);
-
-    unsigned long str_len = strlen(request->body);
-
-    if (str_len - request->at > 0)
+    void sk_init_web()
     {
-        size_t len = str_len - request->at;
-        size_t max_read = nmemb * size;
-        size_t to_read;
-
-        if (max_read > len) to_read = len;
-        else to_read = max_read;
-
-        strncpy((char*)ptr, request->body + request->at, sizeof(char) * to_read);
-        request->at += to_read;
-        return to_read;
+        curl_global_init(CURL_GLOBAL_ALL);
     }
 
-    return 0;
-}
-
-void sk_init_web()
-{
-    curl_global_init(CURL_GLOBAL_ALL);
-}
-
-void sk_finalise_web()
-{
-    curl_global_cleanup();
-}
-
-//TODO: fix code duplication here...
-
-sk_http_response sk_http_post(const char *host, unsigned short port, const char *body)
-{
-    sk_http_response result = { 500, 0, NULL };
-    CURL *curl_handle;
-    CURLcode res;
-
-    // init the curl session
-    curl_handle = curl_easy_init();
-
-    // specify URL to get
-    curl_easy_setopt(curl_handle, CURLOPT_URL, host);
-
-    // set port
-    curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
-
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
-
-    curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body);
-
-    curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
-
-    // header list
-    struct curl_slist *list = NULL;
-
-    list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
-    list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
-    curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
-
-    // send all data to this function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
-
-    // pass in the result as the location to write to
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
-
-    // some servers don't like requests that are made without a user-agent field, so we provide one
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-
-    // get it!
-    res = curl_easy_perform(curl_handle);
-
-    // free headers
-    curl_slist_free_all(list);
-
-    // check for errors
-    if(res != CURLE_OK)
+    void sk_finalise_web()
     {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    }
-    else
-    {
-        long status;
-        curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result.status = static_cast<unsigned short>(status);
+        curl_global_cleanup();
     }
 
-    /* cleanup curl stuff */
-    curl_easy_cleanup(curl_handle);
+    //TODO: fix code duplication here...
 
-    return result;
-}
-
-sk_http_response sk_http_get(const char *host, unsigned short port)
-{
-    sk_http_response result = { 500, 0, NULL };
-    CURL *curl_handle;
-    CURLcode res;
-
-    // init the curl session
-    curl_handle = curl_easy_init();
-
-    // specify URL to get
-    curl_easy_setopt(curl_handle, CURLOPT_URL, host);
-
-    // set port
-    curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
-
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
-
-    // send all data to this function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
-
-    // we pass our 'chunk' struct to the callback function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
-
-    // some servers don't like requests that are made without a user-agent field, so we provide one
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-
-    // get it!
-    res = curl_easy_perform(curl_handle);
-
-    // check for errors
-    if(res != CURLE_OK)
+    sk_http_response sk_http_post(const char *host, unsigned short port, const char *body)
     {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    }
-    else
-    {
-        long status;
-        curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result.status = static_cast<unsigned short>(status);
-    }
+        sk_http_response result = { 500, 0, NULL };
+        CURL *curl_handle;
+        CURLcode res;
 
-    /* cleanup curl stuff */
-    curl_easy_cleanup(curl_handle);
+        // init the curl session
+        curl_handle = curl_easy_init();
 
-    return result;
-}
+        // specify URL to get
+        curl_easy_setopt(curl_handle, CURLOPT_URL, host);
 
-sk_http_response sk_http_put(const char *host, unsigned short port, const char *body)
-{
-    sk_http_response result = { 500, 0, NULL };
-    CURL *curl_handle;
-    CURLcode res;
+        // set port
+        curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
 
-    // init the curl session
-    curl_handle = curl_easy_init();
+        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
 
-    // specify URL to get
-    curl_easy_setopt(curl_handle, CURLOPT_URL, host);
+        curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body);
 
-    // set port
-    curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
+        curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
 
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+        // header list
+        struct curl_slist *list = NULL;
 
-    // header list
-    struct curl_slist *list = NULL;
-    list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
-    list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
-    curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
+        list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
+        list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
 
-    // send all data to this function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
+        // send all data to this function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
 
-    // we pass our 'chunk' struct to the callback function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
+        // pass in the result as the location to write to
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
 
-    // some servers don't like requests that are made without a user-agent field, so we provide one
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+        // some servers don't like requests that are made without a user-agent field, so we provide one
+        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
 
-    /* we want to use our own read function */
-    curl_easy_setopt(curl_handle, CURLOPT_READFUNCTION, read_request_body);
+        // get it!
+        res = curl_easy_perform(curl_handle);
 
-    /* enable uploading */
-    curl_easy_setopt(curl_handle, CURLOPT_UPLOAD, 1L);
+        // free headers
+        curl_slist_free_all(list);
 
-    request_stream data = { body, 0 };
+        // check for errors
+        if(res != CURLE_OK)
+        {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+        else
+        {
+            long status;
+            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
+            result.status = static_cast<unsigned short>(status);
+        }
 
-    /* now specify which pointer to pass to our callback */
-    curl_easy_setopt(curl_handle, CURLOPT_READDATA, &data);
+        /* cleanup curl stuff */
+        curl_easy_cleanup(curl_handle);
 
-    /* Set the size of the file to upload */
-    curl_easy_setopt(curl_handle, CURLOPT_INFILESIZE, (curl_off_t)strlen(data.body));
-
-    /* Now run off and do what you've been told! */
-    res = curl_easy_perform(curl_handle);
-
-    // check for errors
-    if(res != CURLE_OK)
-    {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    }
-    else
-    {
-        long status;
-        curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result.status = static_cast<unsigned short>(status);
+        return result;
     }
 
-    // free headers
-    curl_slist_free_all(list);
-
-    curl_easy_cleanup(curl_handle);
-
-    return result;
-}
-
-sk_http_response sk_http_delete(const char *host, unsigned short port, const char *body)
-{
-    sk_http_response result = { 500, 0, NULL };
-    CURL *curl_handle;
-    CURLcode res;
-
-    // init the curl session
-    curl_handle = curl_easy_init();
-
-    // specify URL to get
-    curl_easy_setopt(curl_handle, CURLOPT_URL, host);
-
-    // set port
-    curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
-
-    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
-
-    curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body);
-
-    // header list
-    struct curl_slist *list = NULL;
-    list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
-    list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
-    curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
-
-    // send all data to this function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
-
-    // we pass our 'chunk' struct to the callback function
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
-
-    // some servers don't like requests that are made without a user-agent field, so we provide one
-    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-
-    curl_easy_setopt(curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
-
-    /* Now run off and do what you've been told! */
-    res = curl_easy_perform(curl_handle);
-
-    // check for errors
-    if(res != CURLE_OK)
+    sk_http_response sk_http_get(const char *host, unsigned short port)
     {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    }
-    else
-    {
-        long status;
-        curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result.status = static_cast<unsigned short>(status);
+        sk_http_response result = { 500, 0, NULL };
+        CURL *curl_handle;
+        CURLcode res;
+
+        // init the curl session
+        curl_handle = curl_easy_init();
+
+        // specify URL to get
+        curl_easy_setopt(curl_handle, CURLOPT_URL, host);
+
+        // set port
+        curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
+
+        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+
+        // send all data to this function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
+
+        // we pass our 'chunk' struct to the callback function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
+
+        // some servers don't like requests that are made without a user-agent field, so we provide one
+        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+        // get it!
+        res = curl_easy_perform(curl_handle);
+
+        // check for errors
+        if(res != CURLE_OK)
+        {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+        else
+        {
+            long status;
+            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
+            result.status = static_cast<unsigned short>(status);
+        }
+
+        /* cleanup curl stuff */
+        curl_easy_cleanup(curl_handle);
+
+        return result;
     }
 
-    // free headers
-    curl_slist_free_all(list);
+    sk_http_response sk_http_put(const char *host, unsigned short port, const char *body)
+    {
+        sk_http_response result = { 500, 0, NULL };
+        CURL *curl_handle;
+        CURLcode res;
 
-    curl_easy_cleanup(curl_handle);
+        // init the curl session
+        curl_handle = curl_easy_init();
 
-    return result;
-}
+        // specify URL to get
+        curl_easy_setopt(curl_handle, CURLOPT_URL, host);
 
-sk_http_response sk_http_make_request(sk_http_request request)
-{
-    internal_sk_init();
+        // set port
+        curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
+
+        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+
+        // header list
+        struct curl_slist *list = NULL;
+        list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
+        list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
+
+        // send all data to this function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
+
+        // we pass our 'chunk' struct to the callback function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
+
+        // some servers don't like requests that are made without a user-agent field, so we provide one
+        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+        /* we want to use our own read function */
+        curl_easy_setopt(curl_handle, CURLOPT_READFUNCTION, read_request_body);
+
+        /* enable uploading */
+        curl_easy_setopt(curl_handle, CURLOPT_UPLOAD, 1L);
+
+        request_stream data = { body, 0 };
+
+        /* now specify which pointer to pass to our callback */
+        curl_easy_setopt(curl_handle, CURLOPT_READDATA, &data);
+
+        /* Set the size of the file to upload */
+        curl_easy_setopt(curl_handle, CURLOPT_INFILESIZE, (curl_off_t)strlen(data.body));
+
+        /* Now run off and do what you've been told! */
+        res = curl_easy_perform(curl_handle);
+
+        // check for errors
+        if(res != CURLE_OK)
+        {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+        else
+        {
+            long status;
+            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
+            result.status = static_cast<unsigned short>(status);
+        }
+
+        // free headers
+        curl_slist_free_all(list);
+
+        curl_easy_cleanup(curl_handle);
+
+        return result;
+    }
+
+    sk_http_response sk_http_delete(const char *host, unsigned short port, const char *body)
+    {
+        sk_http_response result = { 500, 0, NULL };
+        CURL *curl_handle;
+        CURLcode res;
+
+        // init the curl session
+        curl_handle = curl_easy_init();
+
+        // specify URL to get
+        curl_easy_setopt(curl_handle, CURLOPT_URL, host);
+
+        // set port
+        curl_easy_setopt(curl_handle, CURLOPT_PORT, port);
+
+        curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+
+        curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body);
+
+        // header list
+        struct curl_slist *list = NULL;
+        list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
+        list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
+
+        // send all data to this function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_memory_callback);
+
+        // we pass our 'chunk' struct to the callback function
+        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&result);
+
+        // some servers don't like requests that are made without a user-agent field, so we provide one
+        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+        curl_easy_setopt(curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
+        
+        /* Now run off and do what you've been told! */
+        res = curl_easy_perform(curl_handle);
+        
+        // check for errors
+        if(res != CURLE_OK)
+        {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+        else
+        {
+            long status;
+            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
+            result.status = static_cast<unsigned short>(status);
+        }
+        
+        // free headers
+        curl_slist_free_all(list);
+        
+        curl_easy_cleanup(curl_handle);
+        
+        return result;
+    }
     
-    switch (request.request_type) {
-        case HTTP_GET:
-            return sk_http_get(request.url, request.port);
-        case HTTP_POST:
-            return sk_http_post(request.url, request.port, request.body);
-        case HTTP_PUT:
-            return sk_http_put(request.url, request.port, request.body);
-        case HTTP_DELETE:
-            return sk_http_delete(request.url, request.port, request.body);
-        default:
-            return { 500, 0, NULL };
-    }
-}
-
-void sk_free_response(sk_http_response *response)
-{
-    if ( response && response->size > 0 )
+    sk_http_response sk_http_make_request(sk_http_request request)
     {
-        free(response->data);
-        response->data = NULL;
-        response->size = 0;
-        response->status = 0;
+        internal_sk_init();
+        
+        switch (request.request_type) {
+            case HTTP_GET:
+                return sk_http_get(request.url, request.port);
+            case HTTP_POST:
+                return sk_http_post(request.url, request.port, request.body);
+            case HTTP_PUT:
+                return sk_http_put(request.url, request.port, request.body);
+            case HTTP_DELETE:
+                return sk_http_delete(request.url, request.port, request.body);
+            default:
+                return { 500, 0, NULL };
+        }
+    }
+    
+    void sk_free_response(sk_http_response *response)
+    {
+        if ( response && response->size > 0 )
+        {
+            free(response->data);
+            response->data = NULL;
+            response->size = 0;
+            response->status = 0;
+        }
     }
 }
-

@@ -1,3 +1,4 @@
+
 //
 //  utils.hpp
 //  splashkit
@@ -8,14 +9,15 @@
 
 #ifndef utils_hpp
 #define utils_hpp
+namespace splashkit_lib
+{
+    /// Puts the program to sleep for a specified number of
+    /// milliseconds.
+    ///
+    void delay(unsigned int milliseconds);
 
-/// Puts the program to sleep for a specified number of
-/// milliseconds.
-///
-void delay(unsigned int milliseconds);
-
-/// Gets the number of milliseconds that have passed since the progrma was started.
-///
-unsigned int current_ticks();
-
+    /// Gets the number of milliseconds that have passed since the progrma was started.
+    ///
+    unsigned int current_ticks();
+}
 #endif /* utils_hpp */

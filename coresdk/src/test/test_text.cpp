@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+using namespace splashkit_lib;
 
 string stringify_font_style(int style) {
     switch (style) {

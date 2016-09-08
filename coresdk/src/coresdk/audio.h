@@ -14,29 +14,30 @@
 
 #ifndef sk_audio
 #define sk_audio
+namespace splashkit_lib
+{
+    /**
+     * Starts the SplashKit audio system working.
+     */
+    void open_audio();
 
-/**
- * Starts the SplashKit audio system working.
- */
-void open_audio();
+    /**
+     * Turns off audio, stopping all current sounds effects and music.
+     */
+    void close_audio();
 
-/**
- * Turns off audio, stopping all current sounds effects and music.
- */
-void close_audio();
-
-/**
- * Checks if SplashKit audio currently ready to be used.
- *
- * Should this return `false`, you may want to use `open_audio`
- * to enable audio.
- *
- * @returns Returns `true` if the audio has been initalised.
- *
- * @attribute getter is_ready
- */
-bool audio_ready();
-
+    /**
+     * Checks if SplashKit audio currently ready to be used.
+     *
+     * Should this return `false`, you may want to use `open_audio`
+     * to enable audio.
+     *
+     * @returns Returns `true` if the audio has been initalised.
+     *
+     * @attribute getter is_ready
+     */
+    bool audio_ready();
+}
 #include "sound.h"
 #include "music.h"
 

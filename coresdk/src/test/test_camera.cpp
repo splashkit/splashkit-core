@@ -12,6 +12,8 @@
 #include "camera.h"
 #include "input.h"
 
+using namespace splashkit_lib;
+
 void run_camera_test()
 {
     window w1 = open_window("Camera Test", 600, 600);
