@@ -98,7 +98,6 @@ void free_all_json();
  *
  * @attribute static json
  * @attribute method to_file
- * @attribute self j
  */
 void json_to_file(json j, const string& filename);
 
