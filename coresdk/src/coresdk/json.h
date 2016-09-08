@@ -91,6 +91,8 @@ void free_all_json();
  * 
  * @param j The `json` object to be written to file.
  * @param filename The filename of the file to be stored in `Resources/json/`
+ *
+ * @attribute static json
  */
 void json_to_file(json j, const string& filename);
 
@@ -101,6 +103,8 @@ void json_to_file(json j, const string& filename);
  * @param filename The filename of the file to be written to `Resources/json/`.
  *
  * @returns Returns the `json` object loaded from the JSON file in `filename`.
+ *
+ * @attribute static json
  */
 json json_from_file(const string& filename);
 
@@ -110,6 +114,8 @@ json json_from_file(const string& filename);
  * @param j The `json` object to be converted to a `string`.
  *
  * @returns Returns the `json` object as a `string`.
+ *
+ * @attribute static json
  */
 string json_to_string(json j);
 
@@ -119,6 +125,8 @@ string json_to_string(json j);
  * @param j_string A `string` in the JSON format.
  *
  * @returns Returns a `json` object loaded with data from `string j_string`.
+ *
+ * @attribute static json
  */
 json json_from_string(const string &j_string);
 
