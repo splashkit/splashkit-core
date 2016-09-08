@@ -8,6 +8,8 @@
 #define TEST_IP "127.0.0.1"
 #define TEST_IP_HEX "0x7F000001"
 
+using namespace splashkit_lib;
+
 void run_encoding_decoding_tests()
 {
     // Incomplete ip address tests
