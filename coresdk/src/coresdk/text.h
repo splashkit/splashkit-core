@@ -1,10 +1,10 @@
-//
-//  text.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 25/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Text
+ * @author Andrew Cain
+ * @brief SplashKit Text allows for drawing text in a variety of ways to graphic windows.
+ *
+ * @attribute static text
+ */
 
 #ifndef text_hpp
 #define text_hpp
@@ -61,6 +61,17 @@ void draw_text(const string &text, const color &clr, font fnt, int font_size, fl
 
 void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
 
+/**
+ * Draws the text provided in `text` to the screen with color `clr`, font `fnt`, size `font_size`
+ *       at `x` and `y` to the current focused window.
+ * @param text      The text which will be written to the window
+ * @param clr       the `color` of the text to be written
+ * @param fnt       the `font` which will be used to draw the text
+ * @param font_size the size of the font which will be drawn.
+ * @param x         the `x` location representing where the text will be drawn.
+ * @param y         the `y` location representing where the text will be drawn.
+ *
+ */
 void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
 
 void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts);
