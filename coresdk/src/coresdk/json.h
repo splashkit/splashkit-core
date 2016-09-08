@@ -83,6 +83,7 @@ void free_json(json j);
  * Releases all of the `json` objects which have been loaded.
  *
  * @attribute static json
+ * @attribute method free_all
  */
 void free_all_json();
 
@@ -93,6 +94,7 @@ void free_all_json();
  * @param filename The filename of the file to be stored in `Resources/json/`
  *
  * @attribute static json
+ * @attribute method to_file
  */
 void json_to_file(json j, const string& filename);
 
@@ -105,6 +107,7 @@ void json_to_file(json j, const string& filename);
  * @returns Returns the `json` object loaded from the JSON file in `filename`.
  *
  * @attribute static json
+ * @attribute method from_file
  */
 json json_from_file(const string& filename);
 
@@ -116,6 +119,7 @@ json json_from_file(const string& filename);
  * @returns Returns the `json` object as a `string`.
  *
  * @attribute static json
+ * @attribute method to_json_string
  */
 string json_to_string(json j);
 
@@ -127,6 +131,7 @@ string json_to_string(json j);
  * @returns Returns a `json` object loaded with data from `string j_string`.
  *
  * @attribute static json
+ * @attribute method from_json_string
  */
 json json_from_string(const string &j_string);
 
@@ -138,6 +143,7 @@ json json_from_string(const string &j_string);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_string
  */
 void json_add_string(json j, string key, string value);
 
@@ -149,6 +155,7 @@ void json_add_string(json j, string key, string value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_number
  */
 void json_add_number(json j, string key, double value);
 
@@ -160,6 +167,7 @@ void json_add_number(json j, string key, double value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_bool
  */
 void json_add_bool(json j, string key, bool value);
 
@@ -171,6 +179,7 @@ void json_add_bool(json j, string key, bool value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_object
  */
 void json_add_object(json j, string key, json object);
 
@@ -183,6 +192,7 @@ void json_add_object(json j, string key, json object);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_array
  */
 void json_add_array(json j, string key, vector<string> value);
 
@@ -195,6 +205,7 @@ void json_add_array(json j, string key, vector<string> value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_array
  */
 void json_add_array(json j, string key, vector<double> value);
 
@@ -207,6 +218,7 @@ void json_add_array(json j, string key, vector<double> value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_array
  */
 void json_add_array(json j, string key, vector<bool> value);
 
@@ -219,6 +231,7 @@ void json_add_array(json j, string key, vector<bool> value);
  * @param value The value to be inserted into the `json` object.
  *
  * @attribute class json
+ * @attribute method add_array
  */
 void json_add_array(json j, string key, vector<json> value);
 
@@ -231,6 +244,7 @@ void json_add_array(json j, string key, vector<json> value);
  * @returns Returns the `double` value stored at the `string` key.
  *
  * @attribute class json
+ * @attribute method read_number
  */
 double json_read_number(json j, string key);
 
@@ -243,6 +257,7 @@ double json_read_number(json j, string key);
  * @returns Returns the `string` value stored at the `string` key.
  *
  * @attribute class json
+ * @attribute method read_string
  */
 string json_read_string(json j, string key);
 
@@ -255,6 +270,7 @@ string json_read_string(json j, string key);
  * @returns Returns the `bool` value stored at the `string` key.
  *
  * @attribute class json
+ * @attribute method read_bool
  */
 bool json_read_bool(json j, string key);
 
@@ -267,6 +283,7 @@ bool json_read_bool(json j, string key);
  * @returns Returns the `json` object value stored at the `string` key.
  *
  * @attribute class json
+ * @attribute method read_object
  */
 json json_read_object(json j, string key);
 
@@ -279,6 +296,7 @@ json json_read_object(json j, string key);
  * @param out The array which will be filled with the data stored for `string` key.
  *
  * @attribute class json
+ * @attribute method read_array
  */
 void json_read_array(json j, string key, vector<double> &out);
 
@@ -291,6 +309,7 @@ void json_read_array(json j, string key, vector<double> &out);
  * @param out The array which will be filled with the data stored for `string` key.
  *
  * @attribute class json
+ * @attribute method read_array
  */
 void json_read_array(json j, string key, vector<json> &out);
 
@@ -303,6 +322,7 @@ void json_read_array(json j, string key, vector<json> &out);
  * @param out The array which will be filled with the data stored for `string` key.
  *
  * @attribute class json
+ * @attribute method read_array
  */
 void json_read_array(json j, string key, vector<string> &out);
 
@@ -315,6 +335,7 @@ void json_read_array(json j, string key, vector<string> &out);
  * @param out The array which will be filled with the data stored for `string` key.
  *
  * @attribute class json
+ * @attribute method read_array
  */
 void json_read_array(json j, string key, vector<bool> &out);
 
@@ -327,6 +348,7 @@ void json_read_array(json j, string key, vector<bool> &out);
  * @returns Returns `true` if the `json j` object contains a key for `string` key.
  *
  * @attribute class json
+ * @attribute method read_array
  */
 bool json_has_key(json j, string key);
 
