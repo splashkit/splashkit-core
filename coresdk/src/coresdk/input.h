@@ -1,10 +1,10 @@
-//
-//  input.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 15/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Input
+ * @author Andrew Cain
+ * @brief Input handles user interaction and events such as keypresses.
+ *
+ * @attribute static input
+ */
 
 #ifndef input_hpp
 #define input_hpp
@@ -17,15 +17,15 @@
 #include "keyboard_input.h"
 
 
-/// ProcessEvents allows SplashKit to react to user interactions. This
-/// procedure checks the current keyboard and mouse states and should be
-/// called once within your game loop to check user interaction.
-///
-/// Side Effects
-/// - Reads user interaction events
-/// - Updates keys down, text input, etc.
-///
-/// @lib
+/**
+ * ProcessEvents allows SplashKit to react to user interactions. This
+ *      procedure checks the current keyboard and mouse states and should be
+ *      called once within your game loop to check user interaction.
+ *
+ * Side Effects
+ *      - Reads user interaction events
+ *      - Updates keys down, text input, etc.
+ */
 void process_events();
 
 /// Checks to see if the user has asked for the application to quit. This value

@@ -1,11 +1,3 @@
-//
-//  window_manager.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 15/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
-
 /**
  * @header Window Manager
  * @author Andrew Cain
@@ -46,6 +38,7 @@ typedef struct _window_data *window;
  *
  * @attribute class         window
  * @attribute constructor   true
+ * @attribute method        open_window
  */
 window open_window(string caption, int width, int height);
 
@@ -83,20 +76,22 @@ void close_all_windows();
  *
  * @param caption The name of the window to check for.
  *
- * @returns Returns `true` if there is a window with the given `caption` 
+ * @return Returns `true` if there is a window with the given `caption`
  *          which has has been loaded.
  *
  */
 bool has_window(string caption);
 
-
 /**
- * Retrieves a `music` that has been loaded into SplashKit.
+ * Returns an opened `window` with the given name `caption`, if a window with
+ * name `caption` is found.
  *
- * @param name  The name of the music file to return.
+ * @param  caption the `string` name of the window.
  *
- * @returns Returns the `music` that has been loaded with the specified
- *          `name` using `load_music`.
+ * @return Returns a `window` with the name specified by `caption`
+ *
+ * @attribute method window_named
+ * @attribute class  window
  */
 window window_named(string caption);
 
@@ -108,12 +103,42 @@ void set_current_window(window wind);
 
 void set_current_window(const string &name);
 
+/**
+ * Closes the window given in `wind`
+ *
+ * @param  wind the `window` to be closed
+ *
+ * @return Returns `true` if the window is closed,
+ * `false` if there is an error.
+ *
+ * @attribute class window
+ * @attribute self wind
+ */
 bool window_close_requested(window wind);
 
+/**
+ * Checks all opened windows in the current program
+ * to determin if a window with the name `name` is
+ * currently open, and will close a window if one is found.
+ *
+ * @param name The name of the window to close
+ *
+ * @returns Returns `true` if there is a music file with the given `name` has
+ *          has been loaded.
+ */
 bool window_close_requested(const string &name);
 
 void refresh_window(window wind);
 
+/**
+ * clears a window to the specified color given in `clr`
+ *
+ * @param wind the `window` to clear
+ * @param clr  the `color` to clear the window to.
+ *
+ * @attribute class window
+ * @attribute self  wind
+ */
 void clear_window(window wind, color clr);
 
 /**
