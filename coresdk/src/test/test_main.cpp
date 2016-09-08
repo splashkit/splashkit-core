@@ -18,6 +18,7 @@
 #include <vector>
 
 using namespace std;
+using namespace splashkit_lib;
 
 vector<pair<string, function<void()>>> tests;
 

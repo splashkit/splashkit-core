@@ -10,6 +10,7 @@
 #include "utils.h"
 #include <iostream>
 using namespace std;
+using namespace splashkit_lib;
 
 void run_database_tests()
 {

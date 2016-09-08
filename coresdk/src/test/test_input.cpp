@@ -10,6 +10,8 @@
 #include "input.h"
 #include "text.h"
 
+using namespace splashkit_lib;
+
 static string _key_typed = "", _key_down = "", _key_up = "";
 
 void _on_key_typed(key_code code)

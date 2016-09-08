@@ -10,6 +10,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace splashkit_lib;
 
 void run_resources_tests()
 {

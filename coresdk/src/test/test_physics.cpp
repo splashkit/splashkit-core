@@ -14,6 +14,8 @@ using namespace std;
 #include "physics.h"
 #include "graphics.h"
 
+using namespace splashkit_lib;
+
 void do_test_vector()
 {
     window w1 = open_window("Vector Test", 600, 600);

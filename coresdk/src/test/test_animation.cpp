@@ -17,6 +17,7 @@
 #include <vector>
 #include <iostream>
 using namespace std;
+using namespace splashkit_lib;
 
 void run_animation_test()
 {

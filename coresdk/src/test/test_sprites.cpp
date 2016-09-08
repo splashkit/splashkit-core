@@ -14,6 +14,8 @@
 #include "sprites.h"
 #include "window_manager.h"
 
+using namespace splashkit_lib;
+
 void run_sprite_test()
 {
     sprite sprt, s2;

@@ -13,6 +13,8 @@
 #include "timers.h"
 #include "graphics.h"
 
+using namespace splashkit_lib;
+
 void run_timer_test()
 {
     open_window("Timer Test", 400, 400);

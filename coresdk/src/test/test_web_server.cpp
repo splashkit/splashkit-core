@@ -8,6 +8,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace splashkit_lib;
 
 bool handle_request(server_request r)
 {

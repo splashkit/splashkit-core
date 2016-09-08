@@ -13,6 +13,7 @@
 
 #include <iostream>
 using namespace std;
+using namespace splashkit_lib;
 
 void run_audio_tests()
 {

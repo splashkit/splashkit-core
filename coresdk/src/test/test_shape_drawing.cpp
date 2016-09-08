@@ -18,6 +18,8 @@ using namespace std;
 #include "random.h"
 #include "images.h"
 
+using namespace splashkit_lib;
+
 void test_circle_drawing(window w1)
 {
     timer t = create_timer("shape drawing timer");

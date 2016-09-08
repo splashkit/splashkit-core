@@ -14,6 +14,8 @@ using namespace std;
 #include "graphics.h"
 #include "input.h"
 
+using namespace splashkit_lib;
+
 void test_points()
 {
     point_2d p = point_at(10, 20);
