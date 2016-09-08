@@ -49,7 +49,7 @@
 		942372211D1D653B0020CCE2 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9423721F1D1D5D4E0020CCE2 /* audio.cpp */; };
 		942372381D1D69700020CCE2 /* test_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942372321D1D69260020CCE2 /* test_audio.cpp */; };
 		9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942372391D1D69850020CCE2 /* test_main.cpp */; };
-		9423723C1D1D6A5F0020CCE2 /* libSplashKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKit.a */; };
+		9423723C1D1D6A5F0020CCE2 /* libSplashKitBackend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
 		9423724F1D1D6A7D0020CCE2 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423723E1D1D6A7D0020CCE2 /* libbz2.a */; };
 		942372501D1D6A7D0020CCE2 /* libFLAC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423723F1D1D6A7D0020CCE2 /* libFLAC.a */; };
 		942372511D1D6A7D0020CCE2 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372401D1D6A7D0020CCE2 /* libfreetype.a */; };
@@ -170,7 +170,7 @@
 		F86951961D5093F800E1BCC9 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951941D5093F800E1BCC9 /* database.cpp */; };
 		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
 		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
-		FA3821BD1D7930FA00AD1C2B /* libSplashKit.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKit.a */; };
+		FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
 		FAAC94001D8016D500B73558 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC93FE1D8016D500B73558 /* json.h */; };
 		FAAC94021D8016F100B73558 /* json_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94011D8016F100B73558 /* json_driver.h */; };
@@ -227,7 +227,7 @@
 			dstPath = "$(SRCROOT)/../../out/lib";
 			dstSubfolderSpec = 0;
 			files = (
-				FA3821BD1D7930FA00AD1C2B /* libSplashKit.a in Copy libSplashKit.a to out/lib */,
+				FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */,
 			);
 			name = "Copy libSplashKit.a to out/lib";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,7 +271,7 @@
 		941C8A3C1D5DFDC6003112B2 /* test_timers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_timers.cpp; sourceTree = "<group>"; };
 		9420549C1D3463BA001ED922 /* resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resources.cpp; sourceTree = "<group>"; };
 		9420549D1D3463BA001ED922 /* resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources.h; sourceTree = "<group>"; };
-		942371DC1D1D540C0020CCE2 /* libSplashKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSplashKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSplashKitBackend.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		942371EE1D1D548A0020CCE2 /* audio_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_driver.cpp; sourceTree = "<group>"; };
 		942371EF1D1D548A0020CCE2 /* audio_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_driver.h; sourceTree = "<group>"; };
 		9423721A1D1D57D20020CCE2 /* core_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_driver.cpp; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 				942372651D1D6B4D0020CCE2 /* AudioToolbox.framework in Frameworks */,
 				942372631D1D6B430020CCE2 /* CoreAudio.framework in Frameworks */,
 				942372611D1D6B3C0020CCE2 /* CoreVideo.framework in Frameworks */,
-				9423723C1D1D6A5F0020CCE2 /* libSplashKit.a in Frameworks */,
+				9423723C1D1D6A5F0020CCE2 /* libSplashKitBackend.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +499,7 @@
 		942371DD1D1D540C0020CCE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				942371DC1D1D540C0020CCE2 /* libSplashKit.a */,
+				942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */,
 				9423722B1D1D68E30020CCE2 /* tests */,
 				94E699531D6F395500FBFA28 /* libcivetweb.a */,
 				94C0D0951D73B1E50099387A /* libsqlite.a */,
@@ -873,9 +873,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		942371DB1D1D540C0020CCE2 /* SplashKit */ = {
+		942371DB1D1D540C0020CCE2 /* SplashKitBackend */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 942371E71D1D540C0020CCE2 /* Build configuration list for PBXNativeTarget "SplashKit" */;
+			buildConfigurationList = 942371E71D1D540C0020CCE2 /* Build configuration list for PBXNativeTarget "SplashKitBackend" */;
 			buildPhases = (
 				942371D81D1D540C0020CCE2 /* Sources */,
 				942371D91D1D540C0020CCE2 /* Frameworks */,
@@ -887,9 +887,9 @@
 			);
 			dependencies = (
 			);
-			name = SplashKit;
+			name = SplashKitBackend;
 			productName = splashkit;
-			productReference = 942371DC1D1D540C0020CCE2 /* libSplashKit.a */;
+			productReference = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9423722A1D1D68E30020CCE2 /* tests */ = {
@@ -980,7 +980,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				942371DB1D1D540C0020CCE2 /* SplashKit */,
+				942371DB1D1D540C0020CCE2 /* SplashKitBackend */,
 				9423722A1D1D68E30020CCE2 /* tests */,
 				94E699521D6F395500FBFA28 /* civetweb */,
 				94C0D0941D73B1E50099387A /* sqlite */,
@@ -1338,7 +1338,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		942371E71D1D540C0020CCE2 /* Build configuration list for PBXNativeTarget "SplashKit" */ = {
+		942371E71D1D540C0020CCE2 /* Build configuration list for PBXNativeTarget "SplashKitBackend" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E81D1D540C0020CCE2 /* Debug */,
