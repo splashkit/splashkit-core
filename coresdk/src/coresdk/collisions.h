@@ -1,10 +1,12 @@
-//
-//  collisions.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 25/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Collisions
+ * @author Andrew Cain
+ * @brief SplashKit Collisions library allow you to perform tests between
+ *        bitmaps, sprites and shapes to determin if a collision has occured.
+ *
+ *
+ * @attribute static collisions
+ */
 
 #ifndef collisions_h
 #define collisions_h
@@ -22,7 +24,7 @@
  * @param translation   The translation matrix that represents the position, scale,
  *                      and rotation of the bitmap when it is drawn.
  * @param pt            The point in the resulting drawing that is being tested.
- * @returns             True if drawing the bitmap, using the passed in translation, 
+ * @returns             True if drawing the bitmap, using the passed in translation,
  *                      will draw a pixel at the indicated point.
  */
 bool bitmap_point_collision(bitmap bmp, const matrix_2d& translation, const point_2d& pt);
@@ -53,6 +55,17 @@ bool sprite_point_collision(sprite s, const point_2d& pt);
 
 bool sprite_rect_collision(sprite s, const rectangle& rect);
 
+/**
+ * Tests if two given sprites `s1` and `s2` are collided
+ * @param  s1 the first `sprite` to test
+ * @param  s2 the second `sprite` to test
+ *
+ * @return return `true` if both `s1` and `s2` are colliding, false otherwise.
+ *
+ * @attribute class   sprite
+ * @attribute method  collide_with_sprite
+ * @attribute self    s1
+*/
 bool sprite_collision(sprite s1, sprite s2);
 
 #endif /* collisions_h */
