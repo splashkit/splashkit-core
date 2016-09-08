@@ -15,259 +15,261 @@
 #include "graphics_driver.h"
 
 #include <map>
-
-static map<string, font> _fonts;
-
-bool has_font(font fnt)
+namespace splashkit_lib
 {
-    return VALID_PTR(fnt, FONT_PTR) and _fonts.count(fnt->name) > 0;
-}
+    static map<string, font> _fonts;
 
-bool has_font(string name)
-{
-    return has_font(_fonts.find(name)->second);
-}
-
-bool font_has_size(font fnt, int font_size)
-{
-    if (has_font(fnt))
+    bool has_font(font fnt)
     {
-        return fnt->_data.count(font_size) > 0;
-    }
-    else
-    {
-        LOG(WARNING) << "Asking if font has size on invalid font.";
+        return VALID_PTR(fnt, FONT_PTR) and _fonts.count(fnt->name) > 0;
     }
 
-    return false;
-}
-
-bool font_has_size(const string &name, int font_size)
-{
-    return font_has_size(font_named(name), font_size);
-}
-
-void font_load_size(font fnt, int font_size)
-{
-    if (has_font(fnt))
+    bool has_font(string name)
     {
-        sk_add_font_size(fnt, font_size);
+        return has_font(_fonts.find(name)->second);
     }
-    else
-    {
-        LOG(WARNING) << "font_load_size failed: font does not exist.";
-    }
-}
 
-void font_load_size(const string &name, int font_size)
-{
-    return font_load_size(font_named(name), font_size);
-}
-
-font font_named(string name)
-{
-    if (has_font(name))
+    bool font_has_size(font fnt, int font_size)
     {
-        return _fonts[name];
-    }
-    else
-    {
-        string filename = path_to_resource(name, FONT_RESOURCE);
-        
-        if ( file_exists(filename) or file_exists(name))
-            return load_font(name, name);
-        return nullptr;
-    }
-}
-
-void free_font(font fnt)
-{
-    if ( VALID_PTR(fnt, FONT_PTR) )
-    {
-        _fonts.erase(fnt->name);
-        sk_close_font(fnt);
-        fnt->id = NONE_PTR;  // ensure future use of this pointer will fail...
-        delete(fnt);
-    }
-    else
-    {
-        LOG(WARNING) << "Delete font called without valid font";
-    }
-}
-
-void free_all_fonts()
-{
-    string name;
-    
-    size_t sz = _fonts.size();
-    
-    for(size_t i = 0; i < sz; i++)
-    {
-        font fnt = _fonts.begin()->second;
-        if (VALID_PTR(fnt, FONT_PTR))
+        if (has_font(fnt))
         {
-            free_font(fnt);
+            return fnt->_data.count(font_size) > 0;
         }
         else
         {
-            LOG(WARNING) << "Fonts contained an invalid pointer";
-            _fonts.erase(_fonts.begin());
+            LOG(WARNING) << "Asking if font has size on invalid font.";
+        }
+
+        return false;
+    }
+
+    bool font_has_size(const string &name, int font_size)
+    {
+        return font_has_size(font_named(name), font_size);
+    }
+
+    void font_load_size(font fnt, int font_size)
+    {
+        if (has_font(fnt))
+        {
+            sk_add_font_size(fnt, font_size);
+        }
+        else
+        {
+            LOG(WARNING) << "font_load_size failed: font does not exist.";
         }
     }
-}
 
-void set_font_style(font fnt, font_style style)
-{
-    if (!VALID_PTR(fnt, FONT_PTR))
+    void font_load_size(const string &name, int font_size)
     {
-        LOG(WARNING) << "Attempting to set style on invalid font.";
-        return;
+        return font_load_size(font_named(name), font_size);
     }
 
-    for (auto const it : fnt->_data)
+    font font_named(string name)
     {
-        sk_set_font_style(fnt, it.first, style);
-    }
-}
-
-void set_font_style(const string &name, font_style style)
-{
-    set_font_style(font_named(name), style);
-}
-
-font_style get_font_style(font fnt)
-{
-    if (!VALID_PTR(fnt, FONT_PTR))
-    {
-        LOG(WARNING) << "Attempting to get font style on invalid font.";
-        return NORMAL_FONT; // Add NONE to font_style enum?
-    }
-
-    int font_size = fnt->_data.begin()->first;
-
-    // Should the backend not just return a font_style instead of an int?
-    return static_cast<font_style>(sk_get_font_style(fnt, font_size));
-}
-
-font_style get_font_style(const string &name)
-{
-    return get_font_style(font_named(name));
-}
-
-font load_font(const string &name, const string &filename)
-{
-    if (has_font(name)) return font_named(name);
-
-    string file_path = path_to_resource(filename, FONT_RESOURCE);
-    
-    if ( ! file_exists(file_path) )
-    {
-        file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
-    
-        if ( ! file_exists(file_path) )
+        if (has_font(name))
         {
-            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+            return _fonts[name];
+        }
+        else
+        {
+            string filename = path_to_resource(name, FONT_RESOURCE);
+
+            if ( file_exists(filename) or file_exists(name))
+                return load_font(name, name);
             return nullptr;
         }
     }
 
-    font result = sk_load_font(file_path.c_str(), 64);
-    
-    if (!sk_contains_valid_font(result))
+    void free_font(font fnt)
     {
-        delete result;
-        result = nullptr;
-        LOG(WARNING) << "LoadFont failed: " + name + " (" + file_path + ")";
-    } else
-    {
-        _fonts[name] = result;
-        result->name = name; // Need to clean this up, name is set to filename in sk_load_font
+        if ( VALID_PTR(fnt, FONT_PTR) )
+        {
+            _fonts.erase(fnt->name);
+            sk_close_font(fnt);
+            fnt->id = NONE_PTR;  // ensure future use of this pointer will fail...
+            delete(fnt);
+        }
+        else
+        {
+            LOG(WARNING) << "Delete font called without valid font";
+        }
     }
 
-    return result;
-}
-
-void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
-{
-    if (bg_clr.a > 0)
+    void free_all_fonts()
     {
-        sk_fill_aa_rect(to_surface_ptr(dest), bg_clr, rc.x, rc.y, rc.width, rc.height);
+        string name;
+
+        size_t sz = _fonts.size();
+
+        for(size_t i = 0; i < sz; i++)
+        {
+            font fnt = _fonts.begin()->second;
+            if (VALID_PTR(fnt, FONT_PTR))
+            {
+                free_font(fnt);
+            }
+            else
+            {
+                LOG(WARNING) << "Fonts contained an invalid pointer";
+                _fonts.erase(_fonts.begin());
+            }
+        }
+    }
+
+    void set_font_style(font fnt, font_style style)
+    {
+        if (!VALID_PTR(fnt, FONT_PTR))
+        {
+            LOG(WARNING) << "Attempting to set style on invalid font.";
+            return;
+        }
+
+        for (auto const it : fnt->_data)
+        {
+            sk_set_font_style(fnt, it.first, style);
+        }
+    }
+
+    void set_font_style(const string &name, font_style style)
+    {
+        set_font_style(font_named(name), style);
+    }
+
+    font_style get_font_style(font fnt)
+    {
+        if (!VALID_PTR(fnt, FONT_PTR))
+        {
+            LOG(WARNING) << "Attempting to get font style on invalid font.";
+            return NORMAL_FONT; // Add NONE to font_style enum?
+        }
+
+        int font_size = fnt->_data.begin()->first;
+
+        // Should the backend not just return a font_style instead of an int?
+        return static_cast<font_style>(sk_get_font_style(fnt, font_size));
+    }
+
+    font_style get_font_style(const string &name)
+    {
+        return get_font_style(font_named(name));
+    }
+
+    font load_font(const string &name, const string &filename)
+    {
+        if (has_font(name)) return font_named(name);
+
+        string file_path = path_to_resource(filename, FONT_RESOURCE);
+
+        if ( ! file_exists(file_path) )
+        {
+            file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
+
+            if ( ! file_exists(file_path) )
+            {
+                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                return nullptr;
+            }
+        }
+
+        font result = sk_load_font(file_path.c_str(), 64);
+
+        if (!sk_contains_valid_font(result))
+        {
+            delete result;
+            result = nullptr;
+            LOG(WARNING) << "LoadFont failed: " + name + " (" + file_path + ")";
+        } else
+        {
+            _fonts[name] = result;
+            result->name = name; // Need to clean this up, name is set to filename in sk_load_font
+        }
+
+        return result;
+    }
+
+    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
+    {
+        if (bg_clr.a > 0)
+        {
+            sk_fill_aa_rect(to_surface_ptr(dest), bg_clr, rc.x, rc.y, rc.width, rc.height);
+        }
+
+        sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
+    }
+
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
+    {
+        rectangle rect;
+        if ( ! VALID_PTR(fnt, FONT_PTR) )
+        {
+            LOG(WARNING) << "Error attempting to draw text with invalid font.";
+            return;
+        }
+
+        if (text.length() < 1) return;
+
+        xy_from_opts(opts, x, y);
+        rect.x = x;
+        rect.y = y;
+
+        rect.width = -1;
+        rect.height = -1;
+
+        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
+    }
+
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
+    {
+        draw_text(text, clr, fnt, font_size, x, y, option_defaults());
+    }
+
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
+    {
+        draw_text(text, clr, font_named(fnt), font_size, x, y, opts);
+    }
+
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
+    {
+        draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
+    }
+
+    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts)
+    {
+        draw_text(text, clr, fnt, 64, x, y, opts);
     }
     
-    sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
-}
-
-void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
-{
-    rectangle rect;
-    if ( ! VALID_PTR(fnt, FONT_PTR) )
+    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
     {
-        LOG(WARNING) << "Error attempting to draw text with invalid font.";
-        return;
+        draw_text(text, clr, fnt, 64, x, y);
     }
     
-    if (text.length() < 1) return;
-
-    xy_from_opts(opts, x, y);
-    rect.x = x;
-    rect.y = y;
-
-    rect.width = -1;
-    rect.height = -1;
-    
-    _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
-}
-
-void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
-{
-    draw_text(text, clr, fnt, font_size, x, y, option_defaults());
-}
-
-void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
-{
-    draw_text(text, clr, font_named(fnt), font_size, x, y, opts);
-}
-
-void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
-{
-    draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
-}
-
-void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts)
-{
-    draw_text(text, clr, fnt, 64, x, y, opts);
-}
-
-void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
-{
-    draw_text(text, clr, fnt, 64, x, y);
-}
-
-void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
-{
-    xy_from_opts(opts, x, y);
-    sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
-}
-
-void draw_text(const string &text, const color &clr, float x, float y)
-{
-    draw_text(text, clr, x, y, option_defaults());
-}
-
-int text_length(const string &text, font fnt, int font_size)
-{
-    if ( INVALID_PTR(fnt, FONT_PTR) )
+    void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
     {
-        LOG(WARNING) << "Attempting to get string length with invalid font";
-        return 0;
+        xy_from_opts(opts, x, y);
+        sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
     }
     
-    int w = 0, h = 0;
-    sk_text_size(fnt, font_size, text.c_str(), &w, &h);
-    return w;
-}
-
-int text_length(const string &text, const string &fnt, int font_size)
-{
-    return text_length(text, font_named(fnt), font_size);
+    void draw_text(const string &text, const color &clr, float x, float y)
+    {
+        draw_text(text, clr, x, y, option_defaults());
+    }
+    
+    int text_length(const string &text, font fnt, int font_size)
+    {
+        if ( INVALID_PTR(fnt, FONT_PTR) )
+        {
+            LOG(WARNING) << "Attempting to get string length with invalid font";
+            return 0;
+        }
+        
+        int w = 0, h = 0;
+        sk_text_size(fnt, font_size, text.c_str(), &w, &h);
+        return w;
+    }
+    
+    int text_length(const string &text, const string &fnt, int font_size)
+    {
+        return text_length(text, font_named(fnt), font_size);
+    }
 }

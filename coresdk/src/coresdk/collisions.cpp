@@ -16,242 +16,244 @@
 
 #include "graphics.h"
 #include "utils.h"
-
-//#define DEBUG_STEP
-
-// Step over pixels in the two areas based on the supplied matrix
-//
-// See http://www.austincc.edu/cchrist1/GAME1343/TransformedCollision/TransformedCollision.htm
-bool _step_through_pixels (
-    float w1, float h1,
-    const matrix_2d &matrix1,
-    float w2, float h2,
-    const matrix_2d &matrix2,
-    function<bool(int, int, int, int)> end_fn )
+namespace splashkit_lib
 {
-    bool a_is_1;
-    double h_a, w_a;
-    double h_b, w_b;
-    matrix_2d transform_a_to_b;
-    
-    // Determine the smaller area to step through.
-    if ( w1 * h1 <= w2 * h2 ) // use bitmap 1 as the one to scan
+    //#define DEBUG_STEP
+
+    // Step over pixels in the two areas based on the supplied matrix
+    //
+    // See http://www.austincc.edu/cchrist1/GAME1343/TransformedCollision/TransformedCollision.htm
+    bool _step_through_pixels (
+                               float w1, float h1,
+                               const matrix_2d &matrix1,
+                               float w2, float h2,
+                               const matrix_2d &matrix2,
+                               function<bool(int, int, int, int)> end_fn )
     {
-        a_is_1 = true;
-        h_a = h1;
-        w_a = w1;
+        bool a_is_1;
+        double h_a, w_a;
+        double h_b, w_b;
+        matrix_2d transform_a_to_b;
 
-        h_b = h2;
-        w_b = w2;
-
-        // Calculate a matrix which transforms from 1's local space into
-        // world space and then into 2's local space
-        transform_a_to_b = matrix_multiply(matrix1, matrix_inverse(matrix2));
-    }
-    else // use bitmap 2
-    {
-        a_is_1 = false;
-        h_a = h2;
-        w_a = w2;
-
-        h_b = h1;
-        w_b = w1;
-
-        // Calculate a matrix which transforms from 1's local space into
-        // world space and then into 2's local space
-        transform_a_to_b = matrix_multiply(matrix2, matrix_inverse(matrix1));
-    }
-
-    vector_2d step_x, step_y, y_pos_in_b, pos_in_b;
-    
-    // Calculate the top left corner of A in B's local space
-    // This variable will be reused to keep track of the start of each row
-    y_pos_in_b = matrix_multiply(transform_a_to_b, vector_to(0,0));
-    
-    // When a point moves in A's local space, it moves in B's local space with a
-    // fixed direction and distance proportional to the movement in A.
-    // This algorithm steps through A one pixel at a time along A's X and Y axes
-    // Calculate the analogous steps in B:
-    step_x = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(1, 0)), y_pos_in_b);
-    step_y = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(0, 1)), y_pos_in_b); // y inverted for drawing
-
-    int x_b, y_b;
-    
-    // have to check all pixels of one bitmap
-    // For each row of pixels in A (the smaller)
-    for (int y_a = 0; y_a < h_a; y_a++)
-    {
-        pos_in_b = y_pos_in_b;
-
-        // For each pixel in this row
-        for (int x_a = 0; x_a < w_a; x_a++)
+        // Determine the smaller area to step through.
+        if ( w1 * h1 <= w2 * h2 ) // use bitmap 1 as the one to scan
         {
-            // Calculate this pixel's location in B
-            // positionInB = transform_a_to_b * vector_to(xA, yA);
+            a_is_1 = true;
+            h_a = h1;
+            w_a = w1;
 
-            // Round to the nearest pixel
-            x_b = trunc(pos_in_b.x);
-            y_b = trunc(pos_in_b.y);
-            
-            // If the pixel lies within the bounds of B
-            if  ( (0 <= x_b) and (x_b < w_b) and (0 <= y_b) and (y_b < h_b) )
-            {
-                if ( ( a_is_1 and end_fn(x_a, y_a, x_b, y_b) )
-                    or ( (not a_is_1) and end_fn(x_b, y_b, x_a, y_a)) )
-                {
-                    return true;
-                }
-            }
-            
-            // Move to the next pixel in the row
-            pos_in_b = vector_add(pos_in_b, step_x);
+            h_b = h2;
+            w_b = w2;
+
+            // Calculate a matrix which transforms from 1's local space into
+            // world space and then into 2's local space
+            transform_a_to_b = matrix_multiply(matrix1, matrix_inverse(matrix2));
+        }
+        else // use bitmap 2
+        {
+            a_is_1 = false;
+            h_a = h2;
+            w_a = w2;
+
+            h_b = h1;
+            w_b = w1;
+
+            // Calculate a matrix which transforms from 1's local space into
+            // world space and then into 2's local space
+            transform_a_to_b = matrix_multiply(matrix2, matrix_inverse(matrix1));
         }
 
-        // Move to the next row
-        y_pos_in_b = vector_add(y_pos_in_b, step_y);
+        vector_2d step_x, step_y, y_pos_in_b, pos_in_b;
+
+        // Calculate the top left corner of A in B's local space
+        // This variable will be reused to keep track of the start of each row
+        y_pos_in_b = matrix_multiply(transform_a_to_b, vector_to(0,0));
+
+        // When a point moves in A's local space, it moves in B's local space with a
+        // fixed direction and distance proportional to the movement in A.
+        // This algorithm steps through A one pixel at a time along A's X and Y axes
+        // Calculate the analogous steps in B:
+        step_x = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(1, 0)), y_pos_in_b);
+        step_y = vector_subtract(matrix_multiply(transform_a_to_b, vector_to(0, 1)), y_pos_in_b); // y inverted for drawing
+
+        int x_b, y_b;
+
+        // have to check all pixels of one bitmap
+        // For each row of pixels in A (the smaller)
+        for (int y_a = 0; y_a < h_a; y_a++)
+        {
+            pos_in_b = y_pos_in_b;
+
+            // For each pixel in this row
+            for (int x_a = 0; x_a < w_a; x_a++)
+            {
+                // Calculate this pixel's location in B
+                // positionInB = transform_a_to_b * vector_to(xA, yA);
+
+                // Round to the nearest pixel
+                x_b = trunc(pos_in_b.x);
+                y_b = trunc(pos_in_b.y);
+
+                // If the pixel lies within the bounds of B
+                if  ( (0 <= x_b) and (x_b < w_b) and (0 <= y_b) and (y_b < h_b) )
+                {
+                    if ( ( a_is_1 and end_fn(x_a, y_a, x_b, y_b) )
+                        or ( (not a_is_1) and end_fn(x_b, y_b, x_a, y_a)) )
+                    {
+                        return true;
+                    }
+                }
+
+                // Move to the next pixel in the row
+                pos_in_b = vector_add(pos_in_b, step_x);
+            }
+
+            // Move to the next row
+            y_pos_in_b = vector_add(y_pos_in_b, step_y);
+        }
+
+        // No intersection found
+        return false;
     }
 
-    // No intersection found
-    return false;
-}
-
-bool _collision_within_bitmap_images_with_translation(bitmap bmp1, int c1, const matrix_2d& matrix1, bitmap bmp2, int c2, const matrix_2d& matrix2)
-{
-	return _step_through_pixels(bitmap_cell_width(bmp1), bitmap_cell_height(bmp1), matrix1,
-								bitmap_cell_width(bmp2), bitmap_cell_height(bmp2), matrix2,
-								[&] (int ax, int ay, int bx, int by)
-								{
-#if DEBUG_STEP
-                                    point_2d apt, bpt;
-                                    apt = matrix_multiply(matrix1, point_at(ax,ay));
-                                    if ( pixel_drawn_at_point(bmp1, c1, ax, ay) )
-                                        draw_circle(COLOR_RED, apt.x, apt.y, 3);
-                                    bpt = matrix_multiply(matrix2, point_at(bx,by));
-                                    if ( pixel_drawn_at_point(bmp2, c2, bx, by) )
-                                        draw_circle(COLOR_PINK, bpt.x, bpt.y, 2);
-                                    
-                                    if ( pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by) )
+    bool _collision_within_bitmap_images_with_translation(bitmap bmp1, int c1, const matrix_2d& matrix1, bitmap bmp2, int c2, const matrix_2d& matrix2)
+    {
+        return _step_through_pixels(bitmap_cell_width(bmp1), bitmap_cell_height(bmp1), matrix1,
+                                    bitmap_cell_width(bmp2), bitmap_cell_height(bmp2), matrix2,
+                                    [&] (int ax, int ay, int bx, int by)
                                     {
-                                        fill_circle(COLOR_GREEN, apt.x, apt.y, 1);
-                                        fill_circle(COLOR_YELLOW, bpt.x, bpt.y, 3);
-                                    }
-#endif
-									return pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by);
-								});
-}
-
-bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& pt )
-{
-    if (INVALID_PTR(bmp, BITMAP_PTR))
-    {
-        return false;
-    }
-    
-    if ( not point_in_quad(pt, quad_from(bitmap_cell_rectangle(bmp), translation)) )
-    {
-        return false;
-    }
-    
-    return _step_through_pixels(1, 1, translation_matrix(pt.x, pt.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-    {
 #if DEBUG_STEP
-        point_2d bpt;
-        bpt = matrix_multiply(translation, point_at(bx,by));
-        if ( pixel_drawn_at_point(bmp, cell, bx, by) )
-            fill_rectangle(COLOR_PINK, bpt.x, bpt.y, translation.elements[0][0], translation.elements[1][1] );
+                                        point_2d apt, bpt;
+                                        apt = matrix_multiply(matrix1, point_at(ax,ay));
+                                        if ( pixel_drawn_at_point(bmp1, c1, ax, ay) )
+                                            draw_circle(COLOR_RED, apt.x, apt.y, 3);
+                                        bpt = matrix_multiply(matrix2, point_at(bx,by));
+                                        if ( pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                            draw_circle(COLOR_PINK, bpt.x, bpt.y, 2);
+
+                                        if ( pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                        {
+                                            fill_circle(COLOR_GREEN, apt.x, apt.y, 1);
+                                            fill_circle(COLOR_YELLOW, bpt.x, bpt.y, 3);
+                                        }
 #endif
-        return pixel_drawn_at_point(bmp, cell, bx, by);
-    });
-}
+                                        return pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by);
+                                    });
+    }
 
-bool bitmap_point_collision(bitmap bmp, const matrix_2d& translation, const point_2d& pt)
-{
-    return bitmap_point_collision(bmp, 0, translation, pt);
-}
+    bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& pt )
+    {
+        if (INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            return false;
+        }
 
-bool bitmap_rect_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
-{
-	if (INVALID_PTR(bmp, BITMAP_PTR))
-	{
-		return false;
-	}
+        if ( not point_in_quad(pt, quad_from(bitmap_cell_rectangle(bmp), translation)) )
+        {
+            return false;
+        }
 
-	return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-								{
-									return pixel_drawn_at_point(bmp, cell, bx, by);
-								});
-}
+        return _step_through_pixels(1, 1, translation_matrix(pt.x, pt.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
+                                    {
+#if DEBUG_STEP
+                                        point_2d bpt;
+                                        bpt = matrix_multiply(translation, point_at(bx,by));
+                                        if ( pixel_drawn_at_point(bmp, cell, bx, by) )
+                                            fill_rectangle(COLOR_PINK, bpt.x, bpt.y, translation.elements[0][0], translation.elements[1][1] );
+#endif
+                                        return pixel_drawn_at_point(bmp, cell, bx, by);
+                                    });
+    }
 
-bool bitmap_rect_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect)
-{
-	return bitmap_rect_collision(bmp, cell, translation_matrix(pt), rect);
-}
+    bool bitmap_point_collision(bitmap bmp, const matrix_2d& translation, const point_2d& pt)
+    {
+        return bitmap_point_collision(bmp, 0, translation, pt);
+    }
 
-bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y)
-{
-	if (!rectangles_intersect(sprite_collision_rectangle(s), bitmap_cell_rectangle(bmp, point_at(x, y))))
-	{
-		return false;
-	}
+    bool bitmap_rect_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
+    {
+        if (INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            return false;
+        }
 
-	if (sprite_collision_kind(s) == AABB_COLLISIONS)
-	{
-		return bitmap_rect_collision(bmp, cell, point_at(x, y), sprite_collision_rectangle(s));
-	}
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
+                                    {
+                                        return pixel_drawn_at_point(bmp, cell, bx, by);
+                                    });
+    }
 
-	return _collision_within_bitmap_images_with_translation(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s),
-															bmp, cell, translation_matrix(x, y));
-}
+    bool bitmap_rect_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect)
+    {
+        return bitmap_rect_collision(bmp, cell, translation_matrix(pt), rect);
+    }
 
-bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
-{
-	return sprite_bitmap_collision(s, bmp, 0, x, y);
-}
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y)
+    {
+        if (!rectangles_intersect(sprite_collision_rectangle(s), bitmap_cell_rectangle(bmp, point_at(x, y))))
+        {
+            return false;
+        }
 
-bool sprite_point_collision(sprite s, const point_2d &pt)
-{
-	if (!point_in_circle(pt, sprite_collision_circle(s)))
-	{
-		return false;
-	}
-	else if (bitmap_cell_count(sprite_collision_bitmap(s)) > 1)
-	{
-		return bitmap_point_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), pt);
-	}
-	else
-	{
-		return bitmap_point_collision(sprite_collision_bitmap(s), sprite_location_matrix(s), pt);
-	}
-}
+        if (sprite_collision_kind(s) == AABB_COLLISIONS)
+        {
+            return bitmap_rect_collision(bmp, cell, point_at(x, y), sprite_collision_rectangle(s));
+        }
 
-bool sprite_rect_collision(sprite s, const rectangle& rect)
-{
-	if (!rectangles_intersect(sprite_collision_rectangle(s), rect))
-	{
-		return false;
-	}
+        return _collision_within_bitmap_images_with_translation(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s),
+                                                                bmp, cell, translation_matrix(x, y));
+    }
 
-	return bitmap_rect_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
-}
-
-bool sprite_collision(sprite s1, sprite s2)
-{
-	if (!rectangles_intersect(sprite_collision_rectangle(s1), sprite_collision_rectangle(s2)))
-	{
-		return false;
-	}
-
-	if (sprite_collision_kind(s1) == AABB_COLLISIONS)
-	{
-		return sprite_rect_collision(s2, sprite_collision_rectangle(s1));
-	}
-
-	if (sprite_collision_kind(s2) == AABB_COLLISIONS)
-	{
-		return sprite_rect_collision(s1, sprite_collision_rectangle(s2));
-	}
-
-	return _collision_within_bitmap_images_with_translation (
-            sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
-			sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2) );
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
+    {
+        return sprite_bitmap_collision(s, bmp, 0, x, y);
+    }
+    
+    bool sprite_point_collision(sprite s, const point_2d &pt)
+    {
+        if (!point_in_circle(pt, sprite_collision_circle(s)))
+        {
+            return false;
+        }
+        else if (bitmap_cell_count(sprite_collision_bitmap(s)) > 1)
+        {
+            return bitmap_point_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), pt);
+        }
+        else
+        {
+            return bitmap_point_collision(sprite_collision_bitmap(s), sprite_location_matrix(s), pt);
+        }
+    }
+    
+    bool sprite_rect_collision(sprite s, const rectangle& rect)
+    {
+        if (!rectangles_intersect(sprite_collision_rectangle(s), rect))
+        {
+            return false;
+        }
+        
+        return bitmap_rect_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
+    }
+    
+    bool sprite_collision(sprite s1, sprite s2)
+    {
+        if (!rectangles_intersect(sprite_collision_rectangle(s1), sprite_collision_rectangle(s2)))
+        {
+            return false;
+        }
+        
+        if (sprite_collision_kind(s1) == AABB_COLLISIONS)
+        {
+            return sprite_rect_collision(s2, sprite_collision_rectangle(s1));
+        }
+        
+        if (sprite_collision_kind(s2) == AABB_COLLISIONS)
+        {
+            return sprite_rect_collision(s1, sprite_collision_rectangle(s2));
+        }
+        
+        return _collision_within_bitmap_images_with_translation (
+                                                                 sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
+                                                                 sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2) );
+    }
 }

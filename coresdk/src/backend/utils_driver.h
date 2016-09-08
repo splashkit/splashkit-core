@@ -7,8 +7,9 @@
 
 #ifndef sk_Utils_h
 #define sk_Utils_h
-
-void sk_delay(unsigned int ms);
-unsigned int sk_get_ticks();
-
+namespace splashkit_lib
+{
+    void sk_delay(unsigned int ms);
+    unsigned int sk_get_ticks();
+}
 #endif /* defined(__sk__Utils__) */

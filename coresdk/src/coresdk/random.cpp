@@ -1,3 +1,4 @@
+
 //
 //  random.cpp
 //  splashkit
@@ -9,21 +10,23 @@
 #include "random.h"
 #include <cstdlib>
 #include <ctime>
-
-static bool _do_seed = true;
-
-float rnd()
+namespace splashkit_lib
 {
-    return rnd(RAND_MAX) / static_cast<float>(RAND_MAX);
-}
+    static bool _do_seed = true;
 
-int rnd(int ubound)
-{
-    if (_do_seed)
+    float rnd()
     {
-        _do_seed = false;
-        srand((unsigned)time(0));
+        return rnd(RAND_MAX) / static_cast<float>(RAND_MAX);
     }
-    
-    return rand() % ubound;
+
+    int rnd(int ubound)
+    {
+        if (_do_seed)
+        {
+            _do_seed = false;
+            srand((unsigned)time(0));
+        }
+        
+        return rand() % ubound;
+    }
 }

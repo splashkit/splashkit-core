@@ -20,238 +20,240 @@
 #include <map>
 
 using namespace std;
-
-static map<string, database> _databases;
-static vector<query_result> _queries_vector;
-
-bool has_database(string name)
+namespace splashkit_lib
 {
-    return _databases.count(name) > 0;
-}
+    static map<string, database> _databases;
+    static vector<query_result> _queries_vector;
 
-database database_named(string name)
-{
-    if (has_database(name))
+    bool has_database(string name)
     {
-        return _databases[name];
-    }
-    else
-    {
-        return nullptr;
-    }
-}
-
-int rows_changed(database db)
-{
-    if ( INVALID_PTR(db, DATABASE_PTR))
-    {
-        LOG(WARNING) << "Attempting to access rows changes on invalid database.";
-        return 0;
-    }
-    
-    return sk_rows_affected(db);
-}
-
-query_result run_sql(database db, string sql)
-{
-    if ( INVALID_PTR(db, DATABASE_PTR))
-    {
-        LOG(WARNING) << "Attempting to run query on invalid database.";
-        return nullptr;
-    }
-    
-    sk_query_result temp_result = sk_prepare_statement(db, sql);
-
-    query_result result = new sk_query_result();
-    *result = temp_result;
-
-    sk_step_statement(result);
-    
-    _queries_vector.push_back(result);
-    
-    return result;
-}
-
-query_result run_sql(string database_name, string sql)
-{
-    return run_sql(database_named(database_name), sql);
-}
-
-void free_query_result(query_result query)
-{
-    if ( INVALID_PTR(query, QUERY_PTR))
-    {
-        LOG(WARNING) << "Attempting to free invalid query.";
-        return;
+        return _databases.count(name) > 0;
     }
 
-    notify_handlers_of_free(query);
-    
-    vector<query_result>::iterator it;
-    
-    it = find (_queries_vector.begin(), _queries_vector.end(), query);
-    if (it != _queries_vector.end())
+    database database_named(string name)
     {
-        auto index = std::distance(_queries_vector.begin(), it);
-        sk_finalise_query(_queries_vector.at(index));
-        _queries_vector.erase(it);
-        delete(query);
+        if (has_database(name))
+        {
+            return _databases[name];
+        }
+        else
+        {
+            return nullptr;
+        }
     }
-    else
+
+    int rows_changed(database db)
     {
-        LOG(WARNING) << "Not able to remove query as it is not found in _queries_vector\n";
+        if ( INVALID_PTR(db, DATABASE_PTR))
+        {
+            LOG(WARNING) << "Attempting to access rows changes on invalid database.";
+            return 0;
+        }
+
+        return sk_rows_affected(db);
     }
-}
 
-void free_all_query_results()
-{
-    FREE_ALL_FROM_VECTOR(_queries_vector, QUERY_PTR, free_query_result);
-    _queries_vector.clear();
-}
-
-bool get_next_row(query_result result)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    query_result run_sql(database db, string sql)
     {
-        LOG(WARNING) << "Attempting to access invalid query to get next row.";
-        return false;
+        if ( INVALID_PTR(db, DATABASE_PTR))
+        {
+            LOG(WARNING) << "Attempting to run query on invalid database.";
+            return nullptr;
+        }
+
+        sk_query_result temp_result = sk_prepare_statement(db, sql);
+
+        query_result result = new sk_query_result();
+        *result = temp_result;
+
+        sk_step_statement(result);
+
+        _queries_vector.push_back(result);
+
+        return result;
     }
-    return sk_query_get_next_row(result);
-}
 
-bool has_row(query_result result)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    query_result run_sql(string database_name, string sql)
     {
-        LOG(WARNING) << "Attempting to access invalid query to check has row.";
-        return false;
+        return run_sql(database_named(database_name), sql);
     }
-    
-    return sk_query_has_data(result);
-}
 
-void reset_query_result(query_result result)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    void free_query_result(query_result query)
     {
-        LOG(WARNING) << "Attempting to access invalid query to reset.";
-        return;
+        if ( INVALID_PTR(query, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to free invalid query.";
+            return;
+        }
+
+        notify_handlers_of_free(query);
+
+        vector<query_result>::iterator it;
+
+        it = find (_queries_vector.begin(), _queries_vector.end(), query);
+        if (it != _queries_vector.end())
+        {
+            auto index = std::distance(_queries_vector.begin(), it);
+            sk_finalise_query(_queries_vector.at(index));
+            _queries_vector.erase(it);
+            delete(query);
+        }
+        else
+        {
+            LOG(WARNING) << "Not able to remove query as it is not found in _queries_vector\n";
+        }
     }
-    
-    sk_reset_query_statement(result);
-}
 
-int query_column_for_int(query_result result, int col)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    void free_all_query_results()
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return 0;
+        FREE_ALL_FROM_VECTOR(_queries_vector, QUERY_PTR, free_query_result);
+        _queries_vector.clear();
     }
-    
-    return sk_query_read_column_int(result, col);
-}
 
-double query_column_for_double(query_result result, int col)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    bool get_next_row(query_result result)
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return 0;
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to get next row.";
+            return false;
+        }
+        return sk_query_get_next_row(result);
     }
-    
-    return sk_query_read_column_double(result, col);
-}
 
-string query_column_for_string(query_result result, int col)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    bool has_row(query_result result)
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return "";
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to check has row.";
+            return false;
+        }
+
+        return sk_query_has_data(result);
     }
-    
-    return sk_query_read_column_text(result, col);
-}
 
-bool query_column_for_bool(query_result result, int col)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    void reset_query_result(query_result result)
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return false;
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to reset.";
+            return;
+        }
+
+        sk_reset_query_statement(result);
     }
-    
-    return sk_query_read_column_bool(result, col);
-}
 
-string query_type_of_col(query_result result, int col)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    int query_column_for_int(query_result result, int col)
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return "";
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return 0;
+        }
+
+        return sk_query_read_column_int(result, col);
     }
-    
-    return sk_query_type_of_column(result, col);
-}
 
-bool query_success(query_result result)
-{
-    if ( INVALID_PTR(result, QUERY_PTR))
+    double query_column_for_double(query_result result, int col)
     {
-        LOG(WARNING) << "Attempting to access invalid query to read row.";
-        return 0;
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return 0;
+        }
+
+        return sk_query_read_column_double(result, col);
     }
-    return sk_query_success(result);
-}
 
-database open_database(string name, string filename)
-{
-    if (has_database(name)) return database_named(name);
-    
-    string file_path = path_to_resource(filename, DATABASE_RESOURCE);
-    
-    database result = new sk_database();
-    
-    if ( not sk_open_database(file_path, result) )
+    string query_column_for_string(query_result result, int col)
     {
-        LOG(WARNING) << "Failed to open database " + file_path;
-        delete result;
-        return nullptr;
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return "";
+        }
+
+        return sk_query_read_column_text(result, col);
     }
-    
-    result->id = DATABASE_PTR;
-    result->filename = file_path;
-    result->name = name;
-    
-    _databases[name] = result;
-    return result;
-}
 
-void free_database(database db_to_close)
-{
-    if (VALID_PTR(db_to_close, DATABASE_PTR))
+    bool query_column_for_bool(query_result result, int col)
     {
-        notify_handlers_of_free(db_to_close);
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return false;
+        }
+
+        return sk_query_read_column_bool(result, col);
+    }
+
+    string query_type_of_col(query_result result, int col)
+    {
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return "";
+        }
+
+        return sk_query_type_of_column(result, col);
+    }
+
+    bool query_success(query_result result)
+    {
+        if ( INVALID_PTR(result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query to read row.";
+            return 0;
+        }
+        return sk_query_success(result);
+    }
+
+    database open_database(string name, string filename)
+    {
+        if (has_database(name)) return database_named(name);
+
+        string file_path = path_to_resource(filename, DATABASE_RESOURCE);
+
+        database result = new sk_database();
+
+        if ( not sk_open_database(file_path, result) )
+        {
+            LOG(WARNING) << "Failed to open database " + file_path;
+            delete result;
+            return nullptr;
+        }
+
+        result->id = DATABASE_PTR;
+        result->filename = file_path;
+        result->name = name;
         
-        _databases.erase(db_to_close->name);
-        sk_close_database(db_to_close);
-        db_to_close->id = NONE_PTR;  // ensure future use of this pointer will fail...
-        delete(db_to_close);
+        _databases[name] = result;
+        return result;
     }
-    else
+    
+    void free_database(database db_to_close)
     {
-        LOG(WARNING) << "Delete sound effect called without valid sound effect";
+        if (VALID_PTR(db_to_close, DATABASE_PTR))
+        {
+            notify_handlers_of_free(db_to_close);
+            
+            _databases.erase(db_to_close->name);
+            sk_close_database(db_to_close);
+            db_to_close->id = NONE_PTR;  // ensure future use of this pointer will fail...
+            delete(db_to_close);
+        }
+        else
+        {
+            LOG(WARNING) << "Delete sound effect called without valid sound effect";
+        }
     }
-}
-
-void free_database(string name_of_db_to_close)
-{
-    free_database(database_named(name_of_db_to_close));
-}
-
-void free_all_databases()
-{
-    FREE_ALL_FROM_MAP(_databases, DATABASE_PTR, free_database);
+    
+    void free_database(string name_of_db_to_close)
+    {
+        free_database(database_named(name_of_db_to_close));
+    }
+    
+    void free_all_databases()
+    {
+        FREE_ALL_FROM_MAP(_databases, DATABASE_PTR, free_database);
+    }
 }

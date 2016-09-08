@@ -19,62 +19,64 @@
 #include "graphics_driver.h"
 
 #include <cmath>
-
-
-void draw_circle(color clr, float x, float y, float radius, drawing_options opts)
+namespace splashkit_lib
 {
-    sk_drawing_surface *surface;
-    
-    surface = to_surface_ptr(opts.dest);
-    
-    xy_from_opts(opts, x, y);
-    
-    if (surface)
+
+    void draw_circle(color clr, float x, float y, float radius, drawing_options opts)
     {
-        sk_draw_circle(surface, clr, x, y, abs(radius));
+        sk_drawing_surface *surface;
+
+        surface = to_surface_ptr(opts.dest);
+
+        xy_from_opts(opts, x, y);
+
+        if (surface)
+        {
+            sk_draw_circle(surface, clr, x, y, abs(radius));
+        }
     }
-}
 
-void draw_circle(color clr, float x, float y, float radius)
-{
-    draw_circle(clr, x, y, radius, option_defaults());
-}
+    void draw_circle(color clr, float x, float y, float radius)
+    {
+        draw_circle(clr, x, y, radius, option_defaults());
+    }
 
-void draw_circle(color clr, const circle &c, drawing_options opts)
-{
-    draw_circle(clr, c.center.x, c.center.y, c.radius, opts);
-}
+    void draw_circle(color clr, const circle &c, drawing_options opts)
+    {
+        draw_circle(clr, c.center.x, c.center.y, c.radius, opts);
+    }
 
-void draw_circle(color clr, const circle &c)
-{
-    draw_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
-}
+    void draw_circle(color clr, const circle &c)
+    {
+        draw_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
+    }
 
 
-void fill_circle(color clr, float x, float y, float radius, drawing_options opts)
-{
-    sk_drawing_surface *surface;
+    void fill_circle(color clr, float x, float y, float radius, drawing_options opts)
+    {
+        sk_drawing_surface *surface;
+
+        surface = to_surface_ptr(opts.dest);
+
+        xy_from_opts(opts, x, y);
+
+        if (surface)
+            sk_fill_circle(surface, clr, x, y, abs(radius));
+    }
+
+    void fill_circle(color clr, float x, float y, float radius)
+    {
+        fill_circle(clr, x, y, radius, option_defaults());
+    }
+
+    void fill_circle(color clr, const circle &c, drawing_options opts)
+    {
+        fill_circle(clr, c.center.x, c.center.y, c.radius, opts);
+    }
+
+    void fill_circle(color clr, const circle &c)
+    {
+        fill_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
+    }
     
-    surface = to_surface_ptr(opts.dest);
-    
-    xy_from_opts(opts, x, y);
-    
-    if (surface)
-        sk_fill_circle(surface, clr, x, y, abs(radius));
 }
-
-void fill_circle(color clr, float x, float y, float radius)
-{
-    fill_circle(clr, x, y, radius, option_defaults());
-}
-
-void fill_circle(color clr, const circle &c, drawing_options opts)
-{
-    fill_circle(clr, c.center.x, c.center.y, c.radius, opts);
-}
-
-void fill_circle(color clr, const circle &c)
-{
-    fill_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
-}
-

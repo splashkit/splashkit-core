@@ -1,3 +1,4 @@
+
 //
 //  utils.cpp
 //  splashkit
@@ -10,31 +11,34 @@
 #include "input.h"
 #include "utils_driver.h"
 #include <iostream>
-
-void delay(unsigned int milliseconds)
+namespace splashkit_lib
 {
-    if (milliseconds > 0)
+
+    void delay(unsigned int milliseconds)
     {
-        if (milliseconds < 50)
-            sk_delay(milliseconds);
-        else
+        if (milliseconds > 0)
         {
-            unsigned int t;
-            for (t = 1; t < milliseconds / 50; t++)
+            if (milliseconds < 50)
+                sk_delay(milliseconds);
+            else
             {
-                process_events();
-                if ( quit_requested() ) return;
-                
-                sk_delay(50);
+                unsigned int t;
+                for (t = 1; t < milliseconds / 50; t++)
+                {
+                    process_events();
+                    if ( quit_requested() ) return;
+
+                    sk_delay(50);
+                }
+                t = milliseconds % 50;
+
+                if (t > 0) sk_delay(t);
             }
-            t = milliseconds % 50;
-            
-            if (t > 0) sk_delay(t);
         }
     }
-}
-
-unsigned int current_ticks()
-{
-    return sk_get_ticks();
+    
+    unsigned int current_ticks()
+    {
+        return sk_get_ticks();
+    }
 }

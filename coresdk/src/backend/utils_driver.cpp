@@ -14,14 +14,16 @@
 #else
 #include <SDL.h>
 #endif
-
-void sk_delay(unsigned int ms)
+namespace splashkit_lib
 {
-    SDL_Delay(ms);
-}
+    void sk_delay(unsigned int ms)
+    {
+        SDL_Delay(ms);
+    }
 
-unsigned int sk_get_ticks()
-{
-    //ok without SDL init... and called on load
-    return SDL_GetTicks();
+    unsigned int sk_get_ticks()
+    {
+        //ok without SDL init... and called on load
+        return SDL_GetTicks();
+    }
 }

@@ -9,86 +9,88 @@
 #include "utility_functions.h"
 #include "web_server.h"
 #include "web_server_driver.h"
-
-web_server start_web_server(string port)
+namespace splashkit_lib
 {
-    return sk_start_web_server(port);
-}
-
-web_server start_web_server()
-{
-    return start_web_server("8080");
-}
-
-bool has_waiting_requests(web_server server)
-{
-    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    web_server start_web_server(string port)
     {
-        LOG(WARNING) << "has_waiting_requests called on an invalid server";
-        return false;
+        return sk_start_web_server(port);
     }
 
-    return sk_has_waiting_requests(server);
-}
-
-void stop_web_server(web_server server)
-{
-    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    web_server start_web_server()
     {
-        LOG(WARNING) << "stop_web_server called on an invalid server";
-        return;
+        return start_web_server("8080");
     }
 
-    sk_stop_web_server(server);
-}
-
-server_request next_web_request(web_server server)
-{
-    if (INVALID_PTR(server, WEB_SERVER_PTR))
+    bool has_waiting_requests(web_server server)
     {
-        LOG(WARNING) << "next_web_request called on an invalid server";
-        return nullptr;
+        if (INVALID_PTR(server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "has_waiting_requests called on an invalid server";
+            return false;
+        }
+
+        return sk_has_waiting_requests(server);
     }
 
-    return sk_get_request(server);
-}
+    void stop_web_server(web_server server)
+    {
+        if (INVALID_PTR(server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "stop_web_server called on an invalid server";
+            return;
+        }
 
-void send_response(server_request r, server_response resp)
-{
-    if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
-    {
-        LOG(WARNING) << "send_response called on an invalid request";
-        return;
-    }
-    else if (INVALID_PTR(resp, WEB_SERVER_RESPONSE_PTR))
-    {
-        LOG(WARNING) << "send_response called on an invalid response";
-        return;
+        sk_stop_web_server(server);
     }
 
-    r->response = resp;
-    r->control.release();
-}
+    server_request next_web_request(web_server server)
+    {
+        if (INVALID_PTR(server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "next_web_request called on an invalid server";
+            return nullptr;
+        }
 
-void send_response(server_request r, string message)
-{
-    server_response resp = new sk_server_response;
-    resp->id = WEB_SERVER_RESPONSE_PTR;
-    resp->message = message;
+        return sk_get_request(server);
+    }
 
-    send_response(r, resp);
+    void send_response(server_request r, server_response resp)
+    {
+        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        {
+            LOG(WARNING) << "send_response called on an invalid request";
+            return;
+        }
+        else if (INVALID_PTR(resp, WEB_SERVER_RESPONSE_PTR))
+        {
+            LOG(WARNING) << "send_response called on an invalid response";
+            return;
+        }
+
+        r->response = resp;
+        r->control.release();
+    }
+
+    void send_response(server_request r, string message)
+    {
+        server_response resp = new sk_server_response;
+        resp->id = WEB_SERVER_RESPONSE_PTR;
+        resp->message = message;
+
+        send_response(r, resp);
+        
+        resp->response_sent.acquire();
+        delete resp;
+    }
     
-    resp->response_sent.acquire();
-    delete resp;
-}
-
-string request_get_uri(server_request r)
-{
-    if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+    string request_get_uri(server_request r)
     {
-        LOG(WARNING) << "request_get_uri called on an invalid request";
-        return "";
+        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        {
+            LOG(WARNING) << "request_get_uri called on an invalid request";
+            return "";
+        }
+        
+        return r->uri;
     }
-
-    return r->uri;
 }

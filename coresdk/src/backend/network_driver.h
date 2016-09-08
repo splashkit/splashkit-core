@@ -8,22 +8,23 @@
 
 #ifndef __sgsdl2__SGSDL2Network__
 #define __sgsdl2__SGSDL2Network__
-
-enum sk_connection_kind
+namespace splashkit_lib
 {
-    SGCK_UNKNOWN = 0,
-    SGCK_TCP = 1,
-    SGCK_UDP = 2
-};
+    enum sk_connection_kind
+    {
+        SGCK_UNKNOWN = 0,
+        SGCK_TCP = 1,
+        SGCK_UDP = 2
+    };
 
-struct sk_network_connection
-{
-    sk_connection_kind kind;
-    
-    // private data used by the backend
-    void * _socket;
-};
+    struct sk_network_connection
+    {
+        sk_connection_kind kind;
 
-void sk_network_init();
+        // private data used by the backend
+        void * _socket;
+    };
 
+    void sk_network_init();
+}
 #endif /* defined(__sgsdl2__SGSDL2Network__) */
