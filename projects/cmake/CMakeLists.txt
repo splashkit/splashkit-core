@@ -45,7 +45,6 @@ if (APPLE)
                    -lsmpeg2 \
                    -lfreetype \
                    -lcurl \
-                   -lsqlite3 \
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
@@ -73,7 +72,6 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
-                   -lsqlite3 \
                    -ldl")
 endif()
 
@@ -85,6 +83,7 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/coresdk/*.cpp"
     "${SK_SRC}/backend/*.cpp"
     "${SK_EXT}/civetweb/src/civetweb.cpp"
+    "${SK_EXT}/sqlite/sqlite3.c"
 )
 
 # TEST FILE INCLUDES
@@ -105,6 +104,7 @@ include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
+include_directories("${SK_EXT}/sqlite")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
