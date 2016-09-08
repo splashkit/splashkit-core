@@ -160,16 +160,6 @@ set_target_properties(SplashKitBackend
     ARCHIVE_OUTPUT_DIRECTORY "${SK_OUT}/lib"
 )
 
-# Use libtool to copy in dependent static libs into SplashKitBackend.a
-if (APPLE)
-  add_custom_command(TARGET SplashKitBackend
-      POST_BUILD COMMAND
-      libtool -static -o "${SK_OUT}/lib/libSplashKitBackend.a"
-                         "${SK_OUT}/lib/libSplashKitBackend.a"
-                         "${SK_LIB}/mac/*.a"
-  )
-endif()
-
 #### END SplashKitBackend STATIC LIBRARY ####
 #### sktest EXECUTABLE ####
 add_executable(sktest ${TEST_SOURCE_FILES})
@@ -197,3 +187,11 @@ endif()
 
 install(TARGETS SplashKitBackend DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)
+
+# Use libtool to copy in dependent static libs into SplashKitBackend.a
+if (APPLE)
+  execute_process(COMMAND libtool -static -o "${SK_OUT}/lib/libSplashKitBackend.a"
+                                             "${SK_OUT}/lib/libSplashKitBackend.a"
+                                             "${SK_LIB}/mac/*.a"
+  )
+endif()

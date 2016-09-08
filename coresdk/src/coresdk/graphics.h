@@ -23,19 +23,40 @@
 // Screen management...
 //---------------------------------------------------------------------------------------------------------
 
-/// Refreshes the current drawing on all open windows. This must be called to display
-/// anything to the screen. This will show all drawing operations, as well
-/// as any text being entered by the user. This will add in delays to limit the framerate
-/// to around 60 frames per second.
-///
-/// Side Effects:
-/// - The current drawing is shown on the screen.
+/**
+ * Refreshes the current drawing on all open windows. This must be
+ * called to display anything to the screen. This will show all drawing
+ * operations, as well as any text being entered by the user.
+ *
+ * This will add in delays to limit the framerate to around 60 frames per
+ * second.
+ *
+ * The current drawing is shown on the screen as a result.
+ *
+ * @brief Refreshes the current drawing on all open windows.
+ */
 void refresh_screen();
 
-/// Refresh with a target FPS. This will delay a period of time that will
-/// approximately meet the targetted frames per second.
+/**
+ * Refreshes all open windows with a target FPS (frames per second). This will
+ * delay a period of time that will approximately meet the targeted frames per
+ * second.
+ *
+ * @param target_fps The targeted frames per second to refresh the screen at.
+ */
 void refresh_screen(unsigned int target_fps);
 
+/**
+ * When called, all open windows will have their contents removed and will be
+ * redrawn with a background color set to the `clr` that was provided.
+ *
+ * You can use this to make a solid background color on all windows opened
+ * on the screen and wipe all their previous drawings away.
+ *
+ * @brief Clears all open windows to the `clr` provided.
+ *
+ * @param clr The color to clear the screen's background color to.
+ */
 void clear_screen(color clr);
 
 /**
