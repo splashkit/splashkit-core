@@ -19,8 +19,6 @@ using namespace std;
 
 namespace splashkit_lib
 {
-
-
     /**
      * Load animation details from an animation frames file.
      *
@@ -32,7 +30,7 @@ namespace splashkit_lib
      * @attribute class animation_script
      * @attribute constructor true
      */
-    animation_script load_animation_script(string name, string filename);
+    animation_script load_animation_script(const string &name, const string &filename);
 
     /**
      * Frees loaded animation frames data. Use this when you will no
@@ -58,7 +56,7 @@ namespace splashkit_lib
      * @attribute method    free
      */
 
-    void free_animation_script(string name);
+    void free_animation_script(const string &name);
 
     /**
      * Frees all loaded `animation_script`s.
@@ -79,7 +77,7 @@ namespace splashkit_lib
      *
      * @returns Returns the newly loaded `animation_script`.
      */
-    animation_script animation_script_named(string name);
+    animation_script animation_script_named(const string &name);
 
     /**
      * Determines if SplashKit has animation frames loaded for the
@@ -89,7 +87,7 @@ namespace splashkit_lib
      * @param name          The name of the animation script to look for.
      * @returns Returns the `bool` that denotes if the animation has the `animation_script`
      */
-    bool has_animation_script(string name);
+    bool has_animation_script(const string &name);
 
     /**
      * Retuns the name of an `animation_script`.
@@ -107,7 +105,7 @@ namespace splashkit_lib
      * @param name          The name of the `animation_script` to look for.
      * @returns Returns a `bool` that denotes whether the `animation_script` has been loaded.
      */
-    bool has_animation_named(animation_script script, string name);
+    bool has_animation_named(animation_script script, const string &name);
 
     /**
      * Returns the number of `animation`s within an `animation_script`.
@@ -137,7 +135,7 @@ namespace splashkit_lib
      * @attribute self      script
      * @attribute constructor true
      */
-    animation create_animation(animation_script script, string name, bool with_sound);
+    animation create_animation(animation_script script, const string &name, bool with_sound);
 
     /**
      * Creates an animation from an `animation_script`'s name. This may
@@ -152,7 +150,7 @@ namespace splashkit_lib
      * @attribute class     animation_script
      * @attribute constructor true
      */
-    animation create_animation(string script_name, string name, bool with_sound);
+    animation create_animation(const string &script_name, const string &name, bool with_sound);
 
     /**
      * Creates an animation from an `animation_script`.
@@ -164,7 +162,7 @@ namespace splashkit_lib
      * @attribute class     animation_script
      * @attribute constructor true
      */
-    animation create_animation(animation_script script, string name);
+    animation create_animation(animation_script script, const string &name);
 
     /**
      * Creates an animation from an `animation_script`'s name. This may
@@ -178,7 +176,7 @@ namespace splashkit_lib
      * @attribute class     animation_script
      * @attribute constructor true
      */
-    animation create_animation(string script_name, string name);
+    animation create_animation(const string &script_name, const string &name);
 
     /**
      * Creates an animation from an `animation_script`. This may play a
@@ -199,7 +197,7 @@ namespace splashkit_lib
      * @param idx           The index of the `animation` to create.
      * @returns Returns the newly created `animation_script`.
      */
-    animation create_animation(string script_name, int idx);
+    animation create_animation(const string &script_name, int idx);
 
     /**
      * Disposes of the resources used in the animation.
@@ -225,7 +223,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      */
-    void assign_animation(animation anim, animation_script script, string name);
+    void assign_animation(animation anim, animation_script script, const string &name);
 
     /**
      * Assigns an `animation` to an `animation_script`. This may play a
@@ -241,7 +239,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      */
-    void assign_animation(animation anim, animation_script script, string name, bool with_sound);
+    void assign_animation(animation anim, animation_script script, const string &name, bool with_sound);
 
     /**
      * Assigns an `animation` to an `animation_script`.
@@ -254,7 +252,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      */
-    void assign_animation(animation anim, string script_name, string name);
+    void assign_animation(animation anim, const string &script_name, const string &name);
 
     /**
      * Assigns an `animation` to an `animation_script`. This may play a
@@ -270,7 +268,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      */
-    void assign_animation(animation anim, string script_name, string name, bool with_sound);
+    void assign_animation(animation anim, const string &script_name, const string &name, bool with_sound);
 
     /**
      * Assigns an `animation` to an `animation_script`.
@@ -314,7 +312,7 @@ namespace splashkit_lib
      *
      * @returns Returns the index of the `animation` in the `animation_script`
      */
-    int animation_index(animation_script script, string name);
+    int animation_index(animation_script script, const string &name);
 
     /**
      * Searches an `animation_script` for an animation and returns its name.
@@ -420,7 +418,7 @@ namespace splashkit_lib
      * @attribute self      anim
      */
     void restart_animation(animation anim, bool with_sound);
-    
+
     /**
      * Updates the animation, updating the time spent and possibly moving to
      * a new frame in the animation. This may play a sound effect if the new
@@ -433,7 +431,7 @@ namespace splashkit_lib
      * @attribute self      anim
      */
     void update_animation(animation anim);
-    
+
     /**
      * Updates the animation, updating the time spent and possibly moving to
      * a new frame in the animation. This may play a sound effect if the new
@@ -447,7 +445,7 @@ namespace splashkit_lib
      * @attribute self      anim
      */
     void update_animation(animation anim, float pct);
-    
+
     /**
      * Updates the animation, updating the time spent and possibly moving to
      * a new frame in the animation. This may play a sound effect if the new
@@ -458,6 +456,6 @@ namespace splashkit_lib
      * @param with_sound    Denotes whether the `animation` should play audio.
      */
     void update_animation(animation anim, float pct, bool with_sound);
-    
 }
+
 #endif /* animations_h */

@@ -1,4 +1,3 @@
-
 //
 //  animations.cpp
 //  splashkit
@@ -22,13 +21,10 @@
 #include <vector>
 #include <map>
 
-
-
 using namespace std;
 
 namespace splashkit_lib
 {
-
     static map<string, animation_script> _animation_scripts;
 
     struct row_data
@@ -44,9 +40,9 @@ namespace splashkit_lib
         int start_id;
     };
 
-    int animation_index(animation_script temp, string name);
+    int animation_index(animation_script temp, const string &name);
 
-    animation_script load_animation_script(string name, string filename)
+    animation_script load_animation_script(const string &name, const string &filename)
     {
         animation_script result;
         vector<row_data> rows;
@@ -122,25 +118,25 @@ namespace splashkit_lib
             return true;
         };
 
-        //    auto process_frame = [&]()
-        //    {
-        //        row_data my_row;
-        //
-        //        if (count_delimiter(data, ',') != 3)
-        //        {
-        //            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A frame must have 4 values separated as id,cell,dur,next");
-        //            return false;
-        //        }
-        //
-        //        my_row.id    = str_to_int(extract_delimited(1,data,','), false);
-        //        my_row.cell  = str_to_int(extract_delimited(2,data,','), false);
-        //        my_row.dur   = str_to_int(extract_delimited(3,data,','), false);
-        //        my_row.next  = str_to_int(extract_delimited(4,data,','), true, -1);
-        //        my_row.snd   = nullptr;
-        //        my_row.mvmt  = vector_to(0, 0);
-        //
-        //        return add_row(my_row);
-        //    };
+    //    auto process_frame = [&]()
+    //    {
+    //        row_data my_row;
+    //
+    //        if (count_delimiter(data, ',') != 3)
+    //        {
+    //            LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". A frame must have 4 values separated as id,cell,dur,next");
+    //            return false;
+    //        }
+    //
+    //        my_row.id    = str_to_int(extract_delimited(1,data,','), false);
+    //        my_row.cell  = str_to_int(extract_delimited(2,data,','), false);
+    //        my_row.dur   = str_to_int(extract_delimited(3,data,','), false);
+    //        my_row.next  = str_to_int(extract_delimited(4,data,','), true, -1);
+    //        my_row.snd   = nullptr;
+    //        my_row.mvmt  = vector_to(0, 0);
+    //
+    //        return add_row(my_row);
+    //    };
 
         auto process_multi_frame = [&]()
         {
@@ -467,7 +463,7 @@ namespace splashkit_lib
         return result;
     }
 
-    animation_script animation_script_named(string name)
+    animation_script animation_script_named(const string &name)
     {
         if (has_animation_script(name))
             return _animation_scripts[name];
@@ -496,7 +492,7 @@ namespace splashkit_lib
         delete(script_to_free);
     }
 
-    void free_animation_script(string name)
+    void free_animation_script(const string &name)
     {
         free_animation_script(animation_script_named(name));
     }
@@ -548,7 +544,7 @@ namespace splashkit_lib
         }
     }
 
-    bool has_animation_script(string name)
+    bool has_animation_script(const string &name)
     {
         return _animation_scripts.count(name) > 0;
     }
@@ -617,7 +613,7 @@ namespace splashkit_lib
         return anim->frame_time;
     }
 
-    bool has_animation_named(animation_script script, string name)
+    bool has_animation_named(animation_script script, const string &name)
     {
         if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
         {
@@ -628,7 +624,7 @@ namespace splashkit_lib
         return script->animation_ids.count(to_lower(name)) > 0;
     }
 
-    int animation_index(animation_script script, string name)
+    int animation_index(animation_script script, const string &name)
     {
         if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
         {
@@ -717,47 +713,47 @@ namespace splashkit_lib
         assign_animation(anim, script, idx, true);
     }
 
-    void assign_animation(animation anim, animation_script script, string name)
+    void assign_animation(animation anim, animation_script script, const string &name)
     {
         assign_animation(anim, script, animation_index(script, name), true);
     }
 
-    void assign_animation(animation anim, animation_script script, string name, bool with_sound)
+    void assign_animation(animation anim, animation_script script, const string &name, bool with_sound)
     {
         assign_animation(anim, script, animation_index(script, name), with_sound);
     }
 
-    void assign_animation(animation anim, string script_name, string name)
+    void assign_animation(animation anim, const string &script_name, const string &name)
     {
         animation_script script = animation_script_named(script_name);
         assign_animation(anim, script, animation_index(script, name), true);
     }
 
-    void assign_animation(animation anim, string script_name, string name, bool with_sound)
+    void assign_animation(animation anim, const string &script_name, const string &name, bool with_sound)
     {
         animation_script script = animation_script_named(script_name);
         assign_animation(anim, script, animation_index(script, name), with_sound);
     }
-    
-    
+
+
     animation create_animation(animation_script script, int idx, bool with_sound)
     {
         animation result = nullptr;
-        
+
         if (INVALID_PTR(script, ANIMATION_SCRIPT_PTR))
         {
             LOG(WARNING) << "Attempting to create animation from invalid script";
             return result;
         }
-        
+
         if ((idx < 0) or (idx >= script->animations.size()))
         {
             LOG(WARNING) << "Unable to create animation number " + to_string(idx) + " from script " + script->name;
             return result;
         }
-        
+
         result = new(_animation_data);
-        
+
         result->id = ANIMATION_PTR;
         result->current_frame = nullptr;
         result->last_frame = nullptr;
@@ -766,44 +762,44 @@ namespace splashkit_lib
         result->animation_name = animation_name(script, idx);
         result->script = script;
         result->frame_time = 0;
-        
+
         script->anim_objs.push_back(result);
-        
+
         assign_animation(result, script, idx, with_sound);
-        
+
         return result;
     }
-    
+
     animation create_animation(animation_script script, int idx)
     {
         return create_animation(script, idx, true);
     }
-    
-    animation create_animation(animation_script script, string name, bool with_sound)
+
+    animation create_animation(animation_script script, const string &name, bool with_sound)
     {
         return create_animation(script, animation_index(script, name), with_sound);
     }
-    
-    animation create_animation(animation_script script, string name)
+
+    animation create_animation(animation_script script, const string &name)
     {
         return create_animation(script, animation_index(script, name), true);
     }
-    
-    animation create_animation(string script_name, string name, bool with_sound)
+
+    animation create_animation(const string &script_name, const string &name, bool with_sound)
     {
         return create_animation(animation_script_named(script_name), name, with_sound);
     }
-    
-    animation create_animation(string script_name, string name)
+
+    animation create_animation(const string &script_name, const string &name)
     {
         return create_animation(animation_script_named(script_name), name, true);
     }
-    
+
     void restart_animation(animation anim)
     {
         restart_animation(anim, true);
     }
-    
+
     void restart_animation(animation anim, bool with_sound)
     {
         if (INVALID_PTR(anim, ANIMATION_PTR))
@@ -811,57 +807,51 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to restart an invalid animation.";
             return;
         }
-        
+
         anim->current_frame  = anim->first_frame;
         anim->last_frame     = anim->first_frame;
         anim->frame_time     = 0;
         anim->entered_frame  = true;
-        
+
         if (with_sound and ASSIGNED(anim->current_frame) and ASSIGNED(anim->current_frame->sound))
             play_sound_effect(anim->current_frame->sound);
     }
-    
+
     void update_animation(animation anim)
     {
         update_animation(anim, 1.0f, true);
     }
-    
+
     void update_animation(animation anim, float pct)
     {
         update_animation(anim, pct, true);
     }
-    
+
     void update_animation(animation anim, float pct, bool with_sound)
     {
         if (animation_ended(anim)) return;
-        
+
         anim->frame_time     = anim->frame_time + pct;
-        
+
         if (anim->frame_time >= anim->current_frame->duration)
         {
             anim->frame_time = anim->frame_time - anim->current_frame->duration;    //reduce the time
             anim->last_frame = anim->current_frame;                                 //store last frame
             anim->current_frame = anim->current_frame->next;                        //get the next frame
-            
+
             //if assigned(anim^.currentFrame) then
             //WriteLn('Frame ', HexStr(anim^.currentFrame), ' Vector ', PointToString(anim^.currentFrame^.movement));
-            
+
             if (ASSIGNED(anim->current_frame) and ASSIGNED(anim->current_frame->sound) and with_sound)
             {
                 play_sound_effect(anim->current_frame->sound);
             }
-            
+
             anim->entered_frame  = true;
         }
         else
         {
             anim->entered_frame  = false;
         }
-    }
-    
-    animation create_animation(string script_name, int idx)
-    {
-        // TODO: To implement!
-        return nullptr;
     }
 }
