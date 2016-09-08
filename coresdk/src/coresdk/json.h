@@ -199,6 +199,7 @@ void json_add_object(json j, string key, json object);
  *
  * @attribute class json
  * @attribute method add_array
+ * @attribute suffix of_string
  * @attribute self j
  */
 void json_add_array(json j, string key, vector<string> value);
@@ -213,6 +214,7 @@ void json_add_array(json j, string key, vector<string> value);
  *
  * @attribute class json
  * @attribute method add_array
+ * @attribute suffix of_double
  * @attribute self j
  */
 void json_add_array(json j, string key, vector<double> value);
@@ -227,6 +229,7 @@ void json_add_array(json j, string key, vector<double> value);
  *
  * @attribute class json
  * @attribute method add_array
+ * @attribute suffix of_bool
  * @attribute self j
  */
 void json_add_array(json j, string key, vector<bool> value);
@@ -241,6 +244,7 @@ void json_add_array(json j, string key, vector<bool> value);
  *
  * @attribute class json
  * @attribute method add_array
+ * @attribute suffix of_json
  * @attribute self j
  */
 void json_add_array(json j, string key, vector<json> value);
@@ -311,6 +315,7 @@ json json_read_object(json j, string key);
  *
  * @attribute class json
  * @attribute method read_array
+ * @attribute suffix of_double
  * @attribute self j
  */
 void json_read_array(json j, string key, vector<double> &out);
@@ -325,6 +330,7 @@ void json_read_array(json j, string key, vector<double> &out);
  *
  * @attribute class json
  * @attribute method read_array
+ * @attribute suffix of_json
  * @attribute self j
  */
 void json_read_array(json j, string key, vector<json> &out);
@@ -339,6 +345,7 @@ void json_read_array(json j, string key, vector<json> &out);
  *
  * @attribute class json
  * @attribute method read_array
+ * @attribute suffix of_string
  * @attribute self j
  */
 void json_read_array(json j, string key, vector<string> &out);
@@ -353,6 +360,7 @@ void json_read_array(json j, string key, vector<string> &out);
  *
  * @attribute class json
  * @attribute method read_array
+ * @attribute suffix of_bool
  * @attribute self j
  */
 void json_read_array(json j, string key, vector<bool> &out);
@@ -366,7 +374,7 @@ void json_read_array(json j, string key, vector<bool> &out);
  * @returns Returns `true` if the `json j` object contains a key for `string` key.
  *
  * @attribute class json
- * @attribute method read_array
+ * @attribute method has_key
  * @attribute self j
  */
 bool json_has_key(json j, string key);
