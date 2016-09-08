@@ -45,7 +45,6 @@ if (APPLE)
                    -lsmpeg2 \
                    -lfreetype \
                    -lcurl \
-                   -lsqlite3 \
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
@@ -73,7 +72,6 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
-                   -lsqlite3 \
                    -ldl")
 endif()
 
@@ -85,6 +83,7 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/coresdk/*.cpp"
     "${SK_SRC}/backend/*.cpp"
     "${SK_EXT}/civetweb/src/civetweb.cpp"
+    "${SK_EXT}/sqlite/sqlite3.c"
 )
 
 # TEST FILE INCLUDES
@@ -105,6 +104,7 @@ include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
+include_directories("${SK_EXT}/sqlite")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
@@ -131,40 +131,50 @@ endif()
 add_definitions(-DELPP_THREAD_SAFE)
 
 #### END SETUP ####
-#### SplashKit STATIC LIBRARY ####
-add_library(SplashKit STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
+#### SplashKitBackend STATIC LIBRARY ####
+add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 
-target_link_libraries(SplashKit ${LIB_FLAGS})
+target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (MSYS)
     link_directories("${SK_LIB}/win64")
-    target_link_libraries(SplashKit SDL2_mixer
-                                    SDL2_image
-                                    SDL2_net
-                                    libcivetweb
-                                    SDL2
-                                    SDL2_ttf
-                                    SDL2_ttf
-                                    libcurl
-                                    libSDL2_gfx-1-0-0
-                                    libpng16-16
-                                    libsqlite
-                                    pthread
-                                    stdc++
-                                    ws2_32)
+    target_link_libraries(SplashKitBackend SDL2_mixer
+                                           SDL2_image
+                                           SDL2_net
+                                           libcivetweb
+                                           SDL2
+                                           SDL2_ttf
+                                           SDL2_ttf
+                                           libcurl
+                                           libSDL2_gfx-1-0-0
+                                           libpng16-16
+                                           libsqlite
+                                           pthread
+                                           stdc++
+                                           ws2_32)
 endif()
 
 # SET OUTPUT TO /path/to/splashkit/out/lib
-set_target_properties(SplashKit
+set_target_properties(SplashKitBackend
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${SK_OUT}/lib"
 )
 
-#### END SplashKit STATIC LIBRARY ####
+# Use libtool to copy in dependent static libs into SplashKitBackend.a
+if (APPLE)
+  add_custom_command(TARGET SplashKitBackend
+      POST_BUILD COMMAND
+      libtool -static -o "${SK_OUT}/lib/libSplashKitBackend.a"
+                         "${SK_OUT}/lib/libSplashKitBackend.a"
+                         "${SK_LIB}/mac/*.a"
+  )
+endif()
+
+#### END SplashKitBackend STATIC LIBRARY ####
 #### sktest EXECUTABLE ####
 add_executable(sktest ${TEST_SOURCE_FILES})
 
-target_link_libraries(sktest SplashKit)
+target_link_libraries(sktest SplashKitBackend)
 target_link_libraries(sktest ${LIB_FLAGS})
 
 set_target_properties(sktest
@@ -185,5 +195,5 @@ endif()
 
 #### END sktest EXECUTABLE ####
 
-install(TARGETS SplashKit DESTINATION lib)
-install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKit)
+install(TARGETS SplashKitBackend DESTINATION lib)
+install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)
