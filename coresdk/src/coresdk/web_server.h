@@ -90,6 +90,18 @@ void stop_web_server(web_server server);
 server_request next_web_request(web_server server);
 
 /**
+ * Sends a message to a given `server_request` with the specified content type.
+ *
+ * @param r             The `server_request` to send the response to
+ * @param resp          The messsage, in the form of a `server_response`, to be sent.
+ * @param content_type  The content type of the response.
+ *
+ * @attribute class server_request
+ * @attribute self  r
+ */
+void send_response(server_request r, string message, string content_type);
+
+/**
  * Sends a message to a given `server_request`.
  *
  * @param r     The `server_request` to send the response to
@@ -97,6 +109,7 @@ server_request next_web_request(web_server server);
  *
  * @attribute class server_request
  * @attribute self  r
+ * @attribute suffix as_text
  */
 void send_response(server_request r, server_response resp);
 

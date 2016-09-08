@@ -49,11 +49,12 @@ static int begin_request_handler(struct mg_connection *conn)
     // Send HTTP reply to the client
     mg_printf(conn,
               "HTTP/1.1 200 OK\r\n"
-              "Content-Type: text/plain\r\n"
+              "Content-Type: %s\r\n"
               "Connection: close\r\n"
               "Content-Length: %lu\r\n" // Always set Content-Length
               "\r\n"
               "%s",
+              r->response->content_type.c_str(),
               r->response->message.length(),
               r->response->message.c_str());
 
