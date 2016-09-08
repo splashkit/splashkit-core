@@ -171,6 +171,7 @@
 		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
 		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
 		FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
+		FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D161D82273700D7C7FF /* test_json.cpp */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
 		FAAC94001D8016D500B73558 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC93FE1D8016D500B73558 /* json.h */; };
 		FAAC94021D8016F100B73558 /* json_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94011D8016F100B73558 /* json_driver.h */; };
@@ -399,6 +400,7 @@
 		F86951941D5093F800E1BCC9 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
 		F86951951D5093F800E1BCC9 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
+		FAAB8D161D82273700D7C7FF /* test_json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_json.cpp; sourceTree = "<group>"; };
 		FAAC93FD1D8016D500B73558 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
 		FAAC93FE1D8016D500B73558 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		FAAC94011D8016F100B73558 /* json_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_driver.h; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
 				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
 				94444B401D644FE10059BF3B /* test_main.h */,
+				FAAB8D161D82273700D7C7FF /* test_json.cpp */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
 				941C8A341D5D6FE2003112B2 /* test_text.cpp */,
 				942372321D1D69260020CCE2 /* test_audio.cpp */,
@@ -968,7 +971,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1072,6 +1075,7 @@
 				942ECDC01D77C30A00E5B1F9 /* test_camera.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
+				FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
 				94E6993E1D6F380800FBFA28 /* test_web_server.cpp in Sources */,
 				941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */,
@@ -1329,7 +1333,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,

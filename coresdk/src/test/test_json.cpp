@@ -16,6 +16,7 @@
 
 #include "json.h"
 
+using namespace splashkit_lib;
 using namespace std;
 
 json create_person()
