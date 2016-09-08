@@ -33,15 +33,28 @@ json create_json(string json_string)
     return j;
 }
 
+void free_json(json j)
+{
+    for (auto it = objects.begin(); it != objects.end();)
+    {
+        if (*it == j)
+        {
+            sk_delete_json(*it);
+            it = objects.erase(it);
+            return;
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
 void free_all_json()
 {
-    for (int i = 0; i < objects.size(); ++i)
+    for (json j : objects)
     {
-        if (VALID_PTR(objects[i], JSON_PTR))
-        {
-            objects[i]->id = NONE_PTR;
-            delete objects[i];
-        }
+        sk_delete_json(j);
     }
 
     objects.clear();
@@ -207,4 +220,9 @@ void json_read_array(json j, string key, vector<json>& out)
         wj->data = rj;
         out.push_back(wj);
     }
+}
+
+bool json_has_key(json j, string key)
+{
+    return j->data.count(key) > 0;
 }

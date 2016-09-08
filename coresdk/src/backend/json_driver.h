@@ -9,6 +9,7 @@
 #ifndef SPLASHKIT_JSON_DRIVER_H
 #define SPLASHKIT_JSON_DRIVER_H
 
+#include "json.h"
 #include "backend_types.h"
 #include "utility_functions.h"
 #include "easylogging++.h"
@@ -27,6 +28,8 @@ struct sk_json
     backend_json data;
 };
 
+void sk_delete_json(json j);
+
 template <typename T>
 void sk_json_add_value(json j, string key, T value)
 {
@@ -41,15 +44,9 @@ void sk_json_add_value(json j, string key, T value)
 
 inline bool is_type_number(backend_json::value_t type)
 {
-    if (
-            type == backend_json::value_t::number_float ||
+    return (type == backend_json::value_t::number_float ||
             type == backend_json::value_t::number_integer ||
-            type == backend_json::value_t::number_unsigned)
-    {
-        return true;
-    }
-
-    return false;
+            type == backend_json::value_t::number_unsigned);
 }
 
 template<typename T>

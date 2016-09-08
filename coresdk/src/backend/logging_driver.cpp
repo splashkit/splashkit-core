@@ -25,6 +25,5 @@ void sk_init_logging()
 
     Loggers::reconfigureLogger("default", conf);
 
-
     Loggers::addFlag(LoggingFlag::ColoredTerminalOutput);
 }
