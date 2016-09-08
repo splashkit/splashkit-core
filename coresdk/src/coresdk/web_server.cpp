@@ -13,6 +13,7 @@ namespace splashkit_lib
 {
     web_server start_web_server(string port)
     {
+        LOG(DEBUG) << "Starting a web server on port " << port;
         return sk_start_web_server(port);
     }
 
@@ -73,16 +74,22 @@ namespace splashkit_lib
 
     void send_response(server_request r, string message)
     {
+        send_response(r, message, "text/plain");
+    }
+
+    void send_response(server_request r, string message, string content_type)
+    {
         server_response resp = new sk_server_response;
         resp->id = WEB_SERVER_RESPONSE_PTR;
         resp->message = message;
+        resp->content_type = content_type;
 
         send_response(r, resp);
-        
+
         resp->response_sent.acquire();
         delete resp;
     }
-    
+
     string request_get_uri(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))

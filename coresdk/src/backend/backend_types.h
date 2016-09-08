@@ -148,7 +148,7 @@ namespace splashkit_lib
         int cell_cols;   // The columns of cells in the bitmap
         int cell_rows;   // The rows of cells in the bitmap
         int cell_count;  // The total number of cells in the bitmap
-
+        
         bool *pixel_mask;   // Pixel mask used for pixel level collisions
     };
 
@@ -189,6 +189,7 @@ namespace splashkit_lib
     struct sk_server_response
     {
         pointer_identifier id;
+        string content_type;
         string message;
         semaphore response_sent;
     };
@@ -235,7 +236,7 @@ namespace splashkit_lib
         animation_script script;            // Which script was it created from?
         string animation_name;              // The name of the animation - when it was started
     };
-    
+
     struct _animation_script_data
     {
         pointer_identifier id;

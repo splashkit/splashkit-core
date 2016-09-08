@@ -113,6 +113,7 @@ void run_json_test()
     test_has_key(person);
 
     free_json(person);
+    LOG(DEBUG) << "If you are seeing errors after this, things are working.";
     test_read_values(person);
 
     free_all_json();

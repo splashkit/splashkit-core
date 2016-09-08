@@ -4,8 +4,12 @@
 
 #include "resources.h"
 #include "web_server.h"
+#include "json.h"
 
 #include <iostream>
+#include <functional>
+#include <vector>
+
 
 using namespace std;
 using namespace splashkit_lib;
@@ -105,8 +109,56 @@ void run_multiple_server_test()
     stop_web_server(server2);
 }
 
+json load_person()
+{
+    cout << "Reading " << "person.json" << " from disk" << endl;
+    json j = json_from_file("person.json");
+    return j;
+}
+
+void test_send_json_response()
+{
+    auto server = start_web_server();
+
+    string json = json_to_string(load_person());
+
+    bool running = true;
+    while (running)
+    {
+        auto request = next_web_request(server);
+
+        send_response(request, json, "application/json");
+    }
+}
+
+static vector<pair<string, function<void()>>> tests;
+
+void add_tests()
+{
+    tests.push_back({"Single Server", run_single_server_test});
+    tests.push_back({"Multiple Servers", run_multiple_server_test});
+    tests.push_back({"Send JSON Response", test_send_json_response});
+}
+
 void run_web_server_tests()
 {
-    run_single_server_test();
-    run_multiple_server_test();
+    add_tests();
+
+    cout << "=== Web Server Tests === \n";
+
+    for (int i = 0; i < tests.size(); ++i)
+    {
+        auto test = tests[i];
+        cout << i << ": " << test.first << "\n";
+    }
+
+    cout << "Select test to run: ";
+
+    int option;
+    cin >> option;
+
+    if (option >= 0 && option < tests.size())
+    {
+        tests[option].second();
+    }
 }
