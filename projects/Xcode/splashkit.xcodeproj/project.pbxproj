@@ -173,6 +173,7 @@
 		FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
 		FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D161D82273700D7C7FF /* test_json.cpp */; };
 		FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D181D8227E500D7C7FF /* test_networking.cpp */; };
+		FAAB8D1B1D822A0F00D7C7FF /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
 		FAAC94001D8016D500B73558 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC93FE1D8016D500B73558 /* json.h */; };
 		FAAC94021D8016F100B73558 /* json_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94011D8016F100B73558 /* json_driver.h */; };
@@ -403,6 +404,7 @@
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
 		FAAB8D161D82273700D7C7FF /* test_json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_json.cpp; sourceTree = "<group>"; };
 		FAAB8D181D8227E500D7C7FF /* test_networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_networking.cpp; sourceTree = "<group>"; };
+		FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_driver.cpp; sourceTree = "<group>"; };
 		FAAC93FD1D8016D500B73558 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
 		FAAC93FE1D8016D500B73558 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		FAAC94011D8016F100B73558 /* json_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_driver.h; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				FAAC94071D801C9600B73558 /* logging_driver.cpp */,
 				FAAC94081D801C9600B73558 /* logging_driver.h */,
 				FAAC94011D8016F100B73558 /* json_driver.h */,
+				FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */,
 				94E6994C1D6F385200FBFA28 /* concurrency_utils.h */,
 				94E699481D6F384A00FBFA28 /* web_server_driver.cpp */,
 				94E699491D6F384A00FBFA28 /* web_server_driver.h */,
@@ -600,9 +603,9 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				94444B401D644FE10059BF3B /* test_main.h */,
 				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
 				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
-				94444B401D644FE10059BF3B /* test_main.h */,
 				FAAB8D161D82273700D7C7FF /* test_json.cpp */,
 				FAAB8D181D8227E500D7C7FF /* test_networking.cpp */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
@@ -1028,6 +1031,7 @@
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */,
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
+				FAAB8D1B1D822A0F00D7C7FF /* json_driver.cpp in Sources */,
 				94E699351D6E8B3400FBFA28 /* collisions.cpp in Sources */,
 				9424B5B21D449C4F0039B3AF /* camera.cpp in Sources */,
 				94DF47051D740C0B00E3D9AF /* sound.cpp in Sources */,
