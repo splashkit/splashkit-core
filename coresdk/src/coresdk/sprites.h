@@ -129,7 +129,7 @@ sprite create_sprite(const string &bitmap_name);
  * @param bitmap_name     The name of the bitmap to use as the sprite's image.
  * @param animation_name  The name of the animation script to use for this
  *                        sprite.
- * @return                The new sprite with the image and animation.
+ * @returns                The new sprite with the image and animation.
  *
  * @attribute class sprite
  * @attribute constructor true

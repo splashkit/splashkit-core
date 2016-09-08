@@ -76,7 +76,7 @@ void close_all_windows();
  *
  * @param caption The name of the window to check for.
  *
- * @return Returns `true` if there is a window with the given `caption`
+ * @returns Returns `true` if there is a window with the given `caption`
  *          which has has been loaded.
  *
  */
@@ -88,7 +88,7 @@ bool has_window(string caption);
  *
  * @param  caption the `string` name of the window.
  *
- * @return Returns a `window` with the name specified by `caption`
+ * @returns Returns a `window` with the name specified by `caption`
  *
  * @attribute method window_named
  * @attribute class  window
@@ -108,7 +108,7 @@ void set_current_window(const string &name);
  *
  * @param  wind the `window` to be closed
  *
- * @return Returns `true` if the window is closed,
+ * @returns Returns `true` if the window is closed,
  * `false` if there is an error.
  *
  * @attribute class window
@@ -128,6 +128,15 @@ bool window_close_requested(window wind);
  */
 bool window_close_requested(const string &name);
 
+/**
+ * Refreshes the window `wind`.
+ *
+ * @param  wind the `window` to refresh.
+ *
+ * @attribute method  refresh
+ * @attribute class   window
+ * @attribute self    wind
+ */
 void refresh_window(window wind);
 
 /**

@@ -66,7 +66,7 @@ bool point_in_rectangle(const point_2d &pt, const rectangle &rect);
  *
  * @param pt    The point to test.
  * @param q     The quad to check if the point is within.
- * @return      True if pt lies within the area of q.
+ * @returns      True if pt lies within the area of q.
  */
 bool point_in_quad(const point_2d &pt, const quad &q);
 
