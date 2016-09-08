@@ -17,7 +17,7 @@ using namespace std;
  *
  * @param a_hex hexadecimal ipv4 string to convert
  *
- * @return standard ipv4 address using format X.X.X.X
+ * @returns standard ipv4 address using format X.X.X.X
  */
 string hex_str_to_ipv4(const string &a_hex);
 
@@ -29,7 +29,7 @@ string hex_str_to_ipv4(const string &a_hex);
  *
  * @param a_hex hexadecimal string to convert
  *
- * @return decimal representation of supplied hex string
+ * @returns decimal representation of supplied hex string
  */
 string hex_to_dec_string(const string &a_hex);
 
@@ -65,7 +65,7 @@ string ipv4_to_hex(const string& a_ip);
  *
  * @param a_ip ipv4 address to encode
  *
- * @return encoded ipv4 string
+ * @returns encoded ipv4 string
  */
 unsigned int ipv4_to_dec(const string &a_ip);
 
@@ -77,7 +77,7 @@ unsigned int ipv4_to_dec(const string &a_ip);
  *
  * @param ip integer to be decoded
  *
- * @return ipv4 address string in X.X.X.X format
+ * @returns ipv4 address string in X.X.X.X format
  */
 string ipv4_to_str(unsigned int ip);
 

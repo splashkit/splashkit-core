@@ -1,10 +1,11 @@
-//
-//  images.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Images
+ * @author Andrew Cain
+ * @brief SplashKit Images allow drawing of bitmaps and sprites to graphic windows.
+ *
+ *
+ * @attribute static images
+ */
 
 #ifndef images_h
 #define images_h
@@ -41,7 +42,7 @@ bool has_bitmap(string name);
  * been loaded.
  *
  * @param  name The name of the bitmap to check.
- * @return      The bitmap with the name specified, which may refer to nothing
+ * @returns      The bitmap with the name specified, which may refer to nothing
  *              if the bitmap has not been loaded.
  */
 bitmap bitmap_named(string name);
@@ -53,12 +54,71 @@ void free_bitmap(bitmap to_delete);
 
 void free_all_bitmaps();
 
+/**
+ * Draws the bitmap supplied into `bmp` to the current window.
+ * at `x` and `y`.
+ *
+ * @param bmp the bitmap which will be drawn to the screen
+ * @param x   the x location which represents where the bitmap
+ *            will be drawn
+ * @param y   the y location which represents where the bitmap
+ *            will be drawn
+ *
+ * @attribute class   bitmap
+ * @attribute method  draw
+ * @attribute self    bmp
+ */
 void draw_bitmap(bitmap bmp, float x, float y);
 
+/**
+ * Draws the bitmap supplied into `bmp` to the current window.
+ * with extra drawing options supplied in `opts` at `x` and `y`.
+ *
+ * @param bmp the bitmap which will be drawn to the screen
+ * @param x     the x location which represents where the bitmap
+ *              will be drawn
+ * @param y     the y location which represents where the bitmap
+ *              will be drawn
+ * @param opts  the `drawing_options` which provide extra information
+ *              for how to draw the `bitmap`
+ *
+ * @attribute class   bitmap
+ * @attribute method  draw
+ * @attribute self    bmp
+ * @attribute suffix  with_options
+ */
 void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts);
 
+/**
+ * Searches and draws a bitmap with name `name` to the current window.
+ * with extra drawing options supplied in `opts` at `x` and `y`.
+ *
+ * @param name  the name of the bitmap which will be drawn to the screen
+ * @param x     the x location which represents where the bitmap
+ *              will be drawn
+ * @param y     the y location which represents where the bitmap
+ *              will be drawn
+ *
+ * @attribute method  draw_bitmap
+ * @attribute suffix  named
+ */
 void draw_bitmap(string name, float x, float y);
 
+/**
+ * Searches and draws a bitmap with name `name` to the current window.
+ * with extra drawing options supplied in `opts` at `x` and `y`.
+ *
+ * @param name  the name of the bitmap which will be drawn to the screen
+ * @param x     the x location which represents where the bitmap
+ *              will be drawn
+ * @param y     the y location which represents where the bitmap
+ *              will be drawn
+ * @param opts  the `drawing_options` which provide extra information
+ *              for how to draw the `bitmap`
+ *
+ * @attribute method  draw_bitmap
+ * @attribute suffix  named_with_options
+ */
 void draw_bitmap(string name, float x, float y, drawing_options opts);
 
 bitmap create_bitmap(string name, int width, int height);
@@ -68,7 +128,7 @@ bitmap create_bitmap(string name, int width, int height);
  * string for created bitmaps.
  *
  * @param  bmp The bitmap to get the filename from.
- * @return     The file name of the bitmap.
+ * @returns     The file name of the bitmap.
  */
 string bitmap_filename(bitmap bmp);
 
@@ -77,7 +137,7 @@ string bitmap_filename(bitmap bmp);
  * access this bitmap.
  *
  * @param  bmp The bitmap to get the name from.
- * @return     The name of the bitmap.
+ * @returns     The name of the bitmap.
  */
 string bitmap_name(bitmap bmp);
 
@@ -94,7 +154,7 @@ int bitmap_width(string name);
  * get the height of a cell using `bitmap_cell_height`.
  *
  * @param  bmp The bitmap to get the details from.
- * @return     The height of the bitmap.
+ * @returns     The height of the bitmap.
  */
 int bitmap_height(bitmap bmp);
 
@@ -103,7 +163,7 @@ int bitmap_height(bitmap bmp);
  * get the height of a cell using `bitmap_cell_height`.
  *
  * @param  name The name of the bitmap to get the details from.
- * @return      The height of the bitmap.
+ * @returns      The height of the bitmap.
  */
 int bitmap_height(string name);
 
@@ -137,7 +197,7 @@ int bitmap_cell_height(bitmap bmp);
  * `bitmap_set_cell_details`.
  *
  * @param  bmp The bitmap to get the details from.
- * @return     The number of rows of cells in the bitmap.
+ * @returns     The number of rows of cells in the bitmap.
  */
 int bitmap_cell_rows(bitmap bmp);
 
@@ -215,7 +275,7 @@ circle bitmap_cell_circle(bitmap bmp, float x, float y);
  *
  * @param  bmp The bitmap to encompass.
  * @param  pt  The point where the bitmap is located.
- * @return     A circle that surrounds the bitmap.
+ * @returns     A circle that surrounds the bitmap.
  */
 circle bitmap_circle(bitmap bmp, const point_2d &pt);
 
@@ -224,7 +284,7 @@ circle bitmap_circle(bitmap bmp, const point_2d &pt);
  * This is setup using `bitmap_set_cell_details`
  *
  * @param  bmp The bitmap to check
- * @return     The number of cell columns
+ * @returns     The number of cell columns
  */
 int bitmap_cell_columns(bitmap bmp);
 

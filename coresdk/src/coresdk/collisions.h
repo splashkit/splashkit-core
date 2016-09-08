@@ -60,7 +60,7 @@ bool sprite_rect_collision(sprite s, const rectangle& rect);
  * @param  s1 the first `sprite` to test
  * @param  s2 the second `sprite` to test
  *
- * @return return `true` if both `s1` and `s2` are colliding, false otherwise.
+ * @returns return `true` if both `s1` and `s2` are colliding, false otherwise.
  *
  * @attribute class   sprite
  * @attribute method  collide_with_sprite
