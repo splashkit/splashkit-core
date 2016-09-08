@@ -62,7 +62,9 @@ json create_json();
  * The `json` object returned can be filled with data and read by the functions
  * and procedures prefixed with `json_add_` and `json_read_`
  *
- * @returns Returns an empty `json` object.
+ * @param json_string The JSON formatted `string` to be converted to a `json` object.
+ *
+ * @returns Returns a `json` object filled with data from the parameter `string`.
  *
  * @attribute class       json
  * @attribute constructor true
