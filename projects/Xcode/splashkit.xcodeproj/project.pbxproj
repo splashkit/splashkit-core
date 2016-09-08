@@ -1270,6 +1270,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
 				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1283,6 +1284,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
+					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
 				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
