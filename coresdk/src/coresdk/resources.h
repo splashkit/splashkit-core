@@ -91,6 +91,8 @@ namespace splashkit_lib
      *
      * @param  kind The type of resource you want the path for.
      * @return      The path to the folder containing this kind of resource.
+     *
+     * @attribute suffix for_kind
      */
     string path_to_resources(resource_kind kind);
 
