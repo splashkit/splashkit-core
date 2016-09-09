@@ -88,6 +88,7 @@ namespace splashkit_lib
      * @param name          The name of the `font` to be loaded from file.
      * @param filename      The name of the file to load the `font` from.
      *
+     * @attribute class     font
      * @attribute constructor true
      *
      * @returns Returns a new `font` object.
