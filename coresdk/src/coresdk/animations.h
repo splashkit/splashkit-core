@@ -190,6 +190,7 @@ namespace splashkit_lib
      */
     animation create_animation(animation_script script, int idx, bool with_sound);
 
+
     /**
      * Disposes of the resources used in the animation.
      *
