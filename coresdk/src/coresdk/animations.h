@@ -191,15 +191,6 @@ namespace splashkit_lib
     animation create_animation(animation_script script, int idx, bool with_sound);
 
     /**
-     * Creates an animation from an `animation_script`.
-     *
-     * @param script        The name of the `animation_script` to create the `animation` from.
-     * @param idx           The index of the `animation` to create.
-     * @returns Returns the newly created `animation_script`.
-     */
-    animation create_animation(const string &script_name, int idx);
-
-    /**
      * Disposes of the resources used in the animation.
      *
      * @param ani           The `animation` to be disposed of.
