@@ -152,7 +152,18 @@ if (MSYS)
                                            pthread
                                            stdc++
                                            ws2_32)
+elseif(APPLE)
+    # To make a universal single static library from dependent
+    # static libraries, run libtool on SplashKitBackend
+    file(GLOB APPLE_STATIC_LIBS
+        "${SK_LIB}/mac/*.a"
+    )
+    add_custom_command(TARGET SplashKitBackend POST_BUILD
+      COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
+      $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
+    )
 endif()
+
 
 # SET OUTPUT TO /path/to/splashkit/out/lib
 set_target_properties(SplashKitBackend
@@ -187,14 +198,3 @@ endif()
 
 install(TARGETS SplashKitBackend DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)
-
-# Use libtool to copy in dependent static libs into SplashKitBackend.a
-if (APPLE)
-    file(GLOB APPLE_STATIC_LIBS
-        "${SK_LIB}/mac/*.a"
-    )
-    add_custom_command(TARGET SplashKitBackend POST_BUILD
-      COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
-      $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
-    )
-endif()
