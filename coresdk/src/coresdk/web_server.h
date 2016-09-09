@@ -12,6 +12,7 @@
 #include "types.h"
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -142,5 +143,18 @@ namespace splashkit_lib
      * @returns Returns the request method as a string.
      */
     string request_get_method(server_request r);
+
+    /**
+     * Returns an array of strings representing each stub of the URI.
+     *
+     * For example a request sent to http://localhost:8080/names/0 returns...
+     *
+     *      ["names", "0"]
+     *
+     * @param uri The URI to split into stubs.
+     *
+     * @return The array of stubs as strings.
+     */
+    vector<string> split_uri_stubs(const string &uri);
 }
 #endif /* web_server_h_ */

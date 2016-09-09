@@ -112,4 +112,23 @@ namespace splashkit_lib
 
         return r->method;
     }
+
+    vector<string> split_uri_stubs(const string &uri)
+    {
+        stringstream ss(uri);
+        string stub;
+        vector<string> result;
+
+        while (getline(ss, stub, '/'))
+        {
+            result.push_back(stub);
+        }
+
+        if (result.size() >= 2)
+        {
+            result.erase(result.begin());
+        }
+
+        return result;
+    }
 }
