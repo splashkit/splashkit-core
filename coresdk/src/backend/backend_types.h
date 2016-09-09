@@ -198,6 +198,7 @@ namespace splashkit_lib
     {
         pointer_identifier id;
         string uri;
+        string method;
         semaphore control;
 
         sk_server_response* response;

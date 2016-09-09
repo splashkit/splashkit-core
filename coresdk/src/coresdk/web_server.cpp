@@ -9,6 +9,7 @@
 #include "utility_functions.h"
 #include "web_server.h"
 #include "web_server_driver.h"
+
 namespace splashkit_lib
 {
     web_server start_web_server(string port)
@@ -99,5 +100,16 @@ namespace splashkit_lib
         }
         
         return r->uri;
+    }
+
+    string request_get_method(server_request r)
+    {
+        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        {
+            LOG(WARNING) << "request_get_method called on an invalid request";
+            return "";
+        }
+
+        return r->method;
     }
 }

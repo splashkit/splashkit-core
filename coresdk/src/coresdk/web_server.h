@@ -14,6 +14,7 @@
 #include <string>
 
 using namespace std;
+
 namespace splashkit_lib
 {
     /**
@@ -125,12 +126,21 @@ namespace splashkit_lib
     void send_response(server_request r, string message);
 
     /**
-     * Requests a URI from the web server.
+     * Returns the server URI of the client request.
      *
-     * @param r The request to be sent.
+     * @param r A request object.
      *
      * @returns Returns the requested URI in the form of a string.
      */
     string request_get_uri(server_request r);
+
+    /**
+     * Returns the HTTP method of the client request.
+     *
+     * @param r A request object.
+     *
+     * @returns Returns the request method as a string.
+     */
+    string request_get_method(server_request r);
 }
 #endif /* web_server_h_ */

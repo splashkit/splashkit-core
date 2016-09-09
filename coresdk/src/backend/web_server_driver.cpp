@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <cstring>
+
 namespace splashkit_lib
 {
     static map<string, sk_web_server*> servers;
@@ -43,6 +44,7 @@ namespace splashkit_lib
         sk_server_request *r = new sk_server_request;
         r->id = WEB_SERVER_REQUEST_PTR;
         r->uri = request_info->request_uri;
+        r->method = request_info->request_method;
 
         servers.at(port)->request_queue.put(r); // Add request to concurrent queue
         r->control.acquire(); // Waits until user returns response.
@@ -50,11 +52,12 @@ namespace splashkit_lib
         // Send HTTP reply to the client
         mg_printf(conn,
                   "HTTP/1.1 200 OK\r\n"
-                  "Content-Type: text/plain\r\n"
+                  "Content-Type: %s\r\n"
                   "Connection: close\r\n"
                   "Content-Length: %lu\r\n" // Always set Content-Length
                   "\r\n"
                   "%s",
+                  r->response->content_type.c_str(),
                   r->response->message.length(),
                   r->response->message.c_str());
 
