@@ -35,7 +35,7 @@ namespace splashkit_lib
     static bool     _has_resources_path = false;
     static string   _resources_path = "";
 
-    void set_resources_path(string path)
+    void set_resources_path(const string &path)
     {
         //    cout << "Setting path to: " << path << endl;
         _has_resources_path = true;
@@ -161,6 +161,7 @@ namespace splashkit_lib
             case FONT_RESOURCE:         return path_from({ path, "fonts" });
             case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
             case JSON_RESOURCE:         return path_from({ path, "json" });
+            case DATABASE_RESOURCE:     return path_from({ path, "databases" });
             case OTHER_RESOURCE:        return path;
             default:
                 LOG(WARNING) << "Attempting to get path to unknown resource kind.";
@@ -168,7 +169,7 @@ namespace splashkit_lib
         }
     }
     
-    string path_to_resource(const string filename, resource_kind kind)
+    string path_to_resource(const string &filename, resource_kind kind)
     {
         return path_from( { path_to_resources(kind) }, filename );
     }
