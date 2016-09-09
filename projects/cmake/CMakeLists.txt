@@ -190,8 +190,11 @@ install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)
 
 # Use libtool to copy in dependent static libs into SplashKitBackend.a
 if (APPLE)
-  execute_process(COMMAND libtool -static -o "${SK_OUT}/lib/libSplashKitBackend.a"
-                                             "${SK_OUT}/lib/libSplashKitBackend.a"
-                                             "${SK_LIB}/mac/*.a"
-  )
+    file(GLOB APPLE_STATIC_LIBS
+        "${SK_LIB}/mac/*.a"
+    )
+    add_custom_command(TARGET SplashKitBackend POST_BUILD
+      COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
+      $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
+    )
 endif()
