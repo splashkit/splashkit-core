@@ -84,6 +84,9 @@ namespace splashkit_lib
      *    The following loads "another bundle" from the "another.txt" file.
      *
      *    BUNDLE,another bundle,another.txt
+     *
+     * @param name      The name of the bundle when it is loaded.
+     * @param filename  The filename to load.
      */
     void load_resource_bundle(const string &name, const string &filename);
 
