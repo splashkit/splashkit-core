@@ -36,5 +36,21 @@ namespace splashkit_lib
     bool distant_point_on_circle_heading(const point_2d &pt, const circle &c, const vector_2d &heading, point_2d &opposite_pt);
 
     float ray_circle_intersect_distance(const point_2d &ray_origin, const vector_2d &ray_heading, const circle &c);
+    
+    /**
+     *  Returns the circle radius.
+     */
+    float circle_radius(const circle c);
+    
+    /**
+     *  Returns the circle x value.
+     */
+    float circle_x(const circle &c);
+    
+    /**
+     *  Returns the circle y value.
+     */
+    float circle_y(const circle &c);
+    
 }
 #endif /* circle_geometry_hpp */

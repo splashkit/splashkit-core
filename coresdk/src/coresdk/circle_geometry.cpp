@@ -93,4 +93,21 @@ namespace splashkit_lib
     {
         return point_point_distance(c1.center, c2.center) < c1.radius + c2.radius;
     }
+    
+    
+    float circle_radius(const circle c)
+    {
+        return c.radius;
+    }
+    
+    float circle_x(const circle &c)
+    {
+        return c.center.x;
+    }
+    
+    float circle_y(const circle &c)
+    {
+        return c.center.y;
+    }
+    
 }
