@@ -196,6 +196,8 @@ namespace splashkit_lib
      * @param x             The x location to draw the text.
      * @param y             The y location to draw the text.
      * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options
      */
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
 
@@ -222,7 +224,7 @@ namespace splashkit_lib
      * @param y             The y location to draw the text.
      * @param opts          The `drawing_options` which provide extra information for how to draw the text.
      *
-     * @attribute suffix    with_options
+     * @attribute suffix    with_options_font_as_string
      */
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
 
