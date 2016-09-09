@@ -506,7 +506,7 @@
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
 		FA3ABF991D82483F0064C29A /* TranslatorTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TranslatorTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4B07861D824BE500A8EC32 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
-		FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = translator_test_main.cpp; path = ../../coresdk/src/test/translator_test_main.cpp; sourceTree = "<group>"; };
+		FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = translator_test_main.cpp; path = ../../coresdk/src/test/translator/translator_test_main.cpp; sourceTree = "<group>"; };
 		FA4B07EA1D825FEC00A8EC32 /* sk_clib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sk_clib.cpp; sourceTree = "<group>"; };
 		FA4B07EB1D825FEC00A8EC32 /* sk_clib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sk_clib.h; sourceTree = "<group>"; };
 		FA4B07ED1D825FEC00A8EC32 /* animations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = animations.h; sourceTree = "<group>"; };
