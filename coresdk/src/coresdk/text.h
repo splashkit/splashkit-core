@@ -28,63 +28,309 @@ namespace splashkit_lib
     /// @constructor
     /// @csn initWithFontName:%s andSize:%s
 
+    /**
+     * @brief Sets the style for a `font`.
+     *
+     * @param fnt           The `font` to set the style of.
+     * @param style         The new style for the `font`.
+     *
+     * @attribute class     font
+     * @attribute method    set_style
+     * @attribute setter    true
+     * @self                fnt
+     */
     void set_font_style(font fnt, font_style style);
 
+    /**
+     * @brief Sets the style for a `font` by name.
+     *
+     * @param name          The name of the `font` to set the style of.
+     * @param style         The new style for the `font`.
+     *
+     * @attribute class     font
+     * @attribute method    set_style
+     * @attribute setter    true
+     * @attribute suffix    name_as_string
+     */
     void set_font_style(const string &name, font_style style);
 
+    /**
+     * @brief Gets the font style for given `font`.
+     *
+     * @param fnt           The `font` to return the style of.
+     *
+     * @attribute class     font
+     * @attribute method    get_style
+     * @attribute getter    true
+     * @self                fnt
+     *
+     * @returns Returns the current `font_style` for the `font`.
+     */
     font_style get_font_style(font fnt);
 
+    /**
+     * @brief Gets the font style for given `font`.
+     *
+     * @param name          The name of the font to return the style of.
+     *
+     * @attribute class     font
+     * @attribute method    get_style
+     * @attribute getter    true
+     * @attribute suffix    name_as_string
+     *
+     * @returns Returns the current `font_style` for the `font`.
+     */
     font_style get_font_style(const string &name);
 
+    /**
+     * @brief Loads a new font from a file.
+     *
+     * @param name          The name of the `font` to be loaded from file.
+     * @param filename      The name of the file to load the `font` from.
+     *
+     * @attribute class     font
+     * @attribute constructor true
+     *
+     * @returns Returns a new `font` object.
+     */
     font load_font(const string &name, const string &filename);
 
+    /**
+     * @brief Frees a loaded font.
+     *
+     * @param fnt           The font to be freed.
+     *
+     * @attribute class     font
+     * @attribute method    free
+     * @self                fnt
+     * @attribute destructor true
+     */
     void free_font(font fnt);
 
+    /**
+     * @brief Frees all loaded fonts.
+     *
+     * @attribute static    text
+     * @attribute method    free_all
+     */
     void free_all_fonts();
 
+    /**
+     * @brief Loads a new size for an already loaded `font`.
+     *
+     * @param fnt           The `font` to load the size for.
+     * @param font_size     The desired size of the `font`.
+     *
+     * @attribute class     font
+     * @attribute method    load_size
+     * @attribute self      fnt
+     */
     void font_load_size(font fnt, int font_size);
 
+    /**
+     * @brief Loads a new size for an already loaded `font`.
+     *
+     * @param name          The name of the `font` to load the size for.
+     * @param font_size     The desired size of the `font`.
+     *
+     * @attribute class     font
+     * @attribute method    load_size
+     * @attribute suffix    name_as_string
+     */
     void font_load_size(const string &name, int font_size);
 
+    /**
+     * @brief Checks if the supplied `font` has been loaded.
+     *
+     * @param fnt           The `font` to check if loaded.
+     *
+     * @returns Returns true if the specified `font` is loaded.
+     */
     bool has_font(font fnt);
 
+    /**
+     * @brief Checks if there exists a loaded font with the supplied name.
+     *
+     * @param name          The name of `font` to check if loaded.
+     *
+     * @attribute suffix    name_as_string
+     *
+     * @returns Returns whether there is a loaded font with the supplied name.
+     */
     bool has_font(string name);
 
+    /**
+     * @brief Checks if the supplied `font` has the supplied size.
+     *
+     * @param fnt           The `font` to be checked.
+     * @param font_size     The size to check.
+     *
+     * @attribute class     font
+     * @attribute method    has_size
+     * @self                fnt
+     *
+     * @returns Returns true if the supplied `font` has the supplied size.
+     */
     bool font_has_size(font fnt, int font_size);
 
+    /**
+     * @brief Checks if the supplied `font` has the supplied size.
+     *
+     * @param name          The name of the `font` to be checked.
+     * @param font_size     The size to check.
+     *
+     * @attribute class     font
+     * @attribute method    has_size
+     * @attribute suffix    name_as_string
+     *
+     * @returns Returns true if there is a font with the supplied name that has the supplied size.
+     */
     bool font_has_size(const string &name, int font_size);
 
+    /**
+     * @brief Finds a loaded font that has the supplied name and returns it.
+     *
+     * @param name          The name of the font to find.
+     *
+     * @returns Returns the font that has the supplied name.
+     */
     font font_named(string name);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The desired size of the font.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options
+     */
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     */
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options_font_as_string
+     */
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
 
     /**
-     * Draws the text provided in `text` to the screen with color `clr`, font `fnt`, size `font_size`
-     *       at `x` and `y` to the current focused window.
-     * @param text      The text which will be written to the window
-     * @param clr       the `color` of the text to be written
-     * @param fnt       the `font` which will be used to draw the text
-     * @param font_size the size of the font which will be drawn.
-     * @param x         the `x` location representing where the text will be drawn.
-     * @param y         the `y` location representing where the text will be drawn.
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the currently focussed window.
      *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    font_as_string
      */
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color and font at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    no_size_with_options_font_as_string
+     */
     void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    no_size_font_as_string
+     */
     void draw_text(const string &text, const color &clr, const string &fnt, float x, float y);
 
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    no_font_no_size_with_options
+     */
     void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts);
-    
+
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.
+     *
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    no_font_no_size
+     */
     void draw_text(const string &text, const color &clr, float x, float y);
-    
+
+    /**
+     * @brief Returns the length of the supplied text string.
+     *
+     * @param text          The text string to check the length of.
+     * @param fnt           The font used for the text.
+     * @param font_size     The size of the font used for the text.
+     *
+     * @attribute static    text
+     * @attribute method    length
+     *
+     * @returns Returns the length of the text as an integer.
+     */
     int text_length(const string &text, font fnt, int font_size);
-    
+
+    /**
+     * @brief Returns the length of the supplied text string.
+     *
+     * @param text          The text string to check the length of.
+     * @param fnt           The font used for the text.
+     * @param font_size     The size of the font used for the text.
+     *
+     * @attribute static    text
+     * @attribute method    length
+     * @attribute suffix    font_as_string
+     *
+     * @returns Returns the length of the text as an integer.
+     */
     int text_length(const string &text, string fnt, int font_size);
     
 }
