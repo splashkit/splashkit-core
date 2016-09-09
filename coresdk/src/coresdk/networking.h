@@ -2,12 +2,91 @@
 #define SPLASHKIT_NETWORKING_H
 
 #include <string>
+#include <vector>
+#include <map>
 #include "types.h"
 
 using namespace std;
 namespace splashkit_lib
 {
-    // TODO implement safety checks e.g. 7F000001 should fail or be handled but should fail for dec_to_hex()
+    typedef char packet_data[512];
+    typedef byte bytes[4];
+    static int UDP_PACKET_SIZE = 1024;
+
+    static map<string, connection> connections;
+    static map<string, *server_socket> server_sockets;
+    //static vector<message> messages;
+
+    server_socket& create_server(const string &name, unsigned short int port);
+    server_socket& create_server(const string &name, unsigned short int port, connection_type protocol);
+    server_socket server_named(const string &name);
+    bool close_server(server_socket &svr);
+    bool close_server(const string &name);
+    void close_all_servers();
+
+
+    /*
+     * HttpHeaderData = record
+      name : String;
+      value: String;
+    end;
+
+    HttpRequestData = packed record
+      id         : PointerIdentifier;
+      // requestType: HttpMethod;
+      url        : String;
+      version    : String;
+      headername : StringArray;
+      headervalue: StringArray;
+      body       : String;
+    end;
+
+    HttpResponseData = record
+      id    : PointerIdentifier;
+      data  : sg_http_response;
+    end;
+
+    MessageData = packed record
+      id        : PointerIdentifier;
+      data      : String;
+      protocol  : ConnectionType;
+
+      //TCP has a
+      connection: ^ConnectionData;
+
+      //UDP is from
+      host      : String;
+      port      : Word;
+    end;
+
+    ConnectionData = packed record
+      id              : PointerIdentifier;
+      name            : String;
+      socket          : sg_network_connection;
+      ip              : LongWord;
+      port            : LongInt;
+      open            : Boolean;
+      protocol        : ConnectionType;
+      stringIP        : String;   //Allow for Reconnection
+      messages        : array of MessageData;
+
+      msgLen          : LongInt;  // This data is used to handle splitting of messages
+      partMsgData     : String;   //   over multiple packets
+    end;
+
+    /// @struct ServerData
+    /// @via_pointer
+    ServerData = packed record
+      id              : PointerIdentifier;
+      name            : String;
+      socket          : sg_network_connection; // socket used to accept connections
+      port            : Word;
+      newConnections  : LongInt; // the number of new connections -- reset on new scan for connections
+      protocol        : ConnectionType;
+      connections     : array of ConnectionPtr; // TCP connections
+      messages        : array of MessageData; // UDP messages
+    end;
+     */
 
     /**
      * @brief Converts a hexadecimal ipv4 string to standard ipv4 address string x.x.x.x

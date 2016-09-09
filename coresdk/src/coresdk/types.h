@@ -11,6 +11,9 @@
 #define types_hpp
 
 #include <string>
+#include <backend/network_driver.h>
+#include <vector>
+
 using namespace std;
 namespace splashkit_lib
 {
@@ -249,6 +252,29 @@ namespace splashkit_lib
      * @attribute class display
      */
     typedef struct sk_display *display;
-    
+
+    enum connection_type {
+        TCP,
+        UDP,
+        UNKNOWN
+    };
+
+    struct connection {
+
+    };
+
+    struct server_socket {
+        // id
+        string name;
+        int port;
+        sk_network_connection socket;
+        connection_type protocol;
+        int newConnections;
+        vector<connection> connections;
+    };
+
+    struct message {
+
+    };
 }
 #endif /* types_hpp */

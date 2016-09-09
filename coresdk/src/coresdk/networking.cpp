@@ -1,10 +1,76 @@
 #include <sstream>
 #include <cmath>
 #include <iomanip>
+#include <backend/network_driver.h>
+// FIXME Fix this bad import
+#include <backend/network_driver.cpp>
 #include "networking.h"
 
 namespace splashkit_lib
 {
+    server_socket& create_server(const string &name, unsigned short int port)
+    {
+        return create_server(name, port, TCP);
+    }
+
+    // TODO this should return &server_socket i think
+    server_socket& create_server(const string &name, unsigned short int port, connection_type protocol)
+    {
+        sk_network_connection con = protocol == UDP ? sk_open_udp_connection(port)
+                                            : sk_open_tcp_connection(nullptr, port);
+
+        server_socket* socket = new server_socket;
+        if (con._socket && (con.kind == SGCK_TCP || con.kind == SGCK_UDP))
+        {
+            // TODO create on heap and change server_sockets to be map<string, server_socket*>
+
+            // TODO initialise fields
+            socket->name = name;
+            socket->port = port;
+            socket->socket = con;
+            socket->protocol = protocol;
+            socket->newConnections = 0;
+
+            server_sockets.insert({name, socket});
+        }
+        return (server_socket&)socket;
+    }
+
+    server_socket server_named(const string &name)
+    {
+        return server_sockets[name];
+    }
+
+    bool close_server(const string &name)
+    {
+        return close_server(server_sockets[name]);
+    }
+
+    bool close_server(server_socket &svr)
+    {
+        // Ref cannot be null, therefore this always returns true
+        //if (svr != null) return false;
+
+        for (auto iter = svr.connections.begin(); iter != svr.connections.end(); ++iter)
+        {
+            //if (!close_connection(svr.connecctions[i])) return false;
+        }
+
+        server_sockets.erase(svr.name);
+
+        delete svr;
+
+        return true;
+    }
+
+    void close_all_servers()
+    {
+        for (auto iter = server_sockets.begin(); iter != server_sockets.end(); ++iter)
+        {
+            close_server(iter->second);
+        }
+    }
+
     string hex_str_to_ipv4(const string &a_hex)
     {
         stringstream ipv4_string;
