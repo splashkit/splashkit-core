@@ -854,4 +854,10 @@ namespace splashkit_lib
             anim->entered_frame  = false;
         }
     }
+
+    animation create_animation(const string &script_name, int idx)
+    {
+      // TODO: Not yet implemented
+      return nullptr;
+    }
 }
