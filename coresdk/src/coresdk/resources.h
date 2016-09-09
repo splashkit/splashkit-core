@@ -1,3 +1,12 @@
+/**
+ * @header  resources
+ * @author  Andrew Cain
+ * @brief   SplashKit resource functions allow you to locate resources in a
+ *          project's Resources folder.
+ *
+ * @attribute static resources
+ */
+
 //
 //  resources.hpp
 //  splashkit
