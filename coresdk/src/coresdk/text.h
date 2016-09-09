@@ -111,7 +111,7 @@ namespace splashkit_lib
      * @brief Frees all loaded fonts.
      *
      * @attribute class     font
-     * @attribute static    Text
+     * @attribute static    text
      * @attribute method    free_all
      */
     void free_all_fonts();
@@ -125,7 +125,6 @@ namespace splashkit_lib
      * @attribute class     font
      * @attribute method    load_size
      * @attribute self      fnt
-     * @attribute setter    true
      */
     void font_load_size(font fnt, int font_size);
 
@@ -313,6 +312,9 @@ namespace splashkit_lib
      * @param fnt           The font used for the text.
      * @param font_size     The size of the font used for the text.
      *
+     * @attribute static    text
+     * @attribute method    length
+     *
      * @returns Returns the length of the text as an integer.
      */
     int text_length(const string &text, font fnt, int font_size);
@@ -324,6 +326,8 @@ namespace splashkit_lib
      * @param fnt           The font used for the text.
      * @param font_size     The size of the font used for the text.
      *
+     * @attribute static    text
+     * @attribute method    length
      * @attribute suffix    font_as_string
      *
      * @returns Returns the length of the text as an integer.
