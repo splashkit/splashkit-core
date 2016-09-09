@@ -110,7 +110,6 @@ namespace splashkit_lib
     /**
      * @brief Frees all loaded fonts.
      *
-     * @attribute class     font
      * @attribute static    text
      * @attribute method    free_all
      */
