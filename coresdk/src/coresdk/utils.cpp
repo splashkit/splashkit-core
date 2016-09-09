@@ -42,3 +42,4 @@ namespace splashkit_lib
         return sk_get_ticks();
     }
 }
+
