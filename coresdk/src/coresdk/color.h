@@ -741,47 +741,81 @@ using namespace std;
 
 namespace splashkit_lib
 {
-    /// Creates and returns a random color where the color and its opacity are random.
-    ///
+    /**
+     * Creates and returns a random color where the color and its opacity are
+     * random.
+     *
+     * @return A random color
+     */
     color random_color();
 
-    /// Creates and returns a random color where the color is random, but the opacity is set
-    /// to the passed in value.
-    ///
-    /// @param alpha: the opacity of the random color
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Creates and returns a random color where the color is random, but the
+     * opacity is set to the passed in value.
+     *
+     * @param  alpha The set alpha (opacity) value
+     * @return       A random color with the set alpha
+     */
     color random_rgb_color(byte alpha);
 
-    /// Gets a color given its color components. Each of the components has
-    /// a value between 0 and 255.
-    ///
+    /**
+     * Gets a color given its color components. Each of the components has
+     * a value between 0 and 255.
+     *
+     * @param  red   The red component
+     * @param  green The green component
+     * @param  blue  The blue component
+     * @param  alpha The alpha (opacity) component
+     * @return       The color from its different component
+     */
     color rgba_color(byte red, byte green, byte blue, byte alpha);
 
     /**
      *  Gets a color given its color components. Each of the components has
      *  a value between 0 and 1.0.
+     *
+     * @param  red   The red component
+     * @param  green The green component
+     * @param  blue  The blue component
+     * @param  alpha The alpha (opacity) component
+     * @return       The color from its different component
+     *
+     * @attribute suffix from_float
      */
     color rgba_color(float red, float green, float blue, float alpha);
 
-    /// Gets a color given its RGB components. Each of the components has
-    /// a value between 0 and 255.
-    ///
+    /**
+     * Gets a color given its RGB components. Each of the components has
+     * a value between 0 and 255.
+     *
+     * @param  red   The red component
+     * @param  green The green component
+     * @param  blue  The blue component
+     * @return       The color from its different component
+     */
     color rgb_color(byte red, byte green, byte blue);
 
-    /// Gets a color given its RGB components. Each of the components has
-    /// a value between 0 and 1.
-    ///
+    /**
+     * Gets a color given its RGB components. Each of the components has
+     * a value between 0 and 1.
+     *
+     * @param  red   The red component
+     * @param  green The green component
+     * @param  blue  The blue component
+     * @return       The color from its different component
+     *
+     * @attribute suffix from_float
+     */
     color rgb_color(float red, float green, float blue);
 
-
-    /// Returs a color from a combination of hue, saturation, and brightness.
-    ///
-    /// @param hue, saturation, brightness: Values between 0 and 1
-    /// @return The matching color.
-    ///
+    /**
+     * Returs a color from a combination of hue, saturation, and brightness.
+     *
+     * @param  hue        The hue of the color
+     * @param  saturation The saturation of that hue
+     * @param  brightness The brightness of the color
+     * @return            The color from its hue, saturation and brightness.
+     */
     color hsb_color(float hue, float saturation, float brightness);
 
     /**
@@ -789,6 +823,9 @@ namespace splashkit_lib
      *  Format will be a hex string starting with a #,
      *  followed by the red, green, blue, and alpha
      *  values of the color.
+     *
+     * @param  c The color
+     * @return   A hex string representing the color
      */
     string color_to_string(color c);
 
@@ -797,61 +834,66 @@ namespace splashkit_lib
      *  The format must be #, followed by the hex values
      *  for the red, green, blue, and alpha components
      *  of the color.
+     *
+     * @param  str The hex string representing the color
+     * @return     The color represented in the string
      */
     color string_to_color(string str);
 
-    /// Get the transpareny value of the color.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
-    byte transparency_of(color c);
-
     /**
      * Returns the alpha of the supplied color.
+     *
+     * @param  c The color
+     * @return   The alpha component of the color
      */
     byte alpha_of(color c);
 
-    /// Get the red value of ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the red of the supplied color.
+     *
+     * @param  c The color
+     * @return   The red component of the color
+     */
     byte red_of(color c);
 
-    /// Get the green value of ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the green of the supplied color.
+     *
+     * @param  c The color
+     * @return   The green component of the color
+     */
     byte green_of(color c);
 
-    /// Get the blue value of ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the blue of the supplied color.
+     *
+     * @param  c The color
+     * @return   The blue component of the color
+     */
     byte blue_of(color c);
 
-    /// Get the hue of the ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the hue of the supplied color.
+     *
+     * @param  c The color
+     * @return   The hue component of the color
+     */
     float hue_of(color c);
 
-    /// Get the saturation of the ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the saturation of the supplied color.
+     *
+     * @param  c The color
+     * @return   The saturation component of the color
+     */
     float saturation_of(color c);
 
-    /// Get the brightness of the ``color``.
-    ///
-    /// @lib
-    ///
-    /// @doc_group colors
+    /**
+     * Returns the brightness of the supplied color.
+     *
+     * @param  c The color
+     * @return   The brightness component of the color
+     */
     float brightness_of(color c);
 
     /**
@@ -1711,13 +1753,13 @@ namespace splashkit_lib
      * @return A new `color` set to `white_smoke`.
      */
     color color_white_smoke();
-    
+
     /**
      * Generates a new `color` associated to the color `yellow`.
      * @return A new `color` set to `yellow`.
      */
     color color_yellow();
-    
+
     /**
      * Generates a new `color` associated to the color `yellow_green`.
      * @return A new `color` set to `yellow_green`.

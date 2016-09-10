@@ -1,3 +1,12 @@
+/**
+ * @header  resources
+ * @author  Andrew Cain
+ * @brief   SplashKit resource functions allow you to locate resources in a
+ *          project's Resources folder.
+ *
+ * @attribute static resources
+ */
+
 //
 //  resources.hpp
 //  splashkit
@@ -15,29 +24,87 @@ using namespace std;
 namespace splashkit_lib
 {
     /**
+     * SplashKit is able to manage a number of different kinds of resources
+     * for you.
      *
+     * @constant ANIMATION_RESOURCE Animation scripts are loaded as Animation
+     *                              resources. These are located in the projects
+     *                              Resources/animations folder.
+     * @constant BUNDLE_RESOURCE    Resource bundles contain lists of other
+     *                              resources. These are located in the projects
+     *                              Resources/bundles folder.
+     * @constant DATABASE_RESOURCE  Database resources are located in the
+     *                              Resources/databases folder.
+     * @constant FONT_RESOURCE      Fonts resources are located in the
+     *                              Resources/fonts folder.
+     * @constant IMAGE_RESOURCE     Image resources are located in the
+     *                              Resources/images folder.
+     * @constant JSON_RESOURCE      Json resources are located in the projects
+     *                              Resources/json folder.
+     * @constant MUSIC_RESOURCE     Music resources can be played as music, and
+     *                              live in the program's Resources/sounds
+     *                              folder.
+     * @constant SOUND_RESOURCE     Sound resources can be played as sound
+     *                              effects, and live in the program's
+     *                              Resources/sounds folder.
+     * @constant TIMER_RESOURCE     Timer resources are not saved to file, but
+     *                              can be created by SplashkKit resource
+     *                              bundles.
+     * @constant OTHER_RESOURCE     Other resources can be loaded, these will be
+     *                              located directly in these project's
+     *                              Resources folder.
      */
     enum resource_kind
     {
-        SOUND_RESOURCE,
-        MUSIC_RESOURCE,
         ANIMATION_RESOURCE,
         BUNDLE_RESOURCE,
         DATABASE_RESOURCE,
-        IMAGE_RESOURCE,
         FONT_RESOURCE,
-        TIMER_RESOURCE,
+        IMAGE_RESOURCE,
         JSON_RESOURCE,
         SERVER_RESOURCE,
+        MUSIC_RESOURCE,
+        SOUND_RESOURCE,
+        TIMER_RESOURCE,
         OTHER_RESOURCE
     };
 
-    void set_resources_path(string path);
+    /**
+     * Sets the path to the SplashKit resources folder. Resource paths are then
+     * located within this folder.
+     *
+     * @param path The file path to the SplashKit Resources folder.
+     */
+    void set_resources_path(const string &path);
+
+    /**
+     * Returns the path to the resources folder for the SplashKit program. This
+     * will be auto detected at startup, but can be changed using
+     * `set_resources_path`.
+     *
+     * @return Path to SplashKit Resources folder.
+     */
     string path_to_resources();
 
+    /**
+     * Returns the path to the folder containing a given resource kind. This is
+     * the path SplashkKit will search when you load a resource.
+     *
+     * @param  kind The type of resource you want the path for.
+     * @return      The path to the folder containing this kind of resource.
+     *
+     * @attribute suffix for_kind
+     */
     string path_to_resources(resource_kind kind);
 
-    string path_to_resource(const string filename, resource_kind kind);
-    
+    /**
+     * Gets the path to a give file of a certain resource kind.
+     *
+     * @param  filename The name of the file of the resource kind.
+     * @param  kind     The kind of resource you are loading.
+     * @return          The full path to the resource.
+     */
+    string path_to_resource(const string &filename, resource_kind kind);
+
 }
 #endif /* resources_hpp */

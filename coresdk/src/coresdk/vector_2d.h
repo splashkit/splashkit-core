@@ -159,5 +159,11 @@ namespace splashkit_lib
      *  given that the circle is moving at the specified velocity.
      */
     vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect, const vector_2d &velocity);
+    
+    /**
+     * Casts a ray in a heading and returns TRUE is it intersects with a line  
+     */
+    bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt);
 }
+
 #endif /* vector_2d_h */

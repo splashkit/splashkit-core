@@ -272,4 +272,9 @@ namespace splashkit_lib
     {
         return text_length(text, font_named(fnt), font_size);
     }
+    
+    int text_length(const string &text, string fnt, int font_size)
+    {
+        return text_length(text, font_named(fnt), font_size);
+    }
 }

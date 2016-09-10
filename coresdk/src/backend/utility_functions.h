@@ -25,9 +25,6 @@ namespace splashkit_lib
     // and its square
 #define EPSEPS 0.0001
 
-    [[deprecated]]
-    void raise_warning(string message);
-
     bool file_exists(string path);
 
     bool directory_exists(string path);

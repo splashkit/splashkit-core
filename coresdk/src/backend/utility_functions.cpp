@@ -86,26 +86,6 @@ namespace splashkit_lib
 #endif
     }
 
-    /**
-     * << DEPRECATED >>
-     *
-     * Instead use easylogging++ method of logging.
-     *
-     * NEW METHOD USAGE:
-     *      Include <easylogging++.h> and use:
-     *
-     *      LOG(LOG_LEVEL) << "Some data" << some_variable;
-     *
-     *      Valid LOG_LEVEL's can be found at
-     *      https://github.com/easylogging/easyloggingpp#level
-     *
-     * @param message Details of warning.
-     */
-    void raise_warning( string message )
-    {
-        LOG(WARNING) << message;
-    }
-
     string cat(std::initializer_list<string> list)
     {
         string result("");
