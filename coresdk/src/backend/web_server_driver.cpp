@@ -46,6 +46,15 @@ namespace splashkit_lib
         r->uri = request_info->request_uri;
         r->method = request_info->request_method;
 
+        if (r->method == "POST" || r->method == "PUT")
+        {
+            char post_data[10240];
+            int post_data_len;
+            post_data_len = mg_read(conn, post_data, sizeof(post_data));
+
+            r->body = string(post_data);
+        }
+
         servers.at(port)->request_queue.put(r); // Add request to concurrent queue
         r->control.acquire(); // Waits until user returns response.
 
@@ -123,6 +132,8 @@ namespace splashkit_lib
     sk_web_server* sk_start_web_server(string port)
     {
         internal_sk_init();
+
+        LOG(DEBUG) << "Starting a web server on port " << port;
 
         if (servers.find(port) != servers.end())
         {

@@ -127,6 +127,16 @@ namespace splashkit_lib
     void send_response(server_request r, string message);
 
     /**
+     * Serves a HTML file to the given `server_request`.
+     *
+     * @param r        The request to be sent.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class server_response
+     */
+    void send_html_file_response(server_request r, string filename);
+
+    /**
      * Returns the server URI of the client request.
      *
      * @param r A request object.
