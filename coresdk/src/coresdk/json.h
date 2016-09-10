@@ -154,6 +154,19 @@ namespace splashkit_lib
     void json_add_string(json j, string key, string value);
 
     /**
+     * Adds a `float` value to the `json` object for the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_number
+     * @attribute self j
+     */
+    void json_add_number(json j, string key, float value);
+
+    /**
      * Adds a `double` value to the `json` object for the given `string` key.
      *
      * @param j The `json` object where data will be inserted for the given key.
@@ -165,6 +178,19 @@ namespace splashkit_lib
      * @attribute self j
      */
     void json_add_number(json j, string key, double value);
+
+    /**
+     * Adds an `int` value to the `json` object for the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_number
+     * @attribute self j
+     */
+    void json_add_number(json j, string key, int value);
 
     /**
      * Adds a `bool` value to the `json` object for the given `string` key.
@@ -253,6 +279,34 @@ namespace splashkit_lib
     void json_add_array(json j, string key, vector<json> value);
 
     /**
+     * Reads a `float` value from the `json` object for the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     *
+     * @returns Returns the `float` value stored at the `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_number
+     * @attribute self j
+     */
+    float json_read_number(json j, string key);
+
+    /**
+     * Reads a `integer` value from the `json` object for the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     *
+     * @returns Returns the `integer` value stored at the `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_number
+     * @attribute self j
+     */
+    int json_read_number_as_int(json j, string key);
+
+    /**
      * Reads a `double` value from the `json` object for the given `string` key.
      *
      * @param j The `json` object from which data will be returned for the given key.
@@ -264,7 +318,7 @@ namespace splashkit_lib
      * @attribute method read_number
      * @attribute self j
      */
-    double json_read_number(json j, string key);
+    double json_read_number_as_double(json j, string key);
 
     /**
      * Reads a `string` value from the `json` object for the given `string` key.
