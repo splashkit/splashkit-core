@@ -30,7 +30,15 @@ namespace splashkit_lib
     json create_json(string json_string)
     {
         json j = create_json();
-        j->data = backend_json::parse(json_string);
+        try
+        {
+            j->data = backend_json::parse(json_string);
+        }
+        catch(...)
+        {
+            LOG(ERROR) << "Invalid JSON string passed to create_json\n" << json_string;
+        }
+
         return j;
     }
 
@@ -218,5 +226,10 @@ namespace splashkit_lib
     bool json_has_key(json j, string key)
     {
         return j->data.count(key) > 0;
+    }
+
+    int json_count_keys(json j)
+    {
+        return static_cast<int>(j->data.size());
     }
 }
