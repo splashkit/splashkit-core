@@ -120,7 +120,17 @@ namespace splashkit_lib
         sk_json_add_value(j, key, value);
     };
 
+    void json_add_number(json j, string key, float value)
+    {
+        sk_json_add_value(j, key, value);
+    }
+
     void json_add_number(json j, string key, double value)
+    {
+        sk_json_add_value(j, key, value);
+    }
+
+    void json_add_number(json j, string key, int value)
     {
         sk_json_add_value(j, key, value);
     }
@@ -174,7 +184,17 @@ namespace splashkit_lib
         return sk_json_read_value<string>(j, key, backend_json::value_t::string);
     }
 
-    double json_read_number(json j, string key)
+    float json_read_number(json j, string key)
+    {
+        return sk_json_read_value<float>(j, key, backend_json::value_t::number_float);
+    }
+
+    int json_read_number_as_int(json j, string key)
+    {
+        return sk_json_read_value<int>(j, key, backend_json::value_t::number_integer);
+    }
+
+    double json_read_number_as_double(json j, string key)
     {
         return sk_json_read_value<double>(j, key, backend_json::value_t::number_float);
     }
