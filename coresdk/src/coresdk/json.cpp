@@ -10,13 +10,11 @@
 #include "json.h"
 #include "json_driver.h"
 #include "resources.h"
-#include "utility_functions.h"
 #include "core_driver.h"
+#include "utils.h"
 
-#include <fstream>
 namespace splashkit_lib
 {
-
     static vector<json> objects;
 
     json create_json() {
@@ -81,15 +79,7 @@ namespace splashkit_lib
 
     json json_from_file(const string &filename)
     {
-        string path = path_to_resource(filename, JSON_RESOURCE);
-
-        ifstream ifs(path);
-        std::string line;
-        std::string result = "";
-        while(getline(ifs, line))
-        {
-            result += line;
-        }
+        string result = file_as_string(filename, JSON_RESOURCE);
 
         return json_from_string(result);
     };
