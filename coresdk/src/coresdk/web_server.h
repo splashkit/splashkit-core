@@ -12,8 +12,10 @@
 #include "types.h"
 
 #include <string>
+#include <vector>
 
 using namespace std;
+
 namespace splashkit_lib
 {
     /**
@@ -125,12 +127,44 @@ namespace splashkit_lib
     void send_response(server_request r, string message);
 
     /**
-     * Requests a URI from the web server.
+     * Serves a HTML file to the given `server_request`.
      *
-     * @param r The request to be sent.
+     * @param r        The request to be sent.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class server_response
+     */
+    void send_html_file_response(server_request r, string filename);
+
+    /**
+     * Returns the server URI of the client request.
+     *
+     * @param r A request object.
      *
      * @returns Returns the requested URI in the form of a string.
      */
     string request_get_uri(server_request r);
+
+    /**
+     * Returns the HTTP method of the client request.
+     *
+     * @param r A request object.
+     *
+     * @returns Returns the request method as a string.
+     */
+    string request_get_method(server_request r);
+
+    /**
+     * Returns an array of strings representing each stub of the URI.
+     *
+     * For example a request sent to http://localhost:8080/names/0 returns...
+     *
+     *      ["names", "0"]
+     *
+     * @param uri The URI to split into stubs.
+     *
+     * @return The array of stubs as strings.
+     */
+    vector<string> split_uri_stubs(const string &uri);
 }
 #endif /* web_server_h_ */

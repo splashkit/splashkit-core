@@ -62,6 +62,7 @@ namespace splashkit_lib
         FONT_RESOURCE,
         IMAGE_RESOURCE,
         JSON_RESOURCE,
+        SERVER_RESOURCE,
         MUSIC_RESOURCE,
         SOUND_RESOURCE,
         TIMER_RESOURCE,

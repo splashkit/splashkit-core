@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>SplashKit Test Form</title>
+</head>
+<body>
+  <form>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="name" />
+    <label for="age">Age</label>
+    <input type="text" id="age" placeholder="age" />
+    <label for="add">Address</label>
+    <input type="text" id="add" placeholder="address" />
+    <button type="button" id="sub">Submit</button>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script>
+    $("#sub").click(function() {
+        var data = '{ "name": "' + $("#name").val() + '", "age": ' + $("#age").val() + ', "address": "' + $("#add").val() + '" }';
+      $.post("http://localhost:8080/names", data,
+      function(data, textStatus) {
+        alert("Response: " + data);
+      });
+    });
+  </script>
+</body>
+</html>

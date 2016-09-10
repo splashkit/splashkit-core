@@ -1,4 +1,3 @@
-
 //
 //  utils.cpp
 //  splashkit
@@ -10,7 +9,14 @@
 #include "utils.h"
 #include "input.h"
 #include "utils_driver.h"
+#include "resources.h"
+
 #include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
 namespace splashkit_lib
 {
 
@@ -41,5 +47,19 @@ namespace splashkit_lib
     {
         return sk_get_ticks();
     }
-}
 
+    string file_as_string(string filename, resource_kind kind)
+    {
+        string path = path_to_resource(filename, kind);
+
+        ifstream ifs(path);
+        std::string line;
+        std::string result = "";
+        while(getline(ifs, line))
+        {
+            result += line;
+        }
+
+        return result;
+    }
+}

@@ -28,5 +28,6 @@ void run_camera_test();
 void run_json_test();
 void test_cave_escape();
 void run_networking_test();
+void run_restful_web_service();
 
 #endif /* test_main_h */

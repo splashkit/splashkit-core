@@ -96,6 +96,8 @@ void test_has_key(json person)
     test(true, json_has_key(person, "addresses"));
     json addresses = json_read_object(person, "addresses");
     test(true, json_has_key(addresses, "postalCode"));
+
+    LOG(DEBUG) << "Key count: " << json_count_keys(person);
 }
 
 void run_json_test()

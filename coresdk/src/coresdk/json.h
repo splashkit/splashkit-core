@@ -381,5 +381,18 @@ namespace splashkit_lib
      * @attribute self j
      */
     bool json_has_key(json j, string key);
+
+    /**
+     * Returns the count of keys in the top-level `json` object.
+     *
+     * @param j The `json` object to count keys.
+     *
+     * @returns The count of keys in the top-level `json` object.
+     *
+     * @attribute class json
+     * @attribute method count_keys
+     * @attribute self j
+     */
+    int json_count_keys(json j);
 }
 #endif //SPLASHKIT_JSON_CPP

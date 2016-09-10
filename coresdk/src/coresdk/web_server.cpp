@@ -9,11 +9,12 @@
 #include "utility_functions.h"
 #include "web_server.h"
 #include "web_server_driver.h"
+#include "utils.h"
+
 namespace splashkit_lib
 {
     web_server start_web_server(string port)
     {
-        LOG(DEBUG) << "Starting a web server on port " << port;
         return sk_start_web_server(port);
     }
 
@@ -90,6 +91,23 @@ namespace splashkit_lib
         delete resp;
     }
 
+    void send_html_file_response(server_request r, string filename)
+    {
+        string extension = ".html";
+        if (filename.size() > extension.size() &&
+                filename.compare(filename.size() - extension.size(), extension.size(), extension) == 0)
+        {
+            string file = file_as_string(filename, SERVER_RESOURCE);
+
+            send_response(r, file, "text/html");
+        }
+        else
+        {
+            LOG(WARNING) << "send_html_file_response passed invalid html at " << filename;
+            send_response(r, cat({"Invalid HTML file at ", path_to_resource(filename, SERVER_RESOURCE)}));
+        }
+    }
+
     string request_get_uri(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
@@ -99,5 +117,36 @@ namespace splashkit_lib
         }
         
         return r->uri;
+    }
+
+    string request_get_method(server_request r)
+    {
+        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        {
+            LOG(WARNING) << "request_get_method called on an invalid request";
+            return "";
+        }
+
+        return r->method;
+    }
+
+    vector<string> split_uri_stubs(const string &uri)
+    {
+        stringstream ss(uri);
+        string stub;
+        vector<string> result;
+
+        while (getline(ss, stub, '/'))
+        {
+            result.push_back(stub);
+        }
+
+        // Remove "/" from the list of stubs if stubs > 1
+        if (result.size() > 1)
+        {
+            result.erase(result.begin());
+        }
+
+        return result;
     }
 }
