@@ -25,7 +25,7 @@
 using namespace std;
 namespace splashkit_lib
 {
-    timer _sprite_timer;
+    timer _sprite_timer = nullptr;
     vector<sprite_event_handler *> _global_sprite_event_handlers;
 
     map<string, sprite> _sprites;
@@ -218,7 +218,7 @@ namespace splashkit_lib
         result->moving_vec = vector_to(0,0);
         result->arrive_in_sec = 0;
 
-        if (!has_timer(_sprite_timer))
+        if ( _sprite_timer == nullptr )
         {
             _sprite_timer = create_timer("*SK* SpriteTimer");
             start_timer(_sprite_timer);
