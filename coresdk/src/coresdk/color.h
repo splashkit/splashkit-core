@@ -779,6 +779,8 @@ namespace splashkit_lib
      * @param  blue  The blue component
      * @param  alpha The alpha (opacity) component
      * @return       The color from its different component
+     *
+     * @attribute suffix from_float
      */
     color rgba_color(float red, float green, float blue, float alpha);
 
@@ -801,6 +803,8 @@ namespace splashkit_lib
      * @param  green The green component
      * @param  blue  The blue component
      * @return       The color from its different component
+     *
+     * @attribute suffix from_float
      */
     color rgb_color(float red, float green, float blue);
 
