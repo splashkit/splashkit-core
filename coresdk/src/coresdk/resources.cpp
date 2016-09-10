@@ -161,6 +161,7 @@ namespace splashkit_lib
             case FONT_RESOURCE:         return path_from({ path, "fonts" });
             case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
             case JSON_RESOURCE:         return path_from({ path, "json" });
+            case SERVER_RESOURCE:       return path_from({ path, "server" });
             case OTHER_RESOURCE:        return path;
             default:
                 LOG(WARNING) << "Attempting to get path to unknown resource kind.";

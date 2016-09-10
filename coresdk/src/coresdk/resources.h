@@ -28,6 +28,7 @@ namespace splashkit_lib
         FONT_RESOURCE,
         TIMER_RESOURCE,
         JSON_RESOURCE,
+        SERVER_RESOURCE,
         OTHER_RESOURCE
     };
 
