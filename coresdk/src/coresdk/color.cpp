@@ -205,11 +205,6 @@ namespace splashkit_lib
         return rgba_color(r, g, b, a);
     }
 
-    byte transparency_of(color c)
-    {
-        return static_cast<byte>(255 * c.a);
-    }
-
     byte alpha_of(color c)
     {
         return static_cast<byte>(255 * c.a);
