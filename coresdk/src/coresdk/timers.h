@@ -71,6 +71,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the timer
      * @return      True if SplashKit has created a timer with that name.
+     *
+     * @attribute suffic _named
      */
     bool has_timer(string name);
 
@@ -92,6 +94,8 @@ namespace splashkit_lib
      * `timer_ticks` function.
      *
      * @param name The name of the timer
+     *
+     * @attribute suffic _named
      */
     void start_timer(string name);
 
@@ -111,6 +115,8 @@ namespace splashkit_lib
      * recall start to begin the timer ticking again.
      *
      * @param name The name of the timer
+     *
+     * @attribute suffic _named
      */
     void stop_timer(string name);
 
@@ -130,6 +136,8 @@ namespace splashkit_lib
      * will continue to return the same time.
      *
      * @param name The name of the timer
+     *
+     * @attribute suffic _named
      */
     void pause_timer(string name);
 
@@ -147,6 +155,8 @@ namespace splashkit_lib
      * Resumes the named timer.
      *
      * @param name The name of the timer
+     *
+     * @attribute suffic _named
      */
     void resume_timer(string name);
 
@@ -164,6 +174,8 @@ namespace splashkit_lib
      * Resets the named timer
      *
      * @param name The name of the timer
+     *
+     * @attribute suffic _named
      */
     void reset_timer(string name);
 
@@ -191,6 +203,8 @@ namespace splashkit_lib
      * @return      The number of milliseconds that have passed since the
      *              timer was created (excluding the time the timer was
      *              paused)
+     *
+     * @attribute suffic _named
      */
     unsigned int timer_ticks(string name);
 
@@ -210,6 +224,8 @@ namespace splashkit_lib
      *
      * @param  name   The name of the timer
      * @return        True if the timer is paused
+     *
+     * @attribute suffic _named
      */
     bool timer_paused(string name);
 
@@ -229,6 +245,8 @@ namespace splashkit_lib
      *
      * @param  name   The name of the timer
      * @return        True if the timer has been started
+     *
+     * @attribute suffic _named
      */
     bool timer_started(string name);
 }
