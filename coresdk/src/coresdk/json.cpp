@@ -252,4 +252,30 @@ namespace splashkit_lib
     {
         return static_cast<int>(j->data.size());
     }
+
+    json json_from_color(color clr)
+    {
+        json result = create_json();
+        json_add_number(result, "r", clr.r);
+        json_add_number(result, "g", clr.g);
+        json_add_number(result, "b", clr.b);
+        json_add_number(result, "a", clr.a);
+        return result;
+    }
+
+    color json_to_color(json j)
+    {
+        if (INVALID_PTR(j, JSON_PTR))
+        {
+            LOG(ERROR) << "Invalid json object passed to json_to_color";
+            return nullptr;
+        }
+
+        color clr;
+        clr.r = json_read_number(j, "r");
+        clr.g = json_read_number(j, "g");
+        clr.b = json_read_number(j, "b");
+        clr.a = json_read_number(j, "a");
+        return clr;
+    }
 }
