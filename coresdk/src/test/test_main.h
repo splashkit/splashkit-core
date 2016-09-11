@@ -29,5 +29,6 @@ void run_json_test();
 void test_cave_escape();
 void run_networking_test();
 void run_restful_web_service();
+void test_run_game();
 
 #endif /* test_main_h */

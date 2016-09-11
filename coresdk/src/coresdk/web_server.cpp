@@ -91,6 +91,11 @@ namespace splashkit_lib
         delete resp;
     }
 
+    void send_response(server_request r, json j)
+    {
+        send_response(r, json_to_string(j), "application/json");
+    }
+
     void send_html_file_response(server_request r, string filename)
     {
         string extension = ".html";

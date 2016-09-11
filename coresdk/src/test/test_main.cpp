@@ -49,6 +49,7 @@ void setup_tests()
     add_test("Networking", run_networking_test);
     add_test("Web Server", run_web_server_tests);
     add_test("RESTful Web Service", run_restful_web_service);
+    add_test("Game", test_run_game);
 }
 
 int main()

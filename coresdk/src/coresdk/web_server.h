@@ -10,6 +10,7 @@
 #define web_server_h_
 
 #include "types.h"
+#include "json.h"
 
 #include <string>
 #include <vector>
@@ -125,6 +126,16 @@ namespace splashkit_lib
      * @attribute class server_response
      */
     void send_response(server_request r, string message);
+
+    /**
+     * Send a JSON response to a given `server_request`
+     *
+     * @param r The request the response belongs to.
+     * @param j The json to be sent.
+     *
+     * @attribute class server_response
+     */
+    void send_response(server_request r, json j);
 
     /**
      * Serves a HTML file to the given `server_request`.
