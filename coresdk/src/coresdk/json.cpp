@@ -245,11 +245,23 @@ namespace splashkit_lib
     
     bool json_has_key(json j, string key)
     {
+        if (INVALID_PTR(j, JSON_PTR))
+        {
+            LOG(ERROR) << "Invalid json object passed to json_has_key";
+            return false;
+        }
+
         return j->data.count(key) > 0;
     }
 
     int json_count_keys(json j)
     {
+        if (INVALID_PTR(j, JSON_PTR))
+        {
+            LOG(ERROR) << "Invalid json object passed to json_count_keys";
+            return 0;
+        }
+
         return static_cast<int>(j->data.size());
     }
 
