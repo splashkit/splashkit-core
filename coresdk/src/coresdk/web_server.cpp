@@ -135,6 +135,17 @@ namespace splashkit_lib
         return r->method;
     }
 
+    string request_get_body(server_request r)
+    {
+        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        {
+            LOG(WARNING) << "request_get_body called on an invalid request";
+            return "";
+        }
+
+        return r->body;
+    }
+
     vector<string> request_get_uri_stubs(server_request r)
     {
         string uri = request_get_uri(r);

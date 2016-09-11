@@ -166,6 +166,15 @@ namespace splashkit_lib
     string request_get_method(server_request r);
 
     /**
+     * Returns the body of the request.
+     *
+     * @param r A request object.
+     *
+     * @returns The body of the request.
+     */
+    string request_get_body(server_request r);
+
+    /**
      * Returns an array of strings representing each stub of the URI.
      *
      * For example a request sent to http://localhost:8080/names/0 returns...
