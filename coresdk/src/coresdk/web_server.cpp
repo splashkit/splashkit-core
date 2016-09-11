@@ -130,6 +130,12 @@ namespace splashkit_lib
         return r->method;
     }
 
+    vector<string> request_get_uri_stubs(server_request r)
+    {
+        string uri = request_get_uri(r);
+        return split_uri_stubs(uri);
+    }
+
     vector<string> split_uri_stubs(const string &uri)
     {
         stringstream ss(uri);

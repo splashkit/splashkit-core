@@ -161,6 +161,19 @@ namespace splashkit_lib
      *
      *      ["names", "0"]
      *
+     * @param r The request for retrieving URI to split into stubs.
+     *
+     * @return The array of stubs as strings.
+     */
+    vector<string> request_get_uri_stubs(server_request r);
+
+    /**
+     * Returns an array of strings representing each stub of the URI.
+     *
+     * For example a request sent to http://localhost:8080/names/0 returns...
+     *
+     *      ["names", "0"]
+     *
      * @param uri The URI to split into stubs.
      *
      * @return The array of stubs as strings.
