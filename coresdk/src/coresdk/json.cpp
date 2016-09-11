@@ -280,7 +280,7 @@ namespace splashkit_lib
         if (INVALID_PTR(j, JSON_PTR))
         {
             LOG(ERROR) << "Invalid json object passed to json_to_color";
-            return nullptr;
+            return COLOR_WHITE;
         }
 
         color clr;
