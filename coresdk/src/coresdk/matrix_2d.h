@@ -91,7 +91,7 @@ namespace splashkit_lib
     matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate);
 
     /**
-     *  Multiplies the two `matrix_2d` parameters, ``m1`` by ``m2``, and returns
+     *  Multiplies the two `matrix_2d` parameters, `m1` by `m2`, and returns
      *  the result as a new `matrix_2d`. Use this to combine the effects to two
      *  matrix transformations.
      *
@@ -103,7 +103,7 @@ namespace splashkit_lib
 
 
     /**
-     *  Multiplies the `Vector` parameter ``v`` with the `matrix_2d` ``m`` and
+     *  Multiplies the `Vector` parameter `v` with the `matrix_2d` `m` and
      *  returns the result as a `Vector`. Use this to transform the vector with
      *  the matrix (to apply scaling, rotation or translation effects).
      *

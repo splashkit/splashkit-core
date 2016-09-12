@@ -30,7 +30,7 @@ namespace splashkit_lib
     void process_events();
 
     /// Checks to see if the user has asked for the application to quit. This value
-    /// is updated by the `ProcessEvents` routine.
+    /// is updated by the `process_events` routine.
     ///
     /// @returns: True if the application has been requested to close.
     ///

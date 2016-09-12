@@ -18,10 +18,10 @@
 using namespace std;
 namespace splashkit_lib
 {
-    /// Loads and returns a bitmap. The supplied ``filename`` is used to
-    /// locate the Bitmap to load. The supplied ``name`` indicates the
+    /// Loads and returns a bitmap. The supplied `filename` is used to
+    /// locate the Bitmap to load. The supplied `name` indicates the
     /// name to use to refer to this Bitmap in SwinGame. The `Bitmap` can then be
-    /// retrieved by passing this ``name`` to the `BitmapNamed` function.
+    /// retrieved by passing this `name` to the `BitmapNamed` function.
     ///
     /// @lib
     /// @sn loadBitmapNamed:%s fromFile:%s
@@ -49,7 +49,7 @@ namespace splashkit_lib
     bitmap bitmap_named(string name);
 
     /// Releases the SwinGame resources associated with the bitmap of the
-    /// specified ``name``.
+    /// specified `name`.
     ///
     void free_bitmap(bitmap to_delete);
 
