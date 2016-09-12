@@ -166,6 +166,8 @@ namespace splashkit_lib
      *  The `key_callback` is a function pointer used to register your code with SplashKit
      *  or keyboard related events. See `register_callback_on_key_down`,
      *  `register_callback_on_key_up`, and `register_callback_on_key_typed`
+     *
+     * @param  code The key related to the event.
      */
     typedef void (key_callback)(key_code code);
 
@@ -173,6 +175,9 @@ namespace splashkit_lib
      *  Returns true when the key requested is being held down. This is updated
      *  as part of the `process_events` call. Use the key codes from `key_code`
      *  to specify the key to be checked.
+     *
+     * @param  key The key to check if it is down
+     * @returns     True if the key is currently held down
      */
     bool key_down(key_code key);
 
@@ -181,6 +186,9 @@ namespace splashkit_lib
      *  as part of the `process_events` call. Use the key codes from `key_code`
      *  to specify the key to be checked. this will only occur once for that key that is
      *  pressed and will not return true again until the key is released and presssed down again
+     *
+     * @param  key The key to check if it was typed
+     * @returns     True if the key was just pressed down
      */
     bool key_typed(key_code key);
 
@@ -189,12 +197,17 @@ namespace splashkit_lib
      *  `process_events` was called. This occurs only once for the key that is
      *  released and will not return true again until the key is pressed down and
      *  released again.
+     *
+     * @param  key The key to check if it was released
+     * @returns     True if the key was just released
      */
     bool key_released(key_code key);
 
     /**
      *  Checks to see if any key has been pressed since the last time
      *  `process_events` was called.
+     *
+     * @returns True if any key was pressed.
      */
     bool any_key_pressed();
 
@@ -202,6 +215,9 @@ namespace splashkit_lib
      *  The `key_name` function returns a string name for a given `key_code`. For
      *  example, `COMMA_KEY` returns the string 'Comma'. This function could be used
      *  to display more meaningful key names for configuring game controls, etc.
+     *
+     * @param  key The key to get the name of
+     * @returns     The name of the key
      */
     string key_name(key_code key);
 
@@ -209,6 +225,9 @@ namespace splashkit_lib
      *  Returns false when the key requested is being held down. This is updated
      *  as part of the `process_events` call. Use the key codes from `key_code`
      *  to specify the key to be checked.
+     *
+     * @param  key The key to check if it is up
+     * @returns     True if the key is currently up
      */
     bool key_up(key_code key);
 
@@ -216,6 +235,8 @@ namespace splashkit_lib
      *  Register the passed in callback function to receive notification of key down
      *  calls. This will be called in response to `process_events`, for each key that
      *  the user presses down.
+     *
+     * @param callback The function to be called when a key is first pressed
      */
     void register_callback_on_key_down(key_callback *callback);
 
@@ -223,30 +244,40 @@ namespace splashkit_lib
      *  Register the passed in callback function to receive notification of key up
      *  calls. This will be called in response to `process_events`, for each key that
      *  the user releases.
+     *
+     * @param callback The function to be called when a key is released
      */
     void register_callback_on_key_up(key_callback *callback);
-    
+
     /**
      *  Register the passed in callback function to receive notification of key typed
      *  calls. This will be called in response to `process_events`, when the user initially
      *  presses a key down.
+     *
+     * @param callback The function to be called when a key is typed
      */
     void register_callback_on_key_typed(key_callback *callback);
-    
+
     /**
      *  Remove the registered callback from receiving events related to key down actions.
+     *
+     * @param callback The function to from from key down events
      */
     void deregister_callback_on_key_down(key_callback *callback);
-    
+
     /**
      *  Remove the registered callback from receiving events related to key up actions.
+     *
+     * @param callback The function to from from key up events
      */
     void deregister_callback_on_key_up(key_callback *callback);
-    
+
     /**
      *  Remove the registered callback from receiving events related to key typed actions.
+     *
+     * @param callback The function to from from key typed events
      */
     void deregister_callback_on_key_typed(key_callback *callback);
-    
+
 }
 #endif /* keyboard_input_hpp */
