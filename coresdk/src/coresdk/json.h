@@ -362,64 +362,64 @@ namespace splashkit_lib
      */
     json json_read_object(json j, string key);
 
-    // /**
-    //  * Reads an array of `double` values from the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object from which data will be returned for the given key.
-    //  * @param key The `string` key used to find data in the `json` object.
-    //  * @param out The array which will be filled with the data stored for `string` key.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method read_array
-    //  * @attribute suffix of_double
-    //  * @attribute self j
-    //  */
+    /**
+     * Reads an array of `double` values from the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     * @param out The array which will be filled with the data stored for `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_array
+     * @attribute suffix of_double
+     * @attribute self j
+     */
     void json_read_array(json j, string key, vector<double> &out);
 
-    // /**
-    //  * Reads an array of `json` object values from the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object from which data will be returned for the given key.
-    //  * @param key The `string` key used to find data in the `json` object.
-    //  * @param out The array which will be filled with the data stored for `string` key.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method read_array
-    //  * @attribute suffix of_json
-    //  * @attribute self j
-    //  */
+    /**
+     * Reads an array of `json` object values from the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     * @param out The array which will be filled with the data stored for `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_array
+     * @attribute suffix of_json
+     * @attribute self j
+     */
     void json_read_array(json j, string key, vector<json> &out);
 
-    // /**
-    //  * Reads an array of `string` values from the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object from which data will be returned for the given key.
-    //  * @param key The `string` key used to find data in the `json` object.
-    //  * @param out The array which will be filled with the data stored for `string` key.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method read_array
-    //  * @attribute suffix of_string
-    //  * @attribute self j
-    //  */
+    /**
+     * Reads an array of `string` values from the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     * @param out The array which will be filled with the data stored for `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_array
+     * @attribute suffix of_string
+     * @attribute self j
+     */
     void json_read_array(json j, string key, vector<string> &out);
 
-    // /**
-    //  * Reads an array of `bool` values from the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object from which data will be returned for the given key.
-    //  * @param key The `string` key used to find data in the `json` object.
-    //  * @param out The array which will be filled with the data stored for `string` key.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method read_array
-    //  * @attribute suffix of_bool
-    //  * @attribute self j
-    //  */
+    /**
+     * Reads an array of `bool` values from the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object from which data will be returned for the given key.
+     * @param key The `string` key used to find data in the `json` object.
+     * @param out The array which will be filled with the data stored for `string` key.
+     *
+     * @attribute class json
+     * @attribute method read_array
+     * @attribute suffix of_bool
+     * @attribute self j
+     */
     void json_read_array(json j, string key, vector<bool> &out);
 
     /**
