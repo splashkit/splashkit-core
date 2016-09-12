@@ -119,7 +119,7 @@ namespace splashkit_lib
      *  the matrix (to apply scaling, rotation or translation effects).
      *
      * @param m     The matrix with the transformation to apply.
-     * @param v     The point to be transformed.
+     * @param pt    The point to be transformed.
      * @returns     A new point, the result of applying the transformation to pt.
      */
     point_2d matrix_multiply(const matrix_2d &m, const point_2d &pt);
@@ -139,7 +139,7 @@ namespace splashkit_lib
      * @param tri   The triangle to tranform.
      */
     void apply_matrix(const matrix_2d &m, triangle &tri);
-    
+
     /**
      * Use a matrix to transform all of the points in a quad.
      *
@@ -147,7 +147,7 @@ namespace splashkit_lib
      * @param q         The quad to transform.
      */
     void apply_matrix(const matrix_2d &matrix, quad &q);
-    
+
     /**
      * This function returns a string representation of a Matrix.
      *

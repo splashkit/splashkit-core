@@ -218,64 +218,64 @@ namespace splashkit_lib
      */
     void json_add_object(json j, string key, json object);
 
-    // /**
-    //  * Adds an array of `string` values to the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object where data will be inserted for the given key.
-    //  * @param key The `string` key where data will be stored in the `json` object.
-    //  * @param value The value to be inserted into the `json` object.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method add_array
-    //  * @attribute suffix of_string
-    //  * @attribute self j
-    //  */
+    /**
+     * Adds an array of `string` values to the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_array
+     * @attribute suffix of_string
+     * @attribute self j
+     */
     void json_add_array(json j, string key, vector<string> value);
 
-    // /**
-    //  * Adds an array of `double` values to the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object where data will be inserted for the given key.
-    //  * @param key The `string` key where data will be stored in the `json` object.
-    //  * @param value The value to be inserted into the `json` object.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method add_array
-    //  * @attribute suffix of_double
-    //  * @attribute self j
-    //  */
+    /**
+     * Adds an array of `double` values to the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_array
+     * @attribute suffix of_double
+     * @attribute self j
+     */
     void json_add_array(json j, string key, vector<double> value);
 
-    // /**
-    //  * Adds an array of `bool` values to the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object where data will be inserted for the given key.
-    //  * @param key The `string` key where data will be stored in the `json` object.
-    //  * @param value The value to be inserted into the `json` object.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method add_array
-    //  * @attribute suffix of_bool
-    //  * @attribute self j
-    //  */
+    /**
+     * Adds an array of `bool` values to the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_array
+     * @attribute suffix of_bool
+     * @attribute self j
+     */
     void json_add_array(json j, string key, vector<bool> value);
 
-    // /**
-    //  * Adds an array of `json` object values to the `json` object for
-    //  * the given `string` key.
-    //  *
-    //  * @param j The `json` object where data will be inserted for the given key.
-    //  * @param key The `string` key where data will be stored in the `json` object.
-    //  * @param value The value to be inserted into the `json` object.
-    //  *
-    //  * @attribute class json
-    //  * @attribute method add_array
-    //  * @attribute suffix of_json
-    //  * @attribute self j
-    //  */
+    /**
+     * Adds an array of `json` object values to the `json` object for
+     * the given `string` key.
+     *
+     * @param j The `json` object where data will be inserted for the given key.
+     * @param key The `string` key where data will be stored in the `json` object.
+     * @param value The value to be inserted into the `json` object.
+     *
+     * @attribute class json
+     * @attribute method add_array
+     * @attribute suffix of_json
+     * @attribute self j
+     */
     void json_add_array(json j, string key, vector<json> value);
 
     /**
@@ -406,7 +406,7 @@ namespace splashkit_lib
     //  * @attribute self j
     //  */
     void json_read_array(json j, string key, vector<string> &out);
-    
+
     // /**
     //  * Reads an array of `bool` values from the `json` object for
     //  * the given `string` key.
@@ -421,7 +421,7 @@ namespace splashkit_lib
     //  * @attribute self j
     //  */
     void json_read_array(json j, string key, vector<bool> &out);
-    
+
     /**
      * Checks if the `json` object contains the given `string` key.
      *
