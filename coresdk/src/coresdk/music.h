@@ -38,6 +38,10 @@ namespace splashkit_lib
      *
      * @attribute class         music
      * @attribute constructor   true
+     *
+     * @param  name     The name of the resource for SplashKit
+     * @param  filename The filename to load
+     * @return          A new music resource
      */
     music load_music(const string &name, const string &filename);
 
@@ -49,13 +53,15 @@ namespace splashkit_lib
      * @attribute class       music
      * @attribute destructor  true
      * @attribute self        effect
+     *
+     * @param effect  The music to free
      */
     void free_music(music effect);
 
     /**
      * Releases all of the music files that have been loaded.
      *
-     * @attribute class   music
+     * @attribute static  music
      * @attribute method  free_all_music
      */
     void free_all_music();
@@ -190,24 +196,33 @@ namespace splashkit_lib
      * Fades music outover a specified number of milliseconds
      *
      * @param ms        How many milliseconds it takes to fade the `music` out
+     *
+     * @attribute static music
+     * @attribute method fade_out
      */
     void fade_music_out(int ms);
 
     /**
      * Pauses currently playing music - see resume_music to continue playing.
      *
+     * @attribute static music
+     * @attribute method pause
      */
     void pause_music();
 
     /**
      * Resumes currently paused music - see pause_music to pause playing music.
      *
+     * @attribute static music
+     * @attribute method resume
      */
     void resume_music();
 
     /**
      * Stops currently playing music.
      *
+     * @attribute static music
+     * @attribute method stop
      */
     void stop_music();
 
@@ -215,6 +230,8 @@ namespace splashkit_lib
      * Checks whether music is currently playing.
      * @returns Returns true or false value representing whether music is currently playing.
      *
+     * @attribute static music
+     * @attribute getter playing
      */
     bool music_playing();
 
@@ -224,17 +241,21 @@ namespace splashkit_lib
      * @param volume    Indicates the percentage of the original volume to play the
      *                 `music` at. This must be between `0` and `1`.
      *
+     * @attribute static music
+     * @attribute setter volume
      */
     void set_music_volume(float volume);
-    
+
     /**
      * Returns the volume of the currently playing `music`.
      *
      * @returns Returns the percentage of the currently playing `music`.
      *
+     * @attribute static music
+     * @attribute getter volume
      */
     float music_volume();
-    
+
     /**
      * Returns the name that SplashKit uses to refer to this music data
      *
@@ -243,10 +264,9 @@ namespace splashkit_lib
      * @attribute class   music
      * @attribute getter  name
      * @attribute self    data
-     *
      */
     string music_name(music data);
-    
+
     /**
      * Returns the filename the of the music data
      *
@@ -255,7 +275,6 @@ namespace splashkit_lib
      * @attribute class   music
      * @attribute getter  filename
      * @attribute self    data
-     *
      */
     string music_filename(music data);
 }
