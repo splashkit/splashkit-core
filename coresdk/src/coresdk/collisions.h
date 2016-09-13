@@ -43,6 +43,20 @@ namespace splashkit_lib
     bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d& pt);
 
     /**
+     * Tests if a bitmap drawn at x,y would draw a pixel at the passed in point. Use 
+     * to check collisions between a point and a bitmap.
+     *
+     * @param bmp   The bitmap to test.
+     * @param bmp_x The x location where the bitmap is drawn
+     * @param bmp_y The y location where the bitmap is drawn
+     * @param  x    The x location of the point to test
+     * @param  y    The y location of the point to test
+     * @returns     True if drawing the bitmap, at `bmp_pt`,
+     *              will draw a pixel at the indicated point (`pt`).
+     */
+    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, float x, float y);
+
+    /**
      * Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
      * at the passed in point.
      *
