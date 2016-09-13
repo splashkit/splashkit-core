@@ -249,6 +249,40 @@ namespace splashkit_lib
      * @attribute class display
      */
     typedef struct sk_display *display;
+
+    /**
+     * Defines the HTTP status codes supported by SplashKit.
+     * See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * for a description of each code.
+     *
+     * @constant OK                         See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant CREATED                    See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant NO_CONTENT                 See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant BAD_REQUEST                See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant UNAUTHORIZED               See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant FORBIDDEN                  See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant NOT_FOUND                  See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant METHOD_NOT_ALLOWED         See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant REQUEST_TIMEOUT            See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant INTERNAL_SERVER_ERROR      See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant NOT_IMPLEMENTED            See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant SERVICE_UNAVAILABLE        See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     */
+    enum http_status_code
+    {
+        OK = 200,
+        CREATED = 201,
+        NO_CONTENT = 204,
+        BAD_REQUEST = 400,
+        UNAUTHORIZED = 401,
+        FORBIDDEN = 403,
+        NOT_FOUND = 404,
+        METHOD_NOT_ALLOWED = 405,
+        REQUEST_TIMEOUT = 408,
+        INTERNAL_SERVER_ERROR = 500,
+        NOT_IMPLEMENTED = 501,
+        SERVICE_UNAVAILABLE = 503
+    };
     
 }
 #endif /* types_hpp */

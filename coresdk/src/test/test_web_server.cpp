@@ -127,7 +127,7 @@ void test_send_json_response()
     {
         auto request = next_web_request(server);
 
-        send_response(request, json, "application/json");
+        send_response(request, OK, json, "application/json");
     }
 }
 

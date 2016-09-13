@@ -15,6 +15,7 @@
 #include "easylogging++.h"
 
 #include "json.h"
+#include "color.h"
 
 using namespace splashkit_lib;
 using namespace std;
@@ -100,6 +101,16 @@ void test_has_key(json person)
     LOG(DEBUG) << "Key count: " << json_count_keys(person);
 }
 
+void test_color_serialization()
+{
+    color clr = COLOR_BRIGHT_GREEN;
+    json j = json_from_color(clr);
+    test(true, json_has_key(j, "color"));
+    test(string("#00ff00ff"), json_read_string(j, "color"));
+    color deserialized = json_to_color(j);
+    test(string("#00ff00ff"), color_to_string(deserialized));
+}
+
 void run_json_test()
 {
     test_to_string();
@@ -114,10 +125,9 @@ void run_json_test()
 
     test_has_key(person);
 
-    free_json(person);
-    LOG(DEBUG) << "If you are seeing errors after this, things are working.";
-    test_read_values(person);
+    test_color_serialization();
 
+    free_json(person);
     free_all_json();
 }
 

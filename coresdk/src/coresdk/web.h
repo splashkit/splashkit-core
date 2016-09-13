@@ -27,6 +27,8 @@ namespace splashkit_lib
 
     http_response http_get(const string &url, unsigned short port);
 
+    http_response http_post(const string &url, unsigned short port, string body);
+
     bitmap download_image(const string &name, const string &url, unsigned short port);
 
     string http_response_to_string(http_response response);

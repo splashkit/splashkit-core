@@ -10,6 +10,7 @@
 #define web_server_h_
 
 #include "types.h"
+#include "json.h"
 
 #include <string>
 #include <vector>
@@ -102,19 +103,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r, string message, string content_type);
-
-    /**
-     * Sends a message to a given `server_request`.
-     *
-     * @param r     The `server_request` to send the response to
-     * @param resp  The messsage, in the form of a `server_response`, to be sent.
-     *
-     * @attribute class server_request
-     * @attribute self  r
-     * @attribute suffix as_text
-     */
-    void send_response(server_request r, server_response resp);
+    void send_response(server_request r, http_status_code code, string message, string content_type);
 
     /**
      * Sends a message to a given `server_request`.
@@ -127,11 +116,21 @@ namespace splashkit_lib
     void send_response(server_request r, string message);
 
     /**
+     * Send a JSON response to a given `server_request`
+     *
+     * @param r The request the response belongs to.
+     * @param j The json to be sent.
+     *
+     * @attribute class server_response
+     */
+    void send_response(server_request r, json j);
+
+    /**
      * Serves a HTML file to the given `server_request`.
      *
      * @param r        The request to be sent.
      * @param filename The name of the file in Resources/server
-     *
+     *See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
      * @attribute class server_response
      */
     void send_html_file_response(server_request r, string filename);
@@ -153,6 +152,28 @@ namespace splashkit_lib
      * @returns Returns the request method as a string.
      */
     string request_get_method(server_request r);
+
+    /**
+     * Returns the body of the request.
+     *
+     * @param r A request object.
+     *
+     * @returns The body of the request.
+     */
+    string request_get_body(server_request r);
+
+    /**
+     * Returns an array of strings representing each stub of the URI.
+     *
+     * For example a request sent to http://localhost:8080/names/0 returns...
+     *
+     *      ["names", "0"]
+     *
+     * @param r The request for retrieving URI to split into stubs.
+     *
+     * @return The array of stubs as strings.
+     */
+    vector<string> request_get_uri_stubs(server_request r);
 
     /**
      * Returns an array of strings representing each stub of the URI.
