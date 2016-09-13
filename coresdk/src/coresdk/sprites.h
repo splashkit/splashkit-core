@@ -517,7 +517,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method set_layer_offset
-     * @attribute suffix named
+     * @attribute suffix at_index
      */
     void sprite_set_layer_offset(sprite s, int idx, const vector_2d &value);
 
