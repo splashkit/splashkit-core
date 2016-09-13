@@ -244,25 +244,6 @@ namespace splashkit_lib
         return false;
     }
 
-    vector<line> lines_from(const triangle &tri)
-    {
-        vector<line> result;
-        result.push_back(line_from(tri.points[0], tri.points[1]));
-        result.push_back(line_from(tri.points[1], tri.points[2]));
-        result.push_back(line_from(tri.points[2], tri.points[0]));
-        return result;
-    }
-
-    vector<line> lines_from(const rectangle &rect)
-    {
-        vector<line> result;
-        result.push_back(line_from(rect.x, rect.y, rect.x + rect.width, rect.y));
-        result.push_back(line_from(rect.x, rect.y, rect.x, rect.y + rect.height));
-        result.push_back(line_from(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height));
-        result.push_back(line_from(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y + rect.height));
-        return result;
-    }
-
     struct double_pt
     {
         point_2d pt_on_circle, pt_on_line;

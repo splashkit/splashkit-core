@@ -41,6 +41,14 @@ namespace splashkit_lib
      */
     vector<line> lines_from(const triangle &t);
 
+    /**
+     * Returns an array of lines from a supplied rectangle.
+     *
+     * @param rect  The rectangle to get the lines from
+     * @return      An array containing 4 lines
+     */
+    vector<line> lines_from(const rectangle &rect);
+
     bool line_intersection_point(const line &line1, const line &line2, point_2d &pt);
 
     point_2d closest_point_on_line(const point_2d from_pt, const line &l);

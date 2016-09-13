@@ -177,6 +177,13 @@ namespace splashkit_lib
             return false;
         }
 
+        quad q1, q2;
+
+        q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
+        q2 = quad_from(rect);
+
+        if ( not quads_intersect(q1, q2) ) return false;
+
         return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
                                     {
                                         return pixel_drawn_at_point(bmp, cell, bx, by);

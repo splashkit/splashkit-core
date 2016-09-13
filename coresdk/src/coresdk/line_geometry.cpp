@@ -122,6 +122,16 @@ namespace splashkit_lib
         return result;
     }
 
+    vector<line> lines_from(const rectangle &rect)
+    {
+        vector<line> result;
+        result.push_back(line_from(rect.x, rect.y, rect.x + rect.width, rect.y));
+        result.push_back(line_from(rect.x, rect.y, rect.x, rect.y + rect.height));
+        result.push_back(line_from(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height));
+        result.push_back(line_from(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y + rect.height));
+        return result;
+    }
+
     float line_length(const line &l)
     {
         return sqrt(line_length_squared(l));
