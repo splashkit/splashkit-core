@@ -14,7 +14,10 @@
 
 namespace splashkit_lib
 {
-    quad quad_from(float x_top_left,float y_top_left,float x_top_right,float y_top_right, float x_bottom_left,float y_bottom_left,float x_bottom_right,float y_bottom_right)
+    quad quad_from(float x_top_left, float y_top_left,
+                   float x_top_right, float y_top_right,
+                   float x_bottom_left, float y_bottom_left,
+                   float x_bottom_right, float y_bottom_right)
     {
         quad result;
         result.points[0].x = x_top_left;
@@ -39,7 +42,7 @@ namespace splashkit_lib
         return result;
     }
 
-    quad quad_from(point_2d p1, point_2d p2, point_2d p3, point_2d p4)
+    quad quad_from(const point_2d &p1, const point_2d &p2, const point_2d &p3, const point_2d &p4)
     {
         quad result;
 
@@ -57,5 +60,13 @@ namespace splashkit_lib
         apply_matrix(transform, result);
         return result;
     }
-    
+
+    void set_quad_point(quad &q, int idx, const point_2d &value)
+    {
+        if (idx < 0 || idx > 3)
+        {
+            q.points[idx] = value;
+        }
+    }
+
 }
