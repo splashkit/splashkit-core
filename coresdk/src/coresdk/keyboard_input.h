@@ -22,6 +22,142 @@ namespace splashkit_lib
      * These are the key codes you can use to check details of keyboard actions.
      * See `key_down`, `key_up`, `key_typed`, and `key_released` functions.
      * You can get a string representation of these keys using `key_name`.
+     *
+     * @constant UNKNOWN_KEY    The unknown key key
+     * @constant BACKSPACE_KEY    The backspace key key
+     * @constant TAB_KEY    The tab key key
+     * @constant CLEAR_KEY    The clear key key
+     * @constant RETURN_KEY   The return key key
+     * @constant PAUSE_KEY    The pause key key
+     * @constant ESCAPE_KEY   The escape key key
+     * @constant SPACE_KEY    The space key key
+     * @constant EXCLAIM_KEY    The exclaim key key
+     * @constant DOUBLE_QUOTE_KEY   The double quote key key
+     * @constant HASH_KEY   The hash key key
+     * @constant DOLLAR_KEY   The dollar key key
+     * @constant AMPERSAND_KEY    The ampersand key key
+     * @constant QUOTE_KEY    The quote key key
+     * @constant LEFT_PAREN_KEY   The left paren key key
+     * @constant RIGHT_PAREN_KEY    The right paren key key
+     * @constant ASTERISK_KEY   The asterisk key key
+     * @constant PLUS_KEY   The plus key key
+     * @constant COMMA_KEY    The comma key key
+     * @constant MINUS_KEY    The minus key key
+     * @constant PERIOD_KEY   The period key key
+     * @constant SLASH_KEY    The slash key key
+     * @constant NUM_0_KEY    The num 0 key key
+     * @constant NUM_1_KEY    The num 1 key key
+     * @constant NUM_2_KEY    The num 2 key key
+     * @constant NUM_3_KEY    The num 3 key key
+     * @constant NUM_4_KEY    The num 4 key key
+     * @constant NUM_5_KEY    The num 5 key key
+     * @constant NUM_6_KEY    The num 6 key key
+     * @constant NUM_7_KEY    The num 7 key key
+     * @constant NUM_8_KEY    The num 8 key key
+     * @constant NUM_9_KEY    The num 9 key key
+     * @constant COLON_KEY    The colon key key
+     * @constant SEMI_COLON_KEY   The semi colon key key
+     * @constant LESS_KEY   The less key key
+     * @constant EQUALS_KEY   The equals key key
+     * @constant GREATER_KEY    The greater key key
+     * @constant QUESTION_KEY   The question key key
+     * @constant AT_KEY   The at key key
+     * @constant LEFT_BRACKET_KEY   The left bracket key key
+     * @constant BACKSLASH_KEY    The backslash key key
+     * @constant RIGHT_BRACKET_KEY    The right bracket key key
+     * @constant CARET_KEY    The caret key key
+     * @constant UNDERSCORE_KEY   The underscore key key
+     * @constant BACKQUOTE_KEY    The backquote key key
+     * @constant A_KEY    The a key key
+     * @constant B_KEY    The b key key
+     * @constant C_KEY    The c key key
+     * @constant D_KEY    The d key key
+     * @constant E_KEY    The e key key
+     * @constant F_KEY    The f key key
+     * @constant G_KEY    The g key key
+     * @constant H_KEY    The h key key
+     * @constant I_KEY    The i key key
+     * @constant J_KEY    The j key key
+     * @constant K_KEY    The k key key
+     * @constant L_KEY    The l key key
+     * @constant M_KEY    The m key key
+     * @constant N_KEY    The n key key
+     * @constant O_KEY    The o key key
+     * @constant P_KEY    The p key key
+     * @constant Q_KEY    The q key key
+     * @constant R_KEY    The r key key
+     * @constant S_KEY    The s key key
+     * @constant T_KEY    The t key key
+     * @constant U_KEY    The u key key
+     * @constant V_KEY    The v key key
+     * @constant W_KEY    The w key key
+     * @constant X_KEY    The x key key
+     * @constant Y_KEY    The y key key
+     * @constant Z_KEY    The z key key
+     * @constant DELETE_KEY   The delete key key
+     * @constant KEYPAD_0   The keypad 0 key
+     * @constant KEYPAD_1   The keypad 1 key
+     * @constant KEYPAD_2   The keypad 2 key
+     * @constant KEYPAD_3   The keypad 3 key
+     * @constant KEYPAD_4   The keypad 4 key
+     * @constant KEYPAD_5   The keypad 5 key
+     * @constant KEYPAD_6   The keypad 6 key
+     * @constant KEYPAD_7   The keypad 7 key
+     * @constant KEYPAD_8   The keypad 8 key
+     * @constant KEYPAD_9   The keypad 9 key
+     * @constant KEYPAD_PERIOD    The keypad period key
+     * @constant KEYPAD_DIVIDE    The keypad divide key
+     * @constant KEYPAD_MULTIPLY    The keypad multiply key
+     * @constant KEYPAD_MINUS   The keypad minus key
+     * @constant KEYPAD_PLUS    The keypad plus key
+     * @constant KEYPAD_ENTER   The keypad enter key
+     * @constant KEYPAD_EQUALS    The keypad equals key
+     * @constant UP_KEY   The up key key
+     * @constant DOWN_KEY   The down key key
+     * @constant RIGHT_KEY    The right key key
+     * @constant LEFT_KEY   The left key key
+     * @constant INSERT_KEY   The insert key key
+     * @constant HOME_KEY   The home key key
+     * @constant END_KEY    The end key key
+     * @constant PAGE_UP_KEY    The page up key key
+     * @constant PAGE_DOWN_KEY    The page down key key
+     * @constant F1_KEY   The f1 key key
+     * @constant F2_KEY   The f2 key key
+     * @constant F3_KEY   The f3 key key
+     * @constant F4_KEY   The f4 key key
+     * @constant F5_KEY   The f5 key key
+     * @constant F6_KEY   The f6 key key
+     * @constant F7_KEY   The f7 key key
+     * @constant F8_KEY   The f8 key key
+     * @constant F9_KEY   The f9 key key
+     * @constant F10_KEY    The f10 key key
+     * @constant F11_KEY    The f11 key key
+     * @constant F12_KEY    The f12 key key
+     * @constant F13_KEY    The f13 key key
+     * @constant F14_KEY    The f14 key key
+     * @constant F15_KEY    The f15 key key
+     * @constant NUM_LOCK_KEY   The num lock key key
+     * @constant CAPS_LOCK_KEY    The caps lock key key
+     * @constant SCROLL_LOCK_KEY    The scroll lock key key
+     * @constant RIGHT_SHIFT_KEY    The right shift key key
+     * @constant LEFT_SHIFT_KEY   The left shift key key
+     * @constant RIGHT_CTRL_KEY   The right ctrl key key
+     * @constant LEFT_CTRL_KEY    The left ctrl key key
+     * @constant RIGHT_ALT_KEY    The right alt key key
+     * @constant LEFT_ALT_KEY   The left alt key key
+     * @constant RIGHT_OPTION_KEY   The right option key key
+     * @constant LEFT_OPTION_KEY    The left option key key
+     * @constant LEFT_SUPER_KEY   The left super key key
+     * @constant RIGHT_SUPER_KEY    The right super key key
+     * @constant LEFT_WINDOWS_KEY   The left windows key key
+     * @constant RIGHT_WINDOWS_KEY    The right windows key key
+     * @constant LEFT_COMMAND_KEY   The left command key key
+     * @constant RIGHT_COMMAND_KEY    The right command key key
+     * @constant MODE_KEY   The mode key key
+     * @constant HELP_KEY   The help key key
+     * @constant SYS_REQ_KEY    The sys req key key
+     * @constant MENU_KEY   The menu key key
+     * @constant POWER_KEY    The power key key
      */
     enum key_code
     {
