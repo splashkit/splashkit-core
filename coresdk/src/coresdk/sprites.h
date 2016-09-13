@@ -8,6 +8,8 @@
  * are located at a position in the game, have a velocity, and an animation.
  * The sprite can also have arbitary data associated with it for game specific
  * purposes.
+ *
+ * @attribute static sprite
  */
 
 #ifndef sprites_h
@@ -81,6 +83,7 @@ namespace splashkit_lib
      *  where a float value is required.
      *
      * @param s The sprite being passed to the sprite function.
+     * @param f The value to be passed to the function.
      */
     typedef void (sprite_float_function)(sprite s, float f);
 
@@ -193,7 +196,7 @@ namespace splashkit_lib
      * @param s   The sprite to be destroyed.
      *
      * @attribute class sprite
-     * @attribute destructor
+     * @attribute destructor true
      */
     void free_sprite(sprite s);
 
@@ -274,7 +277,7 @@ namespace splashkit_lib
      *
      * @param s           The sprite to add the layer to.
      * @param new_layer   The new layer's bitmap.
-     * @param layer_named The name of the new layer.
+     * @param layer_name  The name of the new layer.
      *
      * @returns The index of the new layer.
      *
@@ -299,6 +302,8 @@ namespace splashkit_lib
      * Returns the bitmap of the indicated layer of the sprite.
      *
      * @param s   The sprite to get the layer from
+     * @param idx The index of the layer
+     *
      * @returns   The bitmap of the sprite at that layer
      *
      * @attribute class sprite
@@ -339,7 +344,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method show_layer
-     * @attribute unique show_layer_named
+     * @attribute suffix named
      */
     int sprite_show_layer(sprite s, const string &name);
 
@@ -364,7 +369,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method hide_layer
-     * @attribute unique hide_layer_named
+     * @attribute suffix named
      */
     void sprite_hide_layer(sprite s, const string &name);
 
@@ -388,7 +393,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method toggle_layer_visible
-     * @attribute unique toggle_layer_named_visible
+     * @attribute suffix named
      */
     void sprite_toggle_layer_visible(sprite s, const string &name);
 
@@ -412,7 +417,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method visible_index_of_layer
-     * @attribute unique visible_index_of_layer_named
+     * @attribute suffix named
      */
     int sprite_visible_index_of_layer(sprite s, const string &name);
 
@@ -473,7 +478,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method layer_offset
-     * @attribute unique layer_named_offset
+     * @attribute suffix named
      */
     vector_2d sprite_layer_offset(sprite s, const string &name);
 
@@ -499,7 +504,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method set_layer_offset
-     * @attribute unique set_layer_named_offset
+     * @attribute suffix named
      */
     void sprite_set_layer_offset(sprite s, const string &name, const vector_2d &value);
 
@@ -507,12 +512,12 @@ namespace splashkit_lib
      * Sets the offset of the specified layer.
      *
      * @param s     The sprite to change.
-     * @param name  The index of the layer to change.
+     * @param idx   The index of the layer to change.
      * @param value The new offset.
      *
      * @attribute class sprite
-     * @attribute method Set_layer_offset
-     * @attribute unique Set_layer_named_offset
+     * @attribute method set_layer_offset
+     * @attribute suffix named
      */
     void sprite_set_layer_offset(sprite s, int idx, const vector_2d &value);
 
@@ -692,7 +697,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method replay_animation
-     * @attribute unique replay_animation_with_sound
+     * @attribute suffix with_sound
      */
     void sprite_replay_animation(sprite s, bool with_sound);
 
@@ -705,8 +710,8 @@ namespace splashkit_lib
      * @param named  The name of the animation to start from the animation script.
      *
      * @attribute class sprite
-     * @attribute method Start_animation
-     * @attribute unique Start_animation_named
+     * @attribute method start_animation
+     * @attribute suffix named
      */
     void sprite_start_animation(sprite s, const string &named);
 
@@ -722,7 +727,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method start_animation
-     * @attribute unique start_animation_named_with_sound
+     * @attribute suffix named_with_sound
      */
     void sprite_start_animation(sprite s, const string &named, bool with_sound);
 
@@ -750,8 +755,8 @@ namespace splashkit_lib
      *                    effects when started.
      *
      * @attribute class sprite
-     * @attribute method Start_animation
-     * @attribute unique Start_animation_with_sound
+     * @attribute method start_animation
+     * @attribute suffix with_sound
      */
     void sprite_start_animation(sprite s, int idx, bool with_sound);
 
@@ -793,7 +798,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method update
-     * @attribute unique update_with_sound
+     * @attribute suffix with_sound
      */
     void update_sprite(sprite s, bool with_sound);
 
@@ -807,8 +812,8 @@ namespace splashkit_lib
      * @param pct The percent to update.
      *
      * @attribute class sprite
-     * @attribute method Update
-     * @attribute unique update_percent
+     * @attribute method update
+     * @attribute suffix percent
      */
     void update_sprite(sprite s, float pct);
 
@@ -824,8 +829,8 @@ namespace splashkit_lib
      *                    effects when updated.
      *
      * @attribute class sprite
-     * @attribute method Update
-     * @attribute unique update_percent_with_sound
+     * @attribute method update
+     * @attribute suffix percent_with_sound
      */
     void update_sprite(sprite s, float pct, bool with_sound);
 
@@ -854,7 +859,7 @@ namespace splashkit_lib
      * @uname update_sprite_animation_with_sound
      * @attribute class sprite
      * @attribute method update_animation
-     * @attribute unique update_animation_with_sound
+     * @attribute suffix with_sound
      */
     void update_sprite_animation(sprite s, bool with_sound);
 
@@ -870,7 +875,7 @@ namespace splashkit_lib
      * @uname update_sprite_animation_percent
      * @attribute class sprite
      * @attribute method update_animation
-     * @attribute unique update_animation_pct
+     * @attribute suffix percent
      */
     void update_sprite_animation(sprite s, float pct);
 
@@ -887,7 +892,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method update_animation
-     * @attribute unique update_animation_pct_with_sound
+     * @attribute suffix percent_with_sound
      */
     void update_sprite_animation(sprite s, float pct, bool with_sound);
 
@@ -929,7 +934,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method vector_to
-     * @attribute unique vector_to_point
+     * @attribute suffix point
      */
     vector_2d vector_from_center_sprite_to_point(sprite s, const point_2d &pt);
 
@@ -963,7 +968,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method draw
-     * @attribute unique draw_offset_x_y
+     * @attribute suffix offset_x_y
      */
     void draw_sprite(sprite s, float x_offset, float y_offset);
 
@@ -978,9 +983,9 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method draw
-     * @attribute unique draw_offsetpoint
+     * @attribute suffix offset_by
      */
-    void draw_sprite(sprite s, const point_2d &position);
+    void draw_sprite(sprite s, const vector_2d &offset);
 
     //---------------------------------------------------------------------------
     // movement code
@@ -1008,7 +1013,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method move
-     * @attribute unique move_pct
+     * @attribute suffix percent
      */
     void move_sprite(sprite s, float pct);
 
@@ -1024,7 +1029,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method move
-     * @attribute unique move_vec
+     * @attribute suffix by_vector
      */
     void move_sprite(sprite s, const vector_2d &distance);
 
@@ -1041,7 +1046,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method move
-     * @attribute unique move_vec_pct
+     * @attribute suffix by_vector_percent
      */
     void move_sprite(sprite s, const vector_2d &distance, float pct);
 
@@ -1068,7 +1073,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method move_to
-     * @attribute unique move_to_taking_seconds
+     * @attribute suffix taking_seconds
      */
     void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds);
 
@@ -1102,7 +1107,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method on_screen_at
-     * @attribute unique on_screen_at_point
+     * @attribute suffix point
      */
     bool sprite_on_screen_at(sprite s, const point_2d &pt);
 
@@ -1140,7 +1145,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method layer_height
-     * @attribute unique layer_named_height
+     * @attribute suffix named
      */
     int sprite_layer_height(sprite s, const string &name);
 
@@ -1176,7 +1181,7 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute method layer_width
-     * @attribute unique layer_named_width
+     * @attribute suffix named
      */
     int sprite_layer_width(sprite s, const string &name);
 
@@ -1233,7 +1238,7 @@ namespace splashkit_lib
      * The sprite anchor position, is the location of the anchor point in world
      * coordinates, based upon the position of the sprite.
      *
-     * @params s The sprite to find where the anchor is in world coordinates
+     * @param s The sprite to find where the anchor is in world coordinates
      * @returns The location of the sprite's anchor point positioned at the sprite's location
      */
     point_2d sprite_anchor_position(sprite s);
@@ -1660,11 +1665,11 @@ namespace splashkit_lib
     /**
      * Allows you to change the scale of a sprite.
      *
-     * @param s The sprite to change.
+     * @param s     The sprite to change.
      * @param value The new scale for the sprite.
      *
      * @attribute class sprite
-     * @setter scale
+     * @attribute setter scale
      */
     void sprite_set_scale(sprite s, float value);
     
@@ -1698,7 +1703,7 @@ namespace splashkit_lib
     /**
      * Adds a new kind of value to the sprite
      *
-     * @param s The sprite to change.
+     * @param s     The sprite to change.
      * @param name  The name of the new value to store in the sprite.
      *
      * @attribute class sprite
@@ -1710,26 +1715,26 @@ namespace splashkit_lib
      * Adds a new kind of value to the sprite, setting the initial value
      * to the value passed in.
      *
-     * @param s The sprite to change.
-     * @param name  The name of the new value to store in the sprite.
-     * @param init_value  The initial value.
+     * @param s         The sprite to change.
+     * @param name      The name of the new value to store in the sprite.
+     * @param init_val  The initial value.
      *
      * @attribute class sprite
      * @attribute method add_value
-     * @attribute unique add_value_with_default
+     * @attribute suffix with_default
      */
     void sprite_add_value(sprite s, const string &name, float init_val);
     
     /**
      * Assigns a value to the sprite.
      *
-     * @param s The sprite to change.
+     * @param s     The sprite to change.
      * @param name  The name of the value to change
      * @param val   The new value.
      *
      * @attribute class sprite
      * @attribute method set_value
-     * @attribute unique set_value_named
+     * @attribute suffix named
      */
     void sprite_set_value(sprite s, const string &name, float val);
     
@@ -1776,6 +1781,8 @@ namespace splashkit_lib
     /**
      * Update all of the sprites in the current sprite pack, passing in a
      * percentage value to indicate the percentage to update.
+     *
+     * @param pct The percentage of the update to apply.
      */
     void update_all_sprites(float pct);
     
@@ -1789,9 +1796,8 @@ namespace splashkit_lib
     /**
      * Call the supplied function for all sprites in the current pack.
      *
-     * @param fn The sprite function to call on all sprites.
-     * @attribute class
-     * @attribute static
+     * @param fn  The sprite function to call on all sprites.
+     * @param val The value passed to the function for each sprite.
      */
     void call_for_all_sprites(sprite_float_function *fn, float val);
     

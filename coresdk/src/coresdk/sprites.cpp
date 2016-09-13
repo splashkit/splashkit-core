@@ -861,9 +861,9 @@ namespace splashkit_lib
         draw_sprite(s, 0, 0);
     }
 
-    void draw_sprite(sprite s, const point_2d &position)
+    void draw_sprite(sprite s, const vector_2d &offset)
     {
-        draw_sprite(s, position.x, position.y);
+        draw_sprite(s, offset.x, offset.y);
     }
 
     void draw_sprite(sprite s, float x_offset, float y_offset)
