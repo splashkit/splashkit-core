@@ -37,6 +37,24 @@ namespace splashkit_lib
      * @return    A triangle with the indicated points
      */
     triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
+
+    /**
+     * Returns true if the triangle intersects with the rectangle.
+     *
+     * @param  tri  The triangle to test
+     * @param  rect The rectangle to test
+     * @return      True if the triangle and rect intersect
+     */
+    bool triangle_rectangle_intersect(const triangle &tri, const rectangle &rect);
+
+    /**
+     * Returns true if the two triangles intersect.
+     *
+     * @param  t1 The first triangle
+     * @param  t2 The other triangle
+     * @return    True if the two triangles intersect
+     */
+    bool triangles_intersect(const triangle &t1, const triangle &t2);
 }
 
 #endif /* triangle_geometry_h */

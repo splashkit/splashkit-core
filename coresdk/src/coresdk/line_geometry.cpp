@@ -9,6 +9,9 @@
 #include "line_geometry.h"
 #include "point_geometry.h"
 #include "utility_functions.h"
+
+#include <cmath>
+
 namespace splashkit_lib
 {
     line line_from(const point_2d &start, const point_2d &end)
@@ -106,5 +109,29 @@ namespace splashkit_lib
                             l.start_point.y + u * (l.end_point.y - l.start_point.y));
             
         } //  else NOT (u < EPS) or (u > 1)
+    }
+
+    vector<line> lines_from(const triangle &t)
+    {
+        vector<line> result;
+
+        result.push_back(line_from(t.points[0], t.points[1]));
+        result.push_back(line_from(t.points[1], t.points[2]));
+        result.push_back(line_from(t.points[2], t.points[0]));
+
+        return result;
+    }
+
+    float line_length(const line &l)
+    {
+        return sqrt(line_length_squared(l));
+    }
+
+    bool lines_intersect(const line &l1, const line &l2)
+    {
+        if ( line_length(l1) == 0 || line_length(l2) == 0 ) return false;
+
+        point_2d pt;
+        return line_intersection_point(l1, l2, pt) and point_on_line(pt, l1) and point_on_line(pt, l2);
     }
 }
