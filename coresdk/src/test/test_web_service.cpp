@@ -96,7 +96,7 @@ void names_get_routes(server_request request, string uri)
     if (stubs.size() == 1)
     {
         string j = people_to_json();
-        send_response(request, j, "application/json");
+        send_response(request, OK, j, "application/json");
     }
     else
     {
@@ -104,10 +104,10 @@ void names_get_routes(server_request request, string uri)
         {
             int id = stoi(stubs[1]);
             string json_person = json_to_string(person_to_json(people.at(id)));
-            send_response(request, json_person, "application/json");
+            send_response(request, OK, json_person, "application/json");
         } catch (...)
         {
-            send_response(request, "<h1>No ID exists.</h1>", "text/html");
+            send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
         }
     }
 }
@@ -145,7 +145,7 @@ void names_delete_route(server_request request, string uri)
         send_response(request, "Person has now been deleted.");
     } catch(...)
     {
-        send_response(request, "<h1>No ID exists.</h1>", "text/html");
+        send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
     }
 }
 

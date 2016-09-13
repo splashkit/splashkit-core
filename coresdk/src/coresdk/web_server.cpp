@@ -56,7 +56,7 @@ namespace splashkit_lib
         return sk_get_request(server);
     }
 
-    void send_response(server_request r, server_response resp)
+    void _send_response(server_request r, server_response resp)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
         {
@@ -75,17 +75,18 @@ namespace splashkit_lib
 
     void send_response(server_request r, string message)
     {
-        send_response(r, message, "text/plain");
+        send_response(r, OK, message, "text/plain");
     }
 
-    void send_response(server_request r, string message, string content_type)
+    void send_response(server_request r, http_status_code code, string message, string content_type)
     {
         server_response resp = new sk_server_response;
         resp->id = WEB_SERVER_RESPONSE_PTR;
         resp->message = message;
         resp->content_type = content_type;
+        resp->code = code;
 
-        send_response(r, resp);
+        _send_response(r, resp);
 
         resp->response_sent.acquire();
         delete resp;
@@ -93,7 +94,7 @@ namespace splashkit_lib
 
     void send_response(server_request r, json j)
     {
-        send_response(r, json_to_string(j), "application/json");
+        send_response(r, OK, json_to_string(j), "application/json");
     }
 
     void send_html_file_response(server_request r, string filename)
@@ -104,7 +105,7 @@ namespace splashkit_lib
         {
             string file = file_as_string(filename, SERVER_RESOURCE);
 
-            send_response(r, file, "text/html");
+            send_response(r, OK, file, "text/html");
         }
         else
         {

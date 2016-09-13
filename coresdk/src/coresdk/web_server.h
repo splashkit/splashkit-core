@@ -103,19 +103,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r, string message, string content_type);
-
-    /**
-     * Sends a message to a given `server_request`.
-     *
-     * @param r     The `server_request` to send the response to
-     * @param resp  The messsage, in the form of a `server_response`, to be sent.
-     *
-     * @attribute class server_request
-     * @attribute self  r
-     * @attribute suffix as_text
-     */
-    void send_response(server_request r, server_response resp);
+    void send_response(server_request r, http_status_code code, string message, string content_type);
 
     /**
      * Sends a message to a given `server_request`.
@@ -142,7 +130,7 @@ namespace splashkit_lib
      *
      * @param r        The request to be sent.
      * @param filename The name of the file in Resources/server
-     *
+     *See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
      * @attribute class server_response
      */
     void send_html_file_response(server_request r, string filename);
