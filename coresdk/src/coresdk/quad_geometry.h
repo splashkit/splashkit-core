@@ -12,6 +12,9 @@
 #include "types.h"
 #include "matrix_2d.h"
 
+#include <vector>
+using std::vector;
+
 namespace splashkit_lib
 {
     /**
@@ -74,5 +77,23 @@ namespace splashkit_lib
      * @param value The new value for that point in the quad
      */
     void set_quad_point(quad &q, int idx, const point_2d &value);
+
+    /**
+     * Returns true if two quads intersect.
+     *
+     * @param  q1 The first quad
+     * @param  q2 The second quad
+     * @return    True if the two quads intersect.
+     */
+    bool quads_intersect(const quad &q1, const quad &q2);
+
+    /**
+     * Returns the two triangles that make up a quad in a vector.
+     *
+     * @param q The quad
+     * @return  A vector with the two triangles from the quad.
+     */
+    vector<triangle> triangles_from(const quad &q);
+
 }
 #endif /* quad_geometry_h */

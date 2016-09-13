@@ -6,9 +6,7 @@
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "quad_geometry.h"
-#include "types.h"
-#include "rectangle_geometry.h"
+#include "geometry.h"
 #include "matrix_2d.h"
 #include "vector_2d.h"
 
@@ -67,6 +65,35 @@ namespace splashkit_lib
         {
             q.points[idx] = value;
         }
+    }
+
+    vector<triangle> triangles_from(const quad &q)
+    {
+        vector<triangle> result;
+
+        result.push_back(triangle_from(q.points[0], q.points[1], q.points[2]));
+        result.push_back(triangle_from(q.points[2], q.points[3], q.points[1]));
+
+        return result;
+    }
+
+    bool quads_intersect(const quad &q1, const quad &q2)
+    {
+        vector<triangle> q1_triangles = triangles_from(q1);
+        vector<triangle> q2_triangles = triangles_from(q2);
+
+        for (triangle t1 : q1_triangles)
+        {
+            for (triangle t2 : q2_triangles)
+            {
+                if ( triangles_intersect(t1, t2) )
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 }
