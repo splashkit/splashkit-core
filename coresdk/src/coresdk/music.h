@@ -48,13 +48,11 @@ namespace splashkit_lib
     /**
      * Releases the SplashKit resources associated with music.
      *
-     * @param music    The music file whose resources should be released.
+     * @param effect    The music file whose resources should be released.
      *
      * @attribute class       music
      * @attribute destructor  true
      * @attribute self        effect
-     *
-     * @param effect  The music to free
      */
     void free_music(music effect);
 
@@ -259,6 +257,7 @@ namespace splashkit_lib
     /**
      * Returns the name that SplashKit uses to refer to this music data
      *
+     * @param  data The music resource
      * @returns Returns a string with the name of the `music` that SplashKit refers to.
      *
      * @attribute class   music
@@ -270,6 +269,7 @@ namespace splashkit_lib
     /**
      * Returns the filename the of the music data
      *
+     * @param  data The music resource
      * @returns Returns a string with the filename of the `music` file.
      *
      * @attribute class   music
