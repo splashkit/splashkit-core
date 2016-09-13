@@ -44,6 +44,8 @@ namespace splashkit_lib
      * @constant MUSIC_RESOURCE     Music resources can be played as music, and
      *                              live in the program's Resources/sounds
      *                              folder.
+     * @constant SERVER_RESOURCE    Server resources that can be sent as responses
+     *                              to web server requests.
      * @constant SOUND_RESOURCE     Sound resources can be played as sound
      *                              effects, and live in the program's
      *                              Resources/sounds folder.
