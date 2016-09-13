@@ -268,10 +268,8 @@ namespace splashkit_lib
     json json_from_color(color clr)
     {
         json result = create_json();
-        json_add_number(result, "r", clr.r);
-        json_add_number(result, "g", clr.g);
-        json_add_number(result, "b", clr.b);
-        json_add_number(result, "a", clr.a);
+        string color_string = color_to_string(clr);
+        json_add_string(result, "color", color_string);
         return result;
     }
 
@@ -283,11 +281,7 @@ namespace splashkit_lib
             return COLOR_WHITE;
         }
 
-        color clr;
-        clr.r = json_read_number(j, "r");
-        clr.g = json_read_number(j, "g");
-        clr.b = json_read_number(j, "b");
-        clr.a = json_read_number(j, "a");
-        return clr;
+        string color_string = json_read_string(j, "color");
+        return string_to_color(color_string);
     }
 }
