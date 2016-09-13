@@ -98,7 +98,7 @@ void run_sprite_test()
         draw_sprite(sprt);
         draw_sprite(s2);
         
-        if (sprite_rect_collision(sprt, r))
+        if (sprite_rectangle_collision(sprt, r))
 		{
             draw_rectangle(COLOR_RED, r);
 		}

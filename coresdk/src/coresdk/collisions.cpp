@@ -170,7 +170,12 @@ namespace splashkit_lib
         return bitmap_point_collision(bmp, 0, translation, pt);
     }
 
-    bool bitmap_rect_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
+    bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d& pt)
+    {
+        return bitmap_point_collision(bmp, translation_matrix(bmp_pt), pt);
+    }
+
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
@@ -190,9 +195,9 @@ namespace splashkit_lib
                                     });
     }
 
-    bool bitmap_rect_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect)
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect)
     {
-        return bitmap_rect_collision(bmp, cell, translation_matrix(pt), rect);
+        return bitmap_rectangle_collision(bmp, cell, translation_matrix(pt), rect);
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y)
@@ -204,11 +209,20 @@ namespace splashkit_lib
 
         if (sprite_collision_kind(s) == AABB_COLLISIONS)
         {
-            return bitmap_rect_collision(bmp, cell, point_at(x, y), sprite_collision_rectangle(s));
+            return bitmap_rectangle_collision(bmp, cell, point_at(x, y), sprite_collision_rectangle(s));
         }
 
-        return _collision_within_bitmap_images_with_translation(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s),
-                                                                bmp, cell, translation_matrix(x, y));
+        return _collision_within_bitmap_images_with_translation(
+                    sprite_collision_bitmap(s), sprite_current_cell(s),
+                    sprite_location_matrix(s),
+                    bmp,
+                    cell,
+                    translation_matrix(x, y));
+    }
+
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, const point_2d &pt)
+    {
+        return sprite_bitmap_collision(s, bmp, cell, pt.x, pt.y);
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
@@ -232,14 +246,14 @@ namespace splashkit_lib
         }
     }
     
-    bool sprite_rect_collision(sprite s, const rectangle& rect)
+    bool sprite_rectangle_collision(sprite s, const rectangle& rect)
     {
         if (!rectangles_intersect(sprite_collision_rectangle(s), rect))
         {
             return false;
         }
         
-        return bitmap_rect_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
+        return bitmap_rectangle_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
     }
     
     bool sprite_collision(sprite s1, sprite s2)
@@ -251,16 +265,51 @@ namespace splashkit_lib
         
         if (sprite_collision_kind(s1) == AABB_COLLISIONS)
         {
-            return sprite_rect_collision(s2, sprite_collision_rectangle(s1));
+            return sprite_rectangle_collision(s2, sprite_collision_rectangle(s1));
         }
         
         if (sprite_collision_kind(s2) == AABB_COLLISIONS)
         {
-            return sprite_rect_collision(s1, sprite_collision_rectangle(s2));
+            return sprite_rectangle_collision(s1, sprite_collision_rectangle(s2));
         }
         
         return _collision_within_bitmap_images_with_translation (
                                                                  sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
                                                                  sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2) );
     }
+
+    bool bitmap_collision(bitmap bmp1, int cell1, const matrix_2d &matrix1, bitmap bmp2, int cell2, const matrix_2d &matrix2)
+    {
+        quad q1 = quad_from(bitmap_cell_rectangle(bmp1), matrix1);
+        quad q2 = quad_from(bitmap_cell_rectangle(bmp2), matrix2);
+
+        if ( not quads_intersect(q1, q2) )
+        {
+            return false;
+        }
+
+        return _collision_within_bitmap_images_with_translation(bmp1, cell1, matrix1,
+                                                                bmp2, cell2, matrix2);
+    }
+
+    bool bitmap_collision(bitmap bmp1, int cell1, const point_2d &pt1, bitmap bmp2, int cell2, const point_2d &pt2)
+    {
+        return bitmap_collision(bmp1, cell1, translation_matrix(pt1), bmp2, cell2, translation_matrix(pt2));
+    }
+
+    bool bitmap_collision(bitmap bmp1, int cell1, float x1, float y1, bitmap bmp2, int cell2, float x2, float y2)
+    {
+        return bitmap_collision(bmp1, cell1, translation_matrix(x1, y1), bmp2, cell2, translation_matrix(x2, y2));
+    }
+
+    bool bitmap_collision(bitmap bmp1, const point_2d &pt1, bitmap bmp2, const point_2d &pt2)
+    {
+        return bitmap_collision(bmp1, 0, pt1.x, pt1.y, bmp2, 0, pt2.x, pt2.y);
+    }
+
+    bool bitmap_collision(bitmap bmp1, float x1, float y1, bitmap bmp2, float x2, float y2)
+    {
+        return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
+    }
+
 }
