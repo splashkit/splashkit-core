@@ -16,6 +16,13 @@ namespace splashkit_lib
      * A mouse can have many different types of buttons. Most people know
      * about the simple Left and Right buttons, but there is also a Middle
      * button (sometimes part of a scoll wheel), and possible side buttons.
+     *
+     * @constant NO_BUTTON          No mouse button
+     * @constant LEFT_BUTTON        The left mouse button
+     * @constant MIDDLE_BUTTON      The middle mouse button
+     * @constant RIGHT_BUTTON       The right mouse button
+     * @constant MOUSE_X1_BUTTON    The x1 mouse button
+     * @constant MOUSE_X2_BUTTON    The x2 mouse button
      */
     enum mouse_button
     {
