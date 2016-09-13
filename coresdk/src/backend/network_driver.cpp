@@ -44,20 +44,20 @@ namespace splashkit_lib
         UDPsocket svr;
 
         sk_network_connection result;
-        result.kind = SGCK_UNKNOWN;
+        result.kind = UNKNOWN;
         result._socket = NULL;
 
         svr = SDLNet_UDP_Open(port);
 
         if (svr)
         {
-            result.kind = SGCK_UDP;
+            result.kind = UDP;
             result._socket = svr;
             SDLNet_UDP_AddSocket(_sockets, svr);
         }
         else
         {
-            result.kind = SGCK_UNKNOWN;
+            result.kind = UNKNOWN;
             result._socket = NULL;
         }
 
@@ -72,7 +72,7 @@ namespace splashkit_lib
         TCPsocket client;
 
         sk_network_connection result;
-        result.kind = SGCK_UNKNOWN;
+        result.kind = UNKNOWN;
         result._socket = NULL;
 
         if (SDLNet_ResolveHost(&addr, host, port) < 0)
@@ -82,14 +82,14 @@ namespace splashkit_lib
 
         if (client)
         {
-            result.kind = SGCK_TCP;
+            result.kind = TCP;
             result._socket = client;
             if (host)
                 SDLNet_TCP_AddSocket(_sockets, client);
         }
         else
         {
-            result.kind = SGCK_UNKNOWN;
+            result.kind = UNKNOWN;
             result._socket = NULL;
         }
 
@@ -156,7 +156,7 @@ namespace splashkit_lib
     void sk_close_connection(sk_network_connection *con)
     {
         // not entry point
-        if ( con->kind == SGCK_TCP )
+        if ( con->kind == TCP )
         {
             SDLNet_TCP_DelSocket(_sockets, (TCPsocket)con->_socket);
             SDLNet_TCP_Close((TCPsocket)con->_socket);
@@ -167,13 +167,13 @@ namespace splashkit_lib
             SDLNet_UDP_Close((UDPsocket)con->_socket);
         }
 
-        con->kind = SGCK_UNKNOWN;
+        con->kind = UNKNOWN;
     }
 
     unsigned int sk_network_address(sk_network_connection *con)
     {
         IPaddress *remote;
-        if (con->kind == SGCK_TCP)
+        if (con->kind == TCP)
             remote = SDLNet_TCP_GetPeerAddress((TCPsocket)con->_socket);
         else
             remote = SDLNet_UDP_GetPeerAddress((UDPsocket)con->_socket, -1);
@@ -183,7 +183,7 @@ namespace splashkit_lib
     unsigned int sk_get_network_port(sk_network_connection *con)
     {
         IPaddress *remote;
-        if (con->kind == SGCK_TCP)
+        if (con->kind == TCP)
             remote = SDLNet_TCP_GetPeerAddress((TCPsocket)con->_socket);
         else
             remote = SDLNet_UDP_GetPeerAddress((UDPsocket)con->_socket, -1);
@@ -194,7 +194,7 @@ namespace splashkit_lib
     {
         sk_network_connection result;
         result._socket = NULL;
-        result.kind = SGCK_UNKNOWN;
+        result.kind = UNKNOWN;
         
         TCPsocket client;
         if ((client = SDLNet_TCP_Accept((TCPsocket)con->_socket)) != NULL)
@@ -202,7 +202,7 @@ namespace splashkit_lib
             //        printf("Adding client %p\n", client);
             SDLNet_TCP_AddSocket(_sockets, client);
             result._socket = client;
-            result.kind = SGCK_TCP;
+            result.kind = TCP;
         }
         return result;
     }

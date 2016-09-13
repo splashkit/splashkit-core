@@ -11,6 +11,9 @@
 #define types_hpp
 
 #include <string>
+#include <backend/network_driver.h>
+#include <vector>
+
 using namespace std;
 namespace splashkit_lib
 {
@@ -283,6 +286,5 @@ namespace splashkit_lib
         NOT_IMPLEMENTED = 501,
         SERVICE_UNAVAILABLE = 503
     };
-    
 }
 #endif /* types_hpp */
