@@ -753,31 +753,31 @@ namespace splashkit_lib
      * Creates and returns a random color where the color is random, but the
      * opacity is set to the passed in value.
      *
-     * @param  alpha The set alpha (opacity) value
+     * @param  alpha The set alpha (opacity) value (between 0 and 255)
      * @return       A random color with the set alpha
      */
-    color random_rgb_color(byte alpha);
+    color random_rgb_color(int alpha);
 
     /**
      * Gets a color given its color components. Each of the components has
      * a value between 0 and 255.
      *
-     * @param  red   The red component
-     * @param  green The green component
-     * @param  blue  The blue component
-     * @param  alpha The alpha (opacity) component
+     * @param  red   The red component (between 0 and 255)
+     * @param  green The green component (between 0 and 255)
+     * @param  blue  The blue component (between 0 and 255)
+     * @param  alpha The alpha (opacity) component (between 0 and 255)
      * @return       The color from its different component
      */
-    color rgba_color(byte red, byte green, byte blue, byte alpha);
+    color rgba_color(int red, int green, int blue, int alpha);
 
     /**
      *  Gets a color given its color components. Each of the components has
      *  a value between 0 and 1.0.
      *
-     * @param  red   The red component
-     * @param  green The green component
-     * @param  blue  The blue component
-     * @param  alpha The alpha (opacity) component
+     * @param  red   The red component (between 0 and 1.0)
+     * @param  green The green component (between 0 and 1.0)
+     * @param  blue  The blue component (between 0 and 1.0)
+     * @param  alpha The alpha (opacity) component (between 0 and 1.0)
      * @return       The color from its different component
      *
      * @attribute suffix from_float
@@ -793,7 +793,7 @@ namespace splashkit_lib
      * @param  blue  The blue component
      * @return       The color from its different component
      */
-    color rgb_color(byte red, byte green, byte blue);
+    color rgb_color(int red, int green, int blue);
 
     /**
      * Gets a color given its RGB components. Each of the components has

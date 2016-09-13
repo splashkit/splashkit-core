@@ -21,12 +21,12 @@ namespace splashkit_lib
         return rgba_color(rnd(), rnd(), rnd(), rnd());
     }
 
-    color random_rgb_color(byte alpha)
+    color random_rgb_color(int alpha)
     {
         return rgba_color(rnd(), rnd(), rnd(), alpha / 255.0f);
     }
 
-    color rgba_color(byte red, byte green, byte blue, byte alpha)
+    color rgba_color(int red, int green, int blue, int alpha)
     {
         return rgba_color(red / 255.0f, green / 255.0f, blue / 255.0f, alpha / 255.0f);
     }
@@ -48,7 +48,7 @@ namespace splashkit_lib
     /// _gets a color given its _r_g_b components. Each of the components has
     /// a value between 0 and 1.0f.
     ///
-    color rgb_color(byte red, byte green, byte blue)
+    color rgb_color(int red, int green, int blue)
     {
         return rgba_color(red / 255.0f, green / 255.0f, blue / 255.0f, 1.0f);
     }
@@ -250,7 +250,7 @@ namespace splashkit_lib
 
     color color_grey()
     {
-        return rgba_color(0.5f, 0.5f, 0.5f, 1);
+        return rgba_color(0.5f, 0.5f, 0.5f, 1.0f);
     }
 
     color color_light_grey()
@@ -260,7 +260,7 @@ namespace splashkit_lib
 
     color color_transparent()
     {
-        return rgba_color(1.0f, 1.0f, 1.0f, 0);
+        return rgba_color(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     color color_alice_blue()
@@ -970,6 +970,6 @@ namespace splashkit_lib
     
     color color_swinburne_red()
     {
-        return rgba_color(237 / 255.0f, 36 / 255.0f, 25, 1.0f);
+        return rgba_color(237 / 255.0f, 36 / 255.0f, 25 / 255.0f, 1.0f);
     }
 }
