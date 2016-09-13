@@ -66,6 +66,16 @@ namespace splashkit_lib
         return response;
     }
 
+    http_response http_post(const string &url, unsigned short port, string body)
+    {
+        http_response response;
+
+        response = new _http_response_data;
+        response->id = HTTP_RESPONSE_PTR;
+        response->data = make_request(HTTP_POST, url, port, body);
+        return response;
+    }
+
     void save_response_to_file(http_response response, string filename)
     {
         ofstream file(filename, ios::binary);

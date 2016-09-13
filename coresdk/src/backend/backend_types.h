@@ -191,6 +191,7 @@ namespace splashkit_lib
         pointer_identifier id;
         string content_type;
         string message;
+        http_status_code code;
         semaphore response_sent;
     };
 

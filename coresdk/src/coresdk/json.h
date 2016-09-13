@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+#include "types.h"
+
 using namespace std;
 namespace splashkit_lib
 {
@@ -448,5 +450,23 @@ namespace splashkit_lib
      * @attribute self j
      */
     int json_count_keys(json j);
+
+    /**
+     * Converts a `color` to a `json` object.
+     *
+     * @param clr The `color` to convert to `json`.
+     *
+     * @returns The `color` serialized into a `json` object.
+     */
+    json json_from_color(color clr);
+
+    /**
+     * Converts a `json` object to a `color` object.
+     *
+     * @param j The `json` to convert to a `color`.
+     *
+     * @returns The `color` deserialized from the `json` object.
+     */
+    color json_to_color(json j);
 }
 #endif //SPLASHKIT_JSON_CPP
