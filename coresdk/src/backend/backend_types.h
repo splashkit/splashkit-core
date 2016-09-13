@@ -204,17 +204,16 @@ namespace splashkit_lib
 
     };
 
-
     struct sk_connection {
         pointer_identifier id;
         string name;
-        sk_network_connection socket;
+        sk_network_connection *socket;
         unsigned int ip;    // TODO needs to be bigger than this i think
         unsigned short port;
         bool open;
         sk_connection_type protocol;
         string stringIP;    // TODO should this be stored?
-        vector<sk_message> messages;   // TODO make this an array
+        vector<sk_message*> messages;   // TODO make this an array
         long int msgLen;
         string partMsgData;
     };
@@ -226,8 +225,8 @@ namespace splashkit_lib
         int port;   // is this the right size?
         int newConnections;
         sk_connection_type protocol;
-        vector<sk_connection> connections;
-        vector<sk_message> messages;
+        vector<sk_connection*> connections;
+        vector<sk_message*> messages;
     };
 
     struct sk_server_response

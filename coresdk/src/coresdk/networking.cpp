@@ -8,21 +8,21 @@
 
 namespace splashkit_lib
 {
-    sk_server_socket& create_server(const string &name, unsigned short int port)
+    server_socket create_server(const string &name, unsigned short int port)
     {
         return create_server(name, port, TCP);
     }
 
-    // TODO this should return &sk_server_socket i think
-    sk_server_socket& create_server(const string &name, unsigned short int port, sk_connection_type protocol)
+    // TODO this should return &server_socket i think
+    server_socket create_server(const string &name, unsigned short int port, sk_connection_type protocol)
     {
         sk_network_connection con = protocol == UDP ? sk_open_udp_connection(port)
                                             : sk_open_tcp_connection(nullptr, port);
 
-        sk_server_socket* socket = new sk_server_socket;
+        server_socket socket = new sk_server_socket;
         if (con._socket && (con.kind == TCP || con.kind == UDP))
         {
-            // TODO create on heap and change server_sockets to be map<string, sk_server_socket*>
+            // TODO create on heap and change server_sockets to be map<string, server_socket>
 
             // TODO initialise fields
             socket->id = SERVER_SOCKET_PTR;
@@ -32,12 +32,12 @@ namespace splashkit_lib
             socket->protocol = protocol;
             socket->newConnections = 0;
 
-            server_sockets.insert({name, *socket});
+            server_sockets.insert({name, socket});
         }
-        return (sk_server_socket&)socket;
+        return socket;
     }
 
-    sk_server_socket server_named(const string &name)
+    server_socket server_named(const string &name)
     {
         return server_sockets[name];
     }
@@ -47,17 +47,17 @@ namespace splashkit_lib
         return close_server(server_sockets[name]);
     }
 
-    bool close_server(sk_server_socket &svr)
+    bool close_server(server_socket svr)
     {
         // Ref cannot be null, therefore this always returns true
         //if (svr != null) return false;
 
-        for(auto const &connection : svr.connections)
+        for(auto const connection : svr->connections)
         {
             if (!close_connection(connection)) return false;
         }
 
-        server_sockets.erase(svr.name);
+        server_sockets.erase(svr->name);
 
         delete svr;
 
@@ -76,8 +76,8 @@ namespace splashkit_lib
         return server_has_new_connection(server_sockets[name]);
     }
 
-    bool server_has_new_connection(sk_server_socket& server) {
-        return server.newConnections > 0;
+    bool server_has_new_connection(server_socket server) {
+        return server->newConnections > 0;
     }
 
     bool has_new_connections() {
@@ -91,24 +91,25 @@ namespace splashkit_lib
         return false;
     }
 
-    sk_connection open_connection(const string &host, unsigned short int port) {
+    connection open_connection(const string &host, unsigned short int port) {
         return open_connection(name_for_connection(host, port), host, port, TCP);
     }
 
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port) {
+    connection open_connection(const string &name, const string &host, unsigned short int port) {
         return open_connection(name, host, port, TCP);
     }
 
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol) {
-        return sk_connection();
+    connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol) {
+        connection result = new sk_connection;
+        return result;
     }
 
-    sk_connection retrieve_connection(const string &name, int idx) {
+    connection retrieve_connection(const string &name, int idx) {
         return retrieve_connection(server_sockets[name], idx);
     }
 
-    sk_connection retrieve_connection(sk_server_socket server, int idx) {
-        return server.connections.size() > idx ? server.connections[idx] : nullptr;
+    connection retrieve_connection(server_socket server, int idx) {
+        return server->connections.size() > idx ? server->connections[idx] : nullptr;
     }
 
     void close_all_connections() {
@@ -118,7 +119,7 @@ namespace splashkit_lib
         }
     }
 
-    bool close_connection(sk_connection &a_connection) {
+    bool close_connection(connection a_connection) {
         //clear_messages(a_connection);
         //shut_connection(a_connection);
         // remove connection from connections map
@@ -134,47 +135,47 @@ namespace splashkit_lib
         return connection_count(server_sockets[name]);
     }
 
-    int connection_count(sk_server_socket server) {
-        return server.connections.size();
+    int connection_count(server_socket server) {
+        return server->connections.size();
     }
 
     unsigned int connection_ip(const string &name) {
         return connection_ip(connections[name]);
     }
 
-    unsigned int connection_ip(sk_connection a_connection) {
-        return a_connection.ip;
+    unsigned int connection_ip(connection a_connection) {
+        return a_connection->ip;
     }
 
-    sk_connection connection_named(const string &name) {
-        return sk_connection();
+    connection connection_named(const string &name) {
+        return connection();
     }
 
-    bool is_connection_open(sk_connection con) {
-        return con.open;
+    bool is_connection_open(connection con) {
+        return con->open;
     }
 
     bool is_connection_open(const string &name) {
-        return connection_open(connections[name]);
+        return is_connection_open(connections[name]);
     }
 
-    unsigned short int connection_port(sk_connection a_connection) {
-        return a_connection.port;
+    unsigned short int connection_port(connection a_connection) {
+        return a_connection->port;
     }
 
     unsigned short int connection_port(const string &name) {
         return connection_port(connections[name]);
     }
 
-    sk_connection last_connection(sk_server_socket server) {
-        if (server.connections.empty())
+    connection last_connection(server_socket server) {
+        if (server->connections.empty())
         {
             return nullptr;
         }
-        return server.connections[server.connections.size()-1];
+        return server->connections[server->connections.size() - 1];
     }
 
-    sk_connection last_connection(const string &name) {
+    connection last_connection(const string &name) {
         return last_connection(server_sockets[name]);
     }
 
@@ -182,11 +183,11 @@ namespace splashkit_lib
         reconnect(connections[name]);
     }
 
-    void reconnect(sk_connection a_connection) {
-        string host = a_connection.stringIP;
-        unsigned short port = a_connection.port;
+    void reconnect(connection a_connection) {
+        string host = a_connection->stringIP;
+        unsigned short port = a_connection->port;
 
-        sk_close_connection(&a_connection.socket);
+        sk_close_connection(a_connection->socket);
         //a_connection.open = establish_connection(, host, port, a_connection.protocol)
     }
 

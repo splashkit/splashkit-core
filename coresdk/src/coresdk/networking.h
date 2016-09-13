@@ -10,48 +10,53 @@
 using namespace std;
 namespace splashkit_lib
 {
+    typedef sk_network_connection *network_connection;
+    typedef sk_message *message;
+    typedef sk_connection *connection;
+    typedef sk_server_socket *server_socket;
+
     typedef char packet_data[512];
     typedef byte bytes[4];
     static int UDP_PACKET_SIZE = 1024;
 
-    static map<string, sk_connection> connections;
-    static map<string, sk_server_socket> server_sockets;
+    static map<string, connection> connections;
+    static map<string, server_socket> server_sockets;
     //static vector<sk_message> messages;
 
     // Server functions
-    sk_server_socket& create_server(const string &name, unsigned short int port);
-    sk_server_socket& create_server(const string &name, unsigned short int port, sk_connection_type protocol);
-    sk_server_socket server_named(const string &name);
-    bool close_server(sk_server_socket &svr);
+    server_socket create_server(const string &name, unsigned short int port);
+    server_socket create_server(const string &name, unsigned short int port, sk_connection_type protocol);
+    server_socket server_named(const string &name);
+    bool close_server(server_socket svr);
     bool close_server(const string &name);
     void close_all_servers();
     bool server_has_new_connection(const string &name);
-    bool server_has_new_connection(sk_server_socket& server);
+    bool server_has_new_connection(server_socket server);
     bool has_new_connections();
 
     // Connection functions
-    sk_connection open_connection(const string &host, unsigned short int port);
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port);
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol);
-    sk_connection retrieve_connection(const string &name, int idx);
-    sk_connection retrieve_connection(sk_server_socket server, int idx);
+    connection open_connection(const string &host, unsigned short int port);
+    connection open_connection(const string &name, const string &host, unsigned short int port);
+    connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol);
+    connection retrieve_connection(const string &name, int idx);
+    connection retrieve_connection(server_socket server, int idx);
     void close_all_connections();
-    bool close_connection(sk_connection &a_connection);
+    bool close_connection(connection a_connection);
     bool close_connection(const string &name);
     int connection_count(const string &name);
-    int connection_count(sk_server_socket server);
+    int connection_count(server_socket server);
     unsigned int connection_ip(const string &name);
-    unsigned int connection_ip(sk_connection a_connection);
-    sk_connection connection_named(const string &name);
-    bool connection_open(sk_connection con);
-    bool connection_open(const string &name);
-    unsigned short int connection_port(sk_connection a_connection);
+    unsigned int connection_ip(connection a_connection);
+    connection connection_named(const string &name);
+    bool is_connection_open(connection con);
+    bool is_connection_open(const string &name);
+    unsigned short int connection_port(connection a_connection);
     unsigned short int connection_port(const string &name);
-    sk_connection last_connection(sk_server_socket server);
-    sk_connection last_connection(const string &name);
-    sk_connection message_connection(sk_message msg);
+    connection last_connection(server_socket server);
+    connection last_connection(const string &name);
+    connection message_connection(message msg);
     void reconnect(const string &name);
-    void reconnect(sk_connection a_connection);
+    void reconnect(connection a_connection);
 
     // Utility functions
     string name_for_connection(const string host, const unsigned int port);
