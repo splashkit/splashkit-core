@@ -24,12 +24,12 @@ void test_clipping(window w1)
     draw_text("White Smoke Bottom Right", COLOR_BLACK, 10, 280);
     
     set_clip(w1, rectangle_from(0, 0, 250, 250));
-    clear_window(w1, COLOR_RED);
+    clear_window(w1, string_to_color("#ff0000ff"));
     draw_text("Testing Clipping", COLOR_BLACK, 10, 10);
     draw_text("Red Top Left", COLOR_BLACK, 10, 20);
     
     push_clip(rectangle_from(50, 50, 250, 250));
-    clear_window(w1, COLOR_GREEN);
+    clear_window(w1, string_to_color("#00ff00ff"));
     
     push_clip(rectangle_from(145, 0, 10, 300));
     clear_window(w1, COLOR_GOLD);
