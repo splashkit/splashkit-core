@@ -22,7 +22,7 @@ namespace splashkit_lib
         return result;
     }
 
-    triangle triangle_from(point_2d p1, point_2d p2, point_2d p3)
+    triangle triangle_from(const point_2d &p1, const point_2d &p2, const point_2d &p3)
     {
         triangle result;
         result.points[0] = p1;

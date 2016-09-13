@@ -36,7 +36,7 @@ namespace splashkit_lib
      * @param  p3 The third point of the triangle
      * @return    A triangle with the indicated points
      */
-    triangle triangle_from(point_2d p1, point_2d p2, point_2d p3);
+    triangle triangle_from(const point_2d &p1, const point_2d &p2, const point_2d &p3);
 
     /**
      * Returns true if the triangle intersects with the rectangle.
