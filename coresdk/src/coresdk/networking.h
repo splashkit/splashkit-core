@@ -10,7 +10,7 @@
 using namespace std;
 namespace splashkit_lib
 {
-    enum sk_connection_type
+    enum connection_type
     {
         TCP,
         UDP,
@@ -24,15 +24,10 @@ namespace splashkit_lib
 
     typedef char packet_data[512];
     typedef byte bytes[4];
-    static int UDP_PACKET_SIZE = 1024;
-
-    static map<string, connection> connections;
-    static map<string, server_socket> server_sockets;
-    //static vector<sk_message> messages;
 
     // Server functions
     server_socket create_server(const string &name, unsigned short int port);
-    server_socket create_server(const string &name, unsigned short int port, sk_connection_type protocol);
+    server_socket create_server(const string &name, unsigned short int port, connection_type protocol);
     server_socket server_named(const string &name);
     bool close_server(server_socket svr);
     bool close_server(const string &name);
@@ -44,7 +39,7 @@ namespace splashkit_lib
     // Connection functions
     connection open_connection(const string &host, unsigned short int port);
     connection open_connection(const string &name, const string &host, unsigned short int port);
-    connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol);
+    connection open_connection(const string &name, const string &host, unsigned short int port, connection_type protocol);
     connection retrieve_connection(const string &name, int idx);
     connection retrieve_connection(server_socket server, int idx);
     void close_all_connections();
@@ -64,6 +59,36 @@ namespace splashkit_lib
     connection message_connection(message msg);
     void reconnect(const string &name);
     void reconnect(connection a_connection);
+
+    // Message functions
+    void broadcast_message(const string &a_msg);
+    void broadcast_message(const string &a_msg, const string &name);
+    void broadcast_message(const string &a_msg, server_socket svr);
+    void check_network_activity();
+    void clear_messages(server_socket svr);
+    void clear_messages(connection a_connection);
+    void clear_messages(const string &name);
+    void free_message(message msg);
+    bool has_messages();
+    bool has_messages(connection con);
+    bool has_messages(server_socket svr);
+    bool has_messages(const string &name);
+    int message_count(connection a_connection);
+    int message_count(const string &name);
+    int message_count(server_socket svr);
+    string message_data(message msg);
+    string message_host(message msg);
+    unsigned short int message_port(message msg);
+    connection_type message_protocol(message msg);
+    message read_message(connection a_connection);
+    message read_message(const string &name);
+    message read_message(server_socket svr);
+    string read_message_data(connection a_connection);
+    string read_message_data(server_socket svr);
+    string read_message_data(const string &name);
+    bool send_message_to(const string &a_msg, connection a_connection);
+    bool send_message_to(const string &a_msg, const string &name);
+    connection message_connection(message msg);
 
     // Utility functions
     string name_for_connection(const string host, const unsigned int port);

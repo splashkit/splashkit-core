@@ -7,13 +7,18 @@
 
 namespace splashkit_lib
 {
+    static map<string, connection> connections;
+    static map<string, server_socket> server_sockets;
+    static vector<message> messages;
+    static int UDP_PACKET_SIZE = 1024;
+
     server_socket create_server(const string &name, unsigned short int port)
     {
         return create_server(name, port, TCP);
     }
 
     // TODO this should return &server_socket i think
-    server_socket create_server(const string &name, unsigned short int port, sk_connection_type protocol)
+    server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
     {
         sk_network_connection con = protocol == UDP ? sk_open_udp_connection(port)
                                             : sk_open_tcp_connection(nullptr, port);
@@ -71,15 +76,18 @@ namespace splashkit_lib
         }
     }
 
-    bool server_has_new_connection(const string &name) {
+    bool server_has_new_connection(const string &name)
+    {
         return server_has_new_connection(server_sockets[name]);
     }
 
-    bool server_has_new_connection(server_socket server) {
+    bool server_has_new_connection(server_socket server)
+    {
         return server->newConnections > 0;
     }
 
-    bool has_new_connections() {
+    bool has_new_connections()
+    {
         for(auto const &pair : server_sockets)
         {
             if (server_has_new_connection(pair.second))
@@ -90,28 +98,34 @@ namespace splashkit_lib
         return false;
     }
 
-    connection open_connection(const string &host, unsigned short int port) {
+    connection open_connection(const string &host, unsigned short int port)
+    {
         return open_connection(name_for_connection(host, port), host, port, TCP);
     }
 
-    connection open_connection(const string &name, const string &host, unsigned short int port) {
+    connection open_connection(const string &name, const string &host, unsigned short int port)
+    {
         return open_connection(name, host, port, TCP);
     }
 
-    connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol) {
+    connection open_connection(const string &name, const string &host, unsigned short int port, connection_type protocol)
+    {
         connection result = new sk_connection_data;
         return result;
     }
 
-    connection retrieve_connection(const string &name, int idx) {
+    connection retrieve_connection(const string &name, int idx)
+    {
         return retrieve_connection(server_sockets[name], idx);
     }
 
-    connection retrieve_connection(server_socket server, int idx) {
+    connection retrieve_connection(server_socket server, int idx)
+    {
         return server->connections.size() > idx ? server->connections[idx] : nullptr;
     }
 
-    void close_all_connections() {
+    void close_all_connections()
+    {
         for(auto const &pair : connections)
         {
             close_connection(pair.second);
@@ -126,11 +140,13 @@ namespace splashkit_lib
         return false;
     }
 
-    bool close_connection(const string &name) {
+    bool close_connection(const string &name)
+    {
         return close_connection(connections[name]);
     }
 
-    int connection_count(const string &name) {
+    int connection_count(const string &name)
+    {
         return connection_count(server_sockets[name]);
     }
 
@@ -138,7 +154,8 @@ namespace splashkit_lib
         return server->connections.size();
     }
 
-    unsigned int connection_ip(const string &name) {
+    unsigned int connection_ip(const string &name)
+    {
         return connection_ip(connections[name]);
     }
 
@@ -162,7 +179,8 @@ namespace splashkit_lib
         return a_connection->port;
     }
 
-    unsigned short int connection_port(const string &name) {
+    unsigned short int connection_port(const string &name)
+    {
         return connection_port(connections[name]);
     }
 
@@ -178,16 +196,194 @@ namespace splashkit_lib
         return last_connection(server_sockets[name]);
     }
 
-    void reconnect(const string &name) {
+    void reconnect(const string &name)
+    {
         reconnect(connections[name]);
     }
 
-    void reconnect(connection a_connection) {
+
+    void reconnect(connection a_connection)
+    {
         string host = a_connection->string_ip;
         unsigned short port = a_connection->port;
 
         sk_close_connection(a_connection->socket);
         //a_connection.open = establish_connection(, host, port, a_connection.protocol)
+    }
+
+    connection message_connection(message msg)
+    {
+        return msg->connection;
+    }
+
+    void broadcast_message(const string &a_msg)
+    {
+        for(auto const& tcp_server: server_sockets)
+        {
+            broadcast_message(a_msg, tcp_server.second);
+        }
+        for (auto const& udp_connection: connections)
+        {
+            //broadcast_message(a_msg, udp_connection.second.);
+        }
+    }
+
+    void broadcast_message(const string &a_msg, const string &name)
+    {
+        broadcast_message(a_msg, server_sockets[name]);
+    }
+
+    void broadcast_message(const string &a_msg, server_socket svr)
+    {
+        for (auto const& tcp_connection: svr->connections)
+        {
+            //broadcast_message(a_msg, tcp_connection);
+        }
+    }
+
+    void check_network_activity()
+    {
+
+    }
+
+    void clear_messages(server_socket svr)
+    {
+        // TODO delete all messages
+    }
+
+    void clear_messages(connection a_connection)
+    {
+        // TODO delete all messages
+    }
+
+    void clear_messages(const string &name)
+    {
+        if (server_sockets.count(name))
+        {
+            clear_messages(server_sockets[name]);
+        }
+        else if (connections.count(name))
+        {
+            clear_messages(connections[name]);
+        }
+    }
+
+    void free_message(sk_message msg)
+    {
+        // TODO Find swingame equivalent
+    }
+
+    bool has_messages()
+    {
+        for(auto const& tcp_server: server_sockets)
+        {
+            if (has_messages(tcp_server.second))
+            {
+                return true;
+            }
+        }
+        for (auto const& udp_connection: connections)
+        {
+            /*
+            if (has_messages(udp_connection))
+            {
+                return true;
+            }
+             */
+        }
+        return false;
+    }
+
+    bool has_messages(connection con)
+    {
+        return con->messages.empty();
+    }
+
+    bool has_messages(server_socket svr)
+    {
+        return svr->messages.empty();
+    }
+
+    bool has_messages(const string &name)
+    {
+        return connections.count(name) ? connections[name]->messages.empty()
+                                       : server_sockets[name]->messages.empty();
+    }
+
+    int message_count(connection a_connection)
+    {
+        return a_connection->messages.size();
+    }
+
+    int message_count(const string &name)
+    {
+        return connections.count(name) ? connections[name]->messages.size()
+                                       : server_sockets[name]->messages.size();
+    }
+
+    int message_count(server_socket svr)
+    {
+        return svr->messages.size();
+    }
+
+    string message_data(sk_message msg)
+    {
+        return msg.data;
+    }
+
+    string message_host(sk_message msg)
+    {
+        return msg.host;
+    }
+
+    unsigned short int message_port(sk_message msg)
+    {
+        return msg.port;
+    }
+
+    connection_type message_protocol(sk_message msg)
+    {
+        return msg.protocol;
+    }
+
+    message read_message(connection a_connection)
+    {
+        return new sk_message;
+    }
+
+    message read_message(const string &name)
+    {
+        return new sk_message;
+    }
+
+    message read_message(server_socket svr)
+    {
+        return new sk_message();
+    }
+
+    string read_message_data(connection a_connection)
+    {
+        return std::__cxx11::string();
+    }
+
+    string read_message_data(server_socket svr)
+    {
+        return std::__cxx11::string();
+    }
+
+    string read_message_data(const string &name)
+    {
+        return std::__cxx11::string();
+    }
+
+    bool send_message_to(const string &a_msg, connection a_connection)
+    {
+        return false;
+    }
+
+    bool send_message_to(const string &a_msg, const string &name)
+    {
+        return false;
     }
 
     string name_for_connection(const string host, const unsigned int port)
@@ -210,7 +406,8 @@ namespace splashkit_lib
     string hex_to_dec_string(const string &a_hex)
     {
         int dec = 0;
-        for (int i = 0; i < a_hex.length(); i++) {
+        for (int i = 0; i < a_hex.length(); i++)
+        {
             int c_val = 0;
             if (a_hex[i] - '0' < 10)
             {

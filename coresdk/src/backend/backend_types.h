@@ -191,7 +191,7 @@ namespace splashkit_lib
 
     struct sk_network_connection
     {
-        sk_connection_type kind;
+        connection_type kind;
 
         // private data used by the backend
         void * _socket;
@@ -204,7 +204,7 @@ namespace splashkit_lib
         unsigned int ip;
         unsigned short port;
         bool open;
-        sk_connection_type protocol;
+        connection_type protocol;
         string string_ip;    // TODO should this be stored?
         vector<sk_message*> messages;
         long int msgLen;
@@ -217,7 +217,7 @@ namespace splashkit_lib
         sk_network_connection socket;
         int port;   // is this the right size?
         int newConnections;
-        sk_connection_type protocol;
+        connection_type protocol;
         vector<sk_connection_data*> connections;
         vector<sk_message*> messages;
     };
@@ -225,10 +225,10 @@ namespace splashkit_lib
     struct sk_message {
         pointer_identifier id;
         string data;
-        sk_connection_type protocol;
+        connection_type protocol;
 
         // TCP
-        sk_connection_data tcp_connection_data;
+        sk_connection_data* connection;
 
         // UDP
         string host;
