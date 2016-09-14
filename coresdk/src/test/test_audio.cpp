@@ -8,6 +8,7 @@
 
 #include "audio.h"
 #include "music.h"
+#include "web.h"
 
 #include "utils.h"
 
@@ -39,6 +40,14 @@ void run_audio_tests()
     
     cout << "    Loaded sound effect. Is there a sound effect loaded? " << has_sound_effect("test") << endl;
     
+    cout << "    Downloading sound effect..." << endl;
+    download_sound_effect("text message 2", "http://soundbible.com/grab.php?id=2155&type=wav", 80);
+    play_sound_effect("text message 2", 2, 0.8);
+    delay(5000);
+    
+    cout << "    Downloading music..." << endl;
+    download_music("music", "http://www.royaltyfreemusic.com/music_clips/free/Heartland_1.mp3", 80);
+    play_music("music");
     delay(5000);
     
     play_sound_effect(s1, 1, 1.0f);

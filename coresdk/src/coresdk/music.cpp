@@ -31,12 +31,17 @@ namespace splashkit_lib
     {
         if (has_music(name)) return music_named(name);
 
-        string file_path = path_to_resource(filename, MUSIC_RESOURCE);
-
+        string file_path = filename;
+        
         if ( ! file_exists(file_path) )
         {
-            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-            return nullptr;
+            file_path = path_to_resource(filename, MUSIC_RESOURCE);
+
+            if ( ! file_exists(file_path) )
+            {
+                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                return nullptr;
+            }
         }
 
         music result = new _music_data();

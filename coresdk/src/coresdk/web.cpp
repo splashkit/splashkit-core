@@ -160,7 +160,8 @@ namespace splashkit_lib
         }
         
         font result = load_font(name, path);
-        result->was_downloaded = true; // ensure that font will delete file when it is released.
+        if ( VALID_PTR(result, FONT_PTR) )
+            result->was_downloaded = true; // ensure that font will delete file when it is released.
         return result;
     }
     

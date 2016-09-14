@@ -64,12 +64,17 @@ namespace splashkit_lib
     {
         if (has_sound_effect(name)) return sound_effect_named(name);
 
-        string file_path = path_to_resource(filename, SOUND_RESOURCE);
-
+        string file_path = filename;
+        
         if ( ! file_exists(file_path) )
         {
-            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-            return nullptr;
+            file_path = path_to_resource(filename, SOUND_RESOURCE);
+
+            if ( ! file_exists(file_path) )
+            {
+                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                return nullptr;
+            }
         }
 
         sound_effect result = new _sound_data();

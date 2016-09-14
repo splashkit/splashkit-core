@@ -165,16 +165,21 @@ namespace splashkit_lib
     {
         if (has_font(name)) return font_named(name);
 
-        string file_path = path_to_resource(filename, FONT_RESOURCE);
-
+        string file_path = filename;
+        
         if ( ! file_exists(file_path) )
         {
-            file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
+            file_path = path_to_resource(filename, FONT_RESOURCE);
 
             if ( ! file_exists(file_path) )
             {
-                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-                return nullptr;
+                file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
+
+                if ( ! file_exists(file_path) )
+                {
+                    LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                    return nullptr;
+                }
             }
         }
 
