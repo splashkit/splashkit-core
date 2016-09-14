@@ -14,6 +14,8 @@
 #include "text_driver.h"
 #include "graphics_driver.h"
 
+#include <cstdio>
+
 #include <map>
 namespace splashkit_lib
 {
@@ -85,6 +87,10 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(fnt, FONT_PTR) )
         {
+            if (fnt->was_downloaded && file_exists(fnt->filename) )
+            {
+                remove(fnt->filename.c_str());
+            }
             _fonts.erase(fnt->name);
             sk_close_font(fnt);
             fnt->id = NONE_PTR;  // ensure future use of this pointer will fail...

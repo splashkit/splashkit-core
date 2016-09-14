@@ -103,27 +103,28 @@ namespace splashkit_lib
         return result;
     }
 
-    bitmap download_image(const string &name, const string &url, unsigned short port)
+    bool download_file(const string &name, const string &url, unsigned short port, string &path)
     {
         http_response response = http_get(url, port);
-
+        auto cleanup_response = finally( [&] { free_response(response); });
+        
         if ( response->data.status < 200 || response->data.status >= 300 )
         {
-            LOG(WARNING) << "Unable to download image from " + url + " got status " + to_string(response->data.status);
-            return nullptr;
+            LOG(WARNING) << "Unable to download file from " + url + " got status " + to_string(response->data.status);
+            return false;
         }
-
+        
         char *tmpname;
-
+        
 #ifndef WINDOWS
-        tmpname = strdup("/tmp/splashkit.image.XXXXXX");
+        tmpname = strdup("/tmp/splashkit.file.XXXXXX");
         mkstemp(tmpname);
 #else
         char fname[L_tmpnam];
         tmpnam (fname);
         char tmppath[261] = {0};
         GetTempPath(260, tmppath);
-
+        
         tmpname = strdup(tmppath);
         string fpath = path_from({tmpname, fname});
         tmpname = strdup(fpath.c_str());
@@ -131,12 +132,61 @@ namespace splashkit_lib
 #endif
         save_response_to_file(response, tmpname);
 
-        bitmap result = load_bitmap(name, tmpname);
-        remove(tmpname); // Delete the file
-        
+        path = string(tmpname);
         free(tmpname);
-        free_response(response);
         
+        return true;
+    }
+    
+    bitmap download_image(const string &name, const string &url, unsigned short port)
+    {
+        string path;
+        if ( not download_file(name, url, port, path) )
+        {
+            return nullptr;
+        }
+
+        bitmap result = load_bitmap(name, path);
+        remove(path.c_str()); // Delete the file
+        return result;
+    }
+    
+    font download_font(const string &name, const string &url, unsigned short port)
+    {
+        string path;
+        if ( not download_file(name, url, port, path) )
+        {
+            return nullptr;
+        }
+        
+        font result = load_font(name, path);
+        result->was_downloaded = true; // ensure that font will delete file when it is released.
+        return result;
+    }
+    
+    sound_effect download_sound_effect(const string &name, const string &url, unsigned short port)
+    {
+        string path;
+        if ( not download_file(name, url, port, path) )
+        {
+            return nullptr;
+        }
+        
+        sound_effect result = load_sound_effect(name, path);
+        remove(path.c_str()); // Delete the file
+        return result;
+    }
+    
+    music download_music(const string &name, const string &url, unsigned short port)
+    {
+        string path;
+        if ( not download_file(name, url, port, path) )
+        {
+            return nullptr;
+        }
+        
+        music result = load_music(name, path);
+        remove(path.c_str()); // Delete the file
         return result;
     }
     
