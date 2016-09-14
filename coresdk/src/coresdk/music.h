@@ -19,10 +19,10 @@ namespace splashkit_lib
     /**
      * The Music type is used to refer to music that can be
      * played by SplashKit. Music files are loaded with
-     * `LoadMusic`, played using `PlayMusic`, and must be
-     * released using `FreeMusic`.
+     * `load_music`, played using `play_music`, and must be
+     * released using `free_music`.
      *
-     * Unlike `SoundEffect`s, there can only be one Music track
+     * Unlike `sound_effect`s, there can only be one music track
      * playing at a time. Playing an new track will stop the currently
      * playing music and switch to the new track.
      *

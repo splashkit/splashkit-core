@@ -16,12 +16,12 @@ namespace splashkit_lib
 {
 
     /**
-     *  In SwinGame, Matrices can be used to combine together a number of
-     *  operations that need to be performed on Vectors. You can translate,
-     *  rotate and scale, and combine these together into a single matrix
-     *  that can then be applied to vectors and points.
+     *  In SplashKit, matrices can be used to combine together a number of
+     *  operations that need to be performed on `vector_2d` values. You can 
+     *  translate, rotate and scale, and combine these together into a
+     *  single matrix that can then be applied to vectors and points.
      *
-     * @param elements foo bar qux
+     * @param elements The elements of the matrix
      */
     struct matrix_2d
     {

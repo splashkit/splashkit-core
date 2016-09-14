@@ -19,8 +19,9 @@ namespace splashkit_lib
 {
     /**
      * The Window type is used to refer to a window that you have opened
-     * in SplashKit. You create new Windows using `OpenWindow` and they can
-     * be closed using `CloseWindow`.
+     * in SplashKit. You create new Windows using `open_window` and they can
+     * be closed using `close_window`.
+     *
      *
      *   - opened with `open_window`
      *
