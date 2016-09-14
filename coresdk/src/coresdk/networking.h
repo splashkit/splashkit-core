@@ -26,8 +26,8 @@ namespace splashkit_lib
     typedef byte bytes[4];
 
     // Server functions
-    server_socket create_server(const string &name, unsigned short int port);
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol);
+    server_socket create_server(const string &name, unsigned short int port);
     server_socket server_named(const string &name);
     bool close_server(server_socket svr);
     bool close_server(const string &name);
@@ -37,9 +37,9 @@ namespace splashkit_lib
     bool has_new_connections();
 
     // Connection functions
-    connection open_connection(const string &host, unsigned short int port);
-    connection open_connection(const string &name, const string &host, unsigned short int port);
     connection open_connection(const string &name, const string &host, unsigned short int port, connection_type protocol);
+    connection open_connection(const string &name, const string &host, unsigned short int port);
+    connection open_connection(const string &host, unsigned short int port);
     connection retrieve_connection(const string &name, int idx);
     connection retrieve_connection(server_socket server, int idx);
     void close_all_connections();

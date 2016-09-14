@@ -56,6 +56,7 @@ namespace splashkit_lib
         CONNECTION_PTR =            0x434f4e50, //'CONP';
         MESSAGE_PTR =               0x4d534750, //'MSGP';
         SERVER_SOCKET_PTR =         0x53565253, //'SVRS';
+        NETWORK_CONNECTION_PTR =    0x4e545743, //'NTWC';
         DISPLAY_PTR =               0x44495350, //'DISP';
         QUERY_PTR =                 0x51555259, //'QURY';
         JSON_PTR =                  0x4a534f4e, //'JSON';
@@ -191,6 +192,7 @@ namespace splashkit_lib
 
     struct sk_network_connection
     {
+        pointer_identifier id;
         connection_type kind;
 
         // private data used by the backend
@@ -202,7 +204,7 @@ namespace splashkit_lib
         string name;
         sk_network_connection *socket;
         unsigned int ip;
-        unsigned short port;
+        unsigned int port;
         bool open;
         connection_type protocol;
         string string_ip;    // TODO should this be stored?
@@ -214,7 +216,7 @@ namespace splashkit_lib
     struct sk_server_data {
         pointer_identifier id;
         string name;
-        sk_network_connection socket;
+        sk_network_connection *socket;
         int port;   // is this the right size?
         int newConnections;
         connection_type protocol;

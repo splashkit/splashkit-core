@@ -37,43 +37,45 @@ namespace splashkit_lib
         }
     }
 
-    sk_network_connection sk_open_udp_connection(unsigned short port)
+    sk_network_connection* sk_open_udp_connection(unsigned short port)
     {
         internal_sk_init();
 
         UDPsocket svr;
 
-        sk_network_connection result;
-        result.kind = UNKNOWN;
-        result._socket = NULL;
+        sk_network_connection* result = new sk_network_connection;
+        result->id = NETWORK_CONNECTION_PTR;
+        result->kind = UNKNOWN;
+        result->_socket = nullptr;
 
         svr = SDLNet_UDP_Open(port);
 
         if (svr)
         {
-            result.kind = UDP;
-            result._socket = svr;
+            result->kind = UDP;
+            result->_socket = svr;
             SDLNet_UDP_AddSocket(_sockets, svr);
         }
         else
         {
-            result.kind = UNKNOWN;
-            result._socket = NULL;
+            result->kind = UNKNOWN;
+            result->_socket = nullptr;
         }
 
         return result;
     }
 
-    sk_network_connection sk_open_tcp_connection(const char *host, unsigned short port)
+    sk_network_connection* sk_open_tcp_connection(const char *host, unsigned short port)
     {
         internal_sk_init();
 
         IPaddress addr;
         TCPsocket client;
 
-        sk_network_connection result;
-        result.kind = UNKNOWN;
-        result._socket = NULL;
+        sk_network_connection* result = new sk_network_connection;
+        result->id = NETWORK_CONNECTION_PTR;
+        result->kind = UNKNOWN;
+        result->_socket = nullptr;
 
         if (SDLNet_ResolveHost(&addr, host, port) < 0)
             return result;
@@ -82,15 +84,15 @@ namespace splashkit_lib
 
         if (client)
         {
-            result.kind = TCP;
-            result._socket = client;
+            result->kind = TCP;
+            result->_socket = client;
             if (host)
                 SDLNet_TCP_AddSocket(_sockets, client);
         }
         else
         {
-            result.kind = UNKNOWN;
-            result._socket = NULL;
+            result->kind = UNKNOWN;
+            result->_socket = nullptr;
         }
 
         return result;

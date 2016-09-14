@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iomanip>
 
+#include "easylogging++.h"
+
 #include "networking.h"
 #include "network_driver.h"
 
@@ -12,43 +14,53 @@ namespace splashkit_lib
     static vector<message> messages;
     static int UDP_PACKET_SIZE = 1024;
 
+    server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
+    {
+        sk_network_connection *con = nullptr;
+        if (protocol == TCP)
+        {
+            sk_open_tcp_connection(nullptr, port);
+        }
+        else if (protocol == UDP)
+        {
+            sk_open_udp_connection(port);
+        }
+        else
+        {
+            LOG(ERROR) << "Unknown protocol " << protocol << " passed to create_server";
+        }
+
+        server_socket socket = new sk_server_data;
+        if (con->_socket && (con->kind == TCP || con->kind == UDP))
+        {
+            socket->id = SERVER_SOCKET_PTR;
+            socket->name = name;
+            socket->socket = con;
+            socket->port = port;
+            socket->newConnections = 0;
+            socket->protocol = protocol;
+
+            server_sockets.insert({name, socket});
+        }
+
+        return socket;
+    }
+
     server_socket create_server(const string &name, unsigned short int port)
     {
         return create_server(name, port, TCP);
     }
 
-    // TODO this should return &server_socket i think
-    server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
-    {
-        sk_network_connection con = protocol == UDP ? sk_open_udp_connection(port)
-                                            : sk_open_tcp_connection(nullptr, port);
-
-        server_socket socket = new sk_server_data;
-        if (con._socket && (con.kind == TCP || con.kind == UDP))
-        {
-            // TODO create on heap and change server_sockets to be map<string, server_socket>
-
-            // TODO initialise fields
-            socket->id = SERVER_SOCKET_PTR;
-            socket->name = name;
-            socket->port = port;
-            socket->socket = con;
-            socket->protocol = protocol;
-            socket->newConnections = 0;
-
-            server_sockets.insert({name, socket});
-        }
-        return socket;
-    }
-
     server_socket server_named(const string &name)
     {
-        return server_sockets[name];
-    }
+        if (server_sockets.find(name) != server_sockets.end())
+        {
+            return server_sockets[name];
+        }
 
-    bool close_server(const string &name)
-    {
-        return close_server(server_sockets[name]);
+        LOG(WARNING) << "server_named found no server named '" << name << "'.";
+
+        return nullptr;
     }
 
     bool close_server(server_socket svr)
@@ -66,6 +78,11 @@ namespace splashkit_lib
         delete svr;
 
         return true;
+    }
+
+    bool close_server(const string &name)
+    {
+        return close_server(server_sockets[name]);
     }
 
     void close_all_servers()
@@ -98,6 +115,53 @@ namespace splashkit_lib
         return false;
     }
 
+    connection _create_connection(const string& name, connection_type protocol)
+    {
+        connection result = new sk_connection_data;
+        result->id = CONNECTION_PTR;
+        result->name = name;
+        result->ip = 0;
+        result->string_ip = "";
+        result->port = 0;
+        result->protocol = protocol;
+        result->part_msg_data = "";
+        result->open = true;
+        result->socket->_socket = nullptr;
+        result->socket->kind = UNKNOWN;
+        return result;
+    }
+
+    bool _establish_connection(connection con, const string& host, unsigned short int port, connection_type protocol)
+    {
+        con->string_ip = host;
+        con->port = port;
+        con->protocol = protocol;
+
+        if (protocol == TCP)
+        {
+            con->socket = sk_open_tcp_connection(host.c_str(), port);
+
+            if (!con->socket->_socket)
+            {
+                return false;
+            }
+
+            con->ip = sk_network_address(con->socket);
+        }
+        else if (protocol == UDP)
+        {
+            con->socket = sk_open_udp_connection(port);
+            con->ip = sk_network_address(con->socket);
+        }
+        else
+        {
+            LOG(ERROR) << "Invalid protocol passed to _establish_connection: " << protocol;
+            return false;
+        }
+
+        return true;
+    }
+
     connection open_connection(const string &host, unsigned short int port)
     {
         return open_connection(name_for_connection(host, port), host, port, TCP);
@@ -110,8 +174,18 @@ namespace splashkit_lib
 
     connection open_connection(const string &name, const string &host, unsigned short int port, connection_type protocol)
     {
-        connection result = new sk_connection_data;
-        return result;
+        connection con = _create_connection(name, protocol);
+
+        if (_establish_connection(con, host, port, protocol))
+        {
+            connections.insert({name_for_connection(host, port), con});
+        }
+        else
+        {
+            delete con;
+        }
+
+        return con;
     }
 
     connection retrieve_connection(const string &name, int idx)
