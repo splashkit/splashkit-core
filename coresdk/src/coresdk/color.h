@@ -846,7 +846,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The alpha component of the color
      */
-    byte alpha_of(color c);
+    int alpha_of(color c);
 
     /**
      * Returns the red of the supplied color.
@@ -854,7 +854,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The red component of the color
      */
-    byte red_of(color c);
+    int red_of(color c);
 
     /**
      * Returns the green of the supplied color.
@@ -862,7 +862,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The green component of the color
      */
-    byte green_of(color c);
+    int green_of(color c);
 
     /**
      * Returns the blue of the supplied color.
@@ -870,7 +870,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The blue component of the color
      */
-    byte blue_of(color c);
+    int blue_of(color c);
 
     /**
      * Returns the hue of the supplied color.
