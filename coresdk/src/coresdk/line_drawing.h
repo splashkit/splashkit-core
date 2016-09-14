@@ -14,6 +14,9 @@
 #include "geometry.h"
 namespace splashkit_lib
 {
+    /**
+     *
+     */
     void draw_line(color clr, float x1, float y1, float x2, float y2);
     void draw_line(color clr, float x1, float y1, float x2, float y2, drawing_options opts);
 

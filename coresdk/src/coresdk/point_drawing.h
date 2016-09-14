@@ -13,6 +13,9 @@
 #include "color.h"
 namespace splashkit_lib
 {
+    /**
+     *
+     */
     void draw_pixel(color clr, float x, float y);
     void draw_pixel(color clr, float x, float y, drawing_options opts);
     void draw_pixel(color clr, const point_2d &pt);

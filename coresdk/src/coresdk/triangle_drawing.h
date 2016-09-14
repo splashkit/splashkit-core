@@ -30,6 +30,9 @@ namespace splashkit_lib
     void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
 
 
+    /**
+     *
+     */
     void draw_triangle(color clr, const triangle &tri, drawing_options opts);
 
     void draw_triangle(color clr, const triangle &tri);

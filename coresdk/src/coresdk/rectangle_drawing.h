@@ -45,6 +45,9 @@ namespace splashkit_lib
 
     void fill_rectangle(color clr, const rectangle rect);
 
+    /**
+     *
+     */
     void draw_quad(color clr, const quad &q);
     void draw_quad(color clr, const quad &q, drawing_options opts);
 

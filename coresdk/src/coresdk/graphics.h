@@ -81,6 +81,9 @@ namespace splashkit_lib
     /// @lib TakeScreenshot
     void take_screenshot(const string &basename);
 
+    /**
+     *
+     */
     void take_screenshot(window wind, const string &basename);
 
     void save_bitmap(bitmap bmp, const string &basename);

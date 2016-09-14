@@ -14,6 +14,9 @@
 namespace splashkit_lib
 {
     /// Push a clip rectangle to the current window. This can be undone using PopClip.
+    /**
+     *
+     */
     void push_clip(const rectangle &r);
 
     /// Add the clipping rectangle of a bitmap and uses the intersect between the new rectangle and previous clip.

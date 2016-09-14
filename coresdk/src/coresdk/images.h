@@ -29,6 +29,10 @@ namespace splashkit_lib
     /// @class Bitmap
     /// @constructor
     /// @csn initWithName:%s fromFile:%s
+    
+    /**
+     *
+     */
     bitmap load_bitmap(string name, string filename);
 
     /// Determines if SwinGame has a bitmap loaded for the supplied name.

@@ -20,6 +20,9 @@ namespace splashkit_lib
     /// Puts the program to sleep for a specified number of
     /// milliseconds.
     ///
+    /**
+     *
+     */
     void delay(unsigned int milliseconds);
 
     /// Gets the number of milliseconds that have passed since the progrma was started.

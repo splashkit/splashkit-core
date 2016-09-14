@@ -14,6 +14,9 @@
 #include "geometry.h"
 namespace splashkit_lib
 {
+    /**
+     *
+     */
     void draw_ellipse(color clr, float x, float y, float width, float height, drawing_options opts);
 
     void draw_ellipse(color clr, float x, float y, float width, float height);
