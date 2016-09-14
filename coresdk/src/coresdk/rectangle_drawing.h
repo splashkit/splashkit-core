@@ -104,12 +104,36 @@ namespace splashkit_lib
     void fill_rectangle(color clr, const rectangle &rect);
 
     /**
+     * Draw a quad to the current window.
      *
+     * @param clr   The color for the quad
+     * @param q     The details of the quad
      */
     void draw_quad(color clr, const quad &q);
+
+    /**
+     * Draw a quad using the supplied drawing options.
+     *
+     * @param clr   The color for the quad
+     * @param q     The details of the quad
+     * @param opts  The drawing options
+     */
     void draw_quad(color clr, const quad &q, const drawing_options &opts);
 
+    /**
+     * Fill a quad on the current window.
+     *
+     * @param clr   The color for the quad
+     * @param q     The details of the quad
+     */
     void fill_quad(color clr, const quad &q);
+
+    /**
+     * Fill a quad using the supplied drawing options.
+     *
+     * @param clr The color for the quad
+     * @param q   The details of the quad
+     */
     void fill_quad(color clr, const quad &q, const drawing_options &opts);
 
 }
