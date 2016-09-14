@@ -188,7 +188,7 @@ namespace splashkit_lib
         return result;
     }
 
-    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
+    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr)
     {
         if (bg_clr.a > 0)
         {
@@ -216,7 +216,7 @@ namespace splashkit_lib
         rect.width = -1;
         rect.height = -1;
 
-        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
+        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT);
     }
 
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
