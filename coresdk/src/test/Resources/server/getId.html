@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Jon Meyers" />
+  <title>SplashKit Test Get Person</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>List Person</h1>
+        <div class="form-group">
+          <input type='text' id='id' placeholder="id" />
+        </div>
+        <button id="load" type="button" class="btn btn-default">Load Person</button>
+        <div id="ppl"></div>
+        <p id="msg"></p>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#load').click(function() {
+        var content = $('#ppl');
+        content.empty();
+        var id = $('#id').val();
+        $.ajax({
+          url: `http://localhost:8080/names/${id}`,
+          type: 'GET',
+          dataType: 'json',
+          contentType: 'application/json',
+          success: function(response) {
+            $.each(data.people, function(i, item) {
+              var para = $(`<p id='${i}'>ID: ${i} - ${item.name} is ${item.age} years old and lives at ${item.address} </p>`);
+              para.append("<button class='btn btn-default del'>Remove</button>");
+              content.append(para);
+            });
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(`Error retrieving JSON: ${textStatus}`);
+            $('#msg').empty().append(`Error reading from JSON file`);
+          }
+        });
+        $(document).on("click", ".del", function () {
+          var content = $('#ppl');
+          var id = $(this).parent().attr('id');
+
+          $.ajax({
+             url: `http://localhost:8080/names/${id}`,
+             type: 'DELETE',
+             success: function(response) {
+               console.log(`Successfully deleted ${id}`);
+               $(this).parent().remove();
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+                 console.log(`Error deleting from JSON: ${textStatus}`);
+                 $('#msg').empty().append(`Error deleting from JSON file`);
+             }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

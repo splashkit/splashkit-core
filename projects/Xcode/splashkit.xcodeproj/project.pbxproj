@@ -274,6 +274,7 @@
 		FAAC94061D801C1C00B73558 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94041D801C1C00B73558 /* networking.h */; };
 		FAAC94091D801C9600B73558 /* logging_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94071D801C9600B73558 /* logging_driver.cpp */; };
 		FAAC940A1D801C9600B73558 /* logging_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAC94081D801C9600B73558 /* logging_driver.h */; };
+		FC7E6FE71D88246200C8821C /* test_web_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94EC50C91D84164C00AE2804 /* test_web_service.cpp */; };
 		FCB6B3BB1D61423E00011965 /* music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB6B3B91D61423E00011965 /* music.cpp */; };
 		FCB6B3BC1D61423E00011965 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB6B3BA1D61423E00011965 /* music.h */; };
 /* End PBXBuildFile section */
@@ -1390,6 +1391,7 @@
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
 				94DF47091D74132A00E3D9AF /* test_bundles.cpp in Sources */,
+				FC7E6FE71D88246200C8821C /* test_web_service.cpp in Sources */,
 				942ECDC01D77C30A00E5B1F9 /* test_camera.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,

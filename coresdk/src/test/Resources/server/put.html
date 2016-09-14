@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Jon Meyers" />
+  <title>SplashKit Test Update Person</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Update Person</h1>
+        <form>
+          <div class="form-group">
+            <input type='text' id='id' placeholder='id' />
+          </div>
+          <div class="form-group">
+            <input type='text' id='name' placeholder='name' />
+          </div>
+          <div class="form-group">
+            <input type='text' id='age' placeholder='age' />
+          </div>
+          <div class="form-group">
+            <input type='text' id='add' placeholder='address' />
+          </div>
+          <button id="update" class="btn btn-default" type="button">Update Person</button>
+        </form>
+      </div>
+    </div>
+    <p id="msg"></p>
+  </div>
+  <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#update').on('click',function() {
+        var id = $('#id').val();
+        var name = $('#name').val();
+        var age = $('#age').val();
+        var add = $('#add').val();
+        var data = `'name': '${name}', 'age': '${age}', 'address': '${add}'`;
+        console.log(`data: ${data}`);
+        $.ajax({
+          url: `http://localhost:8080/names/${id}`,
+          type: 'PUT',
+          data: data,
+          contentType: 'application/json',
+          success: function (response) {
+            console.log(`Successfully updated ${id}`);
+            $('#msg').empty().append(`Successfully updated ${id}`);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log('Error: ' + textStatus);
+              $('#msg').empty().append(`Error writing to JSON file`);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

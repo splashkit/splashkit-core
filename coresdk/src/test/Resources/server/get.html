@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Jon Meyers" />
+  <title>SplashKit Test Get People</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>List All People</h1>
+      <div class="col-xs-12">
+        <button id="load" type="button" class="btn btn-default">Load All People</button>
+        <div id="ppl"></div>
+        <p id="msg"></p>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#load').click(function() {
+        var content = $('#ppl');
+        content.empty();
+        $.ajax({
+          url: `http://localhost:8080/names`,
+          type: 'GET',
+          dataType: 'json',
+          contentType: 'application/json',
+          success: function(response) {
+            $.each(response.people, function(i, item) {
+              var para = $(`<p id='${i}'>ID: ${i} - ${item.name} is ${item.age} years old and lives at ${item.address} </p>`);
+              para.append("<button class='btn btn-default del'>Remove Person</button>");
+              content.append(para);
+            });
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(`Error retrieving JSON: ${textStatus}`);
+            $('#msg').empty().append(`Error reading from JSON file`);
+          }
+        });
+
+        $(document).on("click", ".del", function () {
+          var content = $('#ppl');
+          var id = $(this).parent().attr('id');
+          $.ajax({
+             url: `http://localhost:8080/names/${id}`,
+             type: 'DELETE',
+             success: function(response) {
+               console.log(`successfully deleted ${id}`);
+               $('#load').trigger('click');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+               console.log(`Error deleting from JSON file: ${textStatus}`);
+               $('#msg').empty().append(`Error deleting from JSON file`);
+             }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
