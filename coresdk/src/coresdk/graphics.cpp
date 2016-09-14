@@ -60,9 +60,9 @@ namespace splashkit_lib
     }
 
     void clear_screen()
-    (
+    {
         clear_window(_current_window, COLOR_WHITE);
-    )
+    }
 
     int screen_width()
     {
