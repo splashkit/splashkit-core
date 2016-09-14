@@ -15,44 +15,102 @@
 
 namespace splashkit_lib
 {
-    /// Draw a rectangle using the supplied drawing options.
-    ///
-    /// @lib DrawRectangleOpts
-    /// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
-    void draw_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
+    /**
+     * Draw a rectangle using the supplied drawing options.
+     *
+     * @param clr     The color of the rectangle
+     * @param x       The distance from the left of the window/bitmap to the
+     *                rectangle
+     * @param y       The distance from the top of the window/bitmap to the
+     *                rectangle
+     * @param width   The width of the rectangle
+     * @param height  The height of the rectangle
+     * @param opts    The drawing options
+     */
+    void draw_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
 
-    /// Draw a rectangle onto the current window.
-    ///
-    /// @lib DrawRectangle
-    /// @sn drawRectangleColor:%s atX:%s y:%s width:%s height:%s
+    /**
+     * Draw a rectangle to the current window.
+     *
+     * @param clr     The color of the rectangle
+     * @param x       The distance from the left of the window/bitmap to the
+     *                rectangle
+     * @param y       The distance from the top of the window/bitmap to the
+     *                rectangle
+     * @param width   The width of the rectangle
+     * @param height  The height of the rectangle
+     */
     void draw_rectangle(color clr, float x, float y, float width, float height);
 
-    void draw_rectangle(color clr, const rectangle rect, drawing_options opts);
+    /**
+     * Draw a rectangle using the supplied drawing options.
+     *
+     * @param clr     The color of the rectangle
+     * @param rect    The rectangle to draw
+     * @param opts    The drawing options
+     */
+    void draw_rectangle(color clr, const rectangle &rect, const drawing_options &opts);
 
-    void draw_rectangle(color clr, const rectangle rect);
+    /**
+     * Draw a rectangle onto the current window.
+     *
+     * @param clr     The color of the rectangle
+     * @param rect    The rectangle to draw
+     */
+    void draw_rectangle(color clr, const rectangle &rect);
 
-    /// Fill a rectangle using the supplied drawing options.
-    ///
-    /// @lib FillRectangleOpts
-    /// @sn fillRectangleColor:%s atX:%s y:%s width:%s height:%s opts:%s
-    void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts);
+    /**
+     * Fills a rectangle using the supplied drawing options.
+     *
+     * @param clr     The color of the rectangle
+     * @param x       The distance from the left of the window/bitmap to the
+     *                rectangle
+     * @param y       The distance from the top of the window/bitmap to the
+     *                rectangle
+     * @param width   The width of the rectangle
+     * @param height  The height of the rectangle
+     * @param opts    The drawing options
+     */
+    void fill_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
 
-    /// Fill a rectangle onto the current window.
-    ///
+    /**
+     * Fills a rectangle to the current window.
+     *
+     * @param clr     The color of the rectangle
+     * @param x       The distance from the left of the window/bitmap to the
+     *                rectangle
+     * @param y       The distance from the top of the window/bitmap to the
+     *                rectangle
+     * @param width   The width of the rectangle
+     * @param height  The height of the rectangle
+     */
     void fill_rectangle(color clr, float x, float y, float width, float height);
 
-    void fill_rectangle(color clr, const rectangle rect, drawing_options opts);
+    /**
+     * Fills a rectangle using the supplied drawing options.
+     *
+     * @param clr     The color of the rectangle
+     * @param rect    The rectangle to draw
+     * @param opts    The drawing options
+     */
+    void fill_rectangle(color clr, const rectangle &rect, const drawing_options &opts);
 
-    void fill_rectangle(color clr, const rectangle rect);
+    /**
+     * Fill a rectangle onto the current window.
+     *
+     * @param clr     The color of the rectangle
+     * @param rect    The rectangle to draw
+     */
+    void fill_rectangle(color clr, const rectangle &rect);
 
     /**
      *
      */
     void draw_quad(color clr, const quad &q);
-    void draw_quad(color clr, const quad &q, drawing_options opts);
+    void draw_quad(color clr, const quad &q, const drawing_options &opts);
 
     void fill_quad(color clr, const quad &q);
-    void fill_quad(color clr, const quad &q, drawing_options opts);
-    
+    void fill_quad(color clr, const quad &q, const drawing_options &opts);
+
 }
 #endif /* rectangle_drawing_hpp */
