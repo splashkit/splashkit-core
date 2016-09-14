@@ -192,19 +192,19 @@ namespace splashkit_lib
         return SDLNet_Read16(&remote->port);
     }
 
-    sk_network_connection sk_accept_connection(sk_network_connection *con)
+    sk_network_connection* sk_accept_connection(sk_network_connection *con)
     {
-        sk_network_connection result;
-        result._socket = NULL;
-        result.kind = UNKNOWN;
+        sk_network_connection* result = new sk_network_connection;
+        result->_socket = NULL;
+        result->kind = UNKNOWN;
         
         TCPsocket client;
         if ((client = SDLNet_TCP_Accept((TCPsocket)con->_socket)) != NULL)
         {
             //        printf("Adding client %p\n", client);
             SDLNet_TCP_AddSocket(_sockets, client);
-            result._socket = client;
-            result.kind = TCP;
+            result->_socket = client;
+            result->kind = TCP;
         }
         return result;
     }

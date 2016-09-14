@@ -218,7 +218,7 @@ namespace splashkit_lib
         string name;
         sk_network_connection *socket;
         int port;   // is this the right size?
-        int newConnections;
+        int new_connections;
         connection_type protocol;
         vector<sk_connection_data*> connections;
         vector<sk_message*> messages;

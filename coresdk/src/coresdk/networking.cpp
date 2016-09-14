@@ -6,6 +6,7 @@
 
 #include "networking.h"
 #include "network_driver.h"
+#include "utility_functions.h"
 
 namespace splashkit_lib
 {
@@ -37,7 +38,7 @@ namespace splashkit_lib
             socket->name = name;
             socket->socket = con;
             socket->port = port;
-            socket->newConnections = 0;
+            socket->new_connections = 0;
             socket->protocol = protocol;
 
             server_sockets.insert({name, socket});
@@ -100,7 +101,7 @@ namespace splashkit_lib
 
     bool server_has_new_connection(server_socket server)
     {
-        return server->newConnections > 0;
+        return server->new_connections > 0;
     }
 
     bool has_new_connections()
@@ -247,6 +248,37 @@ namespace splashkit_lib
 
     bool is_connection_open(const string &name) {
         return is_connection_open(connections[name]);
+    }
+
+    bool accept_new_connection(server_socket server)
+    {
+        if (INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Invalid server_socket passed to accept_new_connection";
+            return false;
+        }
+        
+        server->new_connections = 0;
+
+        network_connection con = sk_accept_connection(server->socket);
+
+        if (con->_socket && (con->kind == TCP))
+        {
+            int ip = sk_network_address(con);
+            int port = sk_get_network_port(con);
+
+            connection client = _create_connection(server->name + "->" + name_for_connection(ipv4_to_str(ip), port), TCP);
+            client->ip = ip;
+            client->port = port;
+            client->socket = con;
+
+            server->connections.push_back(client);
+            server->new_connections = 1;
+
+            return true;
+        }
+
+        return false;
     }
 
     unsigned short int connection_port(connection a_connection) {

@@ -31,7 +31,7 @@ namespace splashkit_lib
 
     unsigned int sk_get_network_port(sk_network_connection *con);
 
-    sk_network_connection sk_accept_connection(sk_network_connection *con);
+    sk_network_connection* sk_accept_connection(sk_network_connection *con);
 
     unsigned int sk_network_has_data();
     unsigned int sk_connection_has_data(sk_network_connection *con);
