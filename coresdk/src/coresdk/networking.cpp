@@ -18,7 +18,7 @@ namespace splashkit_lib
         sk_network_connection con = protocol == UDP ? sk_open_udp_connection(port)
                                             : sk_open_tcp_connection(nullptr, port);
 
-        server_socket socket = new sk_server_socket;
+        server_socket socket = new sk_server_data;
         if (con._socket && (con.kind == TCP || con.kind == UDP))
         {
             // TODO create on heap and change server_sockets to be map<string, server_socket>
@@ -99,7 +99,7 @@ namespace splashkit_lib
     }
 
     connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol) {
-        connection result = new sk_connection;
+        connection result = new sk_connection_data;
         return result;
     }
 
@@ -183,7 +183,7 @@ namespace splashkit_lib
     }
 
     void reconnect(connection a_connection) {
-        string host = a_connection->stringIP;
+        string host = a_connection->string_ip;
         unsigned short port = a_connection->port;
 
         sk_close_connection(a_connection->socket);

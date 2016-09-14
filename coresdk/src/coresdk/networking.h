@@ -19,8 +19,8 @@ namespace splashkit_lib
 
     typedef struct sk_network_connection *network_connection;
     typedef struct sk_message *message;
-    typedef struct sk_connection *connection;
-    typedef struct sk_server_socket *server_socket;
+    typedef struct sk_connection_data *connection;
+    typedef struct sk_server_data *server_socket;
 
     typedef char packet_data[512];
     typedef byte bytes[4];
@@ -67,69 +67,6 @@ namespace splashkit_lib
 
     // Utility functions
     string name_for_connection(const string host, const unsigned int port);
-
-    /*
-     * HttpHeaderData = record
-      name : String;
-      value: String;
-    end;
-
-    HttpRequestData = packed record
-      id         : PointerIdentifier;
-      // requestType: HttpMethod;
-      url        : String;
-      version    : String;
-      headername : StringArray;
-      headervalue: StringArray;
-      body       : String;
-    end;
-
-    HttpResponseData = record
-      id    : PointerIdentifier;
-      data  : sg_http_response;
-    end;
-
-    MessageData = packed record
-      id        : PointerIdentifier;
-      data      : String;
-      protocol  : ConnectionType;
-
-      //TCP has a
-      sk_connection: ^ConnectionData;
-
-      //UDP is from
-      host      : String;
-      port      : Word;
-    end;
-
-    ConnectionData = packed record
-      id              : PointerIdentifier;
-      name            : String;
-      socket          : sg_network_connection;
-      ip              : LongWord;
-      port            : LongInt;
-      open            : Boolean;
-      protocol        : ConnectionType;
-      stringIP        : String;   //Allow for Reconnection
-      messages        : array of MessageData;
-
-      msgLen          : LongInt;  // This data is used to handle splitting of messages
-      partMsgData     : String;   //   over multiple packets
-    end;
-
-    /// @struct ServerData
-    /// @via_pointer
-    ServerData = packed record
-      id              : PointerIdentifier;
-      name            : String;
-      socket          : sg_network_connection; // socket used to accept connections
-      port            : Word;
-      newConnections  : LongInt; // the number of new connections -- reset on new scan for connections
-      protocol        : ConnectionType;
-      connections     : array of ConnectionPtr; // TCP connections
-      messages        : array of MessageData; // UDP messages
-    end;
-     */
 
     /**
      * @brief Converts a hexadecimal ipv4 string to standard ipv4 address string x.x.x.x

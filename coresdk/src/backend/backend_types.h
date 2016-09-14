@@ -197,33 +197,42 @@ namespace splashkit_lib
         void * _socket;
     };
 
-    struct sk_message {
-
-    };
-
-    struct sk_connection {
+    struct sk_connection_data {
         pointer_identifier id;
         string name;
         sk_network_connection *socket;
-        unsigned int ip;    // TODO needs to be bigger than this i think
+        unsigned int ip;
         unsigned short port;
         bool open;
         sk_connection_type protocol;
-        string stringIP;    // TODO should this be stored?
-        vector<sk_message*> messages;   // TODO make this an array
+        string string_ip;    // TODO should this be stored?
+        vector<sk_message*> messages;
         long int msgLen;
-        string partMsgData;
+        string part_msg_data;
     };
 
-    struct sk_server_socket {
+    struct sk_server_data {
         pointer_identifier id;
         string name;
         sk_network_connection socket;
         int port;   // is this the right size?
         int newConnections;
         sk_connection_type protocol;
-        vector<sk_connection*> connections;
+        vector<sk_connection_data*> connections;
         vector<sk_message*> messages;
+    };
+
+    struct sk_message {
+        pointer_identifier id;
+        string data;
+        sk_connection_type protocol;
+
+        // TCP
+        sk_connection_data tcp_connection_data;
+
+        // UDP
+        string host;
+        int port;
     };
 
     struct sk_server_response
