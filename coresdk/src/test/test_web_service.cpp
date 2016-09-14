@@ -151,12 +151,12 @@ void names_delete_route(server_request request, string uri)
 
 void post_person_route(server_request request, string uri)
 {
-    send_html_file_response(request, "post_person.html");
+    send_html_file_response(request, "post.html");
 }
 
 void get_person_route(server_request request, string uri)
 {
-    send_html_file_response(request, "get_person.html");
+    send_html_file_response(request, "get.html");
 }
 
 void add_routes()
