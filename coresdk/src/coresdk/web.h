@@ -16,11 +16,11 @@ using namespace std;
 namespace splashkit_lib
 {
     /**
-     * @attribute class http_request
-     */
-    typedef struct _http_request_data *http_request;
-
-    /**
+     * A HTTP response is a resource that comes back from a HTTP request. This
+     * may be the text related to a web page, or the data related to a resource.
+     * Once you have used the response, you need to make sure to call
+     * `free_response`.
+     *
      * @attribute class http_response
      */
     typedef struct _http_response_data *http_response;

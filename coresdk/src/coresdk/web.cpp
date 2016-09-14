@@ -20,6 +20,8 @@
 #endif
 namespace splashkit_lib
 {
+    typedef struct _http_request_data *http_request;
+    
     struct _http_header_data
     {
         string name;
