@@ -101,6 +101,12 @@ namespace splashkit_lib
 
     bool server_has_new_connection(server_socket server)
     {
+        if (INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Passed invalid pointer to server_has_new_connection";
+            return false;
+        }
+
         return server->new_connections > 0;
     }
 
@@ -336,6 +342,82 @@ namespace splashkit_lib
     connection message_connection(message msg)
     {
         return msg->connection;
+    }
+
+    int udp_packet_size()
+    {
+        return UDP_PACKET_SIZE;
+    }
+
+    void set_udp_packet_size(int udp_packet_size)
+    {
+        UDP_PACKET_SIZE = udp_packet_size;
+    }
+
+    void _enqueue_tcp_message(const string &message, connection con)
+    {
+        sk_message* m = new sk_message;
+        m->id = MESSAGE_PTR;
+        m->data = message;
+        m->protocol = TCP;
+        m->connection = con;
+        m->host = con->string_ip;
+        m->port = con->port;
+        con->messages.push_back(m);
+    }
+
+    void _enqueue_udp_message(vector<sk_message*> &messages, const char* msg, int size, unsigned int host, int port)
+    {
+        message m = new sk_message;
+        m->id = MESSAGE_PTR;
+        LOG(WARNING) << "potential error in _enqueue_udp_message: validate results and remove this warning if correct";
+        //m->data = '';
+        for (int i = 0; i < size - 1; ++i)
+        {
+            m->data[i] += msg[i];
+        }
+        m->protocol = UDP;
+        m->connection = nullptr;
+        m->host = ipv4_to_str(host);
+        m->port = port;
+        messages.push_back(m);
+    }
+
+    bool _read_udp_message_from(network_connection con, vector<message>& messages)
+    {
+        if (INVALID_PTR(con, NETWORK_CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Invalid network_connection passed to _read_udp_message_from";
+        }
+
+        if (sk_connection_has_data(con) > 0)
+        {
+            char data[UDP_PACKET_SIZE];
+            unsigned int times, size, host;
+            unsigned short port;
+            times = size = host = port = 0;
+
+            do
+            {
+                size = UDP_PACKET_SIZE;
+                host = 0;
+                port = 0;
+
+                sk_read_udp_message(con, &host, &port, data, &size);
+
+                if ((size > 0) || (host > 0))
+                {
+                    _enqueue_udp_message(messages, data, size, host, port);
+                }
+
+                times++;
+            }
+            while ((size != 0) && (host != 0) || (times < 10));
+
+            return true;
+        }
+
+        return false;
     }
 
     void broadcast_message(const string &a_msg)

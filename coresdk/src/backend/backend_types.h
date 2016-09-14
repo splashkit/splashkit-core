@@ -199,7 +199,8 @@ namespace splashkit_lib
         void * _socket;
     };
 
-    struct sk_connection_data {
+    struct sk_connection_data
+    {
         pointer_identifier id;
         string name;
         sk_network_connection *socket;
@@ -213,7 +214,8 @@ namespace splashkit_lib
         string part_msg_data;
     };
 
-    struct sk_server_data {
+    struct sk_server_data
+    {
         pointer_identifier id;
         string name;
         sk_network_connection *socket;
@@ -224,7 +226,8 @@ namespace splashkit_lib
         vector<sk_message*> messages;
     };
 
-    struct sk_message {
+    struct sk_message
+    {
         pointer_identifier id;
         string data;
         connection_type protocol;
