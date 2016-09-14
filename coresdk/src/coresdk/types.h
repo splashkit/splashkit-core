@@ -239,6 +239,7 @@ namespace splashkit_lib
      *                        bitmap drawing will rotate.
      * @param flip_x          Should bitmaps be flipped horizontally
      * @param flip_y          Should bitmaps be flipped vertically
+     * @param is_part         Indicates that part of a bitmap should be drawn
      * @param part            The area of the bitmap to draw
      * @param camera          How the current window camera affects the drawing
      * @param line_width      How wide are lines (only lines at this stage)
@@ -263,8 +264,8 @@ namespace splashkit_lib
     };
 
     /**
-     * Each display value represents a physical display attached to the computer.
-     * You can use this to query the displays position and size.
+     * Each display value represents a physical display attached to the
+     * computer. You can use this to query the displays position and size.
      *
      * @attribute class display
      */
