@@ -281,6 +281,22 @@ namespace splashkit_lib
         return false;
     }
 
+
+    bool accept_all_new_connections()
+    {
+        bool result = false;
+
+        for (auto it = server_sockets.begin(); it != server_sockets.end(); ++it)
+        {
+            if (accept_new_connection(it->second))
+            {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
     unsigned short int connection_port(connection a_connection) {
         return a_connection->port;
     }

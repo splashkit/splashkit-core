@@ -52,6 +52,8 @@ namespace splashkit_lib
     connection connection_named(const string &name);
     bool is_connection_open(connection con);
     bool is_connection_open(const string &name);
+    bool accept_new_connection(server_socket server);
+    bool accept_all_new_connections();
     unsigned short int connection_port(connection a_connection);
     unsigned short int connection_port(const string &name);
     connection last_connection(server_socket server);
