@@ -62,6 +62,11 @@ namespace splashkit_lib
     void clear_screen(color clr);
 
     /**
+     * Clears the current screen to color white.
+     */
+    void clear_screen();
+
+    /**
      * Returns the width of the current window.
      */
     int screen_width();
