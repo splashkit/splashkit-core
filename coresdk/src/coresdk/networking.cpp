@@ -72,15 +72,18 @@ namespace splashkit_lib
         }
     }
 
-    bool server_has_new_connection(const string &name) {
+    bool server_has_new_connection(const string &name)
+    {
         return server_has_new_connection(server_sockets[name]);
     }
 
-    bool server_has_new_connection(sk_server_socket& server) {
+    bool server_has_new_connection(sk_server_socket& server)
+    {
         return server.newConnections > 0;
     }
 
-    bool has_new_connections() {
+    bool has_new_connections()
+    {
         for(auto const &pair : server_sockets)
         {
             if (server_has_new_connection(pair.second))
@@ -91,34 +94,41 @@ namespace splashkit_lib
         return false;
     }
 
-    sk_connection open_connection(const string &host, unsigned short int port) {
+    sk_connection open_connection(const string &host, unsigned short int port)
+    {
         return open_connection(name_for_connection(host, port), host, port, TCP);
     }
 
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port) {
+    sk_connection open_connection(const string &name, const string &host, unsigned short int port)
+    {
         return open_connection(name, host, port, TCP);
     }
 
-    sk_connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol) {
+    sk_connection open_connection(const string &name, const string &host, unsigned short int port, sk_connection_type protocol)
+    {
         return sk_connection();
     }
 
-    sk_connection retrieve_connection(const string &name, int idx) {
+    sk_connection retrieve_connection(const string &name, int idx)
+    {
         return retrieve_connection(server_sockets[name], idx);
     }
 
-    sk_connection retrieve_connection(sk_server_socket server, int idx) {
+    sk_connection retrieve_connection(sk_server_socket server, int idx)
+    {
         return server.connections.size() > idx ? server.connections[idx] : nullptr;
     }
 
-    void close_all_connections() {
+    void close_all_connections()
+    {
         for(auto const &pair : connections)
         {
             close_connection(pair.second);
         }
     }
 
-    bool close_connection(sk_connection &a_connection) {
+    bool close_connection(sk_connection &a_connection)
+    {
         //clear_messages(a_connection);
         //shut_connection(a_connection);
         // remove connection from connections map
@@ -126,47 +136,58 @@ namespace splashkit_lib
         return false;
     }
 
-    bool close_connection(const string &name) {
+    bool close_connection(const string &name)
+    {
         return close_connection(connections[name]);
     }
 
-    int connection_count(const string &name) {
+    int connection_count(const string &name)
+    {
         return connection_count(server_sockets[name]);
     }
 
-    int connection_count(sk_server_socket server) {
+    int connection_count(sk_server_socket server)
+    {
         return server.connections.size();
     }
 
-    unsigned int connection_ip(const string &name) {
+    unsigned int connection_ip(const string &name)
+    {
         return connection_ip(connections[name]);
     }
 
-    unsigned int connection_ip(sk_connection a_connection) {
+    unsigned int connection_ip(sk_connection a_connection)
+    {
         return a_connection.ip;
     }
 
-    sk_connection connection_named(const string &name) {
+    sk_connection connection_named(const string &name)
+    {
         return sk_connection();
     }
 
-    bool is_connection_open(sk_connection con) {
+    bool is_connection_open(sk_connection con)
+    {
         return con.open;
     }
 
-    bool is_connection_open(const string &name) {
+    bool is_connection_open(const string &name)
+    {
         return connection_open(connections[name]);
     }
 
-    unsigned short int connection_port(sk_connection a_connection) {
+    unsigned short int connection_port(sk_connection a_connection)
+    {
         return a_connection.port;
     }
 
-    unsigned short int connection_port(const string &name) {
+    unsigned short int connection_port(const string &name)
+    {
         return connection_port(connections[name]);
     }
 
-    sk_connection last_connection(sk_server_socket server) {
+    sk_connection last_connection(sk_server_socket server)
+    {
         if (server.connections.empty())
         {
             return nullptr;
@@ -174,20 +195,196 @@ namespace splashkit_lib
         return server.connections[server.connections.size()-1];
     }
 
-    sk_connection last_connection(const string &name) {
+    sk_connection last_connection(const string &name)
+    {
         return last_connection(server_sockets[name]);
     }
 
-    void reconnect(const string &name) {
+    void reconnect(const string &name)
+    {
         reconnect(connections[name]);
     }
 
-    void reconnect(sk_connection a_connection) {
+    void reconnect(sk_connection a_connection)
+    {
         string host = a_connection.stringIP;
         unsigned short port = a_connection.port;
 
         sk_close_connection(&a_connection.socket);
         //a_connection.open = establish_connection(, host, port, a_connection.protocol)
+    }
+
+    sk_connection message_connection(sk_message msg)
+    {
+        return msg.connection;
+    }
+
+    void broadcast_message(const string &a_msg)
+    {
+        for(auto const& tcp_server: server_sockets)
+        {
+            broadcast_message(a_msg, tcp_server);
+        }
+        for (auto const& udp_connection: connections)
+        {
+            broadcast_message(a_msg, udp_connection);
+        }
+    }
+
+    void broadcast_message(const string &a_msg, const string &name)
+    {
+        broadcast_message(a_msg, server_sockets[name]);
+    }
+
+    void broadcast_message(const string &a_msg, sk_server_socket svr)
+    {
+        for (auto const& tcp_connection: svr.connections)
+        {
+            broadcast_message(a_msg, tcp_connection);
+        }
+    }
+
+    void check_network_activity()
+    {
+
+    }
+
+    void clear_messages(sk_server_socket svr)
+    {
+        // TODO delete all messages
+    }
+
+    void clear_messages(sk_connection a_connection)
+    {
+        // TODO delete all messages
+    }
+
+    void clear_messages(const string &name)
+    {
+        if (server_sockets.count(name))
+        {
+            clear_messages(server_sockets[name]);
+        }
+        else if (connections.count(name))
+        {
+            clear_messages(connections[name]);
+        }
+    }
+
+    void free_message(sk_message msg)
+    {
+        // TODO Find swingame equivalent
+    }
+
+    bool has_messages()
+    {
+        for(auto const& tcp_server: server_sockets)
+        {
+            if (has_messages(tcp_server))
+            {
+                return true;
+            }
+        }
+        for (auto const& udp_connection: connections)
+        {
+            if (has_messages(udp_connection))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool has_messages(sk_connection con)
+    {
+        return con.messages.empty();
+    }
+
+    bool has_messages(sk_server_socket svr)
+    {
+        return svr.messages.empty();
+    }
+
+    bool has_messages(const string &name)
+    {
+        return connections.count(name) ? connections[name].messages.empty()
+                                       : server_sockets[name].messages.empty();
+    }
+
+    int message_count(sk_connection a_connection)
+    {
+        return a_connection.messages.size();
+    }
+
+    int message_count(const string &name)
+    {
+        return connections.count(name) ? connections[name].messages.size()
+                                       : server_sockets[name].messages.size();
+    }
+
+    int message_count(sk_server_socket svr)
+    {
+        return svr.messages.size();
+    }
+
+    string message_data(sk_message msg)
+    {
+        return msg.data;
+    }
+
+    string message_host(sk_message msg)
+    {
+        return msg.host;
+    }
+
+    unsigned short int message_port(sk_message msg)
+    {
+        return msg.port;
+    }
+
+    sk_connection_type message_protocol(sk_message msg)
+    {
+        return msg.protocol;
+    }
+
+    sk_message read_message(sk_connection a_connection)
+    {
+        return sk_message();
+    }
+
+    sk_message read_message(const string &name)
+    {
+        return sk_message();
+    }
+
+    sk_message read_message(sk_server_socket svr)
+    {
+        return sk_message();
+    }
+
+    string read_message_data(sk_connection a_connection)
+    {
+        return std::__cxx11::string();
+    }
+
+    string read_message_data(sk_server_socket svr)
+    {
+        return std::__cxx11::string();
+    }
+
+    string read_message_data(const string &name)
+    {
+        return std::__cxx11::string();
+    }
+
+    bool send_message_to(const string &a_msg, sk_connection a_connection)
+    {
+        return false;
+    }
+
+    bool send_message_to(const string &a_msg, const string &name)
+    {
+        return false;
     }
 
     string name_for_connection(const string host, const unsigned int port)
@@ -210,7 +407,8 @@ namespace splashkit_lib
     string hex_to_dec_string(const string &a_hex)
     {
         int dec = 0;
-        for (int i = 0; i < a_hex.length(); i++) {
+        for (int i = 0; i < a_hex.length(); i++)
+        {
             int c_val = 0;
             if (a_hex[i] - '0' < 10)
             {

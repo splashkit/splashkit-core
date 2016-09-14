@@ -218,7 +218,13 @@ namespace splashkit_lib
     };
 
     struct sk_message {
+        pointer_identifier id;
+        string data;
+        sk_connection_type protocol;
+        sk_connection connection;   // make this a ref/pointer?
 
+        string host;
+        unsigned short port;
     };
 
     struct sk_server_response

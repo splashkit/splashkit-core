@@ -43,8 +43,8 @@ namespace splashkit_lib
     unsigned int connection_ip(const string &name);
     unsigned int connection_ip(sk_connection a_connection);
     sk_connection connection_named(const string &name);
-    bool connection_open(sk_connection con);
-    bool connection_open(const string &name);
+    bool is_connection_open(sk_connection con);
+    bool is_connection_open(const string &name);
     unsigned short int connection_port(sk_connection a_connection);
     unsigned short int connection_port(const string &name);
     sk_connection last_connection(sk_server_socket server);
@@ -53,71 +53,38 @@ namespace splashkit_lib
     void reconnect(const string &name);
     void reconnect(sk_connection a_connection);
 
+    // Message functions
+    void broadcast_message(const string &a_msg);
+    void broadcast_message(const string &a_msg, const string &name);
+    void broadcast_message(const string &a_msg, sk_server_socket svr);
+    void check_network_activity();
+    void clear_messages(sk_server_socket svr);
+    void clear_messages(sk_connection a_connection);
+    void clear_messages(const string &name);
+    void free_message(sk_message msg);
+    bool has_messages();
+    bool has_messages(sk_connection con);
+    bool has_messages(sk_server_socket svr);
+    bool has_messages(const string &name);
+    int message_count(sk_connection a_connection);
+    int message_count(const string &name);
+    int message_count(sk_server_socket svr);
+    string message_data(sk_message msg);
+    string message_host(sk_message msg);
+    unsigned short int message_port(sk_message msg);
+    sk_connection_type message_protocol(sk_message msg);
+    sk_message read_message(sk_connection a_connection);
+    sk_message read_message(const string &name);
+    sk_message read_message(sk_server_socket svr);
+    string read_message_data(sk_connection a_connection);
+    string read_message_data(sk_server_socket svr);
+    string read_message_data(const string &name);
+    bool send_message_to(const string &a_msg, sk_connection a_connection);
+    bool send_message_to(const string &a_msg, const string &name);
+    sk_connection message_connection(sk_message msg);
+
     // Utility functions
     string name_for_connection(const string host, const unsigned int port);
-
-    /*
-     * HttpHeaderData = record
-      name : String;
-      value: String;
-    end;
-
-    HttpRequestData = packed record
-      id         : PointerIdentifier;
-      // requestType: HttpMethod;
-      url        : String;
-      version    : String;
-      headername : StringArray;
-      headervalue: StringArray;
-      body       : String;
-    end;
-
-    HttpResponseData = record
-      id    : PointerIdentifier;
-      data  : sg_http_response;
-    end;
-
-    MessageData = packed record
-      id        : PointerIdentifier;
-      data      : String;
-      protocol  : ConnectionType;
-
-      //TCP has a
-      sk_connection: ^ConnectionData;
-
-      //UDP is from
-      host      : String;
-      port      : Word;
-    end;
-
-    ConnectionData = packed record
-      id              : PointerIdentifier;
-      name            : String;
-      socket          : sg_network_connection;
-      ip              : LongWord;
-      port            : LongInt;
-      open            : Boolean;
-      protocol        : ConnectionType;
-      stringIP        : String;   //Allow for Reconnection
-      messages        : array of MessageData;
-
-      msgLen          : LongInt;  // This data is used to handle splitting of messages
-      partMsgData     : String;   //   over multiple packets
-    end;
-
-    /// @struct ServerData
-    /// @via_pointer
-    ServerData = packed record
-      id              : PointerIdentifier;
-      name            : String;
-      socket          : sg_network_connection; // socket used to accept connections
-      port            : Word;
-      newConnections  : LongInt; // the number of new connections -- reset on new scan for connections
-      protocol        : ConnectionType;
-      connections     : array of ConnectionPtr; // TCP connections
-      messages        : array of MessageData; // UDP messages
-    end;
-     */
 
     /**
      * @brief Converts a hexadecimal ipv4 string to standard ipv4 address string x.x.x.x
