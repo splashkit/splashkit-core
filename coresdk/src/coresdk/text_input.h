@@ -57,22 +57,63 @@ namespace splashkit_lib
      * @param font_size The size of the font
      * @param opts      Any drawing options
      */
-    void draw_collected_text(color clr, font fnt, int font_size, float x, float y, drawing_options opts);
+    void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts);
 
+    /**
+     * Returns true when the current window is reading text.
+     *
+     * @return True when window is setup to read input from the user.
+     */
     bool reading_text();
 
+    /**
+     * Returns true when the window is reading text.
+     *
+     * @param wind  The window to check
+     * @return      True when window is setup to read input from the user.
+     */
     bool reading_text(window wind);
 
+    /**
+     * Ends reading text in for the current window.
+     */
     void end_reading_text();
 
+    /**
+     * Ends reading text for the passed in window.
+     *
+     * @param wind The window to end reading text
+     */
     void end_reading_text(window wind);
 
+    /**
+     * Did the user press escape and cancel the enterring of text?
+     *
+     * @return True when the use has cancelled text entry
+     */
     bool text_entry_cancelled();
 
+    /**
+     * Did the user press escape and cancel the enterring of text?
+     *
+     * @param wind  The window to check
+     * @return True when the use has cancelled text entry
+     */
     bool text_entry_cancelled(window wind);
 
+    /**
+     * The text the user has currently enterred on the current window.
+     *
+     * @return The user's text entry
+     */
     string text_input();
 
+    /**
+     * The text the user has currently enterred on the current window.
+     *
+     * @param wind  The window to check
+     * @return The user's text entry
+     */
     string text_input(window wind);
 }
 #endif /* text_input_hpp */

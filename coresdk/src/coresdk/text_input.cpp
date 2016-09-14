@@ -17,17 +17,26 @@
 using namespace std;
 namespace splashkit_lib
 {
-    void draw_collected_text(color clr, font fnt, int font_size, float x, float y, drawing_options opts)
+    void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts)
     {
-        window current = current_window();
-        if ( not current ) return;
+        window current = static_cast<window>(opts.dest);
+
+        if ( INVALID_PTR( current, WINDOW_PTR) )
+        {
+            return;
+        }
 
         string ct = current->input_text;
+
+        rectangle input_area = current->input_area;
+        float x = input_area.x;
+        float y = input_area.y;
+
         draw_text(ct, clr, fnt, font_size, x, y, opts);
         font_style style = get_font_style(fnt);
 
         set_font_style(fnt, static_cast<font_style>(static_cast<int>(style) | static_cast<int>(UNDERLINE_FONT)));
-        draw_text(current->composition, clr, fnt, font_size, x + text_length(ct, fnt, font_size), y, opts);
+        draw_text(current->composition, clr, fnt, font_size, x + text_width(ct, fnt, font_size), y, opts);
 
         set_font_style(fnt, style);
     }

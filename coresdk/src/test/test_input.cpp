@@ -63,7 +63,7 @@ void run_input_test()
             clear_screen(COLOR_PERU);
         
         draw_text("Enter english string: ", COLOR_NAVY, "hara", 18, 30, 50);
-        draw_collected_text(COLOR_BLACK, font_named("hara"), 18, 230, 50, option_defaults());
+        draw_collected_text(COLOR_BLACK, font_named("hara"), 18, option_defaults());
         
         if ( not reading_text(w1) )
         {
@@ -103,7 +103,7 @@ void run_input_test()
         
         clear_screen(back);
         draw_text("Enter Japanese string: ", COLOR_NAVY, "hara", 18, 30, 50);
-        draw_collected_text(COLOR_BLACK, font_named("kochi"), 18, 230, 50, option_defaults());
+        draw_collected_text(COLOR_BLACK, font_named("kochi"), 18, option_defaults());
         
         if ( not reading_text(w2) )
         {

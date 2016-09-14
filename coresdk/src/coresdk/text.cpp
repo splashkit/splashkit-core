@@ -255,11 +255,11 @@ namespace splashkit_lib
         draw_text(text, clr, x, y, option_defaults());
     }
     
-    int text_length(const string &text, font fnt, int font_size)
+    int text_width(const string &text, font fnt, int font_size)
     {
         if ( INVALID_PTR(fnt, FONT_PTR) )
         {
-            LOG(WARNING) << "Attempting to get string length with invalid font";
+            LOG(WARNING) << "Attempting to get string width with invalid font";
             return 0;
         }
         
@@ -268,13 +268,13 @@ namespace splashkit_lib
         return w;
     }
     
-    int text_length(const string &text, const string &fnt, int font_size)
+    int text_width(const string &text, const string &fnt, int font_size)
     {
-        return text_length(text, font_named(fnt), font_size);
+        return text_width(text, font_named(fnt), font_size);
     }
     
-    int text_length(const string &text, string fnt, int font_size)
+    int text_width(const string &text, string fnt, int font_size)
     {
-        return text_length(text, font_named(fnt), font_size);
+        return text_width(text, font_named(fnt), font_size);
     }
 }

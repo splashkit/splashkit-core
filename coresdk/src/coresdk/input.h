@@ -29,17 +29,19 @@ namespace splashkit_lib
      */
     void process_events();
 
-    /// Checks to see if the user has asked for the application to quit. This value
-    /// is updated by the `process_events` routine.
-    ///
-    /// @returns: True if the application has been requested to close.
-    ///
-    /// @lib
+    /**
+     * Checks to see if the user has asked for the application to quit. This
+     * value is updated by the `process_events` routine. Also see
+     * `window_close_requested`.
+     *
+     * @return True if the application has been requested to close.
+     */
     bool quit_requested();
 
-    /// Cancels a quit request, ensuring the quit requested will return false.
-    ///
+    /**
+     * Cancels a quit request, ensuring the quit requested will return false.
+     */
     void reset_quit();
-    
+
 }
 #endif /* input_hpp */
