@@ -13,13 +13,16 @@
 #include "geometry.h"
 #include "audio.h"
 #include "color.h"
+#include "networking.h"
 #include "concurrency_utils.h"
 #include "civetweb.h"
 
 #include <string>
 #include <vector>
 #include <map>
+
 using namespace std;
+
 namespace splashkit_lib
 {
     typedef void *pointer;
@@ -184,12 +187,6 @@ namespace splashkit_lib
         unsigned short status;
         unsigned int size;
         char *data;
-    };
-
-    enum sk_connection_type {
-        TCP,
-        UDP,
-        UNKNOWN
     };
 
     struct sk_network_connection

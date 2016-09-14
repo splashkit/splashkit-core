@@ -4,16 +4,23 @@
 #include <string>
 #include <vector>
 #include <map>
+
 #include "types.h"
-#include "backend_types.h"
 
 using namespace std;
 namespace splashkit_lib
 {
-    typedef sk_network_connection *network_connection;
-    typedef sk_message *message;
-    typedef sk_connection *connection;
-    typedef sk_server_socket *server_socket;
+    enum sk_connection_type
+    {
+        TCP,
+        UDP,
+        UNKNOWN
+    };
+
+    typedef struct sk_network_connection *network_connection;
+    typedef struct sk_message *message;
+    typedef struct sk_connection *connection;
+    typedef struct sk_server_socket *server_socket;
 
     typedef char packet_data[512];
     typedef byte bytes[4];

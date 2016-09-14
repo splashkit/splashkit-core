@@ -11,6 +11,7 @@
 #define __sgsdl2__SGSDL2WebServer__
 
 #include "backend_types.h"
+
 namespace splashkit_lib
 {
     void sk_flush_request(sk_server_request *request);

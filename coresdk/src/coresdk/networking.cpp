@@ -1,10 +1,9 @@
 #include <sstream>
 #include <cmath>
 #include <iomanip>
-#include "network_driver.h"
-// FIXME Fix this bad import
-#include <backend/network_driver.cpp>
+
 #include "networking.h"
+#include "network_driver.h"
 
 namespace splashkit_lib
 {
