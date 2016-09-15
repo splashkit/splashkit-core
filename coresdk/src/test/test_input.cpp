@@ -87,6 +87,7 @@ void run_input_test()
         if ( key_typed(T_KEY) ) key_details += " - typed";
 
         if ( key_typed(F_KEY) ) window_toggle_fullscreen(window_with_focus());
+        if ( key_typed(B_KEY) ) window_toggle_border(window_with_focus());
 
         draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
         draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);

@@ -339,5 +339,20 @@ namespace splashkit_lib
      * Toggle the fullscreen property of the current window
      */
     void window_toggle_fullscreen();
+
+    /**
+     * Indicate if the window has a border.
+     *
+     * @param  wnd The window
+     * @return     True if the window has a border
+     */
+    bool window_has_border(window wnd);
+    bool window_has_border(const string &name);
+    bool window_has_border();
+
+    void window_toggle_border(window wnd);
+    void window_toggle_border(const string &name);
+    void window_toggle_border();
+
 }
 #endif /* window_manager_hpp */

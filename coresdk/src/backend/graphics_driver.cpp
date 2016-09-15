@@ -1594,7 +1594,7 @@ namespace splashkit_lib
     // Window change functions...
     //
 
-    void sk_show_border(sk_drawing_surface *surface, int border)
+    void sk_show_border(sk_drawing_surface *surface, bool border)
     {
         if ( ! surface || ! surface->_data ) return;
 

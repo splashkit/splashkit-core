@@ -358,4 +358,48 @@ namespace splashkit_lib
         window_toggle_fullscreen(_current_window);
     }
 
+    bool window_has_border(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to access border of invalid window";
+            return false;
+        }
+
+        return wnd->border;
+    }
+
+    bool window_has_border(const string &name)
+    {
+        return window_has_border(window_named(name));
+    }
+
+    bool window_has_border()
+    {
+        return window_has_border(_current_window);
+    }
+
+    void window_toggle_border(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to toffle border of invalid window";
+            return;
+        }
+
+        wnd->border = not wnd->border;
+        sk_show_border(&wnd->image.surface, wnd->border);
+    }
+
+    void window_toggle_border(const string &name)
+    {
+        window_toggle_border(window_named(name));
+    }
+
+    void window_toggle_border()
+    {
+        window_toggle_border(_current_window);
+    }
+
+
 }
