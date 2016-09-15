@@ -347,12 +347,109 @@ namespace splashkit_lib
      * @return     True if the window has a border
      */
     bool window_has_border(window wnd);
+
+    /**
+     * Indicate if the window has a border.
+     *
+     * @param  name The name of the window
+     * @return     True if the window has a border
+     */
     bool window_has_border(const string &name);
+
+    /**
+     * Indicate if the current window has a border.
+     *
+     * @return     True if the window has a border
+     */
     bool window_has_border();
 
+    /**
+     * Toggle the window border.
+     *
+     * @param wnd The window to change
+     */
     void window_toggle_border(window wnd);
+
+    /**
+     * Toggle the window border.
+     *
+     * @param name The name of the window to change
+     */
     void window_toggle_border(const string &name);
+
+    /**
+     * Toggle the current window border.
+     */
     void window_toggle_border();
+
+    /**
+     * The x location of the window on the displays.
+     *
+     * @param  wnd The window
+     * @return     Its location on the displays
+     */
+    int window_x(window wnd);
+
+    /**
+     * The x location of the window on the displays.
+     *
+     * @param  name The name of the window
+     * @return     Its location on the displays
+     */
+    int window_x(const string &name);
+
+    /**
+     * The x location of the current window on the displays.
+     *
+     * @return     Its location on the displays
+     */
+    int window_x();
+
+    /**
+     * The y location of the window on the displays.
+     *
+     * @param  wnd The window
+     * @return     Its location on the displays
+     */
+    int window_y(window wnd);
+
+    /**
+     * The y location of the window on the displays.
+     *
+     * @param  name The name of the window
+     * @return     Its location on the displays
+     */
+    int window_y(const string &name);
+
+    /**
+     * The y location of the current window on the displays.
+     *
+     * @return     Its location on the displays
+     */
+    int window_y();
+
+    /**
+     * The location of the window.
+     *
+     * @param  wnd The window.
+     * @return     Its location on the displays
+     */
+    point_2d window_position(window wnd);
+
+    /**
+     * The location of the window.
+     *
+     * @param  name The name of the window.
+     * @return     Its location on the displays
+     */
+    point_2d window_position(const string &name);
+
+    /**
+     * The location of the current window.
+     *
+     * @return     Its location on the displays
+     */
+    point_2d window_position();
 
 }
 #endif /* window_manager_hpp */

@@ -383,7 +383,7 @@ namespace splashkit_lib
     {
         if ( INVALID_PTR(wnd, WINDOW_PTR))
         {
-            LOG(WARNING) << "Attempting to toffle border of invalid window";
+            LOG(WARNING) << "Attempting to toggle border of invalid window";
             return;
         }
 
@@ -401,5 +401,79 @@ namespace splashkit_lib
         window_toggle_border(_current_window);
     }
 
+    int window_x(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return 0;
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return x;
+    }
+
+    int window_x(const string &name)
+    {
+        return window_x(window_named(name));
+    }
+
+    int window_x()
+    {
+        return window_x(_current_window);
+    }
+
+    int window_y(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return 0;
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return y;
+    }
+
+    int window_y(const string &name)
+    {
+        return window_y(window_named(name));
+    }
+
+    int window_y()
+    {
+        return window_y(_current_window);
+    }
+
+    point_2d window_position(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return point_at_origin();
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return point_at(x, y);
+    }
+
+    point_2d window_position(const string &name)
+    {
+        return window_position(window_named(name));
+    }
+
+    point_2d window_position()
+    {
+        return window_position(_current_window);
+    }
 
 }
