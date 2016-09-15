@@ -15,8 +15,8 @@ namespace splashkit_lib
 {
     void sk_network_init();
 
-    sk_network_connection* sk_open_udp_connection(unsigned short port);
-    sk_network_connection* sk_open_tcp_connection(const char *host, unsigned short port);
+    sk_network_connection sk_open_udp_connection(unsigned short port);
+    sk_network_connection sk_open_tcp_connection(const char *host, unsigned short port);
 
     int sk_send_bytes(sk_network_connection *con, char *buffer, int size);
 
@@ -31,7 +31,7 @@ namespace splashkit_lib
 
     unsigned int sk_get_network_port(sk_network_connection *con);
 
-    sk_network_connection* sk_accept_connection(sk_network_connection *con);
+    sk_network_connection sk_accept_connection(sk_network_connection &con);
 
     unsigned int sk_network_has_data();
     unsigned int sk_connection_has_data(sk_network_connection *con);

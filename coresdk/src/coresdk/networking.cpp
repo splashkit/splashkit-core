@@ -17,23 +17,23 @@ namespace splashkit_lib
 
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
     {
-        sk_network_connection *con = nullptr;
+        sk_network_connection con;
         if (protocol == TCP)
         {
-            sk_open_tcp_connection(nullptr, port);
+            con = sk_open_tcp_connection(nullptr, port);
         }
         else if (protocol == UDP)
         {
-            sk_open_udp_connection(port);
+            con = sk_open_udp_connection(port);
         }
         else
         {
             LOG(ERROR) << "Unknown protocol " << protocol << " passed to create_server";
         }
 
-        server_socket socket = new sk_server_data;
-        if (con->_socket && (con->kind == TCP || con->kind == UDP))
+        if (con._socket && (con.kind == TCP || con.kind == UDP))
         {
+            server_socket socket = new sk_server_data;
             socket->id = SERVER_SOCKET_PTR;
             socket->name = name;
             socket->socket = con;
@@ -42,9 +42,12 @@ namespace splashkit_lib
             socket->protocol = protocol;
 
             server_sockets.insert({name, socket});
+
+            return socket;
         }
 
-        return socket;
+        LOG(ERROR) << "Failed to create server named " << name;
+        return nullptr;
     }
 
     server_socket create_server(const string &name, unsigned short int port)
@@ -78,7 +81,7 @@ namespace splashkit_lib
         }
 
         // close the socket
-        sk_close_connection(svr->socket);
+        sk_close_connection(&svr->socket);
         server_sockets.erase(svr->name);
 
         delete svr;
@@ -138,8 +141,8 @@ namespace splashkit_lib
         result->protocol = protocol;
         result->part_msg_data = "";
         result->open = true;
-        result->socket->_socket = nullptr;
-        result->socket->kind = UNKNOWN;
+        result->socket._socket = nullptr;
+        result->socket.kind = UNKNOWN;
         return result;
     }
 
@@ -153,17 +156,17 @@ namespace splashkit_lib
         {
             con->socket = sk_open_tcp_connection(host.c_str(), port);
 
-            if (!con->socket->_socket)
+            if (!con->socket._socket)
             {
                 return false;
             }
 
-            con->ip = sk_network_address(con->socket);
+            con->ip = sk_network_address(&con->socket);
         }
         else if (protocol == UDP)
         {
             con->socket = sk_open_udp_connection(port);
-            con->ip = sk_network_address(con->socket);
+            con->ip = sk_network_address(&con->socket);
         }
         else
         {
@@ -190,11 +193,12 @@ namespace splashkit_lib
 
         if (_establish_connection(con, host, port, protocol))
         {
-            connections.insert({name_for_connection(host, port), con});
+            connections.insert({name, con});
             return con;
         }
         else
         {
+            LOG(ERROR) << "Could not establish connection at open_connection after calling _establish_connection";
             delete con;
             return nullptr;
         }
@@ -205,7 +209,7 @@ namespace splashkit_lib
         if (con->open)
         {
             con->open = false;
-            sk_close_connection(con->socket);
+            sk_close_connection(&con->socket);
         }
     }
 
@@ -268,7 +272,7 @@ namespace splashkit_lib
 
     bool close_connection(const string &name)
     {
-        return close_connection(connections[name]);
+        return close_connection(connection_named(name));
     }
 
     int connection_count(const string &name)
@@ -282,7 +286,7 @@ namespace splashkit_lib
 
     unsigned int connection_ip(const string &name)
     {
-        return connection_ip(connections[name]);
+        return connection_ip(connection_named(name));
     }
 
     unsigned int connection_ip(connection a_connection) {
@@ -290,15 +294,30 @@ namespace splashkit_lib
     }
 
     connection connection_named(const string &name) {
-        return connection();
+        for (auto &pair : connections)
+        {
+            if (pair.second->name == name)
+            {
+                return pair.second;
+            }
+        }
+
+        LOG(WARNING) << "No connection exists for connection " << name << endl;
+        return nullptr;
     }
 
     bool is_connection_open(connection con) {
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Invalid connection passed to is_connection_open";
+            return false;
+        }
+
         return con->open;
     }
 
     bool is_connection_open(const string &name) {
-        return is_connection_open(connections[name]);
+        return is_connection_open(connection_named(name));
     }
 
     bool accept_new_connection(server_socket server)
@@ -311,12 +330,12 @@ namespace splashkit_lib
         
         server->new_connections = 0;
 
-        network_connection con = sk_accept_connection(server->socket);
+        sk_network_connection con = sk_accept_connection(server->socket);
 
-        if (con->_socket && (con->kind == TCP))
+        if (con._socket && (con.kind == TCP))
         {
-            int ip = sk_network_address(con);
-            int port = sk_get_network_port(con);
+            int ip = sk_network_address(&con);
+            int port = sk_get_network_port(&con);
 
             connection client = _create_connection(server->name + "->" + name_for_connection(ipv4_to_str(ip), port), TCP);
             client->ip = ip;
@@ -354,7 +373,7 @@ namespace splashkit_lib
 
     unsigned short int connection_port(const string &name)
     {
-        return connection_port(connections[name]);
+        return connection_port(connection_named(name));
     }
 
     connection last_connection(server_socket server) {
@@ -371,7 +390,7 @@ namespace splashkit_lib
 
     void reconnect(const string &name)
     {
-        reconnect(connections[name]);
+        reconnect(connection_named(name));
     }
 
     void reconnect(connection con)
@@ -379,7 +398,7 @@ namespace splashkit_lib
         string host = con->string_ip;
         unsigned short port = con->port;
 
-        sk_close_connection(con->socket);
+        sk_close_connection(&con->socket);
         con->open = _establish_connection(con, host, port, con->protocol);
     }
 
@@ -433,14 +452,9 @@ namespace splashkit_lib
         messages.push_back(m);
     }
 
-    bool _read_udp_message_from(network_connection con, vector<message>& messages)
+    bool _read_udp_message_from(sk_network_connection con, vector<message>& messages)
     {
-        if (INVALID_PTR(con, NETWORK_CONNECTION_PTR))
-        {
-            LOG(WARNING) << "Invalid network_connection passed to _read_udp_message_from";
-        }
-
-        if (sk_connection_has_data(con) > 0)
+        if (sk_connection_has_data(&con) > 0)
         {
             char data[UDP_PACKET_SIZE];
             unsigned int times, size, host;
@@ -453,7 +467,7 @@ namespace splashkit_lib
                 host = 0;
                 port = 0;
 
-                sk_read_udp_message(con, &host, &port, data, &size);
+                sk_read_udp_message(&con, &host, &port, data, &size);
 
                 if ((size > 0) || (host > 0))
                 {
@@ -499,7 +513,7 @@ namespace splashkit_lib
                     {
                         buffer[PACKET_SIZE - 4 + i] = buffer[buf_idx + i];
 
-                        got = sk_read_bytes(con->socket, &buffer[PACKET_SIZE - missing], missing);
+                        got = sk_read_bytes(&con->socket, &buffer[PACKET_SIZE - missing], missing);
 
                         if (got != missing)
                         {
@@ -515,7 +529,7 @@ namespace splashkit_lib
                     size[2] = byte(buffer[buf_idx + 2]);
                     size[3] = byte(buffer[buf_idx + 3]);
 
-                    msg_len = (size[0] << 24 & 0xFF) + (size[1] << 16 & 0xFF) + (size[2] << 8 & 0xFF) + (size[3]);
+                    msg_len = (size[0] << 24) + (size[1] << 16) + (size[2] << 8) + (size[3]);
 
                     buf_idx += 4;
                 }
@@ -543,13 +557,13 @@ namespace splashkit_lib
 
     bool _check_connection_for_data(connection con)
     {
-        if (INVALID_PTR(con, CONNECTION_PTR) || !con->socket->_socket)
+        if (INVALID_PTR(con, CONNECTION_PTR) || !con->socket._socket)
         {
             LOG(WARNING) << "Invalid connection or socket passed to _check_connection_for_data";
             return false;
         }
 
-        if (sk_connection_has_data(con->socket) > 0)
+        if (sk_connection_has_data(&con->socket) > 0)
         {
             bool got_data = true;
             int times = 0;
@@ -558,7 +572,7 @@ namespace splashkit_lib
                 if (con->protocol == TCP)
                 {
                     packet_data buffer;
-                    int received = sk_read_bytes(con->socket, buffer, 512);
+                    int received = sk_read_bytes(&con->socket, buffer, 512);
 
                     if (received <= 0) {
                         // shut_connection
@@ -658,11 +672,13 @@ namespace splashkit_lib
     void clear_messages(server_socket svr)
     {
         // TODO delete all messages
+        LOG(ERROR) << "Method not implemented";
     }
 
     void clear_messages(connection a_connection)
     {
         // TODO delete all messages
+        LOG(ERROR) << "Method not implemented";
     }
 
     void clear_messages(const string &name)
@@ -673,7 +689,7 @@ namespace splashkit_lib
         }
         else if (connections.count(name))
         {
-            clear_messages(connections[name]);
+            clear_messages(connection_named(name));
         }
     }
 
@@ -711,84 +727,209 @@ namespace splashkit_lib
 
     bool has_messages(connection con)
     {
-        return con->messages.empty();
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(ERROR) << "Invalid connection passed to has_messages";
+            return false;
+        }
+
+        return !con->messages.empty();
     }
 
     bool has_messages(server_socket svr)
     {
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            LOG(ERROR) << "Invalid server_socket passed to has_messages";
+            return false;
+        }
+
         return svr->messages.empty();
     }
 
     bool has_messages(const string &name)
     {
-        return connections.count(name) ? connections[name]->messages.empty()
-                                       : server_sockets[name]->messages.empty();
+        if (connections.count(name) > 0)
+        {
+            return !connection_named(name)->messages.empty();
+        }
+
+        return !server_named(name)->messages.empty();
     }
 
-    int message_count(connection a_connection)
+    int message_count(connection con)
     {
-        return a_connection->messages.size();
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(ERROR) << "Invalid connection passed to message_count";
+            return -1;
+        }
+
+        return con->messages.size();
     }
 
     int message_count(const string &name)
     {
-        return connections.count(name) ? connections[name]->messages.size()
+        return connections.count(name) ? connection_named(name)->messages.size()
                                        : server_sockets[name]->messages.size();
     }
 
     int message_count(server_socket svr)
     {
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to message_host";
+            return -1;
+        }
+
         return svr->messages.size();
     }
 
-    string message_data(sk_message msg)
+    string message_data(message msg)
     {
-        return msg.data;
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to message_data";
+        }
+
+        return msg->data;
     }
 
-    string message_host(sk_message msg)
+    string message_host(message msg)
     {
-        return msg.host;
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to message_host";
+        }
+
+        return msg->host;
     }
 
-    unsigned short int message_port(sk_message msg)
+    unsigned short int message_port(message msg)
     {
-        return msg.port;
+        return msg->port;
     }
 
-    connection_type message_protocol(sk_message msg)
+    connection_type message_protocol(message msg)
     {
-        return msg.protocol;
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to message_protocol";
+            return UNKNOWN;
+        }
+
+        return msg->protocol;
     }
 
-    message read_message(connection a_connection)
+    message _pop_message(vector<message> &messages)
     {
-        return new sk_message;
+        message first = messages.front();
+        messages.erase(messages.begin());
+        return first;
+    }
+
+    message read_message(connection con)
+    {
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to read_message";
+            return nullptr;
+        }
+
+        return _pop_message(con->messages);
     }
 
     message read_message(const string &name)
     {
-        return new sk_message;
+        connection con = connection_named(name);
+        return read_message(con);
     }
 
     message read_message(server_socket svr)
     {
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to read_message";
+        }
+
+        for (int i = 0; i < connection_count(svr); ++i)
+        {
+            connection con = retrieve_connection(svr, i);
+            if (has_messages(con))
+            {
+                return read_message(con);
+            }
+        }
+
+        if (svr->messages.size() > 0)
+        {
+            return _pop_message(svr->messages);
+        }
+
         return new sk_message();
     }
 
-    string read_message_data(connection a_connection)
+    string read_message_data(connection con)
     {
-        return std::__cxx11::string();
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(ERROR) << "Invalid connection passed to read_message_data";
+            return "";
+        }
+
+        message msg = read_message(con);
+        string result = "";
+        if (VALID_PTR(msg, MESSAGE_PTR))
+        {
+            result = msg->data;
+            close_message(msg);
+        }
+        else
+        {
+            LOG(ERROR) << "Invalid message received in read_message_data";
+        }
+
+        return result;
     }
 
     string read_message_data(server_socket svr)
     {
-        return std::__cxx11::string();
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            LOG(ERROR) << "Invalid connection passed to read_message_data";
+            return "";
+        }
+
+        message msg = read_message(svr);
+        string result = "";
+        if (VALID_PTR(msg, MESSAGE_PTR))
+        {
+            result = msg->data;
+            close_message(msg);
+        }
+        else
+        {
+            LOG(ERROR) << "Invalid message received in read_message_data";
+        }
+
+        return result;
     }
 
     string read_message_data(const string &name)
     {
-        return std::__cxx11::string();
+        message msg = read_message(name);
+        string result = "";
+        if (VALID_PTR(msg, MESSAGE_PTR))
+        {
+            result = msg->data;
+            close_message(msg);
+        }
+        else
+        {
+            LOG(ERROR) << "Invalid message received in read_message_data";
+        }
+
+        return result;
     }
 
     bool send_message_to(const string &msg, connection con)
@@ -824,12 +965,13 @@ namespace splashkit_lib
                 }
             }
 
-            if (sk_send_bytes(con->socket, buffer, len) == len)
+            if (sk_send_bytes(&con->socket, buffer, len) == len)
             {
                 return true;
             }
             else
             {
+                LOG(DEBUG) << "Shutting the connection as no bytes sent";
                 shut_connection(con);
             }
         }
@@ -837,7 +979,7 @@ namespace splashkit_lib
         {
             if (msg.size() < 1024)
             {
-                sk_send_udp_message(con->socket, con->string_ip.c_str(), con->port, msg.c_str(), msg.length());
+                sk_send_udp_message(&con->socket, con->string_ip.c_str(), con->port, msg.c_str(), msg.length());
                 return true;
             }
         }
@@ -849,7 +991,7 @@ namespace splashkit_lib
     {
         if (connections.find(name) != connections.end())
         {
-            return send_message_to(a_msg, connections[name]);
+            return send_message_to(a_msg, connection_named(name));
         }
 
         return false;

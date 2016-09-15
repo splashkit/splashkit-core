@@ -17,7 +17,6 @@ namespace splashkit_lib
         UNKNOWN
     };
 
-    typedef struct sk_network_connection *network_connection;
     typedef struct sk_message *message;
     typedef struct sk_connection_data *connection;
     typedef struct sk_server_data *server_socket;

@@ -9,6 +9,8 @@
 #ifndef test_main_h
 #define test_main_h
 
+#include <iostream>
+
 void run_shape_drawing_test();
 void run_animation_test();
 void run_text_test();
@@ -29,5 +31,7 @@ void run_json_test();
 void test_cave_escape();
 void run_networking_test();
 void run_restful_web_service();
+void run_udp_networking_test();
+void run_tcp_networking_test();
 
 #endif /* test_main_h */

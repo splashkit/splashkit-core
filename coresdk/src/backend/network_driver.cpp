@@ -8,6 +8,7 @@
 
 #include "core_driver.h"
 #include "network_driver.h"
+#include "easylogging++.h"
 
 #include <stdio.h>
 
@@ -37,45 +38,47 @@ namespace splashkit_lib
         }
     }
 
-    sk_network_connection* sk_open_udp_connection(unsigned short port)
+    sk_network_connection sk_open_udp_connection(unsigned short port)
     {
         internal_sk_init();
 
         UDPsocket svr;
 
-        sk_network_connection* result = new sk_network_connection;
-        result->id = NETWORK_CONNECTION_PTR;
-        result->kind = UNKNOWN;
-        result->_socket = nullptr;
+        sk_network_connection result;
+        result.id = NETWORK_CONNECTION_PTR;
+        result.kind = UNKNOWN;
+        result._socket = nullptr;
 
         svr = SDLNet_UDP_Open(port);
 
         if (svr)
         {
-            result->kind = UDP;
-            result->_socket = svr;
+            result.kind = UDP;
+            result._socket = svr;
             SDLNet_UDP_AddSocket(_sockets, svr);
         }
         else
         {
-            result->kind = UNKNOWN;
-            result->_socket = nullptr;
+            result.kind = UNKNOWN;
+            result._socket = nullptr;
+            LOG(ERROR) << "Failed to open UDP server on port " << port;
+            LOG(ERROR) << "SDLNet_UDP_Open: " << SDLNet_GetError();
         }
 
         return result;
     }
 
-    sk_network_connection* sk_open_tcp_connection(const char *host, unsigned short port)
+    sk_network_connection sk_open_tcp_connection(const char *host, unsigned short port)
     {
         internal_sk_init();
 
         IPaddress addr;
         TCPsocket client;
 
-        sk_network_connection* result = new sk_network_connection;
-        result->id = NETWORK_CONNECTION_PTR;
-        result->kind = UNKNOWN;
-        result->_socket = nullptr;
+        sk_network_connection result;
+        result.id = NETWORK_CONNECTION_PTR;
+        result.kind = UNKNOWN;
+        result._socket = nullptr;
 
         if (SDLNet_ResolveHost(&addr, host, port) < 0)
             return result;
@@ -84,15 +87,16 @@ namespace splashkit_lib
 
         if (client)
         {
-            result->kind = TCP;
-            result->_socket = client;
+            result.kind = TCP;
+            result._socket = client;
             if (host)
                 SDLNet_TCP_AddSocket(_sockets, client);
         }
         else
         {
-            result->kind = UNKNOWN;
-            result->_socket = nullptr;
+            result.kind = UNKNOWN;
+            result._socket = nullptr;
+            LOG(ERROR) << "SDLNet_TCP_Open: " << SDLNet_GetError();
         }
 
         return result;
@@ -192,19 +196,19 @@ namespace splashkit_lib
         return SDLNet_Read16(&remote->port);
     }
 
-    sk_network_connection* sk_accept_connection(sk_network_connection *con)
+    sk_network_connection sk_accept_connection(sk_network_connection &con)
     {
-        sk_network_connection* result = new sk_network_connection;
-        result->_socket = NULL;
-        result->kind = UNKNOWN;
+        sk_network_connection result;
+        result._socket = NULL;
+        result.kind = UNKNOWN;
         
         TCPsocket client;
-        if ((client = SDLNet_TCP_Accept((TCPsocket)con->_socket)) != NULL)
+        if ((client = SDLNet_TCP_Accept((TCPsocket)con._socket)) != NULL)
         {
             //        printf("Adding client %p\n", client);
             SDLNet_TCP_AddSocket(_sockets, client);
-            result->_socket = client;
-            result->kind = TCP;
+            result._socket = client;
+            result.kind = TCP;
         }
         return result;
     }

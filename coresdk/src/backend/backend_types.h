@@ -203,7 +203,7 @@ namespace splashkit_lib
     {
         pointer_identifier id;
         string name;
-        sk_network_connection *socket;
+        sk_network_connection socket;
         unsigned int ip;
         unsigned int port;
         bool open;
@@ -218,7 +218,7 @@ namespace splashkit_lib
     {
         pointer_identifier id;
         string name;
-        sk_network_connection *socket;
+        sk_network_connection socket;
         unsigned int port;
         unsigned int new_connections;
         connection_type protocol;
