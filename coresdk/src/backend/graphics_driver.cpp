@@ -1629,7 +1629,7 @@ namespace splashkit_lib
         {
             case SGDS_Window:
             {
-                SDL_SetWindowFullscreen(window_be->window, fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+                SDL_SetWindowFullscreen(window_be->window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
                 SDL_PumpEvents();
                 break;
             }

@@ -298,5 +298,46 @@ namespace splashkit_lib
      */
     void move_window(int x, int y);
 
+    /**
+     * Is the window currently fullscreen?
+     *
+     * @param  wnd The window to check
+     * @return     True when the window is fullscreen
+     */
+    bool window_is_fullscreen(window wnd);
+
+    /**
+     * Is the window currently fullscreen?
+     *
+     * @param  name The name of the window to check
+     * @return     True when the window is fullscreen
+     */
+    bool window_is_fullscreen(const string &name);
+
+    /**
+     * Is the current window currently fullscreen?
+     *
+     * @return     True when the window is fullscreen
+     */
+    bool window_is_fullscreen();
+
+    /**
+     * Toggle the fullscreen property of the window
+     *
+     * @param wnd The window to change
+     */
+    void window_toggle_fullscreen(window wnd);
+
+    /**
+     * Toggle the fullscreen property of the window
+     *
+     * @param name The name of the window to change
+     */
+    void window_toggle_fullscreen(const string &name);
+
+    /**
+     * Toggle the fullscreen property of the current window
+     */
+    void window_toggle_fullscreen();
 }
 #endif /* window_manager_hpp */

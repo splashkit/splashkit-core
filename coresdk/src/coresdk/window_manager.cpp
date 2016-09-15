@@ -339,8 +339,13 @@ namespace splashkit_lib
             return;
         }
 
-        wnd->fullscreen = ! wnd->fullscreen;
+        wnd->fullscreen = not wnd->fullscreen;
         sk_show_fullscreen(&wnd->image.surface, wnd->fullscreen);
+
+        if ( not wnd->fullscreen )
+        {
+            resize_window(wnd, wnd->image.surface.width, wnd->image.surface.height);
+        }
     }
 
     void window_toggle_fullscreen(const string &name)

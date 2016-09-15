@@ -51,7 +51,7 @@ void run_input_test()
     
     color back = COLOR_WHEAT;
     
-    while ( reading_text(w1) || reading_text(w2) )
+    while ( (not quit_requested()) && ( reading_text(w1) || reading_text(w2) ) )
     {
         process_events();
         
@@ -85,7 +85,9 @@ void run_input_test()
         if ( key_up(T_KEY) ) key_details += "up";
         if ( key_released(T_KEY) ) key_details += " - released";
         if ( key_typed(T_KEY) ) key_details += " - typed";
-        
+
+        if ( key_typed(F_KEY) ) window_toggle_fullscreen(window_with_focus());
+
         draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
         draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
         draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
