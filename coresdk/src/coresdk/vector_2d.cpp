@@ -327,7 +327,7 @@ namespace splashkit_lib
                 //DrawPixel(ColorWhite, edge); // Draws pt on line to distant pt
 
                 //  Find the point we hit on the line... pt_on_line receives intersection point...
-                if (not line_intersection_point(line_from_vector(edge, velocity), lines[i], pt_on_line)) continue;
+                if (not line_intersection_point(line_from(edge, velocity), lines[i], pt_on_line)) continue;
                 // Move back onto line segment... linePt -> closest point on line to intersect point
                 //if not maxLine then DrawCircle(ColorRed, pt_on_line, 1); // point on line, but not necessarily the line segment
                 //if not maxLine then DrawLine(ColorWhite, edge, pt_on_line);
