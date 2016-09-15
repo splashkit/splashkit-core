@@ -238,5 +238,23 @@ namespace splashkit_lib
      * @param bmp  The image with the details to show in the icon
      */
     void window_set_icon(window wind, bitmap bmp);
+
+    /**
+     * Change the size of the window.
+     *
+     * @param wnd    The window to change.
+     * @param width  Its new width
+     * @param height Its new height
+     */
+    void resize_window(window wnd, int width, int height);
+
+    /**
+     * Change the size of the current window.
+     *
+     * @param width  Its new width
+     * @param height Its new height
+     */
+    void resize_window(int width, int height);
+
 }
 #endif /* window_manager_hpp */

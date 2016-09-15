@@ -257,4 +257,20 @@ namespace splashkit_lib
     {
         return window_height(window_named(name));
     }
+
+    void resize_window(window wnd, int width, int height)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to change size of invalid window";
+            return;
+        }
+
+        sk_resize(&wnd->image.surface, width, height);
+    }
+
+    void resize_window(int width, int height)
+    {
+        resize_window(_current_window, width, height);
+    }
 }
