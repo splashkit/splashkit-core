@@ -14,6 +14,7 @@
 #include "core_driver.h"
 #include "text_driver.h"
 #include "logging_driver.h"
+#include "network_driver.h"
 
 #include <stdlib.h>
 
@@ -71,8 +72,7 @@ namespace splashkit_lib
 
         sk_init_logging();
 
-        //
-        //    sk_network_init();
+        sk_network_init();
 
         _init_key_maps();
 
