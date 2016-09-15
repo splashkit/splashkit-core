@@ -14,8 +14,6 @@
 #include "utility_functions.h"
 #include "input_driver.h"
 
-#include "resource_event_notifications.h"
-
 #include <map>
 
 using namespace std;
@@ -135,7 +133,7 @@ namespace splashkit_lib
             return;
         }
 
-        notify_handlers_of_free(wind);
+        notify_of_free(wind);
 
         if ( wind == _current_window )
             _current_window = _primary_window;
@@ -219,15 +217,15 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to check if invalid window closed";
             return true;
         }
-        
+
         return sk_get_window_event_data(&wind->image.surface).close_requested;
     }
-    
+
     bool window_close_requested(const string &name)
     {
         return window_close_requested(window_named(name));
     }
-    
+
     int window_width(window wind)
     {
         if (INVALID_PTR(wind, WINDOW_PTR))
@@ -235,15 +233,15 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get width of invalid window";
             return 0;
         }
-        
+
         return wind->image.surface.width;
     }
-    
+
     int window_width(const string &name)
     {
         return window_width(window_named(name));
     }
-    
+
     int window_height(window wind)
     {
         if (INVALID_PTR(wind, WINDOW_PTR))
@@ -251,13 +249,12 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get height of invalid window";
             return 0;
         }
-        
+
         return wind->image.surface.height;
     }
-    
+
     int window_height(const string &name)
     {
         return window_height(window_named(name));
     }
 }
-

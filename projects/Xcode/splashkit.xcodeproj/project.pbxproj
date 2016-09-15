@@ -163,8 +163,6 @@
 		94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F66BF21D62F75E004D8F8C /* text_input.cpp */; };
 		94F66BF51D62F75E004D8F8C /* text_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BF31D62F75E004D8F8C /* text_input.h */; };
 		94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
-		94F6B7501D6D220F00C529EB /* resource_event_notifications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F6B74E1D6D220F00C529EB /* resource_event_notifications.cpp */; };
-		94F6B7511D6D220F00C529EB /* resource_event_notifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F6B74F1D6D220F00C529EB /* resource_event_notifications.h */; };
 		94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* test_resources.cpp */; };
 		F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
 		F86951931D508BF100E1BCC9 /* database_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951911D508BF100E1BCC9 /* database_driver.h */; };
@@ -185,7 +183,6 @@
 		FA3ABFB21D82493A0064C29A /* utils_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9408645A1D37B6AF009EA048 /* utils_driver.cpp */; };
 		FA3ABFB31D82493A0064C29A /* utility_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 942372721D239BF70020CCE2 /* utility_functions.cpp */; };
 		FA3ABFB41D82493A0064C29A /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
-		FA3ABFB51D82493A0064C29A /* resource_event_notifications.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F6B74E1D6D220F00C529EB /* resource_event_notifications.cpp */; };
 		FA3ABFB61D82493A0064C29A /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9423721F1D1D5D4E0020CCE2 /* audio.cpp */; };
 		FA3ABFB71D82493A0064C29A /* music.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCB6B3B91D61423E00011965 /* music.cpp */; };
 		FA3ABFB81D82493A0064C29A /* sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF47031D740C0B00E3D9AF /* sound.cpp */; };
@@ -499,8 +496,6 @@
 		94F66BEF1D62F70C004D8F8C /* keyboard_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_input.h; sourceTree = "<group>"; };
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
 		94F66BF31D62F75E004D8F8C /* text_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_input.h; sourceTree = "<group>"; };
-		94F6B74E1D6D220F00C529EB /* resource_event_notifications.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resource_event_notifications.cpp; sourceTree = "<group>"; };
-		94F6B74F1D6D220F00C529EB /* resource_event_notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource_event_notifications.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* test_resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_resources.cpp; sourceTree = "<group>"; };
 		F86951901D508BF100E1BCC9 /* database_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_driver.cpp; sourceTree = "<group>"; };
 		F86951911D508BF100E1BCC9 /* database_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_driver.h; sourceTree = "<group>"; };
@@ -750,8 +745,6 @@
 				940864571D37A78C009EA048 /* backend_types.h */,
 				F86951901D508BF100E1BCC9 /* database_driver.cpp */,
 				F86951911D508BF100E1BCC9 /* database_driver.h */,
-				94F6B74E1D6D220F00C529EB /* resource_event_notifications.cpp */,
-				94F6B74F1D6D220F00C529EB /* resource_event_notifications.h */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -1112,7 +1105,6 @@
 				94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
 				94DF47001D7402C800E3D9AF /* civetweb.h in Headers */,
-				94F6B7511D6D220F00C529EB /* resource_event_notifications.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				FAAC94001D8016D500B73558 /* json.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
@@ -1339,7 +1331,6 @@
 				941C8A3A1D5DD668003112B2 /* timers.cpp in Sources */,
 				94AC3DBA1D6BF11E002920A5 /* triangle_geometry.cpp in Sources */,
 				F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */,
-				94F6B7501D6D220F00C529EB /* resource_event_notifications.cpp in Sources */,
 				942372211D1D653B0020CCE2 /* audio.cpp in Sources */,
 				94B57A631D65C7B200CE7D55 /* line_drawing.cpp in Sources */,
 				94F66BF41D62F75E004D8F8C /* text_input.cpp in Sources */,
@@ -1437,7 +1428,6 @@
 				FA3ABFB21D82493A0064C29A /* utils_driver.cpp in Sources */,
 				FA3ABFB31D82493A0064C29A /* utility_functions.cpp in Sources */,
 				FA3ABFB41D82493A0064C29A /* database_driver.cpp in Sources */,
-				FA3ABFB51D82493A0064C29A /* resource_event_notifications.cpp in Sources */,
 				FA3ABFB61D82493A0064C29A /* audio.cpp in Sources */,
 				FA3ABFB71D82493A0064C29A /* music.cpp in Sources */,
 				FA3ABFB81D82493A0064C29A /* sound.cpp in Sources */,

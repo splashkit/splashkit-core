@@ -12,8 +12,6 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
-#include "resource_event_notifications.h"
-
 #include <map>
 using namespace std;
 namespace splashkit_lib
@@ -62,7 +60,7 @@ namespace splashkit_lib
             return;
         }
 
-        notify_handlers_of_free(to_free);
+        notify_of_free(to_free);
 
         _timers.erase(to_lower(to_free->name));
 
@@ -196,15 +194,15 @@ namespace splashkit_lib
             else
                 return sk_get_ticks() - to_get->start_ticks;
         }
-        
+
         return 0;
     }
-    
+
     unsigned int timer_ticks(string name)
     {
         return timer_ticks(timer_named(name));
     }
-    
+
     bool timer_paused(timer to_get)
     {
         if (INVALID_PTR(to_get, TIMER_PTR))
@@ -212,15 +210,15 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to check pause from invalid timer";
             return 0;
         }
-        
+
         return to_get->paused;
     }
-    
+
     bool timer_paused(string name)
     {
         return timer_paused(timer_named(name));
     }
-    
+
     bool timer_started(timer to_get)
     {
         if (INVALID_PTR(to_get, TIMER_PTR))
@@ -228,10 +226,10 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to check started from invalid timer";
             return 0;
         }
-        
+
         return to_get->started;
     }
-    
+
     bool timer_started(string name)
     {
         return timer_started(timer_named(name));

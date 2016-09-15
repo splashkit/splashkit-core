@@ -32,7 +32,7 @@ namespace splashkit_lib
         if (has_music(name)) return music_named(name);
 
         string file_path = filename;
-        
+
         if ( ! file_exists(file_path) )
         {
             file_path = path_to_resource(filename, MUSIC_RESOURCE);
@@ -68,6 +68,8 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(effect, MUSIC_PTR) )
         {
+            notify_of_free(effect);
+
             _music.erase(effect->name);
             sk_close_sound_data(&effect->audio);
             effect->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -181,48 +183,48 @@ namespace splashkit_lib
     {
         fade_music_in(music_named(name), 1, ms);
     }
-    
+
     void fade_music_out(int ms)
     {
         sk_fade_music_out(ms);
     }
-    
+
     void pause_music()
     {
         sk_pause_music();
     }
-    
+
     void resume_music()
     {
         sk_resume_music();
     }
-    
+
     void stop_music()
     {
         sk_stop_music();
     }
-    
+
     bool music_playing()
     {
         return sk_music_playing();
     }
-    
+
     void set_music_volume(float volume)
     {
         sk_set_music_vol(volume);
     }
-    
+
     float music_volume()
     {
         return sk_music_vol();
     }
-    
+
     string music_name(music data)
     {
         if (INVALID_PTR(data, MUSIC_PTR)) return "";
         return data->name;
     }
-    
+
     string music_filename(music data)
     {
         if (INVALID_PTR(data, MUSIC_PTR)) return "";

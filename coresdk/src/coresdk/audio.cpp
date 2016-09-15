@@ -4,8 +4,6 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
-#include "resource_event_notifications.h"
-
 #include <iostream>
 #include <map>
 

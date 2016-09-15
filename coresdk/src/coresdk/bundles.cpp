@@ -184,6 +184,8 @@ namespace splashkit_lib
             return;
         }
 
+        // not notified as this does not create objects at this stage
+
         resource_bundle bndl = _resource_bundles[name];
         _resource_bundles.erase(name);
 
@@ -215,6 +217,14 @@ namespace splashkit_lib
                 default:
                     return;
             }
+        }
+    }
+
+    void free_all_resource_bundles()
+    {
+        for (unsigned long i = _resource_bundles.size(); i > 0 ; i--)
+        {
+            free_resource_bundle(_resource_bundles.begin()->first);
         }
     }
 }

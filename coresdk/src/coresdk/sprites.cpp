@@ -13,7 +13,6 @@
 #include "geometry.h"
 #include "images.h"
 #include "mouse_input.h"
-#include "resource_event_notifications.h"
 #include "sprites.h"
 #include "timers.h"
 #include "utility_functions.h"
@@ -257,7 +256,7 @@ namespace splashkit_lib
         }
 
         //Dispose sprite
-        notify_handlers_of_free(s);
+        notify_of_free(s);
 
         // Free pointers
         if( (ASSIGNED(s->animation_info)) )
@@ -1405,12 +1404,12 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to use invalid sprite";
             return;
         }
-        
+
         if ( sprite_has_value(s, name) ) return;
-        
+
         s->values[name] = init_val;
     }
-    
+
     void sprite_set_value(sprite s, const string &name, float val)
     {
         if ( not sprite_has_value(s, name) )
@@ -1418,24 +1417,24 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to use invalid sprite";
             return;
         }
-        
+
         s->values[name] = val;
     }
-    
+
     //---------------------------------------------------------------------------
     // Event Code
     //---------------------------------------------------------------------------
-    
+
     void call_on_sprite_event(sprite_event_handler *handler)
     {
         _global_sprite_event_handlers.push_back(handler);
     }
-    
+
     void stop_calling_on_sprite_event(sprite_event_handler *handler)
     {
         erase_from_vector(_global_sprite_event_handlers, handler);
     }
-    
+
     void sprite_call_on_event(sprite s, sprite_event_handler *handler)
     {
         if ( VALID_PTR(s, SPRITE_PTR) )
@@ -1443,7 +1442,7 @@ namespace splashkit_lib
             s->evts.push_back(handler);
         }
     }
-    
+
     void sprite_stop_calling_on_event(sprite s, sprite_event_handler *handler)
     {
         if ( VALID_PTR(s, SPRITE_PTR) )
@@ -1451,18 +1450,18 @@ namespace splashkit_lib
             erase_from_vector(s->evts, handler);
         }
     }
-    
+
     //---------------------------------------------------------------------------
     // sprite Packs
     //---------------------------------------------------------------------------
-    
+
     // Duplicate for the update_sprite for use in update_all_sprites... as it
     // currently does not select the correct overload.
     void _update_sprite_pct(sprite s, float pct)
     {
         update_sprite(s, pct);
     }
-    
+
     void _call_for_all_sprites(vector<sprite> &sprites, sprite_function *fn)
     {
         for(sprite s : sprites)
@@ -1470,7 +1469,7 @@ namespace splashkit_lib
             fn(s);
         }
     }
-    
+
     void _call_for_all_sprites(vector<sprite> &sprites, sprite_float_function *fn, float val)
     {
         // use a local copy so changes to the sprite pack do not effect loop
@@ -1480,38 +1479,38 @@ namespace splashkit_lib
             fn(s, val);
         }
     }
-    
+
     void draw_all_sprites()
     {
         call_for_all_sprites(&draw_sprite);
     }
-    
+
     void update_all_sprites(float pct)
     {
         call_for_all_sprites(&_update_sprite_pct, pct);
     }
-    
+
     void call_for_all_sprites(sprite_function *fn)
     {
         _call_for_all_sprites(current_pack(), fn);
     }
-    
+
     void call_for_all_sprites(sprite_float_function *fn, float val)
     {
         _call_for_all_sprites(current_pack(), fn, val);
     }
-    
+
     void update_all_sprites()
     {
         update_all_sprites(1.0);
     }
-    
+
     bool has_sprite_pack(const string &name)
     {
         return _sprite_packs.count(name) > 0;
     }
-    
-    
+
+
     void create_sprite_pack(const string &name)
     {
         if ( not has_sprite_pack(name) )
@@ -1523,12 +1522,12 @@ namespace splashkit_lib
             LOG(WARNING) << "The sprite_pack " + name + " already exists";
         }
     }
-    
+
     string current_sprite_pack()
     {
         return _current_pack;
     }
-    
+
     void select_sprite_pack(const string &name)
     {
         if ( has_sprite_pack(name) )
@@ -1536,35 +1535,35 @@ namespace splashkit_lib
         else
             LOG(WARNING) << "No sprite_pack named " + name + " to select.";
     }
-    
+
     void free_sprite_pack(const string &name)
     {
         if  (not has_sprite_pack(name)) return;
-        
+
         vector<sprite> &pack = _sprite_packs[name];
-        
+
         _call_for_all_sprites(pack, &free_sprite);
-        
+
         _sprite_packs.erase(name);
     }
-    
+
     void free_all_sprite_packs()
     {
         size_t sz = _sprite_packs.size();
-        
+
         for(size_t i = 0; i < sz; i++)
         {
             string name = _sprite_packs.begin()->first;
             free_sprite_pack(name);
         }
-        
+
         _current_pack = INITIAL_PACK_NAME;
     }
-    
+
     //---------------------------------------------------------------------------
     // sprite collision details
     //---------------------------------------------------------------------------
-    
+
     bool sprite_offscreen(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR))
@@ -1572,23 +1571,23 @@ namespace splashkit_lib
         else
             return rectangles_intersect(sprite_layer_rectangle(s, 0), screen_rectangle());
     }
-    
-    
+
+
     bool sprite_on_screen_at(sprite s, float x, float y)
     {
         return sprite_on_screen_at(s, point_at(x, y));
     }
-    
+
     bool sprite_on_screen_at(sprite s, const point_2d &pt)
     {
         return sprite_at(s, to_world(pt));
     }
-    
+
     bool sprite_at(sprite s, const point_2d &pt)
     {
         return sprite_point_collision(s, pt);
     }
-    
+
     rectangle sprite_collision_rectangle(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
@@ -1599,38 +1598,38 @@ namespace splashkit_lib
         {
             int cw = bitmap_cell_width(s->collision_bitmap);
             int ch = bitmap_cell_height(s->collision_bitmap);
-            
+
             point_2d pts[4];
             pts[0] = point_at(0, 0);
             pts[1] = point_at(0, ch - 1);
             pts[2] = point_at(cw - 1, 0);
             pts[3] = point_at(cw - 1, ch - 1);
-            
+
             matrix_2d m = sprite_location_matrix(s);
-            
+
             for (int i = 0; i < 4; i++)
             {
                 pts[i] = matrix_multiply(m, pts[i]);
             }
-            
+
             float min_x = pts[0].x;
             float max_x = pts[0].x;
             float min_y = pts[0].y;
             float max_y = pts[0].y;
-            
+
             for (int i = 1; i < 4; i++)
             {
                 if ( pts[i].x < min_x ) min_x = pts[i].x;
                 else if ( pts[i].x > max_x ) max_x = pts[i].x;
-                
+
                 if ( pts[i].y < min_y ) min_y = pts[i].y;
                 else if ( pts[i].y > max_y ) max_y = pts[i].y;
             }
-            
+
             return rectangle_from(min_x, min_y, max_x - min_x, max_y - min_y);
         }
     }
-    
+
     circle sprite_collision_circle(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) or INVALID_PTR(s->collision_bitmap, BITMAP_PTR) )
@@ -1638,7 +1637,7 @@ namespace splashkit_lib
         else
             return bitmap_cell_circle(s->collision_bitmap, center_point(s), sprite_scale(s));
     }
-    
+
     collision_test_kind sprite_collision_kind(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
@@ -1646,12 +1645,12 @@ namespace splashkit_lib
         else
             return s->collision_kind;
     }
-    
+
     void sprite_set_collision_kind(sprite s, collision_test_kind value)
     {
         if ( VALID_PTR(s, SPRITE_PTR) ) s->collision_kind = value;
     }
-    
+
     bitmap sprite_collision_bitmap(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
@@ -1659,7 +1658,7 @@ namespace splashkit_lib
         else
             return s->collision_bitmap;
     }
-    
+
     void sprite_set_collision_bitmap(sprite s, bitmap bmp)
     {
         if ( VALID_PTR(s, SPRITE_PTR) ) s->collision_bitmap = bmp;

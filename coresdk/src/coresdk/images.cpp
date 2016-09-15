@@ -13,8 +13,6 @@
 #include "utility_functions.h"
 #include "resources.h"
 
-#include "resource_event_notifications.h"
-
 #include <map>
 #include <cstdlib>
 #include <cmath>
@@ -153,7 +151,7 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(bmp, BITMAP_PTR) )
         {
-            notify_handlers_of_free(bmp);
+            notify_of_free(bmp);
 
             _bitmaps.erase(bmp->name);
             sk_close_drawing_surface(&bmp->image.surface);

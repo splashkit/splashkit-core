@@ -12,8 +12,6 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
-#include "resource_event_notifications.h"
-
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -86,7 +84,7 @@ namespace splashkit_lib
             return;
         }
 
-        notify_handlers_of_free(query);
+        notify_of_free(query);
 
         vector<query_result>::iterator it;
 
@@ -225,17 +223,17 @@ namespace splashkit_lib
         result->id = DATABASE_PTR;
         result->filename = file_path;
         result->name = name;
-        
+
         _databases[name] = result;
         return result;
     }
-    
+
     void free_database(database db_to_close)
     {
         if (VALID_PTR(db_to_close, DATABASE_PTR))
         {
-            notify_handlers_of_free(db_to_close);
-            
+            notify_of_free(db_to_close);
+
             _databases.erase(db_to_close->name);
             sk_close_database(db_to_close);
             db_to_close->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -246,12 +244,12 @@ namespace splashkit_lib
             LOG(WARNING) << "Delete sound effect called without valid sound effect";
         }
     }
-    
+
     void free_database(string name_of_db_to_close)
     {
         free_database(database_named(name_of_db_to_close));
     }
-    
+
     void free_all_databases()
     {
         FREE_ALL_FROM_MAP(_databases, DATABASE_PTR, free_database);

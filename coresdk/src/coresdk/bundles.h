@@ -106,6 +106,8 @@ namespace splashkit_lib
      * @param name  The name of the resource bundle to be freed
      */
     void free_resource_bundle(const string name);
+
+    void free_all_resource_bundles();
     
 #endif /* bundles_hpp */
 }

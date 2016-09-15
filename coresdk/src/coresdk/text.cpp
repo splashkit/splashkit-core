@@ -87,6 +87,8 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(fnt, FONT_PTR) )
         {
+            notify_of_free(fnt);
+            
             if (fnt->was_downloaded && file_exists(fnt->filename) )
             {
                 remove(fnt->filename.c_str());
@@ -166,7 +168,7 @@ namespace splashkit_lib
         if (has_font(name)) return font_named(name);
 
         string file_path = filename;
-        
+
         if ( ! file_exists(file_path) )
         {
             file_path = path_to_resource(filename, FONT_RESOURCE);
@@ -249,23 +251,23 @@ namespace splashkit_lib
     {
         draw_text(text, clr, fnt, 64, x, y, opts);
     }
-    
+
     void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
     {
         draw_text(text, clr, fnt, 64, x, y);
     }
-    
+
     void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
     {
         xy_from_opts(opts, x, y);
         sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
     }
-    
+
     void draw_text(const string &text, const color &clr, float x, float y)
     {
         draw_text(text, clr, x, y, option_defaults());
     }
-    
+
     int text_width(const string &text, font fnt, int font_size)
     {
         if ( INVALID_PTR(fnt, FONT_PTR) )
@@ -273,17 +275,17 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get string width with invalid font";
             return 0;
         }
-        
+
         int w = 0, h = 0;
         sk_text_size(fnt, font_size, text.c_str(), &w, &h);
         return w;
     }
-    
+
     int text_width(const string &text, const string &fnt, int font_size)
     {
         return text_width(text, font_named(fnt), font_size);
     }
-    
+
     int text_width(const string &text, string fnt, int font_size)
     {
         return text_width(text, font_named(fnt), font_size);

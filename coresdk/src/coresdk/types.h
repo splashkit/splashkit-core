@@ -15,14 +15,6 @@ using namespace std;
 namespace splashkit_lib
 {
     /**
-     * The free notifier can be registered with the system. It is called every
-     * time a resource is freed.
-     *
-     * @param pointer   The pointer to the resource that is being freed.
-     */
-    typedef void (free_notifier)(void *pointer);
-
-    /**
      * Colors can be used when drawing shapes and clearing surfaces. Color in
      * splashkit does include a alpha value used for opacity, which allows you
      * to have partially transparent colors.
