@@ -1619,7 +1619,7 @@ namespace splashkit_lib
     //---------------------------------------------------------------------------
     // sprite rotation
     //---------------------------------------------------------------------------
-    
+
     /**
      * This indicates the angle of rotation of the sprite. This will rotate any
      * images of the sprite before drawing, which can be very slow. avoid using
@@ -1632,7 +1632,7 @@ namespace splashkit_lib
      * @attribute getter Rotation
      */
     float sprite_rotation(sprite s);
-    
+
     /**
      * Allows you to change the rotation of a sprite.
      * @attribute class sprite
@@ -1644,11 +1644,11 @@ namespace splashkit_lib
      * @setter rotation
      */
     void sprite_set_rotation(sprite s, float value);
-    
+
     //---------------------------------------------------------------------------
     // sprite scale
     //---------------------------------------------------------------------------
-    
+
     /**
      * This indicates the scale of the sprite. This will scale any
      * images of the sprite before drawing, which can be very slow. avoid using
@@ -1661,7 +1661,7 @@ namespace splashkit_lib
      * @attribute getter scale
      */
     float sprite_scale(sprite s);
-    
+
     /**
      * Allows you to change the scale of a sprite.
      *
@@ -1672,11 +1672,11 @@ namespace splashkit_lib
      * @attribute setter scale
      */
     void sprite_set_scale(sprite s, float value);
-    
+
     //---------------------------------------------------------------------------
     // sprite value code
     //---------------------------------------------------------------------------
-    
+
     /**
      * Returns the number of sprite's values.
      *
@@ -1687,7 +1687,7 @@ namespace splashkit_lib
      * @attribute getter value_count
      */
     int sprite_value_count(sprite s);
-    
+
     /**
      * Returns the indicated value of the sprite
      *
@@ -1699,7 +1699,7 @@ namespace splashkit_lib
      * @attribute method value
      */
     float sprite_value(sprite s, const string &name);
-    
+
     /**
      * Adds a new kind of value to the sprite
      *
@@ -1710,7 +1710,7 @@ namespace splashkit_lib
      * @attribute method add_value
      */
     void sprite_add_value(sprite s, const string &name);
-    
+
     /**
      * Adds a new kind of value to the sprite, setting the initial value
      * to the value passed in.
@@ -1724,7 +1724,7 @@ namespace splashkit_lib
      * @attribute suffix with_default
      */
     void sprite_add_value(sprite s, const string &name, float init_val);
-    
+
     /**
      * Assigns a value to the sprite.
      *
@@ -1737,7 +1737,7 @@ namespace splashkit_lib
      * @attribute suffix named
      */
     void sprite_set_value(sprite s, const string &name, float val);
-    
+
     /**
      * Indicates if the sprite has a value with the given name.
      *
@@ -1746,11 +1746,11 @@ namespace splashkit_lib
      * @returns     True if the sprite has a value with that name.
      */
     bool sprite_has_value(sprite s, string name);
-    
+
     //---------------------------------------------------------------------------
     // sprite name
     //---------------------------------------------------------------------------
-    
+
     /**
      * Returns the name of the sprite. This name is used for resource management
      * and can be used to interact with the sprite in various routines.
@@ -1762,22 +1762,22 @@ namespace splashkit_lib
      * @attribute getter name
      */
     string sprite_name(sprite s);
-    
+
     //---------------------------------------------------------------------------
     // sprite Packs
     //---------------------------------------------------------------------------
-    
+
     /**
      * draws all of the sprites in the current sprite pack. Packs can be
      * switched to select between different sets of sprites.
      */
     void draw_all_sprites();
-    
+
     /**
      * Update all of the sprites in the current sprite pack.
      */
     void update_all_sprites();
-    
+
     /**
      * Update all of the sprites in the current sprite pack, passing in a
      * percentage value to indicate the percentage to update.
@@ -1785,14 +1785,14 @@ namespace splashkit_lib
      * @param pct The percentage of the update to apply.
      */
     void update_all_sprites(float pct);
-    
+
     /**
      * Call the supplied function for all sprites in the current pack.
      *
      * @param fn The sprite function to call on all sprites.
      */
     void call_for_all_sprites(sprite_function *fn);
-    
+
     /**
      * Call the supplied function for all sprites in the current pack.
      *
@@ -1800,7 +1800,7 @@ namespace splashkit_lib
      * @param val The value passed to the function for each sprite.
      */
     void call_for_all_sprites(sprite_float_function *fn, float val);
-    
+
     /**
      * Create a new sprite_pack with a given name. This pack can then be
      * selected and used to control which sprites are drawn/updated in
@@ -1809,14 +1809,14 @@ namespace splashkit_lib
      * @param name The name of the new sprite pack.
      */
     void create_sprite_pack(const string &name);
-    
+
     /**
      * Frees the sprite pack and all of its sprites.
      *
      * @param name The name of the sprite pack to destroy.
      */
     void free_sprite_pack(const string &name);
-    
+
     /**
      * Indicates if a given sprite_pack has already been created.
      *
@@ -1824,7 +1824,7 @@ namespace splashkit_lib
      * @returns True if a sprite pack exists with the indicated name.
      */
     bool has_sprite_pack(const string &name);
-    
+
     /**
      * Selects the named sprite_pack (if it has been created). The
      * selected sprite_pack determines which sprites are drawn and updated
@@ -1833,7 +1833,7 @@ namespace splashkit_lib
      * @param name The name of the sprite pack to select.
      */
     void select_sprite_pack(const string &name);
-    
+
     /**
      * Returns the name of the currently selected sprite_pack.
      *
