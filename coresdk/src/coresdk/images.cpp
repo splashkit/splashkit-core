@@ -322,6 +322,20 @@ namespace splashkit_lib
         return result;
     }
 
+    rectangle bitmap_rectangle(bitmap bmp)
+    {
+        return bitmap_rectangle(bmp, 0, 0);
+    }
+
+    rectangle bitmap_rectangle(bitmap bmp, float x, float y)
+    {
+        if ( INVALID_PTR(bmp, BITMAP_PTR) )
+            return rectangle_from(0, 0, 0, 0);
+        else
+            return rectangle_from(x, y, bitmap_width(bmp), bitmap_height(bmp));
+    }
+
+
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR) )
@@ -403,7 +417,7 @@ namespace splashkit_lib
     {
         return bitmap_width(bitmap_named(name));
     }
-    
+
     int bitmap_height(bitmap bmp)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
@@ -411,20 +425,20 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get height of invalid bitmap";
             return 0;
         }
-        
+
         return bmp->image.surface.height;
     }
-    
+
     int bitmap_height(string name)
     {
         return bitmap_height(bitmap_named(name));
     }
-    
+
     point_2d bitmap_center(bitmap bmp)
     {
         return point_at(bitmap_width(bmp) / 2.0f, bitmap_height(bmp) / 2.0f);
     }
-    
+
     int bitmap_cell_width(bitmap bmp)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
@@ -432,10 +446,10 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to read details of invalid bitmap";
             return 0;
         }
-        
+
         return bmp->cell_w;
     }
-    
+
     int bitmap_cell_height(bitmap bmp)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
@@ -443,39 +457,49 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to read details of invalid bitmap";
             return 0;
         }
-        
+
         return bmp->cell_h;
     }
-    
+
     point_2d bitmap_cell_center(bitmap bmp)
     {
         return point_at(bitmap_cell_width(bmp) / 2.0f, bitmap_cell_height(bmp) / 2.0f);
     }
-    
-    
+
+
     int bitmap_cell_count(bitmap bmp)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
         {
             return 0;
         }
-        
+
         return bmp->cell_count;
     }
-    
+
     bool pixel_drawn_at_point(bitmap bmp, float x, float y)
     {
-        int px = round(x);
-        int py = round(y);
-        
+        int px = ceil(x);
+        int py = ceil(y);
+
         if ( INVALID_PTR(bmp, BITMAP_PTR) or px < 0 or px >= bitmap_width(bmp) or py < 0 or py >= bitmap_height(bmp) ) return false;
-        
+
         return bmp->pixel_mask[px + py * bmp->image.surface.width];
     }
-    
+
     bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y)
     {
         vector_2d offset = bitmap_cell_offset(bmp, cell);
         return pixel_drawn_at_point(bmp, x + offset.x, y + offset.y);
+    }
+
+    bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt)
+    {
+        return pixel_drawn_at_point(bmp, pt.x, pt.y);
+    }
+
+    bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt)
+    {
+        return pixel_drawn_at_point(bmp, cell, pt.x, pt.y);
     }
 }

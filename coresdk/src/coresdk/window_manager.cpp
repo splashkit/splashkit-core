@@ -258,4 +258,6 @@ namespace splashkit_lib
     int window_height(const string &name)
     {
         return window_height(window_named(name));
-    }}
+    }
+}
+

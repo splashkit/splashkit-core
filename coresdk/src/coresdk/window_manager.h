@@ -42,6 +42,13 @@ namespace splashkit_lib
      * @attribute class         window
      * @attribute constructor   true
      * @attribute method        open_window
+     *
+     * @param  caption The title of the window. If a window with this caption
+     *                 already exists, SplashKit will alter the caption to
+     *                 ensure that it is unique.
+     * @param  width   The width of the window
+     * @param  height  The height of the window
+     * @return         A new window
      */
     window open_window(string caption, int width, int height);
 
@@ -51,6 +58,8 @@ namespace splashkit_lib
      * @attribute class           window
      * @attribute destructor      true
      * @attribute self            wind
+     *
+     * @param wind The window to close
      */
     void close_window(window wind);
 
@@ -59,6 +68,8 @@ namespace splashkit_lib
      *
      * @attribute class         window
      * @attribute destructor    true
+     *
+     * @param name The name (caption) of the window to close
      */
     void close_window(const string &name);
 
@@ -98,12 +109,35 @@ namespace splashkit_lib
      */
     window window_named(string caption);
 
+    /**
+     * Returns the window that the user currently has selected. This may be
+     * different to the current window.
+     *
+     * @return The window the user has selected
+     */
     window window_with_focus();
 
+    /**
+     * Returns the window that you are currently interacting with. This will be
+     * the default window for drawing options, and events.
+     *
+     * @return The current window
+     */
     window current_window();
 
+    /**
+     * Change the current window. Use this so that you can draw to different
+     * windows by default.
+     *
+     * @param wind The new current window
+     */
     void set_current_window(window wind);
 
+    /**
+     * Set the current window to the window with the supplied caption.
+     *
+     * @param name The caption of the new current window.
+     */
     void set_current_window(const string &name);
 
     /**
@@ -126,8 +160,8 @@ namespace splashkit_lib
      *
      * @param name The name of the window to close
      *
-     * @returns Returns `true` if there is a music file with the given `name` has
-     *          has been loaded.
+     * @returns Returns `true` if there is a music file with the given `name`
+     *                  has has been loaded.
      */
     bool window_close_requested(const string &name);
 
@@ -158,6 +192,9 @@ namespace splashkit_lib
      *
      * @attribute class window
      * @attribute getter width
+     *
+     * @param  wind The window
+     * @return      The width of the window
      */
     int window_width(window wind);
 
@@ -166,26 +203,40 @@ namespace splashkit_lib
      *
      * @attribute class window
      * @attribute getter width
+     *
+     * @param  name The name of the window
+     * @return      The width of the window
      */
     int window_width(const string &name);
-    
+
     /**
      * Returns the height of the window in pixels.
      *
      * @attribute class window
      * @attribute getter height
+     *
+     * @param  wind The window
+     * @return      The height of the window
      */
     int window_height(window wind);
-    
+
     /**
      * Returns the height of the window with the indicated name in pixels.
      *
      * @attribute class window
      * @attribute getter height
+     *
+     * @param  name The name of the window
+     * @return      The height of the window
      */
     int window_height(const string &name);
-    
+
+    /**
+     * Sets the icon of the current window.
+     *
+     * @param wind The window to change the icon of
+     * @param bmp  The image with the details to show in the icon
+     */
     void window_set_icon(window wind, bitmap bmp);
 }
 #endif /* window_manager_hpp */
-
