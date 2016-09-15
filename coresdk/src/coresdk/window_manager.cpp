@@ -247,6 +247,11 @@ namespace splashkit_lib
         return window_width(window_named(name));
     }
 
+    int window_width()
+    {
+        return window_width(_current_window);
+    }
+
     int window_height(window wind)
     {
         if (INVALID_PTR(wind, WINDOW_PTR))
@@ -261,6 +266,11 @@ namespace splashkit_lib
     int window_height(const string &name)
     {
         return window_height(window_named(name));
+    }
+
+    int window_height()
+    {
+        return window_height(_current_window);
     }
 
     void resize_window(window wnd, int width, int height)

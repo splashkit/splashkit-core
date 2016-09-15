@@ -206,13 +206,17 @@ namespace splashkit_lib
     /**
      * Returns the width of the window with the indicated name in pixels.
      *
-     * @attribute class window
-     * @attribute getter width
-     *
      * @param  name The name of the window
      * @return      The width of the window
      */
     int window_width(const string &name);
+
+    /**
+     * Returns the width of the current window.
+     *
+     * @return      The width of the current window
+     */
+    int window_width();
 
     /**
      * Returns the height of the window in pixels.
@@ -235,6 +239,13 @@ namespace splashkit_lib
      * @return      The height of the window
      */
     int window_height(const string &name);
+
+    /**
+     * Returns the height of the current window.
+     *
+     * @return      The height of the current window
+     */
+    int window_height();
 
     /**
      * Sets the icon of the current window.
