@@ -219,8 +219,8 @@ namespace splashkit_lib
         pointer_identifier id;
         string name;
         sk_network_connection *socket;
-        int port;   // is this the right size?
-        int new_connections;
+        unsigned int port;
+        unsigned int new_connections;
         connection_type protocol;
         vector<sk_connection_data*> connections;
         vector<sk_message*> messages;

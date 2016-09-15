@@ -24,6 +24,7 @@ namespace splashkit_lib
 
     typedef char packet_data[512];
     typedef byte bytes[4];
+    static const int PACKET_SIZE = 512;
 
     // Server functions
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol);
@@ -61,6 +62,7 @@ namespace splashkit_lib
     connection message_connection(message msg);
     void reconnect(const string &name);
     void reconnect(connection a_connection);
+    void release_all_connections();
 
     // Message functions
     int udp_packet_size();
@@ -72,7 +74,7 @@ namespace splashkit_lib
     void clear_messages(server_socket svr);
     void clear_messages(connection a_connection);
     void clear_messages(const string &name);
-    void free_message(message msg);
+    void close_message(message msg);
     bool has_messages();
     bool has_messages(connection con);
     bool has_messages(server_socket svr);

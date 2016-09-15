@@ -66,14 +66,19 @@ namespace splashkit_lib
 
     bool close_server(server_socket svr)
     {
-        // Ref cannot be null, therefore this always returns true
-        //if (svr != null) return false;
-
-        for(auto const connection : svr->connections)
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
         {
-            if (!close_connection(connection)) return false;
+            LOG(WARNING) << "Invalid server_socket passed to close_server";
+            return false;
         }
 
+        for(auto connection : svr->connections)
+        {
+            close_connection(connection);
+        }
+
+        // close the socket
+        sk_close_connection(svr->socket);
         server_sockets.erase(svr->name);
 
         delete svr;
@@ -186,13 +191,22 @@ namespace splashkit_lib
         if (_establish_connection(con, host, port, protocol))
         {
             connections.insert({name_for_connection(host, port), con});
+            return con;
         }
         else
         {
             delete con;
+            return nullptr;
         }
+    }
 
-        return con;
+    void shut_connection(connection con)
+    {
+        if (con->open)
+        {
+            con->open = false;
+            sk_close_connection(con->socket);
+        }
     }
 
     connection retrieve_connection(const string &name, int idx)
@@ -213,12 +227,43 @@ namespace splashkit_lib
         }
     }
 
-    bool close_connection(connection a_connection) {
-        //clear_messages(a_connection);
-        //shut_connection(a_connection);
-        // remove connection from connections map
-        // remove connection from servers map
-        return false;
+    bool close_connection(connection con) {
+        if (INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Invalid pointer passed to close_connection";
+            return false;
+        }
+
+        bool result = false;
+        clear_messages(con);
+        shut_connection(con);
+
+        if (connections.find(con->name) != connections.end())
+        {
+            connections.erase(con->name);
+            con->id = NONE_PTR;
+            delete con;
+            result = true;
+        }
+        else
+        {
+            for (auto sock : server_sockets)
+            {
+                server_socket s = sock.second;
+                int idx = index_of(s->connections, con);
+
+                if (idx > -1)
+                {
+                    result = true;
+                    con->id = NONE_PTR;
+                    delete con;
+                    s->connections.erase(s->connections.begin() + idx);
+                }
+            }
+        }
+
+
+        return result;
     }
 
     bool close_connection(const string &name)
@@ -329,14 +374,19 @@ namespace splashkit_lib
         reconnect(connections[name]);
     }
 
-
-    void reconnect(connection a_connection)
+    void reconnect(connection con)
     {
-        string host = a_connection->string_ip;
-        unsigned short port = a_connection->port;
+        string host = con->string_ip;
+        unsigned short port = con->port;
 
-        sk_close_connection(a_connection->socket);
-        //a_connection.open = establish_connection(, host, port, a_connection.protocol)
+        sk_close_connection(con->socket);
+        con->open = _establish_connection(con, host, port, con->protocol);
+    }
+
+    void release_all_connections()
+    {
+        close_all_connections();
+        close_all_servers();
     }
 
     connection message_connection(message msg)
@@ -410,7 +460,7 @@ namespace splashkit_lib
                     _enqueue_udp_message(messages, data, size, host, port);
                 }
 
-                times++;
+                times += 1;
             }
             while ((size != 0) && (host != 0) || (times < 10));
 
@@ -418,6 +468,160 @@ namespace splashkit_lib
         }
 
         return false;
+    }
+
+    bool _extract_data(packet_data buffer, int received_count, connection con)
+    {
+        int buf_idx = 0;
+        int msg_len = 0;
+        string msg;
+        int missing, got;
+        bytes size;
+
+        while (buf_idx < received_count)
+        {
+            if (con->msgLen > 0)
+            {
+                msg = con->part_msg_data;
+                msg_len = con->msgLen - msg.length();
+                con->msgLen = -1;
+                con->part_msg_data = "";
+            }
+            else
+            {
+                msg = "";
+
+                if ((PACKET_SIZE - buf_idx) < 4)
+                {
+                    missing = 4 - PACKET_SIZE - buf_idx;
+
+                    for (int i = 0; i <= missing; ++i)
+                    {
+                        buffer[PACKET_SIZE - 4 + i] = buffer[buf_idx + i];
+
+                        got = sk_read_bytes(con->socket, &buffer[PACKET_SIZE - missing], missing);
+
+                        if (got != missing)
+                        {
+                            LOG(WARNING) << "Issue reading message size from network. Notify SplashKit team.";
+                            return false;
+                        }
+
+                        buf_idx = PACKET_SIZE - 4;
+                    }
+
+                    size[0] = byte(buffer[buf_idx]);
+                    size[1] = byte(buffer[buf_idx + 1]);
+                    size[2] = byte(buffer[buf_idx + 2]);
+                    size[3] = byte(buffer[buf_idx + 3]);
+
+                    msg_len = (size[0] << 24 & 0xFF) + (size[1] << 16 & 0xFF) + (size[2] << 8 & 0xFF) + (size[3]);
+
+                    buf_idx += 4;
+                }
+
+                for (buf_idx; buf_idx <= buf_idx + msg_len - 1; ++buf_idx)
+                {
+                    if ((buf_idx >= received_count) || (buf_idx > PACKET_SIZE))
+                    {
+                        con->part_msg_data = msg;
+                        con->msgLen = msg_len;
+                        return true;
+                    }
+
+                    msg += buffer[buf_idx];
+                }
+
+                _enqueue_tcp_message(msg, con);
+
+                buf_idx += 1;
+            }
+        }
+
+        return false;
+    }
+
+    bool _check_connection_for_data(connection con)
+    {
+        if (INVALID_PTR(con, CONNECTION_PTR) || !con->socket->_socket)
+        {
+            LOG(WARNING) << "Invalid connection or socket passed to _check_connection_for_data";
+            return false;
+        }
+
+        if (sk_connection_has_data(con->socket) > 0)
+        {
+            bool got_data = true;
+            int times = 0;
+            do
+            {
+                if (con->protocol == TCP)
+                {
+                    packet_data buffer;
+                    int received = sk_read_bytes(con->socket, buffer, 512);
+
+                    if (received <= 0) {
+                        // shut_connection
+                        LOG(DEBUG) << "No data received in _c_c_for_data";
+                        return false;
+                    }
+
+                    got_data = _extract_data(buffer, received, con);
+                }
+                else
+                {
+                    got_data = _read_udp_message_from(con->socket, con->messages);
+                }
+
+                times += 1;
+            } while (got_data or times < 10);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    bool _check_udp_socket_for_data(server_socket socket)
+    {
+        if (VALID_PTR(socket, SERVER_SOCKET_PTR))
+        {
+            return _read_udp_message_from(socket->socket, socket->messages);
+        }
+
+        return false;
+    }
+
+    void check_network_activity()
+    {
+        accept_all_new_connections();
+        bool got_data = true;
+
+        while ((sk_network_has_data() > 0) && got_data)
+        {
+            got_data = false;
+
+            for (auto it = server_sockets.begin(); it != server_sockets.end(); ++it)
+            {
+                server_socket s = it->second;
+                if (s->protocol == TCP)
+                {
+                    for (int i = 0; i < s->connections.size(); ++i)
+                    {
+                        got_data = _check_connection_for_data(s->connections[i]) || got_data;
+                    }
+                }
+                else
+                {
+                    got_data = _check_udp_socket_for_data(s) || got_data;
+                }
+            }
+
+            for (auto it = connections.begin(); it != connections.end(); ++it)
+            {
+                got_data = _check_connection_for_data(it->second) || got_data;
+            }
+        }
     }
 
     void broadcast_message(const string &a_msg)
@@ -428,7 +632,7 @@ namespace splashkit_lib
         }
         for (auto const& udp_connection: connections)
         {
-            //broadcast_message(a_msg, udp_connection.second.);
+            send_message_to(a_msg, udp_connection.second);
         }
     }
 
@@ -439,15 +643,16 @@ namespace splashkit_lib
 
     void broadcast_message(const string &a_msg, server_socket svr)
     {
+        if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Invalid server_socket passed to broadcast message.";
+            return;
+        }
+
         for (auto const& tcp_connection: svr->connections)
         {
-            //broadcast_message(a_msg, tcp_connection);
+            send_message_to(a_msg, tcp_connection);
         }
-    }
-
-    void check_network_activity()
-    {
-
     }
 
     void clear_messages(server_socket svr)
@@ -472,29 +677,35 @@ namespace splashkit_lib
         }
     }
 
-    void free_message(sk_message msg)
+    void close_message(message msg)
     {
-        // TODO Find swingame equivalent
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(WARNING) << "Invalid message passed to close_message";
+            return;
+        }
+
+        msg->id = NONE_PTR;
+        delete msg;
     }
 
     bool has_messages()
     {
-        for(auto const& tcp_server: server_sockets)
+        for(auto &tcp_server: server_sockets)
         {
             if (has_messages(tcp_server.second))
             {
                 return true;
             }
         }
-        for (auto const& udp_connection: connections)
+        for (auto &udp_connection: connections)
         {
-            /*
-            if (has_messages(udp_connection))
+            if (has_messages(udp_connection.second))
             {
                 return true;
             }
-             */
         }
+
         return false;
     }
 
@@ -580,13 +791,67 @@ namespace splashkit_lib
         return std::__cxx11::string();
     }
 
-    bool send_message_to(const string &a_msg, connection a_connection)
+    bool send_message_to(const string &msg, connection con)
     {
+        if (INVALID_PTR(con, CONNECTION_PTR) || !con->open)
+        {
+            LOG(WARNING) << "Invalid connection or closed connection passed to send_message_to";
+            return false;
+        }
+
+        if (con->protocol == TCP)
+        {
+            LOG(WARNING) << "Bytes endianness might be wrong - use char array?";
+            unsigned long n = msg.length();
+            bytes size;
+            size[0] = (n >> 24) & 0xFF;
+            size[1] = (n >> 16) & 0xFF;
+            size[2] = (n >> 8) & 0xFF;
+            size[3] = n & 0xFF;
+
+            int len = msg.size() + 4;
+            char buffer[len];
+
+            for (int i = 0; i < len - 1; ++i)
+            {
+                if (i < 4)
+                {
+                    buffer[i] = size[i];
+                }
+                else
+                {
+                    buffer[i] = byte(msg[i - 3]);
+                }
+            }
+
+            if (sk_send_bytes(con->socket, buffer, len) == len)
+            {
+                return true;
+            }
+            else
+            {
+                shut_connection(con);
+            }
+        }
+        else // UDP
+        {
+            if (msg.size() < 1024)
+            {
+                sk_send_udp_message(con->socket, con->string_ip.c_str(), con->port, msg.c_str(), msg.length());
+                return true;
+            }
+        }
+
         return false;
     }
 
     bool send_message_to(const string &a_msg, const string &name)
     {
+        if (connections.find(name) != connections.end())
+        {
+            return send_message_to(a_msg, connections[name]);
+        }
+
         return false;
     }
 
