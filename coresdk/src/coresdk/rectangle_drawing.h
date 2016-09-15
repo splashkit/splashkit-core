@@ -133,6 +133,7 @@ namespace splashkit_lib
      *
      * @param clr The color for the quad
      * @param q   The details of the quad
+     * @param opts  The drawing options
      */
     void fill_quad(color clr, const quad &q, const drawing_options &opts);
 
