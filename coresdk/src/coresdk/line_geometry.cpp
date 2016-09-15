@@ -24,7 +24,7 @@ namespace splashkit_lib
         return line_from(point_at(x1, y1), point_at(x2, y2));
     }
 
-    line line_from_vector(const point_2d &start, const vector_2d &offset)
+    line line_from(const point_2d &start, const vector_2d &offset)
     {
         return line_from(start, point_offset_by(start, offset) );
     }
@@ -38,11 +38,6 @@ namespace splashkit_lib
     line line_from(const vector_2d &v)
     {
         return { {0,0}, {static_cast<float>(v.x), static_cast<float>(v.y)} };
-    }
-
-    line line_from(const point_2d pt, const vector_2d &v)
-    {
-        return { {pt.x, pt.y}, {static_cast<float>(pt.x + v.x), static_cast<float>(pt.y + v.y)} };
     }
 
     bool line_intersection_point(const line &line1, const line &line2, point_2d &pt)

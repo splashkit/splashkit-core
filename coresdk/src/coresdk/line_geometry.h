@@ -17,12 +17,41 @@ using std::vector;
 namespace splashkit_lib
 {
     /**
+     * Create a line from one point to another.
      *
+     * @param  start The start of the line
+     * @param  end   The end of the line
+     * @return       A line from the start to the end point
      */
     line line_from(const point_2d &start, const point_2d &end);
-    line line_from(float x1, float y1, float x2, float y2);
-    line line_from_vector(const point_2d &start, const vector_2d &offset);
 
+    /**
+     * Create a line from one point to another.
+     *
+     * @param  x1 The x value of the start of the line
+     * @param  y1 The y value of the start of the line
+     * @param  x2 The x value of the end of the line
+     * @param  y2 The y value of the end of the line
+     * @return       A line from the start to the end point
+     */
+    line line_from(float x1, float y1, float x2, float y2);
+
+    /**
+     * Creates a line that starts at a point, and follows a given vector.
+     *
+     * @param  start  The start of the line
+     * @param  offset The offset to the end of the line
+     * @return        A line from the start to end point
+     */
+    line line_from(const point_2d &start, const vector_2d &offset);
+
+    /**
+     * Returns the squared length of the line. You can also get the
+     * `line_length`.
+     *
+     * @param  l The line
+     * @return   The squared length of the line
+     */
     float line_length_squared(const line &l);
 
     /**
@@ -33,8 +62,13 @@ namespace splashkit_lib
      */
     float line_length(const line &l);
 
+    /**
+     * Gets a line that goes from the origin and ends at the end of the vector.
+     *
+     * @param  v The offset from the origin for the end of the line
+     * @return   A line from the origin to the end point
+     */
     line line_from(const vector_2d &v);
-    line line_from(const point_2d pt, const vector_2d &v);
 
     /**
      * Returns an array of lines from the details in the triangle.
@@ -52,8 +86,24 @@ namespace splashkit_lib
      */
     vector<line> lines_from(const rectangle &rect);
 
+    /**
+     * Returns the point at which two lines would intersect. This point may lie
+     * past the end of one or both lines.
+     *
+     * @param  line1 The first line
+     * @param  line2 The other line
+     * @param  pt    The resulting point where they intersect
+     * @return       [description]
+     */
     bool line_intersection_point(const line &line1, const line &line2, point_2d &pt);
 
+    /**
+     * Gets the closest point on the line to a given point.
+     *
+     * @param  from_pt The point to test (usually somewhere near the line)
+     * @param  l       The line
+     * @return         The point on the line that is closest to `from_pt`
+     */
     point_2d closest_point_on_line(const point_2d from_pt, const line &l);
 
     /**
