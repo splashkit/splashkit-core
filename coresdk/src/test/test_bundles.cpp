@@ -7,6 +7,7 @@
 //
 
 #include "bundles.h"
+#include "resources.h"
 
 #include "window_manager.h"
 #include "audio.h"
@@ -18,8 +19,15 @@
 using namespace std;
 using namespace splashkit_lib;
 
+void free_notification(void *resource)
+{
+    cout << "Freeing: " << hex << resource << dec << endl;
+}
+
 void run_bundle_test()
 {
+    register_free_notifier(&free_notification);
+
     cout << "Before loading:" << endl;
     
     cout << "  Animation:   " << has_animation_script("WalkingScript") << endl;

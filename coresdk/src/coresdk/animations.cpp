@@ -480,6 +480,8 @@ namespace splashkit_lib
             return;
         }
 
+        notify_of_free(script_to_free);
+
         // Must use downto as animations are removed from the array in FreeAnimation!
         for (int i = static_cast<int>(script_to_free->anim_objs.size()) - 1; i >= 0; i--)
         {
@@ -537,6 +539,8 @@ namespace splashkit_lib
     {
         if (VALID_PTR(ani, ANIMATION_PTR))
         {
+            notify_of_free(ani);
+
             _remove_animation(ani->script, ani);
             ani->id = NONE_PTR;
 

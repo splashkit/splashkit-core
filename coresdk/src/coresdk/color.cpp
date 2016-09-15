@@ -16,6 +16,8 @@
 #include "utility_functions.h"
 namespace splashkit_lib
 {
+    typedef unsigned char byte;
+
     color random_color()
     {
         return rgba_color(rnd(), rnd(), rnd(), rnd());
@@ -205,24 +207,24 @@ namespace splashkit_lib
         return rgba_color(r, g, b, a);
     }
 
-    byte alpha_of(color c)
+    int alpha_of(color c)
     {
-        return static_cast<byte>(255 * c.a);
+        return static_cast<int>(255 * c.a);
     }
 
-    byte red_of(color c)
+    int red_of(color c)
     {
-        return static_cast<byte>(255 * c.r);
+        return static_cast<int>(255 * c.r);
     }
 
-    byte green_of(color c)
+    int green_of(color c)
     {
-        return static_cast<byte>(255 * c.g);
+        return static_cast<int>(255 * c.g);
     }
 
-    byte blue_of(color c)
+    int blue_of(color c)
     {
-        return static_cast<byte>(255 * c.b);
+        return static_cast<int>(255 * c.b);
     }
 
 

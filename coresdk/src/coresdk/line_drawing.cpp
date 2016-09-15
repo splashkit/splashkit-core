@@ -18,7 +18,7 @@ namespace splashkit_lib
         draw_line(clr, x1, y1, x2, y2, option_defaults());
     }
 
-    void draw_line(color clr, float x1, float y1, float x2, float y2, drawing_options opts)
+    void draw_line(color clr, float x1, float y1, float x2, float y2, const drawing_options &opts)
     {
         sk_drawing_surface *surface;
 
@@ -31,6 +31,16 @@ namespace splashkit_lib
 
             sk_draw_line(surface, clr, x1, y1, x2, y2, opts.line_width);
         }
+    }
+
+    void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt)
+    {
+        draw_line(clr, from_pt.x, from_pt.y, to_pt.x, to_pt.y, option_defaults());
+    }
+
+    void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts)
+    {
+        draw_line(clr, from_pt.x, from_pt.y, to_pt.x, to_pt.y, opts);
     }
 
     void draw_line(color clr, const line &l)

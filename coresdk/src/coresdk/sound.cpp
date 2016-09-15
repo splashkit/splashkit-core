@@ -11,8 +11,6 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 
-#include "resource_event_notifications.h"
-
 #include <iostream>
 #include <map>
 
@@ -64,12 +62,17 @@ namespace splashkit_lib
     {
         if (has_sound_effect(name)) return sound_effect_named(name);
 
-        string file_path = path_to_resource(filename, SOUND_RESOURCE);
+        string file_path = filename;
 
         if ( ! file_exists(file_path) )
         {
-            LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-            return nullptr;
+            file_path = path_to_resource(filename, SOUND_RESOURCE);
+
+            if ( ! file_exists(file_path) )
+            {
+                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                return nullptr;
+            }
         }
 
         sound_effect result = new _sound_data();
@@ -96,7 +99,7 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(effect, AUDIO_PTR) )
         {
-            notify_handlers_of_free(effect);
+            notify_of_free(effect);
 
             _sound_effects.erase(effect->name);
             sk_close_sound_data(&effect->effect);
@@ -176,32 +179,32 @@ namespace splashkit_lib
     bool sound_effect_playing(sound_effect effect)
     {
         if ( INVALID_PTR(effect, AUDIO_PTR) ) return false;
-        
+
         return sk_sound_playing(&effect->effect);
     }
-    
+
     bool sound_effect_playing(const string &name)
     {
         return sound_effect_playing(sound_effect_named(name));
     }
-    
+
     void stop_sound_effect(sound_effect effect)
     {
         if (VALID_PTR(effect, AUDIO_PTR))
             sk_stop_sound(&effect->effect);
     }
-    
+
     void stop_sound_effect(const string &name)
     {
         stop_sound_effect(sound_effect_named(name));
     }
-    
+
     void fade_sound_effect_out(sound_effect effect, int ms)
     {
         if (VALID_PTR(effect, AUDIO_PTR))
             sk_fade_out(&effect->effect, ms);
     }
-    
+
     void fade_all_sound_effects_out(int ms)
     {
         sk_fade_all_sound_effects_out(ms);

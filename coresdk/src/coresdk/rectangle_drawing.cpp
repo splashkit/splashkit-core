@@ -20,7 +20,7 @@
 
 namespace splashkit_lib
 {
-    void draw_rectangle(color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -52,17 +52,17 @@ namespace splashkit_lib
         draw_rectangle(clr, x, y, width, height, option_defaults());
     }
 
-    void draw_rectangle(color clr, const rectangle rect, drawing_options opts)
+    void draw_rectangle(color clr, const rectangle &rect, const drawing_options &opts)
     {
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, opts);
     }
 
-    void draw_rectangle(color clr, const rectangle rect)
+    void draw_rectangle(color clr, const rectangle &rect)
     {
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
 
-    void fill_rectangle(color clr, float x, float y, float width, float height, drawing_options opts)
+    void fill_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -94,12 +94,12 @@ namespace splashkit_lib
         fill_rectangle(clr, x, y, width, height, option_defaults());
     }
 
-    void fill_rectangle(color clr, const rectangle rect, drawing_options opts)
+    void fill_rectangle(color clr, const rectangle &rect, const drawing_options &opts)
     {
         fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, opts);
     }
 
-    void fill_rectangle(color clr, const rectangle rect)
+    void fill_rectangle(color clr, const rectangle &rect)
     {
         fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
@@ -109,7 +109,7 @@ namespace splashkit_lib
         draw_quad(clr, q, option_defaults());
     }
 
-    void draw_quad(color clr, const quad &q, drawing_options opts)
+    void draw_quad(color clr, const quad &q, const drawing_options &opts)
     {
         sk_drawing_surface *surface;
 
@@ -133,7 +133,7 @@ namespace splashkit_lib
         fill_quad(clr, q, option_defaults());
     }
     
-    void fill_quad(color clr, const quad &q, drawing_options opts)
+    void fill_quad(color clr, const quad &q, const drawing_options &opts)
     {
         sk_drawing_surface *surface;
         

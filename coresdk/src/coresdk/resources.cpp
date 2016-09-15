@@ -32,6 +32,9 @@
 #endif
 namespace splashkit_lib
 {
+    // Free notifiers are called when resources are deleted.
+    static vector<free_notifier *> _free_notifiers;
+
     static bool     _has_resources_path = false;
     static string   _resources_path = "";
 
@@ -173,5 +176,26 @@ namespace splashkit_lib
     string path_to_resource(const string &filename, resource_kind kind)
     {
         return path_from( { path_to_resources(kind) }, filename );
+    }
+
+    void register_free_notifier(free_notifier *fn)
+    {
+        _free_notifiers.push_back(fn);
+    }
+
+    void deregister_event_handler(free_notifier *handler)
+    {
+        if (not erase_from_vector(_free_notifiers, handler))
+        {
+            LOG(WARNING) << "Not able to deregister handler -- handler not registered.";
+        }
+    }
+
+    void notify_of_free( void *resource )
+    {
+        for ( free_notifier *fn : _free_notifiers )
+        {
+            fn ( resource );
+        }
     }
 }

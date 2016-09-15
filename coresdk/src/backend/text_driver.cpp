@@ -45,6 +45,7 @@ namespace splashkit_lib
         sk_font_data *font = new sk_font_data;
         font->id = FONT_PTR;
         font->filename = filename;
+        font->was_downloaded = false;
 
         sk_add_font_size(font, font_size);
 

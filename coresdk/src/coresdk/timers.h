@@ -18,7 +18,7 @@ namespace splashkit_lib
      * you will create a timer, start it, then use it to track time by asking
      * for the timer's ticks (milliseconds).
      *
-     * @attribute class Timer
+     * @attribute class timer
      */
     typedef struct _timer_data *timer;
 

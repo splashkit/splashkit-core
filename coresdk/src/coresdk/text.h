@@ -305,33 +305,33 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, float x, float y);
 
     /**
-     * @brief Returns the length of the supplied text string.
+     * @brief Returns the width of the supplied text string.
      *
      * @param text          The text string to check the length of.
      * @param fnt           The font used for the text.
      * @param font_size     The size of the font used for the text.
      *
      * @attribute static    text
-     * @attribute method    length
+     * @attribute method    width
      *
-     * @returns Returns the length of the text as an integer.
+     * @returns Returns the width of the text as an integer.
      */
-    int text_length(const string &text, font fnt, int font_size);
+    int text_width(const string &text, font fnt, int font_size);
 
     /**
-     * @brief Returns the length of the supplied text string.
+     * @brief Returns the width of the supplied text string.
      *
      * @param text          The text string to check the length of.
      * @param fnt           The font used for the text.
      * @param font_size     The size of the font used for the text.
      *
      * @attribute static    text
-     * @attribute method    length
-     * @attribute suffix    font_as_string
+     * @attribute method    width
+     * @attribute suffix    font_named
      *
-     * @returns Returns the length of the text as an integer.
+     * @returns Returns the width of the text as an integer.
      */
-    int text_length(const string &text, string fnt, int font_size);
+    int text_width(const string &text, string fnt, int font_size);
     
 }
 

@@ -18,23 +18,25 @@
 using namespace std;
 namespace splashkit_lib
 {
-    /// Loads and returns a bitmap. The supplied `filename` is used to
-    /// locate the Bitmap to load. The supplied `name` indicates the
-    /// name to use to refer to this Bitmap in SwinGame. The `Bitmap` can then be
-    /// retrieved by passing this `name` to the `BitmapNamed` function.
-    ///
-    /// @lib
-    /// @sn loadBitmapNamed:%s fromFile:%s
-    ///
-    /// @class Bitmap
-    /// @constructor
-    /// @csn initWithName:%s fromFile:%s
+    /**
+     * Loads and returns a bitmap. The supplied `filename` is used to
+     * locate the Bitmap to load. The supplied `name` indicates the
+     * name to use to refer to this Bitmap in SplashKit. The `bitmap` can then
+     * be retrieved by passing this `name` to the `bitmap_named` function.
+     *
+     * @param  name     The name of the bitmap resource in SplashKit
+     * @param  filename The filename to load
+     * @return          The loaded bitmap
+     */
     bitmap load_bitmap(string name, string filename);
 
-    /// Determines if SwinGame has a bitmap loaded for the supplied name.
-    /// This checks against all bitmaps loaded, those loaded without a name
-    /// are assigned the filename as a default.
-    ///
+    /**
+     * Determines if SplashKit has a bitmap loaded for the supplied name.
+     * This checks against all bitmaps loaded.
+     *
+     * @param  name The name to check
+     * @return      True if SplashKit has a bitmap with that name
+     */
     bool has_bitmap(string name);
 
     /**
@@ -48,11 +50,16 @@ namespace splashkit_lib
      */
     bitmap bitmap_named(string name);
 
-    /// Releases the SwinGame resources associated with the bitmap of the
-    /// specified `name`.
-    ///
+    /**
+     * Frees the bitmap resource.
+     *
+     * @param to_delete The bitmap to be freed.
+     */
     void free_bitmap(bitmap to_delete);
 
+    /**
+     * Free all of the loaded bitmap resources.
+     */
     void free_all_bitmaps();
 
     /**
@@ -122,6 +129,17 @@ namespace splashkit_lib
      */
     void draw_bitmap(string name, float x, float y, drawing_options opts);
 
+    /**
+     * Creates a new bitmap that you can draw to. Initially the bitmap will
+     * be transparent.
+     *
+     * @param  name   The name of the bitmap resource to be created. If this
+     *                already exists SplashKit will alter the name to make it
+     *                unique.
+     * @param  width  The width of the created bitmap
+     * @param  height The height of the created bitmap
+     * @return        A new transparent bitmap
+     */
     bitmap create_bitmap(string name, int width, int height);
 
     /**
@@ -142,12 +160,38 @@ namespace splashkit_lib
      */
     string bitmap_name(bitmap bmp);
 
+    /**
+     * Clear the bitmap to the indicated color. This will ensure the entire
+     * surface of the bitmap is set to that color.
+     *
+     * @param bmp The bitmap
+     * @param clr The new color for the surface of the bitmap
+     */
     void clear_bitmap(bitmap bmp, color clr);
 
+    /**
+     * Clear the bitmap to the indicated color. This will ensure the entire
+     * surface of the bitmap is set to that color.
+     *
+     * @param name  The name of the bitmap
+     * @param clr   The new color for the surface of the bitmap
+     */
     void clear_bitmap(string name, color clr);
 
+    /**
+     * Returns the width of the bitmap.
+     *
+     * @param  bmp The bitmap
+     * @return     The width of the bitmap
+     */
     int bitmap_width(bitmap bmp);
 
+    /**
+     * Returns the width of the bitmap.
+     *
+     * @param  name The name of the bitmap
+     * @return      The width of the bitmap
+     */
     int bitmap_width(string name);
 
     /**
@@ -289,10 +333,50 @@ namespace splashkit_lib
      */
     int bitmap_cell_columns(bitmap bmp);
 
+    /**
+     * Returns a rectangle that can be used to access the part of a bitmap
+     * related to an individual cell.
+     *
+     * @param  src  The bitmap
+     * @param  cell The cell
+     * @return      The area of the cell within the bitmap
+     */
     rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 
+    /**
+     * Returns a rectangle that is the same size as a bitmap (the whole bitmap).
+     *
+     * @param  bmp The bitmap
+     * @return     A rectangle with the same size as the bitmap.
+     */
+    rectangle bitmap_rectangle(bitmap bmp);
+
+    /**
+     * Returns a rectangle that is the same size as the bitmap and is located at
+     * the indicated position.
+     *
+     * @param  x   The x location of the rectangle
+     * @param  y   The y location of the rectangle
+     * @param  bmp The bitmap
+     * @return     A rectangle with the same size as the bitmap, at the
+     *             indicated location.
+     */
+    rectangle bitmap_rectangle(bitmap bmp, float x, float y);
+
+    /**
+     * Initialise the bitmap cell details. This allows parts of the bitmap to be
+     * drawn as individual cells.
+     *
+     * @param bmp     The bitmap
+     * @param width   The width of each cell
+     * @param height  The height of each cell
+     * @param columns The number of cell columns within the bitmap
+     * @param rows    The number of cell rows within the bitmap
+     * @param count   The total number of cells, may be fewer than columns *
+     *                rows
+     */
     void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
-    
+
     /**
      * Returns the number of cells within the bitmap.
      *
@@ -300,7 +384,7 @@ namespace splashkit_lib
      * @returns     The number of individual cells within the bitmap.
      */
     int bitmap_cell_count(bitmap bmp);
-    
+
     /**
      * Check if the bitmap has a pixel drawn at the indicated point.
      *
@@ -310,7 +394,7 @@ namespace splashkit_lib
      * @returns     True if the pixel at that point in the bitmap is drawn.
      */
     bool pixel_drawn_at_point(bitmap bmp, float x, float y);
-    
+
     /**
      * Check if the bitmap has a pixel drawn at the indicated point in the cell.
      *
@@ -318,8 +402,29 @@ namespace splashkit_lib
      * @param cell  The bitmap cell to check.
      * @param x     The x coordinate within the bitmap to check
      * @param y     The y coordinate within the bitmap to check
-     * @returns     True if the pixel at that point in the bitmap's cell is drawn.
+     * @returns     True if the pixel at that point in the bitmap's cell is
+     *              drawn.
      */
     bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
+
+    /**
+     * Check if the bitmap has a pixel drawn at the indicated point.
+     *
+     * @param bmp   The bitmap to check.
+     * @param pt    The point within the bitmap to check.
+     * @returns     True if the pixel at that point in the bitmap is drawn.
+     */
+    bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt);
+
+    /**
+     * Check if the bitmap has a pixel drawn at the indicated point in the cell.
+     *
+     * @param bmp   The bitmap to check.
+     * @param cell  The bitmap cell to check.
+     * @param pt    The point within the bitmap to check.
+     * @returns     True if the pixel at that point in the bitmap's cell is
+     *              drawn.
+     */
+    bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt);
 }
 #endif /* images_h */

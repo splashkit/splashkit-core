@@ -1594,7 +1594,7 @@ namespace splashkit_lib
     // Window change functions...
     //
 
-    void sk_show_border(sk_drawing_surface *surface, int border)
+    void sk_show_border(sk_drawing_surface *surface, bool border)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1618,7 +1618,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_show_fullscreen(sk_drawing_surface *surface, int fullscreen)
+    void sk_show_fullscreen(sk_drawing_surface *surface, bool fullscreen)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1629,7 +1629,7 @@ namespace splashkit_lib
         {
             case SGDS_Window:
             {
-                SDL_SetWindowFullscreen(window_be->window, fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+                SDL_SetWindowFullscreen(window_be->window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
                 SDL_PumpEvents();
                 break;
             }

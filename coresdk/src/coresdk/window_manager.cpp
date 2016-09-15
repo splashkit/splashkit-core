@@ -14,8 +14,6 @@
 #include "utility_functions.h"
 #include "input_driver.h"
 
-#include "resource_event_notifications.h"
-
 #include <map>
 
 using namespace std;
@@ -135,7 +133,7 @@ namespace splashkit_lib
             return;
         }
 
-        notify_handlers_of_free(wind);
+        notify_of_free(wind);
 
         if ( wind == _current_window )
             _current_window = _primary_window;
@@ -158,6 +156,11 @@ namespace splashkit_lib
     void close_window(const string &name)
     {
         close_window(window_named(name));
+    }
+
+    void close_window()
+    {
+        close_window(_current_window);
     }
 
     void close_all_windows()
@@ -219,15 +222,15 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to check if invalid window closed";
             return true;
         }
-        
+
         return sk_get_window_event_data(&wind->image.surface).close_requested;
     }
-    
+
     bool window_close_requested(const string &name)
     {
         return window_close_requested(window_named(name));
     }
-    
+
     int window_width(window wind)
     {
         if (INVALID_PTR(wind, WINDOW_PTR))
@@ -235,15 +238,20 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get width of invalid window";
             return 0;
         }
-        
+
         return wind->image.surface.width;
     }
-    
+
     int window_width(const string &name)
     {
         return window_width(window_named(name));
     }
-    
+
+    int window_width()
+    {
+        return window_width(_current_window);
+    }
+
     int window_height(window wind)
     {
         if (INVALID_PTR(wind, WINDOW_PTR))
@@ -251,11 +259,221 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get height of invalid window";
             return 0;
         }
-        
+
         return wind->image.surface.height;
     }
-    
+
     int window_height(const string &name)
     {
         return window_height(window_named(name));
-    }}
+    }
+
+    int window_height()
+    {
+        return window_height(_current_window);
+    }
+
+    void resize_window(window wnd, int width, int height)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to change size of invalid window";
+            return;
+        }
+
+        sk_resize(&wnd->image.surface, width, height);
+    }
+
+    void resize_window(int width, int height)
+    {
+        resize_window(_current_window, width, height);
+    }
+
+    void move_window(window wind, int x, int y)
+    {
+        if ( INVALID_PTR(wind, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to move invalid window";
+            return;
+        }
+
+        sk_move_window(&wind->image.surface, x, y);
+    }
+
+    void move_window(const string &name, int x, int y)
+    {
+        move_window(window_named(name), x, y);
+    }
+
+    void move_window(int x, int y)
+    {
+        move_window(_current_window, x, y);
+    }
+
+    bool window_is_fullscreen(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get fullscreen from invalid window";
+            return false;
+        }
+
+        return wnd->fullscreen;
+    }
+
+    bool window_is_fullscreen(const string &name)
+    {
+        return window_is_fullscreen(window_named(name));
+    }
+
+    bool window_is_fullscreen()
+    {
+        return window_is_fullscreen(_current_window);
+    }
+
+    void window_toggle_fullscreen(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to toggle fullscreen of invalid window";
+            return;
+        }
+
+        wnd->fullscreen = not wnd->fullscreen;
+        sk_show_fullscreen(&wnd->image.surface, wnd->fullscreen);
+
+        if ( not wnd->fullscreen )
+        {
+            resize_window(wnd, wnd->image.surface.width, wnd->image.surface.height);
+        }
+    }
+
+    void window_toggle_fullscreen(const string &name)
+    {
+        window_toggle_fullscreen(window_named(name));
+    }
+
+    void window_toggle_fullscreen()
+    {
+        window_toggle_fullscreen(_current_window);
+    }
+
+    bool window_has_border(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to access border of invalid window";
+            return false;
+        }
+
+        return wnd->border;
+    }
+
+    bool window_has_border(const string &name)
+    {
+        return window_has_border(window_named(name));
+    }
+
+    bool window_has_border()
+    {
+        return window_has_border(_current_window);
+    }
+
+    void window_toggle_border(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to toggle border of invalid window";
+            return;
+        }
+
+        wnd->border = not wnd->border;
+        sk_show_border(&wnd->image.surface, wnd->border);
+    }
+
+    void window_toggle_border(const string &name)
+    {
+        window_toggle_border(window_named(name));
+    }
+
+    void window_toggle_border()
+    {
+        window_toggle_border(_current_window);
+    }
+
+    int window_x(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return 0;
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return x;
+    }
+
+    int window_x(const string &name)
+    {
+        return window_x(window_named(name));
+    }
+
+    int window_x()
+    {
+        return window_x(_current_window);
+    }
+
+    int window_y(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return 0;
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return y;
+    }
+
+    int window_y(const string &name)
+    {
+        return window_y(window_named(name));
+    }
+
+    int window_y()
+    {
+        return window_y(_current_window);
+    }
+
+    point_2d window_position(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get position of invalid window";
+            return point_at_origin();
+        }
+
+        int x, y;
+
+        sk_window_position(&wnd->image.surface, &x, &y);
+
+        return point_at(x, y);
+    }
+
+    point_2d window_position(const string &name)
+    {
+        return window_position(window_named(name));
+    }
+
+    point_2d window_position()
+    {
+        return window_position(_current_window);
+    }
+
+}

@@ -14,6 +14,8 @@
 #include "text_driver.h"
 #include "graphics_driver.h"
 
+#include <cstdio>
+
 #include <map>
 namespace splashkit_lib
 {
@@ -85,6 +87,12 @@ namespace splashkit_lib
     {
         if ( VALID_PTR(fnt, FONT_PTR) )
         {
+            notify_of_free(fnt);
+            
+            if (fnt->was_downloaded && file_exists(fnt->filename) )
+            {
+                remove(fnt->filename.c_str());
+            }
             _fonts.erase(fnt->name);
             sk_close_font(fnt);
             fnt->id = NONE_PTR;  // ensure future use of this pointer will fail...
@@ -159,16 +167,21 @@ namespace splashkit_lib
     {
         if (has_font(name)) return font_named(name);
 
-        string file_path = path_to_resource(filename, FONT_RESOURCE);
+        string file_path = filename;
 
         if ( ! file_exists(file_path) )
         {
-            file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
+            file_path = path_to_resource(filename, FONT_RESOURCE);
 
             if ( ! file_exists(file_path) )
             {
-                LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-                return nullptr;
+                file_path = path_to_resource(filename + ".ttf", FONT_RESOURCE);
+
+                if ( ! file_exists(file_path) )
+                {
+                    LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+                    return nullptr;
+                }
             }
         }
 
@@ -188,7 +201,7 @@ namespace splashkit_lib
         return result;
     }
 
-    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr, font_alignment flags)
+    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr)
     {
         if (bg_clr.a > 0)
         {
@@ -216,7 +229,7 @@ namespace splashkit_lib
         rect.width = -1;
         rect.height = -1;
 
-        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT, ALIGN_LEFT);
+        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT);
     }
 
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
@@ -238,43 +251,43 @@ namespace splashkit_lib
     {
         draw_text(text, clr, fnt, 64, x, y, opts);
     }
-    
+
     void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
     {
         draw_text(text, clr, fnt, 64, x, y);
     }
-    
+
     void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
     {
         xy_from_opts(opts, x, y);
         sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
     }
-    
+
     void draw_text(const string &text, const color &clr, float x, float y)
     {
         draw_text(text, clr, x, y, option_defaults());
     }
-    
-    int text_length(const string &text, font fnt, int font_size)
+
+    int text_width(const string &text, font fnt, int font_size)
     {
         if ( INVALID_PTR(fnt, FONT_PTR) )
         {
-            LOG(WARNING) << "Attempting to get string length with invalid font";
+            LOG(WARNING) << "Attempting to get string width with invalid font";
             return 0;
         }
-        
+
         int w = 0, h = 0;
         sk_text_size(fnt, font_size, text.c_str(), &w, &h);
         return w;
     }
-    
-    int text_length(const string &text, const string &fnt, int font_size)
+
+    int text_width(const string &text, const string &fnt, int font_size)
     {
-        return text_length(text, font_named(fnt), font_size);
+        return text_width(text, font_named(fnt), font_size);
     }
-    
-    int text_length(const string &text, string fnt, int font_size)
+
+    int text_width(const string &text, string fnt, int font_size)
     {
-        return text_length(text, font_named(fnt), font_size);
+        return text_width(text, font_named(fnt), font_size);
     }
 }

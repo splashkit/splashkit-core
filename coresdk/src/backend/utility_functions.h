@@ -189,5 +189,8 @@ collection.erase(collection.begin());\
     double rad_to_deg(double radians);
     
     double deg_to_rad(double degrees);
+
+    // Notify the listeners that a resource has been freed. Implemented in resources.
+    void notify_of_free(void *resource);
 }
 #endif /* utility_functions_h */

@@ -16,6 +16,9 @@ using std::vector;
 
 namespace splashkit_lib
 {
+    /**
+     *
+     */
     line line_from(const point_2d &start, const point_2d &end);
     line line_from(float x1, float y1, float x2, float y2);
     line line_from_vector(const point_2d &start, const vector_2d &offset);

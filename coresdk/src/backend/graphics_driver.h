@@ -85,9 +85,9 @@ namespace splashkit_lib
 
     void sk_to_pixels(sk_drawing_surface *surface, int *pixels, int sz);
 
-    void sk_show_border(sk_drawing_surface *surface, int border);
+    void sk_show_border(sk_drawing_surface *surface, bool border);
 
-    void sk_show_fullscreen(sk_drawing_surface *surface, int fullscreen);
+    void sk_show_fullscreen(sk_drawing_surface *surface, bool fullscreen);
 
     void sk_resize(sk_drawing_surface *surface, int width, int height);
 

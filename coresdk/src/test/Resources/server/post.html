@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Jon Meyers" />
+  <title>SplashKit Test Add Person</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Add Person</h1>
+        <form>
+          <div class="form-group">
+            <input type="text" id="name" placeholder="name" />
+          </div>
+          <div class="form-group">
+            <input type="text" id="age" placeholder="age" />
+          </div>
+          <div class="form-group">
+            <input type="text" id="add" placeholder="address" />
+          </div>
+          <button type="button" class="btn btn-default" id="sub">Add Person</button>
+        </form>
+      </div>
+    </div>
+    <p id="msg"></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $("#sub").click(function() {
+      var name = $('#name').val();
+      var age = $('#age').val();
+      var add = $('#add').val();
+      var data = `{"name": "${name}", "age": ${age}, "address": "${add}"}`;
+      console.log(data);
+      $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/names',
+        data: data,
+        success: function() {
+          console.log(`Successfully added person: ${name}`);
+          $('#msg').empty().append(`Successfully added person: ${name}`);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log(`Error posting to JSON: ${textStatus}`);
+          $('#msg').empty().append(`Error writing to JSON file`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -44,10 +44,18 @@ namespace splashkit_lib
 
     void free_json(json j)
     {
+        if (INVALID_PTR(j, JSON_PTR))
+        {
+            LOG(WARNING) << "Passed invalid json object to free_json";
+            return;
+        }
+
         for (auto it = objects.begin(); it != objects.end();)
         {
             if (*it == j)
             {
+                notify_of_free(j);
+
                 sk_delete_json(*it);
                 it = objects.erase(it);
                 return;
@@ -212,29 +220,29 @@ namespace splashkit_lib
         result->data = backend_j;
         return result;
     }
-    
+
     void json_read_array(json j, string key, vector<double>& out)
     {
         sk_json_read_array(j, key, out);
     }
-    
+
     void json_read_array(json j, string key, vector<bool>& out)
     {
         sk_json_read_array(j, key, out);
     }
-    
+
     void json_read_array(json j, string key, vector<string>& out)
     {
         sk_json_read_array(j, key, out);
     }
-    
+
     void json_read_array(json j, string key, vector<json>& out)
     {
         vector<backend_json> real;
         sk_json_read_array(j, key, real);
-        
+
         out.clear();
-        
+
         for (backend_json rj : real)
         {
             json wj = create_json();
@@ -242,7 +250,7 @@ namespace splashkit_lib
             out.push_back(wj);
         }
     }
-    
+
     bool json_has_key(json j, string key)
     {
         if (INVALID_PTR(j, JSON_PTR))

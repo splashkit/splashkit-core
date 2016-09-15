@@ -162,6 +162,8 @@ namespace splashkit_lib
         string              name;
         string              filename;
 
+        bool                was_downloaded;
+        
         // TTF_Font Private Data
         map<int, void *> _data;
     };
