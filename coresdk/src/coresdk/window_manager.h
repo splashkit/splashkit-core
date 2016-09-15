@@ -64,6 +64,11 @@ namespace splashkit_lib
     void close_window(window wind);
 
     /**
+     * Closes and frees the current window.
+     */
+    void close_window();
+
+    /**
      * Closes and frees the graphics window identified by `name`.
      *
      * @attribute class         window
@@ -255,6 +260,32 @@ namespace splashkit_lib
      * @param height Its new height
      */
     void resize_window(int width, int height);
+
+    /**
+     * Move the window to the new location on the displays.
+     *
+     * @param wind the window to move.
+     * @param x    The new x location
+     * @param y    The new y location
+     */
+    void move_window(window wind, int x, int y);
+
+    /**
+     * Move the window to the new location on the displays.
+     *
+     * @param name The name of the window to move
+     * @param x    The new x location
+     * @param y    The new y location
+     */
+    void move_window(const string &name, int x, int y);
+
+    /**
+     * Move the current window to the new location on the displays.
+     *
+     * @param x    The new x location
+     * @param y    The new y location
+     */
+    void move_window(int x, int y);
 
 }
 #endif /* window_manager_hpp */

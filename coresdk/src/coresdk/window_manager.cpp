@@ -158,6 +158,11 @@ namespace splashkit_lib
         close_window(window_named(name));
     }
 
+    void close_window()
+    {
+        close_window(_current_window);
+    }
+
     void close_all_windows()
     {
         FREE_ALL_FROM_MAP(_windows, WINDOW_PTR, close_window);
@@ -273,4 +278,26 @@ namespace splashkit_lib
     {
         resize_window(_current_window, width, height);
     }
+
+    void move_window(window wind, int x, int y)
+    {
+        if ( INVALID_PTR(wind, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to move invalid window";
+            return;
+        }
+
+        sk_move_window(&wind->image.surface, x, y);
+    }
+
+    void move_window(const string &name, int x, int y)
+    {
+        move_window(window_named(name), x, y);
+    }
+
+    void move_window(int x, int y)
+    {
+        move_window(_current_window, x, y);
+    }
+
 }
