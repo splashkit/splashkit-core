@@ -32,6 +32,7 @@ namespace splashkit_lib
      *            pixel
      * @param y   The distance from the top edge of the window/bitmap to the
      *            pixel
+     * @param opts The drawing options
      */
     void draw_pixel(color clr, float x, float y, drawing_options opts);
 
@@ -48,6 +49,7 @@ namespace splashkit_lib
      *
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
+     * @param opts The drawing options
      */
     void draw_pixel(color clr, const point_2d &pt, drawing_options opts);
 
