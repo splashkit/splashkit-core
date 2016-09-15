@@ -52,7 +52,7 @@ namespace splashkit_lib
         draw_rectangle(clr, x, y, width, height, option_defaults());
     }
 
-    void draw_rectangle(color clr, const rectangle rect, const drawing_options &opts)
+    void draw_rectangle(color clr, const rectangle &rect, const drawing_options &opts)
     {
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, opts);
     }
