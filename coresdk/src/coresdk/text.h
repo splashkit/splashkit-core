@@ -331,8 +331,36 @@ namespace splashkit_lib
      *
      * @returns Returns the width of the text as an integer.
      */
-    int text_width(const string &text, string fnt, int font_size);
-    
+    int text_width(const string &text, const string& fnt, int font_size);
+
+    /**
+     * @brief Returns the height of the supplied text string.
+     *
+     * @param text          The text string to check the length of.
+     * @param fnt           The font used for the text.
+     * @param font_size     The size of the font used for the text.
+     *
+     * @attribute static    text
+     * @attribute method    height
+     *
+     * @returns Returns the height of the text as an integer.
+     */
+    int text_height(const string &text, font fnt, int font_size);
+
+    /**
+     * @brief Returns the height of the supplied text string.
+     *
+     * @param text          The text string to check the length of.
+     * @param fnt           The font used for the text.
+     * @param font_size     The size of the font used for the text.
+     *
+     * @attribute static    text
+     * @attribute method    height
+     * @attribute suffix    font_named
+     *
+     * @returns Returns the height of the text as an integer.
+     */
+    int text_height(const string &text, const string& fnt, int font_size);
 }
 
 #endif /* text_hpp */

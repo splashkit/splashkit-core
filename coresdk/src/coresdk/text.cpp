@@ -286,8 +286,21 @@ namespace splashkit_lib
         return text_width(text, font_named(fnt), font_size);
     }
 
-    int text_width(const string &text, string fnt, int font_size)
+    int text_height(const string &text, font fnt, int font_size)
     {
-        return text_width(text, font_named(fnt), font_size);
+        if ( INVALID_PTR(fnt, FONT_PTR) )
+        {
+            LOG(WARNING) << "Attempting to get string height with invalid font";
+            return 0;
+        }
+
+        int w = 0, h = 0;
+        sk_text_size(fnt, font_size, text.c_str(), &w, &h);
+        return h;
+    }
+
+    int text_height(const string &text, const string &fnt, int font_size)
+    {
+        return text_height(text, font_named(fnt), font_size);
     }
 }
