@@ -1618,7 +1618,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_show_fullscreen(sk_drawing_surface *surface, int fullscreen)
+    void sk_show_fullscreen(sk_drawing_surface *surface, bool fullscreen)
     {
         if ( ! surface || ! surface->_data ) return;
 

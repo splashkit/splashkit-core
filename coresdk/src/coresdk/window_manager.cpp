@@ -310,4 +310,47 @@ namespace splashkit_lib
         move_window(_current_window, x, y);
     }
 
+    bool window_is_fullscreen(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get fullscreen from invalid window";
+            return false;
+        }
+
+        return wnd->fullscreen;
+    }
+
+    bool window_is_fullscreen(const string &name)
+    {
+        return window_is_fullscreen(window_named(name));
+    }
+
+    bool window_is_fullscreen()
+    {
+        return window_is_fullscreen(_current_window);
+    }
+
+    void window_toggle_fullscreen(window wnd)
+    {
+        if ( INVALID_PTR(wnd, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to toggle fullscreen of invalid window";
+            return;
+        }
+
+        wnd->fullscreen = ! wnd->fullscreen;
+        sk_show_fullscreen(&wnd->image.surface, wnd->fullscreen);
+    }
+
+    void window_toggle_fullscreen(const string &name)
+    {
+        window_toggle_fullscreen(window_named(name));
+    }
+
+    void window_toggle_fullscreen()
+    {
+        window_toggle_fullscreen(_current_window);
+    }
+
 }
