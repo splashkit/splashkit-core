@@ -22,6 +22,7 @@ namespace splashkit_lib
     typedef struct sk_server_data *server_socket;
 
     typedef char packet_data[512];
+    typedef unsigned char byte;
     typedef byte bytes[4];
     static const int PACKET_SIZE = 512;
 
