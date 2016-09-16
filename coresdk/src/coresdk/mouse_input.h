@@ -146,6 +146,8 @@ namespace splashkit_lib
 
     /**
      * Returns `true` if the mouse is currently visible, `false` if not.
+     *
+     * @return True if the mouse is shown.
      */
     bool mouse_shown();
 }

@@ -1301,7 +1301,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SK_ROOT=\"$SRCROOT/../..\"\nTRANS_SRC=\"$SK_ROOT/tools/translator\"\nTRANS_OUT=\"$SK_ROOT/out/translated\"\nTRANS_LNG=\"clib,cpp\"\n\necho \"Checking for rbenv...\"\nwhich rbenv\nif [[ $? != 0 ]]; then\n    echo \"rbenv is not installed. Install this to run ruby version 2.3.1.\" 1>&2\n    exit 1\nfi\n\necho \"Setting ruby version to 2.3.1...\"\neval \"$(rbenv init -)\"\nrbenv shell 2.3.1\n\nif [[ $? != 0 ]]; then\n  echo \"Invalid ruby version -- you need 2.3.1. Install 2.3.1 using \\`rbenv install 2.3.1\\` and try again. Your ruby version is: $(ruby -v)\" 1>&2\n  exit 1\nfi\n\n\necho \"Translating SK source to Lib C and front-end C++...\"\n$TRANS_SRC/translate -o $TRANS_OUT -i $SK_ROOT -g $TRANS_LNG";
+			shellScript = "SK_ROOT=\"$SRCROOT/../..\"\nTRANS_SRC=\"$SK_ROOT/tools/translator\"\nTRANS_OUT=\"$SK_ROOT/out/translated\"\nTRANS_LNG=\"clib,cpp\"\n\necho \"Checking for rbenv...\"\nwhich rbenv\nif [[ $? != 0 ]]; then\n    echo \"rbenv is not installed. Install this to run ruby version 2.3.1.\" 1>&2\n    exit 1\nfi\n\necho \"Setting ruby version to 2.3.1...\"\neval \"$(rbenv init -)\"\nrbenv shell 2.3.1\n\nif [[ $? != 0 ]]; then\n  echo \"Invalid ruby version -- you need 2.3.1. Install 2.3.1 using \\`rbenv install 2.3.1\\` and try again. Your ruby version is: $(ruby -v)\" 1>&2\n  exit 1\nfi\n\n\necho \"Translating SK source to Lib C and front-end C++...\"\n$TRANS_SRC/translate --ide --verbose -o $TRANS_OUT -i $SK_ROOT -g $TRANS_LNG";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

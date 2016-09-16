@@ -68,11 +68,15 @@ namespace splashkit_lib
 
     /**
      * Returns the width of the current window.
+     *
+     * @return The width of the current window.
      */
     int screen_width();
 
     /**
      * Returns the height of the current window.
+     *
+     * @return The height of the current window.
      */
     int screen_height();
 

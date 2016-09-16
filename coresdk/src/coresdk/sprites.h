@@ -1115,6 +1115,7 @@ namespace splashkit_lib
      * Returns true if the sprite is entirely off the current screen.
      *
      * @param s   The sprite to test.
+     * @return    True if the sprite is entirely off the current window.
      *
      * @attribute class sprite
      * @attribute method offscreen
@@ -1202,6 +1203,7 @@ namespace splashkit_lib
      * Position, Width and Height.
      *
      * @param s     The sprite to get the details from.
+     * @return      The center point of the sprite
      *
      * @attribute class sprite
      * @attribute getter center_point
@@ -1536,6 +1538,7 @@ namespace splashkit_lib
      *
      * @param s     The sprite to test
      * @param pt    The point to check (in world coordinates)
+     * @return      True if the sprite is at the given point
      */
     bool sprite_at(sprite s, const point_2d &pt);
 
