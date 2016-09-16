@@ -108,6 +108,8 @@
 		94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B381D644BB50059BF3B /* triangle_drawing.cpp */; };
 		94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94444B391D644BB50059BF3B /* triangle_drawing.h */; };
 		94444B3E1D644F950059BF3B /* test_shape_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */; };
+		9453C40B1D8BE18D00A58968 /* test_tcp_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453C4071D8BE18500A58968 /* test_tcp_networking.cpp */; };
+		9453C40C1D8BE18D00A58968 /* test_udp_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9453C4081D8BE18500A58968 /* test_udp_networking.cpp */; };
 		949478BA1D6AEC0E00A44614 /* circle_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 949478B81D6AEC0E00A44614 /* circle_geometry.cpp */; };
 		949478BB1D6AEC0E00A44614 /* circle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 949478B91D6AEC0E00A44614 /* circle_geometry.h */; };
 		94A02AAD1D73B452002E0353 /* bundles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A02AAB1D73B452002E0353 /* bundles.cpp */; };
@@ -444,6 +446,8 @@
 		94444B391D644BB50059BF3B /* triangle_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangle_drawing.h; sourceTree = "<group>"; };
 		94444B3C1D644F950059BF3B /* test_shape_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_shape_drawing.cpp; sourceTree = "<group>"; };
 		94444B401D644FE10059BF3B /* test_main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_main.h; sourceTree = "<group>"; };
+		9453C4071D8BE18500A58968 /* test_tcp_networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_tcp_networking.cpp; sourceTree = "<group>"; };
+		9453C4081D8BE18500A58968 /* test_udp_networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_udp_networking.cpp; sourceTree = "<group>"; };
 		949478B81D6AEC0E00A44614 /* circle_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circle_geometry.cpp; sourceTree = "<group>"; };
 		949478B91D6AEC0E00A44614 /* circle_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circle_geometry.h; sourceTree = "<group>"; };
 		94A02AAB1D73B452002E0353 /* bundles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bundles.cpp; sourceTree = "<group>"; };
@@ -791,6 +795,8 @@
 		942372221D1D668A0020CCE2 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				9453C4071D8BE18500A58968 /* test_tcp_networking.cpp */,
+				9453C4081D8BE18500A58968 /* test_udp_networking.cpp */,
 				94EC50C91D84164C00AE2804 /* test_web_service.cpp */,
 				94444B401D644FE10059BF3B /* test_main.h */,
 				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
@@ -1382,8 +1388,10 @@
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
 				94DF47091D74132A00E3D9AF /* test_bundles.cpp in Sources */,
+				9453C40B1D8BE18D00A58968 /* test_tcp_networking.cpp in Sources */,
 				FC7E6FE71D88246200C8821C /* test_web_service.cpp in Sources */,
 				942ECDC01D77C30A00E5B1F9 /* test_camera.cpp in Sources */,
+				9453C40C1D8BE18D00A58968 /* test_udp_networking.cpp in Sources */,
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */,

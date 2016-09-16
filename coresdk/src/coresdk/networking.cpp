@@ -10,9 +10,9 @@
 
 namespace splashkit_lib
 {
-    static map<string, connection> connections;
-    static map<string, server_socket> server_sockets;
-    static vector<message> messages;
+    static map<string, connection> _connections;
+    static map<string, server_socket> _server_sockets;
+    static vector<message> _messages;
     static int UDP_PACKET_SIZE = 1024;
 
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
@@ -41,7 +41,7 @@ namespace splashkit_lib
             socket->new_connections = 0;
             socket->protocol = protocol;
 
-            server_sockets.insert({name, socket});
+            _server_sockets.insert({name, socket});
 
             return socket;
         }
@@ -57,9 +57,9 @@ namespace splashkit_lib
 
     server_socket server_named(const string &name)
     {
-        if (server_sockets.find(name) != server_sockets.end())
+        if (_server_sockets.find(name) != _server_sockets.end())
         {
-            return server_sockets[name];
+            return _server_sockets[name];
         }
 
         LOG(WARNING) << "server_named found no server named '" << name << "'.";
@@ -82,7 +82,7 @@ namespace splashkit_lib
 
         // close the socket
         sk_close_connection(&svr->socket);
-        server_sockets.erase(svr->name);
+        _server_sockets.erase(svr->name);
 
         delete svr;
 
@@ -91,20 +91,25 @@ namespace splashkit_lib
 
     bool close_server(const string &name)
     {
-        return close_server(server_sockets[name]);
+        return close_server(_server_sockets[name]);
     }
 
     void close_all_servers()
     {
-        for(auto const &pair : server_sockets)
+        for(auto const &pair : _server_sockets)
         {
             close_server(pair.second);
         }
     }
 
+    bool has_server(const string &name)
+    {
+        return _server_sockets.count(name) > 0;
+    }
+    
     bool server_has_new_connection(const string &name)
     {
-        return server_has_new_connection(server_sockets[name]);
+        return server_has_new_connection(server_named(name));
     }
 
     bool server_has_new_connection(server_socket server)
@@ -120,7 +125,7 @@ namespace splashkit_lib
 
     bool has_new_connections()
     {
-        for(auto const &pair : server_sockets)
+        for(auto const &pair : _server_sockets)
         {
             if (server_has_new_connection(pair.second))
             {
@@ -193,7 +198,7 @@ namespace splashkit_lib
 
         if (_establish_connection(con, host, port, protocol))
         {
-            connections.insert({name, con});
+            _connections.insert({name, con});
             return con;
         }
         else
@@ -212,10 +217,15 @@ namespace splashkit_lib
             sk_close_connection(&con->socket);
         }
     }
+    
+    bool has_connection(const string &name)
+    {
+        return _connections.count(name) > 0;
+    }
 
     connection retrieve_connection(const string &name, int idx)
     {
-        return retrieve_connection(server_sockets[name], idx);
+        return retrieve_connection(server_named(name), idx);
     }
 
     connection retrieve_connection(server_socket server, int idx)
@@ -225,13 +235,14 @@ namespace splashkit_lib
 
     void close_all_connections()
     {
-        for(auto const &pair : connections)
+        for(auto const &pair : _connections)
         {
             close_connection(pair.second);
         }
     }
 
-    bool close_connection(connection con) {
+    bool close_connection(connection con)
+    {
         if (INVALID_PTR(con, CONNECTION_PTR))
         {
             LOG(WARNING) << "Invalid pointer passed to close_connection";
@@ -242,16 +253,16 @@ namespace splashkit_lib
         clear_messages(con);
         shut_connection(con);
 
-        if (connections.find(con->name) != connections.end())
+        if (_connections.find(con->name) != _connections.end())
         {
-            connections.erase(con->name);
+            _connections.erase(con->name);
             con->id = NONE_PTR;
             delete con;
             result = true;
         }
         else
         {
-            for (auto sock : server_sockets)
+            for (auto sock : _server_sockets)
             {
                 server_socket s = sock.second;
                 int idx = index_of(s->connections, con);
@@ -266,7 +277,6 @@ namespace splashkit_lib
             }
         }
 
-
         return result;
     }
 
@@ -275,13 +285,14 @@ namespace splashkit_lib
         return close_connection(connection_named(name));
     }
 
-    int connection_count(const string &name)
+    unsigned int connection_count(const string &name)
     {
-        return connection_count(server_sockets[name]);
+        return connection_count(server_named(name));
     }
 
-    int connection_count(server_socket server) {
-        return server->connections.size();
+    unsigned int connection_count(server_socket server)
+    {
+        return static_cast<unsigned int>(server->connections.size());
     }
 
     unsigned int connection_ip(const string &name)
@@ -294,7 +305,7 @@ namespace splashkit_lib
     }
 
     connection connection_named(const string &name) {
-        for (auto &pair : connections)
+        for (auto &pair : _connections)
         {
             if (pair.second->name == name)
             {
@@ -356,7 +367,7 @@ namespace splashkit_lib
     {
         bool result = false;
 
-        for (auto it = server_sockets.begin(); it != server_sockets.end(); ++it)
+        for (auto it = _server_sockets.begin(); it != _server_sockets.end(); ++it)
         {
             if (accept_new_connection(it->second))
             {
@@ -384,8 +395,9 @@ namespace splashkit_lib
         return server->connections[server->connections.size() - 1];
     }
 
-    connection last_connection(const string &name) {
-        return last_connection(server_sockets[name]);
+    connection last_connection(const string &name)
+    {
+        return last_connection(server_named(name));
     }
 
     void reconnect(const string &name)
@@ -476,7 +488,7 @@ namespace splashkit_lib
 
                 times += 1;
             }
-            while ((size != 0) && (host != 0) || (times < 10));
+            while (((size != 0) && (host != 0)) || (times < 10));
 
             return true;
         }
@@ -487,7 +499,7 @@ namespace splashkit_lib
     bool _extract_data(packet_data buffer, int received_count, connection con)
     {
         int buf_idx = 0;
-        int msg_len = 0;
+        unsigned long msg_len = 0;
         string msg;
         int missing, got;
         bytes size;
@@ -534,7 +546,7 @@ namespace splashkit_lib
                     buf_idx += 4;
                 }
 
-                for (buf_idx; buf_idx <= buf_idx + msg_len - 1; ++buf_idx)
+                for (; buf_idx <= buf_idx + msg_len - 1; ++buf_idx)
                 {
                     if ((buf_idx >= received_count) || (buf_idx > PACKET_SIZE))
                     {
@@ -615,7 +627,7 @@ namespace splashkit_lib
         {
             got_data = false;
 
-            for (auto it = server_sockets.begin(); it != server_sockets.end(); ++it)
+            for (auto it = _server_sockets.begin(); it != _server_sockets.end(); ++it)
             {
                 server_socket s = it->second;
                 if (s->protocol == TCP)
@@ -631,7 +643,7 @@ namespace splashkit_lib
                 }
             }
 
-            for (auto it = connections.begin(); it != connections.end(); ++it)
+            for (auto it = _connections.begin(); it != _connections.end(); ++it)
             {
                 got_data = _check_connection_for_data(it->second) || got_data;
             }
@@ -640,11 +652,11 @@ namespace splashkit_lib
 
     void broadcast_message(const string &a_msg)
     {
-        for(auto const& tcp_server: server_sockets)
+        for(auto const& tcp_server: _server_sockets)
         {
             broadcast_message(a_msg, tcp_server.second);
         }
-        for (auto const& udp_connection: connections)
+        for (auto const& udp_connection: _connections)
         {
             send_message_to(a_msg, udp_connection.second);
         }
@@ -652,7 +664,7 @@ namespace splashkit_lib
 
     void broadcast_message(const string &a_msg, const string &name)
     {
-        broadcast_message(a_msg, server_sockets[name]);
+        broadcast_message(a_msg, server_named(name));
     }
 
     void broadcast_message(const string &a_msg, server_socket svr)
@@ -683,11 +695,11 @@ namespace splashkit_lib
 
     void clear_messages(const string &name)
     {
-        if (server_sockets.count(name))
+        if (_server_sockets.count(name))
         {
-            clear_messages(server_sockets[name]);
+            clear_messages(server_named(name));
         }
-        else if (connections.count(name))
+        else if (_connections.count(name))
         {
             clear_messages(connection_named(name));
         }
@@ -707,14 +719,14 @@ namespace splashkit_lib
 
     bool has_messages()
     {
-        for(auto &tcp_server: server_sockets)
+        for(auto &tcp_server: _server_sockets)
         {
             if (has_messages(tcp_server.second))
             {
                 return true;
             }
         }
-        for (auto &udp_connection: connections)
+        for (auto &udp_connection: _connections)
         {
             if (has_messages(udp_connection.second))
             {
@@ -749,7 +761,7 @@ namespace splashkit_lib
 
     bool has_messages(const string &name)
     {
-        if (connections.count(name) > 0)
+        if (_connections.count(name) > 0)
         {
             return !connection_named(name)->messages.empty();
         }
@@ -757,7 +769,20 @@ namespace splashkit_lib
         return !server_named(name)->messages.empty();
     }
 
-    int message_count(connection con)
+    unsigned int message_count(const string &name)
+    {
+        if ( has_connection(name) )
+            return message_count(connection_named(name));
+        else if ( has_server(name) )
+            return message_count(server_named(name));
+        else
+        {
+            LOG(WARNING) << "Attempt to get message count for name that is neither a server nor a connection";
+            return 0;
+        }
+    }
+    
+    unsigned int message_count(connection con)
     {
         if (INVALID_PTR(con, CONNECTION_PTR))
         {
@@ -765,16 +790,10 @@ namespace splashkit_lib
             return -1;
         }
 
-        return con->messages.size();
+        return static_cast<unsigned int>(con->messages.size());
     }
 
-    int message_count(const string &name)
-    {
-        return connections.count(name) ? connection_named(name)->messages.size()
-                                       : server_sockets[name]->messages.size();
-    }
-
-    int message_count(server_socket svr)
+    unsigned int message_count(server_socket svr)
     {
         if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
         {
@@ -782,7 +801,7 @@ namespace splashkit_lib
             return -1;
         }
 
-        return svr->messages.size();
+        return static_cast<unsigned int>(svr->messages.size());
     }
 
     string message_data(message msg)
@@ -790,6 +809,7 @@ namespace splashkit_lib
         if (INVALID_PTR(msg, MESSAGE_PTR))
         {
             LOG(ERROR) << "Invalid message passed to message_data";
+            return "";
         }
 
         return msg->data;
@@ -800,6 +820,7 @@ namespace splashkit_lib
         if (INVALID_PTR(msg, MESSAGE_PTR))
         {
             LOG(ERROR) << "Invalid message passed to message_host";
+            return "";
         }
 
         return msg->host;
@@ -950,7 +971,7 @@ namespace splashkit_lib
             size[2] = (n >> 8) & 0xFF;
             size[3] = n & 0xFF;
 
-            int len = msg.size() + 4;
+            unsigned long len = msg.size() + 4;
             char buffer[len];
 
             for (int i = 0; i < len - 1; ++i)
@@ -989,7 +1010,7 @@ namespace splashkit_lib
 
     bool send_message_to(const string &a_msg, const string &name)
     {
-        if (connections.find(name) != connections.end())
+        if (_connections.find(name) != _connections.end())
         {
             return send_message_to(a_msg, connection_named(name));
         }

@@ -102,7 +102,7 @@ namespace splashkit_lib
         return result;
     }
 
-    int sk_send_bytes(sk_network_connection *con, char *buffer, int size)
+    int sk_send_bytes(sk_network_connection *con, char *buffer, unsigned long size)
     {
         // not entry point...
         //    printf("Sending %d\n", size);
@@ -110,19 +110,19 @@ namespace splashkit_lib
         if ((TCPsocket)con->_socket)
         {
             //printf("here -- %p\n", (TCPsocket)con->_socket);
-            sent = SDLNet_TCP_Send((TCPsocket)con->_socket, buffer, size);
+            sent = SDLNet_TCP_Send((TCPsocket)con->_socket, buffer, static_cast<int>(size));
         }
         //    printf("Sent %d\n", sent);
         return sent;
     }
 
-    int sk_send_udp_message(sk_network_connection *con, const char *host, unsigned short port, const char *buffer, int size)
+    int sk_send_udp_message(sk_network_connection *con, const char *host, unsigned short port, const char *buffer, unsigned long size)
     {
         // Not entry point.
         UDPpacket packet;
         SDLNet_ResolveHost(&packet.address, host, port);
 
-        packet.len = size;
+        packet.len = static_cast<int>(size);
         packet.data = (Uint8*)buffer;
         return SDLNet_UDP_Send((UDPsocket)con->_socket, -1, &packet);
     }
