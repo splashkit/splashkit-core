@@ -57,13 +57,12 @@ namespace splashkit_lib
 
     server_socket server_named(const string &name)
     {
-        if (_server_sockets.find(name) != _server_sockets.end())
+        if (has_server(name))
         {
             return _server_sockets[name];
         }
 
-        LOG(WARNING) << "server_named found no server named '" << name << "'.";
-
+        LOG(WARNING) << "No server named '" << name << "'.";
         return nullptr;
     }
 
@@ -83,6 +82,8 @@ namespace splashkit_lib
         // close the socket
         sk_close_connection(&svr->socket);
         _server_sockets.erase(svr->name);
+        
+        svr->id = NONE_PTR;
 
         delete svr;
 
@@ -138,6 +139,7 @@ namespace splashkit_lib
     connection _create_connection(const string& name, connection_type protocol)
     {
         connection result = new sk_connection_data;
+        
         result->id = CONNECTION_PTR;
         result->name = name;
         result->ip = 0;
@@ -148,6 +150,7 @@ namespace splashkit_lib
         result->open = true;
         result->socket._socket = nullptr;
         result->socket.kind = UNKNOWN;
+        
         return result;
     }
 
@@ -211,6 +214,12 @@ namespace splashkit_lib
 
     void shut_connection(connection con)
     {
+        if ( INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Attempting to shut invalid connection";
+            return;
+        }
+        
         if (con->open)
         {
             con->open = false;
@@ -230,6 +239,12 @@ namespace splashkit_lib
 
     connection retrieve_connection(server_socket server, int idx)
     {
+        if ( INVALID_PTR(server, SERVER_SOCKET_PTR) )
+        {
+            LOG(WARNING) << "Attempting to get connection from invalid server";
+            return nullptr;
+        }
+        
         return server->connections.size() > idx ? server->connections[idx] : nullptr;
     }
 
@@ -292,6 +307,12 @@ namespace splashkit_lib
 
     unsigned int connection_count(server_socket server)
     {
+        if ( INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Attempting to count connections of invalid server socket";
+            return 0;
+        }
+        
         return static_cast<unsigned int>(server->connections.size());
     }
 
@@ -300,24 +321,29 @@ namespace splashkit_lib
         return connection_ip(connection_named(name));
     }
 
-    unsigned int connection_ip(connection a_connection) {
+    unsigned int connection_ip(connection a_connection)
+    {
+        if ( INVALID_PTR(a_connection, CONNECTION_PTR) )
+        {
+            LOG(WARNING) << "Attempting to get ip of invalid connection";
+            return 0;
+        }
         return a_connection->ip;
     }
 
-    connection connection_named(const string &name) {
-        for (auto &pair : _connections)
+    connection connection_named(const string &name)
+    {
+        if ( has_connection(name))
         {
-            if (pair.second->name == name)
-            {
-                return pair.second;
-            }
+            return _connections[name];
         }
 
-        LOG(WARNING) << "No connection exists for connection " << name << endl;
+        LOG(WARNING) << "No connection exists for name: " << name << endl;
         return nullptr;
     }
 
-    bool is_connection_open(connection con) {
+    bool is_connection_open(connection con)
+    {
         if (INVALID_PTR(con, CONNECTION_PTR))
         {
             LOG(WARNING) << "Invalid connection passed to is_connection_open";
@@ -327,7 +353,8 @@ namespace splashkit_lib
         return con->open;
     }
 
-    bool is_connection_open(const string &name) {
+    bool is_connection_open(const string &name)
+    {
         return is_connection_open(connection_named(name));
     }
 
@@ -367,9 +394,9 @@ namespace splashkit_lib
     {
         bool result = false;
 
-        for (auto it = _server_sockets.begin(); it != _server_sockets.end(); ++it)
+        for (auto it : _server_sockets)
         {
-            if (accept_new_connection(it->second))
+            if (accept_new_connection(it.second))
             {
                 result = true;
             }
@@ -378,7 +405,13 @@ namespace splashkit_lib
         return result;
     }
 
-    unsigned short int connection_port(connection a_connection) {
+    unsigned short int connection_port(connection a_connection)
+    {
+        if ( INVALID_PTR(a_connection, CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Attempting to get port of invalid connection";
+            return 0;
+        }
         return a_connection->port;
     }
 
@@ -387,7 +420,14 @@ namespace splashkit_lib
         return connection_port(connection_named(name));
     }
 
-    connection last_connection(server_socket server) {
+    connection last_connection(server_socket server)
+    {
+        if ( INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Attempting to get last connection from invalid server socket";
+            return nullptr;
+        }
+        
         if (server->connections.empty())
         {
             return nullptr;
@@ -407,6 +447,12 @@ namespace splashkit_lib
 
     void reconnect(connection con)
     {
+        if ( INVALID_PTR(con, CONNECTION_PTR))
+        {
+            LOG(WARNING) << "Attempting to reconnect invalid connection";
+            return;
+        }
+        
         string host = con->string_ip;
         unsigned short port = con->port;
 
@@ -422,6 +468,12 @@ namespace splashkit_lib
 
     connection message_connection(message msg)
     {
+        if ( INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(WARNING) << "Attempting to get connection of invalid message";
+            return nullptr;
+        }
+        
         return msg->connection;
     }
 
@@ -695,11 +747,11 @@ namespace splashkit_lib
 
     void clear_messages(const string &name)
     {
-        if (_server_sockets.count(name))
+        if (has_server(name))
         {
             clear_messages(server_named(name));
         }
-        else if (_connections.count(name))
+        else if (has_connection(name))
         {
             clear_messages(connection_named(name));
         }
@@ -756,17 +808,20 @@ namespace splashkit_lib
             return false;
         }
 
-        return svr->messages.empty();
+        return !svr->messages.empty();
     }
 
     bool has_messages(const string &name)
     {
-        if (_connections.count(name) > 0)
+        if (has_connection(name))
+            return has_messages(connection_named(name));
+        else if ( has_server(name))
+            return has_messages(server_named(name));
+        else
         {
-            return !connection_named(name)->messages.empty();
+            LOG(WARNING) << "Attempt to check messages for name that is neither a server nor a connection";
+            return 0;
         }
-
-        return !server_named(name)->messages.empty();
     }
 
     unsigned int message_count(const string &name)
@@ -786,7 +841,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(con, CONNECTION_PTR))
         {
-            LOG(ERROR) << "Invalid connection passed to message_count";
+            LOG(ERROR) << "Invalid connection passed to get message count";
             return -1;
         }
 
@@ -797,7 +852,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
         {
-            LOG(ERROR) << "Invalid message passed to message_host";
+            LOG(ERROR) << "Invalid message passed to get message host";
             return -1;
         }
 
@@ -808,7 +863,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(msg, MESSAGE_PTR))
         {
-            LOG(ERROR) << "Invalid message passed to message_data";
+            LOG(ERROR) << "Invalid message passed to get message data";
             return "";
         }
 
@@ -819,7 +874,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(msg, MESSAGE_PTR))
         {
-            LOG(ERROR) << "Invalid message passed to message_host";
+            LOG(ERROR) << "Invalid message passed to get message host";
             return "";
         }
 
@@ -828,6 +883,12 @@ namespace splashkit_lib
 
     unsigned short int message_port(message msg)
     {
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to get message port";
+            return 0;
+        }
+
         return msg->port;
     }
 
@@ -835,7 +896,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(msg, MESSAGE_PTR))
         {
-            LOG(ERROR) << "Invalid message passed to message_protocol";
+            LOG(ERROR) << "Invalid message passed to get message protocol";
             return UNKNOWN;
         }
 
@@ -853,7 +914,7 @@ namespace splashkit_lib
     {
         if (INVALID_PTR(con, CONNECTION_PTR))
         {
-            LOG(ERROR) << "Invalid message passed to read_message";
+            LOG(ERROR) << "Invalid message passed to read message";
             return nullptr;
         }
 
@@ -862,8 +923,7 @@ namespace splashkit_lib
 
     message read_message(const string &name)
     {
-        connection con = connection_named(name);
-        return read_message(con);
+        return read_message(connection_named(name));
     }
 
     message read_message(server_socket svr)
@@ -871,6 +931,7 @@ namespace splashkit_lib
         if (INVALID_PTR(svr, SERVER_SOCKET_PTR))
         {
             LOG(ERROR) << "Invalid message passed to read_message";
+            return nullptr;
         }
 
         for (int i = 0; i < connection_count(svr); ++i)
@@ -887,7 +948,7 @@ namespace splashkit_lib
             return _pop_message(svr->messages);
         }
 
-        return new sk_message();
+        return nullptr;
     }
 
     string read_message_data(connection con)
@@ -1010,12 +1071,7 @@ namespace splashkit_lib
 
     bool send_message_to(const string &a_msg, const string &name)
     {
-        if (_connections.find(name) != _connections.end())
-        {
-            return send_message_to(a_msg, connection_named(name));
-        }
-
-        return false;
+        return send_message_to(a_msg, connection_named(name));
     }
 
     string name_for_connection(const string host, const unsigned int port)
