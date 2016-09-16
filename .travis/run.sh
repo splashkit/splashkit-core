@@ -5,5 +5,6 @@ if [[ -z "$DOC_TEST_ONLY" ]]; then
   make -j 2
 else
   echo "Running HeaderDoc validator..."
-  bundle exec tools/translator/translate -v -i .
+  TRANS_SRC=tools/translator
+  BUNDLE_GEMFILE=$TRANS_SRC/Gemfile bundle exec $TRANS_SRC/translate -v -i .
 fi
