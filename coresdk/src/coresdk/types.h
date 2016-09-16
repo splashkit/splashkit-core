@@ -267,21 +267,21 @@ namespace splashkit_lib
 
     /**
      * Defines the HTTP status codes supported by SplashKit.
-     * See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * for a description of each code.
+     * Refer to [this article](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+     * for a detailed description of each code.
      *
-     * @constant OK                         See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant CREATED                    See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant NO_CONTENT                 See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant BAD_REQUEST                See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant UNAUTHORIZED               See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant FORBIDDEN                  See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant NOT_FOUND                  See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant METHOD_NOT_ALLOWED         See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant REQUEST_TIMEOUT            See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant INTERNAL_SERVER_ERROR      See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant NOT_IMPLEMENTED            See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @constant SERVICE_UNAVAILABLE        See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @constant OK                         The server accepted the request.
+     * @constant CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
+     * @constant NO_CONTENT                 The server successfully processed the request and is not returning any content.
+     * @constant BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
+     * @constant UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
+     * @constant FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
+     * @constant NOT_FOUND                  The requested resource could not be found but may be available in the future.
+     * @constant METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
+     * @constant REQUEST_TIMEOUT            The server timed out waiting for the request.
+     * @constant INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
+     * @constant NOT_IMPLEMENTED            The server does not recognize or implement the request method.
+     * @constant SERVICE_UNAVAILABLE        The server is currently unavailable.
      */
     enum http_status_code
     {
