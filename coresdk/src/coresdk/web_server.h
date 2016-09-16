@@ -97,7 +97,8 @@ namespace splashkit_lib
      * Sends a message to a given `server_request` with the specified content type.
      *
      * @param r             The `server_request` to send the response to
-     * @param resp          The messsage, in the form of a `server_response`, to be sent.
+     * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
+     * @param message       The messsage, in the form of a `server_response`, to be sent.
      * @param content_type  The content type of the response.
      *
      * @attribute class server_request
@@ -130,7 +131,7 @@ namespace splashkit_lib
      *
      * @param r        The request to be sent.
      * @param filename The name of the file in Resources/server
-     *See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     *
      * @attribute class server_response
      */
     void send_html_file_response(server_request r, string filename);
