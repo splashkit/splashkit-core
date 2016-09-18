@@ -841,7 +841,6 @@ namespace splashkit_lib
      *
      * @param s   The sprite to update.
      *
-     * @uname update_sprite_animation
      * @attribute class sprite
      * @attribute method update_animation
      */
@@ -856,7 +855,6 @@ namespace splashkit_lib
      * @param with_sound  If false, animations will not play associated sound
      *                    effects when updated.
      *
-     * @uname update_sprite_animation_with_sound
      * @attribute class sprite
      * @attribute method update_animation
      * @attribute suffix with_sound
@@ -872,7 +870,6 @@ namespace splashkit_lib
      * @param s   The sprite to update.
      * @param pct The percent to update.
      *
-     * @uname update_sprite_animation_percent
      * @attribute class sprite
      * @attribute method update_animation
      * @attribute suffix percent
@@ -1232,7 +1229,7 @@ namespace splashkit_lib
      * @param pt  The new anchor point in sprite coordinates.
      *
      * @attribute class sprite
-     * @setter anchor_point
+     * @attribute setter anchor_point
      */
     void sprite_set_anchor_point(sprite s, const point_2d &pt);
 
@@ -1269,7 +1266,7 @@ namespace splashkit_lib
      * @param value The value to set this option.
      *
      * @attribute class sprite
-     * @setter move_from_anchor_point
+     * @attribute setter move_from_anchor_point
      */
     void sprite_set_move_from_anchor_point(sprite s, bool value);
 
@@ -1297,7 +1294,7 @@ namespace splashkit_lib
      * @param value The new sprite velocity.
      *
      * @attribute class sprite
-     * @setter velocity
+     * @attribute setter velocity
      */
     void sprite_set_velocity(sprite s, const vector_2d &value);
 
@@ -1353,7 +1350,7 @@ namespace splashkit_lib
      * @param value The new x location.
      *
      * @attribute class sprite
-     * @setter x
+     * @attribute setter x
      */
     void sprite_set_x(sprite s, float value);
 
@@ -1375,7 +1372,7 @@ namespace splashkit_lib
      * @param value The new sprite y.
      *
      * @attribute class sprite
-     * @setter y
+     * @attribute setter y
      */
     void sprite_set_y(sprite s, float value);
 
@@ -1412,7 +1409,7 @@ namespace splashkit_lib
      * @param value The new location for the sprite.
      *
      * @attribute class sprite
-     * @setter Position
+     * @attribute setter Position
      */
     void sprite_set_position(sprite s, const point_2d &value);
 
@@ -1427,7 +1424,7 @@ namespace splashkit_lib
      * @param value The new x component of the sprite's velocity.
      *
      * @attribute class sprite
-     * @setter dx
+     * @attribute setter dx
      */
     void sprite_set_dx(sprite s, float value);
 
@@ -1449,7 +1446,7 @@ namespace splashkit_lib
      * @param value The new y component of the sprite's velocity.
      *
      * @attribute class sprite
-     * @setter dy
+     * @attribute setter dy
      */
     void sprite_set_dy(sprite s, float value);
 
@@ -1486,7 +1483,7 @@ namespace splashkit_lib
      * @param value The new speed of the sprite -- direction will remain the same.
      *
      * @attribute class sprite
-     * @setter speed
+     * @attribute setter speed
      */
     void sprite_set_speed(sprite s, float value);
 
@@ -1509,7 +1506,7 @@ namespace splashkit_lib
      *              same.
      *
      * @attribute class sprite
-     * @setter heading
+     * @attribute setter heading
      */
     void sprite_set_heading(sprite s, float value);
 
@@ -1563,7 +1560,7 @@ namespace splashkit_lib
      * @param bmp The new collision bitmap for the sprite.
      *
      * @attribute class sprite
-     * @setter collision_bitmap
+     * @attribute setter collision_bitmap
      */
     void sprite_set_collision_bitmap(sprite s, bitmap bmp);
 
@@ -1587,7 +1584,7 @@ namespace splashkit_lib
      * @param value The new kind of collision test for this sprite.
      *
      * @attribute class sprite
-     * @setter collision_kind
+     * @attribute setter collision_kind
      */
     void sprite_set_collision_kind(sprite s, collision_test_kind value);
 
@@ -1615,7 +1612,7 @@ namespace splashkit_lib
      * @param value The new mass for the sprite.
      *
      * @attribute class sprite
-     * @setter mass
+     * @attribute setter mass
      */
     void sprite_set_mass(sprite s, float value);
 
@@ -1644,7 +1641,7 @@ namespace splashkit_lib
      * @param value The new rotation angle for the sprite
      *
      * @attribute class sprite
-     * @setter rotation
+     * @attribute setter rotation
      */
     void sprite_set_rotation(sprite s, float value);
 

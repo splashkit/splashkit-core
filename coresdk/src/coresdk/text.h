@@ -37,7 +37,7 @@ namespace splashkit_lib
      * @attribute class     font
      * @attribute method    set_style
      * @attribute setter    true
-     * @self                fnt
+     * @attribute self      fnt
      */
     void set_font_style(font fnt, font_style style);
 
@@ -62,7 +62,7 @@ namespace splashkit_lib
      * @attribute class     font
      * @attribute method    get_style
      * @attribute getter    true
-     * @self                fnt
+     * @attribute self                fnt
      *
      * @returns Returns the current `font_style` for the `font`.
      */
@@ -102,7 +102,7 @@ namespace splashkit_lib
      *
      * @attribute class     font
      * @attribute method    free
-     * @self                fnt
+     * @attribute self                fnt
      * @attribute destructor true
      */
     void free_font(font fnt);
@@ -167,7 +167,7 @@ namespace splashkit_lib
      *
      * @attribute class     font
      * @attribute method    has_size
-     * @self                fnt
+     * @attribute self                fnt
      *
      * @returns Returns true if the supplied `font` has the supplied size.
      */
