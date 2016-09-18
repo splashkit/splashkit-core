@@ -355,9 +355,10 @@ namespace splashkit_lib
      * Returns a rectangle that is the same size as the bitmap and is located at
      * the indicated position.
      *
+     * @param  bmp The bitmap
      * @param  x   The x location of the rectangle
      * @param  y   The y location of the rectangle
-     * @param  bmp The bitmap
+     *
      * @return     A rectangle with the same size as the bitmap, at the
      *             indicated location.
      */
