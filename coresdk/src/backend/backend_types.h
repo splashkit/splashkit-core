@@ -212,7 +212,7 @@ namespace splashkit_lib
         connection_type protocol;
         string string_ip;    // TODO should this be stored?
         vector<sk_message*> messages;
-        long int msgLen;
+        long int msg_len;
         string part_msg_data;
     };
 

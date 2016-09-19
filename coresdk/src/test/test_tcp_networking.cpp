@@ -88,7 +88,7 @@ void run_tcp_networking_test()
     open_connection("ToSvr", "127.0.0.1", SERVER1_PORT);
 
     cout << "ToSvr is open:  " <<  is_connection_open("ToSvr") << endl;
-    //cout << "Fred is open:  " <<  is_connection_open("Fred") << endl;
+    cout << "Fred is open:  " <<  is_connection_open("Fred") << endl;
 
     check_network_activity();
 
@@ -109,15 +109,16 @@ void run_tcp_networking_test()
 
     cout << "Sending messages" << endl;
     send_message_to("To server --> from client", lConA);
+    send_message_to("How are you :)", lConA);
     send_message_to("To server --> from named client", "ToSvr");
-    send_message_to(string("7", 509 - 4), lConA);
-    send_message_to("1234567", lConA);
-    send_message_to("0987654", lConA);
-    send_message_to(string("A", 876), lConA);
-
-    send_message_to(string("7", 509 - 4), lConB);
-    send_message_to("Hello Client", lConB);
-    send_message_to(string("A", 876), lConB);
+//    send_message_to(string("7", 509 - 4), lConA);
+//    send_message_to("1234567", lConA);
+//    send_message_to("0987654", lConA);
+//    send_message_to(string("A", 876), lConA);
+//
+//    send_message_to(string("7", 509 - 4), lConB);
+//    send_message_to("Hello Client", lConB);
+//    send_message_to(string("A", 876), lConB);
 
     pause_test();
     check_messages();
