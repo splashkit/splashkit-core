@@ -111,14 +111,14 @@ void run_tcp_networking_test()
     send_message_to("To server --> from client", lConA);
     send_message_to("How are you :)", lConA);
     send_message_to("To server --> from named client", "ToSvr");
-//    send_message_to(string("7", 509 - 4), lConA);
-//    send_message_to("1234567", lConA);
-//    send_message_to("0987654", lConA);
-//    send_message_to(string("A", 876), lConA);
-//
-//    send_message_to(string("7", 509 - 4), lConB);
-//    send_message_to("Hello Client", lConB);
-//    send_message_to(string("A", 876), lConB);
+    send_message_to(string(509 - 4, '7'), lConA);
+    send_message_to("1234567", lConA);
+    send_message_to("0987654", lConA);
+    send_message_to(string(876, 'A'), lConA);
+
+    send_message_to(string(509 - 4, '7'), lConB);
+    send_message_to("Hello Client", lConB);
+    send_message_to(string(876, 'A'), lConB);
 
     pause_test();
     check_messages();
@@ -132,12 +132,12 @@ void run_tcp_networking_test()
     cout << "Test message send (to closed client):  " << send_message_to(string("A", 876), lConB);
 
     pause_test();
-    cout << "Test message send (expect false):  " << send_message_to(string("A", 876), lConB);
+    cout << "Test message send (expect false):  " << send_message_to(string("A", 876), lConB) << endl;
 
-    cout << "Server still connected to client:  " << is_connection_open(retrieve_connection(svr, 0));
+    cout << "Server still connected to client:  " << is_connection_open(retrieve_connection(svr, 0)) << endl;
 
     cout << "Closing server"
-    "s client connection (should already by closed -- just testing):  " << close_connection(lConB);
+    "s client connection (should already by closed -- just testing):  " << close_connection(lConB) << endl;
     cout << "Server connections:  " << connection_count(svr) << endl;
     pause_test();
 
