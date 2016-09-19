@@ -14,10 +14,64 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "hmacsha1.c"
+#include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hmacsha1.c"
 
 namespace splashkit_lib
 {
+    
+    static const std::string base64_chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "abcdefghijklmnopqrstuvwxyz"
+    "0123456789+/";
+    
+    
+   // static inline bool is_base64(unsigned char c) {
+  //      return (isalnum(c) || (c == '+') || (c == '/'));
+  //  }
+    
+    std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
+        std::string ret;
+        int i = 0;
+        int j = 0;
+        unsigned char char_array_3[3];
+        unsigned char char_array_4[4];
+        
+        while (in_len--) {
+            char_array_3[i++] = *(bytes_to_encode++);
+            if (i == 3) {
+                char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+                char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+                char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+                char_array_4[3] = char_array_3[2] & 0x3f;
+                
+                for(i = 0; (i <4) ; i++)
+                    ret += base64_chars[char_array_4[i]];
+                i = 0;
+            }
+        }
+        
+        if (i)
+        {
+            for(j = i; j < 3; j++)
+                char_array_3[j] = '\0';
+            
+            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+            char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+            char_array_4[3] = char_array_3[2] & 0x3f;
+            
+            for (j = 0; (j < i + 1); j++)
+                ret += base64_chars[char_array_4[j]];
+            
+            while((i++ < 3))
+                ret += '=';
+            
+        }
+        
+        return ret;
+        
+    }
+    
     
     string url_encode(const string &value) {
         ostringstream escaped;
@@ -79,12 +133,33 @@ namespace splashkit_lib
         string parameter_string = url_encode(json_read_string(signature, "param_collection"));
         
         string signature_base_string = http_method + "&" + http_url + "&" + parameter_string;
-
-        string consumer_secret = "JdmKx1uYTFB5RL3Whbg6pyppQXGKt2NrHtmWQgWID37fWDaadb"
-        string oath_token_secret = "gHT5YN7biHTVhOpK4AT4tsxZRVODDNL92iiAT8igE2FUf"
+        //unsigned char* signature_base_string_charstar = (unsigned char *)(signature_base_string.c_str());
         
-        string signing key = consumer_secret + "&" + oath_token_secret;
-        return "";
+        unsigned char *signature_base_string_charstar=new unsigned char[signature_base_string.length()+1];
+        strcpy((char *)signature_base_string_charstar,signature_base_string.c_str());
+
+        string consumer_secret = "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw";
+        string oath_token_secret = "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE";
+        
+        string signing_key = consumer_secret + "&" + oath_token_secret;
+        
+        unsigned char *signing_key_charstar=new unsigned char[signing_key.length()+1];
+        strcpy((char *)signing_key_charstar,signing_key.c_str());
+        
+        //unsigned char *signing_key_charstar = (unsigned char *)(signing_key.c_str());
+        unsigned char digest[20];
+        
+        hmac_sha1(
+                    signing_key_charstar,
+                    static_cast< int >(strlen((char*)signing_key_charstar)),
+                    signature_base_string_charstar,
+                    static_cast< int >(strlen((char*)signature_base_string_charstar)),
+                    digest
+                  );
+        
+
+        string encoded_result = base64_encode(static_cast<unsigned char const*>(digest), 20);
+        return encoded_result;
     }
     
     void generate_header(json parameters)
