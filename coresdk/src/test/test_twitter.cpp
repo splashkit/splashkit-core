@@ -1,9 +1,19 @@
 //
-//  test_twitter.cpp
+//  test_bundles.cpp
 //  splashkit
 //
-//  Created by Jake Renzella on 19/09/2016.
+//  Created by Andrew Cain on 29/08/2016.
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include <stdio.h>
+#include "twitter.h"
+#include "utils.h"
+#include <iostream>
+
+using namespace std;
+using namespace splashkit_lib;
+
+void run_twitter_test()
+{
+    generate_signature();
+}

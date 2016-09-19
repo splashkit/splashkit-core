@@ -33,5 +33,6 @@ void run_networking_test();
 void run_restful_web_service();
 void run_udp_networking_test();
 void run_tcp_networking_test();
+void run_twitter_test();
 
 #endif /* test_main_h */
