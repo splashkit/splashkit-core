@@ -365,7 +365,6 @@ namespace splashkit_lib
      *
      * @param s     The sprite to hide the layer of.
      * @param name  The name of the layer to hide.
-     * @returns     The index of the layer hidden, or -1 if no layer found.
      *
      * @attribute class sprite
      * @attribute method hide_layer
@@ -378,7 +377,6 @@ namespace splashkit_lib
      *
      * @param s     The sprite to hide the layer of.
      * @param id    The index of the layer to hide.
-     * @returns     The index of the layer hidden, or -1 if no layer found.
      *
      * @attribute class sprite
      * @attribute method Hide_layer
