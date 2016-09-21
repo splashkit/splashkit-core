@@ -135,7 +135,7 @@ namespace splashkit_lib
      * @returns Returns the `query_result` which represents
      * the result of perfoming `sql` on the database at `database_name`.
      *
-     * @attribute unique  run_sql_from_name
+     * @attribute suffix from_name
      */
     query_result run_sql(string database_name, string sql);
 
@@ -277,7 +277,7 @@ namespace splashkit_lib
      * @attribute getter  successful
      */
     bool query_success(query_result result);
-    
+
     /**
      * Frees the SplashKit resources associated with the database.
      *
@@ -287,20 +287,20 @@ namespace splashkit_lib
      * @attribute destructor  true
      */
     void free_database(database db_to_close);
-    
+
     /**
      * Frees the SplashKit resources associated with the database at a given name.
      *
      * @param name_of_db_to_close The `string` denoting where the database is which should be released.
      *
-     * @attribute unique  free_database_named
+     * @attribute suffix named
      */
     void free_database(string name_of_db_to_close);
-    
+
     /**
      * Releases all of the databases which have been loaded.
      */
     void free_all_databases();
-    
+
 #endif /* database_h */
 }
