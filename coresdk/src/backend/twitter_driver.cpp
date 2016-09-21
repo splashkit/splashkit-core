@@ -16,20 +16,17 @@
 
 namespace splashkit_lib
 {
-    char* hextostr(const std::string& hexStr)
-    {
-        size_t len = hexStr.length();
-        int k=0;
-        if (len & 1) return NULL;
+    
+    std::vector<char> HexToBytes(const std::string& hex) {
+        std::vector<char> bytes;
         
-        char* output = new char[(len/2)+1];
-        for (size_t i = 0; i < len; i+=2)
-        {
-            output[k++] = (((hexStr[i] >= 'A')? (hexStr[i] - 'A' + 10): (hexStr[i] - '0')) << 4) |
-            (((hexStr[i+1] >= 'A')? (hexStr[i+1] - 'A' + 10): (hexStr[i+1] - '0')));
+        for (unsigned int i = 0; i < hex.length(); i += 2) {
+            std::string byteString = hex.substr(i, 2);
+            char byte = (char) strtol(byteString.c_str(), NULL, 16);
+            bytes.push_back(byte);
         }
-        output[k] = '\0';
-        return output;
+        
+        return bytes;
     }
     
     static const std::string base64_chars =
@@ -38,7 +35,7 @@ namespace splashkit_lib
     "0123456789+/";
     
     
-    std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
+    std::string base64_encode(const unsigned char* bytes_to_encode, unsigned int in_len) {
         std::string ret;
         int i = 0;
         int j = 0;
@@ -78,7 +75,26 @@ namespace splashkit_lib
         }
         
         return ret;
+    }
+    
+    string generate_nonce()
+    {
         
+        static const char alphanum[] =
+        "0123456789"
+        "!@#$%^&*"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+        
+        int stringLength = sizeof(alphanum) - 1;
+        string result = "";
+        for (int i = 0; i<32; i++)
+        {
+            result += alphanum[rand() % stringLength];
+
+        }
+        
+        return base64_encode((const unsigned char*)result.c_str(), 32);
     }
     
     string url_encode(const string &value) {
