@@ -10,6 +10,7 @@
 #define twitter_hpp
 
 #include <stdio.h>
+#include "json.h"
 #include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/hmac.h"
 #include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/sha1.h"
 #include <string>
@@ -19,4 +20,6 @@ using namespace std;
 namespace splashkit_lib
 {
     string generate_signature();
+    string generate_authorization_header(json parameters);
+    void new_tweet(string status);
 }
