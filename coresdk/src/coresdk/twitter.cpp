@@ -7,7 +7,7 @@
 //
 #include "twitter.h"
 #include "twitter_driver.h"
-#include "web.h"
+
 #include "json.h"
 
 #include <sstream>
@@ -48,7 +48,6 @@ namespace splashkit_lib
 
         parameters_map.insert({url_encode("oauth_signature_method"), url_encode(json_read_string(parameters, "oauth_signature_method"))});
         parameters_map.insert({url_encode("status"), url_encode(json_read_string(parameters, "status"))});
-        parameters_map.insert({url_encode("include_entities"), url_encode("true")});
         parameters_map.insert({url_encode("oauth_consumer_key"), url_encode(json_read_string(parameters, "oauth_consumer_key"))});
         parameters_map.insert({url_encode("oauth_nonce"), url_encode(json_read_string(parameters, "oauth_nonce"))});
         parameters_map.insert({url_encode("oauth_timestamp"), url_encode(json_read_string(parameters, "oauth_timestamp"))});
@@ -66,6 +65,7 @@ namespace splashkit_lib
         string oath_token_secret = json_read_string(parameters, "oauth_token_secret");
 
         string signing_key = url_encode(consumer_secret) + "&" + url_encode(oath_token_secret);
+        //string signing_key = url_encode("kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw") + "&" + url_encode("LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE");
 
         std::string sha1hmac = hmac<SHA1>(signature_base_string, signing_key);
 
@@ -87,7 +87,7 @@ namespace splashkit_lib
         json_add_string(parameters, "oauth_version", "1.0");                                                    //generated
         json_add_string(parameters, "oauth_signature", generate_signature(parameters));                         //generated
 
-        string DST = "OAuth ";
+        string DST = "Authorization:OAuth ";
         DST += url_encode("oauth_consumer_key") + "=\"" + url_encode(json_read_string(parameters, "oauth_consumer_key")) + "\", ";
         DST += url_encode("oauth_nonce") + "=\"" + url_encode(json_read_string(parameters, "oauth_nonce")) + "\", ";
         DST += url_encode("oauth_signature") + "=\"" + url_encode(json_read_string(parameters, "oauth_signature")) + "\", ";
@@ -100,33 +100,23 @@ namespace splashkit_lib
 
     }
 
-    void new_tweet(json parameters)
+    http_response new_tweet(json parameters)
     {
         //parameters should have oauth_consumer_key, oauth_token, status NEEDS TO BE IN HERE
         json_add_string(parameters, "http_method", "POST");
         json_add_string(parameters, "http_url", "https://api.twitter.com/1.1/statuses/update.json");
+
+        string test = json_read_string(parameters, "status");
         
         stringstream ss;
 
-        string content = "status=" + json_read_string(parameters, "status");
+        string content = "status=" + url_encode(json_read_string(parameters, "status"));
         string url = json_read_string(parameters, "http_url");
         vector<string> headers;
         
-        /*
-        headers.push_back("Authorization:"
-                                  "OAuth oauth_consumer_key=\"VlU5u3eZD8O9FLLjCJ7X7SZCm\", "
-                                  "oauth_nonce=\"2f51578d75e905ec9da75bfadb0f894c\", "
-                                  "oauth_signature=\"623Ji28W1v4eN6FIOzJhxobNvlo%3D\", "
-                                  "oauth_signature_method=\"HMAC-SHA1\", "
-                                  "oauth_timestamp=\"1474457494\", "
-                                  "oauth_token=\"777822290318757888-ZTefOHbqKd1huzc7cf5BLDZwfT36rgG\", "
-                                  "oauth_version=\"1.0\"");
-         */
         headers.push_back(generate_authorization_header(parameters));
         headers.push_back("Content-Type: application/x-www-form-urlencoded");
 
-        http_response response = http_post(url, 443, content, headers);
-
-        cout << "response is: " << http_response_to_string(response) << endl;
+        return http_post(url, 443, content, headers);
     }
 }
