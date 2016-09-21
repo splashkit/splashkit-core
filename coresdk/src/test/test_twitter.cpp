@@ -16,7 +16,6 @@ using namespace splashkit_lib;
 
 void run_twitter_test()
 {
-    json test = create_json();
-    // generate_authorization_header(test);
-    new_tweet("her");
+    //generate_signature();
+    new_tweet("test");
 }

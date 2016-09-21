@@ -46,7 +46,7 @@ namespace splashkit_lib
         sk_http_response    data;
     };
 
-    sk_http_response make_request (sk_http_method request_type, string url, unsigned short port, string body)
+    sk_http_response make_request (sk_http_method request_type, string url, unsigned short port, string body, vector<string> headers)
     {
         sk_http_request request;
 
@@ -54,8 +54,14 @@ namespace splashkit_lib
         request.url = url.c_str();
         request.port = port;
         request.body = body.c_str();
+        request.headers = headers;
 
         return sk_http_make_request(request);
+    }
+
+    sk_http_response make_request (sk_http_method request_type, string url, unsigned short port, string body)
+    {
+        make_request(request_type, url, port, body, {});
     }
 
     http_response http_get(const string &url, unsigned short port)
@@ -68,14 +74,19 @@ namespace splashkit_lib
         return response;
     }
 
-    http_response http_post(const string &url, unsigned short port, string body)
+    http_response http_post(const string &url, unsigned short port, string body, vector<string> headers)
     {
         http_response response;
 
         response = new _http_response_data;
         response->id = HTTP_RESPONSE_PTR;
-        response->data = make_request(HTTP_POST, url, port, body);
+        response->data = make_request(HTTP_POST, url, port, body, headers);
         return response;
+    }
+
+    http_response http_post(const string &url, unsigned short port, string body)
+    {
+        return http_post(url, port, body, {});
     }
 
     void save_response_to_file(http_response response, string filename)

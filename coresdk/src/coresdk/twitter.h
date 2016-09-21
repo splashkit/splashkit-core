@@ -20,6 +20,5 @@ using namespace std;
 namespace splashkit_lib
 {
     string generate_signature();
-    string generate_authorization_header(json parameters);
     void new_tweet(string status);
 }

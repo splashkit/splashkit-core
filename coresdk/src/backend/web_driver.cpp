@@ -8,6 +8,7 @@
 
 #include "web_driver.h"
 #include "core_driver.h"
+#include "easylogging++.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,7 +88,7 @@ namespace splashkit_lib
 
     //TODO: fix code duplication here...
 
-    sk_http_response sk_http_post(const char *host, unsigned short port, const char *body)
+    sk_http_response sk_http_post(const char *host, unsigned short port, const char *body, vector<string> headers)
     {
         sk_http_response result = { 500, 0, NULL };
         CURL *curl_handle;
@@ -111,8 +112,20 @@ namespace splashkit_lib
         // header list
         struct curl_slist *list = NULL;
 
-        list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
-        list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        if (headers.size() > 0)
+        {
+            for (int i = 0; i < headers.size(); ++i)
+            {
+                LOG(DEBUG) << headers[i];
+                list = curl_slist_append(list, headers[i].c_str());
+            }
+        }
+        else
+        {
+            list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
+            list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        }
+
         curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
 
         // send all data to this function
@@ -331,7 +344,7 @@ namespace splashkit_lib
             case HTTP_GET:
                 return sk_http_get(request.url, request.port);
             case HTTP_POST:
-                return sk_http_post(request.url, request.port, request.body);
+                return sk_http_post(request.url, request.port, request.body, request.headers);
             case HTTP_PUT:
                 return sk_http_put(request.url, request.port, request.body);
             case HTTP_DELETE:
