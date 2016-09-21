@@ -61,7 +61,7 @@ namespace splashkit_lib
 
     sk_http_response make_request (sk_http_method request_type, string url, unsigned short port, string body)
     {
-        make_request(request_type, url, port, body, {});
+        return make_request(request_type, url, port, body, {});
     }
 
     http_response http_get(const string &url, unsigned short port)
