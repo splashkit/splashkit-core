@@ -15,5 +15,6 @@ using namespace splashkit_lib;
 
 void run_twitter_test()
 {
-    generate_signature();
+    //generate_signature();
+    new_tweet("test");
 }

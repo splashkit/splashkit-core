@@ -183,6 +183,7 @@ namespace splashkit_lib
         unsigned short port;
         const char *body;
         const char *filename;
+        vector<string> headers;
     };
 
     struct sk_http_response

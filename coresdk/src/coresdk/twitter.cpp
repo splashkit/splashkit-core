@@ -16,10 +16,11 @@
 #include <string>
 #include <map>
 #include <stdio.h>
-
+#include <vector>
 
 namespace splashkit_lib
 {
+    /*
     string generate_signature()
     {
         map<string, string> parameters_map;
@@ -94,5 +95,28 @@ namespace splashkit_lib
         
     
        // response = http_post("https://api.twitter.com/1.1/statuses/update.json?status=Posting%20from%20%40SplashKit&display_coordinates=false HTTP/1.1", 8080, string body);
+    }
+     */
+
+    void new_tweet(string status)
+    {
+        stringstream ss;
+
+        string content = "status=jakeandjames";
+        string url = "https://api.twitter.com/1.1/statuses/update.json";
+
+        vector<string> headers;
+        headers.push_back("Authorization: OAuth oauth_consumer_key=\"VlU5u3eZD8O9FLLjCJ7X7SZCm\", "
+                                  "oauth_nonce=\"2f51578d75e905ec9da75bfadb0f894c\", "
+                                  "oauth_signature=\"623Ji28W1v4eN6FIOzJhxobNvlo%3D\", "
+                                  "oauth_signature_method=\"HMAC-SHA1\", "
+                                  "oauth_timestamp=\"1474457494\", "
+                                  "oauth_token=\"777822290318757888-ZTefOHbqKd1huzc7cf5BLDZwfT36rgG\", "
+                                  "oauth_version=\"1.0\"");
+        headers.push_back("Content-Type: application/x-www-form-urlencoded");
+
+        http_response response = http_post(url, 443, content, headers);
+
+        cout << "response is: " << http_response_to_string(response) << endl;
     }
 }
