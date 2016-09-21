@@ -74,6 +74,8 @@ namespace splashkit_lib
             return false;
         }
 
+        clear_messages(svr);
+        
         for(auto connection : svr->connections)
         {
             close_connection(connection);
@@ -97,10 +99,7 @@ namespace splashkit_lib
 
     void close_all_servers()
     {
-        for(auto const &pair : _server_sockets)
-        {
-            close_server(pair.second);
-        }
+        FREE_ALL_FROM_MAP( _server_sockets, SERVER_SOCKET_PTR, [] (server_socket svr) { close_server(svr); } );
     }
 
     bool has_server(const string &name)
@@ -147,6 +146,7 @@ namespace splashkit_lib
         result->port = 0;
         result->protocol = protocol;
         result->part_msg_data = "";
+        result->msg_len = -1;
         result->open = true;
         result->socket._socket = nullptr;
         result->socket.kind = UNKNOWN;
@@ -250,10 +250,7 @@ namespace splashkit_lib
 
     void close_all_connections()
     {
-        for(auto const &pair : _connections)
-        {
-            close_connection(pair.second);
-        }
+        FREE_ALL_FROM_MAP(_connections, CONNECTION_PTR, [] (connection con) { close_connection(con); });
     }
 
     bool close_connection(connection con)
@@ -490,13 +487,17 @@ namespace splashkit_lib
     void _enqueue_tcp_message(const string &message, connection con)
     {
         sk_message* m = new sk_message;
+        
         m->id = MESSAGE_PTR;
         m->data = message;
         m->protocol = TCP;
         m->connection = con;
         m->host = con->string_ip;
         m->port = con->port;
+        
         con->messages.push_back(m);
+        con->msg_len = -1;
+        con->part_msg_data = "";
     }
 
     void _enqueue_udp_message(vector<sk_message*> &messages, const char* msg, int size, unsigned int host, int port)
@@ -556,64 +557,67 @@ namespace splashkit_lib
         int missing, got;
         bytes size;
 
-        while (buf_idx < received_count)
+        while (buf_idx < received_count) // there is data to read...
         {
-            if (con->msgLen > 0)
+            // Work out the message length...
+            if (con->msg_len > 0)   // we are part way though a message...
             {
-                msg = con->part_msg_data;
-                msg_len = con->msgLen - msg.length();
-                con->msgLen = -1;
-                con->part_msg_data = "";
+                msg = con->part_msg_data;                   // get the part
+                msg_len = con->msg_len - msg.length();      // How much left to read...
+                con->msg_len = -1;                          // Reset length of message to "no message"
+                con->part_msg_data = "";                    // Reset part of message
             }
-            else
+            else // This is a new message... get its size.
             {
                 msg = "";
 
-                if ((PACKET_SIZE - buf_idx) < 4)
+                if ((received_count - buf_idx) < 4) // if there are less than 4 bytes for the start of this message...
                 {
-                    missing = 4 - PACKET_SIZE - buf_idx;
+                    // How much do we have?
+                    missing = 4 - (received_count - buf_idx);
 
-                    for (int i = 0; i <= missing; ++i)
+                    // Move back to give space for 4 values... we must know size!
+                    for (int i = 0; i < 4 - missing; ++i) // move back the ones we have...
                     {
-                        buffer[PACKET_SIZE - 4 + i] = buffer[buf_idx + i];
-
-                        got = sk_read_bytes(&con->socket, &buffer[PACKET_SIZE - missing], missing);
-
-                        if (got != missing)
-                        {
-                            LOG(WARNING) << "Issue reading message size from network. Notify SplashKit team.";
-                            return false;
-                        }
-
-                        buf_idx = PACKET_SIZE - 4;
+                        buffer[received_count - 4 + i] = buffer[buf_idx + i]; // copy back over
                     }
 
-                    size[0] = byte(buffer[buf_idx]);
-                    size[1] = byte(buffer[buf_idx + 1]);
-                    size[2] = byte(buffer[buf_idx + 2]);
-                    size[3] = byte(buffer[buf_idx + 3]);
+                    // read the missing bytes
+                    got = sk_read_bytes(&con->socket, &buffer[received_count - missing], missing);
 
-                    msg_len = (size[0] << 24) + (size[1] << 16) + (size[2] << 8) + (size[3]);
-
-                    buf_idx += 4;
-                }
-
-                for (; buf_idx <= buf_idx + msg_len - 1; ++buf_idx)
-                {
-                    if ((buf_idx >= received_count) || (buf_idx > PACKET_SIZE))
+                    if (got != missing)
                     {
-                        con->part_msg_data = msg;
-                        con->msgLen = msg_len;
-                        return true;
+                        LOG(WARNING) << "Issue reading message size from network. Notify SplashKit team.";
+                        return false;
                     }
 
-                    msg += buffer[buf_idx];
+                    buf_idx = received_count - 4;
                 }
+                
+                size[0] = byte(buffer[buf_idx]);
+                size[1] = byte(buffer[buf_idx + 1]);
+                size[2] = byte(buffer[buf_idx + 2]);
+                size[3] = byte(buffer[buf_idx + 3]);
 
-                _enqueue_tcp_message(msg, con);
+                msg_len = (size[0] << 24) + (size[1] << 16) + (size[2] << 8) + (size[3]);
 
-                buf_idx += 1;
+                buf_idx += 4;
             }
+            
+            unsigned long end_msg = buf_idx + msg_len;
+            for (; buf_idx < end_msg; ++buf_idx)
+            {
+                if ((buf_idx >= received_count) || (buf_idx > PACKET_SIZE))
+                {
+                    con->part_msg_data = msg;
+                    con->msg_len = msg_len;
+                    return true;
+                }
+
+                msg += buffer[buf_idx];
+            }
+
+            _enqueue_tcp_message(msg, con);
         }
 
         return false;
@@ -629,7 +633,7 @@ namespace splashkit_lib
 
         if (sk_connection_has_data(&con->socket) > 0)
         {
-            bool got_data = true;
+            bool got_data = true; // are we expecting more data?
             int times = 0;
             do
             {
@@ -652,7 +656,7 @@ namespace splashkit_lib
                 }
 
                 times += 1;
-            } while (got_data or times < 10);
+            } while (got_data and times < 10);
 
             return true;
         }
@@ -735,14 +739,22 @@ namespace splashkit_lib
 
     void clear_messages(server_socket svr)
     {
-        // TODO delete all messages
-        LOG(ERROR) << "Method not implemented";
+        if ( INVALID_PTR(svr, SERVER_SOCKET_PTR))
+        {
+            return;
+        }
+        
+        svr->messages.clear();
     }
 
     void clear_messages(connection a_connection)
     {
-        // TODO delete all messages
-        LOG(ERROR) << "Method not implemented";
+        if ( INVALID_PTR(a_connection, CONNECTION_PTR))
+        {
+            return;
+        }
+        
+        a_connection->messages.clear();
     }
 
     void clear_messages(const string &name)
@@ -808,7 +820,20 @@ namespace splashkit_lib
             return false;
         }
 
-        return !svr->messages.empty();
+        if ( !svr->messages.empty() )
+        {
+            return true;
+        }
+        
+        for(connection con : svr->connections)
+        {
+            if (has_messages(con))
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     bool has_messages(const string &name)
@@ -1035,7 +1060,7 @@ namespace splashkit_lib
             unsigned long len = msg.size() + 4;
             char buffer[len];
 
-            for (int i = 0; i < len - 1; ++i)
+            for (int i = 0; i < len; ++i)
             {
                 if (i < 4)
                 {
@@ -1043,7 +1068,7 @@ namespace splashkit_lib
                 }
                 else
                 {
-                    buffer[i] = byte(msg[i - 3]);
+                    buffer[i] = byte(msg[i - 4]);
                 }
             }
 

@@ -28,8 +28,8 @@ namespace splashkit_lib
      * @param  y      The y location of the circle
      * @param  radius The radius of the circle
      * @return        A circle at the indicatd point and radius
-     * 
-     * @attribute suffic from_points
+     *
+     * @attribute suffix from_points
      */
     circle circle_at(float x, float y, float radius);
 
