@@ -72,7 +72,7 @@ namespace splashkit_lib
      * @param  name The name of the timer
      * @return      True if SplashKit has created a timer with that name.
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     bool has_timer(string name);
 
@@ -95,7 +95,7 @@ namespace splashkit_lib
      *
      * @param name The name of the timer
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     void start_timer(string name);
 
@@ -116,7 +116,7 @@ namespace splashkit_lib
      *
      * @param name The name of the timer
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     void stop_timer(string name);
 
@@ -137,7 +137,7 @@ namespace splashkit_lib
      *
      * @param name The name of the timer
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     void pause_timer(string name);
 
@@ -156,7 +156,7 @@ namespace splashkit_lib
      *
      * @param name The name of the timer
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     void resume_timer(string name);
 
@@ -175,7 +175,7 @@ namespace splashkit_lib
      *
      * @param name The name of the timer
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     void reset_timer(string name);
 
@@ -204,7 +204,7 @@ namespace splashkit_lib
      *              timer was created (excluding the time the timer was
      *              paused)
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     unsigned int timer_ticks(string name);
 
@@ -225,7 +225,7 @@ namespace splashkit_lib
      * @param  name   The name of the timer
      * @return        True if the timer is paused
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     bool timer_paused(string name);
 
@@ -246,7 +246,7 @@ namespace splashkit_lib
      * @param  name   The name of the timer
      * @return        True if the timer has been started
      *
-     * @attribute suffic _named
+     * @attribute suffix _named
      */
     bool timer_started(string name);
 }
