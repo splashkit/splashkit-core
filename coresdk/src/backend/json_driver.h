@@ -108,7 +108,7 @@ namespace splashkit_lib
             }
             else
             {
-                result.insert({it.key(), it.value()});
+                result.insert(make_pair<string, string>(it.key(), bj[it.key()]));
             }
         }
 
