@@ -9,22 +9,21 @@
 #include "twitter_driver.h"
 
 #include "json.h"
+#include "json_driver.h"
 
-#include <sstream>
 #include <iomanip>
 #include <iostream>
 #include <string>
 #include <map>
 #include <stdio.h>
 #include <vector>
-#include <ctime>
+
 
 namespace splashkit_lib
 {
     string generate_unix_timestamp()
     {
         std::time_t result = std::time(nullptr);
-        
         return to_string(result);
     }
     
@@ -42,81 +41,69 @@ namespace splashkit_lib
         return result;
     }
     
-    string generate_signature(json parameters)
+    string generate_signature(map<string, string> parameters_map)
     {
-        map<string, string> parameters_map;
+        map<string, string> encoded_parameters_map;
 
-        parameters_map.insert({url_encode("oauth_signature_method"), url_encode(json_read_string(parameters, "oauth_signature_method"))});
-        parameters_map.insert({url_encode("status"), url_encode(json_read_string(parameters, "status"))});
-        parameters_map.insert({url_encode("oauth_consumer_key"), url_encode(json_read_string(parameters, "oauth_consumer_key"))});
-        parameters_map.insert({url_encode("oauth_nonce"), url_encode(json_read_string(parameters, "oauth_nonce"))});
-        parameters_map.insert({url_encode("oauth_timestamp"), url_encode(json_read_string(parameters, "oauth_timestamp"))});
-        parameters_map.insert({url_encode("oauth_token"), url_encode(json_read_string(parameters, "oauth_token"))});
-        parameters_map.insert({url_encode("oauth_version"), url_encode(json_read_string(parameters, "oauth_version"))});
+        encoded_parameters_map.insert({url_encode("oauth_signature_method"), url_encode(parameters_map.at("oauth_signature_method"))});
+        encoded_parameters_map.insert({url_encode("status"), url_encode(parameters_map.at("status"))});
+        encoded_parameters_map.insert({url_encode("oauth_consumer_key"), url_encode(parameters_map.at("oauth_consumer_key"))});
+        encoded_parameters_map.insert({url_encode("oauth_nonce"), url_encode(parameters_map.at("oauth_nonce"))});
+        encoded_parameters_map.insert({url_encode("oauth_timestamp"), url_encode(parameters_map.at("oauth_timestamp"))});
+        encoded_parameters_map.insert({url_encode("oauth_token"), url_encode(parameters_map.at("oauth_token"))});
+        encoded_parameters_map.insert({url_encode("oauth_version"), url_encode(parameters_map.at("oauth_version"))});
 
-        string http_method = json_read_string(parameters, "http_method");
-        string http_url = json_read_string(parameters, "http_url");
-        
-        string parameter_string = collect_parameters(parameters_map);
-
+        string http_method = parameters_map.at("http_method");
+        string http_url = parameters_map.at("http_url");
+        string parameter_string = collect_parameters(encoded_parameters_map);
         string signature_base_string = http_method + "&" + url_encode(http_url) + "&" + url_encode(parameter_string);
-
-        string consumer_secret = json_read_string(parameters, "oauth_consumer_secret");
-        string oath_token_secret = json_read_string(parameters, "oauth_token_secret");
-
+        string consumer_secret = parameters_map.at("oauth_consumer_secret");
+        string oath_token_secret = parameters_map.at("oauth_token_secret");
         string signing_key = url_encode(consumer_secret) + "&" + url_encode(oath_token_secret);
-        //string signing_key = url_encode("kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw") + "&" + url_encode("LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE");
 
-        std::string sha1hmac = hmac<SHA1>(signature_base_string, signing_key);
+        string sha1hmac = hmac<SHA1>(signature_base_string, signing_key);
 
         auto sha1hmac_hex_decoded = HexToBytes(sha1hmac);
-        auto to_encode = reinterpret_cast<unsigned const char*>(sha1hmac_hex_decoded.data());
+        unsigned const char* to_encode = reinterpret_cast<unsigned const char*>(sha1hmac_hex_decoded.data());
 
         string encoded_result = base64_encode(to_encode, static_cast<unsigned int>(sha1hmac_hex_decoded.size()));
         return encoded_result;
 
     }
 
-    string generate_authorization_header(json parameters)
+    string generate_authorization_header(map<string, string> parameters_map)
     {
-        // json_add_string(parameters, "oauth_consumer_key", "xvz1evFS4wEEPTGEFPHBog");                            //consumer key from twitter app api
-        // json_add_string(parameters, "oauth_token", "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb");       //given (oauth/access token)
-        json_add_string(parameters, "oauth_nonce", generate_nonce());                                           //Uniquely generate this ourselves
-        json_add_string(parameters, "oauth_signature_method", "HMAC-SHA1");                                     //generated
-        json_add_string(parameters, "oauth_timestamp", generate_unix_timestamp());                                           //generated
-        json_add_string(parameters, "oauth_version", "1.0");                                                    //generated
-        json_add_string(parameters, "oauth_signature", generate_signature(parameters));                         //generated
+        parameters_map["oauth_nonce"] = generate_nonce();
+        parameters_map["oauth_signature_method"] = "HMAC-SHA1";
+        parameters_map["oauth_timestamp"] = generate_unix_timestamp();
+        parameters_map["oauth_version"] = "1.0";
+        parameters_map["oauth_signature"] = generate_signature(parameters_map);
 
         string DST = "Authorization:OAuth ";
-        DST += url_encode("oauth_consumer_key") + "=\"" + url_encode(json_read_string(parameters, "oauth_consumer_key")) + "\", ";
-        DST += url_encode("oauth_nonce") + "=\"" + url_encode(json_read_string(parameters, "oauth_nonce")) + "\", ";
-        DST += url_encode("oauth_signature") + "=\"" + url_encode(json_read_string(parameters, "oauth_signature")) + "\", ";
-        DST += url_encode("oauth_signature_method") + "=\"" + url_encode(json_read_string(parameters, "oauth_signature_method")) + "\", ";
-        DST += url_encode("oauth_timestamp") + "=\"" + url_encode(json_read_string(parameters, "oauth_timestamp")) + "\", ";
-        DST += url_encode("oauth_token") + "=\"" + url_encode(json_read_string(parameters, "oauth_token")) + "\", ";
-        DST += url_encode("oauth_version") + "=\"" + url_encode(json_read_string(parameters, "oauth_version")) + "\"";
+        DST += url_encode("oauth_consumer_key") + "=\"" + url_encode(parameters_map.at("oauth_consumer_key")) + "\", ";
+        DST += url_encode("oauth_nonce") + "=\"" + url_encode(parameters_map.at("oauth_nonce")) + "\", ";
+        DST += url_encode("oauth_signature") + "=\"" + url_encode(parameters_map.at("oauth_signature")) + "\", ";
+        DST += url_encode("oauth_signature_method") + "=\"" + url_encode(parameters_map.at("oauth_signature_method")) + "\", ";
+        DST += url_encode("oauth_timestamp") + "=\"" + url_encode(parameters_map.at("oauth_timestamp")) + "\", ";
+        DST += url_encode("oauth_token") + "=\"" + url_encode(parameters_map.at("oauth_token")) + "\", ";
+        DST += url_encode("oauth_version") + "=\"" + url_encode(parameters_map.at("oauth_version")) + "\"";
 
         return DST;
-
     }
 
     http_response new_tweet(json parameters)
     {
-        //parameters should have oauth_consumer_key, oauth_token, status NEEDS TO BE IN HERE
-        json_add_string(parameters, "http_method", "POST");
-        json_add_string(parameters, "http_url", "https://api.twitter.com/1.1/statuses/update.json");
-
-        string test = json_read_string(parameters, "status");
+        map<string, string> parameters_map = sk_json_to_map(parameters);
         
-        stringstream ss;
+        parameters_map["http_method"] = "POST";
+        parameters_map["http_url"] = "https://api.twitter.com/1.1/statuses/update.json";
 
-        string content = "status=" + url_encode(json_read_string(parameters, "status"));
-        string url = json_read_string(parameters, "http_url");
-        vector<string> headers;
+        string status_content = "status=" + url_encode(parameters_map.at("status"));
+        string url = parameters_map.at("http_url");
         
-        headers.push_back(generate_authorization_header(parameters));
-        headers.push_back("Content-Type: application/x-www-form-urlencoded");
+        vector<string> headers {generate_authorization_header(parameters_map), "Content-Type: application/x-www-form-urlencoded"};
 
-        return http_post(url, 443, content, headers);
+        http_response response = http_post(url, 443, status_content, headers);
+        return response;
     }
 }
