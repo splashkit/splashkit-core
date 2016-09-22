@@ -17,12 +17,7 @@ using namespace splashkit_lib;
 void run_twitter_test()
 {
     json twitter_post = create_json();
-    
-    // Keep these secret
-    json_set_string(twitter_post, "oauth_consumer_key", "VlU5u3eZD8O9FLLjCJ7X7SZCm");
-    json_set_string(twitter_post, "oauth_consumer_secret", "JdmKx1uYTFB5RL3Whbg6pyppQXGKt2NrHtmWQgWID37fWDaadb");
-    json_set_string(twitter_post, "oauth_token", "777822290318757888-ZTefOHbqKd1huzc7cf5BLDZwfT36rgG");
-    json_set_string(twitter_post, "oauth_token_secret", "gHT5YN7biHTVhOpK4AT4tsxZRVODDNL92iiAT8igE2FUf");
+    twitter_post = json_from_file("twitter.json");
     
     json_set_string(twitter_post, "status", "#omg I'm so full! #killerkebabs #abrakebabra");
     
