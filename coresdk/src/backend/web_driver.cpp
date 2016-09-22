@@ -116,7 +116,6 @@ namespace splashkit_lib
         {
             for (int i = 0; i < headers.size(); ++i)
             {
-                LOG(DEBUG) << headers[i];
                 list = curl_slist_append(list, headers[i].c_str());
             }
         }
