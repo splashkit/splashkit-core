@@ -28,9 +28,9 @@ static map<string, map<string, function<void(server_request, string)>>> routes;
 json person_to_json(person p)
 {
     json j = create_json();
-    json_add_string(j, "name", p.name);
-    json_add_string(j, "address", p.address);
-    json_add_number(j, "age", p.age);
+    json_set_string(j, "name", p.name);
+    json_set_string(j, "address", p.address);
+    json_set_number(j, "age", p.age);
     return j;
 }
 
@@ -62,7 +62,7 @@ string people_to_json()
     }
 
     json result = create_json();
-    json_add_array(result, "people", peoples);
+    json_set_array(result, "people", peoples);
     return json_to_string(result);
 }
 

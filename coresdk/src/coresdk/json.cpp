@@ -123,52 +123,52 @@ namespace splashkit_lib
         }
     };
 
-    void json_add_string(json j, string key, string value)
+    void json_set_string(json j, string key, string value)
     {
         sk_json_add_value(j, key, value);
     };
 
-    void json_add_number(json j, string key, float value)
+    void json_set_number(json j, string key, float value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_number(json j, string key, double value)
+    void json_set_number(json j, string key, double value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_number(json j, string key, int value)
+    void json_set_number(json j, string key, int value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_bool(json j, string key, bool value)
+    void json_set_bool(json j, string key, bool value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_object(json j, string key, json object)
+    void json_set_object(json j, string key, json object)
     {
         sk_json_add_value(j, key, object->data);
     }
 
-    void json_add_array(json j, string key, vector<string> value)
+    void json_set_array(json j, string key, vector<string> value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_array(json j, string key, vector<double> value)
+    void json_set_array(json j, string key, vector<double> value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_array(json j, string key, vector<bool> value)
+    void json_set_array(json j, string key, vector<bool> value)
     {
         sk_json_add_value(j, key, value);
     }
 
-    void json_add_array(json j, string key, vector<json> value)
+    void json_set_array(json j, string key, vector<json> value)
     {
         vector<backend_json> real;
 
@@ -277,7 +277,7 @@ namespace splashkit_lib
     {
         json result = create_json();
         string color_string = color_to_string(clr);
-        json_add_string(result, "color", color_string);
+        json_set_string(result, "color", color_string);
         return result;
     }
 
