@@ -153,7 +153,7 @@ namespace splashkit_lib
      * @attribute method add_string
      * @attribute self j
      */
-    void json_add_string(json j, string key, string value);
+    void json_set_string(json j, string key, string value);
 
     /**
      * Adds a `float` value to the `json` object for the given `string` key.
@@ -166,7 +166,7 @@ namespace splashkit_lib
      * @attribute method add_number
      * @attribute self j
      */
-    void json_add_number(json j, string key, float value);
+    void json_set_number(json j, string key, float value);
 
     /**
      * Adds a `double` value to the `json` object for the given `string` key.
@@ -179,7 +179,7 @@ namespace splashkit_lib
      * @attribute method add_number
      * @attribute self j
      */
-    void json_add_number(json j, string key, double value);
+    void json_set_number(json j, string key, double value);
 
     /**
      * Adds an `int` value to the `json` object for the given `string` key.
@@ -192,7 +192,7 @@ namespace splashkit_lib
      * @attribute method add_number
      * @attribute self j
      */
-    void json_add_number(json j, string key, int value);
+    void json_set_number(json j, string key, int value);
 
     /**
      * Adds a `bool` value to the `json` object for the given `string` key.
@@ -205,7 +205,7 @@ namespace splashkit_lib
      * @attribute method add_bool
      * @attribute self j
      */
-    void json_add_bool(json j, string key, bool value);
+    void json_set_bool(json j, string key, bool value);
 
     /**
      * Adds a `json` object to the `json` object for the given `string` key.
@@ -218,7 +218,7 @@ namespace splashkit_lib
      * @attribute method add_object
      * @attribute self j
      */
-    void json_add_object(json j, string key, json object);
+    void json_set_object(json j, string key, json object);
 
     /**
      * Adds an array of `string` values to the `json` object for
@@ -233,7 +233,7 @@ namespace splashkit_lib
      * @attribute suffix of_string
      * @attribute self j
      */
-    void json_add_array(json j, string key, vector<string> value);
+    void json_set_array(json j, string key, vector<string> value);
 
     /**
      * Adds an array of `double` values to the `json` object for
@@ -248,7 +248,7 @@ namespace splashkit_lib
      * @attribute suffix of_double
      * @attribute self j
      */
-    void json_add_array(json j, string key, vector<double> value);
+    void json_set_array(json j, string key, vector<double> value);
 
     /**
      * Adds an array of `bool` values to the `json` object for
@@ -263,7 +263,7 @@ namespace splashkit_lib
      * @attribute suffix of_bool
      * @attribute self j
      */
-    void json_add_array(json j, string key, vector<bool> value);
+    void json_set_array(json j, string key, vector<bool> value);
 
     /**
      * Adds an array of `json` object values to the `json` object for
@@ -278,7 +278,7 @@ namespace splashkit_lib
      * @attribute suffix of_json
      * @attribute self j
      */
-    void json_add_array(json j, string key, vector<json> value);
+    void json_set_array(json j, string key, vector<json> value);
 
     /**
      * Reads a `float` value from the `json` object for the given `string` key.

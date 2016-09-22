@@ -24,21 +24,23 @@ json create_person()
 {
     json person = create_json();
 
-    json_add_string(person, "firstName", "John");
-    json_add_string(person, "lastName", "Smith");
+    json_set_string(person, "firstName", "John");
+    json_set_string(person, "lastName", "Smith");
 
     json addresses = create_json();
-    json_add_string(addresses, "streetAddress", "21 2nd Street");
-    json_add_string(addresses, "city", "New York");
-    json_add_string(addresses, "state", "NY");
-    json_add_number(addresses, "postalCode", 10021);
+    json_set_string(addresses, "streetAddress", "21 2nd Street");
+    json_set_string(addresses, "city", "New York");
+    json_set_string(addresses, "state", "NY");
+    json_set_number(addresses, "postalCode", 10021);
 
-    json_add_object(person, "addresses", addresses);
+    json_set_object(person, "addresses", addresses);
 
     vector<string> numbers = {"212 555-1234", "646 555-4567"};
-    json_add_array(person, "phoneNumbers", numbers);
+    json_set_array(person, "phoneNumbers", numbers);
 
-    json_add_bool(person, "pensioner", true);
+    json_set_bool(person, "pensioner", true);
+
+    LOG(DEBUG) << json_to_string(addresses);
 
     return person;
 }
