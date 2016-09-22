@@ -8,6 +8,7 @@
 
 #include "twitter_driver.h"
 #include "utility_functions.h"
+#include <random>
 #include <iomanip>
 
 #ifdef __linux__
@@ -80,6 +81,10 @@ namespace splashkit_lib
     string generate_nonce()
     {
         
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(0, RAND_MAX);
+        
         static const char alphanum[] =
         "0123456789"
         "!@#$%^&*"
@@ -90,7 +95,7 @@ namespace splashkit_lib
         string result = "";
         for (int i = 0; i<32; i++)
         {
-            result += alphanum[rand() % stringLength];
+            result += alphanum[dis(gen) % stringLength];
 
         }
         
