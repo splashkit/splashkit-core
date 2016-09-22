@@ -108,7 +108,11 @@ namespace splashkit_lib
             }
             else
             {
+<<<<<<< HEAD
                 result.insert(make_pair<string, string>(it.key(), it.value()));
+=======
+                result.insert(make_pair<string, string>(it.key(), bj[it.key()]));
+>>>>>>> 6a4b5693f59a0efd4fcbdf6036b06616a9a0625f
             }
         }
 
