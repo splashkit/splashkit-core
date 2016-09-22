@@ -174,7 +174,7 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
-     * @attribute suffix  with_loops_and_volume
+     * @attribute suffix  with_times_and_volume
      * @attribute self    effect
      */
     void play_sound_effect(sound_effect effect, int times, float volume);
