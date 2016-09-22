@@ -17,7 +17,8 @@ namespace splashkit_lib
 {
     static vector<json> objects;
 
-    json create_json() {
+    json create_json()
+    {
         internal_sk_init();
 
         sk_json* j = new sk_json;

@@ -12,8 +12,6 @@
 #include <stdio.h>
 #include "json.h"
 #include "web.h"
-#include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/hmac.h"
-#include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/sha1.h"
 #include <string>
 using namespace std;
 
