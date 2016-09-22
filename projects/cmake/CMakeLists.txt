@@ -91,6 +91,10 @@ file(GLOB TEST_SOURCE_FILES
     "${SK_SRC}/test/*.cpp"
 )
 
+file(GLOB UNIT_TEST_SOURCE_FILES
+    "${SK_SRC}/test/unit_tests/*.cpp"
+)
+
 # SKSDK FILE INCLUDES
 file(GLOB INCLUDE_FILES
     "${SK_SRC}/coresdk/*.h"
@@ -105,6 +109,7 @@ include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
+include_directories("${SK_EXT}/catch")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
@@ -143,7 +148,6 @@ if (MSYS)
                                            SDL2_net
                                            libcivetweb
                                            SDL2
-                                           SDL2_ttf
                                            SDL2_ttf
                                            libcurl
                                            libSDL2_gfx-1-0-0
@@ -194,6 +198,18 @@ if (MSYS)
         ${CMAKE_COMMAND} -E copy "${SK_LIB}/win64/*.dll" $<TARGET_FILE_DIR:sktest>)
 endif()
 
+#### END sktest EXECUTABLE ####
+
+#### skunit_tests EXECUTABLE ####
+add_executable(skunit_tests ${UNIT_TEST_SOURCE_FILES})
+
+target_link_libraries(skunit_tests SplashKitBackend)
+target_link_libraries(skunit_tests ${LIB_FLAGS})
+
+set_target_properties(skunit_tests
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
+        )
 #### END sktest EXECUTABLE ####
 
 install(TARGETS SplashKitBackend DESTINATION lib)

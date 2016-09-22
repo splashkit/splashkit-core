@@ -1,5 +1,8 @@
 //
-// Created by arm on 8/18/16.
+//  test_web_server.cpp
+//  splashkit
+//
+//  Created by James Armstrong http://github.com/jarmstrong
 //
 
 #include "resources.h"
