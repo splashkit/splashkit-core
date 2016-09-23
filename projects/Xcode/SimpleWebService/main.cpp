@@ -11,6 +11,43 @@
 using std::vector;
 using std::to_string;
 
+void send_todo_list(const vector<string> &todos, server_request request)
+{
+    json list = create_json();
+    json_add_array(list, "todos", todos);
+    send_response(request, OK, json_to_string(list), "application/json");
+}
+
+void add_todo(vector<string> &todo, server_request request)
+{
+    todos.push_back(request_body(request));
+}
+
+void process_request(vector<string> &todos)
+{
+    server_request request = next_web_request(todo_list_service);
+
+    http_method method = request_method(request);
+    string uri = request_uri(request);
+
+    vector<string> stubs = split_uri_stubs(uri);
+
+    if ( stubs[0] == "todos" )
+    {
+        switch( method )
+        {
+            HTTP_GET:
+                send_todo_list(todo_list, request);
+                break;
+            HTTP_POST:
+                add_todo(todo_list, request);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 int main()
 {
     vector<string> todo_list;
@@ -29,11 +66,7 @@ int main()
 
         if ( has_waiting_requests(todo_list_service) )
         {
-            server_request request = next_web_request(todo_list_service);
-            string method = request_get_method(request);
-            string uri = request_get_uri(request);
-
-            if ( method == ")
+            process_request(todo_list);
         }
     }
 

@@ -138,6 +138,66 @@
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
 		94D125F21D94CC49006957A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D125F11D94CC49006957A8 /* main.cpp */; };
+		94D126031D94E3F6006957A8 /* libSplashKitBackend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
+		94D126041D94E404006957A8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372701D1D6B760020CCE2 /* IOKit.framework */; };
+		94D126051D94E404006957A8 /* ForceFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726E1D1D6B710020CCE2 /* ForceFeedback.framework */; };
+		94D126061D94E404006957A8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726C1D1D6B6A0020CCE2 /* CoreFoundation.framework */; };
+		94D126071D94E404006957A8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726A1D1D6B630020CCE2 /* Cocoa.framework */; };
+		94D126081D94E404006957A8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372681D1D6B5D0020CCE2 /* Carbon.framework */; };
+		94D126091D94E404006957A8 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372661D1D6B550020CCE2 /* AudioUnit.framework */; };
+		94D1260A1D94E404006957A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372641D1D6B4D0020CCE2 /* AudioToolbox.framework */; };
+		94D1260B1D94E404006957A8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372621D1D6B430020CCE2 /* CoreAudio.framework */; };
+		94D1260C1D94E404006957A8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372601D1D6B3C0020CCE2 /* CoreVideo.framework */; };
+		94D1260D1D94E429006957A8 /* sk_clib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07EA1D825FEC00A8EC32 /* sk_clib.cpp */; };
+		94D1260E1D94E42D006957A8 /* splashkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B080F1D825FEC00A8EC32 /* splashkit.cpp */; };
+		94D1260F1D94E4BA006957A8 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
+		94D126141D94E4FC006957A8 /* animations.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07ED1D825FEC00A8EC32 /* animations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126151D94E4FC006957A8 /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07EE1D825FEC00A8EC32 /* audio.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126161D94E4FC006957A8 /* bundles.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07EF1D825FEC00A8EC32 /* bundles.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126171D94E4FC006957A8 /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F01D825FEC00A8EC32 /* camera.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126181D94E4FC006957A8 /* circle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F11D825FEC00A8EC32 /* circle_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126191D94E4FC006957A8 /* circle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F21D825FEC00A8EC32 /* circle_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261A1D94E4FC006957A8 /* clipping.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F31D825FEC00A8EC32 /* clipping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261B1D94E4FC006957A8 /* collisions.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F41D825FEC00A8EC32 /* collisions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261C1D94E4FC006957A8 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F51D825FEC00A8EC32 /* color.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261D1D94E4FC006957A8 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F61D825FEC00A8EC32 /* database.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261E1D94E4FC006957A8 /* drawing_options.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F71D825FEC00A8EC32 /* drawing_options.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1261F1D94E4FC006957A8 /* ellipse_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F81D825FEC00A8EC32 /* ellipse_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126201D94E4FC006957A8 /* geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07F91D825FEC00A8EC32 /* geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126211D94E4FC006957A8 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07FA1D825FEC00A8EC32 /* graphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126221D94E4FC006957A8 /* images.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07FB1D825FEC00A8EC32 /* images.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126231D94E4FC006957A8 /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07FC1D825FEC00A8EC32 /* input.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126241D94E4FC006957A8 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07FD1D825FEC00A8EC32 /* json.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126251D94E4FC006957A8 /* keyboard_input.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B07FE1D825FEC00A8EC32 /* keyboard_input.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126261D94E4FC006957A8 /* line_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08001D825FEC00A8EC32 /* line_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126271D94E4FC006957A8 /* line_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08011D825FEC00A8EC32 /* line_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126281D94E4FC006957A8 /* matrix_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08021D825FEC00A8EC32 /* matrix_2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126291D94E4FC006957A8 /* mouse_input.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08031D825FEC00A8EC32 /* mouse_input.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262A1D94E4FC006957A8 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08041D825FEC00A8EC32 /* music.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262B1D94E4FC006957A8 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08051D825FEC00A8EC32 /* networking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262C1D94E4FC006957A8 /* physics.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08061D825FEC00A8EC32 /* physics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262D1D94E4FC006957A8 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08071D825FEC00A8EC32 /* point_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262E1D94E4FC006957A8 /* point_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08081D825FEC00A8EC32 /* point_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1262F1D94E4FC006957A8 /* quad_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08091D825FEC00A8EC32 /* quad_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126301D94E4FC006957A8 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B080A1D825FEC00A8EC32 /* random.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126311D94E4FC006957A8 /* rectangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B080B1D825FEC00A8EC32 /* rectangle_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126321D94E4FC006957A8 /* rectangle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B080C1D825FEC00A8EC32 /* rectangle_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126331D94E4FC006957A8 /* resources.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B080D1D825FEC00A8EC32 /* resources.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126341D94E4FC006957A8 /* sound.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B080E1D825FEC00A8EC32 /* sound.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126351D94E4FC006957A8 /* splashkit.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08101D825FEC00A8EC32 /* splashkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126361D94E4FC006957A8 /* sprites.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08121D825FEC00A8EC32 /* sprites.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126371D94E4FC006957A8 /* text.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08131D825FEC00A8EC32 /* text.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126381D94E4FC006957A8 /* text_input.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08141D825FEC00A8EC32 /* text_input.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126391D94E4FC006957A8 /* timers.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08151D825FEC00A8EC32 /* timers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263A1D94E4FC006957A8 /* triangle_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08161D825FEC00A8EC32 /* triangle_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263B1D94E4FC006957A8 /* triangle_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08171D825FEC00A8EC32 /* triangle_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263C1D94E4FC006957A8 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08181D825FEC00A8EC32 /* types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263D1D94E4FC006957A8 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B08191D825FEC00A8EC32 /* utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263E1D94E4FC006957A8 /* vector_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081A1D825FEC00A8EC32 /* vector_2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D1263F1D94E4FC006957A8 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081B1D825FEC00A8EC32 /* web.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126401D94E4FC006957A8 /* web_server.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081C1D825FEC00A8EC32 /* web_server.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126411D94E4FC006957A8 /* window_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081D1D825FEC00A8EC32 /* window_manager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94D126441D94E5C2006957A8 /* libSplashKitCpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */; };
 		94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
@@ -278,6 +338,23 @@
 		FCB6B3BC1D61423E00011965 /* music.h in Headers */ = {isa = PBXBuildFile; fileRef = FCB6B3BA1D61423E00011965 /* music.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		94D126101D94E4D6006957A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 942371D41D1D540C0020CCE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA3ABF981D82483F0064C29A;
+			remoteInfo = TranslatorTest;
+		};
+		94D126121D94E4DE006957A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 942371D41D1D540C0020CCE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 942371DB1D1D540C0020CCE2;
+			remoteInfo = SplashKitBackend;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		878BAFEA1D52DF3B00483C3E /* Copy Resources Directory */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -293,27 +370,10 @@
 		942372291D1D68E30020CCE2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = Resources/sounds;
+			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9424B5B71D44FBCA0039B3AF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Resources/images;
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9424B5BD1D4619340039B3AF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Resources/fonts;
-			dstSubfolderSpec = 7;
-			files = (
+				94D1260F1D94E4BA006957A8 /* Resources in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +546,7 @@
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
 		94D125EF1D94CC49006957A8 /* SimpleWebService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleWebService; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D125F11D94CC49006957A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSplashKitCpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_cave_escape.cpp; sourceTree = "<group>"; };
 		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
@@ -637,6 +698,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D126441D94E5C2006957A8 /* libSplashKitCpp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D125F71D94E38C006957A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D126031D94E3F6006957A8 /* libSplashKitBackend.a in Frameworks */,
+				94D126041D94E404006957A8 /* IOKit.framework in Frameworks */,
+				94D126051D94E404006957A8 /* ForceFeedback.framework in Frameworks */,
+				94D126061D94E404006957A8 /* CoreFoundation.framework in Frameworks */,
+				94D126071D94E404006957A8 /* Cocoa.framework in Frameworks */,
+				94D126081D94E404006957A8 /* Carbon.framework in Frameworks */,
+				94D126091D94E404006957A8 /* AudioUnit.framework in Frameworks */,
+				94D1260A1D94E404006957A8 /* AudioToolbox.framework in Frameworks */,
+				94D1260B1D94E404006957A8 /* CoreAudio.framework in Frameworks */,
+				94D1260C1D94E404006957A8 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +800,7 @@
 				94C0D0951D73B1E50099387A /* libsqlite.a */,
 				FA3ABF991D82483F0064C29A /* TranslatorTest */,
 				94D125EF1D94CC49006957A8 /* SimpleWebService */,
+				94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1175,6 +1255,59 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94D125F81D94E38C006957A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D126141D94E4FC006957A8 /* animations.h in Headers */,
+				94D126151D94E4FC006957A8 /* audio.h in Headers */,
+				94D126161D94E4FC006957A8 /* bundles.h in Headers */,
+				94D126171D94E4FC006957A8 /* camera.h in Headers */,
+				94D126181D94E4FC006957A8 /* circle_drawing.h in Headers */,
+				94D126191D94E4FC006957A8 /* circle_geometry.h in Headers */,
+				94D1261A1D94E4FC006957A8 /* clipping.h in Headers */,
+				94D1261B1D94E4FC006957A8 /* collisions.h in Headers */,
+				94D1261C1D94E4FC006957A8 /* color.h in Headers */,
+				94D1261D1D94E4FC006957A8 /* database.h in Headers */,
+				94D1261E1D94E4FC006957A8 /* drawing_options.h in Headers */,
+				94D1261F1D94E4FC006957A8 /* ellipse_drawing.h in Headers */,
+				94D126201D94E4FC006957A8 /* geometry.h in Headers */,
+				94D126211D94E4FC006957A8 /* graphics.h in Headers */,
+				94D126221D94E4FC006957A8 /* images.h in Headers */,
+				94D126231D94E4FC006957A8 /* input.h in Headers */,
+				94D126241D94E4FC006957A8 /* json.h in Headers */,
+				94D126251D94E4FC006957A8 /* keyboard_input.h in Headers */,
+				94D126261D94E4FC006957A8 /* line_drawing.h in Headers */,
+				94D126271D94E4FC006957A8 /* line_geometry.h in Headers */,
+				94D126281D94E4FC006957A8 /* matrix_2d.h in Headers */,
+				94D126291D94E4FC006957A8 /* mouse_input.h in Headers */,
+				94D1262A1D94E4FC006957A8 /* music.h in Headers */,
+				94D1262B1D94E4FC006957A8 /* networking.h in Headers */,
+				94D1262C1D94E4FC006957A8 /* physics.h in Headers */,
+				94D1262D1D94E4FC006957A8 /* point_drawing.h in Headers */,
+				94D1262E1D94E4FC006957A8 /* point_geometry.h in Headers */,
+				94D1262F1D94E4FC006957A8 /* quad_geometry.h in Headers */,
+				94D126301D94E4FC006957A8 /* random.h in Headers */,
+				94D126311D94E4FC006957A8 /* rectangle_drawing.h in Headers */,
+				94D126321D94E4FC006957A8 /* rectangle_geometry.h in Headers */,
+				94D126331D94E4FC006957A8 /* resources.h in Headers */,
+				94D126341D94E4FC006957A8 /* sound.h in Headers */,
+				94D126351D94E4FC006957A8 /* splashkit.h in Headers */,
+				94D126361D94E4FC006957A8 /* sprites.h in Headers */,
+				94D126371D94E4FC006957A8 /* text.h in Headers */,
+				94D126381D94E4FC006957A8 /* text_input.h in Headers */,
+				94D126391D94E4FC006957A8 /* timers.h in Headers */,
+				94D1263A1D94E4FC006957A8 /* triangle_drawing.h in Headers */,
+				94D1263B1D94E4FC006957A8 /* triangle_geometry.h in Headers */,
+				94D1263C1D94E4FC006957A8 /* types.h in Headers */,
+				94D1263D1D94E4FC006957A8 /* utils.h in Headers */,
+				94D1263E1D94E4FC006957A8 /* vector_2d.h in Headers */,
+				94D1263F1D94E4FC006957A8 /* web.h in Headers */,
+				94D126401D94E4FC006957A8 /* web_server.h in Headers */,
+				94D126411D94E4FC006957A8 /* window_manager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94E699511D6F395500FBFA28 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1212,8 +1345,6 @@
 				942372271D1D68E30020CCE2 /* Sources */,
 				942372281D1D68E30020CCE2 /* Frameworks */,
 				942372291D1D68E30020CCE2 /* CopyFiles */,
-				9424B5B71D44FBCA0039B3AF /* CopyFiles */,
-				9424B5BD1D4619340039B3AF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1257,6 +1388,25 @@
 			productName = SimpleWebService;
 			productReference = 94D125EF1D94CC49006957A8 /* SimpleWebService */;
 			productType = "com.apple.product-type.tool";
+		};
+		94D125F91D94E38C006957A8 /* SplashKitCpp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94D126001D94E38D006957A8 /* Build configuration list for PBXNativeTarget "SplashKitCpp" */;
+			buildPhases = (
+				94D125F61D94E38C006957A8 /* Sources */,
+				94D125F71D94E38C006957A8 /* Frameworks */,
+				94D125F81D94E38C006957A8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94D126131D94E4DE006957A8 /* PBXTargetDependency */,
+				94D126111D94E4D6006957A8 /* PBXTargetDependency */,
+			);
+			name = SplashKitCpp;
+			productName = libSplashKit;
+			productReference = 94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		94E699521D6F395500FBFA28 /* civetweb */ = {
 			isa = PBXNativeTarget;
@@ -1315,6 +1465,10 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					94D125F91D94E38C006957A8 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					94E699521D6F395500FBFA28 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -1341,6 +1495,7 @@
 				94C0D0941D73B1E50099387A /* sqlite */,
 				FA3ABF981D82483F0064C29A /* TranslatorTest */,
 				94D125EE1D94CC49006957A8 /* SimpleWebService */,
+				94D125F91D94E38C006957A8 /* SplashKitCpp */,
 			);
 		};
 /* End PBXProject section */
@@ -1475,6 +1630,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94D125F61D94E38C006957A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D1260D1D94E429006957A8 /* sk_clib.cpp in Sources */,
+				94D1260E1D94E42D006957A8 /* splashkit.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94E6994F1D6F395500FBFA28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1552,6 +1716,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94D126111D94E4D6006957A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA3ABF981D82483F0064C29A /* TranslatorTest */;
+			targetProxy = 94D126101D94E4D6006957A8 /* PBXContainerItemProxy */;
+		};
+		94D126131D94E4DE006957A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 942371DB1D1D540C0020CCE2 /* SplashKitBackend */;
+			targetProxy = 94D126121D94E4DE006957A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		942371E51D1D540C0020CCE2 /* Debug */ = {
@@ -1785,6 +1962,38 @@
 			};
 			name = Release;
 		};
+		94D126011D94E38D006957A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"-l",
+					curl,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94D126021D94E38D006957A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"-l",
+					curl,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		94E6995C1D6F395500FBFA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1892,6 +2101,14 @@
 			buildConfigurations = (
 				94D125F41D94CC49006957A8 /* Debug */,
 				94D125F51D94CC49006957A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		94D126001D94E38D006957A8 /* Build configuration list for PBXNativeTarget "SplashKitCpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D126011D94E38D006957A8 /* Debug */,
+				94D126021D94E38D006957A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
