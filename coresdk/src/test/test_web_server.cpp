@@ -19,7 +19,7 @@ using namespace splashkit_lib;
 
 bool handle_request(server_request r)
 {
-    string uri = request_get_uri(r);
+    string uri = request_uri(r);
     cout << "Matching routes for " << uri << "\n";
     if (uri.find("/stop") != string::npos)
     {

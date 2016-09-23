@@ -126,6 +126,18 @@ namespace splashkit_lib
     void send_response(server_request r, http_status_code code, string message, string content_type);
 
     /**
+     * Sends a message to a given `server_request` with the specified content type.
+     *
+     * @param r             The `server_request` to send the response to
+     * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
+     * @param message       The messsage, in the form of a `server_response`, to be sent.
+     *
+     * @attribute class server_request
+     * @attribute self  r
+     */
+    void send_response(server_request r, http_status_code code, string message);
+
+    /**
      * Sends a message to a given `server_request`.
      *
      * @param r       The request to be sent.

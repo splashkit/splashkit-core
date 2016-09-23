@@ -57,7 +57,7 @@ namespace splashkit_lib
         std::string result = "";
         while(getline(ifs, line))
         {
-            result += line;
+            result += line + "\n";
         }
 
         return result;

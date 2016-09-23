@@ -92,6 +92,11 @@ namespace splashkit_lib
         delete resp;
     }
 
+    void send_response(server_request r, http_status_code code, string message)
+    {
+        send_response(r, code, message, "text/html");
+    }
+
     void send_response(server_request r, json j)
     {
         send_response(r, OK, json_to_string(j), "application/json");
@@ -114,18 +119,18 @@ namespace splashkit_lib
         }
     }
 
-    string request_get_uri(server_request r)
+    string request_uri(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
         {
-            LOG(WARNING) << "request_get_uri called on an invalid request";
+            LOG(WARNING) << "Getting request uri with invalid request";
             return "";
         }
         
         return r->uri;
     }
 
-    http_method request_get_method(server_request r)
+    http_method request_method(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
         {
@@ -136,20 +141,20 @@ namespace splashkit_lib
         return r->method;
     }
 
-    string request_get_body(server_request r)
+    string request_body(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
         {
-            LOG(WARNING) << "request_get_body called on an invalid request";
+            LOG(WARNING) << "Getting request body with invalid request";
             return "";
         }
 
         return r->body;
     }
 
-    vector<string> request_get_uri_stubs(server_request r)
+    vector<string> request_uri_stubs(server_request r)
     {
-        string uri = request_get_uri(r);
+        string uri = request_uri(r);
         return split_uri_stubs(uri);
     }
 

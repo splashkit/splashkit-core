@@ -13,7 +13,6 @@
 #include "utils.h"
 
 const int LISTEN_PORTB = 5000;
-const int LISTEN_PORTA = LISTEN_PORTB + 1;
 
 using namespace splashkit_lib;
 

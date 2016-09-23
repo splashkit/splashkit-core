@@ -198,6 +198,16 @@
 		94D126401D94E4FC006957A8 /* web_server.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081C1D825FEC00A8EC32 /* web_server.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D126411D94E4FC006957A8 /* window_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = FA4B081D1D825FEC00A8EC32 /* window_manager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94D126441D94E5C2006957A8 /* libSplashKitCpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */; };
+		94D126451D94EA7C006957A8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372701D1D6B760020CCE2 /* IOKit.framework */; };
+		94D126461D94EA7C006957A8 /* ForceFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726E1D1D6B710020CCE2 /* ForceFeedback.framework */; };
+		94D126471D94EA7C006957A8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726C1D1D6B6A0020CCE2 /* CoreFoundation.framework */; };
+		94D126481D94EA7C006957A8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726A1D1D6B630020CCE2 /* Cocoa.framework */; };
+		94D126491D94EA7C006957A8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372681D1D6B5D0020CCE2 /* Carbon.framework */; };
+		94D1264A1D94EA7C006957A8 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372661D1D6B550020CCE2 /* AudioUnit.framework */; };
+		94D1264B1D94EA7C006957A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372641D1D6B4D0020CCE2 /* AudioToolbox.framework */; };
+		94D1264C1D94EA7C006957A8 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372621D1D6B430020CCE2 /* CoreAudio.framework */; };
+		94D1264D1D94EA7C006957A8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372601D1D6B3C0020CCE2 /* CoreVideo.framework */; };
+		94D1264E1D94F8DA006957A8 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
@@ -379,12 +389,13 @@
 		};
 		94D125ED1D94CC49006957A8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				94D1264E1D94F8DA006957A8 /* Resources in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FA3821BC1D7930EA00AD1C2B /* Copy libSplashKit.a to out/lib */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -699,6 +710,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D126441D94E5C2006957A8 /* libSplashKitCpp.a in Frameworks */,
+				94D126451D94EA7C006957A8 /* IOKit.framework in Frameworks */,
+				94D126461D94EA7C006957A8 /* ForceFeedback.framework in Frameworks */,
+				94D126471D94EA7C006957A8 /* CoreFoundation.framework in Frameworks */,
+				94D126481D94EA7C006957A8 /* Cocoa.framework in Frameworks */,
+				94D126491D94EA7C006957A8 /* Carbon.framework in Frameworks */,
+				94D1264A1D94EA7C006957A8 /* AudioUnit.framework in Frameworks */,
+				94D1264B1D94EA7C006957A8 /* AudioToolbox.framework in Frameworks */,
+				94D1264C1D94EA7C006957A8 /* CoreAudio.framework in Frameworks */,
+				94D1264D1D94EA7C006957A8 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1947,6 +1967,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1958,6 +1979,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1970,10 +1992,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				EXECUTABLE_PREFIX = lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = (
-					"-l",
-					curl,
-				);
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1986,10 +2005,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				EXECUTABLE_PREFIX = lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				OTHER_LDFLAGS = (
-					"-l",
-					curl,
-				);
+				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

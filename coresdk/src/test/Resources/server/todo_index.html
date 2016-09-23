@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Jon Meyers"/>
+        <meta name="author" content="Andrew Cain"/>
+        <title>SplashKit Test Get People</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>List All Todos</h1>
+                <div class="col-xs-12">
+                    <button id="load" type="button" class="btn btn-default">Load Todos</button>
+                    <div id="todos"></div>
+                    <p id="msg"></p>
+                </div>
+            </div>
+            <div class="row col-xs-12">
+                <h1>Add Todo</h1>
+                <form>
+                    <div class="form-group">
+                        <input type="text" id="todo" placeholder="New todo"/>
+                    </div>
+                    <button type="button" class="btn btn-default" id="sub">Add Todo</button>
+                </form>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                load_todos = function() {
+                    var content = $('#todos');
+                    content.empty();
+                    $.ajax({
+                        url: `http://localhost:8080/todos`,
+                        type: 'GET',
+                        dataType: 'json',
+                        contentType: 'application/json',
+
+                        success: function(response) {
+                            $.each(response.todos, function(i, item) {
+                                var para = $(`<p id='${i}'>ID: ${i} - ${item}</p>`);
+                                para.append("<button class='btn btn-default del'>Remove Todo</button>");
+                                content.append(para);
+                            });
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(`Error retrieving JSON: ${textStatus}`);
+                            $('#msg').empty().append(`Error reading from JSON file`);
+                        }
+                    });
+                };
+
+                load_todos();
+
+                $(document).on("click", ".del", function() {
+                    var content = $('#todos');
+                    var id = $(this).parent().attr('id');
+                    $.ajax({
+                        url: `http://localhost:8080/todos/${id}`,
+                        type: 'DELETE',
+                        success: function(response) {
+                            console.log(`successfully deleted ${id}`);
+                            $('#load').trigger('click');
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(`Error deleting from JSON file: ${textStatus}`);
+                            $('#msg').empty().append(`Error deleting from JSON file`);
+                        }
+                    });
+                });
+                $('#load').click(function() {
+                    load_todos();
+                });
+                $('#sub').click(function() {
+                    var todo = $('#todo').val();
+                    console.log(todo);
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:8080/todos',
+                        data: todo,
+                        success: function() {
+                            load_todos();
+                            console.log(`Successfully added todo!`);
+                            $('#msg').empty().append(`Successfully added person: ${name}`);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(`Error posting to JSON: ${textStatus}`);
+                            $('#msg').empty().append(`Error writing to JSON file`);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

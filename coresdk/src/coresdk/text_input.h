@@ -43,8 +43,8 @@ namespace splashkit_lib
      * Start reading text in the window within the bounds of the
      * supplied rectangle. The text will start with an initial value.
      *
-     * @param rect The area where the text will be entered.
      * @param wind The window where the text will be entered
+     * @param rect The area where the text will be entered.
      * @param initial_text The initial text, which may be edited by the user.
      */
     void start_reading_text(window wind, rectangle rect, string initial_text);
