@@ -63,7 +63,7 @@ void run_single_server_test()
         }
     }
 
-    if (has_waiting_requests(server))
+    if (has_incoming_requests(server))
     {
         cerr << "Still has requests...\n";
     }
