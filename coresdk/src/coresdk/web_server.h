@@ -86,7 +86,7 @@ namespace splashkit_lib
      * @attribute self  server
      * @attribute class web_server
      */
-    bool has_waiting_requests(web_server server);
+    bool has_incoming_requests(web_server server);
 
     /**
      * Stops a given `web_server` instance.
@@ -158,6 +158,27 @@ namespace splashkit_lib
     void send_response(server_request r, json j);
 
     /**
+     * Sends a response code to a given `server_request`.
+     *
+     * @param r             The `server_request` to send the response to
+     * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
+     *
+     * @attribute class server_request
+     * @attribute self  r
+     */
+    void send_response(server_request r, http_status_code code);
+
+    /**
+     * Sends a response with no content to a `server_request`.
+     *
+     * @param r             The `server_request` to send the response to
+     *
+     * @attribute class server_request
+     * @attribute self  r
+     */
+    void send_response(server_request r);
+
+    /**
      * Serves a HTML file to the given `server_request`.
      *
      * @param r        The request to be sent.
@@ -219,5 +240,16 @@ namespace splashkit_lib
      * @return The array of stubs as strings.
      */
     vector<string> split_uri_stubs(const string &uri);
+
+
+    /**
+     * Checks if a request is after a given resource.
+     *
+     * @param  request The request to check
+     * @param  method  The kind of request
+     * @param  path    The resource/route path
+     * @return         True if the request is for the indicated method and path
+     */
+    bool route_matches(server_request request, http_method method, const string &path);
 }
 #endif /* web_server_h_ */

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Jon Meyers"/>
+        <meta name="author" content="Andrew Cain"/>
+        <title>SplashKit Message of the Moment!</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>Message of the Moment</h1>
+                <p class="lead" id="msg"></p>
+                <button type="button" class="btn btn-default" id="load">Load</button>
+            </div>
+            <div class="row">
+                <h1>Set Message</h1>
+                <form id="form">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="message" placeholder="New message"/>
+                    </div>
+                    <button type="button" class="btn btn-default" id="sub">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                load_message = function() {
+                    var content = $('#msg');
+                    content.empty();
+                    $.ajax({
+                        url: `http://localhost:8080/message`,
+                        type: 'GET',
+                        dataType: 'text',
+                        contentType: 'text/plain',
+
+                        success: function(response) {
+                            content.append(response);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(`Error retrieving JSON: ${textStatus}`);
+                            content.append(`Error reading from JSON file`);
+                        }
+                    });
+                };
+
+                load_message();
+
+                $('#load').click(function() {
+                    load_message();
+                });
+
+                $('#sub').click(function() {
+                    var message = $('#message').val();
+                    console.log(message);
+                    $.ajax({
+                        type: 'PUT',
+                        url: 'http://localhost:8080/message',
+                        data: message,
+                        success: function() {
+                           load_message();
+                           $('#form')[0].reset();
+                           console.log(`Successfully added message!`);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(`Error posting to JSON: ${textStatus}`);
+                            $('#msg').empty().append(`Error writing to JSON file`);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

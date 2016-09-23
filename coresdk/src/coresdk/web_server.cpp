@@ -23,7 +23,7 @@ namespace splashkit_lib
         return start_web_server("8080");
     }
 
-    bool has_waiting_requests(web_server server)
+    bool has_incoming_requests(web_server server)
     {
         if (INVALID_PTR(server, WEB_SERVER_PTR))
         {
@@ -102,6 +102,16 @@ namespace splashkit_lib
         send_response(r, OK, json_to_string(j), "application/json");
     }
 
+    void send_response(server_request r, http_status_code code)
+    {
+        send_response(r, code, "", "text/plain");
+    }
+
+    void send_response(server_request r)
+    {
+        send_response(r, NO_CONTENT, "", "text/plain");
+    }
+
     void send_html_file_response(server_request r, string filename)
     {
         string extension = ".html";
@@ -176,5 +186,11 @@ namespace splashkit_lib
         }
 
         return result;
+    }
+
+    bool route_matches(server_request request, http_method method, const string &path)
+    {
+        if ( request_method(request) != method ) return false;
+        return request_uri(request) == path;
     }
 }
