@@ -137,6 +137,7 @@
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; };
 		94C749221D478BBB006A9052 /* web.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C749201D478BBB006A9052 /* web.cpp */; };
 		94C749231D478BBB006A9052 /* web.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C749211D478BBB006A9052 /* web.h */; };
+		94D125F21D94CC49006957A8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D125F11D94CC49006957A8 /* main.cpp */; };
 		94D21C2E1D7A107300AB9E78 /* test_cave_escape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
@@ -263,7 +264,6 @@
 		FA4B07C01D825FCC00A8EC32 /* translator_test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */; };
 		FA4B081E1D82601600A8EC32 /* sk_clib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07EA1D825FEC00A8EC32 /* sk_clib.cpp */; };
 		FA4B081F1D82601900A8EC32 /* splashkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B080F1D825FEC00A8EC32 /* splashkit.cpp */; };
-		FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D161D82273700D7C7FF /* test_json.cpp */; };
 		FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D181D8227E500D7C7FF /* test_networking.cpp */; };
 		FAAB8D1B1D822A0F00D7C7FF /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
@@ -316,6 +316,15 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D125ED1D94CC49006957A8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 		FA3821BC1D7930EA00AD1C2B /* Copy libSplashKit.a to out/lib */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -475,6 +484,8 @@
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
 		94C749201D478BBB006A9052 /* web.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web.cpp; sourceTree = "<group>"; };
 		94C749211D478BBB006A9052 /* web.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
+		94D125EF1D94CC49006957A8 /* SimpleWebService */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleWebService; sourceTree = BUILT_PRODUCTS_DIR; };
+		94D125F11D94CC49006957A8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_cave_escape.cpp; sourceTree = "<group>"; };
 		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
@@ -558,7 +569,6 @@
 		FA4B081B1D825FEC00A8EC32 /* web.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = web.h; sourceTree = "<group>"; };
 		FA4B081C1D825FEC00A8EC32 /* web_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = web_server.h; sourceTree = "<group>"; };
 		FA4B081D1D825FEC00A8EC32 /* window_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window_manager.h; sourceTree = "<group>"; };
-		FAAB8D161D82273700D7C7FF /* test_json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_json.cpp; sourceTree = "<group>"; };
 		FAAB8D181D8227E500D7C7FF /* test_networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_networking.cpp; sourceTree = "<group>"; };
 		FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_driver.cpp; sourceTree = "<group>"; };
 		FAAC93FD1D8016D500B73558 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
@@ -617,6 +627,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		94C0D0921D73B1E50099387A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D125EC1D94CC49006957A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -703,6 +720,7 @@
 				94E699531D6F395500FBFA28 /* libcivetweb.a */,
 				94C0D0951D73B1E50099387A /* libsqlite.a */,
 				FA3ABF991D82483F0064C29A /* TranslatorTest */,
+				94D125EF1D94CC49006957A8 /* SimpleWebService */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -710,6 +728,7 @@
 		942371EC1D1D548A0020CCE2 /* Src */ = {
 			isa = PBXGroup;
 			children = (
+				94D125EA1D94CC12006957A8 /* demos */,
 				942371ED1D1D548A0020CCE2 /* backend */,
 				9423721E1D1D5D4E0020CCE2 /* coresdk */,
 				942372221D1D668A0020CCE2 /* test */,
@@ -801,7 +820,6 @@
 				94444B401D644FE10059BF3B /* test_main.h */,
 				94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */,
 				94E6993C1D6F380300FBFA28 /* test_web_server.cpp */,
-				FAAB8D161D82273700D7C7FF /* test_json.cpp */,
 				FAAB8D181D8227E500D7C7FF /* test_networking.cpp */,
 				942372391D1D69850020CCE2 /* test_main.cpp */,
 				941C8A341D5D6FE2003112B2 /* test_text.cpp */,
@@ -951,6 +969,23 @@
 			);
 			name = sqlite;
 			path = ../../../projects/Xcode/sqlite;
+			sourceTree = "<group>";
+		};
+		94D125EA1D94CC12006957A8 /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				94D125F01D94CC49006957A8 /* SimpleWebService */,
+			);
+			name = demos;
+			sourceTree = "<group>";
+		};
+		94D125F01D94CC49006957A8 /* SimpleWebService */ = {
+			isa = PBXGroup;
+			children = (
+				94D125F11D94CC49006957A8 /* main.cpp */,
+			);
+			name = SimpleWebService;
+			path = ../../projects/Xcode/SimpleWebService;
 			sourceTree = "<group>";
 		};
 		94DF47021D740B0700E3D9AF /* Sound Related */ = {
@@ -1206,6 +1241,23 @@
 			productReference = 94C0D0951D73B1E50099387A /* libsqlite.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		94D125EE1D94CC49006957A8 /* SimpleWebService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94D125F31D94CC49006957A8 /* Build configuration list for PBXNativeTarget "SimpleWebService" */;
+			buildPhases = (
+				94D125EB1D94CC49006957A8 /* Sources */,
+				94D125EC1D94CC49006957A8 /* Frameworks */,
+				94D125ED1D94CC49006957A8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleWebService;
+			productName = SimpleWebService;
+			productReference = 94D125EF1D94CC49006957A8 /* SimpleWebService */;
+			productType = "com.apple.product-type.tool";
+		};
 		94E699521D6F395500FBFA28 /* civetweb */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94E6995B1D6F395500FBFA28 /* Build configuration list for PBXNativeTarget "civetweb" */;
@@ -1259,6 +1311,10 @@
 					94C0D0941D73B1E50099387A = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					94D125EE1D94CC49006957A8 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					94E699521D6F395500FBFA28 = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -1284,6 +1340,7 @@
 				94E699521D6F395500FBFA28 /* civetweb */,
 				94C0D0941D73B1E50099387A /* sqlite */,
 				FA3ABF981D82483F0064C29A /* TranslatorTest */,
+				94D125EE1D94CC49006957A8 /* SimpleWebService */,
 			);
 		};
 /* End PBXProject section */
@@ -1395,7 +1452,6 @@
 				94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */,
-				FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
 				94E6993E1D6F380800FBFA28 /* test_web_server.cpp in Sources */,
 				941C8A331D5CBE30003112B2 /* test_animation.cpp in Sources */,
@@ -1408,6 +1464,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D125EB1D94CC49006957A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D125F21D94CC49006957A8 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1699,6 +1763,28 @@
 			};
 			name = Release;
 		};
+		94D125F41D94CC49006957A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94D125F51D94CC49006957A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		94E6995C1D6F395500FBFA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1800,6 +1886,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		94D125F31D94CC49006957A8 /* Build configuration list for PBXNativeTarget "SimpleWebService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D125F41D94CC49006957A8 /* Debug */,
+				94D125F51D94CC49006957A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		94E6995B1D6F395500FBFA28 /* Build configuration list for PBXNativeTarget "civetweb" */ = {
 			isa = XCConfigurationList;

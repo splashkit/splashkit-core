@@ -30,7 +30,7 @@ struct person
 
 static vector<person> people;
 
-static map<string, map<string, function<void(server_request, string)>>> routes;
+static map<http_method, map<string, function<void(server_request, string)>>> routes;
 
 json person_to_json(person p)
 {
@@ -168,14 +168,14 @@ void get_person_route(server_request request, string uri)
 
 void add_routes()
 {
-    routes["GET"].insert({"", root_route});
+    routes[HTTP_GET].insert({"", root_route});
 
-    routes["GET"].insert({"names", names_get_routes});
-    routes["POST"].insert({"names", names_post_routes});
-    routes["DELETE"].insert({"names", names_delete_route});
+    routes[HTTP_GET].insert({"names", names_get_routes});
+    routes[HTTP_POST].insert({"names", names_post_routes});
+    routes[HTTP_DELETE].insert({"names", names_delete_route});
 
-    routes["GET"].insert({"post_person", post_person_route});
-    routes["GET"].insert({"get_person", get_person_route});
+    routes[HTTP_GET].insert({"post_person", post_person_route});
+    routes[HTTP_GET].insert({"get_person", get_person_route});
 }
 
 void run_restful_web_service()
@@ -193,7 +193,7 @@ void run_restful_web_service()
     {
         auto request = next_web_request(server);
 
-        string method = request_get_method(request);
+        http_method method = request_get_method(request);
 
         string uri = request_get_uri(request);
 

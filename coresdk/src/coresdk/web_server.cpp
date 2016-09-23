@@ -125,12 +125,12 @@ namespace splashkit_lib
         return r->uri;
     }
 
-    string request_get_method(server_request r)
+    http_method request_get_method(server_request r)
     {
         if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
         {
-            LOG(WARNING) << "request_get_method called on an invalid request";
-            return "";
+            LOG(WARNING) << "Requesting http method on an invalid request";
+            return UNKNOWN_HTTP_METHOD;
         }
 
         return r->method;

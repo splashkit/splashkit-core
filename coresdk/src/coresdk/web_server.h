@@ -34,6 +34,16 @@ namespace splashkit_lib
      */
     typedef struct sk_server_response *server_response;
 
+    
+    enum http_method
+    {
+        HTTP_GET,
+        HTTP_POST,
+        HTTP_PUT,
+        HTTP_DELETE,
+        UNKNOWN_HTTP_METHOD
+    };
+
     /**
      * Starts the web server on a given port number.
      *
@@ -150,9 +160,9 @@ namespace splashkit_lib
      *
      * @param r A request object.
      *
-     * @returns Returns the request method as a string.
+     * @returns Returns the request method.
      */
-    string request_get_method(server_request r);
+    http_method request_get_method(server_request r);
 
     /**
      * Returns the body of the request.

@@ -44,9 +44,29 @@ namespace splashkit_lib
         sk_server_request *r = new sk_server_request;
         r->id = WEB_SERVER_REQUEST_PTR;
         r->uri = request_info->request_uri;
-        r->method = request_info->request_method;
+        if ( strncmp(request_info->request_method, "GET", 4) )
+        {
+            r->method = HTTP_GET;
+        }
+        else if ( strncmp(request_info->request_method, "PUT", 4) )
+        {
+            r->method = HTTP_PUT;
+        }
+        else if ( strncmp(request_info->request_method, "POST", 5) )
+        {
+            r->method = HTTP_POST;
+        }
+        else if ( strncmp(request_info->request_method, "DELETE", 7) )
+        {
+            r->method = HTTP_DELETE;
+        }
+        else
+        {
+            LOG(ERROR) << "Http request got unknown method: " << request_info->request_method << ". Please report as issue to SplashKit dev team.";
+            r->method = UNKNOWN_HTTP_METHOD;
+        }
 
-        if (r->method == "POST" || r->method == "PUT")
+        if (r->method == HTTP_POST or r->method == HTTP_PUT)
         {
             char post_data[10240];
             int post_data_len;

@@ -14,6 +14,8 @@
 #include "audio.h"
 #include "color.h"
 #include "networking.h"
+#include "web_server.h"
+
 #include "concurrency_utils.h"
 #include "civetweb.h"
 
@@ -168,17 +170,9 @@ namespace splashkit_lib
         map<int, void *> _data;
     };
 
-    enum sk_http_method
-    {
-        HTTP_GET,
-        HTTP_POST,
-        HTTP_PUT,
-        HTTP_DELETE
-    };
-
     struct sk_http_request
     {
-        sk_http_method request_type;
+        http_method request_type;
         const char *url;
         unsigned short port;
         const char *body;
@@ -255,7 +249,7 @@ namespace splashkit_lib
     {
         pointer_identifier id;
         string uri;
-        string method;
+        http_method method;
         string body;
         semaphore control;
 
