@@ -303,6 +303,6 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP TRACE request for `path`
      */
-    bool is_options_request_for(http_request request, const string &path);
+    bool is_trace_request_for(http_request request, const string &path);
 }
 #endif /* web_server_h_ */
