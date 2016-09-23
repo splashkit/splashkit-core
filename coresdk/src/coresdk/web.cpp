@@ -64,7 +64,7 @@ namespace splashkit_lib
 
         response = new(_http_response_data);
         response->id = HTTP_RESPONSE_PTR;
-        response->data = make_request(HTTP_GET, url, port, "");
+        response->data = make_request(HTTP_GET_METHOD, url, port, "");
         return response;
     }
 
@@ -74,7 +74,7 @@ namespace splashkit_lib
 
         response = new _http_response_data;
         response->id = HTTP_RESPONSE_PTR;
-        response->data = make_request(HTTP_POST, url, port, body);
+        response->data = make_request(HTTP_POST_METHOD, url, port, body);
         return response;
     }
 

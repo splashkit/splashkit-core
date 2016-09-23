@@ -38,18 +38,18 @@ namespace splashkit_lib
      * The method token is used to indicate the kind of action to be performed
      * on the server. See [w3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
      *
-     * @constant HTTP_GET       A get method
-     * @constant HTTP_POST      A get method
-     * @constant HTTP_PUT       A get method
-     * @constant HTTP_DELETE    A get method
+     * @constant HTTP_GET_METHOD       A get method
+     * @constant HTTP_POST_METHOD      A get method
+     * @constant HTTP_PUT_METHOD       A get method
+     * @constant HTTP_DELETE_METHOD    A get method
      * @constant UNKNOWN_HTTP_METHOD A get method
      */
     enum http_method
     {
-        HTTP_GET,
-        HTTP_POST,
-        HTTP_PUT,
-        HTTP_DELETE,
+        HTTP_GET_METHOD,
+        HTTP_POST_METHOD,
+        HTTP_PUT_METHOD,
+        HTTP_DELETE_METHOD,
         UNKNOWN_HTTP_METHOD
     };
 
@@ -162,7 +162,7 @@ namespace splashkit_lib
      *
      * @returns Returns the requested URI in the form of a string.
      */
-    string request_get_uri(server_request r);
+    string request_uri(server_request r);
 
     /**
      * Returns the HTTP method of the client request.
@@ -171,7 +171,7 @@ namespace splashkit_lib
      *
      * @returns Returns the request method.
      */
-    http_method request_get_method(server_request r);
+    http_method request_method(server_request r);
 
     /**
      * Returns the body of the request.
@@ -180,7 +180,7 @@ namespace splashkit_lib
      *
      * @returns The body of the request.
      */
-    string request_get_body(server_request r);
+    string request_body(server_request r);
 
     /**
      * Returns an array of strings representing each stub of the URI.
@@ -193,7 +193,7 @@ namespace splashkit_lib
      *
      * @return The array of stubs as strings.
      */
-    vector<string> request_get_uri_stubs(server_request r);
+    vector<string> request_uri_stubs(server_request r);
 
     /**
      * Returns an array of strings representing each stub of the URI.

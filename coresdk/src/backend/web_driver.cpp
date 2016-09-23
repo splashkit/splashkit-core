@@ -328,13 +328,13 @@ namespace splashkit_lib
         internal_sk_init();
         
         switch (request.request_type) {
-            case HTTP_GET:
+            case HTTP_GET_METHOD:
                 return sk_http_get(request.url, request.port);
-            case HTTP_POST:
+            case HTTP_POST_METHOD:
                 return sk_http_post(request.url, request.port, request.body);
-            case HTTP_PUT:
+            case HTTP_PUT_METHOD:
                 return sk_http_put(request.url, request.port, request.body);
-            case HTTP_DELETE:
+            case HTTP_DELETE_METHOD:
                 return sk_http_delete(request.url, request.port, request.body);
             default:
                 return { 500, 0, NULL };

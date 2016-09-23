@@ -46,19 +46,19 @@ namespace splashkit_lib
         r->uri = request_info->request_uri;
         if ( strncmp(request_info->request_method, "GET", 4) )
         {
-            r->method = HTTP_GET;
+            r->method = HTTP_GET_METHOD;
         }
         else if ( strncmp(request_info->request_method, "PUT", 4) )
         {
-            r->method = HTTP_PUT;
+            r->method = HTTP_PUT_METHOD;
         }
         else if ( strncmp(request_info->request_method, "POST", 5) )
         {
-            r->method = HTTP_POST;
+            r->method = HTTP_POST_METHOD;
         }
         else if ( strncmp(request_info->request_method, "DELETE", 7) )
         {
-            r->method = HTTP_DELETE;
+            r->method = HTTP_DELETE_METHOD;
         }
         else
         {
@@ -66,7 +66,7 @@ namespace splashkit_lib
             r->method = UNKNOWN_HTTP_METHOD;
         }
 
-        if (r->method == HTTP_POST or r->method == HTTP_PUT)
+        if (r->method == HTTP_POST_METHOD or r->method == HTTP_PUT_METHOD)
         {
             char post_data[10240];
             int post_data_len;

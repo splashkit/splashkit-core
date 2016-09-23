@@ -7,7 +7,6 @@
 
 #include "json.h"
 #include "web_server.h"
-#include "utility_functions.h"
 
 #include "easylogging++.h"
 
@@ -88,7 +87,7 @@ string people_to_json()
 
 string get_url_link(string stub, string uri)
 {
-    return cat({"<a href=\"", uri, "\">", stub, "</a>"});
+    return string("<a href=\"") + uri + "\">" + stub + "</a>";
 }
 
 void root_route(server_request request, string uri)
@@ -125,7 +124,7 @@ void names_post_routes(server_request request, string uri)
 
     if (stubs.size() == 1)
     {
-        json p = json_from_string(request->body);
+        json p = json_from_string(request_body(request));
         if (json_count_keys(p) != 0)
         {
             people.push_back(json_to_person(p));
@@ -168,14 +167,14 @@ void get_person_route(server_request request, string uri)
 
 void add_routes()
 {
-    routes[HTTP_GET].insert({"", root_route});
+    routes[HTTP_GET_METHOD].insert({"", root_route});
 
-    routes[HTTP_GET].insert({"names", names_get_routes});
-    routes[HTTP_POST].insert({"names", names_post_routes});
-    routes[HTTP_DELETE].insert({"names", names_delete_route});
+    routes[HTTP_GET_METHOD].insert({"names", names_get_routes});
+    routes[HTTP_POST_METHOD].insert({"names", names_post_routes});
+    routes[HTTP_DELETE_METHOD].insert({"names", names_delete_route});
 
-    routes[HTTP_GET].insert({"post_person", post_person_route});
-    routes[HTTP_GET].insert({"get_person", get_person_route});
+    routes[HTTP_GET_METHOD].insert({"post_person", post_person_route});
+    routes[HTTP_GET_METHOD].insert({"get_person", get_person_route});
 }
 
 void run_restful_web_service()
@@ -193,9 +192,9 @@ void run_restful_web_service()
     {
         auto request = next_web_request(server);
 
-        http_method method = request_get_method(request);
+        http_method method = request_method(request);
 
-        string uri = request_get_uri(request);
+        string uri = request_uri(request);
 
         if (uri.find("favicon.ico") != string::npos)
         {
