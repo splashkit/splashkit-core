@@ -44,19 +44,19 @@ namespace splashkit_lib
         sk_server_request *r = new sk_server_request;
         r->id = WEB_SERVER_REQUEST_PTR;
         r->uri = request_info->request_uri;
-        if ( strncmp(request_info->request_method, "GET", 4) )
+        if ( strncmp(request_info->request_method, "GET", 4) == 0 )
         {
             r->method = HTTP_GET_METHOD;
         }
-        else if ( strncmp(request_info->request_method, "PUT", 4) )
+        else if ( strncmp(request_info->request_method, "PUT", 4) == 0 )
         {
             r->method = HTTP_PUT_METHOD;
         }
-        else if ( strncmp(request_info->request_method, "POST", 5) )
+        else if ( strncmp(request_info->request_method, "POST", 5) == 0 )
         {
             r->method = HTTP_POST_METHOD;
         }
-        else if ( strncmp(request_info->request_method, "DELETE", 7) )
+        else if ( strncmp(request_info->request_method, "DELETE", 7) == 0 )
         {
             r->method = HTTP_DELETE_METHOD;
         }
