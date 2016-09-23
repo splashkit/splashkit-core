@@ -14,16 +14,16 @@ void process_request(web_server message_service, string &message)
 {
     server_request request = next_web_request(message_service);
 
-    if ( route_matches(request, HTTP_GET_METHOD, "/message") )
+    if ( is_get_request_for(request, "/message") )
     {
         send_response(request, message);
     }
-    else if ( route_matches(request, HTTP_PUT_METHOD, "/message") )
+    else if ( is_put_request_for(request, "/message") )
     {
         message = request_body(request);
         send_response(request);
     }
-    else if ( route_matches(request, HTTP_GET_METHOD, "/index.html") )
+    else if ( is_get_request_for(request, "/index.html") )
     {
         send_html_file_response(request, "message_index.html");
     }

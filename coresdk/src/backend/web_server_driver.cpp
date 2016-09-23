@@ -60,6 +60,14 @@ namespace splashkit_lib
         {
             r->method = HTTP_DELETE_METHOD;
         }
+        else if ( strncmp(request_info->request_method, "OPTIONS", 8) == 0 )
+        {
+            r->method = HTTP_OPTIONS_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "TRACE", 6) == 0 )
+        {
+            r->method = HTTP_TRACE_METHOD;
+        }
         else
         {
             LOG(ERROR) << "Http request got unknown method: " << request_info->request_method << ". Please report as issue to SplashKit dev team.";

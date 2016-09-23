@@ -188,9 +188,39 @@ namespace splashkit_lib
         return result;
     }
 
-    bool route_matches(server_request request, http_method method, const string &path)
+    bool is_request_for(server_request request, http_method method, const string &path)
     {
         if ( request_method(request) != method ) return false;
         return request_uri(request) == path;
+    }
+
+    bool is_get_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_GET_METHOD, path);
+    }
+
+    bool is_post_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_POST_METHOD, path);
+    }
+
+    bool is_put_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_PUT_METHOD, path);
+    }
+
+    bool is_delete_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_DELETE_METHOD, path);
+    }
+
+    bool is_options_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_OPTIONS_METHOD, path);
+    }
+
+    bool is_trace_request_for(server_request request, const string &path)
+    {
+        return is_request_for(request, HTTP_TRACE_METHOD, path);
     }
 }
