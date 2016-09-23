@@ -34,7 +34,16 @@ namespace splashkit_lib
      */
     typedef struct sk_server_response *server_response;
 
-    
+    /**
+     * The method token is used to indicate the kind of action to be performed
+     * on the server. See [w3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
+     *
+     * @constant HTTP_GET       A get method
+     * @constant HTTP_POST      A get method
+     * @constant HTTP_PUT       A get method
+     * @constant HTTP_DELETE    A get method
+     * @constant UNKNOWN_HTTP_METHOD A get method
+     */
     enum http_method
     {
         HTTP_GET,
