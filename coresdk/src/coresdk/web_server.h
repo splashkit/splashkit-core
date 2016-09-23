@@ -37,11 +37,13 @@ namespace splashkit_lib
      * The method token is used to indicate the kind of action to be performed
      * on the server. See [W3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
      *
-     * @constant HTTP_GET_METHOD       A get method
-     * @constant HTTP_POST_METHOD      A get method
-     * @constant HTTP_PUT_METHOD       A get method
-     * @constant HTTP_DELETE_METHOD    A get method
-     * @constant UNKNOWN_HTTP_METHOD A get method
+     * @constant HTTP_GET_METHOD        A get method
+     * @constant HTTP_POST_METHOD       A post method
+     * @constant HTTP_PUT_METHOD        A put method
+     * @constant HTTP_DELETE_METHOD     A delete method
+     * @constant HTTP_OPTIONS_METHOD    An options method
+     * @constant HTTP_TRACE_METHOD      A trace method
+     * @constant UNKNOWN_HTTP_METHOD    A method not recognised by SplashKit
      */
     enum http_method
     {
@@ -49,6 +51,8 @@ namespace splashkit_lib
         HTTP_POST_METHOD,
         HTTP_PUT_METHOD,
         HTTP_DELETE_METHOD,
+        HTTP_OPTIONS_METHOD,
+        HTTP_TRACE_METHOD,
         UNKNOWN_HTTP_METHOD
     };
 
@@ -249,6 +253,60 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is for the indicated method and path
      */
-    bool route_matches(server_request request, http_method method, const string &path);
+    bool is_request_for(server_request request, http_method method, const string &path);
+
+    /**
+     * Checks if a request wants to get a given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP GET request for `path`
+     */
+    bool is_get_request_for(server_request request, const string &path);
+
+    /**
+     * Checks if a request wants to create (post) a given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP POST request for `path`
+     */
+    bool is_post_request_for(server_request request, const string &path);
+
+    /**
+     * Checks if a request wants to update (put) a given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP PUT request for `path`
+     */
+    bool is_put_request_for(server_request request, const string &path);
+
+    /**
+     * Checks if a request wants to delete a given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP DELETE request for `path`
+     */
+    bool is_delete_request_for(server_request request, const string &path);
+
+    /**
+     * Checks if a request wants to check options for given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP OPTIONS request for `path`
+     */
+    bool is_options_request_for(server_request request, const string &path);
+
+    /**
+     * Checks if a request wants to trace a given resource.
+     *
+     * @param  request The request to check
+     * @param  path    The resource/route path
+     * @return         True if the request is a HTTP TRACE request for `path`
+     */
+    bool is_options_request_for(server_request request, const string &path);
 }
 #endif /* web_server_h_ */
