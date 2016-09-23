@@ -270,18 +270,18 @@ namespace splashkit_lib
      * Refer to [this article](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
      * for a detailed description of each code.
      *
-     * @constant OK                         The server accepted the request.
-     * @constant CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
-     * @constant NO_CONTENT                 The server successfully processed the request and is not returning any content.
-     * @constant BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
-     * @constant UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
-     * @constant FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
-     * @constant NOT_FOUND                  The requested resource could not be found but may be available in the future.
-     * @constant METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
-     * @constant REQUEST_TIMEOUT            The server timed out waiting for the request.
-     * @constant INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
-     * @constant NOT_IMPLEMENTED            The server does not recognize or implement the request method.
-     * @constant SERVICE_UNAVAILABLE        The server is currently unavailable.
+     * @constant HTTP_STATUS_OK                         The server accepted the request.
+     * @constant HTTP_STATUS_CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
+     * @constant HTTP_STATUS_NO_CONTENT                 The server successfully processed the request and is not returning any content.
+     * @constant HTTP_STATUS_BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
+     * @constant HTTP_STATUS_UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
+     * @constant HTTP_STATUS_FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
+     * @constant HTTP_STATUS_NOT_FOUND                  The requested resource could not be found but may be available in the future.
+     * @constant HTTP_STATUS_METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
+     * @constant HTTP_STATUS_REQUEST_TIMEOUT            The server timed out waiting for the request.
+     * @constant HTTP_STATUS_INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
+     * @constant HTTP_STATUS_NOT_IMPLEMENTED            The server does not recognize or implement the request method.
+     * @constant HTTP_STATUS_SERVICE_UNAVAILABLE        The server is currently unavailable.
      */
     enum http_status_code
     {

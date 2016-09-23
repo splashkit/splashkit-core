@@ -25,7 +25,7 @@ namespace splashkit_lib
     typedef struct sk_web_server *web_server;
 
     /**
-     * @attribute class server_request
+     * @attribute class http_request
      */
     typedef struct sk_http_request *http_request;
 
@@ -102,7 +102,7 @@ namespace splashkit_lib
     /**
      * Returns the next request on a given `web_server` instance
      *
-     * @param server  The `web_server` to get the `server_request` from.
+     * @param server  The `web_server` to get the `http_request` from.
      *
      * @returns       Returns the next request on the given `web_server` instance.
      *
@@ -112,78 +112,78 @@ namespace splashkit_lib
     http_request next_web_request(web_server server);
 
     /**
-     * Sends a message to a given `server_request` with the specified content type.
+     * Sends a message to a given `http_request` with the specified content type.
      *
-     * @param r             The `server_request` to send the response to
+     * @param r             The `http_request` to send the response to
      * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
-     * @param message       The messsage, in the form of a `server_response`, to be sent.
+     * @param message       The messsage, in the form of a `http_response`, to be sent.
      * @param content_type  The content type of the response.
      *
-     * @attribute class server_request
+     * @attribute class http_request
      * @attribute self  r
      */
     void send_response(http_request r, http_status_code code, string message, string content_type);
 
     /**
-     * Sends a message to a given `server_request` with the specified content type.
+     * Sends a message to a given `http_request` with the specified content type.
      *
-     * @param r             The `server_request` to send the response to
+     * @param r             The `http_request` to send the response to
      * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
-     * @param message       The messsage, in the form of a `server_response`, to be sent.
+     * @param message       The messsage, in the form of a `http_response`, to be sent.
      *
-     * @attribute class server_request
+     * @attribute class http_request
      * @attribute self  r
      */
     void send_response(http_request r, http_status_code code, string message);
 
     /**
-     * Sends a message to a given `server_request`.
+     * Sends a message to a given `http_request`.
      *
      * @param r       The request to be sent.
      * @param message The message to be sent
      *
-     * @attribute class server_response
+     * @attribute class http_response
      */
     void send_response(http_request r, string message);
 
     /**
-     * Send a JSON response to a given `server_request`
+     * Send a JSON response to a given `http_request`
      *
      * @param r The request the response belongs to.
      * @param j The json to be sent.
      *
-     * @attribute class server_response
+     * @attribute class http_response
      */
     void send_response(http_request r, json j);
 
     /**
-     * Sends a response code to a given `server_request`.
+     * Sends a response code to a given `http_request`.
      *
-     * @param r             The `server_request` to send the response to
+     * @param r             The `http_request` to send the response to
      * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
      *
-     * @attribute class server_request
+     * @attribute class http_request
      * @attribute self  r
      */
     void send_response(http_request r, http_status_code code);
 
     /**
-     * Sends a response with no content to a `server_request`.
+     * Sends a response with no content to a `http_request`.
      *
-     * @param r             The `server_request` to send the response to
+     * @param r             The `http_request` to send the response to
      *
-     * @attribute class server_request
+     * @attribute class http_request
      * @attribute self  r
      */
     void send_response(http_request r);
 
     /**
-     * Serves a HTML file to the given `server_request`.
+     * Serves a HTML file to the given `http_request`.
      *
      * @param r        The request to be sent.
      * @param filename The name of the file in Resources/server
      *
-     * @attribute class server_response
+     * @attribute class http_response
      */
     void send_html_file_response(http_request r, string filename);
 
