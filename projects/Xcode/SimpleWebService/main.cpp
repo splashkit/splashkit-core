@@ -12,7 +12,7 @@ using std::to_string;
 
 void process_request(web_server message_service, string &message)
 {
-    server_request request = next_web_request(message_service);
+    http_request request = next_web_request(message_service);
 
     if ( is_get_request_for(request, "/message") )
     {
@@ -29,7 +29,7 @@ void process_request(web_server message_service, string &message)
     }
     else
     {
-        send_response(request, BAD_REQUEST, "Unknown request");
+        send_response(request, HTTP_STATUS_BAD_REQUEST, "Unknown request");
     }
 }
 
