@@ -27,12 +27,7 @@ namespace splashkit_lib
     /**
      * @attribute class server_request
      */
-    typedef struct sk_server_request *server_request;
-
-    /**
-     * @attribute class server_response
-     */
-    typedef struct sk_server_response *server_response;
+    typedef struct sk_http_request *http_request;
 
     /**
      * The method token is used to indicate the kind of action to be performed
@@ -67,7 +62,7 @@ namespace splashkit_lib
      * @attribute constructor true
      * @attribute class       web_server
      */
-    web_server start_web_server(string port);
+    web_server start_web_server(unsigned short port);
 
     /**
      * Creates a new web server instance and starts it.
@@ -114,7 +109,7 @@ namespace splashkit_lib
      * @attribute class web_server
      * @attribute self  server
      */
-    server_request next_web_request(web_server server);
+    http_request next_web_request(web_server server);
 
     /**
      * Sends a message to a given `server_request` with the specified content type.
@@ -127,7 +122,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r, http_status_code code, string message, string content_type);
+    void send_response(http_request r, http_status_code code, string message, string content_type);
 
     /**
      * Sends a message to a given `server_request` with the specified content type.
@@ -139,7 +134,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r, http_status_code code, string message);
+    void send_response(http_request r, http_status_code code, string message);
 
     /**
      * Sends a message to a given `server_request`.
@@ -149,7 +144,7 @@ namespace splashkit_lib
      *
      * @attribute class server_response
      */
-    void send_response(server_request r, string message);
+    void send_response(http_request r, string message);
 
     /**
      * Send a JSON response to a given `server_request`
@@ -159,7 +154,7 @@ namespace splashkit_lib
      *
      * @attribute class server_response
      */
-    void send_response(server_request r, json j);
+    void send_response(http_request r, json j);
 
     /**
      * Sends a response code to a given `server_request`.
@@ -170,7 +165,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r, http_status_code code);
+    void send_response(http_request r, http_status_code code);
 
     /**
      * Sends a response with no content to a `server_request`.
@@ -180,7 +175,7 @@ namespace splashkit_lib
      * @attribute class server_request
      * @attribute self  r
      */
-    void send_response(server_request r);
+    void send_response(http_request r);
 
     /**
      * Serves a HTML file to the given `server_request`.
@@ -190,7 +185,7 @@ namespace splashkit_lib
      *
      * @attribute class server_response
      */
-    void send_html_file_response(server_request r, string filename);
+    void send_html_file_response(http_request r, string filename);
 
     /**
      * Returns the server URI of the client request.
@@ -199,7 +194,7 @@ namespace splashkit_lib
      *
      * @returns Returns the requested URI in the form of a string.
      */
-    string request_uri(server_request r);
+    string request_uri(http_request r);
 
     /**
      * Returns the HTTP method of the client request.
@@ -208,7 +203,7 @@ namespace splashkit_lib
      *
      * @returns Returns the request method.
      */
-    http_method request_method(server_request r);
+    http_method request_method(http_request r);
 
     /**
      * Returns the body of the request.
@@ -217,7 +212,7 @@ namespace splashkit_lib
      *
      * @returns The body of the request.
      */
-    string request_body(server_request r);
+    string request_body(http_request r);
 
     /**
      * Returns an array of strings representing each stub of the URI.
@@ -230,7 +225,7 @@ namespace splashkit_lib
      *
      * @return The array of stubs as strings.
      */
-    vector<string> request_uri_stubs(server_request r);
+    vector<string> request_uri_stubs(http_request r);
 
     /**
      * Returns an array of strings representing each stub of the URI.
@@ -254,7 +249,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is for the indicated method and path
      */
-    bool is_request_for(server_request request, http_method method, const string &path);
+    bool is_request_for(http_request request, http_method method, const string &path);
 
     /**
      * Checks if a request wants to get a given resource.
@@ -263,7 +258,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP GET request for `path`
      */
-    bool is_get_request_for(server_request request, const string &path);
+    bool is_get_request_for(http_request request, const string &path);
 
     /**
      * Checks if a request wants to create (post) a given resource.
@@ -272,7 +267,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP POST request for `path`
      */
-    bool is_post_request_for(server_request request, const string &path);
+    bool is_post_request_for(http_request request, const string &path);
 
     /**
      * Checks if a request wants to update (put) a given resource.
@@ -281,7 +276,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP PUT request for `path`
      */
-    bool is_put_request_for(server_request request, const string &path);
+    bool is_put_request_for(http_request request, const string &path);
 
     /**
      * Checks if a request wants to delete a given resource.
@@ -290,7 +285,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP DELETE request for `path`
      */
-    bool is_delete_request_for(server_request request, const string &path);
+    bool is_delete_request_for(http_request request, const string &path);
 
     /**
      * Checks if a request wants to check options for given resource.
@@ -299,7 +294,7 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP OPTIONS request for `path`
      */
-    bool is_options_request_for(server_request request, const string &path);
+    bool is_options_request_for(http_request request, const string &path);
 
     /**
      * Checks if a request wants to trace a given resource.
@@ -308,6 +303,6 @@ namespace splashkit_lib
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP TRACE request for `path`
      */
-    bool is_options_request_for(server_request request, const string &path);
+    bool is_options_request_for(http_request request, const string &path);
 }
 #endif /* web_server_h_ */

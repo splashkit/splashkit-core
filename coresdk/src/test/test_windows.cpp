@@ -12,7 +12,7 @@
 #include "graphics.h"
 #include "utils.h"
 #include "text.h"
-#include "web.h"
+#include "web_client.h"
 
 #include <iostream>
 using namespace std;

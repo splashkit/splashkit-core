@@ -285,18 +285,18 @@ namespace splashkit_lib
      */
     enum http_status_code
     {
-        OK = 200,
-        CREATED = 201,
-        NO_CONTENT = 204,
-        BAD_REQUEST = 400,
-        UNAUTHORIZED = 401,
-        FORBIDDEN = 403,
-        NOT_FOUND = 404,
-        METHOD_NOT_ALLOWED = 405,
-        REQUEST_TIMEOUT = 408,
-        INTERNAL_SERVER_ERROR = 500,
-        NOT_IMPLEMENTED = 501,
-        SERVICE_UNAVAILABLE = 503
+        HTTP_STATUS_OK = 200,
+        HTTP_STATUS_CREATED = 201,
+        HTTP_STATUS_NO_CONTENT = 204,
+        HTTP_STATUS_BAD_REQUEST = 400,
+        HTTP_STATUS_UNAUTHORIZED = 401,
+        HTTP_STATUS_FORBIDDEN = 403,
+        HTTP_STATUS_NOT_FOUND = 404,
+        HTTP_STATUS_METHOD_NOT_ALLOWED = 405,
+        HTTP_STATUS_REQUEST_TIMEOUT = 408,
+        HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
+        HTTP_STATUS_NOT_IMPLEMENTED = 501,
+        HTTP_STATUS_SERVICE_UNAVAILABLE = 503
     };
 }
 #endif /* types_hpp */

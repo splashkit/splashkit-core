@@ -29,7 +29,7 @@ struct person
 
 static vector<person> people;
 
-static map<http_method, map<string, function<void(server_request, string)>>> routes;
+static map<http_method, map<string, function<void(http_request, string)>>> routes;
 
 json person_to_json(person p)
 {
@@ -90,19 +90,19 @@ string get_url_link(string stub, string uri)
     return string("<a href=\"") + uri + "\">" + stub + "</a>";
 }
 
-void root_route(server_request request, string uri)
+void root_route(http_request request, string uri)
 {
     send_html_file_response(request, "index.html");
 }
 
-void names_get_routes(server_request request, string uri)
+void names_get_routes(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
 
     if (stubs.size() == 1)
     {
         string j = people_to_json();
-        send_response(request, OK, j, "application/json");
+        send_response(request, HTTP_STATUS_OK, j, "application/json");
     }
     else
     {
@@ -110,15 +110,15 @@ void names_get_routes(server_request request, string uri)
         {
             int id = stoi(stubs[1]);
             string json_person = json_to_string(person_to_json(people.at(id)));
-            send_response(request, OK, json_person, "application/json");
+            send_response(request, HTTP_STATUS_OK, json_person, "application/json");
         } catch (...)
         {
-            send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
+            send_response(request, HTTP_STATUS_OK, "<h1>No ID exists.</h1>", "text/html");
         }
     }
 }
 
-void names_post_routes(server_request request, string uri)
+void names_post_routes(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
 
@@ -141,7 +141,7 @@ void names_post_routes(server_request request, string uri)
     }
 }
 
-void names_delete_route(server_request request, string uri)
+void names_delete_route(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
     try
@@ -151,16 +151,16 @@ void names_delete_route(server_request request, string uri)
         send_response(request, "Person has now been deleted.");
     } catch(...)
     {
-        send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
+        send_response(request, HTTP_STATUS_OK, "<h1>No ID exists.</h1>", "text/html");
     }
 }
 
-void post_person_route(server_request request, string uri)
+void post_person_route(http_request request, string uri)
 {
     send_html_file_response(request, "post.html");
 }
 
-void get_person_route(server_request request, string uri)
+void get_person_route(http_request request, string uri)
 {
     send_html_file_response(request, "get.html");
 }

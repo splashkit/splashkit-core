@@ -8,19 +8,20 @@
 
 #include "utility_functions.h"
 #include "web_server.h"
+#include "web_client.h"
 #include "web_server_driver.h"
 #include "utils.h"
 
 namespace splashkit_lib
 {
-    web_server start_web_server(string port)
+    web_server start_web_server(unsigned short port)
     {
         return sk_start_web_server(port);
     }
 
     web_server start_web_server()
     {
-        return start_web_server("8080");
+        return start_web_server(8080);
     }
 
     bool has_incoming_requests(web_server server)
@@ -45,7 +46,7 @@ namespace splashkit_lib
         sk_stop_web_server(server);
     }
 
-    server_request next_web_request(web_server server)
+    http_request next_web_request(web_server server)
     {
         if (INVALID_PTR(server, WEB_SERVER_PTR))
         {
@@ -56,14 +57,14 @@ namespace splashkit_lib
         return sk_get_request(server);
     }
 
-    void _send_response(server_request r, server_response resp)
+    void _send_response(http_request r, http_response resp)
     {
-        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
         {
             LOG(WARNING) << "send_response called on an invalid request";
             return;
         }
-        else if (INVALID_PTR(resp, WEB_SERVER_RESPONSE_PTR))
+        else if (INVALID_PTR(resp, HTTP_RESPONSE_PTR))
         {
             LOG(WARNING) << "send_response called on an invalid response";
             return;
@@ -73,16 +74,18 @@ namespace splashkit_lib
         r->control.release();
     }
 
-    void send_response(server_request r, string message)
+    void send_response(http_request r, string message)
     {
-        send_response(r, OK, message, "text/plain");
+        send_response(r, HTTP_STATUS_OK, message, "text/plain");
     }
 
-    void send_response(server_request r, http_status_code code, string message, string content_type)
+    void send_response(http_request r, http_status_code code, string message, string content_type)
     {
-        server_response resp = new sk_server_response;
-        resp->id = WEB_SERVER_RESPONSE_PTR;
-        resp->message = message;
+        http_response resp = new sk_http_response;
+
+        resp->id = HTTP_RESPONSE_PTR;
+        resp->message = strdup(message.c_str());
+        resp->message_size = message.size();
         resp->content_type = content_type;
         resp->code = code;
 
@@ -92,27 +95,27 @@ namespace splashkit_lib
         delete resp;
     }
 
-    void send_response(server_request r, http_status_code code, string message)
+    void send_response(http_request r, http_status_code code, string message)
     {
         send_response(r, code, message, "text/html");
     }
 
-    void send_response(server_request r, json j)
+    void send_response(http_request r, json j)
     {
-        send_response(r, OK, json_to_string(j), "application/json");
+        send_response(r, HTTP_STATUS_OK, json_to_string(j), "application/json");
     }
 
-    void send_response(server_request r, http_status_code code)
+    void send_response(http_request r, http_status_code code)
     {
         send_response(r, code, "", "text/plain");
     }
 
-    void send_response(server_request r)
+    void send_response(http_request r)
     {
-        send_response(r, NO_CONTENT, "", "text/plain");
+        send_response(r, HTTP_STATUS_NO_CONTENT, "", "text/plain");
     }
 
-    void send_html_file_response(server_request r, string filename)
+    void send_html_file_response(http_request r, string filename)
     {
         string extension = ".html";
         if (filename.size() > extension.size() &&
@@ -120,7 +123,7 @@ namespace splashkit_lib
         {
             string file = file_as_string(filename, SERVER_RESOURCE);
 
-            send_response(r, OK, file, "text/html");
+            send_response(r, HTTP_STATUS_OK, file, "text/html");
         }
         else
         {
@@ -129,9 +132,9 @@ namespace splashkit_lib
         }
     }
 
-    string request_uri(server_request r)
+    string request_uri(http_request r)
     {
-        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
         {
             LOG(WARNING) << "Getting request uri with invalid request";
             return "";
@@ -140,9 +143,9 @@ namespace splashkit_lib
         return r->uri;
     }
 
-    http_method request_method(server_request r)
+    http_method request_method(http_request r)
     {
-        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
         {
             LOG(WARNING) << "Requesting http method on an invalid request";
             return UNKNOWN_HTTP_METHOD;
@@ -151,9 +154,9 @@ namespace splashkit_lib
         return r->method;
     }
 
-    string request_body(server_request r)
+    string request_body(http_request r)
     {
-        if (INVALID_PTR(r, WEB_SERVER_REQUEST_PTR))
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
         {
             LOG(WARNING) << "Getting request body with invalid request";
             return "";
@@ -162,7 +165,7 @@ namespace splashkit_lib
         return r->body;
     }
 
-    vector<string> request_uri_stubs(server_request r)
+    vector<string> request_uri_stubs(http_request r)
     {
         string uri = request_uri(r);
         return split_uri_stubs(uri);
@@ -188,38 +191,38 @@ namespace splashkit_lib
         return result;
     }
 
-    bool is_request_for(server_request request, http_method method, const string &path)
+    bool is_request_for(http_request request, http_method method, const string &path)
     {
         if ( request_method(request) != method ) return false;
         return request_uri(request) == path;
     }
 
-    bool is_get_request_for(server_request request, const string &path)
+    bool is_get_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_GET_METHOD, path);
     }
 
-    bool is_post_request_for(server_request request, const string &path)
+    bool is_post_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_POST_METHOD, path);
     }
 
-    bool is_put_request_for(server_request request, const string &path)
+    bool is_put_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_PUT_METHOD, path);
     }
 
-    bool is_delete_request_for(server_request request, const string &path)
+    bool is_delete_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_DELETE_METHOD, path);
     }
 
-    bool is_options_request_for(server_request request, const string &path)
+    bool is_options_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_OPTIONS_METHOD, path);
     }
 
-    bool is_trace_request_for(server_request request, const string &path)
+    bool is_trace_request_for(http_request request, const string &path)
     {
         return is_request_for(request, HTTP_TRACE_METHOD, path);
     }

@@ -8,7 +8,7 @@
 
 #include "audio.h"
 #include "music.h"
-#include "web.h"
+#include "web_client.h"
 
 #include "utils.h"
 

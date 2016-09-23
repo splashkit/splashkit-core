@@ -14,13 +14,13 @@
 
 namespace splashkit_lib
 {
-    void sk_flush_request(sk_server_request *request);
+    void sk_flush_request(sk_http_request *request);
 
-    sk_server_request* sk_get_request(sk_web_server *server);
+    sk_http_request* sk_get_request(sk_web_server *server);
 
     bool sk_has_waiting_requests(sk_web_server *server);
 
-    sk_web_server* sk_start_web_server(string port);
+    sk_web_server* sk_start_web_server(unsigned short port);
 
     void sk_stop_web_server(sk_web_server *server);
 }
