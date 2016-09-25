@@ -30,6 +30,7 @@ namespace splashkit_lib
         if ( not user_data )
         {
             LOG(WARNING) << "Request handler called within invalid user data. Contact splashkit dev team.";
+            return -1;
         }
 
         unsigned short port = user_data->port;

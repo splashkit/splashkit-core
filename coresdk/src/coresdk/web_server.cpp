@@ -81,18 +81,18 @@ namespace splashkit_lib
 
     void send_response(http_request r, http_status_code code, string message, string content_type)
     {
-        http_response resp = new sk_http_response;
+        sk_http_response resp;
 
-        resp->id = HTTP_RESPONSE_PTR;
-        resp->message = strdup(message.c_str());
-        resp->message_size = message.size();
-        resp->content_type = content_type;
-        resp->code = code;
+        resp.id = HTTP_RESPONSE_PTR;
+        resp.message = strdup(message.c_str());
+        resp.message_size = message.size();
+        resp.content_type = content_type;
+        resp.code = code;
 
-        _send_response(r, resp);
+        _send_response(r, &resp);
 
-        resp->response_sent.acquire();
-        delete resp;
+        resp.response_sent.acquire();
+        delete resp.message;
     }
 
     void send_response(http_request r, http_status_code code, string message)
