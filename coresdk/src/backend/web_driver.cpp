@@ -152,7 +152,7 @@ namespace splashkit_lib
         // check for errors
         if(res != CURLE_OK)
         {
-            LOG(ERROR) << "curl_easy_perform() failed: " << curl_easy_strerror(res);
+            LOG(ERROR) << curl_easy_strerror(res);
             return nullptr;
         }
 
@@ -166,7 +166,10 @@ namespace splashkit_lib
 
         char *content_type;
         curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &content_type);
-        result->content_type = string(content_type);
+        if (content_type)
+            result->content_type = string(content_type);
+        else
+            result->content_type = "";
 
         /* cleanup curl stuff */
         curl_easy_cleanup(curl_handle);

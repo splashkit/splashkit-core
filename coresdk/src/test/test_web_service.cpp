@@ -5,6 +5,9 @@
 //  Created by James Armstrong http://github.com/jarmstrong
 //
 
+#include "window_manager.h"
+#include "text.h"
+#include "input.h"
 #include "json.h"
 #include "web_server.h"
 
@@ -187,9 +190,14 @@ void run_restful_web_service()
 
     add_routes();
 
-    bool running = true;
-    while (running)
+    window w1 = open_window("Running Web Service.", 200, 100);
+    draw_text("Close to end", COLOR_BLACK, 0, 0);
+    refresh_window(w1);
+
+    while ( not window_close_requested(w1))
     {
+        process_events();
+
         auto request = next_web_request(server);
 
         http_method method = request_method(request);
@@ -215,4 +223,6 @@ void run_restful_web_service()
             send_response(request, "No route matching.");
         }
     }
+
+    close_window(w1);
 }

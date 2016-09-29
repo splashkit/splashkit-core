@@ -69,6 +69,11 @@ namespace splashkit_lib
         http_response response = http_get(url, port);
         auto cleanup_response = finally( [&] { free_response(response); });
 
+        if ( !response )
+        {
+            LOG(WARNING) << "Unable to make network connection -- no response";
+            return false;
+        }
         if ( static_cast<int>(response->code) < 200 || static_cast<int>(response->code) >= 300 )
         {
             LOG(WARNING) << "Unable to download file from " << url << " got status " << response->code;
