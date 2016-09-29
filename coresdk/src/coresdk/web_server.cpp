@@ -84,14 +84,16 @@ namespace splashkit_lib
         sk_http_response resp;
 
         resp.id = HTTP_RESPONSE_PTR;
-        resp.message = strdup(message.c_str());
+        resp.message = strdup(message.c_str()); // copy to pass to non-const ref -- as this is used for sending and receiving data
         resp.message_size = message.size();
         resp.content_type = content_type;
         resp.code = code;
 
         _send_response(r, &resp);
 
+        // Wait for sending thread to actually send the data...
         resp.response_sent.acquire();
+        // Safe to delete
         delete resp.message;
     }
 
