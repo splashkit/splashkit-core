@@ -74,12 +74,12 @@ namespace splashkit_lib
         r->control.release();
     }
 
-    void send_response(http_request r, string message)
+    void send_response(http_request r, const string &message)
     {
         send_response(r, HTTP_STATUS_OK, message, "text/plain");
     }
 
-    void send_response(http_request r, http_status_code code, string message, string content_type)
+    void send_response(http_request r, http_status_code code, const string &message, const string &content_type)
     {
         sk_http_response resp;
 
@@ -95,7 +95,7 @@ namespace splashkit_lib
         delete resp.message;
     }
 
-    void send_response(http_request r, http_status_code code, string message)
+    void send_response(http_request r, http_status_code code, const string &message)
     {
         send_response(r, code, message, "text/html");
     }
@@ -115,7 +115,7 @@ namespace splashkit_lib
         send_response(r, HTTP_STATUS_NO_CONTENT, "", "text/plain");
     }
 
-    void send_html_file_response(http_request r, string filename)
+    void send_html_file_response(http_request r, const string &filename)
     {
         string extension = ".html";
         if (filename.size() > extension.size() &&

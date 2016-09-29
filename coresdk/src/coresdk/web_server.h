@@ -122,7 +122,7 @@ namespace splashkit_lib
      * @attribute class http_request
      * @attribute self  r
      */
-    void send_response(http_request r, http_status_code code, string message, string content_type);
+    void send_response(http_request r, http_status_code code, const string &message, const string &content_type);
 
     /**
      * Sends a message to a given `http_request` with the specified content type.
@@ -134,7 +134,7 @@ namespace splashkit_lib
      * @attribute class http_request
      * @attribute self  r
      */
-    void send_response(http_request r, http_status_code code, string message);
+    void send_response(http_request r, http_status_code code, const string &message);
 
     /**
      * Sends a message to a given `http_request`.
@@ -144,7 +144,7 @@ namespace splashkit_lib
      *
      * @attribute class http_response
      */
-    void send_response(http_request r, string message);
+    void send_response(http_request r, const string &message);
 
     /**
      * Send a JSON response to a given `http_request`
@@ -185,7 +185,7 @@ namespace splashkit_lib
      *
      * @attribute class http_response
      */
-    void send_html_file_response(http_request r, string filename);
+    void send_html_file_response(http_request r, const string &filename);
 
     /**
      * Returns the server URI of the client request.
