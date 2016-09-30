@@ -163,24 +163,23 @@ namespace splashkit_lib
         if (protocol == TCP)
         {
             con->socket = sk_open_tcp_connection(host.c_str(), port);
-
-            if (!con->socket._socket)
-            {
-                return false;
-            }
-
-            con->ip = sk_network_address(&con->socket);
         }
         else if (protocol == UDP)
         {
-            con->socket = sk_open_udp_connection(port);
-            con->ip = sk_network_address(&con->socket);
+            con->socket = sk_open_udp_connection(0);
         }
         else
         {
             LOG(ERROR) << "Invalid protocol passed to _establish_connection: " << protocol;
             return false;
         }
+
+        if (!con->socket._socket)
+        {
+            return false;
+        }
+
+        con->ip = sk_network_address(&con->socket);
 
         return true;
     }
@@ -504,11 +503,10 @@ namespace splashkit_lib
     {
         message m = new sk_message;
         m->id = MESSAGE_PTR;
-        LOG(WARNING) << "potential error in _enqueue_udp_message: validate results and remove this warning if correct";
-        //m->data = '';
-        for (int i = 0; i < size - 1; ++i)
+        m->data = "";
+        for (int i = 0; i < size; ++i)
         {
-            m->data[i] += msg[i];
+            m->data += msg[i];
         }
         m->protocol = UDP;
         m->connection = nullptr;
@@ -1088,6 +1086,10 @@ namespace splashkit_lib
             {
                 sk_send_udp_message(&con->socket, con->string_ip.c_str(), con->port, msg.c_str(), msg.length());
                 return true;
+            }
+            else
+            {
+                LOG(ERROR) << "Cannot send messages longer than 1024 bytes using UDP -- message ignored";
             }
         }
 
