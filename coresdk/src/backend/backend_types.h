@@ -188,8 +188,8 @@ namespace splashkit_lib
         connection_type protocol;
         string string_ip;    // TODO should this be stored?
         vector<sk_message*> messages;
-        long int msg_len;
-        string part_msg_data;
+        long int expected_msg_len;      // We are part way through... a message this length
+        vector<int8_t> part_msg_data;
     };
 
     struct sk_server_data
@@ -207,7 +207,7 @@ namespace splashkit_lib
     struct sk_message
     {
         pointer_identifier id;
-        string data;
+        vector<int8_t> data;
         connection_type protocol;
 
         // TCP

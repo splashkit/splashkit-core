@@ -23,7 +23,6 @@ namespace splashkit_lib
 
     typedef char packet_data[512];
     typedef unsigned char byte;
-    typedef byte bytes[4];
     static const int PACKET_SIZE = 512;
 
     // Server functions
@@ -95,6 +94,7 @@ namespace splashkit_lib
     unsigned int message_count(const string &name);
     unsigned int message_count(server_socket svr);
     string message_data(message msg);
+    vector<int8_t> message_data_bytes(message msg);
     string message_host(message msg);
     unsigned short int message_port(message msg);
     connection_type message_protocol(message msg);
