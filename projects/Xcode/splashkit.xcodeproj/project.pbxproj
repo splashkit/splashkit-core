@@ -79,7 +79,6 @@
 		9424B59A1D436C850039B3AF /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5981D436C850039B3AF /* utils.cpp */; };
 		9424B59B1D436C850039B3AF /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5991D436C850039B3AF /* utils.h */; };
 		9424B59E1D4441CF0039B3AF /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B59C1D4441CF0039B3AF /* color.cpp */; };
-		9424B59F1D4441CF0039B3AF /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B59D1D4441CF0039B3AF /* color.h */; };
 		9424B5A21D4442220039B3AF /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5A01D4442220039B3AF /* types.cpp */; };
 		9424B5A31D4442220039B3AF /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B5A11D4442220039B3AF /* types.h */; };
 		9424B5A61D4444F40039B3AF /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9424B5A41D4444F40039B3AF /* random.cpp */; };
@@ -118,6 +117,7 @@
 		94A02AAE1D73B452002E0353 /* bundles.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A02AAC1D73B452002E0353 /* bundles.h */; };
 		94A069A91D66F44900C26E6F /* vector_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A069A71D66F44900C26E6F /* vector_2d.cpp */; };
 		94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A069A81D66F44900C26E6F /* vector_2d.h */; };
+		94A501A91DA39044007859A1 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B59D1D4441CF0039B3AF /* color.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; };
 		94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */; };
@@ -1073,6 +1073,7 @@
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
 				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
+				94A501A91DA39044007859A1 /* color.h in Headers */,
 				94E6994D1D6F385200FBFA28 /* concurrency_utils.h in Headers */,
 				94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */,
 				94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */,
@@ -1119,7 +1120,6 @@
 				943AF7701D67F53100DBEA84 /* line_geometry.h in Headers */,
 				94C7491D1D478813006A9052 /* web_driver.h in Headers */,
 				9424B5A71D4444F40039B3AF /* random.h in Headers */,
-				9424B59F1D4441CF0039B3AF /* color.h in Headers */,
 				9423721D1D1D57D20020CCE2 /* core_driver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1280,7 +1280,7 @@
 		942371D41D1D540C0020CCE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Andrew Cain";
 				TargetAttributes = {
 					942371DB1D1D540C0020CCE2 = {
@@ -1575,8 +1575,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -1586,19 +1588,22 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1619,8 +1624,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -1629,14 +1636,17 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -1651,9 +1661,11 @@
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SHORT_ENUMS = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
@@ -1691,9 +1703,11 @@
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = NO;
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SHORT_ENUMS = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
@@ -1726,6 +1740,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
@@ -1740,6 +1756,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/src\"",
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
@@ -1753,7 +1771,9 @@
 		94C0D09D1D73B1E50099387A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1763,7 +1783,9 @@
 		94C0D09E1D73B1E50099387A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1773,9 +1795,11 @@
 		94D125F41D94CC49006957A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../out/translated/cpp\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-lcurl";
@@ -1786,9 +1810,11 @@
 		94D125F51D94CC49006957A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../out/translated/cpp\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-lcurl";
@@ -1799,10 +1825,13 @@
 		94D126011D94E38D006957A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1812,10 +1841,13 @@
 		94D126021D94E38D006957A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OTHER_LDFLAGS = "-lcurl";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1825,7 +1857,9 @@
 		94E6995C1D6F395500FBFA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1836,7 +1870,9 @@
 		94E6995D1D6F395500FBFA28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1846,6 +1882,8 @@
 		FA3ABF9D1D82483F0064C29A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_ttf\"",
@@ -1868,6 +1906,8 @@
 		FA3ABF9E1D82483F0064C29A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../coresdk/external/SDL/include\"",
 					"\"$(SRCROOT)/../../coresdk/external/SDL_ttf\"",
