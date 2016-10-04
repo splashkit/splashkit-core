@@ -106,6 +106,28 @@ namespace splashkit_lib
         } //  else NOT (u < EPS) or (u > 1)
     }
 
+    point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &lines, int &line_idx)
+    {
+        line_idx = -1;
+        float min_dist = -1, dst;
+        point_2d result = point_at_origin();
+        point_2d pt;
+
+        for (int i = 0; i < lines.size(); i++)
+        {
+            pt = closest_point_on_line(from_pt, lines[i]);
+            dst = point_point_distance(pt, from_pt);
+
+            if (min_dist > dst)
+            {
+                line_idx = i;
+                min_dist = dst;
+                result = pt;
+            }
+        }
+        return pt;
+    }
+
     vector<line> lines_from(const triangle &t)
     {
         vector<line> result;

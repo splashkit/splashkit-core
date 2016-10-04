@@ -10,9 +10,6 @@
 #define color_hpp
 
 #include "types.h"
-#include <string>
-
-using namespace std;
 
 /**
  * A shorthand macro to the result of calling `color_swinburne_red`.

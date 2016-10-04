@@ -202,6 +202,20 @@ namespace splashkit_lib
     float vector_angle(const vector_2d v);
 
     /**
+     * Calculates the angle from one vector to another.
+     *
+     * @lib CalculateAngleBetweenVectors
+     * @sn vector:%s angleTo:%s
+     *
+     * @class Vector
+     * @method AngleTo
+     *
+     * @doc_idx 0
+     */
+    float angle_between(const vector_2d &v1, const vector_2d &v2);
+
+
+    /**
      *  Determines the vector needed to move back from point `pt` out of rectangle `rect` given
      *  the point was moving at the velocity specified.
      *

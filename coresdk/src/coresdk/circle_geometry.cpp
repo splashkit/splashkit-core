@@ -10,6 +10,7 @@
 
 #include "geometry.h"
 #include "vector_2d.h"
+#include "line_geometry.h"
 
 #include <cmath>
 namespace splashkit_lib
@@ -36,6 +37,11 @@ namespace splashkit_lib
     {
         pt1 = point_offset_by(c.center, vector_multiply(unit_vector(along), c.radius));
         pt2 = point_offset_by(c.center, vector_multiply(unit_vector(along), -c.radius));
+    }
+
+    point_2d distant_point_on_circle(const point_2d &pt, const circle &c)
+    {
+        return point_offset_by(c.center, vector_multiply(unit_vector(vector_point_to_point(c.center, pt)), -c.radius));
     }
 
     bool distant_point_on_circle_heading(const point_2d &pt, const circle &c, const vector_2d &heading, point_2d &opposite_pt)
@@ -109,5 +115,20 @@ namespace splashkit_lib
     {
         return c.center.y;
     }
-    
+
+    point_2d closest_point_on_circle(const point_2d &from_pt, const circle &c)
+    {
+        return point_offset_by(c.center, vector_multiply(unit_vector(vector_point_to_point(c.center, from_pt)), c.radius));
+    }
+
+    point_2d closest_point_on_line_from_circle(const circle &c, const line &l)
+    {
+        return closest_point_on_line(c.center, l);
+    }
+
+    point_2d closest_point_on_rect_from_circle(const circle &c, const rectangle &rect)
+    {
+        int idx;
+        return closest_point_on_lines(c.center, lines_from(rect), idx);
+    }
 }

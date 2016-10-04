@@ -107,6 +107,18 @@ namespace splashkit_lib
     point_2d closest_point_on_line(const point_2d from_pt, const line &l);
 
     /**
+     * Get the point closest to `from pt` that is on one of the supplied lines.
+     *
+     * @param  from_pt The point to test
+     * @param  lines   The lines to check
+     * @param  line_idx After the call this will store the index of the line that
+     *                  had the matching point.
+     * @return         The point on one of the lines that is the closest point
+     *                 on these lines to the `from pt`.
+     */
+    point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &lines, int &line_idx);
+
+    /**
      * Returns true if the two lines intersect.
      *
      * @param  l1 The first line

@@ -13,7 +13,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+using std::string;
+using std::vector;
+
 namespace splashkit_lib
 {
     /**

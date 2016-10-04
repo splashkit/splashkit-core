@@ -107,6 +107,11 @@ namespace splashkit_lib
         }
     }
 
+    float angle_between(const vector_2d &v1, const vector_2d &v2)
+    {
+        return vector_angle( vector_subtract(v2, v1) );
+    }
+
     vector_2d vector_normal(const vector_2d &v)
     {
         float magnitude = vector_magnitude(v);
