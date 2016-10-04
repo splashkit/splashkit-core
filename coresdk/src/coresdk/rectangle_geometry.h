@@ -149,6 +149,14 @@ namespace splashkit_lib
      */
     string rectangle_to_string(const rectangle &rect);
 
+    /**
+     * Return a rectangle that is inset an amount from a given rectangle.
+     *
+     * @param  rect         The rectangle to inset
+     * @param  inset_amount The amount to inset the rectangle
+     * @return              A new rectangle created inset from `rect`
+     */
+    rectangle inset_rectangle(const rectangle &rect, float inset_amount);
 
 }
 #endif /* rectangle_geometry_H */

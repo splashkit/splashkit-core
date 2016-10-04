@@ -284,6 +284,15 @@ namespace splashkit_lib
      *                 the intersection occurs.
      */
     bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt);
+
+    /**
+     * Returns true if the line intersects any of the lines.
+     *
+     * @param  l     The line to check
+     * @param  lines The lines to check against
+     * @return       True if `line` intersects any of the lines in `lines`
+     */
+    bool line_intersects_lines(const line &l, const vector<line> &lines);
 }
 
 #endif /* vector_2d_h */

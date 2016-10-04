@@ -94,23 +94,23 @@ namespace splashkit_lib
             // return the distance to the (first) intersection point
             return (v - sqrt(d));
     }
-    
+
     bool circles_intersect(circle c1, circle c2)
     {
         return point_point_distance(c1.center, c2.center) < c1.radius + c2.radius;
     }
-    
-    
+
+
     float circle_radius(const circle c)
     {
         return c.radius;
     }
-    
+
     float circle_x(const circle &c)
     {
         return c.center.x;
     }
-    
+
     float circle_y(const circle &c)
     {
         return c.center.y;
@@ -130,5 +130,28 @@ namespace splashkit_lib
     {
         int idx;
         return closest_point_on_lines(c.center, lines_from(rect), idx);
+    }
+
+    bool tangent_points(const point_2d &from_pt, const circle &c, point_2d &p1, point_2d &p2)
+    {
+        vector_2d pm_c = vector_point_to_point(from_pt, c.center);
+
+        double sqr_len = vector_magnitude_sqared(pm_c);
+        double r_sqr = c.radius * c.radius;
+
+        // Quick check for P inside the circle, return False if so
+        if ( sqr_len <= r_sqr or sqr_len == 0 )
+            return false; // tangent objects are not returned.
+
+        // time to work out the real tangent points then
+        double inv_sqr_len = 1.0 / sqr_len;
+        double root = sqrt(abs(sqr_len - r_sqr));
+
+        p1.x = c.center.x + c.radius * (c.radius * pm_c.x - pm_c.y * root) * inv_sqr_len;
+        p1.y = c.center.y + c.radius * (c.radius * pm_c.y + pm_c.x * root) * inv_sqr_len;
+        p2.x = c.center.x + c.radius * (c.radius * pm_c.x + pm_c.y * root) * inv_sqr_len;
+        p2.y = c.center.y + c.radius * (c.radius * pm_c.y - pm_c.x * root) * inv_sqr_len;
+
+        return true;
     }
 }

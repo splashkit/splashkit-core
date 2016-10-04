@@ -161,4 +161,40 @@ namespace splashkit_lib
         if ( rect.width >= 0) return rect.x + rect.width;
         else return rect.x;
     }
+
+    rectangle fix_rectangle(const rectangle &rect)
+    {
+        rectangle result = rect;
+
+        if ( rect.width < 0 )
+        {
+            result.width = -result.width;
+            result.x -= result.width;
+        }
+
+        if ( rect.height < 0 )
+        {
+            result.height = -result.height;
+            result.y -= result.height;
+        }
+
+        return result;
+    }
+
+    rectangle inset_rectangle(const rectangle &rect, float inset_amount)
+    {
+        rectangle result = fix_rectangle(rect);
+
+        float dbl_amt = 2 * inset_amount;
+
+        if ( result.width <= dbl_amt or result.height <= dbl_amt)
+            return result;
+
+        result.x = result.x + inset_amount;
+        result.y = result.y + inset_amount;
+        result.width = result.width - dbl_amt;
+        result.height = result.height - dbl_amt;
+
+        return result;
+    }
 }

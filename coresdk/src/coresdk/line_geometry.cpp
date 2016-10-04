@@ -161,4 +161,39 @@ namespace splashkit_lib
         point_2d pt;
         return line_intersection_point(l1, l2, pt) and point_on_line(pt, l1) and point_on_line(pt, l2);
     }
+
+    bool line_intersects_circle(const line &l, const circle &c)
+    {
+        point_2d pt = closest_point_on_line_from_circle(c, l);
+        return point_in_circle(pt, c);
+    }
+
+    bool line_intersects_rect(const line &l, const rectangle &rect)
+    {
+        return line_intersects_lines(l, lines_from(rect));
+    }
+
+    float line_magnitude_sq(const line &l)
+    {
+        return vector_magnitude_sqared(vector_from_line(l));
+    }
+
+    point_2d line_mid_point(const line &l)
+    {
+        point_2d result;
+        result.x = l.start_point.x + (l.end_point.x - l.start_point.x) / 2;
+        result.y = l.start_point.y + (l.end_point.y - l.start_point.y) / 2;
+        return result;
+    }
+
+    vector_2d line_normal(const line &l)
+    {
+        return vector_normal(vector_from_line(l));
+    }
+
+    string line_to_string(const line &ln)
+    {
+
+        return "From " + point_to_string(ln.start_point) + " to " + point_to_string(ln.end_point);
+    }
 }

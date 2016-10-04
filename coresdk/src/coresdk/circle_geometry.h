@@ -150,5 +150,17 @@ namespace splashkit_lib
      */
     point_2d closest_point_on_rect_from_circle(const circle &c, const rectangle &rect);
 
+    /**
+     * Returns the two tangent points on the circle given the indicated point.
+     *
+     * @param  from_pt The source point
+     * @param  c       The circle
+     * @param  p1      If this returns true, then `p1` contains one of the points
+     * @param  p2      If this returns true, then `p2` contains one of the points
+     * @return         True if `from_pt` is outside of the circle, and tangent
+     *                      points are calculated
+     */
+    bool tangent_points(const point_2d &from_pt, const circle &c, point_2d &p1, point_2d &p2);
+
 }
 #endif /* circle_geometry_hpp */
