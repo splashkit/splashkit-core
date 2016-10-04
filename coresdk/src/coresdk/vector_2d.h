@@ -292,7 +292,24 @@ namespace splashkit_lib
      */
     bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt);
 
+    /**
+     * Returns a vector from a point to a rectangle.
+     *
+     * @param  pt   The point
+     * @param  rect The rectangle
+     * @return      A vector representing the distance and direction from `pt`
+     *                to `rect`
+     */
     vector_2d vector_from_point_to_rect(const point_2d &pt, const rectangle &rect);
+
+    /**
+     * Returns true if the resulting vector would end in the rectangle if
+     * placed at the origin.
+     *
+     * @param  v    The vector
+     * @param  rect The rectangle
+     * @return      True if the vector would end in the rectangle
+     */
     bool vector_in_rect(const vector_2d &v, const rectangle &rect);
 
 }

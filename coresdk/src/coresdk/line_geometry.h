@@ -127,11 +127,46 @@ namespace splashkit_lib
      */
     bool lines_intersect(const line &l1, const line &l2);
 
+    /**
+     * Returns true if the line intersects the circle.
+     *
+     * @param  l The line
+     * @param  c The circle
+     * @return   True if the line `l` intersects the circle `c`
+     */
     bool line_intersects_circle(const line &l, const circle &c);
+
+    /**
+     * Returns true if the line intersects the rectangle.
+     *
+     * @param  l    The line
+     * @param  rect The rectangle
+     * @return      True if `l` intersects `rect`
+     */
     bool line_intersects_rect(const line &l, const rectangle &rect);
-    float line_magnitude_sq(const line &l);
+
+    /**
+     * Returns the center point of the line.
+     *
+     * @param  l The line
+     * @return   The point that is at the center of the line
+     */
     point_2d line_mid_point(const line &l);
+
+    /**
+     * The line normal (a perpendicular vector).
+     *
+     * @param  l The line
+     * @return   The line's normal vector
+     */
     vector_2d line_normal(const line &l);
+
+    /**
+     * Returns a text description of the line.
+     *
+     * @param  ln The line
+     * @return    A text description of the line
+     */
     string line_to_string(const line &ln);
 
     /**

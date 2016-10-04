@@ -65,6 +65,12 @@ namespace splashkit_lib
      */
     point_2d triangle_barycenter(const triangle  &tri);
 
+    /**
+     * Returns a text description of the triangle.
+     *
+     * @param  tri The triangle
+     * @return     A text description of the triangle.
+     */
     string triangle_to_string(const triangle  &tri);
 }
 

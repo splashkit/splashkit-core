@@ -173,11 +173,6 @@ namespace splashkit_lib
         return line_intersects_lines(l, lines_from(rect));
     }
 
-    float line_magnitude_sq(const line &l)
-    {
-        return vector_magnitude_sqared(vector_from_line(l));
-    }
-
     point_2d line_mid_point(const line &l)
     {
         point_2d result;
