@@ -134,5 +134,15 @@ namespace splashkit_lib
     vector_2d line_normal(const line &l);
     string line_to_string(const line &ln);
 
+    /**
+     * Returns true if the line intersects any of the lines.
+     *
+     * @param  l     The line to check
+     * @param  lines The lines to check against
+     * @return       True if `line` intersects any of the lines in `lines`
+     */
+    bool line_intersects_lines(const line &l, const vector<line> &lines);
+
+
 }
 #endif /* line_geometry_hpp */

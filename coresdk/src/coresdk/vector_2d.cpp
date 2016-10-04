@@ -77,6 +77,11 @@ namespace splashkit_lib
         return abs(v1.x - v2.x) < EPSEPS and abs(v1.y - v2.y) < EPSEPS;
     }
 
+    bool vectors_not_equal(const vector_2d &v1, const vector_2d v2)
+    {
+        return not vectors_equal(v1, v2);
+    }
+
     float dot_product(const vector_2d &v1, const vector_2d &v2)
     {
         return (v1.x * v2.x) + (v1.y * v2.y);
@@ -232,21 +237,6 @@ namespace splashkit_lib
         }
 
         return v_out;
-    }
-
-    bool line_intersects_lines(const line &l, const vector<line> &lines)
-    {
-        int i;
-        point_2d pt;
-
-        for (i = 0; i < lines.size(); i++)
-        {
-            if ( line_intersection_point(l, lines[i], pt) and point_on_line(pt, lines[i]) and point_on_line(pt, l))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     struct double_pt
@@ -525,5 +515,29 @@ namespace splashkit_lib
     {
         int max_idx;
         return vector_over_lines_from_circle(c, lines_from(rect), velocity, max_idx);
+    }
+
+    vector_2d vector_from_point_to_rect(const point_2d &pt, const rectangle &rect)
+    {
+        float px, py;
+
+        if (pt.x < rect.x) px = rect.x;
+        else if (pt.x > (rect.x + rect.width)) px = rect.x + rect.width;
+        else px = pt.x;
+
+        if (pt.y < rect.y) py = rect.y;
+        else if (pt.y > (rect.y + rect.height)) py = rect.y + rect.height;
+        else py = pt.y;
+        
+        return vector_to(px - pt.x, py - pt.y);
+    }
+
+    bool vector_in_rect(const vector_2d &v, const rectangle &rect)
+    {
+        if (v.x < rect.x) return false;
+        else if (v.x >= rect.x + rect.width) return false;
+        else if (v.y < rect.y)  return false;
+        else if (v.y >= rect.y + rect.height) return false;
+        else return true;
     }
 }

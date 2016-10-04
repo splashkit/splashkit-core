@@ -110,6 +110,15 @@ namespace splashkit_lib
     bool vectors_equal(const vector_2d &v1, const vector_2d v2);
 
     /**
+     *  Determines if two vectors are not the same.
+     *
+     * @param  v1 The first vector
+     * @param  v2 The other vector
+     * @return    True if the two vectors are different.
+     */
+    bool vectors_not_equal(const vector_2d &v1, const vector_2d v2);
+
+    /**
      *  Calculates the dot product (scalar product) between the two vector
      *  parameters provided (`v1` and `v2`). It returns the result as a
      *  scalar value.
@@ -204,16 +213,14 @@ namespace splashkit_lib
     /**
      * Calculates the angle from one vector to another.
      *
-     * @lib CalculateAngleBetweenVectors
-     * @sn vector:%s angleTo:%s
+     * @param v1    The first vector
+     * @param v2    The second vector
+     * @returns     The angle of the line from the end of `v1` to the end of `v2`
      *
-     * @class Vector
-     * @method AngleTo
-     *
-     * @doc_idx 0
+     * @attribute class vector_2d
+     * @attribute method angle_to
      */
     float angle_between(const vector_2d &v1, const vector_2d &v2);
-
 
     /**
      *  Determines the vector needed to move back from point `pt` out of rectangle `rect` given
@@ -285,14 +292,9 @@ namespace splashkit_lib
      */
     bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt);
 
-    /**
-     * Returns true if the line intersects any of the lines.
-     *
-     * @param  l     The line to check
-     * @param  lines The lines to check against
-     * @return       True if `line` intersects any of the lines in `lines`
-     */
-    bool line_intersects_lines(const line &l, const vector<line> &lines);
+    vector_2d vector_from_point_to_rect(const point_2d &pt, const rectangle &rect);
+    bool vector_in_rect(const vector_2d &v, const rectangle &rect);
+
 }
 
 #endif /* vector_2d_h */

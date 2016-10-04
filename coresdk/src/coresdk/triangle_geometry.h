@@ -55,6 +55,17 @@ namespace splashkit_lib
      * @return    True if the two triangles intersect
      */
     bool triangles_intersect(const triangle &t1, const triangle &t2);
+
+    /**
+     * Return the barycenter of the triangle. This is one way of calculating the
+     * center point of a triangle.
+     *
+     * @param  tri The triangle to get the center of
+     * @return     The point that is the barycenter of `tri`
+     */
+    point_2d triangle_barycenter(const triangle  &tri);
+
+    string triangle_to_string(const triangle  &tri);
 }
 
 #endif /* triangle_geometry_h */
