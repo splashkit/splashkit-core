@@ -10,10 +10,16 @@
 
 namespace splashkit_lib
 {
+    #define PACKET_SIZE 512
+    static unsigned long UDP_PACKET_SIZE = 1024;
+
+
+    typedef char packet_data[PACKET_SIZE];
+    typedef unsigned char byte;
+
     static map<string, connection> _connections;
     static map<string, server_socket> _server_sockets;
     static vector<message> _messages;
-    static int UDP_PACKET_SIZE = 1024;
 
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
     {

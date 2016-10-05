@@ -21,7 +21,7 @@ namespace splashkit_lib
      *  translate, rotate and scale, and combine these together into a
      *  single matrix that can then be applied to vectors and points.
      *
-     * @param elements The elements of the matrix
+     * @field elements The elements of the matrix
      */
     struct matrix_2d
     {
