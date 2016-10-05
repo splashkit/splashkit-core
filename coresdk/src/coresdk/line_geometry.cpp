@@ -188,7 +188,7 @@ namespace splashkit_lib
 
     string line_to_string(const line &ln)
     {
-        return "From " + point_to_string(ln.start_point) + " to " + point_to_string(ln.end_point);
+        return "Line from " + point_to_string(ln.start_point) + " to " + point_to_string(ln.end_point);
     }
 
     bool line_intersects_lines(const line &l, const vector<line> &lines)
