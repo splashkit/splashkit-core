@@ -11,7 +11,7 @@
 namespace splashkit_lib
 {
     #define PACKET_SIZE 512
-    static unsigned long UDP_PACKET_SIZE = 1024;
+    static unsigned int UDP_PACKET_SIZE = 1024;
 
 
     typedef char packet_data[PACKET_SIZE];
@@ -479,12 +479,12 @@ namespace splashkit_lib
         return msg->connection;
     }
 
-    int udp_packet_size()
+    unsigned int udp_packet_size()
     {
         return UDP_PACKET_SIZE;
     }
 
-    void set_udp_packet_size(int udp_packet_size)
+    void set_udp_packet_size(unsigned int udp_packet_size)
     {
         UDP_PACKET_SIZE = udp_packet_size;
     }

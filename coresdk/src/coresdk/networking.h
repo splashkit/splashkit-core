@@ -106,8 +106,8 @@ namespace splashkit_lib
     void release_all_connections();
 
     // Message functions
-    int udp_packet_size();
-    void set_udp_packet_size(int udp_packet_size);
+    unsigned int udp_packet_size();
+    void set_udp_packet_size(unsigned int udp_packet_size);
     void broadcast_message(const string &a_msg);
     void broadcast_message(const string &a_msg, const string &name);
     void broadcast_message(const string &a_msg, server_socket svr);
