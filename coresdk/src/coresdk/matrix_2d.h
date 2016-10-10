@@ -4,6 +4,8 @@
  * @author Clancy Light Townsend
  * @brief Provides matrix functions to work on 2d coordinates.
  *
+ * @attribute group  physics
+ * @attribute static matrix_2d
  */
 
 #ifndef matrix_2d_h

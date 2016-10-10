@@ -1,12 +1,3 @@
-
-//
-//  random.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
-
 /**
  * @header random
  * @author Andrew Cain
@@ -16,6 +7,7 @@
  * a random number between 0 and 1, and `rnd(int ubound)` which
  * generates a random number between 0 and the value scpeficied in `ubound`.
  *
+ * @attribute group  utilities
  * @attribute static random
  */
 

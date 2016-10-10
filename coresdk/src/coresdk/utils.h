@@ -1,11 +1,11 @@
-
-//
-//  utils.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 23/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Utilities
+ * @author Andrew Cain
+ * @brief SplashKit provides miscellaneous utilities for unclassified functionality.
+ *
+ * @attribute group  utilities
+ * @attribute static utilities
+ */
 
 #ifndef utils_hpp
 #define utils_hpp

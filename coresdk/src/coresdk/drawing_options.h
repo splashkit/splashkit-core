@@ -1,10 +1,7 @@
-//
-//  drawing_options.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @author Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef drawing_options_hpp
 #define drawing_options_hpp

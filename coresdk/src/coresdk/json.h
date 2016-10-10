@@ -11,6 +11,7 @@
  * `json_add_string(json j, string key, string value)` and
  * `json_read_string(json j, string key)`.
  *
+ * @attribute group  json
  * @attribute static json
  */
 

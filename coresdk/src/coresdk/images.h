@@ -3,7 +3,7 @@
  * @author Andrew Cain
  * @brief SplashKit Images allow drawing of bitmaps and sprites to graphic windows.
  *
- *
+ * @attribute group  graphics
  * @attribute static images
  */
 

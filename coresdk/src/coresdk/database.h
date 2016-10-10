@@ -9,6 +9,7 @@
  * do this by calling the `open_database(string name)` function.
  *
  * @attribute static database
+ * @attribute group  database
  */
 
 #ifndef database_h

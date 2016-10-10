@@ -1,10 +1,7 @@
-//
-//  text_input.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 16/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @author Andrew Cain
+ * @attribute group input
+ */
 
 #ifndef text_input_hpp
 #define text_input_hpp

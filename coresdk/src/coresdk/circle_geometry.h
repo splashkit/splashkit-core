@@ -1,6 +1,8 @@
 /**
+ * @header Circle Geometry
  * @author Andrew Cain
- * @attribute group geometry
+ * @attribute group  geometry
+ * @attribute static geometry
  */
 
 #ifndef circle_geometry_hpp

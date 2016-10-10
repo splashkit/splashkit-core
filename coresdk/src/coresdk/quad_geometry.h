@@ -1,10 +1,9 @@
-//
-//  quad_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 23/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Quadrangle Geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef quad_geometry_h
 #define quad_geometry_h

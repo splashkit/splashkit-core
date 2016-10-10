@@ -1,10 +1,9 @@
-//
-//  point_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 19/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header Point Geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef point_geometry_h
 #define point_geometry_h
