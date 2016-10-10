@@ -1,10 +1,9 @@
-//
-//  triangle_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 23/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header triangle_geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef triangle_geometry_h
 #define triangle_geometry_h

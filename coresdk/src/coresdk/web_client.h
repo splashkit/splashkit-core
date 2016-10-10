@@ -1,10 +1,8 @@
-//
-//  web.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 26/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header web
+ * @author Andrew Cain
+ * @attribute group networking
+ */
 
 #ifndef web_hpp
 #define web_hpp

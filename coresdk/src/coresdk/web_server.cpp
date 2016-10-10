@@ -141,7 +141,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Getting request uri with invalid request";
             return "";
         }
-        
+
         return r->uri;
     }
 

@@ -1,11 +1,12 @@
+//
+// TODO: This file needs to be deprecated -- all types should be placed in their
+//       respective header file
+//
 
-//
-//  types.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header    types
+ * @attribute group types
+ */
 
 #ifndef types_hpp
 #define types_hpp

@@ -1,8 +1,7 @@
 /**
- * @header Web Server
- * @author James Armstrong
- * @brief
- *
+ * @header  web_server
+ * @author  James Armstrong
+ * @attribute group networking
  * @attribute static web_server
  */
 
@@ -31,7 +30,7 @@ namespace splashkit_lib
 
     /**
      * The method token is used to indicate the kind of action to be performed
-     * on the server. See [w3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
+     * on the server. See [W3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
      *
      * @constant HTTP_GET_METHOD        A get method
      * @constant HTTP_POST_METHOD       A post method

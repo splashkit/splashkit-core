@@ -2,18 +2,11 @@
  * @header  resources
  * @author  Andrew Cain
  * @brief   SplashKit resource functions allow you to locate resources in a
- *          project's Resources folder.
+ *          project's `Resources` folder.
  *
+ * @attribute group  resources
  * @attribute static resources
  */
-
-//
-//  resources.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 12/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
 
 #ifndef resources_hpp
 #define resources_hpp
@@ -29,32 +22,32 @@ namespace splashkit_lib
      *
      * @constant ANIMATION_RESOURCE Animation scripts are loaded as Animation
      *                              resources. These are located in the projects
-     *                              Resources/animations folder.
+     *                              `Resources/animations` folder.
      * @constant BUNDLE_RESOURCE    Resource bundles contain lists of other
      *                              resources. These are located in the projects
-     *                              Resources/bundles folder.
+     *                              `Resources/bundles` folder.
      * @constant DATABASE_RESOURCE  Database resources are located in the
-     *                              Resources/databases folder.
+     *                              `Resources/databases` folder.
      * @constant FONT_RESOURCE      Fonts resources are located in the
-     *                              Resources/fonts folder.
+     *                              `Resources/fonts` folder.
      * @constant IMAGE_RESOURCE     Image resources are located in the
-     *                              Resources/images folder.
-     * @constant JSON_RESOURCE      Json resources are located in the projects
-     *                              Resources/json folder.
+     *                              `Resources/images` folder.
+     * @constant JSON_RESOURCE      JSON resources are located in the projects
+     *                              `Resources/json` folder.
      * @constant MUSIC_RESOURCE     Music resources can be played as music, and
-     *                              live in the program's Resources/sounds
+     *                              live in the program's `Resources/sounds`
      *                              folder.
      * @constant SERVER_RESOURCE    Server resources that can be sent as responses
      *                              to web server requests.
      * @constant SOUND_RESOURCE     Sound resources can be played as sound
      *                              effects, and live in the program's
-     *                              Resources/sounds folder.
+     *                              `Resources/sounds` folder.
      * @constant TIMER_RESOURCE     Timer resources are not saved to file, but
      *                              can be created by SplashkKit resource
      *                              bundles.
      * @constant OTHER_RESOURCE     Other resources can be loaded, these will be
      *                              located directly in these project's
-     *                              Resources folder.
+     *                              `Resources` folder.
      */
     enum resource_kind
     {

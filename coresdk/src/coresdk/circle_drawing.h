@@ -1,10 +1,8 @@
-//
-//  circle_drawing.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 17/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header circle_drawing
+ * @author Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef circle_drawing_h
 #define circle_drawing_h

@@ -1,8 +1,10 @@
 /**
- * @header Text
- * @author Andrew Cain
- * @brief SplashKit Text allows for drawing text in a variety of ways to graphic windows.
+ * @header  text
+ * @author  Andrew Cain
+ * @brief   SplashKit Text allows for drawing text in a variety of ways to
+ *          graphic windows.
  *
+ * @attribute group  graphics
  * @attribute static text
  */
 

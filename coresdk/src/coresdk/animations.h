@@ -1,10 +1,11 @@
 /**
- * @header Animations
- * @author Andrew Cain
- * @brief Animations in SplashKit can be used to move between cells in
- *        bitmaps and sprites. Each animation generates a number sequence
- *        that can then be used when drawing bitmaps.
+ * @header  animations
+ * @author  Andrew Cain
+ * @brief   Animations in SplashKit can be used to move between cells in
+ *          bitmaps and sprites. Each animation generates a number sequence
+ *          that can then be used when drawing bitmaps.
  *
+ * @attribute group  animations
  * @attribute static animation
  */
 

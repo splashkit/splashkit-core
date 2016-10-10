@@ -1,10 +1,9 @@
-//
-//  rectangle_geometry.h
-//  splashkit
-//
-//  Created by Jacob Milligan on 19/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header rectangle_geometry
+ * @author Jacob Milligan
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef rectangle_geometry_H
 #define rectangle_geometry_H

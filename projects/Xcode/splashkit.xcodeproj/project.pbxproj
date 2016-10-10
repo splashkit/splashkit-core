@@ -1139,7 +1139,7 @@
 			path = ../../projects/Xcode/SimpleWebService;
 			sourceTree = "<group>";
 		};
-		94DF47021D740B0700E3D9AF /* Sound Related */ = {
+		94DF47021D740B0700E3D9AF /* Audio Related */ = {
 			isa = PBXGroup;
 			children = (
 				9423721F1D1D5D4E0020CCE2 /* audio.cpp */,
@@ -1149,7 +1149,7 @@
 				FCB6B3BA1D61423E00011965 /* music.h */,
 				94DF47041D740C0B00E3D9AF /* sound.h */,
 			);
-			name = "Sound Related";
+			name = "Audio Related";
 			sourceTree = "<group>";
 		};
 		94E699431D6F382000FBFA28 /* Network Related */ = {
@@ -1552,7 +1552,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2259,7 +2259,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,
