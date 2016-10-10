@@ -1,4 +1,5 @@
 /**
+ * @header Triangle Drawing
  * @author Andrew Cain
  * @attribute group graphics
  */

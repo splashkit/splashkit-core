@@ -1,3 +1,7 @@
+//
+// TODO: This file needs to be deprecated -- all types should be placed in their
+//       respective header file
+//
 #ifndef types_hpp
 #define types_hpp
 

@@ -1,4 +1,5 @@
 /**
+ * @header Mouse Input
  * @author Andrew Cain
  * @attribute group input
  */

@@ -1,4 +1,5 @@
 /**
+ * @header Color
  * @author Andrew Cain
  * @attribute group graphics
  */

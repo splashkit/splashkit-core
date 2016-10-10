@@ -1,7 +1,8 @@
 /**
  * @header Database
  * @author Jake Renzella
- * @brief SplashKit Database allows you to create, query and otherwise manipulate a database.
+ * @brief SplashKit Database allows you to create, query and otherwise 
+ *        manipulate a database.
  *
  * SplashKit's database library allows you to easily create or load databases
  * and to perform queries on them. To get started with databases in SplashKit,

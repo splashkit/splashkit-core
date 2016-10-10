@@ -1,4 +1,5 @@
 /**
+ * @header Ellipse Drawing
  * @author Andrew Cain
  * @attribute group graphics
  */

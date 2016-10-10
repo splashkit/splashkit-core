@@ -1,4 +1,5 @@
 /**
+ * @header Line Drawing
  * @author Andrew Cain
  * @attribute group graphics
  */
