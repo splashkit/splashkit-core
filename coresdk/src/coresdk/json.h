@@ -1,8 +1,8 @@
 /**
- * @header Json
- * @author James Armstrong
- * @author Jake Renzella
- * @brief SplashKit Json allows you to create and read JSON objects.
+ * @header  json
+ * @author  James Armstrong
+ * @author  Jake Renzella
+ * @brief   SplashKit Json allows you to create and read JSON objects.
  *
  * Splashkit's JSON library allows you to easily create or read JSON objects and
  * manipulate them to/from a JSON string or from a file containing a JSON

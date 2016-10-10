@@ -1,5 +1,5 @@
 /**
- * @header  Networking
+ * @header  networking
  * @author  James Armstrong
  * @brief   SplashKit's network-related functions allow you to communicate data
  *          across networks.

@@ -1,7 +1,7 @@
 /**
- * @header Utilities
- * @author Andrew Cain
- * @brief SplashKit provides miscellaneous utilities for unclassified functionality.
+ * @header  utilities
+ * @author  Andrew Cain
+ * @brief   SplashKit provides miscellaneous utilities for unclassified functionality.
  *
  * @attribute group  utilities
  * @attribute static utilities

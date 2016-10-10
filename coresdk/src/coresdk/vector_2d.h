@@ -1,7 +1,7 @@
 /**
- * @header vector_2d
- * @author Andrew Cain
- * @brief Provides vector functions to work on vectors.
+ * @header  vector_2d
+ * @author  Andrew Cain
+ * @brief   Provides vector functions to work on vectors.
  *
  * @attribute group  physics
  * @attribute static vector_2d

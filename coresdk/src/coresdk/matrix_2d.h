@@ -1,8 +1,8 @@
 /**
- * @header matrix_2d
- * @author Andrew Cain
- * @author Clancy Light Townsend
- * @brief Provides matrix functions to work on 2d coordinates.
+ * @header  matrix_2d
+ * @author  Andrew Cain
+ * @author  Clancy Light Townsend
+ * @brief   Provides matrix functions to work on 2d coordinates.
  *
  * @attribute group  physics
  * @attribute static matrix_2d

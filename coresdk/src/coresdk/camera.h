@@ -1,8 +1,8 @@
 /**
- * @header Camera
- * @author Andrew Cain
- * @brief SplashKit camera functionality allows you to move a virtual camera
- *        around in your world.
+ * @header  camera
+ * @author  Andrew Cain
+ * @brief   SplashKit camera functionality allows you to move a virtual camera
+ *          around in your world.
  *
  * Splashkit camera functionality allows you to move a virtual camera around in
  * your world. This camera projects to the users window, allowing you to

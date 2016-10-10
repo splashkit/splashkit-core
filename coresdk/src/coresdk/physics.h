@@ -1,6 +1,7 @@
 /**
- * @header Physics
- * @author Clancy Light Townsend
+ * @header  physics
+ * @author  Andrew Cain
+ * @attribute group  physics
  */
 
 #ifndef physics_hpp

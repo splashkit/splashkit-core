@@ -1,8 +1,8 @@
 /**
- * @header Window Manager
- * @author Andrew Cain
- * @brief Window Manager in SplashKit can be used create, and manipulate
- *        graphics windows
+ * @header  window_manager
+ * @author  Andrew Cain
+ * @brief   Window Manager in SplashKit can be used create, and manipulate
+ *          graphics windows
  *
  * @attribute group  graphics
  * @attribute static window_manager

@@ -1,5 +1,5 @@
 /**
- * @header Triangle Geometry
+ * @header triangle_geometry
  * @author Andrew Cain
  * @attribute group  geometry
  * @attribute static geometry

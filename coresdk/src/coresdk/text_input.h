@@ -1,5 +1,5 @@
 /**
- * @header Text Input
+ * @header text_input
  * @author Andrew Cain
  * @attribute group input
  */

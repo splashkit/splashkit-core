@@ -1,5 +1,5 @@
 /**
- * @header Music
+ * @header music
  * @author Jon Meyers
  * @attribute group  audio
  * @attribute static audio

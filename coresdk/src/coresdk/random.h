@@ -1,7 +1,7 @@
 /**
- * @header random
- * @author Andrew Cain
- * @brief SplashKit random provides a simple implementation of random.
+ * @header  random
+ * @author  Andrew Cain
+ * @brief   SplashKit random provides a simple implementation of random.
  *
  * The SplashKit`s random library provides two rnd methods, a `rnd()` which generates
  * a random number between 0 and 1, and `rnd(int ubound)` which

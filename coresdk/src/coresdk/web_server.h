@@ -1,6 +1,8 @@
 /**
- * @header Web Server
- * @author James Armstrong
+ * @header  web_server
+ * @author  James Armstrong
+ * @brief   Allows the creation of basic web servers
+ *
  * @attribute group networking
  * @attribute static web_server
  */

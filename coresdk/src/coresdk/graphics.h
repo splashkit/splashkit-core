@@ -1,6 +1,6 @@
 /**
- * @header Graphics
- * @author Andrew Cain
+ * @header  graphics
+ * @author  Andrew Cain
  * @attribute group graphics
  */
 

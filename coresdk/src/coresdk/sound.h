@@ -1,17 +1,9 @@
 /**
- * @header Sound
+ * @header sound
  * @author Andrew Cain
  * @attribute group  audio
  * @attribute static audio
  */
-
-//
-//  sound.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 29/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
 
 #ifndef sound_h
 #define sound_h

@@ -1,5 +1,5 @@
 /**
- * @header Keyboard Input
+ * @header keyboard_input
  * @author Andrew Cain
  * @attribute group input
  */

@@ -1,5 +1,5 @@
 /**
- * @header Rectangle Drawing
+ * @header rectangle_drawing
  * @author Andrew Cain
  * @attribute group graphics
  */

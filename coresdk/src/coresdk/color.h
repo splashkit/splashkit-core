@@ -1,7 +1,7 @@
 /**
- * @header Color
+ * @header color
  * @author Andrew Cain
- * @attribute group graphics
+ * @attribute group color
  */
 
 #ifndef color_hpp

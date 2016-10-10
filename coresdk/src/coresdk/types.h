@@ -2,6 +2,12 @@
 // TODO: This file needs to be deprecated -- all types should be placed in their
 //       respective header file
 //
+
+/**
+ * @header    types
+ * @attribute group types
+ */
+
 #ifndef types_hpp
 #define types_hpp
 

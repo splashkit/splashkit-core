@@ -1,5 +1,5 @@
 /**
- * @header Triangle Drawing
+ * @header triangle_drawing
  * @author Andrew Cain
  * @attribute group graphics
  */
