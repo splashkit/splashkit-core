@@ -8,7 +8,7 @@
 
 #include "terminal.h"
 
-#include "utility_functions.h"
+#include <easylogging++.h>
 
 #ifdef WINDOWS
     #include <ncursesw/ncurses.h>
