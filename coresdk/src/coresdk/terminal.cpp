@@ -46,7 +46,7 @@ namespace splashkit_lib
         else noecho();
     }
 
-    void clear_terminal()
+    void terminal_clear()
     {
         if ( not _ncurses_active )
         {
@@ -57,7 +57,7 @@ namespace splashkit_lib
         clear();
     }
 
-    void refresh_terminal()
+    void terminal_refresh()
     {
         if ( not _ncurses_active )
         {
@@ -126,6 +126,18 @@ namespace splashkit_lib
     {
         terminal_move_cursor_to(x, y);
         write(text);
+    }
+
+    void terminal_set_bold(bool value)
+    {
+        if ( not _ncurses_active )
+        {
+            LOG(WARNING) << "You must activate advanced terminal features to print bold text";
+            return;
+        }
+
+        if (value) attron(A_BOLD);
+        else attroff(A_BOLD);
     }
 
     void terminal_move_cursor_to(int x, int y)

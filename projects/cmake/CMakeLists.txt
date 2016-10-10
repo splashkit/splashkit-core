@@ -45,6 +45,7 @@ if (APPLE)
                    -lsmpeg2 \
                    -lfreetype \
                    -lcurl \
+                   -lncurses \
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
@@ -72,6 +73,7 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
+                   -lncurses \
                    -ldl")
 endif()
 

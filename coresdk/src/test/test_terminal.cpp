@@ -25,7 +25,7 @@ void run_terminal_test()
         activate_advanced_terminal();
     }
 
-    clear_terminal();
+    terminal_clear();
 
     terminal_move_cursor_to(34, 10);
     write_line("Hello World!");
@@ -35,14 +35,18 @@ void run_terminal_test()
 
     string name = read_line();
 
-    refresh_terminal();
+    terminal_refresh();
 
-    clear_terminal();
+    terminal_clear();
 
+    
+    terminal_set_echo_input(false);
     terminal_write("HELLO", (terminal_width() - 5) / 2, 1);
+    terminal_set_bold(true);
     terminal_write(name, static_cast<int>(terminal_width() - name.length()) / 2 , terminal_height() / 2);
+    terminal_set_bold(false);
 
-    refresh_terminal();
+    terminal_refresh();
 
     delay(1000);
     end_advanced_terminal();
