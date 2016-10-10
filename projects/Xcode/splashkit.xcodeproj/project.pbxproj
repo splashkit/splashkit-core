@@ -178,6 +178,10 @@
 		94A438391DA4BAF700A41A7B /* sound.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF47041D740C0B00E3D9AF /* sound.h */; };
 		94A4383A1DA4BB0200A41A7B /* sprites.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DBE1D6C0DA0002920A5 /* sprites.h */; };
 		94A501A91DA39044007859A1 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9424B59D1D4441CF0039B3AF /* color.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94A501AD1DA8593E007859A1 /* terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A501AB1DA8593E007859A1 /* terminal.cpp */; };
+		94A501AE1DA8593E007859A1 /* terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A501AC1DA8593E007859A1 /* terminal.h */; };
+		94A501AF1DA85943007859A1 /* terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A501AB1DA8593E007859A1 /* terminal.cpp */; };
+		94A501B21DA85D3C007859A1 /* test_terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A501B01DA85D3C007859A1 /* test_terminal.cpp */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */; };
@@ -360,6 +364,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		94A501B31DAB2CB0007859A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 942371D41D1D540C0020CCE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 942371DB1D1D540C0020CCE2;
+			remoteInfo = SplashKitBackend;
+		};
 		94D126121D94E4DE006957A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 942371D41D1D540C0020CCE2 /* Project object */;
@@ -553,6 +564,9 @@
 		94A437F21DA4AD7000A41A7B /* splashkit_starter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = splashkit_starter.h; path = ../../languages/cpp/splashkit_starter.h; sourceTree = "<group>"; };
 		94A437FB1DA4ADFE00A41A7B /* ScriptedAction */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ScriptedAction; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A437FD1DA4ADFE00A41A7B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		94A501AB1DA8593E007859A1 /* terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terminal.cpp; sourceTree = "<group>"; };
+		94A501AC1DA8593E007859A1 /* terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terminal.h; sourceTree = "<group>"; };
+		94A501B01DA85D3C007859A1 /* test_terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_terminal.cpp; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
 		94AC3DB11D657F45002920A5 /* point_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_drawing.h; sourceTree = "<group>"; };
 		94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quad_geometry.cpp; sourceTree = "<group>"; };
@@ -876,6 +890,7 @@
 		9423721E1D1D5D4E0020CCE2 /* coresdk */ = {
 			isa = PBXGroup;
 			children = (
+				94A501AA1DA85917007859A1 /* Terminal */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
 				9424B5B01D449C4F0039B3AF /* camera.cpp */,
 				F86951941D5093F800E1BCC9 /* database.cpp */,
@@ -936,6 +951,7 @@
 				94E699371D6F05FB00FBFA28 /* test_sprites.cpp */,
 				94DF47071D74132A00E3D9AF /* test_bundles.cpp */,
 				942ECDBF1D77C30A00E5B1F9 /* test_camera.cpp */,
+				94A501B01DA85D3C007859A1 /* test_terminal.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1054,6 +1070,15 @@
 			);
 			name = ScriptedAction;
 			path = ../../projects/Xcode/ScriptedAction;
+			sourceTree = "<group>";
+		};
+		94A501AA1DA85917007859A1 /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				94A501AB1DA8593E007859A1 /* terminal.cpp */,
+				94A501AC1DA8593E007859A1 /* terminal.h */,
+			);
+			name = Terminal;
 			sourceTree = "<group>";
 		};
 		94AC3DBC1D6C0D86002920A5 /* Sprite Related */ = {
@@ -1199,6 +1224,7 @@
 				F86951971D5093F800E1BCC9 /* database.h in Headers */,
 				94AC3DBB1D6BF11E002920A5 /* triangle_geometry.h in Headers */,
 				941C8A301D5B2EC1003112B2 /* animations.h in Headers */,
+				94A501AE1DA8593E007859A1 /* terminal.h in Headers */,
 				940864651D38B756009EA048 /* window_manager.h in Headers */,
 				4129D23C1D653F6E000BFD0C /* physics.h in Headers */,
 				94AC3DC01D6C0DA0002920A5 /* sprites.h in Headers */,
@@ -1356,6 +1382,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				94A501B41DAB2CB0007859A1 /* PBXTargetDependency */,
 			);
 			name = tests;
 			productName = audio_test;
@@ -1631,6 +1658,7 @@
 				F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */,
 				9420549E1D3463BA001ED922 /* resources.cpp in Sources */,
 				FCB6B3BB1D61423E00011965 /* music.cpp in Sources */,
+				94A501AD1DA8593E007859A1 /* terminal.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1641,6 +1669,7 @@
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
+				94A501B21DA85D3C007859A1 /* test_terminal.cpp in Sources */,
 				94DF47091D74132A00E3D9AF /* test_bundles.cpp in Sources */,
 				945BCE961D95511900F54A38 /* test_cave_escape.cpp in Sources */,
 				9453C40B1D8BE18D00A58968 /* test_tcp_networking.cpp in Sources */,
@@ -1749,6 +1778,7 @@
 				FA3ABFC71D82493A0064C29A /* vector_2d.cpp in Sources */,
 				FA3ABFC81D82493A0064C29A /* collisions.cpp in Sources */,
 				FA3ABFC91D82493A0064C29A /* graphics.cpp in Sources */,
+				94A501AF1DA85943007859A1 /* terminal.cpp in Sources */,
 				FA3ABFCA1D82493A0064C29A /* drawing_options.cpp in Sources */,
 				FA3ABFCB1D82493A0064C29A /* color.cpp in Sources */,
 				FA3ABFCC1D82493A0064C29A /* circle_drawing.cpp in Sources */,
@@ -1783,6 +1813,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		94A501B41DAB2CB0007859A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 942371DB1D1D540C0020CCE2 /* SplashKitBackend */;
+			targetProxy = 94A501B31DAB2CB0007859A1 /* PBXContainerItemProxy */;
+		};
 		94D126131D94E4DE006957A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 942371DB1D1D540C0020CCE2 /* SplashKitBackend */;
@@ -1918,7 +1953,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-static",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1960,7 +1998,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-static",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -1977,7 +2018,10 @@
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
 					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lcurl",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1993,7 +2037,10 @@
 					"\"$(SRCROOT)/../../coresdk/src/backend\"",
 					"\"$(SRCROOT)/../../coresdk/external/easyloggingpp\"",
 				);
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lcurl",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2246,6 +2293,7 @@
 				94A437EF1DA4AC8A00A41A7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94A437FF1DA4ADFE00A41A7B /* Build configuration list for PBXNativeTarget "ScriptedAction" */ = {
 			isa = XCConfigurationList;
@@ -2254,6 +2302,7 @@
 				94A438011DA4ADFE00A41A7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94C0D09F1D73B1E50099387A /* Build configuration list for PBXNativeTarget "sqlite" */ = {
 			isa = XCConfigurationList;

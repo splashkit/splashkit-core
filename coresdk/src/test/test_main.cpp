@@ -41,6 +41,7 @@ void setup_tests()
     add_test("Resources", run_resources_tests);
     add_test("Shape drawing", run_shape_drawing_test);
     add_test("Sprite tests", run_sprite_test);
+    add_test("Terminal", run_terminal_test);
     add_test("Text", run_text_test);
     add_test("Timers", run_timer_test);
     add_test("Windows", run_windows_tests);
