@@ -10,7 +10,12 @@
 
 #include "utility_functions.h"
 
-#include <ncurses.h>
+#ifdef WINDOWS
+    #include <ncursesw/ncurses.h>
+#else
+    #include <ncurses.h>
+#endif
+
 #include <iostream>
 using namespace std;
 
