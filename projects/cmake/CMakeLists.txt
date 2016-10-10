@@ -157,7 +157,9 @@ if (MSYS)
                                            libsqlite
                                            pthread
                                            stdc++
-                                           ws2_32)
+                                           ws2_32
+                                           libncursesw
+                                           )
 elseif(APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
