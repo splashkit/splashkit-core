@@ -1,14 +1,15 @@
 /**
- * @header Sprites
- * @author Andrew Cain
- * @brief SplashKit Sprites allows you to create images you can easily
- *        move and animate.
+ * @header  sprites
+ * @author  Andrew Cain
+ * @brief   SplashKit Sprites allows you to create images you can easily
+ *          move and animate.
  *
  * SplashKit sprites are game elements that can be moved, and animated. Sprites
  * are located at a position in the game, have a velocity, and an animation.
  * The sprite can also have arbitary data associated with it for game specific
  * purposes.
  *
+ * @attribute group  sprites
  * @attribute static sprite
  */
 

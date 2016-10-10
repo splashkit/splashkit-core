@@ -1,10 +1,8 @@
-//
-//  mouse_input.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 15/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header mouse_input
+ * @author Andrew Cain
+ * @attribute group input
+ */
 
 #ifndef mouse_input_h
 #define mouse_input_h

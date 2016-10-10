@@ -1,10 +1,11 @@
-//
-//  geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 15/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  geometry
+ * @author  Andrew Cain
+ * @brief   SplashKit's geometry functions assist with geometry-related computations.
+ *
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef geometry_hpp
 #define geometry_hpp

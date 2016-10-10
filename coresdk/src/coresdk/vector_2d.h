@@ -1,10 +1,11 @@
-//
-//  vector_2d.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 19/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  vector_2d
+ * @author  Andrew Cain
+ * @brief   Provides vector functions to work on vectors.
+ *
+ * @attribute group  physics
+ * @attribute static vector_2d
+ */
 
 #ifndef vector_2d_h
 #define vector_2d_h

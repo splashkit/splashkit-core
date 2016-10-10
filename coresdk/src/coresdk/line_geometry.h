@@ -1,10 +1,9 @@
-//
-//  line_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 20/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header line_geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef line_geometry_hpp
 #define line_geometry_hpp

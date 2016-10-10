@@ -1,10 +1,8 @@
-//
-//  rectangle_drawing.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 17/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header rectangle_drawing
+ * @author Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef rectangle_drawing_hpp
 #define rectangle_drawing_hpp

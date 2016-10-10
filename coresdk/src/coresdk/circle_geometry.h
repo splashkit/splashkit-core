@@ -1,10 +1,9 @@
-//
-//  circle_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 22/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header circle_geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef circle_geometry_hpp
 #define circle_geometry_hpp

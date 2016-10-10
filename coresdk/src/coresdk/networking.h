@@ -1,3 +1,13 @@
+/**
+ * @header  networking
+ * @author  James Armstrong
+ * @brief   SplashKit's network-related functions allow you to communicate data
+ *          across networks.
+ *
+ * @attribute group networking
+ * @attribute static networking
+ */
+
 #ifndef SPLASHKIT_NETWORKING_H
 #define SPLASHKIT_NETWORKING_H
 
