@@ -9,6 +9,7 @@
  * The sprite can also have arbitary data associated with it for game specific
  * purposes.
  *
+ * @attribute group  sprites
  * @attribute static sprite
  */
 

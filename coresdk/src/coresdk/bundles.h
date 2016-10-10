@@ -2,23 +2,16 @@
  * @header  bundles
  * @author  Andrew Cain
  * @brief   SplashKit resource bundles allow you to quickly and easily load a
- *          number of resources.
+ *          number of resources in the `Resources` folder.
  *
  *  Supports the loading and freeing of game resource bundles. Resource types
  *  include images, sounds, music and animation files to name a few. Resource
- *  files must be saved in specific locations of a **Resources** folder for
+ *  files must be saved in specific locations of a `Resources` folder for
  *  your game.
  *
+ * @attribute group  resource_bundles
  * @attribute static resource_bundle
  */
-
-//
-//  bundles.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 29/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
 
 #ifndef bundles_h
 #define bundles_h
@@ -108,6 +101,6 @@ namespace splashkit_lib
     void free_resource_bundle(const string name);
 
     void free_all_resource_bundles();
-    
+
 #endif /* bundles_hpp */
 }

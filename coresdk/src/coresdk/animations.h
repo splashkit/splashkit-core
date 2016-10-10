@@ -5,6 +5,7 @@
  *        bitmaps and sprites. Each animation generates a number sequence
  *        that can then be used when drawing bitmaps.
  *
+ * @attribute group  animation
  * @attribute static animation
  */
 

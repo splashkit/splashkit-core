@@ -1,8 +1,7 @@
 /**
  * @header Web Server
  * @author James Armstrong
- * @brief
- *
+ * @attribute group networking
  * @attribute static web_server
  */
 

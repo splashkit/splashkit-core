@@ -1,8 +1,7 @@
 /**
  * @header Sound
  * @author Andrew Cain
- * @brief SplashKit Audio allows you to load and play sound effects.
- *
+ * @attribute group  audio
  * @attribute static audio
  */
 

@@ -8,6 +8,7 @@
  * your world. This camera projects to the users window, allowing you to
  * draw things to the screen in your world coordinates.
  *
+ * @attribute group  camera
  * @attribute static camera
  */
 
@@ -228,7 +229,7 @@ namespace splashkit_lib
      *                 position the sprite offset from the center of the screen.
      */
     void center_camera_on(sprite s, float offset_x, float offset_y);
-    
+
     /**
      * Set the camera view to be centered over the specific sprite. The offset
      * vector allows you to move the sprite from the direct center of the screen.
@@ -238,6 +239,6 @@ namespace splashkit_lib
      *                 the sprite away from the center of the screen.
      */
     void center_camera_on(sprite s, const vector_2d &offset);
-    
+
 #endif /* camera_hpp */
 }
