@@ -12,7 +12,7 @@
 #include "color.h"
 #include "utils.h"
 #include "random.h"
-#include "web.h"
+#include "web_client.h"
 
 #include <iostream>
 #include <string>

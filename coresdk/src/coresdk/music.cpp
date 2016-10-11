@@ -29,6 +29,11 @@ namespace splashkit_lib
 
     music load_music(const string &name, const string &filename)
     {
+        if ( ! audio_ready() )
+        {
+            LOG(ERROR) << "Attempting to load music when audio is closed.";
+            return nullptr;
+        }
         if (has_music(name)) return music_named(name);
 
         string file_path = filename;

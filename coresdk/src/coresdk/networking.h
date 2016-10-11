@@ -20,6 +20,18 @@
 using namespace std;
 namespace splashkit_lib
 {
+    /**
+     * The kind of protocol used for a server of connection.
+     *
+     * @constant TCP  Uses the TCP protocol. SplashKit can send messages of any
+     *                size, and repackage it from you at the other end. Messages
+     *                are reliably transferred.
+     * @constant UDP  Uses the UDP protocol. SplashKit will send messages of up
+     *                to 1024 bytes (by default). You need to handle packaging
+     *                anything larger than this.
+     * @constant UNKNOWN The protocol is unknown, usually due to the connection
+     *                    or server being invalid or closed.
+     */
     enum connection_type
     {
         TCP,
@@ -27,14 +39,31 @@ namespace splashkit_lib
         UNKNOWN
     };
 
+    /**
+     * A message contains data that has been transferred between a client
+     * connection and a server (or visa versa).
+     *
+     * @attribute class message
+     */
     typedef struct sk_message *message;
-    typedef struct sk_connection_data *connection;
-    typedef struct sk_server_data *server_socket;
 
-    typedef char packet_data[512];
-    typedef unsigned char byte;
-    typedef byte bytes[4];
-    static const int PACKET_SIZE = 512;
+    /**
+     * A connection represents the communication channel from a client going to
+     * a server. This can be used for the client and the server to send and
+     * receive messages.
+     *
+     * @attribute class connection
+     */
+    typedef struct sk_connection_data *connection;
+
+    /**
+     * A server represents a network resource that clients can connect to. The
+     * server will receive messages from all of the client connections, and can
+     * be used to access the clients connected to the server.
+     *
+     * @attribute class server_socket
+     */
+    typedef struct sk_server_data *server_socket;
 
     // Server functions
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol);
@@ -49,13 +78,13 @@ namespace splashkit_lib
 
     unsigned int connection_count(const string &name);
     unsigned int connection_count(server_socket server);
-    
+
     bool has_server(const string &name);
-    
+
     bool accept_all_new_connections();
     bool accept_new_connection(server_socket server);
     bool server_has_connection(server_socket server, const string &name);
-    
+
     connection last_connection(server_socket server);
     connection last_connection(const string &name);
 
@@ -68,27 +97,27 @@ namespace splashkit_lib
     void close_all_connections();
     bool close_connection(connection a_connection);
     bool close_connection(const string &name);
-    
+
     connection connection_named(const string &name);
     bool has_connection(const string &name);
-    
+
     unsigned int connection_ip(const string &name);
     unsigned int connection_ip(connection a_connection);
-    
+
     bool is_connection_open(connection con);
     bool is_connection_open(const string &name);
-    
+
     unsigned short int connection_port(connection a_connection);
     unsigned short int connection_port(const string &name);
-    
+
     connection message_connection(message msg);
     void reconnect(const string &name);
     void reconnect(connection a_connection);
     void release_all_connections();
 
     // Message functions
-    int udp_packet_size();
-    void set_udp_packet_size(int udp_packet_size);
+    unsigned int udp_packet_size();
+    void set_udp_packet_size(unsigned int udp_packet_size);
     void broadcast_message(const string &a_msg);
     void broadcast_message(const string &a_msg, const string &name);
     void broadcast_message(const string &a_msg, server_socket svr);
@@ -105,6 +134,7 @@ namespace splashkit_lib
     unsigned int message_count(const string &name);
     unsigned int message_count(server_socket svr);
     string message_data(message msg);
+    vector<int8_t> message_data_bytes(message msg);
     string message_host(message msg);
     unsigned short int message_port(message msg);
     connection_type message_protocol(message msg);
@@ -193,7 +223,7 @@ namespace splashkit_lib
      * @returns ipv4 address string in X.X.X.X format
      */
     string ipv4_to_str(unsigned int ip);
-    
+
     /**
      * @brief Returns the ipv4 string for the current computer's ip
      *

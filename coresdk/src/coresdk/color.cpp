@@ -14,6 +14,9 @@
 #include <iomanip>
 
 #include "utility_functions.h"
+
+using namespace std;
+
 namespace splashkit_lib
 {
     typedef unsigned char byte;

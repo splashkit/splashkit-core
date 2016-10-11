@@ -24,7 +24,7 @@ namespace splashkit_lib
      *
      * @attribute class http_response
      */
-    typedef struct _http_response_data *http_response;
+    typedef struct sk_http_response *http_response;
 
     /**
      * Make a get request to access a resource on the internet.

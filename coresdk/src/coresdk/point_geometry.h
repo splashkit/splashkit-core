@@ -164,8 +164,15 @@ namespace splashkit_lib
      * @param  pt2 The other point
      * @return     The distance between the two points
      */
-    float point_point_distance(const point_2d &pt1, const point_2d pt2);
+    float point_point_distance(const point_2d &pt1, const point_2d &pt2);
 
-
+    /**
+     * Returns the distance from a point to a line.
+     *
+     * @param  pt The point
+     * @param  l  The line
+     * @return    The distance from `pt` to `l`
+     */
+    float point_line_distance(const point_2d &pt, const line &l);
 }
 #endif /* point_geometry_h */

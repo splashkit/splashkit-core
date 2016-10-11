@@ -53,8 +53,6 @@ namespace splashkit_lib
         HTTP_REQUEST_PTR =          0x48524551, //'HREQ';
         HTTP_RESPONSE_PTR =         0x48524553, //'HRES';
         WEB_SERVER_PTR =            0x57535652, //'WSVR';
-        WEB_SERVER_REQUEST_PTR =    0x57524551, //'WREQ';
-        WEB_SERVER_RESPONSE_PTR =   0x57524553, //'WRES';
         CONNECTION_PTR =            0x434f4e50, //'CONP';
         MESSAGE_PTR =               0x4d534750, //'MSGP';
         SERVER_SOCKET_PTR =         0x53565253, //'SVRS';
@@ -170,22 +168,6 @@ namespace splashkit_lib
         map<int, void *> _data;
     };
 
-    struct sk_http_request
-    {
-        http_method request_type;
-        const char *url;
-        unsigned short port;
-        const char *body;
-        const char *filename;
-    };
-
-    struct sk_http_response
-    {
-        unsigned short status;
-        unsigned int size;
-        char *data;
-    };
-
     struct sk_network_connection
     {
         pointer_identifier id;
@@ -206,8 +188,8 @@ namespace splashkit_lib
         connection_type protocol;
         string string_ip;    // TODO should this be stored?
         vector<sk_message*> messages;
-        long int msg_len;
-        string part_msg_data;
+        long int expected_msg_len;      // We are part way through... a message this length
+        vector<int8_t> part_msg_data;
     };
 
     struct sk_server_data
@@ -225,7 +207,7 @@ namespace splashkit_lib
     struct sk_message
     {
         pointer_identifier id;
-        string data;
+        vector<int8_t> data;
         connection_type protocol;
 
         // TCP
@@ -236,36 +218,42 @@ namespace splashkit_lib
         int port;
     };
 
-    struct sk_server_response
+    struct sk_http_response
     {
-        pointer_identifier id;
-        string content_type;
-        string message;
-        http_status_code code;
-        semaphore response_sent;
+        pointer_identifier  id;
+
+        string              content_type;
+        char                *message;
+        unsigned long       message_size;
+        http_status_code    code;
+
+        semaphore           response_sent;
     };
 
-    struct sk_server_request
+    struct sk_http_request
     {
-        pointer_identifier id;
-        string uri;
-        http_method method;
-        string body;
-        semaphore control;
+        pointer_identifier  id;
+        string              uri;
+        http_method         method;
 
-        sk_server_response* response;
+        unsigned short      port;
+        string              body;
+        string              filename;
+
+        semaphore           control;
+        sk_http_response    *response;
     };
 
     struct sk_web_server
     {
-        pointer_identifier id;
-        struct mg_context *ctx;
-        struct mg_callbacks callbacks;
+        pointer_identifier          id;
+        struct mg_context           *ctx;
+        struct mg_callbacks         callbacks;
 
-        sk_server_request* last_request;
-        channel<sk_server_request*> request_queue;
+        sk_http_request             *last_request;
+        channel<sk_http_request*>   request_queue;
 
-        string port;
+        unsigned short              port;
     };
 
     struct animation_frame

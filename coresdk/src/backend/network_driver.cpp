@@ -61,8 +61,7 @@ namespace splashkit_lib
         {
             result.kind = UNKNOWN;
             result._socket = nullptr;
-            LOG(ERROR) << "Failed to open UDP server on port " << port;
-            LOG(ERROR) << "SDLNet_UDP_Open: " << SDLNet_GetError();
+            LOG(ERROR) << "Failed to open UDP server on port " << port << ": " << SDLNet_GetError();
         }
 
         return result;

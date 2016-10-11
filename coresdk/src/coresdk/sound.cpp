@@ -60,6 +60,11 @@ namespace splashkit_lib
 
     sound_effect load_sound_effect(const string &name, const string &filename)
     {
+        if ( ! audio_ready() )
+        {
+            LOG(ERROR) << "Attempting to load sound effect when audio is closed.";
+            return nullptr;
+        }
         if (has_sound_effect(name)) return sound_effect_named(name);
 
         string file_path = filename;

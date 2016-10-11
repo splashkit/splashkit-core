@@ -125,4 +125,16 @@ namespace splashkit_lib
 
         return false;
     }
+
+    point_2d triangle_barycenter(const triangle  &tri)
+    {
+        return point_at(
+                (tri.points[0].x + tri.points[1].x + tri.points[2].x) / 3,
+                (tri.points[0].y + tri.points[1].y + tri.points[2].y) / 3);
+    }
+
+    string triangle_to_string(const triangle  &tri)
+    {
+        return "Triangle @" + point_to_string(tri.points[0]) + " - " + point_to_string(tri.points[1]) + " - " + point_to_string(tri.points[2]);
+    }
 }

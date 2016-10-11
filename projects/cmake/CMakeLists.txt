@@ -45,6 +45,7 @@ if (APPLE)
                    -lsmpeg2 \
                    -lfreetype \
                    -lcurl \
+                   -lncurses \
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
@@ -72,6 +73,7 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
+                   -lncurses \
                    -ldl")
 endif()
 
@@ -155,7 +157,9 @@ if (MSYS)
                                            libsqlite
                                            pthread
                                            stdc++
-                                           ws2_32)
+                                           ws2_32
+                                           libncursesw
+                                           )
 elseif(APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
