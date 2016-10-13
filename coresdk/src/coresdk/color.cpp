@@ -253,7 +253,7 @@ namespace splashkit_lib
         return b;
     }
 
-    color color_grey()
+    color color_gray()
     {
         return rgba_color(0.5f, 0.5f, 0.5f, 1.0f);
     }
@@ -518,7 +518,7 @@ namespace splashkit_lib
         return rgba_color(218 / 255.0f, 165 / 255.0f, 32 / 255.0f, 1.0f);
     }
 
-    color color_gray()
+    color color_grey()
     {
         return rgba_color(0.5f, 0.5f, 0.5f, 1.0f);
     }

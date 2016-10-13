@@ -25,7 +25,7 @@ void test_simple_terminal()
 
     if ( advanced_terminal_active() )
     {
-        terminal_refresh();
+        refresh_terminal();
     }
 
     delay(1000);
@@ -33,28 +33,28 @@ void test_simple_terminal()
 
 void test_advanced_terminal()
 {
-    activate_advanced_terminal();
-    terminal_clear();
+    move_cursor_to(34, 10);
 
-    terminal_move_cursor_to(34, 10);
-    termal_set_colors(COLOR_SWINBURNE_RED, COLOR_WHITE);
+    set_terminal_colors(COLOR_RED, COLOR_GREEN);
+    clear_terminal();
     write_line("Hello World!");
 
-    terminal_write("Enter Name:", 34, 11);
-    terminal_move_cursor_to(34, 12);
+    write_at("Enter Name:", 34, 11);
+    move_cursor_to(34, 12);
+    refresh_terminal();
 
+    set_terminal_colors(COLOR_WHITE, COLOR_GREEN);
     string name = read_line();
 
-    terminal_refresh();
-    terminal_clear();
+    clear_terminal();
 
-    terminal_set_echo_input(false);
-    terminal_write("HELLO", (terminal_width() - 5) / 2, 1);
-    terminal_set_bold(true);
-    terminal_write(name, static_cast<int>(terminal_width() - name.length()) / 2 , terminal_height() / 2);
-    terminal_set_bold(false);
 
-    terminal_refresh();
+    write_at("HELLO", (terminal_width() - 5) / 2, 1);
+    set_terminal_bold(true);
+    write_at(name, static_cast<int>(terminal_width() - name.length()) / 2 , terminal_height() / 2);
+    set_terminal_bold(false);
+
+    refresh_terminal();
 
     delay(1000);
     end_advanced_terminal();

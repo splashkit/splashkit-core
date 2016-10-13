@@ -76,8 +76,11 @@ namespace splashkit_lib
             return _color_pair_map[clr_pair];
 
         // Create it
-        int result = static_cast<int>(_color_pair_map.size() + 50);
+        int result = static_cast<int>(_color_pair_map.size() + 1);
+        _color_pair_map[clr_pair] = result;
+
         init_pair(result, map_color(fg), map_color(bg));
+
         return result;
     }
 
@@ -87,19 +90,22 @@ namespace splashkit_lib
     color color_green();
     color color_dark_blue();
     color color_dark_cyan();
-    color color_green();
     color color_dark_gray();
-
     color color_dark_green();
-
     color color_yellow();
     color color_light_yellow();
     color color_magenta();
     color color_dark_magenta();
     color color_white();
-    color color_grey();
+    color color_gray();
     color color_red();
     color color_blue();
+
+    void move_cursor_to(int x, int y);
+    void set_terminal_colors(color foreground, color background);
+    void set_terminal_bold(bool value);
+    void set_terminal_echo_input(bool value);
+    void set_terminal_clear_color(color background);
 
     void activate_advanced_terminal()
     {
@@ -124,7 +130,7 @@ namespace splashkit_lib
                 map_color( color_dark_blue() );
                 map_color( color_dark_magenta() );
                 map_color( color_dark_cyan() );
-                map_color( color_grey() );
+                map_color( color_gray() );
 
                 //bright
                 map_color( color_dark_gray() );
@@ -141,6 +147,13 @@ namespace splashkit_lib
                 LOG(WARNING) << "The terminal you are using does not support colors";
 
             keypad(stdscr, true);
+
+            set_terminal_echo_input(true);
+            set_terminal_bold(false);
+            move_cursor_to(0, 0);
+            attron(COLOR_PAIR(0));
+            bkgdset(COLOR_PAIR(0));
+            clear();
         }
         else
         {
@@ -148,7 +161,7 @@ namespace splashkit_lib
         }
     }
 
-    void terminal_set_echo_input(bool value)
+    void set_terminal_echo_input(bool value)
     {
         if ( not _ncurses_active )
         {
@@ -160,7 +173,7 @@ namespace splashkit_lib
         else noecho();
     }
 
-    void terminal_clear()
+    void clear_terminal()
     {
         if ( not _ncurses_active )
         {
@@ -171,7 +184,7 @@ namespace splashkit_lib
         clear();
     }
 
-    void terminal_refresh()
+    void refresh_terminal()
     {
         if ( not _ncurses_active )
         {
@@ -249,7 +262,7 @@ namespace splashkit_lib
         return y;
     }
 
-    void termal_set_colors(color foreground, color background)
+    void set_terminal_colors(color foreground, color background)
     {
         if ( not can_change_color() )
         {
@@ -259,10 +272,10 @@ namespace splashkit_lib
 
         int pair = map_color_pair(foreground, background);
         attron(COLOR_PAIR(pair));
-        bkgd(COLOR_PAIR(pair));
+        bkgdset(COLOR_PAIR(pair));
     }
 
-    void terminal_set_bold(bool value)
+    void set_terminal_bold(bool value)
     {
         if ( not _ncurses_active )
         {
@@ -274,7 +287,7 @@ namespace splashkit_lib
         else attroff(A_BOLD);
     }
 
-    void terminal_move_cursor_to(int x, int y)
+    void move_cursor_to(int x, int y)
     {
         if ( not _ncurses_active )
         {
@@ -285,9 +298,9 @@ namespace splashkit_lib
         move(y, x);
     }
 
-    void terminal_write(string text, int x, int y)
+    void write_at(string text, int x, int y)
     {
-        terminal_move_cursor_to(x, y);
+        move_cursor_to(x, y);
         write(text);
     }
 
@@ -305,5 +318,16 @@ namespace splashkit_lib
             getnstr(line, 2095);
             return string(line);
         }
+    }
+
+    char read_char()
+    {
+        char result;
+        if ( not _ncurses_active )
+            cin >> result;
+        else
+            result = getch();
+        
+        return result;
     }
 }
