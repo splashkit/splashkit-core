@@ -19,6 +19,8 @@ using namespace std;
 
 namespace splashkit_lib
 {
+    // from window manager
+    unsigned long number_open_windows();
 
     void delay(unsigned int milliseconds)
     {
@@ -31,8 +33,11 @@ namespace splashkit_lib
                 unsigned int t;
                 for (t = 1; t < milliseconds / 50; t++)
                 {
-                    process_events();
-                    if ( quit_requested() ) return;
+                    if ( number_open_windows() > 0 )
+                    {
+                        process_events();
+                        if ( quit_requested() ) return;
+                    }
 
                     sk_delay(50);
                 }
