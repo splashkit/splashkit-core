@@ -96,12 +96,13 @@ namespace splashkit_lib
     int rows_changed(database db);
 
     /**
-     * @brief Loads or creates, and returns a database
+     * Loads or creates, and returns a database.
      *
      * The supplied `filename` is the name of the file of the database. The
      * supplied `name` indicates the name to use to refer to this `database`.
      * The `database` can then be retrieved by passing this `name` to
-     * the `database_named` function.
+     * the `database_named` function. If the database file does not exist, it
+     * will be created for you.
      *
      * @param name      The name used to refer to the database.
      * @param filename  The filename used to locate the database to use.
