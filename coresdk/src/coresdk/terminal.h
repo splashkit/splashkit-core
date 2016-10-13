@@ -9,6 +9,8 @@
 #ifndef terminal_h
 #define terminal_h
 
+#include "color.h"
+
 #include <string>
 using std::string;
 
@@ -25,8 +27,11 @@ namespace splashkit_lib
     void terminal_set_bold(bool value);
     void terminal_set_echo_input(bool value);
     void write(string text);
+    void write_line();
     void write_line(string line);
     void terminal_write(string text, int x, int y);
+    void termal_set_colors(color foreground, color background);
+    bool advanced_terminal_active();
 }
 
 #endif /* terminal_h */
