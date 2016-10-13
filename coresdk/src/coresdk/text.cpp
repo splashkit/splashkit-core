@@ -247,16 +247,6 @@ namespace splashkit_lib
         draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
     }
 
-    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts)
-    {
-        draw_text(text, clr, fnt, 64, x, y, opts);
-    }
-
-    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y)
-    {
-        draw_text(text, clr, fnt, 64, x, y);
-    }
-
     void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
     {
         xy_from_opts(opts, x, y);

@@ -255,33 +255,6 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color and font at x and y to the currently focussed window.
-     *
-     * @param text          The text string to be written to the window.
-     * @param clr           The desired `color` of the text to be written.
-     * @param fnt           The name of the `font` which will be used to draw the text
-     * @param x             The x location to draw the text.
-     * @param y             The y location to draw the text.
-     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
-     *
-     * @attribute suffix    no_size_with_options_font_as_string
-     */
-    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y, const drawing_options &opts);
-
-    /**
-     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
-     *
-     * @param text          The text string to be written to the window.
-     * @param clr           The desired `color` of the text to be written.
-     * @param fnt           The name of the `font` which will be used to draw the text
-     * @param x             The x location to draw the text.
-     * @param y             The y location to draw the text.
-     *
-     * @attribute suffix    no_size_font_as_string
-     */
-    void draw_text(const string &text, const color &clr, const string &fnt, float x, float y);
-
-    /**
      * @brief Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.
      *
      * @param text          The text string to be written to the window.
