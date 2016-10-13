@@ -583,6 +583,7 @@
 		94B57A661D65CCF300CE7D55 /* clipping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clipping.h; sourceTree = "<group>"; };
 		94B57A6A1D66738300CE7D55 /* point_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_geometry.cpp; sourceTree = "<group>"; };
 		94B57A6B1D66738300CE7D55 /* point_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_geometry.h; sourceTree = "<group>"; };
+		94BBE6751DAF796400B01487 /* keynote_code.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keynote_code.cpp; sourceTree = "<group>"; };
 		94C0D0951D73B1E50099387A /* libsqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsqlite.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
@@ -919,7 +920,7 @@
 				94E699431D6F382000FBFA28 /* Network Related */,
 				4129D2381D653F57000BFD0C /* Physics Related */,
 				94A02AAA1D73B432002E0353 /* Resource Related */,
-				94DF47021D740B0700E3D9AF /* Sound Related */,
+				94DF47021D740B0700E3D9AF /* Audio Related */,
 				94AC3DBC1D6C0D86002920A5 /* Sprite Related */,
 			);
 			path = coresdk;
@@ -1111,6 +1112,14 @@
 			name = "Geometry Related";
 			sourceTree = "<group>";
 		};
+		94BBE6741DAF794A00B01487 /* For Keynotes */ = {
+			isa = PBXGroup;
+			children = (
+				94BBE6751DAF796400B01487 /* keynote_code.cpp */,
+			);
+			name = "For Keynotes";
+			sourceTree = "<group>";
+		};
 		94C0D0961D73B1E50099387A /* sqlite */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1133,7 @@
 		94D125EA1D94CC12006957A8 /* demos */ = {
 			isa = PBXGroup;
 			children = (
+				94BBE6741DAF794A00B01487 /* For Keynotes */,
 				94A437FC1DA4ADFE00A41A7B /* ScriptedAction */,
 				94D125F01D94CC49006957A8 /* SimpleWebService */,
 			);
@@ -1552,7 +1562,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2259,7 +2269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,
