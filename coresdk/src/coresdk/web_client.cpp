@@ -67,13 +67,14 @@ namespace splashkit_lib
     bool download_file(const string &name, const string &url, unsigned short port, string &path)
     {
         http_response response = http_get(url, port);
-        auto cleanup_response = finally( [&] { free_response(response); });
 
         if ( !response )
         {
-            LOG(WARNING) << "Unable to make network connection -- no response";
             return false;
         }
+
+        auto cleanup_response = finally( [&] { free_response(response); });
+
         if ( static_cast<int>(response->code) < 200 || static_cast<int>(response->code) >= 300 )
         {
             LOG(WARNING) << "Unable to download file from " << url << " got status " << response->code;
@@ -104,7 +105,7 @@ namespace splashkit_lib
         return true;
     }
 
-    bitmap download_image(const string &name, const string &url, unsigned short port)
+    bitmap download_bitmap(const string &name, const string &url, unsigned short port)
     {
         string path;
         if ( not download_file(name, url, port, path) )
