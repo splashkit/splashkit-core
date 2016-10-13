@@ -327,7 +327,7 @@ namespace splashkit_lib
             cin >> result;
         else
             result = getch();
-        
+
         return result;
     }
 }

@@ -58,7 +58,7 @@ namespace splashkit_lib
 
     /**
      * In advanced mode, this will clear the terminal to the background color
-     * you set in `set_terminal_clear_color`.
+     * you set in `set_terminal_color`.
      */
     void clear_terminal();
 
@@ -123,12 +123,11 @@ namespace splashkit_lib
 
     /**
      * In advanced mode this allows you to set the color of the foreground and
-     * the background for character drawing. Also see `set_terminal_clear_color`
-     * if you want to set the color that is used when the terminal is cleared.
+     * the background. The foreground is the color of the text.
      *
      *
      * Note that only the following colors are guaranteed to work on all
-     * Terminals:
+     * Terminals (others may work):
      *
      *
      *   -  `color_black`
@@ -183,69 +182,6 @@ namespace splashkit_lib
      * @param background The color of the background behind drawn text.
      */
     void set_terminal_colors(color foreground, color background);
-
-    /**
-     * In advanced mode this allows you to set the color used when the terminal
-     * is cleared. This is possibly different to the background color of the
-     * text you are drawing on the terminal. See `set_terminal_colors` for
-     * changing the color of the text behind the text you draw.
-     *
-     *
-     * Note that only the following colors are guaranteed to work on all
-     * Terminals:
-     *
-     *
-     *   -  `color_black`
-     *
-     *
-     *   -  `color_dark_gray`
-     *
-     *
-     *   -  `color_gray`
-     *
-     *
-     *   -  `color_white`
-     *
-     *
-     *   -  `color_red`
-     *
-     *
-     *   -  `color_dark_red`
-     *
-     *
-     *   -  `color_green`
-     *
-     *
-     *   -  `color_dark_green`
-     *
-     *
-     *   -  `color_blue`
-     *
-     *
-     *   -  `color_dark_blue`
-     *
-     *
-     *   -  `color_cyan`
-     *
-     *
-     *   -  `color_dark_cyan`
-     *
-     *
-     *   -  `color_light_yellow`
-     *
-     *
-     *   -  `color_yellow`
-     *
-     *
-     *   -  `color_magenta`
-     *
-     *
-     *   -  `color_dark_magenta`
-     *
-     *
-     * @param background The color of the background on `clear_terminal`.
-     */
-    void set_terminal_clear_color(color background);
 
     /**
      * Read a line of text from the terminal. The user will see the text as
