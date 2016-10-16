@@ -8,8 +8,8 @@
 
 #include "twitter_driver.h"
 #include "utility_functions.h"
-#include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/hmac.h"
-#include "/Users/jakerenzella/Repos/splashkit/coresdk/external/hash-library/sha1.h"
+#include "hmac.h"
+#include "sha1.h"
 #include <random>
 #include <iomanip>
 
@@ -20,10 +20,12 @@
 namespace splashkit_lib
 {
 
-    std::vector<char> HexToBytes(const std::string& hex) {
+    std::vector<char> HexToBytes(const std::string& hex)
+    {
         std::vector<char> bytes;
 
-        for (unsigned int i = 0; i < hex.length(); i += 2) {
+        for (unsigned int i = 0; i < hex.length(); i += 2)
+        {
             std::string byteString = hex.substr(i, 2);
             char byte = (char) strtol(byteString.c_str(), NULL, 16);
             bytes.push_back(byte);
@@ -38,23 +40,28 @@ namespace splashkit_lib
     "0123456789+/";
 
 
-    std::string base64_encode(const unsigned char* bytes_to_encode, unsigned int in_len) {
+    std::string base64_encode(const unsigned char* bytes_to_encode, unsigned int in_len)
+    {
         std::string ret;
         int i = 0;
         int j = 0;
         unsigned char char_array_3[3];
         unsigned char char_array_4[4];
 
-        while (in_len--) {
+        while (in_len--)
+        {
             char_array_3[i++] = *(bytes_to_encode++);
-            if (i == 3) {
+            if (i == 3)
+            {
                 char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
                 char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
                 char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
                 char_array_4[3] = char_array_3[2] & 0x3f;
 
                 for(i = 0; (i <4) ; i++)
+                {
                     ret += base64_chars[char_array_4[i]];
+                }
                 i = 0;
             }
         }
@@ -62,7 +69,9 @@ namespace splashkit_lib
         if (i)
         {
             for(j = i; j < 3; j++)
+            {
                 char_array_3[j] = '\0';
+            }
 
             char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
             char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
@@ -70,13 +79,15 @@ namespace splashkit_lib
             char_array_4[3] = char_array_3[2] & 0x3f;
 
             for (j = 0; (j < i + 1); j++)
+            {
                 ret += base64_chars[char_array_4[j]];
+            }
 
             while((i++ < 3))
+            {
                 ret += '=';
-
+            }
         }
-
         return ret;
     }
 
@@ -98,7 +109,6 @@ namespace splashkit_lib
         for (int i = 0; i<32; i++)
         {
             result += alphanum[dis(gen) % stringLength];
-
         }
 
         return base64_encode((const unsigned char*)result.c_str(), 32);
@@ -124,7 +134,6 @@ namespace splashkit_lib
             escaped << '%' << setw(2) << int((unsigned char) c);
             escaped << nouppercase;
         }
-
         return escaped.str();
     }
 
