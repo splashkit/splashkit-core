@@ -1,10 +1,12 @@
-//
-//  terminal.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 8/10/16.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  terminal
+ * @author  Andrew Cain
+ * @brief   SplashKit Terminal allows you to read and write values to the
+ * terminal in a consistent manner.
+ *
+ * @attribute group  termianl
+ * @attribute static terminal
+ */
 
 #ifndef terminal_h
 #define terminal_h
