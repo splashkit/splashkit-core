@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "json.h"
-#include "web.h"
+#include "web_server.h"
 #include <string>
 using namespace std;
 
@@ -19,5 +19,5 @@ using namespace std;
 namespace splashkit_lib
 {
     string generate_signature();
-    http_response new_tweet(json parameters);
+//    http_response new_tweet(json parameters);
 }

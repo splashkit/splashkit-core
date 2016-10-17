@@ -1,11 +1,12 @@
+//
+// TODO: This file needs to be deprecated -- all types should be placed in their
+//       respective header file
+//
 
-//
-//  types.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header    types
+ * @attribute group types
+ */
 
 #ifndef types_hpp
 #define types_hpp
@@ -13,7 +14,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+using std::string;
+using std::vector;
+
 namespace splashkit_lib
 {
     /**
@@ -21,10 +24,10 @@ namespace splashkit_lib
      * splashkit does include a alpha value used for opacity, which allows you
      * to have partially transparent colors.
      *
-     * @param r   The red component of the color (between 0 and 1.0)
-     * @param g   The green component of the color (between 0 and 1.0)
-     * @param b   The blue component of the color (between 0 and 1.0)
-     * @param a   The alpha component of the color (between 0 and 1.0)
+     * @field r   The red component of the color (between 0 and 1.0)
+     * @field g   The green component of the color (between 0 and 1.0)
+     * @field b   The blue component of the color (between 0 and 1.0)
+     * @field a   The alpha component of the color (between 0 and 1.0)
      *
      */
     struct color
@@ -102,9 +105,9 @@ namespace splashkit_lib
      * Point2D is a great way to keep track of the location of something in a 2D space like
      * a Window or Bitmap.
      *
-     * @param x   The distance from the left side of the bitmap or window (
+     * @field x   The distance from the left side of the bitmap or window (
      *            increasing as you go to the right)
-     * @param y   The distance from the top of a bitmap or window (increasing
+     * @field y   The distance from the top of a bitmap or window (increasing
      *            as you go down).
      */
     struct point_2d
@@ -124,8 +127,8 @@ namespace splashkit_lib
      * add a number of force vectors together to get a final force to be applied
      * to a character.
      *
-     * @param x   The distance to move horizontally
-     * @param y   The distance to move vertically
+     * @field x   The distance to move horizontally
+     * @field y   The distance to move vertically
      */
     struct vector_2d
     {
@@ -140,10 +143,10 @@ namespace splashkit_lib
      * the x and y axes). The rectangle's position is its top left corner - it
      * then extends to the right and down from this position.
      *
-     * @param x   The distance to the left edge of the rectangle
-     * @param y   The distance to the top edge of the rectangle
-     * @param width The width of the rectangle
-     * @param height The height of the rectangle
+     * @field x   The distance to the left edge of the rectangle
+     * @field y   The distance to the top edge of the rectangle
+     * @field width The width of the rectangle
+     * @field height The height of the rectangle
      */
     struct rectangle
     {
@@ -159,7 +162,7 @@ namespace splashkit_lib
      * right as the second, bottom left as the third, and bottom right as the
      * last point. Other orders may give unexpected outcomes.
      *
-     * @param points The array of points: top left, top right, bottom left,
+     * @field points The array of points: top left, top right, bottom left,
      *                bottom right
      */
     struct quad
@@ -172,8 +175,8 @@ namespace splashkit_lib
      * like the `rectangle`, the circle extends out both left and right, and up
      * and down from the point you position it at.
      *
-     * @param center  The center point of the circle
-     * @param radius  The radius of the circle
+     * @field center  The center point of the circle
+     * @field radius  The radius of the circle
      */
     struct circle
     {
@@ -185,7 +188,7 @@ namespace splashkit_lib
      * A triangle consists of three points, being the three points of the
      * triangle.
      *
-     * @param points  The points of the triangle
+     * @field points  The points of the triangle
      */
     struct triangle
     {
@@ -195,8 +198,8 @@ namespace splashkit_lib
     /**
      * A line goes from a start point to an end point.
      *
-     * @param start_point   The start of the line
-     * @param end_point     The end of the line
+     * @field start_point   The start of the line
+     * @field end_point     The end of the line
      */
     struct line
     {
@@ -223,21 +226,21 @@ namespace splashkit_lib
      * Drawing options allow you to customise drawing options. These should be
      * initialised using the drawing option functions.
      *
-     * @param dest            The destination of the drawing: a window or bitmap.
-     * @param scale_x         How much x values are scaled.
-     * @param scale_y         How much y values are scaled.
-     * @param angle           A rotation angle for bitmap drawing.
-     * @param anchor_offset_x The x location of the anchor point around which
+     * @field dest            The destination of the drawing: a window or bitmap.
+     * @field scale_x         How much x values are scaled.
+     * @field scale_y         How much y values are scaled.
+     * @field angle           A rotation angle for bitmap drawing.
+     * @field anchor_offset_x The x location of the anchor point around which
      *                        bitmap drawing will rotate.
-     * @param anchor_offset_y The y location of the anchor point around which
+     * @field anchor_offset_y The y location of the anchor point around which
      *                        bitmap drawing will rotate.
-     * @param flip_x          Should bitmaps be flipped horizontally
-     * @param flip_y          Should bitmaps be flipped vertically
-     * @param is_part         Indicates that part of a bitmap should be drawn
-     * @param part            The area of the bitmap to draw
-     * @param camera          How the current window camera affects the drawing
-     * @param line_width      How wide are lines (only lines at this stage)
-     * @param anim            The animation to use, which overrides the part
+     * @field flip_x          Should bitmaps be flipped horizontally
+     * @field flip_y          Should bitmaps be flipped vertically
+     * @field is_part         Indicates that part of a bitmap should be drawn
+     * @field part            The area of the bitmap to draw
+     * @field camera          How the current window camera affects the drawing
+     * @field line_width      How wide are lines (only lines at this stage)
+     * @field anim            The animation to use, which overrides the part
      *                        option
      */
     struct drawing_options
@@ -270,33 +273,33 @@ namespace splashkit_lib
      * Refer to [this article](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
      * for a detailed description of each code.
      *
-     * @constant OK                         The server accepted the request.
-     * @constant CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
-     * @constant NO_CONTENT                 The server successfully processed the request and is not returning any content.
-     * @constant BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
-     * @constant UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
-     * @constant FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
-     * @constant NOT_FOUND                  The requested resource could not be found but may be available in the future.
-     * @constant METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
-     * @constant REQUEST_TIMEOUT            The server timed out waiting for the request.
-     * @constant INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
-     * @constant NOT_IMPLEMENTED            The server does not recognize or implement the request method.
-     * @constant SERVICE_UNAVAILABLE        The server is currently unavailable.
+     * @constant HTTP_STATUS_OK                         The server accepted the request.
+     * @constant HTTP_STATUS_CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
+     * @constant HTTP_STATUS_NO_CONTENT                 The server successfully processed the request and is not returning any content.
+     * @constant HTTP_STATUS_BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
+     * @constant HTTP_STATUS_UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
+     * @constant HTTP_STATUS_FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
+     * @constant HTTP_STATUS_NOT_FOUND                  The requested resource could not be found but may be available in the future.
+     * @constant HTTP_STATUS_METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
+     * @constant HTTP_STATUS_REQUEST_TIMEOUT            The server timed out waiting for the request.
+     * @constant HTTP_STATUS_INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
+     * @constant HTTP_STATUS_NOT_IMPLEMENTED            The server does not recognize or implement the request method.
+     * @constant HTTP_STATUS_SERVICE_UNAVAILABLE        The server is currently unavailable.
      */
     enum http_status_code
     {
-        OK = 200,
-        CREATED = 201,
-        NO_CONTENT = 204,
-        BAD_REQUEST = 400,
-        UNAUTHORIZED = 401,
-        FORBIDDEN = 403,
-        NOT_FOUND = 404,
-        METHOD_NOT_ALLOWED = 405,
-        REQUEST_TIMEOUT = 408,
-        INTERNAL_SERVER_ERROR = 500,
-        NOT_IMPLEMENTED = 501,
-        SERVICE_UNAVAILABLE = 503
+        HTTP_STATUS_OK = 200,
+        HTTP_STATUS_CREATED = 201,
+        HTTP_STATUS_NO_CONTENT = 204,
+        HTTP_STATUS_BAD_REQUEST = 400,
+        HTTP_STATUS_UNAUTHORIZED = 401,
+        HTTP_STATUS_FORBIDDEN = 403,
+        HTTP_STATUS_NOT_FOUND = 404,
+        HTTP_STATUS_METHOD_NOT_ALLOWED = 405,
+        HTTP_STATUS_REQUEST_TIMEOUT = 408,
+        HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
+        HTTP_STATUS_NOT_IMPLEMENTED = 501,
+        HTTP_STATUS_SERVICE_UNAVAILABLE = 503
     };
 }
 #endif /* types_hpp */

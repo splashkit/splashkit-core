@@ -1,10 +1,8 @@
-//
-//  clipping.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 18/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header clipping
+ * @author Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef clipping_h
 #define clipping_h

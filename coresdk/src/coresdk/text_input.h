@@ -1,10 +1,8 @@
-//
-//  text_input.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 16/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header text_input
+ * @author Andrew Cain
+ * @attribute group input
+ */
 
 #ifndef text_input_hpp
 #define text_input_hpp
@@ -43,8 +41,8 @@ namespace splashkit_lib
      * Start reading text in the window within the bounds of the
      * supplied rectangle. The text will start with an initial value.
      *
-     * @param rect The area where the text will be entered.
      * @param wind The window where the text will be entered
+     * @param rect The area where the text will be entered.
      * @param initial_text The initial text, which may be edited by the user.
      */
     void start_reading_text(window wind, rectangle rect, string initial_text);

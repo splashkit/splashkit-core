@@ -1,10 +1,9 @@
-//
-//  triangle_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 23/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header triangle_geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef triangle_geometry_h
 #define triangle_geometry_h
@@ -55,6 +54,23 @@ namespace splashkit_lib
      * @return    True if the two triangles intersect
      */
     bool triangles_intersect(const triangle &t1, const triangle &t2);
+
+    /**
+     * Return the barycenter of the triangle. This is one way of calculating the
+     * center point of a triangle.
+     *
+     * @param  tri The triangle to get the center of
+     * @return     The point that is the barycenter of `tri`
+     */
+    point_2d triangle_barycenter(const triangle  &tri);
+
+    /**
+     * Returns a text description of the triangle.
+     *
+     * @param  tri The triangle
+     * @return     A text description of the triangle.
+     */
+    string triangle_to_string(const triangle  &tri);
 }
 
 #endif /* triangle_geometry_h */

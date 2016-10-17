@@ -1,7 +1,8 @@
 /**
- * @header Database
- * @author Jake Renzella
- * @brief SplashKit Database allows you to create, query and otherwise manipulate a database.
+ * @header  database
+ * @author  Jake Renzella
+ * @brief   SplashKit Database allows you to create, query and otherwise
+ *          manipulate a database.
  *
  * SplashKit's database library allows you to easily create or load databases
  * and to perform queries on them. To get started with databases in SplashKit,
@@ -9,6 +10,7 @@
  * do this by calling the `open_database(string name)` function.
  *
  * @attribute static database
+ * @attribute group  database
  */
 
 #ifndef database_h
@@ -94,12 +96,13 @@ namespace splashkit_lib
     int rows_changed(database db);
 
     /**
-     * @brief Loads or creates, and returns a database
+     * Loads or creates, and returns a database.
      *
      * The supplied `filename` is the name of the file of the database. The
      * supplied `name` indicates the name to use to refer to this `database`.
      * The `database` can then be retrieved by passing this `name` to
-     * the `database_named` function.
+     * the `database_named` function. If the database file does not exist, it
+     * will be created for you.
      *
      * @param name      The name used to refer to the database.
      * @param filename  The filename used to locate the database to use.

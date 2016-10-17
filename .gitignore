@@ -75,6 +75,10 @@ libsplashkit.a
 libsplashkit.ao
 splashkit_test
 projects/cmake/Resources
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
 
 ### Generated Folders ###
 bin/

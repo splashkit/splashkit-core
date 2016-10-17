@@ -1,14 +1,7 @@
 /**
- * @header Music
+ * @header music
  * @author Jon Meyers
- * @brief SplashKit Audio allows you to load and play music and sound effects.
- *
- * The SplashKit`s audio library allows you to easily load and play music and
- * sound effects within your programs. To get started with audio the first
- * thing you need to do is load a sound effect or music file. You can do this
- * by calling the `load_sound_effect(string name)` function to the
- * `load_music(string name)` function.
- *
+ * @attribute group  audio
  * @attribute static audio
  */
 

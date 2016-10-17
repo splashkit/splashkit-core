@@ -1,5 +1,8 @@
 //
-// Created by arm on 8/18/16.
+//  test_web_server.cpp
+//  splashkit
+//
+//  Created by James Armstrong http://github.com/jarmstrong
 //
 
 #include "resources.h"
@@ -14,9 +17,9 @@
 using namespace std;
 using namespace splashkit_lib;
 
-bool handle_request(server_request r)
+bool handle_request(http_request r)
 {
-    string uri = request_get_uri(r);
+    string uri = request_uri(r);
     cout << "Matching routes for " << uri << "\n";
     if (uri.find("/stop") != string::npos)
     {
@@ -35,14 +38,14 @@ bool handle_request(server_request r)
 void run_single_server_test()
 {
     cout << "Starting web server on http://localhost:8080\n";
-    web_server server = start_web_server("8080");
+    web_server server = start_web_server(8080);
 
     bool running = true;
     while (running)
     {
         // Navigating to http://localhost:8080 will invoke begin_request_handler().
         cout << "Waiting for web request\n";
-        server_request request = next_web_request(server);
+        http_request request = next_web_request(server);
 
         cout << "Received request checking if valid\n";
         if (request)
@@ -60,7 +63,7 @@ void run_single_server_test()
         }
     }
 
-    if (has_waiting_requests(server))
+    if (has_incoming_requests(server))
     {
         cerr << "Still has requests...\n";
     }
@@ -73,8 +76,8 @@ void run_single_server_test()
 void run_multiple_server_test()
 {
     cout << "Starting two localhost servers on 8080 and 8081\n";
-    auto server1 = start_web_server("8080");
-    auto server2 = start_web_server("8081");
+    auto server1 = start_web_server(8080);
+    auto server2 = start_web_server(8081);
 
     bool server1_up = true;
     bool server2_up = true;
@@ -127,7 +130,7 @@ void test_send_json_response()
     {
         auto request = next_web_request(server);
 
-        send_response(request, OK, json, "application/json");
+        send_response(request, HTTP_STATUS_OK, json, "application/json");
     }
 }
 

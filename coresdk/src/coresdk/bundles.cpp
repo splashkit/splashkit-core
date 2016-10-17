@@ -130,24 +130,30 @@ namespace splashkit_lib
             {
                 case BUNDLE_RESOURCE:
                     load_resource_bundle(line_name, line_path);
+                    if ( ! has_resource_bundle(line_name) ) return;
                     break;
                 case TIMER_RESOURCE:
                     create_timer(line_name);
                     break;
                 case IMAGE_RESOURCE:
                     rb_load_bitmap(line_name, line_path);
+                    if ( ! has_resource_bundle(line_name) ) return;
                     break;
                 case FONT_RESOURCE:
                     load_font(line_name, line_path);
+                    if ( ! has_font(line_name) ) return;
                     break;
                 case SOUND_RESOURCE:
                     load_sound_effect(line_name, line_path);
+                    if ( ! has_sound_effect(line_name) ) return;
                     break;
                 case MUSIC_RESOURCE:
                     load_music(line_name, line_path);
+                    if ( ! has_music(line_name) ) return;
                     break;
                 case ANIMATION_RESOURCE:
                     load_animation_script(line_name, line_path);
+                    if ( ! has_animation_script(line_name) ) return;
                     break;
                 default:
                     return;

@@ -1,10 +1,11 @@
-//
-//  vector_2d.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 19/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  vector_2d
+ * @author  Andrew Cain
+ * @brief   Provides vector functions to work on vectors.
+ *
+ * @attribute group  physics
+ * @attribute static vector_2d
+ */
 
 #ifndef vector_2d_h
 #define vector_2d_h
@@ -110,6 +111,15 @@ namespace splashkit_lib
     bool vectors_equal(const vector_2d &v1, const vector_2d v2);
 
     /**
+     *  Determines if two vectors are not the same.
+     *
+     * @param  v1 The first vector
+     * @param  v2 The other vector
+     * @return    True if the two vectors are different.
+     */
+    bool vectors_not_equal(const vector_2d &v1, const vector_2d v2);
+
+    /**
      *  Calculates the dot product (scalar product) between the two vector
      *  parameters provided (`v1` and `v2`). It returns the result as a
      *  scalar value.
@@ -202,6 +212,18 @@ namespace splashkit_lib
     float vector_angle(const vector_2d v);
 
     /**
+     * Calculates the angle from one vector to another.
+     *
+     * @param v1    The first vector
+     * @param v2    The second vector
+     * @returns     The angle of the line from the end of `v1` to the end of `v2`
+     *
+     * @attribute class vector_2d
+     * @attribute method angle_to
+     */
+    float angle_between(const vector_2d &v1, const vector_2d &v2);
+
+    /**
      *  Determines the vector needed to move back from point `pt` out of rectangle `rect` given
      *  the point was moving at the velocity specified.
      *
@@ -270,6 +292,27 @@ namespace splashkit_lib
      *                 the intersection occurs.
      */
     bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt);
+
+    /**
+     * Returns a vector from a point to a rectangle.
+     *
+     * @param  pt   The point
+     * @param  rect The rectangle
+     * @return      A vector representing the distance and direction from `pt`
+     *                to `rect`
+     */
+    vector_2d vector_from_point_to_rect(const point_2d &pt, const rectangle &rect);
+
+    /**
+     * Returns true if the resulting vector would end in the rectangle if
+     * placed at the origin.
+     *
+     * @param  v    The vector
+     * @param  rect The rectangle
+     * @return      True if the vector would end in the rectangle
+     */
+    bool vector_in_rect(const vector_2d &v, const rectangle &rect);
+
 }
 
 #endif /* vector_2d_h */

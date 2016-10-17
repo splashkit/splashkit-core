@@ -1,10 +1,8 @@
-//
-//  ellipse_drawing.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 18/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header ellipse_drawing
+ * @author Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef ellipse_drawing_h
 #define ellipse_drawing_h
@@ -17,8 +15,8 @@ namespace splashkit_lib
     /**
      * Draws an ellipse using the provided location, size, and drawing options.
      *
-     * @attribute note At this stage ellipse drawing is not affected by line
-     *                 width from the drawing options.
+     * At this stage ellipse drawing is not affected by line width from the
+     * drawing options.
      *
      * @param clr    The color of the ellipse
      * @param x      The distance from the left of the bitmap or window to the
@@ -47,8 +45,8 @@ namespace splashkit_lib
     /**
      * Draws an ellipse using the provided location, size, and drawing options.
      *
-     * @attribute note At this stage ellipse drawing is not affected by line
-     *                 width from the drawing options.
+     * At this stage ellipse drawing is not affected by line width from the
+     * drawing options.
      *
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse
@@ -94,8 +92,8 @@ namespace splashkit_lib
     /**
      * Fills an ellipse using the provided location, size, and drawing options.
      *
-     * @attribute note At this stage ellipse drawing is not affected by line
-     *                 width from the drawing options.
+     * At this stage ellipse drawing is not affected by line width from the
+     * drawing options.
      *
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse

@@ -1,10 +1,11 @@
-//
-//  timers.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 12/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  timers
+ * @author  Andrew Cain
+ * @brief   Timers in SplashKit can be used to track the passing of time.
+ *
+ * @attribute static timers
+ * @attribute group  timers
+ */
 
 #ifndef timers_h
 #define timers_h

@@ -1,18 +1,13 @@
-//
-//  color.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 24/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header color
+ * @author Andrew Cain
+ * @attribute group color
+ */
 
 #ifndef color_hpp
 #define color_hpp
 
 #include "types.h"
-#include <string>
-
-using namespace std;
 
 /**
  * A shorthand macro to the result of calling `color_swinburne_red`.
@@ -20,14 +15,14 @@ using namespace std;
 #define COLOR_SWINBURNE_RED color_swinburne_red()
 
 /**
- * A shorthand macro to the result of calling `color_grey`.
+ * A shorthand macro to the result of calling `color_gray`.
  */
-#define COLOR_GREY color_grey()
+#define COLOR_GRAY color_gray()
 
 /**
- * A shorthand macro to the result of calling `color_light_grey`.
+ * A shorthand macro to the result of calling `color_light_gray`.
  */
-#define COLOR_LIGHT_GREY color_light_grey()
+#define COLOR_LIGHT_GRAY color_light_gray()
 
 /**
  * A shorthand macro to the result of calling `color_transparent`.
@@ -1221,10 +1216,10 @@ namespace splashkit_lib
     color color_green_yellow();
 
     /**
-     * Generates a new `color` associated to the color `grey`.
-     * @return A new `color` set to `grey`.
+     * Generates a new `color` associated to the color `gray`.
+     * @return A new `color` set to `gray`.
      */
-    color color_grey();
+    color color_gray();
 
     /**
      * Generates a new `color` associated to the color `honeydew`.
@@ -1323,10 +1318,10 @@ namespace splashkit_lib
     color color_light_green();
 
     /**
-     * Generates a new `color` associated to the color `light_grey`.
-     * @return A new `color` set to `light_grey`.
+     * Generates a new `color` associated to the color `light_gray`.
+     * @return A new `color` set to `light_gray`.
      */
-    color color_light_grey();
+    color color_light_gray();
 
     /**
      * Generates a new `color` associated to the color `light_pink`.

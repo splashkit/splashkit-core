@@ -1,18 +1,9 @@
 /**
- * @header Sound
+ * @header sound
  * @author Andrew Cain
- * @brief SplashKit Audio allows you to load and play sound effects.
- *
+ * @attribute group  audio
  * @attribute static audio
  */
-
-//
-//  sound.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 29/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
 
 #ifndef sound_h
 #define sound_h
@@ -174,7 +165,7 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
-     * @attribute suffix  with_loops_and_volume
+     * @attribute suffix  with_times_and_volume
      * @attribute self    effect
      */
     void play_sound_effect(sound_effect effect, int times, float volume);

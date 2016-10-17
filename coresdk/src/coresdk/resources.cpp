@@ -183,7 +183,7 @@ namespace splashkit_lib
         _free_notifiers.push_back(fn);
     }
 
-    void deregister_event_handler(free_notifier *handler)
+    void deregister_free_notifier(free_notifier *handler)
     {
         if (not erase_from_vector(_free_notifiers, handler))
         {

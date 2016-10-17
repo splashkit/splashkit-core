@@ -1,10 +1,8 @@
-//
-//  web.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 26/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header web
+ * @author Andrew Cain
+ * @attribute group networking
+ */
 
 #ifndef web_hpp
 #define web_hpp
@@ -26,7 +24,7 @@ namespace splashkit_lib
      *
      * @attribute class http_response
      */
-    typedef struct _http_response_data *http_response;
+    typedef struct sk_http_response *http_response;
 
     /**
      * Make a get request to access a resource on the internet.

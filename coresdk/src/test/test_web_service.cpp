@@ -1,6 +1,15 @@
+//
+//  test_web_service.cpp
+//  splashkit
+//
+//  Created by James Armstrong http://github.com/jarmstrong
+//
+
+#include "window_manager.h"
+#include "text.h"
+#include "input.h"
 #include "json.h"
 #include "web_server.h"
-#include "utility_functions.h"
 
 #include "easylogging++.h"
 
@@ -23,7 +32,7 @@ struct person
 
 static vector<person> people;
 
-static map<string, map<string, function<void(server_request, string)>>> routes;
+static map<http_method, map<string, function<void(http_request, string)>>> routes;
 
 json person_to_json(person p)
 {
@@ -81,22 +90,22 @@ string people_to_json()
 
 string get_url_link(string stub, string uri)
 {
-    return cat({"<a href=\"", uri, "\">", stub, "</a>"});
+    return string("<a href=\"") + uri + "\">" + stub + "</a>";
 }
 
-void root_route(server_request request, string uri)
+void root_route(http_request request, string uri)
 {
     send_html_file_response(request, "index.html");
 }
 
-void names_get_routes(server_request request, string uri)
+void names_get_routes(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
 
     if (stubs.size() == 1)
     {
         string j = people_to_json();
-        send_response(request, OK, j, "application/json");
+        send_response(request, HTTP_STATUS_OK, j, "application/json");
     }
     else
     {
@@ -104,21 +113,21 @@ void names_get_routes(server_request request, string uri)
         {
             int id = stoi(stubs[1]);
             string json_person = json_to_string(person_to_json(people.at(id)));
-            send_response(request, OK, json_person, "application/json");
+            send_response(request, HTTP_STATUS_OK, json_person, "application/json");
         } catch (...)
         {
-            send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
+            send_response(request, HTTP_STATUS_OK, "<h1>No ID exists.</h1>", "text/html");
         }
     }
 }
 
-void names_post_routes(server_request request, string uri)
+void names_post_routes(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
 
     if (stubs.size() == 1)
     {
-        json p = json_from_string(request->body);
+        json p = json_from_string(request_body(request));
         if (json_count_keys(p) != 0)
         {
             people.push_back(json_to_person(p));
@@ -135,7 +144,7 @@ void names_post_routes(server_request request, string uri)
     }
 }
 
-void names_delete_route(server_request request, string uri)
+void names_delete_route(http_request request, string uri)
 {
     vector<string> stubs = split_uri_stubs(uri);
     try
@@ -145,30 +154,30 @@ void names_delete_route(server_request request, string uri)
         send_response(request, "Person has now been deleted.");
     } catch(...)
     {
-        send_response(request, OK, "<h1>No ID exists.</h1>", "text/html");
+        send_response(request, HTTP_STATUS_OK, "<h1>No ID exists.</h1>", "text/html");
     }
 }
 
-void post_person_route(server_request request, string uri)
+void post_person_route(http_request request, string uri)
 {
     send_html_file_response(request, "post.html");
 }
 
-void get_person_route(server_request request, string uri)
+void get_person_route(http_request request, string uri)
 {
     send_html_file_response(request, "get.html");
 }
 
 void add_routes()
 {
-    routes["GET"].insert({"", root_route});
+    routes[HTTP_GET_METHOD].insert({"", root_route});
 
-    routes["GET"].insert({"names", names_get_routes});
-    routes["POST"].insert({"names", names_post_routes});
-    routes["DELETE"].insert({"names", names_delete_route});
+    routes[HTTP_GET_METHOD].insert({"names", names_get_routes});
+    routes[HTTP_POST_METHOD].insert({"names", names_post_routes});
+    routes[HTTP_DELETE_METHOD].insert({"names", names_delete_route});
 
-    routes["GET"].insert({"post_person", post_person_route});
-    routes["GET"].insert({"get_person", get_person_route});
+    routes[HTTP_GET_METHOD].insert({"post_person", post_person_route});
+    routes[HTTP_GET_METHOD].insert({"get_person", get_person_route});
 }
 
 void run_restful_web_service()
@@ -181,14 +190,19 @@ void run_restful_web_service()
 
     add_routes();
 
-    bool running = true;
-    while (running)
+    window w1 = open_window("Running Web Service.", 200, 100);
+    draw_text("Close to end", COLOR_BLACK, 0, 0);
+    refresh_window(w1);
+
+    while ( not window_close_requested(w1))
     {
+        process_events();
+
         auto request = next_web_request(server);
 
-        string method = request_get_method(request);
+        http_method method = request_method(request);
 
-        string uri = request_get_uri(request);
+        string uri = request_uri(request);
 
         if (uri.find("favicon.ico") != string::npos)
         {
@@ -209,4 +223,6 @@ void run_restful_web_service()
             send_response(request, "No route matching.");
         }
     }
+
+    close_window(w1);
 }

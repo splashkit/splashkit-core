@@ -14,6 +14,8 @@
 #include "audio.h"
 #include "color.h"
 #include "networking.h"
+#include "web_server.h"
+
 #include "concurrency_utils.h"
 #include "civetweb.h"
 
@@ -51,8 +53,6 @@ namespace splashkit_lib
         HTTP_REQUEST_PTR =          0x48524551, //'HREQ';
         HTTP_RESPONSE_PTR =         0x48524553, //'HRES';
         WEB_SERVER_PTR =            0x57535652, //'WSVR';
-        WEB_SERVER_REQUEST_PTR =    0x57524551, //'WREQ';
-        WEB_SERVER_RESPONSE_PTR =   0x57524553, //'WRES';
         CONNECTION_PTR =            0x434f4e50, //'CONP';
         MESSAGE_PTR =               0x4d534750, //'MSGP';
         SERVER_SOCKET_PTR =         0x53565253, //'SVRS';
@@ -152,7 +152,7 @@ namespace splashkit_lib
         int cell_cols;   // The columns of cells in the bitmap
         int cell_rows;   // The rows of cells in the bitmap
         int cell_count;  // The total number of cells in the bitmap
-        
+
         bool *pixel_mask;   // Pixel mask used for pixel level collisions
     };
 
@@ -163,7 +163,7 @@ namespace splashkit_lib
         string              filename;
 
         bool                was_downloaded;
-        
+
         // TTF_Font Private Data
         map<int, void *> _data;
     };
@@ -174,23 +174,6 @@ namespace splashkit_lib
         HTTP_POST,
         HTTP_PUT,
         HTTP_DELETE
-    };
-
-    struct sk_http_request
-    {
-        sk_http_method request_type;
-        const char *url;
-        unsigned short port;
-        const char *body;
-        const char *filename;
-        vector<string> headers;
-    };
-
-    struct sk_http_response
-    {
-        unsigned short status;
-        unsigned int size;
-        char *data;
     };
 
     struct sk_network_connection
@@ -213,8 +196,8 @@ namespace splashkit_lib
         connection_type protocol;
         string string_ip;    // TODO should this be stored?
         vector<sk_message*> messages;
-        long int msg_len;
-        string part_msg_data;
+        long int expected_msg_len;      // We are part way through... a message this length
+        vector<int8_t> part_msg_data;
     };
 
     struct sk_server_data
@@ -232,7 +215,7 @@ namespace splashkit_lib
     struct sk_message
     {
         pointer_identifier id;
-        string data;
+        vector<int8_t> data;
         connection_type protocol;
 
         // TCP
@@ -243,36 +226,42 @@ namespace splashkit_lib
         int port;
     };
 
-    struct sk_server_response
+    struct sk_http_response
     {
-        pointer_identifier id;
-        string content_type;
-        string message;
-        http_status_code code;
-        semaphore response_sent;
+        pointer_identifier  id;
+
+        string              content_type;
+        char                *message;
+        unsigned long       message_size;
+        http_status_code    code;
+
+        semaphore           response_sent;
     };
 
-    struct sk_server_request
+    struct sk_http_request
     {
-        pointer_identifier id;
-        string uri;
-        string method;
-        string body;
-        semaphore control;
+        pointer_identifier  id;
+        string              uri;
+        http_method         method;
 
-        sk_server_response* response;
+        unsigned short      port;
+        string              body;
+        string              filename;
+
+        semaphore           control;
+        sk_http_response    *response;
     };
 
     struct sk_web_server
     {
-        pointer_identifier id;
-        struct mg_context *ctx;
-        struct mg_callbacks callbacks;
+        pointer_identifier          id;
+        struct mg_context           *ctx;
+        struct mg_callbacks         callbacks;
 
-        sk_server_request* last_request;
-        channel<sk_server_request*> request_queue;
+        sk_http_request             *last_request;
+        channel<sk_http_request*>   request_queue;
 
-        string port;
+        unsigned short              port;
     };
 
     struct animation_frame
@@ -302,12 +291,12 @@ namespace splashkit_lib
         pointer_identifier id;
         string name;           // The name of the animation template so it can be retrieved from resources
         string filename;       // The filename from which this template was loaded
-        
+
         map<string, int> animation_ids;     // A map that links names to indexes
         vector<string> animation_names;     // The names of the animations
         vector<int> animations;             // The starting index of the animations in this template.
         vector<animation_frame> frames;  // The frames of the animations within this template.
-        
+
         vector<animation>   anim_objs;         // The animations created from this script
     };
 }

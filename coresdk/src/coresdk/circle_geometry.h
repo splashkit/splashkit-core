@@ -1,10 +1,9 @@
-//
-//  circle_geometry.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 22/08/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header circle_geometry
+ * @author Andrew Cain
+ * @attribute group  geometry
+ * @attribute static geometry
+ */
 
 #ifndef circle_geometry_hpp
 #define circle_geometry_hpp
@@ -80,6 +79,15 @@ namespace splashkit_lib
     bool distant_point_on_circle_heading(const point_2d &pt, const circle &c, const vector_2d &heading, point_2d &opposite_pt);
 
     /**
+     * The furthest point on the circle to the given point.
+     *
+     * @param  pt      The point to test from
+     * @param  c       The circle you want to get a point on its circumference
+     * @return         The point on c that is furthest from `pt`
+     */
+    point_2d distant_point_on_circle(const point_2d &pt, const circle &c);
+
+    /**
      * Calculates the distance from a ray cast from a point to a given circle.
      *
      * @param  ray_origin  The origin of the ray
@@ -113,6 +121,45 @@ namespace splashkit_lib
      * @return   The y location of the center of the circle
      */
     float circle_y(const circle &c);
+
+    /**
+     * The closest point on the circle to the given point.
+     *
+     * @param  from_pt The point to test from
+     * @param  c       The circle you want to get a point on its circumference
+     * @return         The point on c that is closest to the from point
+     */
+    point_2d closest_point_on_circle(const point_2d &from_pt, const circle &c);
+
+    /**
+     * Returns the closest point on a line to a circle.
+     *
+     * @param  c The circle
+     * @param  l The line
+     * @return   The point that is closest to `c` on `l`
+     */
+    point_2d closest_point_on_line_from_circle(const circle &c, const line &l);
+
+    /**
+     * Returns the closest point on a rectangle to a circle.
+     *
+     * @param  c The circle
+     * @param  rect The rectangle
+     * @return   The point that is closest to `c` on `rect`
+     */
+    point_2d closest_point_on_rect_from_circle(const circle &c, const rectangle &rect);
+
+    /**
+     * Returns the two tangent points on the circle given the indicated point.
+     *
+     * @param  from_pt The source point
+     * @param  c       The circle
+     * @param  p1      If this returns true, then `p1` contains one of the points
+     * @param  p2      If this returns true, then `p2` contains one of the points
+     * @return         True if `from_pt` is outside of the circle, and tangent
+     *                      points are calculated
+     */
+    bool tangent_points(const point_2d &from_pt, const circle &c, point_2d &p1, point_2d &p2);
 
 }
 #endif /* circle_geometry_hpp */

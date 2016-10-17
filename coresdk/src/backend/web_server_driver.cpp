@@ -16,11 +16,11 @@
 
 namespace splashkit_lib
 {
-    static map<string, sk_web_server*> servers;
+    static map<unsigned short, sk_web_server*> servers;
 
     struct _web_server_ctx_data
     {
-        string port;
+        unsigned short port;
     };
 
     static int begin_request_handler(struct mg_connection *conn)
@@ -30,10 +30,11 @@ namespace splashkit_lib
         if ( not user_data )
         {
             LOG(WARNING) << "Request handler called within invalid user data. Contact splashkit dev team.";
+            return -1;
         }
 
-        string port = user_data->port;
-        if (servers.find(port) == servers.end())
+        unsigned short port = user_data->port;
+        if (servers.count(port) == 0)
         {
             LOG(WARNING) << "Request handler called on non-existent server";
             return -1;
@@ -41,12 +42,42 @@ namespace splashkit_lib
 
         const struct mg_request_info *request_info = mg_get_request_info(conn);
 
-        sk_server_request *r = new sk_server_request;
-        r->id = WEB_SERVER_REQUEST_PTR;
+        sk_http_request *r = new sk_http_request;
+        r->id = HTTP_REQUEST_PTR;
         r->uri = request_info->request_uri;
-        r->method = request_info->request_method;
+        r->filename = "";
 
-        if (r->method == "POST" || r->method == "PUT")
+        if ( strncmp(request_info->request_method, "GET", 4) == 0 )
+        {
+            r->method = HTTP_GET_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "PUT", 4) == 0 )
+        {
+            r->method = HTTP_PUT_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "POST", 5) == 0 )
+        {
+            r->method = HTTP_POST_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "DELETE", 7) == 0 )
+        {
+            r->method = HTTP_DELETE_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "OPTIONS", 8) == 0 )
+        {
+            r->method = HTTP_OPTIONS_METHOD;
+        }
+        else if ( strncmp(request_info->request_method, "TRACE", 6) == 0 )
+        {
+            r->method = HTTP_TRACE_METHOD;
+        }
+        else
+        {
+            LOG(ERROR) << "Http request got unknown method: " << request_info->request_method << ". Please report as issue to SplashKit dev team.";
+            r->method = UNKNOWN_HTTP_METHOD;
+        }
+
+        if (r->method == HTTP_POST_METHOD or r->method == HTTP_PUT_METHOD)
         {
             char post_data[10240];
             int post_data_len;
@@ -55,12 +86,12 @@ namespace splashkit_lib
             r->body = string(post_data);
         }
 
-        servers.at(port)->request_queue.put(r); // Add request to concurrent queue
+        servers[port]->request_queue.put(r); // Add request to concurrent queue
         r->control.acquire(); // Waits until user returns response.
 
         // Send HTTP reply to the client
         mg_printf(conn,
-                  "HTTP/1.1 200 %d\r\n"
+                  "HTTP/1.1 %d\r\n"
                   "Content-Type: %s\r\n"
                   "Connection: close\r\n"
                   "Content-Length: %lu\r\n" // Always set Content-Length
@@ -68,23 +99,29 @@ namespace splashkit_lib
                   "%s",
                   r->response->code,
                   r->response->content_type.c_str(),
-                  r->response->message.length(),
-                  r->response->message.c_str());
+                  r->response->message_size,
+                  r->response->message);
 
         r->response->response_sent.release();
 
         // Remove the request
+        r->id = NONE_PTR;
         delete r;
 
         // Non-zero return means civetweb has replied to client
         return 1;
     }
 
-    void sk_flush_request(sk_server_request *request)
+    void sk_flush_request(sk_http_request *request)
     {
-        request->response = new sk_server_response;
-        request->response->id = WEB_SERVER_RESPONSE_PTR;
-        request->response->message = "Server is stopping.";
+        request->response = new sk_http_response;
+
+        request->response->id = HTTP_RESPONSE_PTR;
+        request->response->message = nullptr;
+        request->response->message_size = 0;
+        request->response->code = HTTP_STATUS_SERVICE_UNAVAILABLE;
+        request->response->content_type = "text/plain";
+
         request->control.release();
     }
 
@@ -92,9 +129,9 @@ namespace splashkit_lib
      * Copy's and returns the request from the last_request object
      * and sets the variable to null so it can't be retrieved again.
      */
-    sk_server_request* sk_get_request(sk_web_server *server)
+    sk_http_request* sk_get_request(sk_web_server *server)
     {
-        sk_server_request* request;
+        sk_http_request* request;
 
         if ( server->last_request )
         {
@@ -118,7 +155,7 @@ namespace splashkit_lib
         }
 
         // Try to get a new request from the queue and set the last request if one exists
-        sk_server_request *request;
+        sk_http_request *request;
         bool success = server->request_queue.try_take(request);
 
         if (success)
@@ -130,7 +167,7 @@ namespace splashkit_lib
         return false;
     }
 
-    sk_web_server* sk_start_web_server(string port)
+    sk_web_server* sk_start_web_server(unsigned short port)
     {
         internal_sk_init();
 
@@ -138,7 +175,7 @@ namespace splashkit_lib
 
         if (servers.find(port) != servers.end())
         {
-            LOG(WARNING) << "Server already started on port " + port;
+            LOG(WARNING) << "Server already started on port " << port;
             return nullptr;
         }
 
@@ -147,8 +184,10 @@ namespace splashkit_lib
         server->port = port;
         server->last_request = nullptr;
 
+        string port_str = to_string(port);
+
         // List of options. Last element must be NULL.
-        const char *options[] = {"listening_ports", port.c_str(), NULL};
+        const char *options[] = {"listening_ports", port_str.c_str(), NULL};
 
         _web_server_ctx_data *user_data = new _web_server_ctx_data();
         user_data->port = port;
@@ -174,7 +213,7 @@ namespace splashkit_lib
             delete server->last_request;
         }
         
-        sk_server_request *request;
+        sk_http_request *request;
         while (server->request_queue.try_take(request))
         {
             sk_flush_request(request);

@@ -24,6 +24,11 @@ namespace splashkit_lib
     window _current_window = nullptr;
     map<string, window> _windows;
 
+    unsigned long number_open_windows()
+    {
+        return _windows.size();
+    }
+
     window open_window(string caption, int width, int height)
     {
         sk_color clr;

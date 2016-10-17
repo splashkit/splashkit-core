@@ -106,6 +106,28 @@ namespace splashkit_lib
         } //  else NOT (u < EPS) or (u > 1)
     }
 
+    point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &lines, int &line_idx)
+    {
+        line_idx = -1;
+        float min_dist = -1, dst;
+        point_2d result = point_at_origin();
+        point_2d pt;
+
+        for (int i = 0; i < lines.size(); i++)
+        {
+            pt = closest_point_on_line(from_pt, lines[i]);
+            dst = point_point_distance(pt, from_pt);
+
+            if (min_dist > dst)
+            {
+                line_idx = i;
+                min_dist = dst;
+                result = pt;
+            }
+        }
+        return pt;
+    }
+
     vector<line> lines_from(const triangle &t)
     {
         vector<line> result;
@@ -138,5 +160,49 @@ namespace splashkit_lib
 
         point_2d pt;
         return line_intersection_point(l1, l2, pt) and point_on_line(pt, l1) and point_on_line(pt, l2);
+    }
+
+    bool line_intersects_circle(const line &l, const circle &c)
+    {
+        point_2d pt = closest_point_on_line_from_circle(c, l);
+        return point_in_circle(pt, c);
+    }
+
+    bool line_intersects_rect(const line &l, const rectangle &rect)
+    {
+        return line_intersects_lines(l, lines_from(rect));
+    }
+
+    point_2d line_mid_point(const line &l)
+    {
+        point_2d result;
+        result.x = l.start_point.x + (l.end_point.x - l.start_point.x) / 2;
+        result.y = l.start_point.y + (l.end_point.y - l.start_point.y) / 2;
+        return result;
+    }
+
+    vector_2d line_normal(const line &l)
+    {
+        return vector_normal(vector_from_line(l));
+    }
+
+    string line_to_string(const line &ln)
+    {
+        return "Line from " + point_to_string(ln.start_point) + " to " + point_to_string(ln.end_point);
+    }
+
+    bool line_intersects_lines(const line &l, const vector<line> &lines)
+    {
+        int i;
+        point_2d pt;
+
+        for (i = 0; i < lines.size(); i++)
+        {
+            if ( line_intersection_point(l, lines[i], pt) and point_on_line(pt, lines[i]) and point_on_line(pt, l))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

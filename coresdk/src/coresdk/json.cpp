@@ -119,7 +119,7 @@ namespace splashkit_lib
         }
         else
         {
-            LOG(ERROR) << "Unable to open file for writing in json_to_file";
+            LOG(ERROR) << "Unable to open file at [" << path << "] for writing in json_to_file";
             return;
         }
     };

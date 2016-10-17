@@ -10,10 +10,16 @@
 
 namespace splashkit_lib
 {
+    #define PACKET_SIZE 512
+    static unsigned int UDP_PACKET_SIZE = 1024;
+
+
+    typedef char packet_data[PACKET_SIZE];
+    typedef unsigned char byte;
+
     static map<string, connection> _connections;
     static map<string, server_socket> _server_sockets;
     static vector<message> _messages;
-    static int UDP_PACKET_SIZE = 1024;
 
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol)
     {
@@ -145,8 +151,8 @@ namespace splashkit_lib
         result->string_ip = "";
         result->port = 0;
         result->protocol = protocol;
-        result->part_msg_data = "";
-        result->msg_len = -1;
+        //result->part_msg_data is empty
+        result->expected_msg_len = -1;
         result->open = true;
         result->socket._socket = nullptr;
         result->socket.kind = UNKNOWN;
@@ -163,24 +169,23 @@ namespace splashkit_lib
         if (protocol == TCP)
         {
             con->socket = sk_open_tcp_connection(host.c_str(), port);
-
-            if (!con->socket._socket)
-            {
-                return false;
-            }
-
-            con->ip = sk_network_address(&con->socket);
         }
         else if (protocol == UDP)
         {
-            con->socket = sk_open_udp_connection(port);
-            con->ip = sk_network_address(&con->socket);
+            con->socket = sk_open_udp_connection(0);
         }
         else
         {
             LOG(ERROR) << "Invalid protocol passed to _establish_connection: " << protocol;
             return false;
         }
+
+        if (!con->socket._socket)
+        {
+            return false;
+        }
+
+        con->ip = sk_network_address(&con->socket);
 
         return true;
     }
@@ -474,17 +479,17 @@ namespace splashkit_lib
         return msg->connection;
     }
 
-    int udp_packet_size()
+    unsigned int udp_packet_size()
     {
         return UDP_PACKET_SIZE;
     }
 
-    void set_udp_packet_size(int udp_packet_size)
+    void set_udp_packet_size(unsigned int udp_packet_size)
     {
         UDP_PACKET_SIZE = udp_packet_size;
     }
 
-    void _enqueue_tcp_message(const string &message, connection con)
+    void _enqueue_tcp_message(const vector<int8_t> &message, connection con)
     {
         sk_message* m = new sk_message;
         
@@ -496,19 +501,17 @@ namespace splashkit_lib
         m->port = con->port;
         
         con->messages.push_back(m);
-        con->msg_len = -1;
-        con->part_msg_data = "";
+        con->expected_msg_len = -1;
+        con->part_msg_data.clear();
     }
 
     void _enqueue_udp_message(vector<sk_message*> &messages, const char* msg, int size, unsigned int host, int port)
     {
         message m = new sk_message;
         m->id = MESSAGE_PTR;
-        LOG(WARNING) << "potential error in _enqueue_udp_message: validate results and remove this warning if correct";
-        //m->data = '';
-        for (int i = 0; i < size - 1; ++i)
+        for (int i = 0; i < size; ++i)
         {
-            m->data[i] += msg[i];
+            m->data.push_back(msg[i]);
         }
         m->protocol = UDP;
         m->connection = nullptr;
@@ -553,23 +556,23 @@ namespace splashkit_lib
     {
         int buf_idx = 0;
         unsigned long msg_len = 0;
-        string msg;
+        vector<int8_t> msg;
         int missing, got;
-        bytes size;
+        byte size[4];
 
         while (buf_idx < received_count) // there is data to read...
         {
             // Work out the message length...
-            if (con->msg_len > 0)   // we are part way though a message...
+            if (con->expected_msg_len > 0)   // we are part way though a message...
             {
-                msg = con->part_msg_data;                   // get the part
-                msg_len = con->msg_len - msg.length();      // How much left to read...
-                con->msg_len = -1;                          // Reset length of message to "no message"
-                con->part_msg_data = "";                    // Reset part of message
+                msg = con->part_msg_data;                              // get the part
+                msg_len = con->expected_msg_len - msg.size();      // How much left to read...
+                con->expected_msg_len = -1;                          // Reset length of message to "no message"
+                con->part_msg_data.clear();                            // Reset part of message
             }
             else // This is a new message... get its size.
             {
-                msg = "";
+                msg.clear();
 
                 if ((received_count - buf_idx) < 4) // if there are less than 4 bytes for the start of this message...
                 {
@@ -610,11 +613,11 @@ namespace splashkit_lib
                 if ((buf_idx >= received_count) || (buf_idx > PACKET_SIZE))
                 {
                     con->part_msg_data = msg;
-                    con->msg_len = msg_len;
+                    con->expected_msg_len = msg_len;
                     return true;
                 }
 
-                msg += buffer[buf_idx];
+                msg.push_back(buffer[buf_idx]);
             }
 
             _enqueue_tcp_message(msg, con);
@@ -892,6 +895,22 @@ namespace splashkit_lib
             return "";
         }
 
+        string result = "";
+
+        for(char ch : msg->data) result += ch;
+
+        return result;
+    }
+
+    vector<int8_t> message_data_bytes(message msg)
+    {
+        if (INVALID_PTR(msg, MESSAGE_PTR))
+        {
+            LOG(ERROR) << "Invalid message passed to get message data";
+            vector<int8_t> result;
+            return result;
+        }
+
         return msg->data;
     }
 
@@ -988,7 +1007,7 @@ namespace splashkit_lib
         string result = "";
         if (VALID_PTR(msg, MESSAGE_PTR))
         {
-            result = msg->data;
+            result = message_data(msg);
             close_message(msg);
         }
         else
@@ -1011,7 +1030,7 @@ namespace splashkit_lib
         string result = "";
         if (VALID_PTR(msg, MESSAGE_PTR))
         {
-            result = msg->data;
+            result = message_data(msg);
             close_message(msg);
         }
         else
@@ -1028,7 +1047,7 @@ namespace splashkit_lib
         string result = "";
         if (VALID_PTR(msg, MESSAGE_PTR))
         {
-            result = msg->data;
+            result = message_data(msg);
             close_message(msg);
         }
         else
@@ -1049,9 +1068,8 @@ namespace splashkit_lib
 
         if (con->protocol == TCP)
         {
-            LOG(WARNING) << "Bytes endianness might be wrong - use char array?";
             unsigned long n = msg.length();
-            bytes size;
+            byte size[4];
             size[0] = (n >> 24) & 0xFF;
             size[1] = (n >> 16) & 0xFF;
             size[2] = (n >> 8) & 0xFF;
@@ -1088,6 +1106,10 @@ namespace splashkit_lib
             {
                 sk_send_udp_message(&con->socket, con->string_ip.c_str(), con->port, msg.c_str(), msg.length());
                 return true;
+            }
+            else
+            {
+                LOG(ERROR) << "Cannot send messages longer than 1024 bytes using UDP -- message ignored";
             }
         }
 

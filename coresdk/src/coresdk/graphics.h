@@ -1,10 +1,8 @@
-//
-//  graphics.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 23/07/2016.
-//  Copyright © 2016 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  graphics
+ * @author  Andrew Cain
+ * @attribute group graphics
+ */
 
 #ifndef graphics_hpp
 #define graphics_hpp
