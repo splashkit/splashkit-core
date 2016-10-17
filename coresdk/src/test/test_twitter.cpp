@@ -16,10 +16,10 @@ using namespace splashkit_lib;
 
 void run_twitter_test()
 {
-//    json twitter_post = create_json();
-//    twitter_post = json_from_file("twitter.json");
-//    
-//    json_set_string(twitter_post, "status", "#omg I'm so full! #killerkebabs #abrakebabra");
-//    
-//    new_tweet(twitter_post);
+    json twitter_post = create_json();
+    twitter_post = json_from_file("twitter.json");
+    
+    json_set_string(twitter_post, "status", "#hey hey so full! #killerkebabs #abrakebabra");
+    
+    new_tweet(twitter_post);
 }

@@ -234,7 +234,7 @@ namespace splashkit_lib
         char                *message;
         unsigned long       message_size;
         http_status_code    code;
-
+        
         semaphore           response_sent;
     };
 
@@ -247,6 +247,7 @@ namespace splashkit_lib
         unsigned short      port;
         string              body;
         string              filename;
+        vector<string>      headers;
 
         semaphore           control;
         sk_http_response    *response;

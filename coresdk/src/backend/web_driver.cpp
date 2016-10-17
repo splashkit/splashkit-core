@@ -125,15 +125,25 @@ namespace splashkit_lib
         curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
     }
 
-    struct curl_slist *_setup_curl_upload(CURL *curl_handle, const string &body)
+    struct curl_slist *_setup_curl_upload(CURL *curl_handle, const string &body, const vector<string> &headers)
     {
         // header list
         struct curl_slist *list = NULL;
 
-        list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
-        list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        if (headers.size() > 0)
+        {
+            for (int i = 0; i < headers.size(); ++i)
+            {
+                list = curl_slist_append(list, headers[i].c_str());
+            }
+        }
+        else
+        {
+            list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
+            list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
+        }
+        
         curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
-
         curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body.c_str());
 
         return list;
@@ -180,7 +190,7 @@ namespace splashkit_lib
         return result;
     }
 
-    sk_http_response *sk_http_post(const string &host, unsigned short port, const string &body)
+    sk_http_response *sk_http_post(const string &host, unsigned short port, const string &body, const vector<string> &headers)
     {
         request_stream data_read = { nullptr, 0 };
 
@@ -189,7 +199,7 @@ namespace splashkit_lib
         CURLcode res;
 
         _init_curl(curl_handle, host, port);
-        struct curl_slist *list = _setup_curl_upload(curl_handle, body);
+        struct curl_slist *list = _setup_curl_upload(curl_handle, body, headers);
         _setup_curl_download(curl_handle, &data_read);
 
         // get it!
@@ -268,8 +278,10 @@ namespace splashkit_lib
         CURL *curl_handle = curl_easy_init();;
         CURLcode res;
 
+        
+        //TODO: Add headers param
         _init_curl(curl_handle, host, port);
-        struct curl_slist *list = _setup_curl_upload(curl_handle, body);
+        struct curl_slist *list = _setup_curl_upload(curl_handle, body, {});
         _setup_curl_download(curl_handle, &data_read);
 
         curl_easy_setopt(curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -292,7 +304,7 @@ namespace splashkit_lib
             case HTTP_GET_METHOD:
                 return sk_http_get(request.uri, request.port);
             case HTTP_POST_METHOD:
-                return sk_http_post(request.uri, request.port, request.body);
+                return sk_http_post(request.uri, request.port, request.body, request.headers);
             case HTTP_PUT_METHOD:
                 return sk_http_put(request.uri, request.port, request.body);
             case HTTP_DELETE_METHOD:
