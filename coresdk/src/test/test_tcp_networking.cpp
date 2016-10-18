@@ -10,7 +10,6 @@
 #include "easylogging++.h"
 
 #include "networking.h"
-#include "network_driver.h"
 #include "utils.h"
 
 const int SERVER1_PORT = 5000;
