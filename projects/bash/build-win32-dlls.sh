@@ -36,7 +36,7 @@ g++ ${INC_SDL} -shared -L/mingw32/bin ${DLLS} -DWINDOWS -std=c++14 -L/mingw32/li
 
 echo "Compiling test program"
 g++ -DWINDOWS -std=c++14 \
-  -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/test/ -I${CORE_SDK_PATH}/external \
+  -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/test/ -I${CORE_SDK_PATH}/external/easyloggingpp/ \
   ${CORE_SDK_PATH}/src/test/*.cpp \
   -L../../out/win32 \
   -static-libstdc++ -static-libgcc \
