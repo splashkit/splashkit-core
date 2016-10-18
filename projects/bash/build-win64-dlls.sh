@@ -4,6 +4,7 @@ echo "Ensure you run this from the mingw 64 shell of Msys2"
 
 rm -rf ../../out/win64
 mkdir -p ../../out/win64
+mkdir -p ./out/win64
 
 CORE_SDK_PATH="../../coresdk"
 
@@ -24,14 +25,24 @@ INC_SDL="-I/mingw64/include -I/mingw64/include/libpng16 -I${CORE_SDK_PATH}/exter
 echo "Copying in dlls"
 cp ${CORE_SDK_PATH}/lib/win64/*.dll ../../out/win64
 
-echo "Compiling test program"
+echo "Compiling splashkit dll"
 g++ ${INC_SDL} -shared -L/mingw64/bin ${DLLS} -DWINDOWS -std=c++14 -L/mingw64/lib -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/backend/ ${CORE_SDK_PATH}/src/coresdk/*.cpp ${CORE_SDK_PATH}/src/backend/*.cpp ${ALL_SDL2_LIBS} \
 -I${CORE_SDK_PATH}/src/coresdk \
 -I${CORE_SDK_PATH}/src/test \
  -L../../out/win64 \
  -static-libstdc++ -static-libgcc \
  -Wl,-Bstatic -lstdc++ -lpthread \
- -g -o ./out/win64/RunTests.exe
+ -g -o ../../out/win64/libsplashkit.dll
+
+echo "Compiling test program"
+g++ -DWINDOWS -std=c++14 \
+  -I${CORE_SDK_PATH}/src/coresdk/ -I${CORE_SDK_PATH}/src/test/ -I${CORE_SDK_PATH}/external \
+  ${CORE_SDK_PATH}/src/test/*.cpp \
+  -L../../out/win64 \
+  -static-libstdc++ -static-libgcc \
+  -Wl,-Bstatic -lstdc++ -lpthread \
+  -g -o ./out/win64/RunTests.exe
 
 echo "Copying resources"
 cp -r ${CORE_SDK_PATH}/src/test/Resources ./out/win64
+cp ../../out/win64/*.dll ./out/win64/
