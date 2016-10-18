@@ -54,7 +54,7 @@ namespace splashkit_lib
      * @param  port The port to connect to on the server
      * @return      The bitmap that was loaded
      */
-    bitmap download_image(const string &name, const string &url, unsigned short port);
+    bitmap download_bitmap(const string &name, const string &url, unsigned short port);
 
     /**
      * Download a font from a web server and load it into SplashKit so that

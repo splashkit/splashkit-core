@@ -27,7 +27,7 @@ void run_windows_tests()
     
     window_set_icon(w1, light);
     
-    bitmap test = download_image("blah", "http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);
+    bitmap test = download_bitmap("blah", "http://www.swinburne.edu.au/cwis/php_pages/webapps/marketing/promotiles-v3/assets/img/RgakQ.jpg", 80);
     
     cout << "Expecting bad bitmap pointer error: " << endl;
     draw_bitmap("fred", 75, 100);
