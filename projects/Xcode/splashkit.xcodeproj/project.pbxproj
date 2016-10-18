@@ -199,6 +199,7 @@
 		94B57A6C1D66738300CE7D55 /* point_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A6A1D66738300CE7D55 /* point_geometry.cpp */; };
 		94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A6B1D66738300CE7D55 /* point_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94BBE6771DAF7D7600B01487 /* keynote_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94BBE6751DAF796400B01487 /* keynote_code.cpp */; };
+		94BBE6791DB5D8AA00B01487 /* civetweb.c in Sources */ = {isa = PBXBuildFile; fileRef = 94BBE6781DB5D8AA00B01487 /* civetweb.c */; };
 		94C0D0A51D73B22C0099387A /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C0D0951D73B1E50099387A /* libsqlite.a */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
 		94C7491D1D478813006A9052 /* web_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C7491B1D478813006A9052 /* web_driver.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -230,7 +231,6 @@
 		94D1264E1D94F8DA006957A8 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
 		94DF46F81D74024700E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		94DF46FD1D7402B700E3D9AF /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F51D74024700E3D9AF /* sqlite3.c */; };
-		94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94DF46F91D74027E00E3D9AF /* civetweb.cpp */; };
 		94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; };
 		94DF47001D7402C800E3D9AF /* civetweb.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46FB1D74028900E3D9AF /* civetweb.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		94DF47011D7402CD00E3D9AF /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DF46F61D74024700E3D9AF /* sqlite3.h */; };
@@ -585,6 +585,7 @@
 		94B57A6A1D66738300CE7D55 /* point_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_geometry.cpp; sourceTree = "<group>"; };
 		94B57A6B1D66738300CE7D55 /* point_geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_geometry.h; sourceTree = "<group>"; };
 		94BBE6751DAF796400B01487 /* keynote_code.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keynote_code.cpp; sourceTree = "<group>"; };
+		94BBE6781DB5D8AA00B01487 /* civetweb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = civetweb.c; path = ../../../coresdk/external/civetweb/src/civetweb.c; sourceTree = "<group>"; };
 		94C0D0951D73B1E50099387A /* libsqlite.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsqlite.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C7491A1D478813006A9052 /* web_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_driver.cpp; sourceTree = "<group>"; };
 		94C7491B1D478813006A9052 /* web_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = web_driver.h; sourceTree = "<group>"; };
@@ -596,7 +597,6 @@
 		94D21C2D1D7A107300AB9E78 /* test_cave_escape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_cave_escape.cpp; sourceTree = "<group>"; };
 		94DF46F51D74024700E3D9AF /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../../coresdk/external/sqlite/sqlite3.c; sourceTree = "<group>"; };
 		94DF46F61D74024700E3D9AF /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../coresdk/external/sqlite/sqlite3.h; sourceTree = "<group>"; };
-		94DF46F91D74027E00E3D9AF /* civetweb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = civetweb.cpp; path = ../../../coresdk/external/civetweb/src/civetweb.cpp; sourceTree = "<group>"; };
 		94DF46FB1D74028900E3D9AF /* civetweb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = civetweb.h; path = ../../../coresdk/external/civetweb/include/civetweb.h; sourceTree = "<group>"; };
 		94DF47031D740C0B00E3D9AF /* sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound.cpp; sourceTree = "<group>"; };
 		94DF47041D740C0B00E3D9AF /* sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound.h; sourceTree = "<group>"; };
@@ -1179,8 +1179,8 @@
 		94E699541D6F395500FBFA28 /* civetweb */ = {
 			isa = PBXGroup;
 			children = (
+				94BBE6781DB5D8AA00B01487 /* civetweb.c */,
 				94DF46FB1D74028900E3D9AF /* civetweb.h */,
-				94DF46F91D74027E00E3D9AF /* civetweb.cpp */,
 			);
 			name = civetweb;
 			path = ../../../projects/Xcode/civetweb;
@@ -1748,7 +1748,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94DF46FE1D7402BD00E3D9AF /* civetweb.cpp in Sources */,
+				94BBE6791DB5D8AA00B01487 /* civetweb.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
