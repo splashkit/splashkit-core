@@ -1,5 +1,4 @@
 /**
- * @header  camera
  * @author  Andrew Cain
  * @brief   SplashKit camera functionality allows you to move a virtual camera
  *          around in your world.

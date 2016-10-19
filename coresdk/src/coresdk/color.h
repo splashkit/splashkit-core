@@ -1,5 +1,4 @@
 /**
- * @header color
  * @author Andrew Cain
  * @attribute group color
  */

@@ -1,5 +1,4 @@
 /**
- * @header  images
  * @author  Andrew Cain
  * @brief   SplashKit Images allow drawing of bitmaps and sprites to graphic windows.
  *

@@ -1,5 +1,4 @@
 /**
- * @header  bundles
  * @author  Andrew Cain
  * @brief   SplashKit resource bundles allow you to quickly and easily load a
  *          number of resources in the `Resources` folder.

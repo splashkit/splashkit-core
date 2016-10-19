@@ -1,5 +1,4 @@
 /**
- * @header  physics
  * @author  Andrew Cain
  * @attribute group  physics
  */

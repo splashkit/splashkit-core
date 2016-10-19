@@ -1,5 +1,4 @@
 /**
- * @header sound
  * @author Andrew Cain
  * @attribute group  audio
  * @attribute static audio

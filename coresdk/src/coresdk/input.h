@@ -1,5 +1,4 @@
 /**
- * @header  input
  * @author  Andrew Cain
  * @brief   Input handles user interaction and events such as keypresses.
  *

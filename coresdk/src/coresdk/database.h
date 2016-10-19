@@ -1,5 +1,4 @@
 /**
- * @header  database
  * @author  Jake Renzella
  * @brief   SplashKit Database allows you to create, query and otherwise
  *          manipulate a database.

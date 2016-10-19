@@ -1,5 +1,4 @@
 /**
- * @header  vector_2d
  * @author  Andrew Cain
  * @brief   Provides vector functions to work on vectors.
  *

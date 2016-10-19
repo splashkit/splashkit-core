@@ -1,5 +1,4 @@
 /**
- * @header  json
  * @author  James Armstrong
  * @author  Jake Renzella
  * @brief   SplashKit Json allows you to create and read JSON objects.

@@ -1,5 +1,4 @@
 /**
- * @header clipping
  * @author Andrew Cain
  * @attribute group graphics
  */

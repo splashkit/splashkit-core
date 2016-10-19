@@ -4,7 +4,6 @@
 //
 
 /**
- * @header    types
  * @attribute group types
  */
 

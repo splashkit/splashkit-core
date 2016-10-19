@@ -1,5 +1,4 @@
 /**
- * @header  random
  * @author  Andrew Cain
  * @brief   SplashKit random provides a simple implementation of random.
  *
