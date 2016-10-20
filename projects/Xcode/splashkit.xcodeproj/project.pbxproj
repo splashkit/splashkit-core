@@ -198,7 +198,6 @@
 		94B57A681D65CCF300CE7D55 /* clipping.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A661D65CCF300CE7D55 /* clipping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94B57A6C1D66738300CE7D55 /* point_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94B57A6A1D66738300CE7D55 /* point_geometry.cpp */; };
 		94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 94B57A6B1D66738300CE7D55 /* point_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94BBE6771DAF7D7600B01487 /* keynote_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94BBE6751DAF796400B01487 /* keynote_code.cpp */; };
 		94BBE6791DB5D8AA00B01487 /* civetweb.c in Sources */ = {isa = PBXBuildFile; fileRef = 94BBE6781DB5D8AA00B01487 /* civetweb.c */; };
 		94C0D0A51D73B22C0099387A /* libsqlite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C0D0951D73B1E50099387A /* libsqlite.a */; };
 		94C7491C1D478813006A9052 /* web_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94C7491A1D478813006A9052 /* web_driver.cpp */; };
@@ -346,11 +345,10 @@
 		FA4B07811D824BBC00A8EC32 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372601D1D6B3C0020CCE2 /* CoreVideo.framework */; };
 		FA4B07821D824BBC00A8EC32 /* ForceFeedback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9423726E1D1D6B710020CCE2 /* ForceFeedback.framework */; };
 		FA4B07831D824BBC00A8EC32 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942372701D1D6B760020CCE2 /* IOKit.framework */; };
-		FA4B07871D824BE500A8EC32 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4B07861D824BE500A8EC32 /* libcurl.tbd */; };
 		FA4B07BE1D82500300A8EC32 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 878BAFE91D52DF3000483C3E /* Resources */; };
-		FA4B07C01D825FCC00A8EC32 /* translator_test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */; };
 		FA4B081E1D82601600A8EC32 /* sk_clib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07EA1D825FEC00A8EC32 /* sk_clib.cpp */; };
-		FA4B081F1D82601900A8EC32 /* splashkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B080F1D825FEC00A8EC32 /* splashkit.cpp */; };
+		FA91DABA1DB851B300BB5E39 /* translator_test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */; };
+		FA91DABD1DB8530B00BB5E39 /* splashkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B080F1D825FEC00A8EC32 /* splashkit.cpp */; };
 		FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D181D8227E500D7C7FF /* test_networking.cpp */; };
 		FAAB8D1B1D822A0F00D7C7FF /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
@@ -764,7 +762,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA4B07871D824BE500A8EC32 /* libcurl.tbd in Frameworks */,
 				FA4B077B1D824BBC00A8EC32 /* AudioToolbox.framework in Frameworks */,
 				FA4B077C1D824BBC00A8EC32 /* AudioUnit.framework in Frameworks */,
 				FA4B077D1D824BBC00A8EC32 /* Carbon.framework in Frameworks */,
@@ -1563,7 +1560,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1601,7 +1598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SK_ROOT=\"$SRCROOT/../..\"\nTRANS_SRC=\"$SK_ROOT/tools/translator\"\nTRANS_OUT=\"$SK_ROOT/out/translated\"\nTRANS_LNG=\"clib,cpp\"\n\necho \"Checking for rbenv...\"\nwhich rbenv\nif [[ $? != 0 ]]; then\n    echo \"rbenv is not installed. Install this to run ruby version 2.3.1.\" 1>&2\n    exit 1\nfi\n\necho \"Setting ruby version to 2.3.1...\"\neval \"$(rbenv init -)\"\nrbenv shell 2.3.1\n\nif [[ $? != 0 ]]; then\n  echo \"Invalid ruby version -- you need 2.3.1. Install 2.3.1 using \\`rbenv install 2.3.1\\` and try again. Your ruby version is: $(ruby -v)\" 1>&2\n  exit 1\nfi\n\n\necho \"Translating SK source to Lib C and front-end C++...\"\n$TRANS_SRC/translate --ide --verbose -o $TRANS_OUT -i $SK_ROOT -g $TRANS_LNG";
+			shellScript = "SK_ROOT=\"$SRCROOT/../..\"\nTRANS_SRC=\"$SK_ROOT/tools/translator\"\nTRANS_OUT=\"$SK_ROOT/out/translated\"\nTRANS_LNG=\"clib,cpp\"\nCACHE_FILE=\"$SK_ROOT/out/translator_cache.json\"\n\necho \"Checking for rbenv...\"\nwhich rbenv\nif [[ $? != 0 ]]; then\n    echo \"rbenv is not installed. Install this to run ruby version 2.3.1.\" 1>&2\n    exit 1\nfi\n\necho \"Setting ruby version to 2.3.1...\"\neval \"$(rbenv init -)\"\nrbenv shell 2.3.1\n\nif [[ $? != 0 ]]; then\n  echo \"Invalid ruby version -- you need 2.3.1. Install 2.3.1 using \\`rbenv install 2.3.1\\` and try again. Your ruby version is: $(ruby -v)\" 1>&2\n  exit 1\nfi\n\n\necho \"Translating SK source to Lib C and front-end C++...\"\nif [ -e \"$CACHE_FILE\" ]; then\n    READ_CACHE=\"-r $CACHE_FILE\"\nfi\n$TRANS_SRC/translate --no-color --verbose -o $TRANS_OUT -i $SK_ROOT -g $TRANS_LNG -w $CACHE_FILE $READ_CACHE";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1769,6 +1766,7 @@
 				FA3ABFB21D82493A0064C29A /* utils_driver.cpp in Sources */,
 				FA3ABFB31D82493A0064C29A /* utility_functions.cpp in Sources */,
 				FA3ABFB41D82493A0064C29A /* database_driver.cpp in Sources */,
+				FA91DABD1DB8530B00BB5E39 /* splashkit.cpp in Sources */,
 				FA3ABFB61D82493A0064C29A /* audio.cpp in Sources */,
 				FA3ABFB71D82493A0064C29A /* music.cpp in Sources */,
 				FA3ABFB81D82493A0064C29A /* sound.cpp in Sources */,
@@ -1784,12 +1782,12 @@
 				FA3ABFC21D82493A0064C29A /* circle_geometry.cpp in Sources */,
 				FA3ABFC31D82493A0064C29A /* quad_geometry.cpp in Sources */,
 				FA3ABFC41D82493A0064C29A /* triangle_geometry.cpp in Sources */,
+				FA91DABA1DB851B300BB5E39 /* translator_test_main.cpp in Sources */,
 				FA3ABFC51D82493A0064C29A /* physics.cpp in Sources */,
 				FA3ABFC61D82493A0064C29A /* matrix_2d.cpp in Sources */,
 				FA3ABFC71D82493A0064C29A /* vector_2d.cpp in Sources */,
 				FA3ABFC81D82493A0064C29A /* collisions.cpp in Sources */,
 				FA3ABFC91D82493A0064C29A /* graphics.cpp in Sources */,
-				94BBE6771DAF7D7600B01487 /* keynote_code.cpp in Sources */,
 				94A501AF1DA85943007859A1 /* terminal.cpp in Sources */,
 				FA3ABFCA1D82493A0064C29A /* drawing_options.cpp in Sources */,
 				FA3ABFCB1D82493A0064C29A /* color.cpp in Sources */,
@@ -1817,8 +1815,6 @@
 				FA3ABFE11D82493A0064C29A /* database.cpp in Sources */,
 				FA3ABFE21D82493A0064C29A /* timers.cpp in Sources */,
 				FA4B081E1D82601600A8EC32 /* sk_clib.cpp in Sources */,
-				FA4B081F1D82601900A8EC32 /* splashkit.cpp in Sources */,
-				FA4B07C01D825FCC00A8EC32 /* translator_test_main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2240,6 +2236,10 @@
 					"\"$(SRCROOT)/../../out/translated/cpp\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
+				OTHER_LDFLAGS = (
+					"-lncurses",
+					"-lcurl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2264,6 +2264,10 @@
 					"\"$(SRCROOT)/../../out/translated/cpp\"",
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../coresdk/lib/mac\"";
+				OTHER_LDFLAGS = (
+					"-lncurses",
+					"-lcurl",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2271,7 +2275,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,

@@ -1,5 +1,5 @@
 /**
- * @header quadrangle_geometry
+ * @header quad_geometry
  * @author Andrew Cain
  * @attribute group  geometry
  * @attribute static geometry

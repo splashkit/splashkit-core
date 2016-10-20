@@ -1215,11 +1215,6 @@ namespace splashkit_lib
      */
     color color_green_yellow();
 
-    /**
-     * Generates a new `color` associated to the color `gray`.
-     * @return A new `color` set to `gray`.
-     */
-    color color_gray();
 
     /**
      * Generates a new `color` associated to the color `honeydew`.
@@ -1316,12 +1311,6 @@ namespace splashkit_lib
      * @return A new `color` set to `light_green`.
      */
     color color_light_green();
-
-    /**
-     * Generates a new `color` associated to the color `light_gray`.
-     * @return A new `color` set to `light_gray`.
-     */
-    color color_light_gray();
 
     /**
      * Generates a new `color` associated to the color `light_pink`.
