@@ -1,4 +1,5 @@
 /**
+ * @header audio
  * @author Andrew Cain
  * @brief SplashKit Audio allows you to load and play music and sound effects.
  *

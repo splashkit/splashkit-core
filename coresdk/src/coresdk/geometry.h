@@ -1,4 +1,5 @@
 /**
+ * @header  geometry
  * @author  Andrew Cain
  * @brief   SplashKit's geometry functions assist with geometry-related computations.
  *

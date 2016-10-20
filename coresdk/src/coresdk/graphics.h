@@ -1,4 +1,5 @@
 /**
+ * @header  graphics
  * @author  Andrew Cain
  * @attribute group graphics
  */

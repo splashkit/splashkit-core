@@ -1,4 +1,5 @@
 /**
+ * @header  timers
  * @author  Andrew Cain
  * @brief   Timers in SplashKit can be used to track the passing of time.
  *

@@ -1,4 +1,5 @@
 /**
+ * @header drawing_options
  * @author Andrew Cain
  * @attribute group graphics
  */

@@ -1,4 +1,5 @@
 /**
+ * @header  window_manager
  * @author  Andrew Cain
  * @brief   Window Manager in SplashKit can be used create, and manipulate
  *          graphics windows

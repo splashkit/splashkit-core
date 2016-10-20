@@ -1,4 +1,5 @@
 /**
+ * @header  resources
  * @author  Andrew Cain
  * @brief   SplashKit resource functions allow you to locate resources in a
  *          project's `Resources` folder.

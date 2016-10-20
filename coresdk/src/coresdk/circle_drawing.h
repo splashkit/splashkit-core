@@ -1,4 +1,5 @@
 /**
+ * @header circle_drawing
  * @author Andrew Cain
  * @attribute group graphics
  */

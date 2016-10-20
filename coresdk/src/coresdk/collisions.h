@@ -1,4 +1,5 @@
 /**
+ * @header  collisions
  * @author  Andrew Cain
  * @brief   SplashKit Collisions library allow you to perform tests between
  *          bitmaps, sprites and shapes to determin if a collision has occured.

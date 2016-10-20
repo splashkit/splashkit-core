@@ -1,4 +1,5 @@
 /**
+ * @header  text
  * @author  Andrew Cain
  * @brief   SplashKit Text allows for drawing text in a variety of ways to
  *          graphic windows.

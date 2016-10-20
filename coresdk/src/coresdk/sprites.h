@@ -1,4 +1,5 @@
 /**
+ * @header  sprites
  * @author  Andrew Cain
  * @brief   SplashKit Sprites allows you to create images you can easily
  *          move and animate.

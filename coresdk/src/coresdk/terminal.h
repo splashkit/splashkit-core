@@ -1,4 +1,5 @@
 /**
+ * @header  terminal
  * @author  Andrew Cain
  * @brief   SplashKit Terminal allows you to read and write values to the
  * terminal in a consistent manner.

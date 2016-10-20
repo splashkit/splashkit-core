@@ -1,4 +1,5 @@
 /**
+ * @header  utils
  * @author  Andrew Cain
  * @brief   SplashKit provides miscellaneous utilities for unclassified functionality.
  *
