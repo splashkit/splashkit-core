@@ -56,8 +56,9 @@ namespace splashkit_lib
         if( ! _input_callbacks.do_quit )
         {
             _input_callbacks.do_quit              = &quit;
-            _input_callbacks.handle_key_down      = &_handle_key_down_callback;
-            _input_callbacks.handle_key_up        = &_handle_key_up_callback;
+            // TODO: Temporarily do not call due to 70c30d4
+            //_input_callbacks.handle_key_down      = &_handle_key_down_callback;
+            //_input_callbacks.handle_key_up        = &_handle_key_up_callback;
             _input_callbacks.handle_mouse_up      = &_process_mouse_up_event; // click occurs on up
             _input_callbacks.handle_mouse_down    = nullptr;
             _input_callbacks.handle_mouse_wheel   = &_process_mouse_wheel_callback; // click occurs on up

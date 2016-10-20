@@ -1482,12 +1482,14 @@ namespace splashkit_lib
 
     void draw_all_sprites()
     {
-        call_for_all_sprites(&draw_sprite);
+        // TODO: Temporarily do not call due to 70c30d4
+        //call_for_all_sprites(&draw_sprite);
     }
 
     void update_all_sprites(float pct)
     {
-        call_for_all_sprites(&_update_sprite_pct, pct);
+        // TODO: Temporarily do not call due to 70c30d4
+        //call_for_all_sprites(&_update_sprite_pct, pct);
     }
 
     void call_for_all_sprites(sprite_function *fn)
@@ -1540,9 +1542,9 @@ namespace splashkit_lib
     {
         if  (not has_sprite_pack(name)) return;
 
-        vector<sprite> &pack = _sprite_packs[name];
-
-        _call_for_all_sprites(pack, &free_sprite);
+        // TODO: Temporarily do not call due to 70c30d4
+        //vector<sprite> &pack = _sprite_packs[name];
+        //_call_for_all_sprites(pack, &free_sprite);
 
         _sprite_packs.erase(name);
     }
