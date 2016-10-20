@@ -65,28 +65,28 @@ namespace splashkit_lib
      *  The sprite_event_handler function pointer is used when you want to register
      *  to receive events from a Sprite.
      *
-     * @param s  The sprite raising the event.
-     * @param evt  The event beign raised.
+     * @param s  The `sprite` raising the event.
+     * @param evt  The `sprite_event_kind` being raised.
      */
-    typedef void (sprite_event_handler) (sprite s, sprite_event_kind evt);
+    typedef void (sprite_event_handler) (void *s, int evt);
 
     /**
      *  sprite_function is used with SpritePacks to provide a procedure to be
      *  called for each of the Sprites in the SpritePack.
      *
-     * @param s The sprite being passed to the sprite function.
+     * @param s The `sprite` being passed to the sprite function.
      */
-    typedef void (sprite_function)(sprite s);
+    typedef void (sprite_function)(void *s);
 
     /**
      *  The sprite single function is used with sprite packs to provide a
      *  procedure to be called for each of the Sprites in the sprite pack,
      *  where a float value is required.
      *
-     * @param s The sprite being passed to the sprite function.
+     * @param s The `sprite` being passed to the sprite function.
      * @param f The value to be passed to the function.
      */
-    typedef void (sprite_float_function)(sprite s, float f);
+    typedef void (sprite_float_function)(void *s, float f);
 
     //---------------------------------------------------------------------------
     // sprite creation routines

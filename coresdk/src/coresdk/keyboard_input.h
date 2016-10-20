@@ -301,9 +301,9 @@ namespace splashkit_lib
      *  or keyboard related events. See `register_callback_on_key_down`,
      *  `register_callback_on_key_up`, and `register_callback_on_key_typed`
      *
-     * @param  code The key related to the event.
+     * @param code The `key_code` related to the event.
      */
-    typedef void (key_callback)(key_code code);
+    typedef void (key_callback)(int code);
 
     /**
      *  Returns true when the key requested is being held down. This is updated
