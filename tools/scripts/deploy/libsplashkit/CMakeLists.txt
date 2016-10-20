@@ -19,6 +19,9 @@ set(SK_GENERATED "${SK_ROOT}/generated")
 set(SK_BIN "${SK_ROOT}/bin")
 set(SK_OUT "${SK_ROOT}/out")
 
+option(GENERATE_LIB
+  "Generate splashkit code?" OFF)
+
 # Setup OS specific flags
 if (APPLE)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos")
@@ -63,12 +66,29 @@ if (APPLE)
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
+
     add_definitions(-DWINDOWS)
-    set(LIB_FLAGS " \
-      -L${SK_LIB}/win64 \
-      -static-libstdc++ -static-libgcc \
-      ")
-# LINUX PROJECT FLAGS
+    set(LIB_FLAGS "-L${SK_LIB}/win64 \
+                   -L/mingw64/lib \
+                   -L/usr/lib \
+                   -lSDL2main \
+                   -lSDL2_mixer \
+                  -lSDL2_image \
+                                            -lSDL2_net \
+                                            -llibcivetweb \
+                                            -lSDL2 \
+                                            -lSDL2_ttf \
+                                            -llibcurl \
+                                            -llibSDL2_gfx-1-0-0 \
+                                            -llibpng16-16 \
+                                            -llibsqlite \
+                                            -lws2_32 \
+                                            -llibncursesw \
+                                            -static-libstdc++ -static-libgcc \
+                                            -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
+                                            )
+    # LINUX PROJECT FLAGS
 else()
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
     set(LIB_FLAGS "-lSDL2 \
@@ -156,48 +176,16 @@ add_definitions(-DELPP_THREAD_SAFE)
 
 #### SplashKitBackend STATIC LIBRARY ####
 
-add_custom_target (
-  SplashKitCode
-  COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
-  )
-
 add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
-add_dependencies(SplashKit SplashKitCode)
 
-if (MSYS)
-    link_directories("${SK_LIB}/win64")
-
-    add_library(pthread STATIC IMPORTED)
-    add_library(stdc++ STATIC IMPORTED)
-
-    target_link_libraries(SplashKit
-        SDL2_mixer
-        SDL2_image
-        SDL2_net
-        libcivetweb
-        SDL2
-        SDL2_ttf
-        libcurl
-        libSDL2_gfx-1-0-0
-        libpng16-16
-        libsqlite
-        pthread
-        stdc++
-        ws2_32
-        libncursesw
-      )
-# elseif(APPLE)
-#     # To make a universal single static library from dependent
-#     # static libraries, run libtool on SplashKitBackend
-#     file(GLOB APPLE_STATIC_LIBS
-#         "${SK_LIB}/mac/*.a"
-#     )
-#     add_custom_command(TARGET SplashKitBackend POST_BUILD
-#       COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
-#       $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
-#     )
-endif()
+if (GENERATE_LIB)
+  add_custom_target (
+    SplashKitCode
+    COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
+    )
+  add_dependencies(SplashKit SplashKitCode)
+endif (GENERATE_LIB)
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
