@@ -4,3 +4,9 @@
 [submodule "tools/translator"]
 	path = tools/translator
 	url = https://github.com/splashkit/splashkit-translator
+[submodule "out/splashkit-macos"]
+	path = out/splashkit-macos
+	url = https://github.com/splashkit/splashkit-macos.git
+[submodule "out/splashkit-windows"]
+	path = out/splashkit-windows
+	url = https://github.com/splashkit/splashkit-windows.git
