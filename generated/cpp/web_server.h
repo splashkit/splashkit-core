@@ -1,10 +1,7 @@
-/*
- * SplashKit Web Server
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Web Server C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __web_server_h
 #define __web_server_h

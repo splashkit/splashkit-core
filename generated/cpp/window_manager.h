@@ -1,10 +1,7 @@
-/*
- * SplashKit Window Manager
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Window Manager C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __window_manager_h
 #define __window_manager_h

@@ -1,10 +1,7 @@
-/*
- * SplashKit Geometry
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Geometry C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __geometry_h
 #define __geometry_h

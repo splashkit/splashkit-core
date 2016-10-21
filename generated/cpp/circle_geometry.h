@@ -1,10 +1,7 @@
-/*
- * SplashKit Circle Geometry
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Circle Geometry C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __circle_geometry_h
 #define __circle_geometry_h

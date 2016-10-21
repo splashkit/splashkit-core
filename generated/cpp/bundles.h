@@ -1,10 +1,7 @@
-/*
- * SplashKit Bundles
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Bundles C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __bundles_h
 #define __bundles_h

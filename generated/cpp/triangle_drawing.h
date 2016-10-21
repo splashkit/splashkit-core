@@ -1,10 +1,7 @@
-/*
- * SplashKit Triangle Drawing
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Triangle Drawing C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __triangle_drawing_h
 #define __triangle_drawing_h

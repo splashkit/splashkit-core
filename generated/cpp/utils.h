@@ -1,10 +1,7 @@
-/*
- * SplashKit Utils
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Utils C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __utils_h
 #define __utils_h

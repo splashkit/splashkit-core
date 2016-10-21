@@ -1,10 +1,7 @@
-/*
- * SplashKit Random
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Random C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __random_h
 #define __random_h

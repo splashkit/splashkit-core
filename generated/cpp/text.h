@@ -1,10 +1,7 @@
-/*
- * SplashKit Text
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Text C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __text_h
 #define __text_h

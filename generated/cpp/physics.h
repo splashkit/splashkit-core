@@ -1,10 +1,7 @@
-/*
- * SplashKit Physics
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Physics C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __physics_h
 #define __physics_h

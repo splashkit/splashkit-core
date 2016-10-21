@@ -1,10 +1,7 @@
-/*
- * SplashKit Sprites
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Sprites C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __sprites_h
 #define __sprites_h
@@ -29,9 +26,9 @@ typedef enum {
     SPRITE_TOUCHED_EVENT,
     SPRITE_CLICKED_EVENT
 } sprite_event_kind;
-typedef void (sprite_event_handler)(sprite s, sprite_event_kind evt);
-typedef void (sprite_float_function)(sprite s, float f);
-typedef void (sprite_function)(sprite s);
+typedef void (sprite_event_handler)(void *s, int evt);
+typedef void (sprite_float_function)(void *s, float f);
+typedef void (sprite_function)(void *s);
 void call_for_all_sprites(sprite_float_function *fn, float val);
 void call_for_all_sprites(sprite_function *fn);
 void call_on_sprite_event(sprite_event_handler *handler);

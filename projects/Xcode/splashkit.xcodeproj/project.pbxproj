@@ -347,6 +347,8 @@
 		FA91DABA1DB851B300BB5E39 /* translator_test_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */; };
 		FA91DAF21DB87A2800BB5E39 /* sk_clib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA91DABF1DB87A2800BB5E39 /* sk_clib.cpp */; };
 		FA91DAF31DB87A2800BB5E39 /* splashkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA91DAE31DB87A2800BB5E39 /* splashkit.cpp */; };
+		FA91DAFB1DB9EFC400BB5E39 /* adapter_type_mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA91DAFA1DB9EFC400BB5E39 /* adapter_type_mapper.cpp */; };
+		FA91DAFD1DB9EFCD00BB5E39 /* lib_type_mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA91DAFC1DB9EFCD00BB5E39 /* lib_type_mapper.cpp */; };
 		FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D181D8227E500D7C7FF /* test_networking.cpp */; };
 		FAAB8D1B1D822A0F00D7C7FF /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
 		FAAC93FF1D8016D500B73558 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC93FD1D8016D500B73558 /* json.cpp */; };
@@ -675,6 +677,8 @@
 		FA91DAF11DB87A2800BB5E39 /* window_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_manager.h; sourceTree = "<group>"; };
 		FA91DAF61DB88DCE00BB5E39 /* adapter_type_mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter_type_mapper.h; sourceTree = "<group>"; };
 		FA91DAF81DB88DE800BB5E39 /* lib_type_mapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lib_type_mapper.h; sourceTree = "<group>"; };
+		FA91DAFA1DB9EFC400BB5E39 /* adapter_type_mapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adapter_type_mapper.cpp; sourceTree = "<group>"; };
+		FA91DAFC1DB9EFCD00BB5E39 /* lib_type_mapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lib_type_mapper.cpp; sourceTree = "<group>"; };
 		FAAB8D181D8227E500D7C7FF /* test_networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_networking.cpp; sourceTree = "<group>"; };
 		FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_driver.cpp; sourceTree = "<group>"; };
 		FAAC93FD1D8016D500B73558 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
@@ -1246,6 +1250,7 @@
 			children = (
 				FA91DABF1DB87A2800BB5E39 /* sk_clib.cpp */,
 				FA91DAC01DB87A2800BB5E39 /* sk_clib.h */,
+				FA91DAFC1DB9EFCD00BB5E39 /* lib_type_mapper.cpp */,
 				FA91DAF81DB88DE800BB5E39 /* lib_type_mapper.h */,
 			);
 			name = clib;
@@ -1256,6 +1261,7 @@
 			isa = PBXGroup;
 			children = (
 				FA91DAF61DB88DCE00BB5E39 /* adapter_type_mapper.h */,
+				FA91DAFA1DB9EFC400BB5E39 /* adapter_type_mapper.cpp */,
 				FA91DAC21DB87A2800BB5E39 /* animations.h */,
 				FA91DAC31DB87A2800BB5E39 /* audio.h */,
 				FA91DAC41DB87A2800BB5E39 /* bundles.h */,
@@ -1849,6 +1855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA91DAFD1DB9EFCD00BB5E39 /* lib_type_mapper.cpp in Sources */,
 				FA3ABFA81D82493A0064C29A /* logging_driver.cpp in Sources */,
 				FA3ABFA91D82493A0064C29A /* json_driver.cpp in Sources */,
 				FA3ABFAA1D82493A0064C29A /* web_server_driver.cpp in Sources */,
@@ -1901,6 +1908,7 @@
 				FA3ABFD61D82493A0064C29A /* text_input.cpp in Sources */,
 				FA3ABFD71D82493A0064C29A /* json.cpp in Sources */,
 				FA3ABFD81D82493A0064C29A /* animations.cpp in Sources */,
+				FA91DAFB1DB9EFC400BB5E39 /* adapter_type_mapper.cpp in Sources */,
 				FA3ABFD91D82493A0064C29A /* window_manager.cpp in Sources */,
 				FA3ABFDA1D82493A0064C29A /* utils.cpp in Sources */,
 				FA3ABFDB1D82493A0064C29A /* types.cpp in Sources */,

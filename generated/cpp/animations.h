@@ -1,10 +1,7 @@
-/*
- * SplashKit Animations
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Animations C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __animations_h
 #define __animations_h

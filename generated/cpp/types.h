@@ -1,10 +1,7 @@
-/*
- * SplashKit Types
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Types C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __types_h
 #define __types_h

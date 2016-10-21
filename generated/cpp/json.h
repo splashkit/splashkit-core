@@ -1,10 +1,7 @@
-/*
- * SplashKit Json
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Json C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __json_h
 #define __json_h

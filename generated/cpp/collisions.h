@@ -1,10 +1,7 @@
-/*
- * SplashKit Collisions
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Collisions C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __collisions_h
 #define __collisions_h

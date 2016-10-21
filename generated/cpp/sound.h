@@ -1,10 +1,7 @@
-/*
- * SplashKit Sound
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Sound C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __sound_h
 #define __sound_h

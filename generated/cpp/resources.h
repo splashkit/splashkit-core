@@ -1,10 +1,7 @@
-/*
- * SplashKit Resources
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Resources C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __resources_h
 #define __resources_h

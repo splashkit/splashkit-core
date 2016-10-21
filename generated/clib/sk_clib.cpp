@@ -1,7 +1,9 @@
 //
 // SplashKit C Generated Library Code
+// DO NOT MODIFY
 //
 #include "sk_clib.h"
+#include "lib_type_mapper.h"
 
 int __sklib__animation_count__animation_script(__sklib_animation_script script) {
     animation_script __skparam__script = __sklib__to_animation_script(script);

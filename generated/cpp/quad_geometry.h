@@ -1,10 +1,7 @@
-/*
- * SplashKit Quad Geometry
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Quad Geometry C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __quad_geometry_h
 #define __quad_geometry_h

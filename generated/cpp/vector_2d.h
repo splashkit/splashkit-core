@@ -1,10 +1,7 @@
-/*
- * SplashKit Vector 2d
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Vector 2d C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __vector_2d_h
 #define __vector_2d_h
