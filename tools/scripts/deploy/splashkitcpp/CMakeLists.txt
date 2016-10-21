@@ -15,7 +15,8 @@ if (WIN32 OR MSYS OR MINGW)
     set(WIN_PATH_SUFFIX, "win64")
     set(MINGW_PATH_PART, "mingw64")
   else ( )
-    
+    message(SEND_ERROR "Failed to detect windows architecture")
+    return ()
   endif()
 endif()
 
