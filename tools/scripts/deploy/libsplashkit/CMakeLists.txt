@@ -18,7 +18,7 @@ if (WIN32 OR MSYS OR MINGW)
     set(WIN_PATH_SUFFIX, "win64")
     set(MINGW_PATH_PART, "mingw64")
   else ( )
-    exit (-1)
+    message(SEND_ERROR "Failed to detect windows architecture")
   endif()
 endif()
 
@@ -82,25 +82,25 @@ elseif(MSYS)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
 
     add_definitions(-DWINDOWS)
-    set(LIB_FLAGS "-L${SK_LIB}/win64 \
-                   -L/mingw64/lib \
-                   -L/usr/lib \
-                   -lSDL2main \
-                   -lSDL2_mixer \
-                  -lSDL2_image \
-                                            -lSDL2_net \
-                                            -llibcivetweb \
-                                            -lSDL2 \
-                                            -lSDL2_ttf \
-                                            -llibcurl \
-                                            -llibSDL2_gfx-1-0-0 \
-                                            -llibpng16-16 \
-                                            -llibsqlite \
-                                            -lws2_32 \
-                                            -llibncursesw \
-                                            -static-libstdc++ -static-libgcc \
-                                            -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
-                                            )
+    set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
+                    -L/${MINGW_PATH_PART}/lib \
+                    -L/usr/lib \
+                    -lSDL2main \
+                    -lSDL2_mixer \
+                    -lSDL2_image \
+                    -lSDL2_net \
+                    -llibcivetweb \
+                    -lSDL2 \
+                    -lSDL2_ttf \
+                    -llibcurl \
+                    -llibSDL2_gfx-1-0-0 \
+                    -llibpng16-16 \
+                    -llibsqlite \
+                    -lws2_32 \
+                    -llibncursesw \
+                    -static-libstdc++ -static-libgcc \
+                    -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
+                    )
     # LINUX PROJECT FLAGS
 else()
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
@@ -177,8 +177,8 @@ endif()
 
 # WINDOWS ONLY DIRECTORY INCLUDES
 if (MSYS)
-    include_directories(/mingw64/include)
-    include_directories(/mingw64/include/libpng16)
+    include_directories(/${MINGW_PATH_PART}/include)
+    include_directories(/${MINGW_PATH_PART}/include/libpng16)
     include_directories("${SK_LIB}/win_inc")
 endif()
 
