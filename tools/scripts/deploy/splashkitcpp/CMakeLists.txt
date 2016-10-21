@@ -7,6 +7,16 @@ project(splashkit)
 # Detect Windows and flag MSYS
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
+
+  if (MINGW32)
+    set(WIN_PATH_SUFFIX, "win32")
+    set(MINGW_PATH_PART, "mingw32")
+  elseif (MINGW64)
+    set(WIN_PATH_SUFFIX, "win64")
+    set(MINGW_PATH_PART, "mingw64")
+  else ( )
+    
+  endif()
 endif()
 
 # SK Directories relative to cmake project
@@ -38,35 +48,19 @@ if (APPLE)
                    -lncurses")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/compilers/clang++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
+
     add_definitions(-DWINDOWS)
-    set(LIB_FLAGS " \
-      -L${SK_LIB}/win64 \
-      -static-libstdc++ -static-libgcc \
-      ")
+    set(LIB_FLAGS "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
+                   -L/${MINGW_PATH_PART}/lib \
+                   -L/usr/lib \
+                   -llibSplashKit \
+                   -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
 # LINUX PROJECT FLAGS
 else()
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
-    set(LIB_FLAGS "-lSDL2 \
-                   -lSDL2_mixer \
-                   -lSDL2_ttf \
-                   -lSDL2_gfx \
-                   -lSDL2_image \
-                   -lSDL2_net \
-                   -lpthread \
-                   -lbz2 \
-                   -lFLAC \
-                   -lvorbis \
-                   -lz \
-                   -lpng12 \
-                   -lvorbisfile \
-                   -lmikmod \
-                   -logg \
-                   -lwebp \
-                   -lfreetype \
-                   -lcurl \
-                   -lncurses \
-                   -ldl")
+    set(LIB_FLAGS "-llibSplashKit")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
        "${SK_EXT}/sqlite/sqlite3.c"
@@ -93,14 +87,16 @@ include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 #### SplashKitBackend STATIC LIBRARY ####
 
-add_custom_target (
-  SplashKitCPPCode
-  COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g cpp -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
-  )
-
 add_library(SplashKitCPP STATIC ${SOURCE_FILES})
 target_link_libraries(SplashKitCPP ${LIB_FLAGS})
-add_dependencies(SplashKitCPP SplashKitCPPCode)
+
+if (GENERATE_LIB)
+  add_custom_target (
+    SplashKitCPPCode
+    COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g cpp -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
+    )
+  add_dependencies(SplashKitCPP SplashKitCPPCode)
+endif (GENERATE_LIB)
 
 set_target_properties(
     SplashKitCPP PROPERTIES LINKER_LANGUAGE CXX

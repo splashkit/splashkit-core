@@ -7,6 +7,19 @@ project(splashkit)
 # Detect Windows and flag MSYS
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
+
+  string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
+  string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
+
+  if (MINGW32)
+    set(WIN_PATH_SUFFIX, "win32")
+    set(MINGW_PATH_PART, "mingw32")
+  elseif (MINGW64)
+    set(WIN_PATH_SUFFIX, "win64")
+    set(MINGW_PATH_PART, "mingw64")
+  else ( )
+    exit (-1)
+  endif()
 endif()
 
 # SK Directories relative to cmake project
