@@ -72,6 +72,10 @@ endif()
 # FLAGS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
+#### END SETUP ####
+
+#### SplashKitBackend STATIC LIBRARY ####
+
 # SOURCE FILES
 file(GLOB SOURCE_FILES
     "${SK_GENERATED}/cpp/*.cpp"
@@ -84,20 +88,9 @@ file(GLOB SK_ADAPTER_INCLUDE_FILE
 
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
-#### END SETUP ####
-
-#### SplashKitBackend STATIC LIBRARY ####
-
 add_library(SplashKitCPP STATIC ${SOURCE_FILES})
 target_link_libraries(SplashKitCPP ${LIB_FLAGS})
 
-if (GENERATE_LIB)
-  add_custom_target (
-    SplashKitCPPCode
-    COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g cpp -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
-    )
-  add_dependencies(SplashKitCPP SplashKitCPPCode)
-endif (GENERATE_LIB)
 
 set_target_properties(
     SplashKitCPP PROPERTIES LINKER_LANGUAGE CXX

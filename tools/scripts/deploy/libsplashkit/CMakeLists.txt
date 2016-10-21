@@ -33,9 +33,6 @@ set(SK_GENERATED "${SK_ROOT}/generated")
 set(SK_BIN "${SK_ROOT}/bin")
 set(SK_OUT "${SK_ROOT}/out")
 
-option(GENERATE_LIB
-  "Generate splashkit code?" OFF)
-
 # Setup OS specific flags
 if (APPLE)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos")
@@ -192,14 +189,6 @@ add_definitions(-DELPP_THREAD_SAFE)
 
 add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
-
-if (GENERATE_LIB)
-  add_custom_target (
-    SplashKitCode
-    COMMAND ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
-    )
-  add_dependencies(SplashKit SplashKitCode)
-endif (GENERATE_LIB)
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
