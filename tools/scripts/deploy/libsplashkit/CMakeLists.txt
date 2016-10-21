@@ -11,16 +11,20 @@ if (WIN32 OR MSYS OR MINGW)
   string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
   string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
 
-  if (MINGW32)
-    set(WIN_PATH_SUFFIX, "win32")
-    set(MINGW_PATH_PART, "mingw32")
-  elseif (MINGW64)
-    set(WIN_PATH_SUFFIX, "win64")
-    set(MINGW_PATH_PART, "mingw64")
+  if (${MINGW32})
+    message("Using mingw32")
+    set(WIN_PATH_SUFFIX "win32")
+    set(MINGW_PATH_PART "mingw32")
+  elseif (${MINGW64})
+    message("Using mingw64")
+    set(WIN_PATH_SUFFIX "win64")
+    set(MINGW_PATH_PART "mingw64")
   else ( )
     message(SEND_ERROR "Failed to detect windows architecture")
     return ()
   endif()
+
+  set(WIN_NAME_SUFFIX "-${WIN_PATH_SUFFIX}")
 endif()
 
 # SK Directories relative to cmake project
@@ -77,7 +81,6 @@ if (APPLE)
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
 
     add_definitions(-DWINDOWS)
     set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
@@ -99,7 +102,11 @@ elseif(MSYS)
                     -static-libstdc++ -static-libgcc \
                     -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
                     )
-    # LINUX PROJECT FLAGS
+
+    file(GLOB SK_LIB_DLL_FILES
+        "${SK_LIB}/${WIN_PATH_SUFFIX}/*.dll"
+    )
+# LINUX PROJECT FLAGS
 else()
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
     set(LIB_FLAGS "-lSDL2 \
@@ -187,10 +194,14 @@ add_definitions(-DELPP_THREAD_SAFE)
 
 #### SplashKitBackend STATIC LIBRARY ####
 
-add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
-target_link_libraries(SplashKit ${LIB_FLAGS})
+add_library(SplashKit${WIN_NAME_SUFFIX} SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
+target_link_libraries(SplashKit${WIN_NAME_SUFFIX} ${LIB_FLAGS})
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
-install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib)
+install(TARGETS SplashKit${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
 install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
+
+if ( ${MSYS} )
+  install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
+endif()

@@ -1,5 +1,6 @@
 #include "splashkit.h"
 #include <string>
+#include <cstring>
 #include <vector>
 #include <cstdlib>
 using std::string;

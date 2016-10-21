@@ -18,12 +18,21 @@ SK_TOOLS="${SK_ROOT}/tools"
 SK_CMAKE_CLIB="${SK_TOOLS}/scripts/deploy/libsplashkit"
 SK_CMAKE_CPP="${SK_TOOLS}/scripts/deploy/splashkitcpp"
 
-read -p "Regenerate SplashKit? [y,n] :" doit
+read -p "Regenerate SplashKit? [y,n] " doit
 case $doit in
   y|Y) GENERATE_LIB=true ;;
   n|N) echo ; echo "Skipping generation" ;;
   *) exit -1 ;;
 esac
+
+if [[ `uname` == MINGW* ]]; then
+  read -p "Delete cmake cache? [y,n] " doit
+  case $doit in
+    y|Y) DELETE_CMAKE_CACHE=true ;;
+    n|N) echo ; echo "Skipping generation" ;;
+    *) exit -1 ;;
+  esac
+fi
 
 if [[ $GENERATE_LIB ]]; then
   echo
@@ -31,44 +40,35 @@ if [[ $GENERATE_LIB ]]; then
   echo
   sleep 0.5
   ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
-
-  echo
-  echo "Recreating Makefiles -- clib"
-  echo
-  sleep 0.5
-  cd "${SK_CMAKE_CLIB}"
-  cmake -G "Unix Makefiles" .
-
-  echo
-  echo "Recreating Makefiles -- cpp adapter"
-  echo
-  sleep 0.5
-  cd "${SK_CMAKE_CPP}"
-  cmake -G "Unix Makefiles" .
 fi
+
+function do_make {
+  sleep 0.5
+  if [[ ${DELETE_CMAKE_CACHE} ]]; then
+    ./clean.sh
+  fi
+  cmake -G "Unix Makefiles" .
+  make
+  if [ $? != 0 ]; then echo "Error compiling"; exit 1; fi
+
+  make install
+  if [ $? != 0 ]; then echo "Error installing"; exit 1; fi
+}
 
 echo
 echo "Building -- clib"
 echo
-sleep 0.5
 cd "${SK_CMAKE_CLIB}"
-make
-if [ $? != 0 ]; then echo "Error compiling"; exit 1; fi
-
-make install
-if [ $? != 0 ]; then echo "Error installing clib"; exit 1; fi
-
+do_make
 
 echo
 echo "Building -- cpp adapter"
 echo
-sleep 0.5
 cd "${SK_CMAKE_CPP}"
-make
-if [ $? != 0 ]; then echo "Error compiling"; exit 1; fi
-
-make install
-if [ $? != 0 ]; then echo "Error installing clib"; exit 1; fi
-
+do_make
 
 cd "${APP_PATH}"
+
+if [[ `uname` == MINGW* ]]; then
+  rm ${SK_OUT}/splashkit-windows/lib/*.a
+fi

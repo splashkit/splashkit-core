@@ -8,16 +8,23 @@ project(splashkit)
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
 
-  if (MINGW32)
-    set(WIN_PATH_SUFFIX, "win32")
-    set(MINGW_PATH_PART, "mingw32")
-  elseif (MINGW64)
-    set(WIN_PATH_SUFFIX, "win64")
-    set(MINGW_PATH_PART, "mingw64")
+  string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
+  string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
+
+  if (${MINGW32})
+    message("Using mingw32")
+    set(WIN_PATH_SUFFIX "win32")
+    set(MINGW_PATH_PART "mingw32")
+  elseif (${MINGW64})
+    message("Using mingw64")
+    set(WIN_PATH_SUFFIX "win64")
+    set(MINGW_PATH_PART "mingw64")
   else ( )
     message(SEND_ERROR "Failed to detect windows architecture")
     return ()
   endif()
+
+  set(WIN_NAME_SUFFIX "-${WIN_PATH_SUFFIX}")
 endif()
 
 # SK Directories relative to cmake project
@@ -49,15 +56,14 @@ if (APPLE)
                    -lncurses")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/compilers/clang++")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/compilers/clang++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     add_definitions(-DWINDOWS)
     set(LIB_FLAGS "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
                    -L/${MINGW_PATH_PART}/lib \
                    -L/usr/lib \
-                   -llibSplashKit \
-                   -static-libstdc++ -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic")
+                 -llibSplashKit${WIN_NAME_SUFFIX}")
 # LINUX PROJECT FLAGS
 else()
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
@@ -88,15 +94,15 @@ file(GLOB SK_ADAPTER_INCLUDE_FILE
 
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
-add_library(SplashKitCPP STATIC ${SOURCE_FILES})
-target_link_libraries(SplashKitCPP ${LIB_FLAGS})
+add_library(SplashKitCPP${WIN_NAME_SUFFIX} STATIC ${SOURCE_FILES})
+target_link_libraries(SplashKitCPP${WIN_NAME_SUFFIX} ${LIB_FLAGS})
 
 
 set_target_properties(
-    SplashKitCPP PROPERTIES LINKER_LANGUAGE CXX
+    SplashKitCPP${WIN_NAME_SUFFIX} PROPERTIES LINKER_LANGUAGE CXX
 )
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
-install(TARGETS SplashKitCPP DESTINATION ${SK_DEPLOY_ROOT}/lib)
+install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)

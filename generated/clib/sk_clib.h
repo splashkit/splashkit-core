@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <strings.h>
 #include <string>
 #include <vector>
 #include "animations.h"
