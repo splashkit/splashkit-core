@@ -68,16 +68,19 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 cmake_install.cmake
-libsplashkit.a
-libsplashkit.ao
 splashkit_test
 projects/cmake/Resources
 .ninja_deps
 .ninja_log
 build.ninja
 rules.ninja
+install_manifest.txt
+
+tools/scripts/deploy/libsplashkit/*.dylib
+tools/scripts/deploy/libsplashkit/*.dll
+tools/scripts/deploy/libsplashkit/*.a
+tools/scripts/deploy/splashkitcpp/*.a
 
 ### Generated Folders ###
 bin/
-
 logs/
