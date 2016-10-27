@@ -31,10 +31,10 @@ namespace splashkit_lib
 
     // Sprite pack data
 #define INITIAL_PACK_NAME "default"
-    map<string, vector<sprite>> _sprite_packs;
+    map<string, vector<void *>> _sprite_packs;
     string _current_pack = INITIAL_PACK_NAME;
 
-    vector<sprite> &current_pack()
+    vector<void *> &current_pack()
     {
         return _sprite_packs[_current_pack];
     }
@@ -79,7 +79,7 @@ namespace splashkit_lib
 
         vector<sprite_event_handler *> evts;    // The call backs listening for sprite events
 
-        vector<sprite>      &pack;              // Points the the SpritePack that contains this sprite
+        vector<void *>      &pack;              // Points the the SpritePack that contains this sprite
 
         _sprite_data() : pack( current_pack() )
         {
@@ -268,7 +268,7 @@ namespace splashkit_lib
         //Free buffered rotation image
         s->collision_bitmap = nullptr;
 
-        if( ( not erase_from_vector(s->pack, s) ) )
+        if( ( not erase_from_vector(s->pack, static_cast<void *>(s)) ) )
         {
             LOG(WARNING) << "Error removing sprite from sprite pack!";
         }
@@ -1457,24 +1457,34 @@ namespace splashkit_lib
 
     // Duplicate for the update_sprite for use in update_all_sprites... as it
     // currently does not select the correct overload.
-    void _update_sprite_pct(sprite s, float pct)
+    void _update_sprite_pct(void *s, float pct)
     {
-        update_sprite(s, pct);
+        update_sprite(static_cast<sprite>(s), pct);
     }
 
-    void _call_for_all_sprites(vector<sprite> &sprites, sprite_function *fn)
+    void _draw_sprite(void *s)
     {
-        for(sprite s : sprites)
+        draw_sprite(static_cast<sprite>(s));
+    }
+
+    void _free_sprite(void *s)
+    {
+        free_sprite(static_cast<sprite>(s));
+    }
+
+    void _call_for_all_sprites(vector<void *> &sprites, sprite_function *fn)
+    {
+        for(void *s : sprites)
         {
             fn(s);
         }
     }
 
-    void _call_for_all_sprites(vector<sprite> &sprites, sprite_float_function *fn, float val)
+    void _call_for_all_sprites(vector<void *> &sprites, sprite_float_function *fn, float val)
     {
         // use a local copy so changes to the sprite pack do not effect loop
-        vector<sprite> local_copy = sprites;
-        for(sprite s : local_copy)
+        vector<void *> local_copy = sprites;
+        for(void *s : local_copy)
         {
             fn(s, val);
         }
@@ -1482,14 +1492,12 @@ namespace splashkit_lib
 
     void draw_all_sprites()
     {
-        // TODO: Temporarily do not call due to 70c30d4
-        //call_for_all_sprites(&draw_sprite);
+        call_for_all_sprites(&_draw_sprite);
     }
 
     void update_all_sprites(float pct)
     {
-        // TODO: Temporarily do not call due to 70c30d4
-        //call_for_all_sprites(&_update_sprite_pct, pct);
+        call_for_all_sprites(&_update_sprite_pct, pct);
     }
 
     void call_for_all_sprites(sprite_function *fn)
@@ -1543,8 +1551,8 @@ namespace splashkit_lib
         if  (not has_sprite_pack(name)) return;
 
         // TODO: Temporarily do not call due to 70c30d4
-        //vector<sprite> &pack = _sprite_packs[name];
-        //_call_for_all_sprites(pack, &free_sprite);
+        vector<void *> &pack = _sprite_packs[name];
+        _call_for_all_sprites(pack, &_free_sprite);
 
         _sprite_packs.erase(name);
     }

@@ -18361,7 +18361,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1476945063,
+    "parsed_at": 1477549393,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -28031,7 +28031,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1476945099,
+    "parsed_at": 1477549405,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {

@@ -2,6 +2,7 @@
 // SplashKit C Generated Library Code
 // DO NOT MODIFY
 //
+
 #include "sk_clib.h"
 #include "lib_type_mapper.h"
 

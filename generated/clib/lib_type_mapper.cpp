@@ -2,6 +2,7 @@
 // SplashKit C Library type mapping functions
 // DO NOT MODIFY
 //
+
 #include "lib_type_mapper.h"
 
 void __sklib__free__sklib_string(__sklib_string s) {

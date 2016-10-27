@@ -72,7 +72,7 @@ namespace splashkit_lib
         _keys_released.clear();
     }
 
-    void _handle_key_up_callback(int code)
+    void _handle_key_up_callback(key_code code)
     {
         key_code keycode = static_cast<key_code>(code);
         _keys_released[keycode] = true;
@@ -80,7 +80,7 @@ namespace splashkit_lib
         _raise_key_event(_on_key_up, keycode);
     }
 
-    void _handle_key_down_callback(int code)
+    void _handle_key_down_callback(key_code code)
     {
         key_code keycode = static_cast<key_code>(code);
         if(not key_down(keycode))

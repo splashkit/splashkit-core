@@ -2,6 +2,7 @@
 // SplashKit C++ Adapter type mapping functions
 // DO NOT MODIFY
 //
+
 #include "adapter_type_mapper.h"
 
 void __skadapter__free__sklib_string(__sklib_string s) {
