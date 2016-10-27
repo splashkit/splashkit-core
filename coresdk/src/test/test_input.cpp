@@ -14,19 +14,19 @@ using namespace splashkit_lib;
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 
-void _on_key_typed(key_code code)
+void _on_key_typed(int code)
 {
-    _key_typed = key_name(code);
+    _key_typed = key_name( static_cast<key_code>(code));
 }
 
-void _on_key_down(key_code code)
+void _on_key_down(int code)
 {
-    _key_down = key_name(code);
+    _key_down = key_name( static_cast<key_code>(code) );
 }
 
-void _on_key_up(key_code code)
+void _on_key_up(int code)
 {
-    _key_up = key_name(code);
+    _key_up = key_name( static_cast<key_code>(code) );
 }
 
 void run_input_test()
