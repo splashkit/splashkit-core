@@ -1,10 +1,7 @@
-/*
- * SplashKit Music
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Music C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __music_h
 #define __music_h

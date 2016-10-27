@@ -1,10 +1,7 @@
-/*
- * SplashKit Keyboard Input
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Keyboard Input C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __keyboard_input_h
 #define __keyboard_input_h
@@ -152,7 +149,7 @@ typedef enum {
     MENU_KEY = 319,
     POWER_KEY = 320
 } key_code;
-typedef void (key_callback)(key_code code);
+typedef void (key_callback)(int code);
 bool any_key_pressed();
 void deregister_callback_on_key_down(key_callback *callback);
 void deregister_callback_on_key_typed(key_callback *callback);

@@ -1,10 +1,7 @@
-/*
- * SplashKit Terminal
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Terminal C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __terminal_h
 #define __terminal_h

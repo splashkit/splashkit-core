@@ -1,10 +1,7 @@
-/*
- * SplashKit Camera
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Camera C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __camera_h
 #define __camera_h

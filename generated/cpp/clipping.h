@@ -1,10 +1,7 @@
-/*
- * SplashKit Clipping
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Clipping C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __clipping_h
 #define __clipping_h

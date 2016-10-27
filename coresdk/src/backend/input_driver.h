@@ -25,12 +25,14 @@ namespace splashkit_lib
     typedef void (sk_window_proc)(pointer window);
     typedef void (sk_charp_int_int_proc)(char * text, int x, int y);
 
+    typedef void (sk_key_callback)(key_code code);
+
     struct sk_input_callbacks
     {
         sk_empty_procedure * do_quit;
 
-        key_callback * handle_key_down;
-        key_callback * handle_key_up;
+        sk_key_callback * handle_key_down;
+        sk_key_callback * handle_key_up;
 
         sk_intp_proc * handle_mouse_up;
         sk_intp_proc * handle_mouse_down;

@@ -1,10 +1,7 @@
-/*
- * SplashKit Rectangle Drawing
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Rectangle Drawing C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __rectangle_drawing_h
 #define __rectangle_drawing_h

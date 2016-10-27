@@ -1,10 +1,7 @@
-/*
- * SplashKit Rectangle Geometry
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Rectangle Geometry C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __rectangle_geometry_h
 #define __rectangle_geometry_h

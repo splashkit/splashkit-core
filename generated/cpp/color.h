@@ -1,10 +1,7 @@
-/*
- * SplashKit Color
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Color C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __color_h
 #define __color_h

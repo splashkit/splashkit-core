@@ -1,10 +1,7 @@
-/*
- * SplashKit Text Input
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Text Input C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __text_input_h
 #define __text_input_h

@@ -1,10 +1,7 @@
-/*
- * SplashKit
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated C++ Code
+// DO NOT MODIFY
+//
 
 #include "animations.h"
 #include "audio.h"

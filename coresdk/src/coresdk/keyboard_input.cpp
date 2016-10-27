@@ -74,20 +74,22 @@ namespace splashkit_lib
 
     void _handle_key_up_callback(key_code code)
     {
-        _keys_released[code] = true;
-        _keys_down[code] = false;
-        _raise_key_event(_on_key_up, code);
+        key_code keycode = static_cast<key_code>(code);
+        _keys_released[keycode] = true;
+        _keys_down[keycode] = false;
+        _raise_key_event(_on_key_up, keycode);
     }
 
     void _handle_key_down_callback(key_code code)
     {
-        if(not key_down(code))
+        key_code keycode = static_cast<key_code>(code);
+        if(not key_down(keycode))
         {
-            _keys_down[code] = true;
-            _keys_just_typed[code] = true;
-            _raise_key_event(_on_key_typed, code);
+            _keys_down[keycode] = true;
+            _keys_just_typed[keycode] = true;
+            _raise_key_event(_on_key_typed, keycode);
         }
-        _raise_key_event(_on_key_down, code);
+        _raise_key_event(_on_key_down, keycode);
     }
 
     bool key_down(key_code key)

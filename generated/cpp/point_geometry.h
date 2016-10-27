@@ -1,10 +1,7 @@
-/*
- * SplashKit Point Geometry
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Point Geometry C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __point_geometry_h
 #define __point_geometry_h

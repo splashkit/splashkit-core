@@ -1,10 +1,7 @@
-/*
- * SplashKit Drawing Options
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Drawing Options C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __drawing_options_h
 #define __drawing_options_h

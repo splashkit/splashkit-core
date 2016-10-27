@@ -1,10 +1,7 @@
-/*
- * SplashKit Matrix 2d
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Matrix 2d C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __matrix_2d_h
 #define __matrix_2d_h

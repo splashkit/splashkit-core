@@ -1,10 +1,7 @@
-/*
- * SplashKit Networking
- *
- * This file is generated from the SplashKit source.
- * Modifying it will cause failures.
- *
- */
+//
+// SplashKit Generated Networking C++ Code
+// DO NOT MODIFY
+//
 
 #ifndef __networking_h
 #define __networking_h
