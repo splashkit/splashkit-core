@@ -34,11 +34,11 @@ namespace splashkit_lib
         return result;
     }
 
-    vector_2d vector_point_to_point(const point_2d &start, const point_2d &end)
+    vector_2d vector_point_to_point(const point_2d &start, const point_2d &end_pt)
     {
         vector_2d result;
-        result.x = end.x - start.x;
-        result.y = end.y - start.y;
+        result.x = end_pt.x - start.x;
+        result.y = end_pt.y - start.y;
         return result;
     }
 

@@ -219,7 +219,7 @@ namespace splashkit_lib
      * @attribute method add_object
      * @attribute self j
      */
-    void json_set_object(json j, string key, json object);
+    void json_set_object(json j, string key, json obj);
 
     /**
      * Adds an array of `string` values to the `json` object for

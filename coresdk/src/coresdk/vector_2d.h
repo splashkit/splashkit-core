@@ -47,11 +47,11 @@ namespace splashkit_lib
      *  the second `p2` points (`Point2D`).
      *
      * @param  start The starting point
-     * @param  end   The ending point
+     * @param  end_pt   The ending point
      * @return       A vector that will move things from the starting point to
      *               the ending point
      */
-    vector_2d vector_point_to_point(const point_2d &start, const point_2d &end);
+    vector_2d vector_point_to_point(const point_2d &start, const point_2d &end_pt);
 
     /**
      *  Returns a `vector_2d` from the supplied angle and distance.

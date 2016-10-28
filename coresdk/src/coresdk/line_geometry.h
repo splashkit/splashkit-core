@@ -19,10 +19,10 @@ namespace splashkit_lib
      * Create a line from one point to another.
      *
      * @param  start The start of the line
-     * @param  end   The end of the line
+     * @param  end_pt   The end of the line
      * @return       A line from the start to the end point
      */
-    line line_from(const point_2d &start, const point_2d &end);
+    line line_from(const point_2d &start, const point_2d &end_pt);
 
     /**
      * Create a line from one point to another.

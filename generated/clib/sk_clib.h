@@ -6,7 +6,7 @@
 #ifndef __splashkit_clib
 #define __splashkit_clib
 
-#ifdef CPP
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -1102,7 +1102,7 @@ int __sklib__window_y();
 int __sklib__window_y__string_ref(const __sklib_string name);
 int __sklib__window_y__window(__sklib_window wnd);
 
-#ifdef CPP
+#ifdef __cplusplus
 }
 #endif
 

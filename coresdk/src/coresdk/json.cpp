@@ -148,9 +148,9 @@ namespace splashkit_lib
         sk_json_add_value(j, key, value);
     }
 
-    void json_set_object(json j, string key, json object)
+    void json_set_object(json j, string key, json obj)
     {
-        sk_json_add_value(j, key, object->data);
+        sk_json_add_value(j, key, obj->data);
     }
 
     void json_set_array(json j, string key, vector<string> value)

@@ -14,9 +14,9 @@
 
 namespace splashkit_lib
 {
-    line line_from(const point_2d &start, const point_2d &end)
+    line line_from(const point_2d &start, const point_2d &end_pt)
     {
-        return {start, end};
+        return {start, end_pt};
     }
 
     line line_from(float x1, float y1, float x2, float y2)

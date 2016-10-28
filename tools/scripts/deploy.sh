@@ -15,8 +15,9 @@ SK_BIN="${SK_ROOT}/bin"
 SK_OUT="${SK_ROOT}/out"
 SK_TOOLS="${SK_ROOT}/tools"
 
-SK_CMAKE_CLIB="${SK_TOOLS}/scripts/deploy/libsplashkit"
-SK_CMAKE_CPP="${SK_TOOLS}/scripts/deploy/splashkitcpp"
+SK_CMAKE_CLIB="${SK_TOOLS}/scripts/cmake/libsplashkit"
+SK_CMAKE_CPP="${SK_TOOLS}/scripts/cmake/splashkitcpp"
+SK_CMAKE_FPC="${SK_TOOLS}/scripts/cmake/splashkitpas"
 
 read -p "Regenerate SplashKit? [y,n] " doit
 case $doit in
@@ -39,7 +40,7 @@ if [[ $GENERATE_LIB ]]; then
   echo "Running Translator"
   echo
   sleep 0.5
-  ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
+  ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp,pascal -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
 fi
 
 function do_make {
@@ -65,6 +66,12 @@ echo
 echo "Building -- cpp adapter"
 echo
 cd "${SK_CMAKE_CPP}"
+do_make
+
+echo
+echo "Building -- pascal adapter"
+echo
+cd "${SK_CMAKE_FPC}"
 do_make
 
 cd "${APP_PATH}"
