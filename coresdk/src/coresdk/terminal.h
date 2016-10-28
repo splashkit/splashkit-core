@@ -4,7 +4,7 @@
  * @brief   SplashKit Terminal allows you to read and write values to the
  * terminal in a consistent manner.
  *
- * @attribute group  termianl
+ * @attribute group  terminal
  * @attribute static terminal
  */
 
