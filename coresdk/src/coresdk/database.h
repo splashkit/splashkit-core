@@ -170,7 +170,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  get_next_row
-     * @attribute self    result
+     * @attribute self    db_result
      */
     bool get_next_row(query_result db_result);
 
@@ -183,7 +183,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute getter  has_row
-     * @attribute self    result
+     * @attribute self    db_result
      */
     bool has_row(query_result db_result);
 
@@ -194,7 +194,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  reset
-     * @attribute self    result
+     * @attribute self    db_result
      */
     void reset_query_result(query_result db_result);
 
@@ -208,7 +208,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  query_column_for_int
-     * @attribute self    result
+     * @attribute self    db_result
      */
     int query_column_for_int(query_result db_result, int col);
 
@@ -222,7 +222,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  query_column_for_double
-     * @attribute self    result
+     * @attribute self    db_result
      */
     double query_column_for_double(query_result db_result, int col);
 
@@ -236,7 +236,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  query_column_for_string
-     * @attribute self    result
+     * @attribute self    db_result
      */
     string query_column_for_string(query_result db_result, int col);
 
@@ -250,7 +250,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  query_column_for_bool
-     * @attribute self    result
+     * @attribute self    db_result
      */
     bool query_column_for_bool(query_result db_result, int col);
 
@@ -265,7 +265,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute method  query_type_of_col
-     * @attribute self    result
+     * @attribute self    db_result
      */
     string query_type_of_col(query_result db_result, int col);
 
