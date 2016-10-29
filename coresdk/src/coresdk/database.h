@@ -164,7 +164,7 @@ namespace splashkit_lib
     /**
      * Gets the next row available on a given `query_result`.
      *
-     * @param result The `query_result` to move to the next row on.
+     * @param db_result The `query_result` to move to the next row on.
      *
      * @returns Returns a `bool` which represents if there was a valid row of data to move to.
      *
@@ -172,12 +172,12 @@ namespace splashkit_lib
      * @attribute method  get_next_row
      * @attribute self    result
      */
-    bool get_next_row(query_result result);
+    bool get_next_row(query_result db_result);
 
     /**
      * Checks if a given `query_result` has a valid row of data.
      *
-     * @param result The `query_result` to check for a valid row of data on.
+     * @param db_result The `query_result` to check for a valid row of data on.
      *
      * @returns Returns a `bool` which represents if there was a valid row of data.
      *
@@ -185,23 +185,23 @@ namespace splashkit_lib
      * @attribute getter  has_row
      * @attribute self    result
      */
-    bool has_row(query_result result);
+    bool has_row(query_result db_result);
 
     /**
      * Resets a query_result back to its initial state, ready to be re-executed.
      *
-     * @param result The `query_result` to reset.
+     * @param db_result The `query_result` to reset.
      *
      * @attribute class   query_result
      * @attribute method  reset
      * @attribute self    result
      */
-    void reset_query_result(query_result result);
+    void reset_query_result(query_result db_result);
 
     /**
      * Queries a given column in the current row of the `query_result` for an integer.
      *
-     * @param result The `query_result` to perform the query on.
+     * @param db_result The `query_result` to perform the query on.
      * @param col The column you would like to query data from.
      *
      * @returns Returns the `int` which is the data at that column.
@@ -210,12 +210,12 @@ namespace splashkit_lib
      * @attribute method  query_column_for_int
      * @attribute self    result
      */
-    int query_column_for_int(query_result result, int col);
+    int query_column_for_int(query_result db_result, int col);
 
     /**
      * Queries a given column in the current row of the `query_result` for a double.
      *
-     * @param result The `query_result` to perform the query on.
+     * @param db_result The `query_result` to perform the query on.
      * @param col The column you would like to query data from.
      *
      * @returns Returns the `double` which is the data at that column.
@@ -224,12 +224,12 @@ namespace splashkit_lib
      * @attribute method  query_column_for_double
      * @attribute self    result
      */
-    double query_column_for_double(query_result result, int col);
+    double query_column_for_double(query_result db_result, int col);
 
     /**
      * Queries a given column in the current row of the `query_result` for a string.
      *
-     * @param result The `query_result` to perform the query on.
+     * @param db_result The `query_result` to perform the query on.
      * @param col The column you would like to query data from.
      *
      * @returns Returns the `string` which is the data at that column.
@@ -238,12 +238,12 @@ namespace splashkit_lib
      * @attribute method  query_column_for_string
      * @attribute self    result
      */
-    string query_column_for_string(query_result result, int col);
+    string query_column_for_string(query_result db_result, int col);
 
     /**
      * Queries a given column in the current row of the `query_result` for a bool.
      *
-     * @param result The `query_result` to perform the query on.
+     * @param db_result The `query_result` to perform the query on.
      * @param col The column you would like to query data from.
      *
      * @returns Returns the `bool` which is the data at that column.
@@ -252,12 +252,12 @@ namespace splashkit_lib
      * @attribute method  query_column_for_bool
      * @attribute self    result
      */
-    bool query_column_for_bool(query_result result, int col);
+    bool query_column_for_bool(query_result db_result, int col);
 
     /**
      * Queries a given column in the current row of the `query_result` for the data type at its postition.
      *
-     * @param result The `query_result` to perform the query on.
+     * @param db_result The `query_result` to perform the query on.
      * @param col The column you would like to know the data type of
      *
      * @returns Returns a `string` which is the name of the data type being stored.
@@ -267,19 +267,19 @@ namespace splashkit_lib
      * @attribute method  query_type_of_col
      * @attribute self    result
      */
-    string query_type_of_col(query_result result, int col);
+    string query_type_of_col(query_result db_result, int col);
 
     /**
      * Checks if the most recent query at the given `query_result` was a success or failure.
      *
-     * @param result The `query_result` to check the success of.
+     * @param db_result The `query_result` to check the success of.
      *
      * @returns Returns whether or not the query was a success or failure represented as a `bool`.
      *
      * @attribute class   query_result
      * @attribute getter  successful
      */
-    bool query_success(query_result result);
+    bool query_success(query_result db_result);
 
     /**
      * Frees the SplashKit resources associated with the database.
