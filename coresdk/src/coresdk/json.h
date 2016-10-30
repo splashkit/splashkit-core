@@ -213,7 +213,7 @@ namespace splashkit_lib
      *
      * @param j The `json` object where data will be inserted for the given key.
      * @param key The `string` key where data will be stored in the `json` object.
-     * @param object The value to be inserted into the `json` object.
+     * @param obj The value to be inserted into the `json` object.
      *
      * @attribute class json
      * @attribute method add_object
