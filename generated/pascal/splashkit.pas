@@ -1,0 +1,11905 @@
+unit SplashKit;
+
+interface
+
+type KeyCode = (
+  UNKNOWN_KEY = 0,
+  BACKSPACE_KEY = 8,
+  TAB_KEY = 9,
+  CLEAR_KEY = 12,
+  RETURN_KEY = 13,
+  PAUSE_KEY = 19,
+  ESCAPE_KEY = 27,
+  SPACE_KEY = 32,
+  EXCLAIM_KEY = 33,
+  DOUBLE_QUOTE_KEY = 34,
+  HASH_KEY = 35,
+  DOLLAR_KEY = 36,
+  AMPERSAND_KEY = 38,
+  QUOTE_KEY = 39,
+  LEFT_PAREN_KEY = 40,
+  RIGHT_PAREN_KEY = 41,
+  ASTERISK_KEY = 42,
+  PLUS_KEY = 43,
+  COMMA_KEY = 44,
+  MINUS_KEY = 45,
+  PERIOD_KEY = 46,
+  SLASH_KEY = 47,
+  NUM_0_KEY = 48,
+  NUM_1_KEY = 49,
+  NUM_2_KEY = 50,
+  NUM_3_KEY = 51,
+  NUM_4_KEY = 52,
+  NUM_5_KEY = 53,
+  NUM_6_KEY = 54,
+  NUM_7_KEY = 55,
+  NUM_8_KEY = 56,
+  NUM_9_KEY = 57,
+  COLON_KEY = 58,
+  SEMI_COLON_KEY = 59,
+  LESS_KEY = 60,
+  EQUALS_KEY = 61,
+  GREATER_KEY = 62,
+  QUESTION_KEY = 63,
+  AT_KEY = 64,
+  LEFT_BRACKET_KEY = 91,
+  BACKSLASH_KEY = 92,
+  RIGHT_BRACKET_KEY = 93,
+  CARET_KEY = 94,
+  UNDERSCORE_KEY = 95,
+  BACKQUOTE_KEY = 96,
+  A_KEY = 97,
+  B_KEY = 98,
+  C_KEY = 99,
+  D_KEY = 100,
+  E_KEY = 101,
+  F_KEY = 102,
+  G_KEY = 103,
+  H_KEY = 104,
+  I_KEY = 105,
+  J_KEY = 106,
+  K_KEY = 107,
+  L_KEY = 108,
+  M_KEY = 109,
+  N_KEY = 110,
+  O_KEY = 111,
+  P_KEY = 112,
+  Q_KEY = 113,
+  R_KEY = 114,
+  S_KEY = 115,
+  T_KEY = 116,
+  U_KEY = 117,
+  V_KEY = 118,
+  W_KEY = 119,
+  X_KEY = 120,
+  Y_KEY = 121,
+  Z_KEY = 122,
+  DELETE_KEY = 127,
+  KEYPAD_0 = 256,
+  KEYPAD_1 = 257,
+  KEYPAD_2 = 258,
+  KEYPAD_3 = 259,
+  KEYPAD_4 = 260,
+  KEYPAD_5 = 261,
+  KEYPAD_6 = 262,
+  KEYPAD_7 = 263,
+  KEYPAD_8 = 264,
+  KEYPAD_9 = 265,
+  KEYPAD_PERIOD = 266,
+  KEYPAD_DIVIDE = 267,
+  KEYPAD_MULTIPLY = 268,
+  KEYPAD_MINUS = 269,
+  KEYPAD_PLUS = 270,
+  KEYPAD_ENTER = 271,
+  KEYPAD_EQUALS = 272,
+  UP_KEY = 273,
+  DOWN_KEY = 274,
+  RIGHT_KEY = 275,
+  LEFT_KEY = 276,
+  INSERT_KEY = 277,
+  HOME_KEY = 278,
+  END_KEY = 279,
+  PAGE_UP_KEY = 280,
+  PAGE_DOWN_KEY = 281,
+  F1_KEY = 282,
+  F2_KEY = 283,
+  F3_KEY = 284,
+  F4_KEY = 285,
+  F5_KEY = 286,
+  F6_KEY = 287,
+  F7_KEY = 288,
+  F8_KEY = 289,
+  F9_KEY = 290,
+  F10_KEY = 291,
+  F11_KEY = 292,
+  F12_KEY = 293,
+  F13_KEY = 294,
+  F14_KEY = 295,
+  F15_KEY = 296,
+  NUM_LOCK_KEY = 300,
+  CAPS_LOCK_KEY = 301,
+  SCROLL_LOCK_KEY = 302,
+  RIGHT_SHIFT_KEY = 303,
+  LEFT_SHIFT_KEY = 304,
+  RIGHT_CTRL_KEY = 305,
+  LEFT_CTRL_KEY = 306,
+  RIGHT_ALT_KEY = 307,
+  LEFT_ALT_KEY = 308,
+  RIGHT_OPTION_KEY = 307,
+  LEFT_OPTION_KEY = 308,
+  LEFT_SUPER_KEY = 311,
+  RIGHT_SUPER_KEY = 312,
+  LEFT_WINDOWS_KEY = 311,
+  RIGHT_WINDOWS_KEY = 312,
+  LEFT_COMMAND_KEY = 311,
+  RIGHT_COMMAND_KEY = 312,
+  MODE_KEY = 313,
+  HELP_KEY = 315,
+  SYS_REQ_KEY = 317,
+  MENU_KEY = 319,
+  POWER_KEY = 320
+);
+type MouseButton = (
+  NO_BUTTON,
+  LEFT_BUTTON,
+  MIDDLE_BUTTON,
+  RIGHT_BUTTON,
+  MOUSE_X1_BUTTON,
+  MOUSE_X2_BUTTON
+);
+type ConnectionType = (
+  TCP,
+  UDP,
+  UNKNOWN
+);
+type ResourceKind = (
+  ANIMATION_RESOURCE,
+  BUNDLE_RESOURCE,
+  DATABASE_RESOURCE,
+  FONT_RESOURCE,
+  IMAGE_RESOURCE,
+  JSON_RESOURCE,
+  MUSIC_RESOURCE,
+  SERVER_RESOURCE,
+  SOUND_RESOURCE,
+  TIMER_RESOURCE,
+  OTHER_RESOURCE
+);
+type CollisionTestKind = (
+  PIXEL_COLLISIONS,
+  AABB_COLLISIONS
+);
+type SpriteEventKind = (
+  SPRITE_ARRIVED_EVENT,
+  SPRITE_ANIMATION_ENDED_EVENT,
+  SPRITE_TOUCHED_EVENT,
+  SPRITE_CLICKED_EVENT
+);
+type DrawingDest = (
+  DRAW_TO_SCREEN,
+  DRAW_TO_WORLD,
+  DRAW_DEFAULT
+);
+type FontStyle = (
+  NORMAL_FONT = 0,
+  BOLD_FONT = 1,
+  ITALIC_FONT = 2,
+  UNDERLINE_FONT = 4
+);
+type HttpStatusCode = (
+  HTTP_STATUS_OK = 200,
+  HTTP_STATUS_CREATED = 201,
+  HTTP_STATUS_NO_CONTENT = 204,
+  HTTP_STATUS_BAD_REQUEST = 400,
+  HTTP_STATUS_UNAUTHORIZED = 401,
+  HTTP_STATUS_FORBIDDEN = 403,
+  HTTP_STATUS_NOT_FOUND = 404,
+  HTTP_STATUS_METHOD_NOT_ALLOWED = 405,
+  HTTP_STATUS_REQUEST_TIMEOUT = 408,
+  HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
+  HTTP_STATUS_NOT_IMPLEMENTED = 501,
+  HTTP_STATUS_SERVICE_UNAVAILABLE = 503
+);
+type HttpMethod = (
+  HTTP_GET_METHOD,
+  HTTP_POST_METHOD,
+  HTTP_PUT_METHOD,
+  HTTP_DELETE_METHOD,
+  HTTP_OPTIONS_METHOD,
+  HTTP_TRACE_METHOD,
+  UNKNOWN_HTTP_METHOD
+);
+type KeyCallback = procedure (code: Integer); cdecl;
+type FreeNotifier = procedure (pointer: ^Pointer); cdecl;
+type SpriteEventHandler = procedure (s: ^Pointer; evt: Integer); cdecl;
+type SpriteFloatFunction = procedure (s: ^Pointer; f: Single); cdecl;
+type SpriteFunction = procedure (s: ^Pointer); cdecl;
+type Matrix2d = record
+  elements: Array [0..3, 0..3] of Double;
+end;
+type Point2d = record
+  x: Single;
+  y: Single;
+end;
+type Circle = record
+  center: Point2d;
+  radius: Single;
+end;
+type Color = record
+  r: Single;
+  g: Single;
+  b: Single;
+  a: Single;
+end;
+type Rectangle = record
+  x: Single;
+  y: Single;
+  width: Single;
+  height: Single;
+end;
+type DrawingOptions = record
+  dest: Pointer;
+  scaleX: Single;
+  scaleY: Single;
+  angle: Single;
+  anchorOffsetX: Single;
+  anchorOffsetY: Single;
+  flipX: Boolean;
+  flipY: Boolean;
+  isPart: Boolean;
+  part: Rectangle;
+  camera: DrawingDest;
+  lineWidth: Integer;
+  anim: Animation;
+end;
+type Line = record
+  startPoint: Point2d;
+  endPoint: Point2d;
+end;
+type Quad = record
+  points: Array [0..4] of Point2d;
+end;
+type Triangle = record
+  points: Array [0..3] of Point2d;
+end;
+type Vector2d = record
+  x: Double;
+  y: Double;
+end;
+type __sklib_database__record_type = record end;
+type Database = ^__sklib_database__record_type;
+type __sklib_query_result__record_type = record end;
+type QueryResult = ^__sklib_query_result__record_type;
+type __sklib_json__record_type = record end;
+type Json = ^__sklib_json__record_type;
+type __sklib_music__record_type = record end;
+type Music = ^__sklib_music__record_type;
+type __sklib_connection__record_type = record end;
+type Connection = ^__sklib_connection__record_type;
+type __sklib_message__record_type = record end;
+type Message = ^__sklib_message__record_type;
+type __sklib_server_socket__record_type = record end;
+type ServerSocket = ^__sklib_server_socket__record_type;
+type __sklib_sound_effect__record_type = record end;
+type SoundEffect = ^__sklib_sound_effect__record_type;
+type __sklib_sprite__record_type = record end;
+type Sprite = ^__sklib_sprite__record_type;
+type __sklib_timer__record_type = record end;
+type Timer = ^__sklib_timer__record_type;
+type __sklib_animation__record_type = record end;
+type Animation = ^__sklib_animation__record_type;
+type __sklib_animation_script__record_type = record end;
+type AnimationScript = ^__sklib_animation_script__record_type;
+type __sklib_bitmap__record_type = record end;
+type Bitmap = ^__sklib_bitmap__record_type;
+type __sklib_display__record_type = record end;
+type Display = ^__sklib_display__record_type;
+type __sklib_font__record_type = record end;
+type Font = ^__sklib_font__record_type;
+type __sklib_http_response__record_type = record end;
+type HttpResponse = ^__sklib_http_response__record_type;
+type __sklib_http_request__record_type = record end;
+type HttpRequest = ^__sklib_http_request__record_type;
+type __sklib_web_server__record_type = record end;
+type WebServer = ^__sklib_web_server__record_type;
+type __sklib_window__record_type = record end;
+type Window = ^__sklib_window__record_type;
+type ArrayOfLine = Array of Line;
+type ArrayOfTriangle = Array of Triangle;
+type ArrayOfString = Array of String;
+type ArrayOfDouble = Array of Double;
+type ArrayOfJson = Array of Json;
+type ArrayOfBoolean = Array of Boolean;
+function AnimationCount(script: AnimationScript): Integer;
+function AnimationCurrentCell(anim: Animation): Integer;
+function AnimationCurrentVector(anim: Animation): Vector2d;
+function AnimationEnded(anim: Animation): Boolean;
+function AnimationEnteredFrame(anim: Animation): Boolean;
+function AnimationFrameTime(anim: Animation): Single;
+function AnimationIndex(script: AnimationScript; const name: String): Integer;
+function AnimationName(temp: Animation): String;
+function AnimationScriptName(script: AnimationScript): String;
+function AnimationScriptNamed(const name: String): AnimationScript;
+procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: String);
+procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: String; withSound: Boolean);
+procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer);
+procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer; withSound: Boolean);
+procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String);
+procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String; withSound: Boolean);
+function CreateAnimation(script: AnimationScript; idx: Integer; withSound: Boolean): Animation;
+function CreateAnimation(script: AnimationScript; const name: String): Animation;
+function CreateAnimation(script: AnimationScript; const name: String; withSound: Boolean): Animation;
+function CreateAnimation(const scriptName: String; const name: String): Animation;
+function CreateAnimation(const scriptName: String; const name: String; withSound: Boolean): Animation;
+procedure FreeAllAnimationScripts();
+procedure FreeAnimation(ani: Animation);
+procedure FreeAnimationScript(scriptToFree: AnimationScript);
+procedure FreeAnimationScript(const name: String);
+function HasAnimationNamed(script: AnimationScript; const name: String): Boolean;
+function HasAnimationScript(const name: String): Boolean;
+function LoadAnimationScript(const name: String; const filename: String): AnimationScript;
+procedure RestartAnimation(anim: Animation);
+procedure RestartAnimation(anim: Animation; withSound: Boolean);
+procedure UpdateAnimation(anim: Animation; pct: Single; withSound: Boolean);
+procedure UpdateAnimation(anim: Animation);
+procedure UpdateAnimation(anim: Animation; pct: Single);
+function AudioReady(): Boolean;
+procedure CloseAudio();
+procedure OpenAudio();
+procedure FreeResourceBundle(name: String);
+function HasResourceBundle(const name: String): Boolean;
+procedure LoadResourceBundle(const name: String; const filename: String);
+function CameraPosition(): Point2d;
+function CameraX(): Single;
+function CameraY(): Single;
+procedure CenterCameraOn(s: Sprite; const offset: Vector2d);
+procedure CenterCameraOn(s: Sprite; offsetX: Single; offsetY: Single);
+procedure MoveCameraBy(const offset: Vector2d);
+procedure MoveCameraBy(dx: Single; dy: Single);
+procedure MoveCameraTo(const pt: Point2d);
+procedure MoveCameraTo(x: Single; y: Single);
+function PointOnScreen(const pt: Point2d): Boolean;
+function RectOnScreen(const rect: Rectangle): Boolean;
+function ScreenCenter(): Point2d;
+function ScreenRectangle(): Rectangle;
+procedure SetCameraPosition(pos: Point2d);
+procedure SetCameraY(y: Single);
+function ToScreen(const pt: Point2d): Point2d;
+function ToScreen(const rect: Rectangle): Rectangle;
+function ToScreenX(worldX: Single): Single;
+function ToScreenY(worldY: Single): Single;
+function ToWorld(const pt: Point2d): Point2d;
+function ToWorldX(screenX: Single): Single;
+function ToWorldY(screenY: Single): Single;
+function VectorWorldToScreen(): Vector2d;
+procedure DrawCircle(clr: Color; const c: Circle);
+procedure DrawCircle(clr: Color; const c: Circle; opts: DrawingOptions);
+procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single);
+procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+procedure FillCircle(clr: Color; const c: Circle);
+procedure FillCircle(clr: Color; const c: Circle; opts: DrawingOptions);
+procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single);
+procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+function CenterPoint(const c: Circle): Point2d;
+function CircleAt(const pt: Point2d; radius: Single): Circle;
+function CircleAt(x: Single; y: Single; radius: Single): Circle;
+function CircleRadius(c: Circle): Single;
+function CircleX(const c: Circle): Single;
+function CircleY(const c: Circle): Single;
+function CirclesIntersect(c1: Circle; c2: Circle): Boolean;
+function ClosestPointOnCircle(const fromPt: Point2d; const c: Circle): Point2d;
+function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2d;
+function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2d;
+function DistantPointOnCircle(const pt: Point2d; const c: Circle): Point2d;
+function DistantPointOnCircleHeading(const pt: Point2d; const c: Circle; const heading: Vector2d; var oppositePt: Point2d): Boolean;
+function RayCircleIntersectDistance(const rayOrigin: Point2d; const rayHeading: Vector2d; const c: Circle): Single;
+function TangentPoints(const fromPt: Point2d; const c: Circle; var p1: Point2d; var p2: Point2d): Boolean;
+procedure WidestPoints(const c: Circle; const along: Vector2d; var pt1: Point2d; var pt2: Point2d);
+function CurrentClip(): Rectangle;
+function CurrentClip(bmp: Bitmap): Rectangle;
+function CurrentClip(wnd: Window): Rectangle;
+procedure PopClip(wnd: Window);
+procedure PopClip();
+procedure PopClip(bmp: Bitmap);
+procedure PushClip(wnd: Window; const r: Rectangle);
+procedure PushClip(bmp: Bitmap; const r: Rectangle);
+procedure PushClip(const r: Rectangle);
+procedure ResetClip(bmp: Bitmap);
+procedure ResetClip();
+procedure ResetClip(wnd: Window);
+procedure SetClip(const r: Rectangle);
+procedure SetClip(bmp: Bitmap; const r: Rectangle);
+procedure SetClip(wnd: Window; const r: Rectangle);
+function BitmapCollision(bmp1: Bitmap; x1: Single; y1: Single; bmp2: Bitmap; x2: Single; y2: Single): Boolean;
+function BitmapCollision(bmp1: Bitmap; const pt1: Point2d; bmp2: Bitmap; const pt2: Point2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2d; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2d; bmp2: Bitmap; cell2: Integer; const pt2: Point2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; x1: Single; y1: Single; bmp2: Bitmap; cell2: Integer; x2: Single; y2: Single): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2d; const pt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const pt: Point2d; const bmpPt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; bmpX: Single; bmpY: Single; x: Single; y: Single): Boolean;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const pt: Point2d): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2d; const rect: Rectangle): Boolean;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Single; y: Single): Boolean;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
+function SpriteCollision(s1: Sprite; s2: Sprite): Boolean;
+function SpritePointCollision(s: Sprite; const pt: Point2d): Boolean;
+function SpriteRectangleCollision(s: Sprite; const rect: Rectangle): Boolean;
+function AlphaOf(c: Color): Integer;
+function BlueOf(c: Color): Integer;
+function BrightnessOf(c: Color): Single;
+function ColorAliceBlue(): Color;
+function ColorAntiqueWhite(): Color;
+function ColorAqua(): Color;
+function ColorAquamarine(): Color;
+function ColorAzure(): Color;
+function ColorBeige(): Color;
+function ColorBisque(): Color;
+function ColorBlack(): Color;
+function ColorBlanchedAlmond(): Color;
+function ColorBlue(): Color;
+function ColorBlueViolet(): Color;
+function ColorBrightGreen(): Color;
+function ColorBrown(): Color;
+function ColorBurlyWood(): Color;
+function ColorCadetBlue(): Color;
+function ColorChartreuse(): Color;
+function ColorChocolate(): Color;
+function ColorCoral(): Color;
+function ColorCornflowerBlue(): Color;
+function ColorCornsilk(): Color;
+function ColorCrimson(): Color;
+function ColorCyan(): Color;
+function ColorDarkBlue(): Color;
+function ColorDarkCyan(): Color;
+function ColorDarkGoldenrod(): Color;
+function ColorDarkGray(): Color;
+function ColorDarkGreen(): Color;
+function ColorDarkKhaki(): Color;
+function ColorDarkMagenta(): Color;
+function ColorDarkOliveGreen(): Color;
+function ColorDarkOrange(): Color;
+function ColorDarkOrchid(): Color;
+function ColorDarkRed(): Color;
+function ColorDarkSalmon(): Color;
+function ColorDarkSeaGreen(): Color;
+function ColorDarkSlateBlue(): Color;
+function ColorDarkSlateGray(): Color;
+function ColorDarkTurquoise(): Color;
+function ColorDarkViolet(): Color;
+function ColorDeepPink(): Color;
+function ColorDeepSkyBlue(): Color;
+function ColorDimGray(): Color;
+function ColorDodgerBlue(): Color;
+function ColorFirebrick(): Color;
+function ColorFloralWhite(): Color;
+function ColorForestGreen(): Color;
+function ColorFuchsia(): Color;
+function ColorGainsboro(): Color;
+function ColorGhostWhite(): Color;
+function ColorGold(): Color;
+function ColorGoldenrod(): Color;
+function ColorGray(): Color;
+function ColorGreen(): Color;
+function ColorGreenYellow(): Color;
+function ColorHoneydew(): Color;
+function ColorHotPink(): Color;
+function ColorIndianRed(): Color;
+function ColorIndigo(): Color;
+function ColorIvory(): Color;
+function ColorKhaki(): Color;
+function ColorLavender(): Color;
+function ColorLavenderBlush(): Color;
+function ColorLawnGreen(): Color;
+function ColorLemonChiffon(): Color;
+function ColorLightBlue(): Color;
+function ColorLightCoral(): Color;
+function ColorLightCyan(): Color;
+function ColorLightGoldenrodYellow(): Color;
+function ColorLightGray(): Color;
+function ColorLightGreen(): Color;
+function ColorLightPink(): Color;
+function ColorLightSalmon(): Color;
+function ColorLightSeaGreen(): Color;
+function ColorLightSkyBlue(): Color;
+function ColorLightSlateGray(): Color;
+function ColorLightSteelBlue(): Color;
+function ColorLightYellow(): Color;
+function ColorLime(): Color;
+function ColorLimeGreen(): Color;
+function ColorLinen(): Color;
+function ColorMagenta(): Color;
+function ColorMaroon(): Color;
+function ColorMediumAquamarine(): Color;
+function ColorMediumBlue(): Color;
+function ColorMediumOrchid(): Color;
+function ColorMediumPurple(): Color;
+function ColorMediumSeaGreen(): Color;
+function ColorMediumSlateBlue(): Color;
+function ColorMediumSpringGreen(): Color;
+function ColorMediumTurquoise(): Color;
+function ColorMediumVioletRed(): Color;
+function ColorMidnightBlue(): Color;
+function ColorMintCream(): Color;
+function ColorMistyRose(): Color;
+function ColorMoccasin(): Color;
+function ColorNavajoWhite(): Color;
+function ColorNavy(): Color;
+function ColorOldLace(): Color;
+function ColorOlive(): Color;
+function ColorOliveDrab(): Color;
+function ColorOrange(): Color;
+function ColorOrangeRed(): Color;
+function ColorOrchid(): Color;
+function ColorPaleGoldenrod(): Color;
+function ColorPaleGreen(): Color;
+function ColorPaleTurquoise(): Color;
+function ColorPaleVioletRed(): Color;
+function ColorPapayaWhip(): Color;
+function ColorPeachPuff(): Color;
+function ColorPeru(): Color;
+function ColorPink(): Color;
+function ColorPlum(): Color;
+function ColorPowderBlue(): Color;
+function ColorPurple(): Color;
+function ColorRed(): Color;
+function ColorRosyBrown(): Color;
+function ColorRoyalBlue(): Color;
+function ColorSaddleBrown(): Color;
+function ColorSalmon(): Color;
+function ColorSandyBrown(): Color;
+function ColorSeaGreen(): Color;
+function ColorSeaShell(): Color;
+function ColorSienna(): Color;
+function ColorSilver(): Color;
+function ColorSkyBlue(): Color;
+function ColorSlateBlue(): Color;
+function ColorSlateGray(): Color;
+function ColorSnow(): Color;
+function ColorSpringGreen(): Color;
+function ColorSteelBlue(): Color;
+function ColorSwinburneRed(): Color;
+function ColorTan(): Color;
+function ColorTeal(): Color;
+function ColorThistle(): Color;
+function ColorToString(c: Color): String;
+function ColorTomato(): Color;
+function ColorTransparent(): Color;
+function ColorTurquoise(): Color;
+function ColorViolet(): Color;
+function ColorWheat(): Color;
+function ColorWhite(): Color;
+function ColorWhiteSmoke(): Color;
+function ColorYellow(): Color;
+function ColorYellowGreen(): Color;
+function GreenOf(c: Color): Integer;
+function HsbColor(hue: Single; saturation: Single; brightness: Single): Color;
+function HueOf(c: Color): Single;
+function RandomColor(): Color;
+function RandomRgbColor(alpha: Integer): Color;
+function RedOf(c: Color): Integer;
+function RgbColor(red: Single; green: Single; blue: Single): Color;
+function RgbColor(red: Integer; green: Integer; blue: Integer): Color;
+function RgbaColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+function RgbaColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
+function SaturationOf(c: Color): Single;
+function StringToColor(str: String): Color;
+function DatabaseNamed(name: String): Database;
+procedure FreeAllDatabases();
+procedure FreeAllQueryResults();
+procedure FreeDatabase(dbToClose: Database);
+procedure FreeDatabase(nameOfDbToClose: String);
+procedure FreeQueryResult(query: QueryResult);
+function GetNextRow(result: QueryResult): Boolean;
+function HasDatabase(name: String): Boolean;
+function HasRow(result: QueryResult): Boolean;
+function OpenDatabase(name: String; filename: String): Database;
+function QueryColumnForBool(result: QueryResult; col: Integer): Boolean;
+function QueryColumnForDouble(result: QueryResult; col: Integer): Double;
+function QueryColumnForInt(result: QueryResult; col: Integer): Integer;
+function QueryColumnForString(result: QueryResult; col: Integer): String;
+function QuerySuccess(result: QueryResult): Boolean;
+function QueryTypeOfCol(result: QueryResult; col: Integer): String;
+procedure ResetQueryResult(result: QueryResult);
+function RowsChanged(db: Database): Integer;
+function RunSql(db: Database; sql: String): QueryResult;
+function RunSql(databaseName: String; sql: String): QueryResult;
+function OptionDefaults(): DrawingOptions;
+function OptionDrawTo(dest: Bitmap): DrawingOptions;
+function OptionDrawTo(dest: Bitmap; opts: DrawingOptions): DrawingOptions;
+function OptionDrawTo(dest: Window): DrawingOptions;
+function OptionDrawTo(dest: Window; opts: DrawingOptions): DrawingOptions;
+function OptionFlipX(): DrawingOptions;
+function OptionFlipX(opts: DrawingOptions): DrawingOptions;
+function OptionFlipXy(): DrawingOptions;
+function OptionFlipXy(opts: DrawingOptions): DrawingOptions;
+function OptionFlipY(): DrawingOptions;
+function OptionFlipY(opts: DrawingOptions): DrawingOptions;
+function OptionLineWidth(width: Integer): DrawingOptions;
+function OptionLineWidth(width: Integer; opts: DrawingOptions): DrawingOptions;
+function OptionPartBmp(x: Single; y: Single; w: Single; h: Single): DrawingOptions;
+function OptionPartBmp(x: Single; y: Single; w: Single; h: Single; opts: DrawingOptions): DrawingOptions;
+function OptionPartBmp(part: Rectangle): DrawingOptions;
+function OptionPartBmp(part: Rectangle; opts: DrawingOptions): DrawingOptions;
+function OptionRotateBmp(angle: Single): DrawingOptions;
+function OptionRotateBmp(angle: Single; opts: DrawingOptions): DrawingOptions;
+function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single): DrawingOptions;
+function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single; opts: DrawingOptions): DrawingOptions;
+function OptionScaleBmp(scaleX: Single; scaleY: Single): DrawingOptions;
+function OptionScaleBmp(scaleX: Single; scaleY: Single; opts: DrawingOptions): DrawingOptions;
+function OptionToScreen(): DrawingOptions;
+function OptionToScreen(opts: DrawingOptions): DrawingOptions;
+function OptionToWorld(): DrawingOptions;
+function OptionToWorld(opts: DrawingOptions): DrawingOptions;
+function OptionWithAnimation(anim: Animation): DrawingOptions;
+function OptionWithAnimation(anim: Animation; opts: DrawingOptions): DrawingOptions;
+procedure DrawEllipse(clr: Color; rect: Rectangle);
+procedure DrawEllipse(clr: Color; rect: Rectangle; opts: DrawingOptions);
+procedure DrawEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single);
+procedure DrawEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single; opts: DrawingOptions);
+procedure FillEllipse(clr: Color; rect: Rectangle);
+procedure FillEllipse(clr: Color; rect: Rectangle; opts: DrawingOptions);
+procedure FillEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single);
+procedure FillEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single; opts: DrawingOptions);
+function Cosine(degrees: Single): Single;
+function Sine(degrees: Single): Single;
+function Tangent(degrees: Single): Single;
+procedure ClearScreen();
+procedure ClearScreen(clr: Color);
+function DisplayDetails(index: Cardinal): Display;
+function DisplayHeight(disp: Display): Integer;
+function DisplayName(disp: Display): String;
+function DisplayWidth(disp: Display): Integer;
+function DisplayX(disp: Display): Integer;
+function DisplayY(disp: Display): Integer;
+function NumberOfDisplays(): Integer;
+procedure RefreshScreen();
+procedure RefreshScreen(targetFps: Cardinal);
+procedure SaveBitmap(bmp: Bitmap; const basename: String);
+function ScreenHeight(): Integer;
+function ScreenWidth(): Integer;
+procedure TakeScreenshot(const basename: String);
+procedure TakeScreenshot(wind: Window; const basename: String);
+function BitmapCellCenter(bmp: Bitmap): Point2d;
+function BitmapCellCircle(bmp: Bitmap; x: Single; y: Single): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2d): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2d; scale: Single): Circle;
+function BitmapCellColumns(bmp: Bitmap): Integer;
+function BitmapCellCount(bmp: Bitmap): Integer;
+function BitmapCellHeight(bmp: Bitmap): Integer;
+function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2d;
+function BitmapCellRectangle(src: Bitmap): Rectangle;
+function BitmapCellRectangle(src: Bitmap; const pt: Point2d): Rectangle;
+function BitmapCellRows(bmp: Bitmap): Integer;
+function BitmapCellWidth(bmp: Bitmap): Integer;
+function BitmapCenter(bmp: Bitmap): Point2d;
+function BitmapCircle(bmp: Bitmap; const pt: Point2d): Circle;
+function BitmapFilename(bmp: Bitmap): String;
+function BitmapHeight(bmp: Bitmap): Integer;
+function BitmapHeight(name: String): Integer;
+function BitmapName(bmp: Bitmap): String;
+function BitmapNamed(name: String): Bitmap;
+function BitmapRectangle(bmp: Bitmap): Rectangle;
+function BitmapRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
+function BitmapRectangleOfCell(src: Bitmap; cell: Integer): Rectangle;
+procedure BitmapSetCellDetails(bmp: Bitmap; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer);
+function BitmapWidth(bmp: Bitmap): Integer;
+function BitmapWidth(name: String): Integer;
+procedure ClearBitmap(bmp: Bitmap; clr: Color);
+procedure ClearBitmap(name: String; clr: Color);
+function CreateBitmap(name: String; width: Integer; height: Integer): Bitmap;
+procedure DrawBitmap(bmp: Bitmap; x: Single; y: Single);
+procedure DrawBitmap(bmp: Bitmap; x: Single; y: Single; opts: DrawingOptions);
+procedure DrawBitmap(name: String; x: Single; y: Single);
+procedure DrawBitmap(name: String; x: Single; y: Single; opts: DrawingOptions);
+procedure FreeAllBitmaps();
+procedure FreeBitmap(toDelete: Bitmap);
+function HasBitmap(name: String): Boolean;
+function LoadBitmap(name: String; filename: String): Bitmap;
+function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; x: Single; y: Single): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
+procedure ProcessEvents();
+function QuitRequested(): Boolean;
+procedure ResetQuit();
+function CreateJson(): Json;
+function CreateJson(jsonString: String): Json;
+procedure FreeAllJson();
+procedure FreeJson(j: Json);
+function JsonCountKeys(j: Json): Integer;
+function JsonFromColor(clr: Color): Json;
+function JsonFromFile(const filename: String): Json;
+function JsonFromString(const jString: String): Json;
+function JsonHasKey(j: Json; key: String): Boolean;
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfDouble);
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfJson);
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfString);
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfBoolean);
+function JsonReadBool(j: Json; key: String): Boolean;
+function JsonReadNumber(j: Json; key: String): Single;
+function JsonReadNumberAsDouble(j: Json; key: String): Double;
+function JsonReadNumberAsInt(j: Json; key: String): Integer;
+function JsonReadObject(j: Json; key: String): Json;
+function JsonReadString(j: Json; key: String): String;
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfString);
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfDouble);
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfBoolean);
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfJson);
+procedure JsonSetBool(j: Json; key: String; value: Boolean);
+procedure JsonSetNumber(j: Json; key: String; value: Integer);
+procedure JsonSetNumber(j: Json; key: String; value: Double);
+procedure JsonSetNumber(j: Json; key: String; value: Single);
+procedure JsonSetObject(j: Json; key: String; object: Json);
+procedure JsonSetString(j: Json; key: String; value: String);
+function JsonToColor(j: Json): Color;
+procedure JsonToFile(j: Json; const filename: String);
+function JsonToString(j: Json): String;
+function AnyKeyPressed(): Boolean;
+procedure DeregisterCallbackOnKeyDown(callback: KeyCallback);
+procedure DeregisterCallbackOnKeyTyped(callback: KeyCallback);
+procedure DeregisterCallbackOnKeyUp(callback: KeyCallback);
+function KeyDown(key: KeyCode): Boolean;
+function KeyName(key: KeyCode): String;
+function KeyReleased(key: KeyCode): Boolean;
+function KeyTyped(key: KeyCode): Boolean;
+function KeyUp(key: KeyCode): Boolean;
+procedure RegisterCallbackOnKeyDown(callback: KeyCallback);
+procedure RegisterCallbackOnKeyTyped(callback: KeyCallback);
+procedure RegisterCallbackOnKeyUp(callback: KeyCallback);
+procedure DrawLine(clr: Color; const l: Line);
+procedure DrawLine(clr: Color; const l: Line; opts: DrawingOptions);
+procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d);
+procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d; const opts: DrawingOptions);
+procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single);
+procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; const opts: DrawingOptions);
+function ClosestPointOnLine(fromPt: Point2d; const l: Line): Point2d;
+function ClosestPointOnLines(fromPt: Point2d; const lines: ArrayOfLine; var lineIdx: Integer): Point2d;
+function LineFrom(const start: Point2d; const end: Point2d): Line;
+function LineFrom(const start: Point2d; const offset: Vector2d): Line;
+function LineFrom(const v: Vector2d): Line;
+function LineFrom(x1: Single; y1: Single; x2: Single; y2: Single): Line;
+function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2d): Boolean;
+function LineIntersectsCircle(const l: Line; const c: Circle): Boolean;
+function LineIntersectsLines(const l: Line; const lines: ArrayOfLine): Boolean;
+function LineIntersectsRect(const l: Line; const rect: Rectangle): Boolean;
+function LineLength(const l: Line): Single;
+function LineLengthSquared(const l: Line): Single;
+function LineMidPoint(const l: Line): Point2d;
+function LineNormal(const l: Line): Vector2d;
+function LineToString(const ln: Line): String;
+function LinesFrom(const rect: Rectangle): ArrayOfLine;
+function LinesFrom(const t: Triangle): ArrayOfLine;
+function LinesIntersect(const l1: Line; const l2: Line): Boolean;
+procedure ApplyMatrix(const matrix: Matrix2d; var q: Quad);
+procedure ApplyMatrix(const m: Matrix2d; var tri: Triangle);
+function IdentityMatrix(): Matrix2d;
+function MatrixInverse(const m: Matrix2d): Matrix2d;
+function MatrixMultiply(const m: Matrix2d; const pt: Point2d): Point2d;
+function MatrixMultiply(const m1: Matrix2d; const m2: Matrix2d): Matrix2d;
+function MatrixMultiply(const m: Matrix2d; const v: Vector2d): Vector2d;
+function MatrixToString(const matrix: Matrix2d): String;
+function RotationMatrix(deg: Single): Matrix2d;
+function ScaleMatrix(const scale: Point2d): Matrix2d;
+function ScaleMatrix(scale: Single): Matrix2d;
+function ScaleRotateTranslateMatrix(const scale: Point2d; deg: Single; const translate: Point2d): Matrix2d;
+function TranslationMatrix(const pt: Point2d): Matrix2d;
+function TranslationMatrix(dx: Single; dy: Single): Matrix2d;
+procedure HideMouse();
+function MouseClicked(button: MouseButton): Boolean;
+function MouseDown(button: MouseButton): Boolean;
+function MouseMovement(): Vector2d;
+function MousePosition(): Point2d;
+function MousePositionVector(): Vector2d;
+function MouseShown(): Boolean;
+function MouseUp(button: MouseButton): Boolean;
+function MouseWheelScroll(): Vector2d;
+function MouseX(): Single;
+function MouseY(): Single;
+procedure MoveMouse(x: Single; y: Single);
+procedure MoveMouse(point: Point2d);
+procedure ShowMouse();
+procedure ShowMouse(show: Boolean);
+procedure FadeMusicIn(const name: String; ms: Integer);
+procedure FadeMusicIn(const name: String; times: Integer; ms: Integer);
+procedure FadeMusicIn(data: Music; ms: Integer);
+procedure FadeMusicIn(data: Music; times: Integer; ms: Integer);
+procedure FadeMusicOut(ms: Integer);
+procedure FreeAllMusic();
+procedure FreeMusic(effect: Music);
+function HasMusic(const name: String): Boolean;
+function LoadMusic(const name: String; const filename: String): Music;
+function MusicFilename(data: Music): String;
+function MusicName(data: Music): String;
+function MusicNamed(const name: String): Music;
+function MusicPlaying(): Boolean;
+function MusicVolume(): Single;
+procedure PauseMusic();
+procedure PlayMusic(const name: String);
+procedure PlayMusic(const name: String; times: Integer);
+procedure PlayMusic(data: Music);
+procedure PlayMusic(data: Music; times: Integer);
+procedure PlayMusic(data: Music; times: Integer; volume: Single);
+procedure ResumeMusic();
+procedure SetMusicVolume(volume: Single);
+procedure StopMusic();
+function DecToHex(aDec: Cardinal): String;
+function HexStrToIpv4(const aHex: String): String;
+function HexToDecString(const aHex: String): String;
+function Ipv4ToDec(const aIp: String): Cardinal;
+function Ipv4ToHex(const aIp: String): String;
+function Ipv4ToStr(ip: Cardinal): String;
+function MyIp(): String;
+procedure DrawPixel(clr: Color; const pt: Point2d);
+procedure DrawPixel(clr: Color; const pt: Point2d; opts: DrawingOptions);
+procedure DrawPixel(clr: Color; x: Single; y: Single);
+procedure DrawPixel(clr: Color; x: Single; y: Single; opts: DrawingOptions);
+function GetPixel(bmp: Bitmap; const pt: Point2d): Color;
+function GetPixel(bmp: Bitmap; x: Single; y: Single): Color;
+function GetPixel(const pt: Point2d): Color;
+function GetPixel(x: Single; y: Single): Color;
+function GetPixel(wnd: Window; const pt: Point2d): Color;
+function GetPixel(wnd: Window; x: Single; y: Single): Color;
+function PointAt(x: Single; y: Single): Point2d;
+function PointAtOrigin(): Point2d;
+function PointInCircle(const pt: Point2d; const c: Circle): Boolean;
+function PointInQuad(const pt: Point2d; const q: Quad): Boolean;
+function PointInRectangle(const pt: Point2d; const rect: Rectangle): Boolean;
+function PointInTriangle(const pt: Point2d; const tri: Triangle): Boolean;
+function PointLineDistance(const pt: Point2d; const l: Line): Single;
+function PointOffsetBy(const startPoint: Point2d; const offset: Vector2d): Point2d;
+function PointOffsetFromOrigin(const offset: Vector2d): Point2d;
+function PointOnLine(const pt: Point2d; const l: Line): Boolean;
+function PointOnLine(const pt: Point2d; const l: Line; proximity: Single): Boolean;
+function PointPointAngle(const pt1: Point2d; const pt2: Point2d): Single;
+function PointPointDistance(const pt1: Point2d; const pt2: Point2d): Single;
+function PointToString(const pt: Point2d): String;
+function RandomBitmapPoint(bmp: Bitmap): Point2d;
+function RandomScreenPoint(): Point2d;
+function RandomWindowPoint(wind: Window): Point2d;
+function SamePoint(const pt1: Point2d; const pt2: Point2d): Boolean;
+function QuadFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d; const p4: Point2d): Quad;
+function QuadFrom(const rect: Rectangle): Quad;
+function QuadFrom(const rect: Rectangle; const transform: Matrix2d): Quad;
+function QuadFrom(xTopLeft: Single; yTopLeft: Single; xTopRight: Single; yTopRight: Single; xBottomLeft: Single; yBottomLeft: Single; xBottomRight: Single; yBottomRight: Single): Quad;
+function QuadsIntersect(const q1: Quad; const q2: Quad): Boolean;
+procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2d);
+function TrianglesFrom(const q: Quad): ArrayOfTriangle;
+function Rnd(): Single;
+function Rnd(ubound: Integer): Integer;
+procedure DrawQuad(clr: Color; const q: Quad);
+procedure DrawQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
+procedure DrawRectangle(clr: Color; const rect: Rectangle);
+procedure DrawRectangle(clr: Color; const rect: Rectangle; const opts: DrawingOptions);
+procedure DrawRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single);
+procedure DrawRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single; const opts: DrawingOptions);
+procedure FillQuad(clr: Color; const q: Quad);
+procedure FillQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
+procedure FillRectangle(clr: Color; const rect: Rectangle);
+procedure FillRectangle(clr: Color; const rect: Rectangle; const opts: DrawingOptions);
+procedure FillRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single);
+procedure FillRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single; const opts: DrawingOptions);
+function InsetRectangle(const rect: Rectangle; insetAmount: Single): Rectangle;
+function Intersection(const rect1: Rectangle; const rect2: Rectangle): Rectangle;
+function RectangleAround(const t: Triangle): Rectangle;
+function RectangleAround(const c: Circle): Rectangle;
+function RectangleAround(const l: Line): Rectangle;
+function RectangleBottom(const rect: Rectangle): Single;
+function RectangleCenter(const rect: Rectangle): Point2d;
+function RectangleFrom(pt: Point2d; width: Single; height: Single): Rectangle;
+function RectangleFrom(pt1: Point2d; pt2: Point2d): Rectangle;
+function RectangleFrom(x: Single; y: Single; width: Single; height: Single): Rectangle;
+function RectangleLeft(const rect: Rectangle): Single;
+function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2d): Rectangle;
+function RectangleRight(const rect: Rectangle): Single;
+function RectangleToString(const rect: Rectangle): String;
+function RectangleTop(const rect: Rectangle): Single;
+function RectanglesIntersect(const rect1: Rectangle; const rect2: Rectangle): Boolean;
+procedure DeregisterFreeNotifier(handler: FreeNotifier);
+function PathToResource(const filename: String; kind: ResourceKind): String;
+function PathToResources(): String;
+function PathToResources(kind: ResourceKind): String;
+procedure RegisterFreeNotifier(fn: FreeNotifier);
+procedure SetResourcesPath(const path: String);
+procedure FadeAllSoundEffectsOut(ms: Integer);
+procedure FadeSoundEffectOut(effect: SoundEffect; ms: Integer);
+procedure FreeAllSoundEffects();
+procedure FreeSoundEffect(effect: SoundEffect);
+function HasSoundEffect(const name: String): Boolean;
+function LoadSoundEffect(const name: String; const filename: String): SoundEffect;
+procedure PlaySoundEffect(const name: String);
+procedure PlaySoundEffect(const name: String; volume: Single);
+procedure PlaySoundEffect(const name: String; times: Integer);
+procedure PlaySoundEffect(const name: String; times: Integer; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect);
+procedure PlaySoundEffect(effect: SoundEffect; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer);
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Single);
+function SoundEffectFilename(effect: SoundEffect): String;
+function SoundEffectName(effect: SoundEffect): String;
+function SoundEffectNamed(const name: String): SoundEffect;
+function SoundEffectPlaying(const name: String): Boolean;
+function SoundEffectPlaying(effect: SoundEffect): Boolean;
+procedure StopSoundEffect(const name: String);
+procedure StopSoundEffect(effect: SoundEffect);
+procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single);
+procedure CallForAllSprites(fn: SpriteFunction);
+procedure CallOnSpriteEvent(handler: SpriteEventHandler);
+function CenterPoint(s: Sprite): Point2d;
+function CreateSprite(layer: Bitmap): Sprite;
+function CreateSprite(layer: Bitmap; ani: AnimationScript): Sprite;
+function CreateSprite(const bitmapName: String): Sprite;
+function CreateSprite(const name: String; layer: Bitmap): Sprite;
+function CreateSprite(const name: String; layer: Bitmap; ani: AnimationScript): Sprite;
+function CreateSprite(const bitmapName: String; const animationName: String): Sprite;
+procedure CreateSpritePack(const name: String);
+function CurrentSpritePack(): String;
+procedure DrawAllSprites();
+procedure DrawSprite(s: Sprite; const offset: Vector2d);
+procedure DrawSprite(s: Sprite);
+procedure DrawSprite(s: Sprite; xOffset: Single; yOffset: Single);
+procedure FreeAllSprites();
+procedure FreeSprite(s: Sprite);
+procedure FreeSpritePack(const name: String);
+function HasSprite(const name: String): Boolean;
+function HasSpritePack(const name: String): Boolean;
+procedure MoveSprite(s: Sprite);
+procedure MoveSprite(s: Sprite; const distance: Vector2d);
+procedure MoveSprite(s: Sprite; const distance: Vector2d; pct: Single);
+procedure MoveSprite(s: Sprite; pct: Single);
+procedure MoveSpriteTo(s: Sprite; x: Single; y: Single);
+procedure SelectSpritePack(const name: String);
+function SpriteAddLayer(s: Sprite; newLayer: Bitmap; const layerName: String): Integer;
+procedure SpriteAddToVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteAddValue(s: Sprite; const name: String);
+procedure SpriteAddValue(s: Sprite; const name: String; initVal: Single);
+function SpriteAnchorPoint(s: Sprite): Point2d;
+function SpriteAnchorPosition(s: Sprite): Point2d;
+function SpriteAnimationHasEnded(s: Sprite): Boolean;
+function SpriteAnimationName(s: Sprite): String;
+function SpriteAt(s: Sprite; const pt: Point2d): Boolean;
+procedure SpriteBringLayerForward(s: Sprite; visibleLayer: Integer);
+procedure SpriteBringLayerToFront(s: Sprite; visibleLayer: Integer);
+procedure SpriteCallOnEvent(s: Sprite; handler: SpriteEventHandler);
+function SpriteCircle(s: Sprite): Circle;
+function SpriteCollisionBitmap(s: Sprite): Bitmap;
+function SpriteCollisionCircle(s: Sprite): Circle;
+function SpriteCollisionKind(s: Sprite): CollisionTestKind;
+function SpriteCollisionRectangle(s: Sprite): Rectangle;
+function SpriteCurrentCell(s: Sprite): Integer;
+function SpriteCurrentCellRectangle(s: Sprite): Rectangle;
+function SpriteDx(s: Sprite): Single;
+function SpriteDy(s: Sprite): Single;
+function SpriteHasValue(s: Sprite; name: String): Boolean;
+function SpriteHeading(s: Sprite): Single;
+function SpriteHeight(s: Sprite): Integer;
+procedure SpriteHideLayer(s: Sprite; const name: String);
+procedure SpriteHideLayer(s: Sprite; id: Integer);
+function SpriteLayer(s: Sprite; const name: String): Bitmap;
+function SpriteLayer(s: Sprite; idx: Integer): Bitmap;
+function SpriteLayerCircle(s: Sprite; const name: String): Circle;
+function SpriteLayerCircle(s: Sprite; idx: Integer): Circle;
+function SpriteLayerCount(s: Sprite): Integer;
+function SpriteLayerHeight(s: Sprite; const name: String): Integer;
+function SpriteLayerHeight(s: Sprite; idx: Integer): Integer;
+function SpriteLayerIndex(s: Sprite; const name: String): Integer;
+function SpriteLayerName(s: Sprite; idx: Integer): String;
+function SpriteLayerOffset(s: Sprite; const name: String): Vector2d;
+function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2d;
+function SpriteLayerRectangle(s: Sprite; const name: String): Rectangle;
+function SpriteLayerRectangle(s: Sprite; idx: Integer): Rectangle;
+function SpriteLayerWidth(s: Sprite; const name: String): Integer;
+function SpriteLayerWidth(s: Sprite; idx: Integer): Integer;
+function SpriteLocationMatrix(s: Sprite): Matrix2d;
+function SpriteMass(s: Sprite): Single;
+function SpriteMoveFromAnchorPoint(s: Sprite): Boolean;
+procedure SpriteMoveTo(s: Sprite; const pt: Point2d; takingSeconds: Single);
+function SpriteName(s: Sprite): String;
+function SpriteNamed(const name: String): Sprite;
+function SpriteOffscreen(s: Sprite): Boolean;
+function SpriteOnScreenAt(s: Sprite; const pt: Point2d): Boolean;
+function SpriteOnScreenAt(s: Sprite; x: Single; y: Single): Boolean;
+function SpritePosition(s: Sprite): Point2d;
+procedure SpriteReplayAnimation(s: Sprite);
+procedure SpriteReplayAnimation(s: Sprite; withSound: Boolean);
+function SpriteRotation(s: Sprite): Single;
+function SpriteScale(s: Sprite): Single;
+function SpriteScreenRectangle(s: Sprite): Rectangle;
+procedure SpriteSendLayerBackward(s: Sprite; visibleLayer: Integer);
+procedure SpriteSendLayerToBack(s: Sprite; visibleLayer: Integer);
+procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2d);
+procedure SpriteSetCollisionBitmap(s: Sprite; bmp: Bitmap);
+procedure SpriteSetCollisionKind(s: Sprite; value: CollisionTestKind);
+procedure SpriteSetDx(s: Sprite; value: Single);
+procedure SpriteSetDy(s: Sprite; value: Single);
+procedure SpriteSetHeading(s: Sprite; value: Single);
+procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2d);
+procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2d);
+procedure SpriteSetMass(s: Sprite; value: Single);
+procedure SpriteSetMoveFromAnchorPoint(s: Sprite; value: Boolean);
+procedure SpriteSetPosition(s: Sprite; const value: Point2d);
+procedure SpriteSetRotation(s: Sprite; value: Single);
+procedure SpriteSetScale(s: Sprite; value: Single);
+procedure SpriteSetSpeed(s: Sprite; value: Single);
+procedure SpriteSetValue(s: Sprite; const name: String; val: Single);
+procedure SpriteSetVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteSetX(s: Sprite; value: Single);
+procedure SpriteSetY(s: Sprite; value: Single);
+function SpriteShowLayer(s: Sprite; const name: String): Integer;
+function SpriteShowLayer(s: Sprite; id: Integer): Integer;
+function SpriteSpeed(s: Sprite): Single;
+procedure SpriteStartAnimation(s: Sprite; const named: String);
+procedure SpriteStartAnimation(s: Sprite; const named: String; withSound: Boolean);
+procedure SpriteStartAnimation(s: Sprite; idx: Integer);
+procedure SpriteStartAnimation(s: Sprite; idx: Integer; withSound: Boolean);
+procedure SpriteStopCallingOnEvent(s: Sprite; handler: SpriteEventHandler);
+procedure SpriteToggleLayerVisible(s: Sprite; const name: String);
+procedure SpriteToggleLayerVisible(s: Sprite; id: Integer);
+function SpriteValue(s: Sprite; const name: String): Single;
+function SpriteValueCount(s: Sprite): Integer;
+function SpriteVelocity(s: Sprite): Vector2d;
+function SpriteVisibleIndexOfLayer(s: Sprite; const name: String): Integer;
+function SpriteVisibleIndexOfLayer(s: Sprite; id: Integer): Integer;
+function SpriteVisibleLayer(s: Sprite; idx: Integer): Integer;
+function SpriteVisibleLayerCount(s: Sprite): Integer;
+function SpriteVisibleLayerId(s: Sprite; idx: Integer): Integer;
+function SpriteWidth(s: Sprite): Integer;
+function SpriteX(s: Sprite): Single;
+function SpriteY(s: Sprite): Single;
+procedure StopCallingOnSpriteEvent(handler: SpriteEventHandler);
+procedure UpdateAllSprites();
+procedure UpdateAllSprites(pct: Single);
+procedure UpdateSprite(s: Sprite);
+procedure UpdateSprite(s: Sprite; withSound: Boolean);
+procedure UpdateSprite(s: Sprite; pct: Single);
+procedure UpdateSprite(s: Sprite; pct: Single; withSound: Boolean);
+procedure UpdateSpriteAnimation(s: Sprite);
+procedure UpdateSpriteAnimation(s: Sprite; withSound: Boolean);
+procedure UpdateSpriteAnimation(s: Sprite; pct: Single);
+procedure UpdateSpriteAnimation(s: Sprite; pct: Single; withSound: Boolean);
+function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2d): Vector2d;
+function VectorFromTo(s1: Sprite; s2: Sprite): Vector2d;
+procedure ActivateAdvancedTerminal();
+function AdvancedTerminalActive(): Boolean;
+procedure ClearTerminal();
+procedure EndAdvancedTerminal();
+procedure MoveCursorTo(x: Integer; y: Integer);
+function ReadChar(): Char;
+function ReadLine(): String;
+procedure RefreshTerminal();
+procedure SetTerminalBold(value: Boolean);
+procedure SetTerminalColors(foreground: Color; background: Color);
+procedure SetTerminalEchoInput(value: Boolean);
+function TerminalHeight(): Integer;
+function TerminalWidth(): Integer;
+procedure Write(text: String);
+procedure WriteAt(text: String; x: Integer; y: Integer);
+procedure WriteLine();
+procedure WriteLine(line: String);
+procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Single; y: Single);
+procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Single; y: Single; const opts: DrawingOptions);
+procedure DrawText(const text: String; const clr: Color; x: Single; y: Single);
+procedure DrawText(const text: String; const clr: Color; x: Single; y: Single; const opts: DrawingOptions);
+procedure DrawText(const text: String; const clr: Color; fnt: Font; fontSize: Integer; x: Single; y: Single);
+procedure DrawText(const text: String; const clr: Color; fnt: Font; fontSize: Integer; x: Single; y: Single; const opts: DrawingOptions);
+function FontHasSize(const name: String; fontSize: Integer): Boolean;
+function FontHasSize(fnt: Font; fontSize: Integer): Boolean;
+procedure FontLoadSize(const name: String; fontSize: Integer);
+procedure FontLoadSize(fnt: Font; fontSize: Integer);
+function FontNamed(name: String): Font;
+procedure FreeAllFonts();
+procedure FreeFont(fnt: Font);
+function GetFontStyle(const name: String): FontStyle;
+function GetFontStyle(fnt: Font): FontStyle;
+function HasFont(fnt: Font): Boolean;
+function HasFont(name: String): Boolean;
+function LoadFont(const name: String; const filename: String): Font;
+procedure SetFontStyle(const name: String; style: FontStyle);
+procedure SetFontStyle(fnt: Font; style: FontStyle);
+function TextHeight(const text: String; const fnt: String; fontSize: Integer): Integer;
+function TextHeight(const text: String; fnt: Font; fontSize: Integer): Integer;
+function TextWidth(const text: String; const fnt: String; fontSize: Integer): Integer;
+function TextWidth(const text: String; fnt: Font; fontSize: Integer): Integer;
+procedure DrawCollectedText(clr: Color; fnt: Font; fontSize: Integer; const opts: DrawingOptions);
+procedure EndReadingText();
+procedure EndReadingText(wind: Window);
+function ReadingText(): Boolean;
+function ReadingText(wind: Window): Boolean;
+procedure StartReadingText(rect: Rectangle);
+procedure StartReadingText(rect: Rectangle; initialText: String);
+procedure StartReadingText(wind: Window; rect: Rectangle);
+procedure StartReadingText(wind: Window; rect: Rectangle; initialText: String);
+function TextEntryCancelled(): Boolean;
+function TextEntryCancelled(wind: Window): Boolean;
+function TextInput(): String;
+function TextInput(wind: Window): String;
+function CreateTimer(name: String): Timer;
+procedure FreeAllTimers();
+procedure FreeTimer(toFree: Timer);
+function HasTimer(name: String): Boolean;
+procedure PauseTimer(name: String);
+procedure PauseTimer(toPause: Timer);
+procedure ResetTimer(name: String);
+procedure ResetTimer(tmr: Timer);
+procedure ResumeTimer(name: String);
+procedure ResumeTimer(toResume: Timer);
+procedure StartTimer(name: String);
+procedure StartTimer(toStart: Timer);
+procedure StopTimer(name: String);
+procedure StopTimer(toStop: Timer);
+function TimerNamed(name: String): Timer;
+function TimerPaused(name: String): Boolean;
+function TimerPaused(toGet: Timer): Boolean;
+function TimerStarted(name: String): Boolean;
+function TimerStarted(toGet: Timer): Boolean;
+function TimerTicks(name: String): Cardinal;
+function TimerTicks(toGet: Timer): Cardinal;
+procedure DrawTriangle(clr: Color; const tri: Triangle);
+procedure DrawTriangle(clr: Color; const tri: Triangle; opts: DrawingOptions);
+procedure DrawTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single);
+procedure DrawTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: DrawingOptions);
+procedure FillTriangle(clr: Color; const tri: Triangle);
+procedure FillTriangle(clr: Color; const tri: Triangle; opts: DrawingOptions);
+procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single);
+procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: DrawingOptions);
+function TriangleBarycenter(const tri: Triangle): Point2d;
+function TriangleFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d): Triangle;
+function TriangleFrom(x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single): Triangle;
+function TriangleRectangleIntersect(const tri: Triangle; const rect: Rectangle): Boolean;
+function TriangleToString(const tri: Triangle): String;
+function TrianglesIntersect(const t1: Triangle; const t2: Triangle): Boolean;
+function CurrentTicks(): Cardinal;
+procedure Delay(milliseconds: Cardinal);
+function FileAsString(filename: String; kind: ResourceKind): String;
+function AngleBetween(const v1: Vector2d; const v2: Vector2d): Single;
+function DotProduct(const v1: Vector2d; const v2: Vector2d): Single;
+function IsZeroVector(const v: Vector2d): Boolean;
+function RayIntersectionPoint(const fromPt: Point2d; const heading: Vector2d; const l: Line; var pt: Point2d): Boolean;
+function UnitVector(const v: Vector2d): Vector2d;
+function VectorAdd(const v1: Vector2d; const v2: Vector2d): Vector2d;
+function VectorAngle(v: Vector2d): Single;
+function VectorFromAngle(angle: Single; magnitude: Single): Vector2d;
+function VectorFromLine(const l: Line): Vector2d;
+function VectorFromPointToRect(const pt: Point2d; const rect: Rectangle): Vector2d;
+function VectorInRect(const v: Vector2d; const rect: Rectangle): Boolean;
+function VectorInvert(const v: Vector2d): Vector2d;
+function VectorLimit(const v: Vector2d; limit: Single): Vector2d;
+function VectorMagnitude(const v: Vector2d): Single;
+function VectorMagnitudeSqared(const v: Vector2d): Single;
+function VectorMultiply(const v1: Vector2d; s: Single): Vector2d;
+function VectorNormal(const v: Vector2d): Vector2d;
+function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2d): Vector2d;
+function VectorOutOfCircleFromPoint(const pt: Point2d; const c: Circle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromPoint(const pt: Point2d; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorPointToPoint(const start: Point2d; const end: Point2d): Vector2d;
+function VectorSubtract(const v1: Vector2d; const v2: Vector2d): Vector2d;
+function VectorTo(const p1: Point2d): Vector2d;
+function VectorTo(x: Single; y: Single): Vector2d;
+function VectorToString(const v: Vector2d): String;
+function VectorsEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+function VectorsNotEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+function DownloadBitmap(const name: String; const url: String; port: Word): Bitmap;
+function DownloadFont(const name: String; const url: String; port: Word): Font;
+function DownloadMusic(const name: String; const url: String; port: Word): Music;
+function DownloadSoundEffect(const name: String; const url: String; port: Word): SoundEffect;
+procedure FreeResponse(response: HttpResponse);
+function HttpGet(const url: String; port: Word): HttpResponse;
+function HttpPost(const url: String; port: Word; body: String): HttpResponse;
+function HttpResponseToString(response: HttpResponse): String;
+procedure SaveResponseToFile(response: HttpResponse; path: String);
+function HasIncomingRequests(server: WebServer): Boolean;
+function IsDeleteRequestFor(request: HttpRequest; const path: String): Boolean;
+function IsGetRequestFor(request: HttpRequest; const path: String): Boolean;
+function IsOptionsRequestFor(request: HttpRequest; const path: String): Boolean;
+function IsPostRequestFor(request: HttpRequest; const path: String): Boolean;
+function IsPutRequestFor(request: HttpRequest; const path: String): Boolean;
+function IsRequestFor(request: HttpRequest; method: HttpMethod; const path: String): Boolean;
+function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean;
+function NextWebRequest(server: WebServer): HttpRequest;
+function RequestBody(r: HttpRequest): String;
+function RequestMethod(r: HttpRequest): HttpMethod;
+function RequestUri(r: HttpRequest): String;
+function RequestUriStubs(r: HttpRequest): ArrayOfString;
+procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
+procedure SendResponse(r: HttpRequest);
+procedure SendResponse(r: HttpRequest; const message: String);
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode);
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String);
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String);
+procedure SendResponse(r: HttpRequest; j: Json);
+function SplitUriStubs(const uri: String): ArrayOfString;
+function StartWebServer(): WebServer;
+function StartWebServer(port: Word): WebServer;
+procedure StopWebServer(server: WebServer);
+procedure ClearWindow(wind: Window; clr: Color);
+procedure CloseAllWindows();
+procedure CloseWindow(const name: String);
+procedure CloseWindow();
+procedure CloseWindow(wind: Window);
+function CurrentWindow(): Window;
+function HasWindow(caption: String): Boolean;
+procedure MoveWindow(x: Integer; y: Integer);
+procedure MoveWindow(const name: String; x: Integer; y: Integer);
+procedure MoveWindow(wind: Window; x: Integer; y: Integer);
+function OpenWindow(caption: String; width: Integer; height: Integer): Window;
+procedure RefreshWindow(wind: Window);
+procedure ResizeWindow(width: Integer; height: Integer);
+procedure ResizeWindow(wnd: Window; width: Integer; height: Integer);
+procedure SetCurrentWindow(const name: String);
+procedure SetCurrentWindow(wind: Window);
+function WindowCloseRequested(const name: String): Boolean;
+function WindowCloseRequested(wind: Window): Boolean;
+function WindowHasBorder(): Boolean;
+function WindowHasBorder(const name: String): Boolean;
+function WindowHasBorder(wnd: Window): Boolean;
+function WindowHeight(): Integer;
+function WindowHeight(const name: String): Integer;
+function WindowHeight(wind: Window): Integer;
+function WindowIsFullscreen(): Boolean;
+function WindowIsFullscreen(const name: String): Boolean;
+function WindowIsFullscreen(wnd: Window): Boolean;
+function WindowNamed(caption: String): Window;
+function WindowPosition(): Point2d;
+function WindowPosition(const name: String): Point2d;
+function WindowPosition(wnd: Window): Point2d;
+procedure WindowSetIcon(wind: Window; bmp: Bitmap);
+procedure WindowToggleBorder();
+procedure WindowToggleBorder(const name: String);
+procedure WindowToggleBorder(wnd: Window);
+procedure WindowToggleFullscreen();
+procedure WindowToggleFullscreen(const name: String);
+procedure WindowToggleFullscreen(wnd: Window);
+function WindowWidth(): Integer;
+function WindowWidth(const name: String): Integer;
+function WindowWidth(wind: Window): Integer;
+function WindowWithFocus(): Window;
+function WindowX(): Integer;
+function WindowX(const name: String): Integer;
+function WindowX(wnd: Window): Integer;
+function WindowY(): Integer;
+function WindowY(const name: String): Integer;
+function WindowY(wnd: Window): Integer;
+
+implementation
+uses strings;
+
+type __sklib_string = record
+  str: PChar;
+  size: Integer;
+end;
+type __sklib_ptr = Pointer;
+type __sklib_matrix_2d = record
+  elements: Array [0..9] of Double;
+end;
+type __sklib_point_2d = record
+  x: Single;
+  y: Single;
+end;
+type __sklib_circle = record
+  center: __sklib_point_2d;
+  radius: Single;
+end;
+type __sklib_color = record
+  r: Single;
+  g: Single;
+  b: Single;
+  a: Single;
+end;
+type __sklib_rectangle = record
+  x: Single;
+  y: Single;
+  width: Single;
+  height: Single;
+end;
+type __sklib_drawing_options = record
+  dest: Pointer;
+  scaleX: Single;
+  scaleY: Single;
+  angle: Single;
+  anchorOffsetX: Single;
+  anchorOffsetY: Single;
+  flipX: LongInt;
+  flipY: LongInt;
+  isPart: LongInt;
+  part: __sklib_rectangle;
+  camera: LongInt;
+  lineWidth: Integer;
+  anim: __sklib_ptr;
+end;
+type __sklib_line = record
+  startPoint: __sklib_point_2d;
+  endPoint: __sklib_point_2d;
+end;
+type __sklib_quad = record
+  points: Array [0..4] of __sklib_point_2d;
+end;
+type __sklib_triangle = record
+  points: Array [0..3] of __sklib_point_2d;
+end;
+type __sklib_vector_2d = record
+  x: Double;
+  y: Double;
+end;
+function __skadapter__to_sklib_bool(v: Boolean): LongInt;
+begin
+  if v = true then result := 1 else result := 0;
+end;
+function __skadapter__to_bool(v: LongInt): Boolean;
+begin
+  result := v = 1;
+end;
+function __skadapter__to_sklib_int(v: Integer): Integer;
+begin
+  result := v;
+end;
+function __skadapter__to_int(v: Integer): Integer;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_short(v: ShortInt): ShortInt;
+begin
+  result := v;
+end;
+function __skadapter__to_short(v: ShortInt): ShortInt;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_long(v: Int64): Int64;
+begin
+  result := v;
+end;
+function __skadapter__to_long(v: Int64): Int64;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_float(v: Single): Single;
+begin
+  result := v;
+end;
+function __skadapter__to_float(v: Single): Single;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_double(v: Double): Double;
+begin
+  result := v;
+end;
+function __skadapter__to_double(v: Double): Double;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_byte(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_byte(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_char(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_char(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_unsigned_char(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_unsigned_char(v: Char): Char;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_unsigned_int(v: Cardinal): Cardinal;
+begin
+  result := v;
+end;
+function __skadapter__to_unsigned_int(v: Cardinal): Cardinal;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_unsigned_short(v: Word): Word;
+begin
+  result := v;
+end;
+function __skadapter__to_unsigned_short(v: Word): Word;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_unsigned_long(v: Longword): Longword;
+begin
+  result := v;
+end;
+function __skadapter__to_unsigned_long(v: Longword): Longword;
+begin
+  result := v;
+end;
+function __skadapter__to_key_code(v: LongInt): KeyCode;
+begin
+  result := KeyCode(v);
+end;
+function __skadapter__to_sklib_key_code(v: KeyCode): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_mouse_button(v: LongInt): MouseButton;
+begin
+  result := MouseButton(v);
+end;
+function __skadapter__to_sklib_mouse_button(v: MouseButton): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_connection_type(v: LongInt): ConnectionType;
+begin
+  result := ConnectionType(v);
+end;
+function __skadapter__to_sklib_connection_type(v: ConnectionType): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_resource_kind(v: LongInt): ResourceKind;
+begin
+  result := ResourceKind(v);
+end;
+function __skadapter__to_sklib_resource_kind(v: ResourceKind): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_collision_test_kind(v: LongInt): CollisionTestKind;
+begin
+  result := CollisionTestKind(v);
+end;
+function __skadapter__to_sklib_collision_test_kind(v: CollisionTestKind): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_sprite_event_kind(v: LongInt): SpriteEventKind;
+begin
+  result := SpriteEventKind(v);
+end;
+function __skadapter__to_sklib_sprite_event_kind(v: SpriteEventKind): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_drawing_dest(v: LongInt): DrawingDest;
+begin
+  result := DrawingDest(v);
+end;
+function __skadapter__to_sklib_drawing_dest(v: DrawingDest): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_font_style(v: LongInt): FontStyle;
+begin
+  result := FontStyle(v);
+end;
+function __skadapter__to_sklib_font_style(v: FontStyle): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_http_status_code(v: LongInt): HttpStatusCode;
+begin
+  result := HttpStatusCode(v);
+end;
+function __skadapter__to_sklib_http_status_code(v: HttpStatusCode): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_http_method(v: LongInt): HttpMethod;
+begin
+  result := HttpMethod(v);
+end;
+function __skadapter__to_sklib_http_method(v: HttpMethod): LongInt;
+begin
+  result := Integer(v);
+end;
+type __sklib_key_callback = KeyCallback;
+function __skadapter__to_sklib_key_callback(v: KeyCallback): __sklib_key_callback;
+begin
+  result := v;
+end;
+type __sklib_free_notifier = FreeNotifier;
+function __skadapter__to_sklib_free_notifier(v: FreeNotifier): __sklib_free_notifier;
+begin
+  result := v;
+end;
+type __sklib_sprite_event_handler = SpriteEventHandler;
+function __skadapter__to_sklib_sprite_event_handler(v: SpriteEventHandler): __sklib_sprite_event_handler;
+begin
+  result := v;
+end;
+type __sklib_sprite_float_function = SpriteFloatFunction;
+function __skadapter__to_sklib_sprite_float_function(v: SpriteFloatFunction): __sklib_sprite_float_function;
+begin
+  result := v;
+end;
+type __sklib_sprite_function = SpriteFunction;
+function __skadapter__to_sklib_sprite_function(v: SpriteFunction): __sklib_sprite_function;
+begin
+  result := v;
+end;
+function __skadapter__to_sklib_string(s: String): __sklib_string;
+begin
+  result.size := Length(s);
+  result.str := StrAlloc(Length(s) + 1);
+  StrPCopy(result.str, s);
+end;
+procedure __sklib__free__sklib_string(s: __sklib_string); cdecl; external;
+procedure __skadapter__free__sklib_string(s: __sklib_string);
+begin
+  StrDispose(s.str);
+end;
+function __skadapter__to_string(s: __sklib_string): String;
+begin
+  result := StrPas(s.str);
+  __sklib__free__sklib_string(s);
+end;
+function __skadapter__to_sklib_matrix_2d(v: Matrix2d): __sklib_matrix_2d;
+begin
+  result.elements[0] := __skadapter__to_sklib_double(v.elements[0,0]);
+  result.elements[1] := __skadapter__to_sklib_double(v.elements[0,1]);
+  result.elements[2] := __skadapter__to_sklib_double(v.elements[0,2]);
+  result.elements[3] := __skadapter__to_sklib_double(v.elements[1,0]);
+  result.elements[4] := __skadapter__to_sklib_double(v.elements[1,1]);
+  result.elements[5] := __skadapter__to_sklib_double(v.elements[1,2]);
+  result.elements[6] := __skadapter__to_sklib_double(v.elements[2,0]);
+  result.elements[7] := __skadapter__to_sklib_double(v.elements[2,1]);
+  result.elements[8] := __skadapter__to_sklib_double(v.elements[2,2]);
+end;
+function __skadapter__to_matrix_2d(v: __sklib_matrix_2d): Matrix2d;
+begin
+  result.elements[0,0] := __skadapter__to_double(v.elements[0]);
+  result.elements[0,1] := __skadapter__to_double(v.elements[1]);
+  result.elements[0,2] := __skadapter__to_double(v.elements[2]);
+  result.elements[1,0] := __skadapter__to_double(v.elements[3]);
+  result.elements[1,1] := __skadapter__to_double(v.elements[4]);
+  result.elements[1,2] := __skadapter__to_double(v.elements[5]);
+  result.elements[2,0] := __skadapter__to_double(v.elements[6]);
+  result.elements[2,1] := __skadapter__to_double(v.elements[7]);
+  result.elements[2,2] := __skadapter__to_double(v.elements[8]);
+end;
+function __skadapter__to_sklib_point_2d(v: Point2d): __sklib_point_2d;
+begin
+  result.x := __skadapter__to_sklib_float(v.x);
+  result.y := __skadapter__to_sklib_float(v.y);
+end;
+function __skadapter__to_point_2d(v: __sklib_point_2d): Point2d;
+begin
+  result.x := __skadapter__to_float(v.x);
+  result.y := __skadapter__to_float(v.y);
+end;
+function __skadapter__to_sklib_circle(v: Circle): __sklib_circle;
+begin
+  result.center := __skadapter__to_sklib_point_2d(v.center);
+  result.radius := __skadapter__to_sklib_float(v.radius);
+end;
+function __skadapter__to_circle(v: __sklib_circle): Circle;
+begin
+  result.center := __skadapter__to_point_2d(v.center);
+  result.radius := __skadapter__to_float(v.radius);
+end;
+function __skadapter__to_sklib_color(v: Color): __sklib_color;
+begin
+  result.r := __skadapter__to_sklib_float(v.r);
+  result.g := __skadapter__to_sklib_float(v.g);
+  result.b := __skadapter__to_sklib_float(v.b);
+  result.a := __skadapter__to_sklib_float(v.a);
+end;
+function __skadapter__to_color(v: __sklib_color): Color;
+begin
+  result.r := __skadapter__to_float(v.r);
+  result.g := __skadapter__to_float(v.g);
+  result.b := __skadapter__to_float(v.b);
+  result.a := __skadapter__to_float(v.a);
+end;
+function __skadapter__to_sklib_rectangle(v: Rectangle): __sklib_rectangle;
+begin
+  result.x := __skadapter__to_sklib_float(v.x);
+  result.y := __skadapter__to_sklib_float(v.y);
+  result.width := __skadapter__to_sklib_float(v.width);
+  result.height := __skadapter__to_sklib_float(v.height);
+end;
+function __skadapter__to_rectangle(v: __sklib_rectangle): Rectangle;
+begin
+  result.x := __skadapter__to_float(v.x);
+  result.y := __skadapter__to_float(v.y);
+  result.width := __skadapter__to_float(v.width);
+  result.height := __skadapter__to_float(v.height);
+end;
+function __skadapter__to_sklib_drawing_options(v: DrawingOptions): __sklib_drawing_options;
+begin
+  result.dest := __skadapter__to_sklib_void(v.dest);
+  result.scale_x := __skadapter__to_sklib_float(v.scale_x);
+  result.scale_y := __skadapter__to_sklib_float(v.scale_y);
+  result.angle := __skadapter__to_sklib_float(v.angle);
+  result.anchor_offset_x := __skadapter__to_sklib_float(v.anchor_offset_x);
+  result.anchor_offset_y := __skadapter__to_sklib_float(v.anchor_offset_y);
+  result.flip_x := __skadapter__to_sklib_bool(v.flip_x);
+  result.flip_y := __skadapter__to_sklib_bool(v.flip_y);
+  result.is_part := __skadapter__to_sklib_bool(v.is_part);
+  result.part := __skadapter__to_sklib_rectangle(v.part);
+  result.camera := __skadapter__to_sklib_drawing_dest(v.camera);
+  result.line_width := __skadapter__to_sklib_int(v.line_width);
+  result.anim := __skadapter__to_sklib_animation(v.anim);
+end;
+function __skadapter__to_drawing_options(v: __sklib_drawing_options): DrawingOptions;
+begin
+  result.dest := __skadapter__to_void(v.dest);
+  result.scale_x := __skadapter__to_float(v.scale_x);
+  result.scale_y := __skadapter__to_float(v.scale_y);
+  result.angle := __skadapter__to_float(v.angle);
+  result.anchor_offset_x := __skadapter__to_float(v.anchor_offset_x);
+  result.anchor_offset_y := __skadapter__to_float(v.anchor_offset_y);
+  result.flip_x := __skadapter__to_bool(v.flip_x);
+  result.flip_y := __skadapter__to_bool(v.flip_y);
+  result.is_part := __skadapter__to_bool(v.is_part);
+  result.part := __skadapter__to_rectangle(v.part);
+  result.camera := __skadapter__to_drawing_dest(v.camera);
+  result.line_width := __skadapter__to_int(v.line_width);
+  result.anim := __skadapter__to_animation(v.anim);
+end;
+function __skadapter__to_sklib_line(v: Line): __sklib_line;
+begin
+  result.start_point := __skadapter__to_sklib_point_2d(v.start_point);
+  result.end_point := __skadapter__to_sklib_point_2d(v.end_point);
+end;
+function __skadapter__to_line(v: __sklib_line): Line;
+begin
+  result.start_point := __skadapter__to_point_2d(v.start_point);
+  result.end_point := __skadapter__to_point_2d(v.end_point);
+end;
+function __skadapter__to_sklib_quad(v: Quad): __sklib_quad;
+begin
+  result.points[0] := __skadapter__to_sklib_point_2d(v.points[0]);
+  result.points[1] := __skadapter__to_sklib_point_2d(v.points[1]);
+  result.points[2] := __skadapter__to_sklib_point_2d(v.points[2]);
+  result.points[3] := __skadapter__to_sklib_point_2d(v.points[3]);
+end;
+function __skadapter__to_quad(v: __sklib_quad): Quad;
+begin
+  result.points[0] := __skadapter__to_point_2d(v.points[0]);
+  result.points[1] := __skadapter__to_point_2d(v.points[1]);
+  result.points[2] := __skadapter__to_point_2d(v.points[2]);
+  result.points[3] := __skadapter__to_point_2d(v.points[3]);
+end;
+function __skadapter__to_sklib_triangle(v: Triangle): __sklib_triangle;
+begin
+  result.points[0] := __skadapter__to_sklib_point_2d(v.points[0]);
+  result.points[1] := __skadapter__to_sklib_point_2d(v.points[1]);
+  result.points[2] := __skadapter__to_sklib_point_2d(v.points[2]);
+end;
+function __skadapter__to_triangle(v: __sklib_triangle): Triangle;
+begin
+  result.points[0] := __skadapter__to_point_2d(v.points[0]);
+  result.points[1] := __skadapter__to_point_2d(v.points[1]);
+  result.points[2] := __skadapter__to_point_2d(v.points[2]);
+end;
+function __skadapter__to_sklib_vector_2d(v: Vector2d): __sklib_vector_2d;
+begin
+  result.x := __skadapter__to_sklib_double(v.x);
+  result.y := __skadapter__to_sklib_double(v.y);
+end;
+function __skadapter__to_vector_2d(v: __sklib_vector_2d): Vector2d;
+begin
+  result.x := __skadapter__to_double(v.x);
+  result.y := __skadapter__to_double(v.y);
+end;
+function __skadapter__to_database(v: __sklib_ptr): Database;
+begin
+  result := Database(v);
+end;
+function __skadapter__to_sklib_database(v: Database): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_query_result(v: __sklib_ptr): QueryResult;
+begin
+  result := QueryResult(v);
+end;
+function __skadapter__to_sklib_query_result(v: QueryResult): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_json(v: __sklib_ptr): Json;
+begin
+  result := Json(v);
+end;
+function __skadapter__to_sklib_json(v: Json): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_music(v: __sklib_ptr): Music;
+begin
+  result := Music(v);
+end;
+function __skadapter__to_sklib_music(v: Music): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_connection(v: __sklib_ptr): Connection;
+begin
+  result := Connection(v);
+end;
+function __skadapter__to_sklib_connection(v: Connection): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_message(v: __sklib_ptr): Message;
+begin
+  result := Message(v);
+end;
+function __skadapter__to_sklib_message(v: Message): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_server_socket(v: __sklib_ptr): ServerSocket;
+begin
+  result := ServerSocket(v);
+end;
+function __skadapter__to_sklib_server_socket(v: ServerSocket): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_sound_effect(v: __sklib_ptr): SoundEffect;
+begin
+  result := SoundEffect(v);
+end;
+function __skadapter__to_sklib_sound_effect(v: SoundEffect): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_sprite(v: __sklib_ptr): Sprite;
+begin
+  result := Sprite(v);
+end;
+function __skadapter__to_sklib_sprite(v: Sprite): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_timer(v: __sklib_ptr): Timer;
+begin
+  result := Timer(v);
+end;
+function __skadapter__to_sklib_timer(v: Timer): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_animation(v: __sklib_ptr): Animation;
+begin
+  result := Animation(v);
+end;
+function __skadapter__to_sklib_animation(v: Animation): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_animation_script(v: __sklib_ptr): AnimationScript;
+begin
+  result := AnimationScript(v);
+end;
+function __skadapter__to_sklib_animation_script(v: AnimationScript): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_bitmap(v: __sklib_ptr): Bitmap;
+begin
+  result := Bitmap(v);
+end;
+function __skadapter__to_sklib_bitmap(v: Bitmap): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_display(v: __sklib_ptr): Display;
+begin
+  result := Display(v);
+end;
+function __skadapter__to_sklib_display(v: Display): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_font(v: __sklib_ptr): Font;
+begin
+  result := Font(v);
+end;
+function __skadapter__to_sklib_font(v: Font): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_http_response(v: __sklib_ptr): HttpResponse;
+begin
+  result := HttpResponse(v);
+end;
+function __skadapter__to_sklib_http_response(v: HttpResponse): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_http_request(v: __sklib_ptr): HttpRequest;
+begin
+  result := HttpRequest(v);
+end;
+function __skadapter__to_sklib_http_request(v: HttpRequest): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_web_server(v: __sklib_ptr): WebServer;
+begin
+  result := WebServer(v);
+end;
+function __skadapter__to_sklib_web_server(v: WebServer): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+function __skadapter__to_window(v: __sklib_ptr): Window;
+begin
+  result := Window(v);
+end;
+function __skadapter__to_sklib_window(v: Window): __sklib_ptr;
+begin
+  result := __sklib_ptr(v);
+end;
+type __sklib_vector_line = record
+  data_from_app: Array of __sklib_line;
+  size_from_app: Cardinal;
+  data_from_lib: ^__sklib_line;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_line(v: __sklib_vector_line); cdecl; external;
+procedure __skadapter__free__sklib_vector_line(var v: __sklib_vector_line);
+begin
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_line(const v: ArrayOfLine): __sklib_vector_line;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_line(v[i]);
+  end;
+end;
+function __skadapter__to_vector_line(const v: __sklib_vector_line): ArrayOfLine;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_line(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_line(v);
+end;
+procedure __skadapter__update_from_vector_line(var v: __sklib_vector_line; var __skreturn: ArrayOfLine);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_line(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_line(v);
+end;
+type __sklib_vector_triangle = record
+  data_from_app: Array of __sklib_triangle;
+  size_from_app: Cardinal;
+  data_from_lib: ^__sklib_triangle;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_triangle(v: __sklib_vector_triangle); cdecl; external;
+procedure __skadapter__free__sklib_vector_triangle(var v: __sklib_vector_triangle);
+begin
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_triangle(const v: ArrayOfTriangle): __sklib_vector_triangle;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_triangle(v[i]);
+  end;
+end;
+function __skadapter__to_vector_triangle(const v: __sklib_vector_triangle): ArrayOfTriangle;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_triangle(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_triangle(v);
+end;
+procedure __skadapter__update_from_vector_triangle(var v: __sklib_vector_triangle; var __skreturn: ArrayOfTriangle);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_triangle(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_triangle(v);
+end;
+type __sklib_vector_string = record
+  data_from_app: Array of __sklib_string;
+  size_from_app: Cardinal;
+  data_from_lib: ^__sklib_string;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_string(v: __sklib_vector_string); cdecl; external;
+procedure __skadapter__free__sklib_vector_string(var v: __sklib_vector_string);
+var
+  i: Integer;
+begin
+  for i := 0 to v.size_from_app - 1 do
+  begin
+      __skadapter__free__sklib_string(v.data_from_app[i]);
+  end;
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_string(const v: ArrayOfString): __sklib_vector_string;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_string(v[i]);
+  end;
+end;
+function __skadapter__to_vector_string(const v: __sklib_vector_string): ArrayOfString;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_string(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_string(v);
+end;
+procedure __skadapter__update_from_vector_string(var v: __sklib_vector_string; var __skreturn: ArrayOfString);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_string(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_string(v);
+end;
+type __sklib_vector_double = record
+  data_from_app: Array of Double;
+  size_from_app: Cardinal;
+  data_from_lib: ^Double;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_double(v: __sklib_vector_double); cdecl; external;
+procedure __skadapter__free__sklib_vector_double(var v: __sklib_vector_double);
+begin
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_double(const v: ArrayOfDouble): __sklib_vector_double;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_double(v[i]);
+  end;
+end;
+function __skadapter__to_vector_double(const v: __sklib_vector_double): ArrayOfDouble;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_double(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_double(v);
+end;
+procedure __skadapter__update_from_vector_double(var v: __sklib_vector_double; var __skreturn: ArrayOfDouble);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_double(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_double(v);
+end;
+type __sklib_vector_json = record
+  data_from_app: Array of __sklib_ptr;
+  size_from_app: Cardinal;
+  data_from_lib: ^__sklib_ptr;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_json(v: __sklib_vector_json); cdecl; external;
+procedure __skadapter__free__sklib_vector_json(var v: __sklib_vector_json);
+begin
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_json(const v: ArrayOfJson): __sklib_vector_json;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_json(v[i]);
+  end;
+end;
+function __skadapter__to_vector_json(const v: __sklib_vector_json): ArrayOfJson;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_json(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_json(v);
+end;
+procedure __skadapter__update_from_vector_json(var v: __sklib_vector_json; var __skreturn: ArrayOfJson);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_json(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_json(v);
+end;
+type __sklib_vector_bool = record
+  data_from_app: Array of LongInt;
+  size_from_app: Cardinal;
+  data_from_lib: ^LongInt;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_bool(v: __sklib_vector_bool); cdecl; external;
+procedure __skadapter__free__sklib_vector_bool(var v: __sklib_vector_bool);
+begin
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_bool(const v: ArrayOfBoolean): __sklib_vector_bool;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_bool(v[i]);
+  end;
+end;
+function __skadapter__to_vector_bool(const v: __sklib_vector_bool): ArrayOfBoolean;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_bool(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_bool(v);
+end;
+procedure __skadapter__update_from_vector_bool(var v: __sklib_vector_bool; var __skreturn: ArrayOfBoolean);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_bool(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_bool(v);
+end;
+function __sklib__animation_count__animation_script(script: __sklib_ptr): Integer; cdecl; external;
+function __sklib__animation_current_cell__animation(anim: __sklib_ptr): Integer; cdecl; external;
+function __sklib__animation_current_vector__animation(anim: __sklib_ptr): __sklib_vector_2d; cdecl; external;
+function __sklib__animation_ended__animation(anim: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__animation_entered_frame__animation(anim: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__animation_frame_time__animation(anim: __sklib_ptr): Single; cdecl; external;
+function __sklib__animation_index__animation_script__string_ref(script: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__animation_name__animation(temp: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__animation_script_name__animation_script(script: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__animation_script_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__assign_animation__animation__animation_script__string_ref(anim: __sklib_ptr; script: __sklib_ptr; const name: __sklib_string); cdecl; external;
+procedure __sklib__assign_animation__animation__animation_script__string_ref__bool(anim: __sklib_ptr; script: __sklib_ptr; const name: __sklib_string; withSound: LongInt); cdecl; external;
+procedure __sklib__assign_animation__animation__animation_script__int(anim: __sklib_ptr; script: __sklib_ptr; idx: Integer); cdecl; external;
+procedure __sklib__assign_animation__animation__animation_script__int__bool(anim: __sklib_ptr; script: __sklib_ptr; idx: Integer; withSound: LongInt); cdecl; external;
+procedure __sklib__assign_animation__animation__string_ref__string_ref(anim: __sklib_ptr; const scriptName: __sklib_string; const name: __sklib_string); cdecl; external;
+procedure __sklib__assign_animation__animation__string_ref__string_ref__bool(anim: __sklib_ptr; const scriptName: __sklib_string; const name: __sklib_string; withSound: LongInt); cdecl; external;
+function __sklib__create_animation__animation_script__int__bool(script: __sklib_ptr; idx: Integer; withSound: LongInt): __sklib_ptr; cdecl; external;
+function __sklib__create_animation__animation_script__string_ref(script: __sklib_ptr; const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__create_animation__animation_script__string_ref__bool(script: __sklib_ptr; const name: __sklib_string; withSound: LongInt): __sklib_ptr; cdecl; external;
+function __sklib__create_animation__string_ref__string_ref(const scriptName: __sklib_string; const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__create_animation__string_ref__string_ref__bool(const scriptName: __sklib_string; const name: __sklib_string; withSound: LongInt): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_animation_scripts(); cdecl; external;
+procedure __sklib__free_animation__animation(ani: __sklib_ptr); cdecl; external;
+procedure __sklib__free_animation_script__animation_script(scriptToFree: __sklib_ptr); cdecl; external;
+procedure __sklib__free_animation_script__string_ref(const name: __sklib_string); cdecl; external;
+function __sklib__has_animation_named__animation_script__string_ref(script: __sklib_ptr; const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__has_animation_script__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__load_animation_script__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__restart_animation__animation(anim: __sklib_ptr); cdecl; external;
+procedure __sklib__restart_animation__animation__bool(anim: __sklib_ptr; withSound: LongInt); cdecl; external;
+procedure __sklib__update_animation__animation__float__bool(anim: __sklib_ptr; pct: Single; withSound: LongInt); cdecl; external;
+procedure __sklib__update_animation__animation(anim: __sklib_ptr); cdecl; external;
+procedure __sklib__update_animation__animation__float(anim: __sklib_ptr; pct: Single); cdecl; external;
+function __sklib__audio_ready(): LongInt; cdecl; external;
+procedure __sklib__close_audio(); cdecl; external;
+procedure __sklib__open_audio(); cdecl; external;
+procedure __sklib__free_resource_bundle__string(name: __sklib_string); cdecl; external;
+function __sklib__has_resource_bundle__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__load_resource_bundle__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string); cdecl; external;
+function __sklib__camera_position(): __sklib_point_2d; cdecl; external;
+function __sklib__camera_x(): Single; cdecl; external;
+function __sklib__camera_y(): Single; cdecl; external;
+procedure __sklib__center_camera_on__sprite__vector_2d_ref(s: __sklib_ptr; const offset: __sklib_vector_2d); cdecl; external;
+procedure __sklib__center_camera_on__sprite__float__float(s: __sklib_ptr; offsetX: Single; offsetY: Single); cdecl; external;
+procedure __sklib__move_camera_by__vector_2d_ref(const offset: __sklib_vector_2d); cdecl; external;
+procedure __sklib__move_camera_by__float__float(dx: Single; dy: Single); cdecl; external;
+procedure __sklib__move_camera_to__point_2d_ref(const pt: __sklib_point_2d); cdecl; external;
+procedure __sklib__move_camera_to__float__float(x: Single; y: Single); cdecl; external;
+function __sklib__point_on_screen__point_2d_ref(const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__rect_on_screen__rectangle_ref(const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__screen_center(): __sklib_point_2d; cdecl; external;
+function __sklib__screen_rectangle(): __sklib_rectangle; cdecl; external;
+procedure __sklib__set_camera_position__point_2d(pos: __sklib_point_2d); cdecl; external;
+procedure __sklib__set_camera_y__float(y: Single); cdecl; external;
+function __sklib__to_screen__point_2d_ref(const pt: __sklib_point_2d): __sklib_point_2d; cdecl; external;
+function __sklib__to_screen__rectangle_ref(const rect: __sklib_rectangle): __sklib_rectangle; cdecl; external;
+function __sklib__to_screen_x__float(worldX: Single): Single; cdecl; external;
+function __sklib__to_screen_y__float(worldY: Single): Single; cdecl; external;
+function __sklib__to_world__point_2d_ref(const pt: __sklib_point_2d): __sklib_point_2d; cdecl; external;
+function __sklib__to_world_x__float(screenX: Single): Single; cdecl; external;
+function __sklib__to_world_y__float(screenY: Single): Single; cdecl; external;
+function __sklib__vector_world_to_screen(): __sklib_vector_2d; cdecl; external;
+procedure __sklib__draw_circle__color__circle_ref(clr: __sklib_color; const c: __sklib_circle); cdecl; external;
+procedure __sklib__draw_circle__color__circle_ref__drawing_options(clr: __sklib_color; const c: __sklib_circle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_circle__color__float__float__float(clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
+procedure __sklib__draw_circle__color__float__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; radius: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_circle__color__circle_ref(clr: __sklib_color; const c: __sklib_circle); cdecl; external;
+procedure __sklib__fill_circle__color__circle_ref__drawing_options(clr: __sklib_color; const c: __sklib_circle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_circle__color__float__float__float(clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
+procedure __sklib__fill_circle__color__float__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; radius: Single; opts: __sklib_drawing_options); cdecl; external;
+function __sklib__center_point__circle_ref(const c: __sklib_circle): __sklib_point_2d; cdecl; external;
+function __sklib__circle_at__point_2d_ref__float(const pt: __sklib_point_2d; radius: Single): __sklib_circle; cdecl; external;
+function __sklib__circle_at__float__float__float(x: Single; y: Single; radius: Single): __sklib_circle; cdecl; external;
+function __sklib__circle_radius__circle(c: __sklib_circle): Single; cdecl; external;
+function __sklib__circle_x__circle_ref(const c: __sklib_circle): Single; cdecl; external;
+function __sklib__circle_y__circle_ref(const c: __sklib_circle): Single; cdecl; external;
+function __sklib__circles_intersect__circle__circle(c1: __sklib_circle; c2: __sklib_circle): LongInt; cdecl; external;
+function __sklib__closest_point_on_circle__point_2d_ref__circle_ref(const fromPt: __sklib_point_2d; const c: __sklib_circle): __sklib_point_2d; cdecl; external;
+function __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(const c: __sklib_circle; const l: __sklib_line): __sklib_point_2d; cdecl; external;
+function __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(const c: __sklib_circle; const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
+function __sklib__distant_point_on_circle__point_2d_ref__circle_ref(const pt: __sklib_point_2d; const c: __sklib_circle): __sklib_point_2d; cdecl; external;
+function __sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref(const pt: __sklib_point_2d; const c: __sklib_circle; const heading: __sklib_vector_2d; var oppositePt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref(const rayOrigin: __sklib_point_2d; const rayHeading: __sklib_vector_2d; const c: __sklib_circle): Single; cdecl; external;
+function __sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref(const fromPt: __sklib_point_2d; const c: __sklib_circle; var p1: __sklib_point_2d; var p2: __sklib_point_2d): LongInt; cdecl; external;
+procedure __sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref(const c: __sklib_circle; const along: __sklib_vector_2d; var pt1: __sklib_point_2d; var pt2: __sklib_point_2d); cdecl; external;
+function __sklib__current_clip(): __sklib_rectangle; cdecl; external;
+function __sklib__current_clip__bitmap(bmp: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__current_clip__window(wnd: __sklib_ptr): __sklib_rectangle; cdecl; external;
+procedure __sklib__pop_clip__window(wnd: __sklib_ptr); cdecl; external;
+procedure __sklib__pop_clip(); cdecl; external;
+procedure __sklib__pop_clip__bitmap(bmp: __sklib_ptr); cdecl; external;
+procedure __sklib__push_clip__window__rectangle_ref(wnd: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
+procedure __sklib__push_clip__bitmap__rectangle_ref(bmp: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
+procedure __sklib__push_clip__rectangle_ref(const r: __sklib_rectangle); cdecl; external;
+procedure __sklib__reset_clip__bitmap(bmp: __sklib_ptr); cdecl; external;
+procedure __sklib__reset_clip(); cdecl; external;
+procedure __sklib__reset_clip__window(wnd: __sklib_ptr); cdecl; external;
+procedure __sklib__set_clip__rectangle_ref(const r: __sklib_rectangle); cdecl; external;
+procedure __sklib__set_clip__bitmap__rectangle_ref(bmp: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
+procedure __sklib__set_clip__window__rectangle_ref(wnd: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
+function __sklib__bitmap_collision__bitmap__float__float__bitmap__float__float(bmp1: __sklib_ptr; x1: Single; y1: Single; bmp2: __sklib_ptr; x2: Single; y2: Single): LongInt; cdecl; external;
+function __sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref(bmp1: __sklib_ptr; const pt1: __sklib_point_2d; bmp2: __sklib_ptr; const pt2: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref(bmp1: __sklib_ptr; cell1: Integer; const matrix1: __sklib_matrix_2d; bmp2: __sklib_ptr; cell2: Integer; const matrix2: __sklib_matrix_2d): LongInt; cdecl; external;
+function __sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref(bmp1: __sklib_ptr; cell1: Integer; const pt1: __sklib_point_2d; bmp2: __sklib_ptr; cell2: Integer; const pt2: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float(bmp1: __sklib_ptr; cell1: Integer; x1: Single; y1: Single; bmp2: __sklib_ptr; cell2: Integer; x2: Single; y2: Single): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d; const bmpPt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__float__float__float__float(bmp: __sklib_ptr; bmpX: Single; bmpY: Single; x: Single; y: Single): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__sprite_bitmap_collision__sprite__bitmap__float__float(s: __sklib_ptr; bmp: __sklib_ptr; x: Single; y: Single): LongInt; cdecl; external;
+function __sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref(s: __sklib_ptr; bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float(s: __sklib_ptr; bmp: __sklib_ptr; cell: Integer; x: Single; y: Single): LongInt; cdecl; external;
+function __sklib__sprite_collision__sprite__sprite(s1: __sklib_ptr; s2: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__sprite_point_collision__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__sprite_rectangle_collision__sprite__rectangle_ref(s: __sklib_ptr; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__alpha_of__color(c: __sklib_color): Integer; cdecl; external;
+function __sklib__blue_of__color(c: __sklib_color): Integer; cdecl; external;
+function __sklib__brightness_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__color_alice_blue(): __sklib_color; cdecl; external;
+function __sklib__color_antique_white(): __sklib_color; cdecl; external;
+function __sklib__color_aqua(): __sklib_color; cdecl; external;
+function __sklib__color_aquamarine(): __sklib_color; cdecl; external;
+function __sklib__color_azure(): __sklib_color; cdecl; external;
+function __sklib__color_beige(): __sklib_color; cdecl; external;
+function __sklib__color_bisque(): __sklib_color; cdecl; external;
+function __sklib__color_black(): __sklib_color; cdecl; external;
+function __sklib__color_blanched_almond(): __sklib_color; cdecl; external;
+function __sklib__color_blue(): __sklib_color; cdecl; external;
+function __sklib__color_blue_violet(): __sklib_color; cdecl; external;
+function __sklib__color_bright_green(): __sklib_color; cdecl; external;
+function __sklib__color_brown(): __sklib_color; cdecl; external;
+function __sklib__color_burly_wood(): __sklib_color; cdecl; external;
+function __sklib__color_cadet_blue(): __sklib_color; cdecl; external;
+function __sklib__color_chartreuse(): __sklib_color; cdecl; external;
+function __sklib__color_chocolate(): __sklib_color; cdecl; external;
+function __sklib__color_coral(): __sklib_color; cdecl; external;
+function __sklib__color_cornflower_blue(): __sklib_color; cdecl; external;
+function __sklib__color_cornsilk(): __sklib_color; cdecl; external;
+function __sklib__color_crimson(): __sklib_color; cdecl; external;
+function __sklib__color_cyan(): __sklib_color; cdecl; external;
+function __sklib__color_dark_blue(): __sklib_color; cdecl; external;
+function __sklib__color_dark_cyan(): __sklib_color; cdecl; external;
+function __sklib__color_dark_goldenrod(): __sklib_color; cdecl; external;
+function __sklib__color_dark_gray(): __sklib_color; cdecl; external;
+function __sklib__color_dark_green(): __sklib_color; cdecl; external;
+function __sklib__color_dark_khaki(): __sklib_color; cdecl; external;
+function __sklib__color_dark_magenta(): __sklib_color; cdecl; external;
+function __sklib__color_dark_olive_green(): __sklib_color; cdecl; external;
+function __sklib__color_dark_orange(): __sklib_color; cdecl; external;
+function __sklib__color_dark_orchid(): __sklib_color; cdecl; external;
+function __sklib__color_dark_red(): __sklib_color; cdecl; external;
+function __sklib__color_dark_salmon(): __sklib_color; cdecl; external;
+function __sklib__color_dark_sea_green(): __sklib_color; cdecl; external;
+function __sklib__color_dark_slate_blue(): __sklib_color; cdecl; external;
+function __sklib__color_dark_slate_gray(): __sklib_color; cdecl; external;
+function __sklib__color_dark_turquoise(): __sklib_color; cdecl; external;
+function __sklib__color_dark_violet(): __sklib_color; cdecl; external;
+function __sklib__color_deep_pink(): __sklib_color; cdecl; external;
+function __sklib__color_deep_sky_blue(): __sklib_color; cdecl; external;
+function __sklib__color_dim_gray(): __sklib_color; cdecl; external;
+function __sklib__color_dodger_blue(): __sklib_color; cdecl; external;
+function __sklib__color_firebrick(): __sklib_color; cdecl; external;
+function __sklib__color_floral_white(): __sklib_color; cdecl; external;
+function __sklib__color_forest_green(): __sklib_color; cdecl; external;
+function __sklib__color_fuchsia(): __sklib_color; cdecl; external;
+function __sklib__color_gainsboro(): __sklib_color; cdecl; external;
+function __sklib__color_ghost_white(): __sklib_color; cdecl; external;
+function __sklib__color_gold(): __sklib_color; cdecl; external;
+function __sklib__color_goldenrod(): __sklib_color; cdecl; external;
+function __sklib__color_gray(): __sklib_color; cdecl; external;
+function __sklib__color_green(): __sklib_color; cdecl; external;
+function __sklib__color_green_yellow(): __sklib_color; cdecl; external;
+function __sklib__color_honeydew(): __sklib_color; cdecl; external;
+function __sklib__color_hot_pink(): __sklib_color; cdecl; external;
+function __sklib__color_indian_red(): __sklib_color; cdecl; external;
+function __sklib__color_indigo(): __sklib_color; cdecl; external;
+function __sklib__color_ivory(): __sklib_color; cdecl; external;
+function __sklib__color_khaki(): __sklib_color; cdecl; external;
+function __sklib__color_lavender(): __sklib_color; cdecl; external;
+function __sklib__color_lavender_blush(): __sklib_color; cdecl; external;
+function __sklib__color_lawn_green(): __sklib_color; cdecl; external;
+function __sklib__color_lemon_chiffon(): __sklib_color; cdecl; external;
+function __sklib__color_light_blue(): __sklib_color; cdecl; external;
+function __sklib__color_light_coral(): __sklib_color; cdecl; external;
+function __sklib__color_light_cyan(): __sklib_color; cdecl; external;
+function __sklib__color_light_goldenrod_yellow(): __sklib_color; cdecl; external;
+function __sklib__color_light_gray(): __sklib_color; cdecl; external;
+function __sklib__color_light_green(): __sklib_color; cdecl; external;
+function __sklib__color_light_pink(): __sklib_color; cdecl; external;
+function __sklib__color_light_salmon(): __sklib_color; cdecl; external;
+function __sklib__color_light_sea_green(): __sklib_color; cdecl; external;
+function __sklib__color_light_sky_blue(): __sklib_color; cdecl; external;
+function __sklib__color_light_slate_gray(): __sklib_color; cdecl; external;
+function __sklib__color_light_steel_blue(): __sklib_color; cdecl; external;
+function __sklib__color_light_yellow(): __sklib_color; cdecl; external;
+function __sklib__color_lime(): __sklib_color; cdecl; external;
+function __sklib__color_lime_green(): __sklib_color; cdecl; external;
+function __sklib__color_linen(): __sklib_color; cdecl; external;
+function __sklib__color_magenta(): __sklib_color; cdecl; external;
+function __sklib__color_maroon(): __sklib_color; cdecl; external;
+function __sklib__color_medium_aquamarine(): __sklib_color; cdecl; external;
+function __sklib__color_medium_blue(): __sklib_color; cdecl; external;
+function __sklib__color_medium_orchid(): __sklib_color; cdecl; external;
+function __sklib__color_medium_purple(): __sklib_color; cdecl; external;
+function __sklib__color_medium_sea_green(): __sklib_color; cdecl; external;
+function __sklib__color_medium_slate_blue(): __sklib_color; cdecl; external;
+function __sklib__color_medium_spring_green(): __sklib_color; cdecl; external;
+function __sklib__color_medium_turquoise(): __sklib_color; cdecl; external;
+function __sklib__color_medium_violet_red(): __sklib_color; cdecl; external;
+function __sklib__color_midnight_blue(): __sklib_color; cdecl; external;
+function __sklib__color_mint_cream(): __sklib_color; cdecl; external;
+function __sklib__color_misty_rose(): __sklib_color; cdecl; external;
+function __sklib__color_moccasin(): __sklib_color; cdecl; external;
+function __sklib__color_navajo_white(): __sklib_color; cdecl; external;
+function __sklib__color_navy(): __sklib_color; cdecl; external;
+function __sklib__color_old_lace(): __sklib_color; cdecl; external;
+function __sklib__color_olive(): __sklib_color; cdecl; external;
+function __sklib__color_olive_drab(): __sklib_color; cdecl; external;
+function __sklib__color_orange(): __sklib_color; cdecl; external;
+function __sklib__color_orange_red(): __sklib_color; cdecl; external;
+function __sklib__color_orchid(): __sklib_color; cdecl; external;
+function __sklib__color_pale_goldenrod(): __sklib_color; cdecl; external;
+function __sklib__color_pale_green(): __sklib_color; cdecl; external;
+function __sklib__color_pale_turquoise(): __sklib_color; cdecl; external;
+function __sklib__color_pale_violet_red(): __sklib_color; cdecl; external;
+function __sklib__color_papaya_whip(): __sklib_color; cdecl; external;
+function __sklib__color_peach_puff(): __sklib_color; cdecl; external;
+function __sklib__color_peru(): __sklib_color; cdecl; external;
+function __sklib__color_pink(): __sklib_color; cdecl; external;
+function __sklib__color_plum(): __sklib_color; cdecl; external;
+function __sklib__color_powder_blue(): __sklib_color; cdecl; external;
+function __sklib__color_purple(): __sklib_color; cdecl; external;
+function __sklib__color_red(): __sklib_color; cdecl; external;
+function __sklib__color_rosy_brown(): __sklib_color; cdecl; external;
+function __sklib__color_royal_blue(): __sklib_color; cdecl; external;
+function __sklib__color_saddle_brown(): __sklib_color; cdecl; external;
+function __sklib__color_salmon(): __sklib_color; cdecl; external;
+function __sklib__color_sandy_brown(): __sklib_color; cdecl; external;
+function __sklib__color_sea_green(): __sklib_color; cdecl; external;
+function __sklib__color_sea_shell(): __sklib_color; cdecl; external;
+function __sklib__color_sienna(): __sklib_color; cdecl; external;
+function __sklib__color_silver(): __sklib_color; cdecl; external;
+function __sklib__color_sky_blue(): __sklib_color; cdecl; external;
+function __sklib__color_slate_blue(): __sklib_color; cdecl; external;
+function __sklib__color_slate_gray(): __sklib_color; cdecl; external;
+function __sklib__color_snow(): __sklib_color; cdecl; external;
+function __sklib__color_spring_green(): __sklib_color; cdecl; external;
+function __sklib__color_steel_blue(): __sklib_color; cdecl; external;
+function __sklib__color_swinburne_red(): __sklib_color; cdecl; external;
+function __sklib__color_tan(): __sklib_color; cdecl; external;
+function __sklib__color_teal(): __sklib_color; cdecl; external;
+function __sklib__color_thistle(): __sklib_color; cdecl; external;
+function __sklib__color_to_string__color(c: __sklib_color): __sklib_string; cdecl; external;
+function __sklib__color_tomato(): __sklib_color; cdecl; external;
+function __sklib__color_transparent(): __sklib_color; cdecl; external;
+function __sklib__color_turquoise(): __sklib_color; cdecl; external;
+function __sklib__color_violet(): __sklib_color; cdecl; external;
+function __sklib__color_wheat(): __sklib_color; cdecl; external;
+function __sklib__color_white(): __sklib_color; cdecl; external;
+function __sklib__color_white_smoke(): __sklib_color; cdecl; external;
+function __sklib__color_yellow(): __sklib_color; cdecl; external;
+function __sklib__color_yellow_green(): __sklib_color; cdecl; external;
+function __sklib__green_of__color(c: __sklib_color): Integer; cdecl; external;
+function __sklib__hsb_color__float__float__float(hue: Single; saturation: Single; brightness: Single): __sklib_color; cdecl; external;
+function __sklib__hue_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__random_color(): __sklib_color; cdecl; external;
+function __sklib__random_rgb_color__int(alpha: Integer): __sklib_color; cdecl; external;
+function __sklib__red_of__color(c: __sklib_color): Integer; cdecl; external;
+function __sklib__rgb_color__float__float__float(red: Single; green: Single; blue: Single): __sklib_color; cdecl; external;
+function __sklib__rgb_color__int__int__int(red: Integer; green: Integer; blue: Integer): __sklib_color; cdecl; external;
+function __sklib__rgba_color__float__float__float__float(red: Single; green: Single; blue: Single; alpha: Single): __sklib_color; cdecl; external;
+function __sklib__rgba_color__int__int__int__int(red: Integer; green: Integer; blue: Integer; alpha: Integer): __sklib_color; cdecl; external;
+function __sklib__saturation_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__string_to_color__string(str: __sklib_string): __sklib_color; cdecl; external;
+function __sklib__database_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_databases(); cdecl; external;
+procedure __sklib__free_all_query_results(); cdecl; external;
+procedure __sklib__free_database__database(dbToClose: __sklib_ptr); cdecl; external;
+procedure __sklib__free_database__string(nameOfDbToClose: __sklib_string); cdecl; external;
+procedure __sklib__free_query_result__query_result(query: __sklib_ptr); cdecl; external;
+function __sklib__get_next_row__query_result(result: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__has_database__string(name: __sklib_string): LongInt; cdecl; external;
+function __sklib__has_row__query_result(result: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__open_database__string__string(name: __sklib_string; filename: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__query_column_for_bool__query_result__int(result: __sklib_ptr; col: Integer): LongInt; cdecl; external;
+function __sklib__query_column_for_double__query_result__int(result: __sklib_ptr; col: Integer): Double; cdecl; external;
+function __sklib__query_column_for_int__query_result__int(result: __sklib_ptr; col: Integer): Integer; cdecl; external;
+function __sklib__query_column_for_string__query_result__int(result: __sklib_ptr; col: Integer): __sklib_string; cdecl; external;
+function __sklib__query_success__query_result(result: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__query_type_of_col__query_result__int(result: __sklib_ptr; col: Integer): __sklib_string; cdecl; external;
+procedure __sklib__reset_query_result__query_result(result: __sklib_ptr); cdecl; external;
+function __sklib__rows_changed__database(db: __sklib_ptr): Integer; cdecl; external;
+function __sklib__run_sql__database__string(db: __sklib_ptr; sql: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__run_sql__string__string(databaseName: __sklib_string; sql: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__option_defaults(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_draw_to__bitmap(dest: __sklib_ptr): __sklib_drawing_options; cdecl; external;
+function __sklib__option_draw_to__bitmap__drawing_options(dest: __sklib_ptr; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_draw_to__window(dest: __sklib_ptr): __sklib_drawing_options; cdecl; external;
+function __sklib__option_draw_to__window__drawing_options(dest: __sklib_ptr; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_x(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_x__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_xy(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_xy__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_y(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_flip_y__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_line_width__int(width: Integer): __sklib_drawing_options; cdecl; external;
+function __sklib__option_line_width__int__drawing_options(width: Integer; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__float__float__float__float(x: Single; y: Single; w: Single; h: Single): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__float__float__float__float__drawing_options(x: Single; y: Single; w: Single; h: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__rectangle(part: __sklib_rectangle): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__rectangle__drawing_options(part: __sklib_rectangle; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__float(angle: Single): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__float__drawing_options(angle: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__float__float__float(angle: Single; anchorX: Single; anchorY: Single): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__float__float__float__drawing_options(angle: Single; anchorX: Single; anchorY: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_scale_bmp__float__float(scaleX: Single; scaleY: Single): __sklib_drawing_options; cdecl; external;
+function __sklib__option_scale_bmp__float__float__drawing_options(scaleX: Single; scaleY: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_to_screen(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_to_screen__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_to_world(): __sklib_drawing_options; cdecl; external;
+function __sklib__option_to_world__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_with_animation__animation(anim: __sklib_ptr): __sklib_drawing_options; cdecl; external;
+function __sklib__option_with_animation__animation__drawing_options(anim: __sklib_ptr; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+procedure __sklib__draw_ellipse__color__rectangle(clr: __sklib_color; rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__draw_ellipse__color__rectangle__drawing_options(clr: __sklib_color; rect: __sklib_rectangle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_ellipse__color__float__float__float__float(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single); cdecl; external;
+procedure __sklib__draw_ellipse__color__float__float__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_ellipse__color__rectangle(clr: __sklib_color; rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__fill_ellipse__color__rectangle__drawing_options(clr: __sklib_color; rect: __sklib_rectangle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_ellipse__color__float__float__float__float(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single); cdecl; external;
+procedure __sklib__fill_ellipse__color__float__float__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single; opts: __sklib_drawing_options); cdecl; external;
+function __sklib__cosine__float(degrees: Single): Single; cdecl; external;
+function __sklib__sine__float(degrees: Single): Single; cdecl; external;
+function __sklib__tangent__float(degrees: Single): Single; cdecl; external;
+procedure __sklib__clear_screen(); cdecl; external;
+procedure __sklib__clear_screen__color(clr: __sklib_color); cdecl; external;
+function __sklib__display_details__unsigned_int(index: Cardinal): __sklib_ptr; cdecl; external;
+function __sklib__display_height__display(disp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__display_name__display(disp: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__display_width__display(disp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__display_x__display(disp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__display_y__display(disp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__number_of_displays(): Integer; cdecl; external;
+procedure __sklib__refresh_screen(); cdecl; external;
+procedure __sklib__refresh_screen__unsigned_int(targetFps: Cardinal); cdecl; external;
+procedure __sklib__save_bitmap__bitmap__string_ref(bmp: __sklib_ptr; const basename: __sklib_string); cdecl; external;
+function __sklib__screen_height(): Integer; cdecl; external;
+function __sklib__screen_width(): Integer; cdecl; external;
+procedure __sklib__take_screenshot__string_ref(const basename: __sklib_string); cdecl; external;
+procedure __sklib__take_screenshot__window__string_ref(wind: __sklib_ptr; const basename: __sklib_string); cdecl; external;
+function __sklib__bitmap_cell_center__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__bitmap_cell_circle__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_circle; cdecl; external;
+function __sklib__bitmap_cell_circle__bitmap__point_2d(bmp: __sklib_ptr; pt: __sklib_point_2d): __sklib_circle; cdecl; external;
+function __sklib__bitmap_cell_circle__bitmap__point_2d__float(bmp: __sklib_ptr; pt: __sklib_point_2d; scale: Single): __sklib_circle; cdecl; external;
+function __sklib__bitmap_cell_columns__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_cell_count__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_cell_height__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_cell_offset__bitmap__int(src: __sklib_ptr; cell: Integer): __sklib_vector_2d; cdecl; external;
+function __sklib__bitmap_cell_rectangle__bitmap(src: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__bitmap_cell_rectangle__bitmap__point_2d_ref(src: __sklib_ptr; const pt: __sklib_point_2d): __sklib_rectangle; cdecl; external;
+function __sklib__bitmap_cell_rows__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_cell_width__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_center__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__bitmap_circle__bitmap__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d): __sklib_circle; cdecl; external;
+function __sklib__bitmap_filename__bitmap(bmp: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__bitmap_height__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_height__string(name: __sklib_string): Integer; cdecl; external;
+function __sklib__bitmap_name__bitmap(bmp: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__bitmap_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__bitmap_rectangle__bitmap(bmp: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__bitmap_rectangle__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_rectangle; cdecl; external;
+function __sklib__bitmap_rectangle_of_cell__bitmap__int(src: __sklib_ptr; cell: Integer): __sklib_rectangle; cdecl; external;
+procedure __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(bmp: __sklib_ptr; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer); cdecl; external;
+function __sklib__bitmap_width__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
+function __sklib__bitmap_width__string(name: __sklib_string): Integer; cdecl; external;
+procedure __sklib__clear_bitmap__bitmap__color(bmp: __sklib_ptr; clr: __sklib_color); cdecl; external;
+procedure __sklib__clear_bitmap__string__color(name: __sklib_string; clr: __sklib_color); cdecl; external;
+function __sklib__create_bitmap__string__int__int(name: __sklib_string; width: Integer; height: Integer): __sklib_ptr; cdecl; external;
+procedure __sklib__draw_bitmap__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_bitmap__bitmap__float__float__drawing_options(bmp: __sklib_ptr; x: Single; y: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_bitmap__string__float__float(name: __sklib_string; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_bitmap__string__float__float__drawing_options(name: __sklib_string; x: Single; y: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__free_all_bitmaps(); cdecl; external;
+procedure __sklib__free_bitmap__bitmap(toDelete: __sklib_ptr); cdecl; external;
+function __sklib__has_bitmap__string(name: __sklib_string): LongInt; cdecl; external;
+function __sklib__load_bitmap__string__string(name: __sklib_string; filename: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__pixel_drawn_at_point__bitmap__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__pixel_drawn_at_point__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): LongInt; cdecl; external;
+function __sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__pixel_drawn_at_point__bitmap__int__float__float(bmp: __sklib_ptr; cell: Integer; x: Single; y: Single): LongInt; cdecl; external;
+procedure __sklib__process_events(); cdecl; external;
+function __sklib__quit_requested(): LongInt; cdecl; external;
+procedure __sklib__reset_quit(); cdecl; external;
+function __sklib__create_json(): __sklib_ptr; cdecl; external;
+function __sklib__create_json__string(jsonString: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_json(); cdecl; external;
+procedure __sklib__free_json__json(j: __sklib_ptr); cdecl; external;
+function __sklib__json_count_keys__json(j: __sklib_ptr): Integer; cdecl; external;
+function __sklib__json_from_color__color(clr: __sklib_color): __sklib_ptr; cdecl; external;
+function __sklib__json_from_file__string_ref(const filename: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__json_from_string__string_ref(const jString: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__json_has_key__json__string(j: __sklib_ptr; key: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_double_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_double); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_json_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_json); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_string_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_string); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_bool_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_bool); cdecl; external;
+function __sklib__json_read_bool__json__string(j: __sklib_ptr; key: __sklib_string): LongInt; cdecl; external;
+function __sklib__json_read_number__json__string(j: __sklib_ptr; key: __sklib_string): Single; cdecl; external;
+function __sklib__json_read_number_as_double__json__string(j: __sklib_ptr; key: __sklib_string): Double; cdecl; external;
+function __sklib__json_read_number_as_int__json__string(j: __sklib_ptr; key: __sklib_string): Integer; cdecl; external;
+function __sklib__json_read_object__json__string(j: __sklib_ptr; key: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__json_read_string__json__string(j: __sklib_ptr; key: __sklib_string): __sklib_string; cdecl; external;
+procedure __sklib__json_set_array__json__string__vector_string(j: __sklib_ptr; key: __sklib_string; value: __sklib_vector_string); cdecl; external;
+procedure __sklib__json_set_array__json__string__vector_double(j: __sklib_ptr; key: __sklib_string; value: __sklib_vector_double); cdecl; external;
+procedure __sklib__json_set_array__json__string__vector_bool(j: __sklib_ptr; key: __sklib_string; value: __sklib_vector_bool); cdecl; external;
+procedure __sklib__json_set_array__json__string__vector_json(j: __sklib_ptr; key: __sklib_string; value: __sklib_vector_json); cdecl; external;
+procedure __sklib__json_set_bool__json__string__bool(j: __sklib_ptr; key: __sklib_string; value: LongInt); cdecl; external;
+procedure __sklib__json_set_number__json__string__int(j: __sklib_ptr; key: __sklib_string; value: Integer); cdecl; external;
+procedure __sklib__json_set_number__json__string__double(j: __sklib_ptr; key: __sklib_string; value: Double); cdecl; external;
+procedure __sklib__json_set_number__json__string__float(j: __sklib_ptr; key: __sklib_string; value: Single); cdecl; external;
+procedure __sklib__json_set_object__json__string__json(j: __sklib_ptr; key: __sklib_string; object: __sklib_ptr); cdecl; external;
+procedure __sklib__json_set_string__json__string__string(j: __sklib_ptr; key: __sklib_string; value: __sklib_string); cdecl; external;
+function __sklib__json_to_color__json(j: __sklib_ptr): __sklib_color; cdecl; external;
+procedure __sklib__json_to_file__json__string_ref(j: __sklib_ptr; const filename: __sklib_string); cdecl; external;
+function __sklib__json_to_string__json(j: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__any_key_pressed(): LongInt; cdecl; external;
+procedure __sklib__deregister_callback_on_key_down__key_callback_ptr(callback: KeyCallback); cdecl; external;
+procedure __sklib__deregister_callback_on_key_typed__key_callback_ptr(callback: KeyCallback); cdecl; external;
+procedure __sklib__deregister_callback_on_key_up__key_callback_ptr(callback: KeyCallback); cdecl; external;
+function __sklib__key_down__key_code(key: LongInt): LongInt; cdecl; external;
+function __sklib__key_name__key_code(key: LongInt): __sklib_string; cdecl; external;
+function __sklib__key_released__key_code(key: LongInt): LongInt; cdecl; external;
+function __sklib__key_typed__key_code(key: LongInt): LongInt; cdecl; external;
+function __sklib__key_up__key_code(key: LongInt): LongInt; cdecl; external;
+procedure __sklib__register_callback_on_key_down__key_callback_ptr(callback: KeyCallback); cdecl; external;
+procedure __sklib__register_callback_on_key_typed__key_callback_ptr(callback: KeyCallback); cdecl; external;
+procedure __sklib__register_callback_on_key_up__key_callback_ptr(callback: KeyCallback); cdecl; external;
+procedure __sklib__draw_line__color__line_ref(clr: __sklib_color; const l: __sklib_line); cdecl; external;
+procedure __sklib__draw_line__color__line_ref__drawing_options(clr: __sklib_color; const l: __sklib_line; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_line__color__point_2d_ref__point_2d_ref(clr: __sklib_color; const fromPt: __sklib_point_2d; const toPt: __sklib_point_2d); cdecl; external;
+procedure __sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref(clr: __sklib_color; const fromPt: __sklib_point_2d; const toPt: __sklib_point_2d; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_line__color__float__float__float__float(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single); cdecl; external;
+procedure __sklib__draw_line__color__float__float__float__float__drawing_options_ref(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single; const opts: __sklib_drawing_options); cdecl; external;
+function __sklib__closest_point_on_line__point_2d__line_ref(fromPt: __sklib_point_2d; const l: __sklib_line): __sklib_point_2d; cdecl; external;
+function __sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref(fromPt: __sklib_point_2d; const lines: __sklib_vector_line; var lineIdx: Integer): __sklib_point_2d; cdecl; external;
+function __sklib__line_from__point_2d_ref__point_2d_ref(const start: __sklib_point_2d; const end: __sklib_point_2d): __sklib_line; cdecl; external;
+function __sklib__line_from__point_2d_ref__vector_2d_ref(const start: __sklib_point_2d; const offset: __sklib_vector_2d): __sklib_line; cdecl; external;
+function __sklib__line_from__vector_2d_ref(const v: __sklib_vector_2d): __sklib_line; cdecl; external;
+function __sklib__line_from__float__float__float__float(x1: Single; y1: Single; x2: Single; y2: Single): __sklib_line; cdecl; external;
+function __sklib__line_intersection_point__line_ref__line_ref__point_2d_ref(const line1: __sklib_line; const line2: __sklib_line; var pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__line_intersects_circle__line_ref__circle_ref(const l: __sklib_line; const c: __sklib_circle): LongInt; cdecl; external;
+function __sklib__line_intersects_lines__line_ref__vector_line_ref(const l: __sklib_line; const lines: __sklib_vector_line): LongInt; cdecl; external;
+function __sklib__line_intersects_rect__line_ref__rectangle_ref(const l: __sklib_line; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__line_length__line_ref(const l: __sklib_line): Single; cdecl; external;
+function __sklib__line_length_squared__line_ref(const l: __sklib_line): Single; cdecl; external;
+function __sklib__line_mid_point__line_ref(const l: __sklib_line): __sklib_point_2d; cdecl; external;
+function __sklib__line_normal__line_ref(const l: __sklib_line): __sklib_vector_2d; cdecl; external;
+function __sklib__line_to_string__line_ref(const ln: __sklib_line): __sklib_string; cdecl; external;
+function __sklib__lines_from__rectangle_ref(const rect: __sklib_rectangle): __sklib_vector_line; cdecl; external;
+function __sklib__lines_from__triangle_ref(const t: __sklib_triangle): __sklib_vector_line; cdecl; external;
+function __sklib__lines_intersect__line_ref__line_ref(const l1: __sklib_line; const l2: __sklib_line): LongInt; cdecl; external;
+procedure __sklib__apply_matrix__matrix_2d_ref__quad_ref(const matrix: __sklib_matrix_2d; var q: __sklib_quad); cdecl; external;
+procedure __sklib__apply_matrix__matrix_2d_ref__triangle_ref(const m: __sklib_matrix_2d; var tri: __sklib_triangle); cdecl; external;
+function __sklib__identity_matrix(): __sklib_matrix_2d; cdecl; external;
+function __sklib__matrix_inverse__matrix_2d_ref(const m: __sklib_matrix_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__matrix_multiply__matrix_2d_ref__point_2d_ref(const m: __sklib_matrix_2d; const pt: __sklib_point_2d): __sklib_point_2d; cdecl; external;
+function __sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref(const m1: __sklib_matrix_2d; const m2: __sklib_matrix_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(const m: __sklib_matrix_2d; const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__matrix_to_string__matrix_2d_ref(const matrix: __sklib_matrix_2d): __sklib_string; cdecl; external;
+function __sklib__rotation_matrix__float(deg: Single): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_matrix__point_2d_ref(const scale: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_matrix__float(scale: Single): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(const scale: __sklib_point_2d; deg: Single; const translate: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__translation_matrix__point_2d_ref(const pt: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__translation_matrix__float__float(dx: Single; dy: Single): __sklib_matrix_2d; cdecl; external;
+procedure __sklib__hide_mouse(); cdecl; external;
+function __sklib__mouse_clicked__mouse_button(button: LongInt): LongInt; cdecl; external;
+function __sklib__mouse_down__mouse_button(button: LongInt): LongInt; cdecl; external;
+function __sklib__mouse_movement(): __sklib_vector_2d; cdecl; external;
+function __sklib__mouse_position(): __sklib_point_2d; cdecl; external;
+function __sklib__mouse_position_vector(): __sklib_vector_2d; cdecl; external;
+function __sklib__mouse_shown(): LongInt; cdecl; external;
+function __sklib__mouse_up__mouse_button(button: LongInt): LongInt; cdecl; external;
+function __sklib__mouse_wheel_scroll(): __sklib_vector_2d; cdecl; external;
+function __sklib__mouse_x(): Single; cdecl; external;
+function __sklib__mouse_y(): Single; cdecl; external;
+procedure __sklib__move_mouse__float__float(x: Single; y: Single); cdecl; external;
+procedure __sklib__move_mouse__point_2d(point: __sklib_point_2d); cdecl; external;
+procedure __sklib__show_mouse(); cdecl; external;
+procedure __sklib__show_mouse__bool(show: LongInt); cdecl; external;
+procedure __sklib__fade_music_in__string_ref__int(const name: __sklib_string; ms: Integer); cdecl; external;
+procedure __sklib__fade_music_in__string_ref__int__int(const name: __sklib_string; times: Integer; ms: Integer); cdecl; external;
+procedure __sklib__fade_music_in__music__int(data: __sklib_ptr; ms: Integer); cdecl; external;
+procedure __sklib__fade_music_in__music__int__int(data: __sklib_ptr; times: Integer; ms: Integer); cdecl; external;
+procedure __sklib__fade_music_out__int(ms: Integer); cdecl; external;
+procedure __sklib__free_all_music(); cdecl; external;
+procedure __sklib__free_music__music(effect: __sklib_ptr); cdecl; external;
+function __sklib__has_music__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__load_music__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__music_filename__music(data: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__music_name__music(data: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__music_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__music_playing(): LongInt; cdecl; external;
+function __sklib__music_volume(): Single; cdecl; external;
+procedure __sklib__pause_music(); cdecl; external;
+procedure __sklib__play_music__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__play_music__string_ref__int(const name: __sklib_string; times: Integer); cdecl; external;
+procedure __sklib__play_music__music(data: __sklib_ptr); cdecl; external;
+procedure __sklib__play_music__music__int(data: __sklib_ptr; times: Integer); cdecl; external;
+procedure __sklib__play_music__music__int__float(data: __sklib_ptr; times: Integer; volume: Single); cdecl; external;
+procedure __sklib__resume_music(); cdecl; external;
+procedure __sklib__set_music_volume__float(volume: Single); cdecl; external;
+procedure __sklib__stop_music(); cdecl; external;
+function __sklib__dec_to_hex__unsigned_int(aDec: Cardinal): __sklib_string; cdecl; external;
+function __sklib__hex_str_to_ipv4__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__hex_to_dec_string__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__ipv4_to_dec__string_ref(const aIp: __sklib_string): Cardinal; cdecl; external;
+function __sklib__ipv4_to_hex__string_ref(const aIp: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__ipv4_to_str__unsigned_int(ip: Cardinal): __sklib_string; cdecl; external;
+function __sklib__my_ip(): __sklib_string; cdecl; external;
+procedure __sklib__draw_pixel__color__point_2d_ref(clr: __sklib_color; const pt: __sklib_point_2d); cdecl; external;
+procedure __sklib__draw_pixel__color__point_2d_ref__drawing_options(clr: __sklib_color; const pt: __sklib_point_2d; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_pixel__color__float__float(clr: __sklib_color; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_pixel__color__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; opts: __sklib_drawing_options); cdecl; external;
+function __sklib__get_pixel__bitmap__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d): __sklib_color; cdecl; external;
+function __sklib__get_pixel__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_color; cdecl; external;
+function __sklib__get_pixel__point_2d_ref(const pt: __sklib_point_2d): __sklib_color; cdecl; external;
+function __sklib__get_pixel__float__float(x: Single; y: Single): __sklib_color; cdecl; external;
+function __sklib__get_pixel__window__point_2d_ref(wnd: __sklib_ptr; const pt: __sklib_point_2d): __sklib_color; cdecl; external;
+function __sklib__get_pixel__window__float__float(wnd: __sklib_ptr; x: Single; y: Single): __sklib_color; cdecl; external;
+function __sklib__point_at__float__float(x: Single; y: Single): __sklib_point_2d; cdecl; external;
+function __sklib__point_at_origin(): __sklib_point_2d; cdecl; external;
+function __sklib__point_in_circle__point_2d_ref__circle_ref(const pt: __sklib_point_2d; const c: __sklib_circle): LongInt; cdecl; external;
+function __sklib__point_in_quad__point_2d_ref__quad_ref(const pt: __sklib_point_2d; const q: __sklib_quad): LongInt; cdecl; external;
+function __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__point_in_triangle__point_2d_ref__triangle_ref(const pt: __sklib_point_2d; const tri: __sklib_triangle): LongInt; cdecl; external;
+function __sklib__point_line_distance__point_2d_ref__line_ref(const pt: __sklib_point_2d; const l: __sklib_line): Single; cdecl; external;
+function __sklib__point_offset_by__point_2d_ref__vector_2d_ref(const startPoint: __sklib_point_2d; const offset: __sklib_vector_2d): __sklib_point_2d; cdecl; external;
+function __sklib__point_offset_from_origin__vector_2d_ref(const offset: __sklib_vector_2d): __sklib_point_2d; cdecl; external;
+function __sklib__point_on_line__point_2d_ref__line_ref(const pt: __sklib_point_2d; const l: __sklib_line): LongInt; cdecl; external;
+function __sklib__point_on_line__point_2d_ref__line_ref__float(const pt: __sklib_point_2d; const l: __sklib_line; proximity: Single): LongInt; cdecl; external;
+function __sklib__point_point_angle__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): Single; cdecl; external;
+function __sklib__point_point_distance__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): Single; cdecl; external;
+function __sklib__point_to_string__point_2d_ref(const pt: __sklib_point_2d): __sklib_string; cdecl; external;
+function __sklib__random_bitmap_point__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__random_screen_point(): __sklib_point_2d; cdecl; external;
+function __sklib__random_window_point__window(wind: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__same_point__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref(const p1: __sklib_point_2d; const p2: __sklib_point_2d; const p3: __sklib_point_2d; const p4: __sklib_point_2d): __sklib_quad; cdecl; external;
+function __sklib__quad_from__rectangle_ref(const rect: __sklib_rectangle): __sklib_quad; cdecl; external;
+function __sklib__quad_from__rectangle_ref__matrix_2d_ref(const rect: __sklib_rectangle; const transform: __sklib_matrix_2d): __sklib_quad; cdecl; external;
+function __sklib__quad_from__float__float__float__float__float__float__float__float(xTopLeft: Single; yTopLeft: Single; xTopRight: Single; yTopRight: Single; xBottomLeft: Single; yBottomLeft: Single; xBottomRight: Single; yBottomRight: Single): __sklib_quad; cdecl; external;
+function __sklib__quads_intersect__quad_ref__quad_ref(const q1: __sklib_quad; const q2: __sklib_quad): LongInt; cdecl; external;
+procedure __sklib__set_quad_point__quad_ref__int__point_2d_ref(var q: __sklib_quad; idx: Integer; const value: __sklib_point_2d); cdecl; external;
+function __sklib__triangles_from__quad_ref(const q: __sklib_quad): __sklib_vector_triangle; cdecl; external;
+function __sklib__rnd(): Single; cdecl; external;
+function __sklib__rnd__int(ubound: Integer): Integer; cdecl; external;
+procedure __sklib__draw_quad__color__quad_ref(clr: __sklib_color; const q: __sklib_quad); cdecl; external;
+procedure __sklib__draw_quad__color__quad_ref__drawing_options_ref(clr: __sklib_color; const q: __sklib_quad; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_rectangle__color__rectangle_ref(clr: __sklib_color; const rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref(clr: __sklib_color; const rect: __sklib_rectangle; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_rectangle__color__float__float__float__float(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single); cdecl; external;
+procedure __sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_quad__color__quad_ref(clr: __sklib_color; const q: __sklib_quad); cdecl; external;
+procedure __sklib__fill_quad__color__quad_ref__drawing_options_ref(clr: __sklib_color; const q: __sklib_quad; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_rectangle__color__rectangle_ref(clr: __sklib_color; const rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref(clr: __sklib_color; const rect: __sklib_rectangle; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_rectangle__color__float__float__float__float(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single); cdecl; external;
+procedure __sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref(clr: __sklib_color; x: Single; y: Single; width: Single; height: Single; const opts: __sklib_drawing_options); cdecl; external;
+function __sklib__inset_rectangle__rectangle_ref__float(const rect: __sklib_rectangle; insetAmount: Single): __sklib_rectangle; cdecl; external;
+function __sklib__intersection__rectangle_ref__rectangle_ref(const rect1: __sklib_rectangle; const rect2: __sklib_rectangle): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_around__triangle_ref(const t: __sklib_triangle): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_around__circle_ref(const c: __sklib_circle): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_around__line_ref(const l: __sklib_line): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_bottom__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_center__rectangle_ref(const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
+function __sklib__rectangle_from__point_2d__float__float(pt: __sklib_point_2d; width: Single; height: Single): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_from__point_2d__point_2d(pt1: __sklib_point_2d; pt2: __sklib_point_2d): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_from__float__float__float__float(x: Single; y: Single; width: Single; height: Single): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_left__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(const rect: __sklib_rectangle; const offset: __sklib_vector_2d): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_right__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_to_string__rectangle_ref(const rect: __sklib_rectangle): __sklib_string; cdecl; external;
+function __sklib__rectangle_top__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangles_intersect__rectangle_ref__rectangle_ref(const rect1: __sklib_rectangle; const rect2: __sklib_rectangle): LongInt; cdecl; external;
+procedure __sklib__deregister_free_notifier__free_notifier_ptr(handler: FreeNotifier); cdecl; external;
+function __sklib__path_to_resource__string_ref__resource_kind(const filename: __sklib_string; kind: LongInt): __sklib_string; cdecl; external;
+function __sklib__path_to_resources(): __sklib_string; cdecl; external;
+function __sklib__path_to_resources__resource_kind(kind: LongInt): __sklib_string; cdecl; external;
+procedure __sklib__register_free_notifier__free_notifier_ptr(fn: FreeNotifier); cdecl; external;
+procedure __sklib__set_resources_path__string_ref(const path: __sklib_string); cdecl; external;
+procedure __sklib__fade_all_sound_effects_out__int(ms: Integer); cdecl; external;
+procedure __sklib__fade_sound_effect_out__sound_effect__int(effect: __sklib_ptr; ms: Integer); cdecl; external;
+procedure __sklib__free_all_sound_effects(); cdecl; external;
+procedure __sklib__free_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; external;
+function __sklib__has_sound_effect__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__load_sound_effect__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__play_sound_effect__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__play_sound_effect__string_ref__float(const name: __sklib_string; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__string_ref__int(const name: __sklib_string; times: Integer); cdecl; external;
+procedure __sklib__play_sound_effect__string_ref__int__float(const name: __sklib_string; times: Integer; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect__float(effect: __sklib_ptr; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect__int(effect: __sklib_ptr; times: Integer); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect__int__float(effect: __sklib_ptr; times: Integer; volume: Single); cdecl; external;
+function __sklib__sound_effect_filename__sound_effect(effect: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__sound_effect_name__sound_effect(effect: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__sound_effect_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__sound_effect_playing__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__sound_effect_playing__sound_effect(effect: __sklib_ptr): LongInt; cdecl; external;
+procedure __sklib__stop_sound_effect__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__stop_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; external;
+procedure __sklib__call_for_all_sprites__sprite_float_function_ptr__float(fn: SpriteFloatFunction; val: Single); cdecl; external;
+procedure __sklib__call_for_all_sprites__sprite_function_ptr(fn: SpriteFunction); cdecl; external;
+procedure __sklib__call_on_sprite_event__sprite_event_handler_ptr(handler: SpriteEventHandler); cdecl; external;
+function __sklib__center_point__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__create_sprite__bitmap(layer: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__create_sprite__bitmap__animation_script(layer: __sklib_ptr; ani: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__create_sprite__string_ref(const bitmapName: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__create_sprite__string_ref__bitmap(const name: __sklib_string; layer: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__create_sprite__string_ref__bitmap__animation_script(const name: __sklib_string; layer: __sklib_ptr; ani: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__create_sprite__string_ref__string_ref(const bitmapName: __sklib_string; const animationName: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__create_sprite_pack__string_ref(const name: __sklib_string); cdecl; external;
+function __sklib__current_sprite_pack(): __sklib_string; cdecl; external;
+procedure __sklib__draw_all_sprites(); cdecl; external;
+procedure __sklib__draw_sprite__sprite__vector_2d_ref(s: __sklib_ptr; const offset: __sklib_vector_2d); cdecl; external;
+procedure __sklib__draw_sprite__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__draw_sprite__sprite__float__float(s: __sklib_ptr; xOffset: Single; yOffset: Single); cdecl; external;
+procedure __sklib__free_all_sprites(); cdecl; external;
+procedure __sklib__free_sprite__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__free_sprite_pack__string_ref(const name: __sklib_string); cdecl; external;
+function __sklib__has_sprite__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__has_sprite_pack__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__move_sprite__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__move_sprite__sprite__vector_2d_ref(s: __sklib_ptr; const distance: __sklib_vector_2d); cdecl; external;
+procedure __sklib__move_sprite__sprite__vector_2d_ref__float(s: __sklib_ptr; const distance: __sklib_vector_2d; pct: Single); cdecl; external;
+procedure __sklib__move_sprite__sprite__float(s: __sklib_ptr; pct: Single); cdecl; external;
+procedure __sklib__move_sprite_to__sprite__float__float(s: __sklib_ptr; x: Single; y: Single); cdecl; external;
+procedure __sklib__select_sprite_pack__string_ref(const name: __sklib_string); cdecl; external;
+function __sklib__sprite_add_layer__sprite__bitmap__string_ref(s: __sklib_ptr; newLayer: __sklib_ptr; const layerName: __sklib_string): Integer; cdecl; external;
+procedure __sklib__sprite_add_to_velocity__sprite__vector_2d_ref(s: __sklib_ptr; const value: __sklib_vector_2d); cdecl; external;
+procedure __sklib__sprite_add_value__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string); cdecl; external;
+procedure __sklib__sprite_add_value__sprite__string_ref__float(s: __sklib_ptr; const name: __sklib_string; initVal: Single); cdecl; external;
+function __sklib__sprite_anchor_point__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__sprite_anchor_position__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
+function __sklib__sprite_animation_has_ended__sprite(s: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__sprite_animation_name__sprite(s: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__sprite_at__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d): LongInt; cdecl; external;
+procedure __sklib__sprite_bring_layer_forward__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
+procedure __sklib__sprite_bring_layer_to_front__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
+procedure __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(s: __sklib_ptr; handler: SpriteEventHandler); cdecl; external;
+function __sklib__sprite_circle__sprite(s: __sklib_ptr): __sklib_circle; cdecl; external;
+function __sklib__sprite_collision_bitmap__sprite(s: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__sprite_collision_circle__sprite(s: __sklib_ptr): __sklib_circle; cdecl; external;
+function __sklib__sprite_collision_kind__sprite(s: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__sprite_collision_rectangle__sprite(s: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__sprite_current_cell__sprite(s: __sklib_ptr): Integer; cdecl; external;
+function __sklib__sprite_current_cell_rectangle__sprite(s: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__sprite_dx__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_dy__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_has_value__sprite__string(s: __sklib_ptr; name: __sklib_string): LongInt; cdecl; external;
+function __sklib__sprite_heading__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_height__sprite(s: __sklib_ptr): Integer; cdecl; external;
+procedure __sklib__sprite_hide_layer__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string); cdecl; external;
+procedure __sklib__sprite_hide_layer__sprite__int(s: __sklib_ptr; id: Integer); cdecl; external;
+function __sklib__sprite_layer__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__sprite_layer__sprite__int(s: __sklib_ptr; idx: Integer): __sklib_ptr; cdecl; external;
+function __sklib__sprite_layer_circle__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): __sklib_circle; cdecl; external;
+function __sklib__sprite_layer_circle__sprite__int(s: __sklib_ptr; idx: Integer): __sklib_circle; cdecl; external;
+function __sklib__sprite_layer_count__sprite(s: __sklib_ptr): Integer; cdecl; external;
+function __sklib__sprite_layer_height__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__sprite_layer_height__sprite__int(s: __sklib_ptr; idx: Integer): Integer; cdecl; external;
+function __sklib__sprite_layer_index__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__sprite_layer_name__sprite__int(s: __sklib_ptr; idx: Integer): __sklib_string; cdecl; external;
+function __sklib__sprite_layer_offset__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): __sklib_vector_2d; cdecl; external;
+function __sklib__sprite_layer_offset__sprite__int(s: __sklib_ptr; idx: Integer): __sklib_vector_2d; cdecl; external;
+function __sklib__sprite_layer_rectangle__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): __sklib_rectangle; cdecl; external;
+function __sklib__sprite_layer_rectangle__sprite__int(s: __sklib_ptr; idx: Integer): __sklib_rectangle; cdecl; external;
+function __sklib__sprite_layer_width__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__sprite_layer_width__sprite__int(s: __sklib_ptr; idx: Integer): Integer; cdecl; external;
+function __sklib__sprite_location_matrix__sprite(s: __sklib_ptr): __sklib_matrix_2d; cdecl; external;
+function __sklib__sprite_mass__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_move_from_anchor_point__sprite(s: __sklib_ptr): LongInt; cdecl; external;
+procedure __sklib__sprite_move_to__sprite__point_2d_ref__float(s: __sklib_ptr; const pt: __sklib_point_2d; takingSeconds: Single); cdecl; external;
+function __sklib__sprite_name__sprite(s: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__sprite_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__sprite_offscreen__sprite(s: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__sprite_on_screen_at__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__sprite_on_screen_at__sprite__float__float(s: __sklib_ptr; x: Single; y: Single): LongInt; cdecl; external;
+function __sklib__sprite_position__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
+procedure __sklib__sprite_replay_animation__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__sprite_replay_animation__sprite__bool(s: __sklib_ptr; withSound: LongInt); cdecl; external;
+function __sklib__sprite_rotation__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_scale__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_screen_rectangle__sprite(s: __sklib_ptr): __sklib_rectangle; cdecl; external;
+procedure __sklib__sprite_send_layer_backward__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
+procedure __sklib__sprite_send_layer_to_back__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
+procedure __sklib__sprite_set_anchor_point__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d); cdecl; external;
+procedure __sklib__sprite_set_collision_bitmap__sprite__bitmap(s: __sklib_ptr; bmp: __sklib_ptr); cdecl; external;
+procedure __sklib__sprite_set_collision_kind__sprite__collision_test_kind(s: __sklib_ptr; value: LongInt); cdecl; external;
+procedure __sklib__sprite_set_dx__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_dy__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_heading__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref(s: __sklib_ptr; const name: __sklib_string; const value: __sklib_vector_2d); cdecl; external;
+procedure __sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref(s: __sklib_ptr; idx: Integer; const value: __sklib_vector_2d); cdecl; external;
+procedure __sklib__sprite_set_mass__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_move_from_anchor_point__sprite__bool(s: __sklib_ptr; value: LongInt); cdecl; external;
+procedure __sklib__sprite_set_position__sprite__point_2d_ref(s: __sklib_ptr; const value: __sklib_point_2d); cdecl; external;
+procedure __sklib__sprite_set_rotation__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_scale__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_speed__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_value__sprite__string_ref__float(s: __sklib_ptr; const name: __sklib_string; val: Single); cdecl; external;
+procedure __sklib__sprite_set_velocity__sprite__vector_2d_ref(s: __sklib_ptr; const value: __sklib_vector_2d); cdecl; external;
+procedure __sklib__sprite_set_x__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_y__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+function __sklib__sprite_show_layer__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__sprite_show_layer__sprite__int(s: __sklib_ptr; id: Integer): Integer; cdecl; external;
+function __sklib__sprite_speed__sprite(s: __sklib_ptr): Single; cdecl; external;
+procedure __sklib__sprite_start_animation__sprite__string_ref(s: __sklib_ptr; const named: __sklib_string); cdecl; external;
+procedure __sklib__sprite_start_animation__sprite__string_ref__bool(s: __sklib_ptr; const named: __sklib_string; withSound: LongInt); cdecl; external;
+procedure __sklib__sprite_start_animation__sprite__int(s: __sklib_ptr; idx: Integer); cdecl; external;
+procedure __sklib__sprite_start_animation__sprite__int__bool(s: __sklib_ptr; idx: Integer; withSound: LongInt); cdecl; external;
+procedure __sklib__sprite_stop_calling_on_event__sprite__sprite_event_handler_ptr(s: __sklib_ptr; handler: SpriteEventHandler); cdecl; external;
+procedure __sklib__sprite_toggle_layer_visible__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string); cdecl; external;
+procedure __sklib__sprite_toggle_layer_visible__sprite__int(s: __sklib_ptr; id: Integer); cdecl; external;
+function __sklib__sprite_value__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Single; cdecl; external;
+function __sklib__sprite_value_count__sprite(s: __sklib_ptr): Integer; cdecl; external;
+function __sklib__sprite_velocity__sprite(s: __sklib_ptr): __sklib_vector_2d; cdecl; external;
+function __sklib__sprite_visible_index_of_layer__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
+function __sklib__sprite_visible_index_of_layer__sprite__int(s: __sklib_ptr; id: Integer): Integer; cdecl; external;
+function __sklib__sprite_visible_layer__sprite__int(s: __sklib_ptr; idx: Integer): Integer; cdecl; external;
+function __sklib__sprite_visible_layer_count__sprite(s: __sklib_ptr): Integer; cdecl; external;
+function __sklib__sprite_visible_layer_id__sprite__int(s: __sklib_ptr; idx: Integer): Integer; cdecl; external;
+function __sklib__sprite_width__sprite(s: __sklib_ptr): Integer; cdecl; external;
+function __sklib__sprite_x__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_y__sprite(s: __sklib_ptr): Single; cdecl; external;
+procedure __sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr(handler: SpriteEventHandler); cdecl; external;
+procedure __sklib__update_all_sprites(); cdecl; external;
+procedure __sklib__update_all_sprites__float(pct: Single); cdecl; external;
+procedure __sklib__update_sprite__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__update_sprite__sprite__bool(s: __sklib_ptr; withSound: LongInt); cdecl; external;
+procedure __sklib__update_sprite__sprite__float(s: __sklib_ptr; pct: Single); cdecl; external;
+procedure __sklib__update_sprite__sprite__float__bool(s: __sklib_ptr; pct: Single; withSound: LongInt); cdecl; external;
+procedure __sklib__update_sprite_animation__sprite(s: __sklib_ptr); cdecl; external;
+procedure __sklib__update_sprite_animation__sprite__bool(s: __sklib_ptr; withSound: LongInt); cdecl; external;
+procedure __sklib__update_sprite_animation__sprite__float(s: __sklib_ptr; pct: Single); cdecl; external;
+procedure __sklib__update_sprite_animation__sprite__float__bool(s: __sklib_ptr; pct: Single; withSound: LongInt); cdecl; external;
+function __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_from_to__sprite__sprite(s1: __sklib_ptr; s2: __sklib_ptr): __sklib_vector_2d; cdecl; external;
+procedure __sklib__activate_advanced_terminal(); cdecl; external;
+function __sklib__advanced_terminal_active(): LongInt; cdecl; external;
+procedure __sklib__clear_terminal(); cdecl; external;
+procedure __sklib__end_advanced_terminal(); cdecl; external;
+procedure __sklib__move_cursor_to__int__int(x: Integer; y: Integer); cdecl; external;
+function __sklib__read_char(): Char; cdecl; external;
+function __sklib__read_line(): __sklib_string; cdecl; external;
+procedure __sklib__refresh_terminal(); cdecl; external;
+procedure __sklib__set_terminal_bold__bool(value: LongInt); cdecl; external;
+procedure __sklib__set_terminal_colors__color__color(foreground: __sklib_color; background: __sklib_color); cdecl; external;
+procedure __sklib__set_terminal_echo_input__bool(value: LongInt); cdecl; external;
+function __sklib__terminal_height(): Integer; cdecl; external;
+function __sklib__terminal_width(): Integer; cdecl; external;
+procedure __sklib__write__string(text: __sklib_string); cdecl; external;
+procedure __sklib__write_at__string__int__int(text: __sklib_string; x: Integer; y: Integer); cdecl; external;
+procedure __sklib__write_line(); cdecl; external;
+procedure __sklib__write_line__string(line: __sklib_string); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__string_ref__int__float__float(const text: __sklib_string; const clr: __sklib_color; const fnt: __sklib_string; fontSize: Integer; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(const text: __sklib_string; const clr: __sklib_color; const fnt: __sklib_string; fontSize: Integer; x: Single; y: Single; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__float__float(const text: __sklib_string; const clr: __sklib_color; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref(const text: __sklib_string; const clr: __sklib_color; x: Single; y: Single; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__font__int__float__float(const text: __sklib_string; const clr: __sklib_color; fnt: __sklib_ptr; fontSize: Integer; x: Single; y: Single); cdecl; external;
+procedure __sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref(const text: __sklib_string; const clr: __sklib_color; fnt: __sklib_ptr; fontSize: Integer; x: Single; y: Single; const opts: __sklib_drawing_options); cdecl; external;
+function __sklib__font_has_size__string_ref__int(const name: __sklib_string; fontSize: Integer): LongInt; cdecl; external;
+function __sklib__font_has_size__font__int(fnt: __sklib_ptr; fontSize: Integer): LongInt; cdecl; external;
+procedure __sklib__font_load_size__string_ref__int(const name: __sklib_string; fontSize: Integer); cdecl; external;
+procedure __sklib__font_load_size__font__int(fnt: __sklib_ptr; fontSize: Integer); cdecl; external;
+function __sklib__font_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_fonts(); cdecl; external;
+procedure __sklib__free_font__font(fnt: __sklib_ptr); cdecl; external;
+function __sklib__get_font_style__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__get_font_style__font(fnt: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__has_font__font(fnt: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__has_font__string(name: __sklib_string): LongInt; cdecl; external;
+function __sklib__load_font__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__set_font_style__string_ref__font_style(const name: __sklib_string; style: LongInt); cdecl; external;
+procedure __sklib__set_font_style__font__font_style(fnt: __sklib_ptr; style: LongInt); cdecl; external;
+function __sklib__text_height__string_ref__string_ref__int(const text: __sklib_string; const fnt: __sklib_string; fontSize: Integer): Integer; cdecl; external;
+function __sklib__text_height__string_ref__font__int(const text: __sklib_string; fnt: __sklib_ptr; fontSize: Integer): Integer; cdecl; external;
+function __sklib__text_width__string_ref__string_ref__int(const text: __sklib_string; const fnt: __sklib_string; fontSize: Integer): Integer; cdecl; external;
+function __sklib__text_width__string_ref__font__int(const text: __sklib_string; fnt: __sklib_ptr; fontSize: Integer): Integer; cdecl; external;
+procedure __sklib__draw_collected_text__color__font__int__drawing_options_ref(clr: __sklib_color; fnt: __sklib_ptr; fontSize: Integer; const opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__end_reading_text(); cdecl; external;
+procedure __sklib__end_reading_text__window(wind: __sklib_ptr); cdecl; external;
+function __sklib__reading_text(): LongInt; cdecl; external;
+function __sklib__reading_text__window(wind: __sklib_ptr): LongInt; cdecl; external;
+procedure __sklib__start_reading_text__rectangle(rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__start_reading_text__rectangle__string(rect: __sklib_rectangle; initialText: __sklib_string); cdecl; external;
+procedure __sklib__start_reading_text__window__rectangle(wind: __sklib_ptr; rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__start_reading_text__window__rectangle__string(wind: __sklib_ptr; rect: __sklib_rectangle; initialText: __sklib_string); cdecl; external;
+function __sklib__text_entry_cancelled(): LongInt; cdecl; external;
+function __sklib__text_entry_cancelled__window(wind: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__text_input(): __sklib_string; cdecl; external;
+function __sklib__text_input__window(wind: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__create_timer__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+procedure __sklib__free_all_timers(); cdecl; external;
+procedure __sklib__free_timer__timer(toFree: __sklib_ptr); cdecl; external;
+function __sklib__has_timer__string(name: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__pause_timer__string(name: __sklib_string); cdecl; external;
+procedure __sklib__pause_timer__timer(toPause: __sklib_ptr); cdecl; external;
+procedure __sklib__reset_timer__string(name: __sklib_string); cdecl; external;
+procedure __sklib__reset_timer__timer(tmr: __sklib_ptr); cdecl; external;
+procedure __sklib__resume_timer__string(name: __sklib_string); cdecl; external;
+procedure __sklib__resume_timer__timer(toResume: __sklib_ptr); cdecl; external;
+procedure __sklib__start_timer__string(name: __sklib_string); cdecl; external;
+procedure __sklib__start_timer__timer(toStart: __sklib_ptr); cdecl; external;
+procedure __sklib__stop_timer__string(name: __sklib_string); cdecl; external;
+procedure __sklib__stop_timer__timer(toStop: __sklib_ptr); cdecl; external;
+function __sklib__timer_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__timer_paused__string(name: __sklib_string): LongInt; cdecl; external;
+function __sklib__timer_paused__timer(toGet: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__timer_started__string(name: __sklib_string): LongInt; cdecl; external;
+function __sklib__timer_started__timer(toGet: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__timer_ticks__string(name: __sklib_string): Cardinal; cdecl; external;
+function __sklib__timer_ticks__timer(toGet: __sklib_ptr): Cardinal; cdecl; external;
+procedure __sklib__draw_triangle__color__triangle_ref(clr: __sklib_color; const tri: __sklib_triangle); cdecl; external;
+procedure __sklib__draw_triangle__color__triangle_ref__drawing_options(clr: __sklib_color; const tri: __sklib_triangle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__draw_triangle__color__float__float__float__float__float__float(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single); cdecl; external;
+procedure __sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_triangle__color__triangle_ref(clr: __sklib_color; const tri: __sklib_triangle); cdecl; external;
+procedure __sklib__fill_triangle__color__triangle_ref__drawing_options(clr: __sklib_color; const tri: __sklib_triangle; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_triangle__color__float__float__float__float__float__float(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single); cdecl; external;
+procedure __sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options(clr: __sklib_color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: __sklib_drawing_options); cdecl; external;
+function __sklib__triangle_barycenter__triangle_ref(const tri: __sklib_triangle): __sklib_point_2d; cdecl; external;
+function __sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref(const p1: __sklib_point_2d; const p2: __sklib_point_2d; const p3: __sklib_point_2d): __sklib_triangle; cdecl; external;
+function __sklib__triangle_from__float__float__float__float__float__float(x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single): __sklib_triangle; cdecl; external;
+function __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(const tri: __sklib_triangle; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__triangle_to_string__triangle_ref(const tri: __sklib_triangle): __sklib_string; cdecl; external;
+function __sklib__triangles_intersect__triangle_ref__triangle_ref(const t1: __sklib_triangle; const t2: __sklib_triangle): LongInt; cdecl; external;
+function __sklib__current_ticks(): Cardinal; cdecl; external;
+procedure __sklib__delay__unsigned_int(milliseconds: Cardinal); cdecl; external;
+function __sklib__file_as_string__string__resource_kind(filename: __sklib_string; kind: LongInt): __sklib_string; cdecl; external;
+function __sklib__angle_between__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__dot_product__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__is_zero_vector__vector_2d_ref(const v: __sklib_vector_2d): LongInt; cdecl; external;
+function __sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref(const fromPt: __sklib_point_2d; const heading: __sklib_vector_2d; const l: __sklib_line; var pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__unit_vector__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_add__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_angle__vector_2d(v: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__vector_from_angle__float__float(angle: Single; magnitude: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_from_line__line_ref(const l: __sklib_line): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref(const pt: __sklib_point_2d; const rect: __sklib_rectangle): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(const v: __sklib_vector_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__vector_invert__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_limit__vector_2d_ref__float(const v: __sklib_vector_2d; limit: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_magnitude__vector_2d_ref(const v: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__vector_magnitude_sqared__vector_2d_ref(const v: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__vector_multiply__vector_2d_ref__float(const v1: __sklib_vector_2d; s: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_normal__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(const src: __sklib_circle; const bounds: __sklib_circle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref(const pt: __sklib_point_2d; const c: __sklib_circle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref(const c: __sklib_circle; const rect: __sklib_rectangle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref(const pt: __sklib_point_2d; const rect: __sklib_rectangle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref(const src: __sklib_rectangle; const bounds: __sklib_rectangle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(const start: __sklib_point_2d; const end: __sklib_point_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_subtract__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_to__point_2d_ref(const p1: __sklib_point_2d): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_to__float__float(x: Single; y: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_to_string__vector_2d_ref(const v: __sklib_vector_2d): __sklib_string; cdecl; external;
+function __sklib__vectors_equal__vector_2d_ref__vector_2d(const v1: __sklib_vector_2d; v2: __sklib_vector_2d): LongInt; cdecl; external;
+function __sklib__vectors_not_equal__vector_2d_ref__vector_2d(const v1: __sklib_vector_2d; v2: __sklib_vector_2d): LongInt; cdecl; external;
+function __sklib__download_bitmap__string_ref__string_ref__unsigned_short(const name: __sklib_string; const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__download_font__string_ref__string_ref__unsigned_short(const name: __sklib_string; const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__download_music__string_ref__string_ref__unsigned_short(const name: __sklib_string; const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__download_sound_effect__string_ref__string_ref__unsigned_short(const name: __sklib_string; const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+procedure __sklib__free_response__http_response(response: __sklib_ptr); cdecl; external;
+function __sklib__http_get__string_ref__unsigned_short(const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__http_post__string_ref__unsigned_short__string(const url: __sklib_string; port: Word; body: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__http_response_to_string__http_response(response: __sklib_ptr): __sklib_string; cdecl; external;
+procedure __sklib__save_response_to_file__http_response__string(response: __sklib_ptr; path: __sklib_string); cdecl; external;
+function __sklib__has_incoming_requests__web_server(server: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__is_delete_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_get_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_options_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_post_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_put_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_request_for__http_request__http_method__string_ref(request: __sklib_ptr; method: LongInt; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_trace_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
+function __sklib__next_web_request__web_server(server: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__request_body__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__request_method__http_request(r: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__request_uri__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__request_uri_stubs__http_request(r: __sklib_ptr): __sklib_vector_string; cdecl; external;
+procedure __sklib__send_html_file_response__http_request__string_ref(r: __sklib_ptr; const filename: __sklib_string); cdecl; external;
+procedure __sklib__send_response__http_request(r: __sklib_ptr); cdecl; external;
+procedure __sklib__send_response__http_request__string_ref(r: __sklib_ptr; const message: __sklib_string); cdecl; external;
+procedure __sklib__send_response__http_request__http_status_code(r: __sklib_ptr; code: LongInt); cdecl; external;
+procedure __sklib__send_response__http_request__http_status_code__string_ref(r: __sklib_ptr; code: LongInt; const message: __sklib_string); cdecl; external;
+procedure __sklib__send_response__http_request__http_status_code__string_ref__string_ref(r: __sklib_ptr; code: LongInt; const message: __sklib_string; const contentType: __sklib_string); cdecl; external;
+procedure __sklib__send_response__http_request__json(r: __sklib_ptr; j: __sklib_ptr); cdecl; external;
+function __sklib__split_uri_stubs__string_ref(const uri: __sklib_string): __sklib_vector_string; cdecl; external;
+function __sklib__start_web_server(): __sklib_ptr; cdecl; external;
+function __sklib__start_web_server__unsigned_short(port: Word): __sklib_ptr; cdecl; external;
+procedure __sklib__stop_web_server__web_server(server: __sklib_ptr); cdecl; external;
+procedure __sklib__clear_window__window__color(wind: __sklib_ptr; clr: __sklib_color); cdecl; external;
+procedure __sklib__close_all_windows(); cdecl; external;
+procedure __sklib__close_window__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__close_window(); cdecl; external;
+procedure __sklib__close_window__window(wind: __sklib_ptr); cdecl; external;
+function __sklib__current_window(): __sklib_ptr; cdecl; external;
+function __sklib__has_window__string(caption: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__move_window__int__int(x: Integer; y: Integer); cdecl; external;
+procedure __sklib__move_window__string_ref__int__int(const name: __sklib_string; x: Integer; y: Integer); cdecl; external;
+procedure __sklib__move_window__window__int__int(wind: __sklib_ptr; x: Integer; y: Integer); cdecl; external;
+function __sklib__open_window__string__int__int(caption: __sklib_string; width: Integer; height: Integer): __sklib_ptr; cdecl; external;
+procedure __sklib__refresh_window__window(wind: __sklib_ptr); cdecl; external;
+procedure __sklib__resize_window__int__int(width: Integer; height: Integer); cdecl; external;
+procedure __sklib__resize_window__window__int__int(wnd: __sklib_ptr; width: Integer; height: Integer); cdecl; external;
+procedure __sklib__set_current_window__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__set_current_window__window(wind: __sklib_ptr); cdecl; external;
+function __sklib__window_close_requested__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__window_close_requested__window(wind: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__window_has_border(): LongInt; cdecl; external;
+function __sklib__window_has_border__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__window_has_border__window(wnd: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__window_height(): Integer; cdecl; external;
+function __sklib__window_height__string_ref(const name: __sklib_string): Integer; cdecl; external;
+function __sklib__window_height__window(wind: __sklib_ptr): Integer; cdecl; external;
+function __sklib__window_is_fullscreen(): LongInt; cdecl; external;
+function __sklib__window_is_fullscreen__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__window_is_fullscreen__window(wnd: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__window_named__string(caption: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__window_position(): __sklib_point_2d; cdecl; external;
+function __sklib__window_position__string_ref(const name: __sklib_string): __sklib_point_2d; cdecl; external;
+function __sklib__window_position__window(wnd: __sklib_ptr): __sklib_point_2d; cdecl; external;
+procedure __sklib__window_set_icon__window__bitmap(wind: __sklib_ptr; bmp: __sklib_ptr); cdecl; external;
+procedure __sklib__window_toggle_border(); cdecl; external;
+procedure __sklib__window_toggle_border__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__window_toggle_border__window(wnd: __sklib_ptr); cdecl; external;
+procedure __sklib__window_toggle_fullscreen(); cdecl; external;
+procedure __sklib__window_toggle_fullscreen__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__window_toggle_fullscreen__window(wnd: __sklib_ptr); cdecl; external;
+function __sklib__window_width(): Integer; cdecl; external;
+function __sklib__window_width__string_ref(const name: __sklib_string): Integer; cdecl; external;
+function __sklib__window_width__window(wind: __sklib_ptr): Integer; cdecl; external;
+function __sklib__window_with_focus(): __sklib_ptr; cdecl; external;
+function __sklib__window_x(): Integer; cdecl; external;
+function __sklib__window_x__string_ref(const name: __sklib_string): Integer; cdecl; external;
+function __sklib__window_x__window(wnd: __sklib_ptr): Integer; cdecl; external;
+function __sklib__window_y(): Integer; cdecl; external;
+function __sklib__window_y__string_ref(const name: __sklib_string): Integer; cdecl; external;
+function __sklib__window_y__window(wnd: __sklib_ptr): Integer; cdecl; external;
+function AnimationCount(script: AnimationScript): Integer;
+var
+  __skparam__script: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skreturn := __sklib__animation_count__animation_script(__skparam__script);
+  result := __skadapter__to_int(__skreturn);
+end;
+function AnimationCurrentCell(anim: Animation): Integer;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__animation_current_cell__animation(__skparam__anim);
+  result := __skadapter__to_int(__skreturn);
+end;
+function AnimationCurrentVector(anim: Animation): Vector2d;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__animation_current_vector__animation(__skparam__anim);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function AnimationEnded(anim: Animation): Boolean;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__animation_ended__animation(__skparam__anim);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function AnimationEnteredFrame(anim: Animation): Boolean;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__animation_entered_frame__animation(__skparam__anim);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function AnimationFrameTime(anim: Animation): Single;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__animation_frame_time__animation(__skparam__anim);
+  result := __skadapter__to_float(__skreturn);
+end;
+function AnimationIndex(script: AnimationScript; const name: String): Integer;
+var
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__animation_index__animation_script__string_ref(__skparam__script, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function AnimationName(temp: Animation): String;
+var
+  __skparam__temp: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__temp := __skadapter__to_sklib_animation(temp);
+  __skreturn := __sklib__animation_name__animation(__skparam__temp);
+  result := __skadapter__to_string(__skreturn);
+end;
+function AnimationScriptName(script: AnimationScript): String;
+var
+  __skparam__script: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skreturn := __sklib__animation_script_name__animation_script(__skparam__script);
+  result := __skadapter__to_string(__skreturn);
+end;
+function AnimationScriptNamed(const name: String): AnimationScript;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__animation_script_named__string_ref(__skparam__name);
+  result := __skadapter__to_animation_script(__skreturn);
+end;
+procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: String);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__assign_animation__animation__animation_script__string_ref(__skparam__anim, __skparam__script, __skparam__name);
+end;
+procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: String; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__assign_animation__animation__animation_script__string_ref__bool(__skparam__anim, __skparam__script, __skparam__name, __skparam__with_sound);
+end;
+procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script: __sklib_ptr;
+  __skparam__idx: Integer;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __sklib__assign_animation__animation__animation_script__int(__skparam__anim, __skparam__script, __skparam__idx);
+end;
+procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__assign_animation__animation__animation_script__int__bool(__skparam__anim, __skparam__script, __skparam__idx, __skparam__with_sound);
+end;
+procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script_name: __sklib_string;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script_name := __skadapter__to_sklib_string(script_name);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__assign_animation__animation__string_ref__string_ref(__skparam__anim, __skparam__script_name, __skparam__name);
+end;
+procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__script_name: __sklib_string;
+  __skparam__name: __sklib_string;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__script_name := __skadapter__to_sklib_string(script_name);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__assign_animation__animation__string_ref__string_ref__bool(__skparam__anim, __skparam__script_name, __skparam__name, __skparam__with_sound);
+end;
+function CreateAnimation(script: AnimationScript; idx: Integer; withSound: Boolean): Animation;
+var
+  __skparam__script: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skparam__with_sound: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __skreturn := __sklib__create_animation__animation_script__int__bool(__skparam__script, __skparam__idx, __skparam__with_sound);
+  result := __skadapter__to_animation(__skreturn);
+end;
+function CreateAnimation(script: AnimationScript; const name: String): Animation;
+var
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__create_animation__animation_script__string_ref(__skparam__script, __skparam__name);
+  result := __skadapter__to_animation(__skreturn);
+end;
+function CreateAnimation(script: AnimationScript; const name: String; withSound: Boolean): Animation;
+var
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__with_sound: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __skreturn := __sklib__create_animation__animation_script__string_ref__bool(__skparam__script, __skparam__name, __skparam__with_sound);
+  result := __skadapter__to_animation(__skreturn);
+end;
+function CreateAnimation(const scriptName: String; const name: String): Animation;
+var
+  __skparam__script_name: __sklib_string;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__script_name := __skadapter__to_sklib_string(script_name);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__create_animation__string_ref__string_ref(__skparam__script_name, __skparam__name);
+  result := __skadapter__to_animation(__skreturn);
+end;
+function CreateAnimation(const scriptName: String; const name: String; withSound: Boolean): Animation;
+var
+  __skparam__script_name: __sklib_string;
+  __skparam__name: __sklib_string;
+  __skparam__with_sound: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__script_name := __skadapter__to_sklib_string(script_name);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __skreturn := __sklib__create_animation__string_ref__string_ref__bool(__skparam__script_name, __skparam__name, __skparam__with_sound);
+  result := __skadapter__to_animation(__skreturn);
+end;
+procedure FreeAllAnimationScripts();
+begin
+  __sklib__free_all_animation_scripts();
+end;
+procedure FreeAnimation(ani: Animation);
+var
+  __skparam__ani: __sklib_ptr;
+begin
+  __skparam__ani := __skadapter__to_sklib_animation(ani);
+  __sklib__free_animation__animation(__skparam__ani);
+end;
+procedure FreeAnimationScript(scriptToFree: AnimationScript);
+var
+  __skparam__script_to_free: __sklib_ptr;
+begin
+  __skparam__script_to_free := __skadapter__to_sklib_animation_script(script_to_free);
+  __sklib__free_animation_script__animation_script(__skparam__script_to_free);
+end;
+procedure FreeAnimationScript(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__free_animation_script__string_ref(__skparam__name);
+end;
+function HasAnimationNamed(script: AnimationScript; const name: String): Boolean;
+var
+  __skparam__script: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__script := __skadapter__to_sklib_animation_script(script);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_animation_named__animation_script__string_ref(__skparam__script, __skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasAnimationScript(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_animation_script__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LoadAnimationScript(const name: String; const filename: String): AnimationScript;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__load_animation_script__string_ref__string_ref(__skparam__name, __skparam__filename);
+  result := __skadapter__to_animation_script(__skreturn);
+end;
+procedure RestartAnimation(anim: Animation);
+var
+  __skparam__anim: __sklib_ptr;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __sklib__restart_animation__animation(__skparam__anim);
+end;
+procedure RestartAnimation(anim: Animation; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__restart_animation__animation__bool(__skparam__anim, __skparam__with_sound);
+end;
+procedure UpdateAnimation(anim: Animation; pct: Single; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__pct: Single;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__update_animation__animation__float__bool(__skparam__anim, __skparam__pct, __skparam__with_sound);
+end;
+procedure UpdateAnimation(anim: Animation);
+var
+  __skparam__anim: __sklib_ptr;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __sklib__update_animation__animation(__skparam__anim);
+end;
+procedure UpdateAnimation(anim: Animation; pct: Single);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__pct: Single;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__update_animation__animation__float(__skparam__anim, __skparam__pct);
+end;
+function AudioReady(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__audio_ready();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure CloseAudio();
+begin
+  __sklib__close_audio();
+end;
+procedure OpenAudio();
+begin
+  __sklib__open_audio();
+end;
+procedure FreeResourceBundle(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__free_resource_bundle__string(__skparam__name);
+end;
+function HasResourceBundle(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_resource_bundle__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure LoadResourceBundle(const name: String; const filename: String);
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __sklib__load_resource_bundle__string_ref__string_ref(__skparam__name, __skparam__filename);
+end;
+function CameraPosition(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__camera_position();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function CameraX(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__camera_x();
+  result := __skadapter__to_float(__skreturn);
+end;
+function CameraY(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__camera_y();
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure CenterCameraOn(s: Sprite; const offset: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__offset: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __sklib__center_camera_on__sprite__vector_2d_ref(__skparam__s, __skparam__offset);
+end;
+procedure CenterCameraOn(s: Sprite; offsetX: Single; offsetY: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__offset_x: Single;
+  __skparam__offset_y: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__offset_x := __skadapter__to_sklib_float(offset_x);
+  __skparam__offset_y := __skadapter__to_sklib_float(offset_y);
+  __sklib__center_camera_on__sprite__float__float(__skparam__s, __skparam__offset_x, __skparam__offset_y);
+end;
+procedure MoveCameraBy(const offset: Vector2d);
+var
+  __skparam__offset: __sklib_vector_2d;
+begin
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __sklib__move_camera_by__vector_2d_ref(__skparam__offset);
+end;
+procedure MoveCameraBy(dx: Single; dy: Single);
+var
+  __skparam__dx: Single;
+  __skparam__dy: Single;
+begin
+  __skparam__dx := __skadapter__to_sklib_float(dx);
+  __skparam__dy := __skadapter__to_sklib_float(dy);
+  __sklib__move_camera_by__float__float(__skparam__dx, __skparam__dy);
+end;
+procedure MoveCameraTo(const pt: Point2d);
+var
+  __skparam__pt: __sklib_point_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __sklib__move_camera_to__point_2d_ref(__skparam__pt);
+end;
+procedure MoveCameraTo(x: Single; y: Single);
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__move_camera_to__float__float(__skparam__x, __skparam__y);
+end;
+function PointOnScreen(const pt: Point2d): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__point_on_screen__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function RectOnScreen(const rect: Rectangle): Boolean;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rect_on_screen__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ScreenCenter(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__screen_center();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ScreenRectangle(): Rectangle;
+var
+  __skreturn: __sklib_rectangle;
+begin
+  __skreturn := __sklib__screen_rectangle();
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+procedure SetCameraPosition(pos: Point2d);
+var
+  __skparam__pos: __sklib_point_2d;
+begin
+  __skparam__pos := __skadapter__to_sklib_point_2d(pos);
+  __sklib__set_camera_position__point_2d(__skparam__pos);
+end;
+procedure SetCameraY(y: Single);
+var
+  __skparam__y: Single;
+begin
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__set_camera_y__float(__skparam__y);
+end;
+function ToScreen(const pt: Point2d): Point2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__to_screen__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ToScreen(const rect: Rectangle): Rectangle;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__to_screen__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function ToScreenX(worldX: Single): Single;
+var
+  __skparam__world_x: Single;
+  __skreturn: Single;
+begin
+  __skparam__world_x := __skadapter__to_sklib_float(world_x);
+  __skreturn := __sklib__to_screen_x__float(__skparam__world_x);
+  result := __skadapter__to_float(__skreturn);
+end;
+function ToScreenY(worldY: Single): Single;
+var
+  __skparam__world_y: Single;
+  __skreturn: Single;
+begin
+  __skparam__world_y := __skadapter__to_sklib_float(world_y);
+  __skreturn := __sklib__to_screen_y__float(__skparam__world_y);
+  result := __skadapter__to_float(__skreturn);
+end;
+function ToWorld(const pt: Point2d): Point2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__to_world__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ToWorldX(screenX: Single): Single;
+var
+  __skparam__screen_x: Single;
+  __skreturn: Single;
+begin
+  __skparam__screen_x := __skadapter__to_sklib_float(screen_x);
+  __skreturn := __sklib__to_world_x__float(__skparam__screen_x);
+  result := __skadapter__to_float(__skreturn);
+end;
+function ToWorldY(screenY: Single): Single;
+var
+  __skparam__screen_y: Single;
+  __skreturn: Single;
+begin
+  __skparam__screen_y := __skadapter__to_sklib_float(screen_y);
+  __skreturn := __sklib__to_world_y__float(__skparam__screen_y);
+  result := __skadapter__to_float(__skreturn);
+end;
+function VectorWorldToScreen(): Vector2d;
+var
+  __skreturn: __sklib_vector_2d;
+begin
+  __skreturn := __sklib__vector_world_to_screen();
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+procedure DrawCircle(clr: Color; const c: Circle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__c: __sklib_circle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __sklib__draw_circle__color__circle_ref(__skparam__clr, __skparam__c);
+end;
+procedure DrawCircle(clr: Color; const c: Circle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__c: __sklib_circle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts);
+end;
+procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __sklib__draw_circle__color__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
+procedure FillCircle(clr: Color; const c: Circle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__c: __sklib_circle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __sklib__fill_circle__color__circle_ref(__skparam__clr, __skparam__c);
+end;
+procedure FillCircle(clr: Color; const c: Circle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__c: __sklib_circle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts);
+end;
+procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __sklib__fill_circle__color__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
+function CenterPoint(const c: Circle): Point2d;
+var
+  __skparam__c: __sklib_circle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__center_point__circle_ref(__skparam__c);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function CircleAt(const pt: Point2d; radius: Single): Circle;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__radius: Single;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skreturn := __sklib__circle_at__point_2d_ref__float(__skparam__pt, __skparam__radius);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function CircleAt(x: Single; y: Single; radius: Single): Circle;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skreturn := __sklib__circle_at__float__float__float(__skparam__x, __skparam__y, __skparam__radius);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function CircleRadius(c: Circle): Single;
+var
+  __skparam__c: __sklib_circle;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__circle_radius__circle(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function CircleX(const c: Circle): Single;
+var
+  __skparam__c: __sklib_circle;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__circle_x__circle_ref(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function CircleY(const c: Circle): Single;
+var
+  __skparam__c: __sklib_circle;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__circle_y__circle_ref(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function CirclesIntersect(c1: Circle; c2: Circle): Boolean;
+var
+  __skparam__c1: __sklib_circle;
+  __skparam__c2: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__c1 := __skadapter__to_sklib_circle(c1);
+  __skparam__c2 := __skadapter__to_sklib_circle(c2);
+  __skreturn := __sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ClosestPointOnCircle(const fromPt: Point2d; const c: Circle): Point2d;
+var
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__closest_point_on_circle__point_2d_ref__circle_ref(__skparam__from_pt, __skparam__c);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2d;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(__skparam__c, __skparam__l);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2d;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(__skparam__c, __skparam__rect);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function DistantPointOnCircle(const pt: Point2d; const c: Circle): Point2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__distant_point_on_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function DistantPointOnCircleHeading(const pt: Point2d; const c: Circle; const heading: Vector2d; var oppositePt: Point2d): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skparam__heading: __sklib_vector_2d;
+  __skparam__opposite_pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__heading := __skadapter__to_sklib_vector_2d(heading);
+  __skparam__opposite_pt := __skadapter__to_sklib_point_2d(opposite_pt);
+  __skreturn := __sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref(__skparam__pt, __skparam__c, __skparam__heading, __skparam__opposite_pt);
+  opposite_pt := __skadapter__to_point_2d(__skparam__opposite_pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function RayCircleIntersectDistance(const rayOrigin: Point2d; const rayHeading: Vector2d; const c: Circle): Single;
+var
+  __skparam__ray_origin: __sklib_point_2d;
+  __skparam__ray_heading: __sklib_vector_2d;
+  __skparam__c: __sklib_circle;
+  __skreturn: Single;
+begin
+  __skparam__ray_origin := __skadapter__to_sklib_point_2d(ray_origin);
+  __skparam__ray_heading := __skadapter__to_sklib_vector_2d(ray_heading);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref(__skparam__ray_origin, __skparam__ray_heading, __skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function TangentPoints(const fromPt: Point2d; const c: Circle; var p1: Point2d; var p2: Point2d): Boolean;
+var
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skparam__p1: __sklib_point_2d;
+  __skparam__p2: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__p1 := __skadapter__to_sklib_point_2d(p1);
+  __skparam__p2 := __skadapter__to_sklib_point_2d(p2);
+  __skreturn := __sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref(__skparam__from_pt, __skparam__c, __skparam__p1, __skparam__p2);
+  p1 := __skadapter__to_point_2d(__skparam__p1);
+  p2 := __skadapter__to_point_2d(__skparam__p2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure WidestPoints(const c: Circle; const along: Vector2d; var pt1: Point2d; var pt2: Point2d);
+var
+  __skparam__c: __sklib_circle;
+  __skparam__along: __sklib_vector_2d;
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__pt2: __sklib_point_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__along := __skadapter__to_sklib_vector_2d(along);
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref(__skparam__c, __skparam__along, __skparam__pt1, __skparam__pt2);
+  pt1 := __skadapter__to_point_2d(__skparam__pt1);
+  pt2 := __skadapter__to_point_2d(__skparam__pt2);
+end;
+function CurrentClip(): Rectangle;
+var
+  __skreturn: __sklib_rectangle;
+begin
+  __skreturn := __sklib__current_clip();
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function CurrentClip(bmp: Bitmap): Rectangle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__current_clip__bitmap(__skparam__bmp);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function CurrentClip(wnd: Window): Rectangle;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__current_clip__window(__skparam__wnd);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+procedure PopClip(wnd: Window);
+var
+  __skparam__wnd: __sklib_ptr;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __sklib__pop_clip__window(__skparam__wnd);
+end;
+procedure PopClip();
+begin
+  __sklib__pop_clip();
+end;
+procedure PopClip(bmp: Bitmap);
+var
+  __skparam__bmp: __sklib_ptr;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __sklib__pop_clip__bitmap(__skparam__bmp);
+end;
+procedure PushClip(wnd: Window; const r: Rectangle);
+var
+  __skparam__wnd: __sklib_ptr;
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__push_clip__window__rectangle_ref(__skparam__wnd, __skparam__r);
+end;
+procedure PushClip(bmp: Bitmap; const r: Rectangle);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__push_clip__bitmap__rectangle_ref(__skparam__bmp, __skparam__r);
+end;
+procedure PushClip(const r: Rectangle);
+var
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__push_clip__rectangle_ref(__skparam__r);
+end;
+procedure ResetClip(bmp: Bitmap);
+var
+  __skparam__bmp: __sklib_ptr;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __sklib__reset_clip__bitmap(__skparam__bmp);
+end;
+procedure ResetClip();
+begin
+  __sklib__reset_clip();
+end;
+procedure ResetClip(wnd: Window);
+var
+  __skparam__wnd: __sklib_ptr;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __sklib__reset_clip__window(__skparam__wnd);
+end;
+procedure SetClip(const r: Rectangle);
+var
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__set_clip__rectangle_ref(__skparam__r);
+end;
+procedure SetClip(bmp: Bitmap; const r: Rectangle);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__set_clip__bitmap__rectangle_ref(__skparam__bmp, __skparam__r);
+end;
+procedure SetClip(wnd: Window; const r: Rectangle);
+var
+  __skparam__wnd: __sklib_ptr;
+  __skparam__r: __sklib_rectangle;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skparam__r := __skadapter__to_sklib_rectangle(r);
+  __sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r);
+end;
+function BitmapCollision(bmp1: Bitmap; x1: Single; y1: Single; bmp2: Bitmap; x2: Single; y2: Single): Boolean;
+var
+  __skparam__bmp1: __sklib_ptr;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__bmp2: __sklib_ptr;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp1 := __skadapter__to_sklib_bitmap(bmp1);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__bmp2 := __skadapter__to_sklib_bitmap(bmp2);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skreturn := __sklib__bitmap_collision__bitmap__float__float__bitmap__float__float(__skparam__bmp1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__x2, __skparam__y2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCollision(bmp1: Bitmap; const pt1: Point2d; bmp2: Bitmap; const pt2: Point2d): Boolean;
+var
+  __skparam__bmp1: __sklib_ptr;
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__bmp2: __sklib_ptr;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp1 := __skadapter__to_sklib_bitmap(bmp1);
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__bmp2 := __skadapter__to_sklib_bitmap(bmp2);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref(__skparam__bmp1, __skparam__pt1, __skparam__bmp2, __skparam__pt2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2d; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2d): Boolean;
+var
+  __skparam__bmp1: __sklib_ptr;
+  __skparam__cell1: Integer;
+  __skparam__matrix1: __sklib_matrix_2d;
+  __skparam__bmp2: __sklib_ptr;
+  __skparam__cell2: Integer;
+  __skparam__matrix2: __sklib_matrix_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp1 := __skadapter__to_sklib_bitmap(bmp1);
+  __skparam__cell1 := __skadapter__to_sklib_int(cell1);
+  __skparam__matrix1 := __skadapter__to_sklib_matrix_2d(matrix1);
+  __skparam__bmp2 := __skadapter__to_sklib_bitmap(bmp2);
+  __skparam__cell2 := __skadapter__to_sklib_int(cell2);
+  __skparam__matrix2 := __skadapter__to_sklib_matrix_2d(matrix2);
+  __skreturn := __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref(__skparam__bmp1, __skparam__cell1, __skparam__matrix1, __skparam__bmp2, __skparam__cell2, __skparam__matrix2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2d; bmp2: Bitmap; cell2: Integer; const pt2: Point2d): Boolean;
+var
+  __skparam__bmp1: __sklib_ptr;
+  __skparam__cell1: Integer;
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__bmp2: __sklib_ptr;
+  __skparam__cell2: Integer;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp1 := __skadapter__to_sklib_bitmap(bmp1);
+  __skparam__cell1 := __skadapter__to_sklib_int(cell1);
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__bmp2 := __skadapter__to_sklib_bitmap(bmp2);
+  __skparam__cell2 := __skadapter__to_sklib_int(cell2);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref(__skparam__bmp1, __skparam__cell1, __skparam__pt1, __skparam__bmp2, __skparam__cell2, __skparam__pt2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; x1: Single; y1: Single; bmp2: Bitmap; cell2: Integer; x2: Single; y2: Single): Boolean;
+var
+  __skparam__bmp1: __sklib_ptr;
+  __skparam__cell1: Integer;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__bmp2: __sklib_ptr;
+  __skparam__cell2: Integer;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp1 := __skadapter__to_sklib_bitmap(bmp1);
+  __skparam__cell1 := __skadapter__to_sklib_int(cell1);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__bmp2 := __skadapter__to_sklib_bitmap(bmp2);
+  __skparam__cell2 := __skadapter__to_sklib_int(cell2);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skreturn := __sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float(__skparam__bmp1, __skparam__cell1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__cell2, __skparam__x2, __skparam__y2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2d; const pt: Point2d): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__translation: __sklib_matrix_2d;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__translation := __skadapter__to_sklib_matrix_2d(translation);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; const pt: Point2d; const bmpPt: Point2d): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__bmp_pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__bmp_pt := __skadapter__to_sklib_point_2d(bmp_pt);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; bmpX: Single; bmpY: Single; x: Single; y: Single): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__bmp_x: Single;
+  __skparam__bmp_y: Single;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__bmp_x := __skadapter__to_sklib_float(bmp_x);
+  __skparam__bmp_y := __skadapter__to_sklib_float(bmp_y);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__float__float__float__float(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const pt: Point2d): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__translation: __sklib_matrix_2d;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__translation := __skadapter__to_sklib_matrix_2d(translation);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__translation: __sklib_matrix_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__translation := __skadapter__to_sklib_matrix_2d(translation);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2d; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Single; y: Single): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__sprite_bitmap_collision__sprite__bitmap__float__float(__skparam__s, __skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteCollision(s1: Sprite; s2: Sprite): Boolean;
+var
+  __skparam__s1: __sklib_ptr;
+  __skparam__s2: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__s1 := __skadapter__to_sklib_sprite(s1);
+  __skparam__s2 := __skadapter__to_sklib_sprite(s2);
+  __skreturn := __sklib__sprite_collision__sprite__sprite(__skparam__s1, __skparam__s2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpritePointCollision(s: Sprite; const pt: Point2d): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__sprite_point_collision__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteRectangleCollision(s: Sprite; const rect: Rectangle): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__skparam__s, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function AlphaOf(c: Color): Integer;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Integer;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__alpha_of__color(__skparam__c);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BlueOf(c: Color): Integer;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Integer;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__blue_of__color(__skparam__c);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BrightnessOf(c: Color): Single;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__brightness_of__color(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function ColorAliceBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_alice_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorAntiqueWhite(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_antique_white();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorAqua(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_aqua();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorAquamarine(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_aquamarine();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorAzure(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_azure();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBeige(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_beige();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBisque(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_bisque();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBlack(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_black();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBlanchedAlmond(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_blanched_almond();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBlueViolet(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_blue_violet();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBrightGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_bright_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBrown(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_brown();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorBurlyWood(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_burly_wood();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCadetBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_cadet_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorChartreuse(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_chartreuse();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorChocolate(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_chocolate();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCoral(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_coral();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCornflowerBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_cornflower_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCornsilk(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_cornsilk();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCrimson(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_crimson();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorCyan(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_cyan();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkCyan(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_cyan();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkGoldenrod(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_goldenrod();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkKhaki(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_khaki();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkMagenta(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_magenta();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkOliveGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_olive_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkOrange(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_orange();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkOrchid(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_orchid();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkSalmon(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_salmon();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkSeaGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_sea_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkSlateBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_slate_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkSlateGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_slate_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkTurquoise(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_turquoise();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDarkViolet(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dark_violet();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDeepPink(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_deep_pink();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDeepSkyBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_deep_sky_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDimGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dim_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorDodgerBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_dodger_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorFirebrick(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_firebrick();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorFloralWhite(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_floral_white();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorForestGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_forest_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorFuchsia(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_fuchsia();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGainsboro(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_gainsboro();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGhostWhite(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_ghost_white();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGold(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_gold();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGoldenrod(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_goldenrod();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorGreenYellow(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_green_yellow();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorHoneydew(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_honeydew();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorHotPink(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_hot_pink();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorIndianRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_indian_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorIndigo(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_indigo();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorIvory(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_ivory();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorKhaki(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_khaki();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLavender(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lavender();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLavenderBlush(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lavender_blush();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLawnGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lawn_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLemonChiffon(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lemon_chiffon();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightCoral(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_coral();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightCyan(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_cyan();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightGoldenrodYellow(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_goldenrod_yellow();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightPink(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_pink();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightSalmon(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_salmon();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightSeaGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_sea_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightSkyBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_sky_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightSlateGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_slate_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightSteelBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_steel_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLightYellow(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_light_yellow();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLime(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lime();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLimeGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_lime_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorLinen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_linen();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMagenta(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_magenta();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMaroon(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_maroon();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumAquamarine(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_aquamarine();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumOrchid(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_orchid();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumPurple(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_purple();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumSeaGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_sea_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumSlateBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_slate_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumSpringGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_spring_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumTurquoise(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_turquoise();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMediumVioletRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_medium_violet_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMidnightBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_midnight_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMintCream(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_mint_cream();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMistyRose(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_misty_rose();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorMoccasin(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_moccasin();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorNavajoWhite(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_navajo_white();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorNavy(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_navy();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOldLace(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_old_lace();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOlive(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_olive();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOliveDrab(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_olive_drab();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOrange(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_orange();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOrangeRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_orange_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorOrchid(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_orchid();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPaleGoldenrod(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_pale_goldenrod();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPaleGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_pale_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPaleTurquoise(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_pale_turquoise();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPaleVioletRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_pale_violet_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPapayaWhip(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_papaya_whip();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPeachPuff(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_peach_puff();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPeru(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_peru();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPink(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_pink();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPlum(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_plum();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPowderBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_powder_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorPurple(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_purple();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorRosyBrown(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_rosy_brown();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorRoyalBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_royal_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSaddleBrown(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_saddle_brown();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSalmon(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_salmon();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSandyBrown(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_sandy_brown();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSeaGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_sea_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSeaShell(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_sea_shell();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSienna(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_sienna();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSilver(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_silver();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSkyBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_sky_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSlateBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_slate_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSlateGray(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_slate_gray();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSnow(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_snow();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSpringGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_spring_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSteelBlue(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_steel_blue();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSwinburneRed(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_swinburne_red();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorTan(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_tan();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorTeal(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_teal();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorThistle(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_thistle();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorToString(c: Color): String;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: __sklib_string;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__color_to_string__color(__skparam__c);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ColorTomato(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_tomato();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorTransparent(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_transparent();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorTurquoise(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_turquoise();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorViolet(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_violet();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorWheat(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_wheat();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorWhite(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_white();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorWhiteSmoke(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_white_smoke();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorYellow(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_yellow();
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorYellowGreen(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__color_yellow_green();
+  result := __skadapter__to_color(__skreturn);
+end;
+function GreenOf(c: Color): Integer;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Integer;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__green_of__color(__skparam__c);
+  result := __skadapter__to_int(__skreturn);
+end;
+function HsbColor(hue: Single; saturation: Single; brightness: Single): Color;
+var
+  __skparam__hue: Single;
+  __skparam__saturation: Single;
+  __skparam__brightness: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__hue := __skadapter__to_sklib_float(hue);
+  __skparam__saturation := __skadapter__to_sklib_float(saturation);
+  __skparam__brightness := __skadapter__to_sklib_float(brightness);
+  __skreturn := __sklib__hsb_color__float__float__float(__skparam__hue, __skparam__saturation, __skparam__brightness);
+  result := __skadapter__to_color(__skreturn);
+end;
+function HueOf(c: Color): Single;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__hue_of__color(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function RandomColor(): Color;
+var
+  __skreturn: __sklib_color;
+begin
+  __skreturn := __sklib__random_color();
+  result := __skadapter__to_color(__skreturn);
+end;
+function RandomRgbColor(alpha: Integer): Color;
+var
+  __skparam__alpha: Integer;
+  __skreturn: __sklib_color;
+begin
+  __skparam__alpha := __skadapter__to_sklib_int(alpha);
+  __skreturn := __sklib__random_rgb_color__int(__skparam__alpha);
+  result := __skadapter__to_color(__skreturn);
+end;
+function RedOf(c: Color): Integer;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Integer;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__red_of__color(__skparam__c);
+  result := __skadapter__to_int(__skreturn);
+end;
+function RgbColor(red: Single; green: Single; blue: Single): Color;
+var
+  __skparam__red: Single;
+  __skparam__green: Single;
+  __skparam__blue: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__red := __skadapter__to_sklib_float(red);
+  __skparam__green := __skadapter__to_sklib_float(green);
+  __skparam__blue := __skadapter__to_sklib_float(blue);
+  __skreturn := __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
+  result := __skadapter__to_color(__skreturn);
+end;
+function RgbColor(red: Integer; green: Integer; blue: Integer): Color;
+var
+  __skparam__red: Integer;
+  __skparam__green: Integer;
+  __skparam__blue: Integer;
+  __skreturn: __sklib_color;
+begin
+  __skparam__red := __skadapter__to_sklib_int(red);
+  __skparam__green := __skadapter__to_sklib_int(green);
+  __skparam__blue := __skadapter__to_sklib_int(blue);
+  __skreturn := __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
+  result := __skadapter__to_color(__skreturn);
+end;
+function RgbaColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+var
+  __skparam__red: Single;
+  __skparam__green: Single;
+  __skparam__blue: Single;
+  __skparam__alpha: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__red := __skadapter__to_sklib_float(red);
+  __skparam__green := __skadapter__to_sklib_float(green);
+  __skparam__blue := __skadapter__to_sklib_float(blue);
+  __skparam__alpha := __skadapter__to_sklib_float(alpha);
+  __skreturn := __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
+  result := __skadapter__to_color(__skreturn);
+end;
+function RgbaColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
+var
+  __skparam__red: Integer;
+  __skparam__green: Integer;
+  __skparam__blue: Integer;
+  __skparam__alpha: Integer;
+  __skreturn: __sklib_color;
+begin
+  __skparam__red := __skadapter__to_sklib_int(red);
+  __skparam__green := __skadapter__to_sklib_int(green);
+  __skparam__blue := __skadapter__to_sklib_int(blue);
+  __skparam__alpha := __skadapter__to_sklib_int(alpha);
+  __skreturn := __sklib__rgba_color__int__int__int__int(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
+  result := __skadapter__to_color(__skreturn);
+end;
+function SaturationOf(c: Color): Single;
+var
+  __skparam__c: __sklib_color;
+  __skreturn: Single;
+begin
+  __skparam__c := __skadapter__to_sklib_color(c);
+  __skreturn := __sklib__saturation_of__color(__skparam__c);
+  result := __skadapter__to_float(__skreturn);
+end;
+function StringToColor(str: String): Color;
+var
+  __skparam__str: __sklib_string;
+  __skreturn: __sklib_color;
+begin
+  __skparam__str := __skadapter__to_sklib_string(str);
+  __skreturn := __sklib__string_to_color__string(__skparam__str);
+  result := __skadapter__to_color(__skreturn);
+end;
+function DatabaseNamed(name: String): Database;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__database_named__string(__skparam__name);
+  result := __skadapter__to_database(__skreturn);
+end;
+procedure FreeAllDatabases();
+begin
+  __sklib__free_all_databases();
+end;
+procedure FreeAllQueryResults();
+begin
+  __sklib__free_all_query_results();
+end;
+procedure FreeDatabase(dbToClose: Database);
+var
+  __skparam__db_to_close: __sklib_ptr;
+begin
+  __skparam__db_to_close := __skadapter__to_sklib_database(db_to_close);
+  __sklib__free_database__database(__skparam__db_to_close);
+end;
+procedure FreeDatabase(nameOfDbToClose: String);
+var
+  __skparam__name_of_db_to_close: __sklib_string;
+begin
+  __skparam__name_of_db_to_close := __skadapter__to_sklib_string(name_of_db_to_close);
+  __sklib__free_database__string(__skparam__name_of_db_to_close);
+end;
+procedure FreeQueryResult(query: QueryResult);
+var
+  __skparam__query: __sklib_ptr;
+begin
+  __skparam__query := __skadapter__to_sklib_query_result(query);
+  __sklib__free_query_result__query_result(__skparam__query);
+end;
+function GetNextRow(result: QueryResult): Boolean;
+var
+  __skparam__result: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skreturn := __sklib__get_next_row__query_result(__skparam__result);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasDatabase(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_database__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasRow(result: QueryResult): Boolean;
+var
+  __skparam__result: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skreturn := __sklib__has_row__query_result(__skparam__result);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function OpenDatabase(name: String; filename: String): Database;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__open_database__string__string(__skparam__name, __skparam__filename);
+  result := __skadapter__to_database(__skreturn);
+end;
+function QueryColumnForBool(result: QueryResult; col: Integer): Boolean;
+var
+  __skparam__result: __sklib_ptr;
+  __skparam__col: Integer;
+  __skreturn: LongInt;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skparam__col := __skadapter__to_sklib_int(col);
+  __skreturn := __sklib__query_column_for_bool__query_result__int(__skparam__result, __skparam__col);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function QueryColumnForDouble(result: QueryResult; col: Integer): Double;
+var
+  __skparam__result: __sklib_ptr;
+  __skparam__col: Integer;
+  __skreturn: Double;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skparam__col := __skadapter__to_sklib_int(col);
+  __skreturn := __sklib__query_column_for_double__query_result__int(__skparam__result, __skparam__col);
+  result := __skadapter__to_double(__skreturn);
+end;
+function QueryColumnForInt(result: QueryResult; col: Integer): Integer;
+var
+  __skparam__result: __sklib_ptr;
+  __skparam__col: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skparam__col := __skadapter__to_sklib_int(col);
+  __skreturn := __sklib__query_column_for_int__query_result__int(__skparam__result, __skparam__col);
+  result := __skadapter__to_int(__skreturn);
+end;
+function QueryColumnForString(result: QueryResult; col: Integer): String;
+var
+  __skparam__result: __sklib_ptr;
+  __skparam__col: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skparam__col := __skadapter__to_sklib_int(col);
+  __skreturn := __sklib__query_column_for_string__query_result__int(__skparam__result, __skparam__col);
+  result := __skadapter__to_string(__skreturn);
+end;
+function QuerySuccess(result: QueryResult): Boolean;
+var
+  __skparam__result: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skreturn := __sklib__query_success__query_result(__skparam__result);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function QueryTypeOfCol(result: QueryResult; col: Integer): String;
+var
+  __skparam__result: __sklib_ptr;
+  __skparam__col: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __skparam__col := __skadapter__to_sklib_int(col);
+  __skreturn := __sklib__query_type_of_col__query_result__int(__skparam__result, __skparam__col);
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure ResetQueryResult(result: QueryResult);
+var
+  __skparam__result: __sklib_ptr;
+begin
+  __skparam__result := __skadapter__to_sklib_query_result(result);
+  __sklib__reset_query_result__query_result(__skparam__result);
+end;
+function RowsChanged(db: Database): Integer;
+var
+  __skparam__db: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__db := __skadapter__to_sklib_database(db);
+  __skreturn := __sklib__rows_changed__database(__skparam__db);
+  result := __skadapter__to_int(__skreturn);
+end;
+function RunSql(db: Database; sql: String): QueryResult;
+var
+  __skparam__db: __sklib_ptr;
+  __skparam__sql: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__db := __skadapter__to_sklib_database(db);
+  __skparam__sql := __skadapter__to_sklib_string(sql);
+  __skreturn := __sklib__run_sql__database__string(__skparam__db, __skparam__sql);
+  result := __skadapter__to_query_result(__skreturn);
+end;
+function RunSql(databaseName: String; sql: String): QueryResult;
+var
+  __skparam__database_name: __sklib_string;
+  __skparam__sql: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__database_name := __skadapter__to_sklib_string(database_name);
+  __skparam__sql := __skadapter__to_sklib_string(sql);
+  __skreturn := __sklib__run_sql__string__string(__skparam__database_name, __skparam__sql);
+  result := __skadapter__to_query_result(__skreturn);
+end;
+function OptionDefaults(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_defaults();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionDrawTo(dest: Bitmap): DrawingOptions;
+var
+  __skparam__dest: __sklib_ptr;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__dest := __skadapter__to_sklib_bitmap(dest);
+  __skreturn := __sklib__option_draw_to__bitmap(__skparam__dest);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionDrawTo(dest: Bitmap; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__dest: __sklib_ptr;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__dest := __skadapter__to_sklib_bitmap(dest);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_draw_to__bitmap__drawing_options(__skparam__dest, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionDrawTo(dest: Window): DrawingOptions;
+var
+  __skparam__dest: __sklib_ptr;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__dest := __skadapter__to_sklib_window(dest);
+  __skreturn := __sklib__option_draw_to__window(__skparam__dest);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionDrawTo(dest: Window; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__dest: __sklib_ptr;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__dest := __skadapter__to_sklib_window(dest);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_draw_to__window__drawing_options(__skparam__dest, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipX(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_flip_x();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipX(opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_flip_x__drawing_options(__skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipXy(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_flip_xy();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipXy(opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_flip_xy__drawing_options(__skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipY(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_flip_y();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionFlipY(opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_flip_y__drawing_options(__skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionLineWidth(width: Integer): DrawingOptions;
+var
+  __skparam__width: Integer;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skreturn := __sklib__option_line_width__int(__skparam__width);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionLineWidth(width: Integer; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__width: Integer;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionPartBmp(x: Single; y: Single; w: Single; h: Single): DrawingOptions;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__w: Single;
+  __skparam__h: Single;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__w := __skadapter__to_sklib_float(w);
+  __skparam__h := __skadapter__to_sklib_float(h);
+  __skreturn := __sklib__option_part_bmp__float__float__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionPartBmp(x: Single; y: Single; w: Single; h: Single; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__w: Single;
+  __skparam__h: Single;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__w := __skadapter__to_sklib_float(w);
+  __skparam__h := __skadapter__to_sklib_float(h);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_part_bmp__float__float__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionPartBmp(part: Rectangle): DrawingOptions;
+var
+  __skparam__part: __sklib_rectangle;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__part := __skadapter__to_sklib_rectangle(part);
+  __skreturn := __sklib__option_part_bmp__rectangle(__skparam__part);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionPartBmp(part: Rectangle; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__part: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__part := __skadapter__to_sklib_rectangle(part);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionRotateBmp(angle: Single): DrawingOptions;
+var
+  __skparam__angle: Single;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skreturn := __sklib__option_rotate_bmp__float(__skparam__angle);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionRotateBmp(angle: Single; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__angle: Single;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single): DrawingOptions;
+var
+  __skparam__angle: Single;
+  __skparam__anchor_x: Single;
+  __skparam__anchor_y: Single;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skparam__anchor_x := __skadapter__to_sklib_float(anchor_x);
+  __skparam__anchor_y := __skadapter__to_sklib_float(anchor_y);
+  __skreturn := __sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__angle: Single;
+  __skparam__anchor_x: Single;
+  __skparam__anchor_y: Single;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skparam__anchor_x := __skadapter__to_sklib_float(anchor_x);
+  __skparam__anchor_y := __skadapter__to_sklib_float(anchor_y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionScaleBmp(scaleX: Single; scaleY: Single): DrawingOptions;
+var
+  __skparam__scale_x: Single;
+  __skparam__scale_y: Single;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__scale_x := __skadapter__to_sklib_float(scale_x);
+  __skparam__scale_y := __skadapter__to_sklib_float(scale_y);
+  __skreturn := __sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionScaleBmp(scaleX: Single; scaleY: Single; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__scale_x: Single;
+  __skparam__scale_y: Single;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__scale_x := __skadapter__to_sklib_float(scale_x);
+  __skparam__scale_y := __skadapter__to_sklib_float(scale_y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionToScreen(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_to_screen();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionToScreen(opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_to_screen__drawing_options(__skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionToWorld(): DrawingOptions;
+var
+  __skreturn: __sklib_drawing_options;
+begin
+  __skreturn := __sklib__option_to_world();
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionToWorld(opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_to_world__drawing_options(__skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionWithAnimation(anim: Animation): DrawingOptions;
+var
+  __skparam__anim: __sklib_ptr;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skreturn := __sklib__option_with_animation__animation(__skparam__anim);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionWithAnimation(anim: Animation; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_with_animation__animation__drawing_options(__skparam__anim, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+procedure DrawEllipse(clr: Color; rect: Rectangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__draw_ellipse__color__rectangle(__skparam__clr, __skparam__rect);
+end;
+procedure DrawEllipse(clr: Color; rect: Rectangle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_ellipse__color__rectangle__drawing_options(__skparam__clr, __skparam__rect, __skparam__opts);
+end;
+procedure DrawEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __sklib__draw_ellipse__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height);
+end;
+procedure DrawEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_ellipse__color__float__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
+end;
+procedure FillEllipse(clr: Color; rect: Rectangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__fill_ellipse__color__rectangle(__skparam__clr, __skparam__rect);
+end;
+procedure FillEllipse(clr: Color; rect: Rectangle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_ellipse__color__rectangle__drawing_options(__skparam__clr, __skparam__rect, __skparam__opts);
+end;
+procedure FillEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __sklib__fill_ellipse__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height);
+end;
+procedure FillEllipse(clr: Color; x: Single; y: Single; width: Single; height: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_ellipse__color__float__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
+end;
+function Cosine(degrees: Single): Single;
+var
+  __skparam__degrees: Single;
+  __skreturn: Single;
+begin
+  __skparam__degrees := __skadapter__to_sklib_float(degrees);
+  __skreturn := __sklib__cosine__float(__skparam__degrees);
+  result := __skadapter__to_float(__skreturn);
+end;
+function Sine(degrees: Single): Single;
+var
+  __skparam__degrees: Single;
+  __skreturn: Single;
+begin
+  __skparam__degrees := __skadapter__to_sklib_float(degrees);
+  __skreturn := __sklib__sine__float(__skparam__degrees);
+  result := __skadapter__to_float(__skreturn);
+end;
+function Tangent(degrees: Single): Single;
+var
+  __skparam__degrees: Single;
+  __skreturn: Single;
+begin
+  __skparam__degrees := __skadapter__to_sklib_float(degrees);
+  __skreturn := __sklib__tangent__float(__skparam__degrees);
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure ClearScreen();
+begin
+  __sklib__clear_screen();
+end;
+procedure ClearScreen(clr: Color);
+var
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__clear_screen__color(__skparam__clr);
+end;
+function DisplayDetails(index: Cardinal): Display;
+var
+  __skparam__index: Cardinal;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__index := __skadapter__to_sklib_unsigned int(index);
+  __skreturn := __sklib__display_details__unsigned_int(__skparam__index);
+  result := __skadapter__to_display(__skreturn);
+end;
+function DisplayHeight(disp: Display): Integer;
+var
+  __skparam__disp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__disp := __skadapter__to_sklib_display(disp);
+  __skreturn := __sklib__display_height__display(__skparam__disp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function DisplayName(disp: Display): String;
+var
+  __skparam__disp: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__disp := __skadapter__to_sklib_display(disp);
+  __skreturn := __sklib__display_name__display(__skparam__disp);
+  result := __skadapter__to_string(__skreturn);
+end;
+function DisplayWidth(disp: Display): Integer;
+var
+  __skparam__disp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__disp := __skadapter__to_sklib_display(disp);
+  __skreturn := __sklib__display_width__display(__skparam__disp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function DisplayX(disp: Display): Integer;
+var
+  __skparam__disp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__disp := __skadapter__to_sklib_display(disp);
+  __skreturn := __sklib__display_x__display(__skparam__disp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function DisplayY(disp: Display): Integer;
+var
+  __skparam__disp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__disp := __skadapter__to_sklib_display(disp);
+  __skreturn := __sklib__display_y__display(__skparam__disp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function NumberOfDisplays(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__number_of_displays();
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure RefreshScreen();
+begin
+  __sklib__refresh_screen();
+end;
+procedure RefreshScreen(targetFps: Cardinal);
+var
+  __skparam__target_fps: Cardinal;
+begin
+  __skparam__target_fps := __skadapter__to_sklib_unsigned int(target_fps);
+  __sklib__refresh_screen__unsigned_int(__skparam__target_fps);
+end;
+procedure SaveBitmap(bmp: Bitmap; const basename: String);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__basename: __sklib_string;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__basename := __skadapter__to_sklib_string(basename);
+  __sklib__save_bitmap__bitmap__string_ref(__skparam__bmp, __skparam__basename);
+end;
+function ScreenHeight(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__screen_height();
+  result := __skadapter__to_int(__skreturn);
+end;
+function ScreenWidth(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__screen_width();
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure TakeScreenshot(const basename: String);
+var
+  __skparam__basename: __sklib_string;
+begin
+  __skparam__basename := __skadapter__to_sklib_string(basename);
+  __sklib__take_screenshot__string_ref(__skparam__basename);
+end;
+procedure TakeScreenshot(wind: Window; const basename: String);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__basename: __sklib_string;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__basename := __skadapter__to_sklib_string(basename);
+  __sklib__take_screenshot__window__string_ref(__skparam__wind, __skparam__basename);
+end;
+function BitmapCellCenter(bmp: Bitmap): Point2d;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_center__bitmap(__skparam__bmp);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function BitmapCellCircle(bmp: Bitmap; x: Single; y: Single): Circle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__bitmap_cell_circle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2d): Circle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_cell_circle__bitmap__point_2d(__skparam__bmp, __skparam__pt);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2d; scale: Single): Circle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__scale: Single;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__scale := __skadapter__to_sklib_float(scale);
+  __skreturn := __sklib__bitmap_cell_circle__bitmap__point_2d__float(__skparam__bmp, __skparam__pt, __skparam__scale);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function BitmapCellColumns(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_columns__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapCellCount(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_count__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapCellHeight(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_height__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2d;
+var
+  __skparam__src: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__src := __skadapter__to_sklib_bitmap(src);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skreturn := __sklib__bitmap_cell_offset__bitmap__int(__skparam__src, __skparam__cell);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function BitmapCellRectangle(src: Bitmap): Rectangle;
+var
+  __skparam__src: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__src := __skadapter__to_sklib_bitmap(src);
+  __skreturn := __sklib__bitmap_cell_rectangle__bitmap(__skparam__src);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function BitmapCellRectangle(src: Bitmap; const pt: Point2d): Rectangle;
+var
+  __skparam__src: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__src := __skadapter__to_sklib_bitmap(src);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_cell_rectangle__bitmap__point_2d_ref(__skparam__src, __skparam__pt);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function BitmapCellRows(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_rows__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapCellWidth(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_cell_width__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapCenter(bmp: Bitmap): Point2d;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_center__bitmap(__skparam__bmp);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function BitmapCircle(bmp: Bitmap; const pt: Point2d): Circle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_circle__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function BitmapFilename(bmp: Bitmap): String;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_filename__bitmap(__skparam__bmp);
+  result := __skadapter__to_string(__skreturn);
+end;
+function BitmapHeight(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_height__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapHeight(name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__bitmap_height__string(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapName(bmp: Bitmap): String;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_name__bitmap(__skparam__bmp);
+  result := __skadapter__to_string(__skreturn);
+end;
+function BitmapNamed(name: String): Bitmap;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__bitmap_named__string(__skparam__name);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function BitmapRectangle(bmp: Bitmap): Rectangle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_rectangle__bitmap(__skparam__bmp);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function BitmapRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__bitmap_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function BitmapRectangleOfCell(src: Bitmap; cell: Integer): Rectangle;
+var
+  __skparam__src: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__src := __skadapter__to_sklib_bitmap(src);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skreturn := __sklib__bitmap_rectangle_of_cell__bitmap__int(__skparam__src, __skparam__cell);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+procedure BitmapSetCellDetails(bmp: Bitmap; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__width: Integer;
+  __skparam__height: Integer;
+  __skparam__columns: Integer;
+  __skparam__rows: Integer;
+  __skparam__count: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __skparam__columns := __skadapter__to_sklib_int(columns);
+  __skparam__rows := __skadapter__to_sklib_int(rows);
+  __skparam__count := __skadapter__to_sklib_int(count);
+  __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count);
+end;
+function BitmapWidth(bmp: Bitmap): Integer;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_width__bitmap(__skparam__bmp);
+  result := __skadapter__to_int(__skreturn);
+end;
+function BitmapWidth(name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__bitmap_width__string(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure ClearBitmap(bmp: Bitmap; clr: Color);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__clear_bitmap__bitmap__color(__skparam__bmp, __skparam__clr);
+end;
+procedure ClearBitmap(name: String; clr: Color);
+var
+  __skparam__name: __sklib_string;
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__clear_bitmap__string__color(__skparam__name, __skparam__clr);
+end;
+function CreateBitmap(name: String; width: Integer; height: Integer): Bitmap;
+var
+  __skparam__name: __sklib_string;
+  __skparam__width: Integer;
+  __skparam__height: Integer;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __skreturn := __sklib__create_bitmap__string__int__int(__skparam__name, __skparam__width, __skparam__height);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+procedure DrawBitmap(bmp: Bitmap; x: Single; y: Single);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_bitmap__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+end;
+procedure DrawBitmap(bmp: Bitmap; x: Single; y: Single; opts: DrawingOptions);
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_bitmap__bitmap__float__float__drawing_options(__skparam__bmp, __skparam__x, __skparam__y, __skparam__opts);
+end;
+procedure DrawBitmap(name: String; x: Single; y: Single);
+var
+  __skparam__name: __sklib_string;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_bitmap__string__float__float(__skparam__name, __skparam__x, __skparam__y);
+end;
+procedure DrawBitmap(name: String; x: Single; y: Single; opts: DrawingOptions);
+var
+  __skparam__name: __sklib_string;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_bitmap__string__float__float__drawing_options(__skparam__name, __skparam__x, __skparam__y, __skparam__opts);
+end;
+procedure FreeAllBitmaps();
+begin
+  __sklib__free_all_bitmaps();
+end;
+procedure FreeBitmap(toDelete: Bitmap);
+var
+  __skparam__to_delete: __sklib_ptr;
+begin
+  __skparam__to_delete := __skadapter__to_sklib_bitmap(to_delete);
+  __sklib__free_bitmap__bitmap(__skparam__to_delete);
+end;
+function HasBitmap(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_bitmap__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LoadBitmap(name: String; filename: String): Bitmap;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__load_bitmap__string__string(__skparam__name, __skparam__filename);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2d): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__pixel_drawn_at_point__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PixelDrawnAtPoint(bmp: Bitmap; x: Single; y: Single): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__pixel_drawn_at_point__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__pixel_drawn_at_point__bitmap__int__float__float(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure ProcessEvents();
+begin
+  __sklib__process_events();
+end;
+function QuitRequested(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__quit_requested();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure ResetQuit();
+begin
+  __sklib__reset_quit();
+end;
+function CreateJson(): Json;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__create_json();
+  result := __skadapter__to_json(__skreturn);
+end;
+function CreateJson(jsonString: String): Json;
+var
+  __skparam__json_string: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__json_string := __skadapter__to_sklib_string(json_string);
+  __skreturn := __sklib__create_json__string(__skparam__json_string);
+  result := __skadapter__to_json(__skreturn);
+end;
+procedure FreeAllJson();
+begin
+  __sklib__free_all_json();
+end;
+procedure FreeJson(j: Json);
+var
+  __skparam__j: __sklib_ptr;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __sklib__free_json__json(__skparam__j);
+end;
+function JsonCountKeys(j: Json): Integer;
+var
+  __skparam__j: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skreturn := __sklib__json_count_keys__json(__skparam__j);
+  result := __skadapter__to_int(__skreturn);
+end;
+function JsonFromColor(clr: Color): Json;
+var
+  __skparam__clr: __sklib_color;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skreturn := __sklib__json_from_color__color(__skparam__clr);
+  result := __skadapter__to_json(__skreturn);
+end;
+function JsonFromFile(const filename: String): Json;
+var
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__json_from_file__string_ref(__skparam__filename);
+  result := __skadapter__to_json(__skreturn);
+end;
+function JsonFromString(const jString: String): Json;
+var
+  __skparam__j_string: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__j_string := __skadapter__to_sklib_string(j_string);
+  __skreturn := __sklib__json_from_string__string_ref(__skparam__j_string);
+  result := __skadapter__to_json(__skreturn);
+end;
+function JsonHasKey(j: Json; key: String): Boolean;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_has_key__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfDouble);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__out: __sklib_vector_double;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__out := __skadapter__to_sklib_vector_double(out);
+  __sklib__json_read_array__json__string__vector_double_ref(__skparam__j, __skparam__key, __skparam__out);
+  out := __skadapter__to_vector_double(__skparam__out);
+end;
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfJson);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__out: __sklib_vector_json;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__out := __skadapter__to_sklib_vector_json(out);
+  __sklib__json_read_array__json__string__vector_json_ref(__skparam__j, __skparam__key, __skparam__out);
+  out := __skadapter__to_vector_json(__skparam__out);
+end;
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfString);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__out: __sklib_vector_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__out := __skadapter__to_sklib_vector_string(out);
+  __sklib__json_read_array__json__string__vector_string_ref(__skparam__j, __skparam__key, __skparam__out);
+  out := __skadapter__to_vector_string(__skparam__out);
+end;
+procedure JsonReadArray(j: Json; key: String; var out: ArrayOfBoolean);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__out: __sklib_vector_bool;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__out := __skadapter__to_sklib_vector_bool(out);
+  __sklib__json_read_array__json__string__vector_bool_ref(__skparam__j, __skparam__key, __skparam__out);
+  out := __skadapter__to_vector_bool(__skparam__out);
+end;
+function JsonReadBool(j: Json; key: String): Boolean;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_bool__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function JsonReadNumber(j: Json; key: String): Single;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: Single;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_number__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_float(__skreturn);
+end;
+function JsonReadNumberAsDouble(j: Json; key: String): Double;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: Double;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_number_as_double__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_double(__skreturn);
+end;
+function JsonReadNumberAsInt(j: Json; key: String): Integer;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_number_as_int__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_int(__skreturn);
+end;
+function JsonReadObject(j: Json; key: String): Json;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_object__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_json(__skreturn);
+end;
+function JsonReadString(j: Json; key: String): String;
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skreturn := __sklib__json_read_string__json__string(__skparam__j, __skparam__key);
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfString);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: __sklib_vector_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_vector_string(value);
+  __sklib__json_set_array__json__string__vector_string(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfDouble);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: __sklib_vector_double;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_vector_double(value);
+  __sklib__json_set_array__json__string__vector_double(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfBoolean);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: __sklib_vector_bool;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_vector_bool(value);
+  __sklib__json_set_array__json__string__vector_bool(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetArray(j: Json; key: String; value: ArrayOfJson);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: __sklib_vector_json;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_vector_json(value);
+  __sklib__json_set_array__json__string__vector_json(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetBool(j: Json; key: String; value: Boolean);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: LongInt;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __sklib__json_set_bool__json__string__bool(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetNumber(j: Json; key: String; value: Integer);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: Integer;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_int(value);
+  __sklib__json_set_number__json__string__int(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetNumber(j: Json; key: String; value: Double);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: Double;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__json_set_number__json__string__double(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetNumber(j: Json; key: String; value: Single);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: Single;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__json_set_number__json__string__float(__skparam__j, __skparam__key, __skparam__value);
+end;
+procedure JsonSetObject(j: Json; key: String; object: Json);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__object: __sklib_ptr;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__object := __skadapter__to_sklib_json(object);
+  __sklib__json_set_object__json__string__json(__skparam__j, __skparam__key, __skparam__object);
+end;
+procedure JsonSetString(j: Json; key: String; value: String);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__key: __sklib_string;
+  __skparam__value: __sklib_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__key := __skadapter__to_sklib_string(key);
+  __skparam__value := __skadapter__to_sklib_string(value);
+  __sklib__json_set_string__json__string__string(__skparam__j, __skparam__key, __skparam__value);
+end;
+function JsonToColor(j: Json): Color;
+var
+  __skparam__j: __sklib_ptr;
+  __skreturn: __sklib_color;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skreturn := __sklib__json_to_color__json(__skparam__j);
+  result := __skadapter__to_color(__skreturn);
+end;
+procedure JsonToFile(j: Json; const filename: String);
+var
+  __skparam__j: __sklib_ptr;
+  __skparam__filename: __sklib_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __sklib__json_to_file__json__string_ref(__skparam__j, __skparam__filename);
+end;
+function JsonToString(j: Json): String;
+var
+  __skparam__j: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __skreturn := __sklib__json_to_string__json(__skparam__j);
+  result := __skadapter__to_string(__skreturn);
+end;
+function AnyKeyPressed(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__any_key_pressed();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure DeregisterCallbackOnKeyDown(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__deregister_callback_on_key_down__key_callback_ptr(__skparam__callback);
+end;
+procedure DeregisterCallbackOnKeyTyped(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__deregister_callback_on_key_typed__key_callback_ptr(__skparam__callback);
+end;
+procedure DeregisterCallbackOnKeyUp(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__deregister_callback_on_key_up__key_callback_ptr(__skparam__callback);
+end;
+function KeyDown(key: KeyCode): Boolean;
+var
+  __skparam__key: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__key := __skadapter__to_sklib_key_code(key);
+  __skreturn := __sklib__key_down__key_code(__skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function KeyName(key: KeyCode): String;
+var
+  __skparam__key: LongInt;
+  __skreturn: __sklib_string;
+begin
+  __skparam__key := __skadapter__to_sklib_key_code(key);
+  __skreturn := __sklib__key_name__key_code(__skparam__key);
+  result := __skadapter__to_string(__skreturn);
+end;
+function KeyReleased(key: KeyCode): Boolean;
+var
+  __skparam__key: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__key := __skadapter__to_sklib_key_code(key);
+  __skreturn := __sklib__key_released__key_code(__skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function KeyTyped(key: KeyCode): Boolean;
+var
+  __skparam__key: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__key := __skadapter__to_sklib_key_code(key);
+  __skreturn := __sklib__key_typed__key_code(__skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function KeyUp(key: KeyCode): Boolean;
+var
+  __skparam__key: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__key := __skadapter__to_sklib_key_code(key);
+  __skreturn := __sklib__key_up__key_code(__skparam__key);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure RegisterCallbackOnKeyDown(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__register_callback_on_key_down__key_callback_ptr(__skparam__callback);
+end;
+procedure RegisterCallbackOnKeyTyped(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__register_callback_on_key_typed__key_callback_ptr(__skparam__callback);
+end;
+procedure RegisterCallbackOnKeyUp(callback: KeyCallback);
+var
+  __skparam__callback: KeyCallback;
+begin
+  __skparam__callback := __skadapter__to_sklib_key_callback(callback);
+  __sklib__register_callback_on_key_up__key_callback_ptr(__skparam__callback);
+end;
+procedure DrawLine(clr: Color; const l: Line);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__l: __sklib_line;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __sklib__draw_line__color__line_ref(__skparam__clr, __skparam__l);
+end;
+procedure DrawLine(clr: Color; const l: Line; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__l: __sklib_line;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_line__color__line_ref__drawing_options(__skparam__clr, __skparam__l, __skparam__opts);
+end;
+procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__to_pt: __sklib_point_2d;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__to_pt := __skadapter__to_sklib_point_2d(to_pt);
+  __sklib__draw_line__color__point_2d_ref__point_2d_ref(__skparam__clr, __skparam__from_pt, __skparam__to_pt);
+end;
+procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__to_pt: __sklib_point_2d;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__to_pt := __skadapter__to_sklib_point_2d(to_pt);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref(__skparam__clr, __skparam__from_pt, __skparam__to_pt, __skparam__opts);
+end;
+procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __sklib__draw_line__color__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2);
+end;
+procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_line__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts);
+end;
+function ClosestPointOnLine(fromPt: Point2d; const l: Line): Point2d;
+var
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__closest_point_on_line__point_2d__line_ref(__skparam__from_pt, __skparam__l);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ClosestPointOnLines(fromPt: Point2d; const lines: ArrayOfLine; var lineIdx: Integer): Point2d;
+var
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__lines: __sklib_vector_line;
+  __skparam__line_idx: Integer;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__lines := __skadapter__to_sklib_vector_line(lines);
+  __skparam__line_idx := __skadapter__to_sklib_int(line_idx);
+  __skreturn := __sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref(__skparam__from_pt, __skparam__lines, __skparam__line_idx);
+  line_idx := __skadapter__to_int(__skparam__line_idx);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function LineFrom(const start: Point2d; const end: Point2d): Line;
+var
+  __skparam__start: __sklib_point_2d;
+  __skparam__end: __sklib_point_2d;
+  __skreturn: __sklib_line;
+begin
+  __skparam__start := __skadapter__to_sklib_point_2d(start);
+  __skparam__end := __skadapter__to_sklib_point_2d(end);
+  __skreturn := __sklib__line_from__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end);
+  result := __skadapter__to_line(__skreturn);
+end;
+function LineFrom(const start: Point2d; const offset: Vector2d): Line;
+var
+  __skparam__start: __sklib_point_2d;
+  __skparam__offset: __sklib_vector_2d;
+  __skreturn: __sklib_line;
+begin
+  __skparam__start := __skadapter__to_sklib_point_2d(start);
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __skreturn := __sklib__line_from__point_2d_ref__vector_2d_ref(__skparam__start, __skparam__offset);
+  result := __skadapter__to_line(__skreturn);
+end;
+function LineFrom(const v: Vector2d): Line;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_line;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__line_from__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_line(__skreturn);
+end;
+function LineFrom(x1: Single; y1: Single; x2: Single; y2: Single): Line;
+var
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skreturn: __sklib_line;
+begin
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skreturn := __sklib__line_from__float__float__float__float(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2);
+  result := __skadapter__to_line(__skreturn);
+end;
+function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2d): Boolean;
+var
+  __skparam__line1: __sklib_line;
+  __skparam__line2: __sklib_line;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__line1 := __skadapter__to_sklib_line(line1);
+  __skparam__line2 := __skadapter__to_sklib_line(line2);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__line_intersection_point__line_ref__line_ref__point_2d_ref(__skparam__line1, __skparam__line2, __skparam__pt);
+  pt := __skadapter__to_point_2d(__skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LineIntersectsCircle(const l: Line; const c: Circle): Boolean;
+var
+  __skparam__l: __sklib_line;
+  __skparam__c: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__line_intersects_circle__line_ref__circle_ref(__skparam__l, __skparam__c);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LineIntersectsLines(const l: Line; const lines: ArrayOfLine): Boolean;
+var
+  __skparam__l: __sklib_line;
+  __skparam__lines: __sklib_vector_line;
+  __skreturn: LongInt;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__lines := __skadapter__to_sklib_vector_line(lines);
+  __skreturn := __sklib__line_intersects_lines__line_ref__vector_line_ref(__skparam__l, __skparam__lines);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LineIntersectsRect(const l: Line; const rect: Rectangle): Boolean;
+var
+  __skparam__l: __sklib_line;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__line_intersects_rect__line_ref__rectangle_ref(__skparam__l, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LineLength(const l: Line): Single;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: Single;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__line_length__line_ref(__skparam__l);
+  result := __skadapter__to_float(__skreturn);
+end;
+function LineLengthSquared(const l: Line): Single;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: Single;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__line_length_squared__line_ref(__skparam__l);
+  result := __skadapter__to_float(__skreturn);
+end;
+function LineMidPoint(const l: Line): Point2d;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__line_mid_point__line_ref(__skparam__l);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function LineNormal(const l: Line): Vector2d;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__line_normal__line_ref(__skparam__l);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function LineToString(const ln: Line): String;
+var
+  __skparam__ln: __sklib_line;
+  __skreturn: __sklib_string;
+begin
+  __skparam__ln := __skadapter__to_sklib_line(ln);
+  __skreturn := __sklib__line_to_string__line_ref(__skparam__ln);
+  result := __skadapter__to_string(__skreturn);
+end;
+function LinesFrom(const rect: Rectangle): ArrayOfLine;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_vector_line;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__lines_from__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_vector_line(__skreturn);
+end;
+function LinesFrom(const t: Triangle): ArrayOfLine;
+var
+  __skparam__t: __sklib_triangle;
+  __skreturn: __sklib_vector_line;
+begin
+  __skparam__t := __skadapter__to_sklib_triangle(t);
+  __skreturn := __sklib__lines_from__triangle_ref(__skparam__t);
+  result := __skadapter__to_vector_line(__skreturn);
+end;
+function LinesIntersect(const l1: Line; const l2: Line): Boolean;
+var
+  __skparam__l1: __sklib_line;
+  __skparam__l2: __sklib_line;
+  __skreturn: LongInt;
+begin
+  __skparam__l1 := __skadapter__to_sklib_line(l1);
+  __skparam__l2 := __skadapter__to_sklib_line(l2);
+  __skreturn := __sklib__lines_intersect__line_ref__line_ref(__skparam__l1, __skparam__l2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure ApplyMatrix(const matrix: Matrix2d; var q: Quad);
+var
+  __skparam__matrix: __sklib_matrix_2d;
+  __skparam__q: __sklib_quad;
+begin
+  __skparam__matrix := __skadapter__to_sklib_matrix_2d(matrix);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __sklib__apply_matrix__matrix_2d_ref__quad_ref(__skparam__matrix, __skparam__q);
+  q := __skadapter__to_quad(__skparam__q);
+end;
+procedure ApplyMatrix(const m: Matrix2d; var tri: Triangle);
+var
+  __skparam__m: __sklib_matrix_2d;
+  __skparam__tri: __sklib_triangle;
+begin
+  __skparam__m := __skadapter__to_sklib_matrix_2d(m);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __sklib__apply_matrix__matrix_2d_ref__triangle_ref(__skparam__m, __skparam__tri);
+  tri := __skadapter__to_triangle(__skparam__tri);
+end;
+function IdentityMatrix(): Matrix2d;
+var
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skreturn := __sklib__identity_matrix();
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function MatrixInverse(const m: Matrix2d): Matrix2d;
+var
+  __skparam__m: __sklib_matrix_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__m := __skadapter__to_sklib_matrix_2d(m);
+  __skreturn := __sklib__matrix_inverse__matrix_2d_ref(__skparam__m);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function MatrixMultiply(const m: Matrix2d; const pt: Point2d): Point2d;
+var
+  __skparam__m: __sklib_matrix_2d;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__m := __skadapter__to_sklib_matrix_2d(m);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__matrix_multiply__matrix_2d_ref__point_2d_ref(__skparam__m, __skparam__pt);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function MatrixMultiply(const m1: Matrix2d; const m2: Matrix2d): Matrix2d;
+var
+  __skparam__m1: __sklib_matrix_2d;
+  __skparam__m2: __sklib_matrix_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__m1 := __skadapter__to_sklib_matrix_2d(m1);
+  __skparam__m2 := __skadapter__to_sklib_matrix_2d(m2);
+  __skreturn := __sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref(__skparam__m1, __skparam__m2);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function MatrixMultiply(const m: Matrix2d; const v: Vector2d): Vector2d;
+var
+  __skparam__m: __sklib_matrix_2d;
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__m := __skadapter__to_sklib_matrix_2d(m);
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(__skparam__m, __skparam__v);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function MatrixToString(const matrix: Matrix2d): String;
+var
+  __skparam__matrix: __sklib_matrix_2d;
+  __skreturn: __sklib_string;
+begin
+  __skparam__matrix := __skadapter__to_sklib_matrix_2d(matrix);
+  __skreturn := __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RotationMatrix(deg: Single): Matrix2d;
+var
+  __skparam__deg: Single;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__deg := __skadapter__to_sklib_float(deg);
+  __skreturn := __sklib__rotation_matrix__float(__skparam__deg);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function ScaleMatrix(const scale: Point2d): Matrix2d;
+var
+  __skparam__scale: __sklib_point_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__scale := __skadapter__to_sklib_point_2d(scale);
+  __skreturn := __sklib__scale_matrix__point_2d_ref(__skparam__scale);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function ScaleMatrix(scale: Single): Matrix2d;
+var
+  __skparam__scale: Single;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__scale := __skadapter__to_sklib_float(scale);
+  __skreturn := __sklib__scale_matrix__float(__skparam__scale);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function ScaleRotateTranslateMatrix(const scale: Point2d; deg: Single; const translate: Point2d): Matrix2d;
+var
+  __skparam__scale: __sklib_point_2d;
+  __skparam__deg: Single;
+  __skparam__translate: __sklib_point_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__scale := __skadapter__to_sklib_point_2d(scale);
+  __skparam__deg := __skadapter__to_sklib_float(deg);
+  __skparam__translate := __skadapter__to_sklib_point_2d(translate);
+  __skreturn := __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function TranslationMatrix(const pt: Point2d): Matrix2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__translation_matrix__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function TranslationMatrix(dx: Single; dy: Single): Matrix2d;
+var
+  __skparam__dx: Single;
+  __skparam__dy: Single;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__dx := __skadapter__to_sklib_float(dx);
+  __skparam__dy := __skadapter__to_sklib_float(dy);
+  __skreturn := __sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+procedure HideMouse();
+begin
+  __sklib__hide_mouse();
+end;
+function MouseClicked(button: MouseButton): Boolean;
+var
+  __skparam__button: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__button := __skadapter__to_sklib_mouse_button(button);
+  __skreturn := __sklib__mouse_clicked__mouse_button(__skparam__button);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MouseDown(button: MouseButton): Boolean;
+var
+  __skparam__button: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__button := __skadapter__to_sklib_mouse_button(button);
+  __skreturn := __sklib__mouse_down__mouse_button(__skparam__button);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MouseMovement(): Vector2d;
+var
+  __skreturn: __sklib_vector_2d;
+begin
+  __skreturn := __sklib__mouse_movement();
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function MousePosition(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__mouse_position();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function MousePositionVector(): Vector2d;
+var
+  __skreturn: __sklib_vector_2d;
+begin
+  __skreturn := __sklib__mouse_position_vector();
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function MouseShown(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__mouse_shown();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MouseUp(button: MouseButton): Boolean;
+var
+  __skparam__button: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__button := __skadapter__to_sklib_mouse_button(button);
+  __skreturn := __sklib__mouse_up__mouse_button(__skparam__button);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MouseWheelScroll(): Vector2d;
+var
+  __skreturn: __sklib_vector_2d;
+begin
+  __skreturn := __sklib__mouse_wheel_scroll();
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function MouseX(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__mouse_x();
+  result := __skadapter__to_float(__skreturn);
+end;
+function MouseY(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__mouse_y();
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure MoveMouse(x: Single; y: Single);
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__move_mouse__float__float(__skparam__x, __skparam__y);
+end;
+procedure MoveMouse(point: Point2d);
+var
+  __skparam__point: __sklib_point_2d;
+begin
+  __skparam__point := __skadapter__to_sklib_point_2d(point);
+  __sklib__move_mouse__point_2d(__skparam__point);
+end;
+procedure ShowMouse();
+begin
+  __sklib__show_mouse();
+end;
+procedure ShowMouse(show: Boolean);
+var
+  __skparam__show: LongInt;
+begin
+  __skparam__show := __skadapter__to_sklib_bool(show);
+  __sklib__show_mouse__bool(__skparam__show);
+end;
+procedure FadeMusicIn(const name: String; ms: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__ms: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_music_in__string_ref__int(__skparam__name, __skparam__ms);
+end;
+procedure FadeMusicIn(const name: String; times: Integer; ms: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__times: Integer;
+  __skparam__ms: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_music_in__string_ref__int__int(__skparam__name, __skparam__times, __skparam__ms);
+end;
+procedure FadeMusicIn(data: Music; ms: Integer);
+var
+  __skparam__data: __sklib_ptr;
+  __skparam__ms: Integer;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_music_in__music__int(__skparam__data, __skparam__ms);
+end;
+procedure FadeMusicIn(data: Music; times: Integer; ms: Integer);
+var
+  __skparam__data: __sklib_ptr;
+  __skparam__times: Integer;
+  __skparam__ms: Integer;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_music_in__music__int__int(__skparam__data, __skparam__times, __skparam__ms);
+end;
+procedure FadeMusicOut(ms: Integer);
+var
+  __skparam__ms: Integer;
+begin
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_music_out__int(__skparam__ms);
+end;
+procedure FreeAllMusic();
+begin
+  __sklib__free_all_music();
+end;
+procedure FreeMusic(effect: Music);
+var
+  __skparam__effect: __sklib_ptr;
+begin
+  __skparam__effect := __skadapter__to_sklib_music(effect);
+  __sklib__free_music__music(__skparam__effect);
+end;
+function HasMusic(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_music__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LoadMusic(const name: String; const filename: String): Music;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__load_music__string_ref__string_ref(__skparam__name, __skparam__filename);
+  result := __skadapter__to_music(__skreturn);
+end;
+function MusicFilename(data: Music): String;
+var
+  __skparam__data: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skreturn := __sklib__music_filename__music(__skparam__data);
+  result := __skadapter__to_string(__skreturn);
+end;
+function MusicName(data: Music): String;
+var
+  __skparam__data: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skreturn := __sklib__music_name__music(__skparam__data);
+  result := __skadapter__to_string(__skreturn);
+end;
+function MusicNamed(const name: String): Music;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__music_named__string_ref(__skparam__name);
+  result := __skadapter__to_music(__skreturn);
+end;
+function MusicPlaying(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__music_playing();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MusicVolume(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__music_volume();
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure PauseMusic();
+begin
+  __sklib__pause_music();
+end;
+procedure PlayMusic(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__play_music__string_ref(__skparam__name);
+end;
+procedure PlayMusic(const name: String; times: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__times: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __sklib__play_music__string_ref__int(__skparam__name, __skparam__times);
+end;
+procedure PlayMusic(data: Music);
+var
+  __skparam__data: __sklib_ptr;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __sklib__play_music__music(__skparam__data);
+end;
+procedure PlayMusic(data: Music; times: Integer);
+var
+  __skparam__data: __sklib_ptr;
+  __skparam__times: Integer;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __sklib__play_music__music__int(__skparam__data, __skparam__times);
+end;
+procedure PlayMusic(data: Music; times: Integer; volume: Single);
+var
+  __skparam__data: __sklib_ptr;
+  __skparam__times: Integer;
+  __skparam__volume: Single;
+begin
+  __skparam__data := __skadapter__to_sklib_music(data);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__play_music__music__int__float(__skparam__data, __skparam__times, __skparam__volume);
+end;
+procedure ResumeMusic();
+begin
+  __sklib__resume_music();
+end;
+procedure SetMusicVolume(volume: Single);
+var
+  __skparam__volume: Single;
+begin
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__set_music_volume__float(__skparam__volume);
+end;
+procedure StopMusic();
+begin
+  __sklib__stop_music();
+end;
+function DecToHex(aDec: Cardinal): String;
+var
+  __skparam__a_dec: Cardinal;
+  __skreturn: __sklib_string;
+begin
+  __skparam__a_dec := __skadapter__to_sklib_unsigned int(a_dec);
+  __skreturn := __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
+  result := __skadapter__to_string(__skreturn);
+end;
+function HexStrToIpv4(const aHex: String): String;
+var
+  __skparam__a_hex: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__a_hex := __skadapter__to_sklib_string(a_hex);
+  __skreturn := __sklib__hex_str_to_ipv4__string_ref(__skparam__a_hex);
+  result := __skadapter__to_string(__skreturn);
+end;
+function HexToDecString(const aHex: String): String;
+var
+  __skparam__a_hex: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__a_hex := __skadapter__to_sklib_string(a_hex);
+  __skreturn := __sklib__hex_to_dec_string__string_ref(__skparam__a_hex);
+  result := __skadapter__to_string(__skreturn);
+end;
+function Ipv4ToDec(const aIp: String): Cardinal;
+var
+  __skparam__a_ip: __sklib_string;
+  __skreturn: Cardinal;
+begin
+  __skparam__a_ip := __skadapter__to_sklib_string(a_ip);
+  __skreturn := __sklib__ipv4_to_dec__string_ref(__skparam__a_ip);
+  result := __skadapter__to_unsigned int(__skreturn);
+end;
+function Ipv4ToHex(const aIp: String): String;
+var
+  __skparam__a_ip: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__a_ip := __skadapter__to_sklib_string(a_ip);
+  __skreturn := __sklib__ipv4_to_hex__string_ref(__skparam__a_ip);
+  result := __skadapter__to_string(__skreturn);
+end;
+function Ipv4ToStr(ip: Cardinal): String;
+var
+  __skparam__ip: Cardinal;
+  __skreturn: __sklib_string;
+begin
+  __skparam__ip := __skadapter__to_sklib_unsigned int(ip);
+  __skreturn := __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
+  result := __skadapter__to_string(__skreturn);
+end;
+function MyIp(): String;
+var
+  __skreturn: __sklib_string;
+begin
+  __skreturn := __sklib__my_ip();
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure DrawPixel(clr: Color; const pt: Point2d);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__pt: __sklib_point_2d;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __sklib__draw_pixel__color__point_2d_ref(__skparam__clr, __skparam__pt);
+end;
+procedure DrawPixel(clr: Color; const pt: Point2d; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_pixel__color__point_2d_ref__drawing_options(__skparam__clr, __skparam__pt, __skparam__opts);
+end;
+procedure DrawPixel(clr: Color; x: Single; y: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_pixel__color__float__float(__skparam__clr, __skparam__x, __skparam__y);
+end;
+procedure DrawPixel(clr: Color; x: Single; y: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_pixel__color__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__opts);
+end;
+function GetPixel(bmp: Bitmap; const pt: Point2d): Color;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_color;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__get_pixel__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt);
+  result := __skadapter__to_color(__skreturn);
+end;
+function GetPixel(bmp: Bitmap; x: Single; y: Single): Color;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__get_pixel__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_color(__skreturn);
+end;
+function GetPixel(const pt: Point2d): Color;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_color;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__get_pixel__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_color(__skreturn);
+end;
+function GetPixel(x: Single; y: Single): Color;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__get_pixel__float__float(__skparam__x, __skparam__y);
+  result := __skadapter__to_color(__skreturn);
+end;
+function GetPixel(wnd: Window; const pt: Point2d): Color;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_color;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__get_pixel__window__point_2d_ref(__skparam__wnd, __skparam__pt);
+  result := __skadapter__to_color(__skreturn);
+end;
+function GetPixel(wnd: Window; x: Single; y: Single): Color;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_color;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__get_pixel__window__float__float(__skparam__wnd, __skparam__x, __skparam__y);
+  result := __skadapter__to_color(__skreturn);
+end;
+function PointAt(x: Single; y: Single): Point2d;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__point_at__float__float(__skparam__x, __skparam__y);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function PointAtOrigin(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__point_at_origin();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function PointInCircle(const pt: Point2d; const c: Circle): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointInQuad(const pt: Point2d; const q: Quad): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__q: __sklib_quad;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skreturn := __sklib__point_in_quad__point_2d_ref__quad_ref(__skparam__pt, __skparam__q);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointInRectangle(const pt: Point2d; const rect: Rectangle): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointInTriangle(const pt: Point2d; const tri: Triangle): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__tri: __sklib_triangle;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skreturn := __sklib__point_in_triangle__point_2d_ref__triangle_ref(__skparam__pt, __skparam__tri);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointLineDistance(const pt: Point2d; const l: Line): Single;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__l: __sklib_line;
+  __skreturn: Single;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__point_line_distance__point_2d_ref__line_ref(__skparam__pt, __skparam__l);
+  result := __skadapter__to_float(__skreturn);
+end;
+function PointOffsetBy(const startPoint: Point2d; const offset: Vector2d): Point2d;
+var
+  __skparam__start_point: __sklib_point_2d;
+  __skparam__offset: __sklib_vector_2d;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__start_point := __skadapter__to_sklib_point_2d(start_point);
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __skreturn := __sklib__point_offset_by__point_2d_ref__vector_2d_ref(__skparam__start_point, __skparam__offset);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function PointOffsetFromOrigin(const offset: Vector2d): Point2d;
+var
+  __skparam__offset: __sklib_vector_2d;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __skreturn := __sklib__point_offset_from_origin__vector_2d_ref(__skparam__offset);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function PointOnLine(const pt: Point2d; const l: Line): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__l: __sklib_line;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__point_on_line__point_2d_ref__line_ref(__skparam__pt, __skparam__l);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointOnLine(const pt: Point2d; const l: Line; proximity: Single): Boolean;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__l: __sklib_line;
+  __skparam__proximity: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__proximity := __skadapter__to_sklib_float(proximity);
+  __skreturn := __sklib__point_on_line__point_2d_ref__line_ref__float(__skparam__pt, __skparam__l, __skparam__proximity);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointPointAngle(const pt1: Point2d; const pt2: Point2d): Single;
+var
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: Single;
+begin
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__point_point_angle__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
+  result := __skadapter__to_float(__skreturn);
+end;
+function PointPointDistance(const pt1: Point2d; const pt2: Point2d): Single;
+var
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: Single;
+begin
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__point_point_distance__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
+  result := __skadapter__to_float(__skreturn);
+end;
+function PointToString(const pt: Point2d): String;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_string;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__point_to_string__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RandomBitmapPoint(bmp: Bitmap): Point2d;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__random_bitmap_point__bitmap(__skparam__bmp);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function RandomScreenPoint(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__random_screen_point();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function RandomWindowPoint(wind: Window): Point2d;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__random_window_point__window(__skparam__wind);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function SamePoint(const pt1: Point2d; const pt2: Point2d): Boolean;
+var
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__same_point__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function QuadFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d; const p4: Point2d): Quad;
+var
+  __skparam__p1: __sklib_point_2d;
+  __skparam__p2: __sklib_point_2d;
+  __skparam__p3: __sklib_point_2d;
+  __skparam__p4: __sklib_point_2d;
+  __skreturn: __sklib_quad;
+begin
+  __skparam__p1 := __skadapter__to_sklib_point_2d(p1);
+  __skparam__p2 := __skadapter__to_sklib_point_2d(p2);
+  __skparam__p3 := __skadapter__to_sklib_point_2d(p3);
+  __skparam__p4 := __skadapter__to_sklib_point_2d(p4);
+  __skreturn := __sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref(__skparam__p1, __skparam__p2, __skparam__p3, __skparam__p4);
+  result := __skadapter__to_quad(__skreturn);
+end;
+function QuadFrom(const rect: Rectangle): Quad;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_quad;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__quad_from__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_quad(__skreturn);
+end;
+function QuadFrom(const rect: Rectangle; const transform: Matrix2d): Quad;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skparam__transform: __sklib_matrix_2d;
+  __skreturn: __sklib_quad;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__transform := __skadapter__to_sklib_matrix_2d(transform);
+  __skreturn := __sklib__quad_from__rectangle_ref__matrix_2d_ref(__skparam__rect, __skparam__transform);
+  result := __skadapter__to_quad(__skreturn);
+end;
+function QuadFrom(xTopLeft: Single; yTopLeft: Single; xTopRight: Single; yTopRight: Single; xBottomLeft: Single; yBottomLeft: Single; xBottomRight: Single; yBottomRight: Single): Quad;
+var
+  __skparam__x_top_left: Single;
+  __skparam__y_top_left: Single;
+  __skparam__x_top_right: Single;
+  __skparam__y_top_right: Single;
+  __skparam__x_bottom_left: Single;
+  __skparam__y_bottom_left: Single;
+  __skparam__x_bottom_right: Single;
+  __skparam__y_bottom_right: Single;
+  __skreturn: __sklib_quad;
+begin
+  __skparam__x_top_left := __skadapter__to_sklib_float(x_top_left);
+  __skparam__y_top_left := __skadapter__to_sklib_float(y_top_left);
+  __skparam__x_top_right := __skadapter__to_sklib_float(x_top_right);
+  __skparam__y_top_right := __skadapter__to_sklib_float(y_top_right);
+  __skparam__x_bottom_left := __skadapter__to_sklib_float(x_bottom_left);
+  __skparam__y_bottom_left := __skadapter__to_sklib_float(y_bottom_left);
+  __skparam__x_bottom_right := __skadapter__to_sklib_float(x_bottom_right);
+  __skparam__y_bottom_right := __skadapter__to_sklib_float(y_bottom_right);
+  __skreturn := __sklib__quad_from__float__float__float__float__float__float__float__float(__skparam__x_top_left, __skparam__y_top_left, __skparam__x_top_right, __skparam__y_top_right, __skparam__x_bottom_left, __skparam__y_bottom_left, __skparam__x_bottom_right, __skparam__y_bottom_right);
+  result := __skadapter__to_quad(__skreturn);
+end;
+function QuadsIntersect(const q1: Quad; const q2: Quad): Boolean;
+var
+  __skparam__q1: __sklib_quad;
+  __skparam__q2: __sklib_quad;
+  __skreturn: LongInt;
+begin
+  __skparam__q1 := __skadapter__to_sklib_quad(q1);
+  __skparam__q2 := __skadapter__to_sklib_quad(q2);
+  __skreturn := __sklib__quads_intersect__quad_ref__quad_ref(__skparam__q1, __skparam__q2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2d);
+var
+  __skparam__q: __sklib_quad;
+  __skparam__idx: Integer;
+  __skparam__value: __sklib_point_2d;
+begin
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__value := __skadapter__to_sklib_point_2d(value);
+  __sklib__set_quad_point__quad_ref__int__point_2d_ref(__skparam__q, __skparam__idx, __skparam__value);
+  q := __skadapter__to_quad(__skparam__q);
+end;
+function TrianglesFrom(const q: Quad): ArrayOfTriangle;
+var
+  __skparam__q: __sklib_quad;
+  __skreturn: __sklib_vector_triangle;
+begin
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skreturn := __sklib__triangles_from__quad_ref(__skparam__q);
+  result := __skadapter__to_vector_triangle(__skreturn);
+end;
+function Rnd(): Single;
+var
+  __skreturn: Single;
+begin
+  __skreturn := __sklib__rnd();
+  result := __skadapter__to_float(__skreturn);
+end;
+function Rnd(ubound: Integer): Integer;
+var
+  __skparam__ubound: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__ubound := __skadapter__to_sklib_int(ubound);
+  __skreturn := __sklib__rnd__int(__skparam__ubound);
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure DrawQuad(clr: Color; const q: Quad);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__q: __sklib_quad;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __sklib__draw_quad__color__quad_ref(__skparam__clr, __skparam__q);
+end;
+procedure DrawQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__q: __sklib_quad;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_quad__color__quad_ref__drawing_options_ref(__skparam__clr, __skparam__q, __skparam__opts);
+end;
+procedure DrawRectangle(clr: Color; const rect: Rectangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__draw_rectangle__color__rectangle_ref(__skparam__clr, __skparam__rect);
+end;
+procedure DrawRectangle(clr: Color; const rect: Rectangle; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref(__skparam__clr, __skparam__rect, __skparam__opts);
+end;
+procedure DrawRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __sklib__draw_rectangle__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height);
+end;
+procedure DrawRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
+end;
+procedure FillQuad(clr: Color; const q: Quad);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__q: __sklib_quad;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __sklib__fill_quad__color__quad_ref(__skparam__clr, __skparam__q);
+end;
+procedure FillQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__q: __sklib_quad;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_quad__color__quad_ref__drawing_options_ref(__skparam__clr, __skparam__q, __skparam__opts);
+end;
+procedure FillRectangle(clr: Color; const rect: Rectangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__fill_rectangle__color__rectangle_ref(__skparam__clr, __skparam__rect);
+end;
+procedure FillRectangle(clr: Color; const rect: Rectangle; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref(__skparam__clr, __skparam__rect, __skparam__opts);
+end;
+procedure FillRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __sklib__fill_rectangle__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height);
+end;
+procedure FillRectangle(clr: Color; x: Single; y: Single; width: Single; height: Single; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts);
+end;
+function InsetRectangle(const rect: Rectangle; insetAmount: Single): Rectangle;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skparam__inset_amount: Single;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__inset_amount := __skadapter__to_sklib_float(inset_amount);
+  __skreturn := __sklib__inset_rectangle__rectangle_ref__float(__skparam__rect, __skparam__inset_amount);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function Intersection(const rect1: Rectangle; const rect2: Rectangle): Rectangle;
+var
+  __skparam__rect1: __sklib_rectangle;
+  __skparam__rect2: __sklib_rectangle;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__rect1 := __skadapter__to_sklib_rectangle(rect1);
+  __skparam__rect2 := __skadapter__to_sklib_rectangle(rect2);
+  __skreturn := __sklib__intersection__rectangle_ref__rectangle_ref(__skparam__rect1, __skparam__rect2);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleAround(const t: Triangle): Rectangle;
+var
+  __skparam__t: __sklib_triangle;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__t := __skadapter__to_sklib_triangle(t);
+  __skreturn := __sklib__rectangle_around__triangle_ref(__skparam__t);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleAround(const c: Circle): Rectangle;
+var
+  __skparam__c: __sklib_circle;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skreturn := __sklib__rectangle_around__circle_ref(__skparam__c);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleAround(const l: Line): Rectangle;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__rectangle_around__line_ref(__skparam__l);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleBottom(const rect: Rectangle): Single;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_bottom__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function RectangleCenter(const rect: Rectangle): Point2d;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_center__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function RectangleFrom(pt: Point2d; width: Single; height: Single): Rectangle;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skreturn := __sklib__rectangle_from__point_2d__float__float(__skparam__pt, __skparam__width, __skparam__height);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleFrom(pt1: Point2d; pt2: Point2d): Rectangle;
+var
+  __skparam__pt1: __sklib_point_2d;
+  __skparam__pt2: __sklib_point_2d;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
+  __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
+  __skreturn := __sklib__rectangle_from__point_2d__point_2d(__skparam__pt1, __skparam__pt2);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleFrom(x: Single; y: Single; width: Single; height: Single): Rectangle;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__width: Single;
+  __skparam__height: Single;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__width := __skadapter__to_sklib_float(width);
+  __skparam__height := __skadapter__to_sklib_float(height);
+  __skreturn := __sklib__rectangle_from__float__float__float__float(__skparam__x, __skparam__y, __skparam__width, __skparam__height);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleLeft(const rect: Rectangle): Single;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_left__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2d): Rectangle;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skparam__offset: __sklib_vector_2d;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __skreturn := __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__skparam__rect, __skparam__offset);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleRight(const rect: Rectangle): Single;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_right__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function RectangleToString(const rect: Rectangle): String;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_string;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_to_string__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RectangleTop(const rect: Rectangle): Single;
+var
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rectangle_top__rectangle_ref(__skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function RectanglesIntersect(const rect1: Rectangle; const rect2: Rectangle): Boolean;
+var
+  __skparam__rect1: __sklib_rectangle;
+  __skparam__rect2: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__rect1 := __skadapter__to_sklib_rectangle(rect1);
+  __skparam__rect2 := __skadapter__to_sklib_rectangle(rect2);
+  __skreturn := __sklib__rectangles_intersect__rectangle_ref__rectangle_ref(__skparam__rect1, __skparam__rect2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure DeregisterFreeNotifier(handler: FreeNotifier);
+var
+  __skparam__handler: FreeNotifier;
+begin
+  __skparam__handler := __skadapter__to_sklib_free_notifier(handler);
+  __sklib__deregister_free_notifier__free_notifier_ptr(__skparam__handler);
+end;
+function PathToResource(const filename: String; kind: ResourceKind): String;
+var
+  __skparam__filename: __sklib_string;
+  __skparam__kind: LongInt;
+  __skreturn: __sklib_string;
+begin
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skparam__kind := __skadapter__to_sklib_resource_kind(kind);
+  __skreturn := __sklib__path_to_resource__string_ref__resource_kind(__skparam__filename, __skparam__kind);
+  result := __skadapter__to_string(__skreturn);
+end;
+function PathToResources(): String;
+var
+  __skreturn: __sklib_string;
+begin
+  __skreturn := __sklib__path_to_resources();
+  result := __skadapter__to_string(__skreturn);
+end;
+function PathToResources(kind: ResourceKind): String;
+var
+  __skparam__kind: LongInt;
+  __skreturn: __sklib_string;
+begin
+  __skparam__kind := __skadapter__to_sklib_resource_kind(kind);
+  __skreturn := __sklib__path_to_resources__resource_kind(__skparam__kind);
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure RegisterFreeNotifier(fn: FreeNotifier);
+var
+  __skparam__fn: FreeNotifier;
+begin
+  __skparam__fn := __skadapter__to_sklib_free_notifier(fn);
+  __sklib__register_free_notifier__free_notifier_ptr(__skparam__fn);
+end;
+procedure SetResourcesPath(const path: String);
+var
+  __skparam__path: __sklib_string;
+begin
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __sklib__set_resources_path__string_ref(__skparam__path);
+end;
+procedure FadeAllSoundEffectsOut(ms: Integer);
+var
+  __skparam__ms: Integer;
+begin
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_all_sound_effects_out__int(__skparam__ms);
+end;
+procedure FadeSoundEffectOut(effect: SoundEffect; ms: Integer);
+var
+  __skparam__effect: __sklib_ptr;
+  __skparam__ms: Integer;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skparam__ms := __skadapter__to_sklib_int(ms);
+  __sklib__fade_sound_effect_out__sound_effect__int(__skparam__effect, __skparam__ms);
+end;
+procedure FreeAllSoundEffects();
+begin
+  __sklib__free_all_sound_effects();
+end;
+procedure FreeSoundEffect(effect: SoundEffect);
+var
+  __skparam__effect: __sklib_ptr;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __sklib__free_sound_effect__sound_effect(__skparam__effect);
+end;
+function HasSoundEffect(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_sound_effect__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LoadSoundEffect(const name: String; const filename: String): SoundEffect;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__load_sound_effect__string_ref__string_ref(__skparam__name, __skparam__filename);
+  result := __skadapter__to_sound_effect(__skreturn);
+end;
+procedure PlaySoundEffect(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__play_sound_effect__string_ref(__skparam__name);
+end;
+procedure PlaySoundEffect(const name: String; volume: Single);
+var
+  __skparam__name: __sklib_string;
+  __skparam__volume: Single;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__play_sound_effect__string_ref__float(__skparam__name, __skparam__volume);
+end;
+procedure PlaySoundEffect(const name: String; times: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__times: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __sklib__play_sound_effect__string_ref__int(__skparam__name, __skparam__times);
+end;
+procedure PlaySoundEffect(const name: String; times: Integer; volume: Single);
+var
+  __skparam__name: __sklib_string;
+  __skparam__times: Integer;
+  __skparam__volume: Single;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__play_sound_effect__string_ref__int__float(__skparam__name, __skparam__times, __skparam__volume);
+end;
+procedure PlaySoundEffect(effect: SoundEffect);
+var
+  __skparam__effect: __sklib_ptr;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __sklib__play_sound_effect__sound_effect(__skparam__effect);
+end;
+procedure PlaySoundEffect(effect: SoundEffect; volume: Single);
+var
+  __skparam__effect: __sklib_ptr;
+  __skparam__volume: Single;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__play_sound_effect__sound_effect__float(__skparam__effect, __skparam__volume);
+end;
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer);
+var
+  __skparam__effect: __sklib_ptr;
+  __skparam__times: Integer;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __sklib__play_sound_effect__sound_effect__int(__skparam__effect, __skparam__times);
+end;
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Single);
+var
+  __skparam__effect: __sklib_ptr;
+  __skparam__times: Integer;
+  __skparam__volume: Single;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skparam__times := __skadapter__to_sklib_int(times);
+  __skparam__volume := __skadapter__to_sklib_float(volume);
+  __sklib__play_sound_effect__sound_effect__int__float(__skparam__effect, __skparam__times, __skparam__volume);
+end;
+function SoundEffectFilename(effect: SoundEffect): String;
+var
+  __skparam__effect: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skreturn := __sklib__sound_effect_filename__sound_effect(__skparam__effect);
+  result := __skadapter__to_string(__skreturn);
+end;
+function SoundEffectName(effect: SoundEffect): String;
+var
+  __skparam__effect: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skreturn := __sklib__sound_effect_name__sound_effect(__skparam__effect);
+  result := __skadapter__to_string(__skreturn);
+end;
+function SoundEffectNamed(const name: String): SoundEffect;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sound_effect_named__string_ref(__skparam__name);
+  result := __skadapter__to_sound_effect(__skreturn);
+end;
+function SoundEffectPlaying(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sound_effect_playing__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SoundEffectPlaying(effect: SoundEffect): Boolean;
+var
+  __skparam__effect: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skreturn := __sklib__sound_effect_playing__sound_effect(__skparam__effect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure StopSoundEffect(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__stop_sound_effect__string_ref(__skparam__name);
+end;
+procedure StopSoundEffect(effect: SoundEffect);
+var
+  __skparam__effect: __sklib_ptr;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __sklib__stop_sound_effect__sound_effect(__skparam__effect);
+end;
+procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single);
+var
+  __skparam__fn: SpriteFloatFunction;
+  __skparam__val: Single;
+begin
+  __skparam__fn := __skadapter__to_sklib_sprite_float_function(fn);
+  __skparam__val := __skadapter__to_sklib_float(val);
+  __sklib__call_for_all_sprites__sprite_float_function_ptr__float(__skparam__fn, __skparam__val);
+end;
+procedure CallForAllSprites(fn: SpriteFunction);
+var
+  __skparam__fn: SpriteFunction;
+begin
+  __skparam__fn := __skadapter__to_sklib_sprite_function(fn);
+  __sklib__call_for_all_sprites__sprite_function_ptr(__skparam__fn);
+end;
+procedure CallOnSpriteEvent(handler: SpriteEventHandler);
+var
+  __skparam__handler: SpriteEventHandler;
+begin
+  __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
+  __sklib__call_on_sprite_event__sprite_event_handler_ptr(__skparam__handler);
+end;
+function CenterPoint(s: Sprite): Point2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__center_point__sprite(__skparam__s);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function CreateSprite(layer: Bitmap): Sprite;
+var
+  __skparam__layer: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__layer := __skadapter__to_sklib_bitmap(layer);
+  __skreturn := __sklib__create_sprite__bitmap(__skparam__layer);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function CreateSprite(layer: Bitmap; ani: AnimationScript): Sprite;
+var
+  __skparam__layer: __sklib_ptr;
+  __skparam__ani: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__layer := __skadapter__to_sklib_bitmap(layer);
+  __skparam__ani := __skadapter__to_sklib_animation_script(ani);
+  __skreturn := __sklib__create_sprite__bitmap__animation_script(__skparam__layer, __skparam__ani);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function CreateSprite(const bitmapName: String): Sprite;
+var
+  __skparam__bitmap_name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__bitmap_name := __skadapter__to_sklib_string(bitmap_name);
+  __skreturn := __sklib__create_sprite__string_ref(__skparam__bitmap_name);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function CreateSprite(const name: String; layer: Bitmap): Sprite;
+var
+  __skparam__name: __sklib_string;
+  __skparam__layer: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__layer := __skadapter__to_sklib_bitmap(layer);
+  __skreturn := __sklib__create_sprite__string_ref__bitmap(__skparam__name, __skparam__layer);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function CreateSprite(const name: String; layer: Bitmap; ani: AnimationScript): Sprite;
+var
+  __skparam__name: __sklib_string;
+  __skparam__layer: __sklib_ptr;
+  __skparam__ani: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__layer := __skadapter__to_sklib_bitmap(layer);
+  __skparam__ani := __skadapter__to_sklib_animation_script(ani);
+  __skreturn := __sklib__create_sprite__string_ref__bitmap__animation_script(__skparam__name, __skparam__layer, __skparam__ani);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function CreateSprite(const bitmapName: String; const animationName: String): Sprite;
+var
+  __skparam__bitmap_name: __sklib_string;
+  __skparam__animation_name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__bitmap_name := __skadapter__to_sklib_string(bitmap_name);
+  __skparam__animation_name := __skadapter__to_sklib_string(animation_name);
+  __skreturn := __sklib__create_sprite__string_ref__string_ref(__skparam__bitmap_name, __skparam__animation_name);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+procedure CreateSpritePack(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__create_sprite_pack__string_ref(__skparam__name);
+end;
+function CurrentSpritePack(): String;
+var
+  __skreturn: __sklib_string;
+begin
+  __skreturn := __sklib__current_sprite_pack();
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure DrawAllSprites();
+begin
+  __sklib__draw_all_sprites();
+end;
+procedure DrawSprite(s: Sprite; const offset: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__offset: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__offset := __skadapter__to_sklib_vector_2d(offset);
+  __sklib__draw_sprite__sprite__vector_2d_ref(__skparam__s, __skparam__offset);
+end;
+procedure DrawSprite(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__draw_sprite__sprite(__skparam__s);
+end;
+procedure DrawSprite(s: Sprite; xOffset: Single; yOffset: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__x_offset: Single;
+  __skparam__y_offset: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__x_offset := __skadapter__to_sklib_float(x_offset);
+  __skparam__y_offset := __skadapter__to_sklib_float(y_offset);
+  __sklib__draw_sprite__sprite__float__float(__skparam__s, __skparam__x_offset, __skparam__y_offset);
+end;
+procedure FreeAllSprites();
+begin
+  __sklib__free_all_sprites();
+end;
+procedure FreeSprite(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__free_sprite__sprite(__skparam__s);
+end;
+procedure FreeSpritePack(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__free_sprite_pack__string_ref(__skparam__name);
+end;
+function HasSprite(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_sprite__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasSpritePack(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_sprite_pack__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure MoveSprite(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__move_sprite__sprite(__skparam__s);
+end;
+procedure MoveSprite(s: Sprite; const distance: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__distance: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__distance := __skadapter__to_sklib_vector_2d(distance);
+  __sklib__move_sprite__sprite__vector_2d_ref(__skparam__s, __skparam__distance);
+end;
+procedure MoveSprite(s: Sprite; const distance: Vector2d; pct: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__distance: __sklib_vector_2d;
+  __skparam__pct: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__distance := __skadapter__to_sklib_vector_2d(distance);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__move_sprite__sprite__vector_2d_ref__float(__skparam__s, __skparam__distance, __skparam__pct);
+end;
+procedure MoveSprite(s: Sprite; pct: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pct: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__move_sprite__sprite__float(__skparam__s, __skparam__pct);
+end;
+procedure MoveSpriteTo(s: Sprite; x: Single; y: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__move_sprite_to__sprite__float__float(__skparam__s, __skparam__x, __skparam__y);
+end;
+procedure SelectSpritePack(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__select_sprite_pack__string_ref(__skparam__name);
+end;
+function SpriteAddLayer(s: Sprite; newLayer: Bitmap; const layerName: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__new_layer: __sklib_ptr;
+  __skparam__layer_name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__new_layer := __skadapter__to_sklib_bitmap(new_layer);
+  __skparam__layer_name := __skadapter__to_sklib_string(layer_name);
+  __skreturn := __sklib__sprite_add_layer__sprite__bitmap__string_ref(__skparam__s, __skparam__new_layer, __skparam__layer_name);
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure SpriteAddToVelocity(s: Sprite; const value: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_vector_2d(value);
+  __sklib__sprite_add_to_velocity__sprite__vector_2d_ref(__skparam__s, __skparam__value);
+end;
+procedure SpriteAddValue(s: Sprite; const name: String);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__sprite_add_value__sprite__string_ref(__skparam__s, __skparam__name);
+end;
+procedure SpriteAddValue(s: Sprite; const name: String; initVal: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__init_val: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__init_val := __skadapter__to_sklib_float(init_val);
+  __sklib__sprite_add_value__sprite__string_ref__float(__skparam__s, __skparam__name, __skparam__init_val);
+end;
+function SpriteAnchorPoint(s: Sprite): Point2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_anchor_point__sprite(__skparam__s);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function SpriteAnchorPosition(s: Sprite): Point2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_anchor_position__sprite(__skparam__s);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function SpriteAnimationHasEnded(s: Sprite): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_animation_has_ended__sprite(__skparam__s);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteAnimationName(s: Sprite): String;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_animation_name__sprite(__skparam__s);
+  result := __skadapter__to_string(__skreturn);
+end;
+function SpriteAt(s: Sprite; const pt: Point2d): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__sprite_at__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure SpriteBringLayerForward(s: Sprite; visibleLayer: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__visible_layer: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__visible_layer := __skadapter__to_sklib_int(visible_layer);
+  __sklib__sprite_bring_layer_forward__sprite__int(__skparam__s, __skparam__visible_layer);
+end;
+procedure SpriteBringLayerToFront(s: Sprite; visibleLayer: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__visible_layer: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__visible_layer := __skadapter__to_sklib_int(visible_layer);
+  __sklib__sprite_bring_layer_to_front__sprite__int(__skparam__s, __skparam__visible_layer);
+end;
+procedure SpriteCallOnEvent(s: Sprite; handler: SpriteEventHandler);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__handler: SpriteEventHandler;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
+  __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__skparam__s, __skparam__handler);
+end;
+function SpriteCircle(s: Sprite): Circle;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_circle__sprite(__skparam__s);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function SpriteCollisionBitmap(s: Sprite): Bitmap;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_collision_bitmap__sprite(__skparam__s);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function SpriteCollisionCircle(s: Sprite): Circle;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_collision_circle__sprite(__skparam__s);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function SpriteCollisionKind(s: Sprite): CollisionTestKind;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_collision_kind__sprite(__skparam__s);
+  result := __skadapter__to_collision_test_kind(__skreturn);
+end;
+function SpriteCollisionRectangle(s: Sprite): Rectangle;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_collision_rectangle__sprite(__skparam__s);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function SpriteCurrentCell(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_current_cell__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteCurrentCellRectangle(s: Sprite): Rectangle;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_current_cell_rectangle__sprite(__skparam__s);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function SpriteDx(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_dx__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteDy(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_dy__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteHasValue(s: Sprite; name: String): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_has_value__sprite__string(__skparam__s, __skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteHeading(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_heading__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteHeight(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_height__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure SpriteHideLayer(s: Sprite; const name: String);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__sprite_hide_layer__sprite__string_ref(__skparam__s, __skparam__name);
+end;
+procedure SpriteHideLayer(s: Sprite; id: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__id: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__id := __skadapter__to_sklib_int(id);
+  __sklib__sprite_hide_layer__sprite__int(__skparam__s, __skparam__id);
+end;
+function SpriteLayer(s: Sprite; const name: String): Bitmap;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function SpriteLayer(s: Sprite; idx: Integer): Bitmap;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function SpriteLayerCircle(s: Sprite; const name: String): Circle;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_circle__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function SpriteLayerCircle(s: Sprite; idx: Integer): Circle;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_circle__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function SpriteLayerCount(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_layer_count__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLayerHeight(s: Sprite; const name: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_height__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLayerHeight(s: Sprite; idx: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_height__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLayerIndex(s: Sprite; const name: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_index__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLayerName(s: Sprite; idx: Integer): String;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_name__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_string(__skreturn);
+end;
+function SpriteLayerOffset(s: Sprite; const name: String): Vector2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_offset__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_offset__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function SpriteLayerRectangle(s: Sprite; const name: String): Rectangle;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_rectangle__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function SpriteLayerRectangle(s: Sprite; idx: Integer): Rectangle;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_rectangle__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function SpriteLayerWidth(s: Sprite; const name: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_layer_width__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLayerWidth(s: Sprite; idx: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_layer_width__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteLocationMatrix(s: Sprite): Matrix2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_location_matrix__sprite(__skparam__s);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function SpriteMass(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_mass__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteMoveFromAnchorPoint(s: Sprite): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_move_from_anchor_point__sprite(__skparam__s);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure SpriteMoveTo(s: Sprite; const pt: Point2d; takingSeconds: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__taking_seconds: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__taking_seconds := __skadapter__to_sklib_float(taking_seconds);
+  __sklib__sprite_move_to__sprite__point_2d_ref__float(__skparam__s, __skparam__pt, __skparam__taking_seconds);
+end;
+function SpriteName(s: Sprite): String;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_name__sprite(__skparam__s);
+  result := __skadapter__to_string(__skreturn);
+end;
+function SpriteNamed(const name: String): Sprite;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_named__string_ref(__skparam__name);
+  result := __skadapter__to_sprite(__skreturn);
+end;
+function SpriteOffscreen(s: Sprite): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_offscreen__sprite(__skparam__s);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteOnScreenAt(s: Sprite; const pt: Point2d): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__sprite_on_screen_at__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpriteOnScreenAt(s: Sprite; x: Single; y: Single): Boolean;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__sprite_on_screen_at__sprite__float__float(__skparam__s, __skparam__x, __skparam__y);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function SpritePosition(s: Sprite): Point2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_position__sprite(__skparam__s);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+procedure SpriteReplayAnimation(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__sprite_replay_animation__sprite(__skparam__s);
+end;
+procedure SpriteReplayAnimation(s: Sprite; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__sprite_replay_animation__sprite__bool(__skparam__s, __skparam__with_sound);
+end;
+function SpriteRotation(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_rotation__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteScale(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_scale__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteScreenRectangle(s: Sprite): Rectangle;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_screen_rectangle__sprite(__skparam__s);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+procedure SpriteSendLayerBackward(s: Sprite; visibleLayer: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__visible_layer: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__visible_layer := __skadapter__to_sklib_int(visible_layer);
+  __sklib__sprite_send_layer_backward__sprite__int(__skparam__s, __skparam__visible_layer);
+end;
+procedure SpriteSendLayerToBack(s: Sprite; visibleLayer: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__visible_layer: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__visible_layer := __skadapter__to_sklib_int(visible_layer);
+  __sklib__sprite_send_layer_to_back__sprite__int(__skparam__s, __skparam__visible_layer);
+end;
+procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __sklib__sprite_set_anchor_point__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+end;
+procedure SpriteSetCollisionBitmap(s: Sprite; bmp: Bitmap);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__bmp: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __sklib__sprite_set_collision_bitmap__sprite__bitmap(__skparam__s, __skparam__bmp);
+end;
+procedure SpriteSetCollisionKind(s: Sprite; value: CollisionTestKind);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_collision_test_kind(value);
+  __sklib__sprite_set_collision_kind__sprite__collision_test_kind(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetDx(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_dx__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetDy(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_dy__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetHeading(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_heading__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__value: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__value := __skadapter__to_sklib_vector_2d(value);
+  __sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref(__skparam__s, __skparam__name, __skparam__value);
+end;
+procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skparam__value: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__value := __skadapter__to_sklib_vector_2d(value);
+  __sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref(__skparam__s, __skparam__idx, __skparam__value);
+end;
+procedure SpriteSetMass(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_mass__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetMoveFromAnchorPoint(s: Sprite; value: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __sklib__sprite_set_move_from_anchor_point__sprite__bool(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetPosition(s: Sprite; const value: Point2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_point_2d(value);
+  __sklib__sprite_set_position__sprite__point_2d_ref(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetRotation(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_rotation__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetScale(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_scale__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetSpeed(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_speed__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetValue(s: Sprite; const name: String; val: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__val: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__val := __skadapter__to_sklib_float(val);
+  __sklib__sprite_set_value__sprite__string_ref__float(__skparam__s, __skparam__name, __skparam__val);
+end;
+procedure SpriteSetVelocity(s: Sprite; const value: Vector2d);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_vector_2d(value);
+  __sklib__sprite_set_velocity__sprite__vector_2d_ref(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetX(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_x__sprite__float(__skparam__s, __skparam__value);
+end;
+procedure SpriteSetY(s: Sprite; value: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__value: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __sklib__sprite_set_y__sprite__float(__skparam__s, __skparam__value);
+end;
+function SpriteShowLayer(s: Sprite; const name: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_show_layer__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteShowLayer(s: Sprite; id: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__id: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__id := __skadapter__to_sklib_int(id);
+  __skreturn := __sklib__sprite_show_layer__sprite__int(__skparam__s, __skparam__id);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteSpeed(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_speed__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure SpriteStartAnimation(s: Sprite; const named: String);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__named: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__named := __skadapter__to_sklib_string(named);
+  __sklib__sprite_start_animation__sprite__string_ref(__skparam__s, __skparam__named);
+end;
+procedure SpriteStartAnimation(s: Sprite; const named: String; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__named: __sklib_string;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__named := __skadapter__to_sklib_string(named);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__sprite_start_animation__sprite__string_ref__bool(__skparam__s, __skparam__named, __skparam__with_sound);
+end;
+procedure SpriteStartAnimation(s: Sprite; idx: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __sklib__sprite_start_animation__sprite__int(__skparam__s, __skparam__idx);
+end;
+procedure SpriteStartAnimation(s: Sprite; idx: Integer; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__sprite_start_animation__sprite__int__bool(__skparam__s, __skparam__idx, __skparam__with_sound);
+end;
+procedure SpriteStopCallingOnEvent(s: Sprite; handler: SpriteEventHandler);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__handler: SpriteEventHandler;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
+  __sklib__sprite_stop_calling_on_event__sprite__sprite_event_handler_ptr(__skparam__s, __skparam__handler);
+end;
+procedure SpriteToggleLayerVisible(s: Sprite; const name: String);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__sprite_toggle_layer_visible__sprite__string_ref(__skparam__s, __skparam__name);
+end;
+procedure SpriteToggleLayerVisible(s: Sprite; id: Integer);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__id: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__id := __skadapter__to_sklib_int(id);
+  __sklib__sprite_toggle_layer_visible__sprite__int(__skparam__s, __skparam__id);
+end;
+function SpriteValue(s: Sprite; const name: String): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_value__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteValueCount(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_value_count__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteVelocity(s: Sprite): Vector2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_velocity__sprite(__skparam__s);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function SpriteVisibleIndexOfLayer(s: Sprite; const name: String): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__sprite_visible_index_of_layer__sprite__string_ref(__skparam__s, __skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteVisibleIndexOfLayer(s: Sprite; id: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__id: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__id := __skadapter__to_sklib_int(id);
+  __skreturn := __sklib__sprite_visible_index_of_layer__sprite__int(__skparam__s, __skparam__id);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteVisibleLayer(s: Sprite; idx: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_visible_layer__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteVisibleLayerCount(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_visible_layer_count__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteVisibleLayerId(s: Sprite; idx: Integer): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__sprite_visible_layer_id__sprite__int(__skparam__s, __skparam__idx);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteWidth(s: Sprite): Integer;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_width__sprite(__skparam__s);
+  result := __skadapter__to_int(__skreturn);
+end;
+function SpriteX(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_x__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+function SpriteY(s: Sprite): Single;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_y__sprite(__skparam__s);
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure StopCallingOnSpriteEvent(handler: SpriteEventHandler);
+var
+  __skparam__handler: SpriteEventHandler;
+begin
+  __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
+  __sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr(__skparam__handler);
+end;
+procedure UpdateAllSprites();
+begin
+  __sklib__update_all_sprites();
+end;
+procedure UpdateAllSprites(pct: Single);
+var
+  __skparam__pct: Single;
+begin
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__update_all_sprites__float(__skparam__pct);
+end;
+procedure UpdateSprite(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__update_sprite__sprite(__skparam__s);
+end;
+procedure UpdateSprite(s: Sprite; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__update_sprite__sprite__bool(__skparam__s, __skparam__with_sound);
+end;
+procedure UpdateSprite(s: Sprite; pct: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pct: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__update_sprite__sprite__float(__skparam__s, __skparam__pct);
+end;
+procedure UpdateSprite(s: Sprite; pct: Single; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pct: Single;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__update_sprite__sprite__float__bool(__skparam__s, __skparam__pct, __skparam__with_sound);
+end;
+procedure UpdateSpriteAnimation(s: Sprite);
+var
+  __skparam__s: __sklib_ptr;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __sklib__update_sprite_animation__sprite(__skparam__s);
+end;
+procedure UpdateSpriteAnimation(s: Sprite; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__update_sprite_animation__sprite__bool(__skparam__s, __skparam__with_sound);
+end;
+procedure UpdateSpriteAnimation(s: Sprite; pct: Single);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pct: Single;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __sklib__update_sprite_animation__sprite__float(__skparam__s, __skparam__pct);
+end;
+procedure UpdateSpriteAnimation(s: Sprite; pct: Single; withSound: Boolean);
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pct: Single;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pct := __skadapter__to_sklib_float(pct);
+  __skparam__with_sound := __skadapter__to_sklib_bool(with_sound);
+  __sklib__update_sprite_animation__sprite__float__bool(__skparam__s, __skparam__pct, __skparam__with_sound);
+end;
+function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2d): Vector2d;
+var
+  __skparam__s: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorFromTo(s1: Sprite; s2: Sprite): Vector2d;
+var
+  __skparam__s1: __sklib_ptr;
+  __skparam__s2: __sklib_ptr;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__s1 := __skadapter__to_sklib_sprite(s1);
+  __skparam__s2 := __skadapter__to_sklib_sprite(s2);
+  __skreturn := __sklib__vector_from_to__sprite__sprite(__skparam__s1, __skparam__s2);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+procedure ActivateAdvancedTerminal();
+begin
+  __sklib__activate_advanced_terminal();
+end;
+function AdvancedTerminalActive(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__advanced_terminal_active();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure ClearTerminal();
+begin
+  __sklib__clear_terminal();
+end;
+procedure EndAdvancedTerminal();
+begin
+  __sklib__end_advanced_terminal();
+end;
+procedure MoveCursorTo(x: Integer; y: Integer);
+var
+  __skparam__x: Integer;
+  __skparam__y: Integer;
+begin
+  __skparam__x := __skadapter__to_sklib_int(x);
+  __skparam__y := __skadapter__to_sklib_int(y);
+  __sklib__move_cursor_to__int__int(__skparam__x, __skparam__y);
+end;
+function ReadChar(): Char;
+var
+  __skreturn: Char;
+begin
+  __skreturn := __sklib__read_char();
+  result := __skadapter__to_char(__skreturn);
+end;
+function ReadLine(): String;
+var
+  __skreturn: __sklib_string;
+begin
+  __skreturn := __sklib__read_line();
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure RefreshTerminal();
+begin
+  __sklib__refresh_terminal();
+end;
+procedure SetTerminalBold(value: Boolean);
+var
+  __skparam__value: LongInt;
+begin
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __sklib__set_terminal_bold__bool(__skparam__value);
+end;
+procedure SetTerminalColors(foreground: Color; background: Color);
+var
+  __skparam__foreground: __sklib_color;
+  __skparam__background: __sklib_color;
+begin
+  __skparam__foreground := __skadapter__to_sklib_color(foreground);
+  __skparam__background := __skadapter__to_sklib_color(background);
+  __sklib__set_terminal_colors__color__color(__skparam__foreground, __skparam__background);
+end;
+procedure SetTerminalEchoInput(value: Boolean);
+var
+  __skparam__value: LongInt;
+begin
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __sklib__set_terminal_echo_input__bool(__skparam__value);
+end;
+function TerminalHeight(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__terminal_height();
+  result := __skadapter__to_int(__skreturn);
+end;
+function TerminalWidth(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__terminal_width();
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure Write(text: String);
+var
+  __skparam__text: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __sklib__write__string(__skparam__text);
+end;
+procedure WriteAt(text: String; x: Integer; y: Integer);
+var
+  __skparam__text: __sklib_string;
+  __skparam__x: Integer;
+  __skparam__y: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__x := __skadapter__to_sklib_int(x);
+  __skparam__y := __skadapter__to_sklib_int(y);
+  __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
+end;
+procedure WriteLine();
+begin
+  __sklib__write_line();
+end;
+procedure WriteLine(line: String);
+var
+  __skparam__line: __sklib_string;
+begin
+  __skparam__line := __skadapter__to_sklib_string(line);
+  __sklib__write_line__string(__skparam__line);
+end;
+procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Single; y: Single);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__fnt: __sklib_string;
+  __skparam__font_size: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__fnt := __skadapter__to_sklib_string(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_text__string_ref__color_ref__string_ref__int__float__float(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y);
+end;
+procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Single; y: Single; const opts: DrawingOptions);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__fnt: __sklib_string;
+  __skparam__font_size: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__fnt := __skadapter__to_sklib_string(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts);
+end;
+procedure DrawText(const text: String; const clr: Color; x: Single; y: Single);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_text__string_ref__color_ref__float__float(__skparam__text, __skparam__clr, __skparam__x, __skparam__y);
+end;
+procedure DrawText(const text: String; const clr: Color; x: Single; y: Single; const opts: DrawingOptions);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts);
+end;
+procedure DrawText(const text: String; const clr: Color; fnt: Font; fontSize: Integer; x: Single; y: Single);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __sklib__draw_text__string_ref__color_ref__font__int__float__float(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y);
+end;
+procedure DrawText(const text: String; const clr: Color; fnt: Font; fontSize: Integer; x: Single; y: Single; const opts: DrawingOptions);
+var
+  __skparam__text: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts);
+end;
+function FontHasSize(const name: String; fontSize: Integer): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skparam__font_size: Integer;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__font_has_size__string_ref__int(__skparam__name, __skparam__font_size);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function FontHasSize(fnt: Font; fontSize: Integer): Boolean;
+var
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skreturn: LongInt;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__font_has_size__font__int(__skparam__fnt, __skparam__font_size);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure FontLoadSize(const name: String; fontSize: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__font_size: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __sklib__font_load_size__string_ref__int(__skparam__name, __skparam__font_size);
+end;
+procedure FontLoadSize(fnt: Font; fontSize: Integer);
+var
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __sklib__font_load_size__font__int(__skparam__fnt, __skparam__font_size);
+end;
+function FontNamed(name: String): Font;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__font_named__string(__skparam__name);
+  result := __skadapter__to_font(__skreturn);
+end;
+procedure FreeAllFonts();
+begin
+  __sklib__free_all_fonts();
+end;
+procedure FreeFont(fnt: Font);
+var
+  __skparam__fnt: __sklib_ptr;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __sklib__free_font__font(__skparam__fnt);
+end;
+function GetFontStyle(const name: String): FontStyle;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__get_font_style__string_ref(__skparam__name);
+  result := __skadapter__to_font_style(__skreturn);
+end;
+function GetFontStyle(fnt: Font): FontStyle;
+var
+  __skparam__fnt: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skreturn := __sklib__get_font_style__font(__skparam__fnt);
+  result := __skadapter__to_font_style(__skreturn);
+end;
+function HasFont(fnt: Font): Boolean;
+var
+  __skparam__fnt: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skreturn := __sklib__has_font__font(__skparam__fnt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasFont(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_font__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LoadFont(const name: String; const filename: String): Font;
+var
+  __skparam__name: __sklib_string;
+  __skparam__filename: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skreturn := __sklib__load_font__string_ref__string_ref(__skparam__name, __skparam__filename);
+  result := __skadapter__to_font(__skreturn);
+end;
+procedure SetFontStyle(const name: String; style: FontStyle);
+var
+  __skparam__name: __sklib_string;
+  __skparam__style: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__style := __skadapter__to_sklib_font_style(style);
+  __sklib__set_font_style__string_ref__font_style(__skparam__name, __skparam__style);
+end;
+procedure SetFontStyle(fnt: Font; style: FontStyle);
+var
+  __skparam__fnt: __sklib_ptr;
+  __skparam__style: LongInt;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__style := __skadapter__to_sklib_font_style(style);
+  __sklib__set_font_style__font__font_style(__skparam__fnt, __skparam__style);
+end;
+function TextHeight(const text: String; const fnt: String; fontSize: Integer): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skparam__fnt: __sklib_string;
+  __skparam__font_size: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__fnt := __skadapter__to_sklib_string(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__text_height__string_ref__string_ref__int(__skparam__text, __skparam__fnt, __skparam__font_size);
+  result := __skadapter__to_int(__skreturn);
+end;
+function TextHeight(const text: String; fnt: Font; fontSize: Integer): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__text_height__string_ref__font__int(__skparam__text, __skparam__fnt, __skparam__font_size);
+  result := __skadapter__to_int(__skreturn);
+end;
+function TextWidth(const text: String; const fnt: String; fontSize: Integer): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skparam__fnt: __sklib_string;
+  __skparam__font_size: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__fnt := __skadapter__to_sklib_string(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__text_width__string_ref__string_ref__int(__skparam__text, __skparam__fnt, __skparam__font_size);
+  result := __skadapter__to_int(__skreturn);
+end;
+function TextWidth(const text: String; fnt: Font; fontSize: Integer): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skreturn := __sklib__text_width__string_ref__font__int(__skparam__text, __skparam__fnt, __skparam__font_size);
+  result := __skadapter__to_int(__skreturn);
+end;
+procedure DrawCollectedText(clr: Color; fnt: Font; fontSize: Integer; const opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__fnt: __sklib_ptr;
+  __skparam__font_size: Integer;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __skparam__font_size := __skadapter__to_sklib_int(font_size);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_collected_text__color__font__int__drawing_options_ref(__skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__opts);
+end;
+procedure EndReadingText();
+begin
+  __sklib__end_reading_text();
+end;
+procedure EndReadingText(wind: Window);
+var
+  __skparam__wind: __sklib_ptr;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __sklib__end_reading_text__window(__skparam__wind);
+end;
+function ReadingText(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__reading_text();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ReadingText(wind: Window): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__reading_text__window(__skparam__wind);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure StartReadingText(rect: Rectangle);
+var
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__start_reading_text__rectangle(__skparam__rect);
+end;
+procedure StartReadingText(rect: Rectangle; initialText: String);
+var
+  __skparam__rect: __sklib_rectangle;
+  __skparam__initial_text: __sklib_string;
+begin
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__initial_text := __skadapter__to_sklib_string(initial_text);
+  __sklib__start_reading_text__rectangle__string(__skparam__rect, __skparam__initial_text);
+end;
+procedure StartReadingText(wind: Window; rect: Rectangle);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__start_reading_text__window__rectangle(__skparam__wind, __skparam__rect);
+end;
+procedure StartReadingText(wind: Window; rect: Rectangle; initialText: String);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__initial_text: __sklib_string;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__initial_text := __skadapter__to_sklib_string(initial_text);
+  __sklib__start_reading_text__window__rectangle__string(__skparam__wind, __skparam__rect, __skparam__initial_text);
+end;
+function TextEntryCancelled(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__text_entry_cancelled();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TextEntryCancelled(wind: Window): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__text_entry_cancelled__window(__skparam__wind);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TextInput(): String;
+var
+  __skreturn: __sklib_string;
+begin
+  __skreturn := __sklib__text_input();
+  result := __skadapter__to_string(__skreturn);
+end;
+function TextInput(wind: Window): String;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__text_input__window(__skparam__wind);
+  result := __skadapter__to_string(__skreturn);
+end;
+function CreateTimer(name: String): Timer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__create_timer__string(__skparam__name);
+  result := __skadapter__to_timer(__skreturn);
+end;
+procedure FreeAllTimers();
+begin
+  __sklib__free_all_timers();
+end;
+procedure FreeTimer(toFree: Timer);
+var
+  __skparam__to_free: __sklib_ptr;
+begin
+  __skparam__to_free := __skadapter__to_sklib_timer(to_free);
+  __sklib__free_timer__timer(__skparam__to_free);
+end;
+function HasTimer(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_timer__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure PauseTimer(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__pause_timer__string(__skparam__name);
+end;
+procedure PauseTimer(toPause: Timer);
+var
+  __skparam__to_pause: __sklib_ptr;
+begin
+  __skparam__to_pause := __skadapter__to_sklib_timer(to_pause);
+  __sklib__pause_timer__timer(__skparam__to_pause);
+end;
+procedure ResetTimer(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__reset_timer__string(__skparam__name);
+end;
+procedure ResetTimer(tmr: Timer);
+var
+  __skparam__tmr: __sklib_ptr;
+begin
+  __skparam__tmr := __skadapter__to_sklib_timer(tmr);
+  __sklib__reset_timer__timer(__skparam__tmr);
+end;
+procedure ResumeTimer(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__resume_timer__string(__skparam__name);
+end;
+procedure ResumeTimer(toResume: Timer);
+var
+  __skparam__to_resume: __sklib_ptr;
+begin
+  __skparam__to_resume := __skadapter__to_sklib_timer(to_resume);
+  __sklib__resume_timer__timer(__skparam__to_resume);
+end;
+procedure StartTimer(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__start_timer__string(__skparam__name);
+end;
+procedure StartTimer(toStart: Timer);
+var
+  __skparam__to_start: __sklib_ptr;
+begin
+  __skparam__to_start := __skadapter__to_sklib_timer(to_start);
+  __sklib__start_timer__timer(__skparam__to_start);
+end;
+procedure StopTimer(name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__stop_timer__string(__skparam__name);
+end;
+procedure StopTimer(toStop: Timer);
+var
+  __skparam__to_stop: __sklib_ptr;
+begin
+  __skparam__to_stop := __skadapter__to_sklib_timer(to_stop);
+  __sklib__stop_timer__timer(__skparam__to_stop);
+end;
+function TimerNamed(name: String): Timer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__timer_named__string(__skparam__name);
+  result := __skadapter__to_timer(__skreturn);
+end;
+function TimerPaused(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__timer_paused__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TimerPaused(toGet: Timer): Boolean;
+var
+  __skparam__to_get: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__to_get := __skadapter__to_sklib_timer(to_get);
+  __skreturn := __sklib__timer_paused__timer(__skparam__to_get);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TimerStarted(name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__timer_started__string(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TimerStarted(toGet: Timer): Boolean;
+var
+  __skparam__to_get: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__to_get := __skadapter__to_sklib_timer(to_get);
+  __skreturn := __sklib__timer_started__timer(__skparam__to_get);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TimerTicks(name: String): Cardinal;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Cardinal;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__timer_ticks__string(__skparam__name);
+  result := __skadapter__to_unsigned int(__skreturn);
+end;
+function TimerTicks(toGet: Timer): Cardinal;
+var
+  __skparam__to_get: __sklib_ptr;
+  __skreturn: Cardinal;
+begin
+  __skparam__to_get := __skadapter__to_sklib_timer(to_get);
+  __skreturn := __sklib__timer_ticks__timer(__skparam__to_get);
+  result := __skadapter__to_unsigned int(__skreturn);
+end;
+procedure DrawTriangle(clr: Color; const tri: Triangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__tri: __sklib_triangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __sklib__draw_triangle__color__triangle_ref(__skparam__clr, __skparam__tri);
+end;
+procedure DrawTriangle(clr: Color; const tri: Triangle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__tri: __sklib_triangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_triangle__color__triangle_ref__drawing_options(__skparam__clr, __skparam__tri, __skparam__opts);
+end;
+procedure DrawTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__x3: Single;
+  __skparam__y3: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__x3 := __skadapter__to_sklib_float(x3);
+  __skparam__y3 := __skadapter__to_sklib_float(y3);
+  __sklib__draw_triangle__color__float__float__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3);
+end;
+procedure DrawTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__x3: Single;
+  __skparam__y3: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__x3 := __skadapter__to_sklib_float(x3);
+  __skparam__y3 := __skadapter__to_sklib_float(y3);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts);
+end;
+procedure FillTriangle(clr: Color; const tri: Triangle);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__tri: __sklib_triangle;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __sklib__fill_triangle__color__triangle_ref(__skparam__clr, __skparam__tri);
+end;
+procedure FillTriangle(clr: Color; const tri: Triangle; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__tri: __sklib_triangle;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_triangle__color__triangle_ref__drawing_options(__skparam__clr, __skparam__tri, __skparam__opts);
+end;
+procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__x3: Single;
+  __skparam__y3: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__x3 := __skadapter__to_sklib_float(x3);
+  __skparam__y3 := __skadapter__to_sklib_float(y3);
+  __sklib__fill_triangle__color__float__float__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3);
+end;
+procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: DrawingOptions);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__x3: Single;
+  __skparam__y3: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__x3 := __skadapter__to_sklib_float(x3);
+  __skparam__y3 := __skadapter__to_sklib_float(y3);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts);
+end;
+function TriangleBarycenter(const tri: Triangle): Point2d;
+var
+  __skparam__tri: __sklib_triangle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skreturn := __sklib__triangle_barycenter__triangle_ref(__skparam__tri);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function TriangleFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d): Triangle;
+var
+  __skparam__p1: __sklib_point_2d;
+  __skparam__p2: __sklib_point_2d;
+  __skparam__p3: __sklib_point_2d;
+  __skreturn: __sklib_triangle;
+begin
+  __skparam__p1 := __skadapter__to_sklib_point_2d(p1);
+  __skparam__p2 := __skadapter__to_sklib_point_2d(p2);
+  __skparam__p3 := __skadapter__to_sklib_point_2d(p3);
+  __skreturn := __sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref(__skparam__p1, __skparam__p2, __skparam__p3);
+  result := __skadapter__to_triangle(__skreturn);
+end;
+function TriangleFrom(x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single): Triangle;
+var
+  __skparam__x1: Single;
+  __skparam__y1: Single;
+  __skparam__x2: Single;
+  __skparam__y2: Single;
+  __skparam__x3: Single;
+  __skparam__y3: Single;
+  __skreturn: __sklib_triangle;
+begin
+  __skparam__x1 := __skadapter__to_sklib_float(x1);
+  __skparam__y1 := __skadapter__to_sklib_float(y1);
+  __skparam__x2 := __skadapter__to_sklib_float(x2);
+  __skparam__y2 := __skadapter__to_sklib_float(y2);
+  __skparam__x3 := __skadapter__to_sklib_float(x3);
+  __skparam__y3 := __skadapter__to_sklib_float(y3);
+  __skreturn := __sklib__triangle_from__float__float__float__float__float__float(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3);
+  result := __skadapter__to_triangle(__skreturn);
+end;
+function TriangleRectangleIntersect(const tri: Triangle; const rect: Rectangle): Boolean;
+var
+  __skparam__tri: __sklib_triangle;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(__skparam__tri, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TriangleToString(const tri: Triangle): String;
+var
+  __skparam__tri: __sklib_triangle;
+  __skreturn: __sklib_string;
+begin
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skreturn := __sklib__triangle_to_string__triangle_ref(__skparam__tri);
+  result := __skadapter__to_string(__skreturn);
+end;
+function TrianglesIntersect(const t1: Triangle; const t2: Triangle): Boolean;
+var
+  __skparam__t1: __sklib_triangle;
+  __skparam__t2: __sklib_triangle;
+  __skreturn: LongInt;
+begin
+  __skparam__t1 := __skadapter__to_sklib_triangle(t1);
+  __skparam__t2 := __skadapter__to_sklib_triangle(t2);
+  __skreturn := __sklib__triangles_intersect__triangle_ref__triangle_ref(__skparam__t1, __skparam__t2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CurrentTicks(): Cardinal;
+var
+  __skreturn: Cardinal;
+begin
+  __skreturn := __sklib__current_ticks();
+  result := __skadapter__to_unsigned int(__skreturn);
+end;
+procedure Delay(milliseconds: Cardinal);
+var
+  __skparam__milliseconds: Cardinal;
+begin
+  __skparam__milliseconds := __skadapter__to_sklib_unsigned int(milliseconds);
+  __sklib__delay__unsigned_int(__skparam__milliseconds);
+end;
+function FileAsString(filename: String; kind: ResourceKind): String;
+var
+  __skparam__filename: __sklib_string;
+  __skparam__kind: LongInt;
+  __skreturn: __sklib_string;
+begin
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skparam__kind := __skadapter__to_sklib_resource_kind(kind);
+  __skreturn := __sklib__file_as_string__string__resource_kind(__skparam__filename, __skparam__kind);
+  result := __skadapter__to_string(__skreturn);
+end;
+function AngleBetween(const v1: Vector2d; const v2: Vector2d): Single;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: Single;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_float(__skreturn);
+end;
+function DotProduct(const v1: Vector2d; const v2: Vector2d): Single;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: Single;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_float(__skreturn);
+end;
+function IsZeroVector(const v: Vector2d): Boolean;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__is_zero_vector__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function RayIntersectionPoint(const fromPt: Point2d; const heading: Vector2d; const l: Line; var pt: Point2d): Boolean;
+var
+  __skparam__from_pt: __sklib_point_2d;
+  __skparam__heading: __sklib_vector_2d;
+  __skparam__l: __sklib_line;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__from_pt := __skadapter__to_sklib_point_2d(from_pt);
+  __skparam__heading := __skadapter__to_sklib_vector_2d(heading);
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref(__skparam__from_pt, __skparam__heading, __skparam__l, __skparam__pt);
+  pt := __skadapter__to_point_2d(__skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function UnitVector(const v: Vector2d): Vector2d;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__unit_vector__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorAdd(const v1: Vector2d; const v2: Vector2d): Vector2d;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorAngle(v: Vector2d): Single;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: Single;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_angle__vector_2d(__skparam__v);
+  result := __skadapter__to_float(__skreturn);
+end;
+function VectorFromAngle(angle: Single; magnitude: Single): Vector2d;
+var
+  __skparam__angle: Single;
+  __skparam__magnitude: Single;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skparam__magnitude := __skadapter__to_sklib_float(magnitude);
+  __skreturn := __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorFromLine(const l: Line): Vector2d;
+var
+  __skparam__l: __sklib_line;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__l := __skadapter__to_sklib_line(l);
+  __skreturn := __sklib__vector_from_line__line_ref(__skparam__l);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorFromPointToRect(const pt: Point2d; const rect: Rectangle): Vector2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorInRect(const v: Vector2d; const rect: Rectangle): Boolean;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(__skparam__v, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function VectorInvert(const v: Vector2d): Vector2d;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_invert__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorLimit(const v: Vector2d; limit: Single): Vector2d;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skparam__limit: Single;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skparam__limit := __skadapter__to_sklib_float(limit);
+  __skreturn := __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorMagnitude(const v: Vector2d): Single;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: Single;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_float(__skreturn);
+end;
+function VectorMagnitudeSqared(const v: Vector2d): Single;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: Single;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_float(__skreturn);
+end;
+function VectorMultiply(const v1: Vector2d; s: Single): Vector2d;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__s: Single;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__s := __skadapter__to_sklib_float(s);
+  __skreturn := __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorNormal(const v: Vector2d): Vector2d;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_normal__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2d): Vector2d;
+var
+  __skparam__src: __sklib_circle;
+  __skparam__bounds: __sklib_circle;
+  __skparam__velocity: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__src := __skadapter__to_sklib_circle(src);
+  __skparam__bounds := __skadapter__to_sklib_circle(bounds);
+  __skparam__velocity := __skadapter__to_sklib_vector_2d(velocity);
+  __skreturn := __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(__skparam__src, __skparam__bounds, __skparam__velocity);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorOutOfCircleFromPoint(const pt: Point2d; const c: Circle; const velocity: Vector2d): Vector2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__c: __sklib_circle;
+  __skparam__velocity: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__velocity := __skadapter__to_sklib_vector_2d(velocity);
+  __skreturn := __sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref(__skparam__pt, __skparam__c, __skparam__velocity);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__velocity: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__velocity := __skadapter__to_sklib_vector_2d(velocity);
+  __skreturn := __sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref(__skparam__c, __skparam__rect, __skparam__velocity);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorOutOfRectFromPoint(const pt: Point2d; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+var
+  __skparam__pt: __sklib_point_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__velocity: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__velocity := __skadapter__to_sklib_vector_2d(velocity);
+  __skreturn := __sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref(__skparam__pt, __skparam__rect, __skparam__velocity);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2d): Vector2d;
+var
+  __skparam__src: __sklib_rectangle;
+  __skparam__bounds: __sklib_rectangle;
+  __skparam__velocity: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__src := __skadapter__to_sklib_rectangle(src);
+  __skparam__bounds := __skadapter__to_sklib_rectangle(bounds);
+  __skparam__velocity := __skadapter__to_sklib_vector_2d(velocity);
+  __skreturn := __sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref(__skparam__src, __skparam__bounds, __skparam__velocity);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorPointToPoint(const start: Point2d; const end: Point2d): Vector2d;
+var
+  __skparam__start: __sklib_point_2d;
+  __skparam__end: __sklib_point_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__start := __skadapter__to_sklib_point_2d(start);
+  __skparam__end := __skadapter__to_sklib_point_2d(end);
+  __skreturn := __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorSubtract(const v1: Vector2d; const v2: Vector2d): Vector2d;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__vector_subtract__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorTo(const p1: Point2d): Vector2d;
+var
+  __skparam__p1: __sklib_point_2d;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__p1 := __skadapter__to_sklib_point_2d(p1);
+  __skreturn := __sklib__vector_to__point_2d_ref(__skparam__p1);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorTo(x: Single; y: Single): Vector2d;
+var
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_vector_2d;
+begin
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__vector_to__float__float(__skparam__x, __skparam__y);
+  result := __skadapter__to_vector_2d(__skreturn);
+end;
+function VectorToString(const v: Vector2d): String;
+var
+  __skparam__v: __sklib_vector_2d;
+  __skreturn: __sklib_string;
+begin
+  __skparam__v := __skadapter__to_sklib_vector_2d(v);
+  __skreturn := __sklib__vector_to_string__vector_2d_ref(__skparam__v);
+  result := __skadapter__to_string(__skreturn);
+end;
+function VectorsEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__vectors_equal__vector_2d_ref__vector_2d(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function VectorsNotEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+var
+  __skparam__v1: __sklib_vector_2d;
+  __skparam__v2: __sklib_vector_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
+  __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
+  __skreturn := __sklib__vectors_not_equal__vector_2d_ref__vector_2d(__skparam__v1, __skparam__v2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function DownloadBitmap(const name: String; const url: String; port: Word): Bitmap;
+var
+  __skparam__name: __sklib_string;
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__download_bitmap__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__url, __skparam__port);
+  result := __skadapter__to_bitmap(__skreturn);
+end;
+function DownloadFont(const name: String; const url: String; port: Word): Font;
+var
+  __skparam__name: __sklib_string;
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__download_font__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__url, __skparam__port);
+  result := __skadapter__to_font(__skreturn);
+end;
+function DownloadMusic(const name: String; const url: String; port: Word): Music;
+var
+  __skparam__name: __sklib_string;
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__download_music__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__url, __skparam__port);
+  result := __skadapter__to_music(__skreturn);
+end;
+function DownloadSoundEffect(const name: String; const url: String; port: Word): SoundEffect;
+var
+  __skparam__name: __sklib_string;
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__download_sound_effect__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__url, __skparam__port);
+  result := __skadapter__to_sound_effect(__skreturn);
+end;
+procedure FreeResponse(response: HttpResponse);
+var
+  __skparam__response: __sklib_ptr;
+begin
+  __skparam__response := __skadapter__to_sklib_http_response(response);
+  __sklib__free_response__http_response(__skparam__response);
+end;
+function HttpGet(const url: String; port: Word): HttpResponse;
+var
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__http_get__string_ref__unsigned_short(__skparam__url, __skparam__port);
+  result := __skadapter__to_http_response(__skreturn);
+end;
+function HttpPost(const url: String; port: Word; body: String): HttpResponse;
+var
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skparam__body: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skparam__body := __skadapter__to_sklib_string(body);
+  __skreturn := __sklib__http_post__string_ref__unsigned_short__string(__skparam__url, __skparam__port, __skparam__body);
+  result := __skadapter__to_http_response(__skreturn);
+end;
+function HttpResponseToString(response: HttpResponse): String;
+var
+  __skparam__response: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__response := __skadapter__to_sklib_http_response(response);
+  __skreturn := __sklib__http_response_to_string__http_response(__skparam__response);
+  result := __skadapter__to_string(__skreturn);
+end;
+procedure SaveResponseToFile(response: HttpResponse; path: String);
+var
+  __skparam__response: __sklib_ptr;
+  __skparam__path: __sklib_string;
+begin
+  __skparam__response := __skadapter__to_sklib_http_response(response);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __sklib__save_response_to_file__http_response__string(__skparam__response, __skparam__path);
+end;
+function HasIncomingRequests(server: WebServer): Boolean;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__server := __skadapter__to_sklib_web_server(server);
+  __skreturn := __sklib__has_incoming_requests__web_server(__skparam__server);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsDeleteRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_delete_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsGetRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_get_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsOptionsRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_options_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsPostRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_post_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsPutRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_put_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsRequestFor(request: HttpRequest; method: HttpMethod; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__method: LongInt;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__method := __skadapter__to_sklib_http_method(method);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_request_for__http_request__http_method__string_ref(__skparam__request, __skparam__method, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean;
+var
+  __skparam__request: __sklib_ptr;
+  __skparam__path: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__request := __skadapter__to_sklib_http_request(request);
+  __skparam__path := __skadapter__to_sklib_string(path);
+  __skreturn := __sklib__is_trace_request_for__http_request__string_ref(__skparam__request, __skparam__path);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function NextWebRequest(server: WebServer): HttpRequest;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_web_server(server);
+  __skreturn := __sklib__next_web_request__web_server(__skparam__server);
+  result := __skadapter__to_http_request(__skreturn);
+end;
+function RequestBody(r: HttpRequest): String;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_body__http_request(__skparam__r);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RequestMethod(r: HttpRequest): HttpMethod;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_method__http_request(__skparam__r);
+  result := __skadapter__to_http_method(__skreturn);
+end;
+function RequestUri(r: HttpRequest): String;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_uri__http_request(__skparam__r);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RequestUriStubs(r: HttpRequest): ArrayOfString;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: __sklib_vector_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_uri_stubs__http_request(__skparam__r);
+  result := __skadapter__to_vector_string(__skreturn);
+end;
+procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__filename: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+end;
+procedure SendResponse(r: HttpRequest);
+var
+  __skparam__r: __sklib_ptr;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __sklib__send_response__http_request(__skparam__r);
+end;
+procedure SendResponse(r: HttpRequest; const message: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__message: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __sklib__send_response__http_request__string_ref(__skparam__r, __skparam__message);
+end;
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__code: LongInt;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__code := __skadapter__to_sklib_http_status_code(code);
+  __sklib__send_response__http_request__http_status_code(__skparam__r, __skparam__code);
+end;
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__code: LongInt;
+  __skparam__message: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__code := __skadapter__to_sklib_http_status_code(code);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __sklib__send_response__http_request__http_status_code__string_ref(__skparam__r, __skparam__code, __skparam__message);
+end;
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__code: LongInt;
+  __skparam__message: __sklib_string;
+  __skparam__content_type: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__code := __skadapter__to_sklib_http_status_code(code);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __skparam__content_type := __skadapter__to_sklib_string(content_type);
+  __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type);
+end;
+procedure SendResponse(r: HttpRequest; j: Json);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__j: __sklib_ptr;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__j := __skadapter__to_sklib_json(j);
+  __sklib__send_response__http_request__json(__skparam__r, __skparam__j);
+end;
+function SplitUriStubs(const uri: String): ArrayOfString;
+var
+  __skparam__uri: __sklib_string;
+  __skreturn: __sklib_vector_string;
+begin
+  __skparam__uri := __skadapter__to_sklib_string(uri);
+  __skreturn := __sklib__split_uri_stubs__string_ref(__skparam__uri);
+  result := __skadapter__to_vector_string(__skreturn);
+end;
+function StartWebServer(): WebServer;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__start_web_server();
+  result := __skadapter__to_web_server(__skreturn);
+end;
+function StartWebServer(port: Word): WebServer;
+var
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__port := __skadapter__to_sklib_unsigned short(port);
+  __skreturn := __sklib__start_web_server__unsigned_short(__skparam__port);
+  result := __skadapter__to_web_server(__skreturn);
+end;
+procedure StopWebServer(server: WebServer);
+var
+  __skparam__server: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_web_server(server);
+  __sklib__stop_web_server__web_server(__skparam__server);
+end;
+procedure ClearWindow(wind: Window; clr: Color);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__clear_window__window__color(__skparam__wind, __skparam__clr);
+end;
+procedure CloseAllWindows();
+begin
+  __sklib__close_all_windows();
+end;
+procedure CloseWindow(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__close_window__string_ref(__skparam__name);
+end;
+procedure CloseWindow();
+begin
+  __sklib__close_window();
+end;
+procedure CloseWindow(wind: Window);
+var
+  __skparam__wind: __sklib_ptr;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __sklib__close_window__window(__skparam__wind);
+end;
+function CurrentWindow(): Window;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__current_window();
+  result := __skadapter__to_window(__skreturn);
+end;
+function HasWindow(caption: String): Boolean;
+var
+  __skparam__caption: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__caption := __skadapter__to_sklib_string(caption);
+  __skreturn := __sklib__has_window__string(__skparam__caption);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure MoveWindow(x: Integer; y: Integer);
+var
+  __skparam__x: Integer;
+  __skparam__y: Integer;
+begin
+  __skparam__x := __skadapter__to_sklib_int(x);
+  __skparam__y := __skadapter__to_sklib_int(y);
+  __sklib__move_window__int__int(__skparam__x, __skparam__y);
+end;
+procedure MoveWindow(const name: String; x: Integer; y: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__x: Integer;
+  __skparam__y: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__x := __skadapter__to_sklib_int(x);
+  __skparam__y := __skadapter__to_sklib_int(y);
+  __sklib__move_window__string_ref__int__int(__skparam__name, __skparam__x, __skparam__y);
+end;
+procedure MoveWindow(wind: Window; x: Integer; y: Integer);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__x: Integer;
+  __skparam__y: Integer;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__x := __skadapter__to_sklib_int(x);
+  __skparam__y := __skadapter__to_sklib_int(y);
+  __sklib__move_window__window__int__int(__skparam__wind, __skparam__x, __skparam__y);
+end;
+function OpenWindow(caption: String; width: Integer; height: Integer): Window;
+var
+  __skparam__caption: __sklib_string;
+  __skparam__width: Integer;
+  __skparam__height: Integer;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__caption := __skadapter__to_sklib_string(caption);
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __skreturn := __sklib__open_window__string__int__int(__skparam__caption, __skparam__width, __skparam__height);
+  result := __skadapter__to_window(__skreturn);
+end;
+procedure RefreshWindow(wind: Window);
+var
+  __skparam__wind: __sklib_ptr;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __sklib__refresh_window__window(__skparam__wind);
+end;
+procedure ResizeWindow(width: Integer; height: Integer);
+var
+  __skparam__width: Integer;
+  __skparam__height: Integer;
+begin
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __sklib__resize_window__int__int(__skparam__width, __skparam__height);
+end;
+procedure ResizeWindow(wnd: Window; width: Integer; height: Integer);
+var
+  __skparam__wnd: __sklib_ptr;
+  __skparam__width: Integer;
+  __skparam__height: Integer;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __sklib__resize_window__window__int__int(__skparam__wnd, __skparam__width, __skparam__height);
+end;
+procedure SetCurrentWindow(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__set_current_window__string_ref(__skparam__name);
+end;
+procedure SetCurrentWindow(wind: Window);
+var
+  __skparam__wind: __sklib_ptr;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __sklib__set_current_window__window(__skparam__wind);
+end;
+function WindowCloseRequested(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_close_requested__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowCloseRequested(wind: Window): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_close_requested__window(__skparam__wind);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowHasBorder(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__window_has_border();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowHasBorder(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_has_border__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowHasBorder(wnd: Window): Boolean;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__window_has_border__window(__skparam__wnd);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowHeight(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__window_height();
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowHeight(const name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_height__string_ref(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowHeight(wind: Window): Integer;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_height__window(__skparam__wind);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowIsFullscreen(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__window_is_fullscreen();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowIsFullscreen(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_is_fullscreen__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowIsFullscreen(wnd: Window): Boolean;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__window_is_fullscreen__window(__skparam__wnd);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function WindowNamed(caption: String): Window;
+var
+  __skparam__caption: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__caption := __skadapter__to_sklib_string(caption);
+  __skreturn := __sklib__window_named__string(__skparam__caption);
+  result := __skadapter__to_window(__skreturn);
+end;
+function WindowPosition(): Point2d;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__window_position();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function WindowPosition(const name: String): Point2d;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_position__string_ref(__skparam__name);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function WindowPosition(wnd: Window): Point2d;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__window_position__window(__skparam__wnd);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+procedure WindowSetIcon(wind: Window; bmp: Bitmap);
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__bmp: __sklib_ptr;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __sklib__window_set_icon__window__bitmap(__skparam__wind, __skparam__bmp);
+end;
+procedure WindowToggleBorder();
+begin
+  __sklib__window_toggle_border();
+end;
+procedure WindowToggleBorder(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__window_toggle_border__string_ref(__skparam__name);
+end;
+procedure WindowToggleBorder(wnd: Window);
+var
+  __skparam__wnd: __sklib_ptr;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __sklib__window_toggle_border__window(__skparam__wnd);
+end;
+procedure WindowToggleFullscreen();
+begin
+  __sklib__window_toggle_fullscreen();
+end;
+procedure WindowToggleFullscreen(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__window_toggle_fullscreen__string_ref(__skparam__name);
+end;
+procedure WindowToggleFullscreen(wnd: Window);
+var
+  __skparam__wnd: __sklib_ptr;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __sklib__window_toggle_fullscreen__window(__skparam__wnd);
+end;
+function WindowWidth(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__window_width();
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowWidth(const name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_width__string_ref(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowWidth(wind: Window): Integer;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_width__window(__skparam__wind);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowWithFocus(): Window;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__window_with_focus();
+  result := __skadapter__to_window(__skreturn);
+end;
+function WindowX(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__window_x();
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowX(const name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_x__string_ref(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowX(wnd: Window): Integer;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__window_x__window(__skparam__wnd);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowY(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__window_y();
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowY(const name: String): Integer;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__window_y__string_ref(__skparam__name);
+  result := __skadapter__to_int(__skreturn);
+end;
+function WindowY(wnd: Window): Integer;
+var
+  __skparam__wnd: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__wnd := __skadapter__to_sklib_window(wnd);
+  __skreturn := __sklib__window_y__window(__skparam__wnd);
+  result := __skadapter__to_int(__skreturn);
+end;
+
+end.
