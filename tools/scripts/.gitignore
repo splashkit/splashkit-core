@@ -1,0 +1,4 @@
+cmake/libsplashkit/libSplashKit.dylib
+cmake/libsplashkit/libSplashKit.dll
+cmake/splashkitcpp/libSplashKitCPP.a
+cmake/splashkitcpp/libSplashKitStarter.a
