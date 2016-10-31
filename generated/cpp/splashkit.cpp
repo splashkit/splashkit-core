@@ -1382,9 +1382,9 @@ void free_query_result(query_result query) {
     __sklib_query_result __skparam__query = __skadapter__to_sklib_query_result(query);
     __sklib__free_query_result__query_result(__skparam__query);
 }
-bool get_next_row(query_result result) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
-    int __skreturn = __sklib__get_next_row__query_result(__skparam__result);
+bool get_next_row(query_result db_result) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
+    int __skreturn = __sklib__get_next_row__query_result(__skparam__db_result);
     return __skadapter__to_bool(__skreturn);
 }
 bool has_database(string name) {
@@ -1393,9 +1393,9 @@ bool has_database(string name) {
     __skadapter__free__sklib_string(__skparam__name);
     return __skadapter__to_bool(__skreturn);
 }
-bool has_row(query_result result) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
-    int __skreturn = __sklib__has_row__query_result(__skparam__result);
+bool has_row(query_result db_result) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
+    int __skreturn = __sklib__has_row__query_result(__skparam__db_result);
     return __skadapter__to_bool(__skreturn);
 }
 database open_database(string name, string filename) {
@@ -1406,44 +1406,44 @@ database open_database(string name, string filename) {
     __skadapter__free__sklib_string(__skparam__filename);
     return __skadapter__to_database(__skreturn);
 }
-bool query_column_for_bool(query_result result, int col) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
+bool query_column_for_bool(query_result db_result, int col) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
     int __skparam__col = __skadapter__to_int(col);
-    int __skreturn = __sklib__query_column_for_bool__query_result__int(__skparam__result, __skparam__col);
+    int __skreturn = __sklib__query_column_for_bool__query_result__int(__skparam__db_result, __skparam__col);
     return __skadapter__to_bool(__skreturn);
 }
-double query_column_for_double(query_result result, int col) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
+double query_column_for_double(query_result db_result, int col) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
     int __skparam__col = __skadapter__to_int(col);
-    double __skreturn = __sklib__query_column_for_double__query_result__int(__skparam__result, __skparam__col);
+    double __skreturn = __sklib__query_column_for_double__query_result__int(__skparam__db_result, __skparam__col);
     return __skadapter__to_double(__skreturn);
 }
-int query_column_for_int(query_result result, int col) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
+int query_column_for_int(query_result db_result, int col) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
     int __skparam__col = __skadapter__to_int(col);
-    int __skreturn = __sklib__query_column_for_int__query_result__int(__skparam__result, __skparam__col);
+    int __skreturn = __sklib__query_column_for_int__query_result__int(__skparam__db_result, __skparam__col);
     return __skadapter__to_int(__skreturn);
 }
-string query_column_for_string(query_result result, int col) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
+string query_column_for_string(query_result db_result, int col) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
     int __skparam__col = __skadapter__to_int(col);
-    __sklib_string __skreturn = __sklib__query_column_for_string__query_result__int(__skparam__result, __skparam__col);
+    __sklib_string __skreturn = __sklib__query_column_for_string__query_result__int(__skparam__db_result, __skparam__col);
     return __skadapter__to_string(__skreturn);
 }
-bool query_success(query_result result) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
-    int __skreturn = __sklib__query_success__query_result(__skparam__result);
+bool query_success(query_result db_result) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
+    int __skreturn = __sklib__query_success__query_result(__skparam__db_result);
     return __skadapter__to_bool(__skreturn);
 }
-string query_type_of_col(query_result result, int col) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
+string query_type_of_col(query_result db_result, int col) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
     int __skparam__col = __skadapter__to_int(col);
-    __sklib_string __skreturn = __sklib__query_type_of_col__query_result__int(__skparam__result, __skparam__col);
+    __sklib_string __skreturn = __sklib__query_type_of_col__query_result__int(__skparam__db_result, __skparam__col);
     return __skadapter__to_string(__skreturn);
 }
-void reset_query_result(query_result result) {
-    __sklib_query_result __skparam__result = __skadapter__to_sklib_query_result(result);
-    __sklib__reset_query_result__query_result(__skparam__result);
+void reset_query_result(query_result db_result) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
+    __sklib__reset_query_result__query_result(__skparam__db_result);
 }
 int rows_changed(database db) {
     __sklib_database __skparam__db = __skadapter__to_sklib_database(db);
@@ -2202,11 +2202,11 @@ void json_set_number(json j, string key, float value) {
     __sklib__json_set_number__json__string__float(__skparam__j, __skparam__key, __skparam__value);
     __skadapter__free__sklib_string(__skparam__key);
 }
-void json_set_object(json j, string key, json object) {
+void json_set_object(json j, string key, json obj) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
     __sklib_string __skparam__key = __skadapter__to_sklib_string(key);
-    __sklib_json __skparam__object = __skadapter__to_sklib_json(object);
-    __sklib__json_set_object__json__string__json(__skparam__j, __skparam__key, __skparam__object);
+    __sklib_json __skparam__obj = __skadapter__to_sklib_json(obj);
+    __sklib__json_set_object__json__string__json(__skparam__j, __skparam__key, __skparam__obj);
     __skadapter__free__sklib_string(__skparam__key);
 }
 void json_set_string(json j, string key, string value) {
@@ -2342,10 +2342,10 @@ point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &line
     __skadapter__free__sklib_vector_line(__skparam__lines);
     return __skadapter__to_point_2d(__skreturn);
 }
-line line_from(const point_2d &start, const point_2d &end) {
+line line_from(const point_2d &start, const point_2d &end_pt) {
     const __sklib_point_2d __skparam__start = __skadapter__to_sklib_point_2d(start);
-    const __sklib_point_2d __skparam__end = __skadapter__to_sklib_point_2d(end);
-    __sklib_line __skreturn = __sklib__line_from__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end);
+    const __sklib_point_2d __skparam__end_pt = __skadapter__to_sklib_point_2d(end_pt);
+    __sklib_line __skreturn = __sklib__line_from__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end_pt);
     return __skadapter__to_line(__skreturn);
 }
 line line_from(const point_2d &start, const vector_2d &offset) {
@@ -4653,10 +4653,10 @@ vector_2d vector_out_of_rect_from_rect(const rectangle &src, const rectangle &bo
     __sklib_vector_2d __skreturn = __sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref(__skparam__src, __skparam__bounds, __skparam__velocity);
     return __skadapter__to_vector_2d(__skreturn);
 }
-vector_2d vector_point_to_point(const point_2d &start, const point_2d &end) {
+vector_2d vector_point_to_point(const point_2d &start, const point_2d &end_pt) {
     const __sklib_point_2d __skparam__start = __skadapter__to_sklib_point_2d(start);
-    const __sklib_point_2d __skparam__end = __skadapter__to_sklib_point_2d(end);
-    __sklib_vector_2d __skreturn = __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end);
+    const __sklib_point_2d __skparam__end_pt = __skadapter__to_sklib_point_2d(end_pt);
+    __sklib_vector_2d __skreturn = __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end_pt);
     return __skadapter__to_vector_2d(__skreturn);
 }
 vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2) {

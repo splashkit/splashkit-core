@@ -11031,7 +11031,7 @@
     "group": "database",
     "brief": "SplashKit Database allows you to create, query and otherwise\nmanipulate a database.",
     "description": "SplashKit's database library allows you to easily create or load databases\nand to perform queries on them. To get started with databases in SplashKit,\nthe first thinkg you need to do is to load or create a database file. You can\ndo this by calling the `open_database(string name)` function.",
-    "parsed_at": 1477630005,
+    "parsed_at": 1477868182,
     "path": "coresdk/src/coresdk/database.h",
     "functions": [
       {
@@ -11238,7 +11238,7 @@
         }
       },
       {
-        "signature": "bool get_next_row(query_result result);",
+        "signature": "bool get_next_row(query_result db_result);",
         "name": "get_next_row",
         "method_name": "get_next_row",
         "unique_global_name": null,
@@ -11255,7 +11255,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to move to the next row on.",
             "is_pointer": false,
@@ -11272,7 +11272,7 @@
         "attributes": {
           "class": "query_result",
           "method": "get_next_row",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
@@ -11315,7 +11315,7 @@
         }
       },
       {
-        "signature": "bool has_row(query_result result);",
+        "signature": "bool has_row(query_result db_result);",
         "name": "has_row",
         "method_name": null,
         "unique_global_name": null,
@@ -11332,7 +11332,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to check for a valid row of data on.",
             "is_pointer": false,
@@ -11349,7 +11349,7 @@
         "attributes": {
           "class": "query_result",
           "getter": "has_row",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
@@ -11407,7 +11407,7 @@
         }
       },
       {
-        "signature": "bool query_column_for_bool(query_result result,int col);",
+        "signature": "bool query_column_for_bool(query_result db_result,int col);",
         "name": "query_column_for_bool",
         "method_name": "query_column_for_bool",
         "unique_global_name": null,
@@ -11424,7 +11424,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to perform the query on.",
             "is_pointer": false,
@@ -11454,13 +11454,13 @@
         "attributes": {
           "class": "query_result",
           "method": "query_column_for_bool",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
       },
       {
-        "signature": "double query_column_for_double(query_result result,int col);",
+        "signature": "double query_column_for_double(query_result db_result,int col);",
         "name": "query_column_for_double",
         "method_name": "query_column_for_double",
         "unique_global_name": null,
@@ -11477,7 +11477,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to perform the query on.",
             "is_pointer": false,
@@ -11507,13 +11507,13 @@
         "attributes": {
           "class": "query_result",
           "method": "query_column_for_double",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
       },
       {
-        "signature": "int query_column_for_int(query_result result,int col);",
+        "signature": "int query_column_for_int(query_result db_result,int col);",
         "name": "query_column_for_int",
         "method_name": "query_column_for_int",
         "unique_global_name": null,
@@ -11530,7 +11530,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to perform the query on.",
             "is_pointer": false,
@@ -11560,13 +11560,13 @@
         "attributes": {
           "class": "query_result",
           "method": "query_column_for_int",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
       },
       {
-        "signature": "string query_column_for_string(query_result result,int col);",
+        "signature": "string query_column_for_string(query_result db_result,int col);",
         "name": "query_column_for_string",
         "method_name": "query_column_for_string",
         "unique_global_name": null,
@@ -11583,7 +11583,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to perform the query on.",
             "is_pointer": false,
@@ -11613,13 +11613,13 @@
         "attributes": {
           "class": "query_result",
           "method": "query_column_for_string",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
       },
       {
-        "signature": "bool query_success(query_result result);",
+        "signature": "bool query_success(query_result db_result);",
         "name": "query_success",
         "method_name": null,
         "unique_global_name": null,
@@ -11636,7 +11636,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to check the success of.",
             "is_pointer": false,
@@ -11658,7 +11658,7 @@
         }
       },
       {
-        "signature": "string query_type_of_col(query_result result,int col);",
+        "signature": "string query_type_of_col(query_result db_result,int col);",
         "name": "query_type_of_col",
         "method_name": "query_type_of_col",
         "unique_global_name": null,
@@ -11675,7 +11675,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to perform the query on.",
             "is_pointer": false,
@@ -11705,13 +11705,13 @@
         "attributes": {
           "class": "query_result",
           "method": "query_type_of_col",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
       },
       {
-        "signature": "void reset_query_result(query_result result);",
+        "signature": "void reset_query_result(query_result db_result);",
         "name": "reset_query_result",
         "method_name": "reset",
         "unique_global_name": null,
@@ -11728,7 +11728,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "result": {
+          "db_result": {
             "type": "query_result",
             "description": "The `query_result` to reset.",
             "is_pointer": false,
@@ -11745,7 +11745,7 @@
         "attributes": {
           "class": "query_result",
           "method": "reset",
-          "self": "result",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
@@ -16613,7 +16613,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1477630015,
+    "parsed_at": 1477868184,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -18071,7 +18071,7 @@
         }
       },
       {
-        "signature": "void json_set_object(json j,string key,json object);",
+        "signature": "void json_set_object(json j,string key,json obj);",
         "name": "json_set_object",
         "method_name": "add_object",
         "unique_global_name": null,
@@ -18114,7 +18114,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "object": {
+          "obj": {
             "type": "json",
             "description": "The value to be inserted into the `json` object.",
             "is_pointer": false,
@@ -18361,7 +18361,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1477630019,
+    "parsed_at": 1477868187,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -18824,297 +18824,297 @@
     ],
     "enums": [
       {
-        "signature": "enum key_code {UNKNOWN_KEY = 0,BACKSPACE_KEY = 8,TAB_KEY = 9,CLEAR_KEY = 12,RETURN_KEY = 13,PAUSE_KEY = 19,ESCAPE_KEY = 27,SPACE_KEY = 32,EXCLAIM_KEY = 33,DOUBLE_QUOTE_KEY = 34,HASH_KEY = 35,DOLLAR_KEY = 36,AMPERSAND_KEY = 38,QUOTE_KEY = 39,LEFT_PAREN_KEY = 40,RIGHT_PAREN_KEY = 41,ASTERISK_KEY = 42,PLUS_KEY = 43,COMMA_KEY = 44,MINUS_KEY = 45,PERIOD_KEY = 46,SLASH_KEY = 47,NUM_0_KEY = 48,NUM_1_KEY = 49,NUM_2_KEY = 50,NUM_3_KEY = 51,NUM_4_KEY = 52,NUM_5_KEY = 53,NUM_6_KEY = 54,NUM_7_KEY = 55,NUM_8_KEY = 56,NUM_9_KEY = 57,COLON_KEY = 58,SEMI_COLON_KEY = 59,LESS_KEY = 60,EQUALS_KEY = 61,GREATER_KEY = 62,QUESTION_KEY = 63,AT_KEY = 64,LEFT_BRACKET_KEY = 91,BACKSLASH_KEY = 92,RIGHT_BRACKET_KEY = 93,CARET_KEY = 94,UNDERSCORE_KEY = 95,BACKQUOTE_KEY = 96,A_KEY = 97,B_KEY = 98,C_KEY = 99,D_KEY = 100,E_KEY = 101,F_KEY = 102,G_KEY = 103,H_KEY = 104,I_KEY = 105,J_KEY = 106,K_KEY = 107,L_KEY = 108,M_KEY = 109,N_KEY = 110,O_KEY = 111,P_KEY = 112,Q_KEY = 113,R_KEY = 114,S_KEY = 115,T_KEY = 116,U_KEY = 117,V_KEY = 118,W_KEY = 119,X_KEY = 120,Y_KEY = 121,Z_KEY = 122,DELETE_KEY = 127,KEYPAD_0 = 256,KEYPAD_1 = 257,KEYPAD_2 = 258,KEYPAD_3 = 259,KEYPAD_4 = 260,KEYPAD_5 = 261,KEYPAD_6 = 262,KEYPAD_7 = 263,KEYPAD_8 = 264,KEYPAD_9 = 265,KEYPAD_PERIOD = 266,KEYPAD_DIVIDE = 267,KEYPAD_MULTIPLY = 268,KEYPAD_MINUS = 269,KEYPAD_PLUS = 270,KEYPAD_ENTER = 271,KEYPAD_EQUALS = 272,UP_KEY = 273,DOWN_KEY = 274,RIGHT_KEY = 275,LEFT_KEY = 276,INSERT_KEY = 277,HOME_KEY = 278,END_KEY = 279,PAGE_UP_KEY = 280,PAGE_DOWN_KEY = 281,F1_KEY = 282,F2_KEY = 283,F3_KEY = 284,F4_KEY = 285,F5_KEY = 286,F6_KEY = 287,F7_KEY = 288,F8_KEY = 289,F9_KEY = 290,F10_KEY = 291,F11_KEY = 292,F12_KEY = 293,F13_KEY = 294,F14_KEY = 295,F15_KEY = 296,NUM_LOCK_KEY = 300,CAPS_LOCK_KEY = 301,SCROLL_LOCK_KEY = 302,RIGHT_SHIFT_KEY = 303,LEFT_SHIFT_KEY = 304,RIGHT_CTRL_KEY = 305,LEFT_CTRL_KEY = 306,RIGHT_ALT_KEY = 307,LEFT_ALT_KEY = 308,RIGHT_OPTION_KEY = 307,LEFT_OPTION_KEY = 308,LEFT_SUPER_KEY = 311,RIGHT_SUPER_KEY = 312,LEFT_WINDOWS_KEY = 311,RIGHT_WINDOWS_KEY = 312,LEFT_COMMAND_KEY = 311,RIGHT_COMMAND_KEY = 312,MODE_KEY = 313,HELP_KEY = 315,SYS_REQ_KEY = 317,MENU_KEY = 319,POWER_KEY = 320,};",
+        "signature": "enum key_code {UNKNOWN_KEY = 0,BACKSPACE_KEY = 8,TAB_KEY = 9,CLEAR_KEY = 12,RETURN_KEY = 13,PAUSE_KEY = 19,ESCAPE_KEY = 27,SPACE_KEY = 32,EXCLAIM_KEY = 33,DOUBLE_QUOTE_KEY = 34,HASH_KEY = 35,DOLLAR_KEY = 36,AMPERSAND_KEY = 38,QUOTE_KEY = 39,LEFT_PAREN_KEY = 40,RIGHT_PAREN_KEY = 41,ASTERISK_KEY = 42,PLUS_KEY = 43,COMMA_KEY = 44,MINUS_KEY = 45,PERIOD_KEY = 46,SLASH_KEY = 47,NUM_0_KEY = 48,NUM_1_KEY = 49,NUM_2_KEY = 50,NUM_3_KEY = 51,NUM_4_KEY = 52,NUM_5_KEY = 53,NUM_6_KEY = 54,NUM_7_KEY = 55,NUM_8_KEY = 56,NUM_9_KEY = 57,COLON_KEY = 58,SEMI_COLON_KEY = 59,LESS_KEY = 60,EQUALS_KEY = 61,GREATER_KEY = 62,QUESTION_KEY = 63,AT_KEY = 64,LEFT_BRACKET_KEY = 91,BACKSLASH_KEY = 92,RIGHT_BRACKET_KEY = 93,CARET_KEY = 94,UNDERSCORE_KEY = 95,BACKQUOTE_KEY = 96,A_KEY = 97,B_KEY = 98,C_KEY = 99,D_KEY = 100,E_KEY = 101,F_KEY = 102,G_KEY = 103,H_KEY = 104,I_KEY = 105,J_KEY = 106,K_KEY = 107,L_KEY = 108,M_KEY = 109,N_KEY = 110,O_KEY = 111,P_KEY = 112,Q_KEY = 113,R_KEY = 114,S_KEY = 115,T_KEY = 116,U_KEY = 117,V_KEY = 118,W_KEY = 119,X_KEY = 120,Y_KEY = 121,Z_KEY = 122,DELETE_KEY = 127,KEYPAD_0 = 256,KEYPAD_1 = 257,KEYPAD_2 = 258,KEYPAD_3 = 259,KEYPAD_4 = 260,KEYPAD_5 = 261,KEYPAD_6 = 262,KEYPAD_7 = 263,KEYPAD_8 = 264,KEYPAD_9 = 265,KEYPAD_PERIOD = 266,KEYPAD_DIVIDE = 267,KEYPAD_MULTIPLY = 268,KEYPAD_MINUS = 269,KEYPAD_PLUS = 270,KEYPAD_ENTER = 271,KEYPAD_EQUALS = 272,UP_KEY = 273,DOWN_KEY = 274,RIGHT_KEY = 275,LEFT_KEY = 276,INSERT_KEY = 277,HOME_KEY = 278,END_KEY = 279,PAGE_UP_KEY = 280,PAGE_DOWN_KEY = 281,F1_KEY = 282,F2_KEY = 283,F3_KEY = 284,F4_KEY = 285,F5_KEY = 286,F6_KEY = 287,F7_KEY = 288,F8_KEY = 289,F9_KEY = 290,F10_KEY = 291,F11_KEY = 292,F12_KEY = 293,F13_KEY = 294,F14_KEY = 295,F15_KEY = 296,NUM_LOCK_KEY = 300,CAPS_LOCK_KEY = 301,SCROLL_LOCK_KEY = 302,RIGHT_SHIFT_KEY = 303,LEFT_SHIFT_KEY = 304,RIGHT_CTRL_KEY = 305,LEFT_CTRL_KEY = 306,RIGHT_ALT_KEY = 307,LEFT_ALT_KEY = 308,LEFT_SUPER_KEY = 311,RIGHT_SUPER_KEY = 312,MODE_KEY = 313,HELP_KEY = 315,SYS_REQ_KEY = 317,MENU_KEY = 319,POWER_KEY = 320,};",
         "name": "key_code",
         "description": "These are the key codes you can use to check details of keyboard actions.\nSee `key_down`, `key_up`, `key_typed`, and `key_released` functions.\nYou can get a string representation of these keys using `key_name`.",
         "brief": null,
         "constants": {
           "UNKNOWN_KEY": {
-            "description": "The unknown key key",
+            "description": "The unknown key",
             "number": 0
           },
           "BACKSPACE_KEY": {
-            "description": "The backspace key key",
+            "description": "The backspace key",
             "number": 8
           },
           "TAB_KEY": {
-            "description": "The tab key key",
+            "description": "The tab key",
             "number": 9
           },
           "CLEAR_KEY": {
-            "description": "The clear key key",
+            "description": "The clear key",
             "number": 12
           },
           "RETURN_KEY": {
-            "description": "The return key key",
+            "description": "The return key",
             "number": 13
           },
           "PAUSE_KEY": {
-            "description": "The pause key key",
+            "description": "The pause key",
             "number": 19
           },
           "ESCAPE_KEY": {
-            "description": "The escape key key",
+            "description": "The escape key",
             "number": 27
           },
           "SPACE_KEY": {
-            "description": "The space key key",
+            "description": "The space key",
             "number": 32
           },
           "EXCLAIM_KEY": {
-            "description": "The exclaim key key",
+            "description": "The exclaim key",
             "number": 33
           },
           "DOUBLE_QUOTE_KEY": {
-            "description": "The double quote key key",
+            "description": "The double quote key",
             "number": 34
           },
           "HASH_KEY": {
-            "description": "The hash key key",
+            "description": "The hash key",
             "number": 35
           },
           "DOLLAR_KEY": {
-            "description": "The dollar key key",
+            "description": "The dollar key",
             "number": 36
           },
           "AMPERSAND_KEY": {
-            "description": "The ampersand key key",
+            "description": "The ampersand key",
             "number": 38
           },
           "QUOTE_KEY": {
-            "description": "The quote key key",
+            "description": "The quote key",
             "number": 39
           },
           "LEFT_PAREN_KEY": {
-            "description": "The left paren key key",
+            "description": "The left paren key",
             "number": 40
           },
           "RIGHT_PAREN_KEY": {
-            "description": "The right paren key key",
+            "description": "The right paren key",
             "number": 41
           },
           "ASTERISK_KEY": {
-            "description": "The asterisk key key",
+            "description": "The asterisk key",
             "number": 42
           },
           "PLUS_KEY": {
-            "description": "The plus key key",
+            "description": "The plus key",
             "number": 43
           },
           "COMMA_KEY": {
-            "description": "The comma key key",
+            "description": "The comma key",
             "number": 44
           },
           "MINUS_KEY": {
-            "description": "The minus key key",
+            "description": "The minus key",
             "number": 45
           },
           "PERIOD_KEY": {
-            "description": "The period key key",
+            "description": "The period key",
             "number": 46
           },
           "SLASH_KEY": {
-            "description": "The slash key key",
+            "description": "The slash key",
             "number": 47
           },
           "NUM_0_KEY": {
-            "description": "The num 0 key key",
+            "description": "The num 0 key",
             "number": 48
           },
           "NUM_1_KEY": {
-            "description": "The num 1 key key",
+            "description": "The num 1 key",
             "number": 49
           },
           "NUM_2_KEY": {
-            "description": "The num 2 key key",
+            "description": "The num 2 key",
             "number": 50
           },
           "NUM_3_KEY": {
-            "description": "The num 3 key key",
+            "description": "The num 3 key",
             "number": 51
           },
           "NUM_4_KEY": {
-            "description": "The num 4 key key",
+            "description": "The num 4 key",
             "number": 52
           },
           "NUM_5_KEY": {
-            "description": "The num 5 key key",
+            "description": "The num 5 key",
             "number": 53
           },
           "NUM_6_KEY": {
-            "description": "The num 6 key key",
+            "description": "The num 6 key",
             "number": 54
           },
           "NUM_7_KEY": {
-            "description": "The num 7 key key",
+            "description": "The num 7 key",
             "number": 55
           },
           "NUM_8_KEY": {
-            "description": "The num 8 key key",
+            "description": "The num 8 key",
             "number": 56
           },
           "NUM_9_KEY": {
-            "description": "The num 9 key key",
+            "description": "The num 9 key",
             "number": 57
           },
           "COLON_KEY": {
-            "description": "The colon key key",
+            "description": "The colon key",
             "number": 58
           },
           "SEMI_COLON_KEY": {
-            "description": "The semi colon key key",
+            "description": "The semi colon key",
             "number": 59
           },
           "LESS_KEY": {
-            "description": "The less key key",
+            "description": "The less key",
             "number": 60
           },
           "EQUALS_KEY": {
-            "description": "The equals key key",
+            "description": "The equals key",
             "number": 61
           },
           "GREATER_KEY": {
-            "description": "The greater key key",
+            "description": "The greater key",
             "number": 62
           },
           "QUESTION_KEY": {
-            "description": "The question key key",
+            "description": "The question key",
             "number": 63
           },
           "AT_KEY": {
-            "description": "The at key key",
+            "description": "The at key",
             "number": 64
           },
           "LEFT_BRACKET_KEY": {
-            "description": "The left bracket key key",
+            "description": "The left bracket key",
             "number": 91
           },
           "BACKSLASH_KEY": {
-            "description": "The backslash key key",
+            "description": "The backslash (\\) key",
             "number": 92
           },
           "RIGHT_BRACKET_KEY": {
-            "description": "The right bracket key key",
+            "description": "The right bracket key",
             "number": 93
           },
           "CARET_KEY": {
-            "description": "The caret key key",
+            "description": "The caret (^) key",
             "number": 94
           },
           "UNDERSCORE_KEY": {
-            "description": "The underscore key key",
+            "description": "The underscore (_) key",
             "number": 95
           },
           "BACKQUOTE_KEY": {
-            "description": "The backquote key key",
+            "description": "The backquote (`) key",
             "number": 96
           },
           "A_KEY": {
-            "description": "The a key key",
+            "description": "The a key",
             "number": 97
           },
           "B_KEY": {
-            "description": "The b key key",
+            "description": "The b key",
             "number": 98
           },
           "C_KEY": {
-            "description": "The c key key",
+            "description": "The c key",
             "number": 99
           },
           "D_KEY": {
-            "description": "The d key key",
+            "description": "The d key",
             "number": 100
           },
           "E_KEY": {
-            "description": "The e key key",
+            "description": "The e key",
             "number": 101
           },
           "F_KEY": {
-            "description": "The f key key",
+            "description": "The f key",
             "number": 102
           },
           "G_KEY": {
-            "description": "The g key key",
+            "description": "The g key",
             "number": 103
           },
           "H_KEY": {
-            "description": "The h key key",
+            "description": "The h key",
             "number": 104
           },
           "I_KEY": {
-            "description": "The i key key",
+            "description": "The i key",
             "number": 105
           },
           "J_KEY": {
-            "description": "The j key key",
+            "description": "The j key",
             "number": 106
           },
           "K_KEY": {
-            "description": "The k key key",
+            "description": "The k key",
             "number": 107
           },
           "L_KEY": {
-            "description": "The l key key",
+            "description": "The l key",
             "number": 108
           },
           "M_KEY": {
-            "description": "The m key key",
+            "description": "The m key",
             "number": 109
           },
           "N_KEY": {
-            "description": "The n key key",
+            "description": "The n key",
             "number": 110
           },
           "O_KEY": {
-            "description": "The o key key",
+            "description": "The o key",
             "number": 111
           },
           "P_KEY": {
-            "description": "The p key key",
+            "description": "The p key",
             "number": 112
           },
           "Q_KEY": {
-            "description": "The q key key",
+            "description": "The q key",
             "number": 113
           },
           "R_KEY": {
-            "description": "The r key key",
+            "description": "The r key",
             "number": 114
           },
           "S_KEY": {
-            "description": "The s key key",
+            "description": "The s key",
             "number": 115
           },
           "T_KEY": {
-            "description": "The t key key",
+            "description": "The t key",
             "number": 116
           },
           "U_KEY": {
-            "description": "The u key key",
+            "description": "The u key",
             "number": 117
           },
           "V_KEY": {
-            "description": "The v key key",
+            "description": "The v key",
             "number": 118
           },
           "W_KEY": {
-            "description": "The w key key",
+            "description": "The w key",
             "number": 119
           },
           "X_KEY": {
-            "description": "The x key key",
+            "description": "The x key",
             "number": 120
           },
           "Y_KEY": {
-            "description": "The y key key",
+            "description": "The y key",
             "number": 121
           },
           "Z_KEY": {
-            "description": "The z key key",
+            "description": "The z key",
             "number": 122
           },
           "DELETE_KEY": {
-            "description": "The delete key key",
+            "description": "The delete key",
             "number": 127
           },
           "KEYPAD_0": {
@@ -19186,187 +19186,163 @@
             "number": 272
           },
           "UP_KEY": {
-            "description": "The up key key",
+            "description": "The up key",
             "number": 273
           },
           "DOWN_KEY": {
-            "description": "The down key key",
+            "description": "The down key",
             "number": 274
           },
           "RIGHT_KEY": {
-            "description": "The right key key",
+            "description": "The right key",
             "number": 275
           },
           "LEFT_KEY": {
-            "description": "The left key key",
+            "description": "The left key",
             "number": 276
           },
           "INSERT_KEY": {
-            "description": "The insert key key",
+            "description": "The insert key",
             "number": 277
           },
           "HOME_KEY": {
-            "description": "The home key key",
+            "description": "The home key",
             "number": 278
           },
           "END_KEY": {
-            "description": "The end key key",
+            "description": "The end key",
             "number": 279
           },
           "PAGE_UP_KEY": {
-            "description": "The page up key key",
+            "description": "The page up key",
             "number": 280
           },
           "PAGE_DOWN_KEY": {
-            "description": "The page down key key",
+            "description": "The page down key",
             "number": 281
           },
           "F1_KEY": {
-            "description": "The f1 key key",
+            "description": "The f1 key",
             "number": 282
           },
           "F2_KEY": {
-            "description": "The f2 key key",
+            "description": "The f2 key",
             "number": 283
           },
           "F3_KEY": {
-            "description": "The f3 key key",
+            "description": "The f3 key",
             "number": 284
           },
           "F4_KEY": {
-            "description": "The f4 key key",
+            "description": "The f4 key",
             "number": 285
           },
           "F5_KEY": {
-            "description": "The f5 key key",
+            "description": "The f5 key",
             "number": 286
           },
           "F6_KEY": {
-            "description": "The f6 key key",
+            "description": "The f6 key",
             "number": 287
           },
           "F7_KEY": {
-            "description": "The f7 key key",
+            "description": "The f7 key",
             "number": 288
           },
           "F8_KEY": {
-            "description": "The f8 key key",
+            "description": "The f8 key",
             "number": 289
           },
           "F9_KEY": {
-            "description": "The f9 key key",
+            "description": "The f9 key",
             "number": 290
           },
           "F10_KEY": {
-            "description": "The f10 key key",
+            "description": "The f10 key",
             "number": 291
           },
           "F11_KEY": {
-            "description": "The f11 key key",
+            "description": "The f11 key",
             "number": 292
           },
           "F12_KEY": {
-            "description": "The f12 key key",
+            "description": "The f12 key",
             "number": 293
           },
           "F13_KEY": {
-            "description": "The f13 key key",
+            "description": "The f13 key",
             "number": 294
           },
           "F14_KEY": {
-            "description": "The f14 key key",
+            "description": "The f14 key",
             "number": 295
           },
           "F15_KEY": {
-            "description": "The f15 key key",
+            "description": "The f15 key",
             "number": 296
           },
           "NUM_LOCK_KEY": {
-            "description": "The num lock key key",
+            "description": "The num lock key",
             "number": 300
           },
           "CAPS_LOCK_KEY": {
-            "description": "The caps lock key key",
+            "description": "The caps lock key",
             "number": 301
           },
           "SCROLL_LOCK_KEY": {
-            "description": "The scroll lock key key",
+            "description": "The scroll lock key",
             "number": 302
           },
           "RIGHT_SHIFT_KEY": {
-            "description": "The right shift key key",
+            "description": "The right shift key",
             "number": 303
           },
           "LEFT_SHIFT_KEY": {
-            "description": "The left shift key key",
+            "description": "The left shift key",
             "number": 304
           },
           "RIGHT_CTRL_KEY": {
-            "description": "The right ctrl key key",
+            "description": "The right ctrl key",
             "number": 305
           },
           "LEFT_CTRL_KEY": {
-            "description": "The left ctrl key key",
+            "description": "The left ctrl key",
             "number": 306
           },
           "RIGHT_ALT_KEY": {
-            "description": "The right alt key key",
+            "description": "The right alt or option key",
             "number": 307
           },
           "LEFT_ALT_KEY": {
-            "description": "The left alt key key",
-            "number": 308
-          },
-          "RIGHT_OPTION_KEY": {
-            "description": "The right option key key",
-            "number": 307
-          },
-          "LEFT_OPTION_KEY": {
-            "description": "The left option key key",
+            "description": "The left alt or option key",
             "number": 308
           },
           "LEFT_SUPER_KEY": {
-            "description": "The left super key key",
+            "description": "The left super (windows or command) key",
             "number": 311
           },
           "RIGHT_SUPER_KEY": {
-            "description": "The right super key key",
-            "number": 312
-          },
-          "LEFT_WINDOWS_KEY": {
-            "description": "The left windows key key",
-            "number": 311
-          },
-          "RIGHT_WINDOWS_KEY": {
-            "description": "The right windows key key",
-            "number": 312
-          },
-          "LEFT_COMMAND_KEY": {
-            "description": "The left command key key",
-            "number": 311
-          },
-          "RIGHT_COMMAND_KEY": {
-            "description": "The right command key key",
+            "description": "The right super (windows or command) key",
             "number": 312
           },
           "MODE_KEY": {
-            "description": "The mode key key",
+            "description": "The mode key",
             "number": 313
           },
           "HELP_KEY": {
-            "description": "The help key key",
+            "description": "The help key",
             "number": 315
           },
           "SYS_REQ_KEY": {
-            "description": "The sys req key key",
+            "description": "The sys req key",
             "number": 317
           },
           "MENU_KEY": {
-            "description": "The menu key key",
+            "description": "The menu key",
             "number": 319
           },
           "POWER_KEY": {
-            "description": "The power key key",
+            "description": "The power key",
             "number": 320
           }
         },
@@ -19841,7 +19817,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1477630021,
+    "parsed_at": 1477868189,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -19958,7 +19934,7 @@
         }
       },
       {
-        "signature": "line line_from(const point_2d &start,const point_2d &end);",
+        "signature": "line line_from(const point_2d &start,const point_2d &end_pt);",
         "name": "line_from",
         "method_name": null,
         "unique_global_name": null,
@@ -19988,7 +19964,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "end": {
+          "end_pt": {
             "type": "point_2d",
             "description": "The end of the line",
             "is_pointer": false,
@@ -40151,7 +40127,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1477630058,
+    "parsed_at": 1477868191,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -41244,7 +41220,7 @@
         }
       },
       {
-        "signature": "vector_2d vector_point_to_point(const point_2d &start,const point_2d &end);",
+        "signature": "vector_2d vector_point_to_point(const point_2d &start,const point_2d &end_pt);",
         "name": "vector_point_to_point",
         "method_name": null,
         "unique_global_name": null,
@@ -41274,7 +41250,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "end": {
+          "end_pt": {
             "type": "point_2d",
             "description": "The ending point",
             "is_pointer": false,

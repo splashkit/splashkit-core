@@ -34,7 +34,7 @@ vector_2d vector_out_of_circle_from_point(const point_2d &pt, const circle &c, c
 vector_2d vector_out_of_rect_from_circle(const circle &c, const rectangle &rect, const vector_2d &velocity);
 vector_2d vector_out_of_rect_from_point(const point_2d &pt, const rectangle &rect, const vector_2d &velocity);
 vector_2d vector_out_of_rect_from_rect(const rectangle &src, const rectangle &bounds, const vector_2d &velocity);
-vector_2d vector_point_to_point(const point_2d &start, const point_2d &end);
+vector_2d vector_point_to_point(const point_2d &start, const point_2d &end_pt);
 vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2);
 vector_2d vector_to(const point_2d &p1);
 vector_2d vector_to(float x, float y);
