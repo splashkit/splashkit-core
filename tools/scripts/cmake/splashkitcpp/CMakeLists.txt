@@ -36,6 +36,7 @@ set(SK_LIB "${SK_ROOT}/coresdk/lib")
 set(SK_GENERATED "${SK_ROOT}/generated")
 set(SK_BIN "${SK_ROOT}/bin")
 set(SK_OUT "${SK_ROOT}/out")
+set(SK_LANGUAGES "${SK_ROOT}/languages")
 
 # Setup OS specific flags
 if (APPLE)
@@ -92,9 +93,18 @@ file(GLOB SK_ADAPTER_INCLUDE_FILE
     "${SK_GENERATED}/cpp/*.h"
 )
 
+file(GLOB STARTER_SOURCE_FILES
+    "${SK_LANGUAGES}/cpp/splashkit_starter.cpp"
+)
+
+file(GLOB STARTER_HEADER_FILES
+    "${SK_LANGUAGES}/cpp/splashkit_starter.h"
+)
+
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 add_library(SplashKitCPP${WIN_NAME_SUFFIX} STATIC ${SOURCE_FILES})
+add_library(SplashKitStarter STATIC ${STARTER_SOURCE_FILES})
 target_link_libraries(SplashKitCPP${WIN_NAME_SUFFIX} ${LIB_FLAGS})
 
 
@@ -105,4 +115,11 @@ set_target_properties(
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
 install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
+if(MSYS)
+  install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
+else()
+  install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_ROOT}/lib)
+endif()
+
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
+install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_ROOT}/include)
