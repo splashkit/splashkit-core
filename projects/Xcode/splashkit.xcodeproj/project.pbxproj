@@ -252,10 +252,44 @@
 		94F66BF51D62F75E004D8F8C /* text_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F66BF31D62F75E004D8F8C /* text_input.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 941C8A2D1D5B2EC1003112B2 /* animations.cpp */; };
 		94F7F7711D3661CA005D3C8C /* test_resources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94F7F76F1D3661CA005D3C8C /* test_resources.cpp */; };
+		F84278CD1D8FF898007EFA4D /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F84278CB1D8FF898007EFA4D /* twitter.cpp */; };
+		F84278CE1D8FF898007EFA4D /* twitter.h in Headers */ = {isa = PBXBuildFile; fileRef = F84278CC1D8FF898007EFA4D /* twitter.h */; };
+		F84278D11D901112007EFA4D /* test_twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F84278D01D901112007EFA4D /* test_twitter.cpp */; };
 		F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
 		F86951931D508BF100E1BCC9 /* database_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951911D508BF100E1BCC9 /* database_driver.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F86951961D5093F800E1BCC9 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951941D5093F800E1BCC9 /* database.cpp */; };
+
+		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
+		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
+		F877ED901D90FF2B002B9BF9 /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED811D90FF2B002B9BF9 /* crc32.h */; };
+		F877ED921D90FF2B002B9BF9 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED831D90FF2B002B9BF9 /* hash.h */; };
+		F877ED931D90FF2B002B9BF9 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED841D90FF2B002B9BF9 /* hmac.h */; };
+		F877ED951D90FF2B002B9BF9 /* keccak.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED861D90FF2B002B9BF9 /* keccak.h */; };
+		F877ED971D90FF2B002B9BF9 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED881D90FF2B002B9BF9 /* md5.h */; };
+		F877ED991D90FF2B002B9BF9 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8A1D90FF2B002B9BF9 /* sha1.h */; };
+		F877ED9B1D90FF2B002B9BF9 /* sha3.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8C1D90FF2B002B9BF9 /* sha3.h */; };
+		F877ED9D1D90FF2B002B9BF9 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8E1D90FF2B002B9BF9 /* sha256.h */; };
+		F877EDB11D9114D4002B9BF9 /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = F877EDB01D9114D4002B9BF9 /* Base64.h */; };
+		F877EDB41D913B28002B9BF9 /* twitter_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877EDB21D913B28002B9BF9 /* twitter_driver.cpp */; };
+		F877EDB61D913B28002B9BF9 /* twitter_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F877EDB31D913B28002B9BF9 /* twitter_driver.h */; };
+		F877EDB71D913B28002B9BF9 /* twitter_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F877EDB31D913B28002B9BF9 /* twitter_driver.h */; };
+		F877EDC81D9150D6002B9BF9 /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED811D90FF2B002B9BF9 /* crc32.h */; };
+		F877EDC91D9150D6002B9BF9 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED831D90FF2B002B9BF9 /* hash.h */; };
+		F877EDCA1D9150D6002B9BF9 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED841D90FF2B002B9BF9 /* hmac.h */; };
+		F877EDCB1D9150D6002B9BF9 /* keccak.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED861D90FF2B002B9BF9 /* keccak.h */; };
+		F877EDCC1D9150D6002B9BF9 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED881D90FF2B002B9BF9 /* md5.h */; };
+		F877EDCD1D9150D6002B9BF9 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8A1D90FF2B002B9BF9 /* sha1.h */; };
+		F877EDCE1D9150D6002B9BF9 /* sha3.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8C1D90FF2B002B9BF9 /* sha3.h */; };
+		F877EDCF1D9150D6002B9BF9 /* sha256.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED8E1D90FF2B002B9BF9 /* sha256.h */; };
+		F877EDD01D9150FC002B9BF9 /* crc32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED801D90FF2B002B9BF9 /* crc32.cpp */; };
+		F877EDD21D9150FC002B9BF9 /* keccak.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED851D90FF2B002B9BF9 /* keccak.cpp */; };
+		F877EDD31D9150FC002B9BF9 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED871D90FF2B002B9BF9 /* md5.cpp */; };
+		F877EDD41D9150FC002B9BF9 /* sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED891D90FF2B002B9BF9 /* sha1.cpp */; };
+		F877EDD51D9150FC002B9BF9 /* sha3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED8B1D90FF2B002B9BF9 /* sha3.cpp */; };
+		F877EDD61D9150FC002B9BF9 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED8D1D90FF2B002B9BF9 /* sha256.cpp */; };
+
 		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; settings = {ATTRIBUTES = (Public, ); }; };
+
 		FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
 		FA3ABFA81D82493A0064C29A /* logging_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94071D801C9600B73558 /* logging_driver.cpp */; };
 		FA3ABFA91D82493A0064C29A /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
@@ -617,11 +651,32 @@
 		94F66BF21D62F75E004D8F8C /* text_input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_input.cpp; sourceTree = "<group>"; };
 		94F66BF31D62F75E004D8F8C /* text_input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_input.h; sourceTree = "<group>"; };
 		94F7F76F1D3661CA005D3C8C /* test_resources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_resources.cpp; sourceTree = "<group>"; };
+		F84278CB1D8FF898007EFA4D /* twitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twitter.cpp; sourceTree = "<group>"; };
+		F84278CC1D8FF898007EFA4D /* twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter.h; sourceTree = "<group>"; };
+		F84278D01D901112007EFA4D /* test_twitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_twitter.cpp; sourceTree = "<group>"; };
 		F86951901D508BF100E1BCC9 /* database_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_driver.cpp; sourceTree = "<group>"; };
 		F86951911D508BF100E1BCC9 /* database_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_driver.h; sourceTree = "<group>"; };
 		F86951941D5093F800E1BCC9 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
 		F86951951D5093F800E1BCC9 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		F86951991D51C84A00E1BCC9 /* test_database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_database.cpp; sourceTree = "<group>"; };
+		F877ED3F1D90FE6B002B9BF9 /* libhash-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhash-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F877ED801D90FF2B002B9BF9 /* crc32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crc32.cpp; path = "../../external/hash-library/crc32.cpp"; sourceTree = "<group>"; };
+		F877ED811D90FF2B002B9BF9 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crc32.h; path = "../../external/hash-library/crc32.h"; sourceTree = "<group>"; };
+		F877ED831D90FF2B002B9BF9 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hash.h; path = "../../external/hash-library/hash.h"; sourceTree = "<group>"; };
+		F877ED841D90FF2B002B9BF9 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = "../../external/hash-library/hmac.h"; sourceTree = "<group>"; };
+		F877ED851D90FF2B002B9BF9 /* keccak.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = keccak.cpp; path = "../../external/hash-library/keccak.cpp"; sourceTree = "<group>"; };
+		F877ED861D90FF2B002B9BF9 /* keccak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keccak.h; path = "../../external/hash-library/keccak.h"; sourceTree = "<group>"; };
+		F877ED871D90FF2B002B9BF9 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = md5.cpp; path = "../../external/hash-library/md5.cpp"; sourceTree = "<group>"; };
+		F877ED881D90FF2B002B9BF9 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = md5.h; path = "../../external/hash-library/md5.h"; sourceTree = "<group>"; };
+		F877ED891D90FF2B002B9BF9 /* sha1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha1.cpp; path = "../../external/hash-library/sha1.cpp"; sourceTree = "<group>"; };
+		F877ED8A1D90FF2B002B9BF9 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = "../../external/hash-library/sha1.h"; sourceTree = "<group>"; };
+		F877ED8B1D90FF2B002B9BF9 /* sha3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha3.cpp; path = "../../external/hash-library/sha3.cpp"; sourceTree = "<group>"; };
+		F877ED8C1D90FF2B002B9BF9 /* sha3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha3.h; path = "../../external/hash-library/sha3.h"; sourceTree = "<group>"; };
+		F877ED8D1D90FF2B002B9BF9 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = "../../external/hash-library/sha256.cpp"; sourceTree = "<group>"; };
+		F877ED8E1D90FF2B002B9BF9 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = "../../external/hash-library/sha256.h"; sourceTree = "<group>"; };
+		F877EDB01D9114D4002B9BF9 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		F877EDB21D913B28002B9BF9 /* twitter_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twitter_driver.cpp; sourceTree = "<group>"; };
+		F877EDB31D913B28002B9BF9 /* twitter_driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter_driver.h; sourceTree = "<group>"; };
 		FA3ABF991D82483F0064C29A /* TranslatorTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TranslatorTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4B07861D824BE500A8EC32 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		FA4B07BF1D825FCC00A8EC32 /* translator_test_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = translator_test_main.cpp; path = ../../coresdk/src/test/translator/translator_test_main.cpp; sourceTree = "<group>"; };
@@ -809,6 +864,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F877ED3C1D90FE6B002B9BF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA3ABF961D82483F0064C29A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -881,6 +943,7 @@
 				94E699531D6F395500FBFA28 /* libcivetweb.a */,
 				94C0D0951D73B1E50099387A /* libsqlite.a */,
 				FA3ABF991D82483F0064C29A /* TranslatorTest */,
+				F877ED3F1D90FE6B002B9BF9 /* libhash-library.a */,
 				94D125EF1D94CC49006957A8 /* SimpleWebService */,
 				94D125FA1D94E38D006957A8 /* libSplashKitCpp.a */,
 				94A437ED1DA4AC8A00A41A7B /* libSplashKitMain.a */,
@@ -933,6 +996,8 @@
 				940864571D37A78C009EA048 /* backend_types.h */,
 				F86951901D508BF100E1BCC9 /* database_driver.cpp */,
 				F86951911D508BF100E1BCC9 /* database_driver.h */,
+				F877EDB21D913B28002B9BF9 /* twitter_driver.cpp */,
+				F877EDB31D913B28002B9BF9 /* twitter_driver.h */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -960,6 +1025,8 @@
 				9424B5A51D4444F40039B3AF /* random.h */,
 				9424B5C11D4619620039B3AF /* text.h */,
 				941C8A391D5DD668003112B2 /* timers.h */,
+				F84278CB1D8FF898007EFA4D /* twitter.cpp */,
+				F84278CC1D8FF898007EFA4D /* twitter.h */,
 				9424B5A11D4442220039B3AF /* types.h */,
 				9424B5991D436C850039B3AF /* utils.h */,
 				940864631D38B756009EA048 /* window_manager.h */,
@@ -1001,6 +1068,7 @@
 				94E699371D6F05FB00FBFA28 /* test_sprites.cpp */,
 				94DF47071D74132A00E3D9AF /* test_bundles.cpp */,
 				942ECDBF1D77C30A00E5B1F9 /* test_camera.cpp */,
+				F84278D01D901112007EFA4D /* test_twitter.cpp */,
 				94A501B01DA85D3C007859A1 /* test_terminal.cpp */,
 			);
 			path = test;
@@ -1009,6 +1077,7 @@
 		9423723D1D1D6A7D0020CCE2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F877ED7F1D90FF1B002B9BF9 /* hash-library */,
 				94E699541D6F395500FBFA28 /* civetweb */,
 				94C0D0961D73B1E50099387A /* sqlite */,
 				942372701D1D6B760020CCE2 /* IOKit.framework */,
@@ -1038,6 +1107,7 @@
 				9423724C1D1D6A7D0020CCE2 /* libvorbisfile.a */,
 				9423724D1D1D6A7D0020CCE2 /* libwebp.a */,
 				9423724E1D1D6A7D0020CCE2 /* libz.a */,
+				F877EDB01D9114D4002B9BF9 /* Base64.h */,
 			);
 			name = Libraries;
 			path = ../../coresdk/lib/mac;
@@ -1234,6 +1304,27 @@
 			path = ../../../projects/Xcode/civetweb;
 			sourceTree = "<group>";
 		};
+		F877ED7F1D90FF1B002B9BF9 /* hash-library */ = {
+			isa = PBXGroup;
+			children = (
+				F877ED811D90FF2B002B9BF9 /* crc32.h */,
+				F877ED831D90FF2B002B9BF9 /* hash.h */,
+				F877ED841D90FF2B002B9BF9 /* hmac.h */,
+				F877ED861D90FF2B002B9BF9 /* keccak.h */,
+				F877ED881D90FF2B002B9BF9 /* md5.h */,
+				F877ED801D90FF2B002B9BF9 /* crc32.cpp */,
+				F877ED851D90FF2B002B9BF9 /* keccak.cpp */,
+				F877ED871D90FF2B002B9BF9 /* md5.cpp */,
+				F877ED891D90FF2B002B9BF9 /* sha1.cpp */,
+				F877ED8B1D90FF2B002B9BF9 /* sha3.cpp */,
+				F877ED8D1D90FF2B002B9BF9 /* sha256.cpp */,
+				F877ED8A1D90FF2B002B9BF9 /* sha1.h */,
+				F877ED8C1D90FF2B002B9BF9 /* sha3.h */,
+				F877ED8E1D90FF2B002B9BF9 /* sha256.h */,
+			);
+			name = "hash-library";
+			sourceTree = "<group>";
+		};
 		FA4B07C11D825FEC00A8EC32 /* TranslatorTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1322,14 +1413,26 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F877EDC81D9150D6002B9BF9 /* crc32.h in Headers */,
+				F877EDC91D9150D6002B9BF9 /* hash.h in Headers */,
+				F877EDCA1D9150D6002B9BF9 /* hmac.h in Headers */,
+				F877EDCB1D9150D6002B9BF9 /* keccak.h in Headers */,
+				F877EDCC1D9150D6002B9BF9 /* md5.h in Headers */,
+				F877EDCD1D9150D6002B9BF9 /* sha1.h in Headers */,
+				F877EDCE1D9150D6002B9BF9 /* sha3.h in Headers */,
+				F877EDCF1D9150D6002B9BF9 /* sha256.h in Headers */,
 				940864691D38BA14009EA048 /* geometry.h in Headers */,
 				94B57A641D65C7B200CE7D55 /* line_drawing.h in Headers */,
 				16238ACD1D669A2E00A88176 /* rectangle_geometry.h in Headers */,
 				94A069AA1D66F44900C26E6F /* vector_2d.h in Headers */,
 				94E699361D6E8B3400FBFA28 /* collisions.h in Headers */,
+				F877EDB61D913B28002B9BF9 /* twitter_driver.h in Headers */,
 				94A02AAE1D73B452002E0353 /* bundles.h in Headers */,
 				9424B5C31D4619620039B3AF /* text.h in Headers */,
 				94006A481D61CC83003E8A32 /* mouse_input.h in Headers */,
+				F84278CE1D8FF898007EFA4D /* twitter.h in Headers */,
+				9424B5C71D461FE00039B3AF /* text_driver.h in Headers */,
+				94E6994D1D6F385200FBFA28 /* concurrency_utils.h in Headers */,
 				94B57A6D1D66738300CE7D55 /* point_geometry.h in Headers */,
 				94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */,
 				4129D2401D65404C000BFD0C /* matrix_2d.h in Headers */,
@@ -1354,6 +1457,10 @@
 				941C8A3B1D5DD668003112B2 /* timers.h in Headers */,
 				94444B3B1D644BB50059BF3B /* triangle_drawing.h in Headers */,
 				9408647A1D390134009EA048 /* input.h in Headers */,
+				94DF47001D7402C800E3D9AF /* civetweb.h in Headers */,
+				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
+				F877EDB11D9114D4002B9BF9 /* Base64.h in Headers */,
+				FAAC94001D8016D500B73558 /* json.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				FCB6B3BC1D61423E00011965 /* music.h in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
@@ -1458,6 +1565,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F877ED3D1D90FE6B002B9BF9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F877ED951D90FF2B002B9BF9 /* keccak.h in Headers */,
+				F877ED991D90FF2B002B9BF9 /* sha1.h in Headers */,
+				F877ED9B1D90FF2B002B9BF9 /* sha3.h in Headers */,
+				F877ED971D90FF2B002B9BF9 /* md5.h in Headers */,
+				F877ED921D90FF2B002B9BF9 /* hash.h in Headers */,
+				F877ED931D90FF2B002B9BF9 /* hmac.h in Headers */,
+				F877EDB71D913B28002B9BF9 /* twitter_driver.h in Headers */,
+				F877ED901D90FF2B002B9BF9 /* crc32.h in Headers */,
+				F877ED9D1D90FF2B002B9BF9 /* sha256.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,6 +1727,23 @@
 			productReference = 94E699531D6F395500FBFA28 /* libcivetweb.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F877ED3E1D90FE6B002B9BF9 /* hash-library */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F877ED401D90FE6B002B9BF9 /* Build configuration list for PBXNativeTarget "hash-library" */;
+			buildPhases = (
+				F877ED3B1D90FE6B002B9BF9 /* Sources */,
+				F877ED3C1D90FE6B002B9BF9 /* Frameworks */,
+				F877ED3D1D90FE6B002B9BF9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "hash-library";
+			productName = "hash-library";
+			productReference = F877ED3F1D90FE6B002B9BF9 /* libhash-library.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		FA3ABF981D82483F0064C29A /* TranslatorTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA3ABF9F1D82483F0064C29A /* Build configuration list for PBXNativeTarget "TranslatorTest" */;
@@ -1659,6 +1799,10 @@
 					94E699521D6F395500FBFA28 = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					F877ED3E1D90FE6B002B9BF9 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					FA3ABF981D82483F0064C29A = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -1683,6 +1827,7 @@
 				94A437EC1DA4AC8A00A41A7B /* SplashKitMain */,
 				9423722A1D1D68E30020CCE2 /* tests */,
 				FA3ABF981D82483F0064C29A /* TranslatorTest */,
+				F877ED3E1D90FE6B002B9BF9 /* hash-library */,
 				94D125EE1D94CC49006957A8 /* SimpleWebService */,
 				94A437FA1DA4ADFE00A41A7B /* ScriptedAction */,
 			);
@@ -1731,6 +1876,7 @@
 				94AC3DBF1D6C0DA0002920A5 /* sprites.cpp in Sources */,
 				94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
+				F877EDB41D913B28002B9BF9 /* twitter_driver.cpp in Sources */,
 				F86951961D5093F800E1BCC9 /* database.cpp in Sources */,
 				94C7491C1D478813006A9052 /* web_driver.cpp in Sources */,
 				941C8A3A1D5DD668003112B2 /* timers.cpp in Sources */,
@@ -1748,6 +1894,8 @@
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web_client.cpp in Sources */,
 				94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */,
+				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
+				F84278CD1D8FF898007EFA4D /* twitter.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
 				943AF76F1D67F53100DBEA84 /* line_geometry.cpp in Sources */,
 				94F699261D66F1C2002FF2C4 /* animations.cpp in Sources */,
@@ -1778,6 +1926,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F877EDD01D9150FC002B9BF9 /* crc32.cpp in Sources */,
+				F877EDD21D9150FC002B9BF9 /* keccak.cpp in Sources */,
+				F877EDD31D9150FC002B9BF9 /* md5.cpp in Sources */,
+				F877EDD41D9150FC002B9BF9 /* sha1.cpp in Sources */,
+				F877EDD51D9150FC002B9BF9 /* sha3.cpp in Sources */,
+				F877EDD61D9150FC002B9BF9 /* sha256.cpp in Sources */,
 				9423723B1D1D69880020CCE2 /* test_main.cpp in Sources */,
 				4129D2421D65460F000BFD0C /* test_physics.cpp in Sources */,
 				94E6993B1D6F060300FBFA28 /* test_sprites.cpp in Sources */,
@@ -1794,6 +1948,8 @@
 				945BCE981D95512900F54A38 /* test_database.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */,
+				FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */,
+				F84278D11D901112007EFA4D /* test_twitter.cpp in Sources */,
 				945BCE951D95510C00F54A38 /* test_windows.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
 				945BCE991D95512E00F54A38 /* test_timers.cpp in Sources */,
@@ -1848,6 +2004,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				94BBE6791DB5D8AA00B01487 /* civetweb.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F877ED3B1D90FE6B002B9BF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2320,6 +2483,28 @@
 			};
 			name = Release;
 		};
+		F877ED411D90FE6B002B9BF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F877ED421D90FE6B002B9BF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		FA3ABF9D1D82483F0064C29A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2464,6 +2649,15 @@
 			buildConfigurations = (
 				94E6995C1D6F395500FBFA28 /* Debug */,
 				94E6995D1D6F395500FBFA28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F877ED401D90FE6B002B9BF9 /* Build configuration list for PBXNativeTarget "hash-library" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F877ED411D90FE6B002B9BF9 /* Debug */,
+				F877ED421D90FE6B002B9BF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

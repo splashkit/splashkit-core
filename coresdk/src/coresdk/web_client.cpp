@@ -22,7 +22,7 @@
 #endif
 namespace splashkit_lib
 {
-    sk_http_response *make_request (http_method request_type, string uri, unsigned short port, string body)
+    sk_http_response *make_request (http_method request_type, string uri, unsigned short port, string body, const vector<string> &headers)
     {
         sk_http_request request;
 
@@ -32,18 +32,24 @@ namespace splashkit_lib
         request.port = port;
         request.body = body;
         request.filename = "";
+        request.headers = headers;
 
         return sk_http_make_request(request);
     }
 
     http_response http_get(const string &url, unsigned short port)
     {
-        return make_request(HTTP_GET_METHOD, url, port, "");
+        return make_request(HTTP_GET_METHOD, url, port, "", {});
+    }
+
+    http_response http_post(const string &url, unsigned short port, const string &body, const vector<string> &headers)
+    {
+        return make_request(HTTP_POST_METHOD, url, port, body, headers);
     }
 
     http_response http_post(const string &url, unsigned short port, string body)
     {
-        return make_request(HTTP_POST_METHOD, url, port, body);;
+        return http_post(url, port, body, {});
     }
 
     void save_response_to_file(http_response response, string filename)
