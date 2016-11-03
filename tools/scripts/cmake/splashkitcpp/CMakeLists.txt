@@ -31,6 +31,7 @@ endif()
 set(SK_ROOT "../../../..")
 set(SK_SRC "${SK_ROOT}/coresdk/src")
 set(SK_EXT "${SK_ROOT}/coresdk/external")
+set(SK_EXT "${SK_ROOT}/coresdk/external/hash-library")
 set(SK_LIB "${SK_ROOT}/coresdk/lib")
 
 set(SK_GENERATED "${SK_ROOT}/generated")
