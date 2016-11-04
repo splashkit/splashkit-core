@@ -1,3 +1,13 @@
+/**
+* @header  twitter
+* @author  Jake Renzella
+* @brief   SplashKit provides functionality to post material to twitter
+*
+* @attribute group  social
+* @attribute static twitter
+ */
+
+
 //
 //  twitter.hpp
 //  splashkit
