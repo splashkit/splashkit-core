@@ -10,6 +10,7 @@
 #include "input.h"
 #include "utils_driver.h"
 #include "resources.h"
+#include "utility_functions.h"
 
 #include <iostream>
 #include <string>
@@ -55,7 +56,16 @@ namespace splashkit_lib
 
     string file_as_string(string filename, resource_kind kind)
     {
-        string path = path_to_resource(filename, kind);
+        string path = filename;
+        if ( not file_exists(path) )
+        {
+            path = path_to_resource(filename, kind);
+            if ( not file_exists(path) )
+            {
+                LOG(WARNING) << "Unable to read file " << filename;
+                return "";
+            }
+        }
 
         ifstream ifs(path);
         std::string line;

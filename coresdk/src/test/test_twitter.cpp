@@ -9,17 +9,12 @@
 #include "twitter.h"
 #include "utils.h"
 #include <iostream>
-#include "json.h"
-#include "web_server.h"
+
 using namespace std;
 using namespace splashkit_lib;
 
 void run_twitter_test()
 {
-    json twitter_post = create_json();
-    twitter_post = json_from_file("twitter.json");
-    
-    json_set_string(twitter_post, "status", "#hey hey so full! #killerkebabs #abrakebabra");
-    
-    new_tweet(twitter_post);
+    twitter_account account = load_twitter_account("jake", "twitter.json");
+    tweet(account, "#hey hey so full! #killerkebabs #abrakebabra");
 }

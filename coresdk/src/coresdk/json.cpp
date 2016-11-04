@@ -96,8 +96,18 @@ namespace splashkit_lib
 
     json json_from_file(const string &filename)
     {
-        string result = file_as_string(filename, JSON_RESOURCE);
+        string file_path = filename;
+        if ( not file_exists(file_path) )
+        {
+            file_path = path_to_resource(filename, JSON_RESOURCE);
+            if ( not file_exists(file_path) )
+            {
+                LOG(WARNING) << "Unable to locate json file " << filename;
+                return json_from_string("{}");
+            }
+        }
 
+        string result = file_as_string(filename, JSON_RESOURCE);
         return json_from_string(result);
     };
 
