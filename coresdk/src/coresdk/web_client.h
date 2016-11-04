@@ -46,6 +46,17 @@ namespace splashkit_lib
     http_response http_post(const string &url, unsigned short port, string body);
 
     /**
+     * Post the supplied information to the indicated url with the given headers.
+     *
+     * @param  url      The url of the server to post the data to
+     * @param  port     The port to connect to on the server
+     * @param  body     The body of the message to post
+     * @param  headers  The headers of the request
+     * @return      The response from the server
+     */
+    http_response http_post(const string &url, unsigned short port, const string &body, const vector<string> &headers);
+
+    /**
      * Download an image from a web server and load it into SplashKit so that
      * you can use it.
      *

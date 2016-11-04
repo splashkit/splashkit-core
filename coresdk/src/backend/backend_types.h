@@ -152,7 +152,7 @@ namespace splashkit_lib
         int cell_cols;   // The columns of cells in the bitmap
         int cell_rows;   // The rows of cells in the bitmap
         int cell_count;  // The total number of cells in the bitmap
-        
+
         bool *pixel_mask;   // Pixel mask used for pixel level collisions
     };
 
@@ -163,9 +163,17 @@ namespace splashkit_lib
         string              filename;
 
         bool                was_downloaded;
-        
+
         // TTF_Font Private Data
         map<int, void *> _data;
+    };
+
+    enum sk_http_method
+    {
+        HTTP_GET,
+        HTTP_POST,
+        HTTP_PUT,
+        HTTP_DELETE
     };
 
     struct sk_network_connection
@@ -226,7 +234,7 @@ namespace splashkit_lib
         char                *message;
         unsigned long       message_size;
         http_status_code    code;
-
+        
         semaphore           response_sent;
     };
 
@@ -239,6 +247,7 @@ namespace splashkit_lib
         unsigned short      port;
         string              body;
         string              filename;
+        vector<string>      headers;
 
         semaphore           control;
         sk_http_response    *response;
@@ -283,12 +292,12 @@ namespace splashkit_lib
         pointer_identifier id;
         string name;           // The name of the animation template so it can be retrieved from resources
         string filename;       // The filename from which this template was loaded
-        
+
         map<string, int> animation_ids;     // A map that links names to indexes
         vector<string> animation_names;     // The names of the animations
         vector<int> animations;             // The starting index of the animations in this template.
         vector<animation_frame> frames;  // The frames of the animations within this template.
-        
+
         vector<animation>   anim_objs;         // The animations created from this script
     };
 }

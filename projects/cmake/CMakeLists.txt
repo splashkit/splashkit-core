@@ -86,6 +86,7 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/backend/*.cpp"
     "${SK_EXT}/civetweb/src/civetweb.c"
     "${SK_EXT}/sqlite/sqlite3.c"
+    "${SK_EXT}/hash-library/*.cpp"
 )
 
 # TEST FILE INCLUDES
@@ -109,6 +110,7 @@ include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
+include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")

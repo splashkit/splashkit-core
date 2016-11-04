@@ -94,5 +94,25 @@ namespace splashkit_lib
             out.push_back(e);
         }
     }
+
+    inline map<string, string> sk_json_to_map(json j)
+    {
+        map<string, string> result;
+
+        backend_json bj = j->data;
+        for (auto it = bj.begin(); it != bj.end(); ++it)
+        {
+            if (!it.value().is_string())
+            {
+                LOG(ERROR) << "Key not a string in map";
+            }
+            else
+            {
+                result.insert(make_pair<string, string>(it.key(), it.value()));
+            }
+        }
+
+        return result;
+    };
 }
 #endif //SPLASHKIT_JSON_DRIVER_H
