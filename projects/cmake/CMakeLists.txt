@@ -84,7 +84,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 file(GLOB SOURCE_FILES
     "${SK_SRC}/coresdk/*.cpp"
     "${SK_SRC}/backend/*.cpp"
-    "${SK_EXT}/civetweb/src/civetweb.cpp"
+    "${SK_EXT}/civetweb/src/civetweb.c"
     "${SK_EXT}/sqlite/sqlite3.c"
 )
 
