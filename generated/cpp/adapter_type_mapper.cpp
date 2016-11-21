@@ -21,10 +21,10 @@ std::string __skadapter__to_string(const __sklib_string &s) {
     return result;
 }
 int __skadapter__to_sklib_bool(bool v) {
-  return (v == true ? 1 : 0);
+  return (v == true ? -1 : 0);
 }
 bool __skadapter__to_bool(int v) {
-  return (v == 1 ? true : false);
+  return (v != 0 ? true : false);
 }
 __sklib_int __skadapter__to_sklib_int(int v) {
     return v;

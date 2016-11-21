@@ -118,36 +118,42 @@ typedef struct {
     __sklib_line *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_line;
+void __sklib__free__sklib_vector_line(__sklib_vector_line v);
 typedef struct {
     __sklib_triangle *data_from_app;
     unsigned int size_from_app;
     __sklib_triangle *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_triangle;
+void __sklib__free__sklib_vector_triangle(__sklib_vector_triangle v);
 typedef struct {
     __sklib_string *data_from_app;
     unsigned int size_from_app;
     __sklib_string *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_string;
+void __sklib__free__sklib_vector_string(__sklib_vector_string v);
 typedef struct {
     double *data_from_app;
     unsigned int size_from_app;
     double *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_double;
+void __sklib__free__sklib_vector_double(__sklib_vector_double v);
 typedef struct {
     __sklib_json *data_from_app;
     unsigned int size_from_app;
     __sklib_json *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_json;
+void __sklib__free__sklib_vector_json(__sklib_vector_json v);
 typedef struct {
     int *data_from_app;
     unsigned int size_from_app;
     int *data_from_lib;
     unsigned int size_from_lib;
 } __sklib_vector_bool;
+void __sklib__free__sklib_vector_bool(__sklib_vector_bool v);
 int __sklib__animation_count__animation_script(__sklib_animation_script script);
 int __sklib__animation_current_cell__animation(__sklib_animation anim);
 __sklib_vector_2d __sklib__animation_current_vector__animation(__sklib_animation anim);
@@ -1026,6 +1032,7 @@ __sklib_music __sklib__download_music__string_ref__string_ref__unsigned_short(co
 __sklib_sound_effect __sklib__download_sound_effect__string_ref__string_ref__unsigned_short(const __sklib_string name, const __sklib_string url, unsigned short port);
 void __sklib__free_response__http_response(__sklib_http_response response);
 __sklib_http_response __sklib__http_get__string_ref__unsigned_short(const __sklib_string url, unsigned short port);
+__sklib_http_response __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(const __sklib_string url, unsigned short port, const __sklib_string body, const __sklib_vector_string headers);
 __sklib_http_response __sklib__http_post__string_ref__unsigned_short__string(const __sklib_string url, unsigned short port, __sklib_string body);
 __sklib_string __sklib__http_response_to_string__http_response(__sklib_http_response response);
 void __sklib__save_response_to_file__http_response__string(__sklib_http_response response, __sklib_string path);

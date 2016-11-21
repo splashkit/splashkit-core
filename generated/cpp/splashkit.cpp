@@ -4740,6 +4740,17 @@ http_response http_get(const string &url, unsigned short port) {
     __skadapter__free__sklib_string(__skparam__url);
     return __skadapter__to_http_response(__skreturn);
 }
+http_response http_post(const string &url, unsigned short port, const string &body, const vector<string> &headers) {
+    const __sklib_string __skparam__url = __skadapter__to_sklib_string(url);
+    unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
+    const __sklib_string __skparam__body = __skadapter__to_sklib_string(body);
+    const __sklib_vector_string __skparam__headers = __skadapter__to_sklib_vector_string(headers);
+    __sklib_http_response __skreturn = __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(__skparam__url, __skparam__port, __skparam__body, __skparam__headers);
+    __skadapter__free__sklib_string(__skparam__url);
+    __skadapter__free__sklib_string(__skparam__body);
+    __skadapter__free__sklib_vector_string(__skparam__headers);
+    return __skadapter__to_http_response(__skreturn);
+}
 http_response http_post(const string &url, unsigned short port, string body) {
     const __sklib_string __skparam__url = __skadapter__to_sklib_string(url);
     unsigned short __skparam__port = __skadapter__to_unsigned_short(port);

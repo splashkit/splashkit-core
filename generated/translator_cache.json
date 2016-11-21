@@ -41561,7 +41561,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1477630059,
+    "parsed_at": 1479700242,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -41891,6 +41891,81 @@
             ],
             "is_vector": false,
             "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking"
+        }
+      },
+      {
+        "signature": "http_response http_post(const string &url,unsigned short port,const string &body,const vector<string> &headers);",
+        "name": "http_post",
+        "method_name": null,
+        "unique_global_name": null,
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Post the supplied information to the indicated url with the given headers.",
+        "brief": null,
+        "return": {
+          "type": "http_response",
+          "description": "The response from the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "url": {
+            "type": "string",
+            "description": "The url of the server to post the data to",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "port": {
+            "type": "unsigned short",
+            "description": "The port to connect to on the server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the message to post",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "headers": {
+            "type": "vector",
+            "description": "The headers of the request",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": true,
+            "type_parameter": "string"
           }
         },
         "attributes": {

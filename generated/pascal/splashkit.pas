@@ -242,7 +242,7 @@ type HttpMethod = (
   UNKNOWN_HTTP_METHOD
 );
 type Matrix2d = record
-  elements: Array [0..3, 0..3] of Double;
+  elements: Array [0..2, 0..2] of Double;
 end;
 type Point2d = record
   x: Single;
@@ -284,10 +284,10 @@ type Line = record
   endPoint: Point2d;
 end;
 type Quad = record
-  points: Array [0..4] of Point2d;
+  points: Array [0..3] of Point2d;
 end;
 type Triangle = record
-  points: Array [0..3] of Point2d;
+  points: Array [0..2] of Point2d;
 end;
 type Vector2d = record
   x: Double;
@@ -1182,6 +1182,7 @@ function DownloadMusic(const name: String; const url: String; port: Word): Music
 function DownloadSoundEffect(const name: String; const url: String; port: Word): SoundEffect;
 procedure FreeResponse(response: HttpResponse);
 function HttpGet(const url: String; port: Word): HttpResponse;
+function HttpPost(const url: String; port: Word; const body: String; const headers: ArrayOfString): HttpResponse;
 function HttpPost(const url: String; port: Word; body: String): HttpResponse;
 function HttpResponseToString(response: HttpResponse): String;
 procedure SaveResponseToFile(response: HttpResponse; path: String);
@@ -1267,7 +1268,7 @@ type __sklib_string = record
 end;
 type __sklib_ptr = Pointer;
 type __sklib_matrix_2d = record
-  elements: Array [0..9] of Double;
+  elements: Array [0..8] of Double;
 end;
 type __sklib_point_2d = record
   x: Single;
@@ -1309,10 +1310,10 @@ type __sklib_line = record
   endPoint: __sklib_point_2d;
 end;
 type __sklib_quad = record
-  points: Array [0..4] of __sklib_point_2d;
+  points: Array [0..3] of __sklib_point_2d;
 end;
 type __sklib_triangle = record
-  points: Array [0..3] of __sklib_point_2d;
+  points: Array [0..2] of __sklib_point_2d;
 end;
 type __sklib_vector_2d = record
   x: Double;
@@ -1320,11 +1321,11 @@ type __sklib_vector_2d = record
 end;
 function __skadapter__to_sklib_bool(v: Boolean): LongInt;
 begin
-  if v = true then result := 1 else result := 0;
+  if v = true then result := -1 else result := 0;
 end;
 function __skadapter__to_bool(v: LongInt): Boolean;
 begin
-  result := v = 1;
+  result := v <> 0;
 end;
 function __skadapter__to_sklib_string(s: String): __sklib_string;
 begin
@@ -3005,6 +3006,7 @@ function __sklib__download_music__string_ref__string_ref__unsigned_short(const n
 function __sklib__download_sound_effect__string_ref__string_ref__unsigned_short(const name: __sklib_string; const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
 procedure __sklib__free_response__http_response(response: __sklib_ptr); cdecl; external;
 function __sklib__http_get__string_ref__unsigned_short(const url: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(const url: __sklib_string; port: Word; const body: __sklib_string; const headers: __sklib_vector_string): __sklib_ptr; cdecl; external;
 function __sklib__http_post__string_ref__unsigned_short__string(const url: __sklib_string; port: Word; body: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__http_response_to_string__http_response(response: __sklib_ptr): __sklib_string; cdecl; external;
 procedure __sklib__save_response_to_file__http_response__string(response: __sklib_ptr; path: __sklib_string); cdecl; external;
@@ -11252,6 +11254,21 @@ begin
   __skparam__url := __skadapter__to_sklib_string(url);
   __skparam__port := __skadapter__to_sklib_unsigned_short(port);
   __skreturn := __sklib__http_get__string_ref__unsigned_short(__skparam__url, __skparam__port);
+  result := __skadapter__to_http_response(__skreturn);
+end;
+function HttpPost(const url: String; port: Word; const body: String; const headers: ArrayOfString): HttpResponse;
+var
+  __skparam__url: __sklib_string;
+  __skparam__port: Word;
+  __skparam__body: __sklib_string;
+  __skparam__headers: __sklib_vector_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__url := __skadapter__to_sklib_string(url);
+  __skparam__port := __skadapter__to_sklib_unsigned_short(port);
+  __skparam__body := __skadapter__to_sklib_string(body);
+  __skparam__headers := __skadapter__to_sklib_vector_string(headers);
+  __skreturn := __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(__skparam__url, __skparam__port, __skparam__body, __skparam__headers);
   result := __skadapter__to_http_response(__skreturn);
 end;
 function HttpPost(const url: String; port: Word; body: String): HttpResponse;

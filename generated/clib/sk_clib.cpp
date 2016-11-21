@@ -4555,6 +4555,14 @@ __sklib_http_response __sklib__http_get__string_ref__unsigned_short(const __skli
     http_response __skreturn = http_get(__skparam__url, __skparam__port);
     return __sklib__to_sklib_http_response(__skreturn);
 }
+__sklib_http_response __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(const __sklib_string url, unsigned short port, const __sklib_string body, const __sklib_vector_string headers) {
+    string __skparam__url = __sklib__to_string(url);
+    unsigned short __skparam__port = __sklib__to_unsigned_short(port);
+    string __skparam__body = __sklib__to_string(body);
+    vector<string> __skparam__headers = __sklib__to_vector_string(headers);
+    http_response __skreturn = http_post(__skparam__url, __skparam__port, __skparam__body, __skparam__headers);
+    return __sklib__to_sklib_http_response(__skreturn);
+}
 __sklib_http_response __sklib__http_post__string_ref__unsigned_short__string(const __sklib_string url, unsigned short port, __sklib_string body) {
     string __skparam__url = __sklib__to_string(url);
     unsigned short __skparam__port = __sklib__to_unsigned_short(port);

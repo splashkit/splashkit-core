@@ -23,6 +23,7 @@ music download_music(const string &name, const string &url, unsigned short port)
 sound_effect download_sound_effect(const string &name, const string &url, unsigned short port);
 void free_response(http_response response);
 http_response http_get(const string &url, unsigned short port);
+http_response http_post(const string &url, unsigned short port, const string &body, const vector<string> &headers);
 http_response http_post(const string &url, unsigned short port, string body);
 string http_response_to_string(http_response response);
 void save_response_to_file(http_response response, string path);
