@@ -144,6 +144,7 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/coresdk/*.cpp"
     "${SK_SRC}/backend/*.cpp"
     "${SK_GENERATED}/clib/*.cpp"
+    "${SK_EXT}/hash-library/*.cpp"
 )
 
 # SKSDK FILE INCLUDES
@@ -164,6 +165,7 @@ include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
+include_directories("${SK_EXT}/hash-library")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
