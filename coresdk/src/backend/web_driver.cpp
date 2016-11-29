@@ -87,7 +87,7 @@ namespace splashkit_lib
         curl_global_cleanup();
     }
 
-    http_status_code code_to_status(long code)
+    http_status_code code_to_status(int code)
     {
         switch (code)
         {
@@ -171,7 +171,7 @@ namespace splashkit_lib
 
         result->id = HTTP_RESPONSE_PTR;
 
-        long status;
+        int status;
         curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
         result->code = code_to_status(status);
 

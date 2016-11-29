@@ -145,40 +145,40 @@ class KeyCode(Enum):
     menu_key = 319
     power_key = 320
 class MouseButton(Enum):
-    no_button
-    left_button
-    middle_button
-    right_button
-    mouse_x1_button
-    mouse_x2_button
+    no_button = 0
+    left_button = 1
+    middle_button = 2
+    right_button = 3
+    mouse_x1_button = 4
+    mouse_x2_button = 5
 class ConnectionType(Enum):
-    tcp
-    udp
-    unknown
+    tcp = 0
+    udp = 1
+    unknown = 2
 class ResourceKind(Enum):
-    animation_resource
-    bundle_resource
-    database_resource
-    font_resource
-    image_resource
-    json_resource
-    music_resource
-    server_resource
-    sound_resource
-    timer_resource
-    other_resource
+    animation_resource = 0
+    bundle_resource = 1
+    database_resource = 2
+    font_resource = 3
+    image_resource = 4
+    json_resource = 5
+    music_resource = 6
+    server_resource = 7
+    sound_resource = 8
+    timer_resource = 9
+    other_resource = 10
 class CollisionTestKind(Enum):
-    pixel_collisions
-    aabb_collisions
+    pixel_collisions = 0
+    aabb_collisions = 1
 class SpriteEventKind(Enum):
-    sprite_arrived_event
-    sprite_animation_ended_event
-    sprite_touched_event
-    sprite_clicked_event
+    sprite_arrived_event = 0
+    sprite_animation_ended_event = 1
+    sprite_touched_event = 2
+    sprite_clicked_event = 3
 class DrawingDest(Enum):
-    draw_to_screen
-    draw_to_world
-    draw_default
+    draw_to_screen = 0
+    draw_to_world = 1
+    draw_default = 2
 class FontStyle(Enum):
     normal_font = 0
     bold_font = 1
@@ -198,13 +198,13 @@ class HttpStatusCode(Enum):
     http_status_not_implemented = 501
     http_status_service_unavailable = 503
 class HttpMethod(Enum):
-    http_get_method
-    http_post_method
-    http_put_method
-    http_delete_method
-    http_options_method
-    http_trace_method
-    unknown_http_method
+    http_get_method = 0
+    http_post_method = 1
+    http_put_method = 2
+    http_delete_method = 3
+    http_options_method = 4
+    http_trace_method = 5
+    unknown_http_method = 6
 
 class _FieldIndexer:
     def __init__(self, obj, field, dim1, dim2):
@@ -226,36 +226,37 @@ class _FieldIndexer:
             getattr(self.obj, self.field)[index] = value
 
 
-class __sklib_matrix_2d(Structure):
+class _sklib_matrix_2d(Structure):
     _fields_ = [
         ("_elements", c_double * 9),
     ]
 
-class Matrix2d(__sklib_matrix_2d):
     def __init__(self):
       self.elements = _FieldIndexer(self, "_elements", 3, 3)
       super().__init__()
-class __sklib_point_2d(Structure):
+
+Matrix2d = _sklib_matrix_2d
+class _sklib_point_2d(Structure):
     _fields_ = [
         ("x", c_float),
         ("y", c_float),
     ]
 
-class Point2d(__sklib_point_2d):
     def __init__(self):
       super().__init__()
-      super().__init__()
-class __sklib_circle(Structure):
+
+Point2d = _sklib_point_2d
+class _sklib_circle(Structure):
     _fields_ = [
-        ("center", __sklib_point_2d),
+        ("center", _sklib_point_2d),
         ("radius", c_float),
     ]
 
-class Circle(__sklib_circle):
     def __init__(self):
       super().__init__()
-      super().__init__()
-class __sklib_color(Structure):
+
+Circle = _sklib_circle
+class _sklib_color(Structure):
     _fields_ = [
         ("r", c_float),
         ("g", c_float),
@@ -263,13 +264,11 @@ class __sklib_color(Structure):
         ("a", c_float),
     ]
 
-class Color(__sklib_color):
     def __init__(self):
       super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-class __sklib_rectangle(Structure):
+
+Color = _sklib_color
+class _sklib_rectangle(Structure):
     _fields_ = [
         ("x", c_float),
         ("y", c_float),
@@ -277,13 +276,11 @@ class __sklib_rectangle(Structure):
         ("height", c_float),
     ]
 
-class Rectangle(__sklib_rectangle):
     def __init__(self):
       super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-class __sklib_drawing_options(Structure):
+
+Rectangle = _sklib_rectangle
+class _sklib_drawing_options(Structure):
     _fields_ = [
         ("dest", c_void_p),
         ("scale_x", c_float),
@@ -294,65 +291,67 @@ class __sklib_drawing_options(Structure):
         ("flip_x", c_bool),
         ("flip_y", c_bool),
         ("is_part", c_bool),
-        ("part", __sklib_rectangle),
-        ("camera", c_int),
+        ("part", _sklib_rectangle),
+        ("_camera", c_int),
         ("line_width", c_int),
         ("anim", c_void_p),
     ]
 
-class DrawingOptions(__sklib_drawing_options):
     def __init__(self):
       super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-      super().__init__()
-class __sklib_line(Structure):
+
+    @property
+    def camera(self):
+        return DrawingDest(self._camera)
+
+    @camera.setter
+    def camera(self, value):
+        if isinstance(value, DrawingDest):
+            self._camera = value.value
+        else:
+            self._camera = value
+
+DrawingOptions = _sklib_drawing_options
+class _sklib_line(Structure):
     _fields_ = [
-        ("start_point", __sklib_point_2d),
-        ("end_point", __sklib_point_2d),
+        ("start_point", _sklib_point_2d),
+        ("end_point", _sklib_point_2d),
     ]
 
-class Line(__sklib_line):
     def __init__(self):
       super().__init__()
-      super().__init__()
-class __sklib_quad(Structure):
+
+Line = _sklib_line
+class _sklib_quad(Structure):
     _fields_ = [
-        ("_points", __sklib_point_2d * 4),
+        ("_points", _sklib_point_2d * 4),
     ]
 
-class Quad(__sklib_quad):
     def __init__(self):
       self.points = _FieldIndexer(self, "_points", 4, 0)
       super().__init__()
-class __sklib_triangle(Structure):
+
+Quad = _sklib_quad
+class _sklib_triangle(Structure):
     _fields_ = [
-        ("_points", __sklib_point_2d * 3),
+        ("_points", _sklib_point_2d * 3),
     ]
 
-class Triangle(__sklib_triangle):
     def __init__(self):
       self.points = _FieldIndexer(self, "_points", 3, 0)
       super().__init__()
-class __sklib_vector_2d(Structure):
+
+Triangle = _sklib_triangle
+class _sklib_vector_2d(Structure):
     _fields_ = [
         ("x", c_double),
         ("y", c_double),
     ]
 
-class Vector2d(__sklib_vector_2d):
     def __init__(self):
       super().__init__()
-      super().__init__()
+
+Vector2d = _sklib_vector_2d
 KeyCallback = CFUNCTYPE(None, c_int)
 FreeNotifier = CFUNCTYPE(None, c_void_p)
 SpriteEventHandler = CFUNCTYPE(None, c_void_p, c_int)
@@ -529,67 +528,87 @@ def __skadapter__to_unsigned_long(v):
     return v
 
 def __skadapter__to_key_code(v):
-  return KeyCode(v)
+    if isinstance(v, KeyCode):
+        return v
+    return KeyCode(v)
 
 def __skadapter__to_sklib_key_code(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_mouse_button(v):
-  return MouseButton(v)
+    if isinstance(v, MouseButton):
+        return v
+    return MouseButton(v)
 
 def __skadapter__to_sklib_mouse_button(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_connection_type(v):
-  return ConnectionType(v)
+    if isinstance(v, ConnectionType):
+        return v
+    return ConnectionType(v)
 
 def __skadapter__to_sklib_connection_type(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_resource_kind(v):
-  return ResourceKind(v)
+    if isinstance(v, ResourceKind):
+        return v
+    return ResourceKind(v)
 
 def __skadapter__to_sklib_resource_kind(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_collision_test_kind(v):
-  return CollisionTestKind(v)
+    if isinstance(v, CollisionTestKind):
+        return v
+    return CollisionTestKind(v)
 
 def __skadapter__to_sklib_collision_test_kind(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_sprite_event_kind(v):
-  return SpriteEventKind(v)
+    if isinstance(v, SpriteEventKind):
+        return v
+    return SpriteEventKind(v)
 
 def __skadapter__to_sklib_sprite_event_kind(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_drawing_dest(v):
-  return DrawingDest(v)
+    if isinstance(v, DrawingDest):
+        return v
+    return DrawingDest(v)
 
 def __skadapter__to_sklib_drawing_dest(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_font_style(v):
-  return FontStyle(v)
+    if isinstance(v, FontStyle):
+        return v
+    return FontStyle(v)
 
 def __skadapter__to_sklib_font_style(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_http_status_code(v):
-  return HttpStatusCode(v)
+    if isinstance(v, HttpStatusCode):
+        return v
+    return HttpStatusCode(v)
 
 def __skadapter__to_sklib_http_status_code(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_http_method(v):
-  return HttpMethod(v)
+    if isinstance(v, HttpMethod):
+        return v
+    return HttpMethod(v)
 
 def __skadapter__to_sklib_http_method(v):
-  return c_int(v.value)
+    return c_int(v.value)
 
 def __skadapter__to_sklib_matrix_2d(v):
-    if isinstance(v, __sklib_matrix_2d):
+    if isinstance(v, _sklib_matrix_2d):
         return v
 
     result = Matrix2d()
@@ -618,7 +637,7 @@ def __skadapter__to_matrix_2d(v):
     result.elements[2][2] = __skadapter__to_double(v.elements[8]);
     return result
 def __skadapter__to_sklib_point_2d(v):
-    if isinstance(v, __sklib_point_2d):
+    if isinstance(v, _sklib_point_2d):
         return v
 
     result = Point2d()
@@ -633,7 +652,7 @@ def __skadapter__to_point_2d(v):
     result.y = __skadapter__to_float(v.y)
     return result
 def __skadapter__to_sklib_circle(v):
-    if isinstance(v, __sklib_circle):
+    if isinstance(v, _sklib_circle):
         return v
 
     result = Circle()
@@ -648,7 +667,7 @@ def __skadapter__to_circle(v):
     result.radius = __skadapter__to_float(v.radius)
     return result
 def __skadapter__to_sklib_color(v):
-    if isinstance(v, __sklib_color):
+    if isinstance(v, _sklib_color):
         return v
 
     result = Color()
@@ -667,7 +686,7 @@ def __skadapter__to_color(v):
     result.a = __skadapter__to_float(v.a)
     return result
 def __skadapter__to_sklib_rectangle(v):
-    if isinstance(v, __sklib_rectangle):
+    if isinstance(v, _sklib_rectangle):
         return v
 
     result = Rectangle()
@@ -686,7 +705,7 @@ def __skadapter__to_rectangle(v):
     result.height = __skadapter__to_float(v.height)
     return result
 def __skadapter__to_sklib_drawing_options(v):
-    if isinstance(v, __sklib_drawing_options):
+    if isinstance(v, _sklib_drawing_options):
         return v
 
     result = DrawingOptions()
@@ -723,7 +742,7 @@ def __skadapter__to_drawing_options(v):
     result.anim = __skadapter__to_animation(v.anim)
     return result
 def __skadapter__to_sklib_line(v):
-    if isinstance(v, __sklib_line):
+    if isinstance(v, _sklib_line):
         return v
 
     result = Line()
@@ -738,7 +757,7 @@ def __skadapter__to_line(v):
     result.end_point = __skadapter__to_point_2d(v.end_point)
     return result
 def __skadapter__to_sklib_quad(v):
-    if isinstance(v, __sklib_quad):
+    if isinstance(v, _sklib_quad):
         return v
 
     result = Quad()
@@ -757,7 +776,7 @@ def __skadapter__to_quad(v):
     result.points[3] = __skadapter__to_point_2d(v.points[3]);
     return result
 def __skadapter__to_sklib_triangle(v):
-    if isinstance(v, __sklib_triangle):
+    if isinstance(v, _sklib_triangle):
         return v
 
     result = Triangle()
@@ -774,7 +793,7 @@ def __skadapter__to_triangle(v):
     result.points[2] = __skadapter__to_point_2d(v.points[2]);
     return result
 def __skadapter__to_sklib_vector_2d(v):
-    if isinstance(v, __sklib_vector_2d):
+    if isinstance(v, _sklib_vector_2d):
         return v
 
     result = Vector2d()
@@ -788,28 +807,28 @@ def __skadapter__to_vector_2d(v):
     result.x = __skadapter__to_double(v.x)
     result.y = __skadapter__to_double(v.y)
     return result
-class __sklib_vector_line(Structure):
+class _sklib_vector_line(Structure):
     _fields_ = [
-      ("data_from_app", POINTER(__sklib_line)),
+      ("data_from_app", POINTER(_sklib_line)),
       ("size_from_app", c_uint),
-      ("data_from_lib", POINTER(__sklib_line)),
+      ("data_from_lib", POINTER(_sklib_line)),
       ("size_from_lib", c_uint),
     ]
 
     def __init__(self, num):
-        elems = (__sklib_line * num)()
-        self.data_from_app = cast(elems, POINTER(__sklib_line))
+        elems = (_sklib_line * num)()
+        self.data_from_app = cast(elems, POINTER(_sklib_line))
         self.size_from_app = num
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_line.argtypes = [ __sklib_vector_line ]
+sklib.__sklib__free__sklib_vector_line.argtypes = [ _sklib_vector_line ]
 sklib.__sklib__free__sklib_vector_line.restype = None
 def __skadapter__free__sklib_vector_line(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_line(v):
-    result = __sklib_vector_line(len(v))
+    result = _sklib_vector_line(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_line(v[i])
     return result
@@ -826,28 +845,28 @@ def __skadapter__update_from_vector_line(v, __skreturn):
         __skreturn.append( __skadapter__to_line(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_line(v)
-class __sklib_vector_triangle(Structure):
+class _sklib_vector_triangle(Structure):
     _fields_ = [
-      ("data_from_app", POINTER(__sklib_triangle)),
+      ("data_from_app", POINTER(_sklib_triangle)),
       ("size_from_app", c_uint),
-      ("data_from_lib", POINTER(__sklib_triangle)),
+      ("data_from_lib", POINTER(_sklib_triangle)),
       ("size_from_lib", c_uint),
     ]
 
     def __init__(self, num):
-        elems = (__sklib_triangle * num)()
-        self.data_from_app = cast(elems, POINTER(__sklib_triangle))
+        elems = (_sklib_triangle * num)()
+        self.data_from_app = cast(elems, POINTER(_sklib_triangle))
         self.size_from_app = num
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_triangle.argtypes = [ __sklib_vector_triangle ]
+sklib.__sklib__free__sklib_vector_triangle.argtypes = [ _sklib_vector_triangle ]
 sklib.__sklib__free__sklib_vector_triangle.restype = None
 def __skadapter__free__sklib_vector_triangle(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_triangle(v):
-    result = __sklib_vector_triangle(len(v))
+    result = _sklib_vector_triangle(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_triangle(v[i])
     return result
@@ -864,7 +883,7 @@ def __skadapter__update_from_vector_triangle(v, __skreturn):
         __skreturn.append( __skadapter__to_triangle(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_triangle(v)
-class __sklib_vector_string(Structure):
+class _sklib_vector_string(Structure):
     _fields_ = [
       ("data_from_app", POINTER(_sklib_string)),
       ("size_from_app", c_uint),
@@ -879,7 +898,7 @@ class __sklib_vector_string(Structure):
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_string.argtypes = [ __sklib_vector_string ]
+sklib.__sklib__free__sklib_vector_string.argtypes = [ _sklib_vector_string ]
 sklib.__sklib__free__sklib_vector_string.restype = None
 def __skadapter__free__sklib_vector_string(v):
     for i in range(0, v.size_from_app):
@@ -887,7 +906,7 @@ def __skadapter__free__sklib_vector_string(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_string(v):
-    result = __sklib_vector_string(len(v))
+    result = _sklib_vector_string(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_string(v[i])
     return result
@@ -904,7 +923,7 @@ def __skadapter__update_from_vector_string(v, __skreturn):
         __skreturn.append( __skadapter__to_string(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_string(v)
-class __sklib_vector_double(Structure):
+class _sklib_vector_double(Structure):
     _fields_ = [
       ("data_from_app", POINTER(c_double)),
       ("size_from_app", c_uint),
@@ -919,13 +938,13 @@ class __sklib_vector_double(Structure):
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_double.argtypes = [ __sklib_vector_double ]
+sklib.__sklib__free__sklib_vector_double.argtypes = [ _sklib_vector_double ]
 sklib.__sklib__free__sklib_vector_double.restype = None
 def __skadapter__free__sklib_vector_double(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_double(v):
-    result = __sklib_vector_double(len(v))
+    result = _sklib_vector_double(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_double(v[i])
     return result
@@ -942,7 +961,7 @@ def __skadapter__update_from_vector_double(v, __skreturn):
         __skreturn.append( __skadapter__to_double(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_double(v)
-class __sklib_vector_json(Structure):
+class _sklib_vector_json(Structure):
     _fields_ = [
       ("data_from_app", POINTER(c_void_p)),
       ("size_from_app", c_uint),
@@ -957,13 +976,13 @@ class __sklib_vector_json(Structure):
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_json.argtypes = [ __sklib_vector_json ]
+sklib.__sklib__free__sklib_vector_json.argtypes = [ _sklib_vector_json ]
 sklib.__sklib__free__sklib_vector_json.restype = None
 def __skadapter__free__sklib_vector_json(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_json(v):
-    result = __sklib_vector_json(len(v))
+    result = _sklib_vector_json(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_json(v[i])
     return result
@@ -980,7 +999,7 @@ def __skadapter__update_from_vector_json(v, __skreturn):
         __skreturn.append( __skadapter__to_json(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_json(v)
-class __sklib_vector_bool(Structure):
+class _sklib_vector_bool(Structure):
     _fields_ = [
       ("data_from_app", POINTER(c_bool)),
       ("size_from_app", c_uint),
@@ -995,13 +1014,13 @@ class __sklib_vector_bool(Structure):
         self.data_from_lib = None
         self.size_from_lib = 0
 
-sklib.__sklib__free__sklib_vector_bool.argtypes = [ __sklib_vector_bool ]
+sklib.__sklib__free__sklib_vector_bool.argtypes = [ _sklib_vector_bool ]
 sklib.__sklib__free__sklib_vector_bool.restype = None
 def __skadapter__free__sklib_vector_bool(v):
     v.data_from_app = None
 
 def __skadapter__to_sklib_vector_bool(v):
-    result = __sklib_vector_bool(len(v))
+    result = _sklib_vector_bool(len(v))
     for i in range(0, len(v)):
         result.data_from_app[i] = __skadapter__to_sklib_bool(v[i])
     return result
@@ -1197,7 +1216,7 @@ sklib.__sklib__animation_count__animation_script.restype = c_int
 sklib.__sklib__animation_current_cell__animation.argtypes = [ c_void_p ]
 sklib.__sklib__animation_current_cell__animation.restype = c_int
 sklib.__sklib__animation_current_vector__animation.argtypes = [ c_void_p ]
-sklib.__sklib__animation_current_vector__animation.restype = __sklib_vector_2d
+sklib.__sklib__animation_current_vector__animation.restype = _sklib_vector_2d
 sklib.__sklib__animation_ended__animation.argtypes = [ c_void_p ]
 sklib.__sklib__animation_ended__animation.restype = c_bool
 sklib.__sklib__animation_entered_frame__animation.argtypes = [ c_void_p ]
@@ -1271,114 +1290,114 @@ sklib.__sklib__has_resource_bundle__string_ref.restype = c_bool
 sklib.__sklib__load_resource_bundle__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
 sklib.__sklib__load_resource_bundle__string_ref__string_ref.restype = None
 sklib.__sklib__camera_position.argtypes = [  ]
-sklib.__sklib__camera_position.restype = __sklib_point_2d
+sklib.__sklib__camera_position.restype = _sklib_point_2d
 sklib.__sklib__camera_x.argtypes = [  ]
 sklib.__sklib__camera_x.restype = c_float
 sklib.__sklib__camera_y.argtypes = [  ]
 sklib.__sklib__camera_y.restype = c_float
-sklib.__sklib__center_camera_on__sprite__vector_2d_ref.argtypes = [ c_void_p, __sklib_vector_2d ]
+sklib.__sklib__center_camera_on__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__center_camera_on__sprite__vector_2d_ref.restype = None
 sklib.__sklib__center_camera_on__sprite__float__float.argtypes = [ c_void_p, c_float, c_float ]
 sklib.__sklib__center_camera_on__sprite__float__float.restype = None
-sklib.__sklib__move_camera_by__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__move_camera_by__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__move_camera_by__vector_2d_ref.restype = None
 sklib.__sklib__move_camera_by__float__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__move_camera_by__float__float.restype = None
-sklib.__sklib__move_camera_to__point_2d_ref.argtypes = [ __sklib_point_2d ]
+sklib.__sklib__move_camera_to__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__move_camera_to__point_2d_ref.restype = None
 sklib.__sklib__move_camera_to__float__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__move_camera_to__float__float.restype = None
-sklib.__sklib__point_on_screen__point_2d_ref.argtypes = [ __sklib_point_2d ]
+sklib.__sklib__point_on_screen__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__point_on_screen__point_2d_ref.restype = c_bool
-sklib.__sklib__rect_on_screen__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__rect_on_screen__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rect_on_screen__rectangle_ref.restype = c_bool
 sklib.__sklib__screen_center.argtypes = [  ]
-sklib.__sklib__screen_center.restype = __sklib_point_2d
+sklib.__sklib__screen_center.restype = _sklib_point_2d
 sklib.__sklib__screen_rectangle.argtypes = [  ]
-sklib.__sklib__screen_rectangle.restype = __sklib_rectangle
-sklib.__sklib__set_camera_position__point_2d.argtypes = [ __sklib_point_2d ]
+sklib.__sklib__screen_rectangle.restype = _sklib_rectangle
+sklib.__sklib__set_camera_position__point_2d.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__set_camera_position__point_2d.restype = None
 sklib.__sklib__set_camera_y__float.argtypes = [ c_float ]
 sklib.__sklib__set_camera_y__float.restype = None
-sklib.__sklib__to_screen__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__to_screen__point_2d_ref.restype = __sklib_point_2d
-sklib.__sklib__to_screen__rectangle_ref.argtypes = [ __sklib_rectangle ]
-sklib.__sklib__to_screen__rectangle_ref.restype = __sklib_rectangle
+sklib.__sklib__to_screen__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__to_screen__point_2d_ref.restype = _sklib_point_2d
+sklib.__sklib__to_screen__rectangle_ref.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__to_screen__rectangle_ref.restype = _sklib_rectangle
 sklib.__sklib__to_screen_x__float.argtypes = [ c_float ]
 sklib.__sklib__to_screen_x__float.restype = c_float
 sklib.__sklib__to_screen_y__float.argtypes = [ c_float ]
 sklib.__sklib__to_screen_y__float.restype = c_float
-sklib.__sklib__to_world__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__to_world__point_2d_ref.restype = __sklib_point_2d
+sklib.__sklib__to_world__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__to_world__point_2d_ref.restype = _sklib_point_2d
 sklib.__sklib__to_world_x__float.argtypes = [ c_float ]
 sklib.__sklib__to_world_x__float.restype = c_float
 sklib.__sklib__to_world_y__float.argtypes = [ c_float ]
 sklib.__sklib__to_world_y__float.restype = c_float
 sklib.__sklib__vector_world_to_screen.argtypes = [  ]
-sklib.__sklib__vector_world_to_screen.restype = __sklib_vector_2d
-sklib.__sklib__draw_circle__color__circle_ref.argtypes = [ __sklib_color, __sklib_circle ]
+sklib.__sklib__vector_world_to_screen.restype = _sklib_vector_2d
+sklib.__sklib__draw_circle__color__circle_ref.argtypes = [ _sklib_color, _sklib_circle ]
 sklib.__sklib__draw_circle__color__circle_ref.restype = None
-sklib.__sklib__draw_circle__color__circle_ref__drawing_options.argtypes = [ __sklib_color, __sklib_circle, __sklib_drawing_options ]
+sklib.__sklib__draw_circle__color__circle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_circle, _sklib_drawing_options ]
 sklib.__sklib__draw_circle__color__circle_ref__drawing_options.restype = None
-sklib.__sklib__draw_circle__color__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float ]
+sklib.__sklib__draw_circle__color__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float ]
 sklib.__sklib__draw_circle__color__float__float__float.restype = None
-sklib.__sklib__draw_circle__color__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_circle__color__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_circle__color__float__float__float__drawing_options.restype = None
-sklib.__sklib__fill_circle__color__circle_ref.argtypes = [ __sklib_color, __sklib_circle ]
+sklib.__sklib__fill_circle__color__circle_ref.argtypes = [ _sklib_color, _sklib_circle ]
 sklib.__sklib__fill_circle__color__circle_ref.restype = None
-sklib.__sklib__fill_circle__color__circle_ref__drawing_options.argtypes = [ __sklib_color, __sklib_circle, __sklib_drawing_options ]
+sklib.__sklib__fill_circle__color__circle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_circle, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__circle_ref__drawing_options.restype = None
-sklib.__sklib__fill_circle__color__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float ]
+sklib.__sklib__fill_circle__color__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float ]
 sklib.__sklib__fill_circle__color__float__float__float.restype = None
-sklib.__sklib__fill_circle__color__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__fill_circle__color__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__float__float__float__drawing_options.restype = None
-sklib.__sklib__center_point__circle_ref.argtypes = [ __sklib_circle ]
-sklib.__sklib__center_point__circle_ref.restype = __sklib_point_2d
-sklib.__sklib__circle_at__point_2d_ref__float.argtypes = [ __sklib_point_2d, c_float ]
-sklib.__sklib__circle_at__point_2d_ref__float.restype = __sklib_circle
+sklib.__sklib__center_point__circle_ref.argtypes = [ _sklib_circle ]
+sklib.__sklib__center_point__circle_ref.restype = _sklib_point_2d
+sklib.__sklib__circle_at__point_2d_ref__float.argtypes = [ _sklib_point_2d, c_float ]
+sklib.__sklib__circle_at__point_2d_ref__float.restype = _sklib_circle
 sklib.__sklib__circle_at__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__circle_at__float__float__float.restype = __sklib_circle
-sklib.__sklib__circle_radius__circle.argtypes = [ __sklib_circle ]
+sklib.__sklib__circle_at__float__float__float.restype = _sklib_circle
+sklib.__sklib__circle_radius__circle.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_radius__circle.restype = c_float
-sklib.__sklib__circle_x__circle_ref.argtypes = [ __sklib_circle ]
+sklib.__sklib__circle_x__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_x__circle_ref.restype = c_float
-sklib.__sklib__circle_y__circle_ref.argtypes = [ __sklib_circle ]
+sklib.__sklib__circle_y__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_y__circle_ref.restype = c_float
-sklib.__sklib__circles_intersect__circle__circle.argtypes = [ __sklib_circle, __sklib_circle ]
+sklib.__sklib__circles_intersect__circle__circle.argtypes = [ _sklib_circle, _sklib_circle ]
 sklib.__sklib__circles_intersect__circle__circle.restype = c_bool
-sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.argtypes = [ __sklib_point_2d, __sklib_circle ]
-sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.restype = __sklib_point_2d
-sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.argtypes = [ __sklib_circle, __sklib_line ]
-sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.restype = __sklib_point_2d
-sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.argtypes = [ __sklib_circle, __sklib_rectangle ]
-sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.restype = __sklib_point_2d
-sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.argtypes = [ __sklib_point_2d, __sklib_circle ]
-sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.restype = __sklib_point_2d
-sklib.__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_circle, __sklib_vector_2d, POINTER(__sklib_point_2d) ]
+sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
+sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.restype = _sklib_point_2d
+sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.argtypes = [ _sklib_circle, _sklib_line ]
+sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.restype = _sklib_point_2d
+sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.argtypes = [ _sklib_circle, _sklib_rectangle ]
+sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.restype = _sklib_point_2d
+sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
+sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.restype = _sklib_point_2d
+sklib.__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_circle, _sklib_vector_2d, POINTER(_sklib_point_2d) ]
 sklib.__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref.argtypes = [ __sklib_point_2d, __sklib_vector_2d, __sklib_circle ]
+sklib.__sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_circle ]
 sklib.__sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref.restype = c_float
-sklib.__sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_circle, POINTER(__sklib_point_2d), POINTER(__sklib_point_2d) ]
+sklib.__sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_circle, POINTER(_sklib_point_2d), POINTER(_sklib_point_2d) ]
 sklib.__sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ __sklib_circle, __sklib_vector_2d, POINTER(__sklib_point_2d), POINTER(__sklib_point_2d) ]
+sklib.__sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_circle, _sklib_vector_2d, POINTER(_sklib_point_2d), POINTER(_sklib_point_2d) ]
 sklib.__sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref.restype = None
 sklib.__sklib__current_clip.argtypes = [  ]
-sklib.__sklib__current_clip.restype = __sklib_rectangle
+sklib.__sklib__current_clip.restype = _sklib_rectangle
 sklib.__sklib__current_clip__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__current_clip__bitmap.restype = __sklib_rectangle
+sklib.__sklib__current_clip__bitmap.restype = _sklib_rectangle
 sklib.__sklib__current_clip__window.argtypes = [ c_void_p ]
-sklib.__sklib__current_clip__window.restype = __sklib_rectangle
+sklib.__sklib__current_clip__window.restype = _sklib_rectangle
 sklib.__sklib__pop_clip__window.argtypes = [ c_void_p ]
 sklib.__sklib__pop_clip__window.restype = None
 sklib.__sklib__pop_clip.argtypes = [  ]
 sklib.__sklib__pop_clip.restype = None
 sklib.__sklib__pop_clip__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__pop_clip__bitmap.restype = None
-sklib.__sklib__push_clip__window__rectangle_ref.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__push_clip__window__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__push_clip__window__rectangle_ref.restype = None
-sklib.__sklib__push_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__push_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__push_clip__bitmap__rectangle_ref.restype = None
-sklib.__sklib__push_clip__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__push_clip__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__push_clip__rectangle_ref.restype = None
 sklib.__sklib__reset_clip__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__reset_clip__bitmap.restype = None
@@ -1386,364 +1405,364 @@ sklib.__sklib__reset_clip.argtypes = [  ]
 sklib.__sklib__reset_clip.restype = None
 sklib.__sklib__reset_clip__window.argtypes = [ c_void_p ]
 sklib.__sklib__reset_clip__window.restype = None
-sklib.__sklib__set_clip__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__set_clip__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__set_clip__rectangle_ref.restype = None
-sklib.__sklib__set_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__set_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__set_clip__bitmap__rectangle_ref.restype = None
-sklib.__sklib__set_clip__window__rectangle_ref.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__set_clip__window__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__set_clip__window__rectangle_ref.restype = None
 sklib.__sklib__bitmap_collision__bitmap__float__float__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float, c_void_p, c_float, c_float ]
 sklib.__sklib__bitmap_collision__bitmap__float__float__bitmap__float__float.restype = c_bool
-sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d, c_void_p, __sklib_point_2d ]
+sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, c_void_p, _sklib_point_2d ]
 sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref.argtypes = [ c_void_p, c_int, __sklib_matrix_2d, c_void_p, c_int, __sklib_matrix_2d ]
+sklib.__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, c_void_p, c_int, _sklib_matrix_2d ]
 sklib.__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, __sklib_point_2d, c_void_p, c_int, __sklib_point_2d ]
+sklib.__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float.argtypes = [ c_void_p, c_int, c_float, c_float, c_void_p, c_int, c_float, c_float ]
 sklib.__sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float.restype = c_bool
-sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, __sklib_matrix_2d, __sklib_point_2d ]
+sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d, __sklib_point_2d ]
+sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__float__float__float__float.argtypes = [ c_void_p, c_float, c_float, c_float, c_float ]
 sklib.__sklib__bitmap_point_collision__bitmap__float__float__float__float.restype = c_bool
-sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, __sklib_matrix_2d, __sklib_point_2d ]
+sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, __sklib_matrix_2d, __sklib_rectangle ]
+sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, __sklib_point_2d, __sklib_rectangle ]
+sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__float__float.argtypes = [ c_void_p, c_void_p, c_float, c_float ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__float__float.restype = c_bool
-sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_void_p, c_int, __sklib_point_2d ]
+sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float.argtypes = [ c_void_p, c_void_p, c_int, c_float, c_float ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float.restype = c_bool
 sklib.__sklib__sprite_collision__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__sprite_collision__sprite__sprite.restype = c_bool
-sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.restype = c_bool
-sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.restype = c_bool
-sklib.__sklib__alpha_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__alpha_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__alpha_of__color.restype = c_int
-sklib.__sklib__blue_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__blue_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__blue_of__color.restype = c_int
-sklib.__sklib__brightness_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__brightness_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__brightness_of__color.restype = c_float
 sklib.__sklib__color_alice_blue.argtypes = [  ]
-sklib.__sklib__color_alice_blue.restype = __sklib_color
+sklib.__sklib__color_alice_blue.restype = _sklib_color
 sklib.__sklib__color_antique_white.argtypes = [  ]
-sklib.__sklib__color_antique_white.restype = __sklib_color
+sklib.__sklib__color_antique_white.restype = _sklib_color
 sklib.__sklib__color_aqua.argtypes = [  ]
-sklib.__sklib__color_aqua.restype = __sklib_color
+sklib.__sklib__color_aqua.restype = _sklib_color
 sklib.__sklib__color_aquamarine.argtypes = [  ]
-sklib.__sklib__color_aquamarine.restype = __sklib_color
+sklib.__sklib__color_aquamarine.restype = _sklib_color
 sklib.__sklib__color_azure.argtypes = [  ]
-sklib.__sklib__color_azure.restype = __sklib_color
+sklib.__sklib__color_azure.restype = _sklib_color
 sklib.__sklib__color_beige.argtypes = [  ]
-sklib.__sklib__color_beige.restype = __sklib_color
+sklib.__sklib__color_beige.restype = _sklib_color
 sklib.__sklib__color_bisque.argtypes = [  ]
-sklib.__sklib__color_bisque.restype = __sklib_color
+sklib.__sklib__color_bisque.restype = _sklib_color
 sklib.__sklib__color_black.argtypes = [  ]
-sklib.__sklib__color_black.restype = __sklib_color
+sklib.__sklib__color_black.restype = _sklib_color
 sklib.__sklib__color_blanched_almond.argtypes = [  ]
-sklib.__sklib__color_blanched_almond.restype = __sklib_color
+sklib.__sklib__color_blanched_almond.restype = _sklib_color
 sklib.__sklib__color_blue.argtypes = [  ]
-sklib.__sklib__color_blue.restype = __sklib_color
+sklib.__sklib__color_blue.restype = _sklib_color
 sklib.__sklib__color_blue_violet.argtypes = [  ]
-sklib.__sklib__color_blue_violet.restype = __sklib_color
+sklib.__sklib__color_blue_violet.restype = _sklib_color
 sklib.__sklib__color_bright_green.argtypes = [  ]
-sklib.__sklib__color_bright_green.restype = __sklib_color
+sklib.__sklib__color_bright_green.restype = _sklib_color
 sklib.__sklib__color_brown.argtypes = [  ]
-sklib.__sklib__color_brown.restype = __sklib_color
+sklib.__sklib__color_brown.restype = _sklib_color
 sklib.__sklib__color_burly_wood.argtypes = [  ]
-sklib.__sklib__color_burly_wood.restype = __sklib_color
+sklib.__sklib__color_burly_wood.restype = _sklib_color
 sklib.__sklib__color_cadet_blue.argtypes = [  ]
-sklib.__sklib__color_cadet_blue.restype = __sklib_color
+sklib.__sklib__color_cadet_blue.restype = _sklib_color
 sklib.__sklib__color_chartreuse.argtypes = [  ]
-sklib.__sklib__color_chartreuse.restype = __sklib_color
+sklib.__sklib__color_chartreuse.restype = _sklib_color
 sklib.__sklib__color_chocolate.argtypes = [  ]
-sklib.__sklib__color_chocolate.restype = __sklib_color
+sklib.__sklib__color_chocolate.restype = _sklib_color
 sklib.__sklib__color_coral.argtypes = [  ]
-sklib.__sklib__color_coral.restype = __sklib_color
+sklib.__sklib__color_coral.restype = _sklib_color
 sklib.__sklib__color_cornflower_blue.argtypes = [  ]
-sklib.__sklib__color_cornflower_blue.restype = __sklib_color
+sklib.__sklib__color_cornflower_blue.restype = _sklib_color
 sklib.__sklib__color_cornsilk.argtypes = [  ]
-sklib.__sklib__color_cornsilk.restype = __sklib_color
+sklib.__sklib__color_cornsilk.restype = _sklib_color
 sklib.__sklib__color_crimson.argtypes = [  ]
-sklib.__sklib__color_crimson.restype = __sklib_color
+sklib.__sklib__color_crimson.restype = _sklib_color
 sklib.__sklib__color_cyan.argtypes = [  ]
-sklib.__sklib__color_cyan.restype = __sklib_color
+sklib.__sklib__color_cyan.restype = _sklib_color
 sklib.__sklib__color_dark_blue.argtypes = [  ]
-sklib.__sklib__color_dark_blue.restype = __sklib_color
+sklib.__sklib__color_dark_blue.restype = _sklib_color
 sklib.__sklib__color_dark_cyan.argtypes = [  ]
-sklib.__sklib__color_dark_cyan.restype = __sklib_color
+sklib.__sklib__color_dark_cyan.restype = _sklib_color
 sklib.__sklib__color_dark_goldenrod.argtypes = [  ]
-sklib.__sklib__color_dark_goldenrod.restype = __sklib_color
+sklib.__sklib__color_dark_goldenrod.restype = _sklib_color
 sklib.__sklib__color_dark_gray.argtypes = [  ]
-sklib.__sklib__color_dark_gray.restype = __sklib_color
+sklib.__sklib__color_dark_gray.restype = _sklib_color
 sklib.__sklib__color_dark_green.argtypes = [  ]
-sklib.__sklib__color_dark_green.restype = __sklib_color
+sklib.__sklib__color_dark_green.restype = _sklib_color
 sklib.__sklib__color_dark_khaki.argtypes = [  ]
-sklib.__sklib__color_dark_khaki.restype = __sklib_color
+sklib.__sklib__color_dark_khaki.restype = _sklib_color
 sklib.__sklib__color_dark_magenta.argtypes = [  ]
-sklib.__sklib__color_dark_magenta.restype = __sklib_color
+sklib.__sklib__color_dark_magenta.restype = _sklib_color
 sklib.__sklib__color_dark_olive_green.argtypes = [  ]
-sklib.__sklib__color_dark_olive_green.restype = __sklib_color
+sklib.__sklib__color_dark_olive_green.restype = _sklib_color
 sklib.__sklib__color_dark_orange.argtypes = [  ]
-sklib.__sklib__color_dark_orange.restype = __sklib_color
+sklib.__sklib__color_dark_orange.restype = _sklib_color
 sklib.__sklib__color_dark_orchid.argtypes = [  ]
-sklib.__sklib__color_dark_orchid.restype = __sklib_color
+sklib.__sklib__color_dark_orchid.restype = _sklib_color
 sklib.__sklib__color_dark_red.argtypes = [  ]
-sklib.__sklib__color_dark_red.restype = __sklib_color
+sklib.__sklib__color_dark_red.restype = _sklib_color
 sklib.__sklib__color_dark_salmon.argtypes = [  ]
-sklib.__sklib__color_dark_salmon.restype = __sklib_color
+sklib.__sklib__color_dark_salmon.restype = _sklib_color
 sklib.__sklib__color_dark_sea_green.argtypes = [  ]
-sklib.__sklib__color_dark_sea_green.restype = __sklib_color
+sklib.__sklib__color_dark_sea_green.restype = _sklib_color
 sklib.__sklib__color_dark_slate_blue.argtypes = [  ]
-sklib.__sklib__color_dark_slate_blue.restype = __sklib_color
+sklib.__sklib__color_dark_slate_blue.restype = _sklib_color
 sklib.__sklib__color_dark_slate_gray.argtypes = [  ]
-sklib.__sklib__color_dark_slate_gray.restype = __sklib_color
+sklib.__sklib__color_dark_slate_gray.restype = _sklib_color
 sklib.__sklib__color_dark_turquoise.argtypes = [  ]
-sklib.__sklib__color_dark_turquoise.restype = __sklib_color
+sklib.__sklib__color_dark_turquoise.restype = _sklib_color
 sklib.__sklib__color_dark_violet.argtypes = [  ]
-sklib.__sklib__color_dark_violet.restype = __sklib_color
+sklib.__sklib__color_dark_violet.restype = _sklib_color
 sklib.__sklib__color_deep_pink.argtypes = [  ]
-sklib.__sklib__color_deep_pink.restype = __sklib_color
+sklib.__sklib__color_deep_pink.restype = _sklib_color
 sklib.__sklib__color_deep_sky_blue.argtypes = [  ]
-sklib.__sklib__color_deep_sky_blue.restype = __sklib_color
+sklib.__sklib__color_deep_sky_blue.restype = _sklib_color
 sklib.__sklib__color_dim_gray.argtypes = [  ]
-sklib.__sklib__color_dim_gray.restype = __sklib_color
+sklib.__sklib__color_dim_gray.restype = _sklib_color
 sklib.__sklib__color_dodger_blue.argtypes = [  ]
-sklib.__sklib__color_dodger_blue.restype = __sklib_color
+sklib.__sklib__color_dodger_blue.restype = _sklib_color
 sklib.__sklib__color_firebrick.argtypes = [  ]
-sklib.__sklib__color_firebrick.restype = __sklib_color
+sklib.__sklib__color_firebrick.restype = _sklib_color
 sklib.__sklib__color_floral_white.argtypes = [  ]
-sklib.__sklib__color_floral_white.restype = __sklib_color
+sklib.__sklib__color_floral_white.restype = _sklib_color
 sklib.__sklib__color_forest_green.argtypes = [  ]
-sklib.__sklib__color_forest_green.restype = __sklib_color
+sklib.__sklib__color_forest_green.restype = _sklib_color
 sklib.__sklib__color_fuchsia.argtypes = [  ]
-sklib.__sklib__color_fuchsia.restype = __sklib_color
+sklib.__sklib__color_fuchsia.restype = _sklib_color
 sklib.__sklib__color_gainsboro.argtypes = [  ]
-sklib.__sklib__color_gainsboro.restype = __sklib_color
+sklib.__sklib__color_gainsboro.restype = _sklib_color
 sklib.__sklib__color_ghost_white.argtypes = [  ]
-sklib.__sklib__color_ghost_white.restype = __sklib_color
+sklib.__sklib__color_ghost_white.restype = _sklib_color
 sklib.__sklib__color_gold.argtypes = [  ]
-sklib.__sklib__color_gold.restype = __sklib_color
+sklib.__sklib__color_gold.restype = _sklib_color
 sklib.__sklib__color_goldenrod.argtypes = [  ]
-sklib.__sklib__color_goldenrod.restype = __sklib_color
+sklib.__sklib__color_goldenrod.restype = _sklib_color
 sklib.__sklib__color_gray.argtypes = [  ]
-sklib.__sklib__color_gray.restype = __sklib_color
+sklib.__sklib__color_gray.restype = _sklib_color
 sklib.__sklib__color_green.argtypes = [  ]
-sklib.__sklib__color_green.restype = __sklib_color
+sklib.__sklib__color_green.restype = _sklib_color
 sklib.__sklib__color_green_yellow.argtypes = [  ]
-sklib.__sklib__color_green_yellow.restype = __sklib_color
+sklib.__sklib__color_green_yellow.restype = _sklib_color
 sklib.__sklib__color_honeydew.argtypes = [  ]
-sklib.__sklib__color_honeydew.restype = __sklib_color
+sklib.__sklib__color_honeydew.restype = _sklib_color
 sklib.__sklib__color_hot_pink.argtypes = [  ]
-sklib.__sklib__color_hot_pink.restype = __sklib_color
+sklib.__sklib__color_hot_pink.restype = _sklib_color
 sklib.__sklib__color_indian_red.argtypes = [  ]
-sklib.__sklib__color_indian_red.restype = __sklib_color
+sklib.__sklib__color_indian_red.restype = _sklib_color
 sklib.__sklib__color_indigo.argtypes = [  ]
-sklib.__sklib__color_indigo.restype = __sklib_color
+sklib.__sklib__color_indigo.restype = _sklib_color
 sklib.__sklib__color_ivory.argtypes = [  ]
-sklib.__sklib__color_ivory.restype = __sklib_color
+sklib.__sklib__color_ivory.restype = _sklib_color
 sklib.__sklib__color_khaki.argtypes = [  ]
-sklib.__sklib__color_khaki.restype = __sklib_color
+sklib.__sklib__color_khaki.restype = _sklib_color
 sklib.__sklib__color_lavender.argtypes = [  ]
-sklib.__sklib__color_lavender.restype = __sklib_color
+sklib.__sklib__color_lavender.restype = _sklib_color
 sklib.__sklib__color_lavender_blush.argtypes = [  ]
-sklib.__sklib__color_lavender_blush.restype = __sklib_color
+sklib.__sklib__color_lavender_blush.restype = _sklib_color
 sklib.__sklib__color_lawn_green.argtypes = [  ]
-sklib.__sklib__color_lawn_green.restype = __sklib_color
+sklib.__sklib__color_lawn_green.restype = _sklib_color
 sklib.__sklib__color_lemon_chiffon.argtypes = [  ]
-sklib.__sklib__color_lemon_chiffon.restype = __sklib_color
+sklib.__sklib__color_lemon_chiffon.restype = _sklib_color
 sklib.__sklib__color_light_blue.argtypes = [  ]
-sklib.__sklib__color_light_blue.restype = __sklib_color
+sklib.__sklib__color_light_blue.restype = _sklib_color
 sklib.__sklib__color_light_coral.argtypes = [  ]
-sklib.__sklib__color_light_coral.restype = __sklib_color
+sklib.__sklib__color_light_coral.restype = _sklib_color
 sklib.__sklib__color_light_cyan.argtypes = [  ]
-sklib.__sklib__color_light_cyan.restype = __sklib_color
+sklib.__sklib__color_light_cyan.restype = _sklib_color
 sklib.__sklib__color_light_goldenrod_yellow.argtypes = [  ]
-sklib.__sklib__color_light_goldenrod_yellow.restype = __sklib_color
+sklib.__sklib__color_light_goldenrod_yellow.restype = _sklib_color
 sklib.__sklib__color_light_gray.argtypes = [  ]
-sklib.__sklib__color_light_gray.restype = __sklib_color
+sklib.__sklib__color_light_gray.restype = _sklib_color
 sklib.__sklib__color_light_green.argtypes = [  ]
-sklib.__sklib__color_light_green.restype = __sklib_color
+sklib.__sklib__color_light_green.restype = _sklib_color
 sklib.__sklib__color_light_pink.argtypes = [  ]
-sklib.__sklib__color_light_pink.restype = __sklib_color
+sklib.__sklib__color_light_pink.restype = _sklib_color
 sklib.__sklib__color_light_salmon.argtypes = [  ]
-sklib.__sklib__color_light_salmon.restype = __sklib_color
+sklib.__sklib__color_light_salmon.restype = _sklib_color
 sklib.__sklib__color_light_sea_green.argtypes = [  ]
-sklib.__sklib__color_light_sea_green.restype = __sklib_color
+sklib.__sklib__color_light_sea_green.restype = _sklib_color
 sklib.__sklib__color_light_sky_blue.argtypes = [  ]
-sklib.__sklib__color_light_sky_blue.restype = __sklib_color
+sklib.__sklib__color_light_sky_blue.restype = _sklib_color
 sklib.__sklib__color_light_slate_gray.argtypes = [  ]
-sklib.__sklib__color_light_slate_gray.restype = __sklib_color
+sklib.__sklib__color_light_slate_gray.restype = _sklib_color
 sklib.__sklib__color_light_steel_blue.argtypes = [  ]
-sklib.__sklib__color_light_steel_blue.restype = __sklib_color
+sklib.__sklib__color_light_steel_blue.restype = _sklib_color
 sklib.__sklib__color_light_yellow.argtypes = [  ]
-sklib.__sklib__color_light_yellow.restype = __sklib_color
+sklib.__sklib__color_light_yellow.restype = _sklib_color
 sklib.__sklib__color_lime.argtypes = [  ]
-sklib.__sklib__color_lime.restype = __sklib_color
+sklib.__sklib__color_lime.restype = _sklib_color
 sklib.__sklib__color_lime_green.argtypes = [  ]
-sklib.__sklib__color_lime_green.restype = __sklib_color
+sklib.__sklib__color_lime_green.restype = _sklib_color
 sklib.__sklib__color_linen.argtypes = [  ]
-sklib.__sklib__color_linen.restype = __sklib_color
+sklib.__sklib__color_linen.restype = _sklib_color
 sklib.__sklib__color_magenta.argtypes = [  ]
-sklib.__sklib__color_magenta.restype = __sklib_color
+sklib.__sklib__color_magenta.restype = _sklib_color
 sklib.__sklib__color_maroon.argtypes = [  ]
-sklib.__sklib__color_maroon.restype = __sklib_color
+sklib.__sklib__color_maroon.restype = _sklib_color
 sklib.__sklib__color_medium_aquamarine.argtypes = [  ]
-sklib.__sklib__color_medium_aquamarine.restype = __sklib_color
+sklib.__sklib__color_medium_aquamarine.restype = _sklib_color
 sklib.__sklib__color_medium_blue.argtypes = [  ]
-sklib.__sklib__color_medium_blue.restype = __sklib_color
+sklib.__sklib__color_medium_blue.restype = _sklib_color
 sklib.__sklib__color_medium_orchid.argtypes = [  ]
-sklib.__sklib__color_medium_orchid.restype = __sklib_color
+sklib.__sklib__color_medium_orchid.restype = _sklib_color
 sklib.__sklib__color_medium_purple.argtypes = [  ]
-sklib.__sklib__color_medium_purple.restype = __sklib_color
+sklib.__sklib__color_medium_purple.restype = _sklib_color
 sklib.__sklib__color_medium_sea_green.argtypes = [  ]
-sklib.__sklib__color_medium_sea_green.restype = __sklib_color
+sklib.__sklib__color_medium_sea_green.restype = _sklib_color
 sklib.__sklib__color_medium_slate_blue.argtypes = [  ]
-sklib.__sklib__color_medium_slate_blue.restype = __sklib_color
+sklib.__sklib__color_medium_slate_blue.restype = _sklib_color
 sklib.__sklib__color_medium_spring_green.argtypes = [  ]
-sklib.__sklib__color_medium_spring_green.restype = __sklib_color
+sklib.__sklib__color_medium_spring_green.restype = _sklib_color
 sklib.__sklib__color_medium_turquoise.argtypes = [  ]
-sklib.__sklib__color_medium_turquoise.restype = __sklib_color
+sklib.__sklib__color_medium_turquoise.restype = _sklib_color
 sklib.__sklib__color_medium_violet_red.argtypes = [  ]
-sklib.__sklib__color_medium_violet_red.restype = __sklib_color
+sklib.__sklib__color_medium_violet_red.restype = _sklib_color
 sklib.__sklib__color_midnight_blue.argtypes = [  ]
-sklib.__sklib__color_midnight_blue.restype = __sklib_color
+sklib.__sklib__color_midnight_blue.restype = _sklib_color
 sklib.__sklib__color_mint_cream.argtypes = [  ]
-sklib.__sklib__color_mint_cream.restype = __sklib_color
+sklib.__sklib__color_mint_cream.restype = _sklib_color
 sklib.__sklib__color_misty_rose.argtypes = [  ]
-sklib.__sklib__color_misty_rose.restype = __sklib_color
+sklib.__sklib__color_misty_rose.restype = _sklib_color
 sklib.__sklib__color_moccasin.argtypes = [  ]
-sklib.__sklib__color_moccasin.restype = __sklib_color
+sklib.__sklib__color_moccasin.restype = _sklib_color
 sklib.__sklib__color_navajo_white.argtypes = [  ]
-sklib.__sklib__color_navajo_white.restype = __sklib_color
+sklib.__sklib__color_navajo_white.restype = _sklib_color
 sklib.__sklib__color_navy.argtypes = [  ]
-sklib.__sklib__color_navy.restype = __sklib_color
+sklib.__sklib__color_navy.restype = _sklib_color
 sklib.__sklib__color_old_lace.argtypes = [  ]
-sklib.__sklib__color_old_lace.restype = __sklib_color
+sklib.__sklib__color_old_lace.restype = _sklib_color
 sklib.__sklib__color_olive.argtypes = [  ]
-sklib.__sklib__color_olive.restype = __sklib_color
+sklib.__sklib__color_olive.restype = _sklib_color
 sklib.__sklib__color_olive_drab.argtypes = [  ]
-sklib.__sklib__color_olive_drab.restype = __sklib_color
+sklib.__sklib__color_olive_drab.restype = _sklib_color
 sklib.__sklib__color_orange.argtypes = [  ]
-sklib.__sklib__color_orange.restype = __sklib_color
+sklib.__sklib__color_orange.restype = _sklib_color
 sklib.__sklib__color_orange_red.argtypes = [  ]
-sklib.__sklib__color_orange_red.restype = __sklib_color
+sklib.__sklib__color_orange_red.restype = _sklib_color
 sklib.__sklib__color_orchid.argtypes = [  ]
-sklib.__sklib__color_orchid.restype = __sklib_color
+sklib.__sklib__color_orchid.restype = _sklib_color
 sklib.__sklib__color_pale_goldenrod.argtypes = [  ]
-sklib.__sklib__color_pale_goldenrod.restype = __sklib_color
+sklib.__sklib__color_pale_goldenrod.restype = _sklib_color
 sklib.__sklib__color_pale_green.argtypes = [  ]
-sklib.__sklib__color_pale_green.restype = __sklib_color
+sklib.__sklib__color_pale_green.restype = _sklib_color
 sklib.__sklib__color_pale_turquoise.argtypes = [  ]
-sklib.__sklib__color_pale_turquoise.restype = __sklib_color
+sklib.__sklib__color_pale_turquoise.restype = _sklib_color
 sklib.__sklib__color_pale_violet_red.argtypes = [  ]
-sklib.__sklib__color_pale_violet_red.restype = __sklib_color
+sklib.__sklib__color_pale_violet_red.restype = _sklib_color
 sklib.__sklib__color_papaya_whip.argtypes = [  ]
-sklib.__sklib__color_papaya_whip.restype = __sklib_color
+sklib.__sklib__color_papaya_whip.restype = _sklib_color
 sklib.__sklib__color_peach_puff.argtypes = [  ]
-sklib.__sklib__color_peach_puff.restype = __sklib_color
+sklib.__sklib__color_peach_puff.restype = _sklib_color
 sklib.__sklib__color_peru.argtypes = [  ]
-sklib.__sklib__color_peru.restype = __sklib_color
+sklib.__sklib__color_peru.restype = _sklib_color
 sklib.__sklib__color_pink.argtypes = [  ]
-sklib.__sklib__color_pink.restype = __sklib_color
+sklib.__sklib__color_pink.restype = _sklib_color
 sklib.__sklib__color_plum.argtypes = [  ]
-sklib.__sklib__color_plum.restype = __sklib_color
+sklib.__sklib__color_plum.restype = _sklib_color
 sklib.__sklib__color_powder_blue.argtypes = [  ]
-sklib.__sklib__color_powder_blue.restype = __sklib_color
+sklib.__sklib__color_powder_blue.restype = _sklib_color
 sklib.__sklib__color_purple.argtypes = [  ]
-sklib.__sklib__color_purple.restype = __sklib_color
+sklib.__sklib__color_purple.restype = _sklib_color
 sklib.__sklib__color_red.argtypes = [  ]
-sklib.__sklib__color_red.restype = __sklib_color
+sklib.__sklib__color_red.restype = _sklib_color
 sklib.__sklib__color_rosy_brown.argtypes = [  ]
-sklib.__sklib__color_rosy_brown.restype = __sklib_color
+sklib.__sklib__color_rosy_brown.restype = _sklib_color
 sklib.__sklib__color_royal_blue.argtypes = [  ]
-sklib.__sklib__color_royal_blue.restype = __sklib_color
+sklib.__sklib__color_royal_blue.restype = _sklib_color
 sklib.__sklib__color_saddle_brown.argtypes = [  ]
-sklib.__sklib__color_saddle_brown.restype = __sklib_color
+sklib.__sklib__color_saddle_brown.restype = _sklib_color
 sklib.__sklib__color_salmon.argtypes = [  ]
-sklib.__sklib__color_salmon.restype = __sklib_color
+sklib.__sklib__color_salmon.restype = _sklib_color
 sklib.__sklib__color_sandy_brown.argtypes = [  ]
-sklib.__sklib__color_sandy_brown.restype = __sklib_color
+sklib.__sklib__color_sandy_brown.restype = _sklib_color
 sklib.__sklib__color_sea_green.argtypes = [  ]
-sklib.__sklib__color_sea_green.restype = __sklib_color
+sklib.__sklib__color_sea_green.restype = _sklib_color
 sklib.__sklib__color_sea_shell.argtypes = [  ]
-sklib.__sklib__color_sea_shell.restype = __sklib_color
+sklib.__sklib__color_sea_shell.restype = _sklib_color
 sklib.__sklib__color_sienna.argtypes = [  ]
-sklib.__sklib__color_sienna.restype = __sklib_color
+sklib.__sklib__color_sienna.restype = _sklib_color
 sklib.__sklib__color_silver.argtypes = [  ]
-sklib.__sklib__color_silver.restype = __sklib_color
+sklib.__sklib__color_silver.restype = _sklib_color
 sklib.__sklib__color_sky_blue.argtypes = [  ]
-sklib.__sklib__color_sky_blue.restype = __sklib_color
+sklib.__sklib__color_sky_blue.restype = _sklib_color
 sklib.__sklib__color_slate_blue.argtypes = [  ]
-sklib.__sklib__color_slate_blue.restype = __sklib_color
+sklib.__sklib__color_slate_blue.restype = _sklib_color
 sklib.__sklib__color_slate_gray.argtypes = [  ]
-sklib.__sklib__color_slate_gray.restype = __sklib_color
+sklib.__sklib__color_slate_gray.restype = _sklib_color
 sklib.__sklib__color_snow.argtypes = [  ]
-sklib.__sklib__color_snow.restype = __sklib_color
+sklib.__sklib__color_snow.restype = _sklib_color
 sklib.__sklib__color_spring_green.argtypes = [  ]
-sklib.__sklib__color_spring_green.restype = __sklib_color
+sklib.__sklib__color_spring_green.restype = _sklib_color
 sklib.__sklib__color_steel_blue.argtypes = [  ]
-sklib.__sklib__color_steel_blue.restype = __sklib_color
+sklib.__sklib__color_steel_blue.restype = _sklib_color
 sklib.__sklib__color_swinburne_red.argtypes = [  ]
-sklib.__sklib__color_swinburne_red.restype = __sklib_color
+sklib.__sklib__color_swinburne_red.restype = _sklib_color
 sklib.__sklib__color_tan.argtypes = [  ]
-sklib.__sklib__color_tan.restype = __sklib_color
+sklib.__sklib__color_tan.restype = _sklib_color
 sklib.__sklib__color_teal.argtypes = [  ]
-sklib.__sklib__color_teal.restype = __sklib_color
+sklib.__sklib__color_teal.restype = _sklib_color
 sklib.__sklib__color_thistle.argtypes = [  ]
-sklib.__sklib__color_thistle.restype = __sklib_color
-sklib.__sklib__color_to_string__color.argtypes = [ __sklib_color ]
+sklib.__sklib__color_thistle.restype = _sklib_color
+sklib.__sklib__color_to_string__color.argtypes = [ _sklib_color ]
 sklib.__sklib__color_to_string__color.restype = _sklib_string
 sklib.__sklib__color_tomato.argtypes = [  ]
-sklib.__sklib__color_tomato.restype = __sklib_color
+sklib.__sklib__color_tomato.restype = _sklib_color
 sklib.__sklib__color_transparent.argtypes = [  ]
-sklib.__sklib__color_transparent.restype = __sklib_color
+sklib.__sklib__color_transparent.restype = _sklib_color
 sklib.__sklib__color_turquoise.argtypes = [  ]
-sklib.__sklib__color_turquoise.restype = __sklib_color
+sklib.__sklib__color_turquoise.restype = _sklib_color
 sklib.__sklib__color_violet.argtypes = [  ]
-sklib.__sklib__color_violet.restype = __sklib_color
+sklib.__sklib__color_violet.restype = _sklib_color
 sklib.__sklib__color_wheat.argtypes = [  ]
-sklib.__sklib__color_wheat.restype = __sklib_color
+sklib.__sklib__color_wheat.restype = _sklib_color
 sklib.__sklib__color_white.argtypes = [  ]
-sklib.__sklib__color_white.restype = __sklib_color
+sklib.__sklib__color_white.restype = _sklib_color
 sklib.__sklib__color_white_smoke.argtypes = [  ]
-sklib.__sklib__color_white_smoke.restype = __sklib_color
+sklib.__sklib__color_white_smoke.restype = _sklib_color
 sklib.__sklib__color_yellow.argtypes = [  ]
-sklib.__sklib__color_yellow.restype = __sklib_color
+sklib.__sklib__color_yellow.restype = _sklib_color
 sklib.__sklib__color_yellow_green.argtypes = [  ]
-sklib.__sklib__color_yellow_green.restype = __sklib_color
-sklib.__sklib__green_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__color_yellow_green.restype = _sklib_color
+sklib.__sklib__green_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__green_of__color.restype = c_int
 sklib.__sklib__hsb_color__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__hsb_color__float__float__float.restype = __sklib_color
-sklib.__sklib__hue_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__hsb_color__float__float__float.restype = _sklib_color
+sklib.__sklib__hue_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__hue_of__color.restype = c_float
 sklib.__sklib__random_color.argtypes = [  ]
-sklib.__sklib__random_color.restype = __sklib_color
+sklib.__sklib__random_color.restype = _sklib_color
 sklib.__sklib__random_rgb_color__int.argtypes = [ c_int ]
-sklib.__sklib__random_rgb_color__int.restype = __sklib_color
-sklib.__sklib__red_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__random_rgb_color__int.restype = _sklib_color
+sklib.__sklib__red_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__red_of__color.restype = c_int
 sklib.__sklib__rgb_color__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__rgb_color__float__float__float.restype = __sklib_color
+sklib.__sklib__rgb_color__float__float__float.restype = _sklib_color
 sklib.__sklib__rgb_color__int__int__int.argtypes = [ c_int, c_int, c_int ]
-sklib.__sklib__rgb_color__int__int__int.restype = __sklib_color
+sklib.__sklib__rgb_color__int__int__int.restype = _sklib_color
 sklib.__sklib__rgba_color__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__rgba_color__float__float__float__float.restype = __sklib_color
+sklib.__sklib__rgba_color__float__float__float__float.restype = _sklib_color
 sklib.__sklib__rgba_color__int__int__int__int.argtypes = [ c_int, c_int, c_int, c_int ]
-sklib.__sklib__rgba_color__int__int__int__int.restype = __sklib_color
-sklib.__sklib__saturation_of__color.argtypes = [ __sklib_color ]
+sklib.__sklib__rgba_color__int__int__int__int.restype = _sklib_color
+sklib.__sklib__saturation_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__saturation_of__color.restype = c_float
 sklib.__sklib__string_to_color__string.argtypes = [ _sklib_string ]
-sklib.__sklib__string_to_color__string.restype = __sklib_color
+sklib.__sklib__string_to_color__string.restype = _sklib_color
 sklib.__sklib__database_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__database_named__string.restype = c_void_p
 sklib.__sklib__free_all_databases.argtypes = [  ]
@@ -1785,78 +1804,78 @@ sklib.__sklib__run_sql__database__string.restype = c_void_p
 sklib.__sklib__run_sql__string__string.argtypes = [ _sklib_string, _sklib_string ]
 sklib.__sklib__run_sql__string__string.restype = c_void_p
 sklib.__sklib__option_defaults.argtypes = [  ]
-sklib.__sklib__option_defaults.restype = __sklib_drawing_options
+sklib.__sklib__option_defaults.restype = _sklib_drawing_options
 sklib.__sklib__option_draw_to__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__option_draw_to__bitmap.restype = __sklib_drawing_options
-sklib.__sklib__option_draw_to__bitmap__drawing_options.argtypes = [ c_void_p, __sklib_drawing_options ]
-sklib.__sklib__option_draw_to__bitmap__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_draw_to__bitmap.restype = _sklib_drawing_options
+sklib.__sklib__option_draw_to__bitmap__drawing_options.argtypes = [ c_void_p, _sklib_drawing_options ]
+sklib.__sklib__option_draw_to__bitmap__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_draw_to__window.argtypes = [ c_void_p ]
-sklib.__sklib__option_draw_to__window.restype = __sklib_drawing_options
-sklib.__sklib__option_draw_to__window__drawing_options.argtypes = [ c_void_p, __sklib_drawing_options ]
-sklib.__sklib__option_draw_to__window__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_draw_to__window.restype = _sklib_drawing_options
+sklib.__sklib__option_draw_to__window__drawing_options.argtypes = [ c_void_p, _sklib_drawing_options ]
+sklib.__sklib__option_draw_to__window__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_flip_x.argtypes = [  ]
-sklib.__sklib__option_flip_x.restype = __sklib_drawing_options
-sklib.__sklib__option_flip_x__drawing_options.argtypes = [ __sklib_drawing_options ]
-sklib.__sklib__option_flip_x__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_flip_x.restype = _sklib_drawing_options
+sklib.__sklib__option_flip_x__drawing_options.argtypes = [ _sklib_drawing_options ]
+sklib.__sklib__option_flip_x__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_flip_xy.argtypes = [  ]
-sklib.__sklib__option_flip_xy.restype = __sklib_drawing_options
-sklib.__sklib__option_flip_xy__drawing_options.argtypes = [ __sklib_drawing_options ]
-sklib.__sklib__option_flip_xy__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_flip_xy.restype = _sklib_drawing_options
+sklib.__sklib__option_flip_xy__drawing_options.argtypes = [ _sklib_drawing_options ]
+sklib.__sklib__option_flip_xy__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_flip_y.argtypes = [  ]
-sklib.__sklib__option_flip_y.restype = __sklib_drawing_options
-sklib.__sklib__option_flip_y__drawing_options.argtypes = [ __sklib_drawing_options ]
-sklib.__sklib__option_flip_y__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_flip_y.restype = _sklib_drawing_options
+sklib.__sklib__option_flip_y__drawing_options.argtypes = [ _sklib_drawing_options ]
+sklib.__sklib__option_flip_y__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_line_width__int.argtypes = [ c_int ]
-sklib.__sklib__option_line_width__int.restype = __sklib_drawing_options
-sklib.__sklib__option_line_width__int__drawing_options.argtypes = [ c_int, __sklib_drawing_options ]
-sklib.__sklib__option_line_width__int__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_line_width__int.restype = _sklib_drawing_options
+sklib.__sklib__option_line_width__int__drawing_options.argtypes = [ c_int, _sklib_drawing_options ]
+sklib.__sklib__option_line_width__int__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_part_bmp__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__option_part_bmp__float__float__float__float.restype = __sklib_drawing_options
-sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, c_float, __sklib_drawing_options ]
-sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.restype = __sklib_drawing_options
-sklib.__sklib__option_part_bmp__rectangle.argtypes = [ __sklib_rectangle ]
-sklib.__sklib__option_part_bmp__rectangle.restype = __sklib_drawing_options
-sklib.__sklib__option_part_bmp__rectangle__drawing_options.argtypes = [ __sklib_rectangle, __sklib_drawing_options ]
-sklib.__sklib__option_part_bmp__rectangle__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_part_bmp__float__float__float__float.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__rectangle.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__option_part_bmp__rectangle.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__rectangle__drawing_options.argtypes = [ _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__option_part_bmp__rectangle__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_rotate_bmp__float.argtypes = [ c_float ]
-sklib.__sklib__option_rotate_bmp__float.restype = __sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float__drawing_options.argtypes = [ c_float, __sklib_drawing_options ]
-sklib.__sklib__option_rotate_bmp__float__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__float.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__float__drawing_options.argtypes = [ c_float, _sklib_drawing_options ]
+sklib.__sklib__option_rotate_bmp__float__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_rotate_bmp__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__option_rotate_bmp__float__float__float.restype = __sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, __sklib_drawing_options ]
-sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__float__float__float.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_scale_bmp__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__option_scale_bmp__float__float.restype = __sklib_drawing_options
-sklib.__sklib__option_scale_bmp__float__float__drawing_options.argtypes = [ c_float, c_float, __sklib_drawing_options ]
-sklib.__sklib__option_scale_bmp__float__float__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_scale_bmp__float__float.restype = _sklib_drawing_options
+sklib.__sklib__option_scale_bmp__float__float__drawing_options.argtypes = [ c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__option_scale_bmp__float__float__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_to_screen.argtypes = [  ]
-sklib.__sklib__option_to_screen.restype = __sklib_drawing_options
-sklib.__sklib__option_to_screen__drawing_options.argtypes = [ __sklib_drawing_options ]
-sklib.__sklib__option_to_screen__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_to_screen.restype = _sklib_drawing_options
+sklib.__sklib__option_to_screen__drawing_options.argtypes = [ _sklib_drawing_options ]
+sklib.__sklib__option_to_screen__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_to_world.argtypes = [  ]
-sklib.__sklib__option_to_world.restype = __sklib_drawing_options
-sklib.__sklib__option_to_world__drawing_options.argtypes = [ __sklib_drawing_options ]
-sklib.__sklib__option_to_world__drawing_options.restype = __sklib_drawing_options
+sklib.__sklib__option_to_world.restype = _sklib_drawing_options
+sklib.__sklib__option_to_world__drawing_options.argtypes = [ _sklib_drawing_options ]
+sklib.__sklib__option_to_world__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_with_animation__animation.argtypes = [ c_void_p ]
-sklib.__sklib__option_with_animation__animation.restype = __sklib_drawing_options
-sklib.__sklib__option_with_animation__animation__drawing_options.argtypes = [ c_void_p, __sklib_drawing_options ]
-sklib.__sklib__option_with_animation__animation__drawing_options.restype = __sklib_drawing_options
-sklib.__sklib__draw_ellipse__color__rectangle.argtypes = [ __sklib_color, __sklib_rectangle ]
+sklib.__sklib__option_with_animation__animation.restype = _sklib_drawing_options
+sklib.__sklib__option_with_animation__animation__drawing_options.argtypes = [ c_void_p, _sklib_drawing_options ]
+sklib.__sklib__option_with_animation__animation__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__draw_ellipse__color__rectangle.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__draw_ellipse__color__rectangle.restype = None
-sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.argtypes = [ __sklib_color, __sklib_rectangle, __sklib_drawing_options ]
+sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.restype = None
-sklib.__sklib__draw_ellipse__color__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float ]
+sklib.__sklib__draw_ellipse__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
 sklib.__sklib__draw_ellipse__color__float__float__float__float.restype = None
-sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options.restype = None
-sklib.__sklib__fill_ellipse__color__rectangle.argtypes = [ __sklib_color, __sklib_rectangle ]
+sklib.__sklib__fill_ellipse__color__rectangle.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__fill_ellipse__color__rectangle.restype = None
-sklib.__sklib__fill_ellipse__color__rectangle__drawing_options.argtypes = [ __sklib_color, __sklib_rectangle, __sklib_drawing_options ]
+sklib.__sklib__fill_ellipse__color__rectangle__drawing_options.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__fill_ellipse__color__rectangle__drawing_options.restype = None
-sklib.__sklib__fill_ellipse__color__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float ]
+sklib.__sklib__fill_ellipse__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
 sklib.__sklib__fill_ellipse__color__float__float__float__float.restype = None
-sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options.restype = None
 sklib.__sklib__cosine__float.argtypes = [ c_float ]
 sklib.__sklib__cosine__float.restype = c_float
@@ -1866,7 +1885,7 @@ sklib.__sklib__tangent__float.argtypes = [ c_float ]
 sklib.__sklib__tangent__float.restype = c_float
 sklib.__sklib__clear_screen.argtypes = [  ]
 sklib.__sklib__clear_screen.restype = None
-sklib.__sklib__clear_screen__color.argtypes = [ __sklib_color ]
+sklib.__sklib__clear_screen__color.argtypes = [ _sklib_color ]
 sklib.__sklib__clear_screen__color.restype = None
 sklib.__sklib__display_details__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__display_details__unsigned_int.restype = c_void_p
@@ -1897,13 +1916,13 @@ sklib.__sklib__take_screenshot__string_ref.restype = None
 sklib.__sklib__take_screenshot__window__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__take_screenshot__window__string_ref.restype = None
 sklib.__sklib__bitmap_cell_center__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__bitmap_cell_center__bitmap.restype = __sklib_point_2d
+sklib.__sklib__bitmap_cell_center__bitmap.restype = _sklib_point_2d
 sklib.__sklib__bitmap_cell_circle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_cell_circle__bitmap__float__float.restype = __sklib_circle
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.restype = __sklib_circle
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.argtypes = [ c_void_p, __sklib_point_2d, c_float ]
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.restype = __sklib_circle
+sklib.__sklib__bitmap_cell_circle__bitmap__float__float.restype = _sklib_circle
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.restype = _sklib_circle
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.argtypes = [ c_void_p, _sklib_point_2d, c_float ]
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.restype = _sklib_circle
 sklib.__sklib__bitmap_cell_columns__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_columns__bitmap.restype = c_int
 sklib.__sklib__bitmap_cell_count__bitmap.argtypes = [ c_void_p ]
@@ -1911,19 +1930,19 @@ sklib.__sklib__bitmap_cell_count__bitmap.restype = c_int
 sklib.__sklib__bitmap_cell_height__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_height__bitmap.restype = c_int
 sklib.__sklib__bitmap_cell_offset__bitmap__int.argtypes = [ c_void_p, c_int ]
-sklib.__sklib__bitmap_cell_offset__bitmap__int.restype = __sklib_vector_2d
+sklib.__sklib__bitmap_cell_offset__bitmap__int.restype = _sklib_vector_2d
 sklib.__sklib__bitmap_cell_rectangle__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__bitmap_cell_rectangle__bitmap.restype = __sklib_rectangle
-sklib.__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref.restype = __sklib_rectangle
+sklib.__sklib__bitmap_cell_rectangle__bitmap.restype = _sklib_rectangle
+sklib.__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref.restype = _sklib_rectangle
 sklib.__sklib__bitmap_cell_rows__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_rows__bitmap.restype = c_int
 sklib.__sklib__bitmap_cell_width__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_width__bitmap.restype = c_int
 sklib.__sklib__bitmap_center__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__bitmap_center__bitmap.restype = __sklib_point_2d
-sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.restype = __sklib_circle
+sklib.__sklib__bitmap_center__bitmap.restype = _sklib_point_2d
+sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.restype = _sklib_circle
 sklib.__sklib__bitmap_filename__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_filename__bitmap.restype = _sklib_string
 sklib.__sklib__bitmap_height__bitmap.argtypes = [ c_void_p ]
@@ -1935,30 +1954,30 @@ sklib.__sklib__bitmap_name__bitmap.restype = _sklib_string
 sklib.__sklib__bitmap_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__bitmap_named__string.restype = c_void_p
 sklib.__sklib__bitmap_rectangle__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__bitmap_rectangle__bitmap.restype = __sklib_rectangle
+sklib.__sklib__bitmap_rectangle__bitmap.restype = _sklib_rectangle
 sklib.__sklib__bitmap_rectangle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_rectangle__bitmap__float__float.restype = __sklib_rectangle
+sklib.__sklib__bitmap_rectangle__bitmap__float__float.restype = _sklib_rectangle
 sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.argtypes = [ c_void_p, c_int ]
-sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.restype = __sklib_rectangle
+sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.restype = _sklib_rectangle
 sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int.argtypes = [ c_void_p, c_int, c_int, c_int, c_int, c_int ]
 sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int.restype = None
 sklib.__sklib__bitmap_width__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_width__bitmap.restype = c_int
 sklib.__sklib__bitmap_width__string.argtypes = [ _sklib_string ]
 sklib.__sklib__bitmap_width__string.restype = c_int
-sklib.__sklib__clear_bitmap__bitmap__color.argtypes = [ c_void_p, __sklib_color ]
+sklib.__sklib__clear_bitmap__bitmap__color.argtypes = [ c_void_p, _sklib_color ]
 sklib.__sklib__clear_bitmap__bitmap__color.restype = None
-sklib.__sklib__clear_bitmap__string__color.argtypes = [ _sklib_string, __sklib_color ]
+sklib.__sklib__clear_bitmap__string__color.argtypes = [ _sklib_string, _sklib_color ]
 sklib.__sklib__clear_bitmap__string__color.restype = None
 sklib.__sklib__create_bitmap__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
 sklib.__sklib__create_bitmap__string__int__int.restype = c_void_p
 sklib.__sklib__draw_bitmap__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
 sklib.__sklib__draw_bitmap__bitmap__float__float.restype = None
-sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options.argtypes = [ c_void_p, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options.argtypes = [ c_void_p, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options.restype = None
 sklib.__sklib__draw_bitmap__string__float__float.argtypes = [ _sklib_string, c_float, c_float ]
 sklib.__sklib__draw_bitmap__string__float__float.restype = None
-sklib.__sklib__draw_bitmap__string__float__float__drawing_options.argtypes = [ _sklib_string, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_bitmap__string__float__float__drawing_options.argtypes = [ _sklib_string, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_bitmap__string__float__float__drawing_options.restype = None
 sklib.__sklib__free_all_bitmaps.argtypes = [  ]
 sklib.__sklib__free_all_bitmaps.restype = None
@@ -1968,11 +1987,11 @@ sklib.__sklib__has_bitmap__string.argtypes = [ _sklib_string ]
 sklib.__sklib__has_bitmap__string.restype = c_bool
 sklib.__sklib__load_bitmap__string__string.argtypes = [ _sklib_string, _sklib_string ]
 sklib.__sklib__load_bitmap__string__string.restype = c_void_p
-sklib.__sklib__pixel_drawn_at_point__bitmap__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__pixel_drawn_at_point__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__point_2d_ref.restype = c_bool
 sklib.__sklib__pixel_drawn_at_point__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__float__float.restype = c_bool
-sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, __sklib_point_2d ]
+sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.restype = c_bool
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__float__float.argtypes = [ c_void_p, c_int, c_float, c_float ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__float__float.restype = c_bool
@@ -1992,7 +2011,7 @@ sklib.__sklib__free_json__json.argtypes = [ c_void_p ]
 sklib.__sklib__free_json__json.restype = None
 sklib.__sklib__json_count_keys__json.argtypes = [ c_void_p ]
 sklib.__sklib__json_count_keys__json.restype = c_int
-sklib.__sklib__json_from_color__color.argtypes = [ __sklib_color ]
+sklib.__sklib__json_from_color__color.argtypes = [ _sklib_color ]
 sklib.__sklib__json_from_color__color.restype = c_void_p
 sklib.__sklib__json_from_file__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__json_from_file__string_ref.restype = c_void_p
@@ -2000,13 +2019,13 @@ sklib.__sklib__json_from_string__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__json_from_string__string_ref.restype = c_void_p
 sklib.__sklib__json_has_key__json__string.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__json_has_key__json__string.restype = c_bool
-sklib.__sklib__json_read_array__json__string__vector_double_ref.argtypes = [ c_void_p, _sklib_string, POINTER(__sklib_vector_double) ]
+sklib.__sklib__json_read_array__json__string__vector_double_ref.argtypes = [ c_void_p, _sklib_string, POINTER(_sklib_vector_double) ]
 sklib.__sklib__json_read_array__json__string__vector_double_ref.restype = None
-sklib.__sklib__json_read_array__json__string__vector_json_ref.argtypes = [ c_void_p, _sklib_string, POINTER(__sklib_vector_json) ]
+sklib.__sklib__json_read_array__json__string__vector_json_ref.argtypes = [ c_void_p, _sklib_string, POINTER(_sklib_vector_json) ]
 sklib.__sklib__json_read_array__json__string__vector_json_ref.restype = None
-sklib.__sklib__json_read_array__json__string__vector_string_ref.argtypes = [ c_void_p, _sklib_string, POINTER(__sklib_vector_string) ]
+sklib.__sklib__json_read_array__json__string__vector_string_ref.argtypes = [ c_void_p, _sklib_string, POINTER(_sklib_vector_string) ]
 sklib.__sklib__json_read_array__json__string__vector_string_ref.restype = None
-sklib.__sklib__json_read_array__json__string__vector_bool_ref.argtypes = [ c_void_p, _sklib_string, POINTER(__sklib_vector_bool) ]
+sklib.__sklib__json_read_array__json__string__vector_bool_ref.argtypes = [ c_void_p, _sklib_string, POINTER(_sklib_vector_bool) ]
 sklib.__sklib__json_read_array__json__string__vector_bool_ref.restype = None
 sklib.__sklib__json_read_bool__json__string.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__json_read_bool__json__string.restype = c_bool
@@ -2020,13 +2039,13 @@ sklib.__sklib__json_read_object__json__string.argtypes = [ c_void_p, _sklib_stri
 sklib.__sklib__json_read_object__json__string.restype = c_void_p
 sklib.__sklib__json_read_string__json__string.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__json_read_string__json__string.restype = _sklib_string
-sklib.__sklib__json_set_array__json__string__vector_string.argtypes = [ c_void_p, _sklib_string, __sklib_vector_string ]
+sklib.__sklib__json_set_array__json__string__vector_string.argtypes = [ c_void_p, _sklib_string, _sklib_vector_string ]
 sklib.__sklib__json_set_array__json__string__vector_string.restype = None
-sklib.__sklib__json_set_array__json__string__vector_double.argtypes = [ c_void_p, _sklib_string, __sklib_vector_double ]
+sklib.__sklib__json_set_array__json__string__vector_double.argtypes = [ c_void_p, _sklib_string, _sklib_vector_double ]
 sklib.__sklib__json_set_array__json__string__vector_double.restype = None
-sklib.__sklib__json_set_array__json__string__vector_bool.argtypes = [ c_void_p, _sklib_string, __sklib_vector_bool ]
+sklib.__sklib__json_set_array__json__string__vector_bool.argtypes = [ c_void_p, _sklib_string, _sklib_vector_bool ]
 sklib.__sklib__json_set_array__json__string__vector_bool.restype = None
-sklib.__sklib__json_set_array__json__string__vector_json.argtypes = [ c_void_p, _sklib_string, __sklib_vector_json ]
+sklib.__sklib__json_set_array__json__string__vector_json.argtypes = [ c_void_p, _sklib_string, _sklib_vector_json ]
 sklib.__sklib__json_set_array__json__string__vector_json.restype = None
 sklib.__sklib__json_set_bool__json__string__bool.argtypes = [ c_void_p, _sklib_string, c_bool ]
 sklib.__sklib__json_set_bool__json__string__bool.restype = None
@@ -2041,7 +2060,7 @@ sklib.__sklib__json_set_object__json__string__json.restype = None
 sklib.__sklib__json_set_string__json__string__string.argtypes = [ c_void_p, _sklib_string, _sklib_string ]
 sklib.__sklib__json_set_string__json__string__string.restype = None
 sklib.__sklib__json_to_color__json.argtypes = [ c_void_p ]
-sklib.__sklib__json_to_color__json.restype = __sklib_color
+sklib.__sklib__json_to_color__json.restype = _sklib_color
 sklib.__sklib__json_to_file__json__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__json_to_file__json__string_ref.restype = None
 sklib.__sklib__json_to_string__json.argtypes = [ c_void_p ]
@@ -2070,82 +2089,82 @@ sklib.__sklib__register_callback_on_key_typed__key_callback_ptr.argtypes = [ Key
 sklib.__sklib__register_callback_on_key_typed__key_callback_ptr.restype = None
 sklib.__sklib__register_callback_on_key_up__key_callback_ptr.argtypes = [ KeyCallback ]
 sklib.__sklib__register_callback_on_key_up__key_callback_ptr.restype = None
-sklib.__sklib__draw_line__color__line_ref.argtypes = [ __sklib_color, __sklib_line ]
+sklib.__sklib__draw_line__color__line_ref.argtypes = [ _sklib_color, _sklib_line ]
 sklib.__sklib__draw_line__color__line_ref.restype = None
-sklib.__sklib__draw_line__color__line_ref__drawing_options.argtypes = [ __sklib_color, __sklib_line, __sklib_drawing_options ]
+sklib.__sklib__draw_line__color__line_ref__drawing_options.argtypes = [ _sklib_color, _sklib_line, _sklib_drawing_options ]
 sklib.__sklib__draw_line__color__line_ref__drawing_options.restype = None
-sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref.argtypes = [ __sklib_color, __sklib_point_2d, __sklib_point_2d ]
+sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref.restype = None
-sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref.argtypes = [ __sklib_color, __sklib_point_2d, __sklib_point_2d, __sklib_drawing_options ]
+sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_point_2d, _sklib_drawing_options ]
 sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref.restype = None
-sklib.__sklib__draw_line__color__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float ]
+sklib.__sklib__draw_line__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
 sklib.__sklib__draw_line__color__float__float__float__float.restype = None
-sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref.restype = None
-sklib.__sklib__closest_point_on_line__point_2d__line_ref.argtypes = [ __sklib_point_2d, __sklib_line ]
-sklib.__sklib__closest_point_on_line__point_2d__line_ref.restype = __sklib_point_2d
-sklib.__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref.argtypes = [ __sklib_point_2d, __sklib_vector_line, POINTER(c_int) ]
-sklib.__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref.restype = __sklib_point_2d
-sklib.__sklib__line_from__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
-sklib.__sklib__line_from__point_2d_ref__point_2d_ref.restype = __sklib_line
-sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.argtypes = [ __sklib_point_2d, __sklib_vector_2d ]
-sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.restype = __sklib_line
-sklib.__sklib__line_from__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
-sklib.__sklib__line_from__vector_2d_ref.restype = __sklib_line
+sklib.__sklib__closest_point_on_line__point_2d__line_ref.argtypes = [ _sklib_point_2d, _sklib_line ]
+sklib.__sklib__closest_point_on_line__point_2d__line_ref.restype = _sklib_point_2d
+sklib.__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref.argtypes = [ _sklib_point_2d, _sklib_vector_line, POINTER(c_int) ]
+sklib.__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref.restype = _sklib_point_2d
+sklib.__sklib__line_from__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__line_from__point_2d_ref__point_2d_ref.restype = _sklib_line
+sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.restype = _sklib_line
+sklib.__sklib__line_from__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__line_from__vector_2d_ref.restype = _sklib_line
 sklib.__sklib__line_from__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__line_from__float__float__float__float.restype = __sklib_line
-sklib.__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref.argtypes = [ __sklib_line, __sklib_line, POINTER(__sklib_point_2d) ]
+sklib.__sklib__line_from__float__float__float__float.restype = _sklib_line
+sklib.__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref.argtypes = [ _sklib_line, _sklib_line, POINTER(_sklib_point_2d) ]
 sklib.__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__line_intersects_circle__line_ref__circle_ref.argtypes = [ __sklib_line, __sklib_circle ]
+sklib.__sklib__line_intersects_circle__line_ref__circle_ref.argtypes = [ _sklib_line, _sklib_circle ]
 sklib.__sklib__line_intersects_circle__line_ref__circle_ref.restype = c_bool
-sklib.__sklib__line_intersects_lines__line_ref__vector_line_ref.argtypes = [ __sklib_line, __sklib_vector_line ]
+sklib.__sklib__line_intersects_lines__line_ref__vector_line_ref.argtypes = [ _sklib_line, _sklib_vector_line ]
 sklib.__sklib__line_intersects_lines__line_ref__vector_line_ref.restype = c_bool
-sklib.__sklib__line_intersects_rect__line_ref__rectangle_ref.argtypes = [ __sklib_line, __sklib_rectangle ]
+sklib.__sklib__line_intersects_rect__line_ref__rectangle_ref.argtypes = [ _sklib_line, _sklib_rectangle ]
 sklib.__sklib__line_intersects_rect__line_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__line_length__line_ref.argtypes = [ __sklib_line ]
+sklib.__sklib__line_length__line_ref.argtypes = [ _sklib_line ]
 sklib.__sklib__line_length__line_ref.restype = c_float
-sklib.__sklib__line_length_squared__line_ref.argtypes = [ __sklib_line ]
+sklib.__sklib__line_length_squared__line_ref.argtypes = [ _sklib_line ]
 sklib.__sklib__line_length_squared__line_ref.restype = c_float
-sklib.__sklib__line_mid_point__line_ref.argtypes = [ __sklib_line ]
-sklib.__sklib__line_mid_point__line_ref.restype = __sklib_point_2d
-sklib.__sklib__line_normal__line_ref.argtypes = [ __sklib_line ]
-sklib.__sklib__line_normal__line_ref.restype = __sklib_vector_2d
-sklib.__sklib__line_to_string__line_ref.argtypes = [ __sklib_line ]
+sklib.__sklib__line_mid_point__line_ref.argtypes = [ _sklib_line ]
+sklib.__sklib__line_mid_point__line_ref.restype = _sklib_point_2d
+sklib.__sklib__line_normal__line_ref.argtypes = [ _sklib_line ]
+sklib.__sklib__line_normal__line_ref.restype = _sklib_vector_2d
+sklib.__sklib__line_to_string__line_ref.argtypes = [ _sklib_line ]
 sklib.__sklib__line_to_string__line_ref.restype = _sklib_string
-sklib.__sklib__lines_from__rectangle_ref.argtypes = [ __sklib_rectangle ]
-sklib.__sklib__lines_from__rectangle_ref.restype = __sklib_vector_line
-sklib.__sklib__lines_from__triangle_ref.argtypes = [ __sklib_triangle ]
-sklib.__sklib__lines_from__triangle_ref.restype = __sklib_vector_line
-sklib.__sklib__lines_intersect__line_ref__line_ref.argtypes = [ __sklib_line, __sklib_line ]
+sklib.__sklib__lines_from__rectangle_ref.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__lines_from__rectangle_ref.restype = _sklib_vector_line
+sklib.__sklib__lines_from__triangle_ref.argtypes = [ _sklib_triangle ]
+sklib.__sklib__lines_from__triangle_ref.restype = _sklib_vector_line
+sklib.__sklib__lines_intersect__line_ref__line_ref.argtypes = [ _sklib_line, _sklib_line ]
 sklib.__sklib__lines_intersect__line_ref__line_ref.restype = c_bool
-sklib.__sklib__apply_matrix__matrix_2d_ref__quad_ref.argtypes = [ __sklib_matrix_2d, POINTER(__sklib_quad) ]
+sklib.__sklib__apply_matrix__matrix_2d_ref__quad_ref.argtypes = [ _sklib_matrix_2d, POINTER(_sklib_quad) ]
 sklib.__sklib__apply_matrix__matrix_2d_ref__quad_ref.restype = None
-sklib.__sklib__apply_matrix__matrix_2d_ref__triangle_ref.argtypes = [ __sklib_matrix_2d, POINTER(__sklib_triangle) ]
+sklib.__sklib__apply_matrix__matrix_2d_ref__triangle_ref.argtypes = [ _sklib_matrix_2d, POINTER(_sklib_triangle) ]
 sklib.__sklib__apply_matrix__matrix_2d_ref__triangle_ref.restype = None
 sklib.__sklib__identity_matrix.argtypes = [  ]
-sklib.__sklib__identity_matrix.restype = __sklib_matrix_2d
-sklib.__sklib__matrix_inverse__matrix_2d_ref.argtypes = [ __sklib_matrix_2d ]
-sklib.__sklib__matrix_inverse__matrix_2d_ref.restype = __sklib_matrix_2d
-sklib.__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref.argtypes = [ __sklib_matrix_2d, __sklib_point_2d ]
-sklib.__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref.restype = __sklib_point_2d
-sklib.__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref.argtypes = [ __sklib_matrix_2d, __sklib_matrix_2d ]
-sklib.__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref.restype = __sklib_matrix_2d
-sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.argtypes = [ __sklib_matrix_2d, __sklib_vector_2d ]
-sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__matrix_to_string__matrix_2d_ref.argtypes = [ __sklib_matrix_2d ]
+sklib.__sklib__identity_matrix.restype = _sklib_matrix_2d
+sklib.__sklib__matrix_inverse__matrix_2d_ref.argtypes = [ _sklib_matrix_2d ]
+sklib.__sklib__matrix_inverse__matrix_2d_ref.restype = _sklib_matrix_2d
+sklib.__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref.argtypes = [ _sklib_matrix_2d, _sklib_point_2d ]
+sklib.__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref.restype = _sklib_point_2d
+sklib.__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref.argtypes = [ _sklib_matrix_2d, _sklib_matrix_2d ]
+sklib.__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref.restype = _sklib_matrix_2d
+sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.argtypes = [ _sklib_matrix_2d, _sklib_vector_2d ]
+sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__matrix_to_string__matrix_2d_ref.argtypes = [ _sklib_matrix_2d ]
 sklib.__sklib__matrix_to_string__matrix_2d_ref.restype = _sklib_string
 sklib.__sklib__rotation_matrix__float.argtypes = [ c_float ]
-sklib.__sklib__rotation_matrix__float.restype = __sklib_matrix_2d
-sklib.__sklib__scale_matrix__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__scale_matrix__point_2d_ref.restype = __sklib_matrix_2d
+sklib.__sklib__rotation_matrix__float.restype = _sklib_matrix_2d
+sklib.__sklib__scale_matrix__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__scale_matrix__point_2d_ref.restype = _sklib_matrix_2d
 sklib.__sklib__scale_matrix__float.argtypes = [ c_float ]
-sklib.__sklib__scale_matrix__float.restype = __sklib_matrix_2d
-sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.argtypes = [ __sklib_point_2d, c_float, __sklib_point_2d ]
-sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.restype = __sklib_matrix_2d
-sklib.__sklib__translation_matrix__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__translation_matrix__point_2d_ref.restype = __sklib_matrix_2d
+sklib.__sklib__scale_matrix__float.restype = _sklib_matrix_2d
+sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.argtypes = [ _sklib_point_2d, c_float, _sklib_point_2d ]
+sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.restype = _sklib_matrix_2d
+sklib.__sklib__translation_matrix__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__translation_matrix__point_2d_ref.restype = _sklib_matrix_2d
 sklib.__sklib__translation_matrix__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__translation_matrix__float__float.restype = __sklib_matrix_2d
+sklib.__sklib__translation_matrix__float__float.restype = _sklib_matrix_2d
 sklib.__sklib__hide_mouse.argtypes = [  ]
 sklib.__sklib__hide_mouse.restype = None
 sklib.__sklib__mouse_clicked__mouse_button.argtypes = [ c_int ]
@@ -2153,24 +2172,24 @@ sklib.__sklib__mouse_clicked__mouse_button.restype = c_bool
 sklib.__sklib__mouse_down__mouse_button.argtypes = [ c_int ]
 sklib.__sklib__mouse_down__mouse_button.restype = c_bool
 sklib.__sklib__mouse_movement.argtypes = [  ]
-sklib.__sklib__mouse_movement.restype = __sklib_vector_2d
+sklib.__sklib__mouse_movement.restype = _sklib_vector_2d
 sklib.__sklib__mouse_position.argtypes = [  ]
-sklib.__sklib__mouse_position.restype = __sklib_point_2d
+sklib.__sklib__mouse_position.restype = _sklib_point_2d
 sklib.__sklib__mouse_position_vector.argtypes = [  ]
-sklib.__sklib__mouse_position_vector.restype = __sklib_vector_2d
+sklib.__sklib__mouse_position_vector.restype = _sklib_vector_2d
 sklib.__sklib__mouse_shown.argtypes = [  ]
 sklib.__sklib__mouse_shown.restype = c_bool
 sklib.__sklib__mouse_up__mouse_button.argtypes = [ c_int ]
 sklib.__sklib__mouse_up__mouse_button.restype = c_bool
 sklib.__sklib__mouse_wheel_scroll.argtypes = [  ]
-sklib.__sklib__mouse_wheel_scroll.restype = __sklib_vector_2d
+sklib.__sklib__mouse_wheel_scroll.restype = _sklib_vector_2d
 sklib.__sklib__mouse_x.argtypes = [  ]
 sklib.__sklib__mouse_x.restype = c_float
 sklib.__sklib__mouse_y.argtypes = [  ]
 sklib.__sklib__mouse_y.restype = c_float
 sklib.__sklib__move_mouse__float__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__move_mouse__float__float.restype = None
-sklib.__sklib__move_mouse__point_2d.argtypes = [ __sklib_point_2d ]
+sklib.__sklib__move_mouse__point_2d.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__move_mouse__point_2d.restype = None
 sklib.__sklib__show_mouse.argtypes = [  ]
 sklib.__sklib__show_mouse.restype = None
@@ -2236,135 +2255,135 @@ sklib.__sklib__ipv4_to_str__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__ipv4_to_str__unsigned_int.restype = _sklib_string
 sklib.__sklib__my_ip.argtypes = [  ]
 sklib.__sklib__my_ip.restype = _sklib_string
-sklib.__sklib__draw_pixel__color__point_2d_ref.argtypes = [ __sklib_color, __sklib_point_2d ]
+sklib.__sklib__draw_pixel__color__point_2d_ref.argtypes = [ _sklib_color, _sklib_point_2d ]
 sklib.__sklib__draw_pixel__color__point_2d_ref.restype = None
-sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.argtypes = [ __sklib_color, __sklib_point_2d, __sklib_drawing_options ]
+sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_drawing_options ]
 sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.restype = None
-sklib.__sklib__draw_pixel__color__float__float.argtypes = [ __sklib_color, c_float, c_float ]
+sklib.__sklib__draw_pixel__color__float__float.argtypes = [ _sklib_color, c_float, c_float ]
 sklib.__sklib__draw_pixel__color__float__float.restype = None
-sklib.__sklib__draw_pixel__color__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_pixel__color__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_pixel__color__float__float__drawing_options.restype = None
-sklib.__sklib__get_pixel__bitmap__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__get_pixel__bitmap__point_2d_ref.restype = __sklib_color
+sklib.__sklib__get_pixel__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__get_pixel__bitmap__point_2d_ref.restype = _sklib_color
 sklib.__sklib__get_pixel__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__get_pixel__bitmap__float__float.restype = __sklib_color
-sklib.__sklib__get_pixel__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__get_pixel__point_2d_ref.restype = __sklib_color
+sklib.__sklib__get_pixel__bitmap__float__float.restype = _sklib_color
+sklib.__sklib__get_pixel__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__get_pixel__point_2d_ref.restype = _sklib_color
 sklib.__sklib__get_pixel__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__get_pixel__float__float.restype = __sklib_color
-sklib.__sklib__get_pixel__window__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__get_pixel__window__point_2d_ref.restype = __sklib_color
+sklib.__sklib__get_pixel__float__float.restype = _sklib_color
+sklib.__sklib__get_pixel__window__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__get_pixel__window__point_2d_ref.restype = _sklib_color
 sklib.__sklib__get_pixel__window__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__get_pixel__window__float__float.restype = __sklib_color
+sklib.__sklib__get_pixel__window__float__float.restype = _sklib_color
 sklib.__sklib__point_at__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__point_at__float__float.restype = __sklib_point_2d
+sklib.__sklib__point_at__float__float.restype = _sklib_point_2d
 sklib.__sklib__point_at_origin.argtypes = [  ]
-sklib.__sklib__point_at_origin.restype = __sklib_point_2d
-sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.argtypes = [ __sklib_point_2d, __sklib_circle ]
+sklib.__sklib__point_at_origin.restype = _sklib_point_2d
+sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
 sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.restype = c_bool
-sklib.__sklib__point_in_quad__point_2d_ref__quad_ref.argtypes = [ __sklib_point_2d, __sklib_quad ]
+sklib.__sklib__point_in_quad__point_2d_ref__quad_ref.argtypes = [ _sklib_point_2d, _sklib_quad ]
 sklib.__sklib__point_in_quad__point_2d_ref__quad_ref.restype = c_bool
-sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref.argtypes = [ __sklib_point_2d, __sklib_rectangle ]
+sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref.argtypes = [ _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__point_in_triangle__point_2d_ref__triangle_ref.argtypes = [ __sklib_point_2d, __sklib_triangle ]
+sklib.__sklib__point_in_triangle__point_2d_ref__triangle_ref.argtypes = [ _sklib_point_2d, _sklib_triangle ]
 sklib.__sklib__point_in_triangle__point_2d_ref__triangle_ref.restype = c_bool
-sklib.__sklib__point_line_distance__point_2d_ref__line_ref.argtypes = [ __sklib_point_2d, __sklib_line ]
+sklib.__sklib__point_line_distance__point_2d_ref__line_ref.argtypes = [ _sklib_point_2d, _sklib_line ]
 sklib.__sklib__point_line_distance__point_2d_ref__line_ref.restype = c_float
-sklib.__sklib__point_offset_by__point_2d_ref__vector_2d_ref.argtypes = [ __sklib_point_2d, __sklib_vector_2d ]
-sklib.__sklib__point_offset_by__point_2d_ref__vector_2d_ref.restype = __sklib_point_2d
-sklib.__sklib__point_offset_from_origin__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
-sklib.__sklib__point_offset_from_origin__vector_2d_ref.restype = __sklib_point_2d
-sklib.__sklib__point_on_line__point_2d_ref__line_ref.argtypes = [ __sklib_point_2d, __sklib_line ]
+sklib.__sklib__point_offset_by__point_2d_ref__vector_2d_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__point_offset_by__point_2d_ref__vector_2d_ref.restype = _sklib_point_2d
+sklib.__sklib__point_offset_from_origin__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__point_offset_from_origin__vector_2d_ref.restype = _sklib_point_2d
+sklib.__sklib__point_on_line__point_2d_ref__line_ref.argtypes = [ _sklib_point_2d, _sklib_line ]
 sklib.__sklib__point_on_line__point_2d_ref__line_ref.restype = c_bool
-sklib.__sklib__point_on_line__point_2d_ref__line_ref__float.argtypes = [ __sklib_point_2d, __sklib_line, c_float ]
+sklib.__sklib__point_on_line__point_2d_ref__line_ref__float.argtypes = [ _sklib_point_2d, _sklib_line, c_float ]
 sklib.__sklib__point_on_line__point_2d_ref__line_ref__float.restype = c_bool
-sklib.__sklib__point_point_angle__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
+sklib.__sklib__point_point_angle__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__point_point_angle__point_2d_ref__point_2d_ref.restype = c_float
-sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
+sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.restype = c_float
-sklib.__sklib__point_to_string__point_2d_ref.argtypes = [ __sklib_point_2d ]
+sklib.__sklib__point_to_string__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__point_to_string__point_2d_ref.restype = _sklib_string
 sklib.__sklib__random_bitmap_point__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__random_bitmap_point__bitmap.restype = __sklib_point_2d
+sklib.__sklib__random_bitmap_point__bitmap.restype = _sklib_point_2d
 sklib.__sklib__random_screen_point.argtypes = [  ]
-sklib.__sklib__random_screen_point.restype = __sklib_point_2d
+sklib.__sklib__random_screen_point.restype = _sklib_point_2d
 sklib.__sklib__random_window_point__window.argtypes = [ c_void_p ]
-sklib.__sklib__random_window_point__window.restype = __sklib_point_2d
-sklib.__sklib__same_point__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
+sklib.__sklib__random_window_point__window.restype = _sklib_point_2d
+sklib.__sklib__same_point__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__same_point__point_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d, __sklib_point_2d, __sklib_point_2d ]
-sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.restype = __sklib_quad
-sklib.__sklib__quad_from__rectangle_ref.argtypes = [ __sklib_rectangle ]
-sklib.__sklib__quad_from__rectangle_ref.restype = __sklib_quad
-sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.argtypes = [ __sklib_rectangle, __sklib_matrix_2d ]
-sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.restype = __sklib_quad
+sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d, _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.restype = _sklib_quad
+sklib.__sklib__quad_from__rectangle_ref.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__quad_from__rectangle_ref.restype = _sklib_quad
+sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.argtypes = [ _sklib_rectangle, _sklib_matrix_2d ]
+sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.restype = _sklib_quad
 sklib.__sklib__quad_from__float__float__float__float__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__quad_from__float__float__float__float__float__float__float__float.restype = __sklib_quad
-sklib.__sklib__quads_intersect__quad_ref__quad_ref.argtypes = [ __sklib_quad, __sklib_quad ]
+sklib.__sklib__quad_from__float__float__float__float__float__float__float__float.restype = _sklib_quad
+sklib.__sklib__quads_intersect__quad_ref__quad_ref.argtypes = [ _sklib_quad, _sklib_quad ]
 sklib.__sklib__quads_intersect__quad_ref__quad_ref.restype = c_bool
-sklib.__sklib__set_quad_point__quad_ref__int__point_2d_ref.argtypes = [ POINTER(__sklib_quad), c_int, __sklib_point_2d ]
+sklib.__sklib__set_quad_point__quad_ref__int__point_2d_ref.argtypes = [ POINTER(_sklib_quad), c_int, _sklib_point_2d ]
 sklib.__sklib__set_quad_point__quad_ref__int__point_2d_ref.restype = None
-sklib.__sklib__triangles_from__quad_ref.argtypes = [ __sklib_quad ]
-sklib.__sklib__triangles_from__quad_ref.restype = __sklib_vector_triangle
+sklib.__sklib__triangles_from__quad_ref.argtypes = [ _sklib_quad ]
+sklib.__sklib__triangles_from__quad_ref.restype = _sklib_vector_triangle
 sklib.__sklib__rnd.argtypes = [  ]
 sklib.__sklib__rnd.restype = c_float
 sklib.__sklib__rnd__int.argtypes = [ c_int ]
 sklib.__sklib__rnd__int.restype = c_int
-sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ __sklib_color, __sklib_quad ]
+sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
 sklib.__sklib__draw_quad__color__quad_ref.restype = None
-sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.argtypes = [ __sklib_color, __sklib_quad, __sklib_drawing_options ]
+sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
 sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.restype = None
-sklib.__sklib__draw_rectangle__color__rectangle_ref.argtypes = [ __sklib_color, __sklib_rectangle ]
+sklib.__sklib__draw_rectangle__color__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__draw_rectangle__color__rectangle_ref.restype = None
-sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ __sklib_color, __sklib_rectangle, __sklib_drawing_options ]
+sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref.restype = None
-sklib.__sklib__draw_rectangle__color__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float ]
+sklib.__sklib__draw_rectangle__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
 sklib.__sklib__draw_rectangle__color__float__float__float__float.restype = None
-sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref.restype = None
-sklib.__sklib__fill_quad__color__quad_ref.argtypes = [ __sklib_color, __sklib_quad ]
+sklib.__sklib__fill_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
 sklib.__sklib__fill_quad__color__quad_ref.restype = None
-sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref.argtypes = [ __sklib_color, __sklib_quad, __sklib_drawing_options ]
+sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
 sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref.restype = None
-sklib.__sklib__fill_rectangle__color__rectangle_ref.argtypes = [ __sklib_color, __sklib_rectangle ]
+sklib.__sklib__fill_rectangle__color__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__fill_rectangle__color__rectangle_ref.restype = None
-sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ __sklib_color, __sklib_rectangle, __sklib_drawing_options ]
+sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref.restype = None
-sklib.__sklib__fill_rectangle__color__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float ]
+sklib.__sklib__fill_rectangle__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
 sklib.__sklib__fill_rectangle__color__float__float__float__float.restype = None
-sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref.restype = None
-sklib.__sklib__inset_rectangle__rectangle_ref__float.argtypes = [ __sklib_rectangle, c_float ]
-sklib.__sklib__inset_rectangle__rectangle_ref__float.restype = __sklib_rectangle
-sklib.__sklib__intersection__rectangle_ref__rectangle_ref.argtypes = [ __sklib_rectangle, __sklib_rectangle ]
-sklib.__sklib__intersection__rectangle_ref__rectangle_ref.restype = __sklib_rectangle
-sklib.__sklib__rectangle_around__triangle_ref.argtypes = [ __sklib_triangle ]
-sklib.__sklib__rectangle_around__triangle_ref.restype = __sklib_rectangle
-sklib.__sklib__rectangle_around__circle_ref.argtypes = [ __sklib_circle ]
-sklib.__sklib__rectangle_around__circle_ref.restype = __sklib_rectangle
-sklib.__sklib__rectangle_around__line_ref.argtypes = [ __sklib_line ]
-sklib.__sklib__rectangle_around__line_ref.restype = __sklib_rectangle
-sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__inset_rectangle__rectangle_ref__float.argtypes = [ _sklib_rectangle, c_float ]
+sklib.__sklib__inset_rectangle__rectangle_ref__float.restype = _sklib_rectangle
+sklib.__sklib__intersection__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
+sklib.__sklib__intersection__rectangle_ref__rectangle_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_around__triangle_ref.argtypes = [ _sklib_triangle ]
+sklib.__sklib__rectangle_around__triangle_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_around__circle_ref.argtypes = [ _sklib_circle ]
+sklib.__sklib__rectangle_around__circle_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_around__line_ref.argtypes = [ _sklib_line ]
+sklib.__sklib__rectangle_around__line_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_float
-sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ __sklib_rectangle ]
-sklib.__sklib__rectangle_center__rectangle_ref.restype = __sklib_point_2d
-sklib.__sklib__rectangle_from__point_2d__float__float.argtypes = [ __sklib_point_2d, c_float, c_float ]
-sklib.__sklib__rectangle_from__point_2d__float__float.restype = __sklib_rectangle
-sklib.__sklib__rectangle_from__point_2d__point_2d.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
-sklib.__sklib__rectangle_from__point_2d__point_2d.restype = __sklib_rectangle
+sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__rectangle_center__rectangle_ref.restype = _sklib_point_2d
+sklib.__sklib__rectangle_from__point_2d__float__float.argtypes = [ _sklib_point_2d, c_float, c_float ]
+sklib.__sklib__rectangle_from__point_2d__float__float.restype = _sklib_rectangle
+sklib.__sklib__rectangle_from__point_2d__point_2d.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__rectangle_from__point_2d__point_2d.restype = _sklib_rectangle
 sklib.__sklib__rectangle_from__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__rectangle_from__float__float__float__float.restype = __sklib_rectangle
-sklib.__sklib__rectangle_left__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__rectangle_from__float__float__float__float.restype = _sklib_rectangle
+sklib.__sklib__rectangle_left__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_left__rectangle_ref.restype = c_float
-sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.argtypes = [ __sklib_rectangle, __sklib_vector_2d ]
-sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.restype = __sklib_rectangle
-sklib.__sklib__rectangle_right__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_right__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_right__rectangle_ref.restype = c_float
-sklib.__sklib__rectangle_to_string__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__rectangle_to_string__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_to_string__rectangle_ref.restype = _sklib_string
-sklib.__sklib__rectangle_top__rectangle_ref.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__rectangle_top__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_top__rectangle_ref.restype = c_float
-sklib.__sklib__rectangles_intersect__rectangle_ref__rectangle_ref.argtypes = [ __sklib_rectangle, __sklib_rectangle ]
+sklib.__sklib__rectangles_intersect__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
 sklib.__sklib__rectangles_intersect__rectangle_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__deregister_free_notifier__free_notifier_ptr.argtypes = [ FreeNotifier ]
 sklib.__sklib__deregister_free_notifier__free_notifier_ptr.restype = None
@@ -2427,7 +2446,7 @@ sklib.__sklib__call_for_all_sprites__sprite_function_ptr.restype = None
 sklib.__sklib__call_on_sprite_event__sprite_event_handler_ptr.argtypes = [ SpriteEventHandler ]
 sklib.__sklib__call_on_sprite_event__sprite_event_handler_ptr.restype = None
 sklib.__sklib__center_point__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__center_point__sprite.restype = __sklib_point_2d
+sklib.__sklib__center_point__sprite.restype = _sklib_point_2d
 sklib.__sklib__create_sprite__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__create_sprite__bitmap.restype = c_void_p
 sklib.__sklib__create_sprite__bitmap__animation_script.argtypes = [ c_void_p, c_void_p ]
@@ -2446,7 +2465,7 @@ sklib.__sklib__current_sprite_pack.argtypes = [  ]
 sklib.__sklib__current_sprite_pack.restype = _sklib_string
 sklib.__sklib__draw_all_sprites.argtypes = [  ]
 sklib.__sklib__draw_all_sprites.restype = None
-sklib.__sklib__draw_sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, __sklib_vector_2d ]
+sklib.__sklib__draw_sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__draw_sprite__sprite__vector_2d_ref.restype = None
 sklib.__sklib__draw_sprite__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__draw_sprite__sprite.restype = None
@@ -2464,9 +2483,9 @@ sklib.__sklib__has_sprite_pack__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__has_sprite_pack__string_ref.restype = c_bool
 sklib.__sklib__move_sprite__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__move_sprite__sprite.restype = None
-sklib.__sklib__move_sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, __sklib_vector_2d ]
+sklib.__sklib__move_sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__move_sprite__sprite__vector_2d_ref.restype = None
-sklib.__sklib__move_sprite__sprite__vector_2d_ref__float.argtypes = [ c_void_p, __sklib_vector_2d, c_float ]
+sklib.__sklib__move_sprite__sprite__vector_2d_ref__float.argtypes = [ c_void_p, _sklib_vector_2d, c_float ]
 sklib.__sklib__move_sprite__sprite__vector_2d_ref__float.restype = None
 sklib.__sklib__move_sprite__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__move_sprite__sprite__float.restype = None
@@ -2476,21 +2495,21 @@ sklib.__sklib__select_sprite_pack__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__select_sprite_pack__string_ref.restype = None
 sklib.__sklib__sprite_add_layer__sprite__bitmap__string_ref.argtypes = [ c_void_p, c_void_p, _sklib_string ]
 sklib.__sklib__sprite_add_layer__sprite__bitmap__string_ref.restype = c_int
-sklib.__sklib__sprite_add_to_velocity__sprite__vector_2d_ref.argtypes = [ c_void_p, __sklib_vector_2d ]
+sklib.__sklib__sprite_add_to_velocity__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__sprite_add_to_velocity__sprite__vector_2d_ref.restype = None
 sklib.__sklib__sprite_add_value__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_add_value__sprite__string_ref.restype = None
 sklib.__sklib__sprite_add_value__sprite__string_ref__float.argtypes = [ c_void_p, _sklib_string, c_float ]
 sklib.__sklib__sprite_add_value__sprite__string_ref__float.restype = None
 sklib.__sklib__sprite_anchor_point__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_anchor_point__sprite.restype = __sklib_point_2d
+sklib.__sklib__sprite_anchor_point__sprite.restype = _sklib_point_2d
 sklib.__sklib__sprite_anchor_position__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_anchor_position__sprite.restype = __sklib_point_2d
+sklib.__sklib__sprite_anchor_position__sprite.restype = _sklib_point_2d
 sklib.__sklib__sprite_animation_has_ended__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_animation_has_ended__sprite.restype = c_bool
 sklib.__sklib__sprite_animation_name__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_animation_name__sprite.restype = _sklib_string
-sklib.__sklib__sprite_at__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__sprite_at__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_at__sprite__point_2d_ref.restype = c_bool
 sklib.__sklib__sprite_bring_layer_forward__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_bring_layer_forward__sprite__int.restype = None
@@ -2499,19 +2518,19 @@ sklib.__sklib__sprite_bring_layer_to_front__sprite__int.restype = None
 sklib.__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr.argtypes = [ c_void_p, SpriteEventHandler ]
 sklib.__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr.restype = None
 sklib.__sklib__sprite_circle__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_circle__sprite.restype = __sklib_circle
+sklib.__sklib__sprite_circle__sprite.restype = _sklib_circle
 sklib.__sklib__sprite_collision_bitmap__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_collision_bitmap__sprite.restype = c_void_p
 sklib.__sklib__sprite_collision_circle__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_collision_circle__sprite.restype = __sklib_circle
+sklib.__sklib__sprite_collision_circle__sprite.restype = _sklib_circle
 sklib.__sklib__sprite_collision_kind__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_collision_kind__sprite.restype = c_int
 sklib.__sklib__sprite_collision_rectangle__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_collision_rectangle__sprite.restype = __sklib_rectangle
+sklib.__sklib__sprite_collision_rectangle__sprite.restype = _sklib_rectangle
 sklib.__sklib__sprite_current_cell__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_current_cell__sprite.restype = c_int
 sklib.__sklib__sprite_current_cell_rectangle__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_current_cell_rectangle__sprite.restype = __sklib_rectangle
+sklib.__sklib__sprite_current_cell_rectangle__sprite.restype = _sklib_rectangle
 sklib.__sklib__sprite_dx__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_dx__sprite.restype = c_float
 sklib.__sklib__sprite_dy__sprite.argtypes = [ c_void_p ]
@@ -2531,9 +2550,9 @@ sklib.__sklib__sprite_layer__sprite__string_ref.restype = c_void_p
 sklib.__sklib__sprite_layer__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_layer__sprite__int.restype = c_void_p
 sklib.__sklib__sprite_layer_circle__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
-sklib.__sklib__sprite_layer_circle__sprite__string_ref.restype = __sklib_circle
+sklib.__sklib__sprite_layer_circle__sprite__string_ref.restype = _sklib_circle
 sklib.__sklib__sprite_layer_circle__sprite__int.argtypes = [ c_void_p, c_int ]
-sklib.__sklib__sprite_layer_circle__sprite__int.restype = __sklib_circle
+sklib.__sklib__sprite_layer_circle__sprite__int.restype = _sklib_circle
 sklib.__sklib__sprite_layer_count__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_layer_count__sprite.restype = c_int
 sklib.__sklib__sprite_layer_height__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
@@ -2545,24 +2564,24 @@ sklib.__sklib__sprite_layer_index__sprite__string_ref.restype = c_int
 sklib.__sklib__sprite_layer_name__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_layer_name__sprite__int.restype = _sklib_string
 sklib.__sklib__sprite_layer_offset__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
-sklib.__sklib__sprite_layer_offset__sprite__string_ref.restype = __sklib_vector_2d
+sklib.__sklib__sprite_layer_offset__sprite__string_ref.restype = _sklib_vector_2d
 sklib.__sklib__sprite_layer_offset__sprite__int.argtypes = [ c_void_p, c_int ]
-sklib.__sklib__sprite_layer_offset__sprite__int.restype = __sklib_vector_2d
+sklib.__sklib__sprite_layer_offset__sprite__int.restype = _sklib_vector_2d
 sklib.__sklib__sprite_layer_rectangle__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
-sklib.__sklib__sprite_layer_rectangle__sprite__string_ref.restype = __sklib_rectangle
+sklib.__sklib__sprite_layer_rectangle__sprite__string_ref.restype = _sklib_rectangle
 sklib.__sklib__sprite_layer_rectangle__sprite__int.argtypes = [ c_void_p, c_int ]
-sklib.__sklib__sprite_layer_rectangle__sprite__int.restype = __sklib_rectangle
+sklib.__sklib__sprite_layer_rectangle__sprite__int.restype = _sklib_rectangle
 sklib.__sklib__sprite_layer_width__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_layer_width__sprite__string_ref.restype = c_int
 sklib.__sklib__sprite_layer_width__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_layer_width__sprite__int.restype = c_int
 sklib.__sklib__sprite_location_matrix__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_location_matrix__sprite.restype = __sklib_matrix_2d
+sklib.__sklib__sprite_location_matrix__sprite.restype = _sklib_matrix_2d
 sklib.__sklib__sprite_mass__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_mass__sprite.restype = c_float
 sklib.__sklib__sprite_move_from_anchor_point__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_move_from_anchor_point__sprite.restype = c_bool
-sklib.__sklib__sprite_move_to__sprite__point_2d_ref__float.argtypes = [ c_void_p, __sklib_point_2d, c_float ]
+sklib.__sklib__sprite_move_to__sprite__point_2d_ref__float.argtypes = [ c_void_p, _sklib_point_2d, c_float ]
 sklib.__sklib__sprite_move_to__sprite__point_2d_ref__float.restype = None
 sklib.__sklib__sprite_name__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_name__sprite.restype = _sklib_string
@@ -2570,12 +2589,12 @@ sklib.__sklib__sprite_named__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__sprite_named__string_ref.restype = c_void_p
 sklib.__sklib__sprite_offscreen__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_offscreen__sprite.restype = c_bool
-sklib.__sklib__sprite_on_screen_at__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__sprite_on_screen_at__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_on_screen_at__sprite__point_2d_ref.restype = c_bool
 sklib.__sklib__sprite_on_screen_at__sprite__float__float.argtypes = [ c_void_p, c_float, c_float ]
 sklib.__sklib__sprite_on_screen_at__sprite__float__float.restype = c_bool
 sklib.__sklib__sprite_position__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_position__sprite.restype = __sklib_point_2d
+sklib.__sklib__sprite_position__sprite.restype = _sklib_point_2d
 sklib.__sklib__sprite_replay_animation__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_replay_animation__sprite.restype = None
 sklib.__sklib__sprite_replay_animation__sprite__bool.argtypes = [ c_void_p, c_bool ]
@@ -2585,12 +2604,12 @@ sklib.__sklib__sprite_rotation__sprite.restype = c_float
 sklib.__sklib__sprite_scale__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_scale__sprite.restype = c_float
 sklib.__sklib__sprite_screen_rectangle__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_screen_rectangle__sprite.restype = __sklib_rectangle
+sklib.__sklib__sprite_screen_rectangle__sprite.restype = _sklib_rectangle
 sklib.__sklib__sprite_send_layer_backward__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_send_layer_backward__sprite__int.restype = None
 sklib.__sklib__sprite_send_layer_to_back__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_send_layer_to_back__sprite__int.restype = None
-sklib.__sklib__sprite_set_anchor_point__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__sprite_set_anchor_point__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_set_anchor_point__sprite__point_2d_ref.restype = None
 sklib.__sklib__sprite_set_collision_bitmap__sprite__bitmap.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__sprite_set_collision_bitmap__sprite__bitmap.restype = None
@@ -2602,15 +2621,15 @@ sklib.__sklib__sprite_set_dy__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_dy__sprite__float.restype = None
 sklib.__sklib__sprite_set_heading__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_heading__sprite__float.restype = None
-sklib.__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_string, __sklib_vector_2d ]
+sklib.__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_string, _sklib_vector_2d ]
 sklib.__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref.restype = None
-sklib.__sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref.argtypes = [ c_void_p, c_int, __sklib_vector_2d ]
+sklib.__sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref.argtypes = [ c_void_p, c_int, _sklib_vector_2d ]
 sklib.__sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref.restype = None
 sklib.__sklib__sprite_set_mass__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_mass__sprite__float.restype = None
 sklib.__sklib__sprite_set_move_from_anchor_point__sprite__bool.argtypes = [ c_void_p, c_bool ]
 sklib.__sklib__sprite_set_move_from_anchor_point__sprite__bool.restype = None
-sklib.__sklib__sprite_set_position__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
+sklib.__sklib__sprite_set_position__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_set_position__sprite__point_2d_ref.restype = None
 sklib.__sklib__sprite_set_rotation__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_rotation__sprite__float.restype = None
@@ -2620,7 +2639,7 @@ sklib.__sklib__sprite_set_speed__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_speed__sprite__float.restype = None
 sklib.__sklib__sprite_set_value__sprite__string_ref__float.argtypes = [ c_void_p, _sklib_string, c_float ]
 sklib.__sklib__sprite_set_value__sprite__string_ref__float.restype = None
-sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref.argtypes = [ c_void_p, __sklib_vector_2d ]
+sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref.restype = None
 sklib.__sklib__sprite_set_x__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_x__sprite__float.restype = None
@@ -2651,7 +2670,7 @@ sklib.__sklib__sprite_value__sprite__string_ref.restype = c_float
 sklib.__sklib__sprite_value_count__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_value_count__sprite.restype = c_int
 sklib.__sklib__sprite_velocity__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_velocity__sprite.restype = __sklib_vector_2d
+sklib.__sklib__sprite_velocity__sprite.restype = _sklib_vector_2d
 sklib.__sklib__sprite_visible_index_of_layer__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_visible_index_of_layer__sprite__string_ref.restype = c_int
 sklib.__sklib__sprite_visible_index_of_layer__sprite__int.argtypes = [ c_void_p, c_int ]
@@ -2690,10 +2709,10 @@ sklib.__sklib__update_sprite_animation__sprite__float.argtypes = [ c_void_p, c_f
 sklib.__sklib__update_sprite_animation__sprite__float.restype = None
 sklib.__sklib__update_sprite_animation__sprite__float__bool.argtypes = [ c_void_p, c_float, c_bool ]
 sklib.__sklib__update_sprite_animation__sprite__float__bool.restype = None
-sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.argtypes = [ c_void_p, __sklib_point_2d ]
-sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.restype = __sklib_vector_2d
+sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_from_to__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
-sklib.__sklib__vector_from_to__sprite__sprite.restype = __sklib_vector_2d
+sklib.__sklib__vector_from_to__sprite__sprite.restype = _sklib_vector_2d
 sklib.__sklib__activate_advanced_terminal.argtypes = [  ]
 sklib.__sklib__activate_advanced_terminal.restype = None
 sklib.__sklib__advanced_terminal_active.argtypes = [  ]
@@ -2712,7 +2731,7 @@ sklib.__sklib__refresh_terminal.argtypes = [  ]
 sklib.__sklib__refresh_terminal.restype = None
 sklib.__sklib__set_terminal_bold__bool.argtypes = [ c_bool ]
 sklib.__sklib__set_terminal_bold__bool.restype = None
-sklib.__sklib__set_terminal_colors__color__color.argtypes = [ __sklib_color, __sklib_color ]
+sklib.__sklib__set_terminal_colors__color__color.argtypes = [ _sklib_color, _sklib_color ]
 sklib.__sklib__set_terminal_colors__color__color.restype = None
 sklib.__sklib__set_terminal_echo_input__bool.argtypes = [ c_bool ]
 sklib.__sklib__set_terminal_echo_input__bool.restype = None
@@ -2728,17 +2747,17 @@ sklib.__sklib__write_line.argtypes = [  ]
 sklib.__sklib__write_line.restype = None
 sklib.__sklib__write_line__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write_line__string.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float.argtypes = [ _sklib_string, __sklib_color, _sklib_string, c_int, c_float, c_float ]
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float ]
 sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, __sklib_color, _sklib_string, c_int, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__float__float.argtypes = [ _sklib_string, __sklib_color, c_float, c_float ]
+sklib.__sklib__draw_text__string_ref__color_ref__float__float.argtypes = [ _sklib_string, _sklib_color, c_float, c_float ]
 sklib.__sklib__draw_text__string_ref__color_ref__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref.argtypes = [ _sklib_string, __sklib_color, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float.argtypes = [ _sklib_string, __sklib_color, c_void_p, c_int, c_float, c_float ]
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float ]
 sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, __sklib_color, c_void_p, c_int, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref.restype = None
 sklib.__sklib__font_has_size__string_ref__int.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__font_has_size__string_ref__int.restype = c_bool
@@ -2776,7 +2795,7 @@ sklib.__sklib__text_width__string_ref__string_ref__int.argtypes = [ _sklib_strin
 sklib.__sklib__text_width__string_ref__string_ref__int.restype = c_int
 sklib.__sklib__text_width__string_ref__font__int.argtypes = [ _sklib_string, c_void_p, c_int ]
 sklib.__sklib__text_width__string_ref__font__int.restype = c_int
-sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.argtypes = [ __sklib_color, c_void_p, c_int, __sklib_drawing_options ]
+sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.argtypes = [ _sklib_color, c_void_p, c_int, _sklib_drawing_options ]
 sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.restype = None
 sklib.__sklib__end_reading_text.argtypes = [  ]
 sklib.__sklib__end_reading_text.restype = None
@@ -2786,13 +2805,13 @@ sklib.__sklib__reading_text.argtypes = [  ]
 sklib.__sklib__reading_text.restype = c_bool
 sklib.__sklib__reading_text__window.argtypes = [ c_void_p ]
 sklib.__sklib__reading_text__window.restype = c_bool
-sklib.__sklib__start_reading_text__rectangle.argtypes = [ __sklib_rectangle ]
+sklib.__sklib__start_reading_text__rectangle.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__start_reading_text__rectangle.restype = None
-sklib.__sklib__start_reading_text__rectangle__string.argtypes = [ __sklib_rectangle, _sklib_string ]
+sklib.__sklib__start_reading_text__rectangle__string.argtypes = [ _sklib_rectangle, _sklib_string ]
 sklib.__sklib__start_reading_text__rectangle__string.restype = None
-sklib.__sklib__start_reading_text__window__rectangle.argtypes = [ c_void_p, __sklib_rectangle ]
+sklib.__sklib__start_reading_text__window__rectangle.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__start_reading_text__window__rectangle.restype = None
-sklib.__sklib__start_reading_text__window__rectangle__string.argtypes = [ c_void_p, __sklib_rectangle, _sklib_string ]
+sklib.__sklib__start_reading_text__window__rectangle__string.argtypes = [ c_void_p, _sklib_rectangle, _sklib_string ]
 sklib.__sklib__start_reading_text__window__rectangle__string.restype = None
 sklib.__sklib__text_entry_cancelled.argtypes = [  ]
 sklib.__sklib__text_entry_cancelled.restype = c_bool
@@ -2844,33 +2863,33 @@ sklib.__sklib__timer_ticks__string.argtypes = [ _sklib_string ]
 sklib.__sklib__timer_ticks__string.restype = c_uint
 sklib.__sklib__timer_ticks__timer.argtypes = [ c_void_p ]
 sklib.__sklib__timer_ticks__timer.restype = c_uint
-sklib.__sklib__draw_triangle__color__triangle_ref.argtypes = [ __sklib_color, __sklib_triangle ]
+sklib.__sklib__draw_triangle__color__triangle_ref.argtypes = [ _sklib_color, _sklib_triangle ]
 sklib.__sklib__draw_triangle__color__triangle_ref.restype = None
-sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options.argtypes = [ __sklib_color, __sklib_triangle, __sklib_drawing_options ]
+sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_triangle, _sklib_drawing_options ]
 sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options.restype = None
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
+sklib.__sklib__draw_triangle__color__float__float__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
 sklib.__sklib__draw_triangle__color__float__float__float__float__float__float.restype = None
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options.restype = None
-sklib.__sklib__fill_triangle__color__triangle_ref.argtypes = [ __sklib_color, __sklib_triangle ]
+sklib.__sklib__fill_triangle__color__triangle_ref.argtypes = [ _sklib_color, _sklib_triangle ]
 sklib.__sklib__fill_triangle__color__triangle_ref.restype = None
-sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options.argtypes = [ __sklib_color, __sklib_triangle, __sklib_drawing_options ]
+sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_triangle, _sklib_drawing_options ]
 sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options.restype = None
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
+sklib.__sklib__fill_triangle__color__float__float__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
 sklib.__sklib__fill_triangle__color__float__float__float__float__float__float.restype = None
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ __sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, __sklib_drawing_options ]
+sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options.restype = None
-sklib.__sklib__triangle_barycenter__triangle_ref.argtypes = [ __sklib_triangle ]
-sklib.__sklib__triangle_barycenter__triangle_ref.restype = __sklib_point_2d
-sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d, __sklib_point_2d ]
-sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.restype = __sklib_triangle
+sklib.__sklib__triangle_barycenter__triangle_ref.argtypes = [ _sklib_triangle ]
+sklib.__sklib__triangle_barycenter__triangle_ref.restype = _sklib_point_2d
+sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.restype = _sklib_triangle
 sklib.__sklib__triangle_from__float__float__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__triangle_from__float__float__float__float__float__float.restype = __sklib_triangle
-sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.argtypes = [ __sklib_triangle, __sklib_rectangle ]
+sklib.__sklib__triangle_from__float__float__float__float__float__float.restype = _sklib_triangle
+sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.argtypes = [ _sklib_triangle, _sklib_rectangle ]
 sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__triangle_to_string__triangle_ref.argtypes = [ __sklib_triangle ]
+sklib.__sklib__triangle_to_string__triangle_ref.argtypes = [ _sklib_triangle ]
 sklib.__sklib__triangle_to_string__triangle_ref.restype = _sklib_string
-sklib.__sklib__triangles_intersect__triangle_ref__triangle_ref.argtypes = [ __sklib_triangle, __sklib_triangle ]
+sklib.__sklib__triangles_intersect__triangle_ref__triangle_ref.argtypes = [ _sklib_triangle, _sklib_triangle ]
 sklib.__sklib__triangles_intersect__triangle_ref__triangle_ref.restype = c_bool
 sklib.__sklib__current_ticks.argtypes = [  ]
 sklib.__sklib__current_ticks.restype = c_uint
@@ -2878,63 +2897,63 @@ sklib.__sklib__delay__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__delay__unsigned_int.restype = None
 sklib.__sklib__file_as_string__string__resource_kind.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__file_as_string__string__resource_kind.restype = _sklib_string
-sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
+sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
 sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.restype = c_float
-sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
+sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
 sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.restype = c_float
-sklib.__sklib__is_zero_vector__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__is_zero_vector__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__is_zero_vector__vector_2d_ref.restype = c_bool
-sklib.__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_vector_2d, __sklib_line, POINTER(__sklib_point_2d) ]
+sklib.__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_line, POINTER(_sklib_point_2d) ]
 sklib.__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__unit_vector__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
-sklib.__sklib__unit_vector__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
-sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_angle__vector_2d.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__unit_vector__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__unit_vector__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
+sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_angle__vector_2d.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_angle__vector_2d.restype = c_float
 sklib.__sklib__vector_from_angle__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__vector_from_angle__float__float.restype = __sklib_vector_2d
-sklib.__sklib__vector_from_line__line_ref.argtypes = [ __sklib_line ]
-sklib.__sklib__vector_from_line__line_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref.argtypes = [ __sklib_point_2d, __sklib_rectangle ]
-sklib.__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_in_rect__vector_2d_ref__rectangle_ref.argtypes = [ __sklib_vector_2d, __sklib_rectangle ]
+sklib.__sklib__vector_from_angle__float__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_from_line__line_ref.argtypes = [ _sklib_line ]
+sklib.__sklib__vector_from_line__line_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref.argtypes = [ _sklib_point_2d, _sklib_rectangle ]
+sklib.__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_in_rect__vector_2d_ref__rectangle_ref.argtypes = [ _sklib_vector_2d, _sklib_rectangle ]
 sklib.__sklib__vector_in_rect__vector_2d_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__vector_invert__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
-sklib.__sklib__vector_invert__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_limit__vector_2d_ref__float.argtypes = [ __sklib_vector_2d, c_float ]
-sklib.__sklib__vector_limit__vector_2d_ref__float.restype = __sklib_vector_2d
-sklib.__sklib__vector_magnitude__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__vector_invert__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__vector_invert__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_limit__vector_2d_ref__float.argtypes = [ _sklib_vector_2d, c_float ]
+sklib.__sklib__vector_limit__vector_2d_ref__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_magnitude__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_magnitude__vector_2d_ref.restype = c_float
-sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.restype = c_float
-sklib.__sklib__vector_multiply__vector_2d_ref__float.argtypes = [ __sklib_vector_2d, c_float ]
-sklib.__sklib__vector_multiply__vector_2d_ref__float.restype = __sklib_vector_2d
-sklib.__sklib__vector_normal__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
-sklib.__sklib__vector_normal__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref.argtypes = [ __sklib_circle, __sklib_circle, __sklib_vector_2d ]
-sklib.__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref.argtypes = [ __sklib_point_2d, __sklib_circle, __sklib_vector_2d ]
-sklib.__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref.argtypes = [ __sklib_circle, __sklib_rectangle, __sklib_vector_2d ]
-sklib.__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref.argtypes = [ __sklib_point_2d, __sklib_rectangle, __sklib_vector_2d ]
-sklib.__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref.argtypes = [ __sklib_rectangle, __sklib_rectangle, __sklib_vector_2d ]
-sklib.__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_point_to_point__point_2d_ref__point_2d_ref.argtypes = [ __sklib_point_2d, __sklib_point_2d ]
-sklib.__sklib__vector_point_to_point__point_2d_ref__point_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
-sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.restype = __sklib_vector_2d
-sklib.__sklib__vector_to__point_2d_ref.argtypes = [ __sklib_point_2d ]
-sklib.__sklib__vector_to__point_2d_ref.restype = __sklib_vector_2d
+sklib.__sklib__vector_multiply__vector_2d_ref__float.argtypes = [ _sklib_vector_2d, c_float ]
+sklib.__sklib__vector_multiply__vector_2d_ref__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_normal__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__vector_normal__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref.argtypes = [ _sklib_circle, _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref.argtypes = [ _sklib_point_2d, _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_circle, _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_point_2d, _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_point_to_point__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__vector_point_to_point__point_2d_ref__point_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
+sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
+sklib.__sklib__vector_to__point_2d_ref.argtypes = [ _sklib_point_2d ]
+sklib.__sklib__vector_to__point_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_to__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__vector_to__float__float.restype = __sklib_vector_2d
-sklib.__sklib__vector_to_string__vector_2d_ref.argtypes = [ __sklib_vector_2d ]
+sklib.__sklib__vector_to__float__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_to_string__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_to_string__vector_2d_ref.restype = _sklib_string
-sklib.__sklib__vectors_equal__vector_2d_ref__vector_2d.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
+sklib.__sklib__vectors_equal__vector_2d_ref__vector_2d.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
 sklib.__sklib__vectors_equal__vector_2d_ref__vector_2d.restype = c_bool
-sklib.__sklib__vectors_not_equal__vector_2d_ref__vector_2d.argtypes = [ __sklib_vector_2d, __sklib_vector_2d ]
+sklib.__sklib__vectors_not_equal__vector_2d_ref__vector_2d.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
 sklib.__sklib__vectors_not_equal__vector_2d_ref__vector_2d.restype = c_bool
 sklib.__sklib__download_bitmap__string_ref__string_ref__unsigned_short.argtypes = [ _sklib_string, _sklib_string, c_ushort ]
 sklib.__sklib__download_bitmap__string_ref__string_ref__unsigned_short.restype = c_void_p
@@ -2948,7 +2967,7 @@ sklib.__sklib__free_response__http_response.argtypes = [ c_void_p ]
 sklib.__sklib__free_response__http_response.restype = None
 sklib.__sklib__http_get__string_ref__unsigned_short.argtypes = [ _sklib_string, c_ushort ]
 sklib.__sklib__http_get__string_ref__unsigned_short.restype = c_void_p
-sklib.__sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref.argtypes = [ _sklib_string, c_ushort, _sklib_string, __sklib_vector_string ]
+sklib.__sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref.argtypes = [ _sklib_string, c_ushort, _sklib_string, _sklib_vector_string ]
 sklib.__sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref.restype = c_void_p
 sklib.__sklib__http_post__string_ref__unsigned_short__string.argtypes = [ _sklib_string, c_ushort, _sklib_string ]
 sklib.__sklib__http_post__string_ref__unsigned_short__string.restype = c_void_p
@@ -2981,7 +3000,7 @@ sklib.__sklib__request_method__http_request.restype = c_int
 sklib.__sklib__request_uri__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri__http_request.restype = _sklib_string
 sklib.__sklib__request_uri_stubs__http_request.argtypes = [ c_void_p ]
-sklib.__sklib__request_uri_stubs__http_request.restype = __sklib_vector_string
+sklib.__sklib__request_uri_stubs__http_request.restype = _sklib_vector_string
 sklib.__sklib__send_html_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__send_html_file_response__http_request__string_ref.restype = None
 sklib.__sklib__send_response__http_request.argtypes = [ c_void_p ]
@@ -2997,14 +3016,14 @@ sklib.__sklib__send_response__http_request__http_status_code__string_ref__string
 sklib.__sklib__send_response__http_request__json.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__send_response__http_request__json.restype = None
 sklib.__sklib__split_uri_stubs__string_ref.argtypes = [ _sklib_string ]
-sklib.__sklib__split_uri_stubs__string_ref.restype = __sklib_vector_string
+sklib.__sklib__split_uri_stubs__string_ref.restype = _sklib_vector_string
 sklib.__sklib__start_web_server.argtypes = [  ]
 sklib.__sklib__start_web_server.restype = c_void_p
 sklib.__sklib__start_web_server__unsigned_short.argtypes = [ c_ushort ]
 sklib.__sklib__start_web_server__unsigned_short.restype = c_void_p
 sklib.__sklib__stop_web_server__web_server.argtypes = [ c_void_p ]
 sklib.__sklib__stop_web_server__web_server.restype = None
-sklib.__sklib__clear_window__window__color.argtypes = [ c_void_p, __sklib_color ]
+sklib.__sklib__clear_window__window__color.argtypes = [ c_void_p, _sklib_color ]
 sklib.__sklib__clear_window__window__color.restype = None
 sklib.__sklib__close_all_windows.argtypes = [  ]
 sklib.__sklib__close_all_windows.restype = None
@@ -3061,11 +3080,11 @@ sklib.__sklib__window_is_fullscreen__window.restype = c_bool
 sklib.__sklib__window_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__window_named__string.restype = c_void_p
 sklib.__sklib__window_position.argtypes = [  ]
-sklib.__sklib__window_position.restype = __sklib_point_2d
+sklib.__sklib__window_position.restype = _sklib_point_2d
 sklib.__sklib__window_position__string_ref.argtypes = [ _sklib_string ]
-sklib.__sklib__window_position__string_ref.restype = __sklib_point_2d
+sklib.__sklib__window_position__string_ref.restype = _sklib_point_2d
 sklib.__sklib__window_position__window.argtypes = [ c_void_p ]
-sklib.__sklib__window_position__window.restype = __sklib_point_2d
+sklib.__sklib__window_position__window.restype = _sklib_point_2d
 sklib.__sklib__window_set_icon__window__bitmap.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__window_set_icon__window__bitmap.restype = None
 sklib.__sklib__window_toggle_border.argtypes = [  ]

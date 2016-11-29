@@ -505,7 +505,7 @@ namespace splashkit_lib
         con->part_msg_data.clear();
     }
 
-    void _enqueue_udp_message(vector<sk_message*> &messages, const char* msg, int size, unsigned int host, int port)
+    void _enqueue_udp_message(vector<sk_message*> &messages, const char* msg, unsigned long size, unsigned int host, int port)
     {
         message m = new sk_message;
         m->id = MESSAGE_PTR;
@@ -525,7 +525,8 @@ namespace splashkit_lib
         if (sk_connection_has_data(&con) > 0)
         {
             char data[UDP_PACKET_SIZE];
-            unsigned int times, size, host;
+            unsigned long size;
+            unsigned int times, host;
             unsigned short port;
             times = size = host = port = 0;
 

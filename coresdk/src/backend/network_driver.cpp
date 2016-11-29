@@ -126,7 +126,7 @@ namespace splashkit_lib
         return SDLNet_UDP_Send((UDPsocket)con->_socket, -1, &packet);
     }
 
-    void sk_read_udp_message(sk_network_connection *con, unsigned int *host, unsigned short *port, char *buffer, unsigned int *size)
+    void sk_read_udp_message(sk_network_connection *con, unsigned int *host, unsigned short *port, char *buffer, unsigned long *size)
     {
         //    printf("Reading up to %d bytes\n", *size);
 

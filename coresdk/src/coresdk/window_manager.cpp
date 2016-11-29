@@ -24,9 +24,9 @@ namespace splashkit_lib
     window _current_window = nullptr;
     map<string, window> _windows;
 
-    unsigned long number_open_windows()
+    unsigned int number_open_windows()
     {
-        return _windows.size();
+        return static_cast<unsigned int>(_windows.size());
     }
 
     window open_window(string caption, int width, int height)

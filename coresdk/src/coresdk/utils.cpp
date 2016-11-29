@@ -20,7 +20,7 @@ using namespace std;
 namespace splashkit_lib
 {
     // from window manager
-    unsigned long number_open_windows();
+    unsigned int number_open_windows();
 
     void delay(unsigned int milliseconds)
     {
