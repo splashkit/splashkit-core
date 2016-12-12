@@ -73,6 +73,8 @@ namespace splashkit_lib
      *
      * @attribute class       json
      * @attribute constructor true
+     *
+     * @attribute suffix  from_string
      */
     json create_json(string json_string);
 
@@ -166,6 +168,8 @@ namespace splashkit_lib
      * @attribute class json
      * @attribute method add_number
      * @attribute self j
+     *
+     * @attribute suffix  float
      */
     void json_set_number(json j, string key, float value);
 
@@ -179,6 +183,8 @@ namespace splashkit_lib
      * @attribute class json
      * @attribute method add_number
      * @attribute self j
+     *
+     * @attribute suffix  double
      */
     void json_set_number(json j, string key, double value);
 
@@ -192,6 +198,8 @@ namespace splashkit_lib
      * @attribute class json
      * @attribute method add_number
      * @attribute self j
+     *
+     * @attribute suffix  integer
      */
     void json_set_number(json j, string key, int value);
 
@@ -304,7 +312,7 @@ namespace splashkit_lib
      * @returns Returns the `integer` value stored at the `string` key.
      *
      * @attribute class json
-     * @attribute method read_number
+     * @attribute method read_integer
      * @attribute self j
      */
     int json_read_number_as_int(json j, string key);
@@ -318,7 +326,7 @@ namespace splashkit_lib
      * @returns Returns the `double` value stored at the `string` key.
      *
      * @attribute class json
-     * @attribute method read_number
+     * @attribute method read_double
      * @attribute self j
      */
     double json_read_number_as_double(json j, string key);
@@ -371,14 +379,14 @@ namespace splashkit_lib
      *
      * @param j The `json` object from which data will be returned for the given key.
      * @param key The `string` key used to find data in the `json` object.
-     * @param out The array which will be filled with the data stored for `string` key.
+     * @param out_result The array which will be filled with the data stored for `string` key.
      *
      * @attribute class json
      * @attribute method read_array
      * @attribute suffix of_double
      * @attribute self j
      */
-    void json_read_array(json j, string key, vector<double> &out);
+    void json_read_array(json j, string key, vector<double> &out_result);
 
     /**
      * Reads an array of `json` object values from the `json` object for
@@ -386,14 +394,14 @@ namespace splashkit_lib
      *
      * @param j The `json` object from which data will be returned for the given key.
      * @param key The `string` key used to find data in the `json` object.
-     * @param out The array which will be filled with the data stored for `string` key.
+     * @param out_result The array which will be filled with the data stored for `string` key.
      *
      * @attribute class json
      * @attribute method read_array
      * @attribute suffix of_json
      * @attribute self j
      */
-    void json_read_array(json j, string key, vector<json> &out);
+    void json_read_array(json j, string key, vector<json> &out_result);
 
     /**
      * Reads an array of `string` values from the `json` object for
@@ -401,14 +409,14 @@ namespace splashkit_lib
      *
      * @param j The `json` object from which data will be returned for the given key.
      * @param key The `string` key used to find data in the `json` object.
-     * @param out The array which will be filled with the data stored for `string` key.
+     * @param out_result The array which will be filled with the data stored for `string` key.
      *
      * @attribute class json
      * @attribute method read_array
      * @attribute suffix of_string
      * @attribute self j
      */
-    void json_read_array(json j, string key, vector<string> &out);
+    void json_read_array(json j, string key, vector<string> &out_result);
 
     /**
      * Reads an array of `bool` values from the `json` object for
@@ -416,14 +424,14 @@ namespace splashkit_lib
      *
      * @param j The `json` object from which data will be returned for the given key.
      * @param key The `string` key used to find data in the `json` object.
-     * @param out The array which will be filled with the data stored for `string` key.
+     * @param out_result The array which will be filled with the data stored for `string` key.
      *
      * @attribute class json
      * @attribute method read_array
      * @attribute suffix of_bool
      * @attribute self j
      */
-    void json_read_array(json j, string key, vector<bool> &out);
+    void json_read_array(json j, string key, vector<bool> &out_result);
 
     /**
      * Checks if the `json` object contains the given `string` key.

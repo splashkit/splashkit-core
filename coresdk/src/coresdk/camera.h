@@ -101,6 +101,8 @@ namespace splashkit_lib
      *
      * @param pt    The point to convert - this should be in world coordinates.
      * @returns     A point that represents pt in screen coordinates.
+     *
+     * @attribute suffix    point
      */
     point_2d to_screen(const point_2d &pt);
 
@@ -109,6 +111,8 @@ namespace splashkit_lib
      *
      * @param rect  The rectangle to convert - this should be in world coordinates.
      * @returns     A rectangle that represents rect in screen coordinates.
+     *
+     * @attribute suffix    rectangle
      */
     rectangle to_screen(const rectangle &rect);
 
@@ -197,6 +201,8 @@ namespace splashkit_lib
      * This will be the new top left corner of the screen.
      *
      * @param pt The new camera location
+     *
+     * @attribute suffix    point
      */
     void move_camera_to(const point_2d &pt);
 
@@ -215,6 +221,8 @@ namespace splashkit_lib
      * a sprite the camera will "track" (be locked on to) the sprite as it moves.
      *
      * @param offset The amount to move the camera.
+     *
+     * @attribute suffix    vector
      */
     void move_camera_by(const vector_2d &offset);
 
@@ -237,6 +245,8 @@ namespace splashkit_lib
      * @param s        The sprite to track.
      * @param offset   The amount to offset the camera, allowing you to position
      *                 the sprite away from the center of the screen.
+     *
+     * @attribute suffix    vector
      */
     void center_camera_on(sprite s, const vector_2d &offset);
 

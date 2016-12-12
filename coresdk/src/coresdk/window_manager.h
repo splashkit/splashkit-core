@@ -65,16 +65,17 @@ namespace splashkit_lib
 
     /**
      * Closes and frees the current window.
+     *
+     * @attribute suffix  current
      */
     void close_window();
 
     /**
      * Closes and frees the graphics window identified by `name`.
      *
-     * @attribute class         window
-     * @attribute destructor    true
-     *
      * @param name The name (caption) of the window to close
+     *
+     * @attribute suffix  named
      */
     void close_window(const string &name);
 
@@ -142,6 +143,8 @@ namespace splashkit_lib
      * Set the current window to the window with the supplied caption.
      *
      * @param name The caption of the new current window.
+     *
+     * @attribute suffix  named
      */
     void set_current_window(const string &name);
 
@@ -167,6 +170,8 @@ namespace splashkit_lib
      *
      * @returns Returns `true` if there is a music file with the given `name`
      *                  has has been loaded.
+     *
+     * @attribute suffix  named
      */
     bool window_close_requested(const string &name);
 
@@ -208,6 +213,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window
      * @return      The width of the window
+     *
+     * @attribute suffix  named
      */
     int window_width(const string &name);
 
@@ -215,6 +222,8 @@ namespace splashkit_lib
      * Returns the width of the current window.
      *
      * @return      The width of the current window
+     *
+     * @attribute suffix  current
      */
     int window_width();
 
@@ -237,6 +246,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window
      * @return      The height of the window
+     *
+     * @attribute suffix  named
      */
     int window_height(const string &name);
 
@@ -244,6 +255,8 @@ namespace splashkit_lib
      * Returns the height of the current window.
      *
      * @return      The height of the current window
+     *
+     * @attribute suffix  current
      */
     int window_height();
 
@@ -269,6 +282,8 @@ namespace splashkit_lib
      *
      * @param width  Its new width
      * @param height Its new height
+     *
+     * @attribute suffix  current
      */
     void resize_window(int width, int height);
 
@@ -287,6 +302,8 @@ namespace splashkit_lib
      * @param name The name of the window to move
      * @param x    The new x location
      * @param y    The new y location
+     *
+     * @attribute suffix  named
      */
     void move_window(const string &name, int x, int y);
 
@@ -295,6 +312,8 @@ namespace splashkit_lib
      *
      * @param x    The new x location
      * @param y    The new y location
+     *
+     * @attribute suffix  current
      */
     void move_window(int x, int y);
 
@@ -311,6 +330,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window to check
      * @return     True when the window is fullscreen
+     *
+     * @attribute suffix  named
      */
     bool window_is_fullscreen(const string &name);
 
@@ -318,6 +339,8 @@ namespace splashkit_lib
      * Is the current window currently fullscreen?
      *
      * @return     True when the window is fullscreen
+     *
+     * @attribute suffix  current
      */
     bool window_is_fullscreen();
 
@@ -332,11 +355,15 @@ namespace splashkit_lib
      * Toggle the fullscreen property of the window
      *
      * @param name The name of the window to change
+     *
+     * @attribute suffix  named
      */
     void window_toggle_fullscreen(const string &name);
 
     /**
      * Toggle the fullscreen property of the current window
+     *
+     * @attribute suffix  current
      */
     void window_toggle_fullscreen();
 
@@ -353,6 +380,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window
      * @return     True if the window has a border
+     *
+     * @attribute suffix  named
      */
     bool window_has_border(const string &name);
 
@@ -360,6 +389,8 @@ namespace splashkit_lib
      * Indicate if the current window has a border.
      *
      * @return     True if the window has a border
+     *
+     * @attribute suffix  current
      */
     bool window_has_border();
 
@@ -374,11 +405,15 @@ namespace splashkit_lib
      * Toggle the window border.
      *
      * @param name The name of the window to change
+     *
+     * @attribute suffix  named
      */
     void window_toggle_border(const string &name);
 
     /**
      * Toggle the current window border.
+     *
+     * @attribute suffix  current
      */
     void window_toggle_border();
 
@@ -395,6 +430,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window
      * @return     Its location on the displays
+     *
+     * @attribute suffix  named
      */
     int window_x(const string &name);
 
@@ -402,6 +439,8 @@ namespace splashkit_lib
      * The x location of the current window on the displays.
      *
      * @return     Its location on the displays
+     *
+     * @attribute suffix  current
      */
     int window_x();
 
@@ -418,6 +457,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window
      * @return     Its location on the displays
+     *
+     * @attribute suffix  named
      */
     int window_y(const string &name);
 
@@ -425,6 +466,8 @@ namespace splashkit_lib
      * The y location of the current window on the displays.
      *
      * @return     Its location on the displays
+     *
+     * @attribute suffix  current
      */
     int window_y();
 
@@ -441,6 +484,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the window.
      * @return     Its location on the displays
+     *
+     * @attribute suffix  named
      */
     point_2d window_position(const string &name);
 
@@ -448,6 +493,8 @@ namespace splashkit_lib
      * The location of the current window.
      *
      * @return     Its location on the displays
+     *
+     * @attribute suffix  current
      */
     point_2d window_position();
 

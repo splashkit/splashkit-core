@@ -40,6 +40,8 @@ namespace splashkit_lib
      * @param y2  The distance from the top of the window/bitmap to the second
      *            point
      * @param opts The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void draw_line(color clr, float x1, float y1, float x2, float y2, const drawing_options &opts);
 
@@ -49,6 +51,8 @@ namespace splashkit_lib
      * @param clr       The color of the line
      * @param from_pt   The start of the line
      * @param to_pt     The end of the line
+     *
+     * @attribute suffix  point_to_point
      */
     void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt);
 
@@ -59,6 +63,8 @@ namespace splashkit_lib
      * @param from_pt   The start of the line
      * @param to_pt     The end of the line
      * @param opts The drawing options
+     *
+     * @attribute suffix  point_to_point_with_options
      */
     void draw_line(color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
 
@@ -67,6 +73,8 @@ namespace splashkit_lib
      *
      * @param clr The color of the line
      * @param l   The line's details
+     *
+     * @attribute suffix  record
      */
     void draw_line(color clr, const line &l);
 
@@ -76,6 +84,8 @@ namespace splashkit_lib
      * @param clr The color of the line
      * @param l   The line's details
      * @param opts The drawing options
+     *
+     * @attribute suffix  record_with_options
      */
     void draw_line(color clr, const line &l, drawing_options opts);
 }

@@ -123,6 +123,8 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute constructor true
+     *
+     * @attribute suffix  with_bitmap_named
      */
     sprite create_sprite(const string &bitmap_name);
 
@@ -138,6 +140,8 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute constructor true
+     *
+     * @attribute suffix  with_bitmap_and_animation_named
      */
     sprite create_sprite(const string &bitmap_name, const string &animation_name);
 
@@ -157,6 +161,8 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute constructor true
+     *
+     * @attribute suffix  with_animation
      */
     sprite create_sprite(bitmap layer, animation_script ani);
 
@@ -172,6 +178,8 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute constructor true
+     *
+     * @attribute suffix  named
      */
     sprite create_sprite(const string &name, bitmap layer);
 
@@ -188,6 +196,8 @@ namespace splashkit_lib
      *
      * @attribute class sprite
      * @attribute constructor true
+     *
+     * @attribute suffix  named_with_animation
      */
     sprite create_sprite(const string &name, bitmap layer, animation_script ani);
 
@@ -295,7 +305,9 @@ namespace splashkit_lib
      * @returns     The bitmap at the layer with the indicated name
      *
      * @attribute class sprite
-     * @attribute method layer_named
+     * @attribute method layer
+     *
+     * @attribute suffix  named
      */
     bitmap sprite_layer(sprite s, const string &name);
 
@@ -308,7 +320,9 @@ namespace splashkit_lib
      * @returns   The bitmap of the sprite at that layer
      *
      * @attribute class sprite
-     * @attribute method layer_at_idx
+     * @attribute method layer
+     *
+     * @attribute suffix  at_index
      */
     bitmap sprite_layer(sprite s, int idx);
 
@@ -584,7 +598,9 @@ namespace splashkit_lib
      * @returns     A bounding rectangle that surrounds the sprite's layer
      *
      * @attribute class sprite
-     * @attribute method rectangle_for_layer_named
+     * @attribute method layer_rectangle
+     *
+     * @attribute suffix  named
      */
     rectangle sprite_layer_rectangle(sprite s, const string &name);
 
@@ -596,7 +612,9 @@ namespace splashkit_lib
      * @returns     A bounding rectangle that surrounds the sprite's layer
      *
      * @attribute class sprite
-     * @attribute method rectangle_for_layer
+     * @attribute method layer_rectangle
+     *
+     * @attribute suffix  at_index
      */
     rectangle sprite_layer_rectangle(sprite s, int idx);
 
@@ -619,7 +637,9 @@ namespace splashkit_lib
      * @returns     A bounding circle that surrounds the sprite's layer
      *
      * @attribute class sprite
-     * @attribute method circle_for_layer_named
+     * @attribute method layer_circle
+     *
+     * @attribute suffix  named
      */
     circle sprite_layer_circle(sprite s, const string &name);
 
@@ -631,7 +651,9 @@ namespace splashkit_lib
      * @returns     A bounding circle that surrounds the sprite's layer
      *
      * @attribute class sprite
-     * @attribute method circle_for_layer
+     * @attribute method layer_circle
+     *
+     * @attribute suffix  at_index
      */
     circle sprite_layer_circle(sprite s, int idx);
 
@@ -1628,7 +1650,7 @@ namespace splashkit_lib
      * @returns   The angle of the sprite rotation.
      *
      * @attribute class sprite
-     * @attribute getter Rotation
+     * @attribute getter rotation
      */
     float sprite_rotation(sprite s);
 
@@ -1782,6 +1804,8 @@ namespace splashkit_lib
      * percentage value to indicate the percentage to update.
      *
      * @param pct The percentage of the update to apply.
+     *
+     * @attribute suffix  percent
      */
     void update_all_sprites(float pct);
 
@@ -1797,6 +1821,8 @@ namespace splashkit_lib
      *
      * @param fn  The sprite function to call on all sprites.
      * @param val The value passed to the function for each sprite.
+     *
+     * @attribute suffix  with_value
      */
     void call_for_all_sprites(sprite_float_function *fn, float val);
 

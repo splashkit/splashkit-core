@@ -28,6 +28,8 @@ namespace splashkit_lib
      *
      * @param  dest The bitmap to draw to.
      * @return      Drawing options that will draw onto a bitmap.
+     *
+     * @attribute suffix  bitmap
      */
     drawing_options option_draw_to(bitmap dest);
 
@@ -38,6 +40,8 @@ namespace splashkit_lib
      * @param  dest The bitmap to draw to.
      * @param  opts Values for the other options.
      * @return      Drawing options that will draw onto a bitmap.
+     *
+     * @attribute suffix  bitmap_with_options
      */
     drawing_options option_draw_to(bitmap dest, drawing_options opts);
 
@@ -46,6 +50,8 @@ namespace splashkit_lib
      *
      * @param  dest The window to draw onto.
      * @return      A drawing option that will draw to the indicated window.
+     *
+     * @attribute suffix  window
      */
     drawing_options option_draw_to(window dest);
 
@@ -56,6 +62,8 @@ namespace splashkit_lib
      * @param  dest The window to draw onto.
      * @param  opts Values for the other options.
      * @return      A drawing option that will draw to the indicated window.
+     *
+     * @attribute suffix  window_with_options
      */
     drawing_options option_draw_to(window dest, drawing_options opts);
 
@@ -76,6 +84,8 @@ namespace splashkit_lib
      * @param  scale_y The amount to scale bitmaps aalong the y axis
      * @param  opts    Values for the other options.
      * @return         Options that will scale bitmaps along the x,y axis.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_scale_bmp(float scale_x, float scale_y, drawing_options opts);
 
@@ -88,6 +98,8 @@ namespace splashkit_lib
      * @param  anchor_x The x location of the anchor within the bitmap
      * @param  anchor_y The y location of the anchor within the bitmap
      * @return          Options that will rotate bitmaps around an anchor point.
+     *
+     * @attribute suffix  with_anchor
      */
     drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y);
 
@@ -101,6 +113,8 @@ namespace splashkit_lib
      * @param  anchor_y The y location of the anchor within the bitmap
      * @param  opts     Values for the other options.
      * @return          Options that will rotate bitmaps around an anchor point.
+     *
+     * @attribute suffix  with_anchor_and_options
      */
     drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y, drawing_options opts);
 
@@ -110,6 +124,8 @@ namespace splashkit_lib
      * @param  angle    The angle to rotate bitmaps.
      * @param  opts     Values for the other options.
      * @return          Options that will rotate bitmaps around its center point.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_rotate_bmp(float angle, drawing_options opts);
 
@@ -133,6 +149,8 @@ namespace splashkit_lib
      *
      * @param  opts     Values for the other options.
      * @return Options that will flip bitmaps horizontally.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_flip_x(drawing_options opts);
 
@@ -148,6 +166,8 @@ namespace splashkit_lib
      *
      * @param  opts     Values for the other options.
      * @return Options that will flip bitmaps vertically.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_flip_y(drawing_options opts);
 
@@ -165,6 +185,8 @@ namespace splashkit_lib
      * @param  opts     Values for the other options.
      * @return Options that flip bitmap drawing both vertically and
      *         horizontally.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_flip_xy(drawing_options opts);
 
@@ -188,6 +210,8 @@ namespace splashkit_lib
      * @param  h The height of the part within the bitmap.
      * @param  opts     Values for the other options.
      * @return   Options to draw parts of a bitmap.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_part_bmp(float x, float y, float w, float h, drawing_options opts);
 
@@ -196,6 +220,8 @@ namespace splashkit_lib
      *
      * @param  part The rectangle of the part of the bitmap to draw.
      * @return   Options to draw parts of a bitmap.
+     *
+     * @attribute suffix  from_rectangle
      */
     drawing_options option_part_bmp(rectangle part);
 
@@ -205,6 +231,8 @@ namespace splashkit_lib
      * @param  part The rectangle of the part of the bitmap to draw.
      * @param  opts     Values for the other options.
      * @return   Options to draw parts of a bitmap.
+     *
+     * @attribute suffix  from_rectangle_with_options
      */
     drawing_options option_part_bmp(rectangle part, drawing_options opts);
 
@@ -222,6 +250,8 @@ namespace splashkit_lib
      *
      * @param  opts     Values for the other options.
      * @return Options that will draw with camera effects.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_to_world(drawing_options opts);
 
@@ -239,6 +269,8 @@ namespace splashkit_lib
      *
      * @param  opts     Values for the other options.
      * @return Options that will draw to the surface without camera effects.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_to_screen(drawing_options opts);
 
@@ -256,6 +288,8 @@ namespace splashkit_lib
      * @param  width The new line width for line drawing.
      * @param  opts     Values for the other options.
      * @return       Options to draw lines with the indicated width.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_line_width(int width, drawing_options opts);
 
@@ -278,6 +312,8 @@ namespace splashkit_lib
      * @param  opts The existing options to extend.
      * @return      A drawing option that will draw the current cell from the
      *              animation.
+     *
+     * @attribute suffix  with_options
      */
     drawing_options option_with_animation(animation anim, drawing_options opts);
 

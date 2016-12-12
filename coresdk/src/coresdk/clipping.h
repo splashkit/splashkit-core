@@ -33,6 +33,8 @@ namespace splashkit_lib
      *
      * @param bmp The bitmap to add clipping to
      * @param r   The new clipping rectangle
+     *
+     * @attribute suffix    for_bitmap
      */
     void push_clip(bitmap bmp, const rectangle &r);
 
@@ -45,6 +47,8 @@ namespace splashkit_lib
      *
      * @param wnd The window to add clipping to
      * @param r   The new clipping rectangle
+     *
+     * @attribute suffix    for_window
      */
     void push_clip(window wnd, const rectangle &r);
 
@@ -59,6 +63,8 @@ namespace splashkit_lib
      * of the clipping rectangles pushed to the window.
      *
      * @param wnd The window to clear the clipping rectangle
+     *
+     * @attribute suffix    for_window
      */
     void reset_clip(window wnd);
 
@@ -67,6 +73,8 @@ namespace splashkit_lib
      * of the clipping rectangles pushed to the bitmap.
      *
      * @param bmp The bitmap to clear the clipping rectangle
+     *
+     * @attribute suffix    for_bitmap
      */
     void reset_clip(bitmap bmp);
 
@@ -77,6 +85,8 @@ namespace splashkit_lib
      *
      * @param bmp The bitmap to change
      * @param r   The new clipping rectangle
+     *
+     * @attribute suffix    for_bitmap
      */
     void set_clip(bitmap bmp, const rectangle &r);
 
@@ -87,6 +97,8 @@ namespace splashkit_lib
      *
      * @param wnd The window to change
      * @param r   The new clipping rectangle
+     *
+     * @attribute suffix    for_window
      */
     void set_clip(window wnd, const rectangle &r);
 
@@ -110,6 +122,8 @@ namespace splashkit_lib
      * will then apply the previously pushed clipping rectangle.
      *
      * @param bmp The bitmap to change
+     *
+     * @attribute suffix    for_bitmap
      */
     void pop_clip(bitmap bmp);
 
@@ -118,6 +132,8 @@ namespace splashkit_lib
      * will then apply the previously pushed clipping rectangle.
      *
      * @param wnd The window to change
+     *
+     * @attribute suffix    for_window
      */
     void pop_clip(window wnd);
 
@@ -126,6 +142,8 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to get the clipping rectangle from
      * @return     The current clipping rectangle for the bitmap
+     *
+     * @attribute suffix    for_bitmap
      */
     rectangle current_clip(bitmap bmp);
 
@@ -134,6 +152,8 @@ namespace splashkit_lib
      *
      * @param  wnd The window to get the clipping rectangle from
      * @return     The current clipping rectangle for the window
+     *
+     * @attribute suffix    for_window
      */
     rectangle current_clip(window wnd);
 

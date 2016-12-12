@@ -53,8 +53,9 @@ namespace splashkit_lib
      *
      * @param name          The name of the `animation_script` to be freed.
      *
-     * @attribute class     animation_script
-     * @attribute method    free
+     * @attribute suffix    with_name
+     *
+     * @attribute static  animation_script
      */
 
     void free_animation_script(const string &name);
@@ -62,7 +63,7 @@ namespace splashkit_lib
     /**
      * Frees all loaded `animation_script`s.
      *
-     * @attribute class     animation
+     * @attribute static    animation_script
      * @attribute method    free_all
      */
     void free_all_animation_scripts();
@@ -77,6 +78,8 @@ namespace splashkit_lib
      * @param name          Indicates the name used to locate the animation_script to load
      *
      * @returns Returns the newly loaded `animation_script`.
+     *
+     * @attribute static  animation_script
      */
     animation_script animation_script_named(const string &name);
 
@@ -87,6 +90,8 @@ namespace splashkit_lib
      *
      * @param name          The name of the animation script to look for.
      * @returns Returns the `bool` that denotes if the animation has the `animation_script`
+     *
+     * @attribute static  animation_script
      */
     bool has_animation_script(const string &name);
 
@@ -95,6 +100,10 @@ namespace splashkit_lib
      *
      * @param script        The `animation_script` to return the name of.
      * @returns Returns a `string` that is the name of the animation script passed to the method.
+     *
+     * @attribute class  animation_script
+     * @attribute getter name
+     * @attribute self   script
      */
     string animation_script_name(animation_script script);
 
@@ -105,6 +114,9 @@ namespace splashkit_lib
      * @param script        The `animation_script` to check.
      * @param name          The name of the `animation_script` to look for.
      * @returns Returns a `bool` that denotes whether the `animation_script` has been loaded.
+     *
+     * @attribute class  animation_script
+     * @attribute self   script
      */
     bool has_animation_named(animation_script script, const string &name);
 
@@ -134,7 +146,9 @@ namespace splashkit_lib
      *
      * @attribute class     animation_script
      * @attribute self      script
-     * @attribute constructor true
+     * @attribute method    create_animation
+     *
+     * @attribute suffix    with_sound
      */
     animation create_animation(animation_script script, const string &name, bool with_sound);
 
@@ -148,8 +162,7 @@ namespace splashkit_lib
      * @param with_sound    Denotes whether the `animation` should play audio.
      * @returns Returns the newly created `animation`
      *
-     * @attribute class     animation_script
-     * @attribute constructor true
+     * @attribute suffix    from_script_named_with_sound
      */
     animation create_animation(const string &script_name, const string &name, bool with_sound);
 
@@ -176,6 +189,8 @@ namespace splashkit_lib
      *
      * @attribute class     animation_script
      * @attribute constructor true
+     *
+     * @attribute suffix    from_script_named
      */
     animation create_animation(const string &script_name, const string &name);
 
@@ -188,6 +203,8 @@ namespace splashkit_lib
      * @param idx           The index of the `animation` to create.
      * @param with_sound    Denotes whether the `animation` should play audio.
      * @returns Returns the newly created `animation_script`.
+     *
+     * @attribute suffix    from_index_with_sound
      */
     animation create_animation(animation_script script, int idx, bool with_sound);
 
@@ -231,6 +248,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    with_sound
      */
     void assign_animation(animation anim, animation_script script, const string &name, bool with_sound);
 
@@ -244,6 +263,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    script_named
      */
     void assign_animation(animation anim, const string &script_name, const string &name);
 
@@ -260,6 +281,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    script_named_with_sound
      */
     void assign_animation(animation anim, const string &script_name, const string &name, bool with_sound);
 
@@ -273,6 +296,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    index
      */
     void assign_animation(animation anim, animation_script script, int idx);
 
@@ -289,6 +314,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    index_with_sound
      */
     void assign_animation(animation anim, animation_script script, int idx, bool with_sound);
 
@@ -409,6 +436,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    restart
      * @attribute self      anim
+     *
+     * @attribute suffix    with_sound
      */
     void restart_animation(animation anim, bool with_sound);
 
@@ -436,6 +465,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    update
      * @attribute self      anim
+     *
+     * @attribute suffix    percent
      */
     void update_animation(animation anim, float pct);
 
@@ -447,6 +478,8 @@ namespace splashkit_lib
      * @param anim          The `animation` to update.
      * @param pct           The amount that the frame time will be incremented
      * @param with_sound    Denotes whether the `animation` should play audio.
+     *
+     * @attribute suffix    percent_with_sound
      */
     void update_animation(animation anim, float pct, bool with_sound);
 }

@@ -31,6 +31,8 @@ namespace splashkit_lib
      * @param y   The distance from the top edge of the window/bitmap to the
      *            pixel
      * @param opts The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void draw_pixel(color clr, float x, float y, drawing_options opts);
 
@@ -39,6 +41,8 @@ namespace splashkit_lib
      *
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
+     *
+     * @attribute suffix  at_point
      */
     void draw_pixel(color clr, const point_2d &pt);
 
@@ -48,6 +52,8 @@ namespace splashkit_lib
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
      * @param opts The drawing options
+     *
+     * @attribute suffix  at_point_with_options
      */
     void draw_pixel(color clr, const point_2d &pt, drawing_options opts);
 
@@ -60,6 +66,8 @@ namespace splashkit_lib
      *             to read
      * @param  y   The distance from the top of the bitmap to the pixel to read
      * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  from_bitmap
      */
     color get_pixel(bitmap bmp, float x, float y);
 
@@ -70,6 +78,8 @@ namespace splashkit_lib
      * @param  bmp The bitmap to get the color from
      * @param  pt  The position of the pixel
      * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  from_bitmap_at_point
      */
     color get_pixel(bitmap bmp, const point_2d &pt);
 
@@ -82,6 +92,8 @@ namespace splashkit_lib
      *             to read
      * @param  y   The distance from the top of the window to the pixel to read
      * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  from_window
      */
     color get_pixel(window wnd, float x, float y);
 
@@ -92,6 +104,8 @@ namespace splashkit_lib
      * @param  wnd The window to get the color from
      * @param  pt  The position of the pixel
      * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  from_window_at_point
      */
     color get_pixel(window wnd, const point_2d &pt);
 
@@ -112,6 +126,8 @@ namespace splashkit_lib
      *
      * @param  pt  The position of the pixel
      * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  at_point
      */
     color get_pixel(const point_2d &pt);
 }

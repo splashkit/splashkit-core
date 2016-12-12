@@ -119,6 +119,8 @@ namespace splashkit_lib
      * Moves the mouse cursor to the specified screen location.
      *
      * @param point   The new location of the mouse
+     *
+     * @attribute suffix  to_point
      */
     void move_mouse(point_2d point);
 
@@ -133,6 +135,8 @@ namespace splashkit_lib
      * in the window or not) based on the show parameter.
      *
      * @param show  When true the mouse is shown, when false it is hidden
+     *
+     * @attribute suffix  with_boolean
      */
     void show_mouse(bool show);
 

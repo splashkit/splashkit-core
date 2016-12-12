@@ -71,6 +71,8 @@ namespace splashkit_lib
      * @attribute method      start
      *
      * @returns Returns a new `web_sever` instance.
+     *
+     * @attribute suffix  with_default_port
      */
     web_server start_web_server();
 
@@ -120,6 +122,8 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     *
+     * @attribute suffix  with_status_and_content_type
      */
     void send_response(http_request r, http_status_code code, const string &message, const string &content_type);
 
@@ -132,6 +136,8 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     *
+     * @attribute suffix  with_status
      */
     void send_response(http_request r, http_status_code code, const string &message);
 
@@ -152,6 +158,8 @@ namespace splashkit_lib
      * @param j The json to be sent.
      *
      * @attribute class http_response
+     *
+     * @attribute suffix  json
      */
     void send_response(http_request r, json j);
 
@@ -163,6 +171,8 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     *
+     * @attribute suffix  json_with_status
      */
     void send_response(http_request r, http_status_code code);
 
@@ -173,6 +183,8 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     *
+     * @attribute suffix  empty
      */
     void send_response(http_request r);
 

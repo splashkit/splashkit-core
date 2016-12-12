@@ -21,6 +21,8 @@ namespace splashkit_lib
      * @param  start The start of the line
      * @param  end_pt   The end of the line
      * @return       A line from the start to the end point
+     *
+     * @attribute suffix  point_to_point
      */
     line line_from(const point_2d &start, const point_2d &end_pt);
 
@@ -41,6 +43,8 @@ namespace splashkit_lib
      * @param  start  The start of the line
      * @param  offset The offset to the end of the line
      * @return        A line from the start to end point
+     *
+     * @attribute suffix  start_with_offset
      */
     line line_from(const point_2d &start, const vector_2d &offset);
 
@@ -66,6 +70,8 @@ namespace splashkit_lib
      *
      * @param  v The offset from the origin for the end of the line
      * @return   A line from the origin to the end point
+     *
+     * @attribute suffix  vector
      */
     line line_from(const vector_2d &v);
 
@@ -74,6 +80,8 @@ namespace splashkit_lib
      *
      * @param t The triangle
      * @return  The lines from the triangle
+     *
+     * @attribute suffix  triangle
      */
     vector<line> lines_from(const triangle &t);
 
@@ -82,6 +90,8 @@ namespace splashkit_lib
      *
      * @param rect  The rectangle to get the lines from
      * @return      An array containing 4 lines
+     *
+     * @attribute suffix  rectangle
      */
     vector<line> lines_from(const rectangle &rect);
 

@@ -22,6 +22,8 @@ namespace splashkit_lib
      * @param y      The y location of the circle
      * @param radius The radius of the circle
      * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
      */
     void draw_circle(color clr, float x, float y, float radius, drawing_options opts);
 
@@ -43,6 +45,8 @@ namespace splashkit_lib
      * @param clr    The color of the circle
      * @param c      The circle being drawn
      * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    record_with_options
      */
     void draw_circle(color clr, const circle &c, drawing_options opts);
 
@@ -52,6 +56,8 @@ namespace splashkit_lib
      *
      * @param clr    The color of the circle
      * @param c      The circle being drawn
+     *
+     * @attribute suffix    record
      */
     void draw_circle(color clr, const circle &c);
 
@@ -65,6 +71,8 @@ namespace splashkit_lib
      * @param y      The y location of the circle
      * @param radius The radius of the circle
      * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
      */
     void fill_circle(color clr, float x, float y, float radius, drawing_options opts);
 
@@ -86,6 +94,8 @@ namespace splashkit_lib
      * @param clr    The color of the circle
      * @param c      The circle being drawn
      * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    record_with_options
      */
     void fill_circle(color clr, const circle &c, drawing_options opts);
 
@@ -95,6 +105,8 @@ namespace splashkit_lib
      *
      * @param clr    The color of the circle
      * @param c      The circle being drawn
+     *
+     * @attribute suffix    record
      */
     void fill_circle(color clr, const circle &c);
 }

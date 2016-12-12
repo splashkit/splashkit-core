@@ -53,6 +53,8 @@ namespace splashkit_lib
      * @param  body     The body of the message to post
      * @param  headers  The headers of the request
      * @return      The response from the server
+     *
+     * @attribute suffix  with_headers
      */
     http_response http_post(const string &url, unsigned short port, const string &body, const vector<string> &headers);
 

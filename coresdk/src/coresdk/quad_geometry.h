@@ -40,6 +40,8 @@ namespace splashkit_lib
      *
      * @param  rect The rectangle to convert to a quad
      * @return      A quad at the same location as the rectangle
+     *
+     * @attribute suffix  rectangle
      */
     quad quad_from(const rectangle &rect);
 
@@ -50,6 +52,8 @@ namespace splashkit_lib
      * @param rect          The rectangle to transform to a quad.
      * @param transform     A transform to apply to the resulting quad.
      * @returns             A quad that represents the rectangle after the transformation.
+     *
+     * @attribute suffix  rectangle_with_transformation
      */
     quad quad_from(const rectangle &rect, const matrix_2d &transform);
 
@@ -61,6 +65,8 @@ namespace splashkit_lib
      * @param  p3 The bottom left of the quad
      * @param  p4 The bottom right of the quad
      * @return    A quad from the passed in points
+     *
+     * @attribute suffix  points
      */
     quad quad_from(const point_2d &p1,
                    const point_2d &p2,

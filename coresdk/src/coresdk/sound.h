@@ -134,6 +134,8 @@ namespace splashkit_lib
      *
      * @attribute class     sound_effect
      * @attribute getter    is_playing
+     *
+     * @attribute suffix  named
      */
     bool sound_effect_playing(const string &name);
 
@@ -190,6 +192,8 @@ namespace splashkit_lib
      * @attribute class   sound_effect
      * @attribute method  play
      * @attribute self    effect
+     *
+     * @attribute suffix  with_times
      */
     void play_sound_effect(sound_effect effect, int times);
 
@@ -203,6 +207,8 @@ namespace splashkit_lib
      * @attribute class   sound_effect
      * @attribute method  play
      * @attribute self    effect
+     *
+     * @attribute suffix  with_volume
      */
     void play_sound_effect(sound_effect effect, float volume);
 
@@ -216,6 +222,8 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
+     *
+     * @attribute suffix  named_with_times_and_volume
      */
     void play_sound_effect(const string &name, int times, float volume);
 
@@ -227,6 +235,8 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
+     *
+     * @attribute suffix  named_with_times
      */
     void play_sound_effect(const string &name, int times);
 
@@ -237,6 +247,8 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
+     *
+     * @attribute suffix  named
      */
     void play_sound_effect(const string &name);
 
@@ -248,6 +260,8 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  play
+     *
+     * @attribute suffix  named_with_volume
      */
     void play_sound_effect(const string &name, float volume);
 
@@ -261,7 +275,7 @@ namespace splashkit_lib
      * @attribute self    effect
      */
     void stop_sound_effect(sound_effect effect);
-    
+
     /**
      * Stops the `sound_effect` that matches the name, if it is currently playing.
      *
@@ -269,9 +283,11 @@ namespace splashkit_lib
      *
      * @attribute class   sound_effect
      * @attribute method  stop
+     *
+     * @attribute suffix  named
      */
     void stop_sound_effect(const string &name);
-    
+
     /**
      * Fades out the `sound_effect` over the specified milliseconds.
      *
@@ -283,7 +299,7 @@ namespace splashkit_lib
      * @attribute self    effect
      */
     void fade_sound_effect_out(sound_effect effect, int ms);
-    
+
     /**
      * Fades out all `sound_effect`s over the specified milliseconds.
      *

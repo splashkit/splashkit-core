@@ -135,6 +135,8 @@ namespace splashkit_lib
      * @param  l  The line to check
      * @param  proximity The sensitivity to allow close approximities
      * @return    True if the point is on the line
+     *
+     * @attribute suffix  with_proximity
      */
     bool point_on_line(const point_2d &pt, const line &l, float proximity);
 

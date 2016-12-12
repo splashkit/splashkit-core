@@ -24,6 +24,8 @@ namespace splashkit_lib
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
      * @param opts    The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void draw_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
 
@@ -46,6 +48,8 @@ namespace splashkit_lib
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
      * @param opts    The drawing options
+     *
+     * @attribute suffix  record_with_options
      */
     void draw_rectangle(color clr, const rectangle &rect, const drawing_options &opts);
 
@@ -54,6 +58,8 @@ namespace splashkit_lib
      *
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
+     *
+     * @attribute suffix  record
      */
     void draw_rectangle(color clr, const rectangle &rect);
 
@@ -68,6 +74,8 @@ namespace splashkit_lib
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
      * @param opts    The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void fill_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
 
@@ -90,6 +98,8 @@ namespace splashkit_lib
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
      * @param opts    The drawing options
+     *
+     * @attribute suffix  record_with_options
      */
     void fill_rectangle(color clr, const rectangle &rect, const drawing_options &opts);
 
@@ -98,6 +108,8 @@ namespace splashkit_lib
      *
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
+     *
+     * @attribute suffix  record
      */
     void fill_rectangle(color clr, const rectangle &rect);
 
@@ -115,6 +127,8 @@ namespace splashkit_lib
      * @param clr   The color for the quad
      * @param q     The details of the quad
      * @param opts  The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void draw_quad(color clr, const quad &q, const drawing_options &opts);
 
@@ -132,6 +146,8 @@ namespace splashkit_lib
      * @param clr The color for the quad
      * @param q   The details of the quad
      * @param opts  The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void fill_quad(color clr, const quad &q, const drawing_options &opts);
 

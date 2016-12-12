@@ -30,6 +30,8 @@ namespace splashkit_lib
      * @param y3   The distance from the top of the bitmap/window to the
      *             third point of the triangle
      * @param opts The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
 
@@ -58,6 +60,8 @@ namespace splashkit_lib
      * @param clr  The color for the triangle
      * @param tri  The triangles details
      * @param opts The drawing options
+     *
+     * @attribute suffix  record_with_options
      */
     void draw_triangle(color clr, const triangle &tri, drawing_options opts);
 
@@ -66,6 +70,8 @@ namespace splashkit_lib
      *
      * @param clr  The color for the triangle
      * @param tri  The triangles details
+     *
+     * @attribute suffix  record
      */
     void draw_triangle(color clr, const triangle &tri);
 
@@ -86,6 +92,8 @@ namespace splashkit_lib
      * @param y3   The distance from the top of the bitmap/window to the
      *             third point of the triangle
      * @param opts The drawing options
+     *
+     * @attribute suffix  with_options
      */
     void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
 
@@ -114,6 +122,8 @@ namespace splashkit_lib
      * @param clr  The color for the triangle
      * @param tri  The triangles details
      * @param opts The drawing options
+     *
+     * @attribute suffix  record_with_options
      */
     void fill_triangle(color clr, const triangle &tri, drawing_options opts);
 
@@ -122,6 +132,8 @@ namespace splashkit_lib
      *
      * @param clr  The color for the triangle
      * @param tri  The triangles details
+     *
+     * @attribute suffix  record
      */
     void fill_triangle(color clr, const triangle &tri);
 }

@@ -43,6 +43,8 @@ namespace splashkit_lib
      * second.
      *
      * @param target_fps The targeted frames per second to refresh the screen at.
+     *
+     * @attribute suffix  with_target_fps
      */
     void refresh_screen(unsigned int target_fps);
 
@@ -61,6 +63,8 @@ namespace splashkit_lib
 
     /**
      * Clears the current screen to color white.
+     *
+     * @attribute suffix  to_white
      */
     void clear_screen();
 
@@ -96,6 +100,8 @@ namespace splashkit_lib
      * @param basename The base of the filename. If there is a file of this name
      *                 already, then the name will be changed to generate a
      *                 unique filename.
+     *
+     * @attribute suffix  of_window
      */
     void take_screenshot(window wind, const string &basename);
 

@@ -92,6 +92,8 @@ namespace splashkit_lib
      * @attribute class   music
      * @attribute method  play
      * @attribute self    data
+     *
+     * @attribute suffix  with_times_and_volume
      */
     void play_music(music data, int times, float volume);
 
@@ -115,6 +117,8 @@ namespace splashkit_lib
      * @attribute class   music
      * @attribute method  play
      * @attribute self    data
+     *
+     * @attribute suffix  with_times
      */
     void play_music(music data, int times);
 
@@ -123,6 +127,8 @@ namespace splashkit_lib
      *
      * @param name      The name of the `music` to play.
      * @param times     Controls the number of times the music is played.
+     *
+     * @attribute suffix  named_with_times
      */
     void play_music(const string &name, int times);
 
@@ -130,6 +136,8 @@ namespace splashkit_lib
      * Plays the music file that matches the name once at full volume.
      *
      * @param name  The name of the `music` to play.
+     *
+     * @attribute suffix  named
      */
     void play_music(const string &name);
 
@@ -144,6 +152,8 @@ namespace splashkit_lib
      * @attribute class   music
      * @attribute method  fade_in
      * @attribute self    data
+     *
+     * @attribute suffix  with_times
      */
     void fade_music_in(music data, int times, int ms);
 
@@ -169,6 +179,8 @@ namespace splashkit_lib
      *
      * @attribute class   music
      * @attribute method  fade_in
+     *
+     * @attribute suffix  named_with_times
      */
     void fade_music_in(const string &name, int times, int ms);
 
@@ -180,6 +192,8 @@ namespace splashkit_lib
      *
      * @attribute class   music
      * @attribute method  fade_in
+     *
+     * @attribute suffix  named
      */
     void fade_music_in(const string &name, int ms);
 

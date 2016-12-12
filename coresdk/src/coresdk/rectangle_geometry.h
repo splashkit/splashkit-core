@@ -32,6 +32,8 @@ namespace splashkit_lib
      * @param  pt1 The first point
      * @param  pt2 The second point
      * @return     A rectangle enclosing the two points.
+     *
+     * @attribute suffix  points
      */
     rectangle rectangle_from(const point_2d pt1, const point_2d pt2);
 
@@ -42,6 +44,8 @@ namespace splashkit_lib
      * @param  width  Its width
      * @param  height Its height
      * @return        A rectangle with the specified dimensions and location
+     *
+     * @attribute suffix  point_and_size
      */
     rectangle rectangle_from(const point_2d pt, const float width, const float height);
 
@@ -68,6 +72,8 @@ namespace splashkit_lib
      *
      * @param  l The line
      * @return   A rectangle that will surround the line
+     *
+     * @attribute suffix  line
      */
     rectangle rectangle_around(const line &l);
 
@@ -76,6 +82,8 @@ namespace splashkit_lib
      *
      * @param  c The circle
      * @return   A rectangle that will surround the circle
+     *
+     * @attribute suffix  circle
      */
     rectangle rectangle_around(const circle &c);
 
@@ -84,6 +92,8 @@ namespace splashkit_lib
      *
      * @param  t The triangle
      * @return   A rectangle that will surround the triangle
+     *
+     * @attribute suffix  triangle
      */
     rectangle rectangle_around(const triangle &t);
 

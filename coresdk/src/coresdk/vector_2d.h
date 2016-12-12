@@ -39,6 +39,8 @@ namespace splashkit_lib
      *
       * @param  p1 The point
       * @return    A vector from the origin to `p1`
+      *
+      * @attribute suffix  point
       */
     vector_2d vector_to(const point_2d &p1);
 

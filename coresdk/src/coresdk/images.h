@@ -175,6 +175,8 @@ namespace splashkit_lib
      *
      * @param name  The name of the bitmap
      * @param clr   The new color for the surface of the bitmap
+     *
+     * @attribute suffix  named
      */
     void clear_bitmap(string name, color clr);
 
@@ -191,6 +193,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the bitmap
      * @return      The width of the bitmap
+     *
+     * @attribute suffix  of_bitmap_named
      */
     int bitmap_width(string name);
 
@@ -209,6 +213,8 @@ namespace splashkit_lib
      *
      * @param  name The name of the bitmap to get the details from.
      * @returns      The height of the bitmap.
+     *
+     * @attribute suffix  of_bitmap_named
      */
     int bitmap_height(string name);
 
@@ -272,6 +278,8 @@ namespace splashkit_lib
      * @param src   The bitmap to get the details from
      * @param pt    The point details for the rectangle.
      * @returns     A rectangle at pt, with width and height from the bitmap's cell details.
+     *
+     * @attribute suffix  at_point
      */
     rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
 
@@ -291,6 +299,8 @@ namespace splashkit_lib
      * @param pt    The point indicating the location of the bitmap.
      * @param scale The scaling factor for the bitmap drawing.
      * @returns     A circle that will encompass the bitmap cell.
+     *
+     * @attribute suffix  at_point_with_scale
      */
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
 
@@ -301,6 +311,8 @@ namespace splashkit_lib
      * @param bmp   The bitmap to get the details from.
      * @param pt    The point indicating the location of the bitmap.
      * @returns     A circle that will encompass the bitmap cell.
+     *
+     * @attribute suffix  at_point
      */
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
 
@@ -361,6 +373,8 @@ namespace splashkit_lib
      *
      * @return     A rectangle with the same size as the bitmap, at the
      *             indicated location.
+     *
+     * @attribute suffix  at_location
      */
     rectangle bitmap_rectangle(bitmap bmp, float x, float y);
 
@@ -405,6 +419,8 @@ namespace splashkit_lib
      * @param y     The y coordinate within the bitmap to check
      * @returns     True if the pixel at that point in the bitmap's cell is
      *              drawn.
+     *
+     * @attribute suffix  in_cell
      */
     bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
 
@@ -414,6 +430,8 @@ namespace splashkit_lib
      * @param bmp   The bitmap to check.
      * @param pt    The point within the bitmap to check.
      * @returns     True if the pixel at that point in the bitmap is drawn.
+     *
+     * @attribute suffix  pt
      */
     bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt);
 
@@ -425,6 +443,8 @@ namespace splashkit_lib
      * @param pt    The point within the bitmap to check.
      * @returns     True if the pixel at that point in the bitmap's cell is
      *              drawn.
+     *
+     * @attribute suffix  in_cell_pt
      */
     bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt);
 }

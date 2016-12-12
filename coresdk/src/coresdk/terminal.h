@@ -103,6 +103,8 @@ namespace splashkit_lib
 
     /**
      * Move to the next line/row of the terminal.
+     *
+     * @attribute suffix  empty
      */
     void write_line();
 
@@ -110,6 +112,8 @@ namespace splashkit_lib
      * Write the passed in text, then move to the next line/row of the terminal.
      *
      * @param line The text to write
+     *
+     * @attribute suffix  with_options
      */
     void write_line(string line);
 

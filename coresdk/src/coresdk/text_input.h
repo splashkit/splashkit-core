@@ -25,6 +25,8 @@ namespace splashkit_lib
      *
      * @param wind The window where the text will be entered
      * @param rect The area where the text will be entered.
+     *
+     * @attribute suffix  in_window
      */
     void start_reading_text(window wind, rectangle rect);
 
@@ -34,6 +36,8 @@ namespace splashkit_lib
      *
      * @param rect The area where the text will be entered.
      * @param initial_text The initial text, which may be edited by the user.
+     *
+     * @attribute suffix  with_initial_text
      */
     void start_reading_text(rectangle rect, string initial_text);
 
@@ -44,6 +48,8 @@ namespace splashkit_lib
      * @param wind The window where the text will be entered
      * @param rect The area where the text will be entered.
      * @param initial_text The initial text, which may be edited by the user.
+     *
+     * @attribute suffix  in_window_with_initial_text
      */
     void start_reading_text(window wind, rectangle rect, string initial_text);
 
@@ -69,6 +75,8 @@ namespace splashkit_lib
      *
      * @param wind  The window to check
      * @return      True when window is setup to read input from the user.
+     *
+     * @attribute suffix  in_window
      */
     bool reading_text(window wind);
 
@@ -81,6 +89,8 @@ namespace splashkit_lib
      * Ends reading text for the passed in window.
      *
      * @param wind The window to end reading text
+     *
+     * @attribute suffix  in_window
      */
     void end_reading_text(window wind);
 
@@ -96,6 +106,8 @@ namespace splashkit_lib
      *
      * @param wind  The window to check
      * @return True when the use has cancelled text entry
+     *
+     * @attribute suffix  in_window
      */
     bool text_entry_cancelled(window wind);
 
@@ -111,6 +123,8 @@ namespace splashkit_lib
      *
      * @param wind  The window to check
      * @return The user's text entry
+     *
+     * @attribute suffix  in_window
      */
     string text_input(window wind);
 }

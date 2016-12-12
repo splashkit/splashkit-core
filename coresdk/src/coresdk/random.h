@@ -33,8 +33,10 @@ namespace splashkit_lib
      * @attribute class       random
      *
      * @returns Returns an `int` between `0` and `ubound`
+     *
+     * @attribute suffix  int
      */
     int rnd(int ubound);
-    
+
 #endif /* random_hpp */
 }

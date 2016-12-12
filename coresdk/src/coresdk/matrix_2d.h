@@ -19,7 +19,7 @@ namespace splashkit_lib
 
     /**
      *  In SplashKit, matrices can be used to combine together a number of
-     *  operations that need to be performed on `vector_2d` values. You can 
+     *  operations that need to be performed on `vector_2d` values. You can
      *  translate, rotate and scale, and combine these together into a
      *  single matrix that can then be applied to vectors and points.
      *
@@ -50,12 +50,26 @@ namespace splashkit_lib
 
     /**
      * Returns a translation matric used to translate 2d points by the
+     * distance in the vector_2d.
+     *
+     * @param pt    The point to translate to.
+     * @returns     A matrix that will move points by amount in pt
+     *
+     * @attribute suffix  from_vector
+     */
+    matrix_2d translation_matrix(const vector_2d &pt);
+
+    /**
+     * Returns a translation matric used to translate 2d points by the
      * distance in the point_2d.
      *
      * @param pt    The point to translate to.
      * @returns     A matrix that will move points by amount in pt
+     *
+     * @attribute suffix  to_point
      */
     matrix_2d translation_matrix(const point_2d &pt);
+
 
     /**
      * Returns a matrix that can be used to scale 2d points (both x and y).
@@ -71,6 +85,19 @@ namespace splashkit_lib
      *
      * @param scale The amount to scale, with separate x and y components.
      * @returns     A matrix that will scale points based on scale parameter.
+     *
+     * @attribute suffix  from_vector
+     */
+    matrix_2d scale_matrix(const vector_2d &scale);
+
+    /**
+     * Create a scale matrix that scales x and y to
+     * different degrees.
+     *
+     * @param scale The amount to scale, with separate x and y components.
+     * @returns     A matrix that will scale points based on scale parameter.
+     *
+     * @attribute suffix  from_point
      */
     matrix_2d scale_matrix(const point_2d &scale);
 
@@ -100,6 +127,8 @@ namespace splashkit_lib
      * @param m1    The first matrix
      * @param m2    The second matrix
      * @returns     The result of multiplying m1 by m2
+     *
+     * @attribute suffix  matrix
      */
     matrix_2d matrix_multiply(const matrix_2d  &m1,const matrix_2d &m2);
 
@@ -112,6 +141,8 @@ namespace splashkit_lib
      * @param m     The matrix with the transformation to apply.
      * @param v     The vector to be transformed.
      * @returns     A new vector, the result of applying the transformation to v.
+     *
+     * @attribute suffix  vector
      */
     vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v);
 
@@ -123,6 +154,8 @@ namespace splashkit_lib
      * @param m     The matrix with the transformation to apply.
      * @param pt    The point to be transformed.
      * @returns     A new point, the result of applying the transformation to pt.
+     *
+     * @attribute suffix  point
      */
     point_2d matrix_multiply(const matrix_2d &m, const point_2d &pt);
 
@@ -139,6 +172,8 @@ namespace splashkit_lib
      *
      * @param m     The matrix to be applied to the triangle.
      * @param tri   The triangle to tranform.
+     *
+     * @attribute suffix  to_triangle
      */
     void apply_matrix(const matrix_2d &m, triangle &tri);
 
@@ -147,6 +182,8 @@ namespace splashkit_lib
      *
      * @param matrix    The matrix with the transformations needed.
      * @param q         The quad to transform.
+     *
+     * @attribute suffix  to_quad
      */
     void apply_matrix(const matrix_2d &matrix, quad &q);
 

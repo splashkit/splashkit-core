@@ -37,8 +37,7 @@ namespace splashkit_lib
      * @param style         The new style for the `font`.
      *
      * @attribute class     font
-     * @attribute method    set_style
-     * @attribute setter    true
+     * @attribute setter    style
      * @attribute self      fnt
      */
     void set_font_style(font fnt, font_style style);
@@ -49,9 +48,6 @@ namespace splashkit_lib
      * @param name          The name of the `font` to set the style of.
      * @param style         The new style for the `font`.
      *
-     * @attribute class     font
-     * @attribute method    set_style
-     * @attribute setter    true
      * @attribute suffix    name_as_string
      */
     void set_font_style(const string &name, font_style style);
@@ -62,9 +58,8 @@ namespace splashkit_lib
      * @param fnt           The `font` to return the style of.
      *
      * @attribute class     font
-     * @attribute method    get_style
-     * @attribute getter    true
-     * @attribute self                fnt
+     * @attribute getter    style
+     * @attribute self      fnt
      *
      * @returns Returns the current `font_style` for the `font`.
      */
@@ -75,9 +70,6 @@ namespace splashkit_lib
      *
      * @param name          The name of the font to return the style of.
      *
-     * @attribute class     font
-     * @attribute method    get_style
-     * @attribute getter    true
      * @attribute suffix    name_as_string
      *
      * @returns Returns the current `font_style` for the `font`.

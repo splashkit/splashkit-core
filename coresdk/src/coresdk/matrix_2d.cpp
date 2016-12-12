@@ -45,6 +45,11 @@ namespace splashkit_lib
         return result;
     }
 
+    matrix_2d translation_matrix(const vector_2d &pt)
+    {
+        return translation_matrix(pt.x, pt.y);
+    }
+
     matrix_2d translation_matrix(const point_2d &pt)
     {
         return translation_matrix(pt.x, pt.y);
@@ -52,10 +57,10 @@ namespace splashkit_lib
 
     matrix_2d scale_matrix(float scale)
     {
-        return scale_matrix(point_at(scale, scale));
+        return scale_matrix(vector_to(scale, scale));
     }
 
-    matrix_2d scale_matrix(const point_2d &scale)
+    matrix_2d scale_matrix(const vector_2d &scale)
     {
         matrix_2d result;
         result.elements[0][0] = scale.x;
@@ -71,6 +76,11 @@ namespace splashkit_lib
         result.elements[2][2] = 1;
 
         return result;
+    }
+
+    matrix_2d scale_matrix(const point_2d &scale)
+    {
+        return scale_matrix(vector_to(scale));
     }
 
     matrix_2d rotation_matrix(float deg)
@@ -211,17 +221,17 @@ namespace splashkit_lib
 
         result.x = v.x * m.elements[0][0]  +  v.y * m.elements[0][1] + m.elements[0][2];
         result.y = v.x * m.elements[1][0]  +  v.y * m.elements[1][1] + m.elements[1][2];
-        
+
         return result;
     }
-    
+
     void apply_matrix(const matrix_2d &m, triangle &tri)
     {
         tri.points[0] = matrix_multiply(m, tri.points[0]);
         tri.points[1] = matrix_multiply(m, tri.points[1]);
         tri.points[2] = matrix_multiply(m, tri.points[2]);
     }
-    
+
     void apply_matrix(const matrix_2d &m, quad &q)
     {
         for(int i = 0; i < 4; i++)
