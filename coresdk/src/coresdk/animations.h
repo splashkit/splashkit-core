@@ -174,7 +174,8 @@ namespace splashkit_lib
      * @returns Returns the newly created `animation`
      *
      * @attribute class     animation_script
-     * @attribute constructor true
+     * @attribute method    create_animation
+     * @attribute self      script
      */
     animation create_animation(animation_script script, const string &name);
 
@@ -186,9 +187,6 @@ namespace splashkit_lib
      * @param script_name   The name of the `animation_script` to create the `animation` from
      * @param name          The name for the new `animation`
      * @returns Returns the newly created `animation`
-     *
-     * @attribute class     animation_script
-     * @attribute constructor true
      *
      * @attribute suffix    from_script_named
      */
@@ -216,7 +214,6 @@ namespace splashkit_lib
      *
      * @attribute class       animation
      * @attribute destructor  true
-     * @attribute method      free
      * @attribute self        ani
      */
     void free_animation(animation ani);
@@ -327,7 +324,7 @@ namespace splashkit_lib
      * @param name          The name of the `animation` to look for.
      *
      * @attribute class     animation_script
-     * @attribute getter    animation_index
+     * @attribute method    animation_index
      * @attribute self      script
      *
      * @returns Returns the index of the `animation` in the `animation_script`

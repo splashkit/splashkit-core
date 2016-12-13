@@ -1,5 +1,5 @@
 //
-// SplashKit Generated Vector 2d C++ Code
+// SplashKit Generated Vector 2 D C++ Code
 // DO NOT MODIFY
 //
 

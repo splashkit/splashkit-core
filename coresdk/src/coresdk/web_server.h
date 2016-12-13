@@ -25,6 +25,7 @@ namespace splashkit_lib
 
     /**
      * @attribute class http_request
+     * @attribute no_destructor true
      */
     typedef struct sk_http_request *http_request;
 
@@ -58,8 +59,8 @@ namespace splashkit_lib
      *
      * @returns     Returns a new `web_server` instance.
      *
-     * @attribute constructor true
      * @attribute class       web_server
+     * @attribute constructor true
      */
     web_server start_web_server(unsigned short port);
 
@@ -68,7 +69,6 @@ namespace splashkit_lib
      *
      * @attribute constructor true
      * @attribute class       web_server
-     * @attribute method      start
      *
      * @returns Returns a new `web_sever` instance.
      *

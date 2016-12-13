@@ -47,17 +47,11 @@ namespace splashkit_lib
 
     /**
      * Free all of timers that have been created.
-     *
-     * @attribute class timers
-     * @attribute method release_all_timers
      */
     void free_all_timers();
 
     /**
      * Get the timer created with the indicated name.
-     *
-     * @attribute class timers
-     * @attribute method get_timer_named
      *
      * @param  name The name of the timer to fetch
      * @return      Returns the timer fetched from SplashKit
@@ -66,9 +60,6 @@ namespace splashkit_lib
 
     /**
      * Checks if SplashKit has a timer with the indicated name.
-     *
-     * @attribute class timers
-     * @attribute method has_timer
      *
      * @param  name The name of the timer
      * @return      True if SplashKit has created a timer with that name.

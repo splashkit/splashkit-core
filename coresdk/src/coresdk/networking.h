@@ -66,36 +66,248 @@ namespace splashkit_lib
     typedef struct sk_server_data *server_socket;
 
     // Server functions
+
+    /**
+     * Creates a new server that can accept connections from other programs.
+     *
+     * @param  name     The name used to access the Server in splashkit
+     * @param  port     The port that clients will use to connect to the server
+     * @param  protocol The protocol used by the server
+     * @return          A new server with the indicated details
+     *
+     * @attribute class server_socket
+     * @attribute constructor true
+     *
+     * @attribute suffix with_port_and_protocol
+     */
     server_socket create_server(const string &name, unsigned short int port, connection_type protocol);
+
+    /**
+     * Creates a new TCP server that can accept connections from other programs.
+     *
+     * @param  name     The name used to access the Server in splashkit
+     * @param  port     The port that clients will use to connect to the server
+     * @return          A new server with the indicated details
+     *
+     * @attribute class server_socket
+     * @attribute constructor true
+     *
+     * @attribute suffix with_port
+     */
     server_socket create_server(const string &name, unsigned short int port);
+
+    /**
+     * Gets the server with the indicated name.
+     *
+     * @param  name The name of the server to get
+     * @return      The server
+     */
     server_socket server_named(const string &name);
+
+    /**
+     * Closes the server, all connections with clients will be shut and
+     * the port will be closed.
+     *
+     * @param  svr The server to close
+     * @return     True if the close was successful
+     *
+     * @attribute class       server_socket
+     * @attribute destructor  true
+     * @attribute method      close
+     */
     bool close_server(server_socket svr);
+
+    /**
+     * Closes the server with the indicated name.
+     *
+     * @param  name The name of the server to close
+     * @return      True if the server was closed successfully
+     *
+     * @attribute suffix named
+     */
     bool close_server(const string &name);
+
+    /**
+     * Close all of the servers that are currently open.
+     */
     void close_all_servers();
+
+    /**
+     * Checks of there are new connections waiting for a server.
+     *
+     * @param  name The name of the server to check
+     * @return      True if the server has new connections
+     *
+     * @attribute suffix named
+     */
     bool server_has_new_connection(const string &name);
+
+    /**
+     * Checks of there are new connections waiting for a server.
+     *
+     * @param  server The server to check
+     * @return        True if the server has new connections
+     *
+     * @attribute class server_socket
+     * @attribute getter has_new_connections
+     */
     bool server_has_new_connection(server_socket server);
+
+    /**
+     * Checks if any of the servers have new connections.
+     *
+     * @return True if there is one or more servers with new connections.
+     */
     bool has_new_connections();
 
+    /**
+     * Returns the number of clients connected to a server.
+     *
+     * @param  name The name of the server to check
+     * @return      The number of connected clients
+     *
+     * @attribute suffix named
+     */
     unsigned int connection_count(const string &name);
+
+    /**
+     * Returns the number of clients connected to a server.
+     *
+     * @param  server The server to check
+     * @return      The number of connected clients
+     *
+     * @attribute class server_socket
+     * @attribute getter connection_count
+     */
     unsigned int connection_count(server_socket server);
 
+    /**
+     * Checks if there is a server with the indicated name.
+     *
+     * @param  name The name of the server to check
+     * @return      True if there is a server with that name
+     */
     bool has_server(const string &name);
 
+    /**
+     * Accept new connections for all servers.
+     *
+     * @return True if there were accepted connections
+     */
     bool accept_all_new_connections();
-    bool accept_new_connection(server_socket server);
-    bool server_has_connection(server_socket server, const string &name);
 
+    /**
+     * Accept new connections for a server
+     *
+     * @param  server The server to check
+     * @return        True if a connection was accepted
+     *
+     * @attribute class server_socket
+     * @attribute method accept_new_connection
+     */
+    bool accept_new_connection(server_socket server);
+
+    /**
+     * Gets the last client that connected to a server.
+     *
+     * @param  server The server to check
+     * @return        The last connection made to that server
+     *
+     * @attribute class server_socket
+     * @attribute getter last_connection
+     */
     connection last_connection(server_socket server);
+
+    /**
+     * Gets the last client that connected to a server.
+     *
+     * @param  name The name of the server to check
+     * @return        The last connection made to that server
+     *
+     * @attribute suffix named
+     */
     connection last_connection(const string &name);
 
     // Connection functions
+
+    /**
+     * Opens a connection to a server using the supplied details.
+     *
+     * @param  name     The name for the connection
+     * @param  host     The address of the server
+     * @param  port     The server's port
+     * @param  protocol The protocol used to connect to the server
+     * @return          A new connection to the indicated server
+     *
+     * @attribute class       connection
+     * @attribute constructor true
+     *
+     * @attribute suffix with_protocol
+     */
     connection open_connection(const string &name, const string &host, unsigned short int port, connection_type protocol);
+
+    /**
+     * Opens a TCP connection to a server using the supplied details.
+     *
+     * @param  name     The name for the connection
+     * @param  host     The address of the server
+     * @param  port     The server's port
+     * @return          A new connection to the indicated server
+     *
+     * @attribute class       connection
+     * @attribute constructor true
+     */
     connection open_connection(const string &name, const string &host, unsigned short int port);
-    connection open_connection(const string &host, unsigned short int port);
+
+    /**
+     * Get a connection from the server.
+     *
+     * @param  name The name of the server
+     * @param  idx  The index of the connection
+     * @return      The connection at the supplied index
+     *
+     * @attribute suffix named
+     */
     connection retrieve_connection(const string &name, int idx);
+
+    /**
+     * Get a connection from the server.
+     *
+     * @param  server The server
+     * @param  idx  The index of the connection
+     * @return      The connection at the supplied index
+     *
+     * @attribute class server_socket
+     * @attribute method retrieve_connection
+     */
     connection retrieve_connection(server_socket server, int idx);
+
+    /**
+     * Close all of the connections you have opened. This does not close
+     * connections to servers.
+     */
     void close_all_connections();
+
+    /**
+     * Close the connection
+     *
+     * @param  a_connection The connection to close
+     * @return              True if this succeeds.
+     *
+     * @attribute class connection
+     * @attribute destructor true
+     * @attribute method close
+     */
     bool close_connection(connection a_connection);
+
+    /**
+     * Close the connection
+     *
+     * @param  name The name of the connection to close
+     * @return              True if this succeeds.
+     *
+     * @attribute suffix named
+     */
     bool close_connection(const string &name);
 
     connection connection_named(const string &name);
@@ -110,7 +322,6 @@ namespace splashkit_lib
     unsigned short int connection_port(connection a_connection);
     unsigned short int connection_port(const string &name);
 
-    connection message_connection(message msg);
     void reconnect(const string &name);
     void reconnect(connection a_connection);
     void release_all_connections();
@@ -125,11 +336,23 @@ namespace splashkit_lib
     void clear_messages(server_socket svr);
     void clear_messages(connection a_connection);
     void clear_messages(const string &name);
+
+    /**
+     * Closes the message.
+     *
+     * @param msg The message to close
+     *
+     * @attribute class message
+     * @attribute destructor true
+     * @attribute method close
+     */
     void close_message(message msg);
+
     bool has_messages();
     bool has_messages(connection con);
     bool has_messages(server_socket svr);
     bool has_messages(const string &name);
+
     unsigned int message_count(connection a_connection);
     unsigned int message_count(const string &name);
     unsigned int message_count(server_socket svr);

@@ -2014,33 +2014,33 @@ int __sklib__json_has_key__json__string(__sklib_json j, __sklib_string key) {
     bool __skreturn = json_has_key(__skparam__j, __skparam__key);
     return __sklib__to_int(__skreturn);
 }
-void __sklib__json_read_array__json__string__vector_double_ref(__sklib_json j, __sklib_string key, __sklib_vector_double *out) {
+void __sklib__json_read_array__json__string__vector_double_ref(__sklib_json j, __sklib_string key, __sklib_vector_double *out_result) {
     json __skparam__j = __sklib__to_json(j);
     string __skparam__key = __sklib__to_string(key);
-    vector<double> __skparam__out = __sklib__to_vector_double(*out);
-    json_read_array(__skparam__j, __skparam__key, __skparam__out);
-    __sklib__update_from_vector_double(__skparam__out, out);
+    vector<double> __skparam__out_result = __sklib__to_vector_double(*out_result);
+    json_read_array(__skparam__j, __skparam__key, __skparam__out_result);
+    __sklib__update_from_vector_double(__skparam__out_result, out_result);
 }
-void __sklib__json_read_array__json__string__vector_json_ref(__sklib_json j, __sklib_string key, __sklib_vector_json *out) {
+void __sklib__json_read_array__json__string__vector_json_ref(__sklib_json j, __sklib_string key, __sklib_vector_json *out_result) {
     json __skparam__j = __sklib__to_json(j);
     string __skparam__key = __sklib__to_string(key);
-    vector<json> __skparam__out = __sklib__to_vector_json(*out);
-    json_read_array(__skparam__j, __skparam__key, __skparam__out);
-    __sklib__update_from_vector_json(__skparam__out, out);
+    vector<json> __skparam__out_result = __sklib__to_vector_json(*out_result);
+    json_read_array(__skparam__j, __skparam__key, __skparam__out_result);
+    __sklib__update_from_vector_json(__skparam__out_result, out_result);
 }
-void __sklib__json_read_array__json__string__vector_string_ref(__sklib_json j, __sklib_string key, __sklib_vector_string *out) {
+void __sklib__json_read_array__json__string__vector_string_ref(__sklib_json j, __sklib_string key, __sklib_vector_string *out_result) {
     json __skparam__j = __sklib__to_json(j);
     string __skparam__key = __sklib__to_string(key);
-    vector<string> __skparam__out = __sklib__to_vector_string(*out);
-    json_read_array(__skparam__j, __skparam__key, __skparam__out);
-    __sklib__update_from_vector_string(__skparam__out, out);
+    vector<string> __skparam__out_result = __sklib__to_vector_string(*out_result);
+    json_read_array(__skparam__j, __skparam__key, __skparam__out_result);
+    __sklib__update_from_vector_string(__skparam__out_result, out_result);
 }
-void __sklib__json_read_array__json__string__vector_bool_ref(__sklib_json j, __sklib_string key, __sklib_vector_bool *out) {
+void __sklib__json_read_array__json__string__vector_bool_ref(__sklib_json j, __sklib_string key, __sklib_vector_bool *out_result) {
     json __skparam__j = __sklib__to_json(j);
     string __skparam__key = __sklib__to_string(key);
-    vector<bool> __skparam__out = __sklib__to_vector_bool(*out);
-    json_read_array(__skparam__j, __skparam__key, __skparam__out);
-    __sklib__update_from_vector_bool(__skparam__out, out);
+    vector<bool> __skparam__out_result = __sklib__to_vector_bool(*out_result);
+    json_read_array(__skparam__j, __skparam__key, __skparam__out_result);
+    __sklib__update_from_vector_bool(__skparam__out_result, out_result);
 }
 int __sklib__json_read_bool__json__string(__sklib_json j, __sklib_string key) {
     json __skparam__j = __sklib__to_json(j);
@@ -2407,6 +2407,11 @@ __sklib_matrix_2d __sklib__scale_matrix__point_2d_ref(const __sklib_point_2d sca
     matrix_2d __skreturn = scale_matrix(__skparam__scale);
     return __sklib__to_sklib_matrix_2d(__skreturn);
 }
+__sklib_matrix_2d __sklib__scale_matrix__vector_2d_ref(const __sklib_vector_2d scale) {
+    vector_2d __skparam__scale = __sklib__to_vector_2d(scale);
+    matrix_2d __skreturn = scale_matrix(__skparam__scale);
+    return __sklib__to_sklib_matrix_2d(__skreturn);
+}
 __sklib_matrix_2d __sklib__scale_matrix__float(float scale) {
     float __skparam__scale = __sklib__to_float(scale);
     matrix_2d __skreturn = scale_matrix(__skparam__scale);
@@ -2421,6 +2426,11 @@ __sklib_matrix_2d __sklib__scale_rotate_translate_matrix__point_2d_ref__float__p
 }
 __sklib_matrix_2d __sklib__translation_matrix__point_2d_ref(const __sklib_point_2d pt) {
     point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    matrix_2d __skreturn = translation_matrix(__skparam__pt);
+    return __sklib__to_sklib_matrix_2d(__skreturn);
+}
+__sklib_matrix_2d __sklib__translation_matrix__vector_2d_ref(const __sklib_vector_2d pt) {
+    vector_2d __skparam__pt = __sklib__to_vector_2d(pt);
     matrix_2d __skreturn = translation_matrix(__skparam__pt);
     return __sklib__to_sklib_matrix_2d(__skreturn);
 }
@@ -2596,10 +2606,81 @@ void __sklib__set_music_volume__float(float volume) {
 void __sklib__stop_music() {
     stop_music();
 }
+int __sklib__accept_all_new_connections() {
+    bool __skreturn = accept_all_new_connections();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__accept_new_connection__server_socket(__sklib_server_socket server) {
+    server_socket __skparam__server = __sklib__to_server_socket(server);
+    bool __skreturn = accept_new_connection(__skparam__server);
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__close_all_connections() {
+    close_all_connections();
+}
+void __sklib__close_all_servers() {
+    close_all_servers();
+}
+int __sklib__close_connection__connection(__sklib_connection a_connection) {
+    connection __skparam__a_connection = __sklib__to_connection(a_connection);
+    bool __skreturn = close_connection(__skparam__a_connection);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__close_connection__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    bool __skreturn = close_connection(__skparam__name);
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__close_message__message(__sklib_message msg) {
+    message __skparam__msg = __sklib__to_message(msg);
+    close_message(__skparam__msg);
+}
+int __sklib__close_server__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    bool __skreturn = close_server(__skparam__name);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__close_server__server_socket(__sklib_server_socket svr) {
+    server_socket __skparam__svr = __sklib__to_server_socket(svr);
+    bool __skreturn = close_server(__skparam__svr);
+    return __sklib__to_int(__skreturn);
+}
+unsigned int __sklib__connection_count__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    unsigned int __skreturn = connection_count(__skparam__name);
+    return __sklib__to_unsigned_int(__skreturn);
+}
+unsigned int __sklib__connection_count__server_socket(__sklib_server_socket server) {
+    server_socket __skparam__server = __sklib__to_server_socket(server);
+    unsigned int __skreturn = connection_count(__skparam__server);
+    return __sklib__to_unsigned_int(__skreturn);
+}
+__sklib_server_socket __sklib__create_server__string_ref__unsigned_short(const __sklib_string name, unsigned short port) {
+    string __skparam__name = __sklib__to_string(name);
+    unsigned short __skparam__port = __sklib__to_unsigned_short(port);
+    server_socket __skreturn = create_server(__skparam__name, __skparam__port);
+    return __sklib__to_sklib_server_socket(__skreturn);
+}
+__sklib_server_socket __sklib__create_server__string_ref__unsigned_short__connection_type(const __sklib_string name, unsigned short port, int protocol) {
+    string __skparam__name = __sklib__to_string(name);
+    unsigned short __skparam__port = __sklib__to_unsigned_short(port);
+    connection_type __skparam__protocol = __sklib__to_connection_type(protocol);
+    server_socket __skreturn = create_server(__skparam__name, __skparam__port, __skparam__protocol);
+    return __sklib__to_sklib_server_socket(__skreturn);
+}
 __sklib_string __sklib__dec_to_hex__unsigned_int(unsigned int a_dec) {
     unsigned int __skparam__a_dec = __sklib__to_unsigned_int(a_dec);
     string __skreturn = dec_to_hex(__skparam__a_dec);
     return __sklib__to_sklib_string(__skreturn);
+}
+int __sklib__has_new_connections() {
+    bool __skreturn = has_new_connections();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__has_server__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    bool __skreturn = has_server(__skparam__name);
+    return __sklib__to_int(__skreturn);
 }
 __sklib_string __sklib__hex_str_to_ipv4__string_ref(const __sklib_string a_hex) {
     string __skparam__a_hex = __sklib__to_string(a_hex);
@@ -2626,9 +2707,61 @@ __sklib_string __sklib__ipv4_to_str__unsigned_int(unsigned int ip) {
     string __skreturn = ipv4_to_str(__skparam__ip);
     return __sklib__to_sklib_string(__skreturn);
 }
+__sklib_connection __sklib__last_connection__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    connection __skreturn = last_connection(__skparam__name);
+    return __sklib__to_sklib_connection(__skreturn);
+}
+__sklib_connection __sklib__last_connection__server_socket(__sklib_server_socket server) {
+    server_socket __skparam__server = __sklib__to_server_socket(server);
+    connection __skreturn = last_connection(__skparam__server);
+    return __sklib__to_sklib_connection(__skreturn);
+}
 __sklib_string __sklib__my_ip() {
     string __skreturn = my_ip();
     return __sklib__to_sklib_string(__skreturn);
+}
+__sklib_connection __sklib__open_connection__string_ref__string_ref__unsigned_short(const __sklib_string name, const __sklib_string host, unsigned short port) {
+    string __skparam__name = __sklib__to_string(name);
+    string __skparam__host = __sklib__to_string(host);
+    unsigned short __skparam__port = __sklib__to_unsigned_short(port);
+    connection __skreturn = open_connection(__skparam__name, __skparam__host, __skparam__port);
+    return __sklib__to_sklib_connection(__skreturn);
+}
+__sklib_connection __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(const __sklib_string name, const __sklib_string host, unsigned short port, int protocol) {
+    string __skparam__name = __sklib__to_string(name);
+    string __skparam__host = __sklib__to_string(host);
+    unsigned short __skparam__port = __sklib__to_unsigned_short(port);
+    connection_type __skparam__protocol = __sklib__to_connection_type(protocol);
+    connection __skreturn = open_connection(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol);
+    return __sklib__to_sklib_connection(__skreturn);
+}
+__sklib_connection __sklib__retrieve_connection__string_ref__int(const __sklib_string name, int idx) {
+    string __skparam__name = __sklib__to_string(name);
+    int __skparam__idx = __sklib__to_int(idx);
+    connection __skreturn = retrieve_connection(__skparam__name, __skparam__idx);
+    return __sklib__to_sklib_connection(__skreturn);
+}
+__sklib_connection __sklib__retrieve_connection__server_socket__int(__sklib_server_socket server, int idx) {
+    server_socket __skparam__server = __sklib__to_server_socket(server);
+    int __skparam__idx = __sklib__to_int(idx);
+    connection __skreturn = retrieve_connection(__skparam__server, __skparam__idx);
+    return __sklib__to_sklib_connection(__skreturn);
+}
+int __sklib__server_has_new_connection__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    bool __skreturn = server_has_new_connection(__skparam__name);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__server_has_new_connection__server_socket(__sklib_server_socket server) {
+    server_socket __skparam__server = __sklib__to_server_socket(server);
+    bool __skreturn = server_has_new_connection(__skparam__server);
+    return __sklib__to_int(__skreturn);
+}
+__sklib_server_socket __sklib__server_named__string_ref(const __sklib_string name) {
+    string __skparam__name = __sklib__to_string(name);
+    server_socket __skreturn = server_named(__skparam__name);
+    return __sklib__to_sklib_server_socket(__skreturn);
 }
 void __sklib__draw_pixel__color__point_2d_ref(__sklib_color clr, const __sklib_point_2d pt) {
     color __skparam__clr = __sklib__to_color(clr);

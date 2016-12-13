@@ -1,5 +1,5 @@
 //
-// SplashKit Generated Matrix 2d C++ Code
+// SplashKit Generated Matrix 2 D C++ Code
 // DO NOT MODIFY
 //
 
@@ -26,9 +26,11 @@ vector_2d matrix_multiply(const matrix_2d &m, const vector_2d &v);
 string matrix_to_string(const matrix_2d &matrix);
 matrix_2d rotation_matrix(float deg);
 matrix_2d scale_matrix(const point_2d &scale);
+matrix_2d scale_matrix(const vector_2d &scale);
 matrix_2d scale_matrix(float scale);
 matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate);
 matrix_2d translation_matrix(const point_2d &pt);
+matrix_2d translation_matrix(const vector_2d &pt);
 matrix_2d translation_matrix(float dx, float dy);
 
 #endif /* __matrix_2d_h */

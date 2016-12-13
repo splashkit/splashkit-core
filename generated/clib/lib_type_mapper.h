@@ -51,6 +51,7 @@
 #include "timers.h"
 #include "triangle_drawing.h"
 #include "triangle_geometry.h"
+#include "twitter.h"
 #include "types.h"
 #include "utils.h"
 #include "vector_2d.h"
@@ -70,8 +71,8 @@ __sklib_int __sklib__to_sklib_int(int v);
 int __sklib__to_int(int v);
 __sklib_short __sklib__to_sklib_short(short v);
 short __sklib__to_short(short v);
-__sklib_long __sklib__to_sklib_long(long v);
-long __sklib__to_long(long v);
+__sklib_int64_t __sklib__to_sklib_int64_t(int64_t v);
+int64_t __sklib__to_int64_t(int64_t v);
 __sklib_float __sklib__to_sklib_float(float v);
 float __sklib__to_float(float v);
 __sklib_double __sklib__to_sklib_double(double v);

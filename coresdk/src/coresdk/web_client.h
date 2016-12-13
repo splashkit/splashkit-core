@@ -122,6 +122,10 @@ namespace splashkit_lib
      * Free the response resource.
      *
      * @param response The response to free
+     *
+     * @attribute class http_response
+     * @attribute destructor true
+     * @attribute method free
      */
     void free_response (http_response response);
 }

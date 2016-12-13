@@ -43,6 +43,7 @@
 #include "timers.h"
 #include "triangle_drawing.h"
 #include "triangle_geometry.h"
+#include "twitter.h"
 #include "types.h"
 #include "utils.h"
 #include "vector_2d.h"

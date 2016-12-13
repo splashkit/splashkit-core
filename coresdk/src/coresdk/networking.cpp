@@ -81,7 +81,7 @@ namespace splashkit_lib
         }
 
         clear_messages(svr);
-        
+
         for(auto connection : svr->connections)
         {
             close_connection(connection);
@@ -90,7 +90,7 @@ namespace splashkit_lib
         // close the socket
         sk_close_connection(&svr->socket);
         _server_sockets.erase(svr->name);
-        
+
         svr->id = NONE_PTR;
 
         delete svr;
@@ -112,7 +112,7 @@ namespace splashkit_lib
     {
         return _server_sockets.count(name) > 0;
     }
-    
+
     bool server_has_new_connection(const string &name)
     {
         return server_has_new_connection(server_named(name));
@@ -144,7 +144,7 @@ namespace splashkit_lib
     connection _create_connection(const string& name, connection_type protocol)
     {
         connection result = new sk_connection_data;
-        
+
         result->id = CONNECTION_PTR;
         result->name = name;
         result->ip = 0;
@@ -156,7 +156,7 @@ namespace splashkit_lib
         result->open = true;
         result->socket._socket = nullptr;
         result->socket.kind = UNKNOWN;
-        
+
         return result;
     }
 
@@ -224,14 +224,14 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to shut invalid connection";
             return;
         }
-        
+
         if (con->open)
         {
             con->open = false;
             sk_close_connection(&con->socket);
         }
     }
-    
+
     bool has_connection(const string &name)
     {
         return _connections.count(name) > 0;
@@ -249,7 +249,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get connection from invalid server";
             return nullptr;
         }
-        
+
         return server->connections.size() > idx ? server->connections[idx] : nullptr;
     }
 
@@ -314,7 +314,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to count connections of invalid server socket";
             return 0;
         }
-        
+
         return static_cast<unsigned int>(server->connections.size());
     }
 
@@ -367,7 +367,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Invalid server_socket passed to accept_new_connection";
             return false;
         }
-        
+
         server->new_connections = 0;
 
         sk_network_connection con = sk_accept_connection(server->socket);
@@ -429,7 +429,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get last connection from invalid server socket";
             return nullptr;
         }
-        
+
         if (server->connections.empty())
         {
             return nullptr;
@@ -454,7 +454,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to reconnect invalid connection";
             return;
         }
-        
+
         string host = con->string_ip;
         unsigned short port = con->port;
 
@@ -475,7 +475,7 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to get connection of invalid message";
             return nullptr;
         }
-        
+
         return msg->connection;
     }
 
@@ -492,14 +492,14 @@ namespace splashkit_lib
     void _enqueue_tcp_message(const vector<int8_t> &message, connection con)
     {
         sk_message* m = new sk_message;
-        
+
         m->id = MESSAGE_PTR;
         m->data = message;
         m->protocol = TCP;
         m->connection = con;
         m->host = con->string_ip;
         m->port = con->port;
-        
+
         con->messages.push_back(m);
         con->expected_msg_len = -1;
         con->part_msg_data.clear();
@@ -597,7 +597,7 @@ namespace splashkit_lib
 
                     buf_idx = received_count - 4;
                 }
-                
+
                 size[0] = byte(buffer[buf_idx]);
                 size[1] = byte(buffer[buf_idx + 1]);
                 size[2] = byte(buffer[buf_idx + 2]);
@@ -607,7 +607,7 @@ namespace splashkit_lib
 
                 buf_idx += 4;
             }
-            
+
             unsigned long end_msg = buf_idx + msg_len;
             for (; buf_idx < end_msg; ++buf_idx)
             {
@@ -747,7 +747,7 @@ namespace splashkit_lib
         {
             return;
         }
-        
+
         svr->messages.clear();
     }
 
@@ -757,7 +757,7 @@ namespace splashkit_lib
         {
             return;
         }
-        
+
         a_connection->messages.clear();
     }
 
@@ -828,7 +828,7 @@ namespace splashkit_lib
         {
             return true;
         }
-        
+
         for(connection con : svr->connections)
         {
             if (has_messages(con))
@@ -836,7 +836,7 @@ namespace splashkit_lib
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -865,7 +865,7 @@ namespace splashkit_lib
             return 0;
         }
     }
-    
+
     unsigned int message_count(connection con)
     {
         if (INVALID_PTR(con, CONNECTION_PTR))
@@ -1211,7 +1211,7 @@ namespace splashkit_lib
         ip_string << (ipaddr & 0xFF);
         return ip_string.str();
     }
-    
+
     string my_ip()
     {
         // TODO implement ip address resolution. Should return ip address of connected network if one exists.

@@ -41,7 +41,6 @@ namespace splashkit_lib
      *
      * @attribute class         window
      * @attribute constructor   true
-     * @attribute method        open_window
      *
      * @param  caption The title of the window. If a window with this caption
      *                 already exists, SplashKit will alter the caption to
@@ -81,9 +80,6 @@ namespace splashkit_lib
 
     /**
      * Releases all of the windows which have been loaded.
-     *
-     * @attribute class   window
-     * @attribute method  free_all_window
      */
     void close_all_windows();
 
@@ -109,9 +105,6 @@ namespace splashkit_lib
      * @param  caption the `string` name of the window.
      *
      * @returns Returns a `window` with the name specified by `caption`
-     *
-     * @attribute method window_named
-     * @attribute class  window
      */
     window window_named(string caption);
 
@@ -240,9 +233,6 @@ namespace splashkit_lib
 
     /**
      * Returns the height of the window with the indicated name in pixels.
-     *
-     * @attribute class window
-     * @attribute getter height
      *
      * @param  name The name of the window
      * @return      The height of the window

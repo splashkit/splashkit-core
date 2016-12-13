@@ -54,6 +54,10 @@ namespace splashkit_lib
      * Frees the bitmap resource.
      *
      * @param to_delete The bitmap to be freed.
+     *
+     * @attribute class bitmap
+     * @attribute destructor true
+     * @attribute method free
      */
     void free_bitmap(bitmap to_delete);
 

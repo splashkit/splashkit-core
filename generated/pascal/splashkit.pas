@@ -241,15 +241,15 @@ type HttpMethod = (
   HTTP_TRACE_METHOD,
   UNKNOWN_HTTP_METHOD
 );
-type Matrix2d = record
+type Matrix2D = record
   elements: Array [0..2, 0..2] of Double;
 end;
-type Point2d = record
+type Point2D = record
   x: Single;
   y: Single;
 end;
 type Circle = record
-  center: Point2d;
+  center: Point2D;
   radius: Single;
 end;
 type Color = record
@@ -280,16 +280,16 @@ type DrawingOptions = record
   anim: Animation;
 end;
 type Line = record
-  startPoint: Point2d;
-  endPoint: Point2d;
+  startPoint: Point2D;
+  endPoint: Point2D;
 end;
 type Quad = record
-  points: Array [0..3] of Point2d;
+  points: Array [0..3] of Point2D;
 end;
 type Triangle = record
-  points: Array [0..2] of Point2d;
+  points: Array [0..2] of Point2D;
 end;
-type Vector2d = record
+type Vector2D = record
   x: Double;
   y: Double;
 end;
@@ -306,7 +306,7 @@ type SpriteFloatFunction = procedure (s: Pointer; f: Single); cdecl;
 type SpriteFunction = procedure (s: Pointer); cdecl;
 function AnimationCount(script: AnimationScript): Integer;
 function AnimationCurrentCell(anim: Animation): Integer;
-function AnimationCurrentVector(anim: Animation): Vector2d;
+function AnimationCurrentVector(anim: Animation): Vector2D;
 function AnimationEnded(anim: Animation): Boolean;
 function AnimationEnteredFrame(anim: Animation): Boolean;
 function AnimationFrameTime(anim: Animation): Single;
@@ -343,29 +343,29 @@ procedure OpenAudio();
 procedure FreeResourceBundle(name: String);
 function HasResourceBundle(const name: String): Boolean;
 procedure LoadResourceBundle(const name: String; const filename: String);
-function CameraPosition(): Point2d;
+function CameraPosition(): Point2D;
 function CameraX(): Single;
 function CameraY(): Single;
-procedure CenterCameraOn(s: Sprite; const offset: Vector2d);
+procedure CenterCameraOn(s: Sprite; const offset: Vector2D);
 procedure CenterCameraOn(s: Sprite; offsetX: Single; offsetY: Single);
-procedure MoveCameraBy(const offset: Vector2d);
+procedure MoveCameraBy(const offset: Vector2D);
 procedure MoveCameraBy(dx: Single; dy: Single);
-procedure MoveCameraTo(const pt: Point2d);
+procedure MoveCameraTo(const pt: Point2D);
 procedure MoveCameraTo(x: Single; y: Single);
-function PointOnScreen(const pt: Point2d): Boolean;
+function PointOnScreen(const pt: Point2D): Boolean;
 function RectOnScreen(const rect: Rectangle): Boolean;
-function ScreenCenter(): Point2d;
+function ScreenCenter(): Point2D;
 function ScreenRectangle(): Rectangle;
-procedure SetCameraPosition(pos: Point2d);
+procedure SetCameraPosition(pos: Point2D);
 procedure SetCameraY(y: Single);
-function ToScreen(const pt: Point2d): Point2d;
+function ToScreen(const pt: Point2D): Point2D;
 function ToScreen(const rect: Rectangle): Rectangle;
 function ToScreenX(worldX: Single): Single;
 function ToScreenY(worldY: Single): Single;
-function ToWorld(const pt: Point2d): Point2d;
+function ToWorld(const pt: Point2D): Point2D;
 function ToWorldX(screenX: Single): Single;
 function ToWorldY(screenY: Single): Single;
-function VectorWorldToScreen(): Vector2d;
+function VectorWorldToScreen(): Vector2D;
 procedure DrawCircle(clr: Color; const c: Circle);
 procedure DrawCircle(clr: Color; const c: Circle; opts: DrawingOptions);
 procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single);
@@ -374,21 +374,21 @@ procedure FillCircle(clr: Color; const c: Circle);
 procedure FillCircle(clr: Color; const c: Circle; opts: DrawingOptions);
 procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single);
 procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
-function CenterPoint(const c: Circle): Point2d;
-function CircleAt(const pt: Point2d; radius: Single): Circle;
+function CenterPoint(const c: Circle): Point2D;
+function CircleAt(const pt: Point2D; radius: Single): Circle;
 function CircleAt(x: Single; y: Single; radius: Single): Circle;
 function CircleRadius(c: Circle): Single;
 function CircleX(const c: Circle): Single;
 function CircleY(const c: Circle): Single;
 function CirclesIntersect(c1: Circle; c2: Circle): Boolean;
-function ClosestPointOnCircle(const fromPt: Point2d; const c: Circle): Point2d;
-function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2d;
-function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2d;
-function DistantPointOnCircle(const pt: Point2d; const c: Circle): Point2d;
-function DistantPointOnCircleHeading(const pt: Point2d; const c: Circle; const heading: Vector2d; var oppositePt: Point2d): Boolean;
-function RayCircleIntersectDistance(const rayOrigin: Point2d; const rayHeading: Vector2d; const c: Circle): Single;
-function TangentPoints(const fromPt: Point2d; const c: Circle; var p1: Point2d; var p2: Point2d): Boolean;
-procedure WidestPoints(const c: Circle; const along: Vector2d; var pt1: Point2d; var pt2: Point2d);
+function ClosestPointOnCircle(const fromPt: Point2D; const c: Circle): Point2D;
+function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2D;
+function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2D;
+function DistantPointOnCircle(const pt: Point2D; const c: Circle): Point2D;
+function DistantPointOnCircleHeading(const pt: Point2D; const c: Circle; const heading: Vector2D; var oppositePt: Point2D): Boolean;
+function RayCircleIntersectDistance(const rayOrigin: Point2D; const rayHeading: Vector2D; const c: Circle): Single;
+function TangentPoints(const fromPt: Point2D; const c: Circle; var p1: Point2D; var p2: Point2D): Boolean;
+procedure WidestPoints(const c: Circle; const along: Vector2D; var pt1: Point2D; var pt2: Point2D);
 function CurrentClip(): Rectangle;
 function CurrentClip(bmp: Bitmap): Rectangle;
 function CurrentClip(wnd: Window): Rectangle;
@@ -405,21 +405,21 @@ procedure SetClip(const r: Rectangle);
 procedure SetClip(bmp: Bitmap; const r: Rectangle);
 procedure SetClip(wnd: Window; const r: Rectangle);
 function BitmapCollision(bmp1: Bitmap; x1: Single; y1: Single; bmp2: Bitmap; x2: Single; y2: Single): Boolean;
-function BitmapCollision(bmp1: Bitmap; const pt1: Point2d; bmp2: Bitmap; const pt2: Point2d): Boolean;
-function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2d; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2d): Boolean;
-function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2d; bmp2: Bitmap; cell2: Integer; const pt2: Point2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; const pt1: Point2D; bmp2: Bitmap; const pt2: Point2D): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2D; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2D): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2D; bmp2: Bitmap; cell2: Integer; const pt2: Point2D): Boolean;
 function BitmapCollision(bmp1: Bitmap; cell1: Integer; x1: Single; y1: Single; bmp2: Bitmap; cell2: Integer; x2: Single; y2: Single): Boolean;
-function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2d; const pt: Point2d): Boolean;
-function BitmapPointCollision(bmp: Bitmap; const pt: Point2d; const bmpPt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt: Point2D): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const pt: Point2D; const bmpPt: Point2D): Boolean;
 function BitmapPointCollision(bmp: Bitmap; bmpX: Single; bmpY: Single; x: Single; y: Single): Boolean;
-function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const pt: Point2d): Boolean;
-function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const rect: Rectangle): Boolean;
-function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2d; const rect: Rectangle): Boolean;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const rect: Rectangle): Boolean;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Single; y: Single): Boolean;
-function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2D): Boolean;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
 function SpriteCollision(s1: Sprite; s2: Sprite): Boolean;
-function SpritePointCollision(s: Sprite; const pt: Point2d): Boolean;
+function SpritePointCollision(s: Sprite; const pt: Point2D): Boolean;
 function SpriteRectangleCollision(s: Sprite; const rect: Rectangle): Boolean;
 function AlphaOf(c: Color): Integer;
 function BlueOf(c: Color): Integer;
@@ -656,20 +656,20 @@ function ScreenHeight(): Integer;
 function ScreenWidth(): Integer;
 procedure TakeScreenshot(const basename: String);
 procedure TakeScreenshot(wind: Window; const basename: String);
-function BitmapCellCenter(bmp: Bitmap): Point2d;
+function BitmapCellCenter(bmp: Bitmap): Point2D;
 function BitmapCellCircle(bmp: Bitmap; x: Single; y: Single): Circle;
-function BitmapCellCircle(bmp: Bitmap; pt: Point2d): Circle;
-function BitmapCellCircle(bmp: Bitmap; pt: Point2d; scale: Single): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2D): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2D; scale: Single): Circle;
 function BitmapCellColumns(bmp: Bitmap): Integer;
 function BitmapCellCount(bmp: Bitmap): Integer;
 function BitmapCellHeight(bmp: Bitmap): Integer;
-function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2d;
+function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2D;
 function BitmapCellRectangle(src: Bitmap): Rectangle;
-function BitmapCellRectangle(src: Bitmap; const pt: Point2d): Rectangle;
+function BitmapCellRectangle(src: Bitmap; const pt: Point2D): Rectangle;
 function BitmapCellRows(bmp: Bitmap): Integer;
 function BitmapCellWidth(bmp: Bitmap): Integer;
-function BitmapCenter(bmp: Bitmap): Point2d;
-function BitmapCircle(bmp: Bitmap; const pt: Point2d): Circle;
+function BitmapCenter(bmp: Bitmap): Point2D;
+function BitmapCircle(bmp: Bitmap; const pt: Point2D): Circle;
 function BitmapFilename(bmp: Bitmap): String;
 function BitmapHeight(bmp: Bitmap): Integer;
 function BitmapHeight(name: String): Integer;
@@ -692,9 +692,9 @@ procedure FreeAllBitmaps();
 procedure FreeBitmap(toDelete: Bitmap);
 function HasBitmap(name: String): Boolean;
 function LoadBitmap(name: String; filename: String): Bitmap;
-function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2D): Boolean;
 function PixelDrawnAtPoint(bmp: Bitmap; x: Single; y: Single): Boolean;
-function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2D): Boolean;
 function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; x: Single; y: Single): Boolean;
 procedure ProcessEvents();
 function QuitRequested(): Boolean;
@@ -708,10 +708,10 @@ function JsonFromColor(clr: Color): Json;
 function JsonFromFile(const filename: String): Json;
 function JsonFromString(const jString: String): Json;
 function JsonHasKey(j: Json; key: String): Boolean;
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfDouble);
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfJson);
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfString);
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfBoolean);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfDouble);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfJson);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfString);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfBoolean);
 function JsonReadBool(j: Json; key: String): Boolean;
 function JsonReadNumber(j: Json; key: String): Single;
 function JsonReadNumberAsDouble(j: Json; key: String): Double;
@@ -745,55 +745,57 @@ procedure RegisterCallbackOnKeyTyped(callback: KeyCallback);
 procedure RegisterCallbackOnKeyUp(callback: KeyCallback);
 procedure DrawLine(clr: Color; const l: Line);
 procedure DrawLine(clr: Color; const l: Line; opts: DrawingOptions);
-procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d);
-procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d; const opts: DrawingOptions);
+procedure DrawLine(clr: Color; const fromPt: Point2D; const toPt: Point2D);
+procedure DrawLine(clr: Color; const fromPt: Point2D; const toPt: Point2D; const opts: DrawingOptions);
 procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single);
 procedure DrawLine(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; const opts: DrawingOptions);
-function ClosestPointOnLine(fromPt: Point2d; const l: Line): Point2d;
-function ClosestPointOnLines(fromPt: Point2d; const lines: ArrayOfLine; var lineIdx: Integer): Point2d;
-function LineFrom(const start: Point2d; const endPt: Point2d): Line;
-function LineFrom(const start: Point2d; const offset: Vector2d): Line;
-function LineFrom(const v: Vector2d): Line;
+function ClosestPointOnLine(fromPt: Point2D; const l: Line): Point2D;
+function ClosestPointOnLines(fromPt: Point2D; const lines: ArrayOfLine; var lineIdx: Integer): Point2D;
+function LineFrom(const start: Point2D; const endPt: Point2D): Line;
+function LineFrom(const start: Point2D; const offset: Vector2D): Line;
+function LineFrom(const v: Vector2D): Line;
 function LineFrom(x1: Single; y1: Single; x2: Single; y2: Single): Line;
-function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2d): Boolean;
+function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2D): Boolean;
 function LineIntersectsCircle(const l: Line; const c: Circle): Boolean;
 function LineIntersectsLines(const l: Line; const lines: ArrayOfLine): Boolean;
 function LineIntersectsRect(const l: Line; const rect: Rectangle): Boolean;
 function LineLength(const l: Line): Single;
 function LineLengthSquared(const l: Line): Single;
-function LineMidPoint(const l: Line): Point2d;
-function LineNormal(const l: Line): Vector2d;
+function LineMidPoint(const l: Line): Point2D;
+function LineNormal(const l: Line): Vector2D;
 function LineToString(const ln: Line): String;
 function LinesFrom(const rect: Rectangle): ArrayOfLine;
 function LinesFrom(const t: Triangle): ArrayOfLine;
 function LinesIntersect(const l1: Line; const l2: Line): Boolean;
-procedure ApplyMatrix(const matrix: Matrix2d; var q: Quad);
-procedure ApplyMatrix(const m: Matrix2d; var tri: Triangle);
-function IdentityMatrix(): Matrix2d;
-function MatrixInverse(const m: Matrix2d): Matrix2d;
-function MatrixMultiply(const m: Matrix2d; const pt: Point2d): Point2d;
-function MatrixMultiply(const m1: Matrix2d; const m2: Matrix2d): Matrix2d;
-function MatrixMultiply(const m: Matrix2d; const v: Vector2d): Vector2d;
-function MatrixToString(const matrix: Matrix2d): String;
-function RotationMatrix(deg: Single): Matrix2d;
-function ScaleMatrix(const scale: Point2d): Matrix2d;
-function ScaleMatrix(scale: Single): Matrix2d;
-function ScaleRotateTranslateMatrix(const scale: Point2d; deg: Single; const translate: Point2d): Matrix2d;
-function TranslationMatrix(const pt: Point2d): Matrix2d;
-function TranslationMatrix(dx: Single; dy: Single): Matrix2d;
+procedure ApplyMatrix(const matrix: Matrix2D; var q: Quad);
+procedure ApplyMatrix(const m: Matrix2D; var tri: Triangle);
+function IdentityMatrix(): Matrix2D;
+function MatrixInverse(const m: Matrix2D): Matrix2D;
+function MatrixMultiply(const m: Matrix2D; const pt: Point2D): Point2D;
+function MatrixMultiply(const m1: Matrix2D; const m2: Matrix2D): Matrix2D;
+function MatrixMultiply(const m: Matrix2D; const v: Vector2D): Vector2D;
+function MatrixToString(const matrix: Matrix2D): String;
+function RotationMatrix(deg: Single): Matrix2D;
+function ScaleMatrix(const scale: Point2D): Matrix2D;
+function ScaleMatrix(const scale: Vector2D): Matrix2D;
+function ScaleMatrix(scale: Single): Matrix2D;
+function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Single; const translate: Point2D): Matrix2D;
+function TranslationMatrix(const pt: Point2D): Matrix2D;
+function TranslationMatrix(const pt: Vector2D): Matrix2D;
+function TranslationMatrix(dx: Single; dy: Single): Matrix2D;
 procedure HideMouse();
 function MouseClicked(button: MouseButton): Boolean;
 function MouseDown(button: MouseButton): Boolean;
-function MouseMovement(): Vector2d;
-function MousePosition(): Point2d;
-function MousePositionVector(): Vector2d;
+function MouseMovement(): Vector2D;
+function MousePosition(): Point2D;
+function MousePositionVector(): Vector2D;
 function MouseShown(): Boolean;
 function MouseUp(button: MouseButton): Boolean;
-function MouseWheelScroll(): Vector2d;
+function MouseWheelScroll(): Vector2D;
 function MouseX(): Single;
 function MouseY(): Single;
 procedure MoveMouse(x: Single; y: Single);
-procedure MoveMouse(point: Point2d);
+procedure MoveMouse(point: Point2D);
 procedure ShowMouse();
 procedure ShowMouse(show: Boolean);
 procedure FadeMusicIn(const name: String; ms: Integer);
@@ -819,47 +821,71 @@ procedure PlayMusic(data: Music; times: Integer; volume: Single);
 procedure ResumeMusic();
 procedure SetMusicVolume(volume: Single);
 procedure StopMusic();
+function AcceptAllNewConnections(): Boolean;
+function AcceptNewConnection(server: ServerSocket): Boolean;
+procedure CloseAllConnections();
+procedure CloseAllServers();
+function CloseConnection(aConnection: Connection): Boolean;
+function CloseConnection(const name: String): Boolean;
+procedure CloseMessage(msg: Message);
+function CloseServer(const name: String): Boolean;
+function CloseServer(svr: ServerSocket): Boolean;
+function ConnectionCount(const name: String): Cardinal;
+function ConnectionCount(server: ServerSocket): Cardinal;
+function CreateServer(const name: String; port: Word): ServerSocket;
+function CreateServer(const name: String; port: Word; protocol: ConnectionType): ServerSocket;
 function DecToHex(aDec: Cardinal): String;
+function HasNewConnections(): Boolean;
+function HasServer(const name: String): Boolean;
 function HexStrToIpv4(const aHex: String): String;
 function HexToDecString(const aHex: String): String;
 function Ipv4ToDec(const aIp: String): Cardinal;
 function Ipv4ToHex(const aIp: String): String;
 function Ipv4ToStr(ip: Cardinal): String;
+function LastConnection(const name: String): Connection;
+function LastConnection(server: ServerSocket): Connection;
 function MyIp(): String;
-procedure DrawPixel(clr: Color; const pt: Point2d);
-procedure DrawPixel(clr: Color; const pt: Point2d; opts: DrawingOptions);
+function OpenConnection(const name: String; const host: String; port: Word): Connection;
+function OpenConnection(const name: String; const host: String; port: Word; protocol: ConnectionType): Connection;
+function RetrieveConnection(const name: String; idx: Integer): Connection;
+function RetrieveConnection(server: ServerSocket; idx: Integer): Connection;
+function ServerHasNewConnection(const name: String): Boolean;
+function ServerHasNewConnection(server: ServerSocket): Boolean;
+function ServerNamed(const name: String): ServerSocket;
+procedure DrawPixel(clr: Color; const pt: Point2D);
+procedure DrawPixel(clr: Color; const pt: Point2D; opts: DrawingOptions);
 procedure DrawPixel(clr: Color; x: Single; y: Single);
 procedure DrawPixel(clr: Color; x: Single; y: Single; opts: DrawingOptions);
-function GetPixel(bmp: Bitmap; const pt: Point2d): Color;
+function GetPixel(bmp: Bitmap; const pt: Point2D): Color;
 function GetPixel(bmp: Bitmap; x: Single; y: Single): Color;
-function GetPixel(const pt: Point2d): Color;
+function GetPixel(const pt: Point2D): Color;
 function GetPixel(x: Single; y: Single): Color;
-function GetPixel(wnd: Window; const pt: Point2d): Color;
+function GetPixel(wnd: Window; const pt: Point2D): Color;
 function GetPixel(wnd: Window; x: Single; y: Single): Color;
-function PointAt(x: Single; y: Single): Point2d;
-function PointAtOrigin(): Point2d;
-function PointInCircle(const pt: Point2d; const c: Circle): Boolean;
-function PointInQuad(const pt: Point2d; const q: Quad): Boolean;
-function PointInRectangle(const pt: Point2d; const rect: Rectangle): Boolean;
-function PointInTriangle(const pt: Point2d; const tri: Triangle): Boolean;
-function PointLineDistance(const pt: Point2d; const l: Line): Single;
-function PointOffsetBy(const startPoint: Point2d; const offset: Vector2d): Point2d;
-function PointOffsetFromOrigin(const offset: Vector2d): Point2d;
-function PointOnLine(const pt: Point2d; const l: Line): Boolean;
-function PointOnLine(const pt: Point2d; const l: Line; proximity: Single): Boolean;
-function PointPointAngle(const pt1: Point2d; const pt2: Point2d): Single;
-function PointPointDistance(const pt1: Point2d; const pt2: Point2d): Single;
-function PointToString(const pt: Point2d): String;
-function RandomBitmapPoint(bmp: Bitmap): Point2d;
-function RandomScreenPoint(): Point2d;
-function RandomWindowPoint(wind: Window): Point2d;
-function SamePoint(const pt1: Point2d; const pt2: Point2d): Boolean;
-function QuadFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d; const p4: Point2d): Quad;
+function PointAt(x: Single; y: Single): Point2D;
+function PointAtOrigin(): Point2D;
+function PointInCircle(const pt: Point2D; const c: Circle): Boolean;
+function PointInQuad(const pt: Point2D; const q: Quad): Boolean;
+function PointInRectangle(const pt: Point2D; const rect: Rectangle): Boolean;
+function PointInTriangle(const pt: Point2D; const tri: Triangle): Boolean;
+function PointLineDistance(const pt: Point2D; const l: Line): Single;
+function PointOffsetBy(const startPoint: Point2D; const offset: Vector2D): Point2D;
+function PointOffsetFromOrigin(const offset: Vector2D): Point2D;
+function PointOnLine(const pt: Point2D; const l: Line): Boolean;
+function PointOnLine(const pt: Point2D; const l: Line; proximity: Single): Boolean;
+function PointPointAngle(const pt1: Point2D; const pt2: Point2D): Single;
+function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Single;
+function PointToString(const pt: Point2D): String;
+function RandomBitmapPoint(bmp: Bitmap): Point2D;
+function RandomScreenPoint(): Point2D;
+function RandomWindowPoint(wind: Window): Point2D;
+function SamePoint(const pt1: Point2D; const pt2: Point2D): Boolean;
+function QuadFrom(const p1: Point2D; const p2: Point2D; const p3: Point2D; const p4: Point2D): Quad;
 function QuadFrom(const rect: Rectangle): Quad;
-function QuadFrom(const rect: Rectangle; const transform: Matrix2d): Quad;
+function QuadFrom(const rect: Rectangle; const transform: Matrix2D): Quad;
 function QuadFrom(xTopLeft: Single; yTopLeft: Single; xTopRight: Single; yTopRight: Single; xBottomLeft: Single; yBottomLeft: Single; xBottomRight: Single; yBottomRight: Single): Quad;
 function QuadsIntersect(const q1: Quad; const q2: Quad): Boolean;
-procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2d);
+procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2D);
 function TrianglesFrom(const q: Quad): ArrayOfTriangle;
 function Rnd(): Single;
 function Rnd(ubound: Integer): Integer;
@@ -881,12 +907,12 @@ function RectangleAround(const t: Triangle): Rectangle;
 function RectangleAround(const c: Circle): Rectangle;
 function RectangleAround(const l: Line): Rectangle;
 function RectangleBottom(const rect: Rectangle): Single;
-function RectangleCenter(const rect: Rectangle): Point2d;
-function RectangleFrom(pt: Point2d; width: Single; height: Single): Rectangle;
-function RectangleFrom(pt1: Point2d; pt2: Point2d): Rectangle;
+function RectangleCenter(const rect: Rectangle): Point2D;
+function RectangleFrom(pt: Point2D; width: Single; height: Single): Rectangle;
+function RectangleFrom(pt1: Point2D; pt2: Point2D): Rectangle;
 function RectangleFrom(x: Single; y: Single; width: Single; height: Single): Rectangle;
 function RectangleLeft(const rect: Rectangle): Single;
-function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2d): Rectangle;
+function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2D): Rectangle;
 function RectangleRight(const rect: Rectangle): Single;
 function RectangleToString(const rect: Rectangle): String;
 function RectangleTop(const rect: Rectangle): Single;
@@ -921,7 +947,7 @@ procedure StopSoundEffect(effect: SoundEffect);
 procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single);
 procedure CallForAllSprites(fn: SpriteFunction);
 procedure CallOnSpriteEvent(handler: SpriteEventHandler);
-function CenterPoint(s: Sprite): Point2d;
+function CenterPoint(s: Sprite): Point2D;
 function CreateSprite(layer: Bitmap): Sprite;
 function CreateSprite(layer: Bitmap; ani: AnimationScript): Sprite;
 function CreateSprite(const bitmapName: String): Sprite;
@@ -931,7 +957,7 @@ function CreateSprite(const bitmapName: String; const animationName: String): Sp
 procedure CreateSpritePack(const name: String);
 function CurrentSpritePack(): String;
 procedure DrawAllSprites();
-procedure DrawSprite(s: Sprite; const offset: Vector2d);
+procedure DrawSprite(s: Sprite; const offset: Vector2D);
 procedure DrawSprite(s: Sprite);
 procedure DrawSprite(s: Sprite; xOffset: Single; yOffset: Single);
 procedure FreeAllSprites();
@@ -940,20 +966,20 @@ procedure FreeSpritePack(const name: String);
 function HasSprite(const name: String): Boolean;
 function HasSpritePack(const name: String): Boolean;
 procedure MoveSprite(s: Sprite);
-procedure MoveSprite(s: Sprite; const distance: Vector2d);
-procedure MoveSprite(s: Sprite; const distance: Vector2d; pct: Single);
+procedure MoveSprite(s: Sprite; const distance: Vector2D);
+procedure MoveSprite(s: Sprite; const distance: Vector2D; pct: Single);
 procedure MoveSprite(s: Sprite; pct: Single);
 procedure MoveSpriteTo(s: Sprite; x: Single; y: Single);
 procedure SelectSpritePack(const name: String);
 function SpriteAddLayer(s: Sprite; newLayer: Bitmap; const layerName: String): Integer;
-procedure SpriteAddToVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteAddToVelocity(s: Sprite; const value: Vector2D);
 procedure SpriteAddValue(s: Sprite; const name: String);
 procedure SpriteAddValue(s: Sprite; const name: String; initVal: Single);
-function SpriteAnchorPoint(s: Sprite): Point2d;
-function SpriteAnchorPosition(s: Sprite): Point2d;
+function SpriteAnchorPoint(s: Sprite): Point2D;
+function SpriteAnchorPosition(s: Sprite): Point2D;
 function SpriteAnimationHasEnded(s: Sprite): Boolean;
 function SpriteAnimationName(s: Sprite): String;
-function SpriteAt(s: Sprite; const pt: Point2d): Boolean;
+function SpriteAt(s: Sprite; const pt: Point2D): Boolean;
 procedure SpriteBringLayerForward(s: Sprite; visibleLayer: Integer);
 procedure SpriteBringLayerToFront(s: Sprite; visibleLayer: Integer);
 procedure SpriteCallOnEvent(s: Sprite; handler: SpriteEventHandler);
@@ -980,22 +1006,22 @@ function SpriteLayerHeight(s: Sprite; const name: String): Integer;
 function SpriteLayerHeight(s: Sprite; idx: Integer): Integer;
 function SpriteLayerIndex(s: Sprite; const name: String): Integer;
 function SpriteLayerName(s: Sprite; idx: Integer): String;
-function SpriteLayerOffset(s: Sprite; const name: String): Vector2d;
-function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2d;
+function SpriteLayerOffset(s: Sprite; const name: String): Vector2D;
+function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2D;
 function SpriteLayerRectangle(s: Sprite; const name: String): Rectangle;
 function SpriteLayerRectangle(s: Sprite; idx: Integer): Rectangle;
 function SpriteLayerWidth(s: Sprite; const name: String): Integer;
 function SpriteLayerWidth(s: Sprite; idx: Integer): Integer;
-function SpriteLocationMatrix(s: Sprite): Matrix2d;
+function SpriteLocationMatrix(s: Sprite): Matrix2D;
 function SpriteMass(s: Sprite): Single;
 function SpriteMoveFromAnchorPoint(s: Sprite): Boolean;
-procedure SpriteMoveTo(s: Sprite; const pt: Point2d; takingSeconds: Single);
+procedure SpriteMoveTo(s: Sprite; const pt: Point2D; takingSeconds: Single);
 function SpriteName(s: Sprite): String;
 function SpriteNamed(const name: String): Sprite;
 function SpriteOffscreen(s: Sprite): Boolean;
-function SpriteOnScreenAt(s: Sprite; const pt: Point2d): Boolean;
+function SpriteOnScreenAt(s: Sprite; const pt: Point2D): Boolean;
 function SpriteOnScreenAt(s: Sprite; x: Single; y: Single): Boolean;
-function SpritePosition(s: Sprite): Point2d;
+function SpritePosition(s: Sprite): Point2D;
 procedure SpriteReplayAnimation(s: Sprite);
 procedure SpriteReplayAnimation(s: Sprite; withSound: Boolean);
 function SpriteRotation(s: Sprite): Single;
@@ -1003,22 +1029,22 @@ function SpriteScale(s: Sprite): Single;
 function SpriteScreenRectangle(s: Sprite): Rectangle;
 procedure SpriteSendLayerBackward(s: Sprite; visibleLayer: Integer);
 procedure SpriteSendLayerToBack(s: Sprite; visibleLayer: Integer);
-procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2d);
+procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2D);
 procedure SpriteSetCollisionBitmap(s: Sprite; bmp: Bitmap);
 procedure SpriteSetCollisionKind(s: Sprite; value: CollisionTestKind);
 procedure SpriteSetDx(s: Sprite; value: Single);
 procedure SpriteSetDy(s: Sprite; value: Single);
 procedure SpriteSetHeading(s: Sprite; value: Single);
-procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2d);
-procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2d);
+procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2D);
+procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2D);
 procedure SpriteSetMass(s: Sprite; value: Single);
 procedure SpriteSetMoveFromAnchorPoint(s: Sprite; value: Boolean);
-procedure SpriteSetPosition(s: Sprite; const value: Point2d);
+procedure SpriteSetPosition(s: Sprite; const value: Point2D);
 procedure SpriteSetRotation(s: Sprite; value: Single);
 procedure SpriteSetScale(s: Sprite; value: Single);
 procedure SpriteSetSpeed(s: Sprite; value: Single);
 procedure SpriteSetValue(s: Sprite; const name: String; val: Single);
-procedure SpriteSetVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteSetVelocity(s: Sprite; const value: Vector2D);
 procedure SpriteSetX(s: Sprite; value: Single);
 procedure SpriteSetY(s: Sprite; value: Single);
 function SpriteShowLayer(s: Sprite; const name: String): Integer;
@@ -1033,7 +1059,7 @@ procedure SpriteToggleLayerVisible(s: Sprite; const name: String);
 procedure SpriteToggleLayerVisible(s: Sprite; id: Integer);
 function SpriteValue(s: Sprite; const name: String): Single;
 function SpriteValueCount(s: Sprite): Integer;
-function SpriteVelocity(s: Sprite): Vector2d;
+function SpriteVelocity(s: Sprite): Vector2D;
 function SpriteVisibleIndexOfLayer(s: Sprite; const name: String): Integer;
 function SpriteVisibleIndexOfLayer(s: Sprite; id: Integer): Integer;
 function SpriteVisibleLayer(s: Sprite; idx: Integer): Integer;
@@ -1053,8 +1079,8 @@ procedure UpdateSpriteAnimation(s: Sprite);
 procedure UpdateSpriteAnimation(s: Sprite; withSound: Boolean);
 procedure UpdateSpriteAnimation(s: Sprite; pct: Single);
 procedure UpdateSpriteAnimation(s: Sprite; pct: Single; withSound: Boolean);
-function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2d): Vector2d;
-function VectorFromTo(s1: Sprite; s2: Sprite): Vector2d;
+function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2D): Vector2D;
+function VectorFromTo(s1: Sprite; s2: Sprite): Vector2D;
 procedure ActivateAdvancedTerminal();
 function AdvancedTerminalActive(): Boolean;
 procedure ClearTerminal();
@@ -1138,8 +1164,8 @@ procedure FillTriangle(clr: Color; const tri: Triangle);
 procedure FillTriangle(clr: Color; const tri: Triangle; opts: DrawingOptions);
 procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single);
 procedure FillTriangle(clr: Color; x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single; opts: DrawingOptions);
-function TriangleBarycenter(const tri: Triangle): Point2d;
-function TriangleFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d): Triangle;
+function TriangleBarycenter(const tri: Triangle): Point2D;
+function TriangleFrom(const p1: Point2D; const p2: Point2D; const p3: Point2D): Triangle;
 function TriangleFrom(x1: Single; y1: Single; x2: Single; y2: Single; x3: Single; y3: Single): Triangle;
 function TriangleRectangleIntersect(const tri: Triangle; const rect: Rectangle): Boolean;
 function TriangleToString(const tri: Triangle): String;
@@ -1147,35 +1173,35 @@ function TrianglesIntersect(const t1: Triangle; const t2: Triangle): Boolean;
 function CurrentTicks(): Cardinal;
 procedure Delay(milliseconds: Cardinal);
 function FileAsString(filename: String; kind: ResourceKind): String;
-function AngleBetween(const v1: Vector2d; const v2: Vector2d): Single;
-function DotProduct(const v1: Vector2d; const v2: Vector2d): Single;
-function IsZeroVector(const v: Vector2d): Boolean;
-function RayIntersectionPoint(const fromPt: Point2d; const heading: Vector2d; const l: Line; var pt: Point2d): Boolean;
-function UnitVector(const v: Vector2d): Vector2d;
-function VectorAdd(const v1: Vector2d; const v2: Vector2d): Vector2d;
-function VectorAngle(v: Vector2d): Single;
-function VectorFromAngle(angle: Single; magnitude: Single): Vector2d;
-function VectorFromLine(const l: Line): Vector2d;
-function VectorFromPointToRect(const pt: Point2d; const rect: Rectangle): Vector2d;
-function VectorInRect(const v: Vector2d; const rect: Rectangle): Boolean;
-function VectorInvert(const v: Vector2d): Vector2d;
-function VectorLimit(const v: Vector2d; limit: Single): Vector2d;
-function VectorMagnitude(const v: Vector2d): Single;
-function VectorMagnitudeSqared(const v: Vector2d): Single;
-function VectorMultiply(const v1: Vector2d; s: Single): Vector2d;
-function VectorNormal(const v: Vector2d): Vector2d;
-function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2d): Vector2d;
-function VectorOutOfCircleFromPoint(const pt: Point2d; const c: Circle; const velocity: Vector2d): Vector2d;
-function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2d): Vector2d;
-function VectorOutOfRectFromPoint(const pt: Point2d; const rect: Rectangle; const velocity: Vector2d): Vector2d;
-function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2d): Vector2d;
-function VectorPointToPoint(const start: Point2d; const endPt: Point2d): Vector2d;
-function VectorSubtract(const v1: Vector2d; const v2: Vector2d): Vector2d;
-function VectorTo(const p1: Point2d): Vector2d;
-function VectorTo(x: Single; y: Single): Vector2d;
-function VectorToString(const v: Vector2d): String;
-function VectorsEqual(const v1: Vector2d; v2: Vector2d): Boolean;
-function VectorsNotEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+function AngleBetween(const v1: Vector2D; const v2: Vector2D): Single;
+function DotProduct(const v1: Vector2D; const v2: Vector2D): Single;
+function IsZeroVector(const v: Vector2D): Boolean;
+function RayIntersectionPoint(const fromPt: Point2D; const heading: Vector2D; const l: Line; var pt: Point2D): Boolean;
+function UnitVector(const v: Vector2D): Vector2D;
+function VectorAdd(const v1: Vector2D; const v2: Vector2D): Vector2D;
+function VectorAngle(v: Vector2D): Single;
+function VectorFromAngle(angle: Single; magnitude: Single): Vector2D;
+function VectorFromLine(const l: Line): Vector2D;
+function VectorFromPointToRect(const pt: Point2D; const rect: Rectangle): Vector2D;
+function VectorInRect(const v: Vector2D; const rect: Rectangle): Boolean;
+function VectorInvert(const v: Vector2D): Vector2D;
+function VectorLimit(const v: Vector2D; limit: Single): Vector2D;
+function VectorMagnitude(const v: Vector2D): Single;
+function VectorMagnitudeSqared(const v: Vector2D): Single;
+function VectorMultiply(const v1: Vector2D; s: Single): Vector2D;
+function VectorNormal(const v: Vector2D): Vector2D;
+function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2D): Vector2D;
+function VectorOutOfCircleFromPoint(const pt: Point2D; const c: Circle; const velocity: Vector2D): Vector2D;
+function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2D): Vector2D;
+function VectorOutOfRectFromPoint(const pt: Point2D; const rect: Rectangle; const velocity: Vector2D): Vector2D;
+function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2D): Vector2D;
+function VectorPointToPoint(const start: Point2D; const endPt: Point2D): Vector2D;
+function VectorSubtract(const v1: Vector2D; const v2: Vector2D): Vector2D;
+function VectorTo(const p1: Point2D): Vector2D;
+function VectorTo(x: Single; y: Single): Vector2D;
+function VectorToString(const v: Vector2D): String;
+function VectorsEqual(const v1: Vector2D; v2: Vector2D): Boolean;
+function VectorsNotEqual(const v1: Vector2D; v2: Vector2D): Boolean;
 function DownloadBitmap(const name: String; const url: String; port: Word): Bitmap;
 function DownloadFont(const name: String; const url: String; port: Word): Font;
 function DownloadMusic(const name: String; const url: String; port: Word): Music;
@@ -1238,9 +1264,9 @@ function WindowIsFullscreen(): Boolean;
 function WindowIsFullscreen(const name: String): Boolean;
 function WindowIsFullscreen(wnd: Window): Boolean;
 function WindowNamed(caption: String): Window;
-function WindowPosition(): Point2d;
-function WindowPosition(const name: String): Point2d;
-function WindowPosition(wnd: Window): Point2d;
+function WindowPosition(): Point2D;
+function WindowPosition(const name: String): Point2D;
+function WindowPosition(wnd: Window): Point2D;
 procedure WindowSetIcon(wind: Window; bmp: Bitmap);
 procedure WindowToggleBorder();
 procedure WindowToggleBorder(const name: String);
@@ -1265,6 +1291,7 @@ uses strings, math;
 type __sklib_string = record
   str: PChar;
   size: Integer;
+  ptr: Pointer;
 end;
 type __sklib_ptr = Pointer;
 type __sklib_matrix_2d = record
@@ -1331,6 +1358,7 @@ function __skadapter__to_sklib_string(s: String): __sklib_string;
 begin
   result.size := Length(s);
   result.str := StrAlloc(Length(s) + 1);
+  result.ptr := nil;
   StrPCopy(result.str, s);
 end;
 procedure __sklib__free__sklib_string(s: __sklib_string); cdecl; external;
@@ -1359,11 +1387,11 @@ function __skadapter__to_short(v: ShortInt): ShortInt;
 begin
   result := v;
 end;
-function __skadapter__to_sklib_long(v: Int64): Int64;
+function __skadapter__to_sklib_int64_t(v: Int64): Int64;
 begin
   result := v;
 end;
-function __skadapter__to_long(v: Int64): Int64;
+function __skadapter__to_int64_t(v: Int64): Int64;
 begin
   result := v;
 end;
@@ -1420,14 +1448,6 @@ begin
   result := v;
 end;
 function __skadapter__to_unsigned_short(v: Word): Word;
-begin
-  result := v;
-end;
-function __skadapter__to_sklib_unsigned_long(v: Longword): Longword;
-begin
-  result := v;
-end;
-function __skadapter__to_unsigned_long(v: Longword): Longword;
 begin
   result := v;
 end;
@@ -1671,7 +1691,7 @@ function __skadapter__to_sklib_window(v: Window): __sklib_ptr;
 begin
   result := __sklib_ptr(v);
 end;
-function __skadapter__to_sklib_matrix_2d(v: Matrix2d): __sklib_matrix_2d;
+function __skadapter__to_sklib_matrix_2d(v: Matrix2D): __sklib_matrix_2d;
 begin
   result.elements[0] := __skadapter__to_sklib_double(v.elements[0,0]);
   result.elements[1] := __skadapter__to_sklib_double(v.elements[0,1]);
@@ -1683,7 +1703,7 @@ begin
   result.elements[7] := __skadapter__to_sklib_double(v.elements[2,1]);
   result.elements[8] := __skadapter__to_sklib_double(v.elements[2,2]);
 end;
-function __skadapter__to_matrix_2d(v: __sklib_matrix_2d): Matrix2d;
+function __skadapter__to_matrix_2d(v: __sklib_matrix_2d): Matrix2D;
 begin
   result.elements[0,0] := __skadapter__to_double(v.elements[0]);
   result.elements[0,1] := __skadapter__to_double(v.elements[1]);
@@ -1695,12 +1715,12 @@ begin
   result.elements[2,1] := __skadapter__to_double(v.elements[7]);
   result.elements[2,2] := __skadapter__to_double(v.elements[8]);
 end;
-function __skadapter__to_sklib_point_2d(v: Point2d): __sklib_point_2d;
+function __skadapter__to_sklib_point_2d(v: Point2D): __sklib_point_2d;
 begin
   result.x := __skadapter__to_sklib_float(v.x);
   result.y := __skadapter__to_sklib_float(v.y);
 end;
-function __skadapter__to_point_2d(v: __sklib_point_2d): Point2d;
+function __skadapter__to_point_2d(v: __sklib_point_2d): Point2D;
 begin
   result.x := __skadapter__to_float(v.x);
   result.y := __skadapter__to_float(v.y);
@@ -1811,12 +1831,12 @@ begin
   result.points[1] := __skadapter__to_point_2d(v.points[1]);
   result.points[2] := __skadapter__to_point_2d(v.points[2]);
 end;
-function __skadapter__to_sklib_vector_2d(v: Vector2d): __sklib_vector_2d;
+function __skadapter__to_sklib_vector_2d(v: Vector2D): __sklib_vector_2d;
 begin
   result.x := __skadapter__to_sklib_double(v.x);
   result.y := __skadapter__to_sklib_double(v.y);
 end;
-function __skadapter__to_vector_2d(v: __sklib_vector_2d): Vector2d;
+function __skadapter__to_vector_2d(v: __sklib_vector_2d): Vector2D;
 begin
   result.x := __skadapter__to_double(v.x);
   result.y := __skadapter__to_double(v.y);
@@ -2532,10 +2552,10 @@ function __sklib__json_from_color__color(clr: __sklib_color): __sklib_ptr; cdecl
 function __sklib__json_from_file__string_ref(const filename: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__json_from_string__string_ref(const jString: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__json_has_key__json__string(j: __sklib_ptr; key: __sklib_string): LongInt; cdecl; external;
-procedure __sklib__json_read_array__json__string__vector_double_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_double); cdecl; external;
-procedure __sklib__json_read_array__json__string__vector_json_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_json); cdecl; external;
-procedure __sklib__json_read_array__json__string__vector_string_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_string); cdecl; external;
-procedure __sklib__json_read_array__json__string__vector_bool_ref(j: __sklib_ptr; key: __sklib_string; var out: __sklib_vector_bool); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_double_ref(j: __sklib_ptr; key: __sklib_string; var outResult: __sklib_vector_double); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_json_ref(j: __sklib_ptr; key: __sklib_string; var outResult: __sklib_vector_json); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_string_ref(j: __sklib_ptr; key: __sklib_string; var outResult: __sklib_vector_string); cdecl; external;
+procedure __sklib__json_read_array__json__string__vector_bool_ref(j: __sklib_ptr; key: __sklib_string; var outResult: __sklib_vector_bool); cdecl; external;
 function __sklib__json_read_bool__json__string(j: __sklib_ptr; key: __sklib_string): LongInt; cdecl; external;
 function __sklib__json_read_number__json__string(j: __sklib_ptr; key: __sklib_string): Single; cdecl; external;
 function __sklib__json_read_number_as_double__json__string(j: __sklib_ptr; key: __sklib_string): Double; cdecl; external;
@@ -2601,9 +2621,11 @@ function __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(const m: __sklib
 function __sklib__matrix_to_string__matrix_2d_ref(const matrix: __sklib_matrix_2d): __sklib_string; cdecl; external;
 function __sklib__rotation_matrix__float(deg: Single): __sklib_matrix_2d; cdecl; external;
 function __sklib__scale_matrix__point_2d_ref(const scale: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_matrix__vector_2d_ref(const scale: __sklib_vector_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__scale_matrix__float(scale: Single): __sklib_matrix_2d; cdecl; external;
 function __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(const scale: __sklib_point_2d; deg: Single; const translate: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__translation_matrix__point_2d_ref(const pt: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__translation_matrix__vector_2d_ref(const pt: __sklib_vector_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__translation_matrix__float__float(dx: Single; dy: Single): __sklib_matrix_2d; cdecl; external;
 procedure __sklib__hide_mouse(); cdecl; external;
 function __sklib__mouse_clicked__mouse_button(button: LongInt): LongInt; cdecl; external;
@@ -2643,13 +2665,37 @@ procedure __sklib__play_music__music__int__float(data: __sklib_ptr; times: Integ
 procedure __sklib__resume_music(); cdecl; external;
 procedure __sklib__set_music_volume__float(volume: Single); cdecl; external;
 procedure __sklib__stop_music(); cdecl; external;
+function __sklib__accept_all_new_connections(): LongInt; cdecl; external;
+function __sklib__accept_new_connection__server_socket(server: __sklib_ptr): LongInt; cdecl; external;
+procedure __sklib__close_all_connections(); cdecl; external;
+procedure __sklib__close_all_servers(); cdecl; external;
+function __sklib__close_connection__connection(aConnection: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__close_connection__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+procedure __sklib__close_message__message(msg: __sklib_ptr); cdecl; external;
+function __sklib__close_server__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__close_server__server_socket(svr: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__connection_count__string_ref(const name: __sklib_string): Cardinal; cdecl; external;
+function __sklib__connection_count__server_socket(server: __sklib_ptr): Cardinal; cdecl; external;
+function __sklib__create_server__string_ref__unsigned_short(const name: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__create_server__string_ref__unsigned_short__connection_type(const name: __sklib_string; port: Word; protocol: LongInt): __sklib_ptr; cdecl; external;
 function __sklib__dec_to_hex__unsigned_int(aDec: Cardinal): __sklib_string; cdecl; external;
+function __sklib__has_new_connections(): LongInt; cdecl; external;
+function __sklib__has_server__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__hex_str_to_ipv4__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__hex_to_dec_string__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__ipv4_to_dec__string_ref(const aIp: __sklib_string): Cardinal; cdecl; external;
 function __sklib__ipv4_to_hex__string_ref(const aIp: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__ipv4_to_str__unsigned_int(ip: Cardinal): __sklib_string; cdecl; external;
+function __sklib__last_connection__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__last_connection__server_socket(server: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__my_ip(): __sklib_string; cdecl; external;
+function __sklib__open_connection__string_ref__string_ref__unsigned_short(const name: __sklib_string; const host: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
+function __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(const name: __sklib_string; const host: __sklib_string; port: Word; protocol: LongInt): __sklib_ptr; cdecl; external;
+function __sklib__retrieve_connection__string_ref__int(const name: __sklib_string; idx: Integer): __sklib_ptr; cdecl; external;
+function __sklib__retrieve_connection__server_socket__int(server: __sklib_ptr; idx: Integer): __sklib_ptr; cdecl; external;
+function __sklib__server_has_new_connection__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__server_has_new_connection__server_socket(server: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__server_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__draw_pixel__color__point_2d_ref(clr: __sklib_color; const pt: __sklib_point_2d); cdecl; external;
 procedure __sklib__draw_pixel__color__point_2d_ref__drawing_options(clr: __sklib_color; const pt: __sklib_point_2d; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_pixel__color__float__float(clr: __sklib_color; x: Single; y: Single); cdecl; external;
@@ -3100,7 +3146,7 @@ begin
   __skreturn := __sklib__animation_current_cell__animation(__skparam__anim);
   result := __skadapter__to_int(__skreturn);
 end;
-function AnimationCurrentVector(anim: Animation): Vector2d;
+function AnimationCurrentVector(anim: Animation): Vector2D;
 var
   __skparam__anim: __sklib_ptr;
   __skreturn: __sklib_vector_2d;
@@ -3446,7 +3492,7 @@ begin
   __skparam__filename := __skadapter__to_sklib_string(filename);
   __sklib__load_resource_bundle__string_ref__string_ref(__skparam__name, __skparam__filename);
 end;
-function CameraPosition(): Point2d;
+function CameraPosition(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
@@ -3467,7 +3513,7 @@ begin
   __skreturn := __sklib__camera_y();
   result := __skadapter__to_float(__skreturn);
 end;
-procedure CenterCameraOn(s: Sprite; const offset: Vector2d);
+procedure CenterCameraOn(s: Sprite; const offset: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__offset: __sklib_vector_2d;
@@ -3487,7 +3533,7 @@ begin
   __skparam__offset_y := __skadapter__to_sklib_float(offsetY);
   __sklib__center_camera_on__sprite__float__float(__skparam__s, __skparam__offset_x, __skparam__offset_y);
 end;
-procedure MoveCameraBy(const offset: Vector2d);
+procedure MoveCameraBy(const offset: Vector2D);
 var
   __skparam__offset: __sklib_vector_2d;
 begin
@@ -3503,7 +3549,7 @@ begin
   __skparam__dy := __skadapter__to_sklib_float(dy);
   __sklib__move_camera_by__float__float(__skparam__dx, __skparam__dy);
 end;
-procedure MoveCameraTo(const pt: Point2d);
+procedure MoveCameraTo(const pt: Point2D);
 var
   __skparam__pt: __sklib_point_2d;
 begin
@@ -3519,7 +3565,7 @@ begin
   __skparam__y := __skadapter__to_sklib_float(y);
   __sklib__move_camera_to__float__float(__skparam__x, __skparam__y);
 end;
-function PointOnScreen(const pt: Point2d): Boolean;
+function PointOnScreen(const pt: Point2D): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: LongInt;
@@ -3537,7 +3583,7 @@ begin
   __skreturn := __sklib__rect_on_screen__rectangle_ref(__skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
-function ScreenCenter(): Point2d;
+function ScreenCenter(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
@@ -3551,7 +3597,7 @@ begin
   __skreturn := __sklib__screen_rectangle();
   result := __skadapter__to_rectangle(__skreturn);
 end;
-procedure SetCameraPosition(pos: Point2d);
+procedure SetCameraPosition(pos: Point2D);
 var
   __skparam__pos: __sklib_point_2d;
 begin
@@ -3565,7 +3611,7 @@ begin
   __skparam__y := __skadapter__to_sklib_float(y);
   __sklib__set_camera_y__float(__skparam__y);
 end;
-function ToScreen(const pt: Point2d): Point2d;
+function ToScreen(const pt: Point2D): Point2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: __sklib_point_2d;
@@ -3601,7 +3647,7 @@ begin
   __skreturn := __sklib__to_screen_y__float(__skparam__world_y);
   result := __skadapter__to_float(__skreturn);
 end;
-function ToWorld(const pt: Point2d): Point2d;
+function ToWorld(const pt: Point2D): Point2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: __sklib_point_2d;
@@ -3628,7 +3674,7 @@ begin
   __skreturn := __sklib__to_world_y__float(__skparam__screen_y);
   result := __skadapter__to_float(__skreturn);
 end;
-function VectorWorldToScreen(): Vector2d;
+function VectorWorldToScreen(): Vector2D;
 var
   __skreturn: __sklib_vector_2d;
 begin
@@ -3731,7 +3777,7 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 end;
-function CenterPoint(const c: Circle): Point2d;
+function CenterPoint(const c: Circle): Point2D;
 var
   __skparam__c: __sklib_circle;
   __skreturn: __sklib_point_2d;
@@ -3740,7 +3786,7 @@ begin
   __skreturn := __sklib__center_point__circle_ref(__skparam__c);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function CircleAt(const pt: Point2d; radius: Single): Circle;
+function CircleAt(const pt: Point2D; radius: Single): Circle;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__radius: Single;
@@ -3802,7 +3848,7 @@ begin
   __skreturn := __sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function ClosestPointOnCircle(const fromPt: Point2d; const c: Circle): Point2d;
+function ClosestPointOnCircle(const fromPt: Point2D; const c: Circle): Point2D;
 var
   __skparam__from_pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -3813,7 +3859,7 @@ begin
   __skreturn := __sklib__closest_point_on_circle__point_2d_ref__circle_ref(__skparam__from_pt, __skparam__c);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2d;
+function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2D;
 var
   __skparam__c: __sklib_circle;
   __skparam__l: __sklib_line;
@@ -3824,7 +3870,7 @@ begin
   __skreturn := __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(__skparam__c, __skparam__l);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2d;
+function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2D;
 var
   __skparam__c: __sklib_circle;
   __skparam__rect: __sklib_rectangle;
@@ -3835,7 +3881,7 @@ begin
   __skreturn := __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(__skparam__c, __skparam__rect);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function DistantPointOnCircle(const pt: Point2d; const c: Circle): Point2d;
+function DistantPointOnCircle(const pt: Point2D; const c: Circle): Point2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -3846,7 +3892,7 @@ begin
   __skreturn := __sklib__distant_point_on_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function DistantPointOnCircleHeading(const pt: Point2d; const c: Circle; const heading: Vector2d; var oppositePt: Point2d): Boolean;
+function DistantPointOnCircleHeading(const pt: Point2D; const c: Circle; const heading: Vector2D; var oppositePt: Point2D): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -3862,7 +3908,7 @@ begin
   oppositePt := __skadapter__to_point_2d(__skparam__opposite_pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function RayCircleIntersectDistance(const rayOrigin: Point2d; const rayHeading: Vector2d; const c: Circle): Single;
+function RayCircleIntersectDistance(const rayOrigin: Point2D; const rayHeading: Vector2D; const c: Circle): Single;
 var
   __skparam__ray_origin: __sklib_point_2d;
   __skparam__ray_heading: __sklib_vector_2d;
@@ -3875,7 +3921,7 @@ begin
   __skreturn := __sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref(__skparam__ray_origin, __skparam__ray_heading, __skparam__c);
   result := __skadapter__to_float(__skreturn);
 end;
-function TangentPoints(const fromPt: Point2d; const c: Circle; var p1: Point2d; var p2: Point2d): Boolean;
+function TangentPoints(const fromPt: Point2D; const c: Circle; var p1: Point2D; var p2: Point2D): Boolean;
 var
   __skparam__from_pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -3892,7 +3938,7 @@ begin
   p2 := __skadapter__to_point_2d(__skparam__p2);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure WidestPoints(const c: Circle; const along: Vector2d; var pt1: Point2d; var pt2: Point2d);
+procedure WidestPoints(const c: Circle; const along: Vector2D; var pt1: Point2D; var pt2: Point2D);
 var
   __skparam__c: __sklib_circle;
   __skparam__along: __sklib_vector_2d;
@@ -4037,7 +4083,7 @@ begin
   __skreturn := __sklib__bitmap_collision__bitmap__float__float__bitmap__float__float(__skparam__bmp1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__x2, __skparam__y2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapCollision(bmp1: Bitmap; const pt1: Point2d; bmp2: Bitmap; const pt2: Point2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; const pt1: Point2D; bmp2: Bitmap; const pt2: Point2D): Boolean;
 var
   __skparam__bmp1: __sklib_ptr;
   __skparam__pt1: __sklib_point_2d;
@@ -4052,7 +4098,7 @@ begin
   __skreturn := __sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref(__skparam__bmp1, __skparam__pt1, __skparam__bmp2, __skparam__pt2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2d; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2D; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2D): Boolean;
 var
   __skparam__bmp1: __sklib_ptr;
   __skparam__cell1: Integer;
@@ -4071,7 +4117,7 @@ begin
   __skreturn := __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref(__skparam__bmp1, __skparam__cell1, __skparam__matrix1, __skparam__bmp2, __skparam__cell2, __skparam__matrix2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2d; bmp2: Bitmap; cell2: Integer; const pt2: Point2d): Boolean;
+function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2D; bmp2: Bitmap; cell2: Integer; const pt2: Point2D): Boolean;
 var
   __skparam__bmp1: __sklib_ptr;
   __skparam__cell1: Integer;
@@ -4113,7 +4159,7 @@ begin
   __skreturn := __sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float(__skparam__bmp1, __skparam__cell1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__cell2, __skparam__x2, __skparam__y2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2d; const pt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__translation: __sklib_matrix_2d;
@@ -4126,7 +4172,7 @@ begin
   __skreturn := __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapPointCollision(bmp: Bitmap; const pt: Point2d; const bmpPt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const pt: Point2D; const bmpPt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -4156,7 +4202,7 @@ begin
   __skreturn := __sklib__bitmap_point_collision__bitmap__float__float__float__float(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const pt: Point2d): Boolean;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__cell: Integer;
@@ -4171,7 +4217,7 @@ begin
   __skreturn := __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2d; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__cell: Integer;
@@ -4186,7 +4232,7 @@ begin
   __skreturn := __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2d; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const rect: Rectangle): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__cell: Integer;
@@ -4216,7 +4262,7 @@ begin
   __skreturn := __sklib__sprite_bitmap_collision__sprite__bitmap__float__float(__skparam__s, __skparam__bmp, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
-function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2D): Boolean;
 var
   __skparam__s: __sklib_ptr;
   __skparam__bmp: __sklib_ptr;
@@ -4259,7 +4305,7 @@ begin
   __skreturn := __sklib__sprite_collision__sprite__sprite(__skparam__s1, __skparam__s2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function SpritePointCollision(s: Sprite; const pt: Point2d): Boolean;
+function SpritePointCollision(s: Sprite; const pt: Point2D): Boolean;
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6170,7 +6216,7 @@ begin
   __skparam__basename := __skadapter__to_sklib_string(basename);
   __sklib__take_screenshot__window__string_ref(__skparam__wind, __skparam__basename);
 end;
-function BitmapCellCenter(bmp: Bitmap): Point2d;
+function BitmapCellCenter(bmp: Bitmap): Point2D;
 var
   __skparam__bmp: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -6192,7 +6238,7 @@ begin
   __skreturn := __sklib__bitmap_cell_circle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
   result := __skadapter__to_circle(__skreturn);
 end;
-function BitmapCellCircle(bmp: Bitmap; pt: Point2d): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2D): Circle;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6203,7 +6249,7 @@ begin
   __skreturn := __sklib__bitmap_cell_circle__bitmap__point_2d(__skparam__bmp, __skparam__pt);
   result := __skadapter__to_circle(__skreturn);
 end;
-function BitmapCellCircle(bmp: Bitmap; pt: Point2d; scale: Single): Circle;
+function BitmapCellCircle(bmp: Bitmap; pt: Point2D; scale: Single): Circle;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6243,7 +6289,7 @@ begin
   __skreturn := __sklib__bitmap_cell_height__bitmap(__skparam__bmp);
   result := __skadapter__to_int(__skreturn);
 end;
-function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2d;
+function BitmapCellOffset(src: Bitmap; cell: Integer): Vector2D;
 var
   __skparam__src: __sklib_ptr;
   __skparam__cell: Integer;
@@ -6263,7 +6309,7 @@ begin
   __skreturn := __sklib__bitmap_cell_rectangle__bitmap(__skparam__src);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function BitmapCellRectangle(src: Bitmap; const pt: Point2d): Rectangle;
+function BitmapCellRectangle(src: Bitmap; const pt: Point2D): Rectangle;
 var
   __skparam__src: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6292,7 +6338,7 @@ begin
   __skreturn := __sklib__bitmap_cell_width__bitmap(__skparam__bmp);
   result := __skadapter__to_int(__skreturn);
 end;
-function BitmapCenter(bmp: Bitmap): Point2d;
+function BitmapCenter(bmp: Bitmap): Point2D;
 var
   __skparam__bmp: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -6301,7 +6347,7 @@ begin
   __skreturn := __sklib__bitmap_center__bitmap(__skparam__bmp);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function BitmapCircle(bmp: Bitmap; const pt: Point2d): Circle;
+function BitmapCircle(bmp: Bitmap; const pt: Point2D): Circle;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6535,7 +6581,7 @@ begin
   __skreturn := __sklib__load_bitmap__string__string(__skparam__name, __skparam__filename);
   result := __skadapter__to_bitmap(__skreturn);
 end;
-function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; const pt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -6559,7 +6605,7 @@ begin
   __skreturn := __sklib__pixel_drawn_at_point__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2d): Boolean;
+function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; const pt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__cell: Integer;
@@ -6676,53 +6722,53 @@ begin
   __skreturn := __sklib__json_has_key__json__string(__skparam__j, __skparam__key);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfDouble);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfDouble);
 var
   __skparam__j: __sklib_ptr;
   __skparam__key: __sklib_string;
-  __skparam__out: __sklib_vector_double;
+  __skparam__out_result: __sklib_vector_double;
 begin
   __skparam__j := __skadapter__to_sklib_json(j);
   __skparam__key := __skadapter__to_sklib_string(key);
-  __skparam__out := __skadapter__to_sklib_vector_double(out);
-  __sklib__json_read_array__json__string__vector_double_ref(__skparam__j, __skparam__key, __skparam__out);
-  out := __skadapter__to_vector_double(__skparam__out);
+  __skparam__out_result := __skadapter__to_sklib_vector_double(outResult);
+  __sklib__json_read_array__json__string__vector_double_ref(__skparam__j, __skparam__key, __skparam__out_result);
+  outResult := __skadapter__to_vector_double(__skparam__out_result);
 end;
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfJson);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfJson);
 var
   __skparam__j: __sklib_ptr;
   __skparam__key: __sklib_string;
-  __skparam__out: __sklib_vector_json;
+  __skparam__out_result: __sklib_vector_json;
 begin
   __skparam__j := __skadapter__to_sklib_json(j);
   __skparam__key := __skadapter__to_sklib_string(key);
-  __skparam__out := __skadapter__to_sklib_vector_json(out);
-  __sklib__json_read_array__json__string__vector_json_ref(__skparam__j, __skparam__key, __skparam__out);
-  out := __skadapter__to_vector_json(__skparam__out);
+  __skparam__out_result := __skadapter__to_sklib_vector_json(outResult);
+  __sklib__json_read_array__json__string__vector_json_ref(__skparam__j, __skparam__key, __skparam__out_result);
+  outResult := __skadapter__to_vector_json(__skparam__out_result);
 end;
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfString);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfString);
 var
   __skparam__j: __sklib_ptr;
   __skparam__key: __sklib_string;
-  __skparam__out: __sklib_vector_string;
+  __skparam__out_result: __sklib_vector_string;
 begin
   __skparam__j := __skadapter__to_sklib_json(j);
   __skparam__key := __skadapter__to_sklib_string(key);
-  __skparam__out := __skadapter__to_sklib_vector_string(out);
-  __sklib__json_read_array__json__string__vector_string_ref(__skparam__j, __skparam__key, __skparam__out);
-  out := __skadapter__to_vector_string(__skparam__out);
+  __skparam__out_result := __skadapter__to_sklib_vector_string(outResult);
+  __sklib__json_read_array__json__string__vector_string_ref(__skparam__j, __skparam__key, __skparam__out_result);
+  outResult := __skadapter__to_vector_string(__skparam__out_result);
 end;
-procedure JsonReadArray(j: Json; key: String; var out: ArrayOfBoolean);
+procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfBoolean);
 var
   __skparam__j: __sklib_ptr;
   __skparam__key: __sklib_string;
-  __skparam__out: __sklib_vector_bool;
+  __skparam__out_result: __sklib_vector_bool;
 begin
   __skparam__j := __skadapter__to_sklib_json(j);
   __skparam__key := __skadapter__to_sklib_string(key);
-  __skparam__out := __skadapter__to_sklib_vector_bool(out);
-  __sklib__json_read_array__json__string__vector_bool_ref(__skparam__j, __skparam__key, __skparam__out);
-  out := __skadapter__to_vector_bool(__skparam__out);
+  __skparam__out_result := __skadapter__to_sklib_vector_bool(outResult);
+  __sklib__json_read_array__json__string__vector_bool_ref(__skparam__j, __skparam__key, __skparam__out_result);
+  outResult := __skadapter__to_vector_bool(__skparam__out_result);
 end;
 function JsonReadBool(j: Json; key: String): Boolean;
 var
@@ -7041,7 +7087,7 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__draw_line__color__line_ref__drawing_options(__skparam__clr, __skparam__l, __skparam__opts);
 end;
-procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d);
+procedure DrawLine(clr: Color; const fromPt: Point2D; const toPt: Point2D);
 var
   __skparam__clr: __sklib_color;
   __skparam__from_pt: __sklib_point_2d;
@@ -7052,7 +7098,7 @@ begin
   __skparam__to_pt := __skadapter__to_sklib_point_2d(toPt);
   __sklib__draw_line__color__point_2d_ref__point_2d_ref(__skparam__clr, __skparam__from_pt, __skparam__to_pt);
 end;
-procedure DrawLine(clr: Color; const fromPt: Point2d; const toPt: Point2d; const opts: DrawingOptions);
+procedure DrawLine(clr: Color; const fromPt: Point2D; const toPt: Point2D; const opts: DrawingOptions);
 var
   __skparam__clr: __sklib_color;
   __skparam__from_pt: __sklib_point_2d;
@@ -7097,7 +7143,7 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__draw_line__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts);
 end;
-function ClosestPointOnLine(fromPt: Point2d; const l: Line): Point2d;
+function ClosestPointOnLine(fromPt: Point2D; const l: Line): Point2D;
 var
   __skparam__from_pt: __sklib_point_2d;
   __skparam__l: __sklib_line;
@@ -7108,7 +7154,7 @@ begin
   __skreturn := __sklib__closest_point_on_line__point_2d__line_ref(__skparam__from_pt, __skparam__l);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function ClosestPointOnLines(fromPt: Point2d; const lines: ArrayOfLine; var lineIdx: Integer): Point2d;
+function ClosestPointOnLines(fromPt: Point2D; const lines: ArrayOfLine; var lineIdx: Integer): Point2D;
 var
   __skparam__from_pt: __sklib_point_2d;
   __skparam__lines: __sklib_vector_line;
@@ -7122,7 +7168,7 @@ begin
   lineIdx := __skadapter__to_int(__skparam__line_idx);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function LineFrom(const start: Point2d; const endPt: Point2d): Line;
+function LineFrom(const start: Point2D; const endPt: Point2D): Line;
 var
   __skparam__start: __sklib_point_2d;
   __skparam__end_pt: __sklib_point_2d;
@@ -7133,7 +7179,7 @@ begin
   __skreturn := __sklib__line_from__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end_pt);
   result := __skadapter__to_line(__skreturn);
 end;
-function LineFrom(const start: Point2d; const offset: Vector2d): Line;
+function LineFrom(const start: Point2D; const offset: Vector2D): Line;
 var
   __skparam__start: __sklib_point_2d;
   __skparam__offset: __sklib_vector_2d;
@@ -7144,7 +7190,7 @@ begin
   __skreturn := __sklib__line_from__point_2d_ref__vector_2d_ref(__skparam__start, __skparam__offset);
   result := __skadapter__to_line(__skreturn);
 end;
-function LineFrom(const v: Vector2d): Line;
+function LineFrom(const v: Vector2D): Line;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: __sklib_line;
@@ -7168,7 +7214,7 @@ begin
   __skreturn := __sklib__line_from__float__float__float__float(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2);
   result := __skadapter__to_line(__skreturn);
 end;
-function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2d): Boolean;
+function LineIntersectionPoint(const line1: Line; const line2: Line; var pt: Point2D): Boolean;
 var
   __skparam__line1: __sklib_line;
   __skparam__line2: __sklib_line;
@@ -7233,7 +7279,7 @@ begin
   __skreturn := __sklib__line_length_squared__line_ref(__skparam__l);
   result := __skadapter__to_float(__skreturn);
 end;
-function LineMidPoint(const l: Line): Point2d;
+function LineMidPoint(const l: Line): Point2D;
 var
   __skparam__l: __sklib_line;
   __skreturn: __sklib_point_2d;
@@ -7242,7 +7288,7 @@ begin
   __skreturn := __sklib__line_mid_point__line_ref(__skparam__l);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function LineNormal(const l: Line): Vector2d;
+function LineNormal(const l: Line): Vector2D;
 var
   __skparam__l: __sklib_line;
   __skreturn: __sklib_vector_2d;
@@ -7289,7 +7335,7 @@ begin
   __skreturn := __sklib__lines_intersect__line_ref__line_ref(__skparam__l1, __skparam__l2);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure ApplyMatrix(const matrix: Matrix2d; var q: Quad);
+procedure ApplyMatrix(const matrix: Matrix2D; var q: Quad);
 var
   __skparam__matrix: __sklib_matrix_2d;
   __skparam__q: __sklib_quad;
@@ -7299,7 +7345,7 @@ begin
   __sklib__apply_matrix__matrix_2d_ref__quad_ref(__skparam__matrix, __skparam__q);
   q := __skadapter__to_quad(__skparam__q);
 end;
-procedure ApplyMatrix(const m: Matrix2d; var tri: Triangle);
+procedure ApplyMatrix(const m: Matrix2D; var tri: Triangle);
 var
   __skparam__m: __sklib_matrix_2d;
   __skparam__tri: __sklib_triangle;
@@ -7309,14 +7355,14 @@ begin
   __sklib__apply_matrix__matrix_2d_ref__triangle_ref(__skparam__m, __skparam__tri);
   tri := __skadapter__to_triangle(__skparam__tri);
 end;
-function IdentityMatrix(): Matrix2d;
+function IdentityMatrix(): Matrix2D;
 var
   __skreturn: __sklib_matrix_2d;
 begin
   __skreturn := __sklib__identity_matrix();
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function MatrixInverse(const m: Matrix2d): Matrix2d;
+function MatrixInverse(const m: Matrix2D): Matrix2D;
 var
   __skparam__m: __sklib_matrix_2d;
   __skreturn: __sklib_matrix_2d;
@@ -7325,7 +7371,7 @@ begin
   __skreturn := __sklib__matrix_inverse__matrix_2d_ref(__skparam__m);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function MatrixMultiply(const m: Matrix2d; const pt: Point2d): Point2d;
+function MatrixMultiply(const m: Matrix2D; const pt: Point2D): Point2D;
 var
   __skparam__m: __sklib_matrix_2d;
   __skparam__pt: __sklib_point_2d;
@@ -7336,7 +7382,7 @@ begin
   __skreturn := __sklib__matrix_multiply__matrix_2d_ref__point_2d_ref(__skparam__m, __skparam__pt);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function MatrixMultiply(const m1: Matrix2d; const m2: Matrix2d): Matrix2d;
+function MatrixMultiply(const m1: Matrix2D; const m2: Matrix2D): Matrix2D;
 var
   __skparam__m1: __sklib_matrix_2d;
   __skparam__m2: __sklib_matrix_2d;
@@ -7347,7 +7393,7 @@ begin
   __skreturn := __sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref(__skparam__m1, __skparam__m2);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function MatrixMultiply(const m: Matrix2d; const v: Vector2d): Vector2d;
+function MatrixMultiply(const m: Matrix2D; const v: Vector2D): Vector2D;
 var
   __skparam__m: __sklib_matrix_2d;
   __skparam__v: __sklib_vector_2d;
@@ -7358,7 +7404,7 @@ begin
   __skreturn := __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(__skparam__m, __skparam__v);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function MatrixToString(const matrix: Matrix2d): String;
+function MatrixToString(const matrix: Matrix2D): String;
 var
   __skparam__matrix: __sklib_matrix_2d;
   __skreturn: __sklib_string;
@@ -7367,7 +7413,7 @@ begin
   __skreturn := __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
   result := __skadapter__to_string(__skreturn);
 end;
-function RotationMatrix(deg: Single): Matrix2d;
+function RotationMatrix(deg: Single): Matrix2D;
 var
   __skparam__deg: Single;
   __skreturn: __sklib_matrix_2d;
@@ -7376,7 +7422,7 @@ begin
   __skreturn := __sklib__rotation_matrix__float(__skparam__deg);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function ScaleMatrix(const scale: Point2d): Matrix2d;
+function ScaleMatrix(const scale: Point2D): Matrix2D;
 var
   __skparam__scale: __sklib_point_2d;
   __skreturn: __sklib_matrix_2d;
@@ -7385,7 +7431,16 @@ begin
   __skreturn := __sklib__scale_matrix__point_2d_ref(__skparam__scale);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function ScaleMatrix(scale: Single): Matrix2d;
+function ScaleMatrix(const scale: Vector2D): Matrix2D;
+var
+  __skparam__scale: __sklib_vector_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__scale := __skadapter__to_sklib_vector_2d(scale);
+  __skreturn := __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function ScaleMatrix(scale: Single): Matrix2D;
 var
   __skparam__scale: Single;
   __skreturn: __sklib_matrix_2d;
@@ -7394,7 +7449,7 @@ begin
   __skreturn := __sklib__scale_matrix__float(__skparam__scale);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function ScaleRotateTranslateMatrix(const scale: Point2d; deg: Single; const translate: Point2d): Matrix2d;
+function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Single; const translate: Point2D): Matrix2D;
 var
   __skparam__scale: __sklib_point_2d;
   __skparam__deg: Single;
@@ -7407,7 +7462,7 @@ begin
   __skreturn := __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function TranslationMatrix(const pt: Point2d): Matrix2d;
+function TranslationMatrix(const pt: Point2D): Matrix2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: __sklib_matrix_2d;
@@ -7416,7 +7471,16 @@ begin
   __skreturn := __sklib__translation_matrix__point_2d_ref(__skparam__pt);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function TranslationMatrix(dx: Single; dy: Single): Matrix2d;
+function TranslationMatrix(const pt: Vector2D): Matrix2D;
+var
+  __skparam__pt: __sklib_vector_2d;
+  __skreturn: __sklib_matrix_2d;
+begin
+  __skparam__pt := __skadapter__to_sklib_vector_2d(pt);
+  __skreturn := __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
+  result := __skadapter__to_matrix_2d(__skreturn);
+end;
+function TranslationMatrix(dx: Single; dy: Single): Matrix2D;
 var
   __skparam__dx: Single;
   __skparam__dy: Single;
@@ -7449,21 +7513,21 @@ begin
   __skreturn := __sklib__mouse_down__mouse_button(__skparam__button);
   result := __skadapter__to_bool(__skreturn);
 end;
-function MouseMovement(): Vector2d;
+function MouseMovement(): Vector2D;
 var
   __skreturn: __sklib_vector_2d;
 begin
   __skreturn := __sklib__mouse_movement();
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function MousePosition(): Point2d;
+function MousePosition(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
   __skreturn := __sklib__mouse_position();
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function MousePositionVector(): Vector2d;
+function MousePositionVector(): Vector2D;
 var
   __skreturn: __sklib_vector_2d;
 begin
@@ -7486,7 +7550,7 @@ begin
   __skreturn := __sklib__mouse_up__mouse_button(__skparam__button);
   result := __skadapter__to_bool(__skreturn);
 end;
-function MouseWheelScroll(): Vector2d;
+function MouseWheelScroll(): Vector2D;
 var
   __skreturn: __sklib_vector_2d;
 begin
@@ -7516,7 +7580,7 @@ begin
   __skparam__y := __skadapter__to_sklib_float(y);
   __sklib__move_mouse__float__float(__skparam__x, __skparam__y);
 end;
-procedure MoveMouse(point: Point2d);
+procedure MoveMouse(point: Point2D);
 var
   __skparam__point: __sklib_point_2d;
 begin
@@ -7715,6 +7779,115 @@ procedure StopMusic();
 begin
   __sklib__stop_music();
 end;
+function AcceptAllNewConnections(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__accept_all_new_connections();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function AcceptNewConnection(server: ServerSocket): Boolean;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__accept_new_connection__server_socket(__skparam__server);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure CloseAllConnections();
+begin
+  __sklib__close_all_connections();
+end;
+procedure CloseAllServers();
+begin
+  __sklib__close_all_servers();
+end;
+function CloseConnection(aConnection: Connection): Boolean;
+var
+  __skparam__a_connection: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__a_connection := __skadapter__to_sklib_connection(aConnection);
+  __skreturn := __sklib__close_connection__connection(__skparam__a_connection);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CloseConnection(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__close_connection__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure CloseMessage(msg: Message);
+var
+  __skparam__msg: __sklib_ptr;
+begin
+  __skparam__msg := __skadapter__to_sklib_message(msg);
+  __sklib__close_message__message(__skparam__msg);
+end;
+function CloseServer(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__close_server__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CloseServer(svr: ServerSocket): Boolean;
+var
+  __skparam__svr: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__svr := __skadapter__to_sklib_server_socket(svr);
+  __skreturn := __sklib__close_server__server_socket(__skparam__svr);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ConnectionCount(const name: String): Cardinal;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: Cardinal;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__connection_count__string_ref(__skparam__name);
+  result := __skadapter__to_unsigned_int(__skreturn);
+end;
+function ConnectionCount(server: ServerSocket): Cardinal;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: Cardinal;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__connection_count__server_socket(__skparam__server);
+  result := __skadapter__to_unsigned_int(__skreturn);
+end;
+function CreateServer(const name: String; port: Word): ServerSocket;
+var
+  __skparam__name: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__port := __skadapter__to_sklib_unsigned_short(port);
+  __skreturn := __sklib__create_server__string_ref__unsigned_short(__skparam__name, __skparam__port);
+  result := __skadapter__to_server_socket(__skreturn);
+end;
+function CreateServer(const name: String; port: Word; protocol: ConnectionType): ServerSocket;
+var
+  __skparam__name: __sklib_string;
+  __skparam__port: Word;
+  __skparam__protocol: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__port := __skadapter__to_sklib_unsigned_short(port);
+  __skparam__protocol := __skadapter__to_sklib_connection_type(protocol);
+  __skreturn := __sklib__create_server__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__port, __skparam__protocol);
+  result := __skadapter__to_server_socket(__skreturn);
+end;
 function DecToHex(aDec: Cardinal): String;
 var
   __skparam__a_dec: Cardinal;
@@ -7723,6 +7896,22 @@ begin
   __skparam__a_dec := __skadapter__to_sklib_unsigned_int(aDec);
   __skreturn := __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
   result := __skadapter__to_string(__skreturn);
+end;
+function HasNewConnections(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__has_new_connections();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HasServer(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__has_server__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
 end;
 function HexStrToIpv4(const aHex: String): String;
 var
@@ -7769,6 +7958,24 @@ begin
   __skreturn := __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
   result := __skadapter__to_string(__skreturn);
 end;
+function LastConnection(const name: String): Connection;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__last_connection__string_ref(__skparam__name);
+  result := __skadapter__to_connection(__skreturn);
+end;
+function LastConnection(server: ServerSocket): Connection;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__last_connection__server_socket(__skparam__server);
+  result := __skadapter__to_connection(__skreturn);
+end;
 function MyIp(): String;
 var
   __skreturn: __sklib_string;
@@ -7776,7 +7983,84 @@ begin
   __skreturn := __sklib__my_ip();
   result := __skadapter__to_string(__skreturn);
 end;
-procedure DrawPixel(clr: Color; const pt: Point2d);
+function OpenConnection(const name: String; const host: String; port: Word): Connection;
+var
+  __skparam__name: __sklib_string;
+  __skparam__host: __sklib_string;
+  __skparam__port: Word;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__host := __skadapter__to_sklib_string(host);
+  __skparam__port := __skadapter__to_sklib_unsigned_short(port);
+  __skreturn := __sklib__open_connection__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__host, __skparam__port);
+  result := __skadapter__to_connection(__skreturn);
+end;
+function OpenConnection(const name: String; const host: String; port: Word; protocol: ConnectionType): Connection;
+var
+  __skparam__name: __sklib_string;
+  __skparam__host: __sklib_string;
+  __skparam__port: Word;
+  __skparam__protocol: LongInt;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__host := __skadapter__to_sklib_string(host);
+  __skparam__port := __skadapter__to_sklib_unsigned_short(port);
+  __skparam__protocol := __skadapter__to_sklib_connection_type(protocol);
+  __skreturn := __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol);
+  result := __skadapter__to_connection(__skreturn);
+end;
+function RetrieveConnection(const name: String; idx: Integer): Connection;
+var
+  __skparam__name: __sklib_string;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__retrieve_connection__string_ref__int(__skparam__name, __skparam__idx);
+  result := __skadapter__to_connection(__skreturn);
+end;
+function RetrieveConnection(server: ServerSocket; idx: Integer): Connection;
+var
+  __skparam__server: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skreturn := __sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx);
+  result := __skadapter__to_connection(__skreturn);
+end;
+function ServerHasNewConnection(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__server_has_new_connection__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ServerHasNewConnection(server: ServerSocket): Boolean;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__server_has_new_connection__server_socket(__skparam__server);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ServerNamed(const name: String): ServerSocket;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__server_named__string_ref(__skparam__name);
+  result := __skadapter__to_server_socket(__skreturn);
+end;
+procedure DrawPixel(clr: Color; const pt: Point2D);
 var
   __skparam__clr: __sklib_color;
   __skparam__pt: __sklib_point_2d;
@@ -7785,7 +8069,7 @@ begin
   __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __sklib__draw_pixel__color__point_2d_ref(__skparam__clr, __skparam__pt);
 end;
-procedure DrawPixel(clr: Color; const pt: Point2d; opts: DrawingOptions);
+procedure DrawPixel(clr: Color; const pt: Point2D; opts: DrawingOptions);
 var
   __skparam__clr: __sklib_color;
   __skparam__pt: __sklib_point_2d;
@@ -7820,7 +8104,7 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__draw_pixel__color__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__opts);
 end;
-function GetPixel(bmp: Bitmap; const pt: Point2d): Color;
+function GetPixel(bmp: Bitmap; const pt: Point2D): Color;
 var
   __skparam__bmp: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -7844,7 +8128,7 @@ begin
   __skreturn := __sklib__get_pixel__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
   result := __skadapter__to_color(__skreturn);
 end;
-function GetPixel(const pt: Point2d): Color;
+function GetPixel(const pt: Point2D): Color;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: __sklib_color;
@@ -7864,7 +8148,7 @@ begin
   __skreturn := __sklib__get_pixel__float__float(__skparam__x, __skparam__y);
   result := __skadapter__to_color(__skreturn);
 end;
-function GetPixel(wnd: Window; const pt: Point2d): Color;
+function GetPixel(wnd: Window; const pt: Point2D): Color;
 var
   __skparam__wnd: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -7888,7 +8172,7 @@ begin
   __skreturn := __sklib__get_pixel__window__float__float(__skparam__wnd, __skparam__x, __skparam__y);
   result := __skadapter__to_color(__skreturn);
 end;
-function PointAt(x: Single; y: Single): Point2d;
+function PointAt(x: Single; y: Single): Point2D;
 var
   __skparam__x: Single;
   __skparam__y: Single;
@@ -7899,14 +8183,14 @@ begin
   __skreturn := __sklib__point_at__float__float(__skparam__x, __skparam__y);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function PointAtOrigin(): Point2d;
+function PointAtOrigin(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
   __skreturn := __sklib__point_at_origin();
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function PointInCircle(const pt: Point2d; const c: Circle): Boolean;
+function PointInCircle(const pt: Point2D; const c: Circle): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -7917,7 +8201,7 @@ begin
   __skreturn := __sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointInQuad(const pt: Point2d; const q: Quad): Boolean;
+function PointInQuad(const pt: Point2D; const q: Quad): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__q: __sklib_quad;
@@ -7928,7 +8212,7 @@ begin
   __skreturn := __sklib__point_in_quad__point_2d_ref__quad_ref(__skparam__pt, __skparam__q);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointInRectangle(const pt: Point2d; const rect: Rectangle): Boolean;
+function PointInRectangle(const pt: Point2D; const rect: Rectangle): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__rect: __sklib_rectangle;
@@ -7939,7 +8223,7 @@ begin
   __skreturn := __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointInTriangle(const pt: Point2d; const tri: Triangle): Boolean;
+function PointInTriangle(const pt: Point2D; const tri: Triangle): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__tri: __sklib_triangle;
@@ -7950,7 +8234,7 @@ begin
   __skreturn := __sklib__point_in_triangle__point_2d_ref__triangle_ref(__skparam__pt, __skparam__tri);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointLineDistance(const pt: Point2d; const l: Line): Single;
+function PointLineDistance(const pt: Point2D; const l: Line): Single;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__l: __sklib_line;
@@ -7961,7 +8245,7 @@ begin
   __skreturn := __sklib__point_line_distance__point_2d_ref__line_ref(__skparam__pt, __skparam__l);
   result := __skadapter__to_float(__skreturn);
 end;
-function PointOffsetBy(const startPoint: Point2d; const offset: Vector2d): Point2d;
+function PointOffsetBy(const startPoint: Point2D; const offset: Vector2D): Point2D;
 var
   __skparam__start_point: __sklib_point_2d;
   __skparam__offset: __sklib_vector_2d;
@@ -7972,7 +8256,7 @@ begin
   __skreturn := __sklib__point_offset_by__point_2d_ref__vector_2d_ref(__skparam__start_point, __skparam__offset);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function PointOffsetFromOrigin(const offset: Vector2d): Point2d;
+function PointOffsetFromOrigin(const offset: Vector2D): Point2D;
 var
   __skparam__offset: __sklib_vector_2d;
   __skreturn: __sklib_point_2d;
@@ -7981,7 +8265,7 @@ begin
   __skreturn := __sklib__point_offset_from_origin__vector_2d_ref(__skparam__offset);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function PointOnLine(const pt: Point2d; const l: Line): Boolean;
+function PointOnLine(const pt: Point2D; const l: Line): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__l: __sklib_line;
@@ -7992,7 +8276,7 @@ begin
   __skreturn := __sklib__point_on_line__point_2d_ref__line_ref(__skparam__pt, __skparam__l);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointOnLine(const pt: Point2d; const l: Line; proximity: Single): Boolean;
+function PointOnLine(const pt: Point2D; const l: Line; proximity: Single): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__l: __sklib_line;
@@ -8005,7 +8289,7 @@ begin
   __skreturn := __sklib__point_on_line__point_2d_ref__line_ref__float(__skparam__pt, __skparam__l, __skparam__proximity);
   result := __skadapter__to_bool(__skreturn);
 end;
-function PointPointAngle(const pt1: Point2d; const pt2: Point2d): Single;
+function PointPointAngle(const pt1: Point2D; const pt2: Point2D): Single;
 var
   __skparam__pt1: __sklib_point_2d;
   __skparam__pt2: __sklib_point_2d;
@@ -8016,7 +8300,7 @@ begin
   __skreturn := __sklib__point_point_angle__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
   result := __skadapter__to_float(__skreturn);
 end;
-function PointPointDistance(const pt1: Point2d; const pt2: Point2d): Single;
+function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Single;
 var
   __skparam__pt1: __sklib_point_2d;
   __skparam__pt2: __sklib_point_2d;
@@ -8027,7 +8311,7 @@ begin
   __skreturn := __sklib__point_point_distance__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
   result := __skadapter__to_float(__skreturn);
 end;
-function PointToString(const pt: Point2d): String;
+function PointToString(const pt: Point2D): String;
 var
   __skparam__pt: __sklib_point_2d;
   __skreturn: __sklib_string;
@@ -8036,7 +8320,7 @@ begin
   __skreturn := __sklib__point_to_string__point_2d_ref(__skparam__pt);
   result := __skadapter__to_string(__skreturn);
 end;
-function RandomBitmapPoint(bmp: Bitmap): Point2d;
+function RandomBitmapPoint(bmp: Bitmap): Point2D;
 var
   __skparam__bmp: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -8045,14 +8329,14 @@ begin
   __skreturn := __sklib__random_bitmap_point__bitmap(__skparam__bmp);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function RandomScreenPoint(): Point2d;
+function RandomScreenPoint(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
   __skreturn := __sklib__random_screen_point();
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function RandomWindowPoint(wind: Window): Point2d;
+function RandomWindowPoint(wind: Window): Point2D;
 var
   __skparam__wind: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -8061,7 +8345,7 @@ begin
   __skreturn := __sklib__random_window_point__window(__skparam__wind);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function SamePoint(const pt1: Point2d; const pt2: Point2d): Boolean;
+function SamePoint(const pt1: Point2D; const pt2: Point2D): Boolean;
 var
   __skparam__pt1: __sklib_point_2d;
   __skparam__pt2: __sklib_point_2d;
@@ -8072,7 +8356,7 @@ begin
   __skreturn := __sklib__same_point__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function QuadFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d; const p4: Point2d): Quad;
+function QuadFrom(const p1: Point2D; const p2: Point2D; const p3: Point2D; const p4: Point2D): Quad;
 var
   __skparam__p1: __sklib_point_2d;
   __skparam__p2: __sklib_point_2d;
@@ -8096,7 +8380,7 @@ begin
   __skreturn := __sklib__quad_from__rectangle_ref(__skparam__rect);
   result := __skadapter__to_quad(__skreturn);
 end;
-function QuadFrom(const rect: Rectangle; const transform: Matrix2d): Quad;
+function QuadFrom(const rect: Rectangle; const transform: Matrix2D): Quad;
 var
   __skparam__rect: __sklib_rectangle;
   __skparam__transform: __sklib_matrix_2d;
@@ -8141,7 +8425,7 @@ begin
   __skreturn := __sklib__quads_intersect__quad_ref__quad_ref(__skparam__q1, __skparam__q2);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2d);
+procedure SetQuadPoint(var q: Quad; idx: Integer; const value: Point2D);
 var
   __skparam__q: __sklib_quad;
   __skparam__idx: Integer;
@@ -8380,7 +8664,7 @@ begin
   __skreturn := __sklib__rectangle_bottom__rectangle_ref(__skparam__rect);
   result := __skadapter__to_float(__skreturn);
 end;
-function RectangleCenter(const rect: Rectangle): Point2d;
+function RectangleCenter(const rect: Rectangle): Point2D;
 var
   __skparam__rect: __sklib_rectangle;
   __skreturn: __sklib_point_2d;
@@ -8389,7 +8673,7 @@ begin
   __skreturn := __sklib__rectangle_center__rectangle_ref(__skparam__rect);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function RectangleFrom(pt: Point2d; width: Single; height: Single): Rectangle;
+function RectangleFrom(pt: Point2D; width: Single; height: Single): Rectangle;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__width: Single;
@@ -8402,7 +8686,7 @@ begin
   __skreturn := __sklib__rectangle_from__point_2d__float__float(__skparam__pt, __skparam__width, __skparam__height);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function RectangleFrom(pt1: Point2d; pt2: Point2d): Rectangle;
+function RectangleFrom(pt1: Point2D; pt2: Point2D): Rectangle;
 var
   __skparam__pt1: __sklib_point_2d;
   __skparam__pt2: __sklib_point_2d;
@@ -8437,7 +8721,7 @@ begin
   __skreturn := __sklib__rectangle_left__rectangle_ref(__skparam__rect);
   result := __skadapter__to_float(__skreturn);
 end;
-function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2d): Rectangle;
+function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2D): Rectangle;
 var
   __skparam__rect: __sklib_rectangle;
   __skparam__offset: __sklib_vector_2d;
@@ -8735,7 +9019,7 @@ begin
   __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
   __sklib__call_on_sprite_event__sprite_event_handler_ptr(__skparam__handler);
 end;
-function CenterPoint(s: Sprite): Point2d;
+function CenterPoint(s: Sprite): Point2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -8826,7 +9110,7 @@ procedure DrawAllSprites();
 begin
   __sklib__draw_all_sprites();
 end;
-procedure DrawSprite(s: Sprite; const offset: Vector2d);
+procedure DrawSprite(s: Sprite; const offset: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__offset: __sklib_vector_2d;
@@ -8896,7 +9180,7 @@ begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __sklib__move_sprite__sprite(__skparam__s);
 end;
-procedure MoveSprite(s: Sprite; const distance: Vector2d);
+procedure MoveSprite(s: Sprite; const distance: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__distance: __sklib_vector_2d;
@@ -8905,7 +9189,7 @@ begin
   __skparam__distance := __skadapter__to_sklib_vector_2d(distance);
   __sklib__move_sprite__sprite__vector_2d_ref(__skparam__s, __skparam__distance);
 end;
-procedure MoveSprite(s: Sprite; const distance: Vector2d; pct: Single);
+procedure MoveSprite(s: Sprite; const distance: Vector2D; pct: Single);
 var
   __skparam__s: __sklib_ptr;
   __skparam__distance: __sklib_vector_2d;
@@ -8956,7 +9240,7 @@ begin
   __skreturn := __sklib__sprite_add_layer__sprite__bitmap__string_ref(__skparam__s, __skparam__new_layer, __skparam__layer_name);
   result := __skadapter__to_int(__skreturn);
 end;
-procedure SpriteAddToVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteAddToVelocity(s: Sprite; const value: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__value: __sklib_vector_2d;
@@ -8985,7 +9269,7 @@ begin
   __skparam__init_val := __skadapter__to_sklib_float(initVal);
   __sklib__sprite_add_value__sprite__string_ref__float(__skparam__s, __skparam__name, __skparam__init_val);
 end;
-function SpriteAnchorPoint(s: Sprite): Point2d;
+function SpriteAnchorPoint(s: Sprite): Point2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -8994,7 +9278,7 @@ begin
   __skreturn := __sklib__sprite_anchor_point__sprite(__skparam__s);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function SpriteAnchorPosition(s: Sprite): Point2d;
+function SpriteAnchorPosition(s: Sprite): Point2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -9021,7 +9305,7 @@ begin
   __skreturn := __sklib__sprite_animation_name__sprite(__skparam__s);
   result := __skadapter__to_string(__skreturn);
 end;
-function SpriteAt(s: Sprite; const pt: Point2d): Boolean;
+function SpriteAt(s: Sprite; const pt: Point2D): Boolean;
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -9284,7 +9568,7 @@ begin
   __skreturn := __sklib__sprite_layer_name__sprite__int(__skparam__s, __skparam__idx);
   result := __skadapter__to_string(__skreturn);
 end;
-function SpriteLayerOffset(s: Sprite; const name: String): Vector2d;
+function SpriteLayerOffset(s: Sprite; const name: String): Vector2D;
 var
   __skparam__s: __sklib_ptr;
   __skparam__name: __sklib_string;
@@ -9295,7 +9579,7 @@ begin
   __skreturn := __sklib__sprite_layer_offset__sprite__string_ref(__skparam__s, __skparam__name);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2d;
+function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2D;
 var
   __skparam__s: __sklib_ptr;
   __skparam__idx: Integer;
@@ -9350,7 +9634,7 @@ begin
   __skreturn := __sklib__sprite_layer_width__sprite__int(__skparam__s, __skparam__idx);
   result := __skadapter__to_int(__skreturn);
 end;
-function SpriteLocationMatrix(s: Sprite): Matrix2d;
+function SpriteLocationMatrix(s: Sprite): Matrix2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_matrix_2d;
@@ -9377,7 +9661,7 @@ begin
   __skreturn := __sklib__sprite_move_from_anchor_point__sprite(__skparam__s);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure SpriteMoveTo(s: Sprite; const pt: Point2d; takingSeconds: Single);
+procedure SpriteMoveTo(s: Sprite; const pt: Point2D; takingSeconds: Single);
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -9415,7 +9699,7 @@ begin
   __skreturn := __sklib__sprite_offscreen__sprite(__skparam__s);
   result := __skadapter__to_bool(__skreturn);
 end;
-function SpriteOnScreenAt(s: Sprite; const pt: Point2d): Boolean;
+function SpriteOnScreenAt(s: Sprite; const pt: Point2D): Boolean;
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -9439,7 +9723,7 @@ begin
   __skreturn := __sklib__sprite_on_screen_at__sprite__float__float(__skparam__s, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
-function SpritePosition(s: Sprite): Point2d;
+function SpritePosition(s: Sprite): Point2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_point_2d;
@@ -9509,7 +9793,7 @@ begin
   __skparam__visible_layer := __skadapter__to_sklib_int(visibleLayer);
   __sklib__sprite_send_layer_to_back__sprite__int(__skparam__s, __skparam__visible_layer);
 end;
-procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2d);
+procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -9563,7 +9847,7 @@ begin
   __skparam__value := __skadapter__to_sklib_float(value);
   __sklib__sprite_set_heading__sprite__float(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2d);
+procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__name: __sklib_string;
@@ -9574,7 +9858,7 @@ begin
   __skparam__value := __skadapter__to_sklib_vector_2d(value);
   __sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref(__skparam__s, __skparam__name, __skparam__value);
 end;
-procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2d);
+procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__idx: Integer;
@@ -9603,7 +9887,7 @@ begin
   __skparam__value := __skadapter__to_sklib_bool(value);
   __sklib__sprite_set_move_from_anchor_point__sprite__bool(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetPosition(s: Sprite; const value: Point2d);
+procedure SpriteSetPosition(s: Sprite; const value: Point2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__value: __sklib_point_2d;
@@ -9650,7 +9934,7 @@ begin
   __skparam__val := __skadapter__to_sklib_float(val);
   __sklib__sprite_set_value__sprite__string_ref__float(__skparam__s, __skparam__name, __skparam__val);
 end;
-procedure SpriteSetVelocity(s: Sprite; const value: Vector2d);
+procedure SpriteSetVelocity(s: Sprite; const value: Vector2D);
 var
   __skparam__s: __sklib_ptr;
   __skparam__value: __sklib_vector_2d;
@@ -9795,7 +10079,7 @@ begin
   __skreturn := __sklib__sprite_value_count__sprite(__skparam__s);
   result := __skadapter__to_int(__skreturn);
 end;
-function SpriteVelocity(s: Sprite): Vector2d;
+function SpriteVelocity(s: Sprite): Vector2D;
 var
   __skparam__s: __sklib_ptr;
   __skreturn: __sklib_vector_2d;
@@ -9974,7 +10258,7 @@ begin
   __skparam__with_sound := __skadapter__to_sklib_bool(withSound);
   __sklib__update_sprite_animation__sprite__float__bool(__skparam__s, __skparam__pct, __skparam__with_sound);
 end;
-function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2d): Vector2d;
+function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2D): Vector2D;
 var
   __skparam__s: __sklib_ptr;
   __skparam__pt: __sklib_point_2d;
@@ -9985,7 +10269,7 @@ begin
   __skreturn := __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(__skparam__s, __skparam__pt);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorFromTo(s1: Sprite; s2: Sprite): Vector2d;
+function VectorFromTo(s1: Sprite; s2: Sprite): Vector2D;
 var
   __skparam__s1: __sklib_ptr;
   __skparam__s2: __sklib_ptr;
@@ -10775,7 +11059,7 @@ begin
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts);
 end;
-function TriangleBarycenter(const tri: Triangle): Point2d;
+function TriangleBarycenter(const tri: Triangle): Point2D;
 var
   __skparam__tri: __sklib_triangle;
   __skreturn: __sklib_point_2d;
@@ -10784,7 +11068,7 @@ begin
   __skreturn := __sklib__triangle_barycenter__triangle_ref(__skparam__tri);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function TriangleFrom(const p1: Point2d; const p2: Point2d; const p3: Point2d): Triangle;
+function TriangleFrom(const p1: Point2D; const p2: Point2D; const p3: Point2D): Triangle;
 var
   __skparam__p1: __sklib_point_2d;
   __skparam__p2: __sklib_point_2d;
@@ -10872,7 +11156,7 @@ begin
   __skreturn := __sklib__file_as_string__string__resource_kind(__skparam__filename, __skparam__kind);
   result := __skadapter__to_string(__skreturn);
 end;
-function AngleBetween(const v1: Vector2d; const v2: Vector2d): Single;
+function AngleBetween(const v1: Vector2D; const v2: Vector2D): Single;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -10883,7 +11167,7 @@ begin
   __skreturn := __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
   result := __skadapter__to_float(__skreturn);
 end;
-function DotProduct(const v1: Vector2d; const v2: Vector2d): Single;
+function DotProduct(const v1: Vector2D; const v2: Vector2D): Single;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -10894,7 +11178,7 @@ begin
   __skreturn := __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
   result := __skadapter__to_float(__skreturn);
 end;
-function IsZeroVector(const v: Vector2d): Boolean;
+function IsZeroVector(const v: Vector2D): Boolean;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: LongInt;
@@ -10903,7 +11187,7 @@ begin
   __skreturn := __sklib__is_zero_vector__vector_2d_ref(__skparam__v);
   result := __skadapter__to_bool(__skreturn);
 end;
-function RayIntersectionPoint(const fromPt: Point2d; const heading: Vector2d; const l: Line; var pt: Point2d): Boolean;
+function RayIntersectionPoint(const fromPt: Point2D; const heading: Vector2D; const l: Line; var pt: Point2D): Boolean;
 var
   __skparam__from_pt: __sklib_point_2d;
   __skparam__heading: __sklib_vector_2d;
@@ -10919,7 +11203,7 @@ begin
   pt := __skadapter__to_point_2d(__skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function UnitVector(const v: Vector2d): Vector2d;
+function UnitVector(const v: Vector2D): Vector2D;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: __sklib_vector_2d;
@@ -10928,7 +11212,7 @@ begin
   __skreturn := __sklib__unit_vector__vector_2d_ref(__skparam__v);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorAdd(const v1: Vector2d; const v2: Vector2d): Vector2d;
+function VectorAdd(const v1: Vector2D; const v2: Vector2D): Vector2D;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -10939,7 +11223,7 @@ begin
   __skreturn := __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorAngle(v: Vector2d): Single;
+function VectorAngle(v: Vector2D): Single;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: Single;
@@ -10948,7 +11232,7 @@ begin
   __skreturn := __sklib__vector_angle__vector_2d(__skparam__v);
   result := __skadapter__to_float(__skreturn);
 end;
-function VectorFromAngle(angle: Single; magnitude: Single): Vector2d;
+function VectorFromAngle(angle: Single; magnitude: Single): Vector2D;
 var
   __skparam__angle: Single;
   __skparam__magnitude: Single;
@@ -10959,7 +11243,7 @@ begin
   __skreturn := __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorFromLine(const l: Line): Vector2d;
+function VectorFromLine(const l: Line): Vector2D;
 var
   __skparam__l: __sklib_line;
   __skreturn: __sklib_vector_2d;
@@ -10968,7 +11252,7 @@ begin
   __skreturn := __sklib__vector_from_line__line_ref(__skparam__l);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorFromPointToRect(const pt: Point2d; const rect: Rectangle): Vector2d;
+function VectorFromPointToRect(const pt: Point2D; const rect: Rectangle): Vector2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__rect: __sklib_rectangle;
@@ -10979,7 +11263,7 @@ begin
   __skreturn := __sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorInRect(const v: Vector2d; const rect: Rectangle): Boolean;
+function VectorInRect(const v: Vector2D; const rect: Rectangle): Boolean;
 var
   __skparam__v: __sklib_vector_2d;
   __skparam__rect: __sklib_rectangle;
@@ -10990,7 +11274,7 @@ begin
   __skreturn := __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(__skparam__v, __skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
-function VectorInvert(const v: Vector2d): Vector2d;
+function VectorInvert(const v: Vector2D): Vector2D;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: __sklib_vector_2d;
@@ -10999,7 +11283,7 @@ begin
   __skreturn := __sklib__vector_invert__vector_2d_ref(__skparam__v);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorLimit(const v: Vector2d; limit: Single): Vector2d;
+function VectorLimit(const v: Vector2D; limit: Single): Vector2D;
 var
   __skparam__v: __sklib_vector_2d;
   __skparam__limit: Single;
@@ -11010,7 +11294,7 @@ begin
   __skreturn := __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorMagnitude(const v: Vector2d): Single;
+function VectorMagnitude(const v: Vector2D): Single;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: Single;
@@ -11019,7 +11303,7 @@ begin
   __skreturn := __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
   result := __skadapter__to_float(__skreturn);
 end;
-function VectorMagnitudeSqared(const v: Vector2d): Single;
+function VectorMagnitudeSqared(const v: Vector2D): Single;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: Single;
@@ -11028,7 +11312,7 @@ begin
   __skreturn := __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
   result := __skadapter__to_float(__skreturn);
 end;
-function VectorMultiply(const v1: Vector2d; s: Single): Vector2d;
+function VectorMultiply(const v1: Vector2D; s: Single): Vector2D;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__s: Single;
@@ -11039,7 +11323,7 @@ begin
   __skreturn := __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorNormal(const v: Vector2d): Vector2d;
+function VectorNormal(const v: Vector2D): Vector2D;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: __sklib_vector_2d;
@@ -11048,7 +11332,7 @@ begin
   __skreturn := __sklib__vector_normal__vector_2d_ref(__skparam__v);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2d): Vector2d;
+function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2D): Vector2D;
 var
   __skparam__src: __sklib_circle;
   __skparam__bounds: __sklib_circle;
@@ -11061,7 +11345,7 @@ begin
   __skreturn := __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(__skparam__src, __skparam__bounds, __skparam__velocity);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorOutOfCircleFromPoint(const pt: Point2d; const c: Circle; const velocity: Vector2d): Vector2d;
+function VectorOutOfCircleFromPoint(const pt: Point2D; const c: Circle; const velocity: Vector2D): Vector2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__c: __sklib_circle;
@@ -11074,7 +11358,7 @@ begin
   __skreturn := __sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref(__skparam__pt, __skparam__c, __skparam__velocity);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const velocity: Vector2D): Vector2D;
 var
   __skparam__c: __sklib_circle;
   __skparam__rect: __sklib_rectangle;
@@ -11087,7 +11371,7 @@ begin
   __skreturn := __sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref(__skparam__c, __skparam__rect, __skparam__velocity);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorOutOfRectFromPoint(const pt: Point2d; const rect: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromPoint(const pt: Point2D; const rect: Rectangle; const velocity: Vector2D): Vector2D;
 var
   __skparam__pt: __sklib_point_2d;
   __skparam__rect: __sklib_rectangle;
@@ -11100,7 +11384,7 @@ begin
   __skreturn := __sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref(__skparam__pt, __skparam__rect, __skparam__velocity);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2d): Vector2d;
+function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; const velocity: Vector2D): Vector2D;
 var
   __skparam__src: __sklib_rectangle;
   __skparam__bounds: __sklib_rectangle;
@@ -11113,7 +11397,7 @@ begin
   __skreturn := __sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref(__skparam__src, __skparam__bounds, __skparam__velocity);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorPointToPoint(const start: Point2d; const endPt: Point2d): Vector2d;
+function VectorPointToPoint(const start: Point2D; const endPt: Point2D): Vector2D;
 var
   __skparam__start: __sklib_point_2d;
   __skparam__end_pt: __sklib_point_2d;
@@ -11124,7 +11408,7 @@ begin
   __skreturn := __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(__skparam__start, __skparam__end_pt);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorSubtract(const v1: Vector2d; const v2: Vector2d): Vector2d;
+function VectorSubtract(const v1: Vector2D; const v2: Vector2D): Vector2D;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -11135,7 +11419,7 @@ begin
   __skreturn := __sklib__vector_subtract__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorTo(const p1: Point2d): Vector2d;
+function VectorTo(const p1: Point2D): Vector2D;
 var
   __skparam__p1: __sklib_point_2d;
   __skreturn: __sklib_vector_2d;
@@ -11144,7 +11428,7 @@ begin
   __skreturn := __sklib__vector_to__point_2d_ref(__skparam__p1);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorTo(x: Single; y: Single): Vector2d;
+function VectorTo(x: Single; y: Single): Vector2D;
 var
   __skparam__x: Single;
   __skparam__y: Single;
@@ -11155,7 +11439,7 @@ begin
   __skreturn := __sklib__vector_to__float__float(__skparam__x, __skparam__y);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorToString(const v: Vector2d): String;
+function VectorToString(const v: Vector2D): String;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: __sklib_string;
@@ -11164,7 +11448,7 @@ begin
   __skreturn := __sklib__vector_to_string__vector_2d_ref(__skparam__v);
   result := __skadapter__to_string(__skreturn);
 end;
-function VectorsEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+function VectorsEqual(const v1: Vector2D; v2: Vector2D): Boolean;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -11175,7 +11459,7 @@ begin
   __skreturn := __sklib__vectors_equal__vector_2d_ref__vector_2d(__skparam__v1, __skparam__v2);
   result := __skadapter__to_bool(__skreturn);
 end;
-function VectorsNotEqual(const v1: Vector2d; v2: Vector2d): Boolean;
+function VectorsNotEqual(const v1: Vector2D; v2: Vector2D): Boolean;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
@@ -11768,14 +12052,14 @@ begin
   __skreturn := __sklib__window_named__string(__skparam__caption);
   result := __skadapter__to_window(__skreturn);
 end;
-function WindowPosition(): Point2d;
+function WindowPosition(): Point2D;
 var
   __skreturn: __sklib_point_2d;
 begin
   __skreturn := __sklib__window_position();
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function WindowPosition(const name: String): Point2d;
+function WindowPosition(const name: String): Point2D;
 var
   __skparam__name: __sklib_string;
   __skreturn: __sklib_point_2d;
@@ -11784,7 +12068,7 @@ begin
   __skreturn := __sklib__window_position__string_ref(__skparam__name);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function WindowPosition(wnd: Window): Point2d;
+function WindowPosition(wnd: Window): Point2D;
 var
   __skparam__wnd: __sklib_ptr;
   __skreturn: __sklib_point_2d;

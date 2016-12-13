@@ -2064,41 +2064,41 @@ bool json_has_key(json j, string key) {
     __skadapter__free__sklib_string(__skparam__key);
     return __skadapter__to_bool(__skreturn);
 }
-void json_read_array(json j, string key, vector<double> &out) {
+void json_read_array(json j, string key, vector<double> &out_result) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
     __sklib_string __skparam__key = __skadapter__to_sklib_string(key);
-    __sklib_vector_double __skparam__out = __skadapter__to_sklib_vector_double(out);
-    __sklib__json_read_array__json__string__vector_double_ref(__skparam__j, __skparam__key, &__skparam__out);
-    __skadapter__update_from_vector_double(__skparam__out, out);
+    __sklib_vector_double __skparam__out_result = __skadapter__to_sklib_vector_double(out_result);
+    __sklib__json_read_array__json__string__vector_double_ref(__skparam__j, __skparam__key, &__skparam__out_result);
+    __skadapter__update_from_vector_double(__skparam__out_result, out_result);
     __skadapter__free__sklib_string(__skparam__key);
-    __skadapter__free__sklib_vector_double(__skparam__out);
+    __skadapter__free__sklib_vector_double(__skparam__out_result);
 }
-void json_read_array(json j, string key, vector<json> &out) {
+void json_read_array(json j, string key, vector<json> &out_result) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
     __sklib_string __skparam__key = __skadapter__to_sklib_string(key);
-    __sklib_vector_json __skparam__out = __skadapter__to_sklib_vector_json(out);
-    __sklib__json_read_array__json__string__vector_json_ref(__skparam__j, __skparam__key, &__skparam__out);
-    __skadapter__update_from_vector_json(__skparam__out, out);
+    __sklib_vector_json __skparam__out_result = __skadapter__to_sklib_vector_json(out_result);
+    __sklib__json_read_array__json__string__vector_json_ref(__skparam__j, __skparam__key, &__skparam__out_result);
+    __skadapter__update_from_vector_json(__skparam__out_result, out_result);
     __skadapter__free__sklib_string(__skparam__key);
-    __skadapter__free__sklib_vector_json(__skparam__out);
+    __skadapter__free__sklib_vector_json(__skparam__out_result);
 }
-void json_read_array(json j, string key, vector<string> &out) {
+void json_read_array(json j, string key, vector<string> &out_result) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
     __sklib_string __skparam__key = __skadapter__to_sklib_string(key);
-    __sklib_vector_string __skparam__out = __skadapter__to_sklib_vector_string(out);
-    __sklib__json_read_array__json__string__vector_string_ref(__skparam__j, __skparam__key, &__skparam__out);
-    __skadapter__update_from_vector_string(__skparam__out, out);
+    __sklib_vector_string __skparam__out_result = __skadapter__to_sklib_vector_string(out_result);
+    __sklib__json_read_array__json__string__vector_string_ref(__skparam__j, __skparam__key, &__skparam__out_result);
+    __skadapter__update_from_vector_string(__skparam__out_result, out_result);
     __skadapter__free__sklib_string(__skparam__key);
-    __skadapter__free__sklib_vector_string(__skparam__out);
+    __skadapter__free__sklib_vector_string(__skparam__out_result);
 }
-void json_read_array(json j, string key, vector<bool> &out) {
+void json_read_array(json j, string key, vector<bool> &out_result) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
     __sklib_string __skparam__key = __skadapter__to_sklib_string(key);
-    __sklib_vector_bool __skparam__out = __skadapter__to_sklib_vector_bool(out);
-    __sklib__json_read_array__json__string__vector_bool_ref(__skparam__j, __skparam__key, &__skparam__out);
-    __skadapter__update_from_vector_bool(__skparam__out, out);
+    __sklib_vector_bool __skparam__out_result = __skadapter__to_sklib_vector_bool(out_result);
+    __sklib__json_read_array__json__string__vector_bool_ref(__skparam__j, __skparam__key, &__skparam__out_result);
+    __skadapter__update_from_vector_bool(__skparam__out_result, out_result);
     __skadapter__free__sklib_string(__skparam__key);
-    __skadapter__free__sklib_vector_bool(__skparam__out);
+    __skadapter__free__sklib_vector_bool(__skparam__out_result);
 }
 bool json_read_bool(json j, string key) {
     __sklib_json __skparam__j = __skadapter__to_sklib_json(j);
@@ -2489,6 +2489,11 @@ matrix_2d scale_matrix(const point_2d &scale) {
     __sklib_matrix_2d __skreturn = __sklib__scale_matrix__point_2d_ref(__skparam__scale);
     return __skadapter__to_matrix_2d(__skreturn);
 }
+matrix_2d scale_matrix(const vector_2d &scale) {
+    const __sklib_vector_2d __skparam__scale = __skadapter__to_sklib_vector_2d(scale);
+    __sklib_matrix_2d __skreturn = __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
+    return __skadapter__to_matrix_2d(__skreturn);
+}
 matrix_2d scale_matrix(float scale) {
     float __skparam__scale = __skadapter__to_float(scale);
     __sklib_matrix_2d __skreturn = __sklib__scale_matrix__float(__skparam__scale);
@@ -2504,6 +2509,11 @@ matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const 
 matrix_2d translation_matrix(const point_2d &pt) {
     const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     __sklib_matrix_2d __skreturn = __sklib__translation_matrix__point_2d_ref(__skparam__pt);
+    return __skadapter__to_matrix_2d(__skreturn);
+}
+matrix_2d translation_matrix(const vector_2d &pt) {
+    const __sklib_vector_2d __skparam__pt = __skadapter__to_sklib_vector_2d(pt);
+    __sklib_matrix_2d __skreturn = __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 matrix_2d translation_matrix(float dx, float dy) {
@@ -2686,10 +2696,87 @@ void set_music_volume(float volume) {
 void stop_music() {
     __sklib__stop_music();
 }
+bool accept_all_new_connections() {
+    int __skreturn = __sklib__accept_all_new_connections();
+    return __skadapter__to_bool(__skreturn);
+}
+bool accept_new_connection(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    int __skreturn = __sklib__accept_new_connection__server_socket(__skparam__server);
+    return __skadapter__to_bool(__skreturn);
+}
+void close_all_connections() {
+    __sklib__close_all_connections();
+}
+void close_all_servers() {
+    __sklib__close_all_servers();
+}
+bool close_connection(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    int __skreturn = __sklib__close_connection__connection(__skparam__a_connection);
+    return __skadapter__to_bool(__skreturn);
+}
+bool close_connection(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__close_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
+void close_message(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    __sklib__close_message__message(__skparam__msg);
+}
+bool close_server(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__close_server__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
+bool close_server(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    int __skreturn = __sklib__close_server__server_socket(__skparam__svr);
+    return __skadapter__to_bool(__skreturn);
+}
+unsigned int connection_count(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned int __skreturn = __sklib__connection_count__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+unsigned int connection_count(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    unsigned int __skreturn = __sklib__connection_count__server_socket(__skparam__server);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+server_socket create_server(const string &name, unsigned short port) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
+    __sklib_server_socket __skreturn = __sklib__create_server__string_ref__unsigned_short(__skparam__name, __skparam__port);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_server_socket(__skreturn);
+}
+server_socket create_server(const string &name, unsigned short port, connection_type protocol) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
+    int __skparam__protocol = __skadapter__to_int(protocol);
+    __sklib_server_socket __skreturn = __sklib__create_server__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__port, __skparam__protocol);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_server_socket(__skreturn);
+}
 string dec_to_hex(unsigned int a_dec) {
     unsigned int __skparam__a_dec = __skadapter__to_unsigned_int(a_dec);
     __sklib_string __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
     return __skadapter__to_string(__skreturn);
+}
+bool has_new_connections() {
+    int __skreturn = __sklib__has_new_connections();
+    return __skadapter__to_bool(__skreturn);
+}
+bool has_server(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__has_server__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
 }
 string hex_str_to_ipv4(const string &a_hex) {
     const __sklib_string __skparam__a_hex = __skadapter__to_sklib_string(a_hex);
@@ -2720,9 +2807,69 @@ string ipv4_to_str(unsigned int ip) {
     __sklib_string __skreturn = __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
     return __skadapter__to_string(__skreturn);
 }
+connection last_connection(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib_connection __skreturn = __sklib__last_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_connection(__skreturn);
+}
+connection last_connection(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    __sklib_connection __skreturn = __sklib__last_connection__server_socket(__skparam__server);
+    return __skadapter__to_connection(__skreturn);
+}
 string my_ip() {
     __sklib_string __skreturn = __sklib__my_ip();
     return __skadapter__to_string(__skreturn);
+}
+connection open_connection(const string &name, const string &host, unsigned short port) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    const __sklib_string __skparam__host = __skadapter__to_sklib_string(host);
+    unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
+    __sklib_connection __skreturn = __sklib__open_connection__string_ref__string_ref__unsigned_short(__skparam__name, __skparam__host, __skparam__port);
+    __skadapter__free__sklib_string(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__host);
+    return __skadapter__to_connection(__skreturn);
+}
+connection open_connection(const string &name, const string &host, unsigned short port, connection_type protocol) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    const __sklib_string __skparam__host = __skadapter__to_sklib_string(host);
+    unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
+    int __skparam__protocol = __skadapter__to_int(protocol);
+    __sklib_connection __skreturn = __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol);
+    __skadapter__free__sklib_string(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__host);
+    return __skadapter__to_connection(__skreturn);
+}
+connection retrieve_connection(const string &name, int idx) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skparam__idx = __skadapter__to_int(idx);
+    __sklib_connection __skreturn = __sklib__retrieve_connection__string_ref__int(__skparam__name, __skparam__idx);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_connection(__skreturn);
+}
+connection retrieve_connection(server_socket server, int idx) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    int __skparam__idx = __skadapter__to_int(idx);
+    __sklib_connection __skreturn = __sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx);
+    return __skadapter__to_connection(__skreturn);
+}
+bool server_has_new_connection(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__server_has_new_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
+bool server_has_new_connection(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    int __skreturn = __sklib__server_has_new_connection__server_socket(__skparam__server);
+    return __skadapter__to_bool(__skreturn);
+}
+server_socket server_named(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib_server_socket __skreturn = __sklib__server_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_server_socket(__skreturn);
 }
 void draw_pixel(color clr, const point_2d &pt) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);

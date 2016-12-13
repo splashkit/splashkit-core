@@ -278,6 +278,7 @@ namespace splashkit_lib
      *
      * @attribute class   query_result
      * @attribute getter  successful
+     * @attribute self    db_result
      */
     bool query_success(query_result db_result);
 
@@ -288,6 +289,7 @@ namespace splashkit_lib
      *
      * @attribute class       database
      * @attribute destructor  true
+     * @attribute self        db_to_close
      */
     void free_database(database db_to_close);
 

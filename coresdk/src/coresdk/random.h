@@ -18,9 +18,6 @@ namespace splashkit_lib
     /**
      * Generates a random number between 0 and 1
      *
-     * @attribute class   random
-     * @attribute method  rnd
-     *
      * @returns Returns a `float` between `0` and `1`
      */
     float rnd();
@@ -29,9 +26,6 @@ namespace splashkit_lib
      * Generates a random number between 0 and `ubound`.
      *
      * @param ubound    the `int` representing the upper bound.
-     *
-     * @attribute class       random
-     *
      * @returns Returns an `int` between `0` and `ubound`
      *
      * @attribute suffix  int

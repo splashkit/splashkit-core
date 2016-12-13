@@ -219,9 +219,6 @@ namespace splashkit_lib
      * @param v1    The first vector
      * @param v2    The second vector
      * @returns     The angle of the line from the end of `v1` to the end of `v2`
-     *
-     * @attribute class vector_2d
-     * @attribute method angle_to
      */
     float angle_between(const vector_2d &v1, const vector_2d &v2);
 

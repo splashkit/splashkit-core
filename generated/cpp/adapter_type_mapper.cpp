@@ -6,12 +6,13 @@
 #include "adapter_type_mapper.h"
 
 void __skadapter__free__sklib_string(__sklib_string s) {
-    free(s.string);
+    free(s.ptr);
 }
 __sklib_string __skadapter__to_sklib_string(const std::string &s) {
     __sklib_string __skreturn;
     __skreturn.size = static_cast<unsigned int>(s.length());
     __skreturn.string = (char *)malloc(__skreturn.size + 1);
+    __skreturn.ptr = __skreturn.string;
     strcpy(__skreturn.string, s.c_str());
     return __skreturn;
 }
@@ -38,10 +39,10 @@ __sklib_short __skadapter__to_sklib_short(short v) {
 short __skadapter__to_short(short v) {
     return v;
 }
-__sklib_long __skadapter__to_sklib_long(long v) {
+__sklib_int64_t __skadapter__to_sklib_int64_t(int64_t v) {
     return v;
 }
-long __skadapter__to_long(long v) {
+int64_t __skadapter__to_int64_t(int64_t v) {
     return v;
 }
 __sklib_float __skadapter__to_sklib_float(float v) {

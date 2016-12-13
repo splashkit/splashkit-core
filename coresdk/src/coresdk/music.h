@@ -177,9 +177,6 @@ namespace splashkit_lib
      * @param times     Controls the number of times the music is played.
      * @param ms        How many milliseconds it takes to fade the `music` to full volume
      *
-     * @attribute class   music
-     * @attribute method  fade_in
-     *
      * @attribute suffix  named_with_times
      */
     void fade_music_in(const string &name, int times, int ms);
@@ -189,9 +186,6 @@ namespace splashkit_lib
      *
      * @param name      The name of the `music` file to play.
      * @param ms        How many milliseconds it takes to fade the `music` to full volume
-     *
-     * @attribute class   music
-     * @attribute method  fade_in
      *
      * @attribute suffix  named
      */

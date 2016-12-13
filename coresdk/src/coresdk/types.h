@@ -265,6 +265,7 @@ namespace splashkit_lib
      * computer. You can use this to query the displays position and size.
      *
      * @attribute class display
+     * @attribute no_destructor true
      */
     typedef struct sk_display *display;
 

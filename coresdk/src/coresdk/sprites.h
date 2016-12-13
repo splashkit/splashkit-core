@@ -262,8 +262,9 @@ namespace splashkit_lib
      * @param s       The sprite to add the handler to.
      * @param handler The function to call when this sprite raises an event.
      *
-     * @attribute class sprite
-     * @attribute method call_on_event
+     * @attribute class   sprite
+     * @attribute method  call_on_event
+     * @attribute self    s
      */
     void sprite_call_on_event(sprite s, sprite_event_handler *handler);
 
@@ -274,8 +275,9 @@ namespace splashkit_lib
      * @param s       The sprite to remove the handler from
      * @param handler The function to remove from this sprites handlers
      *
-     * @attribute class sprite
-     * @attribute method stop_calling_on_event
+     * @attribute class   sprite
+     * @attribute method  stop_calling_on_event
+     * @attribute self    s
      */
     void sprite_stop_calling_on_event(sprite s, sprite_event_handler *handler);
 
@@ -292,8 +294,9 @@ namespace splashkit_lib
      *
      * @returns The index of the new layer.
      *
-     * @attribute class sprite
-     * @attribute method add_layer
+     * @attribute class   sprite
+     * @attribute method  add_layer
+     * @attribute self    s
      */
     int sprite_add_layer(sprite s, bitmap new_layer, const string &layer_name);
 

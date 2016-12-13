@@ -132,9 +132,6 @@ namespace splashkit_lib
      *
      * @returns Returns whether the "sound_effect" that matches the name is currently playing or not
      *
-     * @attribute class     sound_effect
-     * @attribute getter    is_playing
-     *
      * @attribute suffix  named
      */
     bool sound_effect_playing(const string &name);
@@ -220,9 +217,6 @@ namespace splashkit_lib
      * @param volume    Indicates the percentage of the original volume to play the
      *                 `sound_effect` at. This must be between `0` and `1`.
      *
-     * @attribute class   sound_effect
-     * @attribute method  play
-     *
      * @attribute suffix  named_with_times_and_volume
      */
     void play_sound_effect(const string &name, int times, float volume);
@@ -233,9 +227,6 @@ namespace splashkit_lib
      * @param name      The name of the effect to play.
      * @param times     Controls the number of times the sound effect is played.
      *
-     * @attribute class   sound_effect
-     * @attribute method  play
-     *
      * @attribute suffix  named_with_times
      */
     void play_sound_effect(const string &name, int times);
@@ -244,9 +235,6 @@ namespace splashkit_lib
      * Plays a sound effect once at full volume.
      *
      * @param name      The name of the effect to play.
-     *
-     * @attribute class   sound_effect
-     * @attribute method  play
      *
      * @attribute suffix  named
      */
@@ -257,9 +245,6 @@ namespace splashkit_lib
      *
      * @param name      The name of the effect to play.
      * @param volume    The volume to play the `sound_effect`
-     *
-     * @attribute class   sound_effect
-     * @attribute method  play
      *
      * @attribute suffix  named_with_volume
      */
@@ -280,9 +265,6 @@ namespace splashkit_lib
      * Stops the `sound_effect` that matches the name, if it is currently playing.
      *
      * @param name      The name of the `sound_effect` to stop.
-     *
-     * @attribute class   sound_effect
-     * @attribute method  stop
      *
      * @attribute suffix  named
      */

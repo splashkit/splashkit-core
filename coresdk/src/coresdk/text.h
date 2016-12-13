@@ -127,8 +127,6 @@ namespace splashkit_lib
      * @param name          The name of the `font` to load the size for.
      * @param font_size     The desired size of the `font`.
      *
-     * @attribute class     font
-     * @attribute method    load_size
      * @attribute suffix    name_as_string
      */
     void font_load_size(const string &name, int font_size);
@@ -173,8 +171,6 @@ namespace splashkit_lib
      * @param name          The name of the `font` to be checked.
      * @param font_size     The size to check.
      *
-     * @attribute class     font
-     * @attribute method    has_size
      * @attribute suffix    name_as_string
      *
      * @returns Returns true if there is a font with the supplied name that has the supplied size.
