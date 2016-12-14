@@ -39,11 +39,11 @@ set(SK_OUT "${SK_ROOT}/out")
 
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/compilers/fpc")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/commands/fpc")
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/compilers/fpc")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/fpc")
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux/compilers/fpc")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux/commands/fpc")
 endif()
 
 #### END SETUP ####

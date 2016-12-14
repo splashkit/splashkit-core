@@ -41,7 +41,7 @@ set(SK_LANGUAGES "${SK_ROOT}/languages")
 
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/compilers/clang++")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/commands/clang++")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_OUT}/splashkit-macos/lib \
                    -llibSplashKit \

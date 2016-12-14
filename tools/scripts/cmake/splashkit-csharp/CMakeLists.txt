@@ -39,11 +39,11 @@ set(SK_OUT "${SK_ROOT}/out")
 
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/compilers/mcs")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/commands/mcs")
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/compilers/mcs")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/mcs")
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux/compilers/mcs")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux/commands/mcs")
 endif()
 
 #### END SETUP ####
@@ -56,3 +56,12 @@ file(GLOB SK_ADAPTER_SOURCE_FILES
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
 install(FILES ${SK_ADAPTER_SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT})
+
+if (APPLE)
+    INSTALL(CODE "execute_process( \
+      COMMAND ${CMAKE_COMMAND} -E create_symlink \
+      libSplashKit.dylib \
+      ${SK_OUT}/splashkit-macos/lib/splashkit.dll   \
+      )"
+    )
+endif()
