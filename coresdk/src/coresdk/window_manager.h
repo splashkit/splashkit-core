@@ -151,6 +151,7 @@ namespace splashkit_lib
      *
      * @attribute class window
      * @attribute self wind
+     * @attribute getter close_requested
      */
     bool window_close_requested(window wind);
 
