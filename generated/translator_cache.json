@@ -6174,7 +6174,7 @@
     "group": "color",
     "brief": null,
     "description": null,
-    "parsed_at": 1481584368,
+    "parsed_at": 1481609857,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -6305,6 +6305,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "alice_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6328,6 +6330,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "antique_white",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6351,6 +6355,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "aqua",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6374,6 +6380,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "aquamarine",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6397,6 +6405,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "azure",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6420,6 +6430,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "beige",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6443,6 +6455,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "bisque",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6466,6 +6480,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "black",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6489,6 +6505,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "blanched_almond",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6512,6 +6530,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6535,6 +6555,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "blue_violet",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6558,6 +6580,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "bright_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6581,6 +6605,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "brown",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6604,6 +6630,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "burly_wood",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6627,6 +6655,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "cadet_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6650,6 +6680,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "chartreuse",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6673,6 +6705,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "chocolate",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6696,6 +6730,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "coral",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6719,6 +6755,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "cornflower_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6742,6 +6780,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "cornsilk",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6765,6 +6805,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "crimson",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6788,6 +6830,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "cyan",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6811,6 +6855,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6834,6 +6880,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_cyan",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6857,6 +6905,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_goldenrod",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6880,6 +6930,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6903,6 +6955,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6926,6 +6980,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_khaki",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6949,6 +7005,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_magenta",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6972,6 +7030,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_olive_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -6995,6 +7055,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_orange",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7018,6 +7080,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_orchid",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7041,6 +7105,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7064,6 +7130,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_salmon",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7087,6 +7155,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_sea_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7110,6 +7180,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_slate_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7133,6 +7205,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_slate_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7156,6 +7230,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_turquoise",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7179,6 +7255,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dark_violet",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7202,6 +7280,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "deep_pink",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7225,6 +7305,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "deep_sky_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7248,6 +7330,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dim_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7271,6 +7355,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "dodger_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7294,6 +7380,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "firebrick",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7317,6 +7405,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "floral_white",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7340,6 +7430,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "forest_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7363,6 +7455,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "fuchsia",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7386,6 +7480,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "gainsboro",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7409,6 +7505,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "ghost_white",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7432,6 +7530,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "gold",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7455,6 +7555,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "goldenrod",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7478,6 +7580,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7501,6 +7605,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7524,6 +7630,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "green_yellow",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7547,6 +7655,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "honeydew",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7570,6 +7680,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "hot_pink",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7593,6 +7705,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "indian_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7616,6 +7730,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "indigo",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7639,6 +7755,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "ivory",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7662,6 +7780,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "khaki",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7685,6 +7805,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lavender",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7708,6 +7830,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lavender_blush",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7731,6 +7855,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lawn_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7754,6 +7880,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lemon_chiffon",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7777,6 +7905,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7800,6 +7930,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_coral",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7823,6 +7955,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_cyan",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7846,6 +7980,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_goldenrod_yellow",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7869,6 +8005,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7892,6 +8030,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7915,6 +8055,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_pink",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7938,6 +8080,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_salmon",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7961,6 +8105,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_sea_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -7984,6 +8130,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_sky_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8007,6 +8155,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_slate_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8030,6 +8180,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_steel_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8053,6 +8205,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "light_yellow",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8076,6 +8230,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lime",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8099,6 +8255,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "lime_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8122,6 +8280,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "linen",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8145,6 +8305,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "magenta",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8168,6 +8330,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "maroon",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8191,6 +8355,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_aquamarine",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8214,6 +8380,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8237,6 +8405,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_orchid",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8260,6 +8430,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_purple",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8283,6 +8455,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_sea_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8306,6 +8480,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_slate_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8329,6 +8505,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_spring_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8352,6 +8530,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_turquoise",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8375,6 +8555,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "medium_violet_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8398,6 +8580,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "midnight_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8421,6 +8605,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "mint_cream",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8444,6 +8630,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "misty_rose",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8467,6 +8655,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "moccasin",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8490,6 +8680,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "navajo_white",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8513,6 +8705,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "navy",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8536,6 +8730,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "old_lace",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8559,6 +8755,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "olive",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8582,6 +8780,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "olive_drab",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8605,6 +8805,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "orange",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8628,6 +8830,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "orange_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8651,6 +8855,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "orchid",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8674,6 +8880,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "pale_goldenrod",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8697,6 +8905,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "pale_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8720,6 +8930,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "pale_turquoise",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8743,6 +8955,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "pale_violet_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8766,6 +8980,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "papaya_whip",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8789,6 +9005,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "peach_puff",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8812,6 +9030,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "peru",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8835,6 +9055,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "pink",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8858,6 +9080,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "plum",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8881,6 +9105,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "powder_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8904,6 +9130,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "purple",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8927,6 +9155,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8950,6 +9180,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "rosy_brown",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8973,6 +9205,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "royal_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -8996,6 +9230,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "saddle_brown",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9019,6 +9255,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "salmon",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9042,6 +9280,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "sandy_brown",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9065,6 +9305,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "sea_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9088,6 +9330,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "sea_shell",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9111,6 +9355,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "sienna",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9134,6 +9380,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "silver",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9157,6 +9405,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "sky_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9180,6 +9430,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "slate_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9203,6 +9455,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "slate_gray",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9226,6 +9480,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "snow",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9249,6 +9505,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "spring_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9272,6 +9530,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "steel_blue",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9295,6 +9555,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "swinburne_red",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9318,6 +9580,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "tan",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9341,6 +9605,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "teal",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9364,6 +9630,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "thistle",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9423,6 +9691,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "tomato",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9446,6 +9716,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "transparent",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9469,6 +9741,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "turquoise",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9492,6 +9766,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "violet",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9515,6 +9791,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "wheat",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9538,6 +9816,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "white",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9561,6 +9841,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "white_smoke",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9584,6 +9866,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "yellow",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9607,6 +9891,8 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "yellow_green",
+          "static": "color",
           "group": "color"
         }
       },
@@ -9747,9 +10033,9 @@
       {
         "signature": "color random_color();",
         "name": "random_color",
-        "method_name": null,
+        "method_name": "random",
         "unique_global_name": "random_color",
-        "unique_method_name": null,
+        "unique_method_name": ".random",
         "suffix_name": null,
         "description": "Creates and returns a random color where the color and its opacity are\nrandom.",
         "brief": null,
@@ -9764,15 +10050,17 @@
         "parameters": {
         },
         "attributes": {
+          "method": "random",
+          "static": "color",
           "group": "color"
         }
       },
       {
         "signature": "color random_rgb_color(int alpha);",
         "name": "random_rgb_color",
-        "method_name": null,
+        "method_name": "random_rgb",
         "unique_global_name": "random_rgb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".random_rgb",
         "suffix_name": null,
         "description": "Creates and returns a random color where the color is random, but the\nopacity is set to the passed in value.",
         "brief": null,
@@ -9800,6 +10088,8 @@
           }
         },
         "attributes": {
+          "method": "random_rgb",
+          "static": "color",
           "group": "color"
         }
       },
@@ -44737,7 +45027,7 @@
     "group": "graphics",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1481584426,
+    "parsed_at": 1481596947,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
@@ -45524,6 +45814,7 @@
         },
         "attributes": {
           "class": "window",
+          "getter": "close_requested",
           "self": "wind",
           "group": "graphics",
           "static": "window_manager"

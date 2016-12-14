@@ -12682,6 +12682,590 @@ internal static Window __skadapter__to_window(IntPtr v)
       public float g;
       public float b;
       public float a;
+
+    public static Color Random()
+    {
+        return SplashKit.RandomColor();
+    }
+
+
+    public static Color RandomRgb(int alpha)
+    {
+        return SplashKit.RandomRgbColor(alpha);
+    }
+
+    public static Color AliceBlue
+    {
+        get { return SplashKit.ColorAliceBlue(); }
+    }
+    public static Color AntiqueWhite
+    {
+        get { return SplashKit.ColorAntiqueWhite(); }
+    }
+    public static Color Aqua
+    {
+        get { return SplashKit.ColorAqua(); }
+    }
+    public static Color Aquamarine
+    {
+        get { return SplashKit.ColorAquamarine(); }
+    }
+    public static Color Azure
+    {
+        get { return SplashKit.ColorAzure(); }
+    }
+    public static Color Beige
+    {
+        get { return SplashKit.ColorBeige(); }
+    }
+    public static Color Bisque
+    {
+        get { return SplashKit.ColorBisque(); }
+    }
+    public static Color Black
+    {
+        get { return SplashKit.ColorBlack(); }
+    }
+    public static Color BlanchedAlmond
+    {
+        get { return SplashKit.ColorBlanchedAlmond(); }
+    }
+    public static Color Blue
+    {
+        get { return SplashKit.ColorBlue(); }
+    }
+    public static Color BlueViolet
+    {
+        get { return SplashKit.ColorBlueViolet(); }
+    }
+    public static Color BrightGreen
+    {
+        get { return SplashKit.ColorBrightGreen(); }
+    }
+    public static Color Brown
+    {
+        get { return SplashKit.ColorBrown(); }
+    }
+    public static Color BurlyWood
+    {
+        get { return SplashKit.ColorBurlyWood(); }
+    }
+    public static Color CadetBlue
+    {
+        get { return SplashKit.ColorCadetBlue(); }
+    }
+    public static Color Chartreuse
+    {
+        get { return SplashKit.ColorChartreuse(); }
+    }
+    public static Color Chocolate
+    {
+        get { return SplashKit.ColorChocolate(); }
+    }
+    public static Color Coral
+    {
+        get { return SplashKit.ColorCoral(); }
+    }
+    public static Color CornflowerBlue
+    {
+        get { return SplashKit.ColorCornflowerBlue(); }
+    }
+    public static Color Cornsilk
+    {
+        get { return SplashKit.ColorCornsilk(); }
+    }
+    public static Color Crimson
+    {
+        get { return SplashKit.ColorCrimson(); }
+    }
+    public static Color Cyan
+    {
+        get { return SplashKit.ColorCyan(); }
+    }
+    public static Color DarkBlue
+    {
+        get { return SplashKit.ColorDarkBlue(); }
+    }
+    public static Color DarkCyan
+    {
+        get { return SplashKit.ColorDarkCyan(); }
+    }
+    public static Color DarkGoldenrod
+    {
+        get { return SplashKit.ColorDarkGoldenrod(); }
+    }
+    public static Color DarkGray
+    {
+        get { return SplashKit.ColorDarkGray(); }
+    }
+    public static Color DarkGreen
+    {
+        get { return SplashKit.ColorDarkGreen(); }
+    }
+    public static Color DarkKhaki
+    {
+        get { return SplashKit.ColorDarkKhaki(); }
+    }
+    public static Color DarkMagenta
+    {
+        get { return SplashKit.ColorDarkMagenta(); }
+    }
+    public static Color DarkOliveGreen
+    {
+        get { return SplashKit.ColorDarkOliveGreen(); }
+    }
+    public static Color DarkOrange
+    {
+        get { return SplashKit.ColorDarkOrange(); }
+    }
+    public static Color DarkOrchid
+    {
+        get { return SplashKit.ColorDarkOrchid(); }
+    }
+    public static Color DarkRed
+    {
+        get { return SplashKit.ColorDarkRed(); }
+    }
+    public static Color DarkSalmon
+    {
+        get { return SplashKit.ColorDarkSalmon(); }
+    }
+    public static Color DarkSeaGreen
+    {
+        get { return SplashKit.ColorDarkSeaGreen(); }
+    }
+    public static Color DarkSlateBlue
+    {
+        get { return SplashKit.ColorDarkSlateBlue(); }
+    }
+    public static Color DarkSlateGray
+    {
+        get { return SplashKit.ColorDarkSlateGray(); }
+    }
+    public static Color DarkTurquoise
+    {
+        get { return SplashKit.ColorDarkTurquoise(); }
+    }
+    public static Color DarkViolet
+    {
+        get { return SplashKit.ColorDarkViolet(); }
+    }
+    public static Color DeepPink
+    {
+        get { return SplashKit.ColorDeepPink(); }
+    }
+    public static Color DeepSkyBlue
+    {
+        get { return SplashKit.ColorDeepSkyBlue(); }
+    }
+    public static Color DimGray
+    {
+        get { return SplashKit.ColorDimGray(); }
+    }
+    public static Color DodgerBlue
+    {
+        get { return SplashKit.ColorDodgerBlue(); }
+    }
+    public static Color Firebrick
+    {
+        get { return SplashKit.ColorFirebrick(); }
+    }
+    public static Color FloralWhite
+    {
+        get { return SplashKit.ColorFloralWhite(); }
+    }
+    public static Color ForestGreen
+    {
+        get { return SplashKit.ColorForestGreen(); }
+    }
+    public static Color Fuchsia
+    {
+        get { return SplashKit.ColorFuchsia(); }
+    }
+    public static Color Gainsboro
+    {
+        get { return SplashKit.ColorGainsboro(); }
+    }
+    public static Color GhostWhite
+    {
+        get { return SplashKit.ColorGhostWhite(); }
+    }
+    public static Color Gold
+    {
+        get { return SplashKit.ColorGold(); }
+    }
+    public static Color Goldenrod
+    {
+        get { return SplashKit.ColorGoldenrod(); }
+    }
+    public static Color Gray
+    {
+        get { return SplashKit.ColorGray(); }
+    }
+    public static Color Green
+    {
+        get { return SplashKit.ColorGreen(); }
+    }
+    public static Color GreenYellow
+    {
+        get { return SplashKit.ColorGreenYellow(); }
+    }
+    public static Color Honeydew
+    {
+        get { return SplashKit.ColorHoneydew(); }
+    }
+    public static Color HotPink
+    {
+        get { return SplashKit.ColorHotPink(); }
+    }
+    public static Color IndianRed
+    {
+        get { return SplashKit.ColorIndianRed(); }
+    }
+    public static Color Indigo
+    {
+        get { return SplashKit.ColorIndigo(); }
+    }
+    public static Color Ivory
+    {
+        get { return SplashKit.ColorIvory(); }
+    }
+    public static Color Khaki
+    {
+        get { return SplashKit.ColorKhaki(); }
+    }
+    public static Color Lavender
+    {
+        get { return SplashKit.ColorLavender(); }
+    }
+    public static Color LavenderBlush
+    {
+        get { return SplashKit.ColorLavenderBlush(); }
+    }
+    public static Color LawnGreen
+    {
+        get { return SplashKit.ColorLawnGreen(); }
+    }
+    public static Color LemonChiffon
+    {
+        get { return SplashKit.ColorLemonChiffon(); }
+    }
+    public static Color LightBlue
+    {
+        get { return SplashKit.ColorLightBlue(); }
+    }
+    public static Color LightCoral
+    {
+        get { return SplashKit.ColorLightCoral(); }
+    }
+    public static Color LightCyan
+    {
+        get { return SplashKit.ColorLightCyan(); }
+    }
+    public static Color LightGoldenrodYellow
+    {
+        get { return SplashKit.ColorLightGoldenrodYellow(); }
+    }
+    public static Color LightGray
+    {
+        get { return SplashKit.ColorLightGray(); }
+    }
+    public static Color LightGreen
+    {
+        get { return SplashKit.ColorLightGreen(); }
+    }
+    public static Color LightPink
+    {
+        get { return SplashKit.ColorLightPink(); }
+    }
+    public static Color LightSalmon
+    {
+        get { return SplashKit.ColorLightSalmon(); }
+    }
+    public static Color LightSeaGreen
+    {
+        get { return SplashKit.ColorLightSeaGreen(); }
+    }
+    public static Color LightSkyBlue
+    {
+        get { return SplashKit.ColorLightSkyBlue(); }
+    }
+    public static Color LightSlateGray
+    {
+        get { return SplashKit.ColorLightSlateGray(); }
+    }
+    public static Color LightSteelBlue
+    {
+        get { return SplashKit.ColorLightSteelBlue(); }
+    }
+    public static Color LightYellow
+    {
+        get { return SplashKit.ColorLightYellow(); }
+    }
+    public static Color Lime
+    {
+        get { return SplashKit.ColorLime(); }
+    }
+    public static Color LimeGreen
+    {
+        get { return SplashKit.ColorLimeGreen(); }
+    }
+    public static Color Linen
+    {
+        get { return SplashKit.ColorLinen(); }
+    }
+    public static Color Magenta
+    {
+        get { return SplashKit.ColorMagenta(); }
+    }
+    public static Color Maroon
+    {
+        get { return SplashKit.ColorMaroon(); }
+    }
+    public static Color MediumAquamarine
+    {
+        get { return SplashKit.ColorMediumAquamarine(); }
+    }
+    public static Color MediumBlue
+    {
+        get { return SplashKit.ColorMediumBlue(); }
+    }
+    public static Color MediumOrchid
+    {
+        get { return SplashKit.ColorMediumOrchid(); }
+    }
+    public static Color MediumPurple
+    {
+        get { return SplashKit.ColorMediumPurple(); }
+    }
+    public static Color MediumSeaGreen
+    {
+        get { return SplashKit.ColorMediumSeaGreen(); }
+    }
+    public static Color MediumSlateBlue
+    {
+        get { return SplashKit.ColorMediumSlateBlue(); }
+    }
+    public static Color MediumSpringGreen
+    {
+        get { return SplashKit.ColorMediumSpringGreen(); }
+    }
+    public static Color MediumTurquoise
+    {
+        get { return SplashKit.ColorMediumTurquoise(); }
+    }
+    public static Color MediumVioletRed
+    {
+        get { return SplashKit.ColorMediumVioletRed(); }
+    }
+    public static Color MidnightBlue
+    {
+        get { return SplashKit.ColorMidnightBlue(); }
+    }
+    public static Color MintCream
+    {
+        get { return SplashKit.ColorMintCream(); }
+    }
+    public static Color MistyRose
+    {
+        get { return SplashKit.ColorMistyRose(); }
+    }
+    public static Color Moccasin
+    {
+        get { return SplashKit.ColorMoccasin(); }
+    }
+    public static Color NavajoWhite
+    {
+        get { return SplashKit.ColorNavajoWhite(); }
+    }
+    public static Color Navy
+    {
+        get { return SplashKit.ColorNavy(); }
+    }
+    public static Color OldLace
+    {
+        get { return SplashKit.ColorOldLace(); }
+    }
+    public static Color Olive
+    {
+        get { return SplashKit.ColorOlive(); }
+    }
+    public static Color OliveDrab
+    {
+        get { return SplashKit.ColorOliveDrab(); }
+    }
+    public static Color Orange
+    {
+        get { return SplashKit.ColorOrange(); }
+    }
+    public static Color OrangeRed
+    {
+        get { return SplashKit.ColorOrangeRed(); }
+    }
+    public static Color Orchid
+    {
+        get { return SplashKit.ColorOrchid(); }
+    }
+    public static Color PaleGoldenrod
+    {
+        get { return SplashKit.ColorPaleGoldenrod(); }
+    }
+    public static Color PaleGreen
+    {
+        get { return SplashKit.ColorPaleGreen(); }
+    }
+    public static Color PaleTurquoise
+    {
+        get { return SplashKit.ColorPaleTurquoise(); }
+    }
+    public static Color PaleVioletRed
+    {
+        get { return SplashKit.ColorPaleVioletRed(); }
+    }
+    public static Color PapayaWhip
+    {
+        get { return SplashKit.ColorPapayaWhip(); }
+    }
+    public static Color PeachPuff
+    {
+        get { return SplashKit.ColorPeachPuff(); }
+    }
+    public static Color Peru
+    {
+        get { return SplashKit.ColorPeru(); }
+    }
+    public static Color Pink
+    {
+        get { return SplashKit.ColorPink(); }
+    }
+    public static Color Plum
+    {
+        get { return SplashKit.ColorPlum(); }
+    }
+    public static Color PowderBlue
+    {
+        get { return SplashKit.ColorPowderBlue(); }
+    }
+    public static Color Purple
+    {
+        get { return SplashKit.ColorPurple(); }
+    }
+    public static Color Red
+    {
+        get { return SplashKit.ColorRed(); }
+    }
+    public static Color RosyBrown
+    {
+        get { return SplashKit.ColorRosyBrown(); }
+    }
+    public static Color RoyalBlue
+    {
+        get { return SplashKit.ColorRoyalBlue(); }
+    }
+    public static Color SaddleBrown
+    {
+        get { return SplashKit.ColorSaddleBrown(); }
+    }
+    public static Color Salmon
+    {
+        get { return SplashKit.ColorSalmon(); }
+    }
+    public static Color SandyBrown
+    {
+        get { return SplashKit.ColorSandyBrown(); }
+    }
+    public static Color SeaGreen
+    {
+        get { return SplashKit.ColorSeaGreen(); }
+    }
+    public static Color SeaShell
+    {
+        get { return SplashKit.ColorSeaShell(); }
+    }
+    public static Color Sienna
+    {
+        get { return SplashKit.ColorSienna(); }
+    }
+    public static Color Silver
+    {
+        get { return SplashKit.ColorSilver(); }
+    }
+    public static Color SkyBlue
+    {
+        get { return SplashKit.ColorSkyBlue(); }
+    }
+    public static Color SlateBlue
+    {
+        get { return SplashKit.ColorSlateBlue(); }
+    }
+    public static Color SlateGray
+    {
+        get { return SplashKit.ColorSlateGray(); }
+    }
+    public static Color Snow
+    {
+        get { return SplashKit.ColorSnow(); }
+    }
+    public static Color SpringGreen
+    {
+        get { return SplashKit.ColorSpringGreen(); }
+    }
+    public static Color SteelBlue
+    {
+        get { return SplashKit.ColorSteelBlue(); }
+    }
+    public static Color SwinburneRed
+    {
+        get { return SplashKit.ColorSwinburneRed(); }
+    }
+    public static Color Tan
+    {
+        get { return SplashKit.ColorTan(); }
+    }
+    public static Color Teal
+    {
+        get { return SplashKit.ColorTeal(); }
+    }
+    public static Color Thistle
+    {
+        get { return SplashKit.ColorThistle(); }
+    }
+    public static Color Tomato
+    {
+        get { return SplashKit.ColorTomato(); }
+    }
+    public static Color Transparent
+    {
+        get { return SplashKit.ColorTransparent(); }
+    }
+    public static Color Turquoise
+    {
+        get { return SplashKit.ColorTurquoise(); }
+    }
+    public static Color Violet
+    {
+        get { return SplashKit.ColorViolet(); }
+    }
+    public static Color Wheat
+    {
+        get { return SplashKit.ColorWheat(); }
+    }
+    public static Color White
+    {
+        get { return SplashKit.ColorWhite(); }
+    }
+    public static Color WhiteSmoke
+    {
+        get { return SplashKit.ColorWhiteSmoke(); }
+    }
+    public static Color Yellow
+    {
+        get { return SplashKit.ColorYellow(); }
+    }
+    public static Color YellowGreen
+    {
+        get { return SplashKit.ColorYellowGreen(); }
+    }
   }
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
     internal struct __sklib_rectangle
@@ -12810,7 +13394,7 @@ internal static Window __skadapter__to_window(IntPtr v)
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         internal static void Remove(IntPtr ptr)
         {
-          System.Console.WriteLine("Delete {0}", ptr);
+            // System.Console.WriteLine("Delete {0}", ptr);
             if (_ptrRegister.ContainsKey(ptr))
             {
                 _ptrRegister.Remove(ptr);
@@ -12850,11 +13434,19 @@ internal static Window __skadapter__to_window(IntPtr v)
         protected internal abstract void DoFree();
 
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough(), System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        internal PointerWrapper(IntPtr ptr)
+        internal PointerWrapper(IntPtr ptr, bool register)
         {
+            Pointer = ptr;
+
+            if ( ! register ) return;
+
             if ( PointerWrapper._ptrRegister.ContainsKey(ptr) ) throw new InvalidOperationException("Error managing resources -- attempting to create/load object twice.");
             PointerWrapper._ptrRegister[ptr] = this;
-            Pointer = ptr;
+        }
+
+        protected PointerWrapper(PointerWrapper other)
+        {
+          Pointer = other.Pointer;
         }
 
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough(),System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -12932,7 +13524,7 @@ internal static Window __skadapter__to_window(IntPtr v)
 
 public class Database : PointerWrapper
 {
-  internal Database(IntPtr ptr) : base(ptr) {}
+  internal Database(IntPtr ptr) : base(ptr, true) {}
 
   internal static Database FetchOrCreate(IntPtr ptr)
   {
@@ -12942,7 +13534,7 @@ public class Database : PointerWrapper
     return new Database(ptr);
   }
 
-    public Database(string name, string filename) : this ( SplashKit.OpenDatabase(name, filename) )
+    public Database(string name, string filename) : base ( SplashKit.OpenDatabase(name, filename), false )
     { }
     protected internal override void DoFree()
     {
@@ -12970,7 +13562,7 @@ public class Database : PointerWrapper
 }
 public class QueryResult : PointerWrapper
 {
-  internal QueryResult(IntPtr ptr) : base(ptr) {}
+  internal QueryResult(IntPtr ptr) : base(ptr, true) {}
 
   internal static QueryResult FetchOrCreate(IntPtr ptr)
   {
@@ -13037,7 +13629,7 @@ public class QueryResult : PointerWrapper
 }
 public class Json : PointerWrapper
 {
-  internal Json(IntPtr ptr) : base(ptr) {}
+  internal Json(IntPtr ptr) : base(ptr, true) {}
 
   internal static Json FetchOrCreate(IntPtr ptr)
   {
@@ -13047,10 +13639,10 @@ public class Json : PointerWrapper
     return new Json(ptr);
   }
 
-    public Json() : this ( SplashKit.CreateJson() )
+    public Json() : base ( SplashKit.CreateJson(), false )
     { }
 
-    public Json(string jsonString) : this ( SplashKit.CreateJson(jsonString) )
+    public Json(string jsonString) : base ( SplashKit.CreateJson(jsonString), false )
     { }
     protected internal override void DoFree()
     {
@@ -13222,7 +13814,7 @@ public class Json : PointerWrapper
 }
 public class Music : PointerWrapper
 {
-  internal Music(IntPtr ptr) : base(ptr) {}
+  internal Music(IntPtr ptr) : base(ptr, true) {}
 
   internal static Music FetchOrCreate(IntPtr ptr)
   {
@@ -13232,7 +13824,7 @@ public class Music : PointerWrapper
     return new Music(ptr);
   }
 
-    public Music(string name, string filename) : this ( SplashKit.LoadMusic(name, filename) )
+    public Music(string name, string filename) : base ( SplashKit.LoadMusic(name, filename), false )
     { }
     protected internal override void DoFree()
     {
@@ -13280,7 +13872,7 @@ public class Music : PointerWrapper
 }
 public class Connection : PointerWrapper
 {
-  internal Connection(IntPtr ptr) : base(ptr) {}
+  internal Connection(IntPtr ptr) : base(ptr, true) {}
 
   internal static Connection FetchOrCreate(IntPtr ptr)
   {
@@ -13290,10 +13882,10 @@ public class Connection : PointerWrapper
     return new Connection(ptr);
   }
 
-    public Connection(string name, string host, ushort port) : this ( SplashKit.OpenConnection(name, host, port) )
+    public Connection(string name, string host, ushort port) : base ( SplashKit.OpenConnection(name, host, port), false )
     { }
 
-    public Connection(string name, string host, ushort port, ConnectionType protocol) : this ( SplashKit.OpenConnection(name, host, port, protocol) )
+    public Connection(string name, string host, ushort port, ConnectionType protocol) : base ( SplashKit.OpenConnection(name, host, port, protocol), false )
     { }
     protected internal override void DoFree()
     {
@@ -13309,7 +13901,7 @@ public class Connection : PointerWrapper
 }
 public class Message : PointerWrapper
 {
-  internal Message(IntPtr ptr) : base(ptr) {}
+  internal Message(IntPtr ptr) : base(ptr, true) {}
 
   internal static Message FetchOrCreate(IntPtr ptr)
   {
@@ -13332,7 +13924,7 @@ public class Message : PointerWrapper
 }
 public class ServerSocket : PointerWrapper
 {
-  internal ServerSocket(IntPtr ptr) : base(ptr) {}
+  internal ServerSocket(IntPtr ptr) : base(ptr, true) {}
 
   internal static ServerSocket FetchOrCreate(IntPtr ptr)
   {
@@ -13342,10 +13934,10 @@ public class ServerSocket : PointerWrapper
     return new ServerSocket(ptr);
   }
 
-    public ServerSocket(string name, ushort port) : this ( SplashKit.CreateServer(name, port) )
+    public ServerSocket(string name, ushort port) : base ( SplashKit.CreateServer(name, port), false )
     { }
 
-    public ServerSocket(string name, ushort port, ConnectionType protocol) : this ( SplashKit.CreateServer(name, port, protocol) )
+    public ServerSocket(string name, ushort port, ConnectionType protocol) : base ( SplashKit.CreateServer(name, port, protocol), false )
     { }
     protected internal override void DoFree()
     {
@@ -13385,7 +13977,7 @@ public class ServerSocket : PointerWrapper
 }
 public class SoundEffect : PointerWrapper
 {
-  internal SoundEffect(IntPtr ptr) : base(ptr) {}
+  internal SoundEffect(IntPtr ptr) : base(ptr, true) {}
 
   internal static SoundEffect FetchOrCreate(IntPtr ptr)
   {
@@ -13395,7 +13987,7 @@ public class SoundEffect : PointerWrapper
     return new SoundEffect(ptr);
   }
 
-    public SoundEffect(string name, string filename) : this ( SplashKit.LoadSoundEffect(name, filename) )
+    public SoundEffect(string name, string filename) : base ( SplashKit.LoadSoundEffect(name, filename), false )
     { }
     protected internal override void DoFree()
     {
@@ -13449,7 +14041,7 @@ public class SoundEffect : PointerWrapper
 }
 public class Sprite : PointerWrapper
 {
-  internal Sprite(IntPtr ptr) : base(ptr) {}
+  internal Sprite(IntPtr ptr) : base(ptr, true) {}
 
   internal static Sprite FetchOrCreate(IntPtr ptr)
   {
@@ -13459,22 +14051,22 @@ public class Sprite : PointerWrapper
     return new Sprite(ptr);
   }
 
-    public Sprite(Bitmap layer) : this ( SplashKit.CreateSprite(layer) )
+    public Sprite(Bitmap layer) : base ( SplashKit.CreateSprite(layer), false )
     { }
 
-    public Sprite(Bitmap layer, AnimationScript ani) : this ( SplashKit.CreateSprite(layer, ani) )
+    public Sprite(Bitmap layer, AnimationScript ani) : base ( SplashKit.CreateSprite(layer, ani), false )
     { }
 
-    public Sprite(string bitmapName) : this ( SplashKit.CreateSprite(bitmapName) )
+    public Sprite(string bitmapName) : base ( SplashKit.CreateSprite(bitmapName), false )
     { }
 
-    public Sprite(string name, Bitmap layer) : this ( SplashKit.CreateSprite(name, layer) )
+    public Sprite(string name, Bitmap layer) : base ( SplashKit.CreateSprite(name, layer), false )
     { }
 
-    public Sprite(string name, Bitmap layer, AnimationScript ani) : this ( SplashKit.CreateSprite(name, layer, ani) )
+    public Sprite(string name, Bitmap layer, AnimationScript ani) : base ( SplashKit.CreateSprite(name, layer, ani), false )
     { }
 
-    public Sprite(string bitmapName, string animationName) : this ( SplashKit.CreateSprite(bitmapName, animationName) )
+    public Sprite(string bitmapName, string animationName) : base ( SplashKit.CreateSprite(bitmapName, animationName), false )
     { }
     protected internal override void DoFree()
     {
@@ -14031,7 +14623,7 @@ public class Sprite : PointerWrapper
 }
 public class Timer : PointerWrapper
 {
-  internal Timer(IntPtr ptr) : base(ptr) {}
+  internal Timer(IntPtr ptr) : base(ptr, true) {}
 
   internal static Timer FetchOrCreate(IntPtr ptr)
   {
@@ -14041,7 +14633,7 @@ public class Timer : PointerWrapper
     return new Timer(ptr);
   }
 
-    public Timer(string name) : this ( SplashKit.CreateTimer(name) )
+    public Timer(string name) : base ( SplashKit.CreateTimer(name), false )
     { }
     protected internal override void DoFree()
     {
@@ -14093,7 +14685,7 @@ public class Timer : PointerWrapper
 }
 public class Animation : PointerWrapper
 {
-  internal Animation(IntPtr ptr) : base(ptr) {}
+  internal Animation(IntPtr ptr) : base(ptr, true) {}
 
   internal static Animation FetchOrCreate(IntPtr ptr)
   {
@@ -14208,7 +14800,7 @@ public class Animation : PointerWrapper
 }
 public class AnimationScript : PointerWrapper
 {
-  internal AnimationScript(IntPtr ptr) : base(ptr) {}
+  internal AnimationScript(IntPtr ptr) : base(ptr, true) {}
 
   internal static AnimationScript FetchOrCreate(IntPtr ptr)
   {
@@ -14218,7 +14810,7 @@ public class AnimationScript : PointerWrapper
     return new AnimationScript(ptr);
   }
 
-    public AnimationScript(string name, string filename) : this ( SplashKit.LoadAnimationScript(name, filename) )
+    public AnimationScript(string name, string filename) : base ( SplashKit.LoadAnimationScript(name, filename), false )
     { }
     protected internal override void DoFree()
     {
@@ -14254,7 +14846,7 @@ public class AnimationScript : PointerWrapper
 }
 public class Bitmap : PointerWrapper
 {
-  internal Bitmap(IntPtr ptr) : base(ptr) {}
+  internal Bitmap(IntPtr ptr) : base(ptr, true) {}
 
   internal static Bitmap FetchOrCreate(IntPtr ptr)
   {
@@ -14289,7 +14881,7 @@ public class Bitmap : PointerWrapper
 }
 public class Display : PointerWrapper
 {
-  internal Display(IntPtr ptr) : base(ptr) {}
+  internal Display(IntPtr ptr) : base(ptr, true) {}
 
   internal static Display FetchOrCreate(IntPtr ptr)
   {
@@ -14303,7 +14895,7 @@ public class Display : PointerWrapper
     }
 public class Font : PointerWrapper
 {
-  internal Font(IntPtr ptr) : base(ptr) {}
+  internal Font(IntPtr ptr) : base(ptr, true) {}
 
   internal static Font FetchOrCreate(IntPtr ptr)
   {
@@ -14313,7 +14905,7 @@ public class Font : PointerWrapper
     return new Font(ptr);
   }
 
-    public Font(string name, string filename) : this ( SplashKit.LoadFont(name, filename) )
+    public Font(string name, string filename) : base ( SplashKit.LoadFont(name, filename), false )
     { }
     protected internal override void DoFree()
     {
@@ -14346,7 +14938,7 @@ public class Font : PointerWrapper
 }
 public class HttpResponse : PointerWrapper
 {
-  internal HttpResponse(IntPtr ptr) : base(ptr) {}
+  internal HttpResponse(IntPtr ptr) : base(ptr, true) {}
 
   internal static HttpResponse FetchOrCreate(IntPtr ptr)
   {
@@ -14369,7 +14961,7 @@ public class HttpResponse : PointerWrapper
 }
 public class HttpRequest : PointerWrapper
 {
-  internal HttpRequest(IntPtr ptr) : base(ptr) {}
+  internal HttpRequest(IntPtr ptr) : base(ptr, true) {}
 
   internal static HttpRequest FetchOrCreate(IntPtr ptr)
   {
@@ -14383,7 +14975,7 @@ public class HttpRequest : PointerWrapper
     }
 public class WebServer : PointerWrapper
 {
-  internal WebServer(IntPtr ptr) : base(ptr) {}
+  internal WebServer(IntPtr ptr) : base(ptr, true) {}
 
   internal static WebServer FetchOrCreate(IntPtr ptr)
   {
@@ -14393,10 +14985,10 @@ public class WebServer : PointerWrapper
     return new WebServer(ptr);
   }
 
-    public WebServer() : this ( SplashKit.StartWebServer() )
+    public WebServer() : base ( SplashKit.StartWebServer(), false )
     { }
 
-    public WebServer(ushort port) : this ( SplashKit.StartWebServer(port) )
+    public WebServer(ushort port) : base ( SplashKit.StartWebServer(port), false )
     { }
     protected internal override void DoFree()
     {
@@ -14412,7 +15004,7 @@ public class WebServer : PointerWrapper
 }
 public class Window : PointerWrapper
 {
-  internal Window(IntPtr ptr) : base(ptr) {}
+  internal Window(IntPtr ptr) : base(ptr, true) {}
 
   internal static Window FetchOrCreate(IntPtr ptr)
   {
@@ -14422,7 +15014,7 @@ public class Window : PointerWrapper
     return new Window(ptr);
   }
 
-    public Window(string caption, int width, int height) : this ( SplashKit.OpenWindow(caption, width, height) )
+    public Window(string caption, int width, int height) : base ( SplashKit.OpenWindow(caption, width, height), false )
     { }
     protected internal override void DoFree()
     {
@@ -14435,6 +15027,10 @@ public class Window : PointerWrapper
         SplashKit.RefreshWindow(this);
     }
 
+    public bool CloseRequested
+    {
+        get { return SplashKit.WindowCloseRequested(this); }
+    }
     public int Height
     {
         get { return SplashKit.WindowHeight(this); }
