@@ -50,7 +50,7 @@ function do_make {
   if [[ ${DELETE_CMAKE_CACHE} ]]; then
     ./clean.sh
   fi
-  cmake -G "Unix Makefiles" .
+  cmake -DCMAKE_OSX_ARCHITECTURES="x86_64;i386" -G "Unix Makefiles" .
   make
   if [ $? != 0 ]; then echo "Error compiling"; exit 1; fi
 

@@ -196,6 +196,7 @@ add_definitions(-DELPP_THREAD_SAFE)
 
 #### SplashKitBackend STATIC LIBRARY ####
 
+
 add_library(SplashKit${WIN_NAME_SUFFIX} SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit${WIN_NAME_SUFFIX} ${LIB_FLAGS})
 
