@@ -58,7 +58,7 @@ if (APPLE)
                    -lncurses")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/compilers/clang++")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/clang++")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     add_definitions(-DWINDOWS)
