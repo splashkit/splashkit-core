@@ -83,7 +83,7 @@ void run_tcp_networking_test()
     //cout << "Attempting to open connection twice (should fail):  "<<  Assigned(CreateServer("svr3 " <<  SERVER2_PORT)));
 
     cout << "Connecting to Port (x2)  " <<  SERVER1_PORT << endl;
-    lConA = open_connection("127.0.0.1", SERVER1_PORT);
+    lConA = open_connection("lConA", "127.0.0.1", SERVER1_PORT);
     open_connection("ToSvr", "127.0.0.1", SERVER1_PORT);
 
     cout << "ToSvr is open:  " <<  is_connection_open("ToSvr") << endl;
@@ -145,7 +145,7 @@ void run_tcp_networking_test()
 
     cout << "Opening a new connection" << endl;
 
-    lConA = open_connection("127.0.0.1", SERVER1_PORT);
+    lConA = open_connection("lConA1", "127.0.0.1", SERVER1_PORT);
     cout << "Reconnected:  " << lConA << endl;
 
     check_network_activity();
@@ -160,7 +160,7 @@ void run_tcp_networking_test()
     cout << "Closing server:  " << close_server(svr) << endl;
     pause_test();
 
-    cout << "Can connect to old server?  " << open_connection("127.0.0.1", SERVER1_PORT) << endl;
+    cout << "Can connect to old server?  " << open_connection("oldsvr", "127.0.0.1", SERVER1_PORT) << endl;
     pause_test();
 
     cout << "Restarting server..." << endl;
