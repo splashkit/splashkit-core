@@ -92,6 +92,11 @@ namespace splashkit_lib
         return rectangle_from(0, 0, screen_width(), screen_height());
     }
 
+    rectangle window_area(window wind)
+    {
+        return rectangle_from(0, 0, window_width(wind), window_height(wind));
+    }
+
     //---------------------------------------------------------------------------
     // Screen-To-World Translation
     //---------------------------------------------------------------------------
@@ -126,6 +131,16 @@ namespace splashkit_lib
         return point_in_rectangle(pt, screen_rectangle());
     }
 
+    bool rect_in_window(window wind, const rectangle &rect)
+    {
+        return rectangles_intersect(to_screen(rect), window_area(wind));
+    }
+
+    bool point_in_window(window wind, const point_2d &pt)
+    {
+        return point_in_rectangle(pt, window_area(wind));
+    }
+
 
     //---------------------------------------------------------------------------
     // Camera movement
@@ -147,22 +162,22 @@ namespace splashkit_lib
         _camera_x += dx;
         _camera_y += dy;
     }
-    
+
     void move_camera_by(const vector_2d &offset)
     {
         move_camera_by(offset.x, offset.y);
     }
-    
+
     void center_camera_on(sprite s, float offset_x, float offset_y)
     {
         point_2d center = sprite_position(s);
-        
+
         float sc_x = center.x + offset_x - (screen_width() / 2);
         float sc_y = center.y + offset_y - (screen_height() / 2);
-        
+
         move_camera_to(sc_x, sc_y);
     }
-    
+
     void center_camera_on(sprite s, const vector_2d &offset)
     {
         center_camera_on(s, offset.x, offset.y);
