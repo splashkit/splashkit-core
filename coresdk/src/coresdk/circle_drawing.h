@@ -47,6 +47,9 @@ namespace splashkit_lib
      * @param opts   Drawing options to configure the drawing operation
      *
      * @attribute suffix    record_with_options
+     * @attribute class     circle
+     * @attribute method    draw
+     * @attribute self      c
      */
     void draw_circle(color clr, const circle &c, drawing_options opts);
 
@@ -58,6 +61,9 @@ namespace splashkit_lib
      * @param c      The circle being drawn
      *
      * @attribute suffix    record
+     * @attribute class     circle
+     * @attribute method    draw
+     * @attribute self      c
      */
     void draw_circle(color clr, const circle &c);
 
@@ -96,6 +102,9 @@ namespace splashkit_lib
      * @param opts   Drawing options to configure the drawing operation
      *
      * @attribute suffix    record_with_options
+     * @attribute class     circle
+     * @attribute method    fill
+     * @attribute self      c
      */
     void fill_circle(color clr, const circle &c, drawing_options opts);
 
@@ -107,7 +116,78 @@ namespace splashkit_lib
      * @param c      The circle being drawn
      *
      * @attribute suffix    record
+     * @attribute class     circle
+     * @attribute method    fill
+     * @attribute self      c
      */
     void fill_circle(color clr, const circle &c);
+    
+    
+    /**
+     *  Draw a circle to the window using the supplied drawing options. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination window
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
+     * @attribute class     window
+     * @attribute method    draw_circle
+     */
+    void window_draw_circle(window destination, color clr, float x, float y, float radius, drawing_options opts);
+    
+    /**
+     *  Draw a circle onto the destination window. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination window
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     *
+     * @attribute class     window
+     * @attribute method    draw_circle
+     */
+    void window_draw_circle(window destination, color clr, float x, float y, float radius);
+
+    /**
+     *  Draw a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination bitmap
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
+     * @attribute class     bitmap
+     * @attribute method    draw_circle
+     */
+    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius, drawing_options opts);
+    
+    /**
+     *  Draw a circle onto the destination bitmap. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination bitmap
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     *
+     * @attribute class     bitmap
+     * @attribute method    draw_circle
+     */
+    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius);
+
+    
+
 }
 #endif /* circle_drawing_hpp */
