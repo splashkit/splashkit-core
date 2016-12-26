@@ -1359,7 +1359,7 @@ namespace splashkit_lib
      * @returns   A rectangle indicating where the sprite is on the screen.
      *
      * @attribute class sprite
-     * @attribute getter Screen_rectangle
+     * @attribute getter screen_rectangle
      */
     rectangle sprite_screen_rectangle(sprite s);
 
