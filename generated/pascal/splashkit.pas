@@ -352,7 +352,9 @@ procedure MoveCameraBy(const offset: Vector2D);
 procedure MoveCameraBy(dx: Single; dy: Single);
 procedure MoveCameraTo(const pt: Point2D);
 procedure MoveCameraTo(x: Single; y: Single);
+function PointInWindow(wind: Window; const pt: Point2D): Boolean;
 function PointOnScreen(const pt: Point2D): Boolean;
+function RectInWindow(wind: Window; const rect: Rectangle): Boolean;
 function RectOnScreen(const rect: Rectangle): Boolean;
 function ScreenCenter(): Point2D;
 function ScreenRectangle(): Rectangle;
@@ -366,6 +368,9 @@ function ToWorld(const pt: Point2D): Point2D;
 function ToWorldX(screenX: Single): Single;
 function ToWorldY(screenY: Single): Single;
 function VectorWorldToScreen(): Vector2D;
+function WindowArea(wind: Window): Rectangle;
+procedure BitmapDrawCircle(destination: Bitmap; clr: Color; x: Single; y: Single; radius: Single);
+procedure BitmapDrawCircle(destination: Bitmap; clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
 procedure DrawCircle(clr: Color; const c: Circle);
 procedure DrawCircle(clr: Color; const c: Circle; opts: DrawingOptions);
 procedure DrawCircle(clr: Color; x: Single; y: Single; radius: Single);
@@ -374,6 +379,8 @@ procedure FillCircle(clr: Color; const c: Circle);
 procedure FillCircle(clr: Color; const c: Circle; opts: DrawingOptions);
 procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single);
 procedure FillCircle(clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+procedure WindowDrawCircle(destination: Window; clr: Color; x: Single; y: Single; radius: Single);
+procedure WindowDrawCircle(destination: Window; clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
 function CenterPoint(const c: Circle): Point2D;
 function CircleAt(const pt: Point2D; radius: Single): Circle;
 function CircleAt(x: Single; y: Single; radius: Single): Circle;
@@ -2196,7 +2203,9 @@ procedure __sklib__move_camera_by__vector_2d_ref(const offset: __sklib_vector_2d
 procedure __sklib__move_camera_by__float__float(dx: Single; dy: Single); cdecl; external;
 procedure __sklib__move_camera_to__point_2d_ref(const pt: __sklib_point_2d); cdecl; external;
 procedure __sklib__move_camera_to__float__float(x: Single; y: Single); cdecl; external;
+function __sklib__point_in_window__window__point_2d_ref(wind: __sklib_ptr; const pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__point_on_screen__point_2d_ref(const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__rect_in_window__window__rectangle_ref(wind: __sklib_ptr; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__rect_on_screen__rectangle_ref(const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__screen_center(): __sklib_point_2d; cdecl; external;
 function __sklib__screen_rectangle(): __sklib_rectangle; cdecl; external;
@@ -2210,6 +2219,9 @@ function __sklib__to_world__point_2d_ref(const pt: __sklib_point_2d): __sklib_po
 function __sklib__to_world_x__float(screenX: Single): Single; cdecl; external;
 function __sklib__to_world_y__float(screenY: Single): Single; cdecl; external;
 function __sklib__vector_world_to_screen(): __sklib_vector_2d; cdecl; external;
+function __sklib__window_area__window(wind: __sklib_ptr): __sklib_rectangle; cdecl; external;
+procedure __sklib__bitmap_draw_circle__bitmap__color__float__float__float(destination: __sklib_ptr; clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
+procedure __sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Single; y: Single; radius: Single; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_circle__color__circle_ref(clr: __sklib_color; const c: __sklib_circle); cdecl; external;
 procedure __sklib__draw_circle__color__circle_ref__drawing_options(clr: __sklib_color; const c: __sklib_circle; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_circle__color__float__float__float(clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
@@ -2218,6 +2230,8 @@ procedure __sklib__fill_circle__color__circle_ref(clr: __sklib_color; const c: _
 procedure __sklib__fill_circle__color__circle_ref__drawing_options(clr: __sklib_color; const c: __sklib_circle; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__fill_circle__color__float__float__float(clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
 procedure __sklib__fill_circle__color__float__float__float__drawing_options(clr: __sklib_color; x: Single; y: Single; radius: Single; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__window_draw_circle__window__color__float__float__float(destination: __sklib_ptr; clr: __sklib_color; x: Single; y: Single; radius: Single); cdecl; external;
+procedure __sklib__window_draw_circle__window__color__float__float__float__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Single; y: Single; radius: Single; opts: __sklib_drawing_options); cdecl; external;
 function __sklib__center_point__circle_ref(const c: __sklib_circle): __sklib_point_2d; cdecl; external;
 function __sklib__circle_at__point_2d_ref__float(const pt: __sklib_point_2d; radius: Single): __sklib_circle; cdecl; external;
 function __sklib__circle_at__float__float__float(x: Single; y: Single; radius: Single): __sklib_circle; cdecl; external;
@@ -3565,6 +3579,17 @@ begin
   __skparam__y := __skadapter__to_sklib_float(y);
   __sklib__move_camera_to__float__float(__skparam__x, __skparam__y);
 end;
+function PointInWindow(wind: Window; const pt: Point2D): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__point_in_window__window__point_2d_ref(__skparam__wind, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function PointOnScreen(const pt: Point2D): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
@@ -3572,6 +3597,17 @@ var
 begin
   __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __skreturn := __sklib__point_on_screen__point_2d_ref(__skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function RectInWindow(wind: Window; const rect: Rectangle): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__rect_in_window__window__rectangle_ref(__skparam__wind, __skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
 function RectOnScreen(const rect: Rectangle): Boolean;
@@ -3681,6 +3717,47 @@ begin
   __skreturn := __sklib__vector_world_to_screen();
   result := __skadapter__to_vector_2d(__skreturn);
 end;
+function WindowArea(wind: Window): Rectangle;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_area__window(__skparam__wind);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+procedure BitmapDrawCircle(destination: Bitmap; clr: Color; x: Single; y: Single; radius: Single);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+begin
+  __skparam__destination := __skadapter__to_sklib_bitmap(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __sklib__bitmap_draw_circle__bitmap__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure BitmapDrawCircle(destination: Bitmap; clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__destination := __skadapter__to_sklib_bitmap(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
 procedure DrawCircle(clr: Color; const c: Circle);
 var
   __skparam__clr: __sklib_color;
@@ -3776,6 +3853,38 @@ begin
   __skparam__radius := __skadapter__to_sklib_float(radius);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
+procedure WindowDrawCircle(destination: Window; clr: Color; x: Single; y: Single; radius: Single);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+begin
+  __skparam__destination := __skadapter__to_sklib_window(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __sklib__window_draw_circle__window__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure WindowDrawCircle(destination: Window; clr: Color; x: Single; y: Single; radius: Single; opts: DrawingOptions);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skparam__radius: Single;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__destination := __skadapter__to_sklib_window(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skparam__radius := __skadapter__to_sklib_float(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__window_draw_circle__window__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 end;
 function CenterPoint(const c: Circle): Point2D;
 var

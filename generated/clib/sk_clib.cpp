@@ -250,9 +250,21 @@ void __sklib__move_camera_to__float__float(float x, float y) {
     float __skparam__y = __sklib__to_float(y);
     move_camera_to(__skparam__x, __skparam__y);
 }
+int __sklib__point_in_window__window__point_2d_ref(__sklib_window wind, const __sklib_point_2d pt) {
+    window __skparam__wind = __sklib__to_window(wind);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    bool __skreturn = point_in_window(__skparam__wind, __skparam__pt);
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__point_on_screen__point_2d_ref(const __sklib_point_2d pt) {
     point_2d __skparam__pt = __sklib__to_point_2d(pt);
     bool __skreturn = point_on_screen(__skparam__pt);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__rect_in_window__window__rectangle_ref(__sklib_window wind, const __sklib_rectangle rect) {
+    window __skparam__wind = __sklib__to_window(wind);
+    rectangle __skparam__rect = __sklib__to_rectangle(rect);
+    bool __skreturn = rect_in_window(__skparam__wind, __skparam__rect);
     return __sklib__to_int(__skreturn);
 }
 int __sklib__rect_on_screen__rectangle_ref(const __sklib_rectangle rect) {
@@ -315,6 +327,28 @@ __sklib_vector_2d __sklib__vector_world_to_screen() {
     vector_2d __skreturn = vector_world_to_screen();
     return __sklib__to_sklib_vector_2d(__skreturn);
 }
+__sklib_rectangle __sklib__window_area__window(__sklib_window wind) {
+    window __skparam__wind = __sklib__to_window(wind);
+    rectangle __skreturn = window_area(__skparam__wind);
+    return __sklib__to_sklib_rectangle(__skreturn);
+}
+void __sklib__bitmap_draw_circle__bitmap__color__float__float__float(__sklib_bitmap destination, __sklib_color clr, float x, float y, float radius) {
+    bitmap __skparam__destination = __sklib__to_bitmap(destination);
+    color __skparam__clr = __sklib__to_color(clr);
+    float __skparam__x = __sklib__to_float(x);
+    float __skparam__y = __sklib__to_float(y);
+    float __skparam__radius = __sklib__to_float(radius);
+    bitmap_draw_circle(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void __sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__sklib_bitmap destination, __sklib_color clr, float x, float y, float radius, __sklib_drawing_options opts) {
+    bitmap __skparam__destination = __sklib__to_bitmap(destination);
+    color __skparam__clr = __sklib__to_color(clr);
+    float __skparam__x = __sklib__to_float(x);
+    float __skparam__y = __sklib__to_float(y);
+    float __skparam__radius = __sklib__to_float(radius);
+    drawing_options __skparam__opts = __sklib__to_drawing_options(opts);
+    bitmap_draw_circle(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
 void __sklib__draw_circle__color__circle_ref(__sklib_color clr, const __sklib_circle c) {
     color __skparam__clr = __sklib__to_color(clr);
     circle __skparam__c = __sklib__to_circle(c);
@@ -366,6 +400,23 @@ void __sklib__fill_circle__color__float__float__float__drawing_options(__sklib_c
     float __skparam__radius = __sklib__to_float(radius);
     drawing_options __skparam__opts = __sklib__to_drawing_options(opts);
     fill_circle(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
+void __sklib__window_draw_circle__window__color__float__float__float(__sklib_window destination, __sklib_color clr, float x, float y, float radius) {
+    window __skparam__destination = __sklib__to_window(destination);
+    color __skparam__clr = __sklib__to_color(clr);
+    float __skparam__x = __sklib__to_float(x);
+    float __skparam__y = __sklib__to_float(y);
+    float __skparam__radius = __sklib__to_float(radius);
+    window_draw_circle(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void __sklib__window_draw_circle__window__color__float__float__float__drawing_options(__sklib_window destination, __sklib_color clr, float x, float y, float radius, __sklib_drawing_options opts) {
+    window __skparam__destination = __sklib__to_window(destination);
+    color __skparam__clr = __sklib__to_color(clr);
+    float __skparam__x = __sklib__to_float(x);
+    float __skparam__y = __sklib__to_float(y);
+    float __skparam__radius = __sklib__to_float(radius);
+    drawing_options __skparam__opts = __sklib__to_drawing_options(opts);
+    window_draw_circle(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 }
 __sklib_point_2d __sklib__center_point__circle_ref(const __sklib_circle c) {
     circle __skparam__c = __sklib__to_circle(c);

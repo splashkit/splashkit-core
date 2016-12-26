@@ -1301,8 +1301,12 @@ sklib.__sklib__move_camera_to__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__move_camera_to__point_2d_ref.restype = None
 sklib.__sklib__move_camera_to__float__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__move_camera_to__float__float.restype = None
+sklib.__sklib__point_in_window__window__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__point_in_window__window__point_2d_ref.restype = c_bool
 sklib.__sklib__point_on_screen__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__point_on_screen__point_2d_ref.restype = c_bool
+sklib.__sklib__rect_in_window__window__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
+sklib.__sklib__rect_in_window__window__rectangle_ref.restype = c_bool
 sklib.__sklib__rect_on_screen__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rect_on_screen__rectangle_ref.restype = c_bool
 sklib.__sklib__screen_center.argtypes = [  ]
@@ -1329,6 +1333,12 @@ sklib.__sklib__to_world_y__float.argtypes = [ c_float ]
 sklib.__sklib__to_world_y__float.restype = c_float
 sklib.__sklib__vector_world_to_screen.argtypes = [  ]
 sklib.__sklib__vector_world_to_screen.restype = _sklib_vector_2d
+sklib.__sklib__window_area__window.argtypes = [ c_void_p ]
+sklib.__sklib__window_area__window.restype = _sklib_rectangle
+sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float ]
+sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float.restype = None
+sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options.restype = None
 sklib.__sklib__draw_circle__color__circle_ref.argtypes = [ _sklib_color, _sklib_circle ]
 sklib.__sklib__draw_circle__color__circle_ref.restype = None
 sklib.__sklib__draw_circle__color__circle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_circle, _sklib_drawing_options ]
@@ -1345,6 +1355,10 @@ sklib.__sklib__fill_circle__color__float__float__float.argtypes = [ _sklib_color
 sklib.__sklib__fill_circle__color__float__float__float.restype = None
 sklib.__sklib__fill_circle__color__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__float__float__float__drawing_options.restype = None
+sklib.__sklib__window_draw_circle__window__color__float__float__float.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float ]
+sklib.__sklib__window_draw_circle__window__color__float__float__float.restype = None
+sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options.restype = None
 sklib.__sklib__center_point__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__center_point__circle_ref.restype = _sklib_point_2d
 sklib.__sklib__circle_at__point_2d_ref__float.argtypes = [ _sklib_point_2d, c_float ]
@@ -3362,9 +3376,19 @@ def move_camera_to ( x, y ):
     __skparam__x = __skadapter__to_sklib_float(x)
     __skparam__y = __skadapter__to_sklib_float(y)
     sklib.__sklib__move_camera_to__float__float(__skparam__x, __skparam__y)
+def point_in_window ( wind, pt ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skreturn = sklib.__sklib__point_in_window__window__point_2d_ref(__skparam__wind, __skparam__pt)
+    return __skadapter__to_bool(__skreturn)
 def point_on_screen ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__point_on_screen__point_2d_ref(__skparam__pt)
+    return __skadapter__to_bool(__skreturn)
+def rect_in_window ( wind, rect ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__rect_in_window__window__rectangle_ref(__skparam__wind, __skparam__rect)
     return __skadapter__to_bool(__skreturn)
 def rect_on_screen ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
@@ -3413,6 +3437,25 @@ def to_world_y ( screen_y ):
 def vector_world_to_screen (  ):
     __skreturn = sklib.__sklib__vector_world_to_screen()
     return __skadapter__to_vector_2d(__skreturn)
+def window_area ( wind ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skreturn = sklib.__sklib__window_area__window(__skparam__wind)
+    return __skadapter__to_rectangle(__skreturn)
+def bitmap_draw_circle ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__radius = __skadapter__to_sklib_float(radius)
+    sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def bitmap_draw_circle_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__radius = __skadapter__to_sklib_float(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def draw_circle_record ( clr, c ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__c = __skadapter__to_sklib_circle(c)
@@ -3457,6 +3500,21 @@ def fill_circle_with_options ( clr, x, y, radius, opts ):
     __skparam__radius = __skadapter__to_sklib_float(radius)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     sklib.__sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def window_draw_circle ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__radius = __skadapter__to_sklib_float(radius)
+    sklib.__sklib__window_draw_circle__window__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def window_draw_circle_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__radius = __skadapter__to_sklib_float(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def center_point ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__center_point__circle_ref(__skparam__c)

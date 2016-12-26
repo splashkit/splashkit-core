@@ -1948,7 +1948,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1481584353,
+    "parsed_at": 1482727002,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -1971,6 +1971,7 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "position",
           "group": "camera",
           "static": "camera"
         }
@@ -1995,6 +1996,7 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "x",
           "group": "camera",
           "static": "camera"
         }
@@ -2019,6 +2021,7 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "y",
           "group": "camera",
           "static": "camera"
         }
@@ -2026,9 +2029,9 @@
       {
         "signature": "void center_camera_on(sprite s,const vector_2d &offset);",
         "name": "center_camera_on",
-        "method_name": null,
+        "method_name": "center_on",
         "unique_global_name": "center_camera_on_vector",
-        "unique_method_name": null,
+        "unique_method_name": ".center_on_vector",
         "suffix_name": null,
         "description": "Set the camera view to be centered over the specific sprite. The offset\nvector allows you to move the sprite from the direct center of the screen.",
         "brief": null,
@@ -2069,6 +2072,7 @@
           }
         },
         "attributes": {
+          "method": "center_on",
           "suffix": "vector",
           "group": "camera",
           "static": "camera"
@@ -2077,9 +2081,9 @@
       {
         "signature": "void center_camera_on(sprite s,float offset_x,float offset_y);",
         "name": "center_camera_on",
-        "method_name": null,
+        "method_name": "center_on",
         "unique_global_name": "center_camera_on",
-        "unique_method_name": null,
+        "unique_method_name": ".center_on",
         "suffix_name": null,
         "description": "Set the camera view to be centered over the specific sprite. The offset\nvector allows you to move the sprite from the direct center of the screen.",
         "brief": null,
@@ -2133,6 +2137,7 @@
           }
         },
         "attributes": {
+          "method": "center_on",
           "group": "camera",
           "static": "camera"
         }
@@ -2140,9 +2145,9 @@
       {
         "signature": "void move_camera_by(const vector_2d &offset);",
         "name": "move_camera_by",
-        "method_name": null,
+        "method_name": "move_by",
         "unique_global_name": "move_camera_by_vector",
-        "unique_method_name": null,
+        "unique_method_name": ".move_by_vector",
         "suffix_name": null,
         "description": "Move the camera (offset its world x and y values) using the specified\nvector. For example, if you move the camera by the same speed vector of\na sprite the camera will \"track\" (be locked on to) the sprite as it moves.",
         "brief": null,
@@ -2170,6 +2175,7 @@
           }
         },
         "attributes": {
+          "method": "move_by",
           "suffix": "vector",
           "group": "camera",
           "static": "camera"
@@ -2178,9 +2184,9 @@
       {
         "signature": "void move_camera_by(float dx,float dy);",
         "name": "move_camera_by",
-        "method_name": null,
+        "method_name": "move_by",
         "unique_global_name": "move_camera_by",
-        "unique_method_name": null,
+        "unique_method_name": ".move_by",
         "suffix_name": null,
         "description": "Move the camera (offset its world x and y values) using the specified\ndx (change in x) and dy (change in x) values.",
         "brief": null,
@@ -2221,6 +2227,7 @@
           }
         },
         "attributes": {
+          "method": "move_by",
           "group": "camera",
           "static": "camera"
         }
@@ -2228,9 +2235,9 @@
       {
         "signature": "void move_camera_to(const point_2d &pt);",
         "name": "move_camera_to",
-        "method_name": null,
+        "method_name": "move_to",
         "unique_global_name": "move_camera_to_point",
-        "unique_method_name": null,
+        "unique_method_name": ".move_to_point",
         "suffix_name": null,
         "description": "Move the camera view (screen top left) to a specified point in the world.\nThis will be the new top left corner of the screen.",
         "brief": null,
@@ -2258,6 +2265,7 @@
           }
         },
         "attributes": {
+          "method": "move_to",
           "suffix": "point",
           "group": "camera",
           "static": "camera"
@@ -2266,9 +2274,9 @@
       {
         "signature": "void move_camera_to(float x,float y);",
         "name": "move_camera_to",
-        "method_name": null,
+        "method_name": "move_to",
         "unique_global_name": "move_camera_to",
-        "unique_method_name": null,
+        "unique_method_name": ".move_to",
         "suffix_name": null,
         "description": "Move the camera view to a world location specified by the x and y values.\nThis will be the new top left corner of the screen.",
         "brief": null,
@@ -2309,6 +2317,58 @@
           }
         },
         "attributes": {
+          "method": "move_to",
+          "group": "camera",
+          "static": "camera"
+        }
+      },
+      {
+        "signature": "bool point_in_window(window wind,const point_2d &pt);",
+        "name": "point_in_window",
+        "method_name": "point_in_window",
+        "unique_global_name": "point_in_window",
+        "unique_method_name": ".point_in_window",
+        "suffix_name": null,
+        "description": "Tests if the point is in the window.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the point is on the screen.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The point to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "method": "point_in_window",
           "group": "camera",
           "static": "camera"
         }
@@ -2316,9 +2376,9 @@
       {
         "signature": "bool point_on_screen(const point_2d &pt);",
         "name": "point_on_screen",
-        "method_name": null,
+        "method_name": "point_on_screen",
         "unique_global_name": "point_on_screen",
-        "unique_method_name": null,
+        "unique_method_name": ".point_on_screen",
         "suffix_name": null,
         "description": "Tests if the point is on the screen.",
         "brief": null,
@@ -2346,6 +2406,58 @@
           }
         },
         "attributes": {
+          "method": "point_on_screen",
+          "group": "camera",
+          "static": "camera"
+        }
+      },
+      {
+        "signature": "bool rect_in_window(window wind,const rectangle &rect);",
+        "name": "rect_in_window",
+        "method_name": "rect_in_window",
+        "unique_global_name": "rect_in_window",
+        "unique_method_name": ".rect_in_window",
+        "suffix_name": null,
+        "description": "Tests if the rectangle is within the bounds of the window.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if any part of the rectangle is in the window.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "method": "rect_in_window",
           "group": "camera",
           "static": "camera"
         }
@@ -2353,9 +2465,9 @@
       {
         "signature": "bool rect_on_screen(const rectangle &rect);",
         "name": "rect_on_screen",
-        "method_name": null,
+        "method_name": "rect_on_screen",
         "unique_global_name": "rect_on_screen",
-        "unique_method_name": null,
+        "unique_method_name": ".rect_on_screen",
         "suffix_name": null,
         "description": "Tests if the rectangle is on the screen.",
         "brief": null,
@@ -2383,6 +2495,7 @@
           }
         },
         "attributes": {
+          "method": "rect_on_screen",
           "group": "camera",
           "static": "camera"
         }
@@ -2407,6 +2520,7 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "screen_center",
           "group": "camera",
           "static": "camera"
         }
@@ -2431,6 +2545,7 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "screen_rectangle",
           "group": "camera",
           "static": "camera"
         }
@@ -2468,6 +2583,7 @@
           }
         },
         "attributes": {
+          "setter": "position",
           "group": "camera",
           "static": "camera"
         }
@@ -2505,6 +2621,7 @@
           }
         },
         "attributes": {
+          "setter": "y",
           "group": "camera",
           "static": "camera"
         }
@@ -2512,9 +2629,9 @@
       {
         "signature": "point_2d to_screen(const point_2d &pt);",
         "name": "to_screen",
-        "method_name": null,
+        "method_name": "to_screen",
         "unique_global_name": "to_screen_point",
-        "unique_method_name": null,
+        "unique_method_name": ".to_screen_point",
         "suffix_name": null,
         "description": "Convert the passed in world coordinates to screen coordinates.",
         "brief": null,
@@ -2542,6 +2659,7 @@
           }
         },
         "attributes": {
+          "method": "to_screen",
           "suffix": "point",
           "group": "camera",
           "static": "camera"
@@ -2550,9 +2668,9 @@
       {
         "signature": "rectangle to_screen(const rectangle &rect);",
         "name": "to_screen",
-        "method_name": null,
+        "method_name": "to_screen",
         "unique_global_name": "to_screen_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": ".to_screen_rectangle",
         "suffix_name": null,
         "description": "Convert the rectangle in world coordinates to screen coordinates.",
         "brief": null,
@@ -2580,6 +2698,7 @@
           }
         },
         "attributes": {
+          "method": "to_screen",
           "suffix": "rectangle",
           "group": "camera",
           "static": "camera"
@@ -2588,9 +2707,9 @@
       {
         "signature": "float to_screen_x(float world_x);",
         "name": "to_screen_x",
-        "method_name": null,
+        "method_name": "to_screen_x",
         "unique_global_name": "to_screen_x",
-        "unique_method_name": null,
+        "unique_method_name": ".to_screen_x",
         "suffix_name": null,
         "description": "Translate a world x value to the current screen x value which is based on\nthe camera position.",
         "brief": null,
@@ -2618,6 +2737,7 @@
           }
         },
         "attributes": {
+          "method": "to_screen_x",
           "group": "camera",
           "static": "camera"
         }
@@ -2625,9 +2745,9 @@
       {
         "signature": "float to_screen_y(float world_y);",
         "name": "to_screen_y",
-        "method_name": null,
+        "method_name": "to_screen_y",
         "unique_global_name": "to_screen_y",
-        "unique_method_name": null,
+        "unique_method_name": ".to_screen_y",
         "suffix_name": null,
         "description": "Translate a world y value to the current screen y value set by the camera.",
         "brief": null,
@@ -2655,6 +2775,7 @@
           }
         },
         "attributes": {
+          "method": "to_screen_y",
           "group": "camera",
           "static": "camera"
         }
@@ -2662,9 +2783,9 @@
       {
         "signature": "point_2d to_world(const point_2d &pt);",
         "name": "to_world",
-        "method_name": null,
+        "method_name": "to_world",
         "unique_global_name": "to_world",
-        "unique_method_name": null,
+        "unique_method_name": ".to_world",
         "suffix_name": null,
         "description": "Converts the passed in point from screen coordinates to world coordinates.",
         "brief": null,
@@ -2692,6 +2813,7 @@
           }
         },
         "attributes": {
+          "method": "to_world",
           "group": "camera",
           "static": "camera"
         }
@@ -2699,9 +2821,9 @@
       {
         "signature": "float to_world_x(float screen_x);",
         "name": "to_world_x",
-        "method_name": null,
+        "method_name": "to_world_x",
         "unique_global_name": "to_world_x",
-        "unique_method_name": null,
+        "unique_method_name": ".to_world_x",
         "suffix_name": null,
         "description": "Translate a screen x value (based on the camera) to a world x value",
         "brief": null,
@@ -2729,6 +2851,7 @@
           }
         },
         "attributes": {
+          "method": "to_world_x",
           "group": "camera",
           "static": "camera"
         }
@@ -2736,9 +2859,9 @@
       {
         "signature": "float to_world_y(float screen_y);",
         "name": "to_world_y",
-        "method_name": null,
+        "method_name": "to_world_y",
         "unique_global_name": "to_world_y",
-        "unique_method_name": null,
+        "unique_method_name": ".to_world_y",
         "suffix_name": null,
         "description": "Translate a screen y value (based on the camera) to a world y value",
         "brief": null,
@@ -2766,6 +2889,7 @@
           }
         },
         "attributes": {
+          "method": "to_world_y",
           "group": "camera",
           "static": "camera"
         }
@@ -2790,8 +2914,49 @@
         "parameters": {
         },
         "attributes": {
+          "getter": "vector_world_to_screen",
           "group": "camera",
           "static": "camera"
+        }
+      },
+      {
+        "signature": "rectangle window_area(window wind);",
+        "name": "window_area",
+        "method_name": null,
+        "unique_global_name": "window_area",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a rectangle that represents the dimensions of the window based\non the camera.",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle representing the dimensions of the current window.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "getter": "area",
+          "group": "camera",
+          "static": "camera",
+          "self": "wind"
         }
       }
     ],
@@ -2812,15 +2977,211 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1481584354,
+    "parsed_at": 1482482945,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
+        "signature": "void bitmap_draw_circle(bitmap destination,color clr,float x,float y,float radius);",
+        "name": "bitmap_draw_circle",
+        "method_name": "draw_circle",
+        "unique_global_name": "bitmap_draw_circle",
+        "unique_method_name": "bitmap.draw_circle",
+        "suffix_name": null,
+        "description": "Draw a circle onto the destination bitmap. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "float",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "draw_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void bitmap_draw_circle(bitmap destination,color clr,float x,float y,float radius,drawing_options opts);",
+        "name": "bitmap_draw_circle",
+        "method_name": "draw_circle",
+        "unique_global_name": "bitmap_draw_circle_with_options",
+        "unique_method_name": "bitmap.draw_circle_with_options",
+        "suffix_name": null,
+        "description": "Draw a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "float",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "draw_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
         "signature": "void draw_circle(color clr,const circle &c);",
         "name": "draw_circle",
-        "method_name": null,
+        "method_name": "draw",
         "unique_global_name": "draw_circle_record",
-        "unique_method_name": null,
+        "unique_method_name": "circle.draw_record",
         "suffix_name": null,
         "description": "Draw a circle on the current window. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
         "brief": null,
@@ -2861,6 +3222,9 @@
           }
         },
         "attributes": {
+          "class": "circle",
+          "method": "draw",
+          "self": "c",
           "suffix": "record",
           "group": "graphics"
         }
@@ -2868,9 +3232,9 @@
       {
         "signature": "void draw_circle(color clr,const circle &c,drawing_options opts);",
         "name": "draw_circle",
-        "method_name": null,
+        "method_name": "draw",
         "unique_global_name": "draw_circle_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "circle.draw_record_with_options",
         "suffix_name": null,
         "description": "Draw a circle with the provided drawing options, which may include options related to\nthe drawing destination.",
         "brief": null,
@@ -2924,6 +3288,9 @@
           }
         },
         "attributes": {
+          "class": "circle",
+          "method": "draw",
+          "self": "c",
           "suffix": "record_with_options",
           "group": "graphics"
         }
@@ -3095,9 +3462,9 @@
       {
         "signature": "void fill_circle(color clr,const circle &c);",
         "name": "fill_circle",
-        "method_name": null,
+        "method_name": "fill",
         "unique_global_name": "fill_circle_record",
-        "unique_method_name": null,
+        "unique_method_name": "circle.fill_record",
         "suffix_name": null,
         "description": "Draw a circle on the current window. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
         "brief": null,
@@ -3138,6 +3505,9 @@
           }
         },
         "attributes": {
+          "class": "circle",
+          "method": "fill",
+          "self": "c",
           "suffix": "record",
           "group": "graphics"
         }
@@ -3145,9 +3515,9 @@
       {
         "signature": "void fill_circle(color clr,const circle &c,drawing_options opts);",
         "name": "fill_circle",
-        "method_name": null,
+        "method_name": "fill",
         "unique_global_name": "fill_circle_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "circle.fill_record_with_options",
         "suffix_name": null,
         "description": "Fill a circle with the provided drawing options, which may include options related to\nthe drawing destination.",
         "brief": null,
@@ -3201,6 +3571,9 @@
           }
         },
         "attributes": {
+          "class": "circle",
+          "method": "fill",
+          "self": "c",
           "suffix": "record_with_options",
           "group": "graphics"
         }
@@ -3367,6 +3740,202 @@
         "attributes": {
           "suffix": "with_options",
           "group": "graphics"
+        }
+      },
+      {
+        "signature": "void window_draw_circle(window destination,color clr,float x,float y,float radius);",
+        "name": "window_draw_circle",
+        "method_name": "draw_circle",
+        "unique_global_name": "window_draw_circle",
+        "unique_method_name": "window.draw_circle",
+        "suffix_name": null,
+        "description": "Draw a circle onto the destination window. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "float",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void window_draw_circle(window destination,color clr,float x,float y,float radius,drawing_options opts);",
+        "name": "window_draw_circle",
+        "method_name": "draw_circle",
+        "unique_global_name": "window_draw_circle_with_options",
+        "unique_method_name": "window.draw_circle_with_options",
+        "suffix_name": null,
+        "description": "Draw a circle to the window using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "float",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -29514,7 +30083,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1481584408,
+    "parsed_at": 1482726337,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -33390,7 +33959,7 @@
         },
         "attributes": {
           "class": "sprite",
-          "getter": "Screen_rectangle",
+          "getter": "screen_rectangle",
           "group": "sprites",
           "static": "sprite",
           "self": "s"

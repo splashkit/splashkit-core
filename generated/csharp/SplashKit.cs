@@ -1271,8 +1271,14 @@ internal static Window __skadapter__to_window(IntPtr v)
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_to__float__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_camera_to__float__float(float x, float y);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_window__window__point_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__point_in_window__window__point_2d_ref(__sklib_ptr wind, __sklib_point_2d pt);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_screen__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_on_screen__point_2d_ref(__sklib_point_2d pt);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_in_window__window__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__rect_in_window__window__rectangle_ref(__sklib_ptr wind, __sklib_rectangle rect);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_on_screen__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rect_on_screen__rectangle_ref(__sklib_rectangle rect);
@@ -1313,6 +1319,15 @@ internal static Window __skadapter__to_window(IntPtr v)
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_world_to_screen", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_world_to_screen();
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_area__window", CharSet=CharSet.Ansi)]
+    private static extern __sklib_rectangle __sklib__window_area__window(__sklib_ptr wind);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_draw_circle__bitmap__color__float__float__float", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__bitmap_draw_circle__bitmap__color__float__float__float(__sklib_ptr destination, __sklib_color clr, float x, float y, float radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__sklib_ptr destination, __sklib_color clr, float x, float y, float radius, __sklib_drawing_options opts);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__circle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle__color__circle_ref(__sklib_color clr, __sklib_circle c);
 
@@ -1336,6 +1351,12 @@ internal static Window __skadapter__to_window(IntPtr v)
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__float__float__float__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__float__float__float__drawing_options(__sklib_color clr, float x, float y, float radius, __sklib_drawing_options opts);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_draw_circle__window__color__float__float__float", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__window_draw_circle__window__color__float__float__float(__sklib_ptr destination, __sklib_color clr, float x, float y, float radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_draw_circle__window__color__float__float__float__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__window_draw_circle__window__color__float__float__float__drawing_options(__sklib_ptr destination, __sklib_color clr, float x, float y, float radius, __sklib_drawing_options opts);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__center_point__circle_ref(__sklib_circle c);
@@ -4482,12 +4503,32 @@ internal static Window __skadapter__to_window(IntPtr v)
       __skparam__y = __skadapter__to_sklib_float(y);
       __sklib__move_camera_to__float__float(__skparam__x, __skparam__y);
     }
+    public static bool PointInWindow(Window wind, Point2D pt)
+{
+      __sklib_ptr __skparam__wind;
+      __sklib_point_2d __skparam__pt;
+      int __skreturn;
+      __skparam__wind = __skadapter__to_sklib_window(wind);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skreturn = __sklib__point_in_window__window__point_2d_ref(__skparam__wind, __skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool PointOnScreen(Point2D pt)
 {
       __sklib_point_2d __skparam__pt;
       int __skreturn;
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skreturn = __sklib__point_on_screen__point_2d_ref(__skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool RectInWindow(Window wind, Rectangle rect)
+{
+      __sklib_ptr __skparam__wind;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__wind = __skadapter__to_sklib_window(wind);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__rect_in_window__window__rectangle_ref(__skparam__wind, __skparam__rect);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool RectOnScreen(Rectangle rect)
@@ -4584,6 +4625,44 @@ internal static Window __skadapter__to_window(IntPtr v)
       __skreturn = __sklib__vector_world_to_screen();
       return __skadapter__to_vector_2d(__skreturn);
     }
+    public static Rectangle WindowArea(Window wind)
+{
+      __sklib_ptr __skparam__wind;
+      __sklib_rectangle __skreturn;
+      __skparam__wind = __skadapter__to_sklib_window(wind);
+      __skreturn = __sklib__window_area__window(__skparam__wind);
+      return __skadapter__to_rectangle(__skreturn);
+    }
+    public static void BitmapDrawCircle(Bitmap destination, Color clr, float x, float y, float radius)
+{
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      float __skparam__x;
+      float __skparam__y;
+      float __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_float(x);
+      __skparam__y = __skadapter__to_sklib_float(y);
+      __skparam__radius = __skadapter__to_sklib_float(radius);
+      __sklib__bitmap_draw_circle__bitmap__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void BitmapDrawCircle(Bitmap destination, Color clr, float x, float y, float radius, DrawingOptions opts)
+{
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      float __skparam__x;
+      float __skparam__y;
+      float __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_float(x);
+      __skparam__y = __skadapter__to_sklib_float(y);
+      __skparam__radius = __skadapter__to_sklib_float(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
     public static void DrawCircle(Color clr, Circle c)
 {
       __sklib_color __skparam__clr;
@@ -4671,6 +4750,36 @@ internal static Window __skadapter__to_window(IntPtr v)
       __skparam__radius = __skadapter__to_sklib_float(radius);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
       __sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
+    public static void WindowDrawCircle(Window destination, Color clr, float x, float y, float radius)
+{
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      float __skparam__x;
+      float __skparam__y;
+      float __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_float(x);
+      __skparam__y = __skadapter__to_sklib_float(y);
+      __skparam__radius = __skadapter__to_sklib_float(radius);
+      __sklib__window_draw_circle__window__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void WindowDrawCircle(Window destination, Color clr, float x, float y, float radius, DrawingOptions opts)
+{
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      float __skparam__x;
+      float __skparam__y;
+      float __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_float(x);
+      __skparam__y = __skadapter__to_sklib_float(y);
+      __skparam__radius = __skadapter__to_sklib_float(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__window_draw_circle__window__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
     }
     public static Point2D CenterPoint(Circle c)
 {
@@ -12667,6 +12776,30 @@ internal static Window __skadapter__to_window(IntPtr v)
     public struct Circle    {
       public Point2D center;
       public float radius;
+
+    public void Draw(Color clr)
+    {
+        SplashKit.DrawCircle(clr, this);
+    }
+
+
+    public void Draw(Color clr, DrawingOptions opts)
+    {
+        SplashKit.DrawCircle(clr, this, opts);
+    }
+
+
+    public void Fill(Color clr)
+    {
+        SplashKit.FillCircle(clr, this);
+    }
+
+
+    public void Fill(Color clr, DrawingOptions opts)
+    {
+        SplashKit.FillCircle(clr, this, opts);
+    }
+
   }
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
     internal struct __sklib_color
@@ -14861,6 +14994,18 @@ public class Bitmap : PointerWrapper
         SplashKit.FreeBitmap(this);
     }
 
+    public void DrawCircle(Color clr, float x, float y, float radius)
+    {
+        SplashKit.BitmapDrawCircle(this, clr, x, y, radius);
+    }
+
+
+    public void DrawCircle(Color clr, float x, float y, float radius, DrawingOptions opts)
+    {
+        SplashKit.BitmapDrawCircle(this, clr, x, y, radius, opts);
+    }
+
+
     public void Draw(float x, float y)
     {
         SplashKit.DrawBitmap(this, x, y);
@@ -15022,11 +15167,27 @@ public class Window : PointerWrapper
         SplashKit.CloseWindow(this);
     }
 
+    public void DrawCircle(Color clr, float x, float y, float radius)
+    {
+        SplashKit.WindowDrawCircle(this, clr, x, y, radius);
+    }
+
+
+    public void DrawCircle(Color clr, float x, float y, float radius, DrawingOptions opts)
+    {
+        SplashKit.WindowDrawCircle(this, clr, x, y, radius, opts);
+    }
+
+
     public void Refresh()
     {
         SplashKit.RefreshWindow(this);
     }
 
+    public Rectangle Area
+    {
+        get { return SplashKit.WindowArea(this); }
+    }
     public bool CloseRequested
     {
         get { return SplashKit.WindowCloseRequested(this); }
@@ -15083,6 +15244,136 @@ public static class Audio{
     {
         get { return SplashKit.MusicVolume(); }
           set { SplashKit.SetMusicVolume(value); }
+    }
+}
+public static class Camera{
+
+    public static void CenterOn(Sprite s, Vector2D offset)
+    {
+        SplashKit.CenterCameraOn(s, offset);
+    }
+
+
+    public static void CenterOn(Sprite s, float offsetX, float offsetY)
+    {
+        SplashKit.CenterCameraOn(s, offsetX, offsetY);
+    }
+
+
+    public static void MoveBy(Vector2D offset)
+    {
+        SplashKit.MoveCameraBy(offset);
+    }
+
+
+    public static void MoveBy(float dx, float dy)
+    {
+        SplashKit.MoveCameraBy(dx, dy);
+    }
+
+
+    public static void MoveTo(Point2D pt)
+    {
+        SplashKit.MoveCameraTo(pt);
+    }
+
+
+    public static void MoveTo(float x, float y)
+    {
+        SplashKit.MoveCameraTo(x, y);
+    }
+
+
+    public static bool PointInWindow(Window wind, Point2D pt)
+    {
+        return SplashKit.PointInWindow(wind, pt);
+    }
+
+
+    public static bool PointOnScreen(Point2D pt)
+    {
+        return SplashKit.PointOnScreen(pt);
+    }
+
+
+    public static bool RectInWindow(Window wind, Rectangle rect)
+    {
+        return SplashKit.RectInWindow(wind, rect);
+    }
+
+
+    public static bool RectOnScreen(Rectangle rect)
+    {
+        return SplashKit.RectOnScreen(rect);
+    }
+
+
+    public static Point2D ToScreen(Point2D pt)
+    {
+        return SplashKit.ToScreen(pt);
+    }
+
+
+    public static Rectangle ToScreen(Rectangle rect)
+    {
+        return SplashKit.ToScreen(rect);
+    }
+
+
+    public static float ToScreenX(float worldX)
+    {
+        return SplashKit.ToScreenX(worldX);
+    }
+
+
+    public static float ToScreenY(float worldY)
+    {
+        return SplashKit.ToScreenY(worldY);
+    }
+
+
+    public static Point2D ToWorld(Point2D pt)
+    {
+        return SplashKit.ToWorld(pt);
+    }
+
+
+    public static float ToWorldX(float screenX)
+    {
+        return SplashKit.ToWorldX(screenX);
+    }
+
+
+    public static float ToWorldY(float screenY)
+    {
+        return SplashKit.ToWorldY(screenY);
+    }
+
+    public static Point2D Position
+    {
+        get { return SplashKit.CameraPosition(); }
+          set { SplashKit.SetCameraPosition(value); }
+    }
+    public static float X
+    {
+        get { return SplashKit.CameraX(); }
+    }
+    public static float Y
+    {
+        get { return SplashKit.CameraY(); }
+          set { SplashKit.SetCameraY(value); }
+    }
+    public static Point2D ScreenCenter
+    {
+        get { return SplashKit.ScreenCenter(); }
+    }
+    public static Rectangle ScreenRectangle
+    {
+        get { return SplashKit.ScreenRectangle(); }
+    }
+    public static Vector2D VectorWorldToScreen
+    {
+        get { return SplashKit.VectorWorldToScreen(); }
     }
 }
 public static class Images{

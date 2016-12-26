@@ -8,6 +8,7 @@
 
 #include "sprites.h"
 #include "types.h"
+#include "window_manager.h"
 #include <string>
 #include <vector>
 using std::string;
@@ -22,7 +23,9 @@ void move_camera_by(const vector_2d &offset);
 void move_camera_by(float dx, float dy);
 void move_camera_to(const point_2d &pt);
 void move_camera_to(float x, float y);
+bool point_in_window(window wind, const point_2d &pt);
 bool point_on_screen(const point_2d &pt);
+bool rect_in_window(window wind, const rectangle &rect);
 bool rect_on_screen(const rectangle &rect);
 point_2d screen_center();
 rectangle screen_rectangle();
@@ -36,5 +39,6 @@ point_2d to_world(const point_2d &pt);
 float to_world_x(float screen_x);
 float to_world_y(float screen_y);
 vector_2d vector_world_to_screen();
+rectangle window_area(window wind);
 
 #endif /* __camera_h */
