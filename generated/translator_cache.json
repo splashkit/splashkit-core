@@ -14884,7 +14884,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1481584374,
+    "parsed_at": 1483661476,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -15016,7 +15016,10 @@
           }
         },
         "attributes": {
-          "group": "graphics"
+          "class": "display",
+          "getter": "height",
+          "group": "graphics",
+          "self": "disp"
         }
       },
       {
@@ -15052,7 +15055,10 @@
           }
         },
         "attributes": {
-          "group": "graphics"
+          "class": "display",
+          "getter": "name",
+          "group": "graphics",
+          "self": "disp"
         }
       },
       {
@@ -15088,7 +15094,10 @@
           }
         },
         "attributes": {
-          "group": "graphics"
+          "class": "display",
+          "getter": "width",
+          "group": "graphics",
+          "self": "disp"
         }
       },
       {
@@ -15124,7 +15133,10 @@
           }
         },
         "attributes": {
-          "group": "graphics"
+          "class": "display",
+          "getter": "x",
+          "group": "graphics",
+          "self": "disp"
         }
       },
       {
@@ -15160,7 +15172,10 @@
           }
         },
         "attributes": {
-          "group": "graphics"
+          "class": "display",
+          "getter": "y",
+          "group": "graphics",
+          "self": "disp"
         }
       },
       {
@@ -15445,9 +15460,169 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1481588710,
+    "parsed_at": 1483663721,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
+      {
+        "signature": "circle bitmap_bounding_circle(bitmap bmp,const point_2d &pt);",
+        "name": "bitmap_bounding_circle",
+        "method_name": "bounding_circle",
+        "unique_global_name": "bitmap_bounding_circle",
+        "unique_method_name": "bitmap.bounding_circle",
+        "suffix_name": null,
+        "description": "Returns a circle that will encompass the entire bitamp.",
+        "brief": null,
+        "return": {
+          "type": "circle",
+          "description": "A circle that surrounds the bitmap.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to encompass.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The point where the bitmap is located.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "bounding_circle",
+          "group": "graphics",
+          "static": "images",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "rectangle bitmap_bounding_rectangle(bitmap bmp);",
+        "name": "bitmap_bounding_rectangle",
+        "method_name": "bounding_rectangle",
+        "unique_global_name": "bitmap_bounding_rectangle",
+        "unique_method_name": "bitmap.bounding_rectangle",
+        "suffix_name": null,
+        "description": "Returns a rectangle that is the same size as a bitmap (the whole bitmap).",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle with the same size as the bitmap.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "bounding_rectangle",
+          "group": "graphics",
+          "static": "images",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "rectangle bitmap_bounding_rectangle(bitmap bmp,float x,float y);",
+        "name": "bitmap_bounding_rectangle",
+        "method_name": "bounding_rectangle",
+        "unique_global_name": "bitmap_bounding_rectangle_at_location",
+        "unique_method_name": "bitmap.bounding_rectangle_at_location",
+        "suffix_name": null,
+        "description": "Returns a rectangle that is the same size as the bitmap and is located at\nthe indicated position.",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle with the same size as the bitmap, at the\nindicated location.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location of the rectangle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location of the rectangle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "bounding_rectangle",
+          "suffix": "at_location",
+          "group": "graphics",
+          "static": "images",
+          "self": "bmp"
+        }
+      },
       {
         "signature": "point_2d bitmap_cell_center(bitmap bmp);",
         "name": "bitmap_cell_center",
@@ -15481,16 +15656,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "cell_center",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "circle bitmap_cell_circle(bitmap bmp,float x,float y);",
         "name": "bitmap_cell_circle",
-        "method_name": null,
+        "method_name": "cell_circle",
         "unique_global_name": "bitmap_cell_circle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_circle",
         "suffix_name": null,
         "description": "Returns a circle that will encompass the bitmap cell if it were drawn\nat the indicated point.",
         "brief": null,
@@ -15544,16 +15722,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_circle",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "circle bitmap_cell_circle(bitmap bmp,const point_2d pt);",
         "name": "bitmap_cell_circle",
-        "method_name": null,
+        "method_name": "cell_circle",
         "unique_global_name": "bitmap_cell_circle_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_circle_at_point",
         "suffix_name": null,
         "description": "Returns a circle that will encompass the bitmap cell if it were drawn\nat the indicated point.",
         "brief": null,
@@ -15594,17 +15775,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_circle",
           "suffix": "at_point",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "circle bitmap_cell_circle(bitmap bmp,const point_2d pt,float scale);",
         "name": "bitmap_cell_circle",
-        "method_name": null,
+        "method_name": "cell_circle",
         "unique_global_name": "bitmap_cell_circle_at_point_with_scale",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_circle_at_point_with_scale",
         "suffix_name": null,
         "description": "Returns a circle that will encompass the bitmap cell if it were drawn\nat the indicated point, with the provided scale.",
         "brief": null,
@@ -15658,9 +15842,12 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_circle",
           "suffix": "at_point_with_scale",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -15696,8 +15883,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "cell_columns",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -15733,8 +15923,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "cell_count",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -15770,16 +15963,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "cell_height",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "vector_2d bitmap_cell_offset(bitmap src,int cell);",
         "name": "bitmap_cell_offset",
-        "method_name": null,
+        "method_name": "cell_offset",
         "unique_global_name": "bitmap_cell_offset",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_offset",
         "suffix_name": null,
         "description": "Returns a vector that represents the movement needed to get to a given\ncell within a bitmap.",
         "brief": null,
@@ -15820,16 +16016,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_offset",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "src"
         }
       },
       {
         "signature": "rectangle bitmap_cell_rectangle(bitmap src);",
         "name": "bitmap_cell_rectangle",
-        "method_name": null,
+        "method_name": "cell_rectangle",
         "unique_global_name": "bitmap_cell_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_rectangle",
         "suffix_name": null,
         "description": "Returns a rectangle that will encompass a cell of the bitmap.",
         "brief": null,
@@ -15857,16 +16056,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_rectangle",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "src"
         }
       },
       {
         "signature": "rectangle bitmap_cell_rectangle(bitmap src,const point_2d &pt);",
         "name": "bitmap_cell_rectangle",
-        "method_name": null,
+        "method_name": "cell_rectangle",
         "unique_global_name": "bitmap_cell_rectangle_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.cell_rectangle_at_point",
         "suffix_name": null,
         "description": "Returns a rectangle that will encompass the bitmap cell if it were drawn\nat the indicated point.",
         "brief": null,
@@ -15907,9 +16109,12 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "cell_rectangle",
           "suffix": "at_point",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "src"
         }
       },
       {
@@ -15945,8 +16150,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "cell_rows",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -15982,8 +16190,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "width",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16019,58 +16230,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "center",
           "group": "graphics",
-          "static": "images"
-        }
-      },
-      {
-        "signature": "circle bitmap_circle(bitmap bmp,const point_2d &pt);",
-        "name": "bitmap_circle",
-        "method_name": null,
-        "unique_global_name": "bitmap_circle",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns a circle that will encompass the entire bitamp.",
-        "brief": null,
-        "return": {
-          "type": "circle",
-          "description": "A circle that surrounds the bitmap.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "bmp": {
-            "type": "bitmap",
-            "description": "The bitmap to encompass.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "pt": {
-            "type": "point_2d",
-            "description": "The point where the bitmap is located.",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16106,8 +16270,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "filename",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16143,8 +16310,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "height",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16218,8 +16388,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "name",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16260,112 +16433,11 @@
         }
       },
       {
-        "signature": "rectangle bitmap_rectangle(bitmap bmp);",
-        "name": "bitmap_rectangle",
-        "method_name": null,
-        "unique_global_name": "bitmap_rectangle",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns a rectangle that is the same size as a bitmap (the whole bitmap).",
-        "brief": null,
-        "return": {
-          "type": "rectangle",
-          "description": "A rectangle with the same size as the bitmap.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "bmp": {
-            "type": "bitmap",
-            "description": "The bitmap",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "graphics",
-          "static": "images"
-        }
-      },
-      {
-        "signature": "rectangle bitmap_rectangle(bitmap bmp,float x,float y);",
-        "name": "bitmap_rectangle",
-        "method_name": null,
-        "unique_global_name": "bitmap_rectangle_at_location",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns a rectangle that is the same size as the bitmap and is located at\nthe indicated position.",
-        "brief": null,
-        "return": {
-          "type": "rectangle",
-          "description": "A rectangle with the same size as the bitmap, at the\nindicated location.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "bmp": {
-            "type": "bitmap",
-            "description": "The bitmap",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "x": {
-            "type": "float",
-            "description": "The x location of the rectangle",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "y": {
-            "type": "float",
-            "description": "The y location of the rectangle",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "at_location",
-          "group": "graphics",
-          "static": "images"
-        }
-      },
-      {
         "signature": "rectangle bitmap_rectangle_of_cell(bitmap src,int cell);",
         "name": "bitmap_rectangle_of_cell",
-        "method_name": null,
+        "method_name": "rectangle_of_cell",
         "unique_global_name": "bitmap_rectangle_of_cell",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.rectangle_of_cell",
         "suffix_name": null,
         "description": "Returns a rectangle that can be used to access the part of a bitmap\nrelated to an individual cell.",
         "brief": null,
@@ -16406,16 +16478,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_of_cell",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "src"
         }
       },
       {
         "signature": "void bitmap_set_cell_details(bitmap bmp,int width,int height,int columns,int rows,int count);",
         "name": "bitmap_set_cell_details",
-        "method_name": null,
+        "method_name": "set_cell_details",
         "unique_global_name": "bitmap_set_cell_details",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.set_cell_details",
         "suffix_name": null,
         "description": "Initialise the bitmap cell details. This allows parts of the bitmap to be\ndrawn as individual cells.",
         "brief": null,
@@ -16508,8 +16583,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "set_cell_details",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16545,8 +16623,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "getter": "width",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16590,9 +16671,9 @@
       {
         "signature": "void clear_bitmap(bitmap bmp,color clr);",
         "name": "clear_bitmap",
-        "method_name": null,
+        "method_name": "clear",
         "unique_global_name": "clear_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.clear",
         "suffix_name": null,
         "description": "Clear the bitmap to the indicated color. This will ensure the entire\nsurface of the bitmap is set to that color.",
         "brief": null,
@@ -16633,8 +16714,11 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "clear",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
@@ -16747,6 +16831,8 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "constructor": true,
           "group": "graphics",
           "static": "images"
         }
@@ -16900,9 +16986,9 @@
       {
         "signature": "void draw_bitmap(string name,float x,float y);",
         "name": "draw_bitmap",
-        "method_name": "draw_bitmap",
+        "method_name": null,
         "unique_global_name": "draw_bitmap_named",
-        "unique_method_name": ".draw_bitmap_named",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Searches and draws a bitmap with name `name` to the current window.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -16956,7 +17042,6 @@
           }
         },
         "attributes": {
-          "method": "draw_bitmap",
           "suffix": "named",
           "group": "graphics",
           "static": "images"
@@ -16965,9 +17050,9 @@
       {
         "signature": "void draw_bitmap(string name,float x,float y,drawing_options opts);",
         "name": "draw_bitmap",
-        "method_name": "draw_bitmap",
+        "method_name": null,
         "unique_global_name": "draw_bitmap_named_with_options",
-        "unique_method_name": ".draw_bitmap_named_with_options",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Searches and draws a bitmap with name `name` to the current window.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -17034,7 +17119,6 @@
           }
         },
         "attributes": {
-          "method": "draw_bitmap",
           "suffix": "named_with_options",
           "group": "graphics",
           "static": "images"
@@ -17188,6 +17272,8 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "constructor": true,
           "group": "graphics",
           "static": "images"
         }
@@ -17195,9 +17281,9 @@
       {
         "signature": "bool pixel_drawn_at_point(bitmap bmp,const point_2d &pt);",
         "name": "pixel_drawn_at_point",
-        "method_name": null,
+        "method_name": "pixel_drawn_at_point",
         "unique_global_name": "pixel_drawn_at_point_pt",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.pixel_drawn_at_point_pt",
         "suffix_name": null,
         "description": "Check if the bitmap has a pixel drawn at the indicated point.",
         "brief": null,
@@ -17238,17 +17324,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "pixel_drawn_at_point",
           "suffix": "pt",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool pixel_drawn_at_point(bitmap bmp,float x,float y);",
         "name": "pixel_drawn_at_point",
-        "method_name": null,
+        "method_name": "pixel_drawn_at_point",
         "unique_global_name": "pixel_drawn_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.pixel_drawn_at_point",
         "suffix_name": null,
         "description": "Check if the bitmap has a pixel drawn at the indicated point.",
         "brief": null,
@@ -17302,16 +17391,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "pixel_drawn_at_point",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool pixel_drawn_at_point(bitmap bmp,int cell,const point_2d &pt);",
         "name": "pixel_drawn_at_point",
-        "method_name": null,
+        "method_name": "pixel_drawn_at_point_in_cell",
         "unique_global_name": "pixel_drawn_at_point_in_cell_pt",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.pixel_drawn_at_point_in_cell_in_cell_pt",
         "suffix_name": null,
         "description": "Check if the bitmap has a pixel drawn at the indicated point in the cell.",
         "brief": null,
@@ -17365,17 +17457,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "pixel_drawn_at_point_in_cell",
           "suffix": "in_cell_pt",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool pixel_drawn_at_point(bitmap bmp,int cell,float x,float y);",
         "name": "pixel_drawn_at_point",
-        "method_name": null,
+        "method_name": "pixel_drawn_at_point",
         "unique_global_name": "pixel_drawn_at_point_in_cell",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.pixel_drawn_at_point_in_cell",
         "suffix_name": null,
         "description": "Check if the bitmap has a pixel drawn at the indicated point in the cell.",
         "brief": null,
@@ -17442,9 +17537,12 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "pixel_drawn_at_point",
           "suffix": "in_cell",
           "group": "graphics",
-          "static": "images"
+          "static": "images",
+          "self": "bmp"
         }
       }
     ],
@@ -45596,15 +45694,15 @@
     "group": "graphics",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1481596947,
+    "parsed_at": 1483690595,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
         "signature": "void clear_window(window wind,color clr);",
         "name": "clear_window",
-        "method_name": null,
+        "method_name": "clear",
         "unique_global_name": "clear_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.clear",
         "suffix_name": null,
         "description": "clears a window to the specified color given in `clr`",
         "brief": null,
@@ -45646,9 +45744,10 @@
         },
         "attributes": {
           "class": "window",
-          "self": "wind",
+          "method": "clear",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
@@ -45659,6 +45758,30 @@
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Releases all of the windows which have been loaded.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "void close_current_window();",
+        "name": "close_current_window",
+        "method_name": null,
+        "unique_global_name": "close_current_window",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Closes and frees the current window.",
         "brief": null,
         "return": {
           "type": "void",
@@ -45714,36 +45837,11 @@
         }
       },
       {
-        "signature": "void close_window();",
-        "name": "close_window",
-        "method_name": null,
-        "unique_global_name": "close_window_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Closes and frees the current window.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
         "signature": "void close_window(window wind);",
         "name": "close_window",
-        "method_name": null,
+        "method_name": "close",
         "unique_global_name": "close_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.close",
         "suffix_name": null,
         "description": "Closes and frees the graphics window supplied in `wind`.",
         "brief": null,
@@ -45773,6 +45871,7 @@
         "attributes": {
           "class": "window",
           "destructor": true,
+          "method": "close",
           "self": "wind",
           "group": "graphics",
           "static": "window_manager"
@@ -45790,6 +45889,222 @@
         "return": {
           "type": "window",
           "description": "The current window",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "bool current_window_has_border();",
+        "name": "current_window_has_border",
+        "method_name": null,
+        "unique_global_name": "current_window_has_border",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Indicate if the current window has a border.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the window has a border",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "int current_window_height();",
+        "name": "current_window_height",
+        "method_name": null,
+        "unique_global_name": "current_window_height",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the height of the current window.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The height of the current window",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "bool current_window_is_fullscreen();",
+        "name": "current_window_is_fullscreen",
+        "method_name": null,
+        "unique_global_name": "current_window_is_fullscreen",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Is the current window currently fullscreen?",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True when the window is fullscreen",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "point_2d current_window_position();",
+        "name": "current_window_position",
+        "method_name": null,
+        "unique_global_name": "current_window_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The location of the current window.",
+        "brief": null,
+        "return": {
+          "type": "point_2d",
+          "description": "Its location on the displays",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "void current_window_toggle_border();",
+        "name": "current_window_toggle_border",
+        "method_name": null,
+        "unique_global_name": "current_window_toggle_border",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Toggle the current window border.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "void current_window_toggle_fullscreen();",
+        "name": "current_window_toggle_fullscreen",
+        "method_name": null,
+        "unique_global_name": "current_window_toggle_fullscreen",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Toggle the fullscreen property of the current window",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "int current_window_width();",
+        "name": "current_window_width",
+        "method_name": null,
+        "unique_global_name": "current_window_width",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the width of the current window.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The width of the current window",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "int current_window_x();",
+        "name": "current_window_x",
+        "method_name": null,
+        "unique_global_name": "current_window_x",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The x location of the current window on the displays.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "Its location on the displays",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "window_manager"
+        }
+      },
+      {
+        "signature": "int current_window_y();",
+        "name": "current_window_y",
+        "method_name": null,
+        "unique_global_name": "current_window_y",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The y location of the current window on the displays.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "Its location on the displays",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -45840,10 +46155,50 @@
         }
       },
       {
-        "signature": "void move_window(int x,int y);",
-        "name": "move_window",
+        "signature": "bool is_current_window(window wind);",
+        "name": "is_current_window",
         "method_name": null,
-        "unique_global_name": "move_window_current",
+        "unique_global_name": "is_current_window",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Check if the requested window is the current window.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if the window is the current window",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "getter": "is_current_window",
+          "group": "graphics",
+          "static": "window_manager",
+          "self": "wind"
+        }
+      },
+      {
+        "signature": "void move_current_window_to(int x,int y);",
+        "name": "move_current_window_to",
+        "method_name": null,
+        "unique_global_name": "move_current_window_to",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Move the current window to the new location on the displays.",
@@ -45885,16 +46240,15 @@
           }
         },
         "attributes": {
-          "suffix": "current",
           "group": "graphics",
           "static": "window_manager"
         }
       },
       {
-        "signature": "void move_window(const string &name,int x,int y);",
-        "name": "move_window",
+        "signature": "void move_window_to(const string &name,int x,int y);",
+        "name": "move_window_to",
         "method_name": null,
-        "unique_global_name": "move_window_named",
+        "unique_global_name": "move_window_to_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Move the window to the new location on the displays.",
@@ -45955,11 +46309,11 @@
         }
       },
       {
-        "signature": "void move_window(window wind,int x,int y);",
-        "name": "move_window",
-        "method_name": null,
-        "unique_global_name": "move_window",
-        "unique_method_name": null,
+        "signature": "void move_window_to(window wind,int x,int y);",
+        "name": "move_window_to",
+        "method_name": "move_to",
+        "unique_global_name": "move_window_to",
+        "unique_method_name": "window.move_to",
         "suffix_name": null,
         "description": "Move the window to the new location on the displays.",
         "brief": null,
@@ -46013,8 +46367,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "move_to",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
@@ -46117,16 +46474,16 @@
         "attributes": {
           "class": "window",
           "method": "refresh",
-          "self": "wind",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
-        "signature": "void resize_window(int width,int height);",
-        "name": "resize_window",
+        "signature": "void resize_current_window(int width,int height);",
+        "name": "resize_current_window",
         "method_name": null,
-        "unique_global_name": "resize_window_current",
+        "unique_global_name": "resize_current_window",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Change the size of the current window.",
@@ -46168,7 +46525,6 @@
           }
         },
         "attributes": {
-          "suffix": "current",
           "group": "graphics",
           "static": "window_manager"
         }
@@ -46176,9 +46532,9 @@
       {
         "signature": "void resize_window(window wnd,int width,int height);",
         "name": "resize_window",
-        "method_name": null,
+        "method_name": "resize",
         "unique_global_name": "resize_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.resize",
         "suffix_name": null,
         "description": "Change the size of the window.",
         "brief": null,
@@ -46232,8 +46588,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "resize",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -46277,9 +46636,9 @@
       {
         "signature": "void set_current_window(window wind);",
         "name": "set_current_window",
-        "method_name": null,
+        "method_name": "make_current",
         "unique_global_name": "set_current_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.make_current",
         "suffix_name": null,
         "description": "Change the current window. Use this so that you can draw to different\nwindows by default.",
         "brief": null,
@@ -46307,8 +46666,51 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "make_current",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
+        }
+      },
+      {
+        "signature": "string window_caption(window wind);",
+        "name": "window_caption",
+        "method_name": null,
+        "unique_global_name": "window_caption",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "The caption of the window.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The window's caption.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "getter": "caption",
+          "group": "graphics",
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
@@ -46390,31 +46792,6 @@
         }
       },
       {
-        "signature": "bool window_has_border();",
-        "name": "window_has_border",
-        "method_name": null,
-        "unique_global_name": "window_has_border_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Indicate if the current window has a border.",
-        "brief": null,
-        "return": {
-          "type": "bool",
-          "description": "True if the window has a border",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
         "signature": "bool window_has_border(const string &name);",
         "name": "window_has_border",
         "method_name": null,
@@ -46485,33 +46862,51 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "getter": "has_border",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
-        "signature": "int window_height();",
-        "name": "window_height",
+        "signature": "bool window_has_focus(window wind);",
+        "name": "window_has_focus",
         "method_name": null,
-        "unique_global_name": "window_height_current",
+        "unique_global_name": "window_has_focus",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns the height of the current window.",
+        "description": "Indicates if the window has focus.",
         "brief": null,
         "return": {
-          "type": "int",
-          "description": "The height of the current window",
+          "type": "bool",
+          "description": "True if the window has the user's focus",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
           "type_parameter": null
         },
         "parameters": {
+          "wind": {
+            "type": "window",
+            "description": "The window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
         },
         "attributes": {
-          "suffix": "current",
+          "class": "window",
+          "getter": "has_focus",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
@@ -46593,31 +46988,6 @@
         }
       },
       {
-        "signature": "bool window_is_fullscreen();",
-        "name": "window_is_fullscreen",
-        "method_name": null,
-        "unique_global_name": "window_is_fullscreen_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Is the current window currently fullscreen?",
-        "brief": null,
-        "return": {
-          "type": "bool",
-          "description": "True when the window is fullscreen",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
         "signature": "bool window_is_fullscreen(const string &name);",
         "name": "window_is_fullscreen",
         "method_name": null,
@@ -46688,8 +47058,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "getter": "is_fullscreen",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -46725,31 +47098,6 @@
           }
         },
         "attributes": {
-          "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
-        "signature": "point_2d window_position();",
-        "name": "window_position",
-        "method_name": null,
-        "unique_global_name": "window_position_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The location of the current window.",
-        "brief": null,
-        "return": {
-          "type": "point_2d",
-          "description": "Its location on the displays",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
           "group": "graphics",
           "static": "window_manager"
         }
@@ -46825,8 +47173,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "getter": "position",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -46875,33 +47226,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "setter": "icon",
           "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
-        "signature": "void window_toggle_border();",
-        "name": "window_toggle_border",
-        "method_name": null,
-        "unique_global_name": "window_toggle_border_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Toggle the current window border.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wind"
         }
       },
       {
@@ -46945,9 +47274,9 @@
       {
         "signature": "void window_toggle_border(window wnd);",
         "name": "window_toggle_border",
-        "method_name": null,
+        "method_name": "toggle_border",
         "unique_global_name": "window_toggle_border",
-        "unique_method_name": null,
+        "unique_method_name": "window.toggle_border",
         "suffix_name": null,
         "description": "Toggle the window border.",
         "brief": null,
@@ -46975,33 +47304,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "toggle_border",
           "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
-        "signature": "void window_toggle_fullscreen();",
-        "name": "window_toggle_fullscreen",
-        "method_name": null,
-        "unique_global_name": "window_toggle_fullscreen_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Toggle the fullscreen property of the current window",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -47045,9 +47352,9 @@
       {
         "signature": "void window_toggle_fullscreen(window wnd);",
         "name": "window_toggle_fullscreen",
-        "method_name": null,
+        "method_name": "toggle_fullscreen",
         "unique_global_name": "window_toggle_fullscreen",
-        "unique_method_name": null,
+        "unique_method_name": "window.toggle_fullscreen",
         "suffix_name": null,
         "description": "Toggle the fullscreen property of the window",
         "brief": null,
@@ -47075,33 +47382,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "toggle_fullscreen",
           "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
-        "signature": "int window_width();",
-        "name": "window_width",
-        "method_name": null,
-        "unique_global_name": "window_width_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the width of the current window.",
-        "brief": null,
-        "return": {
-          "type": "int",
-          "description": "The width of the current window",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -47207,31 +47492,6 @@
         }
       },
       {
-        "signature": "int window_x();",
-        "name": "window_x",
-        "method_name": null,
-        "unique_global_name": "window_x_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The x location of the current window on the displays.",
-        "brief": null,
-        "return": {
-          "type": "int",
-          "description": "Its location on the displays",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
         "signature": "int window_x(const string &name);",
         "name": "window_x",
         "method_name": null,
@@ -47302,33 +47562,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "getter": "x",
           "group": "graphics",
-          "static": "window_manager"
-        }
-      },
-      {
-        "signature": "int window_y();",
-        "name": "window_y",
-        "method_name": null,
-        "unique_global_name": "window_y_current",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "The y location of the current window on the displays.",
-        "brief": null,
-        "return": {
-          "type": "int",
-          "description": "Its location on the displays",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "suffix": "current",
-          "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       },
       {
@@ -47402,8 +47640,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "getter": "y",
           "group": "graphics",
-          "static": "window_manager"
+          "static": "window_manager",
+          "self": "wnd"
         }
       }
     ],

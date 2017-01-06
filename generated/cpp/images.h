@@ -12,6 +12,9 @@
 using std::string;
 using std::vector;
 
+circle bitmap_bounding_circle(bitmap bmp, const point_2d &pt);
+rectangle bitmap_bounding_rectangle(bitmap bmp);
+rectangle bitmap_bounding_rectangle(bitmap bmp, float x, float y);
 point_2d bitmap_cell_center(bitmap bmp);
 circle bitmap_cell_circle(bitmap bmp, float x, float y);
 circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
@@ -25,14 +28,11 @@ rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
 int bitmap_cell_rows(bitmap bmp);
 int bitmap_cell_width(bitmap bmp);
 point_2d bitmap_center(bitmap bmp);
-circle bitmap_circle(bitmap bmp, const point_2d &pt);
 string bitmap_filename(bitmap bmp);
 int bitmap_height(bitmap bmp);
 int bitmap_height(string name);
 string bitmap_name(bitmap bmp);
 bitmap bitmap_named(string name);
-rectangle bitmap_rectangle(bitmap bmp);
-rectangle bitmap_rectangle(bitmap bmp, float x, float y);
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
 int bitmap_width(bitmap bmp);

@@ -663,6 +663,9 @@ function ScreenHeight(): Integer;
 function ScreenWidth(): Integer;
 procedure TakeScreenshot(const basename: String);
 procedure TakeScreenshot(wind: Window; const basename: String);
+function BitmapBoundingCircle(bmp: Bitmap; const pt: Point2D): Circle;
+function BitmapBoundingRectangle(bmp: Bitmap): Rectangle;
+function BitmapBoundingRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
 function BitmapCellCenter(bmp: Bitmap): Point2D;
 function BitmapCellCircle(bmp: Bitmap; x: Single; y: Single): Circle;
 function BitmapCellCircle(bmp: Bitmap; pt: Point2D): Circle;
@@ -676,14 +679,11 @@ function BitmapCellRectangle(src: Bitmap; const pt: Point2D): Rectangle;
 function BitmapCellRows(bmp: Bitmap): Integer;
 function BitmapCellWidth(bmp: Bitmap): Integer;
 function BitmapCenter(bmp: Bitmap): Point2D;
-function BitmapCircle(bmp: Bitmap; const pt: Point2D): Circle;
 function BitmapFilename(bmp: Bitmap): String;
 function BitmapHeight(bmp: Bitmap): Integer;
 function BitmapHeight(name: String): Integer;
 function BitmapName(bmp: Bitmap): String;
 function BitmapNamed(name: String): Bitmap;
-function BitmapRectangle(bmp: Bitmap): Rectangle;
-function BitmapRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
 function BitmapRectangleOfCell(src: Bitmap; cell: Integer): Rectangle;
 procedure BitmapSetCellDetails(bmp: Bitmap; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer);
 function BitmapWidth(bmp: Bitmap): Integer;
@@ -1245,50 +1245,53 @@ function StartWebServer(port: Word): WebServer;
 procedure StopWebServer(server: WebServer);
 procedure ClearWindow(wind: Window; clr: Color);
 procedure CloseAllWindows();
+procedure CloseCurrentWindow();
 procedure CloseWindow(const name: String);
-procedure CloseWindow();
 procedure CloseWindow(wind: Window);
 function CurrentWindow(): Window;
+function CurrentWindowHasBorder(): Boolean;
+function CurrentWindowHeight(): Integer;
+function CurrentWindowIsFullscreen(): Boolean;
+function CurrentWindowPosition(): Point2D;
+procedure CurrentWindowToggleBorder();
+procedure CurrentWindowToggleFullscreen();
+function CurrentWindowWidth(): Integer;
+function CurrentWindowX(): Integer;
+function CurrentWindowY(): Integer;
 function HasWindow(caption: String): Boolean;
-procedure MoveWindow(x: Integer; y: Integer);
-procedure MoveWindow(const name: String; x: Integer; y: Integer);
-procedure MoveWindow(wind: Window; x: Integer; y: Integer);
+function IsCurrentWindow(wind: Window): Boolean;
+procedure MoveCurrentWindowTo(x: Integer; y: Integer);
+procedure MoveWindowTo(const name: String; x: Integer; y: Integer);
+procedure MoveWindowTo(wind: Window; x: Integer; y: Integer);
 function OpenWindow(caption: String; width: Integer; height: Integer): Window;
 procedure RefreshWindow(wind: Window);
-procedure ResizeWindow(width: Integer; height: Integer);
+procedure ResizeCurrentWindow(width: Integer; height: Integer);
 procedure ResizeWindow(wnd: Window; width: Integer; height: Integer);
 procedure SetCurrentWindow(const name: String);
 procedure SetCurrentWindow(wind: Window);
+function WindowCaption(wind: Window): String;
 function WindowCloseRequested(const name: String): Boolean;
 function WindowCloseRequested(wind: Window): Boolean;
-function WindowHasBorder(): Boolean;
 function WindowHasBorder(const name: String): Boolean;
 function WindowHasBorder(wnd: Window): Boolean;
-function WindowHeight(): Integer;
+function WindowHasFocus(wind: Window): Boolean;
 function WindowHeight(const name: String): Integer;
 function WindowHeight(wind: Window): Integer;
-function WindowIsFullscreen(): Boolean;
 function WindowIsFullscreen(const name: String): Boolean;
 function WindowIsFullscreen(wnd: Window): Boolean;
 function WindowNamed(caption: String): Window;
-function WindowPosition(): Point2D;
 function WindowPosition(const name: String): Point2D;
 function WindowPosition(wnd: Window): Point2D;
 procedure WindowSetIcon(wind: Window; bmp: Bitmap);
-procedure WindowToggleBorder();
 procedure WindowToggleBorder(const name: String);
 procedure WindowToggleBorder(wnd: Window);
-procedure WindowToggleFullscreen();
 procedure WindowToggleFullscreen(const name: String);
 procedure WindowToggleFullscreen(wnd: Window);
-function WindowWidth(): Integer;
 function WindowWidth(const name: String): Integer;
 function WindowWidth(wind: Window): Integer;
 function WindowWithFocus(): Window;
-function WindowX(): Integer;
 function WindowX(const name: String): Integer;
 function WindowX(wnd: Window): Integer;
-function WindowY(): Integer;
 function WindowY(const name: String): Integer;
 function WindowY(wnd: Window): Integer;
 
@@ -2514,6 +2517,9 @@ function __sklib__screen_height(): Integer; cdecl; external;
 function __sklib__screen_width(): Integer; cdecl; external;
 procedure __sklib__take_screenshot__string_ref(const basename: __sklib_string); cdecl; external;
 procedure __sklib__take_screenshot__window__string_ref(wind: __sklib_ptr; const basename: __sklib_string); cdecl; external;
+function __sklib__bitmap_bounding_circle__bitmap__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d): __sklib_circle; cdecl; external;
+function __sklib__bitmap_bounding_rectangle__bitmap(bmp: __sklib_ptr): __sklib_rectangle; cdecl; external;
+function __sklib__bitmap_bounding_rectangle__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_rectangle; cdecl; external;
 function __sklib__bitmap_cell_center__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
 function __sklib__bitmap_cell_circle__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_circle; cdecl; external;
 function __sklib__bitmap_cell_circle__bitmap__point_2d(bmp: __sklib_ptr; pt: __sklib_point_2d): __sklib_circle; cdecl; external;
@@ -2527,14 +2533,11 @@ function __sklib__bitmap_cell_rectangle__bitmap__point_2d_ref(src: __sklib_ptr; 
 function __sklib__bitmap_cell_rows__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
 function __sklib__bitmap_cell_width__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
 function __sklib__bitmap_center__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
-function __sklib__bitmap_circle__bitmap__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d): __sklib_circle; cdecl; external;
 function __sklib__bitmap_filename__bitmap(bmp: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__bitmap_height__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
 function __sklib__bitmap_height__string(name: __sklib_string): Integer; cdecl; external;
 function __sklib__bitmap_name__bitmap(bmp: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__bitmap_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
-function __sklib__bitmap_rectangle__bitmap(bmp: __sklib_ptr): __sklib_rectangle; cdecl; external;
-function __sklib__bitmap_rectangle__bitmap__float__float(bmp: __sklib_ptr; x: Single; y: Single): __sklib_rectangle; cdecl; external;
 function __sklib__bitmap_rectangle_of_cell__bitmap__int(src: __sklib_ptr; cell: Integer): __sklib_rectangle; cdecl; external;
 procedure __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(bmp: __sklib_ptr; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer); cdecl; external;
 function __sklib__bitmap_width__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
@@ -3096,50 +3099,53 @@ function __sklib__start_web_server__unsigned_short(port: Word): __sklib_ptr; cde
 procedure __sklib__stop_web_server__web_server(server: __sklib_ptr); cdecl; external;
 procedure __sklib__clear_window__window__color(wind: __sklib_ptr; clr: __sklib_color); cdecl; external;
 procedure __sklib__close_all_windows(); cdecl; external;
+procedure __sklib__close_current_window(); cdecl; external;
 procedure __sklib__close_window__string_ref(const name: __sklib_string); cdecl; external;
-procedure __sklib__close_window(); cdecl; external;
 procedure __sklib__close_window__window(wind: __sklib_ptr); cdecl; external;
 function __sklib__current_window(): __sklib_ptr; cdecl; external;
+function __sklib__current_window_has_border(): LongInt; cdecl; external;
+function __sklib__current_window_height(): Integer; cdecl; external;
+function __sklib__current_window_is_fullscreen(): LongInt; cdecl; external;
+function __sklib__current_window_position(): __sklib_point_2d; cdecl; external;
+procedure __sklib__current_window_toggle_border(); cdecl; external;
+procedure __sklib__current_window_toggle_fullscreen(); cdecl; external;
+function __sklib__current_window_width(): Integer; cdecl; external;
+function __sklib__current_window_x(): Integer; cdecl; external;
+function __sklib__current_window_y(): Integer; cdecl; external;
 function __sklib__has_window__string(caption: __sklib_string): LongInt; cdecl; external;
-procedure __sklib__move_window__int__int(x: Integer; y: Integer); cdecl; external;
-procedure __sklib__move_window__string_ref__int__int(const name: __sklib_string; x: Integer; y: Integer); cdecl; external;
-procedure __sklib__move_window__window__int__int(wind: __sklib_ptr; x: Integer; y: Integer); cdecl; external;
+function __sklib__is_current_window__window(wind: __sklib_ptr): LongInt; cdecl; external;
+procedure __sklib__move_current_window_to__int__int(x: Integer; y: Integer); cdecl; external;
+procedure __sklib__move_window_to__string_ref__int__int(const name: __sklib_string; x: Integer; y: Integer); cdecl; external;
+procedure __sklib__move_window_to__window__int__int(wind: __sklib_ptr; x: Integer; y: Integer); cdecl; external;
 function __sklib__open_window__string__int__int(caption: __sklib_string; width: Integer; height: Integer): __sklib_ptr; cdecl; external;
 procedure __sklib__refresh_window__window(wind: __sklib_ptr); cdecl; external;
-procedure __sklib__resize_window__int__int(width: Integer; height: Integer); cdecl; external;
+procedure __sklib__resize_current_window__int__int(width: Integer; height: Integer); cdecl; external;
 procedure __sklib__resize_window__window__int__int(wnd: __sklib_ptr; width: Integer; height: Integer); cdecl; external;
 procedure __sklib__set_current_window__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__set_current_window__window(wind: __sklib_ptr); cdecl; external;
+function __sklib__window_caption__window(wind: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__window_close_requested__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__window_close_requested__window(wind: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__window_has_border(): LongInt; cdecl; external;
 function __sklib__window_has_border__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__window_has_border__window(wnd: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__window_height(): Integer; cdecl; external;
+function __sklib__window_has_focus__window(wind: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__window_height__string_ref(const name: __sklib_string): Integer; cdecl; external;
 function __sklib__window_height__window(wind: __sklib_ptr): Integer; cdecl; external;
-function __sklib__window_is_fullscreen(): LongInt; cdecl; external;
 function __sklib__window_is_fullscreen__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__window_is_fullscreen__window(wnd: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__window_named__string(caption: __sklib_string): __sklib_ptr; cdecl; external;
-function __sklib__window_position(): __sklib_point_2d; cdecl; external;
 function __sklib__window_position__string_ref(const name: __sklib_string): __sklib_point_2d; cdecl; external;
 function __sklib__window_position__window(wnd: __sklib_ptr): __sklib_point_2d; cdecl; external;
 procedure __sklib__window_set_icon__window__bitmap(wind: __sklib_ptr; bmp: __sklib_ptr); cdecl; external;
-procedure __sklib__window_toggle_border(); cdecl; external;
 procedure __sklib__window_toggle_border__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__window_toggle_border__window(wnd: __sklib_ptr); cdecl; external;
-procedure __sklib__window_toggle_fullscreen(); cdecl; external;
 procedure __sklib__window_toggle_fullscreen__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__window_toggle_fullscreen__window(wnd: __sklib_ptr); cdecl; external;
-function __sklib__window_width(): Integer; cdecl; external;
 function __sklib__window_width__string_ref(const name: __sklib_string): Integer; cdecl; external;
 function __sklib__window_width__window(wind: __sklib_ptr): Integer; cdecl; external;
 function __sklib__window_with_focus(): __sklib_ptr; cdecl; external;
-function __sklib__window_x(): Integer; cdecl; external;
 function __sklib__window_x__string_ref(const name: __sklib_string): Integer; cdecl; external;
 function __sklib__window_x__window(wnd: __sklib_ptr): Integer; cdecl; external;
-function __sklib__window_y(): Integer; cdecl; external;
 function __sklib__window_y__string_ref(const name: __sklib_string): Integer; cdecl; external;
 function __sklib__window_y__window(wnd: __sklib_ptr): Integer; cdecl; external;
 function AnimationCount(script: AnimationScript): Integer;
@@ -6325,6 +6331,39 @@ begin
   __skparam__basename := __skadapter__to_sklib_string(basename);
   __sklib__take_screenshot__window__string_ref(__skparam__wind, __skparam__basename);
 end;
+function BitmapBoundingCircle(bmp: Bitmap; const pt: Point2D): Circle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: __sklib_circle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_bounding_circle__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt);
+  result := __skadapter__to_circle(__skreturn);
+end;
+function BitmapBoundingRectangle(bmp: Bitmap): Rectangle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_bounding_rectangle__bitmap(__skparam__bmp);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function BitmapBoundingRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Single;
+  __skparam__y: Single;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_float(x);
+  __skparam__y := __skadapter__to_sklib_float(y);
+  __skreturn := __sklib__bitmap_bounding_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
 function BitmapCellCenter(bmp: Bitmap): Point2D;
 var
   __skparam__bmp: __sklib_ptr;
@@ -6456,17 +6495,6 @@ begin
   __skreturn := __sklib__bitmap_center__bitmap(__skparam__bmp);
   result := __skadapter__to_point_2d(__skreturn);
 end;
-function BitmapCircle(bmp: Bitmap; const pt: Point2D): Circle;
-var
-  __skparam__bmp: __sklib_ptr;
-  __skparam__pt: __sklib_point_2d;
-  __skreturn: __sklib_circle;
-begin
-  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
-  __skreturn := __sklib__bitmap_circle__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt);
-  result := __skadapter__to_circle(__skreturn);
-end;
 function BitmapFilename(bmp: Bitmap): String;
 var
   __skparam__bmp: __sklib_ptr;
@@ -6511,28 +6539,6 @@ begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __skreturn := __sklib__bitmap_named__string(__skparam__name);
   result := __skadapter__to_bitmap(__skreturn);
-end;
-function BitmapRectangle(bmp: Bitmap): Rectangle;
-var
-  __skparam__bmp: __sklib_ptr;
-  __skreturn: __sklib_rectangle;
-begin
-  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skreturn := __sklib__bitmap_rectangle__bitmap(__skparam__bmp);
-  result := __skadapter__to_rectangle(__skreturn);
-end;
-function BitmapRectangle(bmp: Bitmap; x: Single; y: Single): Rectangle;
-var
-  __skparam__bmp: __sklib_ptr;
-  __skparam__x: Single;
-  __skparam__y: Single;
-  __skreturn: __sklib_rectangle;
-begin
-  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skparam__x := __skadapter__to_sklib_float(x);
-  __skparam__y := __skadapter__to_sklib_float(y);
-  __skreturn := __sklib__bitmap_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y);
-  result := __skadapter__to_rectangle(__skreturn);
 end;
 function BitmapRectangleOfCell(src: Bitmap; cell: Integer): Rectangle;
 var
@@ -11940,16 +11946,16 @@ procedure CloseAllWindows();
 begin
   __sklib__close_all_windows();
 end;
+procedure CloseCurrentWindow();
+begin
+  __sklib__close_current_window();
+end;
 procedure CloseWindow(const name: String);
 var
   __skparam__name: __sklib_string;
 begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __sklib__close_window__string_ref(__skparam__name);
-end;
-procedure CloseWindow();
-begin
-  __sklib__close_window();
 end;
 procedure CloseWindow(wind: Window);
 var
@@ -11965,6 +11971,63 @@ begin
   __skreturn := __sklib__current_window();
   result := __skadapter__to_window(__skreturn);
 end;
+function CurrentWindowHasBorder(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__current_window_has_border();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CurrentWindowHeight(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__current_window_height();
+  result := __skadapter__to_int(__skreturn);
+end;
+function CurrentWindowIsFullscreen(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__current_window_is_fullscreen();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CurrentWindowPosition(): Point2D;
+var
+  __skreturn: __sklib_point_2d;
+begin
+  __skreturn := __sklib__current_window_position();
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+procedure CurrentWindowToggleBorder();
+begin
+  __sklib__current_window_toggle_border();
+end;
+procedure CurrentWindowToggleFullscreen();
+begin
+  __sklib__current_window_toggle_fullscreen();
+end;
+function CurrentWindowWidth(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__current_window_width();
+  result := __skadapter__to_int(__skreturn);
+end;
+function CurrentWindowX(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__current_window_x();
+  result := __skadapter__to_int(__skreturn);
+end;
+function CurrentWindowY(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__current_window_y();
+  result := __skadapter__to_int(__skreturn);
+end;
 function HasWindow(caption: String): Boolean;
 var
   __skparam__caption: __sklib_string;
@@ -11974,16 +12037,25 @@ begin
   __skreturn := __sklib__has_window__string(__skparam__caption);
   result := __skadapter__to_bool(__skreturn);
 end;
-procedure MoveWindow(x: Integer; y: Integer);
+function IsCurrentWindow(wind: Window): Boolean;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__is_current_window__window(__skparam__wind);
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure MoveCurrentWindowTo(x: Integer; y: Integer);
 var
   __skparam__x: Integer;
   __skparam__y: Integer;
 begin
   __skparam__x := __skadapter__to_sklib_int(x);
   __skparam__y := __skadapter__to_sklib_int(y);
-  __sklib__move_window__int__int(__skparam__x, __skparam__y);
+  __sklib__move_current_window_to__int__int(__skparam__x, __skparam__y);
 end;
-procedure MoveWindow(const name: String; x: Integer; y: Integer);
+procedure MoveWindowTo(const name: String; x: Integer; y: Integer);
 var
   __skparam__name: __sklib_string;
   __skparam__x: Integer;
@@ -11992,9 +12064,9 @@ begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __skparam__x := __skadapter__to_sklib_int(x);
   __skparam__y := __skadapter__to_sklib_int(y);
-  __sklib__move_window__string_ref__int__int(__skparam__name, __skparam__x, __skparam__y);
+  __sklib__move_window_to__string_ref__int__int(__skparam__name, __skparam__x, __skparam__y);
 end;
-procedure MoveWindow(wind: Window; x: Integer; y: Integer);
+procedure MoveWindowTo(wind: Window; x: Integer; y: Integer);
 var
   __skparam__wind: __sklib_ptr;
   __skparam__x: Integer;
@@ -12003,7 +12075,7 @@ begin
   __skparam__wind := __skadapter__to_sklib_window(wind);
   __skparam__x := __skadapter__to_sklib_int(x);
   __skparam__y := __skadapter__to_sklib_int(y);
-  __sklib__move_window__window__int__int(__skparam__wind, __skparam__x, __skparam__y);
+  __sklib__move_window_to__window__int__int(__skparam__wind, __skparam__x, __skparam__y);
 end;
 function OpenWindow(caption: String; width: Integer; height: Integer): Window;
 var
@@ -12025,14 +12097,14 @@ begin
   __skparam__wind := __skadapter__to_sklib_window(wind);
   __sklib__refresh_window__window(__skparam__wind);
 end;
-procedure ResizeWindow(width: Integer; height: Integer);
+procedure ResizeCurrentWindow(width: Integer; height: Integer);
 var
   __skparam__width: Integer;
   __skparam__height: Integer;
 begin
   __skparam__width := __skadapter__to_sklib_int(width);
   __skparam__height := __skadapter__to_sklib_int(height);
-  __sklib__resize_window__int__int(__skparam__width, __skparam__height);
+  __sklib__resize_current_window__int__int(__skparam__width, __skparam__height);
 end;
 procedure ResizeWindow(wnd: Window; width: Integer; height: Integer);
 var
@@ -12059,6 +12131,15 @@ begin
   __skparam__wind := __skadapter__to_sklib_window(wind);
   __sklib__set_current_window__window(__skparam__wind);
 end;
+function WindowCaption(wind: Window): String;
+var
+  __skparam__wind: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_caption__window(__skparam__wind);
+  result := __skadapter__to_string(__skreturn);
+end;
 function WindowCloseRequested(const name: String): Boolean;
 var
   __skparam__name: __sklib_string;
@@ -12075,13 +12156,6 @@ var
 begin
   __skparam__wind := __skadapter__to_sklib_window(wind);
   __skreturn := __sklib__window_close_requested__window(__skparam__wind);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function WindowHasBorder(): Boolean;
-var
-  __skreturn: LongInt;
-begin
-  __skreturn := __sklib__window_has_border();
   result := __skadapter__to_bool(__skreturn);
 end;
 function WindowHasBorder(const name: String): Boolean;
@@ -12102,12 +12176,14 @@ begin
   __skreturn := __sklib__window_has_border__window(__skparam__wnd);
   result := __skadapter__to_bool(__skreturn);
 end;
-function WindowHeight(): Integer;
+function WindowHasFocus(wind: Window): Boolean;
 var
-  __skreturn: Integer;
+  __skparam__wind: __sklib_ptr;
+  __skreturn: LongInt;
 begin
-  __skreturn := __sklib__window_height();
-  result := __skadapter__to_int(__skreturn);
+  __skparam__wind := __skadapter__to_sklib_window(wind);
+  __skreturn := __sklib__window_has_focus__window(__skparam__wind);
+  result := __skadapter__to_bool(__skreturn);
 end;
 function WindowHeight(const name: String): Integer;
 var
@@ -12126,13 +12202,6 @@ begin
   __skparam__wind := __skadapter__to_sklib_window(wind);
   __skreturn := __sklib__window_height__window(__skparam__wind);
   result := __skadapter__to_int(__skreturn);
-end;
-function WindowIsFullscreen(): Boolean;
-var
-  __skreturn: LongInt;
-begin
-  __skreturn := __sklib__window_is_fullscreen();
-  result := __skadapter__to_bool(__skreturn);
 end;
 function WindowIsFullscreen(const name: String): Boolean;
 var
@@ -12161,13 +12230,6 @@ begin
   __skreturn := __sklib__window_named__string(__skparam__caption);
   result := __skadapter__to_window(__skreturn);
 end;
-function WindowPosition(): Point2D;
-var
-  __skreturn: __sklib_point_2d;
-begin
-  __skreturn := __sklib__window_position();
-  result := __skadapter__to_point_2d(__skreturn);
-end;
 function WindowPosition(const name: String): Point2D;
 var
   __skparam__name: __sklib_string;
@@ -12195,10 +12257,6 @@ begin
   __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
   __sklib__window_set_icon__window__bitmap(__skparam__wind, __skparam__bmp);
 end;
-procedure WindowToggleBorder();
-begin
-  __sklib__window_toggle_border();
-end;
 procedure WindowToggleBorder(const name: String);
 var
   __skparam__name: __sklib_string;
@@ -12213,10 +12271,6 @@ begin
   __skparam__wnd := __skadapter__to_sklib_window(wnd);
   __sklib__window_toggle_border__window(__skparam__wnd);
 end;
-procedure WindowToggleFullscreen();
-begin
-  __sklib__window_toggle_fullscreen();
-end;
 procedure WindowToggleFullscreen(const name: String);
 var
   __skparam__name: __sklib_string;
@@ -12230,13 +12284,6 @@ var
 begin
   __skparam__wnd := __skadapter__to_sklib_window(wnd);
   __sklib__window_toggle_fullscreen__window(__skparam__wnd);
-end;
-function WindowWidth(): Integer;
-var
-  __skreturn: Integer;
-begin
-  __skreturn := __sklib__window_width();
-  result := __skadapter__to_int(__skreturn);
 end;
 function WindowWidth(const name: String): Integer;
 var
@@ -12263,13 +12310,6 @@ begin
   __skreturn := __sklib__window_with_focus();
   result := __skadapter__to_window(__skreturn);
 end;
-function WindowX(): Integer;
-var
-  __skreturn: Integer;
-begin
-  __skreturn := __sklib__window_x();
-  result := __skadapter__to_int(__skreturn);
-end;
 function WindowX(const name: String): Integer;
 var
   __skparam__name: __sklib_string;
@@ -12286,13 +12326,6 @@ var
 begin
   __skparam__wnd := __skadapter__to_sklib_window(wnd);
   __skreturn := __sklib__window_x__window(__skparam__wnd);
-  result := __skadapter__to_int(__skreturn);
-end;
-function WindowY(): Integer;
-var
-  __skreturn: Integer;
-begin
-  __skreturn := __sklib__window_y();
   result := __skadapter__to_int(__skreturn);
 end;
 function WindowY(const name: String): Integer;

@@ -1923,6 +1923,12 @@ sklib.__sklib__take_screenshot__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__take_screenshot__string_ref.restype = None
 sklib.__sklib__take_screenshot__window__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__take_screenshot__window__string_ref.restype = None
+sklib.__sklib__bitmap_bounding_circle__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__bitmap_bounding_circle__bitmap__point_2d_ref.restype = _sklib_circle
+sklib.__sklib__bitmap_bounding_rectangle__bitmap.argtypes = [ c_void_p ]
+sklib.__sklib__bitmap_bounding_rectangle__bitmap.restype = _sklib_rectangle
+sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
+sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float.restype = _sklib_rectangle
 sklib.__sklib__bitmap_cell_center__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_center__bitmap.restype = _sklib_point_2d
 sklib.__sklib__bitmap_cell_circle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
@@ -1949,8 +1955,6 @@ sklib.__sklib__bitmap_cell_width__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_width__bitmap.restype = c_int
 sklib.__sklib__bitmap_center__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_center__bitmap.restype = _sklib_point_2d
-sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
-sklib.__sklib__bitmap_circle__bitmap__point_2d_ref.restype = _sklib_circle
 sklib.__sklib__bitmap_filename__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_filename__bitmap.restype = _sklib_string
 sklib.__sklib__bitmap_height__bitmap.argtypes = [ c_void_p ]
@@ -1961,10 +1965,6 @@ sklib.__sklib__bitmap_name__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_name__bitmap.restype = _sklib_string
 sklib.__sklib__bitmap_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__bitmap_named__string.restype = c_void_p
-sklib.__sklib__bitmap_rectangle__bitmap.argtypes = [ c_void_p ]
-sklib.__sklib__bitmap_rectangle__bitmap.restype = _sklib_rectangle
-sklib.__sklib__bitmap_rectangle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_rectangle__bitmap__float__float.restype = _sklib_rectangle
 sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.restype = _sklib_rectangle
 sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int.argtypes = [ c_void_p, c_int, c_int, c_int, c_int, c_int ]
@@ -3087,94 +3087,100 @@ sklib.__sklib__clear_window__window__color.argtypes = [ c_void_p, _sklib_color ]
 sklib.__sklib__clear_window__window__color.restype = None
 sklib.__sklib__close_all_windows.argtypes = [  ]
 sklib.__sklib__close_all_windows.restype = None
+sklib.__sklib__close_current_window.argtypes = [  ]
+sklib.__sklib__close_current_window.restype = None
 sklib.__sklib__close_window__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__close_window__string_ref.restype = None
-sklib.__sklib__close_window.argtypes = [  ]
-sklib.__sklib__close_window.restype = None
 sklib.__sklib__close_window__window.argtypes = [ c_void_p ]
 sklib.__sklib__close_window__window.restype = None
 sklib.__sklib__current_window.argtypes = [  ]
 sklib.__sklib__current_window.restype = c_void_p
+sklib.__sklib__current_window_has_border.argtypes = [  ]
+sklib.__sklib__current_window_has_border.restype = c_bool
+sklib.__sklib__current_window_height.argtypes = [  ]
+sklib.__sklib__current_window_height.restype = c_int
+sklib.__sklib__current_window_is_fullscreen.argtypes = [  ]
+sklib.__sklib__current_window_is_fullscreen.restype = c_bool
+sklib.__sklib__current_window_position.argtypes = [  ]
+sklib.__sklib__current_window_position.restype = _sklib_point_2d
+sklib.__sklib__current_window_toggle_border.argtypes = [  ]
+sklib.__sklib__current_window_toggle_border.restype = None
+sklib.__sklib__current_window_toggle_fullscreen.argtypes = [  ]
+sklib.__sklib__current_window_toggle_fullscreen.restype = None
+sklib.__sklib__current_window_width.argtypes = [  ]
+sklib.__sklib__current_window_width.restype = c_int
+sklib.__sklib__current_window_x.argtypes = [  ]
+sklib.__sklib__current_window_x.restype = c_int
+sklib.__sklib__current_window_y.argtypes = [  ]
+sklib.__sklib__current_window_y.restype = c_int
 sklib.__sklib__has_window__string.argtypes = [ _sklib_string ]
 sklib.__sklib__has_window__string.restype = c_bool
-sklib.__sklib__move_window__int__int.argtypes = [ c_int, c_int ]
-sklib.__sklib__move_window__int__int.restype = None
-sklib.__sklib__move_window__string_ref__int__int.argtypes = [ _sklib_string, c_int, c_int ]
-sklib.__sklib__move_window__string_ref__int__int.restype = None
-sklib.__sklib__move_window__window__int__int.argtypes = [ c_void_p, c_int, c_int ]
-sklib.__sklib__move_window__window__int__int.restype = None
+sklib.__sklib__is_current_window__window.argtypes = [ c_void_p ]
+sklib.__sklib__is_current_window__window.restype = c_bool
+sklib.__sklib__move_current_window_to__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__move_current_window_to__int__int.restype = None
+sklib.__sklib__move_window_to__string_ref__int__int.argtypes = [ _sklib_string, c_int, c_int ]
+sklib.__sklib__move_window_to__string_ref__int__int.restype = None
+sklib.__sklib__move_window_to__window__int__int.argtypes = [ c_void_p, c_int, c_int ]
+sklib.__sklib__move_window_to__window__int__int.restype = None
 sklib.__sklib__open_window__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
 sklib.__sklib__open_window__string__int__int.restype = c_void_p
 sklib.__sklib__refresh_window__window.argtypes = [ c_void_p ]
 sklib.__sklib__refresh_window__window.restype = None
-sklib.__sklib__resize_window__int__int.argtypes = [ c_int, c_int ]
-sklib.__sklib__resize_window__int__int.restype = None
+sklib.__sklib__resize_current_window__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__resize_current_window__int__int.restype = None
 sklib.__sklib__resize_window__window__int__int.argtypes = [ c_void_p, c_int, c_int ]
 sklib.__sklib__resize_window__window__int__int.restype = None
 sklib.__sklib__set_current_window__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__set_current_window__string_ref.restype = None
 sklib.__sklib__set_current_window__window.argtypes = [ c_void_p ]
 sklib.__sklib__set_current_window__window.restype = None
+sklib.__sklib__window_caption__window.argtypes = [ c_void_p ]
+sklib.__sklib__window_caption__window.restype = _sklib_string
 sklib.__sklib__window_close_requested__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_close_requested__string_ref.restype = c_bool
 sklib.__sklib__window_close_requested__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_close_requested__window.restype = c_bool
-sklib.__sklib__window_has_border.argtypes = [  ]
-sklib.__sklib__window_has_border.restype = c_bool
 sklib.__sklib__window_has_border__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_has_border__string_ref.restype = c_bool
 sklib.__sklib__window_has_border__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_has_border__window.restype = c_bool
-sklib.__sklib__window_height.argtypes = [  ]
-sklib.__sklib__window_height.restype = c_int
+sklib.__sklib__window_has_focus__window.argtypes = [ c_void_p ]
+sklib.__sklib__window_has_focus__window.restype = c_bool
 sklib.__sklib__window_height__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_height__string_ref.restype = c_int
 sklib.__sklib__window_height__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_height__window.restype = c_int
-sklib.__sklib__window_is_fullscreen.argtypes = [  ]
-sklib.__sklib__window_is_fullscreen.restype = c_bool
 sklib.__sklib__window_is_fullscreen__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_is_fullscreen__string_ref.restype = c_bool
 sklib.__sklib__window_is_fullscreen__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_is_fullscreen__window.restype = c_bool
 sklib.__sklib__window_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__window_named__string.restype = c_void_p
-sklib.__sklib__window_position.argtypes = [  ]
-sklib.__sklib__window_position.restype = _sklib_point_2d
 sklib.__sklib__window_position__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_position__string_ref.restype = _sklib_point_2d
 sklib.__sklib__window_position__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_position__window.restype = _sklib_point_2d
 sklib.__sklib__window_set_icon__window__bitmap.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__window_set_icon__window__bitmap.restype = None
-sklib.__sklib__window_toggle_border.argtypes = [  ]
-sklib.__sklib__window_toggle_border.restype = None
 sklib.__sklib__window_toggle_border__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_toggle_border__string_ref.restype = None
 sklib.__sklib__window_toggle_border__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_toggle_border__window.restype = None
-sklib.__sklib__window_toggle_fullscreen.argtypes = [  ]
-sklib.__sklib__window_toggle_fullscreen.restype = None
 sklib.__sklib__window_toggle_fullscreen__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_toggle_fullscreen__string_ref.restype = None
 sklib.__sklib__window_toggle_fullscreen__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_toggle_fullscreen__window.restype = None
-sklib.__sklib__window_width.argtypes = [  ]
-sklib.__sklib__window_width.restype = c_int
 sklib.__sklib__window_width__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_width__string_ref.restype = c_int
 sklib.__sklib__window_width__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_width__window.restype = c_int
 sklib.__sklib__window_with_focus.argtypes = [  ]
 sklib.__sklib__window_with_focus.restype = c_void_p
-sklib.__sklib__window_x.argtypes = [  ]
-sklib.__sklib__window_x.restype = c_int
 sklib.__sklib__window_x__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_x__string_ref.restype = c_int
 sklib.__sklib__window_x__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_x__window.restype = c_int
-sklib.__sklib__window_y.argtypes = [  ]
-sklib.__sklib__window_y.restype = c_int
 sklib.__sklib__window_y__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__window_y__string_ref.restype = c_int
 sklib.__sklib__window_y__window.argtypes = [ c_void_p ]
@@ -4599,6 +4605,21 @@ def take_screenshot_of_window ( wind, basename ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skparam__basename = __skadapter__to_sklib_string(basename)
     sklib.__sklib__take_screenshot__window__string_ref(__skparam__wind, __skparam__basename)
+def bitmap_bounding_circle ( bmp, pt ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skreturn = sklib.__sklib__bitmap_bounding_circle__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt)
+    return __skadapter__to_circle(__skreturn)
+def bitmap_bounding_rectangle ( bmp ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skreturn = sklib.__sklib__bitmap_bounding_rectangle__bitmap(__skparam__bmp)
+    return __skadapter__to_rectangle(__skreturn)
+def bitmap_bounding_rectangle_at_location ( bmp, x, y ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skreturn = sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    return __skadapter__to_rectangle(__skreturn)
 def bitmap_cell_center ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skreturn = sklib.__sklib__bitmap_cell_center__bitmap(__skparam__bmp)
@@ -4658,11 +4679,6 @@ def bitmap_center ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skreturn = sklib.__sklib__bitmap_center__bitmap(__skparam__bmp)
     return __skadapter__to_point_2d(__skreturn)
-def bitmap_circle ( bmp, pt ):
-    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
-    __skreturn = sklib.__sklib__bitmap_circle__bitmap__point_2d_ref(__skparam__bmp, __skparam__pt)
-    return __skadapter__to_circle(__skreturn)
 def bitmap_filename ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skreturn = sklib.__sklib__bitmap_filename__bitmap(__skparam__bmp)
@@ -4683,16 +4699,6 @@ def bitmap_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__bitmap_named__string(__skparam__name)
     return __skadapter__to_bitmap(__skreturn)
-def bitmap_rectangle ( bmp ):
-    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skreturn = sklib.__sklib__bitmap_rectangle__bitmap(__skparam__bmp)
-    return __skadapter__to_rectangle(__skreturn)
-def bitmap_rectangle_at_location ( bmp, x, y ):
-    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__bitmap_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
-    return __skadapter__to_rectangle(__skreturn)
 def bitmap_rectangle_of_cell ( src, cell ):
     __skparam__src = __skadapter__to_sklib_bitmap(src)
     __skparam__cell = __skadapter__to_sklib_int(cell)
@@ -7133,35 +7139,64 @@ def clear_window ( wind, clr ):
     sklib.__sklib__clear_window__window__color(__skparam__wind, __skparam__clr)
 def close_all_windows (  ):
     sklib.__sklib__close_all_windows()
+def close_current_window (  ):
+    sklib.__sklib__close_current_window()
 def close_window_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__close_window__string_ref(__skparam__name)
-def close_window_current (  ):
-    sklib.__sklib__close_window()
 def close_window ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     sklib.__sklib__close_window__window(__skparam__wind)
 def current_window (  ):
     __skreturn = sklib.__sklib__current_window()
     return __skadapter__to_window(__skreturn)
+def current_window_has_border (  ):
+    __skreturn = sklib.__sklib__current_window_has_border()
+    return __skadapter__to_bool(__skreturn)
+def current_window_height (  ):
+    __skreturn = sklib.__sklib__current_window_height()
+    return __skadapter__to_int(__skreturn)
+def current_window_is_fullscreen (  ):
+    __skreturn = sklib.__sklib__current_window_is_fullscreen()
+    return __skadapter__to_bool(__skreturn)
+def current_window_position (  ):
+    __skreturn = sklib.__sklib__current_window_position()
+    return __skadapter__to_point_2d(__skreturn)
+def current_window_toggle_border (  ):
+    sklib.__sklib__current_window_toggle_border()
+def current_window_toggle_fullscreen (  ):
+    sklib.__sklib__current_window_toggle_fullscreen()
+def current_window_width (  ):
+    __skreturn = sklib.__sklib__current_window_width()
+    return __skadapter__to_int(__skreturn)
+def current_window_x (  ):
+    __skreturn = sklib.__sklib__current_window_x()
+    return __skadapter__to_int(__skreturn)
+def current_window_y (  ):
+    __skreturn = sklib.__sklib__current_window_y()
+    return __skadapter__to_int(__skreturn)
 def has_window ( caption ):
     __skparam__caption = __skadapter__to_sklib_string(caption)
     __skreturn = sklib.__sklib__has_window__string(__skparam__caption)
     return __skadapter__to_bool(__skreturn)
-def move_window_current ( x, y ):
+def is_current_window ( wind ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skreturn = sklib.__sklib__is_current_window__window(__skparam__wind)
+    return __skadapter__to_bool(__skreturn)
+def move_current_window_to ( x, y ):
     __skparam__x = __skadapter__to_sklib_int(x)
     __skparam__y = __skadapter__to_sklib_int(y)
-    sklib.__sklib__move_window__int__int(__skparam__x, __skparam__y)
-def move_window_named ( name, x, y ):
+    sklib.__sklib__move_current_window_to__int__int(__skparam__x, __skparam__y)
+def move_window_to_named ( name, x, y ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__x = __skadapter__to_sklib_int(x)
     __skparam__y = __skadapter__to_sklib_int(y)
-    sklib.__sklib__move_window__string_ref__int__int(__skparam__name, __skparam__x, __skparam__y)
-def move_window ( wind, x, y ):
+    sklib.__sklib__move_window_to__string_ref__int__int(__skparam__name, __skparam__x, __skparam__y)
+def move_window_to ( wind, x, y ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skparam__x = __skadapter__to_sklib_int(x)
     __skparam__y = __skadapter__to_sklib_int(y)
-    sklib.__sklib__move_window__window__int__int(__skparam__wind, __skparam__x, __skparam__y)
+    sklib.__sklib__move_window_to__window__int__int(__skparam__wind, __skparam__x, __skparam__y)
 def open_window ( caption, width, height ):
     __skparam__caption = __skadapter__to_sklib_string(caption)
     __skparam__width = __skadapter__to_sklib_int(width)
@@ -7171,10 +7206,10 @@ def open_window ( caption, width, height ):
 def refresh_window ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     sklib.__sklib__refresh_window__window(__skparam__wind)
-def resize_window_current ( width, height ):
+def resize_current_window ( width, height ):
     __skparam__width = __skadapter__to_sklib_int(width)
     __skparam__height = __skadapter__to_sklib_int(height)
-    sklib.__sklib__resize_window__int__int(__skparam__width, __skparam__height)
+    sklib.__sklib__resize_current_window__int__int(__skparam__width, __skparam__height)
 def resize_window ( wnd, width, height ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     __skparam__width = __skadapter__to_sklib_int(width)
@@ -7186,6 +7221,10 @@ def set_current_window_named ( name ):
 def set_current_window ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     sklib.__sklib__set_current_window__window(__skparam__wind)
+def window_caption ( wind ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skreturn = sklib.__sklib__window_caption__window(__skparam__wind)
+    return __skadapter__to_string(__skreturn)
 def window_close_requested_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_close_requested__string_ref(__skparam__name)
@@ -7193,9 +7232,6 @@ def window_close_requested_named ( name ):
 def window_close_requested ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skreturn = sklib.__sklib__window_close_requested__window(__skparam__wind)
-    return __skadapter__to_bool(__skreturn)
-def window_has_border_current (  ):
-    __skreturn = sklib.__sklib__window_has_border()
     return __skadapter__to_bool(__skreturn)
 def window_has_border_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -7205,9 +7241,10 @@ def window_has_border ( wnd ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     __skreturn = sklib.__sklib__window_has_border__window(__skparam__wnd)
     return __skadapter__to_bool(__skreturn)
-def window_height_current (  ):
-    __skreturn = sklib.__sklib__window_height()
-    return __skadapter__to_int(__skreturn)
+def window_has_focus ( wind ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skreturn = sklib.__sklib__window_has_focus__window(__skparam__wind)
+    return __skadapter__to_bool(__skreturn)
 def window_height_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_height__string_ref(__skparam__name)
@@ -7216,9 +7253,6 @@ def window_height ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skreturn = sklib.__sklib__window_height__window(__skparam__wind)
     return __skadapter__to_int(__skreturn)
-def window_is_fullscreen_current (  ):
-    __skreturn = sklib.__sklib__window_is_fullscreen()
-    return __skadapter__to_bool(__skreturn)
 def window_is_fullscreen_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_is_fullscreen__string_ref(__skparam__name)
@@ -7231,9 +7265,6 @@ def window_named ( caption ):
     __skparam__caption = __skadapter__to_sklib_string(caption)
     __skreturn = sklib.__sklib__window_named__string(__skparam__caption)
     return __skadapter__to_window(__skreturn)
-def window_position_current (  ):
-    __skreturn = sklib.__sklib__window_position()
-    return __skadapter__to_point_2d(__skreturn)
 def window_position_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_position__string_ref(__skparam__name)
@@ -7246,25 +7277,18 @@ def window_set_icon ( wind, bmp ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     sklib.__sklib__window_set_icon__window__bitmap(__skparam__wind, __skparam__bmp)
-def window_toggle_border_current (  ):
-    sklib.__sklib__window_toggle_border()
 def window_toggle_border_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__window_toggle_border__string_ref(__skparam__name)
 def window_toggle_border ( wnd ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     sklib.__sklib__window_toggle_border__window(__skparam__wnd)
-def window_toggle_fullscreen_current (  ):
-    sklib.__sklib__window_toggle_fullscreen()
 def window_toggle_fullscreen_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__window_toggle_fullscreen__string_ref(__skparam__name)
 def window_toggle_fullscreen ( wnd ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     sklib.__sklib__window_toggle_fullscreen__window(__skparam__wnd)
-def window_width_current (  ):
-    __skreturn = sklib.__sklib__window_width()
-    return __skadapter__to_int(__skreturn)
 def window_width_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_width__string_ref(__skparam__name)
@@ -7276,9 +7300,6 @@ def window_width ( wind ):
 def window_with_focus (  ):
     __skreturn = sklib.__sklib__window_with_focus()
     return __skadapter__to_window(__skreturn)
-def window_x_current (  ):
-    __skreturn = sklib.__sklib__window_x()
-    return __skadapter__to_int(__skreturn)
 def window_x_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__window_x__string_ref(__skparam__name)
@@ -7286,9 +7307,6 @@ def window_x_named ( name ):
 def window_x ( wnd ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     __skreturn = sklib.__sklib__window_x__window(__skparam__wnd)
-    return __skadapter__to_int(__skreturn)
-def window_y_current (  ):
-    __skreturn = sklib.__sklib__window_y()
     return __skadapter__to_int(__skreturn)
 def window_y_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)

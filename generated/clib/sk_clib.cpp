@@ -1784,6 +1784,24 @@ void __sklib__take_screenshot__window__string_ref(__sklib_window wind, const __s
     string __skparam__basename = __sklib__to_string(basename);
     take_screenshot(__skparam__wind, __skparam__basename);
 }
+__sklib_circle __sklib__bitmap_bounding_circle__bitmap__point_2d_ref(__sklib_bitmap bmp, const __sklib_point_2d pt) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    circle __skreturn = bitmap_bounding_circle(__skparam__bmp, __skparam__pt);
+    return __sklib__to_sklib_circle(__skreturn);
+}
+__sklib_rectangle __sklib__bitmap_bounding_rectangle__bitmap(__sklib_bitmap bmp) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    rectangle __skreturn = bitmap_bounding_rectangle(__skparam__bmp);
+    return __sklib__to_sklib_rectangle(__skreturn);
+}
+__sklib_rectangle __sklib__bitmap_bounding_rectangle__bitmap__float__float(__sklib_bitmap bmp, float x, float y) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    float __skparam__x = __sklib__to_float(x);
+    float __skparam__y = __sklib__to_float(y);
+    rectangle __skreturn = bitmap_bounding_rectangle(__skparam__bmp, __skparam__x, __skparam__y);
+    return __sklib__to_sklib_rectangle(__skreturn);
+}
 __sklib_point_2d __sklib__bitmap_cell_center__bitmap(__sklib_bitmap bmp) {
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     point_2d __skreturn = bitmap_cell_center(__skparam__bmp);
@@ -1856,12 +1874,6 @@ __sklib_point_2d __sklib__bitmap_center__bitmap(__sklib_bitmap bmp) {
     point_2d __skreturn = bitmap_center(__skparam__bmp);
     return __sklib__to_sklib_point_2d(__skreturn);
 }
-__sklib_circle __sklib__bitmap_circle__bitmap__point_2d_ref(__sklib_bitmap bmp, const __sklib_point_2d pt) {
-    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
-    point_2d __skparam__pt = __sklib__to_point_2d(pt);
-    circle __skreturn = bitmap_circle(__skparam__bmp, __skparam__pt);
-    return __sklib__to_sklib_circle(__skreturn);
-}
 __sklib_string __sklib__bitmap_filename__bitmap(__sklib_bitmap bmp) {
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     string __skreturn = bitmap_filename(__skparam__bmp);
@@ -1886,18 +1898,6 @@ __sklib_bitmap __sklib__bitmap_named__string(__sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     bitmap __skreturn = bitmap_named(__skparam__name);
     return __sklib__to_sklib_bitmap(__skreturn);
-}
-__sklib_rectangle __sklib__bitmap_rectangle__bitmap(__sklib_bitmap bmp) {
-    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
-    rectangle __skreturn = bitmap_rectangle(__skparam__bmp);
-    return __sklib__to_sklib_rectangle(__skreturn);
-}
-__sklib_rectangle __sklib__bitmap_rectangle__bitmap__float__float(__sklib_bitmap bmp, float x, float y) {
-    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
-    float __skparam__x = __sklib__to_float(x);
-    float __skparam__y = __sklib__to_float(y);
-    rectangle __skreturn = bitmap_rectangle(__skparam__bmp, __skparam__x, __skparam__y);
-    return __sklib__to_sklib_rectangle(__skreturn);
 }
 __sklib_rectangle __sklib__bitmap_rectangle_of_cell__bitmap__int(__sklib_bitmap src, int cell) {
     bitmap __skparam__src = __sklib__to_bitmap(src);
@@ -4900,12 +4900,12 @@ void __sklib__clear_window__window__color(__sklib_window wind, __sklib_color clr
 void __sklib__close_all_windows() {
     close_all_windows();
 }
+void __sklib__close_current_window() {
+    close_current_window();
+}
 void __sklib__close_window__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     close_window(__skparam__name);
-}
-void __sklib__close_window() {
-    close_window();
 }
 void __sklib__close_window__window(__sklib_window wind) {
     window __skparam__wind = __sklib__to_window(wind);
@@ -4915,27 +4915,66 @@ __sklib_window __sklib__current_window() {
     window __skreturn = current_window();
     return __sklib__to_sklib_window(__skreturn);
 }
+int __sklib__current_window_has_border() {
+    bool __skreturn = current_window_has_border();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__current_window_height() {
+    int __skreturn = current_window_height();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__current_window_is_fullscreen() {
+    bool __skreturn = current_window_is_fullscreen();
+    return __sklib__to_int(__skreturn);
+}
+__sklib_point_2d __sklib__current_window_position() {
+    point_2d __skreturn = current_window_position();
+    return __sklib__to_sklib_point_2d(__skreturn);
+}
+void __sklib__current_window_toggle_border() {
+    current_window_toggle_border();
+}
+void __sklib__current_window_toggle_fullscreen() {
+    current_window_toggle_fullscreen();
+}
+int __sklib__current_window_width() {
+    int __skreturn = current_window_width();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__current_window_x() {
+    int __skreturn = current_window_x();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__current_window_y() {
+    int __skreturn = current_window_y();
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__has_window__string(__sklib_string caption) {
     string __skparam__caption = __sklib__to_string(caption);
     bool __skreturn = has_window(__skparam__caption);
     return __sklib__to_int(__skreturn);
 }
-void __sklib__move_window__int__int(int x, int y) {
+int __sklib__is_current_window__window(__sklib_window wind) {
+    window __skparam__wind = __sklib__to_window(wind);
+    bool __skreturn = is_current_window(__skparam__wind);
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__move_current_window_to__int__int(int x, int y) {
     int __skparam__x = __sklib__to_int(x);
     int __skparam__y = __sklib__to_int(y);
-    move_window(__skparam__x, __skparam__y);
+    move_current_window_to(__skparam__x, __skparam__y);
 }
-void __sklib__move_window__string_ref__int__int(const __sklib_string name, int x, int y) {
+void __sklib__move_window_to__string_ref__int__int(const __sklib_string name, int x, int y) {
     string __skparam__name = __sklib__to_string(name);
     int __skparam__x = __sklib__to_int(x);
     int __skparam__y = __sklib__to_int(y);
-    move_window(__skparam__name, __skparam__x, __skparam__y);
+    move_window_to(__skparam__name, __skparam__x, __skparam__y);
 }
-void __sklib__move_window__window__int__int(__sklib_window wind, int x, int y) {
+void __sklib__move_window_to__window__int__int(__sklib_window wind, int x, int y) {
     window __skparam__wind = __sklib__to_window(wind);
     int __skparam__x = __sklib__to_int(x);
     int __skparam__y = __sklib__to_int(y);
-    move_window(__skparam__wind, __skparam__x, __skparam__y);
+    move_window_to(__skparam__wind, __skparam__x, __skparam__y);
 }
 __sklib_window __sklib__open_window__string__int__int(__sklib_string caption, int width, int height) {
     string __skparam__caption = __sklib__to_string(caption);
@@ -4948,10 +4987,10 @@ void __sklib__refresh_window__window(__sklib_window wind) {
     window __skparam__wind = __sklib__to_window(wind);
     refresh_window(__skparam__wind);
 }
-void __sklib__resize_window__int__int(int width, int height) {
+void __sklib__resize_current_window__int__int(int width, int height) {
     int __skparam__width = __sklib__to_int(width);
     int __skparam__height = __sklib__to_int(height);
-    resize_window(__skparam__width, __skparam__height);
+    resize_current_window(__skparam__width, __skparam__height);
 }
 void __sklib__resize_window__window__int__int(__sklib_window wnd, int width, int height) {
     window __skparam__wnd = __sklib__to_window(wnd);
@@ -4967,6 +5006,11 @@ void __sklib__set_current_window__window(__sklib_window wind) {
     window __skparam__wind = __sklib__to_window(wind);
     set_current_window(__skparam__wind);
 }
+__sklib_string __sklib__window_caption__window(__sklib_window wind) {
+    window __skparam__wind = __sklib__to_window(wind);
+    string __skreturn = window_caption(__skparam__wind);
+    return __sklib__to_sklib_string(__skreturn);
+}
 int __sklib__window_close_requested__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     bool __skreturn = window_close_requested(__skparam__name);
@@ -4975,10 +5019,6 @@ int __sklib__window_close_requested__string_ref(const __sklib_string name) {
 int __sklib__window_close_requested__window(__sklib_window wind) {
     window __skparam__wind = __sklib__to_window(wind);
     bool __skreturn = window_close_requested(__skparam__wind);
-    return __sklib__to_int(__skreturn);
-}
-int __sklib__window_has_border() {
-    bool __skreturn = window_has_border();
     return __sklib__to_int(__skreturn);
 }
 int __sklib__window_has_border__string_ref(const __sklib_string name) {
@@ -4991,8 +5031,9 @@ int __sklib__window_has_border__window(__sklib_window wnd) {
     bool __skreturn = window_has_border(__skparam__wnd);
     return __sklib__to_int(__skreturn);
 }
-int __sklib__window_height() {
-    int __skreturn = window_height();
+int __sklib__window_has_focus__window(__sklib_window wind) {
+    window __skparam__wind = __sklib__to_window(wind);
+    bool __skreturn = window_has_focus(__skparam__wind);
     return __sklib__to_int(__skreturn);
 }
 int __sklib__window_height__string_ref(const __sklib_string name) {
@@ -5003,10 +5044,6 @@ int __sklib__window_height__string_ref(const __sklib_string name) {
 int __sklib__window_height__window(__sklib_window wind) {
     window __skparam__wind = __sklib__to_window(wind);
     int __skreturn = window_height(__skparam__wind);
-    return __sklib__to_int(__skreturn);
-}
-int __sklib__window_is_fullscreen() {
-    bool __skreturn = window_is_fullscreen();
     return __sklib__to_int(__skreturn);
 }
 int __sklib__window_is_fullscreen__string_ref(const __sklib_string name) {
@@ -5024,10 +5061,6 @@ __sklib_window __sklib__window_named__string(__sklib_string caption) {
     window __skreturn = window_named(__skparam__caption);
     return __sklib__to_sklib_window(__skreturn);
 }
-__sklib_point_2d __sklib__window_position() {
-    point_2d __skreturn = window_position();
-    return __sklib__to_sklib_point_2d(__skreturn);
-}
 __sklib_point_2d __sklib__window_position__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     point_2d __skreturn = window_position(__skparam__name);
@@ -5043,9 +5076,6 @@ void __sklib__window_set_icon__window__bitmap(__sklib_window wind, __sklib_bitma
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     window_set_icon(__skparam__wind, __skparam__bmp);
 }
-void __sklib__window_toggle_border() {
-    window_toggle_border();
-}
 void __sklib__window_toggle_border__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     window_toggle_border(__skparam__name);
@@ -5054,9 +5084,6 @@ void __sklib__window_toggle_border__window(__sklib_window wnd) {
     window __skparam__wnd = __sklib__to_window(wnd);
     window_toggle_border(__skparam__wnd);
 }
-void __sklib__window_toggle_fullscreen() {
-    window_toggle_fullscreen();
-}
 void __sklib__window_toggle_fullscreen__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     window_toggle_fullscreen(__skparam__name);
@@ -5064,10 +5091,6 @@ void __sklib__window_toggle_fullscreen__string_ref(const __sklib_string name) {
 void __sklib__window_toggle_fullscreen__window(__sklib_window wnd) {
     window __skparam__wnd = __sklib__to_window(wnd);
     window_toggle_fullscreen(__skparam__wnd);
-}
-int __sklib__window_width() {
-    int __skreturn = window_width();
-    return __sklib__to_int(__skreturn);
 }
 int __sklib__window_width__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
@@ -5083,10 +5106,6 @@ __sklib_window __sklib__window_with_focus() {
     window __skreturn = window_with_focus();
     return __sklib__to_sklib_window(__skreturn);
 }
-int __sklib__window_x() {
-    int __skreturn = window_x();
-    return __sklib__to_int(__skreturn);
-}
 int __sklib__window_x__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     int __skreturn = window_x(__skparam__name);
@@ -5095,10 +5114,6 @@ int __sklib__window_x__string_ref(const __sklib_string name) {
 int __sklib__window_x__window(__sklib_window wnd) {
     window __skparam__wnd = __sklib__to_window(wnd);
     int __skreturn = window_x(__skparam__wnd);
-    return __sklib__to_int(__skreturn);
-}
-int __sklib__window_y() {
-    int __skreturn = window_y();
     return __sklib__to_int(__skreturn);
 }
 int __sklib__window_y__string_ref(const __sklib_string name) {
