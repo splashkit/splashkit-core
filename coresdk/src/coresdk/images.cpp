@@ -320,12 +320,12 @@ namespace splashkit_lib
         return result;
     }
 
-    rectangle bitmap_rectangle(bitmap bmp)
+    rectangle bitmap_bounding_rectangle(bitmap bmp)
     {
-        return bitmap_rectangle(bmp, 0, 0);
+        return bitmap_bounding_rectangle(bmp, 0, 0);
     }
 
-    rectangle bitmap_rectangle(bitmap bmp, float x, float y)
+    rectangle bitmap_bounding_rectangle(bitmap bmp, float x, float y)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR) )
             return rectangle_from(0, 0, 0, 0);
@@ -355,7 +355,7 @@ namespace splashkit_lib
         return bitmap_cell_circle(bmp, point_at(x, y), 1);
     }
 
-    circle bitmap_circle(bitmap bmp, const point_2d &pt)
+    circle bitmap_bounding_circle(bitmap bmp, const point_2d &pt)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
         {

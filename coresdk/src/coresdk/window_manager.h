@@ -114,6 +114,17 @@ namespace splashkit_lib
      * @return The window the user has selected
      */
     window window_with_focus();
+    
+    /**
+     * Indicates if the window has focus.
+     * 
+     * @param wind The window
+     * @return True if the window has the user's focus
+     *
+     * @attribute class window
+     * @attribute getter has_focus
+     */
+    bool window_has_focus(window wind);
 
     /**
      * Returns the window that you are currently interacting with. This will be

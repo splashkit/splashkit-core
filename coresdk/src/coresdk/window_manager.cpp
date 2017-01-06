@@ -198,6 +198,17 @@ namespace splashkit_lib
 
         return current_window();
     }
+    
+    bool window_has_focus(window wind)
+    {
+        if ( INVALID_PTR(wind, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to check window focus for an invalid window value";
+            return false;
+        }
+        
+        return sk_get_window_event_data(&wind->image.surface).has_focus;
+    }
 
     window current_window()
     {

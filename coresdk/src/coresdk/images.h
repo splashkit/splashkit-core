@@ -27,6 +27,9 @@ namespace splashkit_lib
      * @param  name     The name of the bitmap resource in SplashKit
      * @param  filename The filename to load
      * @return          The loaded bitmap
+     *
+     * @attribute class bitmap
+     * @attribute constructor true
      */
     bitmap load_bitmap(string name, string filename);
 
@@ -111,7 +114,6 @@ namespace splashkit_lib
      * @param y     the y location which represents where the bitmap
      *              will be drawn
      *
-     * @attribute method  draw_bitmap
      * @attribute suffix  named
      */
     void draw_bitmap(string name, float x, float y);
@@ -128,7 +130,6 @@ namespace splashkit_lib
      * @param opts  the `drawing_options` which provide extra information
      *              for how to draw the `bitmap`
      *
-     * @attribute method  draw_bitmap
      * @attribute suffix  named_with_options
      */
     void draw_bitmap(string name, float x, float y, drawing_options opts);
@@ -143,6 +144,9 @@ namespace splashkit_lib
      * @param  width  The width of the created bitmap
      * @param  height The height of the created bitmap
      * @return        A new transparent bitmap
+     *
+     * @attribute class bitmap
+     * @attribute constructor true
      */
     bitmap create_bitmap(string name, int width, int height);
 
@@ -152,6 +156,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to get the filename from.
      * @returns     The file name of the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter filename
      */
     string bitmap_filename(bitmap bmp);
 
@@ -161,6 +168,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to get the name from.
      * @returns     The name of the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter name
      */
     string bitmap_name(bitmap bmp);
 
@@ -170,6 +180,9 @@ namespace splashkit_lib
      *
      * @param bmp The bitmap
      * @param clr The new color for the surface of the bitmap
+     *
+     * @attribute class bitmap
+     * @attribute method clear
      */
     void clear_bitmap(bitmap bmp, color clr);
 
@@ -189,6 +202,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap
      * @return     The width of the bitmap
+     *
+     * @attribute class bitmap
+     * @attribute getter width
      */
     int bitmap_width(bitmap bmp);
 
@@ -208,6 +224,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to get the details from.
      * @returns     The height of the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter height
      */
     int bitmap_height(bitmap bmp);
 
@@ -228,6 +247,9 @@ namespace splashkit_lib
      *
      * @param bmp   The bitmap to get the center of.
      * @returns     A point in the center of the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter center
      */
     point_2d bitmap_center(bitmap bmp);
 
@@ -236,6 +258,9 @@ namespace splashkit_lib
      *
      * @param bmp   The bitmap to get the details from.
      * @returns     The width of each cells in bmp
+     *
+     * @attribute class bitmap
+     * @attribute getter width
      */
     int bitmap_cell_width(bitmap bmp);
 
@@ -244,6 +269,9 @@ namespace splashkit_lib
      *
      * @param bmp   The bitmap to get the details from.
      * @returns     The height of each cells in bmp
+     *
+     * @attribute class bitmap
+     * @attribute getter cell_height
      */
     int bitmap_cell_height(bitmap bmp);
 
@@ -253,6 +281,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to get the details from.
      * @returns     The number of rows of cells in the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter cell_rows
      */
     int bitmap_cell_rows(bitmap bmp);
 
@@ -262,6 +293,9 @@ namespace splashkit_lib
      *
      * @param bmp   The bitmap to get the center of.
      * @returns     A point in the center of a cell for this bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter cell_center
      */
     point_2d bitmap_cell_center(bitmap bmp);
 
@@ -272,6 +306,9 @@ namespace splashkit_lib
      * @param src   The bitmap with the cell details.
      * @param cell  The index of the cell
      * @returns     The offset needed to get to the cell from the top left of the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute method cell_offset
      */
     vector_2d bitmap_cell_offset(bitmap src, int cell);
 
@@ -284,6 +321,9 @@ namespace splashkit_lib
      * @returns     A rectangle at pt, with width and height from the bitmap's cell details.
      *
      * @attribute suffix  at_point
+     *
+     * @attribute class bitmap
+     * @attribute method cell_rectangle
      */
     rectangle bitmap_cell_rectangle(bitmap src, const point_2d &pt);
 
@@ -292,6 +332,9 @@ namespace splashkit_lib
      *
      * @param src   The bitmap to get the details from
      * @returns     A rectangle with width and height from the bitmap's cell details.
+     *
+     * @attribute class bitmap
+     * @attribute method cell_rectangle
      */
     rectangle bitmap_cell_rectangle(bitmap src);
 
@@ -305,6 +348,9 @@ namespace splashkit_lib
      * @returns     A circle that will encompass the bitmap cell.
      *
      * @attribute suffix  at_point_with_scale
+     *
+     * @attribute class bitmap
+     * @attribute method cell_circle
      */
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
 
@@ -317,6 +363,9 @@ namespace splashkit_lib
      * @returns     A circle that will encompass the bitmap cell.
      *
      * @attribute suffix  at_point
+     *
+     * @attribute class bitmap
+     * @attribute method cell_circle
      */
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt);
 
@@ -328,6 +377,9 @@ namespace splashkit_lib
      * @param x     The the x location of the bitmap.
      * @param y     The the y location of the bitmap.
      * @returns     A circle that will encompass the bitmap cell.
+     *
+     * @attribute class bitmap
+     * @attribute method cell_circle
      */
     circle bitmap_cell_circle(bitmap bmp, float x, float y);
 
@@ -337,8 +389,11 @@ namespace splashkit_lib
      * @param  bmp The bitmap to encompass.
      * @param  pt  The point where the bitmap is located.
      * @returns     A circle that surrounds the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute method bounding_circle
      */
-    circle bitmap_circle(bitmap bmp, const point_2d &pt);
+    circle bitmap_bounding_circle(bitmap bmp, const point_2d &pt);
 
     /**
      * Returns the number of cell columns in the bitmap.
@@ -346,6 +401,9 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap to check
      * @returns     The number of cell columns
+     *
+     * @attribute class bitmap
+     * @attribute getter cell_columns
      */
     int bitmap_cell_columns(bitmap bmp);
 
@@ -356,6 +414,9 @@ namespace splashkit_lib
      * @param  src  The bitmap
      * @param  cell The cell
      * @return      The area of the cell within the bitmap
+     *
+     * @attribute class bitmap
+     * @attribute method rectangle_of_cell
      */
     rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 
@@ -364,8 +425,11 @@ namespace splashkit_lib
      *
      * @param  bmp The bitmap
      * @return     A rectangle with the same size as the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute method bounding_rectangle
      */
-    rectangle bitmap_rectangle(bitmap bmp);
+    rectangle bitmap_bounding_rectangle(bitmap bmp);
 
     /**
      * Returns a rectangle that is the same size as the bitmap and is located at
@@ -379,8 +443,11 @@ namespace splashkit_lib
      *             indicated location.
      *
      * @attribute suffix  at_location
+     *
+     * @attribute class bitmap
+     * @attribute method bounding_rectangle
      */
-    rectangle bitmap_rectangle(bitmap bmp, float x, float y);
+    rectangle bitmap_bounding_rectangle(bitmap bmp, float x, float y);
 
     /**
      * Initialise the bitmap cell details. This allows parts of the bitmap to be
@@ -393,6 +460,9 @@ namespace splashkit_lib
      * @param rows    The number of cell rows within the bitmap
      * @param count   The total number of cells, may be fewer than columns *
      *                rows
+     *
+     * @attribute class bitmap
+     * @attribute method set_cell_details
      */
     void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
 
@@ -401,6 +471,9 @@ namespace splashkit_lib
      *
      * @param bmp   The bitmap to check.
      * @returns     The number of individual cells within the bitmap.
+     *
+     * @attribute class bitmap
+     * @attribute getter cell_count
      */
     int bitmap_cell_count(bitmap bmp);
 
@@ -411,6 +484,9 @@ namespace splashkit_lib
      * @param x     The x coordinate within the bitmap to check
      * @param y     The y coordinate within the bitmap to check
      * @returns     True if the pixel at that point in the bitmap is drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method pixel_drawn_at_point
      */
     bool pixel_drawn_at_point(bitmap bmp, float x, float y);
 
@@ -425,6 +501,9 @@ namespace splashkit_lib
      *              drawn.
      *
      * @attribute suffix  in_cell
+     *
+     * @attribute class bitmap
+     * @attribute method pixel_drawn_at_point
      */
     bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
 
@@ -436,6 +515,9 @@ namespace splashkit_lib
      * @returns     True if the pixel at that point in the bitmap is drawn.
      *
      * @attribute suffix  pt
+     *
+     * @attribute class bitmap
+     * @attribute method pixel_drawn_at_point
      */
     bool pixel_drawn_at_point(bitmap bmp, const point_2d &pt);
 
@@ -449,6 +531,9 @@ namespace splashkit_lib
      *              drawn.
      *
      * @attribute suffix  in_cell_pt
+     *
+     * @attribute class bitmap
+     * @attribute method pixel_drawn_at_point_in_cell
      */
     bool pixel_drawn_at_point(bitmap bmp, int cell, const point_2d &pt);
 }
