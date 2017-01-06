@@ -163,7 +163,7 @@ namespace splashkit_lib
         close_window(window_named(name));
     }
 
-    void close_window()
+    void close_current_window()
     {
         close_window(_current_window);
     }
@@ -219,6 +219,11 @@ namespace splashkit_lib
     {
         set_current_window(window_named(name));
     }
+    
+    bool is_current_window(window wind)
+    {
+        return wind == _current_window;
+    }
 
     bool window_close_requested(window wind)
     {
@@ -252,7 +257,7 @@ namespace splashkit_lib
         return window_width(window_named(name));
     }
 
-    int window_width()
+    int current_window_width()
     {
         return window_width(_current_window);
     }
@@ -273,7 +278,7 @@ namespace splashkit_lib
         return window_height(window_named(name));
     }
 
-    int window_height()
+    int current_window_height()
     {
         return window_height(_current_window);
     }
@@ -289,12 +294,12 @@ namespace splashkit_lib
         sk_resize(&wnd->image.surface, width, height);
     }
 
-    void resize_window(int width, int height)
+    void resize_current_window(int width, int height)
     {
         resize_window(_current_window, width, height);
     }
 
-    void move_window(window wind, int x, int y)
+    void move_window_to(window wind, int x, int y)
     {
         if ( INVALID_PTR(wind, WINDOW_PTR))
         {
@@ -305,14 +310,14 @@ namespace splashkit_lib
         sk_move_window(&wind->image.surface, x, y);
     }
 
-    void move_window(const string &name, int x, int y)
+    void move_window_to(const string &name, int x, int y)
     {
-        move_window(window_named(name), x, y);
+        move_window_to(window_named(name), x, y);
     }
 
-    void move_window(int x, int y)
+    void move_current_window_to(int x, int y)
     {
-        move_window(_current_window, x, y);
+        move_window_to(_current_window, x, y);
     }
 
     bool window_is_fullscreen(window wnd)
@@ -331,7 +336,7 @@ namespace splashkit_lib
         return window_is_fullscreen(window_named(name));
     }
 
-    bool window_is_fullscreen()
+    bool current_window_is_fullscreen()
     {
         return window_is_fullscreen(_current_window);
     }
@@ -358,7 +363,7 @@ namespace splashkit_lib
         window_toggle_fullscreen(window_named(name));
     }
 
-    void window_toggle_fullscreen()
+    void current_window_toggle_fullscreen()
     {
         window_toggle_fullscreen(_current_window);
     }
@@ -379,7 +384,7 @@ namespace splashkit_lib
         return window_has_border(window_named(name));
     }
 
-    bool window_has_border()
+    bool current_window_has_border()
     {
         return window_has_border(_current_window);
     }
@@ -401,7 +406,7 @@ namespace splashkit_lib
         window_toggle_border(window_named(name));
     }
 
-    void window_toggle_border()
+    void current_window_toggle_border()
     {
         window_toggle_border(_current_window);
     }
@@ -426,7 +431,7 @@ namespace splashkit_lib
         return window_x(window_named(name));
     }
 
-    int window_x()
+    int current_window_x()
     {
         return window_x(_current_window);
     }
@@ -451,7 +456,7 @@ namespace splashkit_lib
         return window_y(window_named(name));
     }
 
-    int window_y()
+    int current_window_y()
     {
         return window_y(_current_window);
     }
@@ -476,9 +481,20 @@ namespace splashkit_lib
         return window_position(window_named(name));
     }
 
-    point_2d window_position()
+    point_2d current_window_position()
     {
         return window_position(_current_window);
     }
 
+    string window_caption(window wind)
+    {
+        if ( INVALID_PTR(wind, WINDOW_PTR))
+        {
+            LOG(WARNING) << "Attempting to get caption of invalid window";
+            return "";
+        }
+        
+        return wind->caption;
+    }
+    
 }

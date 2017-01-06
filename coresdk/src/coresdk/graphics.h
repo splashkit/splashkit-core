@@ -135,6 +135,9 @@ namespace splashkit_lib
      *
      * @param  disp The display details
      * @return      The name of the display
+     *
+     * @attribute class display
+     * @attribute getter name
      */
     string display_name(display disp);
 
@@ -143,6 +146,9 @@ namespace splashkit_lib
      *
      * @param  disp The display details
      * @return      The width of the display
+     *
+     * @attribute class display
+     * @attribute getter width
      */
     int display_width(display disp);
 
@@ -151,6 +157,9 @@ namespace splashkit_lib
      *
      * @param  disp The display details
      * @return      The height of the display
+     *
+     * @attribute class display
+     * @attribute getter height
      */
     int display_height(display disp);
 
@@ -160,6 +169,9 @@ namespace splashkit_lib
      *
      * @param  disp The display details
      * @return      The x location of the display
+     *
+     * @attribute class display
+     * @attribute getter x
      */
     int display_x(display disp);
 
@@ -169,6 +181,9 @@ namespace splashkit_lib
      *
      * @param  disp The display details
      * @return      The y location of the display
+     *
+     * @attribute class display
+     * @attribute getter y
      */
     int display_y(display disp);
 

@@ -57,6 +57,7 @@ namespace splashkit_lib
      * @attribute class           window
      * @attribute destructor      true
      * @attribute self            wind
+     * @attribute method          close
      *
      * @param wind The window to close
      */
@@ -64,10 +65,8 @@ namespace splashkit_lib
 
     /**
      * Closes and frees the current window.
-     *
-     * @attribute suffix  current
      */
-    void close_window();
+    void close_current_window();
 
     /**
      * Closes and frees the graphics window identified by `name`.
@@ -129,6 +128,9 @@ namespace splashkit_lib
      * windows by default.
      *
      * @param wind The new current window
+     *
+     * @attribute class window
+     * @attribute method make_current
      */
     void set_current_window(window wind);
 
@@ -141,6 +143,17 @@ namespace splashkit_lib
      */
     void set_current_window(const string &name);
 
+    /**
+     * Check if the requested window is the current window.
+     *
+     * @param wind The window to check
+     * @returns true if the window is the current window
+     *
+     * @attribute class window
+     * @attribute getter is_current_window
+     */
+    bool is_current_window(window wind);
+    
     /**
      * Closes the window given in `wind`
      *
@@ -174,9 +187,8 @@ namespace splashkit_lib
      *
      * @param  wind the `window` to refresh.
      *
-     * @attribute method  refresh
      * @attribute class   window
-     * @attribute self    wind
+     * @attribute method  refresh
      */
     void refresh_window(window wind);
 
@@ -186,8 +198,8 @@ namespace splashkit_lib
      * @param wind the `window` to clear
      * @param clr  the `color` to clear the window to.
      *
-     * @attribute class window
-     * @attribute self  wind
+     * @attribute class   window
+     * @attribute method  clear
      */
     void clear_window(window wind, color clr);
 
@@ -216,10 +228,8 @@ namespace splashkit_lib
      * Returns the width of the current window.
      *
      * @return      The width of the current window
-     *
-     * @attribute suffix  current
      */
-    int window_width();
+    int current_window_width();
 
     /**
      * Returns the height of the window in pixels.
@@ -246,16 +256,17 @@ namespace splashkit_lib
      * Returns the height of the current window.
      *
      * @return      The height of the current window
-     *
-     * @attribute suffix  current
      */
-    int window_height();
+    int current_window_height();
 
     /**
      * Sets the icon of the current window.
      *
      * @param wind The window to change the icon of
      * @param bmp  The image with the details to show in the icon
+     *
+     * @attribute class   window
+     * @attribute setter  icon
      */
     void window_set_icon(window wind, bitmap bmp);
 
@@ -265,6 +276,9 @@ namespace splashkit_lib
      * @param wnd    The window to change.
      * @param width  Its new width
      * @param height Its new height
+     *
+     * @attribute class window
+     * @attribute method resize
      */
     void resize_window(window wnd, int width, int height);
 
@@ -273,10 +287,8 @@ namespace splashkit_lib
      *
      * @param width  Its new width
      * @param height Its new height
-     *
-     * @attribute suffix  current
      */
-    void resize_window(int width, int height);
+    void resize_current_window(int width, int height);
 
     /**
      * Move the window to the new location on the displays.
@@ -284,8 +296,11 @@ namespace splashkit_lib
      * @param wind the window to move.
      * @param x    The new x location
      * @param y    The new y location
+     *
+     * @attribute class window
+     * @attribute method move_to
      */
-    void move_window(window wind, int x, int y);
+    void move_window_to(window wind, int x, int y);
 
     /**
      * Move the window to the new location on the displays.
@@ -296,23 +311,24 @@ namespace splashkit_lib
      *
      * @attribute suffix  named
      */
-    void move_window(const string &name, int x, int y);
+    void move_window_to(const string &name, int x, int y);
 
     /**
      * Move the current window to the new location on the displays.
      *
      * @param x    The new x location
      * @param y    The new y location
-     *
-     * @attribute suffix  current
      */
-    void move_window(int x, int y);
+    void move_current_window_to(int x, int y);
 
     /**
      * Is the window currently fullscreen?
      *
      * @param  wnd The window to check
      * @return     True when the window is fullscreen
+     *
+     * @attribute class   window
+     * @attribute getter  is_fullscreen
      */
     bool window_is_fullscreen(window wnd);
 
@@ -330,15 +346,16 @@ namespace splashkit_lib
      * Is the current window currently fullscreen?
      *
      * @return     True when the window is fullscreen
-     *
-     * @attribute suffix  current
      */
-    bool window_is_fullscreen();
+    bool current_window_is_fullscreen();
 
     /**
      * Toggle the fullscreen property of the window
      *
      * @param wnd The window to change
+     *
+     * @attribute class   window
+     * @attribute method  toggle_fullscreen
      */
     void window_toggle_fullscreen(window wnd);
 
@@ -353,16 +370,17 @@ namespace splashkit_lib
 
     /**
      * Toggle the fullscreen property of the current window
-     *
-     * @attribute suffix  current
      */
-    void window_toggle_fullscreen();
+    void current_window_toggle_fullscreen();
 
     /**
      * Indicate if the window has a border.
      *
      * @param  wnd The window
      * @return     True if the window has a border
+     *
+     * @attribute class   window
+     * @attribute getter  has_border
      */
     bool window_has_border(window wnd);
 
@@ -380,15 +398,16 @@ namespace splashkit_lib
      * Indicate if the current window has a border.
      *
      * @return     True if the window has a border
-     *
-     * @attribute suffix  current
      */
-    bool window_has_border();
+    bool current_window_has_border();
 
     /**
      * Toggle the window border.
      *
      * @param wnd The window to change
+     *
+     * @attribute class   window
+     * @attribute method  toggle_border
      */
     void window_toggle_border(window wnd);
 
@@ -403,16 +422,17 @@ namespace splashkit_lib
 
     /**
      * Toggle the current window border.
-     *
-     * @attribute suffix  current
      */
-    void window_toggle_border();
+    void current_window_toggle_border();
 
     /**
      * The x location of the window on the displays.
      *
      * @param  wnd The window
      * @return     Its location on the displays
+     *
+     * @attribute class   window
+     * @attribute getter  x
      */
     int window_x(window wnd);
 
@@ -430,16 +450,17 @@ namespace splashkit_lib
      * The x location of the current window on the displays.
      *
      * @return     Its location on the displays
-     *
-     * @attribute suffix  current
      */
-    int window_x();
+    int current_window_x();
 
     /**
      * The y location of the window on the displays.
      *
      * @param  wnd The window
      * @return     Its location on the displays
+     *
+     * @attribute class   window
+     * @attribute getter  y
      */
     int window_y(window wnd);
 
@@ -457,16 +478,17 @@ namespace splashkit_lib
      * The y location of the current window on the displays.
      *
      * @return     Its location on the displays
-     *
-     * @attribute suffix  current
      */
-    int window_y();
+    int current_window_y();
 
     /**
      * The location of the window.
      *
      * @param  wnd The window.
      * @return     Its location on the displays
+     *
+     * @attribute class   window
+     * @attribute getter  position
      */
     point_2d window_position(window wnd);
 
@@ -484,10 +506,19 @@ namespace splashkit_lib
      * The location of the current window.
      *
      * @return     Its location on the displays
-     *
-     * @attribute suffix  current
      */
-    point_2d window_position();
+    point_2d current_window_position();
+    
+    /**
+     * The caption of the window.
+     * 
+     * @param wind The window
+     * @returns The window's caption.
+     *
+     * @attribute class   window
+     * @attribute getter  caption
+     */
+    string window_caption(window wind);
 
 }
 #endif /* window_manager_hpp */
