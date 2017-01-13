@@ -187,7 +187,5 @@ namespace splashkit_lib
      */
     void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius);
 
-    
-
 }
 #endif /* circle_drawing_hpp */
