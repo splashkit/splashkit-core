@@ -171,9 +171,9 @@ namespace splashkit_lib
 
         result->id = HTTP_RESPONSE_PTR;
 
-        int status;
+        long status;
         curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result->code = code_to_status(status);
+        result->code = code_to_status((int)status);
 
         char *content_type;
         curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &content_type);
