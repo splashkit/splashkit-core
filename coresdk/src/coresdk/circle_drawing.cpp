@@ -79,22 +79,22 @@ namespace splashkit_lib
         fill_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
     }
     
-    void window_draw_circle(window destination, color clr, float x, float y, float radius, drawing_options opts)
+    void draw_circle_on_window(window destination, color clr, float x, float y, float radius, drawing_options opts)
     {
         draw_circle(clr, x, y, radius, option_draw_to(destination, opts));
     }
     
-    void window_draw_circle(window destination, color clr, float x, float y, float radius)
+    void draw_circle_on_window(window destination, color clr, float x, float y, float radius)
     {
         draw_circle(clr, x, y, radius, option_draw_to(destination));
     }
     
-    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius, drawing_options opts)
+    void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius, drawing_options opts)
     {
         draw_circle(clr, x, y, radius, option_draw_to(destination, opts));
     }
     
-    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius)
+    void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius)
     {
         draw_circle(clr, x, y, radius, option_draw_to(destination));
     }

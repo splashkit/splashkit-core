@@ -37631,7 +37631,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1481584411,
+    "parsed_at": 1484184028,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -39114,6 +39114,706 @@
           "method": "width",
           "static": "text",
           "group": "graphics"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,const string &fnt,int font_size,float x,float y);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text_font_as_string",
+        "unique_method_name": "window.draw_text_font_as_string",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the screen with the supplied color, font and size at x and y to the currently focussed window.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "fnt": {
+            "type": "string",
+            "description": "The name of the `font` which will be used to draw the text",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "font_size": {
+            "type": "int",
+            "description": "The size of the font which will be drawn.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "suffix": "font_as_string",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,const string &fnt,int font_size,float x,float y,const drawing_options &opts);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text_with_options_font_as_string",
+        "unique_method_name": "window.draw_text_with_options_font_as_string",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the window with the supplied color, font and size at x and y.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "fnt": {
+            "type": "string",
+            "description": "The name of the `font` which will be used to draw the text",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "font_size": {
+            "type": "int",
+            "description": "The size of the font which will be drawn.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The `drawing_options` which provide extra information for how to draw the text.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "suffix": "with_options_font_as_string",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,float x,float y);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text_no_font_no_size",
+        "unique_method_name": "window.draw_text_no_font_no_size",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "suffix": "no_font_no_size",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,float x,float y,const drawing_options &opts);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text_no_font_no_size_with_options",
+        "unique_method_name": "window.draw_text_no_font_no_size_with_options",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the window with the supplied color at x and y.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The `drawing_options` which provide extra information for how to draw the text.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "suffix": "no_font_no_size_with_options",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,font fnt,int font_size,float x,float y);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text",
+        "unique_method_name": "window.draw_text",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the window with the supplied color, font, size at x and y.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "fnt": {
+            "type": "font",
+            "description": "The `font` to be used to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "font_size": {
+            "type": "int",
+            "description": "The size of the font which will be drawn.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
+        }
+      },
+      {
+        "signature": "void window_draw_text(window wnd,const string &text,const color &clr,font fnt,int font_size,float x,float y,const drawing_options &opts);",
+        "name": "window_draw_text",
+        "method_name": "draw_text",
+        "unique_global_name": "window_draw_text_with_options",
+        "unique_method_name": "window.draw_text_with_options",
+        "suffix_name": null,
+        "description": null,
+        "brief": "Draws the text string provided to the window with the supplied color, font, size at x and y.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "wnd": {
+            "type": "window",
+            "description": "The window to draw to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text string to be written to the window.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The desired `color` of the text to be written.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "fnt": {
+            "type": "font",
+            "description": "The `font` to be used to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "font_size": {
+            "type": "int",
+            "description": "The desired size of the font.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "float",
+            "description": "The x location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "float",
+            "description": "The y location to draw the text.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The `drawing_options` which provide extra information for how to draw the text.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "draw_text",
+          "suffix": "with_options",
+          "group": "graphics",
+          "static": "text",
+          "self": "wnd"
         }
       }
     ],

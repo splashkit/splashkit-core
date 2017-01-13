@@ -982,6 +982,12 @@ int __sklib__text_height__string_ref__string_ref__int(const __sklib_string text,
 int __sklib__text_height__string_ref__font__int(const __sklib_string text, __sklib_font fnt, int font_size);
 int __sklib__text_width__string_ref__string_ref__int(const __sklib_string text, const __sklib_string fnt, int font_size);
 int __sklib__text_width__string_ref__font__int(const __sklib_string text, __sklib_font fnt, int font_size);
+void __sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, const __sklib_string fnt, int font_size, float x, float y);
+void __sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, const __sklib_string fnt, int font_size, float x, float y, const __sklib_drawing_options opts);
+void __sklib__window_draw_text__window__string_ref__color_ref__float__float(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, float x, float y);
+void __sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, float x, float y, const __sklib_drawing_options opts);
+void __sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, __sklib_font fnt, int font_size, float x, float y);
+void __sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref(__sklib_window wnd, const __sklib_string text, const __sklib_color clr, __sklib_font fnt, int font_size, float x, float y, const __sklib_drawing_options opts);
 void __sklib__draw_collected_text__color__font__int__drawing_options_ref(__sklib_color clr, __sklib_font fnt, int font_size, const __sklib_drawing_options opts);
 void __sklib__end_reading_text();
 void __sklib__end_reading_text__window(__sklib_window wind);

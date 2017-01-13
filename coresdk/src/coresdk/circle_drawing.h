@@ -138,7 +138,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_circle
      */
-    void window_draw_circle(window destination, color clr, float x, float y, float radius, drawing_options opts);
+    void draw_circle_on_window(window destination, color clr, float x, float y, float radius, drawing_options opts);
     
     /**
      *  Draw a circle onto the destination window. The circle is centred on its x, y
@@ -153,7 +153,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_circle
      */
-    void window_draw_circle(window destination, color clr, float x, float y, float radius);
+    void draw_circle_on_window(window destination, color clr, float x, float y, float radius);
 
     /**
      *  Draw a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y
@@ -170,7 +170,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_circle
      */
-    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius, drawing_options opts);
+    void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius, drawing_options opts);
     
     /**
      *  Draw a circle onto the destination bitmap. The circle is centred on its x, y
@@ -185,7 +185,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_circle
      */
-    void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius);
+    void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius);
 
     
 

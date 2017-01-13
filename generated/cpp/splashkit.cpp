@@ -4435,6 +4435,73 @@ int text_width(const string &text, font fnt, int font_size) {
     __skadapter__free__sklib_string(__skparam__text);
     return __skadapter__to_int(__skreturn);
 }
+void window_draw_text(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_string __skparam__fnt = __skadapter__to_sklib_string(fnt);
+    int __skparam__font_size = __skadapter__to_int(font_size);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    __sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y);
+    __skadapter__free__sklib_string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__fnt);
+}
+void window_draw_text(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_string __skparam__fnt = __skadapter__to_sklib_string(fnt);
+    int __skparam__font_size = __skadapter__to_int(font_size);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    const __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts);
+    __skadapter__free__sklib_string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__fnt);
+}
+void window_draw_text(window wnd, const string &text, const color &clr, float x, float y) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    __sklib__window_draw_text__window__string_ref__color_ref__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y);
+    __skadapter__free__sklib_string(__skparam__text);
+}
+void window_draw_text(window wnd, const string &text, const color &clr, float x, float y, const drawing_options &opts) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    const __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts);
+    __skadapter__free__sklib_string(__skparam__text);
+}
+void window_draw_text(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    __sklib_font __skparam__fnt = __skadapter__to_sklib_font(fnt);
+    int __skparam__font_size = __skadapter__to_int(font_size);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    __sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y);
+    __skadapter__free__sklib_string(__skparam__text);
+}
+void window_draw_text(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts) {
+    __sklib_window __skparam__wnd = __skadapter__to_sklib_window(wnd);
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    __sklib_font __skparam__fnt = __skadapter__to_sklib_font(fnt);
+    int __skparam__font_size = __skadapter__to_int(font_size);
+    float __skparam__x = __skadapter__to_float(x);
+    float __skparam__y = __skadapter__to_float(y);
+    const __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts);
+    __skadapter__free__sklib_string(__skparam__text);
+}
 void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
     __sklib_font __skparam__fnt = __skadapter__to_sklib_font(fnt);

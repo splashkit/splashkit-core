@@ -7,6 +7,7 @@
 #define __text_h
 
 #include "types.h"
+#include "window_manager.h"
 #include <string>
 #include <vector>
 using std::string;
@@ -36,5 +37,11 @@ int text_height(const string &text, const string &fnt, int font_size);
 int text_height(const string &text, font fnt, int font_size);
 int text_width(const string &text, const string &fnt, int font_size);
 int text_width(const string &text, font fnt, int font_size);
+void window_draw_text(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+void window_draw_text(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+void window_draw_text(window wnd, const string &text, const color &clr, float x, float y);
+void window_draw_text(window wnd, const string &text, const color &clr, float x, float y, const drawing_options &opts);
+void window_draw_text(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y);
+void window_draw_text(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
 
 #endif /* __text_h */

@@ -187,7 +187,7 @@ namespace splashkit_lib
     font font_named(string name);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -202,7 +202,7 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -214,7 +214,7 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -229,7 +229,7 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -243,7 +243,7 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -256,7 +256,7 @@ namespace splashkit_lib
     void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts);
 
     /**
-     * @brief Draws the text string provided to the screen with the supplied color at x and y to the currently focussed window.
+     * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
      *
      * @param text          The text string to be written to the window.
      * @param clr           The desired `color` of the text to be written.
@@ -266,6 +266,206 @@ namespace splashkit_lib
      * @attribute suffix    no_font_no_size
      */
     void draw_text(const string &text, const color &clr, float x, float y);
+
+    /**
+     * @brief Draws the text string provided to the window with the supplied color, font, size at x and y.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The desired size of the font.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the window with the supplied color, font, size at x and y.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y);
+    
+    /**
+     * @brief Draws the text string provided to the window with the supplied color, font and size at x and y.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options_font_as_string
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    font_as_string
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+    
+    /**
+     * @brief Draws the text string provided to the window with the supplied color at x and y.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    no_font_no_size_with_options
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
+     *
+     * @param wnd           The window to draw to
+     * @param text          The text string to be written to the window.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    no_font_no_size
+     * @attribute class     window
+     * @attribute method    draw_text
+     */
+    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y);
+    
+    /**
+     * @brief Draws the text string provided to the bitmap with the supplied color, font, size at x and y.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The desired size of the font.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the bitmap with the supplied color, font, size at x and y.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The `font` to be used to draw the text.
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y);
+    
+    /**
+     * @brief Draws the text string provided to the bitmap with the supplied color, font and size at x and y.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    with_options_font_as_string
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current bitmap.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param fnt           The name of the `font` which will be used to draw the text
+     * @param font_size     The size of the font which will be drawn.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    font_as_string
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+    
+    /**
+     * @brief Draws the text string provided to the bitmap with the supplied color at x and y.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     * @param opts          The `drawing_options` which provide extra information for how to draw the text.
+     *
+     * @attribute suffix    no_font_no_size_with_options
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y, const drawing_options &opts);
+    
+    /**
+     * @brief Draws the text string provided to the screen with the supplied color at x and y.
+     *
+     * @param bmp           The bitmap to draw to
+     * @param text          The text string to be written to the bitmap.
+     * @param clr           The desired `color` of the text to be written.
+     * @param x             The x location to draw the text.
+     * @param y             The y location to draw the text.
+     *
+     * @attribute suffix    no_font_no_size
+     * @attribute class     bitmap
+     * @attribute method    draw_text
+     */
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y);
 
     /**
      * @brief Returns the width of the supplied text string.

@@ -2855,6 +2855,18 @@ sklib.__sklib__text_width__string_ref__string_ref__int.argtypes = [ _sklib_strin
 sklib.__sklib__text_width__string_ref__string_ref__int.restype = c_int
 sklib.__sklib__text_width__string_ref__font__int.argtypes = [ _sklib_string, c_void_p, c_int ]
 sklib.__sklib__text_width__string_ref__font__int.restype = c_int
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float.restype = None
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.restype = None
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_float, c_float ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float.restype = None
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref.restype = None
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float.restype = None
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref.restype = None
 sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.argtypes = [ _sklib_color, c_void_p, c_int, _sklib_drawing_options ]
 sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.restype = None
 sklib.__sklib__end_reading_text.argtypes = [  ]
@@ -6614,6 +6626,59 @@ def text_width ( text, fnt, font_size ):
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
     __skreturn = sklib.__sklib__text_width__string_ref__font__int(__skparam__text, __skparam__fnt, __skparam__font_size)
     return __skadapter__to_int(__skreturn)
+def window_draw_text_font_as_string ( wnd, text, clr, fnt, font_size, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def window_draw_text_with_options_font_as_string ( wnd, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+def window_draw_text_no_font_no_size ( wnd, text, clr, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y)
+def window_draw_text_no_font_no_size_with_options ( wnd, text, clr, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+def window_draw_text ( wnd, text, clr, fnt, font_size, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def window_draw_text_with_options ( wnd, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_float(x)
+    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
 def draw_collected_text ( clr, fnt, font_size, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
