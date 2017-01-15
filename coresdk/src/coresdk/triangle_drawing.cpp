@@ -96,4 +96,44 @@ namespace splashkit_lib
                       tri.points[2].x, tri.points[2].y,
                       option_defaults());
     }
+
+    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    {
+        draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination, opts));
+    }
+    
+    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    {
+        draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination));
+    }
+    
+    void draw_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts)
+    {
+        draw_triangle(clr, tri, option_draw_to(destination, opts));
+    }
+    
+    void draw_triangle_on_window(window destination, color clr, const triangle &tri)
+    {
+        draw_triangle(clr, tri, option_draw_to(destination));
+    }
+    
+    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    {
+        fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination, opts));
+    }
+    
+    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    {
+        fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination));
+    }
+    
+    void fill_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts)
+    {
+        fill_triangle(clr, tri, option_draw_to(destination, opts));
+    }
+    
+    void fill_triangle_on_window(window destination, color clr, const triangle &tri)
+    {
+        fill_triangle(clr, tri, option_draw_to(destination));
+    }
 }
