@@ -102,4 +102,44 @@ namespace splashkit_lib
     {
         fill_ellipse(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
+    
+    void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    {
+        draw_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+    
+    void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height)
+    {
+        draw_ellipse(clr, x, y, width, height, option_draw_to(destination));
+    }
+    
+    void draw_ellipse_on_window(window destination, color clr, const rectangle rect, drawing_options opts)
+    {
+        draw_ellipse(clr, rect, option_draw_to(destination, opts));
+    }
+    
+    void draw_ellipse_on_window(window destination, color clr, const rectangle rect)
+    {
+        draw_ellipse(clr, rect, option_draw_to(destination));
+    }
+    
+    void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    {
+        fill_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+    
+    void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height)
+    {
+        fill_ellipse(clr, x, y, width, height, option_draw_to(destination));
+    }
+    
+    void fill_ellipse_on_window(window destination, color clr, const rectangle rect, drawing_options opts)
+    {
+        fill_ellipse(clr, rect, option_draw_to(destination, opts));
+    }
+    
+    void fill_ellipse_on_window(window destination, color clr, const rectangle rect)
+    {
+        fill_ellipse(clr, rect, option_draw_to(destination));
+    }
 }
