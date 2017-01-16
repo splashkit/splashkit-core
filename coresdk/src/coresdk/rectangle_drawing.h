@@ -164,6 +164,7 @@ namespace splashkit_lib
      * @param height  The height of the rectangle
      * @param opts    The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  with_options
      */
     void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, const drawing_options &opts);
@@ -179,6 +180,8 @@ namespace splashkit_lib
      *                rectangle
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
+     *
+     * @attribute class   window
      */
     void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height);
     
@@ -190,6 +193,7 @@ namespace splashkit_lib
      * @param rect    The rectangle to draw
      * @param opts    The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  record_with_options
      */
     void fill_rectangle_on_window(window destination, color clr, const rectangle &rect, const drawing_options &opts);
@@ -201,6 +205,7 @@ namespace splashkit_lib
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
      *
+     * @attribute class   window
      * @attribute suffix  record
      */
     void fill_rectangle_on_window(window destination, color clr, const rectangle &rect);
@@ -211,6 +216,8 @@ namespace splashkit_lib
      * @param destination   The destination window
      * @param clr   The color for the quad
      * @param q     The details of the quad
+     *
+     * @attribute class   window
      */
     void draw_quad_on_window(window destination, color clr, const quad &q);
     
@@ -222,6 +229,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      * @param opts  The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  with_options
      */
     void draw_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts);
@@ -232,6 +240,8 @@ namespace splashkit_lib
      * @param destination   The destination window
      * @param clr   The color for the quad
      * @param q     The details of the quad
+     *
+     * @attribute class   window
      */
     void fill_quad_on_window(window destination, color clr, const quad &q);
     
@@ -243,6 +253,7 @@ namespace splashkit_lib
      * @param q   The details of the quad
      * @param opts  The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  with_options
      */
     void fill_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts);
@@ -327,6 +338,7 @@ namespace splashkit_lib
      * @param height  The height of the rectangle
      * @param opts    The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  with_options
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, const drawing_options &opts);
@@ -342,6 +354,8 @@ namespace splashkit_lib
      *                rectangle
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
+     *
+     * @attribute class   bitmap
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height);
     
@@ -353,6 +367,7 @@ namespace splashkit_lib
      * @param rect    The rectangle to draw
      * @param opts    The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  record_with_options
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect, const drawing_options &opts);
@@ -364,6 +379,7 @@ namespace splashkit_lib
      * @param clr     The color of the rectangle
      * @param rect    The rectangle to draw
      *
+     * @attribute class   bitmap
      * @attribute suffix  record
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect);
@@ -374,6 +390,8 @@ namespace splashkit_lib
      * @param destination   The destination bitmap
      * @param clr   The color for the quad
      * @param q     The details of the quad
+     *
+     * @attribute class   bitmap
      */
     void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q);
     
@@ -385,6 +403,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      * @param opts  The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  with_options
      */
     void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts);
@@ -395,6 +414,8 @@ namespace splashkit_lib
      * @param destination   The destination bitmap
      * @param clr   The color for the quad
      * @param q     The details of the quad
+     *
+     * @attribute class   bitmap
      */
     void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q);
     
@@ -406,6 +427,7 @@ namespace splashkit_lib
      * @param q   The details of the quad
      * @param opts  The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  with_options
      */
     void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts);

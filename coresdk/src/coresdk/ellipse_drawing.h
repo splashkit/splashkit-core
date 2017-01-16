@@ -137,6 +137,7 @@ namespace splashkit_lib
      * @param height The height of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  with_options
      */
     void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts);
@@ -152,6 +153,8 @@ namespace splashkit_lib
      *               top edge of the ellipse
      * @param width  The width of the ellipse
      * @param height The height of the ellipse
+     *
+     * @attribute class   window
      */
     void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height);
     
@@ -166,6 +169,7 @@ namespace splashkit_lib
      * @param rect   Indicates the location and size of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  within_rectangle_with_options
      */
     void draw_ellipse_on_window(window destination, color clr, const rectangle rect, drawing_options opts);
@@ -177,6 +181,7 @@ namespace splashkit_lib
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse
      *
+     * @attribute class   window
      * @attribute suffix  within_rectangle
      */
     void draw_ellipse_on_window(window destination, color clr, const rectangle rect);
@@ -194,6 +199,7 @@ namespace splashkit_lib
      * @param height The height of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  with_options
      */
     void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts);
@@ -209,6 +215,8 @@ namespace splashkit_lib
      *               top edge of the ellipse
      * @param width  The width of the ellipse
      * @param height The height of the ellipse
+     *
+     * @attribute class   window
      */
     void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height);
     
@@ -223,6 +231,7 @@ namespace splashkit_lib
      * @param rect   Indicates the location and size of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   window
      * @attribute suffix  within_rectangle_with_options
      */
     void fill_ellipse_on_window(window destination, color clr, const rectangle rect, drawing_options opts);
@@ -234,6 +243,7 @@ namespace splashkit_lib
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse
      *
+     * @attribute class   window
      * @attribute suffix  within_rectangle
      */
     void fill_ellipse_on_window(window destination, color clr, const rectangle rect);
@@ -254,6 +264,7 @@ namespace splashkit_lib
      * @param height The height of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  with_options
      */
     void draw_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts);
@@ -269,6 +280,8 @@ namespace splashkit_lib
      *               top edge of the ellipse
      * @param width  The width of the ellipse
      * @param height The height of the ellipse
+     *
+     * @attribute class   bitmap
      */
     void draw_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height);
     
@@ -283,6 +296,7 @@ namespace splashkit_lib
      * @param rect   Indicates the location and size of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  within_rectangle_with_options
      */
     void draw_ellipse_on_bitmap(bitmap destination, color clr, const rectangle rect, drawing_options opts);
@@ -294,6 +308,7 @@ namespace splashkit_lib
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse
      *
+     * @attribute class   bitmap
      * @attribute suffix  within_rectangle
      */
     void draw_ellipse_on_bitmap(bitmap destination, color clr, const rectangle rect);
@@ -311,6 +326,7 @@ namespace splashkit_lib
      * @param height The height of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  with_options
      */
     void fill_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts);
@@ -326,6 +342,8 @@ namespace splashkit_lib
      *               top edge of the ellipse
      * @param width  The width of the ellipse
      * @param height The height of the ellipse
+     *
+     * @attribute class   bitmap
      */
     void fill_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height);
     
@@ -340,6 +358,7 @@ namespace splashkit_lib
      * @param rect   Indicates the location and size of the ellipse
      * @param opts   The drawing options
      *
+     * @attribute class   bitmap
      * @attribute suffix  within_rectangle_with_options
      */
     void fill_ellipse_on_bitmap(bitmap destination, color clr, const rectangle rect, drawing_options opts);
@@ -351,6 +370,7 @@ namespace splashkit_lib
      * @param clr    The color of the ellipse
      * @param rect   Indicates the location and size of the ellipse
      *
+     * @attribute class   bitmap
      * @attribute suffix  within_rectangle
      */
     void fill_ellipse_on_bitmap(bitmap destination, color clr, const rectangle rect);
