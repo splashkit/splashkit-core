@@ -105,6 +105,80 @@ namespace splashkit_lib
     void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts);
 
     /**
+     * Draws the bitmap supplied into `bmp` to the given window.
+     * at `x` and `y`.
+     *
+     * @param window the window to draw the bitmap to
+     * @param bmp the bitmap which will be drawn to the screen
+     * @param x   the x location which represents where the bitmap
+     *            will be drawn
+     * @param y   the y location which represents where the bitmap
+     *            will be drawn
+     *
+     * @attribute class   window
+     * @attribute method  draw
+     * @attribute self    bmp
+     */
+    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y);
+
+    /**
+     * Draws the bitmap supplied into `bmp` to the given window.
+     * with extra drawing options supplied in `opts` at `x` and `y`.
+     *
+     * @param window the window to draw the bitmap to
+     * @param bmp the bitmap which will be drawn to the screen
+     * @param x     the x location which represents where the bitmap
+     *              will be drawn
+     * @param y     the y location which represents where the bitmap
+     *              will be drawn
+     * @param opts  the `drawing_options` which provide extra information
+     *              for how to draw the `bitmap`
+     *
+     * @attribute class   window
+     * @attribute method  draw
+     * @attribute self    bmp
+     * @attribute suffix  with_options
+     */
+    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y, drawing_options opts);
+
+    /**
+     * Draws the bitmap supplied into `bmp` to the given bitmap.
+     * at `x` and `y`.
+     *
+     * @param bitmap the bitmap to draw the bitmap to
+     * @param bmp the bitmap which will be drawn to the screen
+     * @param x   the x location which represents where the bitmap
+     *            will be drawn
+     * @param y   the y location which represents where the bitmap
+     *            will be drawn
+     *
+     * @attribute class   bitmap
+     * @attribute method  draw
+     * @attribute self    bmp
+     */
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y);
+
+    /**
+     * Draws the bitmap supplied into `bmp` to the given bitmap.
+     * with extra drawing options supplied in `opts` at `x` and `y`.
+     *
+     * @param bitmap the bitmap to draw the bitmap to
+     * @param bmp the bitmap which will be drawn to the screen
+     * @param x     the x location which represents where the bitmap
+     *              will be drawn
+     * @param y     the y location which represents where the bitmap
+     *              will be drawn
+     * @param opts  the `drawing_options` which provide extra information
+     *              for how to draw the `bitmap`
+     *
+     * @attribute class   bitmap
+     * @attribute method  draw
+     * @attribute self    bmp
+     * @attribute suffix  with_options
+     */
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y, drawing_options opts);
+
+    /**
      * Searches and draws a bitmap with name `name` to the current window.
      * with extra drawing options supplied in `opts` at `x` and `y`.
      *

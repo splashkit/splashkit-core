@@ -266,6 +266,26 @@ namespace splashkit_lib
         sk_draw_bitmap(&bmp->image.surface, dest, src_data, 4, dst_data, 7, flip);
     }
 
+    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y)
+    {
+        draw_bitmap(bmp, x, y, option_draw_to(destination));
+    }
+
+    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y, drawing_options opts)
+    {
+        draw_bitmap(bmp, x, y, option_draw_to(destination, opts));
+    }
+
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y)
+    {
+        draw_bitmap(bmp, x, y, option_draw_to(destination));
+    }
+
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y, drawing_options opts)
+    {
+        draw_bitmap(bmp, x, y, option_draw_to(destination, opts));
+    }
+
     void draw_bitmap(string name, float x, float y)
     {
         draw_bitmap(bitmap_named(name), x, y, option_defaults());
