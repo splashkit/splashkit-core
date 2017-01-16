@@ -108,7 +108,7 @@ namespace splashkit_lib
      * Draws the bitmap supplied into `bmp` to the given window.
      * at `x` and `y`.
      *
-     * @param window the window to draw the bitmap to
+     * @param destination the window to draw the bitmap to
      * @param bmp the bitmap which will be drawn to the screen
      * @param x   the x location which represents where the bitmap
      *            will be drawn
@@ -117,7 +117,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute method  draw
-     * @attribute self    bmp
+     * @attribute self    destination
      */
     void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y);
 
@@ -125,7 +125,7 @@ namespace splashkit_lib
      * Draws the bitmap supplied into `bmp` to the given window.
      * with extra drawing options supplied in `opts` at `x` and `y`.
      *
-     * @param window the window to draw the bitmap to
+     * @param destination the window to draw the bitmap to
      * @param bmp the bitmap which will be drawn to the screen
      * @param x     the x location which represents where the bitmap
      *              will be drawn
@@ -136,7 +136,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute method  draw
-     * @attribute self    bmp
+     * @attribute self    destination
      * @attribute suffix  with_options
      */
     void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y, drawing_options opts);
@@ -145,7 +145,7 @@ namespace splashkit_lib
      * Draws the bitmap supplied into `bmp` to the given bitmap.
      * at `x` and `y`.
      *
-     * @param bitmap the bitmap to draw the bitmap to
+     * @param destination the bitmap to draw the bitmap to
      * @param bmp the bitmap which will be drawn to the screen
      * @param x   the x location which represents where the bitmap
      *            will be drawn
@@ -162,7 +162,7 @@ namespace splashkit_lib
      * Draws the bitmap supplied into `bmp` to the given bitmap.
      * with extra drawing options supplied in `opts` at `x` and `y`.
      *
-     * @param bitmap the bitmap to draw the bitmap to
+     * @param destination the bitmap to draw the bitmap to
      * @param bmp the bitmap which will be drawn to the screen
      * @param x     the x location which represents where the bitmap
      *              will be drawn

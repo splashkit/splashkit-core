@@ -298,8 +298,6 @@ namespace splashkit_lib
      *
      * @param destination   The destination window
      * @param clr    The color of the rectangle
-     * @param x      The x location of the rectangle
-     * @param y      The y location of the rectangle
      * @param rect   the rectangle to be drawn to the window
      * @param opts   Drawing options to configure the drawing operation
      *
@@ -315,8 +313,6 @@ namespace splashkit_lib
      *
      * @param destination   The destination window
      * @param clr    The color of the rectangle
-     * @param x      The x location of the rectangle
-     * @param y      The y location of the rectangle
      * @param rect   the rectangle to be drawn to the window
      *
      * @attribute suffix    record_with_options
@@ -489,7 +485,7 @@ namespace splashkit_lib
      * @param clr    The color of the rectangle
      * @param rect   the rectangle to be drawn to the bitmap
      *
-     * @attribute suffix    record_with_options
+     * @attribute suffix    record
      * @attribute class     bitmap
      * @attribute method    draw_rectangle
      */
