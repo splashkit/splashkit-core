@@ -315,7 +315,7 @@ namespace splashkit_lib
      * @param clr    The color of the rectangle
      * @param rect   the rectangle to be drawn to the window
      *
-     * @attribute suffix    record_with_options
+     * @attribute suffix    record
      * @attribute class     window
      * @attribute method    draw_rectangle
      */
