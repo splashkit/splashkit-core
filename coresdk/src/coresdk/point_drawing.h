@@ -134,6 +134,7 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given window.
      *
+     * @param destination the window to draw the pixel on
      * @param clr The color of the pixel
      * @param x   The distance from the left edge of the window to the
      *            pixel
@@ -147,11 +148,13 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given window with the given drawing options.
      *
+     * @param destination The window to draw the pixel on
      * @param clr The color of the pixel
      * @param x   The distance from the left edge of the window to the
      *            pixel
      * @param y   The distance from the top edge of the window to the
      *            pixel
+     * @param opts The drawing options
      *
      * @attribute class  window
      */
@@ -160,6 +163,7 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given window.
      *
+     * @param destination The window to draw the pixel on
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
      *
@@ -171,8 +175,10 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given window with the given drawing options.
      *
+     * @param destination The window to draw the pixel on
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
+     * @param opts The drawing options
      *
      * @attribute class  window
      * @attribute suffix  at_point
@@ -183,6 +189,7 @@ namespace splashkit_lib
      * Returns the color of the pixel at the x,y location on the given
      * window.
      *
+     * @param destination The window to draw the pixel on
      * @param  x   The distance from the left edge of the window to the pixel
      *             to read
      * @param  y   The distance from the top of the window to the pixel to read
@@ -196,6 +203,7 @@ namespace splashkit_lib
      * Returns the color of the pixel at the x,y location on the given
      * window.
      *
+     * @param destination The window to draw the pixel on
      * @param  pt  The position of the pixel
      * @return     The color of the pixel at the supplied location
      *
@@ -206,6 +214,7 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given bitmap.
      *
+     * @param destination the bitmap to draw the pixel on
      * @param clr The color of the pixel
      * @param x   The distance from the left edge of the bitmap to the
      *            pixel
@@ -219,11 +228,13 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given bitmap with the given drawing options.
      *
+     * @param destination the bitmap to draw the pixel on
      * @param clr The color of the pixel
      * @param x   The distance from the left edge of the bitmap to the
      *            pixel
      * @param y   The distance from the top edge of the bitmap to the
      *            pixel
+     * @param opts The drawing options
      *
      * @attribute class  bitmap
      */
@@ -232,6 +243,7 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given bitmap.
      *
+     * @param destination the bitmap to draw the pixel on
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
      *
@@ -243,8 +255,10 @@ namespace splashkit_lib
     /**
      * Draws an individual pixel to the given bitmap with the given drawing options.
      *
+     * @param destination the bitmap to draw the pixel on
      * @param clr The color of the pixel
      * @param pt  The location of the pixel to draw
+     * @param opts The drawing options
      *
      * @attribute class  bitmap
      * @attribute suffix  at_point
