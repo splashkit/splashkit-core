@@ -120,7 +120,7 @@ namespace splashkit_lib
      * @returns Returns whether the "sound_effect" is currently playing or not
      *
      * @attribute class     sound_effect
-     * @attribute getter    filename
+     * @attribute getter    is_playing
      * @attribute self      effect
      */
     bool sound_effect_playing(sound_effect effect);
@@ -144,6 +144,7 @@ namespace splashkit_lib
      * @attribute class       sound_effect
      * @attribute destructor  true
      * @attribute self        effect
+     * @attribute method      close
      */
     void free_sound_effect(sound_effect effect);
 

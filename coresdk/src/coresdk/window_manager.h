@@ -4,7 +4,7 @@
  * @brief   Window Manager in SplashKit can be used create, and manipulate
  *          graphics windows
  *
- * @attribute group  graphics
+ * @attribute group  windows
  * @attribute static window_manager
  */
 

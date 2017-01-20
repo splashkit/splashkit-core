@@ -11,9 +11,11 @@
 #define utils_hpp
 
 #include "resources.h"
+#include "text.h"
 
 #include <iostream>
 #include <string>
+
 
 namespace splashkit_lib
 {
@@ -45,5 +47,7 @@ namespace splashkit_lib
      * @returns The file loaded into a string.
      */
     string file_as_string(string filename, resource_kind kind);
+    
+    void display_dialog(const string &title, const string &msg, font output_font, int font_size);
 }
 #endif /* utils_hpp */

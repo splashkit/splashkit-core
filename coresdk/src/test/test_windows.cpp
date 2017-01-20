@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "text.h"
 #include "web_client.h"
+#include "utils.h"
 
 #include <iostream>
 using namespace std;
@@ -21,6 +22,8 @@ using namespace splashkit_lib;
 void run_windows_tests()
 {
     window w1 = open_window("Hello World", 800, 600);
+    
+    display_dialog("Tests", "About to run window tests...", load_font("dialog", "hara.ttf"), 14);
     
     font fnt = load_font("hara", "hara.ttf");
     bitmap light = load_bitmap("light", "on_med.png");
