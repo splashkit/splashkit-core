@@ -865,7 +865,7 @@ namespace splashkit_lib
         draw_sprite(s, offset.x, offset.y);
     }
 
-    void draw_sprite(sprite s, float x_offset, float y_offset)
+    void draw_sprite(sprite s, double x_offset, double y_offset)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1005,7 +1005,7 @@ namespace splashkit_lib
         }
     }
 
-    void move_sprite_to(sprite s, float x, float y)
+    void move_sprite_to(sprite s, double x, double y)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1583,7 +1583,7 @@ namespace splashkit_lib
     }
 
 
-    bool sprite_on_screen_at(sprite s, float x, float y)
+    bool sprite_on_screen_at(sprite s, double x, double y)
     {
         return sprite_on_screen_at(s, point_at(x, y));
     }

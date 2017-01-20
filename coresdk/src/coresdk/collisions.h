@@ -58,7 +58,7 @@ namespace splashkit_lib
      * @returns     True if drawing the bitmap, at `bmp_pt`,
      *              will draw a pixel at the indicated point (`pt`).
      */
-    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, float x, float y);
+    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y);
 
     /**
      * Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
@@ -120,7 +120,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    with_cell
      */
-    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y);
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y);
 
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -148,7 +148,7 @@ namespace splashkit_lib
      * @return      True if the sprite collides with the bitmap when drawn
      *              at the indicated location.
      */
-    bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y);
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, double x, double y);
 
     /**
      * Tests if a sprite is drawn at a given point.
@@ -227,7 +227,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    for_cells
      */
-    bool bitmap_collision(bitmap bmp1, int cell1, float x1, float y1, bitmap bmp2, int cell2, float x2, float y2);
+    bool bitmap_collision(bitmap bmp1, int cell1, double x1, double y1, bitmap bmp2, int cell2, double x2, double y2);
 
     /**
      * Check if two bitmaps collide.
@@ -253,7 +253,7 @@ namespace splashkit_lib
      * @param  y2     The y location where the second bitmap is drawn
      * @return        True if pixels in the two bitmaps would collide/overlap
      */
-    bool bitmap_collision(bitmap bmp1, float x1, float y1, bitmap bmp2, float x2, float y2);
+    bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2);
 
 }
 #endif /* collisions_h */

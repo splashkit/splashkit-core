@@ -166,7 +166,7 @@ collection.erase(collection.begin());\
     _window_data *to_window_ptr(void *w);
 
     sk_drawing_surface *to_surface_ptr(void *p);
-    void xy_from_opts(const drawing_options &opts, float &x, float &y);
+    void xy_from_opts(const drawing_options &opts, double &x, double &y);
 
     void process_range(string value_in, vector<int> &result);
 
@@ -178,7 +178,7 @@ collection.erase(collection.begin());\
 
     int str_to_int(string str, bool allow_empty = true, int empty_value = 0);
     float str_to_float(string str, bool allow_empty = true, float empty_value = 0.0f);
-    float str_to_double(string str, bool allow_empty = true, double empty_value = 0.0);
+    double str_to_double(string str, bool allow_empty = true, double empty_value = 0.0);
     
     bool try_str_to_int(string str, int &result);
     bool try_str_to_float(string str, float &result);

@@ -200,12 +200,12 @@ namespace splashkit_lib
     }
 
 
-    void draw_bitmap(bitmap bmp, float x, float y)
+    void draw_bitmap(bitmap bmp, double x, double y)
     {
         draw_bitmap(bmp, x, y, option_defaults());
     }
 
-    void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts)
+    void draw_bitmap(bitmap bmp, double x, double y, drawing_options opts)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR))
         {
@@ -213,8 +213,8 @@ namespace splashkit_lib
             return;
         }
 
-        float src_data[4];
-        float dst_data[7];
+        double src_data[4];
+        double dst_data[7];
         sk_renderer_flip flip;
         sk_drawing_surface * dest;
 
@@ -266,32 +266,32 @@ namespace splashkit_lib
         sk_draw_bitmap(&bmp->image.surface, dest, src_data, 4, dst_data, 7, flip);
     }
 
-    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y)
+    void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y)
     {
         draw_bitmap(bmp, x, y, option_draw_to(destination));
     }
 
-    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y, drawing_options opts)
+    void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y, drawing_options opts)
     {
         draw_bitmap(bmp, x, y, option_draw_to(destination, opts));
     }
 
-    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y)
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y)
     {
         draw_bitmap(bmp, x, y, option_draw_to(destination));
     }
 
-    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y, drawing_options opts)
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y, drawing_options opts)
     {
         draw_bitmap(bmp, x, y, option_draw_to(destination, opts));
     }
 
-    void draw_bitmap(string name, float x, float y)
+    void draw_bitmap(string name, double x, double y)
     {
         draw_bitmap(bitmap_named(name), x, y, option_defaults());
     }
 
-    void draw_bitmap(string name, float x, float y, drawing_options opts)
+    void draw_bitmap(string name, double x, double y, drawing_options opts)
     {
         draw_bitmap(bitmap_named(name), x, y, opts);
     }
@@ -345,7 +345,7 @@ namespace splashkit_lib
         return bitmap_bounding_rectangle(bmp, 0, 0);
     }
 
-    rectangle bitmap_bounding_rectangle(bitmap bmp, float x, float y)
+    rectangle bitmap_bounding_rectangle(bitmap bmp, double x, double y)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR) )
             return rectangle_from(0, 0, 0, 0);
@@ -354,7 +354,7 @@ namespace splashkit_lib
     }
 
 
-    circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale)
+    circle bitmap_cell_circle(bitmap bmp, const point_2d pt, double scale)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR) )
         {
@@ -370,7 +370,7 @@ namespace splashkit_lib
         return bitmap_cell_circle(bmp, pt, 1);
     }
 
-    circle bitmap_cell_circle(bitmap bmp, float x, float y)
+    circle bitmap_cell_circle(bitmap bmp, double x, double y)
     {
         return bitmap_cell_circle(bmp, point_at(x, y), 1);
     }
@@ -495,7 +495,7 @@ namespace splashkit_lib
         return bmp->cell_count;
     }
 
-    bool pixel_drawn_at_point(bitmap bmp, float x, float y)
+    bool pixel_drawn_at_point(bitmap bmp, double x, double y)
     {
         int px = ceil(x);
         int py = ceil(y);
@@ -505,7 +505,7 @@ namespace splashkit_lib
         return bmp->pixel_mask[px + py * bmp->image.surface.width];
     }
 
-    bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y)
+    bool pixel_drawn_at_point(bitmap bmp, int cell, double x, double y)
     {
         vector_2d offset = bitmap_cell_offset(bmp, cell);
         return pixel_drawn_at_point(bmp, x + offset.x, y + offset.y);

@@ -35,7 +35,7 @@ namespace splashkit_lib
      * @param  y2 The y value of the end of the line
      * @return       A line from the start to the end point
      */
-    line line_from(float x1, float y1, float x2, float y2);
+    line line_from(double x1, double y1, double x2, double y2);
 
     /**
      * Creates a line that starts at a point, and follows a given vector.

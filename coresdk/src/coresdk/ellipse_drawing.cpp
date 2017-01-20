@@ -19,7 +19,7 @@
 #include "graphics_driver.h"
 namespace splashkit_lib
 {
-    void draw_ellipse(color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_ellipse(color clr, double x, double y, double width, double height, drawing_options opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -46,7 +46,7 @@ namespace splashkit_lib
         }
     }
 
-    void draw_ellipse(color clr, float x, float y, float width, float height)
+    void draw_ellipse(color clr, double x, double y, double width, double height)
     {
         draw_ellipse(clr, x, y, width, height, option_defaults());
     }
@@ -61,7 +61,7 @@ namespace splashkit_lib
         draw_ellipse(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
 
-    void fill_ellipse(color clr, float x, float y, float width, float height, drawing_options opts)
+    void fill_ellipse(color clr, double x, double y, double width, double height, drawing_options opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -88,7 +88,7 @@ namespace splashkit_lib
         }
     }
 
-    void fill_ellipse(color clr, float x, float y, float width, float height)
+    void fill_ellipse(color clr, double x, double y, double width, double height)
     {
         fill_ellipse(clr, x, y, width, height, option_defaults());
     }
@@ -103,12 +103,12 @@ namespace splashkit_lib
         fill_ellipse(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
     
-    void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_ellipse_on_window(window destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         draw_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
     }
     
-    void draw_ellipse_on_window(window destination, color clr, float x, float y, float width, float height)
+    void draw_ellipse_on_window(window destination, color clr, double x, double y, double width, double height)
     {
         draw_ellipse(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -123,12 +123,12 @@ namespace splashkit_lib
         draw_ellipse(clr, rect, option_draw_to(destination));
     }
     
-    void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void fill_ellipse_on_window(window destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         fill_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
     }
     
-    void fill_ellipse_on_window(window destination, color clr, float x, float y, float width, float height)
+    void fill_ellipse_on_window(window destination, color clr, double x, double y, double width, double height)
     {
         fill_ellipse(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -143,12 +143,12 @@ namespace splashkit_lib
         fill_ellipse(clr, rect, option_draw_to(destination));
     }
 
-    void draw_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_ellipse_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         draw_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
     }
     
-    void draw_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    void draw_ellipse_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height)
     {
         draw_ellipse(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -163,12 +163,12 @@ namespace splashkit_lib
         draw_ellipse(clr, rect, option_draw_to(destination));
     }
     
-    void fill_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void fill_ellipse_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         fill_ellipse(clr, x, y, width, height, option_draw_to(destination, opts));
     }
     
-    void fill_ellipse_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    void fill_ellipse_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height)
     {
         fill_ellipse(clr, x, y, width, height, option_draw_to(destination));
     }

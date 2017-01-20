@@ -201,7 +201,7 @@ namespace splashkit_lib
     }
 
     void _sk_draw_bitmap_text( sk_drawing_surface * surface,
-                              float x, float y,
+                              double x, double y,
                               const char * text,
                               sk_color clr )
     {
@@ -228,7 +228,7 @@ namespace splashkit_lib
                       sk_drawing_surface * surface,
                       sk_font_data* font,
                       int font_size,
-                      float x, float y,
+                      double x, double y,
                       const char * text,
                       sk_color clr)
     {

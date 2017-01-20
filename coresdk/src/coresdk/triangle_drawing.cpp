@@ -19,7 +19,7 @@
 #include "graphics_driver.h"
 namespace splashkit_lib
 {
-    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts)
     {
         sk_drawing_surface *surface;
 
@@ -35,7 +35,7 @@ namespace splashkit_lib
         }
     }
 
-    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
     }
@@ -58,7 +58,7 @@ namespace splashkit_lib
                       option_defaults());
     }
 
-    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts)
     {
         sk_drawing_surface *surface;
 
@@ -74,7 +74,7 @@ namespace splashkit_lib
         }
     }
 
-    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_defaults());
     }
@@ -97,12 +97,12 @@ namespace splashkit_lib
                       option_defaults());
     }
 
-    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts)
     {
         draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination, opts));
     }
 
-    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         draw_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination));
     }
@@ -117,12 +117,12 @@ namespace splashkit_lib
         draw_triangle(clr, tri, option_draw_to(destination));
     }
 
-    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts)
+    void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts)
     {
         fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination, opts));
     }
 
-    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         fill_triangle(clr, x1, y1, x2, y2, x3, y3, option_draw_to(destination));
     }

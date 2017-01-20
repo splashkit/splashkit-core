@@ -175,7 +175,7 @@ namespace splashkit_lib
         return bitmap_point_collision(bmp, translation_matrix(bmp_pt), pt);
     }
 
-    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, float x, float y)
+    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y)
     {
         return bitmap_point_collision(bmp, 0, translation_matrix(bmp_x, bmp_y), point_at(x, y));
     }
@@ -205,7 +205,7 @@ namespace splashkit_lib
         return bitmap_rectangle_collision(bmp, cell, translation_matrix(pt), rect);
     }
 
-    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, float x, float y)
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
     {
         if (!rectangles_intersect(sprite_collision_rectangle(s), bitmap_cell_rectangle(bmp, point_at(x, y))))
         {
@@ -230,7 +230,7 @@ namespace splashkit_lib
         return sprite_bitmap_collision(s, bmp, cell, pt.x, pt.y);
     }
 
-    bool sprite_bitmap_collision(sprite s, bitmap bmp, float x, float y)
+    bool sprite_bitmap_collision(sprite s, bitmap bmp, double x, double y)
     {
         return sprite_bitmap_collision(s, bmp, 0, x, y);
     }
@@ -302,7 +302,7 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, cell1, translation_matrix(pt1), bmp2, cell2, translation_matrix(pt2));
     }
 
-    bool bitmap_collision(bitmap bmp1, int cell1, float x1, float y1, bitmap bmp2, int cell2, float x2, float y2)
+    bool bitmap_collision(bitmap bmp1, int cell1, double x1, double y1, bitmap bmp2, int cell2, double x2, double y2)
     {
         return bitmap_collision(bmp1, cell1, translation_matrix(x1, y1), bmp2, cell2, translation_matrix(x2, y2));
     }
@@ -312,7 +312,7 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, pt1.x, pt1.y, bmp2, 0, pt2.x, pt2.y);
     }
 
-    bool bitmap_collision(bitmap bmp1, float x1, float y1, bitmap bmp2, float x2, float y2)
+    bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2)
     {
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }

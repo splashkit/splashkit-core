@@ -27,7 +27,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void draw_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
+    void draw_rectangle(color clr, double x, double y, double width, double height, const drawing_options &opts);
 
     /**
      * Draw a rectangle to the current window.
@@ -40,7 +40,7 @@ namespace splashkit_lib
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
      */
-    void draw_rectangle(color clr, float x, float y, float width, float height);
+    void draw_rectangle(color clr, double x, double y, double width, double height);
 
     /**
      * Draw a rectangle using the supplied drawing options.
@@ -77,7 +77,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void fill_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts);
+    void fill_rectangle(color clr, double x, double y, double width, double height, const drawing_options &opts);
 
     /**
      * Fills a rectangle to the current window.
@@ -90,7 +90,7 @@ namespace splashkit_lib
      * @param width   The width of the rectangle
      * @param height  The height of the rectangle
      */
-    void fill_rectangle(color clr, float x, float y, float width, float height);
+    void fill_rectangle(color clr, double x, double y, double width, double height);
 
     /**
      * Fills a rectangle using the supplied drawing options.
@@ -167,7 +167,7 @@ namespace splashkit_lib
      * @attribute class   window
      * @attribute suffix  with_options
      */
-    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, const drawing_options &opts);
+    void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height, const drawing_options &opts);
     
     /**
      * Fills a rectangle on the supplied window to the current window.
@@ -183,7 +183,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      */
-    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height);
+    void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height);
     
     /**
      * Fills a rectangle on the supplied window using the supplied drawing options.
@@ -274,7 +274,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_rectangle
      */
-    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts);
+    void draw_rectangle_on_window(window destination, color clr, double x, double y, double width, double height, drawing_options opts);
 
     /**
      *  Draw a rectangle to the window using. The rectangle is centred on its x, y
@@ -290,7 +290,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_rectangle
      */
-    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height);
+    void draw_rectangle_on_window(window destination, color clr, double x, double y, double width, double height);
 
     /**
      *  Draw a rectangle to the window using the supplied rect and drawing options. The rectangle is centred on its x, y
@@ -337,7 +337,7 @@ namespace splashkit_lib
      * @attribute class   bitmap
      * @attribute suffix  with_options
      */
-    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, const drawing_options &opts);
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, const drawing_options &opts);
     
     /**
      * Fills a rectangle on the supplied bitmap to the current bitmap.
@@ -353,7 +353,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      */
-    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height);
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height);
     
     /**
      * Fills a rectangle on the supplied bitmap using the supplied drawing options.
@@ -444,7 +444,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_rectangle
      */
-    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts);
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, drawing_options opts);
     
     /**
      *  Draw a rectangle to the bitmap using. The rectangle is centred on its x, y
@@ -460,7 +460,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_rectangle
      */
-    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height);
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height);
     
     /**
      *  Draw a rectangle to the bitmap using the supplied rect and drawing options. The rectangle is centred on its x, y

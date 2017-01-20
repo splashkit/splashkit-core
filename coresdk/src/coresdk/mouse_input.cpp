@@ -108,7 +108,7 @@ namespace splashkit_lib
             return false;
     }
 
-    void move_mouse(float x, float y)
+    void move_mouse(double x, double y)
     {
         window wind = current_window();
 

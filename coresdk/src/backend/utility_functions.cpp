@@ -200,7 +200,7 @@ namespace splashkit_lib
         }
     }
 
-    void xy_from_opts(const drawing_options &opts, float &x, float &y)
+    void xy_from_opts(const drawing_options &opts, double &x, double &y)
     {
         // check cases where drawn without camera...
         switch (opts.camera)
@@ -436,7 +436,7 @@ namespace splashkit_lib
         return true;
     }
 
-    float str_to_double(string str, bool allow_empty, double empty_value)
+    double str_to_double(string str, bool allow_empty, double empty_value)
     {
         double result;
 

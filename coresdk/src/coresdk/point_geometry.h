@@ -21,7 +21,7 @@ namespace splashkit_lib
      * @param  y The y value of the coordinate
      * @returns   A point at the given location
      */
-    point_2d point_at(float x, float y);
+    point_2d point_at(double x, double y);
 
     /**
      *  Returns a point representing the origin.

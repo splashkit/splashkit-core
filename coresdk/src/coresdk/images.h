@@ -83,7 +83,7 @@ namespace splashkit_lib
      * @attribute method  draw
      * @attribute self    bmp
      */
-    void draw_bitmap(bitmap bmp, float x, float y);
+    void draw_bitmap(bitmap bmp, double x, double y);
 
     /**
      * Draws the bitmap supplied into `bmp` to the current window.
@@ -102,7 +102,7 @@ namespace splashkit_lib
      * @attribute self    bmp
      * @attribute suffix  with_options
      */
-    void draw_bitmap(bitmap bmp, float x, float y, drawing_options opts);
+    void draw_bitmap(bitmap bmp, double x, double y, drawing_options opts);
 
     /**
      * Draws the bitmap supplied into `bmp` to the given window.
@@ -119,7 +119,7 @@ namespace splashkit_lib
      * @attribute method  draw
      * @attribute self    destination
      */
-    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y);
+    void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y);
 
     /**
      * Draws the bitmap supplied into `bmp` to the given window.
@@ -139,7 +139,7 @@ namespace splashkit_lib
      * @attribute self    destination
      * @attribute suffix  with_options
      */
-    void draw_bitmap_on_window(window destination, bitmap bmp, float x, float y, drawing_options opts);
+    void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y, drawing_options opts);
 
     /**
      * Draws the bitmap supplied into `bmp` to the given bitmap.
@@ -157,7 +157,7 @@ namespace splashkit_lib
      * @attribute self    bmp
      * @attribute suffix  on_bitmap
      */
-    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y);
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y);
 
     /**
      * Draws the bitmap supplied into `bmp` to the given bitmap.
@@ -177,7 +177,7 @@ namespace splashkit_lib
      * @attribute self    bmp
      * @attribute suffix  on_bitmap_with_options
      */
-    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, float x, float y, drawing_options opts);
+    void draw_bitmap_on_bitmap(bitmap destination, bitmap bmp, double x, double y, drawing_options opts);
 
     /**
      * Searches and draws a bitmap with name `name` to the current window.
@@ -191,7 +191,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  named
      */
-    void draw_bitmap(string name, float x, float y);
+    void draw_bitmap(string name, double x, double y);
 
     /**
      * Searches and draws a bitmap with name `name` to the current window.
@@ -207,7 +207,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  named_with_options
      */
-    void draw_bitmap(string name, float x, float y, drawing_options opts);
+    void draw_bitmap(string name, double x, double y, drawing_options opts);
 
     /**
      * Creates a new bitmap that you can draw to. Initially the bitmap will
@@ -427,7 +427,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method cell_circle
      */
-    circle bitmap_cell_circle(bitmap bmp, const point_2d pt, float scale);
+    circle bitmap_cell_circle(bitmap bmp, const point_2d pt, double scale);
 
     /**
      * Returns a circle that will encompass the bitmap cell if it were drawn
@@ -456,7 +456,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method cell_circle
      */
-    circle bitmap_cell_circle(bitmap bmp, float x, float y);
+    circle bitmap_cell_circle(bitmap bmp, double x, double y);
 
     /**
      * Returns a circle that will encompass the entire bitamp.
@@ -522,7 +522,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method bounding_rectangle
      */
-    rectangle bitmap_bounding_rectangle(bitmap bmp, float x, float y);
+    rectangle bitmap_bounding_rectangle(bitmap bmp, double x, double y);
 
     /**
      * Initialise the bitmap cell details. This allows parts of the bitmap to be
@@ -563,7 +563,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method pixel_drawn_at_point
      */
-    bool pixel_drawn_at_point(bitmap bmp, float x, float y);
+    bool pixel_drawn_at_point(bitmap bmp, double x, double y);
 
     /**
      * Check if the bitmap has a pixel drawn at the indicated point in the cell.
@@ -580,7 +580,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method pixel_drawn_at_point
      */
-    bool pixel_drawn_at_point(bitmap bmp, int cell, float x, float y);
+    bool pixel_drawn_at_point(bitmap bmp, int cell, double x, double y);
 
     /**
      * Check if the bitmap has a pixel drawn at the indicated point.

@@ -13,12 +13,12 @@
 #include "graphics_driver.h"
 namespace splashkit_lib
 {
-    void draw_line(color clr, float x1, float y1, float x2, float y2)
+    void draw_line(color clr, double x1, double y1, double x2, double y2)
     {
         draw_line(clr, x1, y1, x2, y2, option_defaults());
     }
 
-    void draw_line(color clr, float x1, float y1, float x2, float y2, const drawing_options &opts)
+    void draw_line(color clr, double x1, double y1, double x2, double y2, const drawing_options &opts)
     {
         sk_drawing_surface *surface;
 
@@ -53,12 +53,12 @@ namespace splashkit_lib
         draw_line(clr, l.start_point.x, l.start_point.y, l.end_point.x, l.end_point.y, opts);
     }
     
-    void draw_line_on_window(window destination, color clr, float x1, float y1, float x2, float y2)
+    void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2)
     {
         draw_line(clr, x1, y1, x2, y2, option_draw_to(destination));
     }
     
-    void draw_line_on_window(window destination, color clr, float x1, float y1, float x2, float y2, const drawing_options &opts)
+    void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts)
     {
         draw_line(clr, x1, y1, x2, y2, option_draw_to(destination, opts));
     }
@@ -83,12 +83,12 @@ namespace splashkit_lib
         draw_line(clr, l, option_draw_to(destination, opts));
     }
     
-    void draw_line_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2)
+    void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2)
     {
         draw_line(clr, x1, y1, x2, y2, option_draw_to(destination));
     }
     
-    void draw_line_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, const drawing_options &opts)
+    void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts)
     {
         draw_line(clr, x1, y1, x2, y2, option_draw_to(destination, opts));
     }

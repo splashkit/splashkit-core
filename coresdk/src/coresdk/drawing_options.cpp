@@ -126,12 +126,12 @@ namespace splashkit_lib
         return opts;
     }
 
-    drawing_options option_part_bmp(float x, float y, float w, float h)
+    drawing_options option_part_bmp(double x, double y, float w, float h)
     {
         return option_part_bmp(rectangle_from(x, y, w, h), option_defaults());
     }
 
-    drawing_options option_part_bmp(float x, float y, float w, float h, drawing_options opts)
+    drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts)
     {
         return option_part_bmp(rectangle_from(x, y, w, h), opts);
     }

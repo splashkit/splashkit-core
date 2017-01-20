@@ -914,7 +914,7 @@ namespace splashkit_lib
     //  Rectangles
     //
 
-    void sk_draw_aa_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+    void sk_draw_aa_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height)
     {
         if ( (! surface) || (! surface->_data) ) return;
 
@@ -942,7 +942,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_fill_aa_rect(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+    void sk_fill_aa_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height)
     {
         if ( (! surface) || (! surface->_data)  ) return;
 
@@ -979,7 +979,7 @@ namespace splashkit_lib
     //   .       .
     //   2 ..... 3
     //
-    void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+    void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz)
     {
         if ( (! surface) || ! surface->_data ) return;
         if ( data_sz != 8 ) return;
@@ -1018,7 +1018,7 @@ namespace splashkit_lib
     //   .       .
     //   2 ..... 3
     //
-    void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, float *data, int data_sz)
+    void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz)
     {
         if ( ! surface ) return;
         if ( data_sz != 8 ) return;
@@ -1066,7 +1066,7 @@ namespace splashkit_lib
     //  Triangles
     //
 
-    void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1094,7 +1094,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_fill_triangle(sk_drawing_surface *surface, color clr, float x1, float y1, float x2, float y2, float x3, float y3)
+    void sk_fill_triangle(sk_drawing_surface *surface, color clr, double x1, double y1, double x2, double y2, double x3, double y3)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1127,7 +1127,7 @@ namespace splashkit_lib
     //  Ellipse
     //
 
-    void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+    void sk_draw_ellipse(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1159,7 +1159,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, float x, float y, float width, float height)
+    void sk_fill_ellipse(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1196,7 +1196,7 @@ namespace splashkit_lib
     // Pixel
     //
 
-    void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, float x, float y)
+    void sk_draw_pixel(sk_drawing_surface *surface, sk_color clr, double x, double y)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1262,7 +1262,7 @@ namespace splashkit_lib
     // Circles
     //
 
-    void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius)
+    void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1297,7 +1297,7 @@ namespace splashkit_lib
         }
     }
 
-    void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, float x, float y, float radius)
+    void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1337,7 +1337,7 @@ namespace splashkit_lib
     // Lines
     //
 
-    void sk_draw_line(sk_drawing_surface *surface, sk_color clr, float x1, float y1, float x2, float y2, float size)
+    void sk_draw_line(sk_drawing_surface *surface, sk_color clr, double x1, double y1, double x2, double y2, double size)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1388,7 +1388,7 @@ namespace splashkit_lib
     // Clipping
     //
 
-    void sk_set_clip_rect(sk_drawing_surface *surface, float x, float y, float width, float height)
+    void sk_set_clip_rect(sk_drawing_surface *surface, double x, double y, double width, double height)
     {
         if ( ! surface || ! surface->_data ) return;
 
@@ -1874,7 +1874,7 @@ namespace splashkit_lib
     //x, y is the position to draw the bitmap to. As bitmaps scale around their centre, (x, y) is the top-left of the bitmap IF and ONLY IF scale = 1.
     //Angle is in degrees, 0 being right way up
     //Centre is the point to rotate around, relative to the bitmap centre (therefore (0,0) would rotate around the centre point)
-    void sk_draw_bitmap( sk_drawing_surface * src, sk_drawing_surface * dst, float * src_data, int src_data_sz, float * dst_data, int dst_data_sz, sk_renderer_flip flip )
+    void sk_draw_bitmap( sk_drawing_surface * src, sk_drawing_surface * dst, double * src_data, int src_data_sz, double * dst_data, int dst_data_sz, sk_renderer_flip flip )
     {
         if ( ! src || ! dst || src->kind != SGDS_Bitmap )
             return;
@@ -1883,22 +1883,22 @@ namespace splashkit_lib
             return;
         
         // dst_data must be 7 values
-        float x         = dst_data[0];
-        float y         = dst_data[1];
-        float angle     = dst_data[2];
-        float centre_x  = dst_data[3];
-        float centre_y  = dst_data[4];
-        float scale_x   = dst_data[5];
-        float scale_y   = dst_data[6];
+        double x         = dst_data[0];
+        double y         = dst_data[1];
+        double angle     = dst_data[2];
+        double centre_x  = dst_data[3];
+        double centre_y  = dst_data[4];
+        double scale_x   = dst_data[5];
+        double scale_y   = dst_data[6];
         
         if ( src_data_sz != 4)
             return;
         
         // src_data must be
-        float src_x     = src_data[0];
-        float src_y     = src_data[1];
-        float src_w     = src_data[2];
-        float src_h     = src_data[3];
+        double src_x     = src_data[0];
+        double src_y     = src_data[1];
+        double src_w     = src_data[2];
+        double src_h     = src_data[3];
         
         // Other locals
         SDL_Texture *srcT;

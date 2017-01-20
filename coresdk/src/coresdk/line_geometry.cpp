@@ -19,7 +19,7 @@ namespace splashkit_lib
         return {start, end_pt};
     }
 
-    line line_from(float x1, float y1, float x2, float y2)
+    line line_from(double x1, double y1, double x2, double y2)
     {
         return line_from(point_at(x1, y1), point_at(x2, y2));
     }

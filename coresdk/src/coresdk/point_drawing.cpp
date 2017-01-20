@@ -13,12 +13,12 @@
 
 namespace splashkit_lib
 {
-    void draw_pixel(color clr, float x, float y)
+    void draw_pixel(color clr, double x, double y)
     {
         draw_pixel(clr, x, y, option_defaults());
     }
 
-    void draw_pixel(color clr, float x, float y, drawing_options opts)
+    void draw_pixel(color clr, double x, double y, drawing_options opts)
     {
         sk_drawing_surface *surface;
 
@@ -42,7 +42,7 @@ namespace splashkit_lib
         draw_pixel(clr, pt.x, pt.y, opts);
     }
 
-    color get_pixel(bitmap bmp, float x, float y)
+    color get_pixel(bitmap bmp, double x, double y)
     {
         if ( INVALID_PTR(bmp, BITMAP_PTR) )
         {
@@ -58,7 +58,7 @@ namespace splashkit_lib
         return get_pixel(bmp, pt.x, pt.y);
     }
 
-    color get_pixel(window wnd, float x, float y)
+    color get_pixel(window wnd, double x, double y)
     {
         if ( INVALID_PTR(wnd, WINDOW_PTR) )
         {
@@ -74,7 +74,7 @@ namespace splashkit_lib
         return get_pixel(wnd, pt.x, pt.y);
     }
     
-    color get_pixel(float x, float y)
+    color get_pixel(double x, double y)
     {
         return get_pixel(current_window(), x, y);
     }
@@ -84,12 +84,12 @@ namespace splashkit_lib
         return get_pixel(current_window(), pt.x, pt.y);
     }
     
-    void draw_pixel_on_window(window destination, color clr, float x, float y)
+    void draw_pixel_on_window(window destination, color clr, double x, double y)
     {
         draw_pixel(clr, x, y, option_draw_to(destination));
     }
     
-    void draw_pixel_on_window(window destination, color clr, float x, float y, drawing_options opts)
+    void draw_pixel_on_window(window destination, color clr, double x, double y, drawing_options opts)
     {
         draw_pixel(clr, x, y, option_draw_to(destination, opts));
     }
@@ -104,12 +104,12 @@ namespace splashkit_lib
         draw_pixel(clr, pt, option_draw_to(destination, opts));
     }
     
-    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y)
+    void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y)
     {
         draw_pixel(clr, x, y, option_draw_to(destination));
     }
     
-    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y, drawing_options opts)
+    void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y, drawing_options opts)
     {
         draw_pixel(clr, x, y, option_draw_to(destination, opts));
     }
@@ -124,7 +124,7 @@ namespace splashkit_lib
         draw_pixel(clr, pt, option_draw_to(destination, opts));
     }
     
-    color get_pixel_from_window(window destination, float x, float y)
+    color get_pixel_from_window(window destination, double x, double y)
     {
         return get_pixel(destination, x, y);
     }

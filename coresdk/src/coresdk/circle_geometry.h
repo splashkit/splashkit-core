@@ -18,7 +18,7 @@ namespace splashkit_lib
      * @param  radius The radius of the circle
      * @return        A circle at the indicatd point and radius
      */
-    circle circle_at(const point_2d &pt, float radius);
+    circle circle_at(const point_2d &pt, double radius);
 
     /**
      * Returns a circle at the indicated point and radius.
@@ -30,7 +30,7 @@ namespace splashkit_lib
      *
      * @attribute suffix from_points
      */
-    circle circle_at(float x, float y, float radius);
+    circle circle_at(double x, double y, double radius);
 
     /**
      * Detects if two circles intersect. This can be used to detect collisions between

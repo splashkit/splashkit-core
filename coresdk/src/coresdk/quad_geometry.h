@@ -30,10 +30,10 @@ namespace splashkit_lib
      * @return                A quad with the indicated points
      */
     quad quad_from(
-      float x_top_left, float y_top_left,
-      float x_top_right, float y_top_right,
-      float x_bottom_left, float y_bottom_left,
-      float x_bottom_right, float y_bottom_right );
+      double x_top_left, double y_top_left,
+      double x_top_right, double y_top_right,
+      double x_bottom_left, double y_bottom_left,
+      double x_bottom_right, double y_bottom_right );
 
     /**
      * Returns a quad from the x-y points of a given recatangle

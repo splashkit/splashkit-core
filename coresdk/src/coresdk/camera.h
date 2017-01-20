@@ -48,7 +48,7 @@ namespace splashkit_lib
      *
      * @attribute setter x
      */
-    void set_camera_x(float x);
+    void set_camera_x(double x);
 
     /**
      * Change the Y position of the camera to a specified world coordinate. This
@@ -58,7 +58,7 @@ namespace splashkit_lib
      *
      * @attribute setter y
      */
-    void set_camera_y(float y);
+    void set_camera_y(double y);
 
     /**
      * Change the position of the camera to a specified world coordinate. This
@@ -268,7 +268,7 @@ namespace splashkit_lib
      *
      * @attribute method move_to
      */
-    void move_camera_to(float x, float y);
+    void move_camera_to(double x, double y);
 
     /**
      * Move the camera view (screen top left) to a specified point in the world.

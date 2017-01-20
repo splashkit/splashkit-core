@@ -25,14 +25,14 @@ namespace splashkit_lib
     void sk_set_font_style(sk_font_data* font, int font_size, int style);
     int sk_get_font_style(sk_font_data* font, int font_size);
     void _sk_draw_bitmap_text( sk_drawing_surface * surface,
-                              float x, float y,
+                              double x, double y,
                               const char * text,
                               sk_color clr );
     void sk_draw_text(
                       sk_drawing_surface * surface,
                       sk_font_data* font,
                       int font_size,
-                      float x, float y,
+                      double x, double y,
                       const char * text,
                       sk_color clr);
     

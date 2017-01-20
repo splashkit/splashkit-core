@@ -29,8 +29,8 @@ namespace splashkit_lib
         string ct = current->input_text;
 
         rectangle input_area = current->input_area;
-        float x = input_area.x;
-        float y = input_area.y;
+        double x = input_area.x;
+        double y = input_area.y;
 
         draw_text(ct, clr, fnt, font_size, x, y, opts);
         font_style style = get_font_style(fnt);

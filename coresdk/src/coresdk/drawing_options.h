@@ -199,7 +199,7 @@ namespace splashkit_lib
      * @param  h The height of the part within the bitmap.
      * @return   Options to draw parts of a bitmap.
      */
-    drawing_options option_part_bmp(float x, float y, float w, float h);
+    drawing_options option_part_bmp(double x, double y, float w, float h);
 
     /**
      * Use this option to draw only a part of a bitmap.
@@ -213,7 +213,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    drawing_options option_part_bmp(float x, float y, float w, float h, drawing_options opts);
+    drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts);
 
     /**
      * Use this option to draw only part of a bitmap.

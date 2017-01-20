@@ -199,7 +199,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    with_options
      */
-    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts);
 
     /**
      * @brief Draws the text string provided to the screen with the supplied color, font, size at x and y to the current window.
@@ -211,7 +211,7 @@ namespace splashkit_lib
      * @param x             The x location to draw the text.
      * @param y             The y location to draw the text.
      */
-    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y);
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y);
 
     /**
      * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
@@ -226,7 +226,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    with_options_font_as_string
      */
-    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts);
 
     /**
      * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
@@ -240,7 +240,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    font_as_string
      */
-    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, double x, double y);
 
     /**
      * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
@@ -253,7 +253,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    no_font_no_size_with_options
      */
-    void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts);
+    void draw_text(const string &text, const color &clr, double x, double y, const drawing_options &opts);
 
     /**
      * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
@@ -265,7 +265,7 @@ namespace splashkit_lib
      *
      * @attribute suffix    no_font_no_size
      */
-    void draw_text(const string &text, const color &clr, float x, float y);
+    void draw_text(const string &text, const color &clr, double x, double y);
 
     /**
      * @brief Draws the text string provided to the window with the supplied color, font, size at x and y.
@@ -283,7 +283,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the window with the supplied color, font, size at x and y.
@@ -299,7 +299,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y);
     
     /**
      * @brief Draws the text string provided to the window with the supplied color, font and size at x and y.
@@ -317,7 +317,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current window.
@@ -334,7 +334,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y);
     
     /**
      * @brief Draws the text string provided to the window with the supplied color at x and y.
@@ -350,7 +350,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y, const drawing_options &opts);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the screen with the supplied color at x and y to the current window.
@@ -365,7 +365,7 @@ namespace splashkit_lib
      * @attribute class     window
      * @attribute method    draw_text
      */
-    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y);
+    void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y);
     
     /**
      * @brief Draws the text string provided to the bitmap with the supplied color, font, size at x and y.
@@ -383,7 +383,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the bitmap with the supplied color, font, size at x and y.
@@ -399,7 +399,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, double x, double y);
     
     /**
      * @brief Draws the text string provided to the bitmap with the supplied color, font and size at x and y.
@@ -417,7 +417,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the screen with the supplied color, font and size at x and y to the current bitmap.
@@ -434,7 +434,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y);
     
     /**
      * @brief Draws the text string provided to the bitmap with the supplied color at x and y.
@@ -450,7 +450,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y, const drawing_options &opts);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y, const drawing_options &opts);
     
     /**
      * @brief Draws the text string provided to the screen with the supplied color at x and y.
@@ -465,7 +465,7 @@ namespace splashkit_lib
      * @attribute class     bitmap
      * @attribute method    draw_text
      */
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y);
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y);
 
     /**
      * @brief Returns the width of the supplied text string.
