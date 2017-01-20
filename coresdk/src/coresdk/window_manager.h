@@ -4,7 +4,7 @@
  * @brief   Window Manager in SplashKit can be used create, and manipulate
  *          graphics windows
  *
- * @attribute group  graphics
+ * @attribute group  windows
  * @attribute static window_manager
  */
 
@@ -203,6 +203,18 @@ namespace splashkit_lib
      */
     void refresh_window(window wind);
 
+    /**
+     * Refreshes the window `wind`.
+     *
+     * @param  wind the `window` to refresh.
+     * @param  target_fps the desired framerate
+     *
+     * @attribute class   window
+     * @attribute method  refresh
+     * @attribute suffix  with_target_fps
+     */
+    void refresh_window(window wind, unsigned int target_fps);
+    
     /**
      * clears a window to the specified color given in `clr`
      *

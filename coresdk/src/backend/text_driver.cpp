@@ -152,11 +152,11 @@ namespace splashkit_lib
         }
         else
         {
-            return 0;
+            return 2;
         }
     }
 
-    int sk_text_size(sk_font_data* font, int font_size, string text, int* w, int* h)
+    int sk_text_size(sk_font_data* font, int font_size, const string &text, int* w, int* h)
     {
         TTF_Font* ttf_font = _get_font(font, font_size);
 
@@ -166,6 +166,8 @@ namespace splashkit_lib
         }
         else
         {
+            *w = 8 * (int)text.length();
+            *h = 8;
             return 0;
         }
     }

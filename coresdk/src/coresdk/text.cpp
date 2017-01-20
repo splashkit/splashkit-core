@@ -201,20 +201,10 @@ namespace splashkit_lib
         return result;
     }
 
-    void _print_strings(void *dest, font fnt, int font_size, string str, rectangle rc, color fg_clr, color bg_clr)
-    {
-        if (bg_clr.a > 0)
-        {
-            sk_fill_aa_rect(to_surface_ptr(dest), bg_clr, rc.x, rc.y, rc.width, rc.height);
-        }
-
-        sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
-    }
-
     void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
+
     {
-        rectangle rect;
-        if ( ! VALID_PTR(fnt, FONT_PTR) )
+        if ( fnt != nullptr and INVALID_PTR(fnt, FONT_PTR) )
         {
             LOG(WARNING) << "Error attempting to draw text with invalid font.";
             return;
@@ -223,13 +213,8 @@ namespace splashkit_lib
         if (text.length() < 1) return;
 
         xy_from_opts(opts, x, y);
-        rect.x = x;
-        rect.y = y;
 
-        rect.width = -1;
-        rect.height = -1;
-
-        _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT);
+        sk_draw_text(to_surface_ptr(opts.dest), fnt, font_size, x, y, text.c_str(), clr);
     }
 
     void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y)
@@ -249,15 +234,14 @@ namespace splashkit_lib
 
     void draw_text(const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
-        xy_from_opts(opts, x, y);
-        sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
+        draw_text(text, clr, nullptr, 0, x, y, opts);
     }
 
     void draw_text(const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_defaults());
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd, opts));
@@ -320,7 +304,7 @@ namespace splashkit_lib
     
     int text_width(const string &text, font fnt, int font_size)
     {
-        if ( INVALID_PTR(fnt, FONT_PTR) )
+        if ( fnt != nullptr && INVALID_PTR(fnt, FONT_PTR) )
         {
             LOG(WARNING) << "Attempting to get string width with invalid font";
             return 0;
