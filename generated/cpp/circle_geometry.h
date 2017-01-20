@@ -13,8 +13,8 @@ using std::string;
 using std::vector;
 
 point_2d center_point(const circle &c);
-circle circle_at(const point_2d &pt, float radius);
-circle circle_at(float x, float y, float radius);
+circle circle_at(const point_2d &pt, double radius);
+circle circle_at(double x, double y, double radius);
 float circle_radius(const circle c);
 float circle_x(const circle &c);
 float circle_y(const circle &c);

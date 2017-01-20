@@ -286,26 +286,26 @@ matrix_2d __skadapter__to_matrix_2d(__sklib_matrix_2d v) {
 }
 __sklib_point_2d __skadapter__to_sklib_point_2d(point_2d v) {
     __sklib_point_2d __skreturn;
-    __skreturn.x = __skadapter__to_float(v.x);
-    __skreturn.y = __skadapter__to_float(v.y);
+    __skreturn.x = __skadapter__to_double(v.x);
+    __skreturn.y = __skadapter__to_double(v.y);
     return __skreturn;
 }
 point_2d __skadapter__to_point_2d(__sklib_point_2d v) {
     point_2d __skreturn;
-    __skreturn.x = __skadapter__to_float(v.x);
-    __skreturn.y = __skadapter__to_float(v.y);
+    __skreturn.x = __skadapter__to_double(v.x);
+    __skreturn.y = __skadapter__to_double(v.y);
     return __skreturn;
 }
 __sklib_circle __skadapter__to_sklib_circle(circle v) {
     __sklib_circle __skreturn;
     __skreturn.center = __skadapter__to_sklib_point_2d(v.center);
-    __skreturn.radius = __skadapter__to_float(v.radius);
+    __skreturn.radius = __skadapter__to_double(v.radius);
     return __skreturn;
 }
 circle __skadapter__to_circle(__sklib_circle v) {
     circle __skreturn;
     __skreturn.center = __skadapter__to_point_2d(v.center);
-    __skreturn.radius = __skadapter__to_float(v.radius);
+    __skreturn.radius = __skadapter__to_double(v.radius);
     return __skreturn;
 }
 __sklib_color __skadapter__to_sklib_color(color v) {
@@ -326,18 +326,18 @@ color __skadapter__to_color(__sklib_color v) {
 }
 __sklib_rectangle __skadapter__to_sklib_rectangle(rectangle v) {
     __sklib_rectangle __skreturn;
-    __skreturn.x = __skadapter__to_float(v.x);
-    __skreturn.y = __skadapter__to_float(v.y);
-    __skreturn.width = __skadapter__to_float(v.width);
-    __skreturn.height = __skadapter__to_float(v.height);
+    __skreturn.x = __skadapter__to_double(v.x);
+    __skreturn.y = __skadapter__to_double(v.y);
+    __skreturn.width = __skadapter__to_double(v.width);
+    __skreturn.height = __skadapter__to_double(v.height);
     return __skreturn;
 }
 rectangle __skadapter__to_rectangle(__sklib_rectangle v) {
     rectangle __skreturn;
-    __skreturn.x = __skadapter__to_float(v.x);
-    __skreturn.y = __skadapter__to_float(v.y);
-    __skreturn.width = __skadapter__to_float(v.width);
-    __skreturn.height = __skadapter__to_float(v.height);
+    __skreturn.x = __skadapter__to_double(v.x);
+    __skreturn.y = __skadapter__to_double(v.y);
+    __skreturn.width = __skadapter__to_double(v.width);
+    __skreturn.height = __skadapter__to_double(v.height);
     return __skreturn;
 }
 __sklib_drawing_options __skadapter__to_sklib_drawing_options(drawing_options v) {

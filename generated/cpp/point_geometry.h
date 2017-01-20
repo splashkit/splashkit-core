@@ -13,7 +13,7 @@
 using std::string;
 using std::vector;
 
-point_2d point_at(float x, float y);
+point_2d point_at(double x, double y);
 point_2d point_at_origin();
 bool point_in_circle(const point_2d &pt, const circle &c);
 bool point_in_quad(const point_2d &pt, const quad &q);

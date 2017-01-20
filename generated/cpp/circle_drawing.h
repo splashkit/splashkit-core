@@ -13,17 +13,17 @@
 using std::string;
 using std::vector;
 
-void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius);
-void bitmap_draw_circle(bitmap destination, color clr, float x, float y, float radius, drawing_options opts);
 void draw_circle(color clr, const circle &c);
 void draw_circle(color clr, const circle &c, drawing_options opts);
-void draw_circle(color clr, float x, float y, float radius);
-void draw_circle(color clr, float x, float y, float radius, drawing_options opts);
+void draw_circle(color clr, double x, double y, double radius);
+void draw_circle(color clr, double x, double y, double radius, drawing_options opts);
+void draw_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius);
+void draw_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius, drawing_options opts);
+void draw_circle_on_window(window destination, color clr, double x, double y, double radius);
+void draw_circle_on_window(window destination, color clr, double x, double y, double radius, drawing_options opts);
 void fill_circle(color clr, const circle &c);
 void fill_circle(color clr, const circle &c, drawing_options opts);
-void fill_circle(color clr, float x, float y, float radius);
-void fill_circle(color clr, float x, float y, float radius, drawing_options opts);
-void window_draw_circle(window destination, color clr, float x, float y, float radius);
-void window_draw_circle(window destination, color clr, float x, float y, float radius, drawing_options opts);
+void fill_circle(color clr, double x, double y, double radius);
+void fill_circle(color clr, double x, double y, double radius, drawing_options opts);
 
 #endif /* __circle_drawing_h */

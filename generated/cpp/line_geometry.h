@@ -17,7 +17,7 @@ point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &line
 line line_from(const point_2d &start, const point_2d &end_pt);
 line line_from(const point_2d &start, const vector_2d &offset);
 line line_from(const vector_2d &v);
-line line_from(float x1, float y1, float x2, float y2);
+line line_from(double x1, double y1, double x2, double y2);
 bool line_intersection_point(const line &line1, const line &line2, point_2d &pt);
 bool line_intersects_circle(const line &l, const circle &c);
 bool line_intersects_lines(const line &l, const vector<line> &lines);

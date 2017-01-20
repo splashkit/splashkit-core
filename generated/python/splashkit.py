@@ -240,8 +240,8 @@ class _sklib_matrix_2d(Structure):
 Matrix2D = _sklib_matrix_2d
 class _sklib_point_2d(Structure):
     _fields_ = [
-        ("x", c_float),
-        ("y", c_float),
+        ("x", c_double),
+        ("y", c_double),
     ]
 
     def __init__(self):
@@ -251,7 +251,7 @@ Point2D = _sklib_point_2d
 class _sklib_circle(Structure):
     _fields_ = [
         ("center", _sklib_point_2d),
-        ("radius", c_float),
+        ("radius", c_double),
     ]
 
     def __init__(self):
@@ -272,10 +272,10 @@ class _sklib_color(Structure):
 Color = _sklib_color
 class _sklib_rectangle(Structure):
     _fields_ = [
-        ("x", c_float),
-        ("y", c_float),
-        ("width", c_float),
-        ("height", c_float),
+        ("x", c_double),
+        ("y", c_double),
+        ("width", c_double),
+        ("height", c_double),
     ]
 
     def __init__(self):
@@ -635,15 +635,15 @@ def __skadapter__to_sklib_point_2d(v):
         return v
 
     result = Point2D()
-    result.x = __skadapter__to_sklib_float(v.x)
-    result.y = __skadapter__to_sklib_float(v.y)
+    result.x = __skadapter__to_sklib_double(v.x)
+    result.y = __skadapter__to_sklib_double(v.y)
     return result
 def __skadapter__to_point_2d(v):
     if isinstance(v, Point2D):
         return v
     result = Point2D()
-    result.x = __skadapter__to_float(v.x)
-    result.y = __skadapter__to_float(v.y)
+    result.x = __skadapter__to_double(v.x)
+    result.y = __skadapter__to_double(v.y)
     return result
 def __skadapter__to_sklib_circle(v):
     if isinstance(v, _sklib_circle):
@@ -651,14 +651,14 @@ def __skadapter__to_sklib_circle(v):
 
     result = Circle()
     result.center = __skadapter__to_sklib_point_2d(v.center)
-    result.radius = __skadapter__to_sklib_float(v.radius)
+    result.radius = __skadapter__to_sklib_double(v.radius)
     return result
 def __skadapter__to_circle(v):
     if isinstance(v, Circle):
         return v
     result = Circle()
     result.center = __skadapter__to_point_2d(v.center)
-    result.radius = __skadapter__to_float(v.radius)
+    result.radius = __skadapter__to_double(v.radius)
     return result
 def __skadapter__to_sklib_color(v):
     if isinstance(v, _sklib_color):
@@ -684,19 +684,19 @@ def __skadapter__to_sklib_rectangle(v):
         return v
 
     result = Rectangle()
-    result.x = __skadapter__to_sklib_float(v.x)
-    result.y = __skadapter__to_sklib_float(v.y)
-    result.width = __skadapter__to_sklib_float(v.width)
-    result.height = __skadapter__to_sklib_float(v.height)
+    result.x = __skadapter__to_sklib_double(v.x)
+    result.y = __skadapter__to_sklib_double(v.y)
+    result.width = __skadapter__to_sklib_double(v.width)
+    result.height = __skadapter__to_sklib_double(v.height)
     return result
 def __skadapter__to_rectangle(v):
     if isinstance(v, Rectangle):
         return v
     result = Rectangle()
-    result.x = __skadapter__to_float(v.x)
-    result.y = __skadapter__to_float(v.y)
-    result.width = __skadapter__to_float(v.width)
-    result.height = __skadapter__to_float(v.height)
+    result.x = __skadapter__to_double(v.x)
+    result.y = __skadapter__to_double(v.y)
+    result.width = __skadapter__to_double(v.width)
+    result.height = __skadapter__to_double(v.height)
     return result
 def __skadapter__to_sklib_drawing_options(v):
     if isinstance(v, _sklib_drawing_options):
@@ -1299,8 +1299,8 @@ sklib.__sklib__move_camera_by__float__float.argtypes = [ c_float, c_float ]
 sklib.__sklib__move_camera_by__float__float.restype = None
 sklib.__sklib__move_camera_to__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__move_camera_to__point_2d_ref.restype = None
-sklib.__sklib__move_camera_to__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__move_camera_to__float__float.restype = None
+sklib.__sklib__move_camera_to__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__move_camera_to__double__double.restype = None
 sklib.__sklib__point_in_window__window__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__point_in_window__window__point_2d_ref.restype = c_bool
 sklib.__sklib__point_on_screen__point_2d_ref.argtypes = [ _sklib_point_2d ]
@@ -1315,8 +1315,8 @@ sklib.__sklib__screen_rectangle.argtypes = [  ]
 sklib.__sklib__screen_rectangle.restype = _sklib_rectangle
 sklib.__sklib__set_camera_position__point_2d.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__set_camera_position__point_2d.restype = None
-sklib.__sklib__set_camera_y__float.argtypes = [ c_float ]
-sklib.__sklib__set_camera_y__float.restype = None
+sklib.__sklib__set_camera_y__double.argtypes = [ c_double ]
+sklib.__sklib__set_camera_y__double.restype = None
 sklib.__sklib__to_screen__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__to_screen__point_2d_ref.restype = _sklib_point_2d
 sklib.__sklib__to_screen__rectangle_ref.argtypes = [ _sklib_rectangle ]
@@ -1335,36 +1335,36 @@ sklib.__sklib__vector_world_to_screen.argtypes = [  ]
 sklib.__sklib__vector_world_to_screen.restype = _sklib_vector_2d
 sklib.__sklib__window_area__window.argtypes = [ c_void_p ]
 sklib.__sklib__window_area__window.restype = _sklib_rectangle
-sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float ]
-sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float.restype = None
-sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options.restype = None
 sklib.__sklib__draw_circle__color__circle_ref.argtypes = [ _sklib_color, _sklib_circle ]
 sklib.__sklib__draw_circle__color__circle_ref.restype = None
 sklib.__sklib__draw_circle__color__circle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_circle, _sklib_drawing_options ]
 sklib.__sklib__draw_circle__color__circle_ref__drawing_options.restype = None
-sklib.__sklib__draw_circle__color__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float ]
-sklib.__sklib__draw_circle__color__float__float__float.restype = None
-sklib.__sklib__draw_circle__color__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_circle__color__float__float__float__drawing_options.restype = None
+sklib.__sklib__draw_circle__color__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__draw_circle__color__double__double__double.restype = None
+sklib.__sklib__draw_circle__color__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_circle__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double.restype = None
+sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_circle_on_window__window__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__draw_circle_on_window__window__color__double__double__double.restype = None
+sklib.__sklib__draw_circle_on_window__window__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_circle_on_window__window__color__double__double__double__drawing_options.restype = None
 sklib.__sklib__fill_circle__color__circle_ref.argtypes = [ _sklib_color, _sklib_circle ]
 sklib.__sklib__fill_circle__color__circle_ref.restype = None
 sklib.__sklib__fill_circle__color__circle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_circle, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__circle_ref__drawing_options.restype = None
-sklib.__sklib__fill_circle__color__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float ]
-sklib.__sklib__fill_circle__color__float__float__float.restype = None
-sklib.__sklib__fill_circle__color__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__fill_circle__color__float__float__float__drawing_options.restype = None
-sklib.__sklib__window_draw_circle__window__color__float__float__float.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float ]
-sklib.__sklib__window_draw_circle__window__color__float__float__float.restype = None
-sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options.argtypes = [ c_void_p, _sklib_color, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options.restype = None
+sklib.__sklib__fill_circle__color__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__fill_circle__color__double__double__double.restype = None
+sklib.__sklib__fill_circle__color__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_circle__color__double__double__double__drawing_options.restype = None
 sklib.__sklib__center_point__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__center_point__circle_ref.restype = _sklib_point_2d
-sklib.__sklib__circle_at__point_2d_ref__float.argtypes = [ _sklib_point_2d, c_float ]
-sklib.__sklib__circle_at__point_2d_ref__float.restype = _sklib_circle
-sklib.__sklib__circle_at__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__circle_at__float__float__float.restype = _sklib_circle
+sklib.__sklib__circle_at__point_2d_ref__double.argtypes = [ _sklib_point_2d, c_double ]
+sklib.__sklib__circle_at__point_2d_ref__double.restype = _sklib_circle
+sklib.__sklib__circle_at__double__double__double.argtypes = [ c_double, c_double, c_double ]
+sklib.__sklib__circle_at__double__double__double.restype = _sklib_circle
 sklib.__sklib__circle_radius__circle.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_radius__circle.restype = c_float
 sklib.__sklib__circle_x__circle_ref.argtypes = [ _sklib_circle ]
@@ -1419,34 +1419,34 @@ sklib.__sklib__set_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, _sklib_rec
 sklib.__sklib__set_clip__bitmap__rectangle_ref.restype = None
 sklib.__sklib__set_clip__window__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__set_clip__window__rectangle_ref.restype = None
-sklib.__sklib__bitmap_collision__bitmap__float__float__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float, c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_collision__bitmap__float__float__bitmap__float__float.restype = c_bool
+sklib.__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double, c_void_p, c_double, c_double ]
+sklib.__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, c_void_p, _sklib_point_2d ]
 sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, c_void_p, c_int, _sklib_matrix_2d ]
 sklib.__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float.argtypes = [ c_void_p, c_int, c_float, c_float, c_void_p, c_int, c_float, c_float ]
-sklib.__sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float.restype = c_bool
+sklib.__sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double.argtypes = [ c_void_p, c_int, c_double, c_double, c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_point_collision__bitmap__float__float__float__float.argtypes = [ c_void_p, c_float, c_float, c_float, c_float ]
-sklib.__sklib__bitmap_point_collision__bitmap__float__float__float__float.restype = c_bool
+sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double.argtypes = [ c_void_p, c_float, c_float, c_double, c_double ]
+sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.restype = c_bool
-sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__float__float.argtypes = [ c_void_p, c_void_p, c_float, c_float ]
-sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__float__float.restype = c_bool
+sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.argtypes = [ c_void_p, c_void_p, c_double, c_double ]
+sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.restype = c_bool
-sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float.argtypes = [ c_void_p, c_void_p, c_int, c_float, c_float ]
-sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float.restype = c_bool
+sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double.argtypes = [ c_void_p, c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double.restype = c_bool
 sklib.__sklib__sprite_collision__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__sprite_collision__sprite__sprite.restype = c_bool
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
@@ -1837,10 +1837,10 @@ sklib.__sklib__option_line_width__int.argtypes = [ c_int ]
 sklib.__sklib__option_line_width__int.restype = _sklib_drawing_options
 sklib.__sklib__option_line_width__int__drawing_options.argtypes = [ c_int, _sklib_drawing_options ]
 sklib.__sklib__option_line_width__int__drawing_options.restype = _sklib_drawing_options
-sklib.__sklib__option_part_bmp__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__option_part_bmp__float__float__float__float.restype = _sklib_drawing_options
-sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__double__double__float__float.argtypes = [ c_double, c_double, c_float, c_float ]
+sklib.__sklib__option_part_bmp__double__double__float__float.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options.argtypes = [ c_double, c_double, c_float, c_float, _sklib_drawing_options ]
+sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_part_bmp__rectangle.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__option_part_bmp__rectangle.restype = _sklib_drawing_options
 sklib.__sklib__option_part_bmp__rectangle__drawing_options.argtypes = [ _sklib_rectangle, _sklib_drawing_options ]
@@ -1873,18 +1873,50 @@ sklib.__sklib__draw_ellipse__color__rectangle.argtypes = [ _sklib_color, _sklib_
 sklib.__sklib__draw_ellipse__color__rectangle.restype = None
 sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.restype = None
-sklib.__sklib__draw_ellipse__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
-sklib.__sklib__draw_ellipse__color__float__float__float__float.restype = None
-sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options.restype = None
+sklib.__sklib__draw_ellipse__color__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_ellipse__color__double__double__double__double.restype = None
+sklib.__sklib__draw_ellipse__color__double__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_ellipse__color__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle.restype = None
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options.restype = None
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double.restype = None
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_ellipse_on_window__window__color__rectangle.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__draw_ellipse_on_window__window__color__rectangle.restype = None
+sklib.__sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options.restype = None
+sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double.restype = None
+sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__fill_ellipse__color__rectangle.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__fill_ellipse__color__rectangle.restype = None
 sklib.__sklib__fill_ellipse__color__rectangle__drawing_options.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__fill_ellipse__color__rectangle__drawing_options.restype = None
-sklib.__sklib__fill_ellipse__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
-sklib.__sklib__fill_ellipse__color__float__float__float__float.restype = None
-sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options.restype = None
+sklib.__sklib__fill_ellipse__color__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_ellipse__color__double__double__double__double.restype = None
+sklib.__sklib__fill_ellipse__color__double__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_ellipse__color__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle.restype = None
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options.restype = None
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double.restype = None
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_ellipse_on_window__window__color__rectangle.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__fill_ellipse_on_window__window__color__rectangle.restype = None
+sklib.__sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options.restype = None
+sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double.restype = None
+sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__cosine__float.argtypes = [ c_float ]
 sklib.__sklib__cosine__float.restype = c_float
 sklib.__sklib__sine__float.argtypes = [ c_float ]
@@ -1927,16 +1959,16 @@ sklib.__sklib__bitmap_bounding_circle__bitmap__point_2d_ref.argtypes = [ c_void_
 sklib.__sklib__bitmap_bounding_circle__bitmap__point_2d_ref.restype = _sklib_circle
 sklib.__sklib__bitmap_bounding_rectangle__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_bounding_rectangle__bitmap.restype = _sklib_rectangle
-sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float.restype = _sklib_rectangle
+sklib.__sklib__bitmap_bounding_rectangle__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__bitmap_bounding_rectangle__bitmap__double__double.restype = _sklib_rectangle
 sklib.__sklib__bitmap_cell_center__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_center__bitmap.restype = _sklib_point_2d
-sklib.__sklib__bitmap_cell_circle__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__bitmap_cell_circle__bitmap__float__float.restype = _sklib_circle
+sklib.__sklib__bitmap_cell_circle__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__bitmap_cell_circle__bitmap__double__double.restype = _sklib_circle
 sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__bitmap_cell_circle__bitmap__point_2d.restype = _sklib_circle
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.argtypes = [ c_void_p, _sklib_point_2d, c_float ]
-sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float.restype = _sklib_circle
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__double.argtypes = [ c_void_p, _sklib_point_2d, c_double ]
+sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__double.restype = _sklib_circle
 sklib.__sklib__bitmap_cell_columns__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_cell_columns__bitmap.restype = c_int
 sklib.__sklib__bitmap_cell_count__bitmap.argtypes = [ c_void_p ]
@@ -1979,14 +2011,22 @@ sklib.__sklib__clear_bitmap__string__color.argtypes = [ _sklib_string, _sklib_co
 sklib.__sklib__clear_bitmap__string__color.restype = None
 sklib.__sklib__create_bitmap__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
 sklib.__sklib__create_bitmap__string__int__int.restype = c_void_p
-sklib.__sklib__draw_bitmap__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__draw_bitmap__bitmap__float__float.restype = None
-sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options.argtypes = [ c_void_p, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options.restype = None
-sklib.__sklib__draw_bitmap__string__float__float.argtypes = [ _sklib_string, c_float, c_float ]
-sklib.__sklib__draw_bitmap__string__float__float.restype = None
-sklib.__sklib__draw_bitmap__string__float__float__drawing_options.argtypes = [ _sklib_string, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_bitmap__string__float__float__drawing_options.restype = None
+sklib.__sklib__draw_bitmap__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__draw_bitmap__bitmap__double__double.restype = None
+sklib.__sklib__draw_bitmap__bitmap__double__double__drawing_options.argtypes = [ c_void_p, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_bitmap__bitmap__double__double__drawing_options.restype = None
+sklib.__sklib__draw_bitmap__string__double__double.argtypes = [ _sklib_string, c_double, c_double ]
+sklib.__sklib__draw_bitmap__string__double__double.restype = None
+sklib.__sklib__draw_bitmap__string__double__double__drawing_options.argtypes = [ _sklib_string, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_bitmap__string__double__double__drawing_options.restype = None
+sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double.argtypes = [ c_void_p, c_void_p, c_double, c_double ]
+sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double.restype = None
+sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options.argtypes = [ c_void_p, c_void_p, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options.restype = None
+sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double.argtypes = [ c_void_p, c_void_p, c_double, c_double ]
+sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double.restype = None
+sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options.argtypes = [ c_void_p, c_void_p, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options.restype = None
 sklib.__sklib__free_all_bitmaps.argtypes = [  ]
 sklib.__sklib__free_all_bitmaps.restype = None
 sklib.__sklib__free_bitmap__bitmap.argtypes = [ c_void_p ]
@@ -1997,12 +2037,12 @@ sklib.__sklib__load_bitmap__string__string.argtypes = [ _sklib_string, _sklib_st
 sklib.__sklib__load_bitmap__string__string.restype = c_void_p
 sklib.__sklib__pixel_drawn_at_point__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__point_2d_ref.restype = c_bool
-sklib.__sklib__pixel_drawn_at_point__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__pixel_drawn_at_point__bitmap__float__float.restype = c_bool
+sklib.__sklib__pixel_drawn_at_point__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__pixel_drawn_at_point__bitmap__double__double.restype = c_bool
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.restype = c_bool
-sklib.__sklib__pixel_drawn_at_point__bitmap__int__float__float.argtypes = [ c_void_p, c_int, c_float, c_float ]
-sklib.__sklib__pixel_drawn_at_point__bitmap__int__float__float.restype = c_bool
+sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double.argtypes = [ c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double.restype = c_bool
 sklib.__sklib__process_events.argtypes = [  ]
 sklib.__sklib__process_events.restype = None
 sklib.__sklib__quit_requested.argtypes = [  ]
@@ -2105,10 +2145,34 @@ sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref.argtypes = [ _sklib_
 sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref.restype = None
 sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_point_2d, _sklib_drawing_options ]
 sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref.restype = None
-sklib.__sklib__draw_line__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
-sklib.__sklib__draw_line__color__float__float__float__float.restype = None
-sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref.restype = None
+sklib.__sklib__draw_line__color__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_line__color__double__double__double__double.restype = None
+sklib.__sklib__draw_line__color__double__double__double__double__drawing_options_ref.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_line__color__double__double__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref.argtypes = [ c_void_p, _sklib_color, _sklib_line ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_line, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_point_2d, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double.restype = None
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_line_on_window__window__color__line_ref.argtypes = [ c_void_p, _sklib_color, _sklib_line ]
+sklib.__sklib__draw_line_on_window__window__color__line_ref.restype = None
+sklib.__sklib__draw_line_on_window__window__color__line_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_line, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_window__window__color__line_ref__drawing_options.restype = None
+sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref.restype = None
+sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_point_2d, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_line_on_window__window__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_line_on_window__window__color__double__double__double__double.restype = None
+sklib.__sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref.restype = None
 sklib.__sklib__closest_point_on_line__point_2d__line_ref.argtypes = [ _sklib_point_2d, _sklib_line ]
 sklib.__sklib__closest_point_on_line__point_2d__line_ref.restype = _sklib_point_2d
 sklib.__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref.argtypes = [ _sklib_point_2d, _sklib_vector_line, POINTER(c_int) ]
@@ -2119,8 +2183,8 @@ sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.argtypes = [ _sklib_point_
 sklib.__sklib__line_from__point_2d_ref__vector_2d_ref.restype = _sklib_line
 sklib.__sklib__line_from__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__line_from__vector_2d_ref.restype = _sklib_line
-sklib.__sklib__line_from__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__line_from__float__float__float__float.restype = _sklib_line
+sklib.__sklib__line_from__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double ]
+sklib.__sklib__line_from__double__double__double__double.restype = _sklib_line
 sklib.__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref.argtypes = [ _sklib_line, _sklib_line, POINTER(_sklib_point_2d) ]
 sklib.__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__line_intersects_circle__line_ref__circle_ref.argtypes = [ _sklib_line, _sklib_circle ]
@@ -2199,8 +2263,8 @@ sklib.__sklib__mouse_x.argtypes = [  ]
 sklib.__sklib__mouse_x.restype = c_float
 sklib.__sklib__mouse_y.argtypes = [  ]
 sklib.__sklib__mouse_y.restype = c_float
-sklib.__sklib__move_mouse__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__move_mouse__float__float.restype = None
+sklib.__sklib__move_mouse__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__move_mouse__double__double.restype = None
 sklib.__sklib__move_mouse__point_2d.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__move_mouse__point_2d.restype = None
 sklib.__sklib__show_mouse.argtypes = [  ]
@@ -2319,24 +2383,44 @@ sklib.__sklib__draw_pixel__color__point_2d_ref.argtypes = [ _sklib_color, _sklib
 sklib.__sklib__draw_pixel__color__point_2d_ref.restype = None
 sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_drawing_options ]
 sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.restype = None
-sklib.__sklib__draw_pixel__color__float__float.argtypes = [ _sklib_color, c_float, c_float ]
-sklib.__sklib__draw_pixel__color__float__float.restype = None
-sklib.__sklib__draw_pixel__color__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_pixel__color__float__float__drawing_options.restype = None
+sklib.__sklib__draw_pixel__color__double__double.argtypes = [ _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_pixel__color__double__double.restype = None
+sklib.__sklib__draw_pixel__color__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_pixel__color__double__double__drawing_options.restype = None
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d ]
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref.restype = None
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_drawing_options ]
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options.restype = None
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double.restype = None
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options.restype = None
+sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d ]
+sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref.restype = None
+sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_point_2d, _sklib_drawing_options ]
+sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options.restype = None
+sklib.__sklib__draw_pixel_on_window__window__color__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_pixel_on_window__window__color__double__double.restype = None
+sklib.__sklib__draw_pixel_on_window__window__color__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_pixel_on_window__window__color__double__double__drawing_options.restype = None
 sklib.__sklib__get_pixel__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__get_pixel__bitmap__point_2d_ref.restype = _sklib_color
-sklib.__sklib__get_pixel__bitmap__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__get_pixel__bitmap__float__float.restype = _sklib_color
+sklib.__sklib__get_pixel__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__get_pixel__bitmap__double__double.restype = _sklib_color
 sklib.__sklib__get_pixel__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__get_pixel__point_2d_ref.restype = _sklib_color
-sklib.__sklib__get_pixel__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__get_pixel__float__float.restype = _sklib_color
+sklib.__sklib__get_pixel__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__get_pixel__double__double.restype = _sklib_color
 sklib.__sklib__get_pixel__window__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__get_pixel__window__point_2d_ref.restype = _sklib_color
-sklib.__sklib__get_pixel__window__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__get_pixel__window__float__float.restype = _sklib_color
-sklib.__sklib__point_at__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__point_at__float__float.restype = _sklib_point_2d
+sklib.__sklib__get_pixel__window__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__get_pixel__window__double__double.restype = _sklib_color
+sklib.__sklib__get_pixel_from_window__window__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
+sklib.__sklib__get_pixel_from_window__window__point_2d_ref.restype = _sklib_color
+sklib.__sklib__get_pixel_from_window__window__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__get_pixel_from_window__window__double__double.restype = _sklib_color
+sklib.__sklib__point_at__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__point_at__double__double.restype = _sklib_point_2d
 sklib.__sklib__point_at_origin.argtypes = [  ]
 sklib.__sklib__point_at_origin.restype = _sklib_point_2d
 sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
@@ -2377,8 +2461,8 @@ sklib.__sklib__quad_from__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__quad_from__rectangle_ref.restype = _sklib_quad
 sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.argtypes = [ _sklib_rectangle, _sklib_matrix_2d ]
 sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.restype = _sklib_quad
-sklib.__sklib__quad_from__float__float__float__float__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__quad_from__float__float__float__float__float__float__float__float.restype = _sklib_quad
+sklib.__sklib__quad_from__double__double__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__quad_from__double__double__double__double__double__double__double__double.restype = _sklib_quad
 sklib.__sklib__quads_intersect__quad_ref__quad_ref.argtypes = [ _sklib_quad, _sklib_quad ]
 sklib.__sklib__quads_intersect__quad_ref__quad_ref.restype = c_bool
 sklib.__sklib__set_quad_point__quad_ref__int__point_2d_ref.argtypes = [ POINTER(_sklib_quad), c_int, _sklib_point_2d ]
@@ -2393,26 +2477,74 @@ sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad
 sklib.__sklib__draw_quad__color__quad_ref.restype = None
 sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
 sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad ]
+sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref.restype = None
+sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad, _sklib_drawing_options ]
+sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_quad_on_window__window__color__quad_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad ]
+sklib.__sklib__draw_quad_on_window__window__color__quad_ref.restype = None
+sklib.__sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad, _sklib_drawing_options ]
+sklib.__sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref.restype = None
 sklib.__sklib__draw_rectangle__color__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__draw_rectangle__color__rectangle_ref.restype = None
 sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref.restype = None
-sklib.__sklib__draw_rectangle__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
-sklib.__sklib__draw_rectangle__color__float__float__float__float.restype = None
-sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref.restype = None
+sklib.__sklib__draw_rectangle__color__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_rectangle__color__double__double__double__double.restype = None
+sklib.__sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref.restype = None
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double.restype = None
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref.restype = None
+sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref.restype = None
+sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double.restype = None
+sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__fill_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
 sklib.__sklib__fill_quad__color__quad_ref.restype = None
 sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
 sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref.restype = None
+sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad ]
+sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref.restype = None
+sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad, _sklib_drawing_options ]
+sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref.restype = None
+sklib.__sklib__fill_quad_on_window__window__color__quad_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad ]
+sklib.__sklib__fill_quad_on_window__window__color__quad_ref.restype = None
+sklib.__sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_quad, _sklib_drawing_options ]
+sklib.__sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref.restype = None
 sklib.__sklib__fill_rectangle__color__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__fill_rectangle__color__rectangle_ref.restype = None
 sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref.restype = None
-sklib.__sklib__fill_rectangle__color__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float ]
-sklib.__sklib__fill_rectangle__color__float__float__float__float.restype = None
-sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref.restype = None
+sklib.__sklib__fill_rectangle__color__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_rectangle__color__double__double__double__double.restype = None
+sklib.__sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref.restype = None
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref.restype = None
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref.restype = None
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double.restype = None
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref.restype = None
+sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle ]
+sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref.restype = None
+sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref.restype = None
+sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double.restype = None
+sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref.restype = None
 sklib.__sklib__inset_rectangle__rectangle_ref__float.argtypes = [ _sklib_rectangle, c_float ]
 sklib.__sklib__inset_rectangle__rectangle_ref__float.restype = _sklib_rectangle
 sklib.__sklib__intersection__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
@@ -2427,12 +2559,12 @@ sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_float
 sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_center__rectangle_ref.restype = _sklib_point_2d
-sklib.__sklib__rectangle_from__point_2d__float__float.argtypes = [ _sklib_point_2d, c_float, c_float ]
-sklib.__sklib__rectangle_from__point_2d__float__float.restype = _sklib_rectangle
+sklib.__sklib__rectangle_from__point_2d__double__double.argtypes = [ _sklib_point_2d, c_double, c_double ]
+sklib.__sklib__rectangle_from__point_2d__double__double.restype = _sklib_rectangle
 sklib.__sklib__rectangle_from__point_2d__point_2d.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__rectangle_from__point_2d__point_2d.restype = _sklib_rectangle
-sklib.__sklib__rectangle_from__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__rectangle_from__float__float__float__float.restype = _sklib_rectangle
+sklib.__sklib__rectangle_from__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double ]
+sklib.__sklib__rectangle_from__double__double__double__double.restype = _sklib_rectangle
 sklib.__sklib__rectangle_left__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_left__rectangle_ref.restype = c_float
 sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_rectangle, _sklib_vector_2d ]
@@ -2529,8 +2661,8 @@ sklib.__sklib__draw_sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_
 sklib.__sklib__draw_sprite__sprite__vector_2d_ref.restype = None
 sklib.__sklib__draw_sprite__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__draw_sprite__sprite.restype = None
-sklib.__sklib__draw_sprite__sprite__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__draw_sprite__sprite__float__float.restype = None
+sklib.__sklib__draw_sprite__sprite__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__draw_sprite__sprite__double__double.restype = None
 sklib.__sklib__free_all_sprites.argtypes = [  ]
 sklib.__sklib__free_all_sprites.restype = None
 sklib.__sklib__free_sprite__sprite.argtypes = [ c_void_p ]
@@ -2549,8 +2681,8 @@ sklib.__sklib__move_sprite__sprite__vector_2d_ref__float.argtypes = [ c_void_p, 
 sklib.__sklib__move_sprite__sprite__vector_2d_ref__float.restype = None
 sklib.__sklib__move_sprite__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__move_sprite__sprite__float.restype = None
-sklib.__sklib__move_sprite_to__sprite__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__move_sprite_to__sprite__float__float.restype = None
+sklib.__sklib__move_sprite_to__sprite__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__move_sprite_to__sprite__double__double.restype = None
 sklib.__sklib__select_sprite_pack__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__select_sprite_pack__string_ref.restype = None
 sklib.__sklib__sprite_add_layer__sprite__bitmap__string_ref.argtypes = [ c_void_p, c_void_p, _sklib_string ]
@@ -2651,8 +2783,8 @@ sklib.__sklib__sprite_offscreen__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_offscreen__sprite.restype = c_bool
 sklib.__sklib__sprite_on_screen_at__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_on_screen_at__sprite__point_2d_ref.restype = c_bool
-sklib.__sklib__sprite_on_screen_at__sprite__float__float.argtypes = [ c_void_p, c_float, c_float ]
-sklib.__sklib__sprite_on_screen_at__sprite__float__float.restype = c_bool
+sklib.__sklib__sprite_on_screen_at__sprite__double__double.argtypes = [ c_void_p, c_double, c_double ]
+sklib.__sklib__sprite_on_screen_at__sprite__double__double.restype = c_bool
 sklib.__sklib__sprite_position__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_position__sprite.restype = _sklib_point_2d
 sklib.__sklib__sprite_replay_animation__sprite.argtypes = [ c_void_p ]
@@ -2807,18 +2939,42 @@ sklib.__sklib__write_line.argtypes = [  ]
 sklib.__sklib__write_line.restype = None
 sklib.__sklib__write_line__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write_line__string.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float ]
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__float__float.argtypes = [ _sklib_string, _sklib_color, c_float, c_float ]
-sklib.__sklib__draw_text__string_ref__color_ref__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float ]
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float.restype = None
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double ]
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__double__double.argtypes = [ _sklib_string, _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_text__string_ref__color_ref__double__double.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double.restype = None
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref.argtypes = [ _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double.restype = None
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_double, c_double ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double.restype = None
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref.restype = None
 sklib.__sklib__font_has_size__string_ref__int.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__font_has_size__string_ref__int.restype = c_bool
 sklib.__sklib__font_has_size__font__int.argtypes = [ c_void_p, c_int ]
@@ -2855,18 +3011,6 @@ sklib.__sklib__text_width__string_ref__string_ref__int.argtypes = [ _sklib_strin
 sklib.__sklib__text_width__string_ref__string_ref__int.restype = c_int
 sklib.__sklib__text_width__string_ref__font__int.argtypes = [ _sklib_string, c_void_p, c_int ]
 sklib.__sklib__text_width__string_ref__font__int.restype = c_int
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float.restype = None
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, _sklib_string, c_int, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref.restype = None
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_float, c_float ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float.restype = None
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref.restype = None
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float.restype = None
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref.argtypes = [ c_void_p, _sklib_string, _sklib_color, c_void_p, c_int, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref.restype = None
 sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.argtypes = [ _sklib_color, c_void_p, c_int, _sklib_drawing_options ]
 sklib.__sklib__draw_collected_text__color__font__int__drawing_options_ref.restype = None
 sklib.__sklib__end_reading_text.argtypes = [  ]
@@ -2939,24 +3083,56 @@ sklib.__sklib__draw_triangle__color__triangle_ref.argtypes = [ _sklib_color, _sk
 sklib.__sklib__draw_triangle__color__triangle_ref.restype = None
 sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_triangle, _sklib_drawing_options ]
 sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options.restype = None
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float.restype = None
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options.restype = None
+sklib.__sklib__draw_triangle__color__double__double__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_triangle__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_triangle ]
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref.restype = None
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_triangle, _sklib_drawing_options ]
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options.restype = None
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_triangle ]
+sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref.restype = None
+sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_triangle, _sklib_drawing_options ]
+sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options.restype = None
+sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__fill_triangle__color__triangle_ref.argtypes = [ _sklib_color, _sklib_triangle ]
 sklib.__sklib__fill_triangle__color__triangle_ref.restype = None
 sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options.argtypes = [ _sklib_color, _sklib_triangle, _sklib_drawing_options ]
 sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options.restype = None
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float.restype = None
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options.argtypes = [ _sklib_color, c_float, c_float, c_float, c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options.restype = None
+sklib.__sklib__fill_triangle__color__double__double__double__double__double__double.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_triangle__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_triangle ]
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref.restype = None
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_triangle, _sklib_drawing_options ]
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options.restype = None
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref.argtypes = [ c_void_p, _sklib_color, _sklib_triangle ]
+sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref.restype = None
+sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options.argtypes = [ c_void_p, _sklib_color, _sklib_triangle, _sklib_drawing_options ]
+sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options.restype = None
+sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double.restype = None
+sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options.restype = None
 sklib.__sklib__triangle_barycenter__triangle_ref.argtypes = [ _sklib_triangle ]
 sklib.__sklib__triangle_barycenter__triangle_ref.restype = _sklib_point_2d
 sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.restype = _sklib_triangle
-sklib.__sklib__triangle_from__float__float__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float, c_float, c_float ]
-sklib.__sklib__triangle_from__float__float__float__float__float__float.restype = _sklib_triangle
+sklib.__sklib__triangle_from__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__triangle_from__double__double__double__double__double__double.restype = _sklib_triangle
 sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.argtypes = [ _sklib_triangle, _sklib_rectangle ]
 sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__triangle_to_string__triangle_ref.argtypes = [ _sklib_triangle ]
@@ -2967,6 +3143,8 @@ sklib.__sklib__current_ticks.argtypes = [  ]
 sklib.__sklib__current_ticks.restype = c_uint
 sklib.__sklib__delay__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__delay__unsigned_int.restype = None
+sklib.__sklib__display_dialog__string_ref__string_ref__font__int.argtypes = [ _sklib_string, _sklib_string, c_void_p, c_int ]
+sklib.__sklib__display_dialog__string_ref__string_ref__font__int.restype = None
 sklib.__sklib__file_as_string__string__resource_kind.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__file_as_string__string__resource_kind.restype = _sklib_string
 sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
@@ -3019,8 +3197,8 @@ sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib
 sklib.__sklib__vector_subtract__vector_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_to__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__vector_to__point_2d_ref.restype = _sklib_vector_2d
-sklib.__sklib__vector_to__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__vector_to__float__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_to__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__vector_to__double__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_to_string__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_to_string__vector_2d_ref.restype = _sklib_string
 sklib.__sklib__vectors_equal__vector_2d_ref__vector_2d.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
@@ -3139,6 +3317,8 @@ sklib.__sklib__open_window__string__int__int.argtypes = [ _sklib_string, c_int, 
 sklib.__sklib__open_window__string__int__int.restype = c_void_p
 sklib.__sklib__refresh_window__window.argtypes = [ c_void_p ]
 sklib.__sklib__refresh_window__window.restype = None
+sklib.__sklib__refresh_window__window__unsigned_int.argtypes = [ c_void_p, c_uint ]
+sklib.__sklib__refresh_window__window__unsigned_int.restype = None
 sklib.__sklib__resize_current_window__int__int.argtypes = [ c_int, c_int ]
 sklib.__sklib__resize_current_window__int__int.restype = None
 sklib.__sklib__resize_window__window__int__int.argtypes = [ c_void_p, c_int, c_int ]
@@ -3391,9 +3571,9 @@ def move_camera_to_point ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     sklib.__sklib__move_camera_to__point_2d_ref(__skparam__pt)
 def move_camera_to ( x, y ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__move_camera_to__float__float(__skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__move_camera_to__double__double(__skparam__x, __skparam__y)
 def point_in_window ( wind, pt ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -3422,8 +3602,8 @@ def set_camera_position ( pos ):
     __skparam__pos = __skadapter__to_sklib_point_2d(pos)
     sklib.__sklib__set_camera_position__point_2d(__skparam__pos)
 def set_camera_y ( y ):
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__set_camera_y__float(__skparam__y)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__set_camera_y__double(__skparam__y)
 def to_screen_point ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__to_screen__point_2d_ref(__skparam__pt)
@@ -3459,21 +3639,6 @@ def window_area ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     __skreturn = sklib.__sklib__window_area__window(__skparam__wind)
     return __skadapter__to_rectangle(__skreturn)
-def bitmap_draw_circle ( destination, clr, x, y, radius ):
-    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
-def bitmap_draw_circle_with_options ( destination, clr, x, y, radius, opts ):
-    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__bitmap_draw_circle__bitmap__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def draw_circle_record ( clr, c ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__c = __skadapter__to_sklib_circle(c)
@@ -3485,17 +3650,47 @@ def draw_circle_record_with_options ( clr, c, opts ):
     sklib.__sklib__draw_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts)
 def draw_circle ( clr, x, y, radius ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    sklib.__sklib__draw_circle__color__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__draw_circle__color__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
 def draw_circle_with_options ( clr, x, y, radius, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+    sklib.__sklib__draw_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def draw_circle_on_bitmap ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def draw_circle_on_bitmap_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def draw_circle_on_window ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__draw_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def draw_circle_on_window_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def fill_circle_record ( clr, c ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__c = __skadapter__to_sklib_circle(c)
@@ -3507,46 +3702,31 @@ def fill_circle_record_with_options ( clr, c, opts ):
     sklib.__sklib__fill_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts)
 def fill_circle ( clr, x, y, radius ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    sklib.__sklib__fill_circle__color__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__fill_circle__color__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
 def fill_circle_with_options ( clr, x, y, radius, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__fill_circle__color__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
-def window_draw_circle ( destination, clr, x, y, radius ):
-    __skparam__destination = __skadapter__to_sklib_window(destination)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    sklib.__sklib__window_draw_circle__window__color__float__float__float(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
-def window_draw_circle_with_options ( destination, clr, x, y, radius, opts ):
-    __skparam__destination = __skadapter__to_sklib_window(destination)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__window_draw_circle__window__color__float__float__float__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+    sklib.__sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def center_point ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__center_point__circle_ref(__skparam__c)
     return __skadapter__to_point_2d(__skreturn)
 def circle_at ( pt, radius ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    __skreturn = sklib.__sklib__circle_at__point_2d_ref__float(__skparam__pt, __skparam__radius)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skreturn = sklib.__sklib__circle_at__point_2d_ref__double(__skparam__pt, __skparam__radius)
     return __skadapter__to_circle(__skreturn)
 def circle_at_from_points ( x, y, radius ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__radius = __skadapter__to_sklib_float(radius)
-    __skreturn = sklib.__sklib__circle_at__float__float__float(__skparam__x, __skparam__y, __skparam__radius)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skreturn = sklib.__sklib__circle_at__double__double__double(__skparam__x, __skparam__y, __skparam__radius)
     return __skadapter__to_circle(__skreturn)
 def circle_radius ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
@@ -3667,12 +3847,12 @@ def set_clip_for_window ( wnd, r ):
     sklib.__sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r)
 def bitmap_collision ( bmp1, x1, y1, bmp2, x2, y2 ):
     __skparam__bmp1 = __skadapter__to_sklib_bitmap(bmp1)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
     __skparam__bmp2 = __skadapter__to_sklib_bitmap(bmp2)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skreturn = sklib.__sklib__bitmap_collision__bitmap__float__float__bitmap__float__float(__skparam__bmp1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__x2, __skparam__y2)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skreturn = sklib.__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double(__skparam__bmp1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__x2, __skparam__y2)
     return __skadapter__to_bool(__skreturn)
 def bitmap_collision_at_points ( bmp1, pt1, bmp2, pt2 ):
     __skparam__bmp1 = __skadapter__to_sklib_bitmap(bmp1)
@@ -3702,13 +3882,13 @@ def bitmap_collision_for_cells_at_points ( bmp1, cell1, pt1, bmp2, cell2, pt2 ):
 def bitmap_collision_for_cells ( bmp1, cell1, x1, y1, bmp2, cell2, x2, y2 ):
     __skparam__bmp1 = __skadapter__to_sklib_bitmap(bmp1)
     __skparam__cell1 = __skadapter__to_sklib_int(cell1)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
     __skparam__bmp2 = __skadapter__to_sklib_bitmap(bmp2)
     __skparam__cell2 = __skadapter__to_sklib_int(cell2)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skreturn = sklib.__sklib__bitmap_collision__bitmap__int__float__float__bitmap__int__float__float(__skparam__bmp1, __skparam__cell1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__cell2, __skparam__x2, __skparam__y2)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skreturn = sklib.__sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double(__skparam__bmp1, __skparam__cell1, __skparam__x1, __skparam__y1, __skparam__bmp2, __skparam__cell2, __skparam__x2, __skparam__y2)
     return __skadapter__to_bool(__skreturn)
 def bitmap_point_collision_with_translation ( bmp, translation, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -3726,9 +3906,9 @@ def bitmap_point_collision ( bmp, bmp_x, bmp_y, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__bmp_x = __skadapter__to_sklib_float(bmp_x)
     __skparam__bmp_y = __skadapter__to_sklib_float(bmp_y)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__float__float__float__float(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def bitmap_point_collision_for_cell_with_translation ( bmp, cell, translation, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -3754,9 +3934,9 @@ def bitmap_rectangle_collision_for_cell_at_point ( bmp, cell, pt, rect ):
 def sprite_bitmap_collision ( s, bmp, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__float__float(__skparam__s, __skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double(__skparam__s, __skparam__bmp, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def sprite_bitmap_collision_with_cell_at_point ( s, bmp, cell, pt ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
@@ -3769,9 +3949,9 @@ def sprite_bitmap_collision_with_cell ( s, bmp, cell, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__cell = __skadapter__to_sklib_int(cell)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__float__float(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def sprite_collision ( s1, s2 ):
     __skparam__s1 = __skadapter__to_sklib_sprite(s1)
@@ -4424,19 +4604,19 @@ def option_line_width_with_options ( width, opts ):
     __skreturn = sklib.__sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_part_bmp ( x, y, w, h ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__w = __skadapter__to_sklib_float(w)
     __skparam__h = __skadapter__to_sklib_float(h)
-    __skreturn = sklib.__sklib__option_part_bmp__float__float__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h)
+    __skreturn = sklib.__sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h)
     return __skadapter__to_drawing_options(__skreturn)
 def option_part_bmp_with_options ( x, y, w, h, opts ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__w = __skadapter__to_sklib_float(w)
     __skparam__h = __skadapter__to_sklib_float(h)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__option_part_bmp__float__float__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts)
+    __skreturn = sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_part_bmp_from_rectangle ( part ):
     __skparam__part = __skadapter__to_sklib_rectangle(part)
@@ -4514,19 +4694,75 @@ def draw_ellipse_within_rectangle_with_options ( clr, rect, opts ):
     sklib.__sklib__draw_ellipse__color__rectangle__drawing_options(__skparam__clr, __skparam__rect, __skparam__opts)
 def draw_ellipse ( clr, x, y, width, height ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    sklib.__sklib__draw_ellipse__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_ellipse__color__double__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
 def draw_ellipse_with_options ( clr, x, y, width, height, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_ellipse__color__float__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+    sklib.__sklib__draw_ellipse__color__double__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def draw_ellipse_on_bitmap_within_rectangle ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle(__skparam__destination, __skparam__clr, __skparam__rect)
+def draw_ellipse_on_bitmap_within_rectangle_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def draw_ellipse_on_bitmap ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def draw_ellipse_on_bitmap_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def draw_ellipse_on_window_within_rectangle ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__draw_ellipse_on_window__window__color__rectangle(__skparam__destination, __skparam__clr, __skparam__rect)
+def draw_ellipse_on_window_within_rectangle_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def draw_ellipse_on_window ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def draw_ellipse_on_window_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
 def fill_ellipse_within_rectangle ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
@@ -4538,19 +4774,75 @@ def fill_ellipse_within_rectangle_with_options ( clr, rect, opts ):
     sklib.__sklib__fill_ellipse__color__rectangle__drawing_options(__skparam__clr, __skparam__rect, __skparam__opts)
 def fill_ellipse ( clr, x, y, width, height ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    sklib.__sklib__fill_ellipse__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_ellipse__color__double__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
 def fill_ellipse_with_options ( clr, x, y, width, height, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__fill_ellipse__color__float__float__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+    sklib.__sklib__fill_ellipse__color__double__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def fill_ellipse_on_bitmap_within_rectangle ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle(__skparam__destination, __skparam__clr, __skparam__rect)
+def fill_ellipse_on_bitmap_within_rectangle_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def fill_ellipse_on_bitmap ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def fill_ellipse_on_bitmap_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def fill_ellipse_on_window_within_rectangle ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__fill_ellipse_on_window__window__color__rectangle(__skparam__destination, __skparam__clr, __skparam__rect)
+def fill_ellipse_on_window_within_rectangle_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def fill_ellipse_on_window ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def fill_ellipse_on_window_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
 def cosine ( degrees ):
     __skparam__degrees = __skadapter__to_sklib_float(degrees)
     __skreturn = sklib.__sklib__cosine__float(__skparam__degrees)
@@ -4628,9 +4920,9 @@ def bitmap_bounding_rectangle ( bmp ):
     return __skadapter__to_rectangle(__skreturn)
 def bitmap_bounding_rectangle_at_location ( bmp, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__bitmap_bounding_rectangle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__bitmap_bounding_rectangle__bitmap__double__double(__skparam__bmp, __skparam__x, __skparam__y)
     return __skadapter__to_rectangle(__skreturn)
 def bitmap_cell_center ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4638,9 +4930,9 @@ def bitmap_cell_center ( bmp ):
     return __skadapter__to_point_2d(__skreturn)
 def bitmap_cell_circle ( bmp, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__bitmap_cell_circle__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__bitmap_cell_circle__bitmap__double__double(__skparam__bmp, __skparam__x, __skparam__y)
     return __skadapter__to_circle(__skreturn)
 def bitmap_cell_circle_at_point ( bmp, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4650,8 +4942,8 @@ def bitmap_cell_circle_at_point ( bmp, pt ):
 def bitmap_cell_circle_at_point_with_scale ( bmp, pt, scale ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
-    __skparam__scale = __skadapter__to_sklib_float(scale)
-    __skreturn = sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__float(__skparam__bmp, __skparam__pt, __skparam__scale)
+    __skparam__scale = __skadapter__to_sklib_double(scale)
+    __skreturn = sklib.__sklib__bitmap_cell_circle__bitmap__point_2d__double(__skparam__bmp, __skparam__pt, __skparam__scale)
     return __skadapter__to_circle(__skreturn)
 def bitmap_cell_columns ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4748,26 +5040,52 @@ def create_bitmap ( name, width, height ):
     return __skadapter__to_bitmap(__skreturn)
 def draw_bitmap ( bmp, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_bitmap__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_bitmap__bitmap__double__double(__skparam__bmp, __skparam__x, __skparam__y)
 def draw_bitmap_with_options ( bmp, x, y, opts ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_bitmap__bitmap__float__float__drawing_options(__skparam__bmp, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_bitmap__bitmap__double__double__drawing_options(__skparam__bmp, __skparam__x, __skparam__y, __skparam__opts)
 def draw_bitmap_named ( name, x, y ):
     __skparam__name = __skadapter__to_sklib_string(name)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_bitmap__string__float__float(__skparam__name, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_bitmap__string__double__double(__skparam__name, __skparam__x, __skparam__y)
 def draw_bitmap_named_with_options ( name, x, y, opts ):
     __skparam__name = __skadapter__to_sklib_string(name)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_bitmap__string__float__float__drawing_options(__skparam__name, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_bitmap__string__double__double__drawing_options(__skparam__name, __skparam__x, __skparam__y, __skparam__opts)
+def draw_bitmap_on_bitmap_on_bitmap ( destination, bmp, x, y ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double(__skparam__destination, __skparam__bmp, __skparam__x, __skparam__y)
+def draw_bitmap_on_bitmap_on_bitmap_with_options ( destination, bmp, x, y, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options(__skparam__destination, __skparam__bmp, __skparam__x, __skparam__y, __skparam__opts)
+def draw_bitmap_on_window ( destination, bmp, x, y ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double(__skparam__destination, __skparam__bmp, __skparam__x, __skparam__y)
+def draw_bitmap_on_window_with_options ( destination, bmp, x, y, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options(__skparam__destination, __skparam__bmp, __skparam__x, __skparam__y, __skparam__opts)
 def free_all_bitmaps (  ):
     sklib.__sklib__free_all_bitmaps()
 def free_bitmap ( to_delete ):
@@ -4789,9 +5107,9 @@ def pixel_drawn_at_point_pt ( bmp, pt ):
     return __skadapter__to_bool(__skreturn)
 def pixel_drawn_at_point ( bmp, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__pixel_drawn_at_point__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__pixel_drawn_at_point__bitmap__double__double(__skparam__bmp, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def pixel_drawn_at_point_in_cell_pt ( bmp, cell, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4802,9 +5120,9 @@ def pixel_drawn_at_point_in_cell_pt ( bmp, cell, pt ):
 def pixel_drawn_at_point_in_cell ( bmp, cell, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__cell = __skadapter__to_sklib_int(cell)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__pixel_drawn_at_point__bitmap__int__float__float(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def process_events (  ):
     sklib.__sklib__process_events()
@@ -5025,19 +5343,101 @@ def draw_line_point_to_point_with_options ( clr, from_pt, to_pt, opts ):
     sklib.__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref(__skparam__clr, __skparam__from_pt, __skparam__to_pt, __skparam__opts)
 def draw_line ( clr, x1, y1, x2, y2 ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    sklib.__sklib__draw_line__color__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    sklib.__sklib__draw_line__color__double__double__double__double(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
 def draw_line_with_options ( clr, x1, y1, x2, y2, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_line__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts)
+    sklib.__sklib__draw_line__color__double__double__double__double__drawing_options_ref(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts)
+def draw_line_on_bitmap_record ( destination, clr, l ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__l = __skadapter__to_sklib_line(l)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref(__skparam__destination, __skparam__clr, __skparam__l)
+def draw_line_on_bitmap_record_with_options ( destination, clr, l, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__l = __skadapter__to_sklib_line(l)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__l, __skparam__opts)
+def draw_line_on_bitmap_point_to_point ( destination, clr, from_pt, to_pt ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
+    __skparam__to_pt = __skadapter__to_sklib_point_2d(to_pt)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref(__skparam__destination, __skparam__clr, __skparam__from_pt, __skparam__to_pt)
+def draw_line_on_bitmap_point_to_point_with_options ( destination, clr, from_pt, to_pt, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
+    __skparam__to_pt = __skadapter__to_sklib_point_2d(to_pt)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__from_pt, __skparam__to_pt, __skparam__opts)
+def draw_line_on_bitmap ( destination, clr, x1, y1, x2, y2 ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
+def draw_line_on_bitmap_with_options ( destination, clr, x1, y1, x2, y2, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts)
+def draw_line_on_window_record ( destination, clr, l ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__l = __skadapter__to_sklib_line(l)
+    sklib.__sklib__draw_line_on_window__window__color__line_ref(__skparam__destination, __skparam__clr, __skparam__l)
+def draw_line_on_window_record_with_options ( destination, clr, l, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__l = __skadapter__to_sklib_line(l)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_window__window__color__line_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__l, __skparam__opts)
+def draw_line_on_window_point_to_point ( destination, clr, from_pt, to_pt ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
+    __skparam__to_pt = __skadapter__to_sklib_point_2d(to_pt)
+    sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref(__skparam__destination, __skparam__clr, __skparam__from_pt, __skparam__to_pt)
+def draw_line_on_window_point_to_point_with_options ( destination, clr, from_pt, to_pt, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
+    __skparam__to_pt = __skadapter__to_sklib_point_2d(to_pt)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__from_pt, __skparam__to_pt, __skparam__opts)
+def draw_line_on_window ( destination, clr, x1, y1, x2, y2 ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    sklib.__sklib__draw_line_on_window__window__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
+def draw_line_on_window_with_options ( destination, clr, x1, y1, x2, y2, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__opts)
 def closest_point_on_line ( from_pt, l ):
     __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
     __skparam__l = __skadapter__to_sklib_line(l)
@@ -5065,11 +5465,11 @@ def line_from_vector ( v ):
     __skreturn = sklib.__sklib__line_from__vector_2d_ref(__skparam__v)
     return __skadapter__to_line(__skreturn)
 def line_from ( x1, y1, x2, y2 ):
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skreturn = sklib.__sklib__line_from__float__float__float__float(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skreturn = sklib.__sklib__line_from__double__double__double__double(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2)
     return __skadapter__to_line(__skreturn)
 def line_intersection_point ( line1, line2, pt ):
     __skparam__line1 = __skadapter__to_sklib_line(line1)
@@ -5233,9 +5633,9 @@ def mouse_y (  ):
     __skreturn = sklib.__sklib__mouse_y()
     return __skadapter__to_float(__skreturn)
 def move_mouse ( x, y ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__move_mouse__float__float(__skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__move_mouse__double__double(__skparam__x, __skparam__y)
 def move_mouse_to_point ( point ):
     __skparam__point = __skadapter__to_sklib_point_2d(point)
     sklib.__sklib__move_mouse__point_2d(__skparam__point)
@@ -5462,15 +5862,63 @@ def draw_pixel_at_point_with_options ( clr, pt, opts ):
     sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options(__skparam__clr, __skparam__pt, __skparam__opts)
 def draw_pixel ( clr, x, y ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_pixel__color__float__float(__skparam__clr, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_pixel__color__double__double(__skparam__clr, __skparam__x, __skparam__y)
 def draw_pixel_with_options ( clr, x, y, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_pixel__color__float__float__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_pixel__color__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+def draw_pixel_on_bitmap_at_point ( destination, clr, pt ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref(__skparam__destination, __skparam__clr, __skparam__pt)
+def draw_pixel_on_bitmap_at_point_with_options ( destination, clr, pt, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__pt, __skparam__opts)
+def draw_pixel_on_bitmap ( destination, clr, x, y ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y)
+def draw_pixel_on_bitmap_with_options ( destination, clr, x, y, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+def draw_pixel_on_window_at_point ( destination, clr, pt ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref(__skparam__destination, __skparam__clr, __skparam__pt)
+def draw_pixel_on_window_at_point_with_options ( destination, clr, pt, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__pt, __skparam__opts)
+def draw_pixel_on_window ( destination, clr, x, y ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_pixel_on_window__window__color__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y)
+def draw_pixel_on_window_with_options ( destination, clr, x, y, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_pixel_on_window__window__color__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
 def get_pixel_from_bitmap_at_point ( bmp, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -5478,18 +5926,18 @@ def get_pixel_from_bitmap_at_point ( bmp, pt ):
     return __skadapter__to_color(__skreturn)
 def get_pixel_from_bitmap ( bmp, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__get_pixel__bitmap__float__float(__skparam__bmp, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__get_pixel__bitmap__double__double(__skparam__bmp, __skparam__x, __skparam__y)
     return __skadapter__to_color(__skreturn)
 def get_pixel_at_point ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__get_pixel__point_2d_ref(__skparam__pt)
     return __skadapter__to_color(__skreturn)
 def get_pixel ( x, y ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__get_pixel__float__float(__skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__get_pixel__double__double(__skparam__x, __skparam__y)
     return __skadapter__to_color(__skreturn)
 def get_pixel_from_window_at_point ( wnd, pt ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
@@ -5498,14 +5946,25 @@ def get_pixel_from_window_at_point ( wnd, pt ):
     return __skadapter__to_color(__skreturn)
 def get_pixel_from_window ( wnd, x, y ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__get_pixel__window__float__float(__skparam__wnd, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__get_pixel__window__double__double(__skparam__wnd, __skparam__x, __skparam__y)
+    return __skadapter__to_color(__skreturn)
+def get_pixel_from_window_at_point_from_window ( destination, pt ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skreturn = sklib.__sklib__get_pixel_from_window__window__point_2d_ref(__skparam__destination, __skparam__pt)
+    return __skadapter__to_color(__skreturn)
+def get_pixel_from_window_from_window ( destination, x, y ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__get_pixel_from_window__window__double__double(__skparam__destination, __skparam__x, __skparam__y)
     return __skadapter__to_color(__skreturn)
 def point_at ( x, y ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__point_at__float__float(__skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__point_at__double__double(__skparam__x, __skparam__y)
     return __skadapter__to_point_2d(__skreturn)
 def point_at_origin (  ):
     __skreturn = sklib.__sklib__point_at_origin()
@@ -5602,15 +6061,15 @@ def quad_from_rectangle_with_transformation ( rect, transform ):
     __skreturn = sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref(__skparam__rect, __skparam__transform)
     return __skadapter__to_quad(__skreturn)
 def quad_from ( x_top_left, y_top_left, x_top_right, y_top_right, x_bottom_left, y_bottom_left, x_bottom_right, y_bottom_right ):
-    __skparam__x_top_left = __skadapter__to_sklib_float(x_top_left)
-    __skparam__y_top_left = __skadapter__to_sklib_float(y_top_left)
-    __skparam__x_top_right = __skadapter__to_sklib_float(x_top_right)
-    __skparam__y_top_right = __skadapter__to_sklib_float(y_top_right)
-    __skparam__x_bottom_left = __skadapter__to_sklib_float(x_bottom_left)
-    __skparam__y_bottom_left = __skadapter__to_sklib_float(y_bottom_left)
-    __skparam__x_bottom_right = __skadapter__to_sklib_float(x_bottom_right)
-    __skparam__y_bottom_right = __skadapter__to_sklib_float(y_bottom_right)
-    __skreturn = sklib.__sklib__quad_from__float__float__float__float__float__float__float__float(__skparam__x_top_left, __skparam__y_top_left, __skparam__x_top_right, __skparam__y_top_right, __skparam__x_bottom_left, __skparam__y_bottom_left, __skparam__x_bottom_right, __skparam__y_bottom_right)
+    __skparam__x_top_left = __skadapter__to_sklib_double(x_top_left)
+    __skparam__y_top_left = __skadapter__to_sklib_double(y_top_left)
+    __skparam__x_top_right = __skadapter__to_sklib_double(x_top_right)
+    __skparam__y_top_right = __skadapter__to_sklib_double(y_top_right)
+    __skparam__x_bottom_left = __skadapter__to_sklib_double(x_bottom_left)
+    __skparam__y_bottom_left = __skadapter__to_sklib_double(y_bottom_left)
+    __skparam__x_bottom_right = __skadapter__to_sklib_double(x_bottom_right)
+    __skparam__y_bottom_right = __skadapter__to_sklib_double(y_bottom_right)
+    __skreturn = sklib.__sklib__quad_from__double__double__double__double__double__double__double__double(__skparam__x_top_left, __skparam__y_top_left, __skparam__x_top_right, __skparam__y_top_right, __skparam__x_bottom_left, __skparam__y_bottom_left, __skparam__x_bottom_right, __skparam__y_bottom_right)
     return __skadapter__to_quad(__skreturn)
 def quads_intersect ( q1, q2 ):
     __skparam__q1 = __skadapter__to_sklib_quad(q1)
@@ -5643,6 +6102,28 @@ def draw_quad_with_options ( clr, q, opts ):
     __skparam__q = __skadapter__to_sklib_quad(q)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref(__skparam__clr, __skparam__q, __skparam__opts)
+def draw_quad_on_bitmap ( destination, clr, q ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref(__skparam__destination, __skparam__clr, __skparam__q)
+def draw_quad_on_bitmap_with_options ( destination, clr, q, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__q, __skparam__opts)
+def draw_quad_on_window ( destination, clr, q ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    sklib.__sklib__draw_quad_on_window__window__color__quad_ref(__skparam__destination, __skparam__clr, __skparam__q)
+def draw_quad_on_window_with_options ( destination, clr, q, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__q, __skparam__opts)
 def draw_rectangle_record ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
@@ -5654,19 +6135,75 @@ def draw_rectangle_record_with_options ( clr, rect, opts ):
     sklib.__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref(__skparam__clr, __skparam__rect, __skparam__opts)
 def draw_rectangle ( clr, x, y, width, height ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    sklib.__sklib__draw_rectangle__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_rectangle__color__double__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
 def draw_rectangle_with_options ( clr, x, y, width, height, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_rectangle__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+    sklib.__sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def draw_rectangle_on_bitmap_record ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref(__skparam__destination, __skparam__clr, __skparam__rect)
+def draw_rectangle_on_bitmap_record_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def draw_rectangle_on_bitmap ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def draw_rectangle_on_bitmap_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def draw_rectangle_on_window_record ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref(__skparam__destination, __skparam__clr, __skparam__rect)
+def draw_rectangle_on_window_record_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def draw_rectangle_on_window ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def draw_rectangle_on_window_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
 def fill_quad ( clr, q ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__q = __skadapter__to_sklib_quad(q)
@@ -5676,6 +6213,28 @@ def fill_quad_with_options ( clr, q, opts ):
     __skparam__q = __skadapter__to_sklib_quad(q)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     sklib.__sklib__fill_quad__color__quad_ref__drawing_options_ref(__skparam__clr, __skparam__q, __skparam__opts)
+def fill_quad_on_bitmap ( destination, clr, q ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref(__skparam__destination, __skparam__clr, __skparam__q)
+def fill_quad_on_bitmap_with_options ( destination, clr, q, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__q, __skparam__opts)
+def fill_quad_on_window ( destination, clr, q ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    sklib.__sklib__fill_quad_on_window__window__color__quad_ref(__skparam__destination, __skparam__clr, __skparam__q)
+def fill_quad_on_window_with_options ( destination, clr, q, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__q, __skparam__opts)
 def fill_rectangle_record ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
@@ -5687,19 +6246,75 @@ def fill_rectangle_record_with_options ( clr, rect, opts ):
     sklib.__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref(__skparam__clr, __skparam__rect, __skparam__opts)
 def fill_rectangle ( clr, x, y, width, height ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    sklib.__sklib__fill_rectangle__color__float__float__float__float(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_rectangle__color__double__double__double__double(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
 def fill_rectangle_with_options ( clr, x, y, width, height, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__fill_rectangle__color__float__float__float__float__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+    sklib.__sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref(__skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def fill_rectangle_on_bitmap_record ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref(__skparam__destination, __skparam__clr, __skparam__rect)
+def fill_rectangle_on_bitmap_record_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def fill_rectangle_on_bitmap ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def fill_rectangle_on_bitmap_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
+def fill_rectangle_on_window_record ( destination, clr, rect ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref(__skparam__destination, __skparam__clr, __skparam__rect)
+def fill_rectangle_on_window_record_with_options ( destination, clr, rect, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__rect, __skparam__opts)
+def fill_rectangle_on_window ( destination, clr, x, y, width, height ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height)
+def fill_rectangle_on_window_with_options ( destination, clr, x, y, width, height, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__width, __skparam__height, __skparam__opts)
 def inset_rectangle ( rect, inset_amount ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skparam__inset_amount = __skadapter__to_sklib_float(inset_amount)
@@ -5732,9 +6347,9 @@ def rectangle_center ( rect ):
     return __skadapter__to_point_2d(__skreturn)
 def rectangle_from_point_and_size ( pt, width, height ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    __skreturn = sklib.__sklib__rectangle_from__point_2d__float__float(__skparam__pt, __skparam__width, __skparam__height)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skreturn = sklib.__sklib__rectangle_from__point_2d__double__double(__skparam__pt, __skparam__width, __skparam__height)
     return __skadapter__to_rectangle(__skreturn)
 def rectangle_from_points ( pt1, pt2 ):
     __skparam__pt1 = __skadapter__to_sklib_point_2d(pt1)
@@ -5742,11 +6357,11 @@ def rectangle_from_points ( pt1, pt2 ):
     __skreturn = sklib.__sklib__rectangle_from__point_2d__point_2d(__skparam__pt1, __skparam__pt2)
     return __skadapter__to_rectangle(__skreturn)
 def rectangle_from ( x, y, width, height ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__width = __skadapter__to_sklib_float(width)
-    __skparam__height = __skadapter__to_sklib_float(height)
-    __skreturn = sklib.__sklib__rectangle_from__float__float__float__float(__skparam__x, __skparam__y, __skparam__width, __skparam__height)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skparam__height = __skadapter__to_sklib_double(height)
+    __skreturn = sklib.__sklib__rectangle_from__double__double__double__double(__skparam__x, __skparam__y, __skparam__width, __skparam__height)
     return __skadapter__to_rectangle(__skreturn)
 def rectangle_left ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
@@ -5934,9 +6549,9 @@ def draw_sprite ( s ):
     sklib.__sklib__draw_sprite__sprite(__skparam__s)
 def draw_sprite_offset_x_y ( s, x_offset, y_offset ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__x_offset = __skadapter__to_sklib_float(x_offset)
-    __skparam__y_offset = __skadapter__to_sklib_float(y_offset)
-    sklib.__sklib__draw_sprite__sprite__float__float(__skparam__s, __skparam__x_offset, __skparam__y_offset)
+    __skparam__x_offset = __skadapter__to_sklib_double(x_offset)
+    __skparam__y_offset = __skadapter__to_sklib_double(y_offset)
+    sklib.__sklib__draw_sprite__sprite__double__double(__skparam__s, __skparam__x_offset, __skparam__y_offset)
 def free_all_sprites (  ):
     sklib.__sklib__free_all_sprites()
 def free_sprite ( s ):
@@ -5971,9 +6586,9 @@ def move_sprite_percent ( s, pct ):
     sklib.__sklib__move_sprite__sprite__float(__skparam__s, __skparam__pct)
 def move_sprite_to ( s, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__move_sprite_to__sprite__float__float(__skparam__s, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__move_sprite_to__sprite__double__double(__skparam__s, __skparam__x, __skparam__y)
 def select_sprite_pack ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__select_sprite_pack__string_ref(__skparam__name)
@@ -6196,9 +6811,9 @@ def sprite_on_screen_at_point ( s, pt ):
     return __skadapter__to_bool(__skreturn)
 def sprite_on_screen_at ( s, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__sprite_on_screen_at__sprite__float__float(__skparam__s, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__sprite_on_screen_at__sprite__double__double(__skparam__s, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def sprite_position ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
@@ -6504,48 +7119,154 @@ def draw_text_font_as_string ( text, clr, fnt, font_size, x, y ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_string(fnt)
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
 def draw_text_with_options_font_as_string ( text, clr, fnt, font_size, x, y, opts ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_string(fnt)
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
 def draw_text_no_font_no_size ( text, clr, x, y ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_text__string_ref__color_ref__float__float(__skparam__text, __skparam__clr, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text__string_ref__color_ref__double__double(__skparam__text, __skparam__clr, __skparam__x, __skparam__y)
 def draw_text_no_font_no_size_with_options ( text, clr, x, y, opts ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_text__string_ref__color_ref__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
 def draw_text ( text, clr, fnt, font_size, x, y ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
 def draw_text_with_options ( text, clr, fnt, font_size, x, y, opts ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_text__string_ref__color_ref__font__int__float__float__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+    sklib.__sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref(__skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_bitmap_font_as_string ( bmp, text, clr, fnt, font_size, x, y ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def draw_text_on_bitmap_with_options_font_as_string ( bmp, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_bitmap_no_font_no_size ( bmp, text, clr, x, y ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__x, __skparam__y)
+def draw_text_on_bitmap_no_font_no_size_with_options ( bmp, text, clr, x, y, opts ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_bitmap ( bmp, text, clr, fnt, font_size, x, y ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def draw_text_on_bitmap_with_options ( bmp, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref(__skparam__bmp, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_window_font_as_string ( wnd, text, clr, fnt, font_size, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def draw_text_on_window_with_options_font_as_string ( wnd, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_window_no_font_no_size ( wnd, text, clr, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y)
+def draw_text_on_window_no_font_no_size_with_options ( wnd, text, clr, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
+def draw_text_on_window ( wnd, text, clr, fnt, font_size, x, y ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
+def draw_text_on_window_with_options ( wnd, text, clr, fnt, font_size, x, y, opts ):
+    __skparam__wnd = __skadapter__to_sklib_window(wnd)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
 def font_has_size_name_as_string ( name, font_size ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
@@ -6626,59 +7347,6 @@ def text_width ( text, fnt, font_size ):
     __skparam__font_size = __skadapter__to_sklib_int(font_size)
     __skreturn = sklib.__sklib__text_width__string_ref__font__int(__skparam__text, __skparam__fnt, __skparam__font_size)
     return __skadapter__to_int(__skreturn)
-def window_draw_text_font_as_string ( wnd, text, clr, fnt, font_size, x, y ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__fnt = __skadapter__to_sklib_string(fnt)
-    __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
-def window_draw_text_with_options_font_as_string ( wnd, text, clr, fnt, font_size, x, y, opts ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__fnt = __skadapter__to_sklib_string(fnt)
-    __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__string_ref__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
-def window_draw_text_no_font_no_size ( wnd, text, clr, x, y ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y)
-def window_draw_text_no_font_no_size_with_options ( wnd, text, clr, x, y, opts ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__x, __skparam__y, __skparam__opts)
-def window_draw_text ( wnd, text, clr, fnt, font_size, x, y ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__fnt = __skadapter__to_sklib_font(fnt)
-    __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y)
-def window_draw_text_with_options ( wnd, text, clr, fnt, font_size, x, y, opts ):
-    __skparam__wnd = __skadapter__to_sklib_window(wnd)
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__fnt = __skadapter__to_sklib_font(fnt)
-    __skparam__font_size = __skadapter__to_sklib_int(font_size)
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__window_draw_text__window__string_ref__color_ref__font__int__float__float__drawing_options_ref(__skparam__wnd, __skparam__text, __skparam__clr, __skparam__fnt, __skparam__font_size, __skparam__x, __skparam__y, __skparam__opts)
 def draw_collected_text ( clr, fnt, font_size, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
@@ -6809,23 +7477,87 @@ def draw_triangle_record_with_options ( clr, tri, opts ):
     sklib.__sklib__draw_triangle__color__triangle_ref__drawing_options(__skparam__clr, __skparam__tri, __skparam__opts)
 def draw_triangle ( clr, x1, y1, x2, y2, x3, y3 ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skparam__x3 = __skadapter__to_sklib_float(x3)
-    __skparam__y3 = __skadapter__to_sklib_float(y3)
-    sklib.__sklib__draw_triangle__color__float__float__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__draw_triangle__color__double__double__double__double__double__double(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
 def draw_triangle_with_options ( clr, x1, y1, x2, y2, x3, y3, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skparam__x3 = __skadapter__to_sklib_float(x3)
-    __skparam__y3 = __skadapter__to_sklib_float(y3)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__draw_triangle__color__float__float__float__float__float__float__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+    sklib.__sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+def draw_triangle_on_bitmap_record ( destination, clr, tri ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref(__skparam__destination, __skparam__clr, __skparam__tri)
+def draw_triangle_on_bitmap_record_with_options ( destination, clr, tri, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__tri, __skparam__opts)
+def draw_triangle_on_bitmap ( destination, clr, x1, y1, x2, y2, x3, y3 ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+def draw_triangle_on_bitmap_with_options ( destination, clr, x1, y1, x2, y2, x3, y3, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+def draw_triangle_on_window_record ( destination, clr, tri ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref(__skparam__destination, __skparam__clr, __skparam__tri)
+def draw_triangle_on_window_record_with_options ( destination, clr, tri, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__tri, __skparam__opts)
+def draw_triangle_on_window ( destination, clr, x1, y1, x2, y2, x3, y3 ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+def draw_triangle_on_window_with_options ( destination, clr, x1, y1, x2, y2, x3, y3, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
 def fill_triangle_record ( clr, tri ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__tri = __skadapter__to_sklib_triangle(tri)
@@ -6837,23 +7569,87 @@ def fill_triangle_record_with_options ( clr, tri, opts ):
     sklib.__sklib__fill_triangle__color__triangle_ref__drawing_options(__skparam__clr, __skparam__tri, __skparam__opts)
 def fill_triangle ( clr, x1, y1, x2, y2, x3, y3 ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skparam__x3 = __skadapter__to_sklib_float(x3)
-    __skparam__y3 = __skadapter__to_sklib_float(y3)
-    sklib.__sklib__fill_triangle__color__float__float__float__float__float__float(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__fill_triangle__color__double__double__double__double__double__double(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
 def fill_triangle_with_options ( clr, x1, y1, x2, y2, x3, y3, opts ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skparam__x3 = __skadapter__to_sklib_float(x3)
-    __skparam__y3 = __skadapter__to_sklib_float(y3)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    sklib.__sklib__fill_triangle__color__float__float__float__float__float__float__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+    sklib.__sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options(__skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+def fill_triangle_on_bitmap_record ( destination, clr, tri ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref(__skparam__destination, __skparam__clr, __skparam__tri)
+def fill_triangle_on_bitmap_record_with_options ( destination, clr, tri, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__tri, __skparam__opts)
+def fill_triangle_on_bitmap ( destination, clr, x1, y1, x2, y2, x3, y3 ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+def fill_triangle_on_bitmap_with_options ( destination, clr, x1, y1, x2, y2, x3, y3, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
+def fill_triangle_on_window_record ( destination, clr, tri ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref(__skparam__destination, __skparam__clr, __skparam__tri)
+def fill_triangle_on_window_record_with_options ( destination, clr, tri, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options(__skparam__destination, __skparam__clr, __skparam__tri, __skparam__opts)
+def fill_triangle_on_window ( destination, clr, x1, y1, x2, y2, x3, y3 ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+def fill_triangle_on_window_with_options ( destination, clr, x1, y1, x2, y2, x3, y3, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3, __skparam__opts)
 def triangle_barycenter ( tri ):
     __skparam__tri = __skadapter__to_sklib_triangle(tri)
     __skreturn = sklib.__sklib__triangle_barycenter__triangle_ref(__skparam__tri)
@@ -6865,13 +7661,13 @@ def triangle_from ( p1, p2, p3 ):
     __skreturn = sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref(__skparam__p1, __skparam__p2, __skparam__p3)
     return __skadapter__to_triangle(__skreturn)
 def triangle_from__from_coordinates ( x1, y1, x2, y2, x3, y3 ):
-    __skparam__x1 = __skadapter__to_sklib_float(x1)
-    __skparam__y1 = __skadapter__to_sklib_float(y1)
-    __skparam__x2 = __skadapter__to_sklib_float(x2)
-    __skparam__y2 = __skadapter__to_sklib_float(y2)
-    __skparam__x3 = __skadapter__to_sklib_float(x3)
-    __skparam__y3 = __skadapter__to_sklib_float(y3)
-    __skreturn = sklib.__sklib__triangle_from__float__float__float__float__float__float(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
+    __skparam__x1 = __skadapter__to_sklib_double(x1)
+    __skparam__y1 = __skadapter__to_sklib_double(y1)
+    __skparam__x2 = __skadapter__to_sklib_double(x2)
+    __skparam__y2 = __skadapter__to_sklib_double(y2)
+    __skparam__x3 = __skadapter__to_sklib_double(x3)
+    __skparam__y3 = __skadapter__to_sklib_double(y3)
+    __skreturn = sklib.__sklib__triangle_from__double__double__double__double__double__double(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
     return __skadapter__to_triangle(__skreturn)
 def triangle_rectangle_intersect ( tri, rect ):
     __skparam__tri = __skadapter__to_sklib_triangle(tri)
@@ -6893,6 +7689,12 @@ def current_ticks (  ):
 def delay ( milliseconds ):
     __skparam__milliseconds = __skadapter__to_sklib_unsigned_int(milliseconds)
     sklib.__sklib__delay__unsigned_int(__skparam__milliseconds)
+def display_dialog ( title, msg, output_font, font_size ):
+    __skparam__title = __skadapter__to_sklib_string(title)
+    __skparam__msg = __skadapter__to_sklib_string(msg)
+    __skparam__output_font = __skadapter__to_sklib_font(output_font)
+    __skparam__font_size = __skadapter__to_sklib_int(font_size)
+    sklib.__sklib__display_dialog__string_ref__string_ref__font__int(__skparam__title, __skparam__msg, __skparam__output_font, __skparam__font_size)
 def file_as_string ( filename, kind ):
     __skparam__filename = __skadapter__to_sklib_string(filename)
     __skparam__kind = __skadapter__to_sklib_resource_kind(kind)
@@ -7023,9 +7825,9 @@ def vector_to_point ( p1 ):
     __skreturn = sklib.__sklib__vector_to__point_2d_ref(__skparam__p1)
     return __skadapter__to_vector_2d(__skreturn)
 def vector_to ( x, y ):
-    __skparam__x = __skadapter__to_sklib_float(x)
-    __skparam__y = __skadapter__to_sklib_float(y)
-    __skreturn = sklib.__sklib__vector_to__float__float(__skparam__x, __skparam__y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__vector_to__double__double(__skparam__x, __skparam__y)
     return __skadapter__to_vector_2d(__skreturn)
 def vector_to_string ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
@@ -7271,6 +8073,10 @@ def open_window ( caption, width, height ):
 def refresh_window ( wind ):
     __skparam__wind = __skadapter__to_sklib_window(wind)
     sklib.__sklib__refresh_window__window(__skparam__wind)
+def refresh_window_with_target_fps ( wind, target_fps ):
+    __skparam__wind = __skadapter__to_sklib_window(wind)
+    __skparam__target_fps = __skadapter__to_sklib_unsigned_int(target_fps)
+    sklib.__sklib__refresh_window__window__unsigned_int(__skparam__wind, __skparam__target_fps)
 def resize_current_window ( width, height ):
     __skparam__width = __skadapter__to_sklib_int(width)
     __skparam__height = __skadapter__to_sklib_int(height)

@@ -32,7 +32,7 @@ bool mouse_up(mouse_button button);
 vector_2d mouse_wheel_scroll();
 float mouse_x();
 float mouse_y();
-void move_mouse(float x, float y);
+void move_mouse(double x, double y);
 void move_mouse(point_2d point);
 void show_mouse();
 void show_mouse(bool show);

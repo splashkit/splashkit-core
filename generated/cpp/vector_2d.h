@@ -37,7 +37,7 @@ vector_2d vector_out_of_rect_from_rect(const rectangle &src, const rectangle &bo
 vector_2d vector_point_to_point(const point_2d &start, const point_2d &end_pt);
 vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2);
 vector_2d vector_to(const point_2d &p1);
-vector_2d vector_to(float x, float y);
+vector_2d vector_to(double x, double y);
 string vector_to_string(const vector_2d &v);
 bool vectors_equal(const vector_2d &v1, const vector_2d v2);
 bool vectors_not_equal(const vector_2d &v1, const vector_2d v2);

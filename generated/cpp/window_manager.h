@@ -37,6 +37,7 @@ void move_window_to(const string &name, int x, int y);
 void move_window_to(window wind, int x, int y);
 window open_window(string caption, int width, int height);
 void refresh_window(window wind);
+void refresh_window(window wind, unsigned int target_fps);
 void resize_current_window(int width, int height);
 void resize_window(window wnd, int width, int height);
 void set_current_window(const string &name);

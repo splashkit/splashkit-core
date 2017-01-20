@@ -48,12 +48,12 @@ typedef enum {
     HTTP_STATUS_SERVICE_UNAVAILABLE = 503
 } http_status_code;
 typedef struct {
-    float x;
-    float y;
+    double x;
+    double y;
 } point_2d;
 typedef struct {
     point_2d center;
-    float radius;
+    double radius;
 } circle;
 typedef struct {
     float r;
@@ -62,10 +62,10 @@ typedef struct {
     float a;
 } color;
 typedef struct {
-    float x;
-    float y;
-    float width;
-    float height;
+    double x;
+    double y;
+    double width;
+    double height;
 } rectangle;
 typedef struct {
     void *dest;
