@@ -202,7 +202,6 @@ namespace splashkit_lib
     }
 
     void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
-
     {
         if ( fnt != nullptr and INVALID_PTR(fnt, FONT_PTR) )
         {
