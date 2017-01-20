@@ -51,7 +51,6 @@ namespace splashkit_lib
         draw_circle(clr, c.center.x, c.center.y, c.radius, option_defaults());
     }
 
-
     void fill_circle(color clr, float x, float y, float radius, drawing_options opts)
     {
         sk_drawing_surface *surface;

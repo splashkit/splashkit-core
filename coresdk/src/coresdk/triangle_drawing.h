@@ -136,5 +136,291 @@ namespace splashkit_lib
      * @attribute suffix  record
      */
     void fill_triangle(color clr, const triangle &tri);
+
+    /**
+     * Draw a triangle to the given window, using the supplied drawing options.
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap/window to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap/window to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap/window to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap/window to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap/window to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap/window to the
+     *             third point of the triangle
+     * @param opts The drawing options
+     *
+     *
+     * @attribute class   window
+     * @attribute suffix  with_options
+     */
+    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+    /**
+     * Draw a triangle to the given window.
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the window to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the window to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the window to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the window to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the window to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the window to the
+     *             third point of the triangle
+     *
+     * @attribute class   window
+     */
+    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+    /**
+     * Draw a triangle on a given window, using the supplied drawing options.
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     * @param opts The drawing options
+     *
+     * @attribute class   window
+     * @attribute suffix  record_with_options
+     */
+    void draw_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
+
+    /**
+     * Draw a triangle on a given window, using the supplied drawing options.
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     *
+     * @attribute class   window
+     * @attribute suffix  record
+     */
+    void draw_triangle_on_window(window destination, color clr, const triangle &tri);
+
+    /**
+     * Fill a triangle on a given window, using the supplied drawing options.
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap/window to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap/window to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap/window to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap/window to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap/window to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap/window to the
+     *             third point of the triangle
+     * @param opts The drawing options
+     *
+     * @attribute class   window
+     * @attribute suffix  with_options
+     */
+    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+    /**
+     * Fill a triangle on a given window
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the window to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the window to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the window to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the window to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the window to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the window to the
+     *             third point of the triangle
+     *
+     * @attribute class   window
+     */
+    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+    /**
+     * Fill a triangle on a given window, using given drawing options
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     * @param opts The drawing options
+     *
+     * @attribute class   window
+     * @attribute suffix  record_with_options
+     */
+    void fill_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
+
+    /**
+     * Fill a triangle on a given window
+     *
+     * @param destination The window which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     *
+     * @attribute class   window
+     * @attribute suffix  record
+     */
+    void fill_triangle_on_window(window destination, color clr, const triangle &tri);
+
+    /**
+     * Draw a triangle to the given bitmap, using the supplied drawing options.
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap/bitmap to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap/bitmap to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap/bitmap to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap/bitmap to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap/bitmap to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap/bitmap to the
+     *             third point of the triangle
+     * @param opts The drawing options
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  with_options
+     */
+    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+    /**
+     * Draw a triangle to the given bitmap.
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap to the
+     *             third point of the triangle
+     *
+     * @attribute class   bitmap
+     */
+    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+    /**
+     * Draw a triangle on a given bitmap, using the supplied drawing options.
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     * @param opts The drawing options
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  record_with_options
+     */
+    void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
+
+    /**
+     * Draw a triangle on a given bitmap, using the supplied drawing options.
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  record
+     */
+    void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
+
+    /**
+     * Fill a triangle on a given bitmap, using the supplied drawing options.
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap/bitmap to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap/bitmap to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap/bitmap to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap/bitmap to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap/bitmap to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap/bitmap to the
+     *             third point of the triangle
+     * @param opts The drawing options
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  with_options
+     */
+    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+
+    /**
+     * Fill a triangle on a given bitmap
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param x1   The distance from the left side of the bitmap to the
+     *             first point of the triangle
+     * @param y1   The distance from the top of the bitmap to the
+     *             first point of the triangle
+     * @param x2   The distance from the left side of the bitmap to the
+     *             second point of the triangle
+     * @param y2   The distance from the top of the bitmap to the
+     *             second point of the triangle
+     * @param x3   The distance from the left side of the bitmap to the
+     *             third point of the triangle
+     * @param y3   The distance from the top of the bitmap to the
+     *             third point of the triangle
+     *
+     * @attribute class   bitmap
+     */
+    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+
+    /**
+     * Fill a triangle on a given bitmap, using given drawing options
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     * @param opts The drawing options
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  record_with_options
+     */
+    void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
+
+    /**
+     * Fill a triangle on a given bitmap
+     *
+     * @param destination The bitmap which the triangle will be drawn on.
+     * @param clr  The color for the triangle
+     * @param tri  The triangles details
+     *
+     * @attribute class   bitmap
+     * @attribute suffix  record
+     */
+    void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
+
 }
 #endif /* triangle_drawing_hpp */

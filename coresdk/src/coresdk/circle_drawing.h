@@ -122,7 +122,6 @@ namespace splashkit_lib
      */
     void fill_circle(color clr, const circle &c);
     
-    
     /**
      *  Draw a circle to the window using the supplied drawing options. The circle is centred on its x, y
      *  coordinates, and has the provided radius.
@@ -186,8 +185,6 @@ namespace splashkit_lib
      * @attribute method    draw_circle
      */
     void draw_circle_on_bitmap(bitmap destination, color clr, float x, float y, float radius);
-
-    
 
 }
 #endif /* circle_drawing_hpp */

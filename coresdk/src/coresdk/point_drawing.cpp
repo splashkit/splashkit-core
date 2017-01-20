@@ -83,4 +83,54 @@ namespace splashkit_lib
     {
         return get_pixel(current_window(), pt.x, pt.y);
     }
+    
+    void draw_pixel_on_window(window destination, color clr, float x, float y)
+    {
+        draw_pixel(clr, x, y, option_draw_to(destination));
+    }
+    
+    void draw_pixel_on_window(window destination, color clr, float x, float y, drawing_options opts)
+    {
+        draw_pixel(clr, x, y, option_draw_to(destination, opts));
+    }
+    
+    void draw_pixel_on_window(window destination, color clr, const point_2d &pt)
+    {
+        draw_pixel(clr, pt, option_draw_to(destination));
+    }
+    
+    void draw_pixel_on_window(window destination, color clr, const point_2d &pt, drawing_options opts)
+    {
+        draw_pixel(clr, pt, option_draw_to(destination, opts));
+    }
+    
+    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y)
+    {
+        draw_pixel(clr, x, y, option_draw_to(destination));
+    }
+    
+    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y, drawing_options opts)
+    {
+        draw_pixel(clr, x, y, option_draw_to(destination, opts));
+    }
+    
+    void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt)
+    {
+        draw_pixel(clr, pt, option_draw_to(destination));
+    }
+    
+    void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt, drawing_options opts)
+    {
+        draw_pixel(clr, pt, option_draw_to(destination, opts));
+    }
+    
+    color get_pixel_from_window(window destination, float x, float y)
+    {
+        return get_pixel(destination, x, y);
+    }
+    
+    color get_pixel_from_window(window destination, const point_2d &pt)
+    {
+        return get_pixel(destination, pt.x, pt.y);
+    }
 }

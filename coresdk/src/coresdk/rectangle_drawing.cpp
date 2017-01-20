@@ -132,13 +132,13 @@ namespace splashkit_lib
     {
         fill_quad(clr, q, option_defaults());
     }
-    
+
     void fill_quad(color clr, const quad &q, const drawing_options &opts)
     {
         sk_drawing_surface *surface;
-        
+
         surface = to_surface_ptr(opts.dest);
-        
+
         if (surface)
         {
             float pts[8];
@@ -151,5 +151,124 @@ namespace splashkit_lib
             sk_fill_rect(surface, clr, pts, 8);
         }
     }
-    
+
+    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    {
+        draw_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+
+    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height)
+    {
+        draw_rectangle(clr, x, y, width, height, option_draw_to(destination));
+    }
+
+    void draw_rectangle_on_window(window destination, color clr, const rectangle &rect, const drawing_options &opts)
+    {
+        draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination, opts));
+    }
+
+    void draw_rectangle_on_window(window destination, color clr, const rectangle &rect)
+    {
+        draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
+    }
+
+    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, const drawing_options &opts)
+    {
+        fill_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+
+    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height)
+    {
+        fill_rectangle(clr, x, y, width, height, option_draw_to(destination));
+    }
+
+    void fill_rectangle_on_window(window destination, color clr, const rectangle &rect, const drawing_options &opts)
+    {
+        fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination, opts));
+    }
+
+    void fill_rectangle_on_window(window destination, color clr, const rectangle &rect)
+    {
+        fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
+    }
+
+    void draw_quad_on_window(window destination, color clr, const quad &q)
+    {
+        draw_quad(clr, q, option_draw_to(destination));
+    }
+
+    void draw_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts)
+    {
+        draw_quad(clr, q, option_draw_to(destination, opts));
+    }
+
+    void fill_quad_on_window(window destination, color clr, const quad &q)
+    {
+        fill_quad(clr, q, option_draw_to(destination));
+    }
+
+    void fill_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts)
+    {
+        fill_quad(clr, q, option_draw_to(destination, opts));
+    }
+
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    {
+        draw_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    {
+        draw_rectangle(clr, x, y, width, height, option_draw_to(destination));
+    }
+
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect, const drawing_options &opts)
+    {
+        draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination, opts));
+    }
+
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect)
+    {
+        draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
+    }
+
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, const drawing_options &opts)
+    {
+        fill_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
+    }
+
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    {
+        fill_rectangle(clr, x, y, width, height, option_draw_to(destination));
+    }
+
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect, const drawing_options &opts)
+    {
+        fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination, opts));
+    }
+
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect)
+    {
+        fill_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
+    }
+
+    void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q)
+    {
+        draw_quad(clr, q, option_draw_to(destination));
+    }
+
+    void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts)
+    {
+        draw_quad(clr, q, option_draw_to(destination, opts));
+    }
+
+    void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q)
+    {
+        fill_quad(clr, q, option_draw_to(destination));
+    }
+
+    void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts)
+    {
+        fill_quad(clr, q, option_draw_to(destination, opts));
+    }
 }

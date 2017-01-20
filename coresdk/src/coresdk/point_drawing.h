@@ -130,5 +130,142 @@ namespace splashkit_lib
      * @attribute suffix  at_point
      */
     color get_pixel(const point_2d &pt);
+    
+    /**
+     * Draws an individual pixel to the given window.
+     *
+     * @param destination the window to draw the pixel on
+     * @param clr The color of the pixel
+     * @param x   The distance from the left edge of the window to the
+     *            pixel
+     * @param y   The distance from the top edge of the window to the
+     *            pixel
+     *
+     * @attribute class  window
+     */
+    void draw_pixel_on_window(window destination, color clr, float x, float y);
+    
+    /**
+     * Draws an individual pixel to the given window with the given drawing options.
+     *
+     * @param destination The window to draw the pixel on
+     * @param clr The color of the pixel
+     * @param x   The distance from the left edge of the window to the
+     *            pixel
+     * @param y   The distance from the top edge of the window to the
+     *            pixel
+     * @param opts The drawing options
+     *
+     * @attribute class  window
+     * @attribute suffix  with_options
+     */
+    void draw_pixel_on_window(window destination, color clr, float x, float y, drawing_options opts);
+    
+    /**
+     * Draws an individual pixel to the given window.
+     *
+     * @param destination The window to draw the pixel on
+     * @param clr The color of the pixel
+     * @param pt  The location of the pixel to draw
+     *
+     * @attribute class  window
+     * @attribute suffix  at_point
+     */
+    void draw_pixel_on_window(window destination, color clr, const point_2d &pt);
+    
+    /**
+     * Draws an individual pixel to the given window with the given drawing options.
+     *
+     * @param destination The window to draw the pixel on
+     * @param clr The color of the pixel
+     * @param pt  The location of the pixel to draw
+     * @param opts The drawing options
+     *
+     * @attribute class  window
+     * @attribute suffix  at_point_with_options
+     */
+    void draw_pixel_on_window(window destination, color clr, const point_2d &pt, drawing_options opts);
+    
+    /**
+     * Returns the color of the pixel at the x,y location on the given
+     * window.
+     *
+     * @param destination The window to draw the pixel on
+     * @param  x   The distance from the left edge of the window to the pixel
+     *             to read
+     * @param  y   The distance from the top of the window to the pixel to read
+     * @return     The color of the pixel at the supplied location
+     *
+     * @attribute class  window
+     * @attribute suffix  from_window
+     */
+    color get_pixel_from_window(window destination, float x, float y);
+    
+    /**
+     * Returns the color of the pixel at the x,y location on the given
+     * window.
+     *
+     * @param destination The window to draw the pixel on
+     * @param  pt  The position of the pixel
+     * @return     The color of the pixel at the supplied location
+     *
+     * @attribute suffix  at_point_from_window
+     */
+    color get_pixel_from_window(window destination, const point_2d &pt);
+    
+    /**
+     * Draws an individual pixel to the given bitmap.
+     *
+     * @param destination the bitmap to draw the pixel on
+     * @param clr The color of the pixel
+     * @param x   The distance from the left edge of the bitmap to the
+     *            pixel
+     * @param y   The distance from the top edge of the bitmap to the
+     *            pixel
+     *
+     * @attribute class  bitmap
+     */
+    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y);
+    
+    /**
+     * Draws an individual pixel to the given bitmap with the given drawing options.
+     *
+     * @param destination the bitmap to draw the pixel on
+     * @param clr The color of the pixel
+     * @param x   The distance from the left edge of the bitmap to the
+     *            pixel
+     * @param y   The distance from the top edge of the bitmap to the
+     *            pixel
+     * @param opts The drawing options
+     *
+     * @attribute class  bitmap
+     * @attribute suffix  with_options
+     */
+    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y, drawing_options opts);
+    
+    /**
+     * Draws an individual pixel to the given bitmap.
+     *
+     * @param destination the bitmap to draw the pixel on
+     * @param clr The color of the pixel
+     * @param pt  The location of the pixel to draw
+     *
+     * @attribute class  bitmap
+     * @attribute suffix  at_point
+     */
+    void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt);
+    
+    /**
+     * Draws an individual pixel to the given bitmap with the given drawing options.
+     *
+     * @param destination the bitmap to draw the pixel on
+     * @param clr The color of the pixel
+     * @param pt  The location of the pixel to draw
+     * @param opts The drawing options
+     *
+     * @attribute class  bitmap
+     * @attribute suffix  at_point_with_options
+     */
+    void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt, drawing_options opts);
 }
 #endif /* point_drawing_h */
