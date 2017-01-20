@@ -107,6 +107,9 @@ namespace splashkit_lib
 
         sk_set_icon(&wind->image.surface, &bmp->image.surface);
     }
+    
+    //TODO: From graphics... need to rework...
+    void delay_for_target_fps(unsigned int target_fps);
 
     void refresh_window(window wind)
     {
@@ -117,6 +120,12 @@ namespace splashkit_lib
         }
 
         sk_refresh_window(&wind->image.surface);
+    }
+    
+    void refresh_window(window wind, unsigned int target_fps)
+    {
+        refresh_window(wind);
+        delay_for_target_fps(60);
     }
 
     void clear_window(window wind, color clr)

@@ -82,9 +82,6 @@ namespace splashkit_lib
             
         draw_rectangle_on_window(dest, color_black(), rect);
         draw_text_on_window(dest, text, color_black(), dialog_font, font_size, rect.x + 5, rect.y);
-        fill_rectangle_on_window(dest, color_white(), 0, 0, 200, 30);
-        draw_text_on_window(dest, point_to_string(mouse_position()), color_black(), dialog_font, 12, 0, 0);
-        draw_text_on_window(dest, rectangle_to_string(rect), color_black(), dialog_font, 12, 0, 15);
     }
     
     bool button_clicked(window wind, const rectangle &rect)
@@ -98,7 +95,7 @@ namespace splashkit_lib
         
         string prompt = "Press enter or OK to continue...";
         float ok_x, ok_y;
-        float ok_width = text_width("OK", output_font, font_size);
+        float ok_width = text_width("OK", output_font, font_size) + 10;
         
         float msg_width = text_width(msg, output_font, font_size);
         float prompt_width = text_width(prompt, output_font, font_size);

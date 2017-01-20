@@ -28,20 +28,18 @@ namespace splashkit_lib
 
     void refresh_screen()
     {
-        refresh_screen(60);
-    }
-
-    void refresh_screen(unsigned int target_fps)
-    {
         for (const auto& kv : _windows)
         {
             refresh_window(kv.second);
         }
+    }
 
+    void delay_for_target_fps(unsigned int target_fps)
+    {
         unsigned int now = current_ticks();
         unsigned int delta = now - _last_update_time;
         unsigned int delay_time;
-
+        
         //dont sleep if 5ms remaining...
         while ((target_fps > 0) and ((delta + 8) * target_fps < 1000))
         {
@@ -50,8 +48,14 @@ namespace splashkit_lib
             now = current_ticks();
             delta = now - _last_update_time;
         }
-
+        
         _last_update_time = now;
+    }
+    
+    void refresh_screen(unsigned int target_fps)
+    {
+        refresh_screen();
+        delay_for_target_fps(target_fps);
     }
 
     void clear_screen(color clr)
