@@ -82,11 +82,14 @@ namespace splashkit_lib
             
         draw_rectangle_on_window(dest, color_black(), rect);
         draw_text_on_window(dest, text, color_black(), dialog_font, font_size, rect.x + 5, rect.y);
+        fill_rectangle_on_window(dest, color_white(), 0, 0, 200, 30);
+        draw_text_on_window(dest, point_to_string(mouse_position()), color_black(), dialog_font, 12, 0, 0);
+        draw_text_on_window(dest, rectangle_to_string(rect), color_black(), dialog_font, 12, 0, 15);
     }
     
-    bool button_clicked(const rectangle &rect)
+    bool button_clicked(window wind, const rectangle &rect)
     {
-        return mouse_clicked(LEFT_BUTTON) and point_in_rectangle(mouse_position(), rect);
+        return window_with_focus() == wind and mouse_clicked(LEFT_BUTTON) and point_in_rectangle(mouse_position(), rect);
     }
     
     void display_dialog(const string &title, const string &msg, font output_font, int font_size)
@@ -113,6 +116,9 @@ namespace splashkit_lib
         height = msg_height * 3 + 40;
         
         window dialog = open_window(title, width, height);
+        window old_current = current_window();
+        
+        set_current_window(dialog);
         
         clear_window(dialog, color_white());
         
@@ -121,13 +127,13 @@ namespace splashkit_lib
         
         rectangle ok_rect = rectangle_from(ok_x, ok_y, ok_width, msg_height);
         
-        while ( ! (key_typed(RETURN_KEY) or window_close_requested(dialog) or button_clicked(ok_rect) ) )
+        while ( ! (key_typed(RETURN_KEY) or window_close_requested(dialog) or button_clicked(dialog, ok_rect) ) )
         {
             process_events();
             draw_button(dialog, "OK", output_font, font_size, ok_rect);
             refresh_window(dialog);
         }
-        
+        set_current_window(old_current);
         close_window(dialog);
     }
     
