@@ -15,7 +15,7 @@
 #include <cmath>
 namespace splashkit_lib
 {
-    circle circle_at(const point_2d &pt, float radius)
+    circle circle_at(const point_2d &pt, double radius)
     {
         circle result;
         result.center = pt;
@@ -23,7 +23,7 @@ namespace splashkit_lib
         return result;
     }
 
-    circle circle_at(float x, float y, float radius)
+    circle circle_at(double x, double y, double radius)
     {
         return circle_at(point_at(x, y), radius);
     }

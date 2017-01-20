@@ -20,7 +20,7 @@
 
 namespace splashkit_lib
 {
-    void draw_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts)
+    void draw_rectangle(color clr, double x, double y, double width, double height, const drawing_options &opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -47,7 +47,7 @@ namespace splashkit_lib
         }
     }
 
-    void draw_rectangle(color clr, float x, float y, float width, float height)
+    void draw_rectangle(color clr, double x, double y, double width, double height)
     {
         draw_rectangle(clr, x, y, width, height, option_defaults());
     }
@@ -62,7 +62,7 @@ namespace splashkit_lib
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_defaults());
     }
 
-    void fill_rectangle(color clr, float x, float y, float width, float height, const drawing_options &opts)
+    void fill_rectangle(color clr, double x, double y, double width, double height, const drawing_options &opts)
     {
         if ( width == 0 || height == 0 ) return;
 
@@ -89,7 +89,7 @@ namespace splashkit_lib
         }
     }
 
-    void fill_rectangle(color clr, float x, float y, float width, float height)
+    void fill_rectangle(color clr, double x, double y, double width, double height)
     {
         fill_rectangle(clr, x, y, width, height, option_defaults());
     }
@@ -117,7 +117,7 @@ namespace splashkit_lib
 
         if (surface)
         {
-            float pts[8];
+            double pts[8];
             for(int i = 0; i < 4; i++)
             {
                 pts[i * 2] = q.points[i].x;
@@ -141,7 +141,7 @@ namespace splashkit_lib
 
         if (surface)
         {
-            float pts[8];
+            double pts[8];
             for(int i = 0; i < 4; i++)
             {
                 pts[i * 2] = q.points[i].x;
@@ -152,12 +152,12 @@ namespace splashkit_lib
         }
     }
 
-    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_rectangle_on_window(window destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         draw_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
     }
 
-    void draw_rectangle_on_window(window destination, color clr, float x, float y, float width, float height)
+    void draw_rectangle_on_window(window destination, color clr, double x, double y, double width, double height)
     {
         draw_rectangle(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -172,12 +172,12 @@ namespace splashkit_lib
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
     }
 
-    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height, const drawing_options &opts)
+    void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height, const drawing_options &opts)
     {
         fill_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
     }
 
-    void fill_rectangle_on_window(window destination, color clr, float x, float y, float width, float height)
+    void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height)
     {
         fill_rectangle(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -212,12 +212,12 @@ namespace splashkit_lib
         fill_quad(clr, q, option_draw_to(destination, opts));
     }
 
-    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, drawing_options opts)
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, drawing_options opts)
     {
         draw_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
     }
 
-    void draw_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    void draw_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height)
     {
         draw_rectangle(clr, x, y, width, height, option_draw_to(destination));
     }
@@ -232,12 +232,12 @@ namespace splashkit_lib
         draw_rectangle(clr, rect.x, rect.y, rect.width, rect.height, option_draw_to(destination));
     }
 
-    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height, const drawing_options &opts)
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, const drawing_options &opts)
     {
         fill_rectangle(clr, x, y, width, height, option_draw_to(destination, opts));
     }
 
-    void fill_rectangle_on_bitmap(bitmap destination, color clr, float x, float y, float width, float height)
+    void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height)
     {
         fill_rectangle(clr, x, y, width, height, option_draw_to(destination));
     }

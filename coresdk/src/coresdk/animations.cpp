@@ -231,7 +231,7 @@ namespace splashkit_lib
         {
             vector<int> id_range;
             string x_val, y_val;
-            float x, y;
+            double x, y;
             vector_2d v;
 
             if (count_delimiter(data, ',') != 2)
@@ -244,13 +244,13 @@ namespace splashkit_lib
             x_val = extract_delimited_with_ranges(2,data);
             y_val = extract_delimited_with_ranges(3,data);
 
-            if (not try_str_to_float(x_val, x))
+            if (not try_str_to_double(x_val, x))
             {
                 LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". X value must be a number.";
                 return;
             }
 
-            if (not try_str_to_float(y_val, y))
+            if (not try_str_to_double(y_val, y))
             {
                 LOG(WARNING) << "Error at line " + to_string(line_no) + " in animation " + filename + ". Y value must be a number.";
                 return;

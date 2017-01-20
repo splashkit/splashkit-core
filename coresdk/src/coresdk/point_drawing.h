@@ -20,7 +20,7 @@ namespace splashkit_lib
      * @param y   The distance from the top edge of the window to the
      *            pixel
      */
-    void draw_pixel(color clr, float x, float y);
+    void draw_pixel(color clr, double x, double y);
 
     /**
      * Draws an individual pixel with the supplied options.
@@ -34,7 +34,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void draw_pixel(color clr, float x, float y, drawing_options opts);
+    void draw_pixel(color clr, double x, double y, drawing_options opts);
 
     /**
      * Draws an individual pixel to the current window.
@@ -69,7 +69,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  from_bitmap
      */
-    color get_pixel(bitmap bmp, float x, float y);
+    color get_pixel(bitmap bmp, double x, double y);
 
     /**
      * Returns the color of the pixel at the location on the supplied
@@ -95,7 +95,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  from_window
      */
-    color get_pixel(window wnd, float x, float y);
+    color get_pixel(window wnd, double x, double y);
 
     /**
      * Returns the color of the pixel at the location on the supplied
@@ -118,7 +118,7 @@ namespace splashkit_lib
      * @param  y   The distance from the top of the window to the pixel to read
      * @return     The color of the pixel at the supplied location
      */
-    color get_pixel(float x, float y);
+    color get_pixel(double x, double y);
 
     /**
      * Returns the color of the pixel at the x,y location on the current
@@ -143,7 +143,7 @@ namespace splashkit_lib
      *
      * @attribute class  window
      */
-    void draw_pixel_on_window(window destination, color clr, float x, float y);
+    void draw_pixel_on_window(window destination, color clr, double x, double y);
     
     /**
      * Draws an individual pixel to the given window with the given drawing options.
@@ -159,7 +159,7 @@ namespace splashkit_lib
      * @attribute class  window
      * @attribute suffix  with_options
      */
-    void draw_pixel_on_window(window destination, color clr, float x, float y, drawing_options opts);
+    void draw_pixel_on_window(window destination, color clr, double x, double y, drawing_options opts);
     
     /**
      * Draws an individual pixel to the given window.
@@ -199,7 +199,7 @@ namespace splashkit_lib
      * @attribute class  window
      * @attribute suffix  from_window
      */
-    color get_pixel_from_window(window destination, float x, float y);
+    color get_pixel_from_window(window destination, double x, double y);
     
     /**
      * Returns the color of the pixel at the x,y location on the given
@@ -225,7 +225,7 @@ namespace splashkit_lib
      *
      * @attribute class  bitmap
      */
-    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y);
+    void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y);
     
     /**
      * Draws an individual pixel to the given bitmap with the given drawing options.
@@ -241,7 +241,7 @@ namespace splashkit_lib
      * @attribute class  bitmap
      * @attribute suffix  with_options
      */
-    void draw_pixel_on_bitmap(bitmap destination, color clr, float x, float y, drawing_options opts);
+    void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y, drawing_options opts);
     
     /**
      * Draws an individual pixel to the given bitmap.

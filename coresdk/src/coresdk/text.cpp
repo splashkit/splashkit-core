@@ -211,7 +211,7 @@ namespace splashkit_lib
         sk_draw_text(to_surface_ptr(dest), fnt, font_size, rc.x, rc.y, str.c_str(), fg_clr);
     }
 
-    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         rectangle rect;
         if ( ! VALID_PTR(fnt, FONT_PTR) )
@@ -232,88 +232,88 @@ namespace splashkit_lib
         _print_strings(opts.dest, fnt, font_size, text, rect, clr, COLOR_TRANSPARENT);
     }
 
-    void draw_text(const string &text, const color &clr, font fnt, int font_size, float x, float y)
+    void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_defaults());
     }
 
-    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, font_named(fnt), font_size, x, y, opts);
     }
 
-    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
+    void draw_text(const string &text, const color &clr, const string &fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, font_named(fnt), font_size, x, y, option_defaults());
     }
 
-    void draw_text(const string &text, const color &clr, float x, float y, const drawing_options &opts)
+    void draw_text(const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
         xy_from_opts(opts, x, y);
         sk_draw_text(to_surface_ptr(opts.dest), nullptr, 0, x, y, text.c_str(), clr);
     }
 
-    void draw_text(const string &text, const color &clr, float x, float y)
+    void draw_text(const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_defaults());
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd, opts));
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, float x, float y)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd));
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd, opts));
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd));
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y, const drawing_options &opts)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, x, y, option_draw_to(wnd, opts));
     }
     
-    void draw_text_on_window(window wnd, const string &text, const color &clr, float x, float y)
+    void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_draw_to(wnd));
     }
 
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp, opts));
     }
     
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, float x, float y)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp));
     }
     
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y, const drawing_options &opts)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp, opts));
     }
     
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, float x, float y)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp));
     }
     
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y, const drawing_options &opts)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, x, y, option_draw_to(bmp, opts));
     }
     
-    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, float x, float y)
+    void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_draw_to(bmp));
     }

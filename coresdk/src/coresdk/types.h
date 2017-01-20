@@ -112,7 +112,7 @@ namespace splashkit_lib
      */
     struct point_2d
     {
-        float x, y;
+        double x, y;
     };
 
     /**
@@ -150,8 +150,8 @@ namespace splashkit_lib
      */
     struct rectangle
     {
-        float x, y;
-        float width, height;
+        double x, y;
+        double width, height;
     };
 
     /**
@@ -181,7 +181,7 @@ namespace splashkit_lib
     struct circle
     {
         point_2d center;
-        float radius;
+        double radius;
     };
 
     /**

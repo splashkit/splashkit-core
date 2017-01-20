@@ -30,12 +30,12 @@ namespace splashkit_lib
         return _camera_y;
     }
 
-    void set_camera_x(float x)
+    void set_camera_x(double x)
     {
         _camera_x = x;
     }
 
-    void set_camera_y(float y)
+    void set_camera_y(double y)
     {
         _camera_y = y;
     }
@@ -146,7 +146,7 @@ namespace splashkit_lib
     // Camera movement
     //---------------------------------------------------------------------------
 
-    void move_camera_to(float x, float y)
+    void move_camera_to(double x, double y)
     {
         _camera_x = x;
         _camera_y = y;

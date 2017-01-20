@@ -24,7 +24,7 @@ namespace splashkit_lib
      * @param  height The height of the rectangle
      * @return        A rectangle with the specified dimensions and location.
      */
-    rectangle rectangle_from(float x, float y, float width, float height);
+    rectangle rectangle_from(double x, double y, double width, double height);
 
     /**
      * Returns a rectangle with pt1 and pt2 defining the two distant edge points.
@@ -47,7 +47,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  point_and_size
      */
-    rectangle rectangle_from(const point_2d pt, const float width, const float height);
+    rectangle rectangle_from(const point_2d pt, const double width, const double height);
 
     /**
      *  Returns a rectangle that is moved by the provided vector.

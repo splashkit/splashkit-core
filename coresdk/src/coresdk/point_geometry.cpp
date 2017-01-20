@@ -22,7 +22,7 @@
 #define SMALL 1.4
 namespace splashkit_lib
 {
-    point_2d point_at(float x, float y)
+    point_2d point_at(double x, double y)
     {
         point_2d result;
         result.x = x;

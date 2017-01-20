@@ -25,7 +25,7 @@ namespace splashkit_lib
      * @param y2  The distance from the top of the window/bitmap to the second
      *            point
      */
-    void draw_line(color clr, float x1, float y1, float x2, float y2);
+    void draw_line(color clr, double x1, double y1, double x2, double y2);
 
     /**
      * Draw a line from one point to another
@@ -43,7 +43,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void draw_line(color clr, float x1, float y1, float x2, float y2, const drawing_options &opts);
+    void draw_line(color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
 
     /**
      * Draw a line from one point to another on the current window.
@@ -105,7 +105,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      */
-    void draw_line_on_window(window destination, color clr, float x1, float y1, float x2, float y2);
+    void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2);
     
     /**
      * Draw a line from one point to another
@@ -125,7 +125,7 @@ namespace splashkit_lib
      * @attribute class   window
      * @attribute suffix  with_options
      */
-    void draw_line_on_window(window destination, color clr, float x1, float y1, float x2, float y2, const drawing_options &opts);
+    void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
     
     /**
      * Draw a line from one point to another on the given window.
@@ -195,7 +195,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      */
-    void draw_line_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2);
+    void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2);
     
     /**
      * Draw a line from one point to another
@@ -215,7 +215,7 @@ namespace splashkit_lib
      * @attribute class   bitmap
      * @attribute suffix  with_options
      */
-    void draw_line_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, const drawing_options &opts);
+    void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
     
     /**
      * Draw a line from one point to another on the given bitmap.

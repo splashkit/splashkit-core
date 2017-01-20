@@ -33,7 +33,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Draw a triangle to the current window.
@@ -52,7 +52,7 @@ namespace splashkit_lib
      * @param y3   The distance from the top of the window to the
      *             third point of the triangle
      */
-    void draw_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void draw_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Draw a triangle using the supplied drawing options.
@@ -95,7 +95,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Fills a triangle on the current window.
@@ -114,7 +114,7 @@ namespace splashkit_lib
      * @param y3   The distance from the top of the window to the
      *             third point of the triangle
      */
-    void fill_triangle(color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void fill_triangle(color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Fill a triangle using the supplied drawing options.
@@ -160,7 +160,7 @@ namespace splashkit_lib
      * @attribute class   window
      * @attribute suffix  with_options
      */
-    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Draw a triangle to the given window.
@@ -182,7 +182,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      */
-    void draw_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Draw a triangle on a given window, using the supplied drawing options.
@@ -231,7 +231,7 @@ namespace splashkit_lib
      * @attribute class   window
      * @attribute suffix  with_options
      */
-    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Fill a triangle on a given window
@@ -253,7 +253,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      */
-    void fill_triangle_on_window(window destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Fill a triangle on a given window, using given drawing options
@@ -302,7 +302,7 @@ namespace splashkit_lib
      * @attribute class   bitmap
      * @attribute suffix  with_options
      */
-    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Draw a triangle to the given bitmap.
@@ -324,7 +324,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      */
-    void draw_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Draw a triangle on a given bitmap, using the supplied drawing options.
@@ -373,7 +373,7 @@ namespace splashkit_lib
      * @attribute class   bitmap
      * @attribute suffix  with_options
      */
-    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3, drawing_options opts);
+    void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
     /**
      * Fill a triangle on a given bitmap
@@ -395,7 +395,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      */
-    void fill_triangle_on_bitmap(bitmap destination, color clr, float x1, float y1, float x2, float y2, float x3, float y3);
+    void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
     /**
      * Fill a triangle on a given bitmap, using given drawing options

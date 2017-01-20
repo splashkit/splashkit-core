@@ -991,7 +991,7 @@ namespace splashkit_lib
      * @attribute method draw
      * @attribute suffix offset_x_y
      */
-    void draw_sprite(sprite s, float x_offset, float y_offset);
+    void draw_sprite(sprite s, double x_offset, double y_offset);
 
     /**
      * Draws the sprite at its position in the game offset by a given amount. Only
@@ -1081,7 +1081,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute method move_to
      */
-    void move_sprite_to(sprite s, float x, float y);
+    void move_sprite_to(sprite s, double x, double y);
 
     /**
      * This void starts the sprite moving to the indicated
@@ -1115,7 +1115,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute method on_screen_at
      */
-    bool sprite_on_screen_at(sprite s, float x, float y);
+    bool sprite_on_screen_at(sprite s, double x, double y);
 
     /**
      * Returns true if a pixel of the `sprite` `s` is at the screen location

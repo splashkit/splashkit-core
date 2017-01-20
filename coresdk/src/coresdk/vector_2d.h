@@ -31,7 +31,7 @@ namespace splashkit_lib
      * @param  y The amount to move vertically
      * @return   A vector that will move things the indicated amount
      */
-    vector_2d vector_to(float x, float y);
+    vector_2d vector_to(double x, double y);
 
     /**
      *  Returns a new `vector_2d` using the x and y value of a `point_2d` parameter.

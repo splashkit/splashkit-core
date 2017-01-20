@@ -14,7 +14,7 @@
 #include <cmath>
 namespace splashkit_lib
 {
-    rectangle rectangle_from(float x, float y, float width, float height)
+    rectangle rectangle_from(double x, double y, double width, double height)
     {
         rectangle result;
         result.x = x;
@@ -35,7 +35,7 @@ namespace splashkit_lib
         return result;
     }
 
-    rectangle rectangle_from(const point_2d pt, const float width, const float height)
+    rectangle rectangle_from(const point_2d pt, const double width, const double height)
     {
         return rectangle_from(pt.x, pt.y, width, height);
     }

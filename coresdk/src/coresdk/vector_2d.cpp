@@ -21,7 +21,7 @@ namespace splashkit_lib
         return "Vec -> " + to_string(v.x) + ":" + to_string(v.y);
     }
 
-    vector_2d vector_to(float x, float y)
+    vector_2d vector_to(double x, double y)
     {
         return { x, y };
     }

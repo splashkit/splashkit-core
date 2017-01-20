@@ -388,7 +388,7 @@ namespace splashkit_lib
         current->cursor = cursor;
     }
 
-    void sk_start_reading_text(window wind, float x, float y, float width, float height, string initial_text)
+    void sk_start_reading_text(window wind, double x, double y, double width, double height, string initial_text)
     {
         SDL_Rect rect = {
             static_cast<int>(x),
@@ -771,7 +771,7 @@ namespace splashkit_lib
         }
     }
     
-    void sk_mouse_position(float &x, float &y)
+    void sk_mouse_position(double &x, double &y)
     {
         int lx = 0, ly = 0;
         
@@ -780,7 +780,7 @@ namespace splashkit_lib
         y = ly;
     }
     
-    void sk_mouse_movement(float &x, float &y)
+    void sk_mouse_movement(double &x, double &y)
     {
         int lx = 0, ly = 0;
         

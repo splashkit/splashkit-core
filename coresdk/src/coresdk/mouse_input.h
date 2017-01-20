@@ -113,7 +113,7 @@ namespace splashkit_lib
      * @param x   The new x location of the mouse
      * @param y   The new y location of the mouse
      */
-    void move_mouse(float x, float y);
+    void move_mouse(double x, double y);
 
     /**
      * Moves the mouse cursor to the specified screen location.
