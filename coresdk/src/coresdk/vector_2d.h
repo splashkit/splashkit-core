@@ -63,7 +63,7 @@ namespace splashkit_lib
      * @return           A vector that will move things at that angle and
      *                   magnitude
      */
-    vector_2d vector_from_angle(float angle, float magnitude);
+    vector_2d vector_from_angle(double angle, double magnitude);
 
     /**
      *  Returns a vector that points from the start to the end of a line.
@@ -101,7 +101,7 @@ namespace splashkit_lib
      * @param  s  The amount to multiply by
      * @return    A new vector
      */
-    vector_2d vector_multiply(const vector_2d &v1, float s);
+    vector_2d vector_multiply(const vector_2d &v1, double s);
 
     /**
      *  Determines if two vectors are the same.
@@ -135,7 +135,7 @@ namespace splashkit_lib
      * @param  v2 The other vector
      * @return    The dot product of `v1` . `v2`
      */
-    float dot_product(const vector_2d &v1, const vector_2d &v2);
+    double dot_product(const vector_2d &v1, const vector_2d &v2);
 
     /**
      *  Returns a new `vector_2d` that is perpendicular ("normal") to the parameter
@@ -165,7 +165,7 @@ namespace splashkit_lib
      * @param  v The vector
      * @return   Its squared magnitude
      */
-    float vector_magnitude_sqared(const vector_2d &v);
+    double vector_magnitude_sqared(const vector_2d &v);
 
     /**
      * Returns the magnitude (or "length") of the vector.
@@ -173,7 +173,7 @@ namespace splashkit_lib
      * @param  v The vector
      * @return   Its magnitude
      */
-    float vector_magnitude(const vector_2d &v);
+    double vector_magnitude(const vector_2d &v);
 
     /**
      *  Returns a scaled vector that ensures the new vector points
@@ -185,7 +185,7 @@ namespace splashkit_lib
      * @return       A new vector in the same direction as v, but with a
      *               magnitude that is less than or equal to the limit.
      */
-    vector_2d vector_limit(const vector_2d &v, float limit);
+    vector_2d vector_limit(const vector_2d &v, double limit);
 
     /**
      *  Returns the unit vector of the parameter vector (v). The unit vector has a
@@ -211,7 +211,7 @@ namespace splashkit_lib
      * @param  v The vector
      * @return   The angle of the vector in degrees
      */
-    float vector_angle(const vector_2d v);
+    double vector_angle(const vector_2d v);
 
     /**
      * Calculates the angle from one vector to another.
@@ -220,7 +220,7 @@ namespace splashkit_lib
      * @param v2    The second vector
      * @returns     The angle of the line from the end of `v1` to the end of `v2`
      */
-    float angle_between(const vector_2d &v1, const vector_2d &v2);
+    double angle_between(const vector_2d &v1, const vector_2d &v2);
 
     /**
      *  Determines the vector needed to move back from point `pt` out of rectangle `rect` given

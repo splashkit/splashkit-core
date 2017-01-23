@@ -47,7 +47,7 @@ namespace splashkit_lib
         return { -v.x, -v.y };
     }
 
-    vector_2d vector_from_angle(float angle, float magnitude)
+    vector_2d vector_from_angle(double angle, double magnitude)
     {
         return vector_to(magnitude * cosine(angle), magnitude * sine(angle));
     }
@@ -67,7 +67,7 @@ namespace splashkit_lib
         return { v1.x - v2.x, v1.y - v2.y };
     }
 
-    vector_2d vector_multiply(const vector_2d &v1, float s)
+    vector_2d vector_multiply(const vector_2d &v1, double s)
     {
         return { v1.x * s, v1.y * s };
     }
@@ -82,12 +82,12 @@ namespace splashkit_lib
         return not vectors_equal(v1, v2);
     }
 
-    float dot_product(const vector_2d &v1, const vector_2d &v2)
+    double dot_product(const vector_2d &v1, const vector_2d &v2)
     {
         return (v1.x * v2.x) + (v1.y * v2.y);
     }
 
-    float vector_angle(const vector_2d v)
+    double vector_angle(const vector_2d v)
     {
         if (v.x == 0)
         {
@@ -101,7 +101,7 @@ namespace splashkit_lib
         }
         else
         {
-            float result = rad_to_deg(atan(v.y / v.x));
+            double result = rad_to_deg(atan(v.y / v.x));
 
             if (v.x < 0)
             {
@@ -112,14 +112,14 @@ namespace splashkit_lib
         }
     }
 
-    float angle_between(const vector_2d &v1, const vector_2d &v2)
+    double angle_between(const vector_2d &v1, const vector_2d &v2)
     {
         return vector_angle( vector_subtract(v2, v1) );
     }
 
     vector_2d vector_normal(const vector_2d &v)
     {
-        float magnitude = vector_magnitude(v);
+        double magnitude = vector_magnitude(v);
 
         if (magnitude == 0)
         {
@@ -130,17 +130,17 @@ namespace splashkit_lib
         return { -v.y / magnitude, v.x / magnitude };
     }
 
-    float vector_magnitude_sqared(const vector_2d &v)
+    double vector_magnitude_sqared(const vector_2d &v)
     {
         return (v.x * v.x) + (v.y * v.y);
     }
 
-    float vector_magnitude(const vector_2d &v)
+    double vector_magnitude(const vector_2d &v)
     {
         return sqrt(vector_magnitude_sqared(v));
     }
 
-    vector_2d vector_limit(const vector_2d &v, float limit)
+    vector_2d vector_limit(const vector_2d &v, double limit)
     {
         if ( abs(vector_magnitude(v)) > abs(limit) )
         {
@@ -151,8 +151,8 @@ namespace splashkit_lib
 
     vector_2d unit_vector(const vector_2d &v)
     {
-        float tmp;
-        float mag = vector_magnitude(v);
+        double tmp;
+        double mag = vector_magnitude(v);
 
         if ( mag == 0 )
             tmp = 0;
@@ -170,7 +170,7 @@ namespace splashkit_lib
     bool ray_intersection_point(const point_2d &from_pt, const vector_2d &heading, const line &l, point_2d &pt)
     {
         line ray_line;
-        float comb_mag;
+        double comb_mag;
 
         ray_line = line_from(from_pt, heading);
 
@@ -191,7 +191,7 @@ namespace splashkit_lib
         point_2d pt_on_line;
         vector_2d ray, v_out;
         int i;
-        float dist, max_dist;
+        double dist, max_dist;
 
         // Cast ray searching back from pts... looking for the impact point
         ray = vector_invert(velocity);  // the ray
@@ -255,7 +255,7 @@ namespace splashkit_lib
         vector_2d line_vec, normal_mvmt, normal_line, to_edge, ray, v_out;
 
         int i, j, hits;
-        float dot_prod, dist, max_dist;
+        double dot_prod, dist, max_dist;
 
         // If there is no velocity then we cannot determine
         // the hit location etc. Return a 0,0 vector.
@@ -372,7 +372,7 @@ namespace splashkit_lib
     {
         vector_2d ray, v_out;
         int i, j, k;
-        float max_dist;
+        double max_dist;
         vector<point_2d> ln_points, bound_ln_points;
         bool both_did_hit;
 
@@ -380,7 +380,7 @@ namespace splashkit_lib
         auto ray_from_pt_hit_line = [&] (point_2d start_pt, const line &to_line, vector_2d my_ray)
         {
             point_2d pt_on_line;
-            float dist;
+            double dist;
 
             //DrawCircle(ColorWhite, pts[j], 2);
 
@@ -467,8 +467,8 @@ namespace splashkit_lib
     
     vector_2d vector_out_of_circle_from_point(const point_2d &pt, const circle &c, const vector_2d &velocity)
     {
-        float dx, dy, cx, cy;
-        float a, b, c1, det, t, mv_out;
+        double dx, dy, cx, cy;
+        double a, b, c1, det, t, mv_out;
         point_2d ipt2;
         
         // If the point is not in the radius of the circle, return a zero vector
@@ -519,7 +519,7 @@ namespace splashkit_lib
 
     vector_2d vector_from_point_to_rect(const point_2d &pt, const rectangle &rect)
     {
-        float px, py;
+        double px, py;
 
         if (pt.x < rect.x) px = rect.x;
         else if (pt.x > (rect.x + rect.width)) px = rect.x + rect.width;
