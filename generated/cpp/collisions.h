@@ -20,8 +20,8 @@ bool bitmap_collision(bitmap bmp1, int cell1, const matrix_2d &matrix1, bitmap b
 bool bitmap_collision(bitmap bmp1, int cell1, const point_2d &pt1, bitmap bmp2, int cell2, const point_2d &pt2);
 bool bitmap_collision(bitmap bmp1, int cell1, double x1, double y1, bitmap bmp2, int cell2, double x2, double y2);
 bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const point_2d &pt);
-bool bitmap_point_collision(bitmap bmp, const point_2d &pt, const point_2d &bmp_pt);
-bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y);
+bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt);
+bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt);
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect);
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d &pt, const rectangle &rect);

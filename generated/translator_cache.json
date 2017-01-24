@@ -5364,15 +5364,15 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1484877777,
+    "parsed_at": 1485232205,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
         "signature": "bool bitmap_collision(bitmap bmp1,double x1,double y1,bitmap bmp2,double x2,double y2);",
         "name": "bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "bitmap_collision",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.bitmap_collision",
         "suffix_name": null,
         "description": "Check if two bitmaps collide.",
         "brief": null,
@@ -5465,16 +5465,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "bitmap_collision",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp1"
         }
       },
       {
         "signature": "bool bitmap_collision(bitmap bmp1,const point_2d &pt1,bitmap bmp2,const point_2d &pt2);",
         "name": "bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "bitmap_collision_at_points",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.bitmap_collision_at_points",
         "suffix_name": null,
         "description": "Check if two bitmaps collide.",
         "brief": null,
@@ -5541,17 +5544,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "bitmap_collision",
           "suffix": "at_points",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp1"
         }
       },
       {
         "signature": "bool bitmap_collision(bitmap bmp1,int cell1,const matrix_2d &matrix1,bitmap bmp2,int cell2,const matrix_2d &matrix2);",
         "name": "bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "bitmap_collision_for_cells_with_translations",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.bitmap_collision_for_cells_with_translations",
         "suffix_name": null,
         "description": "Check if two bitmaps collide, based on their cell and transform\nmatricies.",
         "brief": null,
@@ -5644,17 +5650,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "bitmap_collision",
           "suffix": "for_cells_with_translations",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp1"
         }
       },
       {
         "signature": "bool bitmap_collision(bitmap bmp1,int cell1,const point_2d &pt1,bitmap bmp2,int cell2,const point_2d &pt2);",
         "name": "bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "bitmap_collision_for_cells_at_points",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.bitmap_collision_for_cells_at_points",
         "suffix_name": null,
         "description": "Check if two bitmaps collide.",
         "brief": null,
@@ -5747,17 +5756,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "bitmap_collision",
           "suffix": "for_cells_at_points",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp1"
         }
       },
       {
         "signature": "bool bitmap_collision(bitmap bmp1,int cell1,double x1,double y1,bitmap bmp2,int cell2,double x2,double y2);",
         "name": "bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "bitmap_collision_for_cells",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.bitmap_collision_for_cells",
         "suffix_name": null,
         "description": "Check if two bitmaps collide.",
         "brief": null,
@@ -5876,17 +5888,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "bitmap_collision",
           "suffix": "for_cells",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp1"
         }
       },
       {
         "signature": "bool bitmap_point_collision(bitmap bmp,const matrix_2d& translation,const point_2d& pt);",
         "name": "bitmap_point_collision",
-        "method_name": null,
+        "method_name": "point_collision",
         "unique_global_name": "bitmap_point_collision_with_translation",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.point_collision_with_translation",
         "suffix_name": null,
         "description": "Tests if a bitmap drawn using the passed in translation matrix would draw a pixel\nat the passed in point. Use to check collisions between a point and a bitmap.",
         "brief": null,
@@ -5940,19 +5955,22 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
           "suffix": "with_translation",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool bitmap_point_collision(bitmap bmp,const point_2d &bmp_pt,const point_2d& pt);",
         "name": "bitmap_point_collision",
-        "method_name": null,
+        "method_name": "point_collision",
         "unique_global_name": "bitmap_point_collision_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.point_collision_at_point",
         "suffix_name": null,
-        "description": "Tests if a bitmap drawn at the `bmp_pt` point would draw a pixel\nat the passed in point. Use to check collisions between a point and a bitmap.",
+        "description": "Tests if a bitmap drawn at the `bmp_pt` point would draw a pixel\nat point `pt`. Use to check collisions between a point and a bitmap.",
         "brief": null,
         "return": {
           "type": "bool",
@@ -5976,19 +5994,6 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "pt": {
-            "type": "point_2d",
-            "description": "The point in the resulting drawing that is being tested.",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
           "bmp_pt": {
             "type": "point_2d",
             "description": "The point where the bitmap is drawn.",
@@ -6001,20 +6006,36 @@
             ],
             "is_vector": false,
             "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The point in the resulting drawing that is being tested.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
           "suffix": "at_point",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
-        "signature": "bool bitmap_point_collision(bitmap bmp,float bmp_x,float bmp_y,double x,double y);",
+        "signature": "bool bitmap_point_collision(bitmap bmp,double bmp_x,double bmp_y,double x,double y);",
         "name": "bitmap_point_collision",
-        "method_name": null,
+        "method_name": "point_collision",
         "unique_global_name": "bitmap_point_collision",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.point_collision",
         "suffix_name": null,
         "description": "Tests if a bitmap drawn at x,y would draw a pixel at the passed in point. Use \nto check collisions between a point and a bitmap.",
         "brief": null,
@@ -6041,7 +6062,7 @@
             "type_parameter": null
           },
           "bmp_x": {
-            "type": "float",
+            "type": "double",
             "description": "The x location where the bitmap is drawn",
             "is_pointer": false,
             "is_const": false,
@@ -6054,7 +6075,7 @@
             "type_parameter": null
           },
           "bmp_y": {
-            "type": "float",
+            "type": "double",
             "description": "The y location where the bitmap is drawn",
             "is_pointer": false,
             "is_const": false,
@@ -6094,16 +6115,19 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool bitmap_point_collision(bitmap bmp,int cell,const matrix_2d& translation,const point_2d& pt);",
         "name": "bitmap_point_collision",
-        "method_name": null,
+        "method_name": "point_collision",
         "unique_global_name": "bitmap_point_collision_for_cell_with_translation",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.point_collision_for_cell_with_translation",
         "suffix_name": null,
         "description": "Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel\nat the passed in point.",
         "brief": null,
@@ -6170,17 +6194,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
           "suffix": "for_cell_with_translation",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool bitmap_rectangle_collision(bitmap bmp,int cell,const matrix_2d& translation,const rectangle& rect);",
         "name": "bitmap_rectangle_collision",
-        "method_name": null,
+        "method_name": "rectangle_collision",
         "unique_global_name": "bitmap_rectangle_collision_for_cell_with_translation",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.rectangle_collision_for_cell_with_translation",
         "suffix_name": null,
         "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a rectangle. You can use this to detect collisions between\nbitmaps and rectangles.",
         "brief": null,
@@ -6247,17 +6274,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_collision",
           "suffix": "for_cell_with_translation",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool bitmap_rectangle_collision(bitmap bmp,int cell,const point_2d& pt,const rectangle& rect);",
         "name": "bitmap_rectangle_collision",
-        "method_name": null,
+        "method_name": "rectangle_collision",
         "unique_global_name": "bitmap_rectangle_collision_for_cell_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.rectangle_collision_for_cell_at_point",
         "suffix_name": null,
         "description": "Tests if a bitmap cell drawn at `pt` would intersect with a rectangle.",
         "brief": null,
@@ -6324,17 +6354,20 @@
           }
         },
         "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_collision",
           "suffix": "for_cell_at_point",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "bmp"
         }
       },
       {
         "signature": "bool sprite_bitmap_collision(sprite s,bitmap bmp,double x,double y);",
         "name": "sprite_bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "sprite_bitmap_collision",
-        "unique_method_name": null,
+        "unique_method_name": "sprite.bitmap_collision",
         "suffix_name": null,
         "description": "Tests if a sprite will collide with a bitmap drawn at the indicated\nlocation.",
         "brief": null,
@@ -6401,16 +6434,19 @@
           }
         },
         "attributes": {
+          "class": "sprite",
+          "method": "bitmap_collision",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "s"
         }
       },
       {
         "signature": "bool sprite_bitmap_collision(sprite s,bitmap bmp,int cell,const point_2d &pt);",
         "name": "sprite_bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "sprite_bitmap_collision_with_cell_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "sprite.bitmap_collision_with_cell_at_point",
         "suffix_name": null,
         "description": "Tests if a sprite will collide with a bitmap drawn at the indicated\nlocation.",
         "brief": null,
@@ -6477,17 +6513,20 @@
           }
         },
         "attributes": {
+          "class": "sprite",
+          "method": "bitmap_collision",
           "suffix": "with_cell_at_point",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "s"
         }
       },
       {
         "signature": "bool sprite_bitmap_collision(sprite s,bitmap bmp,int cell,double x,double y);",
         "name": "sprite_bitmap_collision",
-        "method_name": null,
+        "method_name": "bitmap_collision",
         "unique_global_name": "sprite_bitmap_collision_with_cell",
-        "unique_method_name": null,
+        "unique_method_name": "sprite.bitmap_collision_with_cell",
         "suffix_name": null,
         "description": "Tests if a sprite will collide with a bitmap drawn at the indicated\nlocation.",
         "brief": null,
@@ -6567,17 +6606,20 @@
           }
         },
         "attributes": {
+          "class": "sprite",
+          "method": "bitmap_collision",
           "suffix": "with_cell",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "s"
         }
       },
       {
         "signature": "bool sprite_collision(sprite s1,sprite s2);",
         "name": "sprite_collision",
-        "method_name": "collide_with_sprite",
+        "method_name": "sprite_collision",
         "unique_global_name": "sprite_collision",
-        "unique_method_name": "sprite.collide_with_sprite",
+        "unique_method_name": "sprite.sprite_collision",
         "suffix_name": null,
         "description": "Tests if two given sprites `s1` and `s2` are collided",
         "brief": null,
@@ -6619,7 +6661,7 @@
         },
         "attributes": {
           "class": "sprite",
-          "method": "collide_with_sprite",
+          "method": "sprite_collision",
           "self": "s1",
           "group": "physics",
           "static": "collisions"
@@ -6628,9 +6670,9 @@
       {
         "signature": "bool sprite_point_collision(sprite s,const point_2d& pt);",
         "name": "sprite_point_collision",
-        "method_name": null,
+        "method_name": "point_collision",
         "unique_global_name": "sprite_point_collision",
-        "unique_method_name": null,
+        "unique_method_name": "sprite.point_collision",
         "suffix_name": null,
         "description": "Tests if a sprite is drawn at a given point.",
         "brief": null,
@@ -6671,16 +6713,19 @@
           }
         },
         "attributes": {
+          "class": "sprite",
+          "method": "point_collision",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "s"
         }
       },
       {
         "signature": "bool sprite_rectangle_collision(sprite s,const rectangle& rect);",
         "name": "sprite_rectangle_collision",
-        "method_name": null,
+        "method_name": "rectangle_collision",
         "unique_global_name": "sprite_rectangle_collision",
-        "unique_method_name": null,
+        "unique_method_name": "sprite.rectangle_collision",
         "suffix_name": null,
         "description": "Tests if a sprite is drawn within an given area (rectangle).",
         "brief": null,
@@ -6721,8 +6766,11 @@
           }
         },
         "attributes": {
+          "class": "sprite",
+          "method": "rectangle_collision",
           "group": "physics",
-          "static": "collisions"
+          "static": "collisions",
+          "self": "s"
         }
       }
     ],
@@ -12847,7 +12895,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877779,
+    "parsed_at": 1485165365,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -13314,7 +13362,7 @@
         }
       },
       {
-        "signature": "drawing_options option_part_bmp(double x,double y,float w,float h);",
+        "signature": "drawing_options option_part_bmp(double x,double y,double w,double h);",
         "name": "option_part_bmp",
         "method_name": null,
         "unique_global_name": "option_part_bmp",
@@ -13358,7 +13406,7 @@
             "type_parameter": null
           },
           "w": {
-            "type": "float",
+            "type": "double",
             "description": "The width of the part within the bitmap.",
             "is_pointer": false,
             "is_const": false,
@@ -13371,7 +13419,7 @@
             "type_parameter": null
           },
           "h": {
-            "type": "float",
+            "type": "double",
             "description": "The height of the part within the bitmap.",
             "is_pointer": false,
             "is_const": false,
@@ -13389,7 +13437,7 @@
         }
       },
       {
-        "signature": "drawing_options option_part_bmp(double x,double y,float w,float h,drawing_options opts);",
+        "signature": "drawing_options option_part_bmp(double x,double y,double w,double h,drawing_options opts);",
         "name": "option_part_bmp",
         "method_name": null,
         "unique_global_name": "option_part_bmp_with_options",
@@ -13433,7 +13481,7 @@
             "type_parameter": null
           },
           "w": {
-            "type": "float",
+            "type": "double",
             "description": "The width of the part within the bitmap.",
             "is_pointer": false,
             "is_const": false,
@@ -13446,7 +13494,7 @@
             "type_parameter": null
           },
           "h": {
-            "type": "float",
+            "type": "double",
             "description": "The height of the part within the bitmap.",
             "is_pointer": false,
             "is_const": false,
@@ -13565,7 +13613,7 @@
         }
       },
       {
-        "signature": "drawing_options option_rotate_bmp(float angle);",
+        "signature": "drawing_options option_rotate_bmp(double angle);",
         "name": "option_rotate_bmp",
         "method_name": null,
         "unique_global_name": "option_rotate_bmp",
@@ -13583,7 +13631,7 @@
         },
         "parameters": {
           "angle": {
-            "type": "float",
+            "type": "double",
             "description": "The angle to rotate bitmaps.",
             "is_pointer": false,
             "is_const": false,
@@ -13601,57 +13649,7 @@
         }
       },
       {
-        "signature": "drawing_options option_rotate_bmp(float angle,drawing_options opts);",
-        "name": "option_rotate_bmp",
-        "method_name": null,
-        "unique_global_name": "option_rotate_bmp_with_options",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Use this option to rotate a bitmap around its centre point.",
-        "brief": null,
-        "return": {
-          "type": "drawing_options",
-          "description": "Options that will rotate bitmaps around its center point.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "angle": {
-            "type": "float",
-            "description": "The angle to rotate bitmaps.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "opts": {
-            "type": "drawing_options",
-            "description": "Values for the other options.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "with_options",
-          "group": "graphics"
-        }
-      },
-      {
-        "signature": "drawing_options option_rotate_bmp(float angle,float anchor_x,float anchor_y);",
+        "signature": "drawing_options option_rotate_bmp(double angle,double anchor_x,double anchor_y);",
         "name": "option_rotate_bmp",
         "method_name": null,
         "unique_global_name": "option_rotate_bmp_with_anchor",
@@ -13669,7 +13667,7 @@
         },
         "parameters": {
           "angle": {
-            "type": "float",
+            "type": "double",
             "description": "The angle to rotate bitmaps.",
             "is_pointer": false,
             "is_const": false,
@@ -13682,7 +13680,7 @@
             "type_parameter": null
           },
           "anchor_x": {
-            "type": "float",
+            "type": "double",
             "description": "The x location of the anchor within the bitmap",
             "is_pointer": false,
             "is_const": false,
@@ -13695,7 +13693,7 @@
             "type_parameter": null
           },
           "anchor_y": {
-            "type": "float",
+            "type": "double",
             "description": "The y location of the anchor within the bitmap",
             "is_pointer": false,
             "is_const": false,
@@ -13714,7 +13712,7 @@
         }
       },
       {
-        "signature": "drawing_options option_rotate_bmp(float angle,float anchor_x,float anchor_y,drawing_options opts);",
+        "signature": "drawing_options option_rotate_bmp(double angle,double anchor_x,double anchor_y,drawing_options opts);",
         "name": "option_rotate_bmp",
         "method_name": null,
         "unique_global_name": "option_rotate_bmp_with_anchor_and_options",
@@ -13732,7 +13730,7 @@
         },
         "parameters": {
           "angle": {
-            "type": "float",
+            "type": "double",
             "description": "The angle to rotate bitmaps.",
             "is_pointer": false,
             "is_const": false,
@@ -13745,7 +13743,7 @@
             "type_parameter": null
           },
           "anchor_x": {
-            "type": "float",
+            "type": "double",
             "description": "The x location of the anchor within the bitmap",
             "is_pointer": false,
             "is_const": false,
@@ -13758,7 +13756,7 @@
             "type_parameter": null
           },
           "anchor_y": {
-            "type": "float",
+            "type": "double",
             "description": "The y location of the anchor within the bitmap",
             "is_pointer": false,
             "is_const": false,
@@ -13790,7 +13788,57 @@
         }
       },
       {
-        "signature": "drawing_options option_scale_bmp(float scale_x,float scale_y);",
+        "signature": "drawing_options option_rotate_bmp(double angle,drawing_options opts);",
+        "name": "option_rotate_bmp",
+        "method_name": null,
+        "unique_global_name": "option_rotate_bmp_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Use this option to rotate a bitmap around its centre point.",
+        "brief": null,
+        "return": {
+          "type": "drawing_options",
+          "description": "Options that will rotate bitmaps around its center point.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "angle": {
+            "type": "double",
+            "description": "The angle to rotate bitmaps.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Values for the other options.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_options",
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "drawing_options option_scale_bmp(double scale_x,double scale_y);",
         "name": "option_scale_bmp",
         "method_name": null,
         "unique_global_name": "option_scale_bmp",
@@ -13808,7 +13856,7 @@
         },
         "parameters": {
           "scale_x": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to scale bitmaps aalong the x axis",
             "is_pointer": false,
             "is_const": false,
@@ -13821,7 +13869,7 @@
             "type_parameter": null
           },
           "scale_y": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to scale bitmaps aalong the y axis",
             "is_pointer": false,
             "is_const": false,
@@ -13839,7 +13887,7 @@
         }
       },
       {
-        "signature": "drawing_options option_scale_bmp(float scale_x,float scale_y,drawing_options opts);",
+        "signature": "drawing_options option_scale_bmp(double scale_x,double scale_y,drawing_options opts);",
         "name": "option_scale_bmp",
         "method_name": null,
         "unique_global_name": "option_scale_bmp_with_options",
@@ -13857,7 +13905,7 @@
         },
         "parameters": {
           "scale_x": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to scale bitmaps aalong the x axis",
             "is_pointer": false,
             "is_const": false,
@@ -13870,7 +13918,7 @@
             "type_parameter": null
           },
           "scale_y": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to scale bitmaps aalong the y axis",
             "is_pointer": false,
             "is_const": false,
@@ -24576,7 +24624,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1481584386,
+    "parsed_at": 1485210884,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -24933,7 +24981,7 @@
         }
       },
       {
-        "signature": "matrix_2d rotation_matrix(float deg);",
+        "signature": "matrix_2d rotation_matrix(double deg);",
         "name": "rotation_matrix",
         "method_name": null,
         "unique_global_name": "rotation_matrix",
@@ -24951,7 +24999,7 @@
         },
         "parameters": {
           "deg": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to rotate points",
             "is_pointer": false,
             "is_const": false,
@@ -25046,7 +25094,7 @@
         }
       },
       {
-        "signature": "matrix_2d scale_matrix(float scale);",
+        "signature": "matrix_2d scale_matrix(double scale);",
         "name": "scale_matrix",
         "method_name": null,
         "unique_global_name": "scale_matrix",
@@ -25064,7 +25112,7 @@
         },
         "parameters": {
           "scale": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to scale points by.",
             "is_pointer": false,
             "is_const": false,
@@ -25083,7 +25131,7 @@
         }
       },
       {
-        "signature": "matrix_2d scale_rotate_translate_matrix(const point_2d &scale,float deg,const point_2d &translate);",
+        "signature": "matrix_2d scale_rotate_translate_matrix(const point_2d &scale,double deg,const point_2d &translate);",
         "name": "scale_rotate_translate_matrix",
         "method_name": null,
         "unique_global_name": "scale_rotate_translate_matrix",
@@ -25114,7 +25162,7 @@
             "type_parameter": null
           },
           "deg": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to rotate",
             "is_pointer": false,
             "is_const": false,
@@ -25222,7 +25270,7 @@
         }
       },
       {
-        "signature": "matrix_2d translation_matrix(float dx,float dy);",
+        "signature": "matrix_2d translation_matrix(double dx,double dy);",
         "name": "translation_matrix",
         "method_name": null,
         "unique_global_name": "translation_matrix",
@@ -25240,7 +25288,7 @@
         },
         "parameters": {
           "dx": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to move points along the x axis.",
             "is_pointer": false,
             "is_const": false,
@@ -25253,7 +25301,7 @@
             "type_parameter": null
           },
           "dy": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to move points along the y axis.",
             "is_pointer": false,
             "is_const": false,
@@ -51150,11 +51198,11 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1484877816,
+    "parsed_at": 1485210886,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
-        "signature": "float angle_between(const vector_2d &v1,const vector_2d &v2);",
+        "signature": "double angle_between(const vector_2d &v1,const vector_2d &v2);",
         "name": "angle_between",
         "method_name": null,
         "unique_global_name": "angle_between",
@@ -51163,7 +51211,7 @@
         "description": "Calculates the angle from one vector to another.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The angle of the line from the end of `v1` to the end of `v2`",
           "is_pointer": false,
           "is_reference": false,
@@ -51204,7 +51252,7 @@
         }
       },
       {
-        "signature": "float dot_product(const vector_2d &v1,const vector_2d &v2);",
+        "signature": "double dot_product(const vector_2d &v1,const vector_2d &v2);",
         "name": "dot_product",
         "method_name": null,
         "unique_global_name": "dot_product",
@@ -51213,7 +51261,7 @@
         "description": "Calculates the dot product (scalar product) between the two vector\nparameters provided (`v1` and `v2`). It returns the result as a\nscalar value.\n\nIf the result is 0.0 it means that the vectors are orthogonal (at right\nangles to each other). If `v1` and `v2` are unit vectors (length of\n1.0) and the dot product is 1.0, it means that `v1` and `v2` vectors\nare parallel.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The dot product of `v1` . `v2`",
           "is_pointer": false,
           "is_reference": false,
@@ -51454,7 +51502,7 @@
         }
       },
       {
-        "signature": "float vector_angle(const vector_2d v);",
+        "signature": "double vector_angle(const vector_2d v);",
         "name": "vector_angle",
         "method_name": null,
         "unique_global_name": "vector_angle",
@@ -51463,7 +51511,7 @@
         "description": "Calculates the angle of a vector",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The angle of the vector in degrees",
           "is_pointer": false,
           "is_reference": false,
@@ -51491,7 +51539,7 @@
         }
       },
       {
-        "signature": "vector_2d vector_from_angle(float angle,float magnitude);",
+        "signature": "vector_2d vector_from_angle(double angle,double magnitude);",
         "name": "vector_from_angle",
         "method_name": null,
         "unique_global_name": "vector_from_angle",
@@ -51509,7 +51557,7 @@
         },
         "parameters": {
           "angle": {
-            "type": "float",
+            "type": "double",
             "description": "The angle in degrees",
             "is_pointer": false,
             "is_const": false,
@@ -51522,7 +51570,7 @@
             "type_parameter": null
           },
           "magnitude": {
-            "type": "float",
+            "type": "double",
             "description": "The length of the vector",
             "is_pointer": false,
             "is_const": false,
@@ -51715,7 +51763,7 @@
         }
       },
       {
-        "signature": "vector_2d vector_limit(const vector_2d &v,float limit);",
+        "signature": "vector_2d vector_limit(const vector_2d &v,double limit);",
         "name": "vector_limit",
         "method_name": null,
         "unique_global_name": "vector_limit",
@@ -51746,7 +51794,7 @@
             "type_parameter": null
           },
           "limit": {
-            "type": "float",
+            "type": "double",
             "description": "Its maximum magnitude",
             "is_pointer": false,
             "is_const": false,
@@ -51765,7 +51813,7 @@
         }
       },
       {
-        "signature": "float vector_magnitude(const vector_2d &v);",
+        "signature": "double vector_magnitude(const vector_2d &v);",
         "name": "vector_magnitude",
         "method_name": null,
         "unique_global_name": "vector_magnitude",
@@ -51774,7 +51822,7 @@
         "description": "Returns the magnitude (or \"length\") of the vector.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "Its magnitude",
           "is_pointer": false,
           "is_reference": false,
@@ -51802,7 +51850,7 @@
         }
       },
       {
-        "signature": "float vector_magnitude_sqared(const vector_2d &v);",
+        "signature": "double vector_magnitude_sqared(const vector_2d &v);",
         "name": "vector_magnitude_sqared",
         "method_name": null,
         "unique_global_name": "vector_magnitude_sqared",
@@ -51811,7 +51859,7 @@
         "description": "Returns the squared magnitude (or \"length\") of the vector.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "Its squared magnitude",
           "is_pointer": false,
           "is_reference": false,
@@ -51839,7 +51887,7 @@
         }
       },
       {
-        "signature": "vector_2d vector_multiply(const vector_2d &v1,float s);",
+        "signature": "vector_2d vector_multiply(const vector_2d &v1,double s);",
         "name": "vector_multiply",
         "method_name": null,
         "unique_global_name": "vector_multiply",
@@ -51870,7 +51918,7 @@
             "type_parameter": null
           },
           "s": {
-            "type": "float",
+            "type": "double",
             "description": "The amount to multiply by",
             "is_pointer": false,
             "is_const": false,

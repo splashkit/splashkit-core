@@ -1433,8 +1433,8 @@ sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.argty
 sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref.restype = c_bool
-sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double.argtypes = [ c_void_p, c_float, c_float, c_double, c_double ]
-sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double.restype = c_bool
+sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.argtypes = [ c_void_p, c_double, c_double, c_double, c_double ]
+sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_rectangle ]
@@ -1837,26 +1837,26 @@ sklib.__sklib__option_line_width__int.argtypes = [ c_int ]
 sklib.__sklib__option_line_width__int.restype = _sklib_drawing_options
 sklib.__sklib__option_line_width__int__drawing_options.argtypes = [ c_int, _sklib_drawing_options ]
 sklib.__sklib__option_line_width__int__drawing_options.restype = _sklib_drawing_options
-sklib.__sklib__option_part_bmp__double__double__float__float.argtypes = [ c_double, c_double, c_float, c_float ]
-sklib.__sklib__option_part_bmp__double__double__float__float.restype = _sklib_drawing_options
-sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options.argtypes = [ c_double, c_double, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double ]
+sklib.__sklib__option_part_bmp__double__double__double__double.restype = _sklib_drawing_options
+sklib.__sklib__option_part_bmp__double__double__double__double__drawing_options.argtypes = [ c_double, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__option_part_bmp__double__double__double__double__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_part_bmp__rectangle.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__option_part_bmp__rectangle.restype = _sklib_drawing_options
 sklib.__sklib__option_part_bmp__rectangle__drawing_options.argtypes = [ _sklib_rectangle, _sklib_drawing_options ]
 sklib.__sklib__option_part_bmp__rectangle__drawing_options.restype = _sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float.argtypes = [ c_float ]
-sklib.__sklib__option_rotate_bmp__float.restype = _sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float__drawing_options.argtypes = [ c_float, _sklib_drawing_options ]
-sklib.__sklib__option_rotate_bmp__float__drawing_options.restype = _sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__option_rotate_bmp__float__float__float.restype = _sklib_drawing_options
-sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.argtypes = [ c_float, c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options.restype = _sklib_drawing_options
-sklib.__sklib__option_scale_bmp__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__option_scale_bmp__float__float.restype = _sklib_drawing_options
-sklib.__sklib__option_scale_bmp__float__float__drawing_options.argtypes = [ c_float, c_float, _sklib_drawing_options ]
-sklib.__sklib__option_scale_bmp__float__float__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__double.argtypes = [ c_double ]
+sklib.__sklib__option_rotate_bmp__double.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__double__double__double.argtypes = [ c_double, c_double, c_double ]
+sklib.__sklib__option_rotate_bmp__double__double__double.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__double__double__double__drawing_options.argtypes = [ c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__option_rotate_bmp__double__double__double__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_rotate_bmp__double__drawing_options.argtypes = [ c_double, _sklib_drawing_options ]
+sklib.__sklib__option_rotate_bmp__double__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_scale_bmp__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__option_scale_bmp__double__double.restype = _sklib_drawing_options
+sklib.__sklib__option_scale_bmp__double__double__drawing_options.argtypes = [ c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__option_scale_bmp__double__double__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__option_to_screen.argtypes = [  ]
 sklib.__sklib__option_to_screen.restype = _sklib_drawing_options
 sklib.__sklib__option_to_screen__drawing_options.argtypes = [ _sklib_drawing_options ]
@@ -2225,22 +2225,22 @@ sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.argtypes = [ _sklib
 sklib.__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__matrix_to_string__matrix_2d_ref.argtypes = [ _sklib_matrix_2d ]
 sklib.__sklib__matrix_to_string__matrix_2d_ref.restype = _sklib_string
-sklib.__sklib__rotation_matrix__float.argtypes = [ c_float ]
-sklib.__sklib__rotation_matrix__float.restype = _sklib_matrix_2d
+sklib.__sklib__rotation_matrix__double.argtypes = [ c_double ]
+sklib.__sklib__rotation_matrix__double.restype = _sklib_matrix_2d
 sklib.__sklib__scale_matrix__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__scale_matrix__point_2d_ref.restype = _sklib_matrix_2d
 sklib.__sklib__scale_matrix__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__scale_matrix__vector_2d_ref.restype = _sklib_matrix_2d
-sklib.__sklib__scale_matrix__float.argtypes = [ c_float ]
-sklib.__sklib__scale_matrix__float.restype = _sklib_matrix_2d
-sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.argtypes = [ _sklib_point_2d, c_float, _sklib_point_2d ]
-sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref.restype = _sklib_matrix_2d
+sklib.__sklib__scale_matrix__double.argtypes = [ c_double ]
+sklib.__sklib__scale_matrix__double.restype = _sklib_matrix_2d
+sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref.argtypes = [ _sklib_point_2d, c_double, _sklib_point_2d ]
+sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref.restype = _sklib_matrix_2d
 sklib.__sklib__translation_matrix__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__translation_matrix__point_2d_ref.restype = _sklib_matrix_2d
 sklib.__sklib__translation_matrix__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__translation_matrix__vector_2d_ref.restype = _sklib_matrix_2d
-sklib.__sklib__translation_matrix__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__translation_matrix__float__float.restype = _sklib_matrix_2d
+sklib.__sklib__translation_matrix__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__translation_matrix__double__double.restype = _sklib_matrix_2d
 sklib.__sklib__hide_mouse.argtypes = [  ]
 sklib.__sklib__hide_mouse.restype = None
 sklib.__sklib__mouse_clicked__mouse_button.argtypes = [ c_int ]
@@ -3148,9 +3148,9 @@ sklib.__sklib__display_dialog__string_ref__string_ref__font__int.restype = None
 sklib.__sklib__file_as_string__string__resource_kind.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__file_as_string__string__resource_kind.restype = _sklib_string
 sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
-sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.restype = c_float
+sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref.restype = c_double
 sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
-sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.restype = c_float
+sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref.restype = c_double
 sklib.__sklib__is_zero_vector__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__is_zero_vector__vector_2d_ref.restype = c_bool
 sklib.__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_line, POINTER(_sklib_point_2d) ]
@@ -3160,9 +3160,9 @@ sklib.__sklib__unit_vector__vector_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.argtypes = [ _sklib_vector_2d, _sklib_vector_2d ]
 sklib.__sklib__vector_add__vector_2d_ref__vector_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_angle__vector_2d.argtypes = [ _sklib_vector_2d ]
-sklib.__sklib__vector_angle__vector_2d.restype = c_float
-sklib.__sklib__vector_from_angle__float__float.argtypes = [ c_float, c_float ]
-sklib.__sklib__vector_from_angle__float__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_angle__vector_2d.restype = c_double
+sklib.__sklib__vector_from_angle__double__double.argtypes = [ c_double, c_double ]
+sklib.__sklib__vector_from_angle__double__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_from_line__line_ref.argtypes = [ _sklib_line ]
 sklib.__sklib__vector_from_line__line_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref.argtypes = [ _sklib_point_2d, _sklib_rectangle ]
@@ -3171,14 +3171,14 @@ sklib.__sklib__vector_in_rect__vector_2d_ref__rectangle_ref.argtypes = [ _sklib_
 sklib.__sklib__vector_in_rect__vector_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__vector_invert__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_invert__vector_2d_ref.restype = _sklib_vector_2d
-sklib.__sklib__vector_limit__vector_2d_ref__float.argtypes = [ _sklib_vector_2d, c_float ]
-sklib.__sklib__vector_limit__vector_2d_ref__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_limit__vector_2d_ref__double.argtypes = [ _sklib_vector_2d, c_double ]
+sklib.__sklib__vector_limit__vector_2d_ref__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_magnitude__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
-sklib.__sklib__vector_magnitude__vector_2d_ref.restype = c_float
+sklib.__sklib__vector_magnitude__vector_2d_ref.restype = c_double
 sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
-sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.restype = c_float
-sklib.__sklib__vector_multiply__vector_2d_ref__float.argtypes = [ _sklib_vector_2d, c_float ]
-sklib.__sklib__vector_multiply__vector_2d_ref__float.restype = _sklib_vector_2d
+sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.restype = c_double
+sklib.__sklib__vector_multiply__vector_2d_ref__double.argtypes = [ _sklib_vector_2d, c_double ]
+sklib.__sklib__vector_multiply__vector_2d_ref__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_normal__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_normal__vector_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref.argtypes = [ _sklib_circle, _sklib_circle, _sklib_vector_2d ]
@@ -3896,19 +3896,19 @@ def bitmap_point_collision_with_translation ( bmp, translation, pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt)
     return __skadapter__to_bool(__skreturn)
-def bitmap_point_collision_at_point ( bmp, pt, bmp_pt ):
+def bitmap_point_collision_at_point ( bmp, bmp_pt, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmp_pt)
-    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__bmp_pt, __skparam__pt)
     return __skadapter__to_bool(__skreturn)
 def bitmap_point_collision ( bmp, bmp_x, bmp_y, x, y ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skparam__bmp_x = __skadapter__to_sklib_float(bmp_x)
-    __skparam__bmp_y = __skadapter__to_sklib_float(bmp_y)
+    __skparam__bmp_x = __skadapter__to_sklib_double(bmp_x)
+    __skparam__bmp_y = __skadapter__to_sklib_double(bmp_y)
     __skparam__x = __skadapter__to_sklib_double(x)
     __skparam__y = __skadapter__to_sklib_double(y)
-    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
+    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def bitmap_point_collision_for_cell_with_translation ( bmp, cell, translation, pt ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4606,17 +4606,17 @@ def option_line_width_with_options ( width, opts ):
 def option_part_bmp ( x, y, w, h ):
     __skparam__x = __skadapter__to_sklib_double(x)
     __skparam__y = __skadapter__to_sklib_double(y)
-    __skparam__w = __skadapter__to_sklib_float(w)
-    __skparam__h = __skadapter__to_sklib_float(h)
-    __skreturn = sklib.__sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h)
+    __skparam__w = __skadapter__to_sklib_double(w)
+    __skparam__h = __skadapter__to_sklib_double(h)
+    __skreturn = sklib.__sklib__option_part_bmp__double__double__double__double(__skparam__x, __skparam__y, __skparam__w, __skparam__h)
     return __skadapter__to_drawing_options(__skreturn)
 def option_part_bmp_with_options ( x, y, w, h, opts ):
     __skparam__x = __skadapter__to_sklib_double(x)
     __skparam__y = __skadapter__to_sklib_double(y)
-    __skparam__w = __skadapter__to_sklib_float(w)
-    __skparam__h = __skadapter__to_sklib_float(h)
+    __skparam__w = __skadapter__to_sklib_double(w)
+    __skparam__h = __skadapter__to_sklib_double(h)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts)
+    __skreturn = sklib.__sklib__option_part_bmp__double__double__double__double__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_part_bmp_from_rectangle ( part ):
     __skparam__part = __skadapter__to_sklib_rectangle(part)
@@ -4628,37 +4628,37 @@ def option_part_bmp_from_rectangle_with_options ( part, opts ):
     __skreturn = sklib.__sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_rotate_bmp ( angle ):
-    __skparam__angle = __skadapter__to_sklib_float(angle)
-    __skreturn = sklib.__sklib__option_rotate_bmp__float(__skparam__angle)
-    return __skadapter__to_drawing_options(__skreturn)
-def option_rotate_bmp_with_options ( angle, opts ):
-    __skparam__angle = __skadapter__to_sklib_float(angle)
-    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts)
+    __skparam__angle = __skadapter__to_sklib_double(angle)
+    __skreturn = sklib.__sklib__option_rotate_bmp__double(__skparam__angle)
     return __skadapter__to_drawing_options(__skreturn)
 def option_rotate_bmp_with_anchor ( angle, anchor_x, anchor_y ):
-    __skparam__angle = __skadapter__to_sklib_float(angle)
-    __skparam__anchor_x = __skadapter__to_sklib_float(anchor_x)
-    __skparam__anchor_y = __skadapter__to_sklib_float(anchor_y)
-    __skreturn = sklib.__sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y)
+    __skparam__angle = __skadapter__to_sklib_double(angle)
+    __skparam__anchor_x = __skadapter__to_sklib_double(anchor_x)
+    __skparam__anchor_y = __skadapter__to_sklib_double(anchor_y)
+    __skreturn = sklib.__sklib__option_rotate_bmp__double__double__double(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y)
     return __skadapter__to_drawing_options(__skreturn)
 def option_rotate_bmp_with_anchor_and_options ( angle, anchor_x, anchor_y, opts ):
-    __skparam__angle = __skadapter__to_sklib_float(angle)
-    __skparam__anchor_x = __skadapter__to_sklib_float(anchor_x)
-    __skparam__anchor_y = __skadapter__to_sklib_float(anchor_y)
+    __skparam__angle = __skadapter__to_sklib_double(angle)
+    __skparam__anchor_x = __skadapter__to_sklib_double(anchor_x)
+    __skparam__anchor_y = __skadapter__to_sklib_double(anchor_y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts)
+    __skreturn = sklib.__sklib__option_rotate_bmp__double__double__double__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts)
+    return __skadapter__to_drawing_options(__skreturn)
+def option_rotate_bmp_with_options ( angle, opts ):
+    __skparam__angle = __skadapter__to_sklib_double(angle)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    __skreturn = sklib.__sklib__option_rotate_bmp__double__drawing_options(__skparam__angle, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_scale_bmp ( scale_x, scale_y ):
-    __skparam__scale_x = __skadapter__to_sklib_float(scale_x)
-    __skparam__scale_y = __skadapter__to_sklib_float(scale_y)
-    __skreturn = sklib.__sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y)
+    __skparam__scale_x = __skadapter__to_sklib_double(scale_x)
+    __skparam__scale_y = __skadapter__to_sklib_double(scale_y)
+    __skreturn = sklib.__sklib__option_scale_bmp__double__double(__skparam__scale_x, __skparam__scale_y)
     return __skadapter__to_drawing_options(__skreturn)
 def option_scale_bmp_with_options ( scale_x, scale_y, opts ):
-    __skparam__scale_x = __skadapter__to_sklib_float(scale_x)
-    __skparam__scale_y = __skadapter__to_sklib_float(scale_y)
+    __skparam__scale_x = __skadapter__to_sklib_double(scale_x)
+    __skparam__scale_y = __skadapter__to_sklib_double(scale_y)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts)
+    __skreturn = sklib.__sklib__option_scale_bmp__double__double__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def option_to_screen (  ):
     __skreturn = sklib.__sklib__option_to_screen()
@@ -5563,8 +5563,8 @@ def matrix_to_string ( matrix ):
     __skreturn = sklib.__sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix)
     return __skadapter__to_string(__skreturn)
 def rotation_matrix ( deg ):
-    __skparam__deg = __skadapter__to_sklib_float(deg)
-    __skreturn = sklib.__sklib__rotation_matrix__float(__skparam__deg)
+    __skparam__deg = __skadapter__to_sklib_double(deg)
+    __skreturn = sklib.__sklib__rotation_matrix__double(__skparam__deg)
     return __skadapter__to_matrix_2d(__skreturn)
 def scale_matrix_from_point ( scale ):
     __skparam__scale = __skadapter__to_sklib_point_2d(scale)
@@ -5575,14 +5575,14 @@ def scale_matrix_from_vector ( scale ):
     __skreturn = sklib.__sklib__scale_matrix__vector_2d_ref(__skparam__scale)
     return __skadapter__to_matrix_2d(__skreturn)
 def scale_matrix ( scale ):
-    __skparam__scale = __skadapter__to_sklib_float(scale)
-    __skreturn = sklib.__sklib__scale_matrix__float(__skparam__scale)
+    __skparam__scale = __skadapter__to_sklib_double(scale)
+    __skreturn = sklib.__sklib__scale_matrix__double(__skparam__scale)
     return __skadapter__to_matrix_2d(__skreturn)
 def scale_rotate_translate_matrix ( scale, deg, translate ):
     __skparam__scale = __skadapter__to_sklib_point_2d(scale)
-    __skparam__deg = __skadapter__to_sklib_float(deg)
+    __skparam__deg = __skadapter__to_sklib_double(deg)
     __skparam__translate = __skadapter__to_sklib_point_2d(translate)
-    __skreturn = sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate)
+    __skreturn = sklib.__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate)
     return __skadapter__to_matrix_2d(__skreturn)
 def translation_matrix_to_point ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -5593,9 +5593,9 @@ def translation_matrix_from_vector ( pt ):
     __skreturn = sklib.__sklib__translation_matrix__vector_2d_ref(__skparam__pt)
     return __skadapter__to_matrix_2d(__skreturn)
 def translation_matrix ( dx, dy ):
-    __skparam__dx = __skadapter__to_sklib_float(dx)
-    __skparam__dy = __skadapter__to_sklib_float(dy)
-    __skreturn = sklib.__sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy)
+    __skparam__dx = __skadapter__to_sklib_double(dx)
+    __skparam__dy = __skadapter__to_sklib_double(dy)
+    __skreturn = sklib.__sklib__translation_matrix__double__double(__skparam__dx, __skparam__dy)
     return __skadapter__to_matrix_2d(__skreturn)
 def hide_mouse (  ):
     sklib.__sklib__hide_mouse()
@@ -7704,12 +7704,12 @@ def angle_between ( v1, v2 ):
     __skparam__v1 = __skadapter__to_sklib_vector_2d(v1)
     __skparam__v2 = __skadapter__to_sklib_vector_2d(v2)
     __skreturn = sklib.__sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def dot_product ( v1, v2 ):
     __skparam__v1 = __skadapter__to_sklib_vector_2d(v1)
     __skparam__v2 = __skadapter__to_sklib_vector_2d(v2)
     __skreturn = sklib.__sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def is_zero_vector ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
     __skreturn = sklib.__sklib__is_zero_vector__vector_2d_ref(__skparam__v)
@@ -7734,11 +7734,11 @@ def vector_add ( v1, v2 ):
 def vector_angle ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
     __skreturn = sklib.__sklib__vector_angle__vector_2d(__skparam__v)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def vector_from_angle ( angle, magnitude ):
-    __skparam__angle = __skadapter__to_sklib_float(angle)
-    __skparam__magnitude = __skadapter__to_sklib_float(magnitude)
-    __skreturn = sklib.__sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude)
+    __skparam__angle = __skadapter__to_sklib_double(angle)
+    __skparam__magnitude = __skadapter__to_sklib_double(magnitude)
+    __skreturn = sklib.__sklib__vector_from_angle__double__double(__skparam__angle, __skparam__magnitude)
     return __skadapter__to_vector_2d(__skreturn)
 def vector_from_line ( l ):
     __skparam__l = __skadapter__to_sklib_line(l)
@@ -7760,21 +7760,21 @@ def vector_invert ( v ):
     return __skadapter__to_vector_2d(__skreturn)
 def vector_limit ( v, limit ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
-    __skparam__limit = __skadapter__to_sklib_float(limit)
-    __skreturn = sklib.__sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit)
+    __skparam__limit = __skadapter__to_sklib_double(limit)
+    __skreturn = sklib.__sklib__vector_limit__vector_2d_ref__double(__skparam__v, __skparam__limit)
     return __skadapter__to_vector_2d(__skreturn)
 def vector_magnitude ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
     __skreturn = sklib.__sklib__vector_magnitude__vector_2d_ref(__skparam__v)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def vector_magnitude_sqared ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
     __skreturn = sklib.__sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def vector_multiply ( v1, s ):
     __skparam__v1 = __skadapter__to_sklib_vector_2d(v1)
-    __skparam__s = __skadapter__to_sklib_float(s)
-    __skreturn = sklib.__sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s)
+    __skparam__s = __skadapter__to_sklib_double(s)
+    __skreturn = sklib.__sklib__vector_multiply__vector_2d_ref__double(__skparam__v1, __skparam__s)
     return __skadapter__to_vector_2d(__skreturn)
 def vector_normal ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)

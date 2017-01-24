@@ -661,20 +661,20 @@ bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const poin
     int __skreturn = __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
     return __skadapter__to_bool(__skreturn);
 }
-bool bitmap_point_collision(bitmap bmp, const point_2d &pt, const point_2d &bmp_pt) {
+bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     const __sklib_point_2d __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmp_pt);
-    int __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__bmp_pt, __skparam__pt);
     return __skadapter__to_bool(__skreturn);
 }
-bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y) {
+bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-    float __skparam__bmp_x = __skadapter__to_float(bmp_x);
-    float __skparam__bmp_y = __skadapter__to_float(bmp_y);
+    double __skparam__bmp_x = __skadapter__to_double(bmp_x);
+    double __skparam__bmp_y = __skadapter__to_double(bmp_y);
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    int __skreturn = __sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__double__double__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
     return __skadapter__to_bool(__skreturn);
 }
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt) {
@@ -1580,21 +1580,21 @@ drawing_options option_line_width(int width, drawing_options opts) {
     __sklib_drawing_options __skreturn = __sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_part_bmp(double x, double y, float w, float h) {
+drawing_options option_part_bmp(double x, double y, double w, double h) {
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    float __skparam__w = __skadapter__to_float(w);
-    float __skparam__h = __skadapter__to_float(h);
-    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
+    double __skparam__w = __skadapter__to_double(w);
+    double __skparam__h = __skadapter__to_double(h);
+    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__double__double(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts) {
+drawing_options option_part_bmp(double x, double y, double w, double h, drawing_options opts) {
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    float __skparam__w = __skadapter__to_float(w);
-    float __skparam__h = __skadapter__to_float(h);
+    double __skparam__w = __skadapter__to_double(w);
+    double __skparam__h = __skadapter__to_double(h);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__double__double__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
 drawing_options option_part_bmp(rectangle part) {
@@ -1608,43 +1608,43 @@ drawing_options option_part_bmp(rectangle part, drawing_options opts) {
     __sklib_drawing_options __skreturn = __sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float(__skparam__angle);
+drawing_options option_rotate_bmp(double angle) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double(__skparam__angle);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle, drawing_options opts) {
-    float __skparam__angle = __skadapter__to_float(angle);
+drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__anchor_x = __skadapter__to_double(anchor_x);
+    double __skparam__anchor_y = __skadapter__to_double(anchor_y);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__double__double(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
+    return __skadapter__to_drawing_options(__skreturn);
+}
+drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y, drawing_options opts) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__anchor_x = __skadapter__to_double(anchor_x);
+    double __skparam__anchor_y = __skadapter__to_double(anchor_y);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__double__double__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__anchor_x = __skadapter__to_float(anchor_x);
-    float __skparam__anchor_y = __skadapter__to_float(anchor_y);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
-    return __skadapter__to_drawing_options(__skreturn);
-}
-drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y, drawing_options opts) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__anchor_x = __skadapter__to_float(anchor_x);
-    float __skparam__anchor_y = __skadapter__to_float(anchor_y);
+drawing_options option_rotate_bmp(double angle, drawing_options opts) {
+    double __skparam__angle = __skadapter__to_double(angle);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__drawing_options(__skparam__angle, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_scale_bmp(float scale_x, float scale_y) {
-    float __skparam__scale_x = __skadapter__to_float(scale_x);
-    float __skparam__scale_y = __skadapter__to_float(scale_y);
-    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y);
+drawing_options option_scale_bmp(double scale_x, double scale_y) {
+    double __skparam__scale_x = __skadapter__to_double(scale_x);
+    double __skparam__scale_y = __skadapter__to_double(scale_y);
+    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__double__double(__skparam__scale_x, __skparam__scale_y);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_scale_bmp(float scale_x, float scale_y, drawing_options opts) {
-    float __skparam__scale_x = __skadapter__to_float(scale_x);
-    float __skparam__scale_y = __skadapter__to_float(scale_y);
+drawing_options option_scale_bmp(double scale_x, double scale_y, drawing_options opts) {
+    double __skparam__scale_x = __skadapter__to_double(scale_x);
+    double __skparam__scale_y = __skadapter__to_double(scale_y);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__double__double__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
 drawing_options option_to_screen() {
@@ -2782,9 +2782,9 @@ string matrix_to_string(const matrix_2d &matrix) {
     __sklib_string __skreturn = __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
     return __skadapter__to_string(__skreturn);
 }
-matrix_2d rotation_matrix(float deg) {
-    float __skparam__deg = __skadapter__to_float(deg);
-    __sklib_matrix_2d __skreturn = __sklib__rotation_matrix__float(__skparam__deg);
+matrix_2d rotation_matrix(double deg) {
+    double __skparam__deg = __skadapter__to_double(deg);
+    __sklib_matrix_2d __skreturn = __sklib__rotation_matrix__double(__skparam__deg);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 matrix_2d scale_matrix(const point_2d &scale) {
@@ -2797,16 +2797,16 @@ matrix_2d scale_matrix(const vector_2d &scale) {
     __sklib_matrix_2d __skreturn = __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d scale_matrix(float scale) {
-    float __skparam__scale = __skadapter__to_float(scale);
-    __sklib_matrix_2d __skreturn = __sklib__scale_matrix__float(__skparam__scale);
+matrix_2d scale_matrix(double scale) {
+    double __skparam__scale = __skadapter__to_double(scale);
+    __sklib_matrix_2d __skreturn = __sklib__scale_matrix__double(__skparam__scale);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate) {
+matrix_2d scale_rotate_translate_matrix(const point_2d &scale, double deg, const point_2d &translate) {
     const __sklib_point_2d __skparam__scale = __skadapter__to_sklib_point_2d(scale);
-    float __skparam__deg = __skadapter__to_float(deg);
+    double __skparam__deg = __skadapter__to_double(deg);
     const __sklib_point_2d __skparam__translate = __skadapter__to_sklib_point_2d(translate);
-    __sklib_matrix_2d __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
+    __sklib_matrix_2d __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 matrix_2d translation_matrix(const point_2d &pt) {
@@ -2819,10 +2819,10 @@ matrix_2d translation_matrix(const vector_2d &pt) {
     __sklib_matrix_2d __skreturn = __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d translation_matrix(float dx, float dy) {
-    float __skparam__dx = __skadapter__to_float(dx);
-    float __skparam__dy = __skadapter__to_float(dy);
-    __sklib_matrix_2d __skreturn = __sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy);
+matrix_2d translation_matrix(double dx, double dy) {
+    double __skparam__dx = __skadapter__to_double(dx);
+    double __skparam__dy = __skadapter__to_double(dy);
+    __sklib_matrix_2d __skreturn = __sklib__translation_matrix__double__double(__skparam__dx, __skparam__dy);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 void hide_mouse() {
@@ -5507,17 +5507,17 @@ string file_as_string(string filename, resource_kind kind) {
     __skadapter__free__sklib_string(__skparam__filename);
     return __skadapter__to_string(__skreturn);
 }
-float angle_between(const vector_2d &v1, const vector_2d &v2) {
+double angle_between(const vector_2d &v1, const vector_2d &v2) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
     const __sklib_vector_2d __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
-    float __skreturn = __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+    return __skadapter__to_double(__skreturn);
 }
-float dot_product(const vector_2d &v1, const vector_2d &v2) {
+double dot_product(const vector_2d &v1, const vector_2d &v2) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
     const __sklib_vector_2d __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
-    float __skreturn = __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+    return __skadapter__to_double(__skreturn);
 }
 bool is_zero_vector(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
@@ -5544,15 +5544,15 @@ vector_2d vector_add(const vector_2d &v1, const vector_2d &v2) {
     __sklib_vector_2d __skreturn = __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
     return __skadapter__to_vector_2d(__skreturn);
 }
-float vector_angle(const vector_2d v) {
+double vector_angle(const vector_2d v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_angle__vector_2d(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_angle__vector_2d(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-vector_2d vector_from_angle(float angle, float magnitude) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__magnitude = __skadapter__to_float(magnitude);
-    __sklib_vector_2d __skreturn = __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
+vector_2d vector_from_angle(double angle, double magnitude) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__magnitude = __skadapter__to_double(magnitude);
+    __sklib_vector_2d __skreturn = __sklib__vector_from_angle__double__double(__skparam__angle, __skparam__magnitude);
     return __skadapter__to_vector_2d(__skreturn);
 }
 vector_2d vector_from_line(const line &l) {
@@ -5577,26 +5577,26 @@ vector_2d vector_invert(const vector_2d &v) {
     __sklib_vector_2d __skreturn = __sklib__vector_invert__vector_2d_ref(__skparam__v);
     return __skadapter__to_vector_2d(__skreturn);
 }
-vector_2d vector_limit(const vector_2d &v, float limit) {
+vector_2d vector_limit(const vector_2d &v, double limit) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skparam__limit = __skadapter__to_float(limit);
-    __sklib_vector_2d __skreturn = __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
+    double __skparam__limit = __skadapter__to_double(limit);
+    __sklib_vector_2d __skreturn = __sklib__vector_limit__vector_2d_ref__double(__skparam__v, __skparam__limit);
     return __skadapter__to_vector_2d(__skreturn);
 }
-float vector_magnitude(const vector_2d &v) {
+double vector_magnitude(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-float vector_magnitude_sqared(const vector_2d &v) {
+double vector_magnitude_sqared(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-vector_2d vector_multiply(const vector_2d &v1, float s) {
+vector_2d vector_multiply(const vector_2d &v1, double s) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
-    float __skparam__s = __skadapter__to_float(s);
-    __sklib_vector_2d __skreturn = __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
+    double __skparam__s = __skadapter__to_double(s);
+    __sklib_vector_2d __skreturn = __sklib__vector_multiply__vector_2d_ref__double(__skparam__v1, __skparam__s);
     return __skadapter__to_vector_2d(__skreturn);
 }
 vector_2d vector_normal(const vector_2d &v) {

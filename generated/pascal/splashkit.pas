@@ -417,8 +417,8 @@ function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2D; 
 function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2D; bmp2: Bitmap; cell2: Integer; const pt2: Point2D): Boolean;
 function BitmapCollision(bmp1: Bitmap; cell1: Integer; x1: Double; y1: Double; bmp2: Bitmap; cell2: Integer; x2: Double; y2: Double): Boolean;
 function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt: Point2D): Boolean;
-function BitmapPointCollision(bmp: Bitmap; const pt: Point2D; const bmpPt: Point2D): Boolean;
-function BitmapPointCollision(bmp: Bitmap; bmpX: Single; bmpY: Single; x: Double; y: Double): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const bmpPt: Point2D; const pt: Point2D): Boolean;
+function BitmapPointCollision(bmp: Bitmap; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
 function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const rect: Rectangle): Boolean;
@@ -620,16 +620,16 @@ function OptionFlipY(): DrawingOptions;
 function OptionFlipY(opts: DrawingOptions): DrawingOptions;
 function OptionLineWidth(width: Integer): DrawingOptions;
 function OptionLineWidth(width: Integer; opts: DrawingOptions): DrawingOptions;
-function OptionPartBmp(x: Double; y: Double; w: Single; h: Single): DrawingOptions;
-function OptionPartBmp(x: Double; y: Double; w: Single; h: Single; opts: DrawingOptions): DrawingOptions;
+function OptionPartBmp(x: Double; y: Double; w: Double; h: Double): DrawingOptions;
+function OptionPartBmp(x: Double; y: Double; w: Double; h: Double; opts: DrawingOptions): DrawingOptions;
 function OptionPartBmp(part: Rectangle): DrawingOptions;
 function OptionPartBmp(part: Rectangle; opts: DrawingOptions): DrawingOptions;
-function OptionRotateBmp(angle: Single): DrawingOptions;
-function OptionRotateBmp(angle: Single; opts: DrawingOptions): DrawingOptions;
-function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single): DrawingOptions;
-function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single; opts: DrawingOptions): DrawingOptions;
-function OptionScaleBmp(scaleX: Single; scaleY: Single): DrawingOptions;
-function OptionScaleBmp(scaleX: Single; scaleY: Single; opts: DrawingOptions): DrawingOptions;
+function OptionRotateBmp(angle: Double): DrawingOptions;
+function OptionRotateBmp(angle: Double; anchorX: Double; anchorY: Double): DrawingOptions;
+function OptionRotateBmp(angle: Double; anchorX: Double; anchorY: Double; opts: DrawingOptions): DrawingOptions;
+function OptionRotateBmp(angle: Double; opts: DrawingOptions): DrawingOptions;
+function OptionScaleBmp(scaleX: Double; scaleY: Double): DrawingOptions;
+function OptionScaleBmp(scaleX: Double; scaleY: Double; opts: DrawingOptions): DrawingOptions;
 function OptionToScreen(): DrawingOptions;
 function OptionToScreen(opts: DrawingOptions): DrawingOptions;
 function OptionToWorld(): DrawingOptions;
@@ -814,14 +814,14 @@ function MatrixMultiply(const m: Matrix2D; const pt: Point2D): Point2D;
 function MatrixMultiply(const m1: Matrix2D; const m2: Matrix2D): Matrix2D;
 function MatrixMultiply(const m: Matrix2D; const v: Vector2D): Vector2D;
 function MatrixToString(const matrix: Matrix2D): String;
-function RotationMatrix(deg: Single): Matrix2D;
+function RotationMatrix(deg: Double): Matrix2D;
 function ScaleMatrix(const scale: Point2D): Matrix2D;
 function ScaleMatrix(const scale: Vector2D): Matrix2D;
-function ScaleMatrix(scale: Single): Matrix2D;
-function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Single; const translate: Point2D): Matrix2D;
+function ScaleMatrix(scale: Double): Matrix2D;
+function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Double; const translate: Point2D): Matrix2D;
 function TranslationMatrix(const pt: Point2D): Matrix2D;
 function TranslationMatrix(const pt: Vector2D): Matrix2D;
-function TranslationMatrix(dx: Single; dy: Single): Matrix2D;
+function TranslationMatrix(dx: Double; dy: Double): Matrix2D;
 procedure HideMouse();
 function MouseClicked(button: MouseButton): Boolean;
 function MouseDown(button: MouseButton): Boolean;
@@ -1275,22 +1275,22 @@ function CurrentTicks(): Cardinal;
 procedure Delay(milliseconds: Cardinal);
 procedure DisplayDialog(const title: String; const msg: String; outputFont: Font; fontSize: Integer);
 function FileAsString(filename: String; kind: ResourceKind): String;
-function AngleBetween(const v1: Vector2D; const v2: Vector2D): Single;
-function DotProduct(const v1: Vector2D; const v2: Vector2D): Single;
+function AngleBetween(const v1: Vector2D; const v2: Vector2D): Double;
+function DotProduct(const v1: Vector2D; const v2: Vector2D): Double;
 function IsZeroVector(const v: Vector2D): Boolean;
 function RayIntersectionPoint(const fromPt: Point2D; const heading: Vector2D; const l: Line; var pt: Point2D): Boolean;
 function UnitVector(const v: Vector2D): Vector2D;
 function VectorAdd(const v1: Vector2D; const v2: Vector2D): Vector2D;
-function VectorAngle(v: Vector2D): Single;
-function VectorFromAngle(angle: Single; magnitude: Single): Vector2D;
+function VectorAngle(v: Vector2D): Double;
+function VectorFromAngle(angle: Double; magnitude: Double): Vector2D;
 function VectorFromLine(const l: Line): Vector2D;
 function VectorFromPointToRect(const pt: Point2D; const rect: Rectangle): Vector2D;
 function VectorInRect(const v: Vector2D; const rect: Rectangle): Boolean;
 function VectorInvert(const v: Vector2D): Vector2D;
-function VectorLimit(const v: Vector2D; limit: Single): Vector2D;
-function VectorMagnitude(const v: Vector2D): Single;
-function VectorMagnitudeSqared(const v: Vector2D): Single;
-function VectorMultiply(const v1: Vector2D; s: Single): Vector2D;
+function VectorLimit(const v: Vector2D; limit: Double): Vector2D;
+function VectorMagnitude(const v: Vector2D): Double;
+function VectorMagnitudeSqared(const v: Vector2D): Double;
+function VectorMultiply(const v1: Vector2D; s: Double): Vector2D;
 function VectorNormal(const v: Vector2D): Vector2D;
 function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2D): Vector2D;
 function VectorOutOfCircleFromPoint(const pt: Point2D; const c: Circle; const velocity: Vector2D): Vector2D;
@@ -2367,8 +2367,8 @@ function __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__mat
 function __sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref(bmp1: __sklib_ptr; cell1: Integer; const pt1: __sklib_point_2d; bmp2: __sklib_ptr; cell2: Integer; const pt2: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double(bmp1: __sklib_ptr; cell1: Integer; x1: Double; y1: Double; bmp2: __sklib_ptr; cell2: Integer; x2: Double; y2: Double): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
-function __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d; const bmpPt: __sklib_point_2d): LongInt; cdecl; external;
-function __sklib__bitmap_point_collision__bitmap__float__float__double__double(bmp: __sklib_ptr; bmpX: Single; bmpY: Single; x: Double; y: Double): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; const bmpPt: __sklib_point_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__double__double__double__double(bmp: __sklib_ptr; bmpX: Double; bmpY: Double; x: Double; y: Double): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
@@ -2570,16 +2570,16 @@ function __sklib__option_flip_y(): __sklib_drawing_options; cdecl; external;
 function __sklib__option_flip_y__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 function __sklib__option_line_width__int(width: Integer): __sklib_drawing_options; cdecl; external;
 function __sklib__option_line_width__int__drawing_options(width: Integer; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
-function __sklib__option_part_bmp__double__double__float__float(x: Double; y: Double; w: Single; h: Single): __sklib_drawing_options; cdecl; external;
-function __sklib__option_part_bmp__double__double__float__float__drawing_options(x: Double; y: Double; w: Single; h: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__double__double__double__double(x: Double; y: Double; w: Double; h: Double): __sklib_drawing_options; cdecl; external;
+function __sklib__option_part_bmp__double__double__double__double__drawing_options(x: Double; y: Double; w: Double; h: Double; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 function __sklib__option_part_bmp__rectangle(part: __sklib_rectangle): __sklib_drawing_options; cdecl; external;
 function __sklib__option_part_bmp__rectangle__drawing_options(part: __sklib_rectangle; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
-function __sklib__option_rotate_bmp__float(angle: Single): __sklib_drawing_options; cdecl; external;
-function __sklib__option_rotate_bmp__float__drawing_options(angle: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
-function __sklib__option_rotate_bmp__float__float__float(angle: Single; anchorX: Single; anchorY: Single): __sklib_drawing_options; cdecl; external;
-function __sklib__option_rotate_bmp__float__float__float__drawing_options(angle: Single; anchorX: Single; anchorY: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
-function __sklib__option_scale_bmp__float__float(scaleX: Single; scaleY: Single): __sklib_drawing_options; cdecl; external;
-function __sklib__option_scale_bmp__float__float__drawing_options(scaleX: Single; scaleY: Single; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__double(angle: Double): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__double__double__double(angle: Double; anchorX: Double; anchorY: Double): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__double__double__double__drawing_options(angle: Double; anchorX: Double; anchorY: Double; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_rotate_bmp__double__drawing_options(angle: Double; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_scale_bmp__double__double(scaleX: Double; scaleY: Double): __sklib_drawing_options; cdecl; external;
+function __sklib__option_scale_bmp__double__double__drawing_options(scaleX: Double; scaleY: Double; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 function __sklib__option_to_screen(): __sklib_drawing_options; cdecl; external;
 function __sklib__option_to_screen__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 function __sklib__option_to_world(): __sklib_drawing_options; cdecl; external;
@@ -2764,14 +2764,14 @@ function __sklib__matrix_multiply__matrix_2d_ref__point_2d_ref(const m: __sklib_
 function __sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref(const m1: __sklib_matrix_2d; const m2: __sklib_matrix_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(const m: __sklib_matrix_2d; const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__matrix_to_string__matrix_2d_ref(const matrix: __sklib_matrix_2d): __sklib_string; cdecl; external;
-function __sklib__rotation_matrix__float(deg: Single): __sklib_matrix_2d; cdecl; external;
+function __sklib__rotation_matrix__double(deg: Double): __sklib_matrix_2d; cdecl; external;
 function __sklib__scale_matrix__point_2d_ref(const scale: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__scale_matrix__vector_2d_ref(const scale: __sklib_vector_2d): __sklib_matrix_2d; cdecl; external;
-function __sklib__scale_matrix__float(scale: Single): __sklib_matrix_2d; cdecl; external;
-function __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(const scale: __sklib_point_2d; deg: Single; const translate: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_matrix__double(scale: Double): __sklib_matrix_2d; cdecl; external;
+function __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(const scale: __sklib_point_2d; deg: Double; const translate: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__translation_matrix__point_2d_ref(const pt: __sklib_point_2d): __sklib_matrix_2d; cdecl; external;
 function __sklib__translation_matrix__vector_2d_ref(const pt: __sklib_vector_2d): __sklib_matrix_2d; cdecl; external;
-function __sklib__translation_matrix__float__float(dx: Single; dy: Single): __sklib_matrix_2d; cdecl; external;
+function __sklib__translation_matrix__double__double(dx: Double; dy: Double): __sklib_matrix_2d; cdecl; external;
 procedure __sklib__hide_mouse(); cdecl; external;
 function __sklib__mouse_clicked__mouse_button(button: LongInt): LongInt; cdecl; external;
 function __sklib__mouse_down__mouse_button(button: LongInt): LongInt; cdecl; external;
@@ -3225,22 +3225,22 @@ function __sklib__current_ticks(): Cardinal; cdecl; external;
 procedure __sklib__delay__unsigned_int(milliseconds: Cardinal); cdecl; external;
 procedure __sklib__display_dialog__string_ref__string_ref__font__int(const title: __sklib_string; const msg: __sklib_string; outputFont: __sklib_ptr; fontSize: Integer); cdecl; external;
 function __sklib__file_as_string__string__resource_kind(filename: __sklib_string; kind: LongInt): __sklib_string; cdecl; external;
-function __sklib__angle_between__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Single; cdecl; external;
-function __sklib__dot_product__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Single; cdecl; external;
+function __sklib__angle_between__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Double; cdecl; external;
+function __sklib__dot_product__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Double; cdecl; external;
 function __sklib__is_zero_vector__vector_2d_ref(const v: __sklib_vector_2d): LongInt; cdecl; external;
 function __sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref(const fromPt: __sklib_point_2d; const heading: __sklib_vector_2d; const l: __sklib_line; var pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__unit_vector__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_add__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
-function __sklib__vector_angle__vector_2d(v: __sklib_vector_2d): Single; cdecl; external;
-function __sklib__vector_from_angle__float__float(angle: Single; magnitude: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_angle__vector_2d(v: __sklib_vector_2d): Double; cdecl; external;
+function __sklib__vector_from_angle__double__double(angle: Double; magnitude: Double): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_from_line__line_ref(const l: __sklib_line): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref(const pt: __sklib_point_2d; const rect: __sklib_rectangle): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(const v: __sklib_vector_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__vector_invert__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
-function __sklib__vector_limit__vector_2d_ref__float(const v: __sklib_vector_2d; limit: Single): __sklib_vector_2d; cdecl; external;
-function __sklib__vector_magnitude__vector_2d_ref(const v: __sklib_vector_2d): Single; cdecl; external;
-function __sklib__vector_magnitude_sqared__vector_2d_ref(const v: __sklib_vector_2d): Single; cdecl; external;
-function __sklib__vector_multiply__vector_2d_ref__float(const v1: __sklib_vector_2d; s: Single): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_limit__vector_2d_ref__double(const v: __sklib_vector_2d; limit: Double): __sklib_vector_2d; cdecl; external;
+function __sklib__vector_magnitude__vector_2d_ref(const v: __sklib_vector_2d): Double; cdecl; external;
+function __sklib__vector_magnitude_sqared__vector_2d_ref(const v: __sklib_vector_2d): Double; cdecl; external;
+function __sklib__vector_multiply__vector_2d_ref__double(const v1: __sklib_vector_2d; s: Double): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_normal__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(const src: __sklib_circle; const bounds: __sklib_circle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref(const pt: __sklib_point_2d; const c: __sklib_circle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
@@ -4479,34 +4479,34 @@ begin
   __skreturn := __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapPointCollision(bmp: Bitmap; const pt: Point2D; const bmpPt: Point2D): Boolean;
+function BitmapPointCollision(bmp: Bitmap; const bmpPt: Point2D; const pt: Point2D): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
-  __skparam__pt: __sklib_point_2d;
   __skparam__bmp_pt: __sklib_point_2d;
+  __skparam__pt: __sklib_point_2d;
   __skreturn: LongInt;
 begin
   __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __skparam__bmp_pt := __skadapter__to_sklib_point_2d(bmpPt);
-  __skreturn := __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__bmp_pt, __skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapPointCollision(bmp: Bitmap; bmpX: Single; bmpY: Single; x: Double; y: Double): Boolean;
+function BitmapPointCollision(bmp: Bitmap; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
-  __skparam__bmp_x: Single;
-  __skparam__bmp_y: Single;
+  __skparam__bmp_x: Double;
+  __skparam__bmp_y: Double;
   __skparam__x: Double;
   __skparam__y: Double;
   __skreturn: LongInt;
 begin
   __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skparam__bmp_x := __skadapter__to_sklib_float(bmpX);
-  __skparam__bmp_y := __skadapter__to_sklib_float(bmpY);
+  __skparam__bmp_x := __skadapter__to_sklib_double(bmpX);
+  __skparam__bmp_y := __skadapter__to_sklib_double(bmpY);
   __skparam__x := __skadapter__to_sklib_double(x);
   __skparam__y := __skadapter__to_sklib_double(y);
-  __skreturn := __sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__double__double__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
 function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
@@ -6094,36 +6094,36 @@ begin
   __skreturn := __sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionPartBmp(x: Double; y: Double; w: Single; h: Single): DrawingOptions;
+function OptionPartBmp(x: Double; y: Double; w: Double; h: Double): DrawingOptions;
 var
   __skparam__x: Double;
   __skparam__y: Double;
-  __skparam__w: Single;
-  __skparam__h: Single;
+  __skparam__w: Double;
+  __skparam__h: Double;
   __skreturn: __sklib_drawing_options;
 begin
   __skparam__x := __skadapter__to_sklib_double(x);
   __skparam__y := __skadapter__to_sklib_double(y);
-  __skparam__w := __skadapter__to_sklib_float(w);
-  __skparam__h := __skadapter__to_sklib_float(h);
-  __skreturn := __sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
+  __skparam__w := __skadapter__to_sklib_double(w);
+  __skparam__h := __skadapter__to_sklib_double(h);
+  __skreturn := __sklib__option_part_bmp__double__double__double__double(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionPartBmp(x: Double; y: Double; w: Single; h: Single; opts: DrawingOptions): DrawingOptions;
+function OptionPartBmp(x: Double; y: Double; w: Double; h: Double; opts: DrawingOptions): DrawingOptions;
 var
   __skparam__x: Double;
   __skparam__y: Double;
-  __skparam__w: Single;
-  __skparam__h: Single;
+  __skparam__w: Double;
+  __skparam__h: Double;
   __skparam__opts: __sklib_drawing_options;
   __skreturn: __sklib_drawing_options;
 begin
   __skparam__x := __skadapter__to_sklib_double(x);
   __skparam__y := __skadapter__to_sklib_double(y);
-  __skparam__w := __skadapter__to_sklib_float(w);
-  __skparam__h := __skadapter__to_sklib_float(h);
+  __skparam__w := __skadapter__to_sklib_double(w);
+  __skparam__h := __skadapter__to_sklib_double(h);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
-  __skreturn := __sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
+  __skreturn := __sklib__option_part_bmp__double__double__double__double__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
 function OptionPartBmp(part: Rectangle): DrawingOptions;
@@ -6146,76 +6146,76 @@ begin
   __skreturn := __sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionRotateBmp(angle: Single): DrawingOptions;
+function OptionRotateBmp(angle: Double): DrawingOptions;
 var
-  __skparam__angle: Single;
+  __skparam__angle: Double;
   __skreturn: __sklib_drawing_options;
 begin
-  __skparam__angle := __skadapter__to_sklib_float(angle);
-  __skreturn := __sklib__option_rotate_bmp__float(__skparam__angle);
+  __skparam__angle := __skadapter__to_sklib_double(angle);
+  __skreturn := __sklib__option_rotate_bmp__double(__skparam__angle);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionRotateBmp(angle: Single; opts: DrawingOptions): DrawingOptions;
+function OptionRotateBmp(angle: Double; anchorX: Double; anchorY: Double): DrawingOptions;
 var
-  __skparam__angle: Single;
+  __skparam__angle: Double;
+  __skparam__anchor_x: Double;
+  __skparam__anchor_y: Double;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__angle := __skadapter__to_sklib_double(angle);
+  __skparam__anchor_x := __skadapter__to_sklib_double(anchorX);
+  __skparam__anchor_y := __skadapter__to_sklib_double(anchorY);
+  __skreturn := __sklib__option_rotate_bmp__double__double__double(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionRotateBmp(angle: Double; anchorX: Double; anchorY: Double; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__angle: Double;
+  __skparam__anchor_x: Double;
+  __skparam__anchor_y: Double;
   __skparam__opts: __sklib_drawing_options;
   __skreturn: __sklib_drawing_options;
 begin
-  __skparam__angle := __skadapter__to_sklib_float(angle);
+  __skparam__angle := __skadapter__to_sklib_double(angle);
+  __skparam__anchor_x := __skadapter__to_sklib_double(anchorX);
+  __skparam__anchor_y := __skadapter__to_sklib_double(anchorY);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
-  __skreturn := __sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts);
+  __skreturn := __sklib__option_rotate_bmp__double__double__double__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single): DrawingOptions;
+function OptionRotateBmp(angle: Double; opts: DrawingOptions): DrawingOptions;
 var
-  __skparam__angle: Single;
-  __skparam__anchor_x: Single;
-  __skparam__anchor_y: Single;
-  __skreturn: __sklib_drawing_options;
-begin
-  __skparam__angle := __skadapter__to_sklib_float(angle);
-  __skparam__anchor_x := __skadapter__to_sklib_float(anchorX);
-  __skparam__anchor_y := __skadapter__to_sklib_float(anchorY);
-  __skreturn := __sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
-  result := __skadapter__to_drawing_options(__skreturn);
-end;
-function OptionRotateBmp(angle: Single; anchorX: Single; anchorY: Single; opts: DrawingOptions): DrawingOptions;
-var
-  __skparam__angle: Single;
-  __skparam__anchor_x: Single;
-  __skparam__anchor_y: Single;
+  __skparam__angle: Double;
   __skparam__opts: __sklib_drawing_options;
   __skreturn: __sklib_drawing_options;
 begin
-  __skparam__angle := __skadapter__to_sklib_float(angle);
-  __skparam__anchor_x := __skadapter__to_sklib_float(anchorX);
-  __skparam__anchor_y := __skadapter__to_sklib_float(anchorY);
+  __skparam__angle := __skadapter__to_sklib_double(angle);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
-  __skreturn := __sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
+  __skreturn := __sklib__option_rotate_bmp__double__drawing_options(__skparam__angle, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionScaleBmp(scaleX: Single; scaleY: Single): DrawingOptions;
+function OptionScaleBmp(scaleX: Double; scaleY: Double): DrawingOptions;
 var
-  __skparam__scale_x: Single;
-  __skparam__scale_y: Single;
+  __skparam__scale_x: Double;
+  __skparam__scale_y: Double;
   __skreturn: __sklib_drawing_options;
 begin
-  __skparam__scale_x := __skadapter__to_sklib_float(scaleX);
-  __skparam__scale_y := __skadapter__to_sklib_float(scaleY);
-  __skreturn := __sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y);
+  __skparam__scale_x := __skadapter__to_sklib_double(scaleX);
+  __skparam__scale_y := __skadapter__to_sklib_double(scaleY);
+  __skreturn := __sklib__option_scale_bmp__double__double(__skparam__scale_x, __skparam__scale_y);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
-function OptionScaleBmp(scaleX: Single; scaleY: Single; opts: DrawingOptions): DrawingOptions;
+function OptionScaleBmp(scaleX: Double; scaleY: Double; opts: DrawingOptions): DrawingOptions;
 var
-  __skparam__scale_x: Single;
-  __skparam__scale_y: Single;
+  __skparam__scale_x: Double;
+  __skparam__scale_y: Double;
   __skparam__opts: __sklib_drawing_options;
   __skreturn: __sklib_drawing_options;
 begin
-  __skparam__scale_x := __skadapter__to_sklib_float(scaleX);
-  __skparam__scale_y := __skadapter__to_sklib_float(scaleY);
+  __skparam__scale_x := __skadapter__to_sklib_double(scaleX);
+  __skparam__scale_y := __skadapter__to_sklib_double(scaleY);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
-  __skreturn := __sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
+  __skreturn := __sklib__option_scale_bmp__double__double__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
 function OptionToScreen(): DrawingOptions;
@@ -8192,13 +8192,13 @@ begin
   __skreturn := __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
   result := __skadapter__to_string(__skreturn);
 end;
-function RotationMatrix(deg: Single): Matrix2D;
+function RotationMatrix(deg: Double): Matrix2D;
 var
-  __skparam__deg: Single;
+  __skparam__deg: Double;
   __skreturn: __sklib_matrix_2d;
 begin
-  __skparam__deg := __skadapter__to_sklib_float(deg);
-  __skreturn := __sklib__rotation_matrix__float(__skparam__deg);
+  __skparam__deg := __skadapter__to_sklib_double(deg);
+  __skreturn := __sklib__rotation_matrix__double(__skparam__deg);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
 function ScaleMatrix(const scale: Point2D): Matrix2D;
@@ -8219,26 +8219,26 @@ begin
   __skreturn := __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function ScaleMatrix(scale: Single): Matrix2D;
+function ScaleMatrix(scale: Double): Matrix2D;
 var
-  __skparam__scale: Single;
+  __skparam__scale: Double;
   __skreturn: __sklib_matrix_2d;
 begin
-  __skparam__scale := __skadapter__to_sklib_float(scale);
-  __skreturn := __sklib__scale_matrix__float(__skparam__scale);
+  __skparam__scale := __skadapter__to_sklib_double(scale);
+  __skreturn := __sklib__scale_matrix__double(__skparam__scale);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Single; const translate: Point2D): Matrix2D;
+function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Double; const translate: Point2D): Matrix2D;
 var
   __skparam__scale: __sklib_point_2d;
-  __skparam__deg: Single;
+  __skparam__deg: Double;
   __skparam__translate: __sklib_point_2d;
   __skreturn: __sklib_matrix_2d;
 begin
   __skparam__scale := __skadapter__to_sklib_point_2d(scale);
-  __skparam__deg := __skadapter__to_sklib_float(deg);
+  __skparam__deg := __skadapter__to_sklib_double(deg);
   __skparam__translate := __skadapter__to_sklib_point_2d(translate);
-  __skreturn := __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
+  __skreturn := __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
 function TranslationMatrix(const pt: Point2D): Matrix2D;
@@ -8259,15 +8259,15 @@ begin
   __skreturn := __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
-function TranslationMatrix(dx: Single; dy: Single): Matrix2D;
+function TranslationMatrix(dx: Double; dy: Double): Matrix2D;
 var
-  __skparam__dx: Single;
-  __skparam__dy: Single;
+  __skparam__dx: Double;
+  __skparam__dy: Double;
   __skreturn: __sklib_matrix_2d;
 begin
-  __skparam__dx := __skadapter__to_sklib_float(dx);
-  __skparam__dy := __skadapter__to_sklib_float(dy);
-  __skreturn := __sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy);
+  __skparam__dx := __skadapter__to_sklib_double(dx);
+  __skparam__dy := __skadapter__to_sklib_double(dy);
+  __skreturn := __sklib__translation_matrix__double__double(__skparam__dx, __skparam__dy);
   result := __skadapter__to_matrix_2d(__skreturn);
 end;
 procedure HideMouse();
@@ -12908,27 +12908,27 @@ begin
   __skreturn := __sklib__file_as_string__string__resource_kind(__skparam__filename, __skparam__kind);
   result := __skadapter__to_string(__skreturn);
 end;
-function AngleBetween(const v1: Vector2D; const v2: Vector2D): Single;
+function AngleBetween(const v1: Vector2D; const v2: Vector2D): Double;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
   __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
   __skreturn := __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function DotProduct(const v1: Vector2D; const v2: Vector2D): Single;
+function DotProduct(const v1: Vector2D; const v2: Vector2D): Double;
 var
   __skparam__v1: __sklib_vector_2d;
   __skparam__v2: __sklib_vector_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
   __skparam__v2 := __skadapter__to_sklib_vector_2d(v2);
   __skreturn := __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function IsZeroVector(const v: Vector2D): Boolean;
 var
@@ -12975,24 +12975,24 @@ begin
   __skreturn := __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorAngle(v: Vector2D): Single;
+function VectorAngle(v: Vector2D): Double;
 var
   __skparam__v: __sklib_vector_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__v := __skadapter__to_sklib_vector_2d(v);
   __skreturn := __sklib__vector_angle__vector_2d(__skparam__v);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function VectorFromAngle(angle: Single; magnitude: Single): Vector2D;
+function VectorFromAngle(angle: Double; magnitude: Double): Vector2D;
 var
-  __skparam__angle: Single;
-  __skparam__magnitude: Single;
+  __skparam__angle: Double;
+  __skparam__magnitude: Double;
   __skreturn: __sklib_vector_2d;
 begin
-  __skparam__angle := __skadapter__to_sklib_float(angle);
-  __skparam__magnitude := __skadapter__to_sklib_float(magnitude);
-  __skreturn := __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
+  __skparam__angle := __skadapter__to_sklib_double(angle);
+  __skparam__magnitude := __skadapter__to_sklib_double(magnitude);
+  __skreturn := __sklib__vector_from_angle__double__double(__skparam__angle, __skparam__magnitude);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
 function VectorFromLine(const l: Line): Vector2D;
@@ -13035,44 +13035,44 @@ begin
   __skreturn := __sklib__vector_invert__vector_2d_ref(__skparam__v);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorLimit(const v: Vector2D; limit: Single): Vector2D;
+function VectorLimit(const v: Vector2D; limit: Double): Vector2D;
 var
   __skparam__v: __sklib_vector_2d;
-  __skparam__limit: Single;
+  __skparam__limit: Double;
   __skreturn: __sklib_vector_2d;
 begin
   __skparam__v := __skadapter__to_sklib_vector_2d(v);
-  __skparam__limit := __skadapter__to_sklib_float(limit);
-  __skreturn := __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
+  __skparam__limit := __skadapter__to_sklib_double(limit);
+  __skreturn := __sklib__vector_limit__vector_2d_ref__double(__skparam__v, __skparam__limit);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-function VectorMagnitude(const v: Vector2D): Single;
+function VectorMagnitude(const v: Vector2D): Double;
 var
   __skparam__v: __sklib_vector_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__v := __skadapter__to_sklib_vector_2d(v);
   __skreturn := __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function VectorMagnitudeSqared(const v: Vector2D): Single;
+function VectorMagnitudeSqared(const v: Vector2D): Double;
 var
   __skparam__v: __sklib_vector_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__v := __skadapter__to_sklib_vector_2d(v);
   __skreturn := __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function VectorMultiply(const v1: Vector2D; s: Single): Vector2D;
+function VectorMultiply(const v1: Vector2D; s: Double): Vector2D;
 var
   __skparam__v1: __sklib_vector_2d;
-  __skparam__s: Single;
+  __skparam__s: Double;
   __skreturn: __sklib_vector_2d;
 begin
   __skparam__v1 := __skadapter__to_sklib_vector_2d(v1);
-  __skparam__s := __skadapter__to_sklib_float(s);
-  __skreturn := __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
+  __skparam__s := __skadapter__to_sklib_double(s);
+  __skreturn := __sklib__vector_multiply__vector_2d_ref__double(__skparam__v1, __skparam__s);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
 function VectorNormal(const v: Vector2D): Vector2D;
