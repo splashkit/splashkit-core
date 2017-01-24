@@ -36,6 +36,7 @@ namespace splashkit_lib
 
     void delay_for_target_fps(unsigned int target_fps)
     {
+        if ( target_fps == 0 ) return;
         unsigned int now = current_ticks();
         unsigned int delta = now - _last_update_time;
         unsigned int delay_time;
