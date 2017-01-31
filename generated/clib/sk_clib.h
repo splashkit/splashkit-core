@@ -234,6 +234,10 @@ void __sklib__fill_circle__color__circle_ref(__sklib_color clr, const __sklib_ci
 void __sklib__fill_circle__color__circle_ref__drawing_options(__sklib_color clr, const __sklib_circle c, __sklib_drawing_options opts);
 void __sklib__fill_circle__color__double__double__double(__sklib_color clr, double x, double y, double radius);
 void __sklib__fill_circle__color__double__double__double__drawing_options(__sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__sklib_bitmap destination, __sklib_color clr, double x, double y, double radius);
+void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__sklib_bitmap destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+void __sklib__fill_circle_on_window__window__color__double__double__double(__sklib_window destination, __sklib_color clr, double x, double y, double radius);
+void __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__sklib_window destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 __sklib_point_2d __sklib__center_point__circle_ref(const __sklib_circle c);
 __sklib_circle __sklib__circle_at__point_2d_ref__double(const __sklib_point_2d pt, double radius);
 __sklib_circle __sklib__circle_at__double__double__double(double x, double y, double radius);

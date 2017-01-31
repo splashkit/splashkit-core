@@ -381,6 +381,10 @@ procedure FillCircle(clr: Color; const c: Circle);
 procedure FillCircle(clr: Color; const c: Circle; opts: DrawingOptions);
 procedure FillCircle(clr: Color; x: Double; y: Double; radius: Double);
 procedure FillCircle(clr: Color; x: Double; y: Double; radius: Double; opts: DrawingOptions);
+procedure FillCircleOnBitmap(destination: Bitmap; clr: Color; x: Double; y: Double; radius: Double);
+procedure FillCircleOnBitmap(destination: Bitmap; clr: Color; x: Double; y: Double; radius: Double; opts: DrawingOptions);
+procedure FillCircleOnWindow(destination: Window; clr: Color; x: Double; y: Double; radius: Double);
+procedure FillCircleOnWindow(destination: Window; clr: Color; x: Double; y: Double; radius: Double; opts: DrawingOptions);
 function CenterPoint(const c: Circle): Point2D;
 function CircleAt(const pt: Point2D; radius: Double): Circle;
 function CircleAt(x: Double; y: Double; radius: Double): Circle;
@@ -2331,6 +2335,10 @@ procedure __sklib__fill_circle__color__circle_ref(clr: __sklib_color; const c: _
 procedure __sklib__fill_circle__color__circle_ref__drawing_options(clr: __sklib_color; const c: __sklib_circle; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__fill_circle__color__double__double__double(clr: __sklib_color; x: Double; y: Double; radius: Double); cdecl; external;
 procedure __sklib__fill_circle__color__double__double__double__drawing_options(clr: __sklib_color; x: Double; y: Double; radius: Double; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; radius: Double); cdecl; external;
+procedure __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; radius: Double; opts: __sklib_drawing_options); cdecl; external;
+procedure __sklib__fill_circle_on_window__window__color__double__double__double(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; radius: Double); cdecl; external;
+procedure __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(destination: __sklib_ptr; clr: __sklib_color; x: Double; y: Double; radius: Double; opts: __sklib_drawing_options); cdecl; external;
 function __sklib__center_point__circle_ref(const c: __sklib_circle): __sklib_point_2d; cdecl; external;
 function __sklib__circle_at__point_2d_ref__double(const pt: __sklib_point_2d; radius: Double): __sklib_circle; cdecl; external;
 function __sklib__circle_at__double__double__double(x: Double; y: Double; radius: Double): __sklib_circle; cdecl; external;
@@ -4083,6 +4091,70 @@ begin
   __skparam__radius := __skadapter__to_sklib_double(radius);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
+procedure FillCircleOnBitmap(destination: Bitmap; clr: Color; x: Double; y: Double; radius: Double);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__radius: Double;
+begin
+  __skparam__destination := __skadapter__to_sklib_bitmap(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__radius := __skadapter__to_sklib_double(radius);
+  __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure FillCircleOnBitmap(destination: Bitmap; clr: Color; x: Double; y: Double; radius: Double; opts: DrawingOptions);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__radius: Double;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__destination := __skadapter__to_sklib_bitmap(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__radius := __skadapter__to_sklib_double(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+end;
+procedure FillCircleOnWindow(destination: Window; clr: Color; x: Double; y: Double; radius: Double);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__radius: Double;
+begin
+  __skparam__destination := __skadapter__to_sklib_window(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__radius := __skadapter__to_sklib_double(radius);
+  __sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+end;
+procedure FillCircleOnWindow(destination: Window; clr: Color; x: Double; y: Double; radius: Double; opts: DrawingOptions);
+var
+  __skparam__destination: __sklib_ptr;
+  __skparam__clr: __sklib_color;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__radius: Double;
+  __skparam__opts: __sklib_drawing_options;
+begin
+  __skparam__destination := __skadapter__to_sklib_window(destination);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__radius := __skadapter__to_sklib_double(radius);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 end;
 function CenterPoint(const c: Circle): Point2D;
 var

@@ -2977,7 +2977,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877775,
+    "parsed_at": 1485843983,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -3936,6 +3936,398 @@
         "attributes": {
           "suffix": "with_options",
           "group": "graphics"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_bitmap(bitmap destination,color clr,double x,double y,double radius);",
+        "name": "fill_circle_on_bitmap",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_bitmap",
+        "unique_method_name": "bitmap.fill_circle",
+        "suffix_name": null,
+        "description": "Fill a circle onto the destination bitmap. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "fill_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_bitmap(bitmap destination,color clr,double x,double y,double radius,drawing_options opts);",
+        "name": "fill_circle_on_bitmap",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_bitmap_with_options",
+        "unique_method_name": "bitmap.fill_circle_with_options",
+        "suffix_name": null,
+        "description": "Fill a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "fill_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_window(window destination,color clr,double x,double y,double radius);",
+        "name": "fill_circle_on_window",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_window",
+        "unique_method_name": "window.fill_circle",
+        "suffix_name": null,
+        "description": "Fill a circle onto the destination window. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "fill_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_window(window destination,color clr,double x,double y,double radius,drawing_options opts);",
+        "name": "fill_circle_on_window",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_window_with_options",
+        "unique_method_name": "window.fill_circle_with_options",
+        "suffix_name": null,
+        "description": "Fill a circle to the window using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "fill_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -14173,7 +14565,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877781,
+    "parsed_at": 1485843985,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -14482,9 +14874,9 @@
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -14539,16 +14931,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14616,16 +15010,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -14719,15 +15115,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse to the bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14834,16 +15232,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,const rectangle rect);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -14898,16 +15298,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14975,16 +15377,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -15078,15 +15482,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse to the window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15193,8 +15599,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -15503,9 +15911,9 @@
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Fill an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -15560,16 +15968,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15637,16 +16047,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -15740,15 +16152,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, size, and drawing options.",
         "brief": null,
@@ -15855,16 +16269,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,const rectangle rect);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Fill an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -15919,16 +16335,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15996,16 +16414,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -16099,15 +16519,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, size, and drawing options.",
         "brief": null,
@@ -16214,8 +16636,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -16944,7 +17368,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1484877783,
+    "parsed_at": 1485843987,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -18611,9 +19035,9 @@
       {
         "signature": "void draw_bitmap_on_bitmap(bitmap destination,bitmap bmp,double x,double y);",
         "name": "draw_bitmap_on_bitmap",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_bitmap_on_bitmap",
-        "unique_method_name": "bitmap.draw_on_bitmap",
+        "unique_method_name": "bitmap.draw_bitmap_on_bitmap",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given bitmap.\nat `x` and `y`.",
         "brief": null,
@@ -18681,7 +19105,7 @@
         },
         "attributes": {
           "class": "bitmap",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "bmp",
           "suffix": "on_bitmap",
           "group": "graphics",
@@ -18691,9 +19115,9 @@
       {
         "signature": "void draw_bitmap_on_bitmap(bitmap destination,bitmap bmp,double x,double y,drawing_options opts);",
         "name": "draw_bitmap_on_bitmap",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_bitmap_on_bitmap_with_options",
-        "unique_method_name": "bitmap.draw_on_bitmap_with_options",
+        "unique_method_name": "bitmap.draw_bitmap_on_bitmap_with_options",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given bitmap.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -18774,7 +19198,7 @@
         },
         "attributes": {
           "class": "bitmap",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "bmp",
           "suffix": "on_bitmap_with_options",
           "group": "graphics",
@@ -18784,9 +19208,9 @@
       {
         "signature": "void draw_bitmap_on_window(window destination,bitmap bmp,double x,double y);",
         "name": "draw_bitmap_on_window",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_window",
-        "unique_method_name": "window.draw",
+        "unique_method_name": "window.draw_bitmap",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given window.\nat `x` and `y`.",
         "brief": null,
@@ -18854,7 +19278,7 @@
         },
         "attributes": {
           "class": "window",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "destination",
           "group": "graphics",
           "static": "images"
@@ -18863,9 +19287,9 @@
       {
         "signature": "void draw_bitmap_on_window(window destination,bitmap bmp,double x,double y,drawing_options opts);",
         "name": "draw_bitmap_on_window",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_window_with_options",
-        "unique_method_name": "window.draw_with_options",
+        "unique_method_name": "window.draw_bitmap_with_options",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given window.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -18946,7 +19370,7 @@
         },
         "attributes": {
           "class": "window",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "destination",
           "suffix": "with_options",
           "group": "graphics",
@@ -22235,7 +22659,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877785,
+    "parsed_at": 1485843989,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -22683,9 +23107,9 @@
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const line &l);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_record",
         "suffix_name": null,
         "description": "Draws a line onto the given bitmap.",
         "brief": null,
@@ -22740,16 +23164,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const line &l,drawing_options opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_record_with_options",
         "suffix_name": null,
         "description": "Draws a line on the given bitmap.",
         "brief": null,
@@ -22817,16 +23243,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const point_2d &from_pt,const point_2d &to_pt);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_point_to_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_point_to_point",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -22894,16 +23322,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "point_to_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const point_2d &from_pt,const point_2d &to_pt,const drawing_options &opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_point_to_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_point_to_point_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -22984,16 +23414,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "point_to_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -23087,15 +23519,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_line",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,const drawing_options &opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another",
         "brief": null,
@@ -23202,16 +23636,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const line &l);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_record",
         "suffix_name": null,
         "description": "Draws a line onto the given window.",
         "brief": null,
@@ -23266,16 +23702,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const line &l,drawing_options opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_record_with_options",
         "suffix_name": null,
         "description": "Draws a line on the given window.",
         "brief": null,
@@ -23343,16 +23781,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const point_2d &from_pt,const point_2d &to_pt);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_point_to_point",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_point_to_point",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23420,16 +23860,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "point_to_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const point_2d &from_pt,const point_2d &to_pt,const drawing_options &opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_point_to_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_point_to_point_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23510,16 +23952,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "point_to_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,double x1,double y1,double x2,double y2);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23613,15 +24057,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_line",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,double x1,double y1,double x2,double y2,const drawing_options &opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another",
         "brief": null,
@@ -23728,8 +24174,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -28208,7 +28656,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877788,
+    "parsed_at": 1485843990,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -28465,9 +28913,9 @@
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,const point_2d &pt);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_at_point",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap.",
         "brief": null,
@@ -28522,16 +28970,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "at_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,const point_2d &pt,drawing_options opts);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_at_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_at_point_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap with the given drawing options.",
         "brief": null,
@@ -28599,16 +29049,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "at_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,double x,double y);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap.",
         "brief": null,
@@ -28676,15 +29128,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_pixel",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,double x,double y,drawing_options opts);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap with the given drawing options.",
         "brief": null,
@@ -28765,8 +29219,10 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -30899,7 +31355,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877793,
+    "parsed_at": 1485843993,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -31017,9 +31473,9 @@
       {
         "signature": "void draw_quad_on_bitmap(bitmap destination,color clr,const quad &q);",
         "name": "draw_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_quad",
         "suffix_name": null,
         "description": "Draw a quad on the supplied bitmap to the current bitmap.",
         "brief": null,
@@ -31074,15 +31530,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_bitmap(bitmap destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "draw_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_quad_with_options",
         "suffix_name": null,
         "description": "Draw a quad on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -31150,16 +31608,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_window(window destination,color clr,const quad &q);",
         "name": "draw_quad_on_window",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_quad",
         "suffix_name": null,
         "description": "Draw a quad on the supplied window to the current window.",
         "brief": null,
@@ -31214,15 +31674,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_window(window destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "draw_quad_on_window",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_quad_with_options",
         "suffix_name": null,
         "description": "Draw a quad on the supplied window using the supplied drawing options.",
         "brief": null,
@@ -31290,8 +31752,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -32446,9 +32910,9 @@
       {
         "signature": "void fill_quad_on_bitmap(bitmap destination,color clr,const quad &q);",
         "name": "fill_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_quad",
         "suffix_name": null,
         "description": "Fill a quad on the supplied bitmap on the current bitmap.",
         "brief": null,
@@ -32503,15 +32967,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_quad_on_bitmap(bitmap destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "fill_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_quad_with_options",
         "suffix_name": null,
         "description": "Fill a quad on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -32579,16 +33045,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_quad_on_window(window destination,color clr,const quad &q);",
         "name": "fill_quad_on_window",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_quad",
         "suffix_name": null,
         "description": "Fill a quad on the supplied window on the current window.",
         "brief": null,
@@ -32643,7 +33111,9 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -33029,9 +33499,9 @@
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,const rectangle &rect);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_record",
         "suffix_name": null,
         "description": "Fill a rectangle on the supplied bitmap onto the current bitmap.",
         "brief": null,
@@ -33086,16 +33556,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,const rectangle &rect,const drawing_options &opts);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_record_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -33163,16 +33635,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap to the current bitmap.",
         "brief": null,
@@ -33266,15 +33740,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_rectangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,const drawing_options &opts);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap, using the supplied drawing options.",
         "brief": null,
@@ -33381,16 +33857,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,const rectangle &rect);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_record",
         "suffix_name": null,
         "description": "Fill a rectangle on the supplied window onto the current window.",
         "brief": null,
@@ -33445,16 +33923,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,const rectangle &rect,const drawing_options &opts);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_record_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window using the supplied drawing options.",
         "brief": null,
@@ -33522,16 +34002,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window to the current window.",
         "brief": null,
@@ -33625,15 +34107,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_rectangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,double x,double y,double width,double height,const drawing_options &opts);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window, using the supplied drawing options.",
         "brief": null,
@@ -33740,8 +34224,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -47529,7 +48015,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877811,
+    "parsed_at": 1485843995,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -47890,9 +48376,9 @@
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_record",
         "suffix_name": null,
         "description": "Draw a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -47947,16 +48433,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_record_with_options",
         "suffix_name": null,
         "description": "Draw a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -48024,16 +48512,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle",
         "suffix_name": null,
         "description": "Draw a triangle to the given bitmap.",
         "brief": null,
@@ -48153,15 +48643,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_with_options",
         "suffix_name": null,
         "description": "Draw a triangle to the given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -48294,16 +48786,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,const triangle &tri);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_record",
         "suffix_name": null,
         "description": "Draw a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -48358,16 +48852,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_record_with_options",
         "suffix_name": null,
         "description": "Draw a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -48435,16 +48931,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle",
         "suffix_name": null,
         "description": "Draw a triangle to the given window.",
         "brief": null,
@@ -48564,15 +49062,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_with_options",
         "suffix_name": null,
         "description": "Draw a triangle to the given window, using the supplied drawing options.",
         "brief": null,
@@ -48705,8 +49205,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -49067,9 +49569,9 @@
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_record",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap",
         "brief": null,
@@ -49124,16 +49626,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_record_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap, using given drawing options",
         "brief": null,
@@ -49201,16 +49705,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap",
         "brief": null,
@@ -49330,15 +49836,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -49471,16 +49979,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,const triangle &tri);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_record",
         "suffix_name": null,
         "description": "Fill a triangle on a given window",
         "brief": null,
@@ -49535,16 +50045,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_record_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given window, using given drawing options",
         "brief": null,
@@ -49612,16 +50124,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle",
         "suffix_name": null,
         "description": "Fill a triangle on a given window",
         "brief": null,
@@ -49741,15 +50255,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -49882,8 +50398,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -53226,7 +53744,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1481588714,
+    "parsed_at": 1485843996,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -53634,9 +54152,9 @@
       {
         "signature": "http_request next_web_request(web_server server);",
         "name": "next_web_request",
-        "method_name": null,
+        "method_name": "next_web_request",
         "unique_global_name": "next_web_request",
-        "unique_method_name": null,
+        "unique_method_name": "web_server.next_web_request",
         "suffix_name": null,
         "description": "Returns the next request on a given `web_server` instance",
         "brief": null,
@@ -53665,6 +54183,7 @@
         },
         "attributes": {
           "class": "web_server",
+          "method": "next_web_request",
           "self": "server",
           "group": "networking",
           "static": "web_server"

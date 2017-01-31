@@ -442,6 +442,40 @@ void fill_circle(color clr, double x, double y, double radius, drawing_options o
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
     __sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 }
+void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius) {
+    __sklib_bitmap __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius, drawing_options opts) {
+    __sklib_bitmap __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
+void fill_circle_on_window(window destination, color clr, double x, double y, double radius) {
+    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void fill_circle_on_window(window destination, color clr, double x, double y, double radius, drawing_options opts) {
+    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
 point_2d center_point(const circle &c) {
     const __sklib_circle __skparam__c = __skadapter__to_sklib_circle(c);
     __sklib_point_2d __skreturn = __sklib__center_point__circle_ref(__skparam__c);

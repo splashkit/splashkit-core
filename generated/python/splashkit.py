@@ -1359,6 +1359,14 @@ sklib.__sklib__fill_circle__color__double__double__double.argtypes = [ _sklib_co
 sklib.__sklib__fill_circle__color__double__double__double.restype = None
 sklib.__sklib__fill_circle__color__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double.restype = None
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double.restype = None
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options.restype = None
 sklib.__sklib__center_point__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__center_point__circle_ref.restype = _sklib_point_2d
 sklib.__sklib__circle_at__point_2d_ref__double.argtypes = [ _sklib_point_2d, c_double ]
@@ -3713,6 +3721,36 @@ def fill_circle_with_options ( clr, x, y, radius, opts ):
     __skparam__radius = __skadapter__to_sklib_double(radius)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     sklib.__sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def fill_circle_on_bitmap ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def fill_circle_on_bitmap_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def fill_circle_on_window ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def fill_circle_on_window_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def center_point ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__center_point__circle_ref(__skparam__c)

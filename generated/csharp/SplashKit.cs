@@ -1163,6 +1163,18 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__double__double__double__drawing_options(__sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_window__window__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__center_point__circle_ref(__sklib_circle c);
 
@@ -4882,6 +4894,66 @@ namespace SplashKitSDK
       __skparam__radius = __skadapter__to_sklib_double(radius);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
       __sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
+    public static void FillCircleOnBitmap(Bitmap destination, Color clr, double x, double y, double radius)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void FillCircleOnBitmap(Bitmap destination, Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
+    public static void FillCircleOnWindow(Window destination, Color clr, double x, double y, double radius)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void FillCircleOnWindow(Window destination, Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
     }
     public static Point2D CenterPoint(Circle c)
     {
@@ -16609,6 +16681,18 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public void FillCircle(Color clr, double x, double y, double radius)
+    {
+        SplashKit.FillCircleOnBitmap(this, clr, x, y, radius);
+    }
+
+
+    public void FillCircle(Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+        SplashKit.FillCircleOnBitmap(this, clr, x, y, radius, opts);
+    }
+
+
     public bool BitmapCollision(double x1, double y1, Bitmap bmp2, double x2, double y2)
     {
         return SplashKit.BitmapCollision(this, x1, y1, bmp2, x2, y2);
@@ -16672,6 +16756,54 @@ public class Bitmap : PointerWrapper
     public bool RectangleCollision(int cell, Point2D pt, Rectangle rect)
     {
         return SplashKit.BitmapRectangleCollision(this, cell, pt, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, rect);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, x, y, width, height, opts);
     }
 
 
@@ -16759,13 +16891,13 @@ public class Bitmap : PointerWrapper
     }
 
 
-    public void Draw(Bitmap destination, double x, double y)
+    public void DrawBitmap(Bitmap destination, double x, double y)
     {
         SplashKit.DrawBitmapOnBitmap(destination, this, x, y);
     }
 
 
-    public void Draw(Bitmap destination, double x, double y, DrawingOptions opts)
+    public void DrawBitmap(Bitmap destination, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawBitmapOnBitmap(destination, this, x, y, opts);
     }
@@ -16801,6 +16933,78 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public void DrawLine(Color clr, Line l)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, l);
+    }
+
+
+    public void DrawLine(Color clr, Line l, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, l, opts);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, fromPt, toPt);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, fromPt, toPt, opts);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, x1, y1, x2, y2);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, x1, y1, x2, y2, opts);
+    }
+
+
+    public void DrawPixel(Color clr, Point2D pt)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, pt);
+    }
+
+
+    public void DrawPixel(Color clr, Point2D pt, DrawingOptions opts)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, pt, opts);
+    }
+
+
+    public void DrawPixel(Color clr, double x, double y)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, x, y);
+    }
+
+
+    public void DrawPixel(Color clr, double x, double y, DrawingOptions opts)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, x, y, opts);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q)
+    {
+        SplashKit.DrawQuadOnBitmap(this, clr, q);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.DrawQuadOnBitmap(this, clr, q, opts);
+    }
+
+
     public void DrawRectangle(Color clr, Rectangle rect)
     {
         SplashKit.DrawRectangleOnBitmap(this, clr, rect);
@@ -16822,6 +17026,42 @@ public class Bitmap : PointerWrapper
     public void DrawRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
     {
         SplashKit.DrawRectangleOnBitmap(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillQuad(Color clr, Quad q)
+    {
+        SplashKit.FillQuadOnBitmap(this, clr, q);
+    }
+
+
+    public void FillQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.FillQuadOnBitmap(this, clr, q, opts);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, rect);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, x, y, width, height, opts);
     }
 
 
@@ -16858,6 +17098,54 @@ public class Bitmap : PointerWrapper
     public void DrawText(string text, Color clr, Font fnt, int fontSize, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawTextOnBitmap(this, text, clr, fnt, fontSize, x, y, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, tri);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, tri, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3, opts);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, tri);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, tri, opts);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3, opts);
     }
 
     public Point2D CellCenter
@@ -17038,6 +17326,12 @@ public class WebServer : PointerWrapper
         SplashKit.StopWebServer(this);
     }
 
+    public HttpRequest NextWebRequest()
+    {
+        return SplashKit.NextWebRequest(this);
+    }
+
+
     public void Stop()
     {
         SplashKit.StopWebServer(this);
@@ -17076,15 +17370,123 @@ public class Window : PointerWrapper
     }
 
 
-    public void Draw(Bitmap bmp, double x, double y)
+    public void FillCircle(Color clr, double x, double y, double radius)
+    {
+        SplashKit.FillCircleOnWindow(this, clr, x, y, radius);
+    }
+
+
+    public void FillCircle(Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+        SplashKit.FillCircleOnWindow(this, clr, x, y, radius, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, rect);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void DrawBitmap(Bitmap bmp, double x, double y)
     {
         SplashKit.DrawBitmapOnWindow(this, bmp, x, y);
     }
 
 
-    public void Draw(Bitmap bmp, double x, double y, DrawingOptions opts)
+    public void DrawBitmap(Bitmap bmp, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawBitmapOnWindow(this, bmp, x, y, opts);
+    }
+
+
+    public void DrawLine(Color clr, Line l)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, l);
+    }
+
+
+    public void DrawLine(Color clr, Line l, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, l, opts);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, fromPt, toPt);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, fromPt, toPt, opts);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, x1, y1, x2, y2);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, x1, y1, x2, y2, opts);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q)
+    {
+        SplashKit.DrawQuadOnWindow(this, clr, q);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.DrawQuadOnWindow(this, clr, q, opts);
     }
 
 
@@ -17109,6 +17511,36 @@ public class Window : PointerWrapper
     public void DrawRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
     {
         SplashKit.DrawRectangleOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillQuad(Color clr, Quad q)
+    {
+        SplashKit.FillQuadOnWindow(this, clr, q);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, rect);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, x, y, width, height, opts);
     }
 
 
@@ -17145,6 +17577,54 @@ public class Window : PointerWrapper
     public void DrawText(string text, Color clr, Font fnt, int fontSize, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawTextOnWindow(this, text, clr, fnt, fontSize, x, y, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, tri);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, tri, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3, opts);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, tri);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, tri, opts);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3, opts);
     }
 
 
