@@ -21,6 +21,15 @@ SK_CMAKE_FPC="${SK_TOOLS}/scripts/cmake/splashkitpas"
 SK_CMAKE_PYTHON="${SK_TOOLS}/scripts/cmake/splashkit-python"
 SK_CMAKE_CSHARP="${SK_TOOLS}/scripts/cmake/splashkit-csharp"
 
+
+cd ../../out/splashkit-macos
+git checkout develop
+git pull
+cd ../splashkit-windows
+git checkout develop
+git pull
+cd "$APP_PATH"
+
 read -p "Regenerate SplashKit? [y,n] " doit
 case $doit in
   y|Y) GENERATE_LIB=true ;;
