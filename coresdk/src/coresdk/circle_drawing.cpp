@@ -97,4 +97,24 @@ namespace splashkit_lib
     {
         draw_circle(clr, x, y, radius, option_draw_to(destination));
     }
+    
+    void fill_circle_on_window(window destination, color clr, double x, double y, double radius, drawing_options opts)
+    {
+        fill_circle(clr, x, y, radius, option_draw_to(destination, opts));
+    }
+    
+    void fill_circle_on_window(window destination, color clr, double x, double y, double radius)
+    {
+        fill_circle(clr, x, y, radius, option_draw_to(destination));
+    }
+    
+    void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius, drawing_options opts)
+    {
+        fill_circle(clr, x, y, radius, option_draw_to(destination, opts));
+    }
+    
+    void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius)
+    {
+        fill_circle(clr, x, y, radius, option_draw_to(destination));
+    }
 }

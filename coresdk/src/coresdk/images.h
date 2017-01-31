@@ -116,7 +116,7 @@ namespace splashkit_lib
      *            will be drawn
      *
      * @attribute class   window
-     * @attribute method  draw
+     * @attribute method  draw_bitmap
      * @attribute self    destination
      */
     void draw_bitmap_on_window(window destination, bitmap bmp, double x, double y);
@@ -135,7 +135,7 @@ namespace splashkit_lib
      *              for how to draw the `bitmap`
      *
      * @attribute class   window
-     * @attribute method  draw
+     * @attribute method  draw_bitmap
      * @attribute self    destination
      * @attribute suffix  with_options
      */
@@ -153,7 +153,7 @@ namespace splashkit_lib
      *            will be drawn
      *
      * @attribute class   bitmap
-     * @attribute method  draw
+     * @attribute method  draw_bitmap
      * @attribute self    bmp
      * @attribute suffix  on_bitmap
      */
@@ -173,7 +173,7 @@ namespace splashkit_lib
      *              for how to draw the `bitmap`
      *
      * @attribute class   bitmap
-     * @attribute method  draw
+     * @attribute method  draw_bitmap
      * @attribute self    bmp
      * @attribute suffix  on_bitmap_with_options
      */

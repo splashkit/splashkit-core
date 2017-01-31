@@ -186,5 +186,68 @@ namespace splashkit_lib
      */
     void draw_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius);
 
+    /**
+     *  Fill a circle to the window using the supplied drawing options. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination window
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
+     * @attribute class     window
+     * @attribute method    fill_circle
+     */
+    void fill_circle_on_window(window destination, color clr, double x, double y, double radius, drawing_options opts);
+    
+    /**
+     *  Fill a circle onto the destination window. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination window
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     *
+     * @attribute class     window
+     * @attribute method    fill_circle
+     */
+    void fill_circle_on_window(window destination, color clr, double x, double y, double radius);
+    
+    /**
+     *  Fill a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination bitmap
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    with_options
+     * @attribute class     bitmap
+     * @attribute method    fill_circle
+     */
+    void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius, drawing_options opts);
+    
+    /**
+     *  Fill a circle onto the destination bitmap. The circle is centred on its x, y
+     *  coordinates, and has the provided radius.
+     *
+     * @param destination   The destination bitmap
+     * @param clr    The color of the circle
+     * @param x      The x location of the circle
+     * @param y      The y location of the circle
+     * @param radius The radius of the circle
+     *
+     * @attribute class     bitmap
+     * @attribute method    fill_circle
+     */
+    void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius);
 }
 #endif /* circle_drawing_hpp */
