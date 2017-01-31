@@ -333,7 +333,6 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute method  draw_triangle
-     
      */
     void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
