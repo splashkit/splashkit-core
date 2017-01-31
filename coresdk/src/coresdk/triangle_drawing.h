@@ -159,6 +159,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
@@ -181,6 +182,7 @@ namespace splashkit_lib
      *             third point of the triangle
      *
      * @attribute class   window
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
@@ -194,6 +196,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record_with_options
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
 
@@ -206,6 +209,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_window(window destination, color clr, const triangle &tri);
 
@@ -230,6 +234,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
@@ -252,6 +257,7 @@ namespace splashkit_lib
      *             third point of the triangle
      *
      * @attribute class   window
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_window(window destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
@@ -265,6 +271,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record_with_options
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_window(window destination, color clr, const triangle &tri, drawing_options opts);
 
@@ -277,6 +284,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_window(window destination, color clr, const triangle &tri);
 
@@ -301,6 +309,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
@@ -323,6 +332,8 @@ namespace splashkit_lib
      *             third point of the triangle
      *
      * @attribute class   bitmap
+     * @attribute method  draw_triangle
+     
      */
     void draw_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
@@ -336,6 +347,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record_with_options
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
 
@@ -348,6 +360,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record
+     * @attribute method  draw_triangle
      */
     void draw_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
 
@@ -372,6 +385,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3, drawing_options opts);
 
@@ -394,6 +408,7 @@ namespace splashkit_lib
      *             third point of the triangle
      *
      * @attribute class   bitmap
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
@@ -407,6 +422,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record_with_options
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri, drawing_options opts);
 
@@ -419,6 +435,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record
+     * @attribute method  fill_triangle
      */
     void fill_triangle_on_bitmap(bitmap destination, color clr, const triangle &tri);
 

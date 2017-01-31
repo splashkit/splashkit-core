@@ -103,6 +103,7 @@ namespace splashkit_lib
      * @param y2  The distance from the top of the window/bitmap to the second
      *            point
      *
+     * @attribute method  draw_line
      * @attribute class   window
      */
     void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2);
@@ -124,6 +125,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_window(window destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
     
@@ -137,6 +139,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  point_to_point
+     * @attribute method  draw_line
      */
     void draw_line_on_window(window destination, color clr, const point_2d &from_pt, const point_2d &to_pt);
     
@@ -151,6 +154,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  point_to_point_with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_window(window destination, color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
     
@@ -163,6 +167,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record
+     * @attribute method  draw_line
      */
     void draw_line_on_window(window destination, color clr, const line &l);
     
@@ -176,6 +181,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record_with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_window(window destination, color clr, const line &l, drawing_options opts);
     
@@ -194,6 +200,7 @@ namespace splashkit_lib
      *            point
      *
      * @attribute class   bitmap
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2);
     
@@ -214,6 +221,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, double x1, double y1, double x2, double y2, const drawing_options &opts);
     
@@ -227,6 +235,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  point_to_point
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt, const point_2d &to_pt);
     
@@ -241,6 +250,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  point_to_point_with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, const point_2d &from_pt, const point_2d &to_pt, const drawing_options &opts);
     
@@ -253,6 +263,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, const line &l);
     
@@ -266,6 +277,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record_with_options
+     * @attribute method  draw_line
      */
     void draw_line_on_bitmap(bitmap destination, color clr, const line &l, drawing_options opts);
 

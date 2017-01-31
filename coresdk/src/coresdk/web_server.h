@@ -109,6 +109,7 @@ namespace splashkit_lib
      *
      * @attribute class web_server
      * @attribute self  server
+     * @attribute method next_web_request
      */
     http_request next_web_request(web_server server);
 
