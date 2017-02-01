@@ -17302,7 +17302,107 @@ public class HttpRequest : PointerWrapper
   }
         protected internal override void DoFree()
         {}
+    
+    public bool IsDeleteRequestFor(string path)
+    {
+        return SplashKit.IsDeleteRequestFor(this, path);
     }
+
+
+    public bool IsGetRequestFor(string path)
+    {
+        return SplashKit.IsGetRequestFor(this, path);
+    }
+
+
+    public bool IsOptionsRequestFor(string path)
+    {
+        return SplashKit.IsOptionsRequestFor(this, path);
+    }
+
+
+    public bool IsPostRequestFor(string path)
+    {
+        return SplashKit.IsPostRequestFor(this, path);
+    }
+
+
+    public bool IsPutRequestFor(string path)
+    {
+        return SplashKit.IsPutRequestFor(this, path);
+    }
+
+
+    public bool IsRequestFor(HttpMethod method, string path)
+    {
+        return SplashKit.IsRequestFor(this, method, path);
+    }
+
+
+    public bool IsTraceRequestFor(string path)
+    {
+        return SplashKit.IsTraceRequestFor(this, path);
+    }
+
+
+    public void SendHtmlFileResponse(string filename)
+    {
+        SplashKit.SendHtmlFileResponse(this, filename);
+    }
+
+
+    public void SendResponse()
+    {
+        SplashKit.SendResponse(this);
+    }
+
+
+    public void SendResponse(string message)
+    {
+        SplashKit.SendResponse(this, message);
+    }
+
+
+    public void SendResponse(HttpStatusCode code)
+    {
+        SplashKit.SendResponse(this, code);
+    }
+
+
+    public void SendResponse(HttpStatusCode code, string message)
+    {
+        SplashKit.SendResponse(this, code, message);
+    }
+
+
+    public void SendResponse(HttpStatusCode code, string message, string contentType)
+    {
+        SplashKit.SendResponse(this, code, message, contentType);
+    }
+
+
+    public void SendResponse(Json j)
+    {
+        SplashKit.SendResponse(this, j);
+    }
+
+    public string Body
+    {
+        get { return SplashKit.RequestBody(this); }
+    }
+    public HttpMethod Method
+    {
+        get { return SplashKit.RequestMethod(this); }
+    }
+    public string Uri
+    {
+        get { return SplashKit.RequestUri(this); }
+    }
+    public List<string> UriStubs
+    {
+        get { return SplashKit.RequestUriStubs(this); }
+    }
+}
 public class WebServer : PointerWrapper
 {
   private WebServer(IntPtr ptr) : base(ptr, true) {}
@@ -17326,17 +17426,19 @@ public class WebServer : PointerWrapper
         SplashKit.StopWebServer(this);
     }
 
-    public HttpRequest NextWebRequest()
-    {
-        return SplashKit.NextWebRequest(this);
-    }
-
-
     public void Stop()
     {
         SplashKit.StopWebServer(this);
     }
 
+    public bool HasIncomingRequests
+    {
+        get { return SplashKit.HasIncomingRequests(this); }
+    }
+    public HttpRequest NextWebRequest
+    {
+        get { return SplashKit.NextWebRequest(this); }
+    }
 }
 public class Window : PointerWrapper
 {
