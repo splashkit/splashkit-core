@@ -995,6 +995,23 @@ namespace splashkit_lib
 
         return nullptr;
     }
+    
+    message read_message()
+    {
+        for(auto const& tcp_server: _server_sockets)
+        {
+            if ( has_messages(tcp_server.second) )
+                return read_message(tcp_server.second);
+        }
+        for (auto const& con: _connections)
+        {
+            if ( con.second->messages.size() > 0 )
+                return read_message(con.second);
+        }
+        
+        return nullptr;
+    }
+    
 
     string read_message_data(connection con)
     {

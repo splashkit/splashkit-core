@@ -616,6 +616,13 @@ namespace splashkit_lib
     message read_message(const string &name);
 
     /**
+     * Read a message from the network (from a server or connection).
+     *
+     * @return The first message from the network.
+     */
+    message read_message();
+
+    /**
      * Reads the first message from the server.
      *
      * @param  svr A server

@@ -2849,14 +2849,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__sklib_string name, __sklib_string host, ushort port, int protocol);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
-    private static extern __sklib_ptr __sklib__read_message__server_socket(__sklib_ptr svr);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__connection", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message__connection(__sklib_ptr aConnection);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__server_socket(__sklib_ptr svr);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_message_data__string_ref(__sklib_string name);
@@ -9686,12 +9689,10 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__host);
       return __skadapter__to_connection(__skreturn);
     }
-    public static Message ReadMessage(ServerSocket svr)
+    public static Message ReadMessage()
     {
-      __sklib_ptr __skparam__svr;
       __sklib_ptr __skreturn;
-      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
-      __skreturn = __sklib__read_message__server_socket(__skparam__svr);
+      __skreturn = __sklib__read_message();
       return __skadapter__to_message(__skreturn);
     }
     public static Message ReadMessage(Connection aConnection)
@@ -9709,6 +9710,14 @@ namespace SplashKitSDK
       __skparam__name = __skadapter__to_sklib_string(name);
       __skreturn = __sklib__read_message__string_ref(__skparam__name);
     __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __sklib_ptr __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__read_message__server_socket(__skparam__svr);
       return __skadapter__to_message(__skreturn);
     }
     public static string ReadMessageData(string name)

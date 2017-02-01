@@ -3212,9 +3212,8 @@ __sklib_connection __sklib__open_connection__string_ref__string_ref__unsigned_sh
     connection __skreturn = open_connection(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol);
     return __sklib__to_sklib_connection(__skreturn);
 }
-__sklib_message __sklib__read_message__server_socket(__sklib_server_socket svr) {
-    server_socket __skparam__svr = __sklib__to_server_socket(svr);
-    message __skreturn = read_message(__skparam__svr);
+__sklib_message __sklib__read_message() {
+    message __skreturn = read_message();
     return __sklib__to_sklib_message(__skreturn);
 }
 __sklib_message __sklib__read_message__connection(__sklib_connection a_connection) {
@@ -3225,6 +3224,11 @@ __sklib_message __sklib__read_message__connection(__sklib_connection a_connectio
 __sklib_message __sklib__read_message__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     message __skreturn = read_message(__skparam__name);
+    return __sklib__to_sklib_message(__skreturn);
+}
+__sklib_message __sklib__read_message__server_socket(__sklib_server_socket svr) {
+    server_socket __skparam__svr = __sklib__to_server_socket(svr);
+    message __skreturn = read_message(__skparam__svr);
     return __sklib__to_sklib_message(__skreturn);
 }
 __sklib_string __sklib__read_message_data__string_ref(const __sklib_string name) {

@@ -2481,12 +2481,14 @@ sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.argtypes 
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.restype = c_void_p
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type.argtypes = [ _sklib_string, _sklib_string, c_ushort, c_int ]
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type.restype = c_void_p
-sklib.__sklib__read_message__server_socket.argtypes = [ c_void_p ]
-sklib.__sklib__read_message__server_socket.restype = c_void_p
+sklib.__sklib__read_message.argtypes = [  ]
+sklib.__sklib__read_message.restype = c_void_p
 sklib.__sklib__read_message__connection.argtypes = [ c_void_p ]
 sklib.__sklib__read_message__connection.restype = c_void_p
 sklib.__sklib__read_message__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__read_message__string_ref.restype = c_void_p
+sklib.__sklib__read_message__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__read_message__server_socket.restype = c_void_p
 sklib.__sklib__read_message_data__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__read_message_data__string_ref.restype = _sklib_string
 sklib.__sklib__read_message_data__connection.argtypes = [ c_void_p ]
@@ -6107,9 +6109,8 @@ def open_connection_with_protocol ( name, host, port, protocol ):
     __skparam__protocol = __skadapter__to_sklib_connection_type(protocol)
     __skreturn = sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol)
     return __skadapter__to_connection(__skreturn)
-def read_message_from_server ( svr ):
-    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
-    __skreturn = sklib.__sklib__read_message__server_socket(__skparam__svr)
+def read_message (  ):
+    __skreturn = sklib.__sklib__read_message()
     return __skadapter__to_message(__skreturn)
 def read_message_from_connection ( a_connection ):
     __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
@@ -6118,6 +6119,10 @@ def read_message_from_connection ( a_connection ):
 def read_message_from_name ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__read_message__string_ref(__skparam__name)
+    return __skadapter__to_message(__skreturn)
+def read_message_from_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    __skreturn = sklib.__sklib__read_message__server_socket(__skparam__svr)
     return __skadapter__to_message(__skreturn)
 def read_message_data_from_name ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)

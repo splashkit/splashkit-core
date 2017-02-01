@@ -3330,9 +3330,8 @@ connection open_connection(const string &name, const string &host, unsigned shor
     __skadapter__free__sklib_string(__skparam__host);
     return __skadapter__to_connection(__skreturn);
 }
-message read_message(server_socket svr) {
-    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
-    __sklib_message __skreturn = __sklib__read_message__server_socket(__skparam__svr);
+message read_message() {
+    __sklib_message __skreturn = __sklib__read_message();
     return __skadapter__to_message(__skreturn);
 }
 message read_message(connection a_connection) {
@@ -3344,6 +3343,11 @@ message read_message(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     __sklib_message __skreturn = __sklib__read_message__string_ref(__skparam__name);
     __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_message(__skreturn);
+}
+message read_message(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    __sklib_message __skreturn = __sklib__read_message__server_socket(__skparam__svr);
     return __skadapter__to_message(__skreturn);
 }
 string read_message_data(const string &name) {

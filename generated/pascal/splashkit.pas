@@ -920,9 +920,10 @@ function MyIp(): String;
 function NameForConnection(host: String; port: Cardinal): String;
 function OpenConnection(const name: String; const host: String; port: Word): Connection;
 function OpenConnection(const name: String; const host: String; port: Word; protocol: ConnectionType): Connection;
-function ReadMessage(svr: ServerSocket): Message;
+function ReadMessage(): Message;
 function ReadMessage(aConnection: Connection): Message;
 function ReadMessage(const name: String): Message;
+function ReadMessage(svr: ServerSocket): Message;
 function ReadMessageData(const name: String): String;
 function ReadMessageData(aConnection: Connection): String;
 function ReadMessageData(svr: ServerSocket): String;
@@ -2970,9 +2971,10 @@ function __sklib__my_ip(): __sklib_string; cdecl; external;
 function __sklib__name_for_connection__string__unsigned_int(host: __sklib_string; port: Cardinal): __sklib_string; cdecl; external;
 function __sklib__open_connection__string_ref__string_ref__unsigned_short(const name: __sklib_string; const host: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
 function __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(const name: __sklib_string; const host: __sklib_string; port: Word; protocol: LongInt): __sklib_ptr; cdecl; external;
-function __sklib__read_message__server_socket(svr: __sklib_ptr): __sklib_ptr; cdecl; external;
+function __sklib__read_message(): __sklib_ptr; cdecl; external;
 function __sklib__read_message__connection(aConnection: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__read_message__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__read_message__server_socket(svr: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__read_message_data__string_ref(const name: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__read_message_data__connection(aConnection: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__read_message_data__server_socket(svr: __sklib_ptr): __sklib_string; cdecl; external;
@@ -9249,13 +9251,11 @@ begin
   __skreturn := __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol);
   result := __skadapter__to_connection(__skreturn);
 end;
-function ReadMessage(svr: ServerSocket): Message;
+function ReadMessage(): Message;
 var
-  __skparam__svr: __sklib_ptr;
   __skreturn: __sklib_ptr;
 begin
-  __skparam__svr := __skadapter__to_sklib_server_socket(svr);
-  __skreturn := __sklib__read_message__server_socket(__skparam__svr);
+  __skreturn := __sklib__read_message();
   result := __skadapter__to_message(__skreturn);
 end;
 function ReadMessage(aConnection: Connection): Message;
@@ -9274,6 +9274,15 @@ var
 begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __skreturn := __sklib__read_message__string_ref(__skparam__name);
+  result := __skadapter__to_message(__skreturn);
+end;
+function ReadMessage(svr: ServerSocket): Message;
+var
+  __skparam__svr: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__svr := __skadapter__to_sklib_server_socket(svr);
+  __skreturn := __sklib__read_message__server_socket(__skparam__svr);
   result := __skadapter__to_message(__skreturn);
 end;
 function ReadMessageData(const name: String): String;

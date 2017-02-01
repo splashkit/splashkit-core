@@ -27290,7 +27290,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1485944970,
+    "parsed_at": 1485947434,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -29477,44 +29477,27 @@
         }
       },
       {
-        "signature": "message read_message(server_socket svr);",
+        "signature": "message read_message();",
         "name": "read_message",
-        "method_name": "read_message",
-        "unique_global_name": "read_message_from_server",
-        "unique_method_name": "server_socket.read_message_from_server",
+        "method_name": null,
+        "unique_global_name": "read_message",
+        "unique_method_name": null,
         "suffix_name": null,
-        "description": "Reads the first message from the server.",
+        "description": "Read a message from the network (from a server or connection).",
         "brief": null,
         "return": {
           "type": "message",
-          "description": "The first message read from the server",
+          "description": "The first message from the network.",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
           "type_parameter": null
         },
         "parameters": {
-          "svr": {
-            "type": "server_socket",
-            "description": "A server",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
         },
         "attributes": {
-          "class": "server_socket",
-          "method": "read_message",
-          "suffix": "from_server",
           "group": "networking",
-          "static": "networking",
-          "self": "svr"
+          "static": "networking"
         }
       },
       {
@@ -29594,6 +29577,47 @@
           "suffix": "from_name",
           "group": "networking",
           "static": "networking"
+        }
+      },
+      {
+        "signature": "message read_message(server_socket svr);",
+        "name": "read_message",
+        "method_name": "read_message",
+        "unique_global_name": "read_message_from_server",
+        "unique_method_name": "server_socket.read_message_from_server",
+        "suffix_name": null,
+        "description": "Reads the first message from the server.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "A server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "read_message",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
         }
       },
       {
