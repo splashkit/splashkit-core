@@ -26,6 +26,12 @@ int __sklib__to_sklib_bool(bool v) {
 bool __sklib__to_bool(int v) {
   return (v != 0 ? true : false);
 }
+__sklib_int8_t __sklib__to_sklib_int8_t(int8_t v) {
+    return v;
+}
+int8_t __sklib__to_int8_t(int8_t v) {
+    return v;
+}
 __sklib_int __sklib__to_sklib_int(int v) {
     return v;
 }
@@ -486,6 +492,38 @@ void __sklib__update_from_vector_line(const std::vector<line> &v, __sklib_vector
     unsigned int i = 0;
     for (line d : v) {
         __skreturn->data_from_lib[i] = __sklib__to_sklib_line(d);
+        i++;
+    }
+}
+extern "C" void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v) {
+    free(v.data_from_lib);
+}
+__sklib_vector_int8_t __sklib__to_sklib_vector_int8_t(const std::vector<int8_t> &v) {
+    __sklib_vector_int8_t __skreturn;
+    __skreturn.size_from_app = 0;
+    __skreturn.data_from_app = nullptr;
+    __skreturn.size_from_lib = static_cast<unsigned int>(v.size());
+    __skreturn.data_from_lib = (unsigned char *)malloc(__skreturn.size_from_lib * sizeof(unsigned char));
+    unsigned int i = 0;
+    for (int8_t d : v) {
+        __skreturn.data_from_lib[i] = __sklib__to_sklib_int8_t(d);
+        i++;
+    }
+    return __skreturn;
+}
+vector<int8_t> __sklib__to_vector_int8_t(const __sklib_vector_int8_t &v) {
+    vector<int8_t> __skreturn;
+    for (int i = 0; i < v.size_from_app; i++) {
+        __skreturn.push_back(__sklib__to_int8_t(v.data_from_app[i]));
+    }
+    return __skreturn;
+}
+void __sklib__update_from_vector_int8_t(const std::vector<int8_t> &v, __sklib_vector_int8_t *__skreturn) {
+    __skreturn->size_from_lib = static_cast<unsigned int>(v.size());
+    __skreturn->data_from_lib = (unsigned char *)malloc(__skreturn->size_from_lib * sizeof(unsigned char));
+    unsigned int i = 0;
+    for (int8_t d : v) {
+        __skreturn->data_from_lib[i] = __sklib__to_sklib_int8_t(d);
         i++;
     }
 }

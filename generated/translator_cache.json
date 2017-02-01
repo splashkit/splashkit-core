@@ -27290,7 +27290,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1481587830,
+    "parsed_at": 1485944970,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -27355,6 +27355,292 @@
           "group": "networking",
           "static": "networking",
           "self": "server"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg,server_socket svr);",
+        "name": "broadcast_message",
+        "method_name": "broadcast_message",
+        "unique_global_name": "broadcast_message",
+        "unique_method_name": "server_socket.broadcast_message",
+        "suffix_name": null,
+        "description": "Broadcast a message to all connections of a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to send the message to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "broadcast_message",
+          "self": "svr",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg);",
+        "name": "broadcast_message",
+        "method_name": null,
+        "unique_global_name": "broadcast_message_to_all",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Broadcase a message to all of the connections.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "to_all",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg,const string &name);",
+        "name": "broadcast_message",
+        "method_name": null,
+        "unique_global_name": "broadcast_message_to_server_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Broadcast a message to all connections of a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the server to send the message to.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "to_server_named",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void check_network_activity();",
+        "name": "check_network_activity",
+        "method_name": null,
+        "unique_global_name": "check_network_activity",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Check network activity, looking for new connections and messages.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void clear_messages(const string &name);",
+        "name": "clear_messages",
+        "method_name": null,
+        "unique_global_name": "clear_messages_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Clear all of the messages from a server or connection with the supplied name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection or the server to clear.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void clear_messages(connection a_connection);",
+        "name": "clear_messages",
+        "method_name": "clear_messages",
+        "unique_global_name": "clear_messages_from_connection",
+        "unique_method_name": "connection.clear_messages_from_connection",
+        "suffix_name": null,
+        "description": "Clear all of the messages from a connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "clear_messages",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "void clear_messages(server_socket svr);",
+        "name": "clear_messages",
+        "method_name": "clear_messages",
+        "unique_global_name": "clear_messages_from_server",
+        "unique_method_name": "server_socket.clear_messages_from_server",
+        "suffix_name": null,
+        "description": "Clear all of the messages from a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to clear the messages from",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "clear_messages",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
         }
       },
       {
@@ -27683,6 +27969,199 @@
         }
       },
       {
+        "signature": "unsigned int connection_ip(connection a_connection);",
+        "name": "connection_ip",
+        "method_name": null,
+        "unique_global_name": "connection_ip",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the ip address of the passed in connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The ip addres of the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "ip",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned int connection_ip(const string &name);",
+        "name": "connection_ip",
+        "method_name": null,
+        "unique_global_name": "connection_ip_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the ip address of the connection with the supplied name.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The connection's ip address",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "connection connection_named(const string &name);",
+        "name": "connection_named",
+        "method_name": null,
+        "unique_global_name": "connection_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Fetch the connection with the indicated name.",
+        "brief": null,
+        "return": {
+          "type": "connection",
+          "description": "The connection with that name",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to fetch",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned short int connection_port(connection a_connection);",
+        "name": "connection_port",
+        "method_name": null,
+        "unique_global_name": "connection_port",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the port of the connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the connection.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "port",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned short int connection_port(const string &name);",
+        "name": "connection_port",
+        "method_name": null,
+        "unique_global_name": "connection_port_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the part of the connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "server_socket create_server(const string &name,unsigned short int port);",
         "name": "create_server",
         "method_name": null,
@@ -27836,6 +28315,188 @@
         "attributes": {
           "group": "networking",
           "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_connection(const string &name);",
+        "name": "has_connection",
+        "method_name": null,
+        "unique_global_name": "has_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Does the connection with the supplied name exist?",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there is a connection with the supplied name",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages();",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if there are any messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are any messages waiting to be read",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "getter": "has_messages",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages(connection con);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a connection has messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are any messages on the connection.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "con": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "has_messages",
+          "suffix": "on_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "con"
+        }
+      },
+      {
+        "signature": "bool has_messages(const string &name);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a server or connection has any messages.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "[description]",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the server or connection to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "on_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages(server_socket svr);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_server",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a server has any messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are messages on the server.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "getter": "has_messages",
+          "suffix": "on_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
         }
       },
       {
@@ -28085,6 +28746,84 @@
         }
       },
       {
+        "signature": "bool is_connection_open(connection con);",
+        "name": "is_connection_open",
+        "method_name": null,
+        "unique_global_name": "is_connection_open",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the connection currently is open.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the connection is open.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "con": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "is_open",
+          "group": "networking",
+          "static": "networking",
+          "self": "con"
+        }
+      },
+      {
+        "signature": "bool is_connection_open(const string &name);",
+        "name": "is_connection_open",
+        "method_name": null,
+        "unique_global_name": "is_connection_open_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the connection with the supplied name currently is open.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the connection is open.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "connection last_connection(const string &name);",
         "name": "last_connection",
         "method_name": null,
@@ -28163,6 +28902,363 @@
         }
       },
       {
+        "signature": "connection message_connection(message msg);",
+        "name": "message_connection",
+        "method_name": null,
+        "unique_global_name": "message_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the connection that sent a message.",
+        "brief": null,
+        "return": {
+          "type": "connection",
+          "description": "The connection that sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(server_socket svr);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_on_server",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a server.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages on the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "getter": "message_count",
+          "suffix": "on_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(connection a_connection);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_on_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages to be read from the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "message_count",
+          "suffix": "on_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(const string &name);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a server or connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages on the server or connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the server or connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string message_data(message msg);",
+        "name": "message_data",
+        "method_name": null,
+        "unique_global_name": "message_data",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the body of a message as a string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The string body of the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "data",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "vector<int8_t> message_data_bytes(message msg);",
+        "name": "message_data_bytes",
+        "method_name": null,
+        "unique_global_name": "message_data_bytes",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the body of a message as a list of bytes.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "The body of the message as bytes",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "int8_t"
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "data_bytes",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "string message_host(message msg);",
+        "name": "message_host",
+        "method_name": null,
+        "unique_global_name": "message_host",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the host who made the message.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The host who sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "host",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "unsigned short int message_port(message msg);",
+        "name": "message_port",
+        "method_name": null,
+        "unique_global_name": "message_port",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the port used to send a message.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "port",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "connection_type message_protocol(message msg);",
+        "name": "message_protocol",
+        "method_name": null,
+        "unique_global_name": "message_protocol",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the protocol used to send a message.",
+        "brief": null,
+        "return": {
+          "type": "connection_type",
+          "description": "The protocol used to sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "protocol",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
         "signature": "string my_ip();",
         "name": "my_ip",
         "method_name": null,
@@ -28180,6 +29276,56 @@
           "type_parameter": null
         },
         "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string name_for_connection(const string host,const unsigned int port);",
+        "name": "name_for_connection",
+        "method_name": null,
+        "unique_global_name": "name_for_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the name SplashKit would use for a connection made to a server\nfrom a host to a port.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The name SplashKit would use for this connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "host": {
+            "type": "string",
+            "description": "The host name",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "port": {
+            "type": "unsigned int",
+            "description": "The port",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
         },
         "attributes": {
           "group": "networking",
@@ -28331,6 +29477,348 @@
         }
       },
       {
+        "signature": "message read_message(server_socket svr);",
+        "name": "read_message",
+        "method_name": "read_message",
+        "unique_global_name": "read_message_from_server",
+        "unique_method_name": "server_socket.read_message_from_server",
+        "suffix_name": null,
+        "description": "Reads the first message from the server.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "A server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "read_message",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "message read_message(connection a_connection);",
+        "name": "read_message",
+        "method_name": "read_message",
+        "unique_global_name": "read_message_from_connection",
+        "unique_method_name": "connection.read_message_from_connection",
+        "suffix_name": null,
+        "description": "Reads the first message from the connection.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "A connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "read_message",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "message read_message(const string &name);",
+        "name": "read_message",
+        "method_name": null,
+        "unique_global_name": "read_message_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Reads the first message from a connection or server.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the connection or server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of a connection or server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string read_message_data(const string &name);",
+        "name": "read_message_data",
+        "method_name": null,
+        "unique_global_name": "read_message_data_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Read message data from a connection or server.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message from the server or connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection or server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string read_message_data(connection a_connection);",
+        "name": "read_message_data",
+        "method_name": "read_message_data",
+        "unique_global_name": "read_message_data_from_connection",
+        "unique_method_name": "connection.read_message_data_from_connection",
+        "suffix_name": null,
+        "description": "Read message data from a connection.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message on the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "read_message_data",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "string read_message_data(server_socket svr);",
+        "name": "read_message_data",
+        "method_name": "read_message_data",
+        "unique_global_name": "read_message_data_from_server",
+        "unique_method_name": "server_socket.read_message_data_from_server",
+        "suffix_name": null,
+        "description": "Read message data from a server.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message on the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "read_message_data",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "void reconnect(connection a_connection);",
+        "name": "reconnect",
+        "method_name": "reconnect",
+        "unique_global_name": "reconnect",
+        "unique_method_name": "connection.reconnect",
+        "suffix_name": null,
+        "description": "Attempt to reconnect the connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection to reconnect",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "reconnect",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "void reconnect(const string &name);",
+        "name": "reconnect",
+        "method_name": null,
+        "unique_global_name": "reconnect_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Attempt to reconnect the connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to reconnect.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void release_all_connections();",
+        "name": "release_all_connections",
+        "method_name": null,
+        "unique_global_name": "release_all_connections",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Close and release the resources used by all of the connections.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "connection retrieve_connection(const string &name,int idx);",
         "name": "retrieve_connection",
         "method_name": null,
@@ -28432,6 +29920,111 @@
           "group": "networking",
           "static": "networking",
           "self": "server"
+        }
+      },
+      {
+        "signature": "bool send_message_to(const string &a_msg,connection a_connection);",
+        "name": "send_message_to",
+        "method_name": "send_message",
+        "unique_global_name": "send_message_to_connection",
+        "unique_method_name": "connection.send_message_connection",
+        "suffix_name": null,
+        "description": "Send a message to the connection.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the message sends.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection to send the message to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "send_message",
+          "self": "a_connection",
+          "suffix": "connection",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool send_message_to(const string &a_msg,const string &name);",
+        "name": "send_message_to",
+        "method_name": null,
+        "unique_global_name": "send_message_to_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Send a message to the connection with the given name.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the message sends",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to send the message to",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "name",
+          "group": "networking",
+          "static": "networking"
         }
       },
       {
@@ -28545,6 +30138,69 @@
           }
         },
         "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void set_udp_packet_size(unsigned int udp_packet_size);",
+        "name": "set_udp_packet_size",
+        "method_name": null,
+        "unique_global_name": "set_udp_packet_size",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Change the size of the UDP packets.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "udp_packet_size": {
+            "type": "unsigned int",
+            "description": "The new packet size.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "setter": "udp_packet_size",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned int udp_packet_size();",
+        "name": "udp_packet_size",
+        "method_name": null,
+        "unique_global_name": "udp_packet_size",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the size SplashKit is using for UDP packets.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The size of UDP packets.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "getter": "udp_packet_size",
           "group": "networking",
           "static": "networking"
         }

@@ -19,6 +19,10 @@ namespace SplashKitSDK
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static IntPtr __skadapter__to_ptr(IntPtr v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte __skadapter__to_sklib_int8_t(byte v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte __skadapter__to_int8_t(byte v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_int(int v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_int(int v) { return v; }
@@ -480,6 +484,74 @@ namespace SplashKitSDK
         __skreturn.Add(__skadapter__to_line(v.data_from_lib[i]));
       }
             __sklib__free__sklib_vector_line(v);
+    }
+
+    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
+    private struct __sklib_vector_int8_t    {
+      internal IntPtr _data_from_app;
+      public byte[] data_from_app
+      {
+        set
+        {
+          _data_from_app = ToIntPtr(value);
+        }
+      }
+      public uint size_from_app;
+      private IntPtr _data_from_lib;
+      public byte[] data_from_lib
+      {
+        get
+        {
+          return FromIntPtr<byte>(_data_from_lib, (int)size_from_lib);
+        }
+      }
+      public uint size_from_lib;
+    }
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_int8_t", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v);
+
+    private static void __skadapter__free__sklib_vector_int8_t(ref __sklib_vector_int8_t v)
+    {
+      System.Console.WriteLine("Freeing data");
+      Marshal.FreeHGlobal(v._data_from_app);
+    }
+    private static __sklib_vector_int8_t __skadapter__to_sklib_vector_int8_t(List<byte> v)
+    {
+      int i = 0;
+      __sklib_vector_int8_t result = new __sklib_vector_int8_t();
+
+      result.size_from_lib = 0;
+      result.size_from_app = (uint)v.Count;
+      byte[] tmp = new byte[result.size_from_app];
+
+      foreach(byte d in v)
+      {
+        tmp[i] = __skadapter__to_sklib_int8_t(v[i]);
+        i++;
+      }
+
+      result.data_from_app = tmp;
+      return result;
+    }
+    private static List<byte> __skadapter__to_vector_int8_t(__sklib_vector_int8_t v)
+    {
+      List<byte> result = new List<byte>();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        result.Add(__skadapter__to_int8_t(v.data_from_lib[i]));
+      }
+      __sklib__free__sklib_vector_int8_t(v);
+      return result;
+    }
+    private static void __skadapter__update_from_vector_int8_t(ref __sklib_vector_int8_t v, List<byte> __skreturn)
+    {
+      __skreturn.Clear();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        __skreturn.Add(__skadapter__to_int8_t(v.data_from_lib[i]));
+      }
+            __sklib__free__sklib_vector_int8_t(v);
     }
 
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
@@ -2618,6 +2690,27 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__accept_new_connection__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__server_socket", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref__server_socket(__sklib_string aMsg, __sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref(__sklib_string aMsg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__check_network_activity", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__check_network_activity();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__connection", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__server_socket", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__server_socket(__sklib_ptr svr);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_connections", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_all_connections();
 
@@ -2645,6 +2738,21 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_count__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__connection", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__connection_ip__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__string_ref", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__connection_ip__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_named__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__connection_named__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__connection", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__connection_port__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__string_ref", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__connection_port__string_ref(__sklib_string name);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_server__string_ref__unsigned_short(__sklib_string name, ushort port);
 
@@ -2653,6 +2761,21 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_hex__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__dec_to_hex__unsigned_int(uint aDec);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_connection__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_connection__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__connection(__sklib_ptr con);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__server_socket", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__server_socket(__sklib_ptr svr);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_new_connections", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_new_connections();
@@ -2675,14 +2798,50 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_str__unsigned_int(uint ip);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_connection_open__connection(__sklib_ptr con);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_connection_open__string_ref(__sklib_string name);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__string_ref(__sklib_string name);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_connection__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__message_connection__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__server_socket", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__connection", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__string_ref", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__message_data__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data_bytes__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_int8_t __sklib__message_data_bytes__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_host__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__message_host__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_port__message", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__message_port__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_protocol__message", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__message_protocol__message(__sklib_ptr msg);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__my_ip", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__my_ip();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__name_for_connection__string__unsigned_int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__name_for_connection__string__unsigned_int(__sklib_string host, uint port);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string host, ushort port);
@@ -2690,11 +2849,44 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__sklib_string name, __sklib_string host, ushort port, int protocol);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__connection", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__connection", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__server_socket", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__connection", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__reconnect__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__reconnect__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__release_all_connections", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__release_all_connections();
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__string_ref__int(__sklib_string name, int idx);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__server_socket__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__server_socket__int(__sklib_ptr server, int idx);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__send_message_to__string_ref__connection(__sklib_string aMsg, __sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__send_message_to__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__server_has_new_connection__string_ref(__sklib_string name);
@@ -2704,6 +2896,12 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__server_named__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_udp_packet_size__unsigned_int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_udp_packet_size__unsigned_int(uint udpPacketSize);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__udp_packet_size", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__udp_packet_size();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__point_2d_ref(__sklib_color clr, __sklib_point_2d pt);
@@ -9046,6 +9244,55 @@ namespace SplashKitSDK
       __skreturn = __sklib__accept_new_connection__server_socket(__skparam__server);
       return __skadapter__to_bool(__skreturn);
     }
+    public static void BroadcastMessage(string aMsg, ServerSocket svr)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_ptr __skparam__svr;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __sklib__broadcast_message__string_ref__server_socket(__skparam__a_msg, __skparam__svr);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    }
+    public static void BroadcastMessage(string aMsg)
+    {
+      __sklib_string __skparam__a_msg;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __sklib__broadcast_message__string_ref(__skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    }
+    public static void BroadcastMessage(string aMsg, string name)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_string __skparam__name;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__broadcast_message__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void CheckNetworkActivity()
+    {
+      __sklib__check_network_activity();
+    }
+    public static void ClearMessages(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__clear_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void ClearMessages(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __sklib__clear_messages__connection(__skparam__a_connection);
+    }
+    public static void ClearMessages(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __sklib__clear_messages__server_socket(__skparam__svr);
+    }
     public static void CloseAllConnections()
     {
       __sklib__close_all_connections();
@@ -9111,6 +9358,49 @@ namespace SplashKitSDK
       __skreturn = __sklib__connection_count__server_socket(__skparam__server);
       return __skadapter__to_unsigned_int(__skreturn);
     }
+    public static uint ConnectionIp(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      uint __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__connection_ip__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint ConnectionIp(string name)
+    {
+      __sklib_string __skparam__name;
+      uint __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_ip__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static Connection ConnectionNamed(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_connection(__skreturn);
+    }
+    public static ushort ConnectionPort(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      ushort __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__connection_port__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
+    public static ushort ConnectionPort(string name)
+    {
+      __sklib_string __skparam__name;
+      ushort __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_port__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
     public static ServerSocket CreateServer(string name, ushort port)
     {
       __sklib_string __skparam__name;
@@ -9142,6 +9432,46 @@ namespace SplashKitSDK
       __skparam__a_dec = __skadapter__to_sklib_unsigned_int(aDec);
       __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
       return __skadapter__to_string(__skreturn);
+    }
+    public static bool HasConnection(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages()
+    {
+      int __skreturn;
+      __skreturn = __sklib__has_messages();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(Connection con)
+    {
+      __sklib_ptr __skparam__con;
+      int __skreturn;
+      __skparam__con = __skadapter__to_sklib_connection(con);
+      __skreturn = __sklib__has_messages__connection(__skparam__con);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      int __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__has_messages__server_socket(__skparam__svr);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool HasNewConnections()
     {
@@ -9202,6 +9532,23 @@ namespace SplashKitSDK
       __skreturn = __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
       return __skadapter__to_string(__skreturn);
     }
+    public static bool IsConnectionOpen(Connection con)
+    {
+      __sklib_ptr __skparam__con;
+      int __skreturn;
+      __skparam__con = __skadapter__to_sklib_connection(con);
+      __skreturn = __sklib__is_connection_open__connection(__skparam__con);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool IsConnectionOpen(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__is_connection_open__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static Connection LastConnection(string name)
     {
       __sklib_string __skparam__name;
@@ -9219,10 +9566,94 @@ namespace SplashKitSDK
       __skreturn = __sklib__last_connection__server_socket(__skparam__server);
       return __skadapter__to_connection(__skreturn);
     }
+    public static Connection MessageConnection(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_ptr __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_connection__message(__skparam__msg);
+      return __skadapter__to_connection(__skreturn);
+    }
+    public static uint MessageCount(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      uint __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__message_count__server_socket(__skparam__svr);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint MessageCount(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      uint __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__message_count__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint MessageCount(string name)
+    {
+      __sklib_string __skparam__name;
+      uint __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__message_count__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static string MessageData(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_string __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_data__message(__skparam__msg);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static List<byte> MessageDataBytes(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_vector_int8_t __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_data_bytes__message(__skparam__msg);
+      return __skadapter__to_vector_int8_t(__skreturn);
+    }
+    public static string MessageHost(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_string __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_host__message(__skparam__msg);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static ushort MessagePort(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      ushort __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_port__message(__skparam__msg);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
+    public static ConnectionType MessageProtocol(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      int __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_protocol__message(__skparam__msg);
+      return __skadapter__to_connection_type(__skreturn);
+    }
     public static string MyIp()
     {
       __sklib_string __skreturn;
       __skreturn = __sklib__my_ip();
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string NameForConnection(string host, uint port)
+    {
+      __sklib_string __skparam__host;
+      uint __skparam__port;
+      __sklib_string __skreturn;
+      __skparam__host = __skadapter__to_sklib_string(host);
+      __skparam__port = __skadapter__to_sklib_unsigned_int(port);
+      __skreturn = __sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port);
+    __skadapter__free__sklib_string(ref __skparam__host);
       return __skadapter__to_string(__skreturn);
     }
     public static Connection OpenConnection(string name, string host, ushort port)
@@ -9255,6 +9686,73 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__host);
       return __skadapter__to_connection(__skreturn);
     }
+    public static Message ReadMessage(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __sklib_ptr __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__read_message__server_socket(__skparam__svr);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __sklib_ptr __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__read_message__connection(__skparam__a_connection);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__read_message__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static string ReadMessageData(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_string __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__read_message_data__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string ReadMessageData(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __sklib_string __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__read_message_data__connection(__skparam__a_connection);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string ReadMessageData(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __sklib_string __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__read_message_data__server_socket(__skparam__svr);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static void Reconnect(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __sklib__reconnect__connection(__skparam__a_connection);
+    }
+    public static void Reconnect(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__reconnect__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void ReleaseAllConnections()
+    {
+      __sklib__release_all_connections();
+    }
     public static Connection RetrieveConnection(string name, int idx)
     {
       __sklib_string __skparam__name;
@@ -9275,6 +9773,29 @@ namespace SplashKitSDK
       __skparam__idx = __skadapter__to_sklib_int(idx);
       __skreturn = __sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx);
       return __skadapter__to_connection(__skreturn);
+    }
+    public static bool SendMessageTo(string aMsg, Connection aConnection)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_ptr __skparam__a_connection;
+      int __skreturn;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__send_message_to__string_ref__connection(__skparam__a_msg, __skparam__a_connection);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool SendMessageTo(string aMsg, string name)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__send_message_to__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool ServerHasNewConnection(string name)
     {
@@ -9301,6 +9822,18 @@ namespace SplashKitSDK
       __skreturn = __sklib__server_named__string_ref(__skparam__name);
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_server_socket(__skreturn);
+    }
+    public static void SetUdpPacketSize(uint udpPacketSize)
+    {
+      uint __skparam__udp_packet_size;
+      __skparam__udp_packet_size = __skadapter__to_sklib_unsigned_int(udpPacketSize);
+      __sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size);
+    }
+    public static uint UdpPacketSize()
+    {
+      uint __skreturn;
+      __skreturn = __sklib__udp_packet_size();
+      return __skadapter__to_unsigned_int(__skreturn);
     }
     public static void DrawPixel(Color clr, Point2D pt)
     {
@@ -15655,11 +16188,61 @@ public class Connection : PointerWrapper
         SplashKit.CloseConnection(this);
     }
 
+    public void ClearMessages()
+    {
+        SplashKit.ClearMessages(this);
+    }
+
+
     public bool Close()
     {
         return SplashKit.CloseConnection(this);
     }
 
+
+    public Message ReadMessage()
+    {
+        return SplashKit.ReadMessage(this);
+    }
+
+
+    public string ReadMessageData()
+    {
+        return SplashKit.ReadMessageData(this);
+    }
+
+
+    public void Reconnect()
+    {
+        SplashKit.Reconnect(this);
+    }
+
+
+    public bool SendMessage(string aMsg)
+    {
+        return SplashKit.SendMessageTo(aMsg, this);
+    }
+
+    public uint Ip
+    {
+        get { return SplashKit.ConnectionIp(this); }
+    }
+    public ushort Port
+    {
+        get { return SplashKit.ConnectionPort(this); }
+    }
+    public bool HasMessages
+    {
+        get { return SplashKit.HasMessages(this); }
+    }
+    public bool IsOpen
+    {
+        get { return SplashKit.IsConnectionOpen(this); }
+    }
+    public uint MessageCount
+    {
+        get { return SplashKit.MessageCount(this); }
+    }
 }
 public class Message : PointerWrapper
 {
@@ -15683,6 +16266,26 @@ public class Message : PointerWrapper
         SplashKit.CloseMessage(this);
     }
 
+    public string Data
+    {
+        get { return SplashKit.MessageData(this); }
+    }
+    public List<byte> DataBytes
+    {
+        get { return SplashKit.MessageDataBytes(this); }
+    }
+    public string Host
+    {
+        get { return SplashKit.MessageHost(this); }
+    }
+    public ushort Port
+    {
+        get { return SplashKit.MessagePort(this); }
+    }
+    public ConnectionType Protocol
+    {
+        get { return SplashKit.MessageProtocol(this); }
+    }
 }
 public class ServerSocket : PointerWrapper
 {
@@ -15713,9 +16316,33 @@ public class ServerSocket : PointerWrapper
     }
 
 
+    public void BroadcastMessage(string aMsg)
+    {
+        SplashKit.BroadcastMessage(aMsg, this);
+    }
+
+
+    public void ClearMessages()
+    {
+        SplashKit.ClearMessages(this);
+    }
+
+
     public bool Close()
     {
         return SplashKit.CloseServer(this);
+    }
+
+
+    public Message ReadMessage()
+    {
+        return SplashKit.ReadMessage(this);
+    }
+
+
+    public string ReadMessageData()
+    {
+        return SplashKit.ReadMessageData(this);
     }
 
 
@@ -15728,9 +16355,17 @@ public class ServerSocket : PointerWrapper
     {
         get { return SplashKit.ConnectionCount(this); }
     }
+    public bool HasMessages
+    {
+        get { return SplashKit.HasMessages(this); }
+    }
     public Connection LastConnection
     {
         get { return SplashKit.LastConnection(this); }
+    }
+    public uint MessageCount
+    {
+        get { return SplashKit.MessageCount(this); }
     }
     public bool HasNewConnections
     {
@@ -18009,6 +18644,17 @@ public static class Camera{
     public static Vector2D VectorWorldToScreen
     {
         get { return SplashKit.VectorWorldToScreen(); }
+    }
+}
+public static class Networking{
+    public static bool HasMessages
+    {
+        get { return SplashKit.HasMessages(); }
+    }
+    public static uint UdpPacketSize
+    {
+        get { return SplashKit.UdpPacketSize(); }
+          set { SplashKit.SetUdpPacketSize(value); }
     }
 }
 public static class Text{
