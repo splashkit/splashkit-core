@@ -201,9 +201,21 @@ namespace splashkit_lib
     void send_response(http_request r);
 
     /**
+     * Serves a file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     * @param content_type The type of content being send:
+     *
+     * @attribute class http_request
+     * @attribute method send_file_response
+     */
+    void send_file_response(http_request r, const string &filename, const string &content_type);
+    
+    /**
      * Serves a HTML file to the given `http_request`.
      *
-     * @param r        The request to be sent.
+     * @param r        The request which is asking for the resource.
      * @param filename The name of the file in Resources/server
      *
      * @attribute class http_request
@@ -211,6 +223,28 @@ namespace splashkit_lib
      */
     void send_html_file_response(http_request r, const string &filename);
 
+    /**
+     * Serves a javascript file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class http_request
+     * @attribute method send_javascript_file_response
+     */
+    void send_javascript_file_response(http_request r, const string &filename);
+    
+    /**
+     * Serves a css file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class http_request
+     * @attribute method send_css_file_response
+     */
+    void send_css_file_response(http_request r, const string &filename);
+    
     /**
      * Returns the server URI of the client request.
      *

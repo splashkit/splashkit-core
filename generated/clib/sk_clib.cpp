@@ -5845,10 +5845,26 @@ __sklib_vector_string __sklib__request_uri_stubs__http_request(__sklib_http_requ
     vector<string> __skreturn = request_uri_stubs(__skparam__r);
     return __sklib__to_sklib_vector_string(__skreturn);
 }
+void __sklib__send_css_file_response__http_request__string_ref(__sklib_http_request r, const __sklib_string filename) {
+    http_request __skparam__r = __sklib__to_http_request(r);
+    string __skparam__filename = __sklib__to_string(filename);
+    send_css_file_response(__skparam__r, __skparam__filename);
+}
+void __sklib__send_file_response__http_request__string_ref__string_ref(__sklib_http_request r, const __sklib_string filename, const __sklib_string content_type) {
+    http_request __skparam__r = __sklib__to_http_request(r);
+    string __skparam__filename = __sklib__to_string(filename);
+    string __skparam__content_type = __sklib__to_string(content_type);
+    send_file_response(__skparam__r, __skparam__filename, __skparam__content_type);
+}
 void __sklib__send_html_file_response__http_request__string_ref(__sklib_http_request r, const __sklib_string filename) {
     http_request __skparam__r = __sklib__to_http_request(r);
     string __skparam__filename = __sklib__to_string(filename);
     send_html_file_response(__skparam__r, __skparam__filename);
+}
+void __sklib__send_javascript_file_response__http_request__string_ref(__sklib_http_request r, const __sklib_string filename) {
+    http_request __skparam__r = __sklib__to_http_request(r);
+    string __skparam__filename = __sklib__to_string(filename);
+    send_javascript_file_response(__skparam__r, __skparam__filename);
 }
 void __sklib__send_response__http_request(__sklib_http_request r) {
     http_request __skparam__r = __sklib__to_http_request(r);

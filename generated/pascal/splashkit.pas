@@ -581,13 +581,13 @@ function ColorWhiteSmoke(): Color;
 function ColorYellow(): Color;
 function ColorYellowGreen(): Color;
 function GreenOf(c: Color): Integer;
-function HsbColor(hue: Single; saturation: Single; brightness: Single): Color;
+function HSBColor(hue: Single; saturation: Single; brightness: Single): Color;
 function HueOf(c: Color): Single;
 function RandomColor(): Color;
-function RandomRgbColor(alpha: Integer): Color;
+function RandomRGBColor(alpha: Integer): Color;
 function RedOf(c: Color): Integer;
-function RgbColor(red: Single; green: Single; blue: Single): Color;
-function RgbColor(red: Integer; green: Integer; blue: Integer): Color;
+function RGBColor(red: Single; green: Single; blue: Single): Color;
+function RGBColor(red: Integer; green: Integer; blue: Integer): Color;
 function RgbaColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
 function RgbaColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
 function SaturationOf(c: Color): Single;
@@ -883,8 +883,8 @@ function CloseServer(const name: String): Boolean;
 function CloseServer(svr: ServerSocket): Boolean;
 function ConnectionCount(const name: String): Cardinal;
 function ConnectionCount(server: ServerSocket): Cardinal;
-function ConnectionIp(aConnection: Connection): Cardinal;
-function ConnectionIp(const name: String): Cardinal;
+function ConnectionIP(aConnection: Connection): Cardinal;
+function ConnectionIP(const name: String): Cardinal;
 function ConnectionNamed(const name: String): Connection;
 function ConnectionPort(aConnection: Connection): Word;
 function ConnectionPort(const name: String): Word;
@@ -900,8 +900,8 @@ function HasNewConnections(): Boolean;
 function HasServer(const name: String): Boolean;
 function HexStrToIpv4(const aHex: String): String;
 function HexToDecString(const aHex: String): String;
-function Ipv4ToDec(const aIp: String): Cardinal;
-function Ipv4ToHex(const aIp: String): String;
+function Ipv4ToDec(const aIP: String): Cardinal;
+function Ipv4ToHex(const aIP: String): String;
 function Ipv4ToStr(ip: Cardinal): String;
 function IsConnectionOpen(con: Connection): Boolean;
 function IsConnectionOpen(const name: String): Boolean;
@@ -916,7 +916,7 @@ function MessageDataBytes(msg: Message): ArrayOfChar;
 function MessageHost(msg: Message): String;
 function MessagePort(msg: Message): Word;
 function MessageProtocol(msg: Message): ConnectionType;
-function MyIp(): String;
+function MyIP(): String;
 function NameForConnection(host: String; port: Cardinal): String;
 function OpenConnection(const name: String; const host: String; port: Word): Connection;
 function OpenConnection(const name: String; const host: String; port: Word; protocol: ConnectionType): Connection;
@@ -937,8 +937,8 @@ function SendMessageTo(const aMsg: String; const name: String): Boolean;
 function ServerHasNewConnection(const name: String): Boolean;
 function ServerHasNewConnection(server: ServerSocket): Boolean;
 function ServerNamed(const name: String): ServerSocket;
-procedure SetUdpPacketSize(udpPacketSize: Cardinal);
-function UdpPacketSize(): Cardinal;
+procedure SetUDPPacketSize(udpPacketSize: Cardinal);
+function UDPPacketSize(): Cardinal;
 procedure DrawPixel(clr: Color; const pt: Point2D);
 procedure DrawPixel(clr: Color; const pt: Point2D; opts: DrawingOptions);
 procedure DrawPixel(clr: Color; x: Double; y: Double);
@@ -1373,16 +1373,19 @@ function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean;
 function NextWebRequest(server: WebServer): HttpRequest;
 function RequestBody(r: HttpRequest): String;
 function RequestMethod(r: HttpRequest): HttpMethod;
-function RequestUri(r: HttpRequest): String;
-function RequestUriStubs(r: HttpRequest): ArrayOfString;
-procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
+function RequestURI(r: HttpRequest): String;
+function RequestURIStubs(r: HttpRequest): ArrayOfString;
+procedure SendCSSFileResponse(r: HttpRequest; const filename: String);
+procedure SendFileResponse(r: HttpRequest; const filename: String; const contentType: String);
+procedure SendHTMLFileResponse(r: HttpRequest; const filename: String);
+procedure SendJavascriptFileResponse(r: HttpRequest; const filename: String);
 procedure SendResponse(r: HttpRequest);
 procedure SendResponse(r: HttpRequest; const message: String);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String);
 procedure SendResponse(r: HttpRequest; j: Json);
-function SplitUriStubs(const uri: String): ArrayOfString;
+function SplitURIStubs(const uri: String): ArrayOfString;
 function StartWebServer(): WebServer;
 function StartWebServer(port: Word): WebServer;
 procedure StopWebServer(server: WebServer);
@@ -2951,8 +2954,8 @@ function __sklib__has_new_connections(): LongInt; cdecl; external;
 function __sklib__has_server__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__hex_str_to_ipv4__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__hex_to_dec_string__string_ref(const aHex: __sklib_string): __sklib_string; cdecl; external;
-function __sklib__ipv4_to_dec__string_ref(const aIp: __sklib_string): Cardinal; cdecl; external;
-function __sklib__ipv4_to_hex__string_ref(const aIp: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__ipv4_to_dec__string_ref(const aIP: __sklib_string): Cardinal; cdecl; external;
+function __sklib__ipv4_to_hex__string_ref(const aIP: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__ipv4_to_str__unsigned_int(ip: Cardinal): __sklib_string; cdecl; external;
 function __sklib__is_connection_open__connection(con: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__is_connection_open__string_ref(const name: __sklib_string): LongInt; cdecl; external;
@@ -3426,7 +3429,10 @@ function __sklib__request_body__http_request(r: __sklib_ptr): __sklib_string; cd
 function __sklib__request_method__http_request(r: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__request_uri__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__request_uri_stubs__http_request(r: __sklib_ptr): __sklib_vector_string; cdecl; external;
+procedure __sklib__send_css_file_response__http_request__string_ref(r: __sklib_ptr; const filename: __sklib_string); cdecl; external;
+procedure __sklib__send_file_response__http_request__string_ref__string_ref(r: __sklib_ptr; const filename: __sklib_string; const contentType: __sklib_string); cdecl; external;
 procedure __sklib__send_html_file_response__http_request__string_ref(r: __sklib_ptr; const filename: __sklib_string); cdecl; external;
+procedure __sklib__send_javascript_file_response__http_request__string_ref(r: __sklib_ptr; const filename: __sklib_string); cdecl; external;
 procedure __sklib__send_response__http_request(r: __sklib_ptr); cdecl; external;
 procedure __sklib__send_response__http_request__string_ref(r: __sklib_ptr; const message: __sklib_string); cdecl; external;
 procedure __sklib__send_response__http_request__http_status_code(r: __sklib_ptr; code: LongInt); cdecl; external;
@@ -5893,7 +5899,7 @@ begin
   __skreturn := __sklib__green_of__color(__skparam__c);
   result := __skadapter__to_int(__skreturn);
 end;
-function HsbColor(hue: Single; saturation: Single; brightness: Single): Color;
+function HSBColor(hue: Single; saturation: Single; brightness: Single): Color;
 var
   __skparam__hue: Single;
   __skparam__saturation: Single;
@@ -5922,7 +5928,7 @@ begin
   __skreturn := __sklib__random_color();
   result := __skadapter__to_color(__skreturn);
 end;
-function RandomRgbColor(alpha: Integer): Color;
+function RandomRGBColor(alpha: Integer): Color;
 var
   __skparam__alpha: Integer;
   __skreturn: __sklib_color;
@@ -5940,7 +5946,7 @@ begin
   __skreturn := __sklib__red_of__color(__skparam__c);
   result := __skadapter__to_int(__skreturn);
 end;
-function RgbColor(red: Single; green: Single; blue: Single): Color;
+function RGBColor(red: Single; green: Single; blue: Single): Color;
 var
   __skparam__red: Single;
   __skparam__green: Single;
@@ -5953,7 +5959,7 @@ begin
   __skreturn := __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
   result := __skadapter__to_color(__skreturn);
 end;
-function RgbColor(red: Integer; green: Integer; blue: Integer): Color;
+function RGBColor(red: Integer; green: Integer; blue: Integer): Color;
 var
   __skparam__red: Integer;
   __skparam__green: Integer;
@@ -8906,7 +8912,7 @@ begin
   __skreturn := __sklib__connection_count__server_socket(__skparam__server);
   result := __skadapter__to_unsigned_int(__skreturn);
 end;
-function ConnectionIp(aConnection: Connection): Cardinal;
+function ConnectionIP(aConnection: Connection): Cardinal;
 var
   __skparam__a_connection: __sklib_ptr;
   __skreturn: Cardinal;
@@ -8915,7 +8921,7 @@ begin
   __skreturn := __sklib__connection_ip__connection(__skparam__a_connection);
   result := __skadapter__to_unsigned_int(__skreturn);
 end;
-function ConnectionIp(const name: String): Cardinal;
+function ConnectionIP(const name: String): Cardinal;
 var
   __skparam__name: __sklib_string;
   __skreturn: Cardinal;
@@ -9061,21 +9067,21 @@ begin
   __skreturn := __sklib__hex_to_dec_string__string_ref(__skparam__a_hex);
   result := __skadapter__to_string(__skreturn);
 end;
-function Ipv4ToDec(const aIp: String): Cardinal;
+function Ipv4ToDec(const aIP: String): Cardinal;
 var
   __skparam__a_ip: __sklib_string;
   __skreturn: Cardinal;
 begin
-  __skparam__a_ip := __skadapter__to_sklib_string(aIp);
+  __skparam__a_ip := __skadapter__to_sklib_string(aIP);
   __skreturn := __sklib__ipv4_to_dec__string_ref(__skparam__a_ip);
   result := __skadapter__to_unsigned_int(__skreturn);
 end;
-function Ipv4ToHex(const aIp: String): String;
+function Ipv4ToHex(const aIP: String): String;
 var
   __skparam__a_ip: __sklib_string;
   __skreturn: __sklib_string;
 begin
-  __skparam__a_ip := __skadapter__to_sklib_string(aIp);
+  __skparam__a_ip := __skadapter__to_sklib_string(aIP);
   __skreturn := __sklib__ipv4_to_hex__string_ref(__skparam__a_ip);
   result := __skadapter__to_string(__skreturn);
 end;
@@ -9205,7 +9211,7 @@ begin
   __skreturn := __sklib__message_protocol__message(__skparam__msg);
   result := __skadapter__to_connection_type(__skreturn);
 end;
-function MyIp(): String;
+function MyIP(): String;
 var
   __skreturn: __sklib_string;
 begin
@@ -9401,14 +9407,14 @@ begin
   __skreturn := __sklib__server_named__string_ref(__skparam__name);
   result := __skadapter__to_server_socket(__skreturn);
 end;
-procedure SetUdpPacketSize(udpPacketSize: Cardinal);
+procedure SetUDPPacketSize(udpPacketSize: Cardinal);
 var
   __skparam__udp_packet_size: Cardinal;
 begin
   __skparam__udp_packet_size := __skadapter__to_sklib_unsigned_int(udpPacketSize);
   __sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size);
 end;
-function UdpPacketSize(): Cardinal;
+function UDPPacketSize(): Cardinal;
 var
   __skreturn: Cardinal;
 begin
@@ -14029,7 +14035,7 @@ begin
   __skreturn := __sklib__request_method__http_request(__skparam__r);
   result := __skadapter__to_http_method(__skreturn);
 end;
-function RequestUri(r: HttpRequest): String;
+function RequestURI(r: HttpRequest): String;
 var
   __skparam__r: __sklib_ptr;
   __skreturn: __sklib_string;
@@ -14038,7 +14044,7 @@ begin
   __skreturn := __sklib__request_uri__http_request(__skparam__r);
   result := __skadapter__to_string(__skreturn);
 end;
-function RequestUriStubs(r: HttpRequest): ArrayOfString;
+function RequestURIStubs(r: HttpRequest): ArrayOfString;
 var
   __skparam__r: __sklib_ptr;
   __skreturn: __sklib_vector_string;
@@ -14047,7 +14053,27 @@ begin
   __skreturn := __sklib__request_uri_stubs__http_request(__skparam__r);
   result := __skadapter__to_vector_string(__skreturn);
 end;
-procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
+procedure SendCSSFileResponse(r: HttpRequest; const filename: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__filename: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+end;
+procedure SendFileResponse(r: HttpRequest; const filename: String; const contentType: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__filename: __sklib_string;
+  __skparam__content_type: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __skparam__content_type := __skadapter__to_sklib_string(contentType);
+  __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
+end;
+procedure SendHTMLFileResponse(r: HttpRequest; const filename: String);
 var
   __skparam__r: __sklib_ptr;
   __skparam__filename: __sklib_string;
@@ -14055,6 +14081,15 @@ begin
   __skparam__r := __skadapter__to_sklib_http_request(r);
   __skparam__filename := __skadapter__to_sklib_string(filename);
   __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+end;
+procedure SendJavascriptFileResponse(r: HttpRequest; const filename: String);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__filename: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__filename := __skadapter__to_sklib_string(filename);
+  __sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
 end;
 procedure SendResponse(r: HttpRequest);
 var
@@ -14114,7 +14149,7 @@ begin
   __skparam__j := __skadapter__to_sklib_json(j);
   __sklib__send_response__http_request__json(__skparam__r, __skparam__j);
 end;
-function SplitUriStubs(const uri: String): ArrayOfString;
+function SplitURIStubs(const uri: String): ArrayOfString;
 var
   __skparam__uri: __sklib_string;
   __skreturn: __sklib_vector_string;

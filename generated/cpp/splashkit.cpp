@@ -6094,10 +6094,30 @@ vector<string> request_uri_stubs(http_request r) {
     __sklib_vector_string __skreturn = __sklib__request_uri_stubs__http_request(__skparam__r);
     return __skadapter__to_vector_string(__skreturn);
 }
+void send_css_file_response(http_request r, const string &filename) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    __sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(__skparam__filename);
+}
+void send_file_response(http_request r, const string &filename, const string &content_type) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    const __sklib_string __skparam__content_type = __skadapter__to_sklib_string(content_type);
+    __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
+    __skadapter__free__sklib_string(__skparam__filename);
+    __skadapter__free__sklib_string(__skparam__content_type);
+}
 void send_html_file_response(http_request r, const string &filename) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
     const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
     __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(__skparam__filename);
+}
+void send_javascript_file_response(http_request r, const string &filename) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    __sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
     __skadapter__free__sklib_string(__skparam__filename);
 }
 void send_response(http_request r) {

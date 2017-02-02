@@ -117,21 +117,25 @@ namespace splashkit_lib
         send_response(r, HTTP_STATUS_NO_CONTENT, "", "text/plain");
     }
 
+    void send_file_response(http_request r, const string &filename, const string &content_type)
+    {
+        string file = file_as_string(filename, SERVER_RESOURCE);
+        send_response(r, HTTP_STATUS_OK, file, content_type);
+    }
+    
+    void send_javascript_file_response(http_request r, const string &filename)
+    {
+        send_file_response(r, filename, "text/javascript");
+    }
+    
+    void send_css_file_response(http_request r, const string &filename)
+    {
+        send_file_response(r, filename, "text/css");
+    }
+
     void send_html_file_response(http_request r, const string &filename)
     {
-        string extension = ".html";
-        if (filename.size() > extension.size() &&
-                filename.compare(filename.size() - extension.size(), extension.size(), extension) == 0)
-        {
-            string file = file_as_string(filename, SERVER_RESOURCE);
-
-            send_response(r, HTTP_STATUS_OK, file, "text/html");
-        }
-        else
-        {
-            LOG(WARNING) << "send_html_file_response passed invalid html at " << filename;
-            send_response(r, cat({"Invalid HTML file at ", path_to_resource(filename, SERVER_RESOURCE)}));
-        }
+        send_file_response(r, filename, "text/html");
     }
 
     string request_uri(http_request r)

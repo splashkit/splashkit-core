@@ -55424,7 +55424,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1485929070,
+    "parsed_at": 1485988761,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -56052,6 +56052,125 @@
         }
       },
       {
+        "signature": "void send_css_file_response(http_request r,const string &filename);",
+        "name": "send_css_file_response",
+        "method_name": "send_css_file_response",
+        "unique_global_name": "send_css_file_response",
+        "unique_method_name": "http_request.send_css_file_response",
+        "suffix_name": null,
+        "description": "Serves a css file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_css_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "void send_file_response(http_request r,const string &filename,const string &content_type);",
+        "name": "send_file_response",
+        "method_name": "send_file_response",
+        "unique_global_name": "send_file_response",
+        "unique_method_name": "http_request.send_file_response",
+        "suffix_name": null,
+        "description": "Serves a file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "content_type": {
+            "type": "string",
+            "description": "The type of content being send:",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
         "signature": "void send_html_file_response(http_request r,const string &filename);",
         "name": "send_html_file_response",
         "method_name": "send_html_file_response",
@@ -56071,7 +56190,7 @@
         "parameters": {
           "r": {
             "type": "http_request",
-            "description": "The request to be sent.",
+            "description": "The request which is asking for the resource.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -56099,6 +56218,59 @@
         "attributes": {
           "class": "http_request",
           "method": "send_html_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "void send_javascript_file_response(http_request r,const string &filename);",
+        "name": "send_javascript_file_response",
+        "method_name": "send_javascript_file_response",
+        "unique_global_name": "send_javascript_file_response",
+        "unique_method_name": "http_request.send_javascript_file_response",
+        "suffix_name": null,
+        "description": "Serves a javascript file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_javascript_file_response",
           "group": "networking",
           "static": "web_server",
           "self": "r"

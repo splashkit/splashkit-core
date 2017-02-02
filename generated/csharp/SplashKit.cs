@@ -2790,10 +2790,10 @@ namespace SplashKitSDK
     private static extern __sklib_string __sklib__hex_to_dec_string__string_ref(__sklib_string aHex);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_dec__string_ref", CharSet=CharSet.Ansi)]
-    private static extern uint __sklib__ipv4_to_dec__string_ref(__sklib_string aIp);
+    private static extern uint __sklib__ipv4_to_dec__string_ref(__sklib_string aIP);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_hex__string_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIp);
+    private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIP);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_str__unsigned_int(uint ip);
@@ -4214,8 +4214,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri_stubs__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__request_uri_stubs__http_request(__sklib_ptr r);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_css_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_css_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_file_response__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_file_response__http_request__string_ref__string_ref(__sklib_ptr r, __sklib_string filename, __sklib_string contentType);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_html_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_html_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_javascript_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_javascript_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request(__sklib_ptr r);
@@ -6559,7 +6568,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__green_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color HsbColor(float hue, float saturation, float brightness)
+    public static Color HSBColor(float hue, float saturation, float brightness)
     {
       float __skparam__hue;
       float __skparam__saturation;
@@ -6585,7 +6594,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__random_color();
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RandomRgbColor(int alpha)
+    public static Color RandomRGBColor(int alpha)
     {
       int __skparam__alpha;
       __sklib_color __skreturn;
@@ -6601,7 +6610,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__red_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color RgbColor(float red, float green, float blue)
+    public static Color RGBColor(float red, float green, float blue)
     {
       float __skparam__red;
       float __skparam__green;
@@ -6613,7 +6622,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbColor(int red, int green, int blue)
+    public static Color RGBColor(int red, int green, int blue)
     {
       int __skparam__red;
       int __skparam__green;
@@ -9361,7 +9370,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__connection_count__server_socket(__skparam__server);
       return __skadapter__to_unsigned_int(__skreturn);
     }
-    public static uint ConnectionIp(Connection aConnection)
+    public static uint ConnectionIP(Connection aConnection)
     {
       __sklib_ptr __skparam__a_connection;
       uint __skreturn;
@@ -9369,7 +9378,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__connection_ip__connection(__skparam__a_connection);
       return __skadapter__to_unsigned_int(__skreturn);
     }
-    public static uint ConnectionIp(string name)
+    public static uint ConnectionIP(string name)
     {
       __sklib_string __skparam__name;
       uint __skreturn;
@@ -9509,20 +9518,20 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__a_hex);
       return __skadapter__to_string(__skreturn);
     }
-    public static uint Ipv4ToDec(string aIp)
+    public static uint Ipv4ToDec(string aIP)
     {
       __sklib_string __skparam__a_ip;
       uint __skreturn;
-      __skparam__a_ip = __skadapter__to_sklib_string(aIp);
+      __skparam__a_ip = __skadapter__to_sklib_string(aIP);
       __skreturn = __sklib__ipv4_to_dec__string_ref(__skparam__a_ip);
     __skadapter__free__sklib_string(ref __skparam__a_ip);
       return __skadapter__to_unsigned_int(__skreturn);
     }
-    public static string Ipv4ToHex(string aIp)
+    public static string Ipv4ToHex(string aIP)
     {
       __sklib_string __skparam__a_ip;
       __sklib_string __skreturn;
-      __skparam__a_ip = __skadapter__to_sklib_string(aIp);
+      __skparam__a_ip = __skadapter__to_sklib_string(aIP);
       __skreturn = __sklib__ipv4_to_hex__string_ref(__skparam__a_ip);
     __skadapter__free__sklib_string(ref __skparam__a_ip);
       return __skadapter__to_string(__skreturn);
@@ -9642,7 +9651,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__message_protocol__message(__skparam__msg);
       return __skadapter__to_connection_type(__skreturn);
     }
-    public static string MyIp()
+    public static string MyIP()
     {
       __sklib_string __skreturn;
       __skreturn = __sklib__my_ip();
@@ -9832,13 +9841,13 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_server_socket(__skreturn);
     }
-    public static void SetUdpPacketSize(uint udpPacketSize)
+    public static void SetUDPPacketSize(uint udpPacketSize)
     {
       uint __skparam__udp_packet_size;
       __skparam__udp_packet_size = __skadapter__to_sklib_unsigned_int(udpPacketSize);
       __sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size);
     }
-    public static uint UdpPacketSize()
+    public static uint UDPPacketSize()
     {
       uint __skreturn;
       __skreturn = __sklib__udp_packet_size();
@@ -14158,7 +14167,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__request_method__http_request(__skparam__r);
       return __skadapter__to_http_method(__skreturn);
     }
-    public static string RequestUri(HttpRequest r)
+    public static string RequestURI(HttpRequest r)
     {
       __sklib_ptr __skparam__r;
       __sklib_string __skreturn;
@@ -14166,7 +14175,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__request_uri__http_request(__skparam__r);
       return __skadapter__to_string(__skreturn);
     }
-    public static List<string> RequestUriStubs(HttpRequest r)
+    public static List<string> RequestURIStubs(HttpRequest r)
     {
       __sklib_ptr __skparam__r;
       __sklib_vector_string __skreturn;
@@ -14174,13 +14183,43 @@ namespace SplashKitSDK
       __skreturn = __sklib__request_uri_stubs__http_request(__skparam__r);
       return __skadapter__to_vector_string(__skreturn);
     }
-    public static void SendHtmlFileResponse(HttpRequest r, string filename)
+    public static void SendCSSFileResponse(HttpRequest r, string filename)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    }
+    public static void SendFileResponse(HttpRequest r, string filename, string contentType)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __sklib_string __skparam__content_type;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __skparam__content_type = __skadapter__to_sklib_string(contentType);
+      __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__content_type);
+    }
+    public static void SendHTMLFileResponse(HttpRequest r, string filename)
     {
       __sklib_ptr __skparam__r;
       __sklib_string __skparam__filename;
       __skparam__r = __skadapter__to_sklib_http_request(r);
       __skparam__filename = __skadapter__to_sklib_string(filename);
       __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    }
+    public static void SendJavascriptFileResponse(HttpRequest r, string filename)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
     __skadapter__free__sklib_string(ref __skparam__filename);
     }
     public static void SendResponse(HttpRequest r)
@@ -14239,7 +14278,7 @@ namespace SplashKitSDK
       __skparam__j = __skadapter__to_sklib_json(j);
       __sklib__send_response__http_request__json(__skparam__r, __skparam__j);
     }
-    public static List<string> SplitUriStubs(string uri)
+    public static List<string> SplitURIStubs(string uri)
     {
       __sklib_string __skparam__uri;
       __sklib_vector_string __skreturn;
@@ -14803,8 +14842,8 @@ namespace SplashKitSDK
   }
   public enum ConnectionType
   {
-    Tcp,
-    Udp,
+    TCP,
+    UDP,
     Unknown
   }
   public enum ResourceKind
@@ -14968,9 +15007,9 @@ namespace SplashKitSDK
     }
 
 
-    public static Color RandomRgb(int alpha)
+    public static Color RandomRGB(int alpha)
     {
-        return SplashKit.RandomRgbColor(alpha);
+        return SplashKit.RandomRGBColor(alpha);
     }
 
     public static Color AliceBlue
@@ -16232,9 +16271,9 @@ public class Connection : PointerWrapper
         return SplashKit.SendMessageTo(aMsg, this);
     }
 
-    public uint Ip
+    public uint IP
     {
-        get { return SplashKit.ConnectionIp(this); }
+        get { return SplashKit.ConnectionIP(this); }
     }
     public ushort Port
     {
@@ -17989,9 +18028,27 @@ public class HttpRequest : PointerWrapper
     }
 
 
-    public void SendHtmlFileResponse(string filename)
+    public void SendCSSFileResponse(string filename)
     {
-        SplashKit.SendHtmlFileResponse(this, filename);
+        SplashKit.SendCSSFileResponse(this, filename);
+    }
+
+
+    public void SendFileResponse(string filename, string contentType)
+    {
+        SplashKit.SendFileResponse(this, filename, contentType);
+    }
+
+
+    public void SendHTMLFileResponse(string filename)
+    {
+        SplashKit.SendHTMLFileResponse(this, filename);
+    }
+
+
+    public void SendJavascriptFileResponse(string filename)
+    {
+        SplashKit.SendJavascriptFileResponse(this, filename);
     }
 
 
@@ -18038,13 +18095,13 @@ public class HttpRequest : PointerWrapper
     {
         get { return SplashKit.RequestMethod(this); }
     }
-    public string Uri
+    public string URI
     {
-        get { return SplashKit.RequestUri(this); }
+        get { return SplashKit.RequestURI(this); }
     }
-    public List<string> UriStubs
+    public List<string> URIStubs
     {
-        get { return SplashKit.RequestUriStubs(this); }
+        get { return SplashKit.RequestURIStubs(this); }
     }
 }
 public class WebServer : PointerWrapper
@@ -18660,10 +18717,10 @@ public static class Networking{
     {
         get { return SplashKit.HasMessages(); }
     }
-    public static uint UdpPacketSize
+    public static uint UDPPacketSize
     {
-        get { return SplashKit.UdpPacketSize(); }
-          set { SplashKit.SetUdpPacketSize(value); }
+        get { return SplashKit.UDPPacketSize(); }
+          set { SplashKit.SetUDPPacketSize(value); }
     }
 }
 public static class Text{

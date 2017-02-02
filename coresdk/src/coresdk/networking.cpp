@@ -379,6 +379,7 @@ namespace splashkit_lib
 
             connection client = _create_connection(server->name + "->" + name_for_connection(ipv4_to_str(ip), port), TCP);
             client->ip = ip;
+            client->string_ip = ipv4_to_str(ip);
             client->port = port;
             client->socket = con;
 

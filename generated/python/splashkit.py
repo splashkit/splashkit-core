@@ -3391,8 +3391,14 @@ sklib.__sklib__request_uri__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri__http_request.restype = _sklib_string
 sklib.__sklib__request_uri_stubs__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri_stubs__http_request.restype = _sklib_vector_string
+sklib.__sklib__send_css_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__send_css_file_response__http_request__string_ref.restype = None
+sklib.__sklib__send_file_response__http_request__string_ref__string_ref.argtypes = [ c_void_p, _sklib_string, _sklib_string ]
+sklib.__sklib__send_file_response__http_request__string_ref__string_ref.restype = None
 sklib.__sklib__send_html_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__send_html_file_response__http_request__string_ref.restype = None
+sklib.__sklib__send_javascript_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__send_javascript_file_response__http_request__string_ref.restype = None
 sklib.__sklib__send_response__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__send_response__http_request.restype = None
 sklib.__sklib__send_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
@@ -8287,10 +8293,23 @@ def request_uri_stubs ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_uri_stubs__http_request(__skparam__r)
     return __skadapter__to_vector_string(__skreturn)
+def send_css_file_response ( r, filename ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    sklib.__sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
+def send_file_response ( r, filename, content_type ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    __skparam__content_type = __skadapter__to_sklib_string(content_type)
+    sklib.__sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type)
 def send_html_file_response ( r, filename ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skparam__filename = __skadapter__to_sklib_string(filename)
     sklib.__sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
+def send_javascript_file_response ( r, filename ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    sklib.__sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
 def send_response_empty ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     sklib.__sklib__send_response__http_request(__skparam__r)
