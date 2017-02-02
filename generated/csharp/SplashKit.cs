@@ -6634,7 +6634,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbaColor(float red, float green, float blue, float alpha)
+    public static Color RGBAColor(float red, float green, float blue, float alpha)
     {
       float __skparam__red;
       float __skparam__green;
@@ -6648,7 +6648,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbaColor(int red, int green, int blue, int alpha)
+    public static Color RGBAColor(int red, int green, int blue, int alpha)
     {
       int __skparam__red;
       int __skparam__green;
@@ -14204,7 +14204,7 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__filename);
     __skadapter__free__sklib_string(ref __skparam__content_type);
     }
-    public static void SendHTMLFileResponse(HttpRequest r, string filename)
+    public static void SendHtmlFileResponse(HttpRequest r, string filename)
     {
       __sklib_ptr __skparam__r;
       __sklib_string __skparam__filename;
@@ -18040,9 +18040,9 @@ public class HttpRequest : PointerWrapper
     }
 
 
-    public void SendHTMLFileResponse(string filename)
+    public void SendHtmlFileResponse(string filename)
     {
-        SplashKit.SendHTMLFileResponse(this, filename);
+        SplashKit.SendHtmlFileResponse(this, filename);
     }
 
 

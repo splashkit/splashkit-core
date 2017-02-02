@@ -588,8 +588,8 @@ function RandomRGBColor(alpha: Integer): Color;
 function RedOf(c: Color): Integer;
 function RGBColor(red: Single; green: Single; blue: Single): Color;
 function RGBColor(red: Integer; green: Integer; blue: Integer): Color;
-function RgbaColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
-function RgbaColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
+function RGBAColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+function RGBAColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
 function SaturationOf(c: Color): Single;
 function StringToColor(str: String): Color;
 function DatabaseNamed(name: String): Database;
@@ -1377,7 +1377,7 @@ function RequestURI(r: HttpRequest): String;
 function RequestURIStubs(r: HttpRequest): ArrayOfString;
 procedure SendCSSFileResponse(r: HttpRequest; const filename: String);
 procedure SendFileResponse(r: HttpRequest; const filename: String; const contentType: String);
-procedure SendHTMLFileResponse(r: HttpRequest; const filename: String);
+procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
 procedure SendJavascriptFileResponse(r: HttpRequest; const filename: String);
 procedure SendResponse(r: HttpRequest);
 procedure SendResponse(r: HttpRequest; const message: String);
@@ -5972,7 +5972,7 @@ begin
   __skreturn := __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
   result := __skadapter__to_color(__skreturn);
 end;
-function RgbaColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+function RGBAColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
 var
   __skparam__red: Single;
   __skparam__green: Single;
@@ -5987,7 +5987,7 @@ begin
   __skreturn := __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
   result := __skadapter__to_color(__skreturn);
 end;
-function RgbaColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
+function RGBAColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
 var
   __skparam__red: Integer;
   __skparam__green: Integer;
@@ -14073,7 +14073,7 @@ begin
   __skparam__content_type := __skadapter__to_sklib_string(contentType);
   __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
 end;
-procedure SendHTMLFileResponse(r: HttpRequest; const filename: String);
+procedure SendHtmlFileResponse(r: HttpRequest; const filename: String);
 var
   __skparam__r: __sklib_ptr;
   __skparam__filename: __sklib_string;
