@@ -35,7 +35,7 @@ namespace splashkit_lib
         return result;
     }
 
-    matrix_2d translation_matrix(float dx, float dy)
+    matrix_2d translation_matrix(double dx, double dy)
     {
         matrix_2d result = identity_matrix();
 
@@ -55,7 +55,7 @@ namespace splashkit_lib
         return translation_matrix(pt.x, pt.y);
     }
 
-    matrix_2d scale_matrix(float scale)
+    matrix_2d scale_matrix(double scale)
     {
         return scale_matrix(vector_to(scale, scale));
     }
@@ -83,9 +83,9 @@ namespace splashkit_lib
         return scale_matrix(vector_to(scale));
     }
 
-    matrix_2d rotation_matrix(float deg)
+    matrix_2d rotation_matrix(double deg)
     {
-        float rads = deg_to_rad(-deg);
+        double rads = deg_to_rad(-deg);
 
         matrix_2d result;
         result.elements[0][0] = cos(rads);
@@ -103,9 +103,9 @@ namespace splashkit_lib
         return result;
     }
 
-    matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate)
+    matrix_2d scale_rotate_translate_matrix(const point_2d &scale, double deg, const point_2d &translate)
     {
-        float rads = deg_to_rad(-deg);
+        double rads = deg_to_rad(-deg);
 
         matrix_2d result;
         result.elements[0][0] = cos(rads) * scale.x;
@@ -125,11 +125,11 @@ namespace splashkit_lib
 
     matrix_2d matrix_inverse(const matrix_2d &m)
     {
-        float det =  m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
+        double det =  m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
         m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
         m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
 
-        float invdet;
+        double invdet;
         if (det == 0) //cant actually compute inverse!
         {
             invdet = 3.4E38;

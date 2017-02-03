@@ -310,31 +310,194 @@ namespace splashkit_lib
      */
     bool close_connection(const string &name);
 
+    /**
+     * Fetch the connection with the indicated name.
+     *
+     * @param  name The name of the connection to fetch
+     * @return      The connection with that name
+     */
     connection connection_named(const string &name);
+
+    /**
+     * Does the connection with the supplied name exist?
+     *
+     * @param  name The name of the connection to check.
+     * @return      True if there is a connection with the supplied name
+     */
     bool has_connection(const string &name);
 
+    /**
+     * Gets the ip address of the connection with the supplied name.
+     *
+     * @param  name The name of the connection
+     * @return      The connection's ip address
+     *
+     * @attribute suffix from_name
+     */
     unsigned int connection_ip(const string &name);
+
+    /**
+     * Gets the ip address of the passed in connection.
+     *
+     * @param  a_connection The connection
+     * @return              The ip addres of the connection
+     *
+     * @attribute class connection
+     * @attribute getter ip
+     */
     unsigned int connection_ip(connection a_connection);
 
+    /**
+     * Checks if the connection currently is open.
+     *
+     * @param  con The connection
+     * @return     True if the connection is open.
+     *
+     * @attribute class connection
+     * @attribute getter is_open
+     */
     bool is_connection_open(connection con);
+
+    /**
+     * Checks if the connection with the supplied name currently is open.
+     *
+     * @param  name The name of the connection
+     * @return      True if the connection is open.
+     *
+     * @attribute suffix from_name
+     */
     bool is_connection_open(const string &name);
 
+    /**
+     * Gets the port of the connection.
+     *
+     * @param  a_connection The connection
+     * @return              The port of the connection.
+     *
+     * @attribute class connection
+     * @attribute getter port
+     */
     unsigned short int connection_port(connection a_connection);
+
+    /**
+     * Gets the part of the connection.
+     *
+     * @param  name The name of the connection
+     * @return      The port of the connection
+     *
+     * @attribute suffix from_name
+     */
     unsigned short int connection_port(const string &name);
 
+    /**
+     * Attempt to reconnect the connection.
+     *
+     * @param name The name of the connection to reconnect.
+     *
+     * @attribute suffix from_name
+     */
     void reconnect(const string &name);
+
+    /**
+     * Attempt to reconnect the connection.
+     *
+     * @param a_connection The connection to reconnect
+     *
+     * @attribute class connection
+     * @attribute method reconnect
+     */
     void reconnect(connection a_connection);
+
+    /**
+     * Close and release the resources used by all of the connections.
+     */
     void release_all_connections();
 
-    // Message functions
+    /**
+     * Returns the size SplashKit is using for UDP packets.
+     *
+     * @return The size of UDP packets.
+     *
+     * @attribute getter udp_packet_size
+     */
     unsigned int udp_packet_size();
+
+    /**
+     * Change the size of the UDP packets.
+     *
+     * @param udp_packet_size The new packet size.
+     *
+     * @attribute setter udp_packet_size
+     */
     void set_udp_packet_size(unsigned int udp_packet_size);
+
+    /**
+     * Broadcase a message to all of the connections.
+     *
+     * @param a_msg The message to send
+     *
+     * @attribute suffix to_all
+     */
     void broadcast_message(const string &a_msg);
+
+    /**
+     * Broadcast a message to all connections of a server.
+     *
+     * @param a_msg The message to send
+     * @param name  The name of the server to send the message to.
+     *
+     * @attribute suffix to_server_named
+     */
     void broadcast_message(const string &a_msg, const string &name);
+
+    /**
+     * Broadcast a message to all connections of a server.
+     *
+     * @param a_msg The message to send
+     * @param svr   The server to send the message to.
+     *
+     * @attribute class server_socket
+     * @attribute method broadcast_message
+     * @attribute self svr
+     */
     void broadcast_message(const string &a_msg, server_socket svr);
+
+    /**
+     * Check network activity, looking for new connections and messages.
+     */
     void check_network_activity();
+
+    /**
+     * Clear all of the messages from a server.
+     *
+     * @param svr The server to clear the messages from
+     *
+     * @attribute class server_socket
+     * @attribute method clear_messages
+     *
+     * @attribute suffix from_server
+     */
     void clear_messages(server_socket svr);
+
+    /**
+     * Clear all of the messages from a connection.
+     *
+     * @param a_connection The connection
+     *
+     * @attribute class  connection
+     * @attribute method clear_messages
+     *
+     * @attribute suffix from_connection
+     */
     void clear_messages(connection a_connection);
+
+    /**
+     * Clear all of the messages from a server or connection with the supplied name.
+     *
+     * @param name The name of the connection or the server to clear.
+     *
+     * @attribute suffix from_name
+     */
     void clear_messages(const string &name);
 
     /**
@@ -348,30 +511,263 @@ namespace splashkit_lib
      */
     void close_message(message msg);
 
+    /**
+     * Checks if there are any messages waiting to be read.
+     *
+     * @return True if there are any messages waiting to be read
+     *
+     * @attribute getter has_messages
+     */
     bool has_messages();
+
+    /**
+     * Checks if a connection has messages waiting to be read.
+     *
+     * @param  con The connection
+     * @return     True if there are any messages on the connection.
+     *
+     * @attribute class connection
+     * @attribute getter has_messages
+     *
+     * @attribute suffix on_connection
+     */
     bool has_messages(connection con);
+
+    /**
+     * Checks if a server has any messages waiting to be read.
+     *
+     * @param  svr The server to check
+     * @return     True if there are messages on the server.
+     *
+     * @attribute class server_socket
+     * @attribute getter has_messages
+     *
+     * @attribute suffix on_server
+     */
     bool has_messages(server_socket svr);
+
+    /**
+     * Checks if a server or connection has any messages.
+     *
+     * @param  name The name of the server or connection to check.
+     * @return      [description]
+     *
+     * @attribute suffix on_name
+     */
     bool has_messages(const string &name);
 
+    /**
+     * Returns the number of messages on a connection.
+     *
+     * @param  a_connection The connection
+     * @return              The number of messages to be read from the connection
+     *
+     * @attribute class connection
+     * @attribute getter message_count
+     *
+     * @attribute suffix on_connection
+     */
     unsigned int message_count(connection a_connection);
+
+    /**
+     * Returns the number of messages on a server or connection.
+     *
+     * @param  name The name of the server or connection
+     * @return      The number of messages on the server or connection
+     *
+     * @attribute suffix from_name
+     */
     unsigned int message_count(const string &name);
+
+    /**
+     * Returns the number of messages on a server.
+     *
+     * @param  svr The server to check
+     * @return     The number of messages on the server
+     *
+     * @attribute class server_socket
+     * @attribute getter message_count
+     *
+     * @attribute suffix on_server
+     */
     unsigned int message_count(server_socket svr);
-    string message_data(message msg);
-    vector<int8_t> message_data_bytes(message msg);
-    string message_host(message msg);
-    unsigned short int message_port(message msg);
-    connection_type message_protocol(message msg);
+
+    /**
+     * Reads the first message from the connection.
+     *
+     * @param  a_connection A connection
+     * @return              The first message read from the connection
+     *
+     * @attribute class connection
+     * @attribute method read_message
+     *
+     * @attribute suffix from_connection
+     */
     message read_message(connection a_connection);
+
+    /**
+     * Reads the first message from a connection or server.
+     *
+     * @param  name The name of a connection or server
+     * @return              The first message read from the connection or server
+     *
+     * @attribute suffix from_name
+     */
     message read_message(const string &name);
+
+    /**
+     * Read a message from the network (from a server or connection).
+     *
+     * @return The first message from the network.
+     */
+    message read_message();
+
+    /**
+     * Reads the first message from the server.
+     *
+     * @param  svr A server
+     * @return              The first message read from the server
+     *
+     * @attribute class server_socket
+     * @attribute method read_message
+     *
+     * @attribute suffix from_server
+     */
     message read_message(server_socket svr);
+
+    /**
+     * Gets the body of a message as a string.
+     *
+     * @param  msg The message to check
+     * @return     The string body of the message
+     *
+     * @attribute class message
+     * @attribute getter data
+     */
+    string message_data(message msg);
+
+    /**
+     * Gets the body of a message as a list of bytes.
+     *
+     * @param  msg The message to check
+     * @return     The body of the message as bytes
+     *
+     * @attribute class message
+     * @attribute getter data_bytes
+     */
+    vector<int8_t> message_data_bytes(message msg);
+
+    /**
+     * Returns the host who made the message.
+     *
+     * @param  msg The message to check
+     * @return     The host who sent the message
+     *
+     * @attribute class message
+     * @attribute getter host
+     */
+    string message_host(message msg);
+
+    /**
+     * Returns the port used to send a message.
+     *
+     * @param  msg The message to check
+     * @return     The port of the message
+     *
+     * @attribute class message
+     * @attribute getter port
+     */
+    unsigned short int message_port(message msg);
+
+    /**
+     * Returns the protocol used to send a message.
+     *
+     * @param  msg The message to check
+     * @return     The protocol used to sent the message
+     *
+     * @attribute class message
+     * @attribute getter protocol
+     */
+    connection_type message_protocol(message msg);
+
+    /**
+     * Read message data from a connection.
+     *
+     * @param  a_connection The connection
+     * @return              The data from the first message on the connection
+     *
+     * @attribute class connection
+     * @attribute method read_message_data
+     *
+     * @attribute suffix from_connection
+     */
     string read_message_data(connection a_connection);
+
+    /**
+     * Read message data from a server.
+     *
+     * @param  svr The server
+     * @return              The data from the first message on the server
+     *
+     * @attribute class server_socket
+     * @attribute method read_message_data
+     *
+     * @attribute suffix from_server
+     */
     string read_message_data(server_socket svr);
+
+    /**
+     * Read message data from a connection or server.
+     *
+     * @param  name The name of the connection or server
+     * @return      The data from the first message from the server or connection
+     *
+     * @attribute suffix from_name
+     */
     string read_message_data(const string &name);
+
+    /**
+     * Send a message to the connection.
+     *
+     * @param  a_msg        The message to send
+     * @param  a_connection The connection to send the message to
+     * @return              True if the message sends.
+     *
+     * @attribute class connection
+     * @attribute method send_message
+     * @attribute self a_connection
+     *
+     * @attribute suffix connection
+     */
     bool send_message_to(const string &a_msg, connection a_connection);
+
+    /**
+     * Send a message to the connection with the given name.
+     *
+     * @param  a_msg The message to send
+     * @param  name  The name of the connection to send the message to
+     * @return       True if the message sends
+     *
+     * @attribute suffix name
+     */
     bool send_message_to(const string &a_msg, const string &name);
+
+    /**
+     * Returns the connection that sent a message.
+     *
+     * @param  msg The message
+     * @return     The connection that sent the message
+     */
     connection message_connection(message msg);
 
-    // Utility functions
+    /**
+     * Returns the name SplashKit would use for a connection made to a server
+     * from a host to a port.
+     *
+     * @param  host The host name
+     * @param  port The port
+     * @return      The name SplashKit would use for this connection
+     */
     string name_for_connection(const string host, const unsigned int port);
 
     /**

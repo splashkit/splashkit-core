@@ -442,6 +442,40 @@ void fill_circle(color clr, double x, double y, double radius, drawing_options o
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
     __sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
 }
+void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius) {
+    __sklib_bitmap __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void fill_circle_on_bitmap(bitmap destination, color clr, double x, double y, double radius, drawing_options opts) {
+    __sklib_bitmap __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
+void fill_circle_on_window(window destination, color clr, double x, double y, double radius) {
+    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+}
+void fill_circle_on_window(window destination, color clr, double x, double y, double radius, drawing_options opts) {
+    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+}
 point_2d center_point(const circle &c) {
     const __sklib_circle __skparam__c = __skadapter__to_sklib_circle(c);
     __sklib_point_2d __skreturn = __sklib__center_point__circle_ref(__skparam__c);
@@ -661,20 +695,20 @@ bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const poin
     int __skreturn = __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
     return __skadapter__to_bool(__skreturn);
 }
-bool bitmap_point_collision(bitmap bmp, const point_2d &pt, const point_2d &bmp_pt) {
+bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     const __sklib_point_2d __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmp_pt);
-    int __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__bmp_pt, __skparam__pt);
     return __skadapter__to_bool(__skreturn);
 }
-bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y) {
+bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-    float __skparam__bmp_x = __skadapter__to_float(bmp_x);
-    float __skparam__bmp_y = __skadapter__to_float(bmp_y);
+    double __skparam__bmp_x = __skadapter__to_double(bmp_x);
+    double __skparam__bmp_y = __skadapter__to_double(bmp_y);
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    int __skreturn = __sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__double__double__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
     return __skadapter__to_bool(__skreturn);
 }
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt) {
@@ -1580,21 +1614,21 @@ drawing_options option_line_width(int width, drawing_options opts) {
     __sklib_drawing_options __skreturn = __sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_part_bmp(double x, double y, float w, float h) {
+drawing_options option_part_bmp(double x, double y, double w, double h) {
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    float __skparam__w = __skadapter__to_float(w);
-    float __skparam__h = __skadapter__to_float(h);
-    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
+    double __skparam__w = __skadapter__to_double(w);
+    double __skparam__h = __skadapter__to_double(h);
+    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__double__double(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts) {
+drawing_options option_part_bmp(double x, double y, double w, double h, drawing_options opts) {
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
-    float __skparam__w = __skadapter__to_float(w);
-    float __skparam__h = __skadapter__to_float(h);
+    double __skparam__w = __skadapter__to_double(w);
+    double __skparam__h = __skadapter__to_double(h);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_part_bmp__double__double__double__double__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
 drawing_options option_part_bmp(rectangle part) {
@@ -1608,43 +1642,43 @@ drawing_options option_part_bmp(rectangle part, drawing_options opts) {
     __sklib_drawing_options __skreturn = __sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float(__skparam__angle);
+drawing_options option_rotate_bmp(double angle) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double(__skparam__angle);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle, drawing_options opts) {
-    float __skparam__angle = __skadapter__to_float(angle);
+drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__anchor_x = __skadapter__to_double(anchor_x);
+    double __skparam__anchor_y = __skadapter__to_double(anchor_y);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__double__double(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
+    return __skadapter__to_drawing_options(__skreturn);
+}
+drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y, drawing_options opts) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__anchor_x = __skadapter__to_double(anchor_x);
+    double __skparam__anchor_y = __skadapter__to_double(anchor_y);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__double__double__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__anchor_x = __skadapter__to_float(anchor_x);
-    float __skparam__anchor_y = __skadapter__to_float(anchor_y);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
-    return __skadapter__to_drawing_options(__skreturn);
-}
-drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y, drawing_options opts) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__anchor_x = __skadapter__to_float(anchor_x);
-    float __skparam__anchor_y = __skadapter__to_float(anchor_y);
+drawing_options option_rotate_bmp(double angle, drawing_options opts) {
+    double __skparam__angle = __skadapter__to_double(angle);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_rotate_bmp__double__drawing_options(__skparam__angle, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_scale_bmp(float scale_x, float scale_y) {
-    float __skparam__scale_x = __skadapter__to_float(scale_x);
-    float __skparam__scale_y = __skadapter__to_float(scale_y);
-    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y);
+drawing_options option_scale_bmp(double scale_x, double scale_y) {
+    double __skparam__scale_x = __skadapter__to_double(scale_x);
+    double __skparam__scale_y = __skadapter__to_double(scale_y);
+    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__double__double(__skparam__scale_x, __skparam__scale_y);
     return __skadapter__to_drawing_options(__skreturn);
 }
-drawing_options option_scale_bmp(float scale_x, float scale_y, drawing_options opts) {
-    float __skparam__scale_x = __skadapter__to_float(scale_x);
-    float __skparam__scale_y = __skadapter__to_float(scale_y);
+drawing_options option_scale_bmp(double scale_x, double scale_y, drawing_options opts) {
+    double __skparam__scale_x = __skadapter__to_double(scale_x);
+    double __skparam__scale_y = __skadapter__to_double(scale_y);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
+    __sklib_drawing_options __skreturn = __sklib__option_scale_bmp__double__double__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
 drawing_options option_to_screen() {
@@ -2782,9 +2816,9 @@ string matrix_to_string(const matrix_2d &matrix) {
     __sklib_string __skreturn = __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
     return __skadapter__to_string(__skreturn);
 }
-matrix_2d rotation_matrix(float deg) {
-    float __skparam__deg = __skadapter__to_float(deg);
-    __sklib_matrix_2d __skreturn = __sklib__rotation_matrix__float(__skparam__deg);
+matrix_2d rotation_matrix(double deg) {
+    double __skparam__deg = __skadapter__to_double(deg);
+    __sklib_matrix_2d __skreturn = __sklib__rotation_matrix__double(__skparam__deg);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 matrix_2d scale_matrix(const point_2d &scale) {
@@ -2797,16 +2831,16 @@ matrix_2d scale_matrix(const vector_2d &scale) {
     __sklib_matrix_2d __skreturn = __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d scale_matrix(float scale) {
-    float __skparam__scale = __skadapter__to_float(scale);
-    __sklib_matrix_2d __skreturn = __sklib__scale_matrix__float(__skparam__scale);
+matrix_2d scale_matrix(double scale) {
+    double __skparam__scale = __skadapter__to_double(scale);
+    __sklib_matrix_2d __skreturn = __sklib__scale_matrix__double(__skparam__scale);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate) {
+matrix_2d scale_rotate_translate_matrix(const point_2d &scale, double deg, const point_2d &translate) {
     const __sklib_point_2d __skparam__scale = __skadapter__to_sklib_point_2d(scale);
-    float __skparam__deg = __skadapter__to_float(deg);
+    double __skparam__deg = __skadapter__to_double(deg);
     const __sklib_point_2d __skparam__translate = __skadapter__to_sklib_point_2d(translate);
-    __sklib_matrix_2d __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
+    __sklib_matrix_2d __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 matrix_2d translation_matrix(const point_2d &pt) {
@@ -2819,10 +2853,10 @@ matrix_2d translation_matrix(const vector_2d &pt) {
     __sklib_matrix_2d __skreturn = __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
     return __skadapter__to_matrix_2d(__skreturn);
 }
-matrix_2d translation_matrix(float dx, float dy) {
-    float __skparam__dx = __skadapter__to_float(dx);
-    float __skparam__dy = __skadapter__to_float(dy);
-    __sklib_matrix_2d __skreturn = __sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy);
+matrix_2d translation_matrix(double dx, double dy) {
+    double __skparam__dx = __skadapter__to_double(dx);
+    double __skparam__dy = __skadapter__to_double(dy);
+    __sklib_matrix_2d __skreturn = __sklib__translation_matrix__double__double(__skparam__dx, __skparam__dy);
     return __skadapter__to_matrix_2d(__skreturn);
 }
 void hide_mouse() {
@@ -3008,6 +3042,40 @@ bool accept_new_connection(server_socket server) {
     int __skreturn = __sklib__accept_new_connection__server_socket(__skparam__server);
     return __skadapter__to_bool(__skreturn);
 }
+void broadcast_message(const string &a_msg, server_socket svr) {
+    const __sklib_string __skparam__a_msg = __skadapter__to_sklib_string(a_msg);
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    __sklib__broadcast_message__string_ref__server_socket(__skparam__a_msg, __skparam__svr);
+    __skadapter__free__sklib_string(__skparam__a_msg);
+}
+void broadcast_message(const string &a_msg) {
+    const __sklib_string __skparam__a_msg = __skadapter__to_sklib_string(a_msg);
+    __sklib__broadcast_message__string_ref(__skparam__a_msg);
+    __skadapter__free__sklib_string(__skparam__a_msg);
+}
+void broadcast_message(const string &a_msg, const string &name) {
+    const __sklib_string __skparam__a_msg = __skadapter__to_sklib_string(a_msg);
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib__broadcast_message__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(__skparam__a_msg);
+    __skadapter__free__sklib_string(__skparam__name);
+}
+void check_network_activity() {
+    __sklib__check_network_activity();
+}
+void clear_messages(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib__clear_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+}
+void clear_messages(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    __sklib__clear_messages__connection(__skparam__a_connection);
+}
+void clear_messages(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    __sklib__clear_messages__server_socket(__skparam__svr);
+}
 void close_all_connections() {
     __sklib__close_all_connections();
 }
@@ -3051,6 +3119,34 @@ unsigned int connection_count(server_socket server) {
     unsigned int __skreturn = __sklib__connection_count__server_socket(__skparam__server);
     return __skadapter__to_unsigned_int(__skreturn);
 }
+unsigned int connection_ip(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    unsigned int __skreturn = __sklib__connection_ip__connection(__skparam__a_connection);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+unsigned int connection_ip(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned int __skreturn = __sklib__connection_ip__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+connection connection_named(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib_connection __skreturn = __sklib__connection_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_connection(__skreturn);
+}
+unsigned short connection_port(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    unsigned short __skreturn = __sklib__connection_port__connection(__skparam__a_connection);
+    return __skadapter__to_unsigned_short(__skreturn);
+}
+unsigned short connection_port(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned short __skreturn = __sklib__connection_port__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_unsigned_short(__skreturn);
+}
 server_socket create_server(const string &name, unsigned short port) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     unsigned short __skparam__port = __skadapter__to_unsigned_short(port);
@@ -3070,6 +3166,32 @@ string dec_to_hex(unsigned int a_dec) {
     unsigned int __skparam__a_dec = __skadapter__to_unsigned_int(a_dec);
     __sklib_string __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
     return __skadapter__to_string(__skreturn);
+}
+bool has_connection(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__has_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
+bool has_messages() {
+    int __skreturn = __sklib__has_messages();
+    return __skadapter__to_bool(__skreturn);
+}
+bool has_messages(connection con) {
+    __sklib_connection __skparam__con = __skadapter__to_sklib_connection(con);
+    int __skreturn = __sklib__has_messages__connection(__skparam__con);
+    return __skadapter__to_bool(__skreturn);
+}
+bool has_messages(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__has_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
+bool has_messages(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    int __skreturn = __sklib__has_messages__server_socket(__skparam__svr);
+    return __skadapter__to_bool(__skreturn);
 }
 bool has_new_connections() {
     int __skreturn = __sklib__has_new_connections();
@@ -3110,6 +3232,17 @@ string ipv4_to_str(unsigned int ip) {
     __sklib_string __skreturn = __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
     return __skadapter__to_string(__skreturn);
 }
+bool is_connection_open(connection con) {
+    __sklib_connection __skparam__con = __skadapter__to_sklib_connection(con);
+    int __skreturn = __sklib__is_connection_open__connection(__skparam__con);
+    return __skadapter__to_bool(__skreturn);
+}
+bool is_connection_open(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__is_connection_open__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
 connection last_connection(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     __sklib_connection __skreturn = __sklib__last_connection__string_ref(__skparam__name);
@@ -3121,8 +3254,61 @@ connection last_connection(server_socket server) {
     __sklib_connection __skreturn = __sklib__last_connection__server_socket(__skparam__server);
     return __skadapter__to_connection(__skreturn);
 }
+connection message_connection(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    __sklib_connection __skreturn = __sklib__message_connection__message(__skparam__msg);
+    return __skadapter__to_connection(__skreturn);
+}
+unsigned int message_count(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    unsigned int __skreturn = __sklib__message_count__server_socket(__skparam__svr);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+unsigned int message_count(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    unsigned int __skreturn = __sklib__message_count__connection(__skparam__a_connection);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+unsigned int message_count(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    unsigned int __skreturn = __sklib__message_count__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_unsigned_int(__skreturn);
+}
+string message_data(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    __sklib_string __skreturn = __sklib__message_data__message(__skparam__msg);
+    return __skadapter__to_string(__skreturn);
+}
+vector<int8_t> message_data_bytes(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    __sklib_vector_int8_t __skreturn = __sklib__message_data_bytes__message(__skparam__msg);
+    return __skadapter__to_vector_int8_t(__skreturn);
+}
+string message_host(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    __sklib_string __skreturn = __sklib__message_host__message(__skparam__msg);
+    return __skadapter__to_string(__skreturn);
+}
+unsigned short message_port(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    unsigned short __skreturn = __sklib__message_port__message(__skparam__msg);
+    return __skadapter__to_unsigned_short(__skreturn);
+}
+connection_type message_protocol(message msg) {
+    __sklib_message __skparam__msg = __skadapter__to_sklib_message(msg);
+    int __skreturn = __sklib__message_protocol__message(__skparam__msg);
+    return __skadapter__to_connection_type(__skreturn);
+}
 string my_ip() {
     __sklib_string __skreturn = __sklib__my_ip();
+    return __skadapter__to_string(__skreturn);
+}
+string name_for_connection(const string host, const unsigned int port) {
+    const __sklib_string __skparam__host = __skadapter__to_sklib_string(host);
+    const unsigned int __skparam__port = __skadapter__to_unsigned_int(port);
+    __sklib_string __skreturn = __sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port);
+    __skadapter__free__sklib_string(__skparam__host);
     return __skadapter__to_string(__skreturn);
 }
 connection open_connection(const string &name, const string &host, unsigned short port) {
@@ -3144,6 +3330,54 @@ connection open_connection(const string &name, const string &host, unsigned shor
     __skadapter__free__sklib_string(__skparam__host);
     return __skadapter__to_connection(__skreturn);
 }
+message read_message() {
+    __sklib_message __skreturn = __sklib__read_message();
+    return __skadapter__to_message(__skreturn);
+}
+message read_message(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    __sklib_message __skreturn = __sklib__read_message__connection(__skparam__a_connection);
+    return __skadapter__to_message(__skreturn);
+}
+message read_message(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib_message __skreturn = __sklib__read_message__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_message(__skreturn);
+}
+message read_message(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    __sklib_message __skreturn = __sklib__read_message__server_socket(__skparam__svr);
+    return __skadapter__to_message(__skreturn);
+}
+string read_message_data(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib_string __skreturn = __sklib__read_message_data__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_string(__skreturn);
+}
+string read_message_data(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    __sklib_string __skreturn = __sklib__read_message_data__connection(__skparam__a_connection);
+    return __skadapter__to_string(__skreturn);
+}
+string read_message_data(server_socket svr) {
+    __sklib_server_socket __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+    __sklib_string __skreturn = __sklib__read_message_data__server_socket(__skparam__svr);
+    return __skadapter__to_string(__skreturn);
+}
+void reconnect(connection a_connection) {
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    __sklib__reconnect__connection(__skparam__a_connection);
+}
+void reconnect(const string &name) {
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib__reconnect__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+}
+void release_all_connections() {
+    __sklib__release_all_connections();
+}
 connection retrieve_connection(const string &name, int idx) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     int __skparam__idx = __skadapter__to_int(idx);
@@ -3156,6 +3390,21 @@ connection retrieve_connection(server_socket server, int idx) {
     int __skparam__idx = __skadapter__to_int(idx);
     __sklib_connection __skreturn = __sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx);
     return __skadapter__to_connection(__skreturn);
+}
+bool send_message_to(const string &a_msg, connection a_connection) {
+    const __sklib_string __skparam__a_msg = __skadapter__to_sklib_string(a_msg);
+    __sklib_connection __skparam__a_connection = __skadapter__to_sklib_connection(a_connection);
+    int __skreturn = __sklib__send_message_to__string_ref__connection(__skparam__a_msg, __skparam__a_connection);
+    __skadapter__free__sklib_string(__skparam__a_msg);
+    return __skadapter__to_bool(__skreturn);
+}
+bool send_message_to(const string &a_msg, const string &name) {
+    const __sklib_string __skparam__a_msg = __skadapter__to_sklib_string(a_msg);
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__send_message_to__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(__skparam__a_msg);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
 }
 bool server_has_new_connection(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
@@ -3173,6 +3422,14 @@ server_socket server_named(const string &name) {
     __sklib_server_socket __skreturn = __sklib__server_named__string_ref(__skparam__name);
     __skadapter__free__sklib_string(__skparam__name);
     return __skadapter__to_server_socket(__skreturn);
+}
+void set_udp_packet_size(unsigned int udp_packet_size) {
+    unsigned int __skparam__udp_packet_size = __skadapter__to_unsigned_int(udp_packet_size);
+    __sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size);
+}
+unsigned int udp_packet_size() {
+    unsigned int __skreturn = __sklib__udp_packet_size();
+    return __skadapter__to_unsigned_int(__skreturn);
 }
 void draw_pixel(color clr, const point_2d &pt) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
@@ -5507,17 +5764,17 @@ string file_as_string(string filename, resource_kind kind) {
     __skadapter__free__sklib_string(__skparam__filename);
     return __skadapter__to_string(__skreturn);
 }
-float angle_between(const vector_2d &v1, const vector_2d &v2) {
+double angle_between(const vector_2d &v1, const vector_2d &v2) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
     const __sklib_vector_2d __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
-    float __skreturn = __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+    return __skadapter__to_double(__skreturn);
 }
-float dot_product(const vector_2d &v1, const vector_2d &v2) {
+double dot_product(const vector_2d &v1, const vector_2d &v2) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
     const __sklib_vector_2d __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
-    float __skreturn = __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
+    return __skadapter__to_double(__skreturn);
 }
 bool is_zero_vector(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
@@ -5544,15 +5801,15 @@ vector_2d vector_add(const vector_2d &v1, const vector_2d &v2) {
     __sklib_vector_2d __skreturn = __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
     return __skadapter__to_vector_2d(__skreturn);
 }
-float vector_angle(const vector_2d v) {
+double vector_angle(const vector_2d v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_angle__vector_2d(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_angle__vector_2d(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-vector_2d vector_from_angle(float angle, float magnitude) {
-    float __skparam__angle = __skadapter__to_float(angle);
-    float __skparam__magnitude = __skadapter__to_float(magnitude);
-    __sklib_vector_2d __skreturn = __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
+vector_2d vector_from_angle(double angle, double magnitude) {
+    double __skparam__angle = __skadapter__to_double(angle);
+    double __skparam__magnitude = __skadapter__to_double(magnitude);
+    __sklib_vector_2d __skreturn = __sklib__vector_from_angle__double__double(__skparam__angle, __skparam__magnitude);
     return __skadapter__to_vector_2d(__skreturn);
 }
 vector_2d vector_from_line(const line &l) {
@@ -5577,26 +5834,26 @@ vector_2d vector_invert(const vector_2d &v) {
     __sklib_vector_2d __skreturn = __sklib__vector_invert__vector_2d_ref(__skparam__v);
     return __skadapter__to_vector_2d(__skreturn);
 }
-vector_2d vector_limit(const vector_2d &v, float limit) {
+vector_2d vector_limit(const vector_2d &v, double limit) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skparam__limit = __skadapter__to_float(limit);
-    __sklib_vector_2d __skreturn = __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
+    double __skparam__limit = __skadapter__to_double(limit);
+    __sklib_vector_2d __skreturn = __sklib__vector_limit__vector_2d_ref__double(__skparam__v, __skparam__limit);
     return __skadapter__to_vector_2d(__skreturn);
 }
-float vector_magnitude(const vector_2d &v) {
+double vector_magnitude(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-float vector_magnitude_sqared(const vector_2d &v) {
+double vector_magnitude_sqared(const vector_2d &v) {
     const __sklib_vector_2d __skparam__v = __skadapter__to_sklib_vector_2d(v);
-    float __skreturn = __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
+    return __skadapter__to_double(__skreturn);
 }
-vector_2d vector_multiply(const vector_2d &v1, float s) {
+vector_2d vector_multiply(const vector_2d &v1, double s) {
     const __sklib_vector_2d __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
-    float __skparam__s = __skadapter__to_float(s);
-    __sklib_vector_2d __skreturn = __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
+    double __skparam__s = __skadapter__to_double(s);
+    __sklib_vector_2d __skreturn = __sklib__vector_multiply__vector_2d_ref__double(__skparam__v1, __skparam__s);
     return __skadapter__to_vector_2d(__skreturn);
 }
 vector_2d vector_normal(const vector_2d &v) {
@@ -5837,10 +6094,30 @@ vector<string> request_uri_stubs(http_request r) {
     __sklib_vector_string __skreturn = __sklib__request_uri_stubs__http_request(__skparam__r);
     return __skadapter__to_vector_string(__skreturn);
 }
+void send_css_file_response(http_request r, const string &filename) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    __sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(__skparam__filename);
+}
+void send_file_response(http_request r, const string &filename, const string &content_type) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    const __sklib_string __skparam__content_type = __skadapter__to_sklib_string(content_type);
+    __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
+    __skadapter__free__sklib_string(__skparam__filename);
+    __skadapter__free__sklib_string(__skparam__content_type);
+}
 void send_html_file_response(http_request r, const string &filename) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
     const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
     __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(__skparam__filename);
+}
+void send_javascript_file_response(http_request r, const string &filename) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__filename = __skadapter__to_sklib_string(filename);
+    __sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
     __skadapter__free__sklib_string(__skparam__filename);
 }
 void send_response(http_request r) {

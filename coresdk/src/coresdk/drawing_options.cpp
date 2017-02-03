@@ -57,24 +57,24 @@ namespace splashkit_lib
         return opts;
     }
 
-    drawing_options option_scale_bmp(float scale_x, float scale_y)
+    drawing_options option_scale_bmp(double scale_x, double scale_y)
     {
         return option_scale_bmp(scale_x, scale_y, option_defaults());
     }
 
-    drawing_options option_scale_bmp(float scale_x, float scale_y, drawing_options opts)
+    drawing_options option_scale_bmp(double scale_x, double scale_y, drawing_options opts)
     {
         opts.scale_x = scale_x;
         opts.scale_y = scale_y;
         return opts;
     }
 
-    drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y)
+    drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y)
     {
         return option_rotate_bmp(angle, anchor_x, anchor_y, option_defaults());
     }
 
-    drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y, drawing_options opts)
+    drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y, drawing_options opts)
     {
         opts.angle += angle;
         opts.anchor_offset_x += anchor_x;
@@ -82,12 +82,12 @@ namespace splashkit_lib
         return opts;
     }
 
-    drawing_options option_rotate_bmp(float angle, drawing_options opts)
+    drawing_options option_rotate_bmp(double angle, drawing_options opts)
     {
         return option_rotate_bmp(angle, 0, 0, opts);
     }
 
-    drawing_options option_rotate_bmp(float angle)
+    drawing_options option_rotate_bmp(double angle)
     {
         return option_rotate_bmp(angle, 0, 0, option_defaults());
     }
@@ -126,12 +126,12 @@ namespace splashkit_lib
         return opts;
     }
 
-    drawing_options option_part_bmp(double x, double y, float w, float h)
+    drawing_options option_part_bmp(double x, double y, double w, double h)
     {
         return option_part_bmp(rectangle_from(x, y, w, h), option_defaults());
     }
 
-    drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts)
+    drawing_options option_part_bmp(double x, double y, double w, double h, drawing_options opts)
     {
         return option_part_bmp(rectangle_from(x, y, w, h), opts);
     }

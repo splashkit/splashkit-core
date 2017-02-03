@@ -74,7 +74,7 @@ namespace splashkit_lib
      * @param  scale_y The amount to scale bitmaps aalong the y axis
      * @return         Options that will scale bitmaps along the x,y axis.
      */
-    drawing_options option_scale_bmp(float scale_x, float scale_y);
+    drawing_options option_scale_bmp(double scale_x, double scale_y);
 
     /**
      * Use this option to scale the drawing of bitmaps. You can scale x and y separately.
@@ -87,7 +87,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    drawing_options option_scale_bmp(float scale_x, float scale_y, drawing_options opts);
+    drawing_options option_scale_bmp(double scale_x, double scale_y, drawing_options opts);
 
     /**
      * Use this option to rotate the drawing of a bitmap. This allows you to set the
@@ -101,7 +101,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_anchor
      */
-    drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y);
+    drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y);
 
     /**
      * Use this option to rotate the drawing of a bitmap. This allows you to set the
@@ -116,7 +116,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_anchor_and_options
      */
-    drawing_options option_rotate_bmp(float angle, float anchor_x, float anchor_y, drawing_options opts);
+    drawing_options option_rotate_bmp(double angle, double anchor_x, double anchor_y, drawing_options opts);
 
     /**
      * Use this option to rotate a bitmap around its centre point.
@@ -127,7 +127,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    drawing_options option_rotate_bmp(float angle, drawing_options opts);
+    drawing_options option_rotate_bmp(double angle, drawing_options opts);
 
     /**
      * Use this option to rotate a bitmap around its centre point.
@@ -135,7 +135,7 @@ namespace splashkit_lib
      * @param  angle    The angle to rotate bitmaps.
      * @return          Options that will rotate bitmaps around its center point.
      */
-    drawing_options option_rotate_bmp(float angle);
+    drawing_options option_rotate_bmp(double angle);
 
     /**
      * Use this option to flip an image along its X axis.
@@ -199,7 +199,7 @@ namespace splashkit_lib
      * @param  h The height of the part within the bitmap.
      * @return   Options to draw parts of a bitmap.
      */
-    drawing_options option_part_bmp(double x, double y, float w, float h);
+    drawing_options option_part_bmp(double x, double y, double w, double h);
 
     /**
      * Use this option to draw only a part of a bitmap.
@@ -213,7 +213,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_options
      */
-    drawing_options option_part_bmp(double x, double y, float w, float h, drawing_options opts);
+    drawing_options option_part_bmp(double x, double y, double w, double h, drawing_options opts);
 
     /**
      * Use this option to draw only part of a bitmap.

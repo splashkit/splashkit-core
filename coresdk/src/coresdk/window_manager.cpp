@@ -13,6 +13,7 @@
 #include "backend_types.h"
 #include "utility_functions.h"
 #include "input_driver.h"
+#include "input.h"
 
 #include <map>
 
@@ -247,6 +248,8 @@ namespace splashkit_lib
 
     bool window_close_requested(window wind)
     {
+        if ( quit_requested() ) return true;
+        
         if (INVALID_PTR(wind, WINDOW_PTR))
         {
             LOG(WARNING) << "Attempting to check if invalid window closed";

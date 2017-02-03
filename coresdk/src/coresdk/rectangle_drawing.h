@@ -166,6 +166,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height, const drawing_options &opts);
     
@@ -182,6 +183,7 @@ namespace splashkit_lib
      * @param height  The height of the rectangle
      *
      * @attribute class   window
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_window(window destination, color clr, double x, double y, double width, double height);
     
@@ -195,6 +197,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record_with_options
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_window(window destination, color clr, const rectangle &rect, const drawing_options &opts);
     
@@ -207,6 +210,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  record
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_window(window destination, color clr, const rectangle &rect);
     
@@ -218,6 +222,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      *
      * @attribute class   window
+     * @attribute method  draw_quad
      */
     void draw_quad_on_window(window destination, color clr, const quad &q);
     
@@ -231,6 +236,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  draw_quad
      */
     void draw_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts);
     
@@ -242,6 +248,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      *
      * @attribute class   window
+     * @attribute method  fill_quad
      */
     void fill_quad_on_window(window destination, color clr, const quad &q);
     
@@ -336,6 +343,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height, const drawing_options &opts);
     
@@ -352,6 +360,7 @@ namespace splashkit_lib
      * @param height  The height of the rectangle
      *
      * @attribute class   bitmap
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, double x, double y, double width, double height);
     
@@ -365,6 +374,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record_with_options
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect, const drawing_options &opts);
     
@@ -377,6 +387,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  record
+     * @attribute method  fill_rectangle
      */
     void fill_rectangle_on_bitmap(bitmap destination, color clr, const rectangle &rect);
     
@@ -388,6 +399,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      *
      * @attribute class   bitmap
+     * @attribute method  draw_quad
      */
     void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q);
     
@@ -401,6 +413,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  draw_quad
      */
     void draw_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts);
     
@@ -412,6 +425,7 @@ namespace splashkit_lib
      * @param q     The details of the quad
      *
      * @attribute class   bitmap
+     * @attribute method  fill_quad
      */
     void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q);
     
@@ -425,6 +439,7 @@ namespace splashkit_lib
      *
      * @attribute class   bitmap
      * @attribute suffix  with_options
+     * @attribute method  fill_quad
      */
     void fill_quad_on_bitmap(bitmap destination, color clr, const quad &q, const drawing_options &opts);
     

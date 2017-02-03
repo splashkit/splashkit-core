@@ -24,9 +24,9 @@ namespace splashkit_lib
     //
     // See http://www.austincc.edu/cchrist1/GAME1343/TransformedCollision/TransformedCollision.htm
     bool _step_through_pixels (
-                               float w1, float h1,
+                               double w1, double h1,
                                const matrix_2d &matrix1,
-                               float w2, float h2,
+                               double w2, double h2,
                                const matrix_2d &matrix2,
                                function<bool(int, int, int, int)> end_fn )
     {
@@ -175,7 +175,7 @@ namespace splashkit_lib
         return bitmap_point_collision(bmp, translation_matrix(bmp_pt), pt);
     }
 
-    bool bitmap_point_collision(bitmap bmp, float bmp_x, float bmp_y, double x, double y)
+    bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y)
     {
         return bitmap_point_collision(bmp, 0, translation_matrix(bmp_x, bmp_y), point_at(x, y));
     }

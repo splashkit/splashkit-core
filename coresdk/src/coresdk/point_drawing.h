@@ -224,6 +224,7 @@ namespace splashkit_lib
      *            pixel
      *
      * @attribute class  bitmap
+     * @attribute method  draw_pixel
      */
     void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y);
     
@@ -240,6 +241,7 @@ namespace splashkit_lib
      *
      * @attribute class  bitmap
      * @attribute suffix  with_options
+     * @attribute method  draw_pixel
      */
     void draw_pixel_on_bitmap(bitmap destination, color clr, double x, double y, drawing_options opts);
     
@@ -252,6 +254,7 @@ namespace splashkit_lib
      *
      * @attribute class  bitmap
      * @attribute suffix  at_point
+     * @attribute method  draw_pixel
      */
     void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt);
     
@@ -265,6 +268,7 @@ namespace splashkit_lib
      *
      * @attribute class  bitmap
      * @attribute suffix  at_point_with_options
+     * @attribute method  draw_pixel
      */
     void draw_pixel_on_bitmap(bitmap destination, color clr, const point_2d &pt, drawing_options opts);
 }

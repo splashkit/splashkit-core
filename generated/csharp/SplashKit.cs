@@ -19,6 +19,10 @@ namespace SplashKitSDK
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static IntPtr __skadapter__to_ptr(IntPtr v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte __skadapter__to_sklib_int8_t(byte v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static byte __skadapter__to_int8_t(byte v) { return v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_int(int v) { return v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_int(int v) { return v; }
@@ -150,213 +154,221 @@ namespace SplashKitSDK
       __sklib__free__sklib_string(s);
       return result;
     }
+
     private static __sklib_matrix_2d __skadapter__to_sklib_matrix_2d(Matrix2D v)
     {
-        __sklib_matrix_2d __skreturn;
-        __skreturn.elements = new double[9];
-        __skreturn.elements[0] = __skadapter__to_sklib_double(v.elements[0,0]);
-        __skreturn.elements[1] = __skadapter__to_sklib_double(v.elements[0,1]);
-        __skreturn.elements[2] = __skadapter__to_sklib_double(v.elements[0,2]);
-        __skreturn.elements[3] = __skadapter__to_sklib_double(v.elements[1,0]);
-        __skreturn.elements[4] = __skadapter__to_sklib_double(v.elements[1,1]);
-        __skreturn.elements[5] = __skadapter__to_sklib_double(v.elements[1,2]);
-        __skreturn.elements[6] = __skadapter__to_sklib_double(v.elements[2,0]);
-        __skreturn.elements[7] = __skadapter__to_sklib_double(v.elements[2,1]);
-        __skreturn.elements[8] = __skadapter__to_sklib_double(v.elements[2,2]);
-        return __skreturn;
+      __sklib_matrix_2d __skreturn;
+      __skreturn.Elements_0 = __skadapter__to_sklib_double(v.Elements[0,0]);
+      __skreturn.Elements_1 = __skadapter__to_sklib_double(v.Elements[0,1]);
+      __skreturn.Elements_2 = __skadapter__to_sklib_double(v.Elements[0,2]);
+      __skreturn.Elements_3 = __skadapter__to_sklib_double(v.Elements[1,0]);
+      __skreturn.Elements_4 = __skadapter__to_sklib_double(v.Elements[1,1]);
+      __skreturn.Elements_5 = __skadapter__to_sklib_double(v.Elements[1,2]);
+      __skreturn.Elements_6 = __skadapter__to_sklib_double(v.Elements[2,0]);
+      __skreturn.Elements_7 = __skadapter__to_sklib_double(v.Elements[2,1]);
+      __skreturn.Elements_8 = __skadapter__to_sklib_double(v.Elements[2,2]);
+      return __skreturn;
     }
     private static Matrix2D __skadapter__to_matrix_2d(__sklib_matrix_2d v)
     {
-        Matrix2D __skreturn;
-        __skreturn.elements = new double[3,3];
-        __skreturn.elements[0,0] = __skadapter__to_double(v.elements[0]);
-        __skreturn.elements[0,1] = __skadapter__to_double(v.elements[1]);
-        __skreturn.elements[0,2] = __skadapter__to_double(v.elements[2]);
-        __skreturn.elements[1,0] = __skadapter__to_double(v.elements[3]);
-        __skreturn.elements[1,1] = __skadapter__to_double(v.elements[4]);
-        __skreturn.elements[1,2] = __skadapter__to_double(v.elements[5]);
-        __skreturn.elements[2,0] = __skadapter__to_double(v.elements[6]);
-        __skreturn.elements[2,1] = __skadapter__to_double(v.elements[7]);
-        __skreturn.elements[2,2] = __skadapter__to_double(v.elements[8]);
-        return __skreturn;
+      Matrix2D __skreturn;
+      __skreturn.Elements = new double[3,3];
+      __skreturn.Elements[0,0] = __skadapter__to_double(v.Elements_0);
+      __skreturn.Elements[0,1] = __skadapter__to_double(v.Elements_1);
+      __skreturn.Elements[0,2] = __skadapter__to_double(v.Elements_2);
+      __skreturn.Elements[1,0] = __skadapter__to_double(v.Elements_3);
+      __skreturn.Elements[1,1] = __skadapter__to_double(v.Elements_4);
+      __skreturn.Elements[1,2] = __skadapter__to_double(v.Elements_5);
+      __skreturn.Elements[2,0] = __skadapter__to_double(v.Elements_6);
+      __skreturn.Elements[2,1] = __skadapter__to_double(v.Elements_7);
+      __skreturn.Elements[2,2] = __skadapter__to_double(v.Elements_8);
+      return __skreturn;
     }
+
 
     private static __sklib_point_2d __skadapter__to_sklib_point_2d(Point2D v)
     {
-        __sklib_point_2d __skreturn;
-        __skreturn.x = __skadapter__to_sklib_double(v.x);
-          __skreturn.y = __skadapter__to_sklib_double(v.y);
-          return __skreturn;
+      __sklib_point_2d __skreturn;
+      __skreturn.X = __skadapter__to_sklib_double(v.X);
+      __skreturn.Y = __skadapter__to_sklib_double(v.Y);
+      return __skreturn;
     }
     private static Point2D __skadapter__to_point_2d(__sklib_point_2d v)
     {
-        Point2D __skreturn;
-        __skreturn.x = __skadapter__to_double(v.x);
-        __skreturn.y = __skadapter__to_double(v.y);
-        return __skreturn;
+      Point2D __skreturn;
+      __skreturn.X = __skadapter__to_double(v.X);
+      __skreturn.Y = __skadapter__to_double(v.Y);
+      return __skreturn;
     }
+
 
     private static __sklib_circle __skadapter__to_sklib_circle(Circle v)
     {
-        __sklib_circle __skreturn;
-        __skreturn.center = __skadapter__to_sklib_point_2d(v.center);
-          __skreturn.radius = __skadapter__to_sklib_double(v.radius);
-          return __skreturn;
+      __sklib_circle __skreturn;
+      __skreturn.Center = __skadapter__to_sklib_point_2d(v.Center);
+      __skreturn.Radius = __skadapter__to_sklib_double(v.Radius);
+      return __skreturn;
     }
     private static Circle __skadapter__to_circle(__sklib_circle v)
     {
-        Circle __skreturn;
-        __skreturn.center = __skadapter__to_point_2d(v.center);
-        __skreturn.radius = __skadapter__to_double(v.radius);
-        return __skreturn;
+      Circle __skreturn;
+      __skreturn.Center = __skadapter__to_point_2d(v.Center);
+      __skreturn.Radius = __skadapter__to_double(v.Radius);
+      return __skreturn;
     }
+
 
     private static __sklib_color __skadapter__to_sklib_color(Color v)
     {
-        __sklib_color __skreturn;
-        __skreturn.r = __skadapter__to_sklib_float(v.r);
-          __skreturn.g = __skadapter__to_sklib_float(v.g);
-          __skreturn.b = __skadapter__to_sklib_float(v.b);
-          __skreturn.a = __skadapter__to_sklib_float(v.a);
-          return __skreturn;
+      __sklib_color __skreturn;
+      __skreturn.R = __skadapter__to_sklib_float(v.R);
+      __skreturn.G = __skadapter__to_sklib_float(v.G);
+      __skreturn.B = __skadapter__to_sklib_float(v.B);
+      __skreturn.A = __skadapter__to_sklib_float(v.A);
+      return __skreturn;
     }
     private static Color __skadapter__to_color(__sklib_color v)
     {
-        Color __skreturn;
-        __skreturn.r = __skadapter__to_float(v.r);
-        __skreturn.g = __skadapter__to_float(v.g);
-        __skreturn.b = __skadapter__to_float(v.b);
-        __skreturn.a = __skadapter__to_float(v.a);
-        return __skreturn;
+      Color __skreturn;
+      __skreturn.R = __skadapter__to_float(v.R);
+      __skreturn.G = __skadapter__to_float(v.G);
+      __skreturn.B = __skadapter__to_float(v.B);
+      __skreturn.A = __skadapter__to_float(v.A);
+      return __skreturn;
     }
+
 
     private static __sklib_rectangle __skadapter__to_sklib_rectangle(Rectangle v)
     {
-        __sklib_rectangle __skreturn;
-        __skreturn.x = __skadapter__to_sklib_double(v.x);
-          __skreturn.y = __skadapter__to_sklib_double(v.y);
-          __skreturn.width = __skadapter__to_sklib_double(v.width);
-          __skreturn.height = __skadapter__to_sklib_double(v.height);
-          return __skreturn;
+      __sklib_rectangle __skreturn;
+      __skreturn.X = __skadapter__to_sklib_double(v.X);
+      __skreturn.Y = __skadapter__to_sklib_double(v.Y);
+      __skreturn.Width = __skadapter__to_sklib_double(v.Width);
+      __skreturn.Height = __skadapter__to_sklib_double(v.Height);
+      return __skreturn;
     }
     private static Rectangle __skadapter__to_rectangle(__sklib_rectangle v)
     {
-        Rectangle __skreturn;
-        __skreturn.x = __skadapter__to_double(v.x);
-        __skreturn.y = __skadapter__to_double(v.y);
-        __skreturn.width = __skadapter__to_double(v.width);
-        __skreturn.height = __skadapter__to_double(v.height);
-        return __skreturn;
+      Rectangle __skreturn;
+      __skreturn.X = __skadapter__to_double(v.X);
+      __skreturn.Y = __skadapter__to_double(v.Y);
+      __skreturn.Width = __skadapter__to_double(v.Width);
+      __skreturn.Height = __skadapter__to_double(v.Height);
+      return __skreturn;
     }
+
 
     private static __sklib_drawing_options __skadapter__to_sklib_drawing_options(DrawingOptions v)
     {
-        __sklib_drawing_options __skreturn;
-        __skreturn.dest = __skadapter__to_sklib_ptr(v.dest);
-          __skreturn.scaleX = __skadapter__to_sklib_float(v.scaleX);
-          __skreturn.scaleY = __skadapter__to_sklib_float(v.scaleY);
-          __skreturn.angle = __skadapter__to_sklib_float(v.angle);
-          __skreturn.anchorOffsetX = __skadapter__to_sklib_float(v.anchorOffsetX);
-          __skreturn.anchorOffsetY = __skadapter__to_sklib_float(v.anchorOffsetY);
-          __skreturn.flipX = __skadapter__to_sklib_bool(v.flipX);
-          __skreturn.flipY = __skadapter__to_sklib_bool(v.flipY);
-          __skreturn.isPart = __skadapter__to_sklib_bool(v.isPart);
-          __skreturn.part = __skadapter__to_sklib_rectangle(v.part);
-          __skreturn.camera = __skadapter__to_sklib_drawing_dest(v.camera);
-          __skreturn.lineWidth = __skadapter__to_sklib_int(v.lineWidth);
-          __skreturn.anim = __skadapter__to_sklib_animation(v.anim);
-          return __skreturn;
+      __sklib_drawing_options __skreturn;
+      __skreturn.Dest = __skadapter__to_sklib_ptr(v.Dest);
+      __skreturn.ScaleX = __skadapter__to_sklib_float(v.ScaleX);
+      __skreturn.ScaleY = __skadapter__to_sklib_float(v.ScaleY);
+      __skreturn.Angle = __skadapter__to_sklib_float(v.Angle);
+      __skreturn.AnchorOffsetX = __skadapter__to_sklib_float(v.AnchorOffsetX);
+      __skreturn.AnchorOffsetY = __skadapter__to_sklib_float(v.AnchorOffsetY);
+      __skreturn.FlipX = __skadapter__to_sklib_bool(v.FlipX);
+      __skreturn.FlipY = __skadapter__to_sklib_bool(v.FlipY);
+      __skreturn.IsPart = __skadapter__to_sklib_bool(v.IsPart);
+      __skreturn.Part = __skadapter__to_sklib_rectangle(v.Part);
+      __skreturn.Camera = __skadapter__to_sklib_drawing_dest(v.Camera);
+      __skreturn.LineWidth = __skadapter__to_sklib_int(v.LineWidth);
+      __skreturn.Anim = __skadapter__to_sklib_animation(v.Anim);
+      return __skreturn;
     }
     private static DrawingOptions __skadapter__to_drawing_options(__sklib_drawing_options v)
     {
-        DrawingOptions __skreturn;
-        __skreturn.dest = __skadapter__to_ptr(v.dest);
-        __skreturn.scaleX = __skadapter__to_float(v.scaleX);
-        __skreturn.scaleY = __skadapter__to_float(v.scaleY);
-        __skreturn.angle = __skadapter__to_float(v.angle);
-        __skreturn.anchorOffsetX = __skadapter__to_float(v.anchorOffsetX);
-        __skreturn.anchorOffsetY = __skadapter__to_float(v.anchorOffsetY);
-        __skreturn.flipX = __skadapter__to_bool(v.flipX);
-        __skreturn.flipY = __skadapter__to_bool(v.flipY);
-        __skreturn.isPart = __skadapter__to_bool(v.isPart);
-        __skreturn.part = __skadapter__to_rectangle(v.part);
-        __skreturn.camera = __skadapter__to_drawing_dest(v.camera);
-        __skreturn.lineWidth = __skadapter__to_int(v.lineWidth);
-        __skreturn.anim = __skadapter__to_animation(v.anim);
-        return __skreturn;
+      DrawingOptions __skreturn;
+      __skreturn.Dest = __skadapter__to_ptr(v.Dest);
+      __skreturn.ScaleX = __skadapter__to_float(v.ScaleX);
+      __skreturn.ScaleY = __skadapter__to_float(v.ScaleY);
+      __skreturn.Angle = __skadapter__to_float(v.Angle);
+      __skreturn.AnchorOffsetX = __skadapter__to_float(v.AnchorOffsetX);
+      __skreturn.AnchorOffsetY = __skadapter__to_float(v.AnchorOffsetY);
+      __skreturn.FlipX = __skadapter__to_bool(v.FlipX);
+      __skreturn.FlipY = __skadapter__to_bool(v.FlipY);
+      __skreturn.IsPart = __skadapter__to_bool(v.IsPart);
+      __skreturn.Part = __skadapter__to_rectangle(v.Part);
+      __skreturn.Camera = __skadapter__to_drawing_dest(v.Camera);
+      __skreturn.LineWidth = __skadapter__to_int(v.LineWidth);
+      __skreturn.Anim = __skadapter__to_animation(v.Anim);
+      return __skreturn;
     }
+
 
     private static __sklib_line __skadapter__to_sklib_line(Line v)
     {
-        __sklib_line __skreturn;
-        __skreturn.startPoint = __skadapter__to_sklib_point_2d(v.startPoint);
-          __skreturn.endPoint = __skadapter__to_sklib_point_2d(v.endPoint);
-          return __skreturn;
+      __sklib_line __skreturn;
+      __skreturn.StartPoint = __skadapter__to_sklib_point_2d(v.StartPoint);
+      __skreturn.EndPoint = __skadapter__to_sklib_point_2d(v.EndPoint);
+      return __skreturn;
     }
     private static Line __skadapter__to_line(__sklib_line v)
     {
-        Line __skreturn;
-        __skreturn.startPoint = __skadapter__to_point_2d(v.startPoint);
-        __skreturn.endPoint = __skadapter__to_point_2d(v.endPoint);
-        return __skreturn;
+      Line __skreturn;
+      __skreturn.StartPoint = __skadapter__to_point_2d(v.StartPoint);
+      __skreturn.EndPoint = __skadapter__to_point_2d(v.EndPoint);
+      return __skreturn;
     }
+
 
     private static __sklib_quad __skadapter__to_sklib_quad(Quad v)
     {
-        __sklib_quad __skreturn;
-        __skreturn.points = new __sklib_point_2d[4];
-        __skreturn.points[0] = __skadapter__to_sklib_point_2d(v.points[0]);
-        __skreturn.points[1] = __skadapter__to_sklib_point_2d(v.points[1]);
-        __skreturn.points[2] = __skadapter__to_sklib_point_2d(v.points[2]);
-        __skreturn.points[3] = __skadapter__to_sklib_point_2d(v.points[3]);
-        return __skreturn;
+      __sklib_quad __skreturn;
+      __skreturn.Points_0 = __skadapter__to_sklib_point_2d(v.Points[0]);
+      __skreturn.Points_1 = __skadapter__to_sklib_point_2d(v.Points[1]);
+      __skreturn.Points_2 = __skadapter__to_sklib_point_2d(v.Points[2]);
+      __skreturn.Points_3 = __skadapter__to_sklib_point_2d(v.Points[3]);
+      return __skreturn;
     }
     private static Quad __skadapter__to_quad(__sklib_quad v)
     {
-        Quad __skreturn;
-        __skreturn.points = new Point2D[4];
-        __skreturn.points[0] = __skadapter__to_point_2d(v.points[0]);
-        __skreturn.points[1] = __skadapter__to_point_2d(v.points[1]);
-        __skreturn.points[2] = __skadapter__to_point_2d(v.points[2]);
-        __skreturn.points[3] = __skadapter__to_point_2d(v.points[3]);
-        return __skreturn;
+      Quad __skreturn;
+      __skreturn.Points = new Point2D[4];
+      __skreturn.Points[0] = __skadapter__to_point_2d(v.Points_0);
+      __skreturn.Points[1] = __skadapter__to_point_2d(v.Points_1);
+      __skreturn.Points[2] = __skadapter__to_point_2d(v.Points_2);
+      __skreturn.Points[3] = __skadapter__to_point_2d(v.Points_3);
+      return __skreturn;
     }
+
 
     private static __sklib_triangle __skadapter__to_sklib_triangle(Triangle v)
     {
-        __sklib_triangle __skreturn;
-        __skreturn.points = new __sklib_point_2d[3];
-        __skreturn.points[0] = __skadapter__to_sklib_point_2d(v.points[0]);
-        __skreturn.points[1] = __skadapter__to_sklib_point_2d(v.points[1]);
-        __skreturn.points[2] = __skadapter__to_sklib_point_2d(v.points[2]);
-        return __skreturn;
+      __sklib_triangle __skreturn;
+      __skreturn.Points_0 = __skadapter__to_sklib_point_2d(v.Points[0]);
+      __skreturn.Points_1 = __skadapter__to_sklib_point_2d(v.Points[1]);
+      __skreturn.Points_2 = __skadapter__to_sklib_point_2d(v.Points[2]);
+      return __skreturn;
     }
     private static Triangle __skadapter__to_triangle(__sklib_triangle v)
     {
-        Triangle __skreturn;
-        __skreturn.points = new Point2D[3];
-        __skreturn.points[0] = __skadapter__to_point_2d(v.points[0]);
-        __skreturn.points[1] = __skadapter__to_point_2d(v.points[1]);
-        __skreturn.points[2] = __skadapter__to_point_2d(v.points[2]);
-        return __skreturn;
+      Triangle __skreturn;
+      __skreturn.Points = new Point2D[3];
+      __skreturn.Points[0] = __skadapter__to_point_2d(v.Points_0);
+      __skreturn.Points[1] = __skadapter__to_point_2d(v.Points_1);
+      __skreturn.Points[2] = __skadapter__to_point_2d(v.Points_2);
+      return __skreturn;
     }
+
 
     private static __sklib_vector_2d __skadapter__to_sklib_vector_2d(Vector2D v)
     {
-        __sklib_vector_2d __skreturn;
-        __skreturn.x = __skadapter__to_sklib_double(v.x);
-          __skreturn.y = __skadapter__to_sklib_double(v.y);
-          return __skreturn;
+      __sklib_vector_2d __skreturn;
+      __skreturn.X = __skadapter__to_sklib_double(v.X);
+      __skreturn.Y = __skadapter__to_sklib_double(v.Y);
+      return __skreturn;
     }
     private static Vector2D __skadapter__to_vector_2d(__sklib_vector_2d v)
     {
-        Vector2D __skreturn;
-        __skreturn.x = __skadapter__to_double(v.x);
-        __skreturn.y = __skadapter__to_double(v.y);
-        return __skreturn;
+      Vector2D __skreturn;
+      __skreturn.X = __skadapter__to_double(v.X);
+      __skreturn.Y = __skadapter__to_double(v.Y);
+      return __skreturn;
     }
 
-// Based on: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0f5ba27d-92c2-4b41-b717-16e759b68087/how-to-marshal-an-array-of-struct-pointer?forum=csharpgeneral
+
+    // Based on: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0f5ba27d-92c2-4b41-b717-16e759b68087/how-to-marshal-an-array-of-struct-pointer?forum=csharpgeneral
     private static IntPtr ToIntPtr<T>(T[] items)
     {
         IntPtr result, tmp = IntPtr.Zero;
@@ -472,6 +484,74 @@ namespace SplashKitSDK
         __skreturn.Add(__skadapter__to_line(v.data_from_lib[i]));
       }
             __sklib__free__sklib_vector_line(v);
+    }
+
+    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
+    private struct __sklib_vector_int8_t    {
+      internal IntPtr _data_from_app;
+      public byte[] data_from_app
+      {
+        set
+        {
+          _data_from_app = ToIntPtr(value);
+        }
+      }
+      public uint size_from_app;
+      private IntPtr _data_from_lib;
+      public byte[] data_from_lib
+      {
+        get
+        {
+          return FromIntPtr<byte>(_data_from_lib, (int)size_from_lib);
+        }
+      }
+      public uint size_from_lib;
+    }
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_int8_t", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v);
+
+    private static void __skadapter__free__sklib_vector_int8_t(ref __sklib_vector_int8_t v)
+    {
+      System.Console.WriteLine("Freeing data");
+      Marshal.FreeHGlobal(v._data_from_app);
+    }
+    private static __sklib_vector_int8_t __skadapter__to_sklib_vector_int8_t(List<byte> v)
+    {
+      int i = 0;
+      __sklib_vector_int8_t result = new __sklib_vector_int8_t();
+
+      result.size_from_lib = 0;
+      result.size_from_app = (uint)v.Count;
+      byte[] tmp = new byte[result.size_from_app];
+
+      foreach(byte d in v)
+      {
+        tmp[i] = __skadapter__to_sklib_int8_t(v[i]);
+        i++;
+      }
+
+      result.data_from_app = tmp;
+      return result;
+    }
+    private static List<byte> __skadapter__to_vector_int8_t(__sklib_vector_int8_t v)
+    {
+      List<byte> result = new List<byte>();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        result.Add(__skadapter__to_int8_t(v.data_from_lib[i]));
+      }
+      __sklib__free__sklib_vector_int8_t(v);
+      return result;
+    }
+    private static void __skadapter__update_from_vector_int8_t(ref __sklib_vector_int8_t v, List<byte> __skreturn)
+    {
+      __skreturn.Clear();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        __skreturn.Add(__skadapter__to_int8_t(v.data_from_lib[i]));
+      }
+            __sklib__free__sklib_vector_int8_t(v);
     }
 
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
@@ -1155,6 +1235,18 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__double__double__double__drawing_options(__sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_window__window__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__center_point__circle_ref(__sklib_circle c);
 
@@ -1264,10 +1356,10 @@ namespace SplashKitSDK
     private static extern int __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, __sklib_matrix_2d translation, __sklib_point_2d pt);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern int __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_point_2d bmpPt);
+    private static extern int __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d bmpPt, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__float__float__double__double", CharSet=CharSet.Ansi)]
-    private static extern int __sklib__bitmap_point_collision__bitmap__float__float__double__double(__sklib_ptr bmp, float bmpX, float bmpY, double x, double y);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_point_collision__bitmap__double__double__double__double(__sklib_ptr bmp, double bmpX, double bmpY, double x, double y);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_point_2d pt);
@@ -1872,11 +1964,11 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_line_width__int__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_line_width__int__drawing_options(int width, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__float__float(double x, double y, float w, float h);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__double__double(double x, double y, double w, double h);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__float__float__drawing_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__float__float__drawing_options(double x, double y, float w, float h, __sklib_drawing_options opts);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__double__double__drawing_options(double x, double y, double w, double h, __sklib_drawing_options opts);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__rectangle(__sklib_rectangle part);
@@ -1884,23 +1976,23 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__rectangle__drawing_options(__sklib_rectangle part, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__float(float angle);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double(double angle);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__float__drawing_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__float__drawing_options(float angle, __sklib_drawing_options opts);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__double__double(double angle, double anchorX, double anchorY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__float__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__float__float__float(float angle, float anchorX, float anchorY);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__double__double__drawing_options(double angle, double anchorX, double anchorY, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__float__float__float__drawing_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__float__float__float__drawing_options(float angle, float anchorX, float anchorY, __sklib_drawing_options opts);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__drawing_options(double angle, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_scale_bmp__float__float(float scaleX, float scaleY);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_scale_bmp__double__double(double scaleX, double scaleY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__float__float__drawing_options", CharSet=CharSet.Ansi)]
-    private static extern __sklib_drawing_options __sklib__option_scale_bmp__float__float__drawing_options(float scaleX, float scaleY, __sklib_drawing_options opts);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_scale_bmp__double__double__drawing_options(double scaleX, double scaleY, __sklib_drawing_options opts);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_screen", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_to_screen();
@@ -2454,8 +2546,8 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_to_string__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__matrix_to_string__matrix_2d_ref(__sklib_matrix_2d matrix);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rotation_matrix__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_matrix_2d __sklib__rotation_matrix__float(float deg);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rotation_matrix__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_matrix_2d __sklib__rotation_matrix__double(double deg);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_matrix__point_2d_ref(__sklib_point_2d scale);
@@ -2463,11 +2555,11 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_matrix__vector_2d_ref(__sklib_vector_2d scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_matrix_2d __sklib__scale_matrix__float(float scale);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_matrix_2d __sklib__scale_matrix__double(double scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_matrix_2d __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__sklib_point_2d scale, float deg, __sklib_point_2d translate);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_matrix_2d __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__sklib_point_2d scale, double deg, __sklib_point_2d translate);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__translation_matrix__point_2d_ref(__sklib_point_2d pt);
@@ -2475,8 +2567,8 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__translation_matrix__vector_2d_ref(__sklib_vector_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_matrix_2d __sklib__translation_matrix__float__float(float dx, float dy);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_matrix_2d __sklib__translation_matrix__double__double(double dx, double dy);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hide_mouse", CharSet=CharSet.Ansi)]
     private static extern void __sklib__hide_mouse();
@@ -2598,6 +2690,27 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__accept_new_connection__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__server_socket", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref__server_socket(__sklib_string aMsg, __sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref(__sklib_string aMsg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__broadcast_message__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__check_network_activity", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__check_network_activity();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__connection", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__server_socket", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__clear_messages__server_socket(__sklib_ptr svr);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_connections", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_all_connections();
 
@@ -2625,6 +2738,21 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_count__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__connection", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__connection_ip__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__string_ref", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__connection_ip__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_named__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__connection_named__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__connection", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__connection_port__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__string_ref", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__connection_port__string_ref(__sklib_string name);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_server__string_ref__unsigned_short(__sklib_string name, ushort port);
 
@@ -2633,6 +2761,21 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_hex__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__dec_to_hex__unsigned_int(uint aDec);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_connection__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_connection__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__connection(__sklib_ptr con);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__server_socket", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_messages__server_socket(__sklib_ptr svr);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_new_connections", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_new_connections();
@@ -2647,13 +2790,19 @@ namespace SplashKitSDK
     private static extern __sklib_string __sklib__hex_to_dec_string__string_ref(__sklib_string aHex);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_dec__string_ref", CharSet=CharSet.Ansi)]
-    private static extern uint __sklib__ipv4_to_dec__string_ref(__sklib_string aIp);
+    private static extern uint __sklib__ipv4_to_dec__string_ref(__sklib_string aIP);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_hex__string_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIp);
+    private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIP);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_str__unsigned_int(uint ip);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_connection_open__connection(__sklib_ptr con);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_connection_open__string_ref(__sklib_string name);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__string_ref(__sklib_string name);
@@ -2661,8 +2810,38 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__server_socket(__sklib_ptr server);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_connection__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__message_connection__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__server_socket", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__connection", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__string_ref", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__message_count__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__message_data__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data_bytes__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_int8_t __sklib__message_data_bytes__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_host__message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__message_host__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_port__message", CharSet=CharSet.Ansi)]
+    private static extern ushort __sklib__message_port__message(__sklib_ptr msg);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_protocol__message", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__message_protocol__message(__sklib_ptr msg);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__my_ip", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__my_ip();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__name_for_connection__string__unsigned_int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__name_for_connection__string__unsigned_int(__sklib_string host, uint port);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string host, ushort port);
@@ -2670,11 +2849,47 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__sklib_string name, __sklib_string host, ushort port, int protocol);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__connection", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__read_message__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__connection", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__server_socket", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__read_message_data__server_socket(__sklib_ptr svr);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__connection", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__reconnect__connection(__sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__reconnect__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__release_all_connections", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__release_all_connections();
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__string_ref__int(__sklib_string name, int idx);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__server_socket__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__server_socket__int(__sklib_ptr server, int idx);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__connection", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__send_message_to__string_ref__connection(__sklib_string aMsg, __sklib_ptr aConnection);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__send_message_to__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__server_has_new_connection__string_ref(__sklib_string name);
@@ -2684,6 +2899,12 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__server_named__string_ref(__sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_udp_packet_size__unsigned_int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_udp_packet_size__unsigned_int(uint udpPacketSize);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__udp_packet_size", CharSet=CharSet.Ansi)]
+    private static extern uint __sklib__udp_packet_size();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__point_2d_ref(__sklib_color clr, __sklib_point_2d pt);
@@ -3838,10 +4059,10 @@ namespace SplashKitSDK
     private static extern __sklib_string __sklib__file_as_string__string__resource_kind(__sklib_string filename, int kind);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__angle_between__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__angle_between__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
+    private static extern double __sklib__angle_between__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dot_product__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__dot_product__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
+    private static extern double __sklib__dot_product__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_zero_vector__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_zero_vector__vector_2d_ref(__sklib_vector_2d v);
@@ -3856,10 +4077,10 @@ namespace SplashKitSDK
     private static extern __sklib_vector_2d __sklib__vector_add__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_angle__vector_2d", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__vector_angle__vector_2d(__sklib_vector_2d v);
+    private static extern double __sklib__vector_angle__vector_2d(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_angle__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_vector_2d __sklib__vector_from_angle__float__float(float angle, float magnitude);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_angle__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__vector_from_angle__double__double(double angle, double magnitude);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_line__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_line__line_ref(__sklib_line l);
@@ -3873,17 +4094,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_invert__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_invert__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_limit__vector_2d_ref__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_vector_2d __sklib__vector_limit__vector_2d_ref__float(__sklib_vector_2d v, float limit);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_limit__vector_2d_ref__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__vector_limit__vector_2d_ref__double(__sklib_vector_2d v, double limit);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude__vector_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__vector_magnitude__vector_2d_ref(__sklib_vector_2d v);
+    private static extern double __sklib__vector_magnitude__vector_2d_ref(__sklib_vector_2d v);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude_sqared__vector_2d_ref", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__vector_magnitude_sqared__vector_2d_ref(__sklib_vector_2d v);
+    private static extern double __sklib__vector_magnitude_sqared__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_multiply__vector_2d_ref__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_vector_2d __sklib__vector_multiply__vector_2d_ref__float(__sklib_vector_2d v1, float s);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_multiply__vector_2d_ref__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__vector_multiply__vector_2d_ref__double(__sklib_vector_2d v1, double s);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_normal__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_normal__vector_2d_ref(__sklib_vector_2d v);
@@ -3993,8 +4214,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri_stubs__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__request_uri_stubs__http_request(__sklib_ptr r);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_css_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_css_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_file_response__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_file_response__http_request__string_ref__string_ref(__sklib_ptr r, __sklib_string filename, __sklib_string contentType);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_html_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_html_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_javascript_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_javascript_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request(__sklib_ptr r);
@@ -4875,6 +5105,66 @@ namespace SplashKitSDK
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
       __sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
     }
+    public static void FillCircleOnBitmap(Bitmap destination, Color clr, double x, double y, double radius)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void FillCircleOnBitmap(Bitmap destination, Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_bitmap(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
+    public static void FillCircleOnWindow(Window destination, Color clr, double x, double y, double radius)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius);
+    }
+    public static void FillCircleOnWindow(Window destination, Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__destination;
+      __sklib_color __skparam__clr;
+      double __skparam__x;
+      double __skparam__y;
+      double __skparam__radius;
+      __sklib_drawing_options __skparam__opts;
+      __skparam__destination = __skadapter__to_sklib_window(destination);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts);
+    }
     public static Point2D CenterPoint(Circle c)
     {
       __sklib_circle __skparam__c;
@@ -5236,32 +5526,32 @@ namespace SplashKitSDK
       __skreturn = __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__translation, __skparam__pt);
       return __skadapter__to_bool(__skreturn);
     }
-    public static bool BitmapPointCollision(Bitmap bmp, Point2D pt, Point2D bmpPt)
+    public static bool BitmapPointCollision(Bitmap bmp, Point2D bmpPt, Point2D pt)
     {
       __sklib_ptr __skparam__bmp;
-      __sklib_point_2d __skparam__pt;
       __sklib_point_2d __skparam__bmp_pt;
+      __sklib_point_2d __skparam__pt;
       int __skreturn;
       __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmpPt);
-      __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__pt, __skparam__bmp_pt);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skreturn = __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__bmp_pt, __skparam__pt);
       return __skadapter__to_bool(__skreturn);
     }
-    public static bool BitmapPointCollision(Bitmap bmp, float bmpX, float bmpY, double x, double y)
+    public static bool BitmapPointCollision(Bitmap bmp, double bmpX, double bmpY, double x, double y)
     {
       __sklib_ptr __skparam__bmp;
-      float __skparam__bmp_x;
-      float __skparam__bmp_y;
+      double __skparam__bmp_x;
+      double __skparam__bmp_y;
       double __skparam__x;
       double __skparam__y;
       int __skreturn;
       __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
-      __skparam__bmp_x = __skadapter__to_sklib_float(bmpX);
-      __skparam__bmp_y = __skadapter__to_sklib_float(bmpY);
+      __skparam__bmp_x = __skadapter__to_sklib_double(bmpX);
+      __skparam__bmp_y = __skadapter__to_sklib_double(bmpY);
       __skparam__x = __skadapter__to_sklib_double(x);
       __skparam__y = __skadapter__to_sklib_double(y);
-      __skreturn = __sklib__bitmap_point_collision__bitmap__float__float__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
+      __skreturn = __sklib__bitmap_point_collision__bitmap__double__double__double__double(__skparam__bmp, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool BitmapPointCollision(Bitmap bmp, int cell, Matrix2D translation, Point2D pt)
@@ -6278,7 +6568,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__green_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color HsbColor(float hue, float saturation, float brightness)
+    public static Color HSBColor(float hue, float saturation, float brightness)
     {
       float __skparam__hue;
       float __skparam__saturation;
@@ -6304,7 +6594,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__random_color();
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RandomRgbColor(int alpha)
+    public static Color RandomRGBColor(int alpha)
     {
       int __skparam__alpha;
       __sklib_color __skreturn;
@@ -6320,7 +6610,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__red_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color RgbColor(float red, float green, float blue)
+    public static Color RGBColor(float red, float green, float blue)
     {
       float __skparam__red;
       float __skparam__green;
@@ -6332,7 +6622,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbColor(int red, int green, int blue)
+    public static Color RGBColor(int red, int green, int blue)
     {
       int __skparam__red;
       int __skparam__green;
@@ -6344,7 +6634,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbaColor(float red, float green, float blue, float alpha)
+    public static Color RGBAColor(float red, float green, float blue, float alpha)
     {
       float __skparam__red;
       float __skparam__green;
@@ -6358,7 +6648,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RgbaColor(int red, int green, int blue, int alpha)
+    public static Color RGBAColor(int red, int green, int blue, int alpha)
     {
       int __skparam__red;
       int __skparam__green;
@@ -6659,34 +6949,34 @@ namespace SplashKitSDK
       __skreturn = __sklib__option_line_width__int__drawing_options(__skparam__width, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionPartBmp(double x, double y, float w, float h)
+    public static DrawingOptions OptionPartBmp(double x, double y, double w, double h)
     {
       double __skparam__x;
       double __skparam__y;
-      float __skparam__w;
-      float __skparam__h;
+      double __skparam__w;
+      double __skparam__h;
       __sklib_drawing_options __skreturn;
       __skparam__x = __skadapter__to_sklib_double(x);
       __skparam__y = __skadapter__to_sklib_double(y);
-      __skparam__w = __skadapter__to_sklib_float(w);
-      __skparam__h = __skadapter__to_sklib_float(h);
-      __skreturn = __sklib__option_part_bmp__double__double__float__float(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
+      __skparam__w = __skadapter__to_sklib_double(w);
+      __skparam__h = __skadapter__to_sklib_double(h);
+      __skreturn = __sklib__option_part_bmp__double__double__double__double(__skparam__x, __skparam__y, __skparam__w, __skparam__h);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionPartBmp(double x, double y, float w, float h, DrawingOptions opts)
+    public static DrawingOptions OptionPartBmp(double x, double y, double w, double h, DrawingOptions opts)
     {
       double __skparam__x;
       double __skparam__y;
-      float __skparam__w;
-      float __skparam__h;
+      double __skparam__w;
+      double __skparam__h;
       __sklib_drawing_options __skparam__opts;
       __sklib_drawing_options __skreturn;
       __skparam__x = __skadapter__to_sklib_double(x);
       __skparam__y = __skadapter__to_sklib_double(y);
-      __skparam__w = __skadapter__to_sklib_float(w);
-      __skparam__h = __skadapter__to_sklib_float(h);
+      __skparam__w = __skadapter__to_sklib_double(w);
+      __skparam__h = __skadapter__to_sklib_double(h);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-      __skreturn = __sklib__option_part_bmp__double__double__float__float__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
+      __skreturn = __sklib__option_part_bmp__double__double__double__double__drawing_options(__skparam__x, __skparam__y, __skparam__w, __skparam__h, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
     public static DrawingOptions OptionPartBmp(Rectangle part)
@@ -6707,70 +6997,70 @@ namespace SplashKitSDK
       __skreturn = __sklib__option_part_bmp__rectangle__drawing_options(__skparam__part, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionRotateBmp(float angle)
+    public static DrawingOptions OptionRotateBmp(double angle)
     {
-      float __skparam__angle;
+      double __skparam__angle;
       __sklib_drawing_options __skreturn;
-      __skparam__angle = __skadapter__to_sklib_float(angle);
-      __skreturn = __sklib__option_rotate_bmp__float(__skparam__angle);
+      __skparam__angle = __skadapter__to_sklib_double(angle);
+      __skreturn = __sklib__option_rotate_bmp__double(__skparam__angle);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionRotateBmp(float angle, DrawingOptions opts)
+    public static DrawingOptions OptionRotateBmp(double angle, double anchorX, double anchorY)
     {
-      float __skparam__angle;
+      double __skparam__angle;
+      double __skparam__anchor_x;
+      double __skparam__anchor_y;
+      __sklib_drawing_options __skreturn;
+      __skparam__angle = __skadapter__to_sklib_double(angle);
+      __skparam__anchor_x = __skadapter__to_sklib_double(anchorX);
+      __skparam__anchor_y = __skadapter__to_sklib_double(anchorY);
+      __skreturn = __sklib__option_rotate_bmp__double__double__double(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
+      return __skadapter__to_drawing_options(__skreturn);
+    }
+    public static DrawingOptions OptionRotateBmp(double angle, double anchorX, double anchorY, DrawingOptions opts)
+    {
+      double __skparam__angle;
+      double __skparam__anchor_x;
+      double __skparam__anchor_y;
       __sklib_drawing_options __skparam__opts;
       __sklib_drawing_options __skreturn;
-      __skparam__angle = __skadapter__to_sklib_float(angle);
+      __skparam__angle = __skadapter__to_sklib_double(angle);
+      __skparam__anchor_x = __skadapter__to_sklib_double(anchorX);
+      __skparam__anchor_y = __skadapter__to_sklib_double(anchorY);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-      __skreturn = __sklib__option_rotate_bmp__float__drawing_options(__skparam__angle, __skparam__opts);
+      __skreturn = __sklib__option_rotate_bmp__double__double__double__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionRotateBmp(float angle, float anchorX, float anchorY)
+    public static DrawingOptions OptionRotateBmp(double angle, DrawingOptions opts)
     {
-      float __skparam__angle;
-      float __skparam__anchor_x;
-      float __skparam__anchor_y;
-      __sklib_drawing_options __skreturn;
-      __skparam__angle = __skadapter__to_sklib_float(angle);
-      __skparam__anchor_x = __skadapter__to_sklib_float(anchorX);
-      __skparam__anchor_y = __skadapter__to_sklib_float(anchorY);
-      __skreturn = __sklib__option_rotate_bmp__float__float__float(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y);
-      return __skadapter__to_drawing_options(__skreturn);
-    }
-    public static DrawingOptions OptionRotateBmp(float angle, float anchorX, float anchorY, DrawingOptions opts)
-    {
-      float __skparam__angle;
-      float __skparam__anchor_x;
-      float __skparam__anchor_y;
+      double __skparam__angle;
       __sklib_drawing_options __skparam__opts;
       __sklib_drawing_options __skreturn;
-      __skparam__angle = __skadapter__to_sklib_float(angle);
-      __skparam__anchor_x = __skadapter__to_sklib_float(anchorX);
-      __skparam__anchor_y = __skadapter__to_sklib_float(anchorY);
+      __skparam__angle = __skadapter__to_sklib_double(angle);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-      __skreturn = __sklib__option_rotate_bmp__float__float__float__drawing_options(__skparam__angle, __skparam__anchor_x, __skparam__anchor_y, __skparam__opts);
+      __skreturn = __sklib__option_rotate_bmp__double__drawing_options(__skparam__angle, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionScaleBmp(float scaleX, float scaleY)
+    public static DrawingOptions OptionScaleBmp(double scaleX, double scaleY)
     {
-      float __skparam__scale_x;
-      float __skparam__scale_y;
+      double __skparam__scale_x;
+      double __skparam__scale_y;
       __sklib_drawing_options __skreturn;
-      __skparam__scale_x = __skadapter__to_sklib_float(scaleX);
-      __skparam__scale_y = __skadapter__to_sklib_float(scaleY);
-      __skreturn = __sklib__option_scale_bmp__float__float(__skparam__scale_x, __skparam__scale_y);
+      __skparam__scale_x = __skadapter__to_sklib_double(scaleX);
+      __skparam__scale_y = __skadapter__to_sklib_double(scaleY);
+      __skreturn = __sklib__option_scale_bmp__double__double(__skparam__scale_x, __skparam__scale_y);
       return __skadapter__to_drawing_options(__skreturn);
     }
-    public static DrawingOptions OptionScaleBmp(float scaleX, float scaleY, DrawingOptions opts)
+    public static DrawingOptions OptionScaleBmp(double scaleX, double scaleY, DrawingOptions opts)
     {
-      float __skparam__scale_x;
-      float __skparam__scale_y;
+      double __skparam__scale_x;
+      double __skparam__scale_y;
       __sklib_drawing_options __skparam__opts;
       __sklib_drawing_options __skreturn;
-      __skparam__scale_x = __skadapter__to_sklib_float(scaleX);
-      __skparam__scale_y = __skadapter__to_sklib_float(scaleY);
+      __skparam__scale_x = __skadapter__to_sklib_double(scaleX);
+      __skparam__scale_y = __skadapter__to_sklib_double(scaleY);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
-      __skreturn = __sklib__option_scale_bmp__float__float__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
+      __skreturn = __sklib__option_scale_bmp__double__double__drawing_options(__skparam__scale_x, __skparam__scale_y, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
     public static DrawingOptions OptionToScreen()
@@ -8618,12 +8908,12 @@ namespace SplashKitSDK
       __skreturn = __sklib__matrix_to_string__matrix_2d_ref(__skparam__matrix);
       return __skadapter__to_string(__skreturn);
     }
-    public static Matrix2D RotationMatrix(float deg)
+    public static Matrix2D RotationMatrix(double deg)
     {
-      float __skparam__deg;
+      double __skparam__deg;
       __sklib_matrix_2d __skreturn;
-      __skparam__deg = __skadapter__to_sklib_float(deg);
-      __skreturn = __sklib__rotation_matrix__float(__skparam__deg);
+      __skparam__deg = __skadapter__to_sklib_double(deg);
+      __skreturn = __sklib__rotation_matrix__double(__skparam__deg);
       return __skadapter__to_matrix_2d(__skreturn);
     }
     public static Matrix2D ScaleMatrix(Point2D scale)
@@ -8642,24 +8932,24 @@ namespace SplashKitSDK
       __skreturn = __sklib__scale_matrix__vector_2d_ref(__skparam__scale);
       return __skadapter__to_matrix_2d(__skreturn);
     }
-    public static Matrix2D ScaleMatrix(float scale)
+    public static Matrix2D ScaleMatrix(double scale)
     {
-      float __skparam__scale;
+      double __skparam__scale;
       __sklib_matrix_2d __skreturn;
-      __skparam__scale = __skadapter__to_sklib_float(scale);
-      __skreturn = __sklib__scale_matrix__float(__skparam__scale);
+      __skparam__scale = __skadapter__to_sklib_double(scale);
+      __skreturn = __sklib__scale_matrix__double(__skparam__scale);
       return __skadapter__to_matrix_2d(__skreturn);
     }
-    public static Matrix2D ScaleRotateTranslateMatrix(Point2D scale, float deg, Point2D translate)
+    public static Matrix2D ScaleRotateTranslateMatrix(Point2D scale, double deg, Point2D translate)
     {
       __sklib_point_2d __skparam__scale;
-      float __skparam__deg;
+      double __skparam__deg;
       __sklib_point_2d __skparam__translate;
       __sklib_matrix_2d __skreturn;
       __skparam__scale = __skadapter__to_sklib_point_2d(scale);
-      __skparam__deg = __skadapter__to_sklib_float(deg);
+      __skparam__deg = __skadapter__to_sklib_double(deg);
       __skparam__translate = __skadapter__to_sklib_point_2d(translate);
-      __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__float__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
+      __skreturn = __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__skparam__scale, __skparam__deg, __skparam__translate);
       return __skadapter__to_matrix_2d(__skreturn);
     }
     public static Matrix2D TranslationMatrix(Point2D pt)
@@ -8678,14 +8968,14 @@ namespace SplashKitSDK
       __skreturn = __sklib__translation_matrix__vector_2d_ref(__skparam__pt);
       return __skadapter__to_matrix_2d(__skreturn);
     }
-    public static Matrix2D TranslationMatrix(float dx, float dy)
+    public static Matrix2D TranslationMatrix(double dx, double dy)
     {
-      float __skparam__dx;
-      float __skparam__dy;
+      double __skparam__dx;
+      double __skparam__dy;
       __sklib_matrix_2d __skreturn;
-      __skparam__dx = __skadapter__to_sklib_float(dx);
-      __skparam__dy = __skadapter__to_sklib_float(dy);
-      __skreturn = __sklib__translation_matrix__float__float(__skparam__dx, __skparam__dy);
+      __skparam__dx = __skadapter__to_sklib_double(dx);
+      __skparam__dy = __skadapter__to_sklib_double(dy);
+      __skreturn = __sklib__translation_matrix__double__double(__skparam__dx, __skparam__dy);
       return __skadapter__to_matrix_2d(__skreturn);
     }
     public static void HideMouse()
@@ -8966,6 +9256,55 @@ namespace SplashKitSDK
       __skreturn = __sklib__accept_new_connection__server_socket(__skparam__server);
       return __skadapter__to_bool(__skreturn);
     }
+    public static void BroadcastMessage(string aMsg, ServerSocket svr)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_ptr __skparam__svr;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __sklib__broadcast_message__string_ref__server_socket(__skparam__a_msg, __skparam__svr);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    }
+    public static void BroadcastMessage(string aMsg)
+    {
+      __sklib_string __skparam__a_msg;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __sklib__broadcast_message__string_ref(__skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    }
+    public static void BroadcastMessage(string aMsg, string name)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_string __skparam__name;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__broadcast_message__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void CheckNetworkActivity()
+    {
+      __sklib__check_network_activity();
+    }
+    public static void ClearMessages(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__clear_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void ClearMessages(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __sklib__clear_messages__connection(__skparam__a_connection);
+    }
+    public static void ClearMessages(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __sklib__clear_messages__server_socket(__skparam__svr);
+    }
     public static void CloseAllConnections()
     {
       __sklib__close_all_connections();
@@ -9031,6 +9370,49 @@ namespace SplashKitSDK
       __skreturn = __sklib__connection_count__server_socket(__skparam__server);
       return __skadapter__to_unsigned_int(__skreturn);
     }
+    public static uint ConnectionIP(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      uint __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__connection_ip__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint ConnectionIP(string name)
+    {
+      __sklib_string __skparam__name;
+      uint __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_ip__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static Connection ConnectionNamed(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_named__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_connection(__skreturn);
+    }
+    public static ushort ConnectionPort(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      ushort __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__connection_port__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
+    public static ushort ConnectionPort(string name)
+    {
+      __sklib_string __skparam__name;
+      ushort __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__connection_port__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
     public static ServerSocket CreateServer(string name, ushort port)
     {
       __sklib_string __skparam__name;
@@ -9062,6 +9444,46 @@ namespace SplashKitSDK
       __skparam__a_dec = __skadapter__to_sklib_unsigned_int(aDec);
       __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
       return __skadapter__to_string(__skreturn);
+    }
+    public static bool HasConnection(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_connection__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages()
+    {
+      int __skreturn;
+      __skreturn = __sklib__has_messages();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(Connection con)
+    {
+      __sklib_ptr __skparam__con;
+      int __skreturn;
+      __skparam__con = __skadapter__to_sklib_connection(con);
+      __skreturn = __sklib__has_messages__connection(__skparam__con);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__has_messages__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool HasMessages(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      int __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__has_messages__server_socket(__skparam__svr);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool HasNewConnections()
     {
@@ -9096,20 +9518,20 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__a_hex);
       return __skadapter__to_string(__skreturn);
     }
-    public static uint Ipv4ToDec(string aIp)
+    public static uint Ipv4ToDec(string aIP)
     {
       __sklib_string __skparam__a_ip;
       uint __skreturn;
-      __skparam__a_ip = __skadapter__to_sklib_string(aIp);
+      __skparam__a_ip = __skadapter__to_sklib_string(aIP);
       __skreturn = __sklib__ipv4_to_dec__string_ref(__skparam__a_ip);
     __skadapter__free__sklib_string(ref __skparam__a_ip);
       return __skadapter__to_unsigned_int(__skreturn);
     }
-    public static string Ipv4ToHex(string aIp)
+    public static string Ipv4ToHex(string aIP)
     {
       __sklib_string __skparam__a_ip;
       __sklib_string __skreturn;
-      __skparam__a_ip = __skadapter__to_sklib_string(aIp);
+      __skparam__a_ip = __skadapter__to_sklib_string(aIP);
       __skreturn = __sklib__ipv4_to_hex__string_ref(__skparam__a_ip);
     __skadapter__free__sklib_string(ref __skparam__a_ip);
       return __skadapter__to_string(__skreturn);
@@ -9121,6 +9543,23 @@ namespace SplashKitSDK
       __skparam__ip = __skadapter__to_sklib_unsigned_int(ip);
       __skreturn = __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
       return __skadapter__to_string(__skreturn);
+    }
+    public static bool IsConnectionOpen(Connection con)
+    {
+      __sklib_ptr __skparam__con;
+      int __skreturn;
+      __skparam__con = __skadapter__to_sklib_connection(con);
+      __skreturn = __sklib__is_connection_open__connection(__skparam__con);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool IsConnectionOpen(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__is_connection_open__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
     }
     public static Connection LastConnection(string name)
     {
@@ -9139,10 +9578,94 @@ namespace SplashKitSDK
       __skreturn = __sklib__last_connection__server_socket(__skparam__server);
       return __skadapter__to_connection(__skreturn);
     }
-    public static string MyIp()
+    public static Connection MessageConnection(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_ptr __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_connection__message(__skparam__msg);
+      return __skadapter__to_connection(__skreturn);
+    }
+    public static uint MessageCount(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      uint __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__message_count__server_socket(__skparam__svr);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint MessageCount(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      uint __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__message_count__connection(__skparam__a_connection);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static uint MessageCount(string name)
+    {
+      __sklib_string __skparam__name;
+      uint __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__message_count__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_unsigned_int(__skreturn);
+    }
+    public static string MessageData(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_string __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_data__message(__skparam__msg);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static List<byte> MessageDataBytes(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_vector_int8_t __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_data_bytes__message(__skparam__msg);
+      return __skadapter__to_vector_int8_t(__skreturn);
+    }
+    public static string MessageHost(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      __sklib_string __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_host__message(__skparam__msg);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static ushort MessagePort(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      ushort __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_port__message(__skparam__msg);
+      return __skadapter__to_unsigned_short(__skreturn);
+    }
+    public static ConnectionType MessageProtocol(Message msg)
+    {
+      __sklib_ptr __skparam__msg;
+      int __skreturn;
+      __skparam__msg = __skadapter__to_sklib_message(msg);
+      __skreturn = __sklib__message_protocol__message(__skparam__msg);
+      return __skadapter__to_connection_type(__skreturn);
+    }
+    public static string MyIP()
     {
       __sklib_string __skreturn;
       __skreturn = __sklib__my_ip();
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string NameForConnection(string host, uint port)
+    {
+      __sklib_string __skparam__host;
+      uint __skparam__port;
+      __sklib_string __skreturn;
+      __skparam__host = __skadapter__to_sklib_string(host);
+      __skparam__port = __skadapter__to_sklib_unsigned_int(port);
+      __skreturn = __sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port);
+    __skadapter__free__sklib_string(ref __skparam__host);
       return __skadapter__to_string(__skreturn);
     }
     public static Connection OpenConnection(string name, string host, ushort port)
@@ -9175,6 +9698,79 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__host);
       return __skadapter__to_connection(__skreturn);
     }
+    public static Message ReadMessage()
+    {
+      __sklib_ptr __skreturn;
+      __skreturn = __sklib__read_message();
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __sklib_ptr __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__read_message__connection(__skparam__a_connection);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_ptr __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__read_message__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static Message ReadMessage(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __sklib_ptr __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__read_message__server_socket(__skparam__svr);
+      return __skadapter__to_message(__skreturn);
+    }
+    public static string ReadMessageData(string name)
+    {
+      __sklib_string __skparam__name;
+      __sklib_string __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__read_message_data__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string ReadMessageData(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __sklib_string __skreturn;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__read_message_data__connection(__skparam__a_connection);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string ReadMessageData(ServerSocket svr)
+    {
+      __sklib_ptr __skparam__svr;
+      __sklib_string __skreturn;
+      __skparam__svr = __skadapter__to_sklib_server_socket(svr);
+      __skreturn = __sklib__read_message_data__server_socket(__skparam__svr);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static void Reconnect(Connection aConnection)
+    {
+      __sklib_ptr __skparam__a_connection;
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __sklib__reconnect__connection(__skparam__a_connection);
+    }
+    public static void Reconnect(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__reconnect__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void ReleaseAllConnections()
+    {
+      __sklib__release_all_connections();
+    }
     public static Connection RetrieveConnection(string name, int idx)
     {
       __sklib_string __skparam__name;
@@ -9195,6 +9791,29 @@ namespace SplashKitSDK
       __skparam__idx = __skadapter__to_sklib_int(idx);
       __skreturn = __sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx);
       return __skadapter__to_connection(__skreturn);
+    }
+    public static bool SendMessageTo(string aMsg, Connection aConnection)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_ptr __skparam__a_connection;
+      int __skreturn;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__a_connection = __skadapter__to_sklib_connection(aConnection);
+      __skreturn = __sklib__send_message_to__string_ref__connection(__skparam__a_msg, __skparam__a_connection);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool SendMessageTo(string aMsg, string name)
+    {
+      __sklib_string __skparam__a_msg;
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__a_msg = __skadapter__to_sklib_string(aMsg);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__send_message_to__string_ref__string_ref(__skparam__a_msg, __skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__a_msg);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool ServerHasNewConnection(string name)
     {
@@ -9221,6 +9840,18 @@ namespace SplashKitSDK
       __skreturn = __sklib__server_named__string_ref(__skparam__name);
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_server_socket(__skreturn);
+    }
+    public static void SetUDPPacketSize(uint udpPacketSize)
+    {
+      uint __skparam__udp_packet_size;
+      __skparam__udp_packet_size = __skadapter__to_sklib_unsigned_int(udpPacketSize);
+      __sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size);
+    }
+    public static uint UDPPacketSize()
+    {
+      uint __skreturn;
+      __skreturn = __sklib__udp_packet_size();
+      return __skadapter__to_unsigned_int(__skreturn);
     }
     public static void DrawPixel(Color clr, Point2D pt)
     {
@@ -13019,25 +13650,25 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__filename);
       return __skadapter__to_string(__skreturn);
     }
-    public static float AngleBetween(Vector2D v1, Vector2D v2)
+    public static double AngleBetween(Vector2D v1, Vector2D v2)
     {
       __sklib_vector_2d __skparam__v1;
       __sklib_vector_2d __skparam__v2;
-      float __skreturn;
+      double __skreturn;
       __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
       __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
       __skreturn = __sklib__angle_between__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
-    public static float DotProduct(Vector2D v1, Vector2D v2)
+    public static double DotProduct(Vector2D v1, Vector2D v2)
     {
       __sklib_vector_2d __skparam__v1;
       __sklib_vector_2d __skparam__v2;
-      float __skreturn;
+      double __skreturn;
       __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
       __skparam__v2 = __skadapter__to_sklib_vector_2d(v2);
       __skreturn = __sklib__dot_product__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
     public static bool IsZeroVector(Vector2D v)
     {
@@ -13080,22 +13711,22 @@ namespace SplashKitSDK
       __skreturn = __sklib__vector_add__vector_2d_ref__vector_2d_ref(__skparam__v1, __skparam__v2);
       return __skadapter__to_vector_2d(__skreturn);
     }
-    public static float VectorAngle(Vector2D v)
+    public static double VectorAngle(Vector2D v)
     {
       __sklib_vector_2d __skparam__v;
-      float __skreturn;
+      double __skreturn;
       __skparam__v = __skadapter__to_sklib_vector_2d(v);
       __skreturn = __sklib__vector_angle__vector_2d(__skparam__v);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
-    public static Vector2D VectorFromAngle(float angle, float magnitude)
+    public static Vector2D VectorFromAngle(double angle, double magnitude)
     {
-      float __skparam__angle;
-      float __skparam__magnitude;
+      double __skparam__angle;
+      double __skparam__magnitude;
       __sklib_vector_2d __skreturn;
-      __skparam__angle = __skadapter__to_sklib_float(angle);
-      __skparam__magnitude = __skadapter__to_sklib_float(magnitude);
-      __skreturn = __sklib__vector_from_angle__float__float(__skparam__angle, __skparam__magnitude);
+      __skparam__angle = __skadapter__to_sklib_double(angle);
+      __skparam__magnitude = __skadapter__to_sklib_double(magnitude);
+      __skreturn = __sklib__vector_from_angle__double__double(__skparam__angle, __skparam__magnitude);
       return __skadapter__to_vector_2d(__skreturn);
     }
     public static Vector2D VectorFromLine(Line l)
@@ -13134,40 +13765,40 @@ namespace SplashKitSDK
       __skreturn = __sklib__vector_invert__vector_2d_ref(__skparam__v);
       return __skadapter__to_vector_2d(__skreturn);
     }
-    public static Vector2D VectorLimit(Vector2D v, float limit)
+    public static Vector2D VectorLimit(Vector2D v, double limit)
     {
       __sklib_vector_2d __skparam__v;
-      float __skparam__limit;
+      double __skparam__limit;
       __sklib_vector_2d __skreturn;
       __skparam__v = __skadapter__to_sklib_vector_2d(v);
-      __skparam__limit = __skadapter__to_sklib_float(limit);
-      __skreturn = __sklib__vector_limit__vector_2d_ref__float(__skparam__v, __skparam__limit);
+      __skparam__limit = __skadapter__to_sklib_double(limit);
+      __skreturn = __sklib__vector_limit__vector_2d_ref__double(__skparam__v, __skparam__limit);
       return __skadapter__to_vector_2d(__skreturn);
     }
-    public static float VectorMagnitude(Vector2D v)
+    public static double VectorMagnitude(Vector2D v)
     {
       __sklib_vector_2d __skparam__v;
-      float __skreturn;
+      double __skreturn;
       __skparam__v = __skadapter__to_sklib_vector_2d(v);
       __skreturn = __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
-    public static float VectorMagnitudeSqared(Vector2D v)
+    public static double VectorMagnitudeSqared(Vector2D v)
     {
       __sklib_vector_2d __skparam__v;
-      float __skreturn;
+      double __skreturn;
       __skparam__v = __skadapter__to_sklib_vector_2d(v);
       __skreturn = __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
-    public static Vector2D VectorMultiply(Vector2D v1, float s)
+    public static Vector2D VectorMultiply(Vector2D v1, double s)
     {
       __sklib_vector_2d __skparam__v1;
-      float __skparam__s;
+      double __skparam__s;
       __sklib_vector_2d __skreturn;
       __skparam__v1 = __skadapter__to_sklib_vector_2d(v1);
-      __skparam__s = __skadapter__to_sklib_float(s);
-      __skreturn = __sklib__vector_multiply__vector_2d_ref__float(__skparam__v1, __skparam__s);
+      __skparam__s = __skadapter__to_sklib_double(s);
+      __skreturn = __sklib__vector_multiply__vector_2d_ref__double(__skparam__v1, __skparam__s);
       return __skadapter__to_vector_2d(__skreturn);
     }
     public static Vector2D VectorNormal(Vector2D v)
@@ -13536,7 +14167,7 @@ namespace SplashKitSDK
       __skreturn = __sklib__request_method__http_request(__skparam__r);
       return __skadapter__to_http_method(__skreturn);
     }
-    public static string RequestUri(HttpRequest r)
+    public static string RequestURI(HttpRequest r)
     {
       __sklib_ptr __skparam__r;
       __sklib_string __skreturn;
@@ -13544,13 +14175,34 @@ namespace SplashKitSDK
       __skreturn = __sklib__request_uri__http_request(__skparam__r);
       return __skadapter__to_string(__skreturn);
     }
-    public static List<string> RequestUriStubs(HttpRequest r)
+    public static List<string> RequestURIStubs(HttpRequest r)
     {
       __sklib_ptr __skparam__r;
       __sklib_vector_string __skreturn;
       __skparam__r = __skadapter__to_sklib_http_request(r);
       __skreturn = __sklib__request_uri_stubs__http_request(__skparam__r);
       return __skadapter__to_vector_string(__skreturn);
+    }
+    public static void SendCSSFileResponse(HttpRequest r, string filename)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    }
+    public static void SendFileResponse(HttpRequest r, string filename, string contentType)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __sklib_string __skparam__content_type;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __skparam__content_type = __skadapter__to_sklib_string(contentType);
+      __sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__content_type);
     }
     public static void SendHtmlFileResponse(HttpRequest r, string filename)
     {
@@ -13559,6 +14211,15 @@ namespace SplashKitSDK
       __skparam__r = __skadapter__to_sklib_http_request(r);
       __skparam__filename = __skadapter__to_sklib_string(filename);
       __sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
+    __skadapter__free__sklib_string(ref __skparam__filename);
+    }
+    public static void SendJavascriptFileResponse(HttpRequest r, string filename)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_string __skparam__filename;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__filename = __skadapter__to_sklib_string(filename);
+      __sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename);
     __skadapter__free__sklib_string(ref __skparam__filename);
     }
     public static void SendResponse(HttpRequest r)
@@ -13617,7 +14278,7 @@ namespace SplashKitSDK
       __skparam__j = __skadapter__to_sklib_json(j);
       __sklib__send_response__http_request__json(__skparam__r, __skparam__j);
     }
-    public static List<string> SplitUriStubs(string uri)
+    public static List<string> SplitURIStubs(string uri)
     {
       __sklib_string __skparam__uri;
       __sklib_vector_string __skreturn;
@@ -14181,8 +14842,8 @@ namespace SplashKitSDK
   }
   public enum ConnectionType
   {
-    Tcp,
-    Udp,
+    TCP,
+    UDP,
     Unknown
   }
   public enum ResourceKind
@@ -14249,37 +14910,54 @@ namespace SplashKitSDK
     HttpTraceMethod,
     UnknownHttpMethod
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_matrix_2d
-    {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=9)]
-        public double[] elements;
-    }
 
-    public struct Matrix2D    {
-      public double[,] elements;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_matrix_2d
+  {
+    // Unpacking array due to C# Marshalling limitations
+    public double Elements_0;
+    public double Elements_1;
+    public double Elements_2;
+    public double Elements_3;
+    public double Elements_4;
+    public double Elements_5;
+    public double Elements_6;
+    public double Elements_7;
+    public double Elements_8;
+
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_point_2d
-    {
-        public double x;
-        public double y;
-    }
 
-    public struct Point2D    {
-      public double x;
-      public double y;
+  public struct Matrix2D
+  {
+    public double[,] Elements;
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_circle
-    {
-        public __sklib_point_2d center;
-        public double radius;
-    }
 
-    public struct Circle    {
-      public Point2D center;
-      public double radius;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_point_2d
+  {
+    public double X;
+    public double Y;
+
+  }
+
+  public struct Point2D
+  {
+    public double X;
+    public double Y;
+  }
+
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_circle
+  {
+    public __sklib_point_2d Center;
+    public double Radius;
+
+  }
+
+  public struct Circle
+  {
+    public Point2D Center;
+    public double Radius;
 
     public void Draw(Color clr)
     {
@@ -14305,20 +14983,23 @@ namespace SplashKitSDK
     }
 
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_color
-    {
-        public float r;
-        public float g;
-        public float b;
-        public float a;
-    }
 
-    public struct Color    {
-      public float r;
-      public float g;
-      public float b;
-      public float a;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_color
+  {
+    public float R;
+    public float G;
+    public float B;
+    public float A;
+
+  }
+
+  public struct Color
+  {
+    public float R;
+    public float G;
+    public float B;
+    public float A;
 
     public static Color Random()
     {
@@ -14326,9 +15007,9 @@ namespace SplashKitSDK
     }
 
 
-    public static Color RandomRgb(int alpha)
+    public static Color RandomRGB(int alpha)
     {
-        return SplashKit.RandomRgbColor(alpha);
+        return SplashKit.RandomRGBColor(alpha);
     }
 
     public static Color AliceBlue
@@ -14904,95 +15585,118 @@ namespace SplashKitSDK
         get { return SplashKit.ColorYellowGreen(); }
     }
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_rectangle
-    {
-        public double x;
-        public double y;
-        public double width;
-        public double height;
-    }
 
-    public struct Rectangle    {
-      public double x;
-      public double y;
-      public double width;
-      public double height;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_rectangle
+  {
+    public double X;
+    public double Y;
+    public double Width;
+    public double Height;
+
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_drawing_options
-    {
-        public IntPtr dest;
-        public float scaleX;
-        public float scaleY;
-        public float angle;
-        public float anchorOffsetX;
-        public float anchorOffsetY;
-        public int flipX;
-        public int flipY;
-        public int isPart;
-        public __sklib_rectangle part;
-        public int camera;
-        public int lineWidth;
-        public __sklib_ptr anim;
-    }
 
-    public struct DrawingOptions    {
-      public IntPtr dest;
-      public float scaleX;
-      public float scaleY;
-      public float angle;
-      public float anchorOffsetX;
-      public float anchorOffsetY;
-      public bool flipX;
-      public bool flipY;
-      public bool isPart;
-      public Rectangle part;
-      public DrawingDest camera;
-      public int lineWidth;
-      public Animation anim;
+  public struct Rectangle
+  {
+    public double X;
+    public double Y;
+    public double Width;
+    public double Height;
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_line
-    {
-        public __sklib_point_2d startPoint;
-        public __sklib_point_2d endPoint;
-    }
 
-    public struct Line    {
-      public Point2D startPoint;
-      public Point2D endPoint;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_drawing_options
+  {
+    public IntPtr Dest;
+    public float ScaleX;
+    public float ScaleY;
+    public float Angle;
+    public float AnchorOffsetX;
+    public float AnchorOffsetY;
+    public int FlipX;
+    public int FlipY;
+    public int IsPart;
+    public __sklib_rectangle Part;
+    public int Camera;
+    public int LineWidth;
+    public __sklib_ptr Anim;
+
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_quad
-    {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=4)]
-        public __sklib_point_2d[] points;
-    }
 
-    public struct Quad    {
-      public Point2D[] points;
+  public struct DrawingOptions
+  {
+    public IntPtr Dest;
+    public float ScaleX;
+    public float ScaleY;
+    public float Angle;
+    public float AnchorOffsetX;
+    public float AnchorOffsetY;
+    public bool FlipX;
+    public bool FlipY;
+    public bool IsPart;
+    public Rectangle Part;
+    public DrawingDest Camera;
+    public int LineWidth;
+    public Animation Anim;
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_triangle
-    {
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]
-        public __sklib_point_2d[] points;
-    }
 
-    public struct Triangle    {
-      public Point2D[] points;
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_line
+  {
+    public __sklib_point_2d StartPoint;
+    public __sklib_point_2d EndPoint;
+
   }
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
-    internal struct __sklib_vector_2d
-    {
-        public double x;
-        public double y;
-    }
 
-    public struct Vector2D    {
-      public double x;
-      public double y;
+  public struct Line
+  {
+    public Point2D StartPoint;
+    public Point2D EndPoint;
+  }
+
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_quad
+  {
+    // Unpacking array due to C# Marshalling limitations
+    public __sklib_point_2d Points_0;
+    public __sklib_point_2d Points_1;
+    public __sklib_point_2d Points_2;
+    public __sklib_point_2d Points_3;
+
+  }
+
+  public struct Quad
+  {
+    public Point2D[] Points;
+  }
+
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_triangle
+  {
+    // Unpacking array due to C# Marshalling limitations
+    public __sklib_point_2d Points_0;
+    public __sklib_point_2d Points_1;
+    public __sklib_point_2d Points_2;
+
+  }
+
+  public struct Triangle
+  {
+    public Point2D[] Points;
+  }
+
+  [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
+  internal struct __sklib_vector_2d
+  {
+    public double X;
+    public double Y;
+
+  }
+
+  public struct Vector2D
+  {
+    public double X;
+    public double Y;
   }
 
     [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
@@ -15532,11 +16236,61 @@ public class Connection : PointerWrapper
         SplashKit.CloseConnection(this);
     }
 
+    public void ClearMessages()
+    {
+        SplashKit.ClearMessages(this);
+    }
+
+
     public bool Close()
     {
         return SplashKit.CloseConnection(this);
     }
 
+
+    public Message ReadMessage()
+    {
+        return SplashKit.ReadMessage(this);
+    }
+
+
+    public string ReadMessageData()
+    {
+        return SplashKit.ReadMessageData(this);
+    }
+
+
+    public void Reconnect()
+    {
+        SplashKit.Reconnect(this);
+    }
+
+
+    public bool SendMessage(string aMsg)
+    {
+        return SplashKit.SendMessageTo(aMsg, this);
+    }
+
+    public uint IP
+    {
+        get { return SplashKit.ConnectionIP(this); }
+    }
+    public ushort Port
+    {
+        get { return SplashKit.ConnectionPort(this); }
+    }
+    public bool HasMessages
+    {
+        get { return SplashKit.HasMessages(this); }
+    }
+    public bool IsOpen
+    {
+        get { return SplashKit.IsConnectionOpen(this); }
+    }
+    public uint MessageCount
+    {
+        get { return SplashKit.MessageCount(this); }
+    }
 }
 public class Message : PointerWrapper
 {
@@ -15560,6 +16314,26 @@ public class Message : PointerWrapper
         SplashKit.CloseMessage(this);
     }
 
+    public string Data
+    {
+        get { return SplashKit.MessageData(this); }
+    }
+    public List<byte> DataBytes
+    {
+        get { return SplashKit.MessageDataBytes(this); }
+    }
+    public string Host
+    {
+        get { return SplashKit.MessageHost(this); }
+    }
+    public ushort Port
+    {
+        get { return SplashKit.MessagePort(this); }
+    }
+    public ConnectionType Protocol
+    {
+        get { return SplashKit.MessageProtocol(this); }
+    }
 }
 public class ServerSocket : PointerWrapper
 {
@@ -15590,9 +16364,33 @@ public class ServerSocket : PointerWrapper
     }
 
 
+    public void BroadcastMessage(string aMsg)
+    {
+        SplashKit.BroadcastMessage(aMsg, this);
+    }
+
+
+    public void ClearMessages()
+    {
+        SplashKit.ClearMessages(this);
+    }
+
+
     public bool Close()
     {
         return SplashKit.CloseServer(this);
+    }
+
+
+    public Message ReadMessage()
+    {
+        return SplashKit.ReadMessage(this);
+    }
+
+
+    public string ReadMessageData()
+    {
+        return SplashKit.ReadMessageData(this);
     }
 
 
@@ -15605,9 +16403,17 @@ public class ServerSocket : PointerWrapper
     {
         get { return SplashKit.ConnectionCount(this); }
     }
+    public bool HasMessages
+    {
+        get { return SplashKit.HasMessages(this); }
+    }
     public Connection LastConnection
     {
         get { return SplashKit.LastConnection(this); }
+    }
+    public uint MessageCount
+    {
+        get { return SplashKit.MessageCount(this); }
     }
     public bool HasNewConnections
     {
@@ -15723,9 +16529,39 @@ public class Sprite : PointerWrapper
         SplashKit.FreeSprite(this);
     }
 
-    public bool CollideWithSprite(Sprite s2)
+    public bool BitmapCollision(Bitmap bmp, double x, double y)
+    {
+        return SplashKit.SpriteBitmapCollision(this, bmp, x, y);
+    }
+
+
+    public bool BitmapCollision(Bitmap bmp, int cell, Point2D pt)
+    {
+        return SplashKit.SpriteBitmapCollision(this, bmp, cell, pt);
+    }
+
+
+    public bool BitmapCollision(Bitmap bmp, int cell, double x, double y)
+    {
+        return SplashKit.SpriteBitmapCollision(this, bmp, cell, x, y);
+    }
+
+
+    public bool SpriteCollision(Sprite s2)
     {
         return SplashKit.SpriteCollision(this, s2);
+    }
+
+
+    public bool PointCollision(Point2D pt)
+    {
+        return SplashKit.SpritePointCollision(this, pt);
+    }
+
+
+    public bool RectangleCollision(Rectangle rect)
+    {
+        return SplashKit.SpriteRectangleCollision(this, rect);
     }
 
 
@@ -16528,6 +17364,132 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public void FillCircle(Color clr, double x, double y, double radius)
+    {
+        SplashKit.FillCircleOnBitmap(this, clr, x, y, radius);
+    }
+
+
+    public void FillCircle(Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+        SplashKit.FillCircleOnBitmap(this, clr, x, y, radius, opts);
+    }
+
+
+    public bool BitmapCollision(double x1, double y1, Bitmap bmp2, double x2, double y2)
+    {
+        return SplashKit.BitmapCollision(this, x1, y1, bmp2, x2, y2);
+    }
+
+
+    public bool BitmapCollision(Point2D pt1, Bitmap bmp2, Point2D pt2)
+    {
+        return SplashKit.BitmapCollision(this, pt1, bmp2, pt2);
+    }
+
+
+    public bool BitmapCollision(int cell1, Matrix2D matrix1, Bitmap bmp2, int cell2, Matrix2D matrix2)
+    {
+        return SplashKit.BitmapCollision(this, cell1, matrix1, bmp2, cell2, matrix2);
+    }
+
+
+    public bool BitmapCollision(int cell1, Point2D pt1, Bitmap bmp2, int cell2, Point2D pt2)
+    {
+        return SplashKit.BitmapCollision(this, cell1, pt1, bmp2, cell2, pt2);
+    }
+
+
+    public bool BitmapCollision(int cell1, double x1, double y1, Bitmap bmp2, int cell2, double x2, double y2)
+    {
+        return SplashKit.BitmapCollision(this, cell1, x1, y1, bmp2, cell2, x2, y2);
+    }
+
+
+    public bool PointCollision(Matrix2D translation, Point2D pt)
+    {
+        return SplashKit.BitmapPointCollision(this, translation, pt);
+    }
+
+
+    public bool PointCollision(Point2D bmpPt, Point2D pt)
+    {
+        return SplashKit.BitmapPointCollision(this, bmpPt, pt);
+    }
+
+
+    public bool PointCollision(double bmpX, double bmpY, double x, double y)
+    {
+        return SplashKit.BitmapPointCollision(this, bmpX, bmpY, x, y);
+    }
+
+
+    public bool PointCollision(int cell, Matrix2D translation, Point2D pt)
+    {
+        return SplashKit.BitmapPointCollision(this, cell, translation, pt);
+    }
+
+
+    public bool RectangleCollision(int cell, Matrix2D translation, Rectangle rect)
+    {
+        return SplashKit.BitmapRectangleCollision(this, cell, translation, rect);
+    }
+
+
+    public bool RectangleCollision(int cell, Point2D pt, Rectangle rect)
+    {
+        return SplashKit.BitmapRectangleCollision(this, cell, pt, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnBitmap(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, rect);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnBitmap(this, clr, x, y, width, height, opts);
+    }
+
+
     public Circle BoundingCircle(Point2D pt)
     {
         return SplashKit.BitmapBoundingCircle(this, pt);
@@ -16612,13 +17574,13 @@ public class Bitmap : PointerWrapper
     }
 
 
-    public void Draw(Bitmap destination, double x, double y)
+    public void DrawBitmap(Bitmap destination, double x, double y)
     {
         SplashKit.DrawBitmapOnBitmap(destination, this, x, y);
     }
 
 
-    public void Draw(Bitmap destination, double x, double y, DrawingOptions opts)
+    public void DrawBitmap(Bitmap destination, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawBitmapOnBitmap(destination, this, x, y, opts);
     }
@@ -16654,6 +17616,78 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public void DrawLine(Color clr, Line l)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, l);
+    }
+
+
+    public void DrawLine(Color clr, Line l, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, l, opts);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, fromPt, toPt);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, fromPt, toPt, opts);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, x1, y1, x2, y2);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnBitmap(this, clr, x1, y1, x2, y2, opts);
+    }
+
+
+    public void DrawPixel(Color clr, Point2D pt)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, pt);
+    }
+
+
+    public void DrawPixel(Color clr, Point2D pt, DrawingOptions opts)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, pt, opts);
+    }
+
+
+    public void DrawPixel(Color clr, double x, double y)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, x, y);
+    }
+
+
+    public void DrawPixel(Color clr, double x, double y, DrawingOptions opts)
+    {
+        SplashKit.DrawPixelOnBitmap(this, clr, x, y, opts);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q)
+    {
+        SplashKit.DrawQuadOnBitmap(this, clr, q);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.DrawQuadOnBitmap(this, clr, q, opts);
+    }
+
+
     public void DrawRectangle(Color clr, Rectangle rect)
     {
         SplashKit.DrawRectangleOnBitmap(this, clr, rect);
@@ -16675,6 +17709,42 @@ public class Bitmap : PointerWrapper
     public void DrawRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
     {
         SplashKit.DrawRectangleOnBitmap(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillQuad(Color clr, Quad q)
+    {
+        SplashKit.FillQuadOnBitmap(this, clr, q);
+    }
+
+
+    public void FillQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.FillQuadOnBitmap(this, clr, q, opts);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, rect);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, rect, opts);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, x, y, width, height);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnBitmap(this, clr, x, y, width, height, opts);
     }
 
 
@@ -16711,6 +17781,54 @@ public class Bitmap : PointerWrapper
     public void DrawText(string text, Color clr, Font fnt, int fontSize, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawTextOnBitmap(this, text, clr, fnt, fontSize, x, y, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, tri);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, tri, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3, opts);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, tri);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, tri, opts);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnBitmap(this, clr, x1, y1, x2, y2, x3, y3, opts);
     }
 
     public Point2D CellCenter
@@ -16867,7 +17985,125 @@ public class HttpRequest : PointerWrapper
   }
         protected internal override void DoFree()
         {}
+    
+    public bool IsDeleteRequestFor(string path)
+    {
+        return SplashKit.IsDeleteRequestFor(this, path);
     }
+
+
+    public bool IsGetRequestFor(string path)
+    {
+        return SplashKit.IsGetRequestFor(this, path);
+    }
+
+
+    public bool IsOptionsRequestFor(string path)
+    {
+        return SplashKit.IsOptionsRequestFor(this, path);
+    }
+
+
+    public bool IsPostRequestFor(string path)
+    {
+        return SplashKit.IsPostRequestFor(this, path);
+    }
+
+
+    public bool IsPutRequestFor(string path)
+    {
+        return SplashKit.IsPutRequestFor(this, path);
+    }
+
+
+    public bool IsRequestFor(HttpMethod method, string path)
+    {
+        return SplashKit.IsRequestFor(this, method, path);
+    }
+
+
+    public bool IsTraceRequestFor(string path)
+    {
+        return SplashKit.IsTraceRequestFor(this, path);
+    }
+
+
+    public void SendCSSFileResponse(string filename)
+    {
+        SplashKit.SendCSSFileResponse(this, filename);
+    }
+
+
+    public void SendFileResponse(string filename, string contentType)
+    {
+        SplashKit.SendFileResponse(this, filename, contentType);
+    }
+
+
+    public void SendHtmlFileResponse(string filename)
+    {
+        SplashKit.SendHtmlFileResponse(this, filename);
+    }
+
+
+    public void SendJavascriptFileResponse(string filename)
+    {
+        SplashKit.SendJavascriptFileResponse(this, filename);
+    }
+
+
+    public void SendResponse()
+    {
+        SplashKit.SendResponse(this);
+    }
+
+
+    public void SendResponse(string message)
+    {
+        SplashKit.SendResponse(this, message);
+    }
+
+
+    public void SendResponse(HttpStatusCode code)
+    {
+        SplashKit.SendResponse(this, code);
+    }
+
+
+    public void SendResponse(HttpStatusCode code, string message)
+    {
+        SplashKit.SendResponse(this, code, message);
+    }
+
+
+    public void SendResponse(HttpStatusCode code, string message, string contentType)
+    {
+        SplashKit.SendResponse(this, code, message, contentType);
+    }
+
+
+    public void SendResponse(Json j)
+    {
+        SplashKit.SendResponse(this, j);
+    }
+
+    public string Body
+    {
+        get { return SplashKit.RequestBody(this); }
+    }
+    public HttpMethod Method
+    {
+        get { return SplashKit.RequestMethod(this); }
+    }
+    public string URI
+    {
+        get { return SplashKit.RequestURI(this); }
+    }
+    public List<string> URIStubs
+    {
+        get { return SplashKit.RequestURIStubs(this); }
+    }
+}
 public class WebServer : PointerWrapper
 {
   private WebServer(IntPtr ptr) : base(ptr, true) {}
@@ -16896,6 +18132,14 @@ public class WebServer : PointerWrapper
         SplashKit.StopWebServer(this);
     }
 
+    public bool HasIncomingRequests
+    {
+        get { return SplashKit.HasIncomingRequests(this); }
+    }
+    public HttpRequest NextWebRequest
+    {
+        get { return SplashKit.NextWebRequest(this); }
+    }
 }
 public class Window : PointerWrapper
 {
@@ -16929,15 +18173,123 @@ public class Window : PointerWrapper
     }
 
 
-    public void Draw(Bitmap bmp, double x, double y)
+    public void FillCircle(Color clr, double x, double y, double radius)
+    {
+        SplashKit.FillCircleOnWindow(this, clr, x, y, radius);
+    }
+
+
+    public void FillCircle(Color clr, double x, double y, double radius, DrawingOptions opts)
+    {
+        SplashKit.FillCircleOnWindow(this, clr, x, y, radius, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, rect);
+    }
+
+
+    public void DrawEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void DrawEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.DrawEllipseOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, rect);
+    }
+
+
+    public void FillEllipse(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void FillEllipse(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillEllipseOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void DrawBitmap(Bitmap bmp, double x, double y)
     {
         SplashKit.DrawBitmapOnWindow(this, bmp, x, y);
     }
 
 
-    public void Draw(Bitmap bmp, double x, double y, DrawingOptions opts)
+    public void DrawBitmap(Bitmap bmp, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawBitmapOnWindow(this, bmp, x, y, opts);
+    }
+
+
+    public void DrawLine(Color clr, Line l)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, l);
+    }
+
+
+    public void DrawLine(Color clr, Line l, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, l, opts);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, fromPt, toPt);
+    }
+
+
+    public void DrawLine(Color clr, Point2D fromPt, Point2D toPt, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, fromPt, toPt, opts);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, x1, y1, x2, y2);
+    }
+
+
+    public void DrawLine(Color clr, double x1, double y1, double x2, double y2, DrawingOptions opts)
+    {
+        SplashKit.DrawLineOnWindow(this, clr, x1, y1, x2, y2, opts);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q)
+    {
+        SplashKit.DrawQuadOnWindow(this, clr, q);
+    }
+
+
+    public void DrawQuad(Color clr, Quad q, DrawingOptions opts)
+    {
+        SplashKit.DrawQuadOnWindow(this, clr, q, opts);
     }
 
 
@@ -16962,6 +18314,36 @@ public class Window : PointerWrapper
     public void DrawRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
     {
         SplashKit.DrawRectangleOnWindow(this, clr, x, y, width, height, opts);
+    }
+
+
+    public void FillQuad(Color clr, Quad q)
+    {
+        SplashKit.FillQuadOnWindow(this, clr, q);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, rect);
+    }
+
+
+    public void FillRectangle(Color clr, Rectangle rect, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, rect, opts);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, x, y, width, height);
+    }
+
+
+    public void FillRectangle(Color clr, double x, double y, double width, double height, DrawingOptions opts)
+    {
+        SplashKit.FillRectangleOnWindow(this, clr, x, y, width, height, opts);
     }
 
 
@@ -16998,6 +18380,54 @@ public class Window : PointerWrapper
     public void DrawText(string text, Color clr, Font fnt, int fontSize, double x, double y, DrawingOptions opts)
     {
         SplashKit.DrawTextOnWindow(this, text, clr, fnt, fontSize, x, y, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, tri);
+    }
+
+
+    public void DrawTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, tri, opts);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void DrawTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.DrawTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3, opts);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, tri);
+    }
+
+
+    public void FillTriangle(Color clr, Triangle tri, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, tri, opts);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3);
+    }
+
+
+    public void FillTriangle(Color clr, double x1, double y1, double x2, double y2, double x3, double y3, DrawingOptions opts)
+    {
+        SplashKit.FillTriangleOnWindow(this, clr, x1, y1, x2, y2, x3, y3, opts);
     }
 
 
@@ -17280,6 +18710,17 @@ public static class Camera{
     public static Vector2D VectorWorldToScreen
     {
         get { return SplashKit.VectorWorldToScreen(); }
+    }
+}
+public static class Networking{
+    public static bool HasMessages
+    {
+        get { return SplashKit.HasMessages(); }
+    }
+    public static uint UDPPacketSize
+    {
+        get { return SplashKit.UDPPacketSize(); }
+          set { SplashKit.SetUDPPacketSize(value); }
     }
 }
 public static class Text{

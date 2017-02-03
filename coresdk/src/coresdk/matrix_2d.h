@@ -46,7 +46,7 @@ namespace splashkit_lib
      * @param dy    The amount to move points along the y axis.
      * @returns     A matrix that will move points by dx, dy
      */
-    matrix_2d translation_matrix(float dx, float dy);
+    matrix_2d translation_matrix(double dx, double dy);
 
     /**
      * Returns a translation matric used to translate 2d points by the
@@ -77,7 +77,7 @@ namespace splashkit_lib
      * @param scale The amount to scale points by.
      * @returns     A matrix to scale points by.
      */
-    matrix_2d scale_matrix(float scale);
+    matrix_2d scale_matrix(double scale);
 
     /**
      * Create a scale matrix that scales x and y to
@@ -107,7 +107,7 @@ namespace splashkit_lib
      * @param deg   The amount to rotate points
      * @returns     A matrix that encodes the rotation by a number of degrees.
      */
-    matrix_2d rotation_matrix(float deg);
+    matrix_2d rotation_matrix(double deg);
 
     /**
      * Create a matrix that can scale, rotate then translate geometry points.
@@ -117,7 +117,7 @@ namespace splashkit_lib
      * @param translate The amount to move
      * @returns         A matrix that will scale, rotate, and translate.
      */
-    matrix_2d scale_rotate_translate_matrix(const point_2d &scale, float deg, const point_2d &translate);
+    matrix_2d scale_rotate_translate_matrix(const point_2d &scale, double deg, const point_2d &translate);
 
     /**
      *  Multiplies the two `matrix_2d` parameters, `m1` by `m2`, and returns
