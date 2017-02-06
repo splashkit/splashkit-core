@@ -258,17 +258,44 @@ namespace splashkit_lib
     string request_uri(http_request r);
     
     /**
-     * Returns the URI queries of the client request.
+     * Returns the URI query string of the client request.
      *
      * @param r A request object.
      *
      * @returns Returns the requested URI queries in the form of a string.
      *
      * @attribute class http_request
-     * @attribute getter uri_queries
+     * @attribute getter query_string
      */
-    string request_uri_queries(http_request r);
+    string request_query_string(http_request r);
 
+    /**
+     * Returns the value of a parameter from within the query string, or the supplied default
+     * if no matching parameter is found.
+     *
+     * @param r A request object.
+     * @param name The name of the parameter to fetch
+     * @param default_value The value to return if the named parameter is not in the query string.
+     *
+     * @returns Returns value of the parameter from the query string, or the default value if the parameter is not found.
+     *
+     * @attribute class http_request
+     * @attribute method query_parameter
+     */
+    string request_query_parameter(http_request r, const string &name, const string &default_value);
+    
+    /**
+     * Returns true if the parameter exists in the query string.
+     *
+     * @param r A request object.
+     * @param name The name of the parameter to check
+     *
+     * @returns True if the parameter exists in the user's request.
+     *
+     * @attribute class http_request
+     * @attribute method has_query_parameter
+     */
+    bool request_has_query_parameter(http_request r, const string &name);
 
     /**
      * Returns the HTTP method of the client request.

@@ -23,6 +23,12 @@ bool handle_request(http_request r)
     cout << "Matching routes for " << uri << "\n";
     if (uri.find("/stop") != string::npos)
     {
+        string user = request_query_parameter(r, "user", "");
+        if ( user != "admin" )
+        {
+            send_response(r, "No auth for " + user + " to stop");
+            return false;
+        }
         cout << "Matched to the stop route\n";
         send_response(r, "Goodbye");
         return true;
