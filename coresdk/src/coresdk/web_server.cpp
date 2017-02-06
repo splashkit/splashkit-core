@@ -107,6 +107,7 @@ namespace splashkit_lib
         send_response(r, HTTP_STATUS_OK, json_to_string(j), "application/json");
     }
 
+
     void send_response(http_request r, http_status_code code)
     {
         send_response(r, code, "", "text/plain");
@@ -147,6 +148,17 @@ namespace splashkit_lib
         }
 
         return r->uri;
+    }
+    
+    string request_uri_queries(http_request r)
+    {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "Getting request uri with invalid request";
+            return "";
+        }
+        
+        return r->query_string;
     }
 
     http_method request_method(http_request r)

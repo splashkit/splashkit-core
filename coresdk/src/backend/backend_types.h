@@ -242,6 +242,7 @@ namespace splashkit_lib
     {
         pointer_identifier  id;
         string              uri;
+        string              query_string;
         http_method         method;
 
         unsigned short      port;

@@ -256,6 +256,16 @@ namespace splashkit_lib
      * @attribute getter uri
      */
     string request_uri(http_request r);
+    
+    /**
+     * Returns the URI query of the client request.
+     *
+     * @param r A request object.
+     *
+     * @returns Returns the requested URI's queries in the form of a string.
+     */
+    string request_uri_queries(http_request r);
+
 
     /**
      * Returns the HTTP method of the client request.
@@ -268,6 +278,7 @@ namespace splashkit_lib
      * @attribute getter method
      */
     http_method request_method(http_request r);
+    
 
     /**
      * Returns the body of the request.
