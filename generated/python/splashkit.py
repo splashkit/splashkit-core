@@ -3385,8 +3385,14 @@ sklib.__sklib__next_web_request__web_server.argtypes = [ c_void_p ]
 sklib.__sklib__next_web_request__web_server.restype = c_void_p
 sklib.__sklib__request_body__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_body__http_request.restype = _sklib_string
+sklib.__sklib__request_has_query_parameter__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__request_has_query_parameter__http_request__string_ref.restype = c_bool
 sklib.__sklib__request_method__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_method__http_request.restype = c_int
+sklib.__sklib__request_query_parameter__http_request__string_ref__string_ref.argtypes = [ c_void_p, _sklib_string, _sklib_string ]
+sklib.__sklib__request_query_parameter__http_request__string_ref__string_ref.restype = _sklib_string
+sklib.__sklib__request_query_string__http_request.argtypes = [ c_void_p ]
+sklib.__sklib__request_query_string__http_request.restype = _sklib_string
 sklib.__sklib__request_uri__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri__http_request.restype = _sklib_string
 sklib.__sklib__request_uri_stubs__http_request.argtypes = [ c_void_p ]
@@ -8281,10 +8287,25 @@ def request_body ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_body__http_request(__skparam__r)
     return __skadapter__to_string(__skreturn)
+def request_has_query_parameter ( r, name ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__request_has_query_parameter__http_request__string_ref(__skparam__r, __skparam__name)
+    return __skadapter__to_bool(__skreturn)
 def request_method ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_method__http_request(__skparam__r)
     return __skadapter__to_http_method(__skreturn)
+def request_query_parameter ( r, name, default_value ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skparam__default_value = __skadapter__to_sklib_string(default_value)
+    __skreturn = sklib.__sklib__request_query_parameter__http_request__string_ref__string_ref(__skparam__r, __skparam__name, __skparam__default_value)
+    return __skadapter__to_string(__skreturn)
+def request_query_string ( r ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skreturn = sklib.__sklib__request_query_string__http_request(__skparam__r)
+    return __skadapter__to_string(__skreturn)
 def request_uri ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_uri__http_request(__skparam__r)

@@ -37,7 +37,10 @@ bool is_request_for(http_request request, http_method method, const string &path
 bool is_trace_request_for(http_request request, const string &path);
 http_request next_web_request(web_server server);
 string request_body(http_request r);
+bool request_has_query_parameter(http_request r, const string &name);
 http_method request_method(http_request r);
+string request_query_parameter(http_request r, const string &name, const string &default_value);
+string request_query_string(http_request r);
 string request_uri(http_request r);
 vector<string> request_uri_stubs(http_request r);
 void send_css_file_response(http_request r, const string &filename);
