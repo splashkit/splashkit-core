@@ -258,11 +258,14 @@ namespace splashkit_lib
     string request_uri(http_request r);
     
     /**
-     * Returns the URI query of the client request.
+     * Returns the URI queries of the client request.
      *
      * @param r A request object.
      *
-     * @returns Returns the requested URI's queries in the form of a string.
+     * @returns Returns the requested URI queries in the form of a string.
+     *
+     * @attribute class http_request
+     * @attribute getter uri_queries
      */
     string request_uri_queries(http_request r);
 
