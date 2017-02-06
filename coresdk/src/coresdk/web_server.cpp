@@ -12,6 +12,10 @@
 #include "web_server_driver.h"
 #include "utils.h"
 
+#include <sstream>
+
+using std::stringstream;
+
 namespace splashkit_lib
 {
     web_server start_web_server(unsigned short port)
@@ -150,7 +154,7 @@ namespace splashkit_lib
         return r->uri;
     }
     
-    string request_uri_queries(http_request r)
+    string request_query_string(http_request r)
     {
         if (INVALID_PTR(r, HTTP_REQUEST_PTR))
         {
@@ -160,6 +164,65 @@ namespace splashkit_lib
         
         return r->query_string;
     }
+
+// From: https://cboard.cprogramming.com/c-programming/13752-how-parse-query_string.html
+#define TO_HEX(Y) (Y>='0'&&Y<='9'?Y-'0':Y-'A'+10)
+    
+    string request_query_parameter(http_request r, const string &name, const string &default_value)
+    {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "Getting query parameter with invalid request";
+            return "";
+        }
+        
+        string query_string = r->query_string;
+        
+        size_t idx = query_string.find(name + "=");
+        
+        if ( idx == string::npos) return default_value;
+        
+        auto iter = query_string.begin() + idx + name.length() + 1;
+        stringstream result;
+        
+        while ( iter < query_string.end() )
+        {
+            if ( *iter == '%' )
+            {
+                result << (char)((TO_HEX(*(iter + 1)) << 4) + TO_HEX(*(iter + 2)));
+                iter += 2;
+            }
+            else if ( *iter == '+' )
+            {
+                result << ' ';
+            }
+            else if ( *iter == '&' )
+            {
+                break; // end of parameter
+            }
+            else
+            {
+                result << *iter;
+            }
+            
+            iter++;
+        }
+        
+        return result.str();
+    }
+    
+    bool request_has_query_parameter(http_request r, const string &name)
+    {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "Getting query parameter with invalid request";
+            return "";
+        }
+        
+        return r->query_string.find(name + "=") != string::npos;
+    }
+    
+#undef TO_HEX
 
     http_method request_method(http_request r)
     {
