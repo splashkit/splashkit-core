@@ -1372,7 +1372,10 @@ function IsRequestFor(request: HttpRequest; method: HttpMethod; const path: Stri
 function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean;
 function NextWebRequest(server: WebServer): HttpRequest;
 function RequestBody(r: HttpRequest): String;
+function RequestHasQueryParameter(r: HttpRequest; const name: String): Boolean;
 function RequestMethod(r: HttpRequest): HttpMethod;
+function RequestQueryParameter(r: HttpRequest; const name: String; const defaultValue: String): String;
+function RequestQueryString(r: HttpRequest): String;
 function RequestURI(r: HttpRequest): String;
 function RequestURIStubs(r: HttpRequest): ArrayOfString;
 procedure SendCSSFileResponse(r: HttpRequest; const filename: String);
@@ -3426,7 +3429,10 @@ function __sklib__is_request_for__http_request__http_method__string_ref(request:
 function __sklib__is_trace_request_for__http_request__string_ref(request: __sklib_ptr; const path: __sklib_string): LongInt; cdecl; external;
 function __sklib__next_web_request__web_server(server: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__request_body__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
+function __sklib__request_has_query_parameter__http_request__string_ref(r: __sklib_ptr; const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__request_method__http_request(r: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__request_query_parameter__http_request__string_ref__string_ref(r: __sklib_ptr; const name: __sklib_string; const defaultValue: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__request_query_string__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__request_uri__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__request_uri_stubs__http_request(r: __sklib_ptr): __sklib_vector_string; cdecl; external;
 procedure __sklib__send_css_file_response__http_request__string_ref(r: __sklib_ptr; const filename: __sklib_string); cdecl; external;
@@ -14026,6 +14032,17 @@ begin
   __skreturn := __sklib__request_body__http_request(__skparam__r);
   result := __skadapter__to_string(__skreturn);
 end;
+function RequestHasQueryParameter(r: HttpRequest; const name: String): Boolean;
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__request_has_query_parameter__http_request__string_ref(__skparam__r, __skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function RequestMethod(r: HttpRequest): HttpMethod;
 var
   __skparam__r: __sklib_ptr;
@@ -14034,6 +14051,28 @@ begin
   __skparam__r := __skadapter__to_sklib_http_request(r);
   __skreturn := __sklib__request_method__http_request(__skparam__r);
   result := __skadapter__to_http_method(__skreturn);
+end;
+function RequestQueryParameter(r: HttpRequest; const name: String; const defaultValue: String): String;
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__default_value: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__default_value := __skadapter__to_sklib_string(defaultValue);
+  __skreturn := __sklib__request_query_parameter__http_request__string_ref__string_ref(__skparam__r, __skparam__name, __skparam__default_value);
+  result := __skadapter__to_string(__skreturn);
+end;
+function RequestQueryString(r: HttpRequest): String;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_query_string__http_request(__skparam__r);
+  result := __skadapter__to_string(__skreturn);
 end;
 function RequestURI(r: HttpRequest): String;
 var

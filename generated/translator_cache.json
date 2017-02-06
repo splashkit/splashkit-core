@@ -55424,7 +55424,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1485988761,
+    "parsed_at": 1486357815,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -55932,6 +55932,59 @@
         }
       },
       {
+        "signature": "bool request_has_query_parameter(http_request r,const string &name);",
+        "name": "request_has_query_parameter",
+        "method_name": "has_query_parameter",
+        "unique_global_name": "request_has_query_parameter",
+        "unique_method_name": "http_request.has_query_parameter",
+        "suffix_name": null,
+        "description": "Returns true if the parameter exists in the query string.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the parameter exists in the user's request.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "A request object.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the parameter to check",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "has_query_parameter",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
         "signature": "http_method request_method(http_request r);",
         "name": "request_method",
         "method_name": null,
@@ -55966,6 +56019,112 @@
         "attributes": {
           "class": "http_request",
           "getter": "method",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "string request_query_parameter(http_request r,const string &name,const string &default_value);",
+        "name": "request_query_parameter",
+        "method_name": "query_parameter",
+        "unique_global_name": "request_query_parameter",
+        "unique_method_name": "http_request.query_parameter",
+        "suffix_name": null,
+        "description": "Returns the value of a parameter from within the query string, or the supplied default\nif no matching parameter is found.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "Returns value of the parameter from the query string, or the default value if the parameter is not found.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "A request object.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the parameter to fetch",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "default_value": {
+            "type": "string",
+            "description": "The value to return if the named parameter is not in the query string.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "query_parameter",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "string request_query_string(http_request r);",
+        "name": "request_query_string",
+        "method_name": null,
+        "unique_global_name": "request_query_string",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the URI query string of the client request.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "Returns the requested URI queries in the form of a string.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "A request object.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "getter": "query_string",
           "group": "networking",
           "static": "web_server",
           "self": "r"

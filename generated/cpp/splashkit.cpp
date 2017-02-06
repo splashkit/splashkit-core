@@ -6079,10 +6079,31 @@ string request_body(http_request r) {
     __sklib_string __skreturn = __sklib__request_body__http_request(__skparam__r);
     return __skadapter__to_string(__skreturn);
 }
+bool request_has_query_parameter(http_request r, const string &name) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skreturn = __sklib__request_has_query_parameter__http_request__string_ref(__skparam__r, __skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+    return __skadapter__to_bool(__skreturn);
+}
 http_method request_method(http_request r) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
     int __skreturn = __sklib__request_method__http_request(__skparam__r);
     return __skadapter__to_http_method(__skreturn);
+}
+string request_query_parameter(http_request r, const string &name, const string &default_value) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    const __sklib_string __skparam__default_value = __skadapter__to_sklib_string(default_value);
+    __sklib_string __skreturn = __sklib__request_query_parameter__http_request__string_ref__string_ref(__skparam__r, __skparam__name, __skparam__default_value);
+    __skadapter__free__sklib_string(__skparam__name);
+    __skadapter__free__sklib_string(__skparam__default_value);
+    return __skadapter__to_string(__skreturn);
+}
+string request_query_string(http_request r) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    __sklib_string __skreturn = __sklib__request_query_string__http_request(__skparam__r);
+    return __skadapter__to_string(__skreturn);
 }
 string request_uri(http_request r) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
