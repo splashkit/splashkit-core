@@ -41,7 +41,7 @@ set(SK_LANGUAGES "${SK_ROOT}/languages")
 
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/commands/clang++")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_OUT}/splashkit-macos/lib \
                    -llibSplashKit \
@@ -58,7 +58,7 @@ if (APPLE)
                    -lncurses")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/clang++")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     add_definitions(-DWINDOWS)
@@ -113,17 +113,19 @@ set_target_properties(
     SplashKitCPP${WIN_NAME_SUFFIX} PROPERTIES LINKER_LANGUAGE CXX
 )
 
-get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
-install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
-if(MSYS)
-  set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/g++")
-  get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
-  install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
-  install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
-else()
-  install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_ROOT}/lib)
-endif()
+set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/clang++")
+get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
 
-install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
-install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_ROOT}/include)
+install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
+install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
+install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
+install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
+
+set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/g++")
+get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
+
+install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
+install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
+install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
+install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
