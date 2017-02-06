@@ -23,8 +23,6 @@ if (WIN32 OR MSYS OR MINGW)
     message(SEND_ERROR "Failed to detect windows architecture")
     return ()
   endif()
-
-  set(WIN_NAME_SUFFIX "-${WIN_PATH_SUFFIX}")
 endif()
 
 # SK Directories relative to cmake project
@@ -197,12 +195,12 @@ add_definitions(-DELPP_THREAD_SAFE)
 #### SplashKitBackend STATIC LIBRARY ####
 
 
-add_library(SplashKit${WIN_NAME_SUFFIX} SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
-target_link_libraries(SplashKit${WIN_NAME_SUFFIX} ${LIB_FLAGS})
+add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
+target_link_libraries(SplashKit ${LIB_FLAGS})
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
-install(TARGETS SplashKit${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_ROOT}/lib)
+install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
 install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
 
 if ( ${MSYS} )
