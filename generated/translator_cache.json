@@ -2977,7 +2977,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877775,
+    "parsed_at": 1485843983,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -3936,6 +3936,398 @@
         "attributes": {
           "suffix": "with_options",
           "group": "graphics"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_bitmap(bitmap destination,color clr,double x,double y,double radius);",
+        "name": "fill_circle_on_bitmap",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_bitmap",
+        "unique_method_name": "bitmap.fill_circle",
+        "suffix_name": null,
+        "description": "Fill a circle onto the destination bitmap. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "fill_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_bitmap(bitmap destination,color clr,double x,double y,double radius,drawing_options opts);",
+        "name": "fill_circle_on_bitmap",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_bitmap_with_options",
+        "unique_method_name": "bitmap.fill_circle_with_options",
+        "suffix_name": null,
+        "description": "Fill a circle to the bitmap using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "bitmap",
+            "description": "The destination bitmap",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "fill_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_window(window destination,color clr,double x,double y,double radius);",
+        "name": "fill_circle_on_window",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_window",
+        "unique_method_name": "window.fill_circle",
+        "suffix_name": null,
+        "description": "Fill a circle onto the destination window. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "fill_circle",
+          "group": "graphics",
+          "self": "destination"
+        }
+      },
+      {
+        "signature": "void fill_circle_on_window(window destination,color clr,double x,double y,double radius,drawing_options opts);",
+        "name": "fill_circle_on_window",
+        "method_name": "fill_circle",
+        "unique_global_name": "fill_circle_on_window_with_options",
+        "unique_method_name": "window.fill_circle_with_options",
+        "suffix_name": null,
+        "description": "Fill a circle to the window using the supplied drawing options. The circle is centred on its x, y\ncoordinates, and has the provided radius.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "destination": {
+            "type": "window",
+            "description": "The destination window",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "window",
+          "method": "fill_circle",
+          "suffix": "with_options",
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -14173,7 +14565,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877781,
+    "parsed_at": 1485843985,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -14482,9 +14874,9 @@
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -14539,16 +14931,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14616,16 +15010,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse",
         "suffix_name": null,
         "description": "Draws an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -14719,15 +15115,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "draw_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_ellipse_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse to the bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14834,16 +15232,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,const rectangle rect);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -14898,16 +15298,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -14975,16 +15377,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse",
         "suffix_name": null,
         "description": "Draws an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -15078,15 +15482,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_ellipse_on_window(window destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "draw_ellipse_on_window",
-        "method_name": null,
+        "method_name": "draw_ellipse",
         "unique_global_name": "draw_ellipse_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_ellipse_with_options",
         "suffix_name": null,
         "description": "Draws an ellipse to the window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15193,8 +15599,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -15503,9 +15911,9 @@
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Fill an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -15560,16 +15968,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15637,16 +16047,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, and size.",
         "brief": null,
@@ -15740,15 +16152,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "fill_ellipse_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_ellipse_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given bitmap, using the provided location, size, and drawing options.",
         "brief": null,
@@ -15855,16 +16269,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,const rectangle rect);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_within_rectangle",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_within_rectangle",
         "suffix_name": null,
         "description": "Fill an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -15919,16 +16335,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,const rectangle rect,drawing_options opts);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_within_rectangle_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_within_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, size, and drawing options.\n\nAt this stage ellipse drawing is not affected by line width from the\ndrawing options.",
         "brief": null,
@@ -15996,16 +16414,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "within_rectangle_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, and size.",
         "brief": null,
@@ -16099,15 +16519,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_ellipse",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_ellipse_on_window(window destination,color clr,double x,double y,double width,double height,drawing_options opts);",
         "name": "fill_ellipse_on_window",
-        "method_name": null,
+        "method_name": "fill_ellipse",
         "unique_global_name": "fill_ellipse_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_ellipse_with_options",
         "suffix_name": null,
         "description": "Fills an ellipse on the given window, using the provided location, size, and drawing options.",
         "brief": null,
@@ -16214,8 +16636,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_ellipse",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -16944,7 +17368,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1484877783,
+    "parsed_at": 1485843987,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -18611,9 +19035,9 @@
       {
         "signature": "void draw_bitmap_on_bitmap(bitmap destination,bitmap bmp,double x,double y);",
         "name": "draw_bitmap_on_bitmap",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_bitmap_on_bitmap",
-        "unique_method_name": "bitmap.draw_on_bitmap",
+        "unique_method_name": "bitmap.draw_bitmap_on_bitmap",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given bitmap.\nat `x` and `y`.",
         "brief": null,
@@ -18681,7 +19105,7 @@
         },
         "attributes": {
           "class": "bitmap",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "bmp",
           "suffix": "on_bitmap",
           "group": "graphics",
@@ -18691,9 +19115,9 @@
       {
         "signature": "void draw_bitmap_on_bitmap(bitmap destination,bitmap bmp,double x,double y,drawing_options opts);",
         "name": "draw_bitmap_on_bitmap",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_bitmap_on_bitmap_with_options",
-        "unique_method_name": "bitmap.draw_on_bitmap_with_options",
+        "unique_method_name": "bitmap.draw_bitmap_on_bitmap_with_options",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given bitmap.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -18774,7 +19198,7 @@
         },
         "attributes": {
           "class": "bitmap",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "bmp",
           "suffix": "on_bitmap_with_options",
           "group": "graphics",
@@ -18784,9 +19208,9 @@
       {
         "signature": "void draw_bitmap_on_window(window destination,bitmap bmp,double x,double y);",
         "name": "draw_bitmap_on_window",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_window",
-        "unique_method_name": "window.draw",
+        "unique_method_name": "window.draw_bitmap",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given window.\nat `x` and `y`.",
         "brief": null,
@@ -18854,7 +19278,7 @@
         },
         "attributes": {
           "class": "window",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "destination",
           "group": "graphics",
           "static": "images"
@@ -18863,9 +19287,9 @@
       {
         "signature": "void draw_bitmap_on_window(window destination,bitmap bmp,double x,double y,drawing_options opts);",
         "name": "draw_bitmap_on_window",
-        "method_name": "draw",
+        "method_name": "draw_bitmap",
         "unique_global_name": "draw_bitmap_on_window_with_options",
-        "unique_method_name": "window.draw_with_options",
+        "unique_method_name": "window.draw_bitmap_with_options",
         "suffix_name": null,
         "description": "Draws the bitmap supplied into `bmp` to the given window.\nwith extra drawing options supplied in `opts` at `x` and `y`.",
         "brief": null,
@@ -18946,7 +19370,7 @@
         },
         "attributes": {
           "class": "window",
-          "method": "draw",
+          "method": "draw_bitmap",
           "self": "destination",
           "suffix": "with_options",
           "group": "graphics",
@@ -22235,7 +22659,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877785,
+    "parsed_at": 1485843989,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -22683,9 +23107,9 @@
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const line &l);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_record",
         "suffix_name": null,
         "description": "Draws a line onto the given bitmap.",
         "brief": null,
@@ -22740,16 +23164,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const line &l,drawing_options opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_record_with_options",
         "suffix_name": null,
         "description": "Draws a line on the given bitmap.",
         "brief": null,
@@ -22817,16 +23243,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const point_2d &from_pt,const point_2d &to_pt);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_point_to_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_point_to_point",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -22894,16 +23322,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "point_to_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,const point_2d &from_pt,const point_2d &to_pt,const drawing_options &opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_point_to_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_point_to_point_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -22984,16 +23414,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "point_to_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given bitmap.",
         "brief": null,
@@ -23087,15 +23519,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_line",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,const drawing_options &opts);",
         "name": "draw_line_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_line_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another",
         "brief": null,
@@ -23202,16 +23636,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_line",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const line &l);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_record",
         "suffix_name": null,
         "description": "Draws a line onto the given window.",
         "brief": null,
@@ -23266,16 +23702,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const line &l,drawing_options opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_record_with_options",
         "suffix_name": null,
         "description": "Draws a line on the given window.",
         "brief": null,
@@ -23343,16 +23781,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const point_2d &from_pt,const point_2d &to_pt);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_point_to_point",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_point_to_point",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23420,16 +23860,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "point_to_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,const point_2d &from_pt,const point_2d &to_pt,const drawing_options &opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_point_to_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_point_to_point_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23510,16 +23952,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "point_to_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,double x1,double y1,double x2,double y2);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line",
         "suffix_name": null,
         "description": "Draw a line from one point to another on the given window.",
         "brief": null,
@@ -23613,15 +24057,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_line",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_line_on_window(window destination,color clr,double x1,double y1,double x2,double y2,const drawing_options &opts);",
         "name": "draw_line_on_window",
-        "method_name": null,
+        "method_name": "draw_line",
         "unique_global_name": "draw_line_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_line_with_options",
         "suffix_name": null,
         "description": "Draw a line from one point to another",
         "brief": null,
@@ -23728,8 +24174,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_line",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -26842,7 +27290,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1481587830,
+    "parsed_at": 1485947434,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -26907,6 +27355,292 @@
           "group": "networking",
           "static": "networking",
           "self": "server"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg,server_socket svr);",
+        "name": "broadcast_message",
+        "method_name": "broadcast_message",
+        "unique_global_name": "broadcast_message",
+        "unique_method_name": "server_socket.broadcast_message",
+        "suffix_name": null,
+        "description": "Broadcast a message to all connections of a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to send the message to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "broadcast_message",
+          "self": "svr",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg);",
+        "name": "broadcast_message",
+        "method_name": null,
+        "unique_global_name": "broadcast_message_to_all",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Broadcase a message to all of the connections.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "to_all",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void broadcast_message(const string &a_msg,const string &name);",
+        "name": "broadcast_message",
+        "method_name": null,
+        "unique_global_name": "broadcast_message_to_server_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Broadcast a message to all connections of a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the server to send the message to.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "to_server_named",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void check_network_activity();",
+        "name": "check_network_activity",
+        "method_name": null,
+        "unique_global_name": "check_network_activity",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Check network activity, looking for new connections and messages.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void clear_messages(const string &name);",
+        "name": "clear_messages",
+        "method_name": null,
+        "unique_global_name": "clear_messages_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Clear all of the messages from a server or connection with the supplied name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection or the server to clear.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void clear_messages(connection a_connection);",
+        "name": "clear_messages",
+        "method_name": "clear_messages",
+        "unique_global_name": "clear_messages_from_connection",
+        "unique_method_name": "connection.clear_messages_from_connection",
+        "suffix_name": null,
+        "description": "Clear all of the messages from a connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "clear_messages",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "void clear_messages(server_socket svr);",
+        "name": "clear_messages",
+        "method_name": "clear_messages",
+        "unique_global_name": "clear_messages_from_server",
+        "unique_method_name": "server_socket.clear_messages_from_server",
+        "suffix_name": null,
+        "description": "Clear all of the messages from a server.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to clear the messages from",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "clear_messages",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
         }
       },
       {
@@ -27235,6 +27969,199 @@
         }
       },
       {
+        "signature": "unsigned int connection_ip(connection a_connection);",
+        "name": "connection_ip",
+        "method_name": null,
+        "unique_global_name": "connection_ip",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the ip address of the passed in connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The ip addres of the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "ip",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned int connection_ip(const string &name);",
+        "name": "connection_ip",
+        "method_name": null,
+        "unique_global_name": "connection_ip_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the ip address of the connection with the supplied name.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The connection's ip address",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "connection connection_named(const string &name);",
+        "name": "connection_named",
+        "method_name": null,
+        "unique_global_name": "connection_named",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Fetch the connection with the indicated name.",
+        "brief": null,
+        "return": {
+          "type": "connection",
+          "description": "The connection with that name",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to fetch",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned short int connection_port(connection a_connection);",
+        "name": "connection_port",
+        "method_name": null,
+        "unique_global_name": "connection_port",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the port of the connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the connection.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "port",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned short int connection_port(const string &name);",
+        "name": "connection_port",
+        "method_name": null,
+        "unique_global_name": "connection_port_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the part of the connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "server_socket create_server(const string &name,unsigned short int port);",
         "name": "create_server",
         "method_name": null,
@@ -27388,6 +28315,188 @@
         "attributes": {
           "group": "networking",
           "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_connection(const string &name);",
+        "name": "has_connection",
+        "method_name": null,
+        "unique_global_name": "has_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Does the connection with the supplied name exist?",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there is a connection with the supplied name",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages();",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if there are any messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are any messages waiting to be read",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "getter": "has_messages",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages(connection con);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a connection has messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are any messages on the connection.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "con": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "has_messages",
+          "suffix": "on_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "con"
+        }
+      },
+      {
+        "signature": "bool has_messages(const string &name);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a server or connection has any messages.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "[description]",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the server or connection to check.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "on_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool has_messages(server_socket svr);",
+        "name": "has_messages",
+        "method_name": null,
+        "unique_global_name": "has_messages_on_server",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if a server has any messages waiting to be read.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if there are messages on the server.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "getter": "has_messages",
+          "suffix": "on_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
         }
       },
       {
@@ -27637,6 +28746,84 @@
         }
       },
       {
+        "signature": "bool is_connection_open(connection con);",
+        "name": "is_connection_open",
+        "method_name": null,
+        "unique_global_name": "is_connection_open",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the connection currently is open.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the connection is open.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "con": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "is_open",
+          "group": "networking",
+          "static": "networking",
+          "self": "con"
+        }
+      },
+      {
+        "signature": "bool is_connection_open(const string &name);",
+        "name": "is_connection_open",
+        "method_name": null,
+        "unique_global_name": "is_connection_open_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the connection with the supplied name currently is open.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the connection is open.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "connection last_connection(const string &name);",
         "name": "last_connection",
         "method_name": null,
@@ -27715,6 +28902,363 @@
         }
       },
       {
+        "signature": "connection message_connection(message msg);",
+        "name": "message_connection",
+        "method_name": null,
+        "unique_global_name": "message_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the connection that sent a message.",
+        "brief": null,
+        "return": {
+          "type": "connection",
+          "description": "The connection that sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(server_socket svr);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_on_server",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a server.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages on the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "getter": "message_count",
+          "suffix": "on_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(connection a_connection);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_on_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages to be read from the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "getter": "message_count",
+          "suffix": "on_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "unsigned int message_count(const string &name);",
+        "name": "message_count",
+        "method_name": null,
+        "unique_global_name": "message_count_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of messages on a server or connection.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The number of messages on the server or connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the server or connection",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string message_data(message msg);",
+        "name": "message_data",
+        "method_name": null,
+        "unique_global_name": "message_data",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the body of a message as a string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The string body of the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "data",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "vector<int8_t> message_data_bytes(message msg);",
+        "name": "message_data_bytes",
+        "method_name": null,
+        "unique_global_name": "message_data_bytes",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Gets the body of a message as a list of bytes.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "The body of the message as bytes",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "int8_t"
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "data_bytes",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "string message_host(message msg);",
+        "name": "message_host",
+        "method_name": null,
+        "unique_global_name": "message_host",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the host who made the message.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The host who sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "host",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "unsigned short int message_port(message msg);",
+        "name": "message_port",
+        "method_name": null,
+        "unique_global_name": "message_port",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the port used to send a message.",
+        "brief": null,
+        "return": {
+          "type": "unsigned short",
+          "description": "The port of the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "port",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
+        "signature": "connection_type message_protocol(message msg);",
+        "name": "message_protocol",
+        "method_name": null,
+        "unique_global_name": "message_protocol",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the protocol used to send a message.",
+        "brief": null,
+        "return": {
+          "type": "connection_type",
+          "description": "The protocol used to sent the message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "msg": {
+            "type": "message",
+            "description": "The message to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "message",
+          "getter": "protocol",
+          "group": "networking",
+          "static": "networking",
+          "self": "msg"
+        }
+      },
+      {
         "signature": "string my_ip();",
         "name": "my_ip",
         "method_name": null,
@@ -27732,6 +29276,56 @@
           "type_parameter": null
         },
         "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string name_for_connection(const string host,const unsigned int port);",
+        "name": "name_for_connection",
+        "method_name": null,
+        "unique_global_name": "name_for_connection",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the name SplashKit would use for a connection made to a server\nfrom a host to a port.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The name SplashKit would use for this connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "host": {
+            "type": "string",
+            "description": "The host name",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "port": {
+            "type": "unsigned int",
+            "description": "The port",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
         },
         "attributes": {
           "group": "networking",
@@ -27883,6 +29477,372 @@
         }
       },
       {
+        "signature": "message read_message();",
+        "name": "read_message",
+        "method_name": null,
+        "unique_global_name": "read_message",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Read a message from the network (from a server or connection).",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message from the network.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "message read_message(connection a_connection);",
+        "name": "read_message",
+        "method_name": "read_message",
+        "unique_global_name": "read_message_from_connection",
+        "unique_method_name": "connection.read_message_from_connection",
+        "suffix_name": null,
+        "description": "Reads the first message from the connection.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "A connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "read_message",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "message read_message(const string &name);",
+        "name": "read_message",
+        "method_name": null,
+        "unique_global_name": "read_message_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Reads the first message from a connection or server.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the connection or server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of a connection or server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "message read_message(server_socket svr);",
+        "name": "read_message",
+        "method_name": "read_message",
+        "unique_global_name": "read_message_from_server",
+        "unique_method_name": "server_socket.read_message_from_server",
+        "suffix_name": null,
+        "description": "Reads the first message from the server.",
+        "brief": null,
+        "return": {
+          "type": "message",
+          "description": "The first message read from the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "A server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "read_message",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "string read_message_data(const string &name);",
+        "name": "read_message_data",
+        "method_name": null,
+        "unique_global_name": "read_message_data_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Read message data from a connection or server.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message from the server or connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection or server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "string read_message_data(connection a_connection);",
+        "name": "read_message_data",
+        "method_name": "read_message_data",
+        "unique_global_name": "read_message_data_from_connection",
+        "unique_method_name": "connection.read_message_data_from_connection",
+        "suffix_name": null,
+        "description": "Read message data from a connection.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message on the connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "read_message_data",
+          "suffix": "from_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "string read_message_data(server_socket svr);",
+        "name": "read_message_data",
+        "method_name": "read_message_data",
+        "unique_global_name": "read_message_data_from_server",
+        "unique_method_name": "server_socket.read_message_data_from_server",
+        "suffix_name": null,
+        "description": "Read message data from a server.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The data from the first message on the server",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "svr": {
+            "type": "server_socket",
+            "description": "The server",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "read_message_data",
+          "suffix": "from_server",
+          "group": "networking",
+          "static": "networking",
+          "self": "svr"
+        }
+      },
+      {
+        "signature": "void reconnect(connection a_connection);",
+        "name": "reconnect",
+        "method_name": "reconnect",
+        "unique_global_name": "reconnect",
+        "unique_method_name": "connection.reconnect",
+        "suffix_name": null,
+        "description": "Attempt to reconnect the connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection to reconnect",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "reconnect",
+          "group": "networking",
+          "static": "networking",
+          "self": "a_connection"
+        }
+      },
+      {
+        "signature": "void reconnect(const string &name);",
+        "name": "reconnect",
+        "method_name": null,
+        "unique_global_name": "reconnect_from_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Attempt to reconnect the connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to reconnect.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "void release_all_connections();",
+        "name": "release_all_connections",
+        "method_name": null,
+        "unique_global_name": "release_all_connections",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Close and release the resources used by all of the connections.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
         "signature": "connection retrieve_connection(const string &name,int idx);",
         "name": "retrieve_connection",
         "method_name": null,
@@ -27984,6 +29944,111 @@
           "group": "networking",
           "static": "networking",
           "self": "server"
+        }
+      },
+      {
+        "signature": "bool send_message_to(const string &a_msg,connection a_connection);",
+        "name": "send_message_to",
+        "method_name": "send_message",
+        "unique_global_name": "send_message_to_connection",
+        "unique_method_name": "connection.send_message_connection",
+        "suffix_name": null,
+        "description": "Send a message to the connection.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the message sends.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "a_connection": {
+            "type": "connection",
+            "description": "The connection to send the message to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "connection",
+          "method": "send_message",
+          "self": "a_connection",
+          "suffix": "connection",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool send_message_to(const string &a_msg,const string &name);",
+        "name": "send_message_to",
+        "method_name": null,
+        "unique_global_name": "send_message_to_name",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Send a message to the connection with the given name.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the message sends",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "a_msg": {
+            "type": "string",
+            "description": "The message to send",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the connection to send the message to",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "name",
+          "group": "networking",
+          "static": "networking"
         }
       },
       {
@@ -28100,6 +30165,69 @@
           "group": "networking",
           "static": "networking"
         }
+      },
+      {
+        "signature": "void set_udp_packet_size(unsigned int udp_packet_size);",
+        "name": "set_udp_packet_size",
+        "method_name": null,
+        "unique_global_name": "set_udp_packet_size",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Change the size of the UDP packets.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "udp_packet_size": {
+            "type": "unsigned int",
+            "description": "The new packet size.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "setter": "udp_packet_size",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "unsigned int udp_packet_size();",
+        "name": "udp_packet_size",
+        "method_name": null,
+        "unique_global_name": "udp_packet_size",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the size SplashKit is using for UDP packets.",
+        "brief": null,
+        "return": {
+          "type": "unsigned int",
+          "description": "The size of UDP packets.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "getter": "udp_packet_size",
+          "group": "networking",
+          "static": "networking"
+        }
       }
     ],
     "typedefs": [
@@ -28208,7 +30336,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877788,
+    "parsed_at": 1485843990,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -28465,9 +30593,9 @@
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,const point_2d &pt);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_at_point",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap.",
         "brief": null,
@@ -28522,16 +30650,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "at_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,const point_2d &pt,drawing_options opts);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_at_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_at_point_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap with the given drawing options.",
         "brief": null,
@@ -28599,16 +30729,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "at_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,double x,double y);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap.",
         "brief": null,
@@ -28676,15 +30808,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_pixel",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_bitmap(bitmap destination,color clr,double x,double y,drawing_options opts);",
         "name": "draw_pixel_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_pixel_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given bitmap with the given drawing options.",
         "brief": null,
@@ -28765,8 +30899,10 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_pixel",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -30899,7 +33035,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877793,
+    "parsed_at": 1485843993,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -31017,9 +33153,9 @@
       {
         "signature": "void draw_quad_on_bitmap(bitmap destination,color clr,const quad &q);",
         "name": "draw_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_quad",
         "suffix_name": null,
         "description": "Draw a quad on the supplied bitmap to the current bitmap.",
         "brief": null,
@@ -31074,15 +33210,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_bitmap(bitmap destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "draw_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_quad_with_options",
         "suffix_name": null,
         "description": "Draw a quad on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -31150,16 +33288,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_window(window destination,color clr,const quad &q);",
         "name": "draw_quad_on_window",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_quad",
         "suffix_name": null,
         "description": "Draw a quad on the supplied window to the current window.",
         "brief": null,
@@ -31214,15 +33354,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_quad_on_window(window destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "draw_quad_on_window",
-        "method_name": null,
+        "method_name": "draw_quad",
         "unique_global_name": "draw_quad_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_quad_with_options",
         "suffix_name": null,
         "description": "Draw a quad on the supplied window using the supplied drawing options.",
         "brief": null,
@@ -31290,8 +33432,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -32446,9 +34590,9 @@
       {
         "signature": "void fill_quad_on_bitmap(bitmap destination,color clr,const quad &q);",
         "name": "fill_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_quad",
         "suffix_name": null,
         "description": "Fill a quad on the supplied bitmap on the current bitmap.",
         "brief": null,
@@ -32503,15 +34647,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_quad_on_bitmap(bitmap destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "fill_quad_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_quad_with_options",
         "suffix_name": null,
         "description": "Fill a quad on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -32579,16 +34725,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_quad_on_window(window destination,color clr,const quad &q);",
         "name": "fill_quad_on_window",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_quad",
         "suffix_name": null,
         "description": "Fill a quad on the supplied window on the current window.",
         "brief": null,
@@ -32643,7 +34791,9 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_quad",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -33029,9 +35179,9 @@
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,const rectangle &rect);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_record",
         "suffix_name": null,
         "description": "Fill a rectangle on the supplied bitmap onto the current bitmap.",
         "brief": null,
@@ -33086,16 +35236,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,const rectangle &rect,const drawing_options &opts);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_record_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap using the supplied drawing options.",
         "brief": null,
@@ -33163,16 +35315,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap to the current bitmap.",
         "brief": null,
@@ -33266,15 +35420,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_rectangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_bitmap(bitmap destination,color clr,double x,double y,double width,double height,const drawing_options &opts);",
         "name": "fill_rectangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied bitmap, using the supplied drawing options.",
         "brief": null,
@@ -33381,16 +35537,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_rectangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,const rectangle &rect);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_record",
         "suffix_name": null,
         "description": "Fill a rectangle on the supplied window onto the current window.",
         "brief": null,
@@ -33445,16 +35603,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,const rectangle &rect,const drawing_options &opts);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_record_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window using the supplied drawing options.",
         "brief": null,
@@ -33522,16 +35682,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,double x,double y,double width,double height);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window to the current window.",
         "brief": null,
@@ -33625,15 +35787,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_rectangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_rectangle_on_window(window destination,color clr,double x,double y,double width,double height,const drawing_options &opts);",
         "name": "fill_rectangle_on_window",
-        "method_name": null,
+        "method_name": "fill_rectangle",
         "unique_global_name": "fill_rectangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_rectangle_with_options",
         "suffix_name": null,
         "description": "Fills a rectangle on the supplied window, using the supplied drawing options.",
         "brief": null,
@@ -33740,8 +35904,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_rectangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -47529,7 +49695,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1484877811,
+    "parsed_at": 1485843995,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -47890,9 +50056,9 @@
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_record",
         "suffix_name": null,
         "description": "Draw a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -47947,16 +50113,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_record_with_options",
         "suffix_name": null,
         "description": "Draw a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -48024,16 +50192,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle",
         "suffix_name": null,
         "description": "Draw a triangle to the given bitmap.",
         "brief": null,
@@ -48153,15 +50323,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "draw_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "draw_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.draw_triangle_with_options",
         "suffix_name": null,
         "description": "Draw a triangle to the given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -48294,16 +50466,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "draw_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,const triangle &tri);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_record",
         "suffix_name": null,
         "description": "Draw a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -48358,16 +50532,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_record_with_options",
         "suffix_name": null,
         "description": "Draw a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -48435,16 +50611,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle",
         "suffix_name": null,
         "description": "Draw a triangle to the given window.",
         "brief": null,
@@ -48564,15 +50742,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "draw_triangle_on_window",
-        "method_name": null,
+        "method_name": "draw_triangle",
         "unique_global_name": "draw_triangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_triangle_with_options",
         "suffix_name": null,
         "description": "Draw a triangle to the given window, using the supplied drawing options.",
         "brief": null,
@@ -48705,8 +50885,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -49067,9 +51249,9 @@
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_record",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_record",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap",
         "brief": null,
@@ -49124,16 +51306,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_record_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap, using given drawing options",
         "brief": null,
@@ -49201,16 +51385,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap",
         "brief": null,
@@ -49330,15 +51516,17 @@
         },
         "attributes": {
           "class": "bitmap",
-          "group": "graphics"
+          "method": "fill_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_bitmap(bitmap destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "fill_triangle_on_bitmap",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_bitmap_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "bitmap.fill_triangle_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given bitmap, using the supplied drawing options.",
         "brief": null,
@@ -49471,16 +51659,18 @@
         },
         "attributes": {
           "class": "bitmap",
+          "method": "fill_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,const triangle &tri);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_record",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_record",
         "suffix_name": null,
         "description": "Fill a triangle on a given window",
         "brief": null,
@@ -49535,16 +51725,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "record",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,const triangle &tri,drawing_options opts);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_record_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_record_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given window, using given drawing options",
         "brief": null,
@@ -49612,16 +51804,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "record_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle",
         "suffix_name": null,
         "description": "Fill a triangle on a given window",
         "brief": null,
@@ -49741,15 +51935,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "fill_triangle",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void fill_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts);",
         "name": "fill_triangle_on_window",
-        "method_name": null,
+        "method_name": "fill_triangle",
         "unique_global_name": "fill_triangle_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_triangle_with_options",
         "suffix_name": null,
         "description": "Fill a triangle on a given window, using the supplied drawing options.",
         "brief": null,
@@ -49882,8 +52078,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_triangle",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       }
     ],
@@ -53226,7 +55424,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1481588714,
+    "parsed_at": 1485988761,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -53263,6 +55461,7 @@
         },
         "attributes": {
           "class": "web_server",
+          "getter": "has_incoming_requests",
           "self": "server",
           "group": "networking",
           "static": "web_server"
@@ -53271,9 +55470,9 @@
       {
         "signature": "bool is_delete_request_for(http_request request,const string &path);",
         "name": "is_delete_request_for",
-        "method_name": null,
+        "method_name": "is_delete_request_for",
         "unique_global_name": "is_delete_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_delete_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to delete a given resource.",
         "brief": null,
@@ -53314,16 +55513,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_delete_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_get_request_for(http_request request,const string &path);",
         "name": "is_get_request_for",
-        "method_name": null,
+        "method_name": "is_get_request_for",
         "unique_global_name": "is_get_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_get_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to get a given resource.",
         "brief": null,
@@ -53364,16 +55566,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_get_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_options_request_for(http_request request,const string &path);",
         "name": "is_options_request_for",
-        "method_name": null,
+        "method_name": "is_options_request_for",
         "unique_global_name": "is_options_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_options_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to check options for given resource.",
         "brief": null,
@@ -53414,16 +55619,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_options_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_post_request_for(http_request request,const string &path);",
         "name": "is_post_request_for",
-        "method_name": null,
+        "method_name": "is_post_request_for",
         "unique_global_name": "is_post_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_post_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to create (post) a given resource.",
         "brief": null,
@@ -53464,16 +55672,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_post_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_put_request_for(http_request request,const string &path);",
         "name": "is_put_request_for",
-        "method_name": null,
+        "method_name": "is_put_request_for",
         "unique_global_name": "is_put_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_put_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to update (put) a given resource.",
         "brief": null,
@@ -53514,16 +55725,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_put_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_request_for(http_request request,http_method method,const string &path);",
         "name": "is_request_for",
-        "method_name": null,
+        "method_name": "is_request_for",
         "unique_global_name": "is_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_request_for",
         "suffix_name": null,
         "description": "Checks if a request is after a given resource.",
         "brief": null,
@@ -53577,16 +55791,19 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
         "signature": "bool is_trace_request_for(http_request request,const string &path);",
         "name": "is_trace_request_for",
-        "method_name": null,
+        "method_name": "is_trace_request_for",
         "unique_global_name": "is_trace_request_for",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.is_trace_request_for",
         "suffix_name": null,
         "description": "Checks if a request wants to trace a given resource.",
         "brief": null,
@@ -53627,8 +55844,11 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "method": "is_trace_request_for",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "request"
         }
       },
       {
@@ -53665,6 +55885,7 @@
         },
         "attributes": {
           "class": "web_server",
+          "getter": "next_web_request",
           "self": "server",
           "group": "networking",
           "static": "web_server"
@@ -53703,8 +55924,11 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "getter": "body",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
@@ -53740,8 +55964,11 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "getter": "method",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
@@ -53777,8 +56004,11 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "getter": "uri",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
@@ -53814,18 +56044,21 @@
           }
         },
         "attributes": {
+          "class": "http_request",
+          "getter": "uri_stubs",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
-        "signature": "void send_html_file_response(http_request r,const string &filename);",
-        "name": "send_html_file_response",
-        "method_name": null,
-        "unique_global_name": "send_html_file_response",
-        "unique_method_name": null,
+        "signature": "void send_css_file_response(http_request r,const string &filename);",
+        "name": "send_css_file_response",
+        "method_name": "send_css_file_response",
+        "unique_global_name": "send_css_file_response",
+        "unique_method_name": "http_request.send_css_file_response",
         "suffix_name": null,
-        "description": "Serves a HTML file to the given `http_request`.",
+        "description": "Serves a css file to the given `http_request`.",
         "brief": null,
         "return": {
           "type": "void",
@@ -53838,7 +56071,7 @@
         "parameters": {
           "r": {
             "type": "http_request",
-            "description": "The request to be sent.",
+            "description": "The request which is asking for the resource.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -53864,17 +56097,191 @@
           }
         },
         "attributes": {
-          "class": "http_response",
+          "class": "http_request",
+          "method": "send_css_file_response",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "void send_file_response(http_request r,const string &filename,const string &content_type);",
+        "name": "send_file_response",
+        "method_name": "send_file_response",
+        "unique_global_name": "send_file_response",
+        "unique_method_name": "http_request.send_file_response",
+        "suffix_name": null,
+        "description": "Serves a file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "content_type": {
+            "type": "string",
+            "description": "The type of content being send:",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "void send_html_file_response(http_request r,const string &filename);",
+        "name": "send_html_file_response",
+        "method_name": "send_html_file_response",
+        "unique_global_name": "send_html_file_response",
+        "unique_method_name": "http_request.send_html_file_response",
+        "suffix_name": null,
+        "description": "Serves a HTML file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_html_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        }
+      },
+      {
+        "signature": "void send_javascript_file_response(http_request r,const string &filename);",
+        "name": "send_javascript_file_response",
+        "method_name": "send_javascript_file_response",
+        "unique_global_name": "send_javascript_file_response",
+        "unique_method_name": "http_request.send_javascript_file_response",
+        "suffix_name": null,
+        "description": "Serves a javascript file to the given `http_request`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The request which is asking for the resource.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "filename": {
+            "type": "string",
+            "description": "The name of the file in Resources/server",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_javascript_file_response",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
         "signature": "void send_response(http_request r);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response_empty",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response_empty",
         "suffix_name": null,
         "description": "Sends a response with no content to a `http_request`.",
         "brief": null,
@@ -53903,6 +56310,7 @@
         },
         "attributes": {
           "class": "http_request",
+          "method": "send_response",
           "self": "r",
           "suffix": "empty",
           "group": "networking",
@@ -53912,9 +56320,9 @@
       {
         "signature": "void send_response(http_request r,const string &message);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response",
         "suffix_name": null,
         "description": "Sends a message to a given `http_request`.",
         "brief": null,
@@ -53955,17 +56363,19 @@
           }
         },
         "attributes": {
-          "class": "http_response",
+          "class": "http_request",
+          "method": "send_response",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
         "signature": "void send_response(http_request r,http_status_code code);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response_json_with_status",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response_json_with_status",
         "suffix_name": null,
         "description": "Sends a response code to a given `http_request`.",
         "brief": null,
@@ -54007,6 +56417,7 @@
         },
         "attributes": {
           "class": "http_request",
+          "method": "send_response",
           "self": "r",
           "suffix": "json_with_status",
           "group": "networking",
@@ -54016,9 +56427,9 @@
       {
         "signature": "void send_response(http_request r,http_status_code code,const string &message);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response_with_status",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response_with_status",
         "suffix_name": null,
         "description": "Sends a message to a given `http_request` with the specified content type.",
         "brief": null,
@@ -54073,6 +56484,7 @@
         },
         "attributes": {
           "class": "http_request",
+          "method": "send_response",
           "self": "r",
           "suffix": "with_status",
           "group": "networking",
@@ -54082,9 +56494,9 @@
       {
         "signature": "void send_response(http_request r,http_status_code code,const string &message,const string &content_type);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response_with_status_and_content_type",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response_with_status_and_content_type",
         "suffix_name": null,
         "description": "Sends a message to a given `http_request` with the specified content type.",
         "brief": null,
@@ -54152,6 +56564,7 @@
         },
         "attributes": {
           "class": "http_request",
+          "method": "send_response",
           "self": "r",
           "suffix": "with_status_and_content_type",
           "group": "networking",
@@ -54161,9 +56574,9 @@
       {
         "signature": "void send_response(http_request r,json j);",
         "name": "send_response",
-        "method_name": null,
+        "method_name": "send_response",
         "unique_global_name": "send_response_json",
-        "unique_method_name": null,
+        "unique_method_name": "http_request.send_response_json",
         "suffix_name": null,
         "description": "Send a JSON response to a given `http_request`",
         "brief": null,
@@ -54204,10 +56617,12 @@
           }
         },
         "attributes": {
-          "class": "http_response",
+          "class": "http_request",
+          "method": "send_response",
           "suffix": "json",
           "group": "networking",
-          "static": "web_server"
+          "static": "web_server",
+          "self": "r"
         }
       },
       {
@@ -54359,7 +56774,7 @@
       {
         "signature": "typedef struct sk_http_request *http_request;",
         "name": "http_request",
-        "description": null,
+        "description": "The request contains the details of the resource the user is requesting.",
         "brief": null,
         "attributes": {
           "class": "http_request",
@@ -54376,7 +56791,7 @@
       {
         "signature": "typedef struct sk_web_server *web_server;",
         "name": "web_server",
-        "description": null,
+        "description": "The web server is able to listen for incomming requests, and you can then provide the response.",
         "brief": null,
         "attributes": {
           "class": "web_server",

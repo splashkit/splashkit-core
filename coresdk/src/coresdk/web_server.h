@@ -19,11 +19,15 @@ using namespace std;
 namespace splashkit_lib
 {
     /**
+     * The web server is able to listen for incomming requests, and you can then provide the response.
+     *
      * @attribute class web_server
      */
     typedef struct sk_web_server *web_server;
 
     /**
+     * The request contains the details of the resource the user is requesting.
+     *
      * @attribute class http_request
      * @attribute no_destructor true
      */
@@ -85,6 +89,7 @@ namespace splashkit_lib
      *
      * @attribute self  server
      * @attribute class web_server
+     * @attribute getter has_incoming_requests
      */
     bool has_incoming_requests(web_server server);
 
@@ -109,7 +114,7 @@ namespace splashkit_lib
      *
      * @attribute class web_server
      * @attribute self  server
-     * @attribute method next_web_request
+     * @attribute getter next_web_request
      */
     http_request next_web_request(web_server server);
 
@@ -123,6 +128,7 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     * @attribute method send_response
      *
      * @attribute suffix  with_status_and_content_type
      */
@@ -137,6 +143,7 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     * @attribute method send_response
      *
      * @attribute suffix  with_status
      */
@@ -148,7 +155,8 @@ namespace splashkit_lib
      * @param r       The request to be sent.
      * @param message The message to be sent
      *
-     * @attribute class http_response
+     * @attribute class http_request
+     * @attribute method send_response
      */
     void send_response(http_request r, const string &message);
 
@@ -158,7 +166,8 @@ namespace splashkit_lib
      * @param r The request the response belongs to.
      * @param j The json to be sent.
      *
-     * @attribute class http_response
+     * @attribute class http_request
+     * @attribute method send_response
      *
      * @attribute suffix  json
      */
@@ -172,6 +181,7 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     * @attribute method send_response
      *
      * @attribute suffix  json_with_status
      */
@@ -184,27 +194,66 @@ namespace splashkit_lib
      *
      * @attribute class http_request
      * @attribute self  r
+     * @attribute method send_response
      *
      * @attribute suffix  empty
      */
     void send_response(http_request r);
 
     /**
+     * Serves a file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     * @param content_type The type of content being send:
+     *
+     * @attribute class http_request
+     * @attribute method send_file_response
+     */
+    void send_file_response(http_request r, const string &filename, const string &content_type);
+    
+    /**
      * Serves a HTML file to the given `http_request`.
      *
-     * @param r        The request to be sent.
+     * @param r        The request which is asking for the resource.
      * @param filename The name of the file in Resources/server
      *
-     * @attribute class http_response
+     * @attribute class http_request
+     * @attribute method send_html_file_response
      */
     void send_html_file_response(http_request r, const string &filename);
 
+    /**
+     * Serves a javascript file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class http_request
+     * @attribute method send_javascript_file_response
+     */
+    void send_javascript_file_response(http_request r, const string &filename);
+    
+    /**
+     * Serves a css file to the given `http_request`.
+     *
+     * @param r        The request which is asking for the resource.
+     * @param filename The name of the file in Resources/server
+     *
+     * @attribute class http_request
+     * @attribute method send_css_file_response
+     */
+    void send_css_file_response(http_request r, const string &filename);
+    
     /**
      * Returns the server URI of the client request.
      *
      * @param r A request object.
      *
      * @returns Returns the requested URI in the form of a string.
+     *
+     * @attribute class http_request
+     * @attribute getter uri
      */
     string request_uri(http_request r);
     
@@ -224,6 +273,9 @@ namespace splashkit_lib
      * @param r A request object.
      *
      * @returns Returns the request method.
+     *
+     * @attribute class http_request
+     * @attribute getter method
      */
     http_method request_method(http_request r);
     
@@ -234,6 +286,9 @@ namespace splashkit_lib
      * @param r A request object.
      *
      * @returns The body of the request.
+     *
+     * @attribute class http_request
+     * @attribute getter body
      */
     string request_body(http_request r);
 
@@ -247,6 +302,9 @@ namespace splashkit_lib
      * @param r The request for retrieving URI to split into stubs.
      *
      * @return The array of stubs as strings.
+     *
+     * @attribute class http_request
+     * @attribute getter uri_stubs
      */
     vector<string> request_uri_stubs(http_request r);
 
@@ -271,6 +329,9 @@ namespace splashkit_lib
      * @param  method  The kind of request
      * @param  path    The resource/route path
      * @return         True if the request is for the indicated method and path
+     *
+     * @attribute class http_request
+     * @attribute method is_request_for
      */
     bool is_request_for(http_request request, http_method method, const string &path);
 
@@ -280,6 +341,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP GET request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_get_request_for
      */
     bool is_get_request_for(http_request request, const string &path);
 
@@ -289,6 +353,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP POST request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_post_request_for
      */
     bool is_post_request_for(http_request request, const string &path);
 
@@ -298,6 +365,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP PUT request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_put_request_for
      */
     bool is_put_request_for(http_request request, const string &path);
 
@@ -307,6 +377,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP DELETE request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_delete_request_for
      */
     bool is_delete_request_for(http_request request, const string &path);
 
@@ -316,6 +389,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP OPTIONS request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_options_request_for
      */
     bool is_options_request_for(http_request request, const string &path);
 
@@ -325,6 +401,9 @@ namespace splashkit_lib
      * @param  request The request to check
      * @param  path    The resource/route path
      * @return         True if the request is a HTTP TRACE request for `path`
+     *
+     * @attribute class http_request
+     * @attribute method is_trace_request_for
      */
     bool is_trace_request_for(http_request request, const string &path);
 }

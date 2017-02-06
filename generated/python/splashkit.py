@@ -497,6 +497,14 @@ def __skadapter__to_sklib_double(v):
 def __skadapter__to_double(v):
     return v
 
+def __skadapter__to_sklib_int8_t(v):
+    if isinstance(v, c_byte):
+        return v
+    return c_byte(v);
+
+def __skadapter__to_int8_t(v):
+    return v
+
 def __skadapter__to_sklib_byte(v):
     if isinstance(v, c_byte):
         return v
@@ -839,6 +847,44 @@ def __skadapter__update_from_vector_line(v, __skreturn):
         __skreturn.append( __skadapter__to_line(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_line(v)
+class _sklib_vector_int8_t(Structure):
+    _fields_ = [
+      ("data_from_app", POINTER(c_byte)),
+      ("size_from_app", c_uint),
+      ("data_from_lib", POINTER(c_byte)),
+      ("size_from_lib", c_uint),
+    ]
+
+    def __init__(self, num):
+        elems = (c_byte * num)()
+        self.data_from_app = cast(elems, POINTER(c_byte))
+        self.size_from_app = num
+        self.data_from_lib = None
+        self.size_from_lib = 0
+
+sklib.__sklib__free__sklib_vector_int8_t.argtypes = [ _sklib_vector_int8_t ]
+sklib.__sklib__free__sklib_vector_int8_t.restype = None
+def __skadapter__free__sklib_vector_int8_t(v):
+    v.data_from_app = None
+
+def __skadapter__to_sklib_vector_int8_t(v):
+    result = _sklib_vector_int8_t(len(v))
+    for i in range(0, len(v)):
+        result.data_from_app[i] = __skadapter__to_sklib_int8_t(v[i])
+    return result
+
+def __skadapter__to_vector_int8_t(v):
+    result = []
+    for i in range(0, v.size_from_lib):
+        result.append ( __skadapter__to_int8_t(v.data_from_lib[i]) )
+    sklib.__sklib__free__sklib_vector_int8_t(v)
+    return result
+def __skadapter__update_from_vector_int8_t(v, __skreturn):
+    del __skreturn[:]
+    for i in range(0, v.size_from_lib):
+        __skreturn.append( __skadapter__to_int8_t(v.data_from_lib[i]) )
+
+    sklib.__sklib__free__sklib_vector_int8_t(v)
 class _sklib_vector_triangle(Structure):
     _fields_ = [
       ("data_from_app", POINTER(_sklib_triangle)),
@@ -1359,6 +1405,14 @@ sklib.__sklib__fill_circle__color__double__double__double.argtypes = [ _sklib_co
 sklib.__sklib__fill_circle__color__double__double__double.restype = None
 sklib.__sklib__fill_circle__color__double__double__double__drawing_options.argtypes = [ _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
 sklib.__sklib__fill_circle__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double.restype = None
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options.restype = None
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double ]
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double.restype = None
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options.argtypes = [ c_void_p, _sklib_color, c_double, c_double, c_double, _sklib_drawing_options ]
+sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options.restype = None
 sklib.__sklib__center_point__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__center_point__circle_ref.restype = _sklib_point_2d
 sklib.__sklib__circle_at__point_2d_ref__double.argtypes = [ _sklib_point_2d, c_double ]
@@ -2321,6 +2375,20 @@ sklib.__sklib__accept_all_new_connections.argtypes = [  ]
 sklib.__sklib__accept_all_new_connections.restype = c_bool
 sklib.__sklib__accept_new_connection__server_socket.argtypes = [ c_void_p ]
 sklib.__sklib__accept_new_connection__server_socket.restype = c_bool
+sklib.__sklib__broadcast_message__string_ref__server_socket.argtypes = [ _sklib_string, c_void_p ]
+sklib.__sklib__broadcast_message__string_ref__server_socket.restype = None
+sklib.__sklib__broadcast_message__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__broadcast_message__string_ref.restype = None
+sklib.__sklib__broadcast_message__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__broadcast_message__string_ref__string_ref.restype = None
+sklib.__sklib__check_network_activity.argtypes = [  ]
+sklib.__sklib__check_network_activity.restype = None
+sklib.__sklib__clear_messages__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__clear_messages__string_ref.restype = None
+sklib.__sklib__clear_messages__connection.argtypes = [ c_void_p ]
+sklib.__sklib__clear_messages__connection.restype = None
+sklib.__sklib__clear_messages__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__clear_messages__server_socket.restype = None
 sklib.__sklib__close_all_connections.argtypes = [  ]
 sklib.__sklib__close_all_connections.restype = None
 sklib.__sklib__close_all_servers.argtypes = [  ]
@@ -2339,12 +2407,32 @@ sklib.__sklib__connection_count__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__connection_count__string_ref.restype = c_uint
 sklib.__sklib__connection_count__server_socket.argtypes = [ c_void_p ]
 sklib.__sklib__connection_count__server_socket.restype = c_uint
+sklib.__sklib__connection_ip__connection.argtypes = [ c_void_p ]
+sklib.__sklib__connection_ip__connection.restype = c_uint
+sklib.__sklib__connection_ip__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__connection_ip__string_ref.restype = c_uint
+sklib.__sklib__connection_named__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__connection_named__string_ref.restype = c_void_p
+sklib.__sklib__connection_port__connection.argtypes = [ c_void_p ]
+sklib.__sklib__connection_port__connection.restype = c_ushort
+sklib.__sklib__connection_port__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__connection_port__string_ref.restype = c_ushort
 sklib.__sklib__create_server__string_ref__unsigned_short.argtypes = [ _sklib_string, c_ushort ]
 sklib.__sklib__create_server__string_ref__unsigned_short.restype = c_void_p
 sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.argtypes = [ _sklib_string, c_ushort, c_int ]
 sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.restype = c_void_p
 sklib.__sklib__dec_to_hex__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__dec_to_hex__unsigned_int.restype = _sklib_string
+sklib.__sklib__has_connection__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__has_connection__string_ref.restype = c_bool
+sklib.__sklib__has_messages.argtypes = [  ]
+sklib.__sklib__has_messages.restype = c_bool
+sklib.__sklib__has_messages__connection.argtypes = [ c_void_p ]
+sklib.__sklib__has_messages__connection.restype = c_bool
+sklib.__sklib__has_messages__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__has_messages__string_ref.restype = c_bool
+sklib.__sklib__has_messages__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__has_messages__server_socket.restype = c_bool
 sklib.__sklib__has_new_connections.argtypes = [  ]
 sklib.__sklib__has_new_connections.restype = c_bool
 sklib.__sklib__has_server__string_ref.argtypes = [ _sklib_string ]
@@ -2359,26 +2447,78 @@ sklib.__sklib__ipv4_to_hex__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__ipv4_to_hex__string_ref.restype = _sklib_string
 sklib.__sklib__ipv4_to_str__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__ipv4_to_str__unsigned_int.restype = _sklib_string
+sklib.__sklib__is_connection_open__connection.argtypes = [ c_void_p ]
+sklib.__sklib__is_connection_open__connection.restype = c_bool
+sklib.__sklib__is_connection_open__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__is_connection_open__string_ref.restype = c_bool
 sklib.__sklib__last_connection__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__last_connection__string_ref.restype = c_void_p
 sklib.__sklib__last_connection__server_socket.argtypes = [ c_void_p ]
 sklib.__sklib__last_connection__server_socket.restype = c_void_p
+sklib.__sklib__message_connection__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_connection__message.restype = c_void_p
+sklib.__sklib__message_count__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__message_count__server_socket.restype = c_uint
+sklib.__sklib__message_count__connection.argtypes = [ c_void_p ]
+sklib.__sklib__message_count__connection.restype = c_uint
+sklib.__sklib__message_count__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__message_count__string_ref.restype = c_uint
+sklib.__sklib__message_data__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_data__message.restype = _sklib_string
+sklib.__sklib__message_data_bytes__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_data_bytes__message.restype = _sklib_vector_int8_t
+sklib.__sklib__message_host__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_host__message.restype = _sklib_string
+sklib.__sklib__message_port__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_port__message.restype = c_ushort
+sklib.__sklib__message_protocol__message.argtypes = [ c_void_p ]
+sklib.__sklib__message_protocol__message.restype = c_int
 sklib.__sklib__my_ip.argtypes = [  ]
 sklib.__sklib__my_ip.restype = _sklib_string
+sklib.__sklib__name_for_connection__string__unsigned_int.argtypes = [ _sklib_string, c_uint ]
+sklib.__sklib__name_for_connection__string__unsigned_int.restype = _sklib_string
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.argtypes = [ _sklib_string, _sklib_string, c_ushort ]
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.restype = c_void_p
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type.argtypes = [ _sklib_string, _sklib_string, c_ushort, c_int ]
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type.restype = c_void_p
+sklib.__sklib__read_message.argtypes = [  ]
+sklib.__sklib__read_message.restype = c_void_p
+sklib.__sklib__read_message__connection.argtypes = [ c_void_p ]
+sklib.__sklib__read_message__connection.restype = c_void_p
+sklib.__sklib__read_message__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__read_message__string_ref.restype = c_void_p
+sklib.__sklib__read_message__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__read_message__server_socket.restype = c_void_p
+sklib.__sklib__read_message_data__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__read_message_data__string_ref.restype = _sklib_string
+sklib.__sklib__read_message_data__connection.argtypes = [ c_void_p ]
+sklib.__sklib__read_message_data__connection.restype = _sklib_string
+sklib.__sklib__read_message_data__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__read_message_data__server_socket.restype = _sklib_string
+sklib.__sklib__reconnect__connection.argtypes = [ c_void_p ]
+sklib.__sklib__reconnect__connection.restype = None
+sklib.__sklib__reconnect__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__reconnect__string_ref.restype = None
+sklib.__sklib__release_all_connections.argtypes = [  ]
+sklib.__sklib__release_all_connections.restype = None
 sklib.__sklib__retrieve_connection__string_ref__int.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__retrieve_connection__string_ref__int.restype = c_void_p
 sklib.__sklib__retrieve_connection__server_socket__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__retrieve_connection__server_socket__int.restype = c_void_p
+sklib.__sklib__send_message_to__string_ref__connection.argtypes = [ _sklib_string, c_void_p ]
+sklib.__sklib__send_message_to__string_ref__connection.restype = c_bool
+sklib.__sklib__send_message_to__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__send_message_to__string_ref__string_ref.restype = c_bool
 sklib.__sklib__server_has_new_connection__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__server_has_new_connection__string_ref.restype = c_bool
 sklib.__sklib__server_has_new_connection__server_socket.argtypes = [ c_void_p ]
 sklib.__sklib__server_has_new_connection__server_socket.restype = c_bool
 sklib.__sklib__server_named__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__server_named__string_ref.restype = c_void_p
+sklib.__sklib__set_udp_packet_size__unsigned_int.argtypes = [ c_uint ]
+sklib.__sklib__set_udp_packet_size__unsigned_int.restype = None
+sklib.__sklib__udp_packet_size.argtypes = [  ]
+sklib.__sklib__udp_packet_size.restype = c_uint
 sklib.__sklib__draw_pixel__color__point_2d_ref.argtypes = [ _sklib_color, _sklib_point_2d ]
 sklib.__sklib__draw_pixel__color__point_2d_ref.restype = None
 sklib.__sklib__draw_pixel__color__point_2d_ref__drawing_options.argtypes = [ _sklib_color, _sklib_point_2d, _sklib_drawing_options ]
@@ -3251,8 +3391,14 @@ sklib.__sklib__request_uri__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri__http_request.restype = _sklib_string
 sklib.__sklib__request_uri_stubs__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_uri_stubs__http_request.restype = _sklib_vector_string
+sklib.__sklib__send_css_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__send_css_file_response__http_request__string_ref.restype = None
+sklib.__sklib__send_file_response__http_request__string_ref__string_ref.argtypes = [ c_void_p, _sklib_string, _sklib_string ]
+sklib.__sklib__send_file_response__http_request__string_ref__string_ref.restype = None
 sklib.__sklib__send_html_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__send_html_file_response__http_request__string_ref.restype = None
+sklib.__sklib__send_javascript_file_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__send_javascript_file_response__http_request__string_ref.restype = None
 sklib.__sklib__send_response__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__send_response__http_request.restype = None
 sklib.__sklib__send_response__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
@@ -3713,6 +3859,36 @@ def fill_circle_with_options ( clr, x, y, radius, opts ):
     __skparam__radius = __skadapter__to_sklib_double(radius)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     sklib.__sklib__fill_circle__color__double__double__double__drawing_options(__skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def fill_circle_on_bitmap ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def fill_circle_on_bitmap_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_bitmap(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
+def fill_circle_on_window ( destination, clr, x, y, radius ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    sklib.__sklib__fill_circle_on_window__window__color__double__double__double(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius)
+def fill_circle_on_window_with_options ( destination, clr, x, y, radius, opts ):
+    __skparam__destination = __skadapter__to_sklib_window(destination)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    sklib.__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__skparam__destination, __skparam__clr, __skparam__x, __skparam__y, __skparam__radius, __skparam__opts)
 def center_point ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__center_point__circle_ref(__skparam__c)
@@ -5732,6 +5908,28 @@ def accept_new_connection ( server ):
     __skparam__server = __skadapter__to_sklib_server_socket(server)
     __skreturn = sklib.__sklib__accept_new_connection__server_socket(__skparam__server)
     return __skadapter__to_bool(__skreturn)
+def broadcast_message ( a_msg, svr ):
+    __skparam__a_msg = __skadapter__to_sklib_string(a_msg)
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    sklib.__sklib__broadcast_message__string_ref__server_socket(__skparam__a_msg, __skparam__svr)
+def broadcast_message_to_all ( a_msg ):
+    __skparam__a_msg = __skadapter__to_sklib_string(a_msg)
+    sklib.__sklib__broadcast_message__string_ref(__skparam__a_msg)
+def broadcast_message_to_server_named ( a_msg, name ):
+    __skparam__a_msg = __skadapter__to_sklib_string(a_msg)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__broadcast_message__string_ref__string_ref(__skparam__a_msg, __skparam__name)
+def check_network_activity (  ):
+    sklib.__sklib__check_network_activity()
+def clear_messages_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__clear_messages__string_ref(__skparam__name)
+def clear_messages_from_connection ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    sklib.__sklib__clear_messages__connection(__skparam__a_connection)
+def clear_messages_from_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    sklib.__sklib__clear_messages__server_socket(__skparam__svr)
 def close_all_connections (  ):
     sklib.__sklib__close_all_connections()
 def close_all_servers (  ):
@@ -5763,6 +5961,26 @@ def connection_count ( server ):
     __skparam__server = __skadapter__to_sklib_server_socket(server)
     __skreturn = sklib.__sklib__connection_count__server_socket(__skparam__server)
     return __skadapter__to_unsigned_int(__skreturn)
+def connection_ip ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__connection_ip__connection(__skparam__a_connection)
+    return __skadapter__to_unsigned_int(__skreturn)
+def connection_ip_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__connection_ip__string_ref(__skparam__name)
+    return __skadapter__to_unsigned_int(__skreturn)
+def connection_named ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__connection_named__string_ref(__skparam__name)
+    return __skadapter__to_connection(__skreturn)
+def connection_port ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__connection_port__connection(__skparam__a_connection)
+    return __skadapter__to_unsigned_short(__skreturn)
+def connection_port_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__connection_port__string_ref(__skparam__name)
+    return __skadapter__to_unsigned_short(__skreturn)
 def create_server_with_port ( name, port ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__port = __skadapter__to_sklib_unsigned_short(port)
@@ -5778,6 +5996,25 @@ def dec_to_hex ( a_dec ):
     __skparam__a_dec = __skadapter__to_sklib_unsigned_int(a_dec)
     __skreturn = sklib.__sklib__dec_to_hex__unsigned_int(__skparam__a_dec)
     return __skadapter__to_string(__skreturn)
+def has_connection ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__has_connection__string_ref(__skparam__name)
+    return __skadapter__to_bool(__skreturn)
+def has_messages (  ):
+    __skreturn = sklib.__sklib__has_messages()
+    return __skadapter__to_bool(__skreturn)
+def has_messages_on_connection ( con ):
+    __skparam__con = __skadapter__to_sklib_connection(con)
+    __skreturn = sklib.__sklib__has_messages__connection(__skparam__con)
+    return __skadapter__to_bool(__skreturn)
+def has_messages_on_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__has_messages__string_ref(__skparam__name)
+    return __skadapter__to_bool(__skreturn)
+def has_messages_on_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    __skreturn = sklib.__sklib__has_messages__server_socket(__skparam__svr)
+    return __skadapter__to_bool(__skreturn)
 def has_new_connections (  ):
     __skreturn = sklib.__sklib__has_new_connections()
     return __skadapter__to_bool(__skreturn)
@@ -5805,6 +6042,14 @@ def ipv4_to_str ( ip ):
     __skparam__ip = __skadapter__to_sklib_unsigned_int(ip)
     __skreturn = sklib.__sklib__ipv4_to_str__unsigned_int(__skparam__ip)
     return __skadapter__to_string(__skreturn)
+def is_connection_open ( con ):
+    __skparam__con = __skadapter__to_sklib_connection(con)
+    __skreturn = sklib.__sklib__is_connection_open__connection(__skparam__con)
+    return __skadapter__to_bool(__skreturn)
+def is_connection_open_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__is_connection_open__string_ref(__skparam__name)
+    return __skadapter__to_bool(__skreturn)
 def last_connection_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__last_connection__string_ref(__skparam__name)
@@ -5813,8 +6058,49 @@ def last_connection ( server ):
     __skparam__server = __skadapter__to_sklib_server_socket(server)
     __skreturn = sklib.__sklib__last_connection__server_socket(__skparam__server)
     return __skadapter__to_connection(__skreturn)
+def message_connection ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_connection__message(__skparam__msg)
+    return __skadapter__to_connection(__skreturn)
+def message_count_on_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    __skreturn = sklib.__sklib__message_count__server_socket(__skparam__svr)
+    return __skadapter__to_unsigned_int(__skreturn)
+def message_count_on_connection ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__message_count__connection(__skparam__a_connection)
+    return __skadapter__to_unsigned_int(__skreturn)
+def message_count_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__message_count__string_ref(__skparam__name)
+    return __skadapter__to_unsigned_int(__skreturn)
+def message_data ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_data__message(__skparam__msg)
+    return __skadapter__to_string(__skreturn)
+def message_data_bytes ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_data_bytes__message(__skparam__msg)
+    return __skadapter__to_vector_int8_t(__skreturn)
+def message_host ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_host__message(__skparam__msg)
+    return __skadapter__to_string(__skreturn)
+def message_port ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_port__message(__skparam__msg)
+    return __skadapter__to_unsigned_short(__skreturn)
+def message_protocol ( msg ):
+    __skparam__msg = __skadapter__to_sklib_message(msg)
+    __skreturn = sklib.__sklib__message_protocol__message(__skparam__msg)
+    return __skadapter__to_connection_type(__skreturn)
 def my_ip (  ):
     __skreturn = sklib.__sklib__my_ip()
+    return __skadapter__to_string(__skreturn)
+def name_for_connection ( host, port ):
+    __skparam__host = __skadapter__to_sklib_string(host)
+    __skparam__port = __skadapter__to_sklib_unsigned_int(port)
+    __skreturn = sklib.__sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port)
     return __skadapter__to_string(__skreturn)
 def open_connection ( name, host, port ):
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -5829,6 +6115,41 @@ def open_connection_with_protocol ( name, host, port, protocol ):
     __skparam__protocol = __skadapter__to_sklib_connection_type(protocol)
     __skreturn = sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__skparam__name, __skparam__host, __skparam__port, __skparam__protocol)
     return __skadapter__to_connection(__skreturn)
+def read_message (  ):
+    __skreturn = sklib.__sklib__read_message()
+    return __skadapter__to_message(__skreturn)
+def read_message_from_connection ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__read_message__connection(__skparam__a_connection)
+    return __skadapter__to_message(__skreturn)
+def read_message_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__read_message__string_ref(__skparam__name)
+    return __skadapter__to_message(__skreturn)
+def read_message_from_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    __skreturn = sklib.__sklib__read_message__server_socket(__skparam__svr)
+    return __skadapter__to_message(__skreturn)
+def read_message_data_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__read_message_data__string_ref(__skparam__name)
+    return __skadapter__to_string(__skreturn)
+def read_message_data_from_connection ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__read_message_data__connection(__skparam__a_connection)
+    return __skadapter__to_string(__skreturn)
+def read_message_data_from_server ( svr ):
+    __skparam__svr = __skadapter__to_sklib_server_socket(svr)
+    __skreturn = sklib.__sklib__read_message_data__server_socket(__skparam__svr)
+    return __skadapter__to_string(__skreturn)
+def reconnect ( a_connection ):
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    sklib.__sklib__reconnect__connection(__skparam__a_connection)
+def reconnect_from_name ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__reconnect__string_ref(__skparam__name)
+def release_all_connections (  ):
+    sklib.__sklib__release_all_connections()
 def retrieve_connection_named ( name, idx ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__idx = __skadapter__to_sklib_int(idx)
@@ -5839,6 +6160,16 @@ def retrieve_connection ( server, idx ):
     __skparam__idx = __skadapter__to_sklib_int(idx)
     __skreturn = sklib.__sklib__retrieve_connection__server_socket__int(__skparam__server, __skparam__idx)
     return __skadapter__to_connection(__skreturn)
+def send_message_to_connection ( a_msg, a_connection ):
+    __skparam__a_msg = __skadapter__to_sklib_string(a_msg)
+    __skparam__a_connection = __skadapter__to_sklib_connection(a_connection)
+    __skreturn = sklib.__sklib__send_message_to__string_ref__connection(__skparam__a_msg, __skparam__a_connection)
+    return __skadapter__to_bool(__skreturn)
+def send_message_to_name ( a_msg, name ):
+    __skparam__a_msg = __skadapter__to_sklib_string(a_msg)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__send_message_to__string_ref__string_ref(__skparam__a_msg, __skparam__name)
+    return __skadapter__to_bool(__skreturn)
 def server_has_new_connection_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__server_has_new_connection__string_ref(__skparam__name)
@@ -5851,6 +6182,12 @@ def server_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__server_named__string_ref(__skparam__name)
     return __skadapter__to_server_socket(__skreturn)
+def set_udp_packet_size ( udp_packet_size ):
+    __skparam__udp_packet_size = __skadapter__to_sklib_unsigned_int(udp_packet_size)
+    sklib.__sklib__set_udp_packet_size__unsigned_int(__skparam__udp_packet_size)
+def udp_packet_size (  ):
+    __skreturn = sklib.__sklib__udp_packet_size()
+    return __skadapter__to_unsigned_int(__skreturn)
 def draw_pixel_at_point ( clr, pt ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -7956,10 +8293,23 @@ def request_uri_stubs ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_uri_stubs__http_request(__skparam__r)
     return __skadapter__to_vector_string(__skreturn)
+def send_css_file_response ( r, filename ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    sklib.__sklib__send_css_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
+def send_file_response ( r, filename, content_type ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    __skparam__content_type = __skadapter__to_sklib_string(content_type)
+    sklib.__sklib__send_file_response__http_request__string_ref__string_ref(__skparam__r, __skparam__filename, __skparam__content_type)
 def send_html_file_response ( r, filename ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skparam__filename = __skadapter__to_sklib_string(filename)
     sklib.__sklib__send_html_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
+def send_javascript_file_response ( r, filename ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__filename = __skadapter__to_sklib_string(filename)
+    sklib.__sklib__send_javascript_file_response__http_request__string_ref(__skparam__r, __skparam__filename)
 def send_response_empty ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     sklib.__sklib__send_response__http_request(__skparam__r)
