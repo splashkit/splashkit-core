@@ -45,6 +45,7 @@ namespace splashkit_lib
         sk_http_request *r = new sk_http_request;
         r->id = HTTP_REQUEST_PTR;
         r->uri = request_info->request_uri;
+        r->query_string = request_info->query_string;
         r->filename = "";
 
         if ( strncmp(request_info->request_method, "GET", 4) == 0 )
