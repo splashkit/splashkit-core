@@ -152,6 +152,43 @@ namespace splashkit_lib
      * @attribute getter has_new_connections
      */
     bool server_has_new_connection(server_socket server);
+    
+    /**
+     * Get the number of new connections made to the server.
+     * The count will increase as the server accepts new connections.
+     * The count decreases each time you fetch a new connection, or
+     * can be set to 0 if you reset the new connection count.
+     *
+     * @param  server The server to check
+     * @return        The number of new connections
+     *
+     * @attribute class server_socket
+     * @attribute getter new_connection_count
+     */
+    int new_connection_count(server_socket server);
+    
+    /**
+     * Get the oldest new connections made to the server, and
+     * reduces the new connection count by 1.
+     *
+     * @param  server The server to check
+     * @return        The oldest new connection
+     *
+     * @attribute class server_socket
+     * @attribute method fetch_new_connection
+     */
+    connection fetch_new_connection(server_socket server);
+    
+    /**
+     * Allows you to reset the new connection count to 0.
+     * (The connections are kept)
+     *
+     * @param  server The server to check
+     *
+     * @attribute class server_socket
+     * @attribute method reset_new_connection_count
+     */
+    void reset_new_connection_count(server_socket server);
 
     /**
      * Checks if any of the servers have new connections.

@@ -286,6 +286,11 @@ namespace splashkit_lib
 
                 if (idx > -1)
                 {
+                    if ( idx >= s->connections.size() - s->new_connections )
+                    {
+                        s->new_connections--;
+                    }
+                    
                     result = true;
                     con->id = NONE_PTR;
                     delete con;
@@ -359,6 +364,48 @@ namespace splashkit_lib
     {
         return is_connection_open(connection_named(name));
     }
+    
+    int new_connection_count(server_socket server)
+    {
+        if (INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Invalid server_socket for number of new connections";
+            return 0;
+        }
+        
+        return server->new_connections;
+    }
+    
+    connection fetch_new_connection(server_socket server)
+    {
+        if (INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Invalid server_socket for fetching new connection";
+            return nullptr;
+        }
+        
+        if ( server->new_connections == 0 || server->connections.size() == 0 ) return nullptr;
+        
+        connection result;
+        if ( server->new_connections > server->connections.size() )
+            result = server->connections[0];
+        else
+            result = *(server->connections.end() - server->new_connections);
+        
+        server->new_connections--;
+        return result;
+    }
+    
+    void reset_new_connection_count(server_socket server)
+    {
+        if (INVALID_PTR(server, SERVER_SOCKET_PTR))
+        {
+            LOG(WARNING) << "Invalid server_socket for reset new connection count";
+            return;
+        }
+        
+        server->new_connections = 0;
+    }
 
     bool accept_new_connection(server_socket server)
     {
@@ -367,8 +414,6 @@ namespace splashkit_lib
             LOG(WARNING) << "Invalid server_socket passed to accept_new_connection";
             return false;
         }
-
-        server->new_connections = 0;
 
         sk_network_connection con = sk_accept_connection(server->socket);
 
@@ -384,7 +429,7 @@ namespace splashkit_lib
             client->socket = con;
 
             server->connections.push_back(client);
-            server->new_connections = 1;
+            server->new_connections++;
 
             return true;
         }
