@@ -10,3 +10,6 @@
 [submodule "out/splashkit-windows"]
 	path = out/splashkit-windows
 	url = https://github.com/splashkit/splashkit-windows.git
+[submodule "out/splashkit-linux"]
+	path = out/splashkit-linux
+	url = https://github.com/splashkit/splashkit-linux.git

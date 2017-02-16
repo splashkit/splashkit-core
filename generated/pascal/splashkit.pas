@@ -891,6 +891,7 @@ function ConnectionPort(const name: String): Word;
 function CreateServer(const name: String; port: Word): ServerSocket;
 function CreateServer(const name: String; port: Word; protocol: ConnectionType): ServerSocket;
 function DecToHex(aDec: Cardinal): String;
+function FetchNewConnection(server: ServerSocket): Connection;
 function HasConnection(const name: String): Boolean;
 function HasMessages(): Boolean;
 function HasMessages(con: Connection): Boolean;
@@ -918,6 +919,7 @@ function MessagePort(msg: Message): Word;
 function MessageProtocol(msg: Message): ConnectionType;
 function MyIP(): String;
 function NameForConnection(host: String; port: Cardinal): String;
+function NewConnectionCount(server: ServerSocket): Integer;
 function OpenConnection(const name: String; const host: String; port: Word): Connection;
 function OpenConnection(const name: String; const host: String; port: Word; protocol: ConnectionType): Connection;
 function ReadMessage(): Message;
@@ -930,6 +932,7 @@ function ReadMessageData(svr: ServerSocket): String;
 procedure Reconnect(aConnection: Connection);
 procedure Reconnect(const name: String);
 procedure ReleaseAllConnections();
+procedure ResetNewConnectionCount(server: ServerSocket);
 function RetrieveConnection(const name: String; idx: Integer): Connection;
 function RetrieveConnection(server: ServerSocket; idx: Integer): Connection;
 function SendMessageTo(const aMsg: String; aConnection: Connection): Boolean;
@@ -2948,6 +2951,7 @@ function __sklib__connection_port__string_ref(const name: __sklib_string): Word;
 function __sklib__create_server__string_ref__unsigned_short(const name: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
 function __sklib__create_server__string_ref__unsigned_short__connection_type(const name: __sklib_string; port: Word; protocol: LongInt): __sklib_ptr; cdecl; external;
 function __sklib__dec_to_hex__unsigned_int(aDec: Cardinal): __sklib_string; cdecl; external;
+function __sklib__fetch_new_connection__server_socket(server: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__has_connection__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__has_messages(): LongInt; cdecl; external;
 function __sklib__has_messages__connection(con: __sklib_ptr): LongInt; cdecl; external;
@@ -2975,6 +2979,7 @@ function __sklib__message_port__message(msg: __sklib_ptr): Word; cdecl; external
 function __sklib__message_protocol__message(msg: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__my_ip(): __sklib_string; cdecl; external;
 function __sklib__name_for_connection__string__unsigned_int(host: __sklib_string; port: Cardinal): __sklib_string; cdecl; external;
+function __sklib__new_connection_count__server_socket(server: __sklib_ptr): Integer; cdecl; external;
 function __sklib__open_connection__string_ref__string_ref__unsigned_short(const name: __sklib_string; const host: __sklib_string; port: Word): __sklib_ptr; cdecl; external;
 function __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(const name: __sklib_string; const host: __sklib_string; port: Word; protocol: LongInt): __sklib_ptr; cdecl; external;
 function __sklib__read_message(): __sklib_ptr; cdecl; external;
@@ -2987,6 +2992,7 @@ function __sklib__read_message_data__server_socket(svr: __sklib_ptr): __sklib_st
 procedure __sklib__reconnect__connection(aConnection: __sklib_ptr); cdecl; external;
 procedure __sklib__reconnect__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__release_all_connections(); cdecl; external;
+procedure __sklib__reset_new_connection_count__server_socket(server: __sklib_ptr); cdecl; external;
 function __sklib__retrieve_connection__string_ref__int(const name: __sklib_string; idx: Integer): __sklib_ptr; cdecl; external;
 function __sklib__retrieve_connection__server_socket__int(server: __sklib_ptr; idx: Integer): __sklib_ptr; cdecl; external;
 function __sklib__send_message_to__string_ref__connection(const aMsg: __sklib_string; aConnection: __sklib_ptr): LongInt; cdecl; external;
@@ -8996,6 +9002,15 @@ begin
   __skreturn := __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
   result := __skadapter__to_string(__skreturn);
 end;
+function FetchNewConnection(server: ServerSocket): Connection;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__fetch_new_connection__server_socket(__skparam__server);
+  result := __skadapter__to_connection(__skreturn);
+end;
 function HasConnection(const name: String): Boolean;
 var
   __skparam__name: __sklib_string;
@@ -9235,6 +9250,15 @@ begin
   __skreturn := __sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port);
   result := __skadapter__to_string(__skreturn);
 end;
+function NewConnectionCount(server: ServerSocket): Integer;
+var
+  __skparam__server: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __skreturn := __sklib__new_connection_count__server_socket(__skparam__server);
+  result := __skadapter__to_int(__skreturn);
+end;
 function OpenConnection(const name: String; const host: String; port: Word): Connection;
 var
   __skparam__name: __sklib_string;
@@ -9341,6 +9365,13 @@ end;
 procedure ReleaseAllConnections();
 begin
   __sklib__release_all_connections();
+end;
+procedure ResetNewConnectionCount(server: ServerSocket);
+var
+  __skparam__server: __sklib_ptr;
+begin
+  __skparam__server := __skadapter__to_sklib_server_socket(server);
+  __sklib__reset_new_connection_count__server_socket(__skparam__server);
 end;
 function RetrieveConnection(const name: String; idx: Integer): Connection;
 var

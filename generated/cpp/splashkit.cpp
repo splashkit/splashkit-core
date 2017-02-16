@@ -3167,6 +3167,11 @@ string dec_to_hex(unsigned int a_dec) {
     __sklib_string __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
     return __skadapter__to_string(__skreturn);
 }
+connection fetch_new_connection(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    __sklib_connection __skreturn = __sklib__fetch_new_connection__server_socket(__skparam__server);
+    return __skadapter__to_connection(__skreturn);
+}
 bool has_connection(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     int __skreturn = __sklib__has_connection__string_ref(__skparam__name);
@@ -3311,6 +3316,11 @@ string name_for_connection(const string host, const unsigned int port) {
     __skadapter__free__sklib_string(__skparam__host);
     return __skadapter__to_string(__skreturn);
 }
+int new_connection_count(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    int __skreturn = __sklib__new_connection_count__server_socket(__skparam__server);
+    return __skadapter__to_int(__skreturn);
+}
 connection open_connection(const string &name, const string &host, unsigned short port) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     const __sklib_string __skparam__host = __skadapter__to_sklib_string(host);
@@ -3377,6 +3387,10 @@ void reconnect(const string &name) {
 }
 void release_all_connections() {
     __sklib__release_all_connections();
+}
+void reset_new_connection_count(server_socket server) {
+    __sklib_server_socket __skparam__server = __skadapter__to_sklib_server_socket(server);
+    __sklib__reset_new_connection_count__server_socket(__skparam__server);
 }
 connection retrieve_connection(const string &name, int idx) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);

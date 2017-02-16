@@ -27290,7 +27290,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1485947434,
+    "parsed_at": 1486609499,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -28318,6 +28318,46 @@
         }
       },
       {
+        "signature": "connection fetch_new_connection(server_socket server);",
+        "name": "fetch_new_connection",
+        "method_name": "fetch_new_connection",
+        "unique_global_name": "fetch_new_connection",
+        "unique_method_name": "server_socket.fetch_new_connection",
+        "suffix_name": null,
+        "description": "Get the oldest new connections made to the server, and\nreduces the new connection count by 1.",
+        "brief": null,
+        "return": {
+          "type": "connection",
+          "description": "The oldest new connection",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "server": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "fetch_new_connection",
+          "group": "networking",
+          "static": "networking",
+          "self": "server"
+        }
+      },
+      {
         "signature": "bool has_connection(const string &name);",
         "name": "has_connection",
         "method_name": null,
@@ -29333,6 +29373,46 @@
         }
       },
       {
+        "signature": "int new_connection_count(server_socket server);",
+        "name": "new_connection_count",
+        "method_name": null,
+        "unique_global_name": "new_connection_count",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Get the number of new connections made to the server.\nThe count will increase as the server accepts new connections.\nThe count decreases each time you fetch a new connection, or\ncan be set to 0 if you reset the new connection count.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The number of new connections",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "server": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "getter": "new_connection_count",
+          "group": "networking",
+          "static": "networking",
+          "self": "server"
+        }
+      },
+      {
         "signature": "connection open_connection(const string &name,const string &host,unsigned short int port);",
         "name": "open_connection",
         "method_name": null,
@@ -29840,6 +29920,46 @@
         "attributes": {
           "group": "networking",
           "static": "networking"
+        }
+      },
+      {
+        "signature": "void reset_new_connection_count(server_socket server);",
+        "name": "reset_new_connection_count",
+        "method_name": "reset_new_connection_count",
+        "unique_global_name": "reset_new_connection_count",
+        "unique_method_name": "server_socket.reset_new_connection_count",
+        "suffix_name": null,
+        "description": "Allows you to reset the new connection count to 0.\n(The connections are kept)",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "server": {
+            "type": "server_socket",
+            "description": "The server to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "server_socket",
+          "method": "reset_new_connection_count",
+          "group": "networking",
+          "static": "networking",
+          "self": "server"
         }
       },
       {

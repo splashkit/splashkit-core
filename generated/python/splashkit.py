@@ -2423,6 +2423,8 @@ sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.argtyp
 sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.restype = c_void_p
 sklib.__sklib__dec_to_hex__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__dec_to_hex__unsigned_int.restype = _sklib_string
+sklib.__sklib__fetch_new_connection__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__fetch_new_connection__server_socket.restype = c_void_p
 sklib.__sklib__has_connection__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__has_connection__string_ref.restype = c_bool
 sklib.__sklib__has_messages.argtypes = [  ]
@@ -2477,6 +2479,8 @@ sklib.__sklib__my_ip.argtypes = [  ]
 sklib.__sklib__my_ip.restype = _sklib_string
 sklib.__sklib__name_for_connection__string__unsigned_int.argtypes = [ _sklib_string, c_uint ]
 sklib.__sklib__name_for_connection__string__unsigned_int.restype = _sklib_string
+sklib.__sklib__new_connection_count__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__new_connection_count__server_socket.restype = c_int
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.argtypes = [ _sklib_string, _sklib_string, c_ushort ]
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short.restype = c_void_p
 sklib.__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type.argtypes = [ _sklib_string, _sklib_string, c_ushort, c_int ]
@@ -2501,6 +2505,8 @@ sklib.__sklib__reconnect__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__reconnect__string_ref.restype = None
 sklib.__sklib__release_all_connections.argtypes = [  ]
 sklib.__sklib__release_all_connections.restype = None
+sklib.__sklib__reset_new_connection_count__server_socket.argtypes = [ c_void_p ]
+sklib.__sklib__reset_new_connection_count__server_socket.restype = None
 sklib.__sklib__retrieve_connection__string_ref__int.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__retrieve_connection__string_ref__int.restype = c_void_p
 sklib.__sklib__retrieve_connection__server_socket__int.argtypes = [ c_void_p, c_int ]
@@ -6002,6 +6008,10 @@ def dec_to_hex ( a_dec ):
     __skparam__a_dec = __skadapter__to_sklib_unsigned_int(a_dec)
     __skreturn = sklib.__sklib__dec_to_hex__unsigned_int(__skparam__a_dec)
     return __skadapter__to_string(__skreturn)
+def fetch_new_connection ( server ):
+    __skparam__server = __skadapter__to_sklib_server_socket(server)
+    __skreturn = sklib.__sklib__fetch_new_connection__server_socket(__skparam__server)
+    return __skadapter__to_connection(__skreturn)
 def has_connection ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__has_connection__string_ref(__skparam__name)
@@ -6108,6 +6118,10 @@ def name_for_connection ( host, port ):
     __skparam__port = __skadapter__to_sklib_unsigned_int(port)
     __skreturn = sklib.__sklib__name_for_connection__string__unsigned_int(__skparam__host, __skparam__port)
     return __skadapter__to_string(__skreturn)
+def new_connection_count ( server ):
+    __skparam__server = __skadapter__to_sklib_server_socket(server)
+    __skreturn = sklib.__sklib__new_connection_count__server_socket(__skparam__server)
+    return __skadapter__to_int(__skreturn)
 def open_connection ( name, host, port ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__host = __skadapter__to_sklib_string(host)
@@ -6156,6 +6170,9 @@ def reconnect_from_name ( name ):
     sklib.__sklib__reconnect__string_ref(__skparam__name)
 def release_all_connections (  ):
     sklib.__sklib__release_all_connections()
+def reset_new_connection_count ( server ):
+    __skparam__server = __skadapter__to_sklib_server_socket(server)
+    sklib.__sklib__reset_new_connection_count__server_socket(__skparam__server)
 def retrieve_connection_named ( name, idx ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__idx = __skadapter__to_sklib_int(idx)
