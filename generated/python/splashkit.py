@@ -1473,6 +1473,16 @@ sklib.__sklib__set_clip__bitmap__rectangle_ref.argtypes = [ c_void_p, _sklib_rec
 sklib.__sklib__set_clip__bitmap__rectangle_ref.restype = None
 sklib.__sklib__set_clip__window__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__set_clip__window__rectangle_ref.restype = None
+sklib.__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_circle ]
+sklib.__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref.restype = c_bool
+sklib.__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_circle ]
+sklib.__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref.restype = c_bool
+sklib.__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_circle ]
+sklib.__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref.restype = c_bool
+sklib.__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_circle ]
+sklib.__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref.restype = c_bool
+sklib.__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_circle ]
+sklib.__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double.argtypes = [ c_void_p, c_double, c_double, c_void_p, c_double, c_double ]
 sklib.__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double.restype = c_bool
 sklib.__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, c_void_p, _sklib_point_2d ]
@@ -1491,10 +1501,16 @@ sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.ar
 sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_rectangle ]
+sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_rectangle ]
+sklib.__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_rectangle ]
+sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.argtypes = [ c_void_p, c_void_p, c_double, c_double ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_void_p, c_int, _sklib_point_2d ]
@@ -4033,6 +4049,41 @@ def set_clip_for_window ( wnd, r ):
     __skparam__wnd = __skadapter__to_sklib_window(wnd)
     __skparam__r = __skadapter__to_sklib_rectangle(r)
     sklib.__sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r)
+def bitmap_circle_collision_at_point ( bmp, pt, circ ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__skparam__bmp, __skparam__pt, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_circle_collision ( bmp, x, y, circ ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_circle_collision_for_cell_with_translation ( bmp, cell, translation, circ ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_circle_collision_for_cell_at_point ( bmp, cell, pt, circ ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_circle_collision_for_cell ( bmp, cell, x, y, circ ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
 def bitmap_collision ( bmp1, x1, y1, bmp2, x2, y2 ):
     __skparam__bmp1 = __skadapter__to_sklib_bitmap(bmp1)
     __skparam__x1 = __skadapter__to_sklib_double(x1)
@@ -4105,6 +4156,19 @@ def bitmap_point_collision_for_cell_with_translation ( bmp, cell, translation, p
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt)
     return __skadapter__to_bool(__skreturn)
+def bitmap_rectangle_collision_at_point ( bmp, pt, rect ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__pt, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_rectangle_collision ( bmp, x, y, rect ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
 def bitmap_rectangle_collision_for_cell_with_translation ( bmp, cell, translation, rect ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__cell = __skadapter__to_sklib_int(cell)
@@ -4118,6 +4182,14 @@ def bitmap_rectangle_collision_for_cell_at_point ( bmp, cell, pt, rect ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_rectangle_collision_for_cell ( bmp, cell, x, y, rect ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect)
     return __skadapter__to_bool(__skreturn)
 def sprite_bitmap_collision ( s, bmp, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)

@@ -204,6 +204,62 @@ namespace splashkit_lib
     {
         return bitmap_rectangle_collision(bmp, cell, translation_matrix(pt), rect);
     }
+    
+    bool bitmap_rectangle_collision(bitmap bmp, const point_2d& pt, const rectangle& rect)
+    {
+        return bitmap_rectangle_collision(bmp, 0, translation_matrix(pt), rect);
+    }
+    
+    bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle& rect)
+    {
+        return bitmap_rectangle_collision(bmp, 0, translation_matrix(x, y), rect);
+    }
+    
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle& rect)
+    {
+        return bitmap_rectangle_collision(bmp, cell, translation_matrix(x, y), rect);
+    }
+    
+    bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d& translation, const circle& circ)
+    {
+        if (INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            return false;
+        }
+        
+        quad q1, q2;
+        
+        q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
+        rectangle rect = rectangle_around(circ);
+        q2 = quad_from(rect);
+        
+        if ( not quads_intersect(q1, q2) ) return false;
+        
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
+                                    {
+                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_circle(point_at(rect.x + ax, rect.y + ay), circ);
+                                    });
+    }
+    
+    bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d& pt, const circle& circ)
+    {
+        return bitmap_circle_collision(bmp, cell, translation_matrix(pt), circ);
+    }
+
+    bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ)
+    {
+        return bitmap_circle_collision(bmp, 0, translation_matrix(pt), circ);
+    }
+    
+    bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle& circ)
+    {
+        return bitmap_circle_collision(bmp, 0, translation_matrix(x, y), circ);
+    }
+    
+    bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle& circ)
+    {
+        return bitmap_circle_collision(bmp, cell, translation_matrix(x, y), circ);
+    }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
     {

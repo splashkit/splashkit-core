@@ -1338,6 +1338,21 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__window__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_clip__window__rectangle_ref(__sklib_ptr wnd, __sklib_rectangle r);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_circle circ);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__sklib_ptr bmp, double x, double y, __sklib_circle circ);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_circle circ);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_circle circ);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_circle circ);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__double__double__bitmap__double__double(__sklib_ptr bmp1, double x1, double y1, __sklib_ptr bmp2, double x2, double y2);
 
@@ -1365,11 +1380,20 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_point_2d pt);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_rectangle rect);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__sklib_ptr bmp, double x, double y, __sklib_rectangle rect);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_rectangle rect);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_rectangle rect);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_rectangle rect);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__double__double(__sklib_ptr s, __sklib_ptr bmp, double x, double y);
@@ -5443,6 +5467,76 @@ namespace SplashKitSDK
       __skparam__r = __skadapter__to_sklib_rectangle(r);
       __sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r);
     }
+    public static bool BitmapCircleCollision(Bitmap bmp, Point2D pt, Circle circ)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_point_2d __skparam__pt;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__skparam__bmp, __skparam__pt, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapCircleCollision(Bitmap bmp, double x, double y, Circle circ)
+    {
+      __sklib_ptr __skparam__bmp;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapCircleCollision(Bitmap bmp, int cell, Matrix2D translation, Circle circ)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_matrix_2d __skparam__translation;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapCircleCollision(Bitmap bmp, int cell, Point2D pt, Circle circ)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_point_2d __skparam__pt;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapCircleCollision(Bitmap bmp, int cell, double x, double y, Circle circ)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool BitmapCollision(Bitmap bmp1, double x1, double y1, Bitmap bmp2, double x2, double y2)
     {
       __sklib_ptr __skparam__bmp1;
@@ -5587,6 +5681,32 @@ namespace SplashKitSDK
       __skreturn = __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool BitmapRectangleCollision(Bitmap bmp, Point2D pt, Rectangle rect)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_point_2d __skparam__pt;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__pt, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRectangleCollision(Bitmap bmp, double x, double y, Rectangle rect)
+    {
+      __sklib_ptr __skparam__bmp;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool BitmapRectangleCollision(Bitmap bmp, int cell, Matrix2D translation, Rectangle rect)
     {
       __sklib_ptr __skparam__bmp;
@@ -5613,6 +5733,22 @@ namespace SplashKitSDK
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skparam__rect = __skadapter__to_sklib_rectangle(rect);
       __skreturn = __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRectangleCollision(Bitmap bmp, int cell, double x, double y, Rectangle rect)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool SpriteBitmapCollision(Sprite s, Bitmap bmp, double x, double y)
@@ -17466,6 +17602,36 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public bool CircleCollision(Point2D pt, Circle circ)
+    {
+        return SplashKit.BitmapCircleCollision(this, pt, circ);
+    }
+
+
+    public bool CircleCollision(double x, double y, Circle circ)
+    {
+        return SplashKit.BitmapCircleCollision(this, x, y, circ);
+    }
+
+
+    public bool CircleCollision(int cell, Matrix2D translation, Circle circ)
+    {
+        return SplashKit.BitmapCircleCollision(this, cell, translation, circ);
+    }
+
+
+    public bool CircleCollision(int cell, Point2D pt, Circle circ)
+    {
+        return SplashKit.BitmapCircleCollision(this, cell, pt, circ);
+    }
+
+
+    public bool CircleCollision(int cell, double x, double y, Circle circ)
+    {
+        return SplashKit.BitmapCircleCollision(this, cell, x, y, circ);
+    }
+
+
     public bool BitmapCollision(double x1, double y1, Bitmap bmp2, double x2, double y2)
     {
         return SplashKit.BitmapCollision(this, x1, y1, bmp2, x2, y2);
@@ -17520,6 +17686,18 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public bool RectangleCollision(Point2D pt, Rectangle rect)
+    {
+        return SplashKit.BitmapRectangleCollision(this, pt, rect);
+    }
+
+
+    public bool RectangleCollision(double x, double y, Rectangle rect)
+    {
+        return SplashKit.BitmapRectangleCollision(this, x, y, rect);
+    }
+
+
     public bool RectangleCollision(int cell, Matrix2D translation, Rectangle rect)
     {
         return SplashKit.BitmapRectangleCollision(this, cell, translation, rect);
@@ -17529,6 +17707,12 @@ public class Bitmap : PointerWrapper
     public bool RectangleCollision(int cell, Point2D pt, Rectangle rect)
     {
         return SplashKit.BitmapRectangleCollision(this, cell, pt, rect);
+    }
+
+
+    public bool RectangleCollision(int cell, double x, double y, Rectangle rect)
+    {
+        return SplashKit.BitmapRectangleCollision(this, cell, x, y, rect);
     }
 
 

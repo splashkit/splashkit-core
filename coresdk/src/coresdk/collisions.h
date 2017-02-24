@@ -125,6 +125,141 @@ namespace splashkit_lib
     bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect);
 
     /**
+     * Tests if a cell of the bitmap drawn at `x`, `y` would intersect with a rectangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  rect The rectangle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `rect` when drawn.
+     *
+     * @attribute suffix    for_cell
+     *
+     * @attribute class bitmap
+     * @attribute method rectangle_collision
+     */
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle& rect);
+    
+    /**
+     * Tests if a bitmap drawn at `x`, `y` would intersect with a rectangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  rect The rectangle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `rect` when drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method rectangle_collision
+     */
+    bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle& rect);
+    
+    /**
+     * Tests if a bitmap drawn at `pt` would intersect with a rectangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  pt   The location where the bitmap is drawn
+     * @param  rect The rectangle to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `rect` when drawn.
+     *
+     * @attribute suffix    at_point
+     *
+     * @attribute class bitmap
+     * @attribute method rectangle_collision
+     */
+    bool bitmap_rectangle_collision(bitmap bmp, const point_2d& pt, const rectangle& rect);
+    
+    
+    /**
+     * Tests if a bitmap cell drawn using a passed in translation, will
+     * intersect with a circle. You can use this to detect collisions between
+     * bitmaps and circles.
+     *
+     * @param  bmp         The bitmap to test
+     * @param  cell        The cell of the bitmap to check
+     * @param  translation The matrix used to transfrom the bitmap when drawing
+     * @param  circ        The circle to test
+     * @return             True if a drawn pixel in the cell of the bitmap will
+     *                     intersect with `circ` when drawn.
+     *
+     * @attribute suffix    for_cell_with_translation
+     *
+     * @attribute class bitmap
+     * @attribute method circle_collision
+     */
+    bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d& translation, const circle& circ);
+    
+    /**
+     * Tests if a bitmap cell drawn at `pt` would intersect with a circle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  pt   The location where the bitmap is drawn
+     * @param  circ The circle to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `circ` when drawn.
+     *
+     * @attribute suffix    for_cell_at_point
+     *
+     * @attribute class bitmap
+     * @attribute method circle_collision
+     */
+    bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d& pt, const circle& circ);
+    
+    /**
+     * Tests if a bitmap cell drawn at `x`, `y` would intersect with a circle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  circ The circle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `circ` when drawn.
+     *
+     * @attribute suffix    for_cell
+     *
+     * @attribute class bitmap
+     * @attribute method circle_collision
+     */
+    bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle& circ);
+    
+    /**
+     * Tests if a bitmap drawn at `x`, `y` would intersect with a circle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  circ The circle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `circ` when drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method circle_collision
+     */
+    bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle& circ);
+    
+    /**
+     * Tests if a bitmap drawn at `pt` would intersect with a circle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  pt   The location where the bitmap is drawn
+     * @param  circ The circle to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `circ` when drawn.
+     *
+     * @attribute suffix    at_point
+     *
+     * @attribute class bitmap
+     * @attribute method circle_collision
+     */
+    bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ);
+    
+    /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
      * location.
      *
