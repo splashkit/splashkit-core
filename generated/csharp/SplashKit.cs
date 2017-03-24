@@ -15211,6 +15211,12 @@ namespace SplashKitSDK
     public float B;
     public float A;
 
+    public static Color HSBColor(float hue, float saturation, float brightness)
+    {
+        return SplashKit.HSBColor(hue, saturation, brightness);
+    }
+
+
     public static Color Random()
     {
         return SplashKit.RandomColor();
@@ -15220,6 +15226,30 @@ namespace SplashKitSDK
     public static Color RandomRGB(int alpha)
     {
         return SplashKit.RandomRGBColor(alpha);
+    }
+
+
+    public static Color RGBColor(float red, float green, float blue)
+    {
+        return SplashKit.RGBColor(red, green, blue);
+    }
+
+
+    public static Color RGBColor(int red, int green, int blue)
+    {
+        return SplashKit.RGBColor(red, green, blue);
+    }
+
+
+    public static Color RGBAColor(float red, float green, float blue, float alpha)
+    {
+        return SplashKit.RGBAColor(red, green, blue, alpha);
+    }
+
+
+    public static Color RGBAColor(int red, int green, int blue, int alpha)
+    {
+        return SplashKit.RGBAColor(red, green, blue, alpha);
     }
 
     public static Color AliceBlue

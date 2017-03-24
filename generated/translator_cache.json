@@ -7821,7 +7821,7 @@
     "group": "color",
     "brief": null,
     "description": null,
-    "parsed_at": 1481609857,
+    "parsed_at": 1488329218,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -11582,9 +11582,9 @@
       {
         "signature": "color hsb_color(float hue,float saturation,float brightness);",
         "name": "hsb_color",
-        "method_name": null,
+        "method_name": "hsb_color",
         "unique_global_name": "hsb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".hsb_color",
         "suffix_name": null,
         "description": "Returs a color from a combination of hue, saturation, and brightness.",
         "brief": null,
@@ -11638,6 +11638,8 @@
           }
         },
         "attributes": {
+          "method": "hsb_color",
+          "static": "color",
           "group": "color"
         }
       },
@@ -11779,9 +11781,9 @@
       {
         "signature": "color rgb_color(float red,float green,float blue);",
         "name": "rgb_color",
-        "method_name": null,
+        "method_name": "rgb_color",
         "unique_global_name": "rgb_color_from_float",
-        "unique_method_name": null,
+        "unique_method_name": ".rgb_color_from_float",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 1.",
         "brief": null,
@@ -11835,6 +11837,8 @@
           }
         },
         "attributes": {
+          "method": "rgb_color",
+          "static": "color",
           "suffix": "from_float",
           "group": "color"
         }
@@ -11842,9 +11846,9 @@
       {
         "signature": "color rgb_color(int red,int green,int blue);",
         "name": "rgb_color",
-        "method_name": null,
+        "method_name": "rgb_color",
         "unique_global_name": "rgb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgb_color",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -11898,15 +11902,17 @@
           }
         },
         "attributes": {
+          "method": "rgb_color",
+          "static": "color",
           "group": "color"
         }
       },
       {
         "signature": "color rgba_color(float red,float green,float blue,float alpha);",
         "name": "rgba_color",
-        "method_name": null,
+        "method_name": "rgba_color",
         "unique_global_name": "rgba_color_from_float",
-        "unique_method_name": null,
+        "unique_method_name": ".rgba_color_from_float",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 1.0.",
         "brief": null,
@@ -11973,6 +11979,8 @@
           }
         },
         "attributes": {
+          "method": "rgba_color",
+          "static": "color",
           "suffix": "from_float",
           "group": "color"
         }
@@ -11980,9 +11988,9 @@
       {
         "signature": "color rgba_color(int red,int green,int blue,int alpha);",
         "name": "rgba_color",
-        "method_name": null,
+        "method_name": "rgba_color",
         "unique_global_name": "rgba_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgba_color",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -12049,6 +12057,8 @@
           }
         },
         "attributes": {
+          "method": "rgba_color",
+          "static": "color",
           "group": "color"
         }
       },

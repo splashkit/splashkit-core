@@ -768,6 +768,9 @@ namespace splashkit_lib
      * @param  blue  The blue component (between 0 and 255)
      * @param  alpha The alpha (opacity) component (between 0 and 255)
      * @return       The color from its different component
+     *
+     * @attribute static color
+     * @attribute method rgba_color
      */
     color rgba_color(int red, int green, int blue, int alpha);
 
@@ -782,6 +785,8 @@ namespace splashkit_lib
      * @return       The color from its different component
      *
      * @attribute suffix from_float
+     * @attribute static color
+     * @attribute method rgba_color
      */
     color rgba_color(float red, float green, float blue, float alpha);
 
@@ -793,6 +798,9 @@ namespace splashkit_lib
      * @param  green The green component
      * @param  blue  The blue component
      * @return       The color from its different component
+     *
+     * @attribute static color
+     * @attribute method rgb_color
      */
     color rgb_color(int red, int green, int blue);
 
@@ -806,6 +814,9 @@ namespace splashkit_lib
      * @return       The color from its different component
      *
      * @attribute suffix from_float
+     *
+     * @attribute static color
+     * @attribute method rgb_color
      */
     color rgb_color(float red, float green, float blue);
 
@@ -816,6 +827,9 @@ namespace splashkit_lib
      * @param  saturation The saturation of that hue
      * @param  brightness The brightness of the color
      * @return            The color from its hue, saturation and brightness.
+     *
+     * @attribute static color
+     * @attribute method hsb_color
      */
     color hsb_color(float hue, float saturation, float brightness);
 
