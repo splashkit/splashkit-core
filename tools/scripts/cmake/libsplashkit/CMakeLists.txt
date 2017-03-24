@@ -106,7 +106,9 @@ elseif(MSYS)
     )
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux")
+    find_package(PNG REQUIRED)
+    include_directories(${PNG_INCLUDE_DIR})    
     set(LIB_FLAGS "-lSDL2 \
                    -lSDL2_mixer \
                    -lSDL2_ttf \
@@ -118,7 +120,6 @@ else()
                    -lFLAC \
                    -lvorbis \
                    -lz \
-                   -lpng12 \
                    -lvorbisfile \
                    -lmikmod \
                    -logg \
@@ -198,11 +199,17 @@ add_definitions(-DELPP_THREAD_SAFE)
 add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
 
+if (LINUX)
+    target_link_libraries(SplashKit ${PNG_LIBRARY})
+endif()
+
+target_link_libraries(SplashKit ${PNG_LIBRARY})
+
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
 install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
 install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
 
-if ( ${MSYS} )
+if ( MSYS )
   install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
 endif()
