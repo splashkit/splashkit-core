@@ -638,6 +638,46 @@ void set_clip(window wnd, const rectangle &r) {
     const __sklib_rectangle __skparam__r = __skadapter__to_sklib_rectangle(r);
     __sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r);
 }
+bool bitmap_circle_collision(bitmap bmp, const point_2d &pt, const circle &circ) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    const __sklib_circle __skparam__circ = __skadapter__to_sklib_circle(circ);
+    int __skreturn = __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__skparam__bmp, __skparam__pt, __skparam__circ);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle &circ) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    const __sklib_circle __skparam__circ = __skadapter__to_sklib_circle(circ);
+    int __skreturn = __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__circ);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d &translation, const circle &circ) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    const __sklib_matrix_2d __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
+    const __sklib_circle __skparam__circ = __skadapter__to_sklib_circle(circ);
+    int __skreturn = __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__circ);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d &pt, const circle &circ) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    const __sklib_circle __skparam__circ = __skadapter__to_sklib_circle(circ);
+    int __skreturn = __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__circ);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle &circ) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    const __sklib_circle __skparam__circ = __skadapter__to_sklib_circle(circ);
+    int __skreturn = __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__circ);
+    return __skadapter__to_bool(__skreturn);
+}
 bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2) {
     __sklib_bitmap __skparam__bmp1 = __skadapter__to_sklib_bitmap(bmp1);
     double __skparam__x1 = __skadapter__to_double(x1);
@@ -719,6 +759,21 @@ bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, 
     int __skreturn = __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
     return __skadapter__to_bool(__skreturn);
 }
+bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+    int __skreturn = __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__pt, __skparam__rect);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle &rect) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+    int __skreturn = __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__rect);
+    return __skadapter__to_bool(__skreturn);
+}
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
     int __skparam__cell = __skadapter__to_int(cell);
@@ -733,6 +788,15 @@ bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d &pt, const 
     const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
     int __skreturn = __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle &rect) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+    int __skreturn = __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect);
     return __skadapter__to_bool(__skreturn);
 }
 bool sprite_bitmap_collision(sprite s, bitmap bmp, double x, double y) {

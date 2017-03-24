@@ -614,6 +614,46 @@ void __sklib__set_clip__window__rectangle_ref(__sklib_window wnd, const __sklib_
     rectangle __skparam__r = __sklib__to_rectangle(r);
     set_clip(__skparam__wnd, __skparam__r);
 }
+int __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__sklib_bitmap bmp, const __sklib_point_2d pt, const __sklib_circle circ) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    circle __skparam__circ = __sklib__to_circle(circ);
+    bool __skreturn = bitmap_circle_collision(__skparam__bmp, __skparam__pt, __skparam__circ);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__sklib_bitmap bmp, double x, double y, const __sklib_circle circ) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    circle __skparam__circ = __sklib__to_circle(circ);
+    bool __skreturn = bitmap_circle_collision(__skparam__bmp, __skparam__x, __skparam__y, __skparam__circ);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_circle circ) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    matrix_2d __skparam__translation = __sklib__to_matrix_2d(translation);
+    circle __skparam__circ = __sklib__to_circle(circ);
+    bool __skreturn = bitmap_circle_collision(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__circ);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__sklib_bitmap bmp, int cell, const __sklib_point_2d pt, const __sklib_circle circ) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    circle __skparam__circ = __sklib__to_circle(circ);
+    bool __skreturn = bitmap_circle_collision(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__circ);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__sklib_bitmap bmp, int cell, double x, double y, const __sklib_circle circ) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    circle __skparam__circ = __sklib__to_circle(circ);
+    bool __skreturn = bitmap_circle_collision(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__circ);
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__bitmap_collision__bitmap__double__double__bitmap__double__double(__sklib_bitmap bmp1, double x1, double y1, __sklib_bitmap bmp2, double x2, double y2) {
     bitmap __skparam__bmp1 = __sklib__to_bitmap(bmp1);
     double __skparam__x1 = __sklib__to_double(x1);
@@ -695,6 +735,21 @@ int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__
     bool __skreturn = bitmap_point_collision(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_bitmap bmp, const __sklib_point_2d pt, const __sklib_rectangle rect) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    rectangle __skparam__rect = __sklib__to_rectangle(rect);
+    bool __skreturn = bitmap_rectangle_collision(__skparam__bmp, __skparam__pt, __skparam__rect);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__sklib_bitmap bmp, double x, double y, const __sklib_rectangle rect) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    rectangle __skparam__rect = __sklib__to_rectangle(rect);
+    bool __skreturn = bitmap_rectangle_collision(__skparam__bmp, __skparam__x, __skparam__y, __skparam__rect);
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_rectangle rect) {
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     int __skparam__cell = __sklib__to_int(cell);
@@ -709,6 +764,15 @@ int __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_re
     point_2d __skparam__pt = __sklib__to_point_2d(pt);
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
     bool __skreturn = bitmap_rectangle_collision(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__sklib_bitmap bmp, int cell, double x, double y, const __sklib_rectangle rect) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    rectangle __skparam__rect = __sklib__to_rectangle(rect);
+    bool __skreturn = bitmap_rectangle_collision(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect);
     return __sklib__to_int(__skreturn);
 }
 int __sklib__sprite_bitmap_collision__sprite__bitmap__double__double(__sklib_sprite s, __sklib_bitmap bmp, double x, double y) {

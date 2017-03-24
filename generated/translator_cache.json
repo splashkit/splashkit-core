@@ -5756,9 +5756,408 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1485232205,
+    "parsed_at": 1487907677,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
+      {
+        "signature": "bool bitmap_circle_collision(bitmap bmp,const point_2d& pt,const circle& circ);",
+        "name": "bitmap_circle_collision",
+        "method_name": "circle_collision",
+        "unique_global_name": "bitmap_circle_collision_at_point",
+        "unique_method_name": "bitmap.circle_collision_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `pt` would intersect with a circle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `circ` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "circ": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "circle_collision",
+          "suffix": "at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_circle_collision(bitmap bmp,double x,double y,const circle& circ);",
+        "name": "bitmap_circle_collision",
+        "method_name": "circle_collision",
+        "unique_global_name": "bitmap_circle_collision",
+        "unique_method_name": "bitmap.circle_collision",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `x`, `y` would intersect with a circle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with `circ` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "circ": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "circle_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_circle_collision(bitmap bmp,int cell,const matrix_2d& translation,const circle& circ);",
+        "name": "bitmap_circle_collision",
+        "method_name": "circle_collision",
+        "unique_global_name": "bitmap_circle_collision_for_cell_with_translation",
+        "unique_method_name": "bitmap.circle_collision_for_cell_with_translation",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a circle. You can use this to detect collisions between\nbitmaps and circles.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `circ` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "translation": {
+            "type": "matrix_2d",
+            "description": "The matrix used to transfrom the bitmap when drawing",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "circ": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "circle_collision",
+          "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_circle_collision(bitmap bmp,int cell,const point_2d& pt,const circle& circ);",
+        "name": "bitmap_circle_collision",
+        "method_name": "circle_collision",
+        "unique_global_name": "bitmap_circle_collision_for_cell_at_point",
+        "unique_method_name": "bitmap.circle_collision_for_cell_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `pt` would intersect with a circle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `circ` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "circ": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "circle_collision",
+          "suffix": "for_cell_at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_circle_collision(bitmap bmp,int cell,double x,double y,const circle& circ);",
+        "name": "bitmap_circle_collision",
+        "method_name": "circle_collision",
+        "unique_global_name": "bitmap_circle_collision_for_cell",
+        "unique_method_name": "bitmap.circle_collision_for_cell",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `x`, `y` would intersect with a circle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with `circ` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "circ": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "circle_collision",
+          "suffix": "for_cell",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
       {
         "signature": "bool bitmap_collision(bitmap bmp1,double x1,double y1,bitmap bmp2,double x2,double y2);",
         "name": "bitmap_collision",
@@ -6595,6 +6994,152 @@
         }
       },
       {
+        "signature": "bool bitmap_rectangle_collision(bitmap bmp,const point_2d& pt,const rectangle& rect);",
+        "name": "bitmap_rectangle_collision",
+        "method_name": "rectangle_collision",
+        "unique_global_name": "bitmap_rectangle_collision_at_point",
+        "unique_method_name": "bitmap.rectangle_collision_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `pt` would intersect with a rectangle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `rect` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_collision",
+          "suffix": "at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_rectangle_collision(bitmap bmp,double x,double y,const rectangle& rect);",
+        "name": "bitmap_rectangle_collision",
+        "method_name": "rectangle_collision",
+        "unique_global_name": "bitmap_rectangle_collision",
+        "unique_method_name": "bitmap.rectangle_collision",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `x`, `y` would intersect with a rectangle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with `rect` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
         "signature": "bool bitmap_rectangle_collision(bitmap bmp,int cell,const matrix_2d& translation,const rectangle& rect);",
         "name": "bitmap_rectangle_collision",
         "method_name": "rectangle_collision",
@@ -6749,6 +7294,99 @@
           "class": "bitmap",
           "method": "rectangle_collision",
           "suffix": "for_cell_at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_rectangle_collision(bitmap bmp,int cell,double x,double y,const rectangle& rect);",
+        "name": "bitmap_rectangle_collision",
+        "method_name": "rectangle_collision",
+        "unique_global_name": "bitmap_rectangle_collision_for_cell",
+        "unique_method_name": "bitmap.rectangle_collision_for_cell",
+        "suffix_name": null,
+        "description": "Tests if a cell of the bitmap drawn at `x`, `y` would intersect with a rectangle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with `rect` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "rectangle_collision",
+          "suffix": "for_cell",
           "group": "physics",
           "static": "collisions",
           "self": "bmp"
@@ -7183,7 +7821,7 @@
     "group": "color",
     "brief": null,
     "description": null,
-    "parsed_at": 1481609857,
+    "parsed_at": 1488329218,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -10944,9 +11582,9 @@
       {
         "signature": "color hsb_color(float hue,float saturation,float brightness);",
         "name": "hsb_color",
-        "method_name": null,
+        "method_name": "hsb_color",
         "unique_global_name": "hsb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".hsb_color",
         "suffix_name": null,
         "description": "Returs a color from a combination of hue, saturation, and brightness.",
         "brief": null,
@@ -11000,6 +11638,8 @@
           }
         },
         "attributes": {
+          "method": "hsb_color",
+          "static": "color",
           "group": "color"
         }
       },
@@ -11141,9 +11781,9 @@
       {
         "signature": "color rgb_color(float red,float green,float blue);",
         "name": "rgb_color",
-        "method_name": null,
+        "method_name": "rgb_color",
         "unique_global_name": "rgb_color_from_float",
-        "unique_method_name": null,
+        "unique_method_name": ".rgb_color_from_float",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 1.",
         "brief": null,
@@ -11197,6 +11837,8 @@
           }
         },
         "attributes": {
+          "method": "rgb_color",
+          "static": "color",
           "suffix": "from_float",
           "group": "color"
         }
@@ -11204,9 +11846,9 @@
       {
         "signature": "color rgb_color(int red,int green,int blue);",
         "name": "rgb_color",
-        "method_name": null,
+        "method_name": "rgb_color",
         "unique_global_name": "rgb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgb_color",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -11260,15 +11902,17 @@
           }
         },
         "attributes": {
+          "method": "rgb_color",
+          "static": "color",
           "group": "color"
         }
       },
       {
         "signature": "color rgba_color(float red,float green,float blue,float alpha);",
         "name": "rgba_color",
-        "method_name": null,
+        "method_name": "rgba_color",
         "unique_global_name": "rgba_color_from_float",
-        "unique_method_name": null,
+        "unique_method_name": ".rgba_color_from_float",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 1.0.",
         "brief": null,
@@ -11335,6 +11979,8 @@
           }
         },
         "attributes": {
+          "method": "rgba_color",
+          "static": "color",
           "suffix": "from_float",
           "group": "color"
         }
@@ -11342,9 +11988,9 @@
       {
         "signature": "color rgba_color(int red,int green,int blue,int alpha);",
         "name": "rgba_color",
-        "method_name": null,
+        "method_name": "rgba_color",
         "unique_global_name": "rgba_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgba_color",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -11411,6 +12057,8 @@
           }
         },
         "attributes": {
+          "method": "rgba_color",
+          "static": "color",
           "group": "color"
         }
       },

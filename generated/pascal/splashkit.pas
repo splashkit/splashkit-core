@@ -416,6 +416,11 @@ procedure ResetClip(wnd: Window);
 procedure SetClip(const r: Rectangle);
 procedure SetClip(bmp: Bitmap; const r: Rectangle);
 procedure SetClip(wnd: Window; const r: Rectangle);
+function BitmapCircleCollision(bmp: Bitmap; const pt: Point2D; const circ: Circle): Boolean;
+function BitmapCircleCollision(bmp: Bitmap; x: Double; y: Double; const circ: Circle): Boolean;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const circ: Circle): Boolean;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const circ: Circle): Boolean;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double; const circ: Circle): Boolean;
 function BitmapCollision(bmp1: Bitmap; x1: Double; y1: Double; bmp2: Bitmap; x2: Double; y2: Double): Boolean;
 function BitmapCollision(bmp1: Bitmap; const pt1: Point2D; bmp2: Bitmap; const pt2: Point2D): Boolean;
 function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2D; bmp2: Bitmap; cell2: Integer; const matrix2: Matrix2D): Boolean;
@@ -425,8 +430,11 @@ function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt
 function BitmapPointCollision(bmp: Bitmap; const bmpPt: Point2D; const pt: Point2D): Boolean;
 function BitmapPointCollision(bmp: Bitmap; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
 function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; const pt: Point2D; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; x: Double; y: Double; const rect: Rectangle): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const rect: Rectangle): Boolean;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double; const rect: Rectangle): Boolean;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Double; y: Double): Boolean;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: Point2D): Boolean;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; x: Double; y: Double): Boolean;
@@ -2476,6 +2484,11 @@ procedure __sklib__reset_clip__window(wnd: __sklib_ptr); cdecl; external;
 procedure __sklib__set_clip__rectangle_ref(const r: __sklib_rectangle); cdecl; external;
 procedure __sklib__set_clip__bitmap__rectangle_ref(bmp: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
 procedure __sklib__set_clip__window__rectangle_ref(wnd: __sklib_ptr; const r: __sklib_rectangle); cdecl; external;
+function __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d; const circ: __sklib_circle): LongInt; cdecl; external;
+function __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(bmp: __sklib_ptr; x: Double; y: Double; const circ: __sklib_circle): LongInt; cdecl; external;
+function __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const circ: __sklib_circle): LongInt; cdecl; external;
+function __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d; const circ: __sklib_circle): LongInt; cdecl; external;
+function __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(bmp: __sklib_ptr; cell: Integer; x: Double; y: Double; const circ: __sklib_circle): LongInt; cdecl; external;
 function __sklib__bitmap_collision__bitmap__double__double__bitmap__double__double(bmp1: __sklib_ptr; x1: Double; y1: Double; bmp2: __sklib_ptr; x2: Double; y2: Double): LongInt; cdecl; external;
 function __sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref(bmp1: __sklib_ptr; const pt1: __sklib_point_2d; bmp2: __sklib_ptr; const pt2: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref(bmp1: __sklib_ptr; cell1: Integer; const matrix1: __sklib_matrix_2d; bmp2: __sklib_ptr; cell2: Integer; const matrix2: __sklib_matrix_2d): LongInt; cdecl; external;
@@ -2485,8 +2498,11 @@ function __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(bm
 function __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; const bmpPt: __sklib_point_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__double__double__double__double(bmp: __sklib_ptr; bmpX: Double; bmpY: Double; x: Double; y: Double): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(bmp: __sklib_ptr; x: Double; y: Double; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(bmp: __sklib_ptr; cell: Integer; x: Double; y: Double; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__sprite_bitmap_collision__sprite__bitmap__double__double(s: __sklib_ptr; bmp: __sklib_ptr; x: Double; y: Double): LongInt; cdecl; external;
 function __sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref(s: __sklib_ptr; bmp: __sklib_ptr; cell: Integer; const pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(s: __sklib_ptr; bmp: __sklib_ptr; cell: Integer; x: Double; y: Double): LongInt; cdecl; external;
@@ -4602,6 +4618,81 @@ begin
   __skparam__r := __skadapter__to_sklib_rectangle(r);
   __sklib__set_clip__window__rectangle_ref(__skparam__wnd, __skparam__r);
 end;
+function BitmapCircleCollision(bmp: Bitmap; const pt: Point2D; const circ: Circle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__circ: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__circ := __skadapter__to_sklib_circle(circ);
+  __skreturn := __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__skparam__bmp, __skparam__pt, __skparam__circ);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCircleCollision(bmp: Bitmap; x: Double; y: Double; const circ: Circle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__circ: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__circ := __skadapter__to_sklib_circle(circ);
+  __skreturn := __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__circ);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const circ: Circle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__translation: __sklib_matrix_2d;
+  __skparam__circ: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__translation := __skadapter__to_sklib_matrix_2d(translation);
+  __skparam__circ := __skadapter__to_sklib_circle(circ);
+  __skreturn := __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__circ);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const circ: Circle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__circ: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__circ := __skadapter__to_sklib_circle(circ);
+  __skreturn := __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__circ);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapCircleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double; const circ: Circle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__circ: __sklib_circle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__circ := __skadapter__to_sklib_circle(circ);
+  __skreturn := __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__circ);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function BitmapCollision(bmp1: Bitmap; x1: Double; y1: Double; bmp2: Bitmap; x2: Double; y2: Double): Boolean;
 var
   __skparam__bmp1: __sklib_ptr;
@@ -4755,6 +4846,34 @@ begin
   __skreturn := __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
   result := __skadapter__to_bool(__skreturn);
 end;
+function BitmapRectangleCollision(bmp: Bitmap; const pt: Point2D; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__pt: __sklib_point_2d;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__pt, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapRectangleCollision(bmp: Bitmap; x: Double; y: Double; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
 var
   __skparam__bmp: __sklib_ptr;
@@ -4783,6 +4902,23 @@ begin
   __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect);
   result := __skadapter__to_bool(__skreturn);
 end;
 function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Double; y: Double): Boolean;
