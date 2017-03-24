@@ -106,6 +106,7 @@ elseif(MSYS)
     )
 # LINUX PROJECT FLAGS
 else()
+    SET(LINUX "true")
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
     set(LIB_FLAGS "-lSDL2 \
                    -lSDL2_mixer \
@@ -205,4 +206,9 @@ install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
 
 if ( ${MSYS} )
   install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
+endif()
+
+if ( ${LINUX} )
+  install(FILES ${OS_SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
+  install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
 endif()
