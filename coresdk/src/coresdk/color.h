@@ -784,11 +784,11 @@ namespace splashkit_lib
      * @param  alpha The alpha (opacity) component (between 0 and 1.0)
      * @return       The color from its different component
      *
-     * @attribute suffix from_float
+     * @attribute suffix from_double
      * @attribute static color
      * @attribute method rgba_color
      */
-    color rgba_color(float red, float green, float blue, float alpha);
+    color rgba_color(double red, double green, double blue, double alpha);
 
     /**
      * Gets a color given its RGB components. Each of the components has
@@ -813,12 +813,12 @@ namespace splashkit_lib
      * @param  blue  The blue component
      * @return       The color from its different component
      *
-     * @attribute suffix from_float
+     * @attribute suffix from_double
      *
      * @attribute static color
      * @attribute method rgb_color
      */
-    color rgb_color(float red, float green, float blue);
+    color rgb_color(double red, double green, double blue);
 
     /**
      * Returs a color from a combination of hue, saturation, and brightness.
@@ -831,7 +831,7 @@ namespace splashkit_lib
      * @attribute static color
      * @attribute method hsb_color
      */
-    color hsb_color(float hue, float saturation, float brightness);
+    color hsb_color(double hue, double saturation, double brightness);
 
     /**
      *  Returns a string representation of the color.
@@ -893,7 +893,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The hue component of the color
      */
-    float hue_of(color c);
+    double hue_of(color c);
 
     /**
      * Returns the saturation of the supplied color.
@@ -901,7 +901,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The saturation component of the color
      */
-    float saturation_of(color c);
+    double saturation_of(color c);
 
     /**
      * Returns the brightness of the supplied color.
@@ -909,7 +909,7 @@ namespace splashkit_lib
      * @param  c The color
      * @return   The brightness component of the color
      */
-    float brightness_of(color c);
+    double brightness_of(color c);
 
     /**
      * Generates a new `color` associated to the color `alice_blue`.
