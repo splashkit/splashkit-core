@@ -41,7 +41,7 @@ set(SK_LANGUAGES "${SK_ROOT}/languages")
 
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos")
+    set(SK_OS_DEPLOY_PATH "${SK_OUT}/splashkit-macos")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_OUT}/splashkit-macos/lib \
                    -llibSplashKit \
@@ -58,7 +58,7 @@ if (APPLE)
                    -lncurses")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
+    set(SK_OS_DEPLOY_PATH "${SK_OUT}/splashkit-windows")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     add_definitions(-DWINDOWS)
@@ -68,7 +68,7 @@ elseif(MSYS)
                  -llibSplashKit${WIN_NAME_SUFFIX}")
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
+    set(SK_OS_DEPLOY_PATH "${SK_OUT}/splashkit-linux")
     set(LIB_FLAGS "-llibSplashKit")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
@@ -113,8 +113,7 @@ set_target_properties(
     SplashKitCPP${WIN_NAME_SUFFIX} PROPERTIES LINKER_LANGUAGE CXX
 )
 
-
-set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/clang++")
+set(SK_DEPLOY_PATH "${SK_OS_DEPLOY_PATH}/commands/clang++")
 get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
 
 install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
@@ -122,7 +121,7 @@ install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
 install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
 
-set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/g++")
+set(SK_DEPLOY_PATH "${SK_OS_DEPLOY_PATH}/commands/g++")
 get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
 
 install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
