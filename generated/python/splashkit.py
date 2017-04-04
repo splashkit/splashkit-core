@@ -1528,7 +1528,7 @@ sklib.__sklib__alpha_of__color.restype = c_int
 sklib.__sklib__blue_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__blue_of__color.restype = c_int
 sklib.__sklib__brightness_of__color.argtypes = [ _sklib_color ]
-sklib.__sklib__brightness_of__color.restype = c_float
+sklib.__sklib__brightness_of__color.restype = c_double
 sklib.__sklib__color_alice_blue.argtypes = [  ]
 sklib.__sklib__color_alice_blue.restype = _sklib_color
 sklib.__sklib__color_antique_white.argtypes = [  ]
@@ -1819,26 +1819,26 @@ sklib.__sklib__color_yellow_green.argtypes = [  ]
 sklib.__sklib__color_yellow_green.restype = _sklib_color
 sklib.__sklib__green_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__green_of__color.restype = c_int
-sklib.__sklib__hsb_color__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__hsb_color__float__float__float.restype = _sklib_color
+sklib.__sklib__hsb_color__double__double__double.argtypes = [ c_double, c_double, c_double ]
+sklib.__sklib__hsb_color__double__double__double.restype = _sklib_color
 sklib.__sklib__hue_of__color.argtypes = [ _sklib_color ]
-sklib.__sklib__hue_of__color.restype = c_float
+sklib.__sklib__hue_of__color.restype = c_double
 sklib.__sklib__random_color.argtypes = [  ]
 sklib.__sklib__random_color.restype = _sklib_color
 sklib.__sklib__random_rgb_color__int.argtypes = [ c_int ]
 sklib.__sklib__random_rgb_color__int.restype = _sklib_color
 sklib.__sklib__red_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__red_of__color.restype = c_int
-sklib.__sklib__rgb_color__float__float__float.argtypes = [ c_float, c_float, c_float ]
-sklib.__sklib__rgb_color__float__float__float.restype = _sklib_color
+sklib.__sklib__rgb_color__double__double__double.argtypes = [ c_double, c_double, c_double ]
+sklib.__sklib__rgb_color__double__double__double.restype = _sklib_color
 sklib.__sklib__rgb_color__int__int__int.argtypes = [ c_int, c_int, c_int ]
 sklib.__sklib__rgb_color__int__int__int.restype = _sklib_color
-sklib.__sklib__rgba_color__float__float__float__float.argtypes = [ c_float, c_float, c_float, c_float ]
-sklib.__sklib__rgba_color__float__float__float__float.restype = _sklib_color
+sklib.__sklib__rgba_color__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double ]
+sklib.__sklib__rgba_color__double__double__double__double.restype = _sklib_color
 sklib.__sklib__rgba_color__int__int__int__int.argtypes = [ c_int, c_int, c_int, c_int ]
 sklib.__sklib__rgba_color__int__int__int__int.restype = _sklib_color
 sklib.__sklib__saturation_of__color.argtypes = [ _sklib_color ]
-sklib.__sklib__saturation_of__color.restype = c_float
+sklib.__sklib__saturation_of__color.restype = c_double
 sklib.__sklib__string_to_color__string.argtypes = [ _sklib_string ]
 sklib.__sklib__string_to_color__string.restype = _sklib_color
 sklib.__sklib__database_named__string.argtypes = [ _sklib_string ]
@@ -4239,7 +4239,7 @@ def blue_of ( c ):
 def brightness_of ( c ):
     __skparam__c = __skadapter__to_sklib_color(c)
     __skreturn = sklib.__sklib__brightness_of__color(__skparam__c)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def color_alice_blue (  ):
     __skreturn = sklib.__sklib__color_alice_blue()
     return __skadapter__to_color(__skreturn)
@@ -4678,15 +4678,15 @@ def green_of ( c ):
     __skreturn = sklib.__sklib__green_of__color(__skparam__c)
     return __skadapter__to_int(__skreturn)
 def hsb_color ( hue, saturation, brightness ):
-    __skparam__hue = __skadapter__to_sklib_float(hue)
-    __skparam__saturation = __skadapter__to_sklib_float(saturation)
-    __skparam__brightness = __skadapter__to_sklib_float(brightness)
-    __skreturn = sklib.__sklib__hsb_color__float__float__float(__skparam__hue, __skparam__saturation, __skparam__brightness)
+    __skparam__hue = __skadapter__to_sklib_double(hue)
+    __skparam__saturation = __skadapter__to_sklib_double(saturation)
+    __skparam__brightness = __skadapter__to_sklib_double(brightness)
+    __skreturn = sklib.__sklib__hsb_color__double__double__double(__skparam__hue, __skparam__saturation, __skparam__brightness)
     return __skadapter__to_color(__skreturn)
 def hue_of ( c ):
     __skparam__c = __skadapter__to_sklib_color(c)
     __skreturn = sklib.__sklib__hue_of__color(__skparam__c)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def random_color (  ):
     __skreturn = sklib.__sklib__random_color()
     return __skadapter__to_color(__skreturn)
@@ -4698,11 +4698,11 @@ def red_of ( c ):
     __skparam__c = __skadapter__to_sklib_color(c)
     __skreturn = sklib.__sklib__red_of__color(__skparam__c)
     return __skadapter__to_int(__skreturn)
-def rgb_color_from_float ( red, green, blue ):
-    __skparam__red = __skadapter__to_sklib_float(red)
-    __skparam__green = __skadapter__to_sklib_float(green)
-    __skparam__blue = __skadapter__to_sklib_float(blue)
-    __skreturn = sklib.__sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue)
+def rgb_color_from_double ( red, green, blue ):
+    __skparam__red = __skadapter__to_sklib_double(red)
+    __skparam__green = __skadapter__to_sklib_double(green)
+    __skparam__blue = __skadapter__to_sklib_double(blue)
+    __skreturn = sklib.__sklib__rgb_color__double__double__double(__skparam__red, __skparam__green, __skparam__blue)
     return __skadapter__to_color(__skreturn)
 def rgb_color ( red, green, blue ):
     __skparam__red = __skadapter__to_sklib_int(red)
@@ -4710,12 +4710,12 @@ def rgb_color ( red, green, blue ):
     __skparam__blue = __skadapter__to_sklib_int(blue)
     __skreturn = sklib.__sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue)
     return __skadapter__to_color(__skreturn)
-def rgba_color_from_float ( red, green, blue, alpha ):
-    __skparam__red = __skadapter__to_sklib_float(red)
-    __skparam__green = __skadapter__to_sklib_float(green)
-    __skparam__blue = __skadapter__to_sklib_float(blue)
-    __skparam__alpha = __skadapter__to_sklib_float(alpha)
-    __skreturn = sklib.__sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha)
+def rgba_color_from_double ( red, green, blue, alpha ):
+    __skparam__red = __skadapter__to_sklib_double(red)
+    __skparam__green = __skadapter__to_sklib_double(green)
+    __skparam__blue = __skadapter__to_sklib_double(blue)
+    __skparam__alpha = __skadapter__to_sklib_double(alpha)
+    __skreturn = sklib.__sklib__rgba_color__double__double__double__double(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha)
     return __skadapter__to_color(__skreturn)
 def rgba_color ( red, green, blue, alpha ):
     __skparam__red = __skadapter__to_sklib_int(red)
@@ -4727,7 +4727,7 @@ def rgba_color ( red, green, blue, alpha ):
 def saturation_of ( c ):
     __skparam__c = __skadapter__to_sklib_color(c)
     __skreturn = sklib.__sklib__saturation_of__color(__skparam__c)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def string_to_color ( str ):
     __skparam__str = __skadapter__to_sklib_string(str)
     __skreturn = sklib.__sklib__string_to_color__string(__skparam__str)

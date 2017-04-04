@@ -28,7 +28,12 @@ git pull
 cd ../splashkit-windows
 git checkout develop
 git pull
+cd ../splashkit-linux
+git checkout develop
+git pull
+
 cd "$APP_PATH"
+
 
 read -p "Regenerate SplashKit? [y,n] " doit
 case $doit in

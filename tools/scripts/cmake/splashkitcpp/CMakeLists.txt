@@ -68,7 +68,7 @@ elseif(MSYS)
                  -llibSplashKit${WIN_NAME_SUFFIX}")
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux")
     set(LIB_FLAGS "-llibSplashKit")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
@@ -114,7 +114,7 @@ set_target_properties(
 )
 
 
-set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/clang++")
+set(SK_DEPLOY_PATH "${SK_DEPLOY_ROOT}/commands/clang++")
 get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
 
 install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
@@ -122,10 +122,12 @@ install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
 install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
 
-set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/g++")
-get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
+if(MSYS)
+    set(SK_DEPLOY_PATH "${SK_DEPLOY_ROOT}/commands/g++")
+    get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
 
-install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
-install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
-install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
-install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
+    install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib)
+    install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
+    install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
+    install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
+endif()

@@ -443,7 +443,7 @@ function SpritePointCollision(s: Sprite; const pt: Point2D): Boolean;
 function SpriteRectangleCollision(s: Sprite; const rect: Rectangle): Boolean;
 function AlphaOf(c: Color): Integer;
 function BlueOf(c: Color): Integer;
-function BrightnessOf(c: Color): Single;
+function BrightnessOf(c: Color): Double;
 function ColorAliceBlue(): Color;
 function ColorAntiqueWhite(): Color;
 function ColorAqua(): Color;
@@ -589,16 +589,16 @@ function ColorWhiteSmoke(): Color;
 function ColorYellow(): Color;
 function ColorYellowGreen(): Color;
 function GreenOf(c: Color): Integer;
-function HSBColor(hue: Single; saturation: Single; brightness: Single): Color;
-function HueOf(c: Color): Single;
+function HSBColor(hue: Double; saturation: Double; brightness: Double): Color;
+function HueOf(c: Color): Double;
 function RandomColor(): Color;
 function RandomRGBColor(alpha: Integer): Color;
 function RedOf(c: Color): Integer;
-function RGBColor(red: Single; green: Single; blue: Single): Color;
+function RGBColor(red: Double; green: Double; blue: Double): Color;
 function RGBColor(red: Integer; green: Integer; blue: Integer): Color;
-function RGBAColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+function RGBAColor(red: Double; green: Double; blue: Double; alpha: Double): Color;
 function RGBAColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
-function SaturationOf(c: Color): Single;
+function SaturationOf(c: Color): Double;
 function StringToColor(str: String): Color;
 function DatabaseNamed(name: String): Database;
 procedure FreeAllDatabases();
@@ -2511,7 +2511,7 @@ function __sklib__sprite_point_collision__sprite__point_2d_ref(s: __sklib_ptr; c
 function __sklib__sprite_rectangle_collision__sprite__rectangle_ref(s: __sklib_ptr; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__alpha_of__color(c: __sklib_color): Integer; cdecl; external;
 function __sklib__blue_of__color(c: __sklib_color): Integer; cdecl; external;
-function __sklib__brightness_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__brightness_of__color(c: __sklib_color): Double; cdecl; external;
 function __sklib__color_alice_blue(): __sklib_color; cdecl; external;
 function __sklib__color_antique_white(): __sklib_color; cdecl; external;
 function __sklib__color_aqua(): __sklib_color; cdecl; external;
@@ -2657,16 +2657,16 @@ function __sklib__color_white_smoke(): __sklib_color; cdecl; external;
 function __sklib__color_yellow(): __sklib_color; cdecl; external;
 function __sklib__color_yellow_green(): __sklib_color; cdecl; external;
 function __sklib__green_of__color(c: __sklib_color): Integer; cdecl; external;
-function __sklib__hsb_color__float__float__float(hue: Single; saturation: Single; brightness: Single): __sklib_color; cdecl; external;
-function __sklib__hue_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__hsb_color__double__double__double(hue: Double; saturation: Double; brightness: Double): __sklib_color; cdecl; external;
+function __sklib__hue_of__color(c: __sklib_color): Double; cdecl; external;
 function __sklib__random_color(): __sklib_color; cdecl; external;
 function __sklib__random_rgb_color__int(alpha: Integer): __sklib_color; cdecl; external;
 function __sklib__red_of__color(c: __sklib_color): Integer; cdecl; external;
-function __sklib__rgb_color__float__float__float(red: Single; green: Single; blue: Single): __sklib_color; cdecl; external;
+function __sklib__rgb_color__double__double__double(red: Double; green: Double; blue: Double): __sklib_color; cdecl; external;
 function __sklib__rgb_color__int__int__int(red: Integer; green: Integer; blue: Integer): __sklib_color; cdecl; external;
-function __sklib__rgba_color__float__float__float__float(red: Single; green: Single; blue: Single; alpha: Single): __sklib_color; cdecl; external;
+function __sklib__rgba_color__double__double__double__double(red: Double; green: Double; blue: Double; alpha: Double): __sklib_color; cdecl; external;
 function __sklib__rgba_color__int__int__int__int(red: Integer; green: Integer; blue: Integer; alpha: Integer): __sklib_color; cdecl; external;
-function __sklib__saturation_of__color(c: __sklib_color): Single; cdecl; external;
+function __sklib__saturation_of__color(c: __sklib_color): Double; cdecl; external;
 function __sklib__string_to_color__string(str: __sklib_string): __sklib_color; cdecl; external;
 function __sklib__database_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__free_all_databases(); cdecl; external;
@@ -5019,14 +5019,14 @@ begin
   __skreturn := __sklib__blue_of__color(__skparam__c);
   result := __skadapter__to_int(__skreturn);
 end;
-function BrightnessOf(c: Color): Single;
+function BrightnessOf(c: Color): Double;
 var
   __skparam__c: __sklib_color;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__c := __skadapter__to_sklib_color(c);
   __skreturn := __sklib__brightness_of__color(__skparam__c);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function ColorAliceBlue(): Color;
 var
@@ -6047,27 +6047,27 @@ begin
   __skreturn := __sklib__green_of__color(__skparam__c);
   result := __skadapter__to_int(__skreturn);
 end;
-function HSBColor(hue: Single; saturation: Single; brightness: Single): Color;
+function HSBColor(hue: Double; saturation: Double; brightness: Double): Color;
 var
-  __skparam__hue: Single;
-  __skparam__saturation: Single;
-  __skparam__brightness: Single;
+  __skparam__hue: Double;
+  __skparam__saturation: Double;
+  __skparam__brightness: Double;
   __skreturn: __sklib_color;
 begin
-  __skparam__hue := __skadapter__to_sklib_float(hue);
-  __skparam__saturation := __skadapter__to_sklib_float(saturation);
-  __skparam__brightness := __skadapter__to_sklib_float(brightness);
-  __skreturn := __sklib__hsb_color__float__float__float(__skparam__hue, __skparam__saturation, __skparam__brightness);
+  __skparam__hue := __skadapter__to_sklib_double(hue);
+  __skparam__saturation := __skadapter__to_sklib_double(saturation);
+  __skparam__brightness := __skadapter__to_sklib_double(brightness);
+  __skreturn := __sklib__hsb_color__double__double__double(__skparam__hue, __skparam__saturation, __skparam__brightness);
   result := __skadapter__to_color(__skreturn);
 end;
-function HueOf(c: Color): Single;
+function HueOf(c: Color): Double;
 var
   __skparam__c: __sklib_color;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__c := __skadapter__to_sklib_color(c);
   __skreturn := __sklib__hue_of__color(__skparam__c);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function RandomColor(): Color;
 var
@@ -6094,17 +6094,17 @@ begin
   __skreturn := __sklib__red_of__color(__skparam__c);
   result := __skadapter__to_int(__skreturn);
 end;
-function RGBColor(red: Single; green: Single; blue: Single): Color;
+function RGBColor(red: Double; green: Double; blue: Double): Color;
 var
-  __skparam__red: Single;
-  __skparam__green: Single;
-  __skparam__blue: Single;
+  __skparam__red: Double;
+  __skparam__green: Double;
+  __skparam__blue: Double;
   __skreturn: __sklib_color;
 begin
-  __skparam__red := __skadapter__to_sklib_float(red);
-  __skparam__green := __skadapter__to_sklib_float(green);
-  __skparam__blue := __skadapter__to_sklib_float(blue);
-  __skreturn := __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
+  __skparam__red := __skadapter__to_sklib_double(red);
+  __skparam__green := __skadapter__to_sklib_double(green);
+  __skparam__blue := __skadapter__to_sklib_double(blue);
+  __skreturn := __sklib__rgb_color__double__double__double(__skparam__red, __skparam__green, __skparam__blue);
   result := __skadapter__to_color(__skreturn);
 end;
 function RGBColor(red: Integer; green: Integer; blue: Integer): Color;
@@ -6120,19 +6120,19 @@ begin
   __skreturn := __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
   result := __skadapter__to_color(__skreturn);
 end;
-function RGBAColor(red: Single; green: Single; blue: Single; alpha: Single): Color;
+function RGBAColor(red: Double; green: Double; blue: Double; alpha: Double): Color;
 var
-  __skparam__red: Single;
-  __skparam__green: Single;
-  __skparam__blue: Single;
-  __skparam__alpha: Single;
+  __skparam__red: Double;
+  __skparam__green: Double;
+  __skparam__blue: Double;
+  __skparam__alpha: Double;
   __skreturn: __sklib_color;
 begin
-  __skparam__red := __skadapter__to_sklib_float(red);
-  __skparam__green := __skadapter__to_sklib_float(green);
-  __skparam__blue := __skadapter__to_sklib_float(blue);
-  __skparam__alpha := __skadapter__to_sklib_float(alpha);
-  __skreturn := __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
+  __skparam__red := __skadapter__to_sklib_double(red);
+  __skparam__green := __skadapter__to_sklib_double(green);
+  __skparam__blue := __skadapter__to_sklib_double(blue);
+  __skparam__alpha := __skadapter__to_sklib_double(alpha);
+  __skreturn := __sklib__rgba_color__double__double__double__double(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
   result := __skadapter__to_color(__skreturn);
 end;
 function RGBAColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
@@ -6150,14 +6150,14 @@ begin
   __skreturn := __sklib__rgba_color__int__int__int__int(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
   result := __skadapter__to_color(__skreturn);
 end;
-function SaturationOf(c: Color): Single;
+function SaturationOf(c: Color): Double;
 var
   __skparam__c: __sklib_color;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__c := __skadapter__to_sklib_color(c);
   __skreturn := __sklib__saturation_of__color(__skparam__c);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function StringToColor(str: String): Color;
 var
