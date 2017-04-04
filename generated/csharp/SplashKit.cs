@@ -1420,7 +1420,7 @@ namespace SplashKitSDK
     private static extern int __sklib__blue_of__color(__sklib_color c);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__brightness_of__color", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__brightness_of__color(__sklib_color c);
+    private static extern double __sklib__brightness_of__color(__sklib_color c);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_alice_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_alice_blue();
@@ -1857,11 +1857,11 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__green_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__green_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color__float__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_color __sklib__hsb_color__float__float__float(float hue, float saturation, float brightness);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__hsb_color__double__double__double(double hue, double saturation, double brightness);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hue_of__color", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__hue_of__color(__sklib_color c);
+    private static extern double __sklib__hue_of__color(__sklib_color c);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_color", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__random_color();
@@ -1872,20 +1872,20 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__red_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__red_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__float__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_color __sklib__rgb_color__float__float__float(float red, float green, float blue);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__rgb_color__double__double__double(double red, double green, double blue);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__int__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgb_color__int__int__int(int red, int green, int blue);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__float__float__float__float", CharSet=CharSet.Ansi)]
-    private static extern __sklib_color __sklib__rgba_color__float__float__float__float(float red, float green, float blue, float alpha);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__rgba_color__double__double__double__double(double red, double green, double blue, double alpha);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__int__int__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgba_color__int__int__int__int(int red, int green, int blue, int alpha);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__saturation_of__color", CharSet=CharSet.Ansi)]
-    private static extern float __sklib__saturation_of__color(__sklib_color c);
+    private static extern double __sklib__saturation_of__color(__sklib_color c);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__string_to_color__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__string_to_color__string(__sklib_string str);
@@ -5841,13 +5841,13 @@ namespace SplashKitSDK
       __skreturn = __sklib__blue_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static float BrightnessOf(Color c)
+    public static double BrightnessOf(Color c)
     {
       __sklib_color __skparam__c;
-      float __skreturn;
+      double __skreturn;
       __skparam__c = __skadapter__to_sklib_color(c);
       __skreturn = __sklib__brightness_of__color(__skparam__c);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
     public static Color ColorAliceBlue()
     {
@@ -6723,25 +6723,25 @@ namespace SplashKitSDK
       __skreturn = __sklib__green_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color HSBColor(float hue, float saturation, float brightness)
+    public static Color HSBColor(double hue, double saturation, double brightness)
     {
-      float __skparam__hue;
-      float __skparam__saturation;
-      float __skparam__brightness;
+      double __skparam__hue;
+      double __skparam__saturation;
+      double __skparam__brightness;
       __sklib_color __skreturn;
-      __skparam__hue = __skadapter__to_sklib_float(hue);
-      __skparam__saturation = __skadapter__to_sklib_float(saturation);
-      __skparam__brightness = __skadapter__to_sklib_float(brightness);
-      __skreturn = __sklib__hsb_color__float__float__float(__skparam__hue, __skparam__saturation, __skparam__brightness);
+      __skparam__hue = __skadapter__to_sklib_double(hue);
+      __skparam__saturation = __skadapter__to_sklib_double(saturation);
+      __skparam__brightness = __skadapter__to_sklib_double(brightness);
+      __skreturn = __sklib__hsb_color__double__double__double(__skparam__hue, __skparam__saturation, __skparam__brightness);
       return __skadapter__to_color(__skreturn);
     }
-    public static float HueOf(Color c)
+    public static double HueOf(Color c)
     {
       __sklib_color __skparam__c;
-      float __skreturn;
+      double __skreturn;
       __skparam__c = __skadapter__to_sklib_color(c);
       __skreturn = __sklib__hue_of__color(__skparam__c);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
     public static Color RandomColor()
     {
@@ -6765,16 +6765,16 @@ namespace SplashKitSDK
       __skreturn = __sklib__red_of__color(__skparam__c);
       return __skadapter__to_int(__skreturn);
     }
-    public static Color RGBColor(float red, float green, float blue)
+    public static Color RGBColor(double red, double green, double blue)
     {
-      float __skparam__red;
-      float __skparam__green;
-      float __skparam__blue;
+      double __skparam__red;
+      double __skparam__green;
+      double __skparam__blue;
       __sklib_color __skreturn;
-      __skparam__red = __skadapter__to_sklib_float(red);
-      __skparam__green = __skadapter__to_sklib_float(green);
-      __skparam__blue = __skadapter__to_sklib_float(blue);
-      __skreturn = __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
+      __skparam__red = __skadapter__to_sklib_double(red);
+      __skparam__green = __skadapter__to_sklib_double(green);
+      __skparam__blue = __skadapter__to_sklib_double(blue);
+      __skreturn = __sklib__rgb_color__double__double__double(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
     public static Color RGBColor(int red, int green, int blue)
@@ -6789,18 +6789,18 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
       return __skadapter__to_color(__skreturn);
     }
-    public static Color RGBAColor(float red, float green, float blue, float alpha)
+    public static Color RGBAColor(double red, double green, double blue, double alpha)
     {
-      float __skparam__red;
-      float __skparam__green;
-      float __skparam__blue;
-      float __skparam__alpha;
+      double __skparam__red;
+      double __skparam__green;
+      double __skparam__blue;
+      double __skparam__alpha;
       __sklib_color __skreturn;
-      __skparam__red = __skadapter__to_sklib_float(red);
-      __skparam__green = __skadapter__to_sklib_float(green);
-      __skparam__blue = __skadapter__to_sklib_float(blue);
-      __skparam__alpha = __skadapter__to_sklib_float(alpha);
-      __skreturn = __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
+      __skparam__red = __skadapter__to_sklib_double(red);
+      __skparam__green = __skadapter__to_sklib_double(green);
+      __skparam__blue = __skadapter__to_sklib_double(blue);
+      __skparam__alpha = __skadapter__to_sklib_double(alpha);
+      __skreturn = __sklib__rgba_color__double__double__double__double(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
       return __skadapter__to_color(__skreturn);
     }
     public static Color RGBAColor(int red, int green, int blue, int alpha)
@@ -6817,13 +6817,13 @@ namespace SplashKitSDK
       __skreturn = __sklib__rgba_color__int__int__int__int(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
       return __skadapter__to_color(__skreturn);
     }
-    public static float SaturationOf(Color c)
+    public static double SaturationOf(Color c)
     {
       __sklib_color __skparam__c;
-      float __skreturn;
+      double __skreturn;
       __skparam__c = __skadapter__to_sklib_color(c);
       __skreturn = __sklib__saturation_of__color(__skparam__c);
-      return __skadapter__to_float(__skreturn);
+      return __skadapter__to_double(__skreturn);
     }
     public static Color StringToColor(string str)
     {
@@ -15211,7 +15211,7 @@ namespace SplashKitSDK
     public float B;
     public float A;
 
-    public static Color HSBColor(float hue, float saturation, float brightness)
+    public static Color HSBColor(double hue, double saturation, double brightness)
     {
         return SplashKit.HSBColor(hue, saturation, brightness);
     }
@@ -15229,7 +15229,7 @@ namespace SplashKitSDK
     }
 
 
-    public static Color RGBColor(float red, float green, float blue)
+    public static Color RGBColor(double red, double green, double blue)
     {
         return SplashKit.RGBColor(red, green, blue);
     }
@@ -15241,7 +15241,7 @@ namespace SplashKitSDK
     }
 
 
-    public static Color RGBAColor(float red, float green, float blue, float alpha)
+    public static Color RGBAColor(double red, double green, double blue, double alpha)
     {
         return SplashKit.RGBAColor(red, green, blue, alpha);
     }

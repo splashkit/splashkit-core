@@ -39,7 +39,7 @@ namespace splashkit_lib
     /// _gets a color given its color components. Each of the components has
     /// a value between 0 and 1
     ///
-    color rgba_color(float red, float green, float blue, float alpha)
+    color rgba_color(double red, double green, double blue, double alpha)
     {
         color result;
         result.r = fabs(red) > 1.0f ? 1.0f: fabs(red);
@@ -61,7 +61,7 @@ namespace splashkit_lib
     /// _gets a color given its _r_g_b components. Each of the components has
     /// a value between 0 and 1.
     ///
-    color rgb_color(float red, float green, float blue)
+    color rgb_color(double red, double green, double blue)
     {
         return rgba_color(red, green, blue, 1.0f);
     }
@@ -71,10 +71,10 @@ namespace splashkit_lib
     /// @param hue, saturation, brightness: _values between 0 and 1
     /// @returns _the matching color
     ///
-    color hsb_color(float hue, float saturation, float brightness)
+    color hsb_color(double hue, double saturation, double brightness)
     {
-        float domain_offset;
-        float red, green, blue;
+        double domain_offset;
+        double red, green, blue;
 
         if (brightness == 0)
             return COLOR_BLACK;
@@ -128,10 +128,10 @@ namespace splashkit_lib
         return rgb_color(red, green, blue);
     }
 
-    void hsb_value_of(color c, float &h, float &s, float &b)
+    void hsb_value_of(color c, double &h, double &s, double &b)
     {
-        float rf, gf, bf;
-        float min_rgb, max_rgb, delta;
+        double rf, gf, bf;
+        double min_rgb, max_rgb, delta;
 
         h = 0.0 ;
 
@@ -231,24 +231,24 @@ namespace splashkit_lib
     }
 
 
-    float hue_of(color c)
+    double hue_of(color c)
     {
-        float h, s, b;
+        double h, s, b;
         hsb_value_of(c, h, s, b);
         return h;
     }
 
 
-    float saturation_of(color c)
+    double saturation_of(color c)
     {
-        float h, s, b;
+        double h, s, b;
         hsb_value_of(c, h, s, b);
         return s;
     }
 
-    float brightness_of(color c)
+    double brightness_of(color c)
     {
-        float h, s, b;
+        double h, s, b;
         hsb_value_of(c, h, s, b);
         return b;
     }
