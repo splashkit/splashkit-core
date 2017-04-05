@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 APP_PATH=`echo $0 | awk '{split($0,patharr,"/"); idx=1; while(patharr[idx+1] != "") { if (patharr[idx] != "/") {printf("%s/", patharr[idx]); idx++ }} }'`
 APP_PATH=`cd "$APP_PATH"; pwd`
@@ -28,7 +28,12 @@ git pull
 cd ../splashkit-windows
 git checkout develop
 git pull
+cd ../splashkit-linux
+git checkout develop
+git pull
+
 cd "$APP_PATH"
+
 
 read -p "Regenerate SplashKit? [y,n] " doit
 case $doit in

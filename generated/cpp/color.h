@@ -159,7 +159,7 @@ using std::vector;
 #define COLOR_YELLOW_GREEN color_yellow_green()
 int alpha_of(color c);
 int blue_of(color c);
-float brightness_of(color c);
+double brightness_of(color c);
 color color_alice_blue();
 color color_antique_white();
 color color_aqua();
@@ -305,16 +305,16 @@ color color_white_smoke();
 color color_yellow();
 color color_yellow_green();
 int green_of(color c);
-color hsb_color(float hue, float saturation, float brightness);
-float hue_of(color c);
+color hsb_color(double hue, double saturation, double brightness);
+double hue_of(color c);
 color random_color();
 color random_rgb_color(int alpha);
 int red_of(color c);
-color rgb_color(float red, float green, float blue);
+color rgb_color(double red, double green, double blue);
 color rgb_color(int red, int green, int blue);
-color rgba_color(float red, float green, float blue, float alpha);
+color rgba_color(double red, double green, double blue, double alpha);
 color rgba_color(int red, int green, int blue, int alpha);
-float saturation_of(color c);
+double saturation_of(color c);
 color string_to_color(string str);
 
 #endif /* __color_h */

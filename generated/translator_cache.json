@@ -7821,7 +7821,7 @@
     "group": "color",
     "brief": null,
     "description": null,
-    "parsed_at": 1481609857,
+    "parsed_at": 1491347254,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -7897,7 +7897,7 @@
         }
       },
       {
-        "signature": "float brightness_of(color c);",
+        "signature": "double brightness_of(color c);",
         "name": "brightness_of",
         "method_name": null,
         "unique_global_name": "brightness_of",
@@ -7906,7 +7906,7 @@
         "description": "Returns the brightness of the supplied color.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The brightness component of the color",
           "is_pointer": false,
           "is_reference": false,
@@ -11580,11 +11580,11 @@
         }
       },
       {
-        "signature": "color hsb_color(float hue,float saturation,float brightness);",
+        "signature": "color hsb_color(double hue,double saturation,double brightness);",
         "name": "hsb_color",
-        "method_name": null,
+        "method_name": "hsb_color",
         "unique_global_name": "hsb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".hsb_color",
         "suffix_name": null,
         "description": "Returs a color from a combination of hue, saturation, and brightness.",
         "brief": null,
@@ -11598,7 +11598,7 @@
         },
         "parameters": {
           "hue": {
-            "type": "float",
+            "type": "double",
             "description": "The hue of the color",
             "is_pointer": false,
             "is_const": false,
@@ -11611,7 +11611,7 @@
             "type_parameter": null
           },
           "saturation": {
-            "type": "float",
+            "type": "double",
             "description": "The saturation of that hue",
             "is_pointer": false,
             "is_const": false,
@@ -11624,7 +11624,7 @@
             "type_parameter": null
           },
           "brightness": {
-            "type": "float",
+            "type": "double",
             "description": "The brightness of the color",
             "is_pointer": false,
             "is_const": false,
@@ -11638,11 +11638,13 @@
           }
         },
         "attributes": {
+          "method": "hsb_color",
+          "static": "color",
           "group": "color"
         }
       },
       {
-        "signature": "float hue_of(color c);",
+        "signature": "double hue_of(color c);",
         "name": "hue_of",
         "method_name": null,
         "unique_global_name": "hue_of",
@@ -11651,7 +11653,7 @@
         "description": "Returns the hue of the supplied color.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The hue component of the color",
           "is_pointer": false,
           "is_reference": false,
@@ -11777,11 +11779,11 @@
         }
       },
       {
-        "signature": "color rgb_color(float red,float green,float blue);",
+        "signature": "color rgb_color(double red,double green,double blue);",
         "name": "rgb_color",
-        "method_name": null,
-        "unique_global_name": "rgb_color_from_float",
-        "unique_method_name": null,
+        "method_name": "rgb_color",
+        "unique_global_name": "rgb_color_from_double",
+        "unique_method_name": ".rgb_color_from_double",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 1.",
         "brief": null,
@@ -11795,7 +11797,7 @@
         },
         "parameters": {
           "red": {
-            "type": "float",
+            "type": "double",
             "description": "The red component",
             "is_pointer": false,
             "is_const": false,
@@ -11808,7 +11810,7 @@
             "type_parameter": null
           },
           "green": {
-            "type": "float",
+            "type": "double",
             "description": "The green component",
             "is_pointer": false,
             "is_const": false,
@@ -11821,7 +11823,7 @@
             "type_parameter": null
           },
           "blue": {
-            "type": "float",
+            "type": "double",
             "description": "The blue component",
             "is_pointer": false,
             "is_const": false,
@@ -11835,16 +11837,18 @@
           }
         },
         "attributes": {
-          "suffix": "from_float",
+          "method": "rgb_color",
+          "static": "color",
+          "suffix": "from_double",
           "group": "color"
         }
       },
       {
         "signature": "color rgb_color(int red,int green,int blue);",
         "name": "rgb_color",
-        "method_name": null,
+        "method_name": "rgb_color",
         "unique_global_name": "rgb_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgb_color",
         "suffix_name": null,
         "description": "Gets a color given its RGB components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -11898,15 +11902,17 @@
           }
         },
         "attributes": {
+          "method": "rgb_color",
+          "static": "color",
           "group": "color"
         }
       },
       {
-        "signature": "color rgba_color(float red,float green,float blue,float alpha);",
+        "signature": "color rgba_color(double red,double green,double blue,double alpha);",
         "name": "rgba_color",
-        "method_name": null,
-        "unique_global_name": "rgba_color_from_float",
-        "unique_method_name": null,
+        "method_name": "rgba_color",
+        "unique_global_name": "rgba_color_from_double",
+        "unique_method_name": ".rgba_color_from_double",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 1.0.",
         "brief": null,
@@ -11920,7 +11926,7 @@
         },
         "parameters": {
           "red": {
-            "type": "float",
+            "type": "double",
             "description": "The red component (between 0 and 1.0)",
             "is_pointer": false,
             "is_const": false,
@@ -11933,7 +11939,7 @@
             "type_parameter": null
           },
           "green": {
-            "type": "float",
+            "type": "double",
             "description": "The green component (between 0 and 1.0)",
             "is_pointer": false,
             "is_const": false,
@@ -11946,7 +11952,7 @@
             "type_parameter": null
           },
           "blue": {
-            "type": "float",
+            "type": "double",
             "description": "The blue component (between 0 and 1.0)",
             "is_pointer": false,
             "is_const": false,
@@ -11959,7 +11965,7 @@
             "type_parameter": null
           },
           "alpha": {
-            "type": "float",
+            "type": "double",
             "description": "The alpha (opacity) component (between 0 and 1.0)",
             "is_pointer": false,
             "is_const": false,
@@ -11973,16 +11979,18 @@
           }
         },
         "attributes": {
-          "suffix": "from_float",
+          "method": "rgba_color",
+          "static": "color",
+          "suffix": "from_double",
           "group": "color"
         }
       },
       {
         "signature": "color rgba_color(int red,int green,int blue,int alpha);",
         "name": "rgba_color",
-        "method_name": null,
+        "method_name": "rgba_color",
         "unique_global_name": "rgba_color",
-        "unique_method_name": null,
+        "unique_method_name": ".rgba_color",
         "suffix_name": null,
         "description": "Gets a color given its color components. Each of the components has\na value between 0 and 255.",
         "brief": null,
@@ -12049,11 +12057,13 @@
           }
         },
         "attributes": {
+          "method": "rgba_color",
+          "static": "color",
           "group": "color"
         }
       },
       {
-        "signature": "float saturation_of(color c);",
+        "signature": "double saturation_of(color c);",
         "name": "saturation_of",
         "method_name": null,
         "unique_global_name": "saturation_of",
@@ -12062,7 +12072,7 @@
         "description": "Returns the saturation of the supplied color.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The saturation component of the color",
           "is_pointer": false,
           "is_reference": false,

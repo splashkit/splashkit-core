@@ -106,7 +106,10 @@ elseif(MSYS)
     )
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux")
+    find_package(PNG REQUIRED)
+    include_directories(${PNG_INCLUDE_DIR})    
+    SET(LINUX "true")
     set(LIB_FLAGS "-lSDL2 \
                    -lSDL2_mixer \
                    -lSDL2_ttf \
@@ -118,7 +121,6 @@ else()
                    -lFLAC \
                    -lvorbis \
                    -lz \
-                   -lpng12 \
                    -lvorbisfile \
                    -lmikmod \
                    -logg \
@@ -198,11 +200,38 @@ add_definitions(-DELPP_THREAD_SAFE)
 add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
 
+if (LINUX)
+    target_link_libraries(SplashKit ${PNG_LIBRARY})
+endif()
+
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
 install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
 install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
+install(FILES ${INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
 
-if ( ${MSYS} )
+if ( MSYS )
   install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
+endif()
+
+if ( ${LINUX} )
+  file(GLOB LINUX_INCLUDE_FILES
+      "${SK_EXT}/civetweb/include/*.h"
+      "${SK_EXT}/hash-library/*.h"
+      "${SK_SRC}/backend/*.h"
+      "${SK_EXT}/easyloggingpp/*.h"
+      "${SK_EXT}/json/*.hpp"
+      "${SK_EXT}/sqlite/*.h"
+      "${SK_EXT}/catch/*.h"
+  )
+  
+  file(GLOB INL_FILES
+      "${SK_EXT}/civetweb/src/*.inl"
+  )
+
+  install(FILES ${LINUX_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/include)
+  install(FILES ${INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/include)
+  install(FILES ${OS_SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
+  install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
+  install(FILES ${INL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
 endif()

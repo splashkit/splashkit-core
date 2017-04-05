@@ -852,10 +852,10 @@ int blue_of(color c) {
     int __skreturn = __sklib__blue_of__color(__skparam__c);
     return __skadapter__to_int(__skreturn);
 }
-float brightness_of(color c) {
+double brightness_of(color c) {
     __sklib_color __skparam__c = __skadapter__to_sklib_color(c);
-    float __skreturn = __sklib__brightness_of__color(__skparam__c);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__brightness_of__color(__skparam__c);
+    return __skadapter__to_double(__skreturn);
 }
 color color_alice_blue() {
     __sklib_color __skreturn = __sklib__color_alice_blue();
@@ -1439,17 +1439,17 @@ int green_of(color c) {
     int __skreturn = __sklib__green_of__color(__skparam__c);
     return __skadapter__to_int(__skreturn);
 }
-color hsb_color(float hue, float saturation, float brightness) {
-    float __skparam__hue = __skadapter__to_float(hue);
-    float __skparam__saturation = __skadapter__to_float(saturation);
-    float __skparam__brightness = __skadapter__to_float(brightness);
-    __sklib_color __skreturn = __sklib__hsb_color__float__float__float(__skparam__hue, __skparam__saturation, __skparam__brightness);
+color hsb_color(double hue, double saturation, double brightness) {
+    double __skparam__hue = __skadapter__to_double(hue);
+    double __skparam__saturation = __skadapter__to_double(saturation);
+    double __skparam__brightness = __skadapter__to_double(brightness);
+    __sklib_color __skreturn = __sklib__hsb_color__double__double__double(__skparam__hue, __skparam__saturation, __skparam__brightness);
     return __skadapter__to_color(__skreturn);
 }
-float hue_of(color c) {
+double hue_of(color c) {
     __sklib_color __skparam__c = __skadapter__to_sklib_color(c);
-    float __skreturn = __sklib__hue_of__color(__skparam__c);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__hue_of__color(__skparam__c);
+    return __skadapter__to_double(__skreturn);
 }
 color random_color() {
     __sklib_color __skreturn = __sklib__random_color();
@@ -1465,11 +1465,11 @@ int red_of(color c) {
     int __skreturn = __sklib__red_of__color(__skparam__c);
     return __skadapter__to_int(__skreturn);
 }
-color rgb_color(float red, float green, float blue) {
-    float __skparam__red = __skadapter__to_float(red);
-    float __skparam__green = __skadapter__to_float(green);
-    float __skparam__blue = __skadapter__to_float(blue);
-    __sklib_color __skreturn = __sklib__rgb_color__float__float__float(__skparam__red, __skparam__green, __skparam__blue);
+color rgb_color(double red, double green, double blue) {
+    double __skparam__red = __skadapter__to_double(red);
+    double __skparam__green = __skadapter__to_double(green);
+    double __skparam__blue = __skadapter__to_double(blue);
+    __sklib_color __skreturn = __sklib__rgb_color__double__double__double(__skparam__red, __skparam__green, __skparam__blue);
     return __skadapter__to_color(__skreturn);
 }
 color rgb_color(int red, int green, int blue) {
@@ -1479,12 +1479,12 @@ color rgb_color(int red, int green, int blue) {
     __sklib_color __skreturn = __sklib__rgb_color__int__int__int(__skparam__red, __skparam__green, __skparam__blue);
     return __skadapter__to_color(__skreturn);
 }
-color rgba_color(float red, float green, float blue, float alpha) {
-    float __skparam__red = __skadapter__to_float(red);
-    float __skparam__green = __skadapter__to_float(green);
-    float __skparam__blue = __skadapter__to_float(blue);
-    float __skparam__alpha = __skadapter__to_float(alpha);
-    __sklib_color __skreturn = __sklib__rgba_color__float__float__float__float(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
+color rgba_color(double red, double green, double blue, double alpha) {
+    double __skparam__red = __skadapter__to_double(red);
+    double __skparam__green = __skadapter__to_double(green);
+    double __skparam__blue = __skadapter__to_double(blue);
+    double __skparam__alpha = __skadapter__to_double(alpha);
+    __sklib_color __skreturn = __sklib__rgba_color__double__double__double__double(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
     return __skadapter__to_color(__skreturn);
 }
 color rgba_color(int red, int green, int blue, int alpha) {
@@ -1495,10 +1495,10 @@ color rgba_color(int red, int green, int blue, int alpha) {
     __sklib_color __skreturn = __sklib__rgba_color__int__int__int__int(__skparam__red, __skparam__green, __skparam__blue, __skparam__alpha);
     return __skadapter__to_color(__skreturn);
 }
-float saturation_of(color c) {
+double saturation_of(color c) {
     __sklib_color __skparam__c = __skadapter__to_sklib_color(c);
-    float __skreturn = __sklib__saturation_of__color(__skparam__c);
-    return __skadapter__to_float(__skreturn);
+    double __skreturn = __sklib__saturation_of__color(__skparam__c);
+    return __skadapter__to_double(__skreturn);
 }
 color string_to_color(string str) {
     __sklib_string __skparam__str = __skadapter__to_sklib_string(str);
