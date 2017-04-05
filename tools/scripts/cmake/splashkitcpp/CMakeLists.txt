@@ -59,16 +59,15 @@ if (APPLE)
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
     add_definitions(-DWINDOWS)
     set(LIB_FLAGS "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
                    -L/${MINGW_PATH_PART}/lib \
                    -L/usr/lib \
-                 -llibSplashKit${WIN_NAME_SUFFIX}")
+                 -lSplashKit")
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-ubuntu")
+    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux")
     set(LIB_FLAGS "-llibSplashKit")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
@@ -121,6 +120,7 @@ install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib
 install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
 install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
+install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_PATH}/src)
 
 set(SK_DEPLOY_PATH "${SK_OUT}/splashkit-windows/commands/g++")
 get_filename_component(SK_DEPLOY_PATH ${SK_DEPLOY_PATH} ABSOLUTE)
@@ -129,3 +129,4 @@ install(TARGETS SplashKitCPP${WIN_NAME_SUFFIX} DESTINATION ${SK_DEPLOY_PATH}/lib
 install(TARGETS SplashKitStarter DESTINATION ${SK_DEPLOY_PATH}/lib)
 install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_PATH}/include)
 install(FILES ${STARTER_HEADER_FILES} DESTINATION ${SK_DEPLOY_PATH}/include)
+install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_PATH}/src)

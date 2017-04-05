@@ -97,6 +97,6 @@ cd "${APP_PATH}"
 if [[ `uname` == MINGW* ]]; then
   rm ${SK_OUT}/splashkit-windows/lib/win32/*.a
   rm ${SK_OUT}/splashkit-windows/lib/win64/*.a
-  mv ${SK_OUT}/splashkit-windows/lib/win64/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win64/SplashKit.dll
-  mv ${SK_OUT}/splashkit-windows/lib/win32/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win32/SplashKit.dll
+  cp ${SK_OUT}/splashkit-windows/lib/win64/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win64/SplashKit.dll
+  cp ${SK_OUT}/splashkit-windows/lib/win32/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win32/SplashKit.dll
 fi
