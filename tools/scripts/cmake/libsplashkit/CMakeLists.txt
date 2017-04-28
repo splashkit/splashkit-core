@@ -81,6 +81,7 @@ elseif(MSYS)
     set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
 
     add_definitions(-DWINDOWS)
+    add_definitions(-D_WIN32)
     set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
                     -L/${MINGW_PATH_PART}/lib \
                     -L/usr/lib \

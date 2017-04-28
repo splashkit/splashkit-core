@@ -10,7 +10,6 @@ set(SK_BIN "../../bin")
 
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
-  add_definitions(-DWINDOWS)
 endif()
 
 #### SETUP ####
@@ -53,6 +52,9 @@ elseif(MSYS)
                    -L/mingw64/lib \
                    -L/usr/lib \
                    -lSDL2main")
+
+    add_definitions(-DWINDOWS)
+    add_definitions(-D_WIN32)
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
