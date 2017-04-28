@@ -104,6 +104,7 @@ elseif(MSYS)
     file(GLOB SK_LIB_DLL_FILES
         "${SK_LIB}/${WIN_PATH_SUFFIX}/*.dll"
     )
+
 # LINUX PROJECT FLAGS
 else()
     SET(LINUX "true")
@@ -144,6 +145,9 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/backend/*.cpp"
     "${SK_GENERATED}/clib/*.cpp"
     "${SK_EXT}/hash-library/*.cpp"
+    "${SK_EXT}/serial/src/*.cc"
+    "${SK_EXT}/serial/src/impl/*.cc"
+    "${SK_EXT}/serial/src/impl/list_ports/*.cc"
 )
 
 # SKSDK FILE INCLUDES
@@ -165,6 +169,7 @@ include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
+include_directories("${SK_EXT}/serial/include")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)

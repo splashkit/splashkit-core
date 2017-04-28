@@ -302,5 +302,13 @@ namespace splashkit_lib
         HTTP_STATUS_NOT_IMPLEMENTED = 501,
         HTTP_STATUS_SERVICE_UNAVAILABLE = 503
     };
+    
+    /**
+     * A serial device is a means of opening and maintaining a connection to some other device over a serial port communication protocol.
+     * You can use this device to send and receive information from the device.
+     *
+     * @attribute class serial_device
+     */
+    typedef struct _serial_device *serial_device;
 }
 #endif /* types_hpp */

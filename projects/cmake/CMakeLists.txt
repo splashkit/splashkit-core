@@ -87,6 +87,9 @@ file(GLOB SOURCE_FILES
     "${SK_EXT}/civetweb/src/civetweb.c"
     "${SK_EXT}/sqlite/sqlite3.c"
     "${SK_EXT}/hash-library/*.cpp"
+    "${SK_EXT}/serial/src/*.cc"
+    "${SK_EXT}/serial/src/impl/*.cc"
+    "${SK_EXT}/serial/src/impl/list_ports/*.cc"
 )
 
 # TEST FILE INCLUDES
@@ -114,6 +117,7 @@ include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
+include_directories("${SK_EXT}/serial/include")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
