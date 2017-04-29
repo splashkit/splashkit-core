@@ -8,7 +8,16 @@
 
 #include "serial_comms.h"
 
+#ifdef WINDOWS
+#define _WIN32
+#endif
+
 #include "serial/serial.h"
+
+#ifdef WINDOWS
+#undefine _WIN32
+#endif
+
 
 #include "backend_types.h"
 
