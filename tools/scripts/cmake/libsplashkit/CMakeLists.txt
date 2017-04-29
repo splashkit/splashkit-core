@@ -97,6 +97,7 @@ elseif(MSYS)
                     -llibsqlite \
                     -lws2_32 \
                     -llibncursesw \
+                    -lsetupapi \
                     -static-libstdc++ -static-libgcc \
                     -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
                     )
