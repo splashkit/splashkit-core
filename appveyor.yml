@@ -22,7 +22,7 @@ install:
 build_script:
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git clone --depth 10 https://github.com/splashkit/splashkit --recursive"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git submodule update --init --recursive"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake ."
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake -G \"Unix Makefiles\" ."
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/bin; ./skunit_tests"
 
