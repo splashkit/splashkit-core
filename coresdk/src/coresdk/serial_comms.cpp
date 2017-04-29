@@ -10,12 +10,14 @@
 
 #ifdef WINDOWS
 #define _WIN32
+#include <string.h>
+#define __int64 int64_t
 #endif
 
 #include "serial/serial.h"
 
 #ifdef WINDOWS
-#undefine _WIN32
+#undef _WIN32
 #endif
 
 
