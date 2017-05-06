@@ -16,7 +16,7 @@ install:
     - C:\msys64\usr\bin\bash -lc "pacman --sync --noconfirm pacman-mirrors"
     - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm"
     - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm" # Hackity hack hacks
-    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S base-devel mingw-w64-{x86_64,i686}-toolchain"
+    # - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S base-devel mingw-w64-{x86_64,i686}-toolchain"
     - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S make wget tar patch dos2unix diffutils ca-certificates mingw-w64-{x86_64,i686}-ca-certificates mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-gcc-fortran mingw-w64-{x86_64,i686}-libpng mingw-w64-{x86_64,i686}-cmake svn mercurial"
 
 build_script:
