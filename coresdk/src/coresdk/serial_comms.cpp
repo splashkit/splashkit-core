@@ -8,18 +8,7 @@
 
 #include "serial_comms.h"
 
-#ifdef WINDOWS
-#define _WIN32
-#include <string.h>
-#define __int64 int64_t
-#endif
-
 #include "serial/serial.h"
-
-#ifdef WINDOWS
-#undef _WIN32
-#endif
-
 
 #include "backend_types.h"
 

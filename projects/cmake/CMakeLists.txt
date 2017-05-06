@@ -54,6 +54,7 @@ elseif(MSYS)
                    -lSDL2main")
 
     add_definitions(-DWINDOWS)
+    add_definitions(-D_WIN32)
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -166,6 +167,7 @@ if (MSYS)
                                            stdc++
                                            ws2_32
                                            libncursesw
+                                           setupapi 
                                            )
 elseif(APPLE)
     # To make a universal single static library from dependent
@@ -206,7 +208,7 @@ add_custom_command(TARGET sktest
 if (MSYS)
     add_custom_command(TARGET sktest
         PRE_BUILD COMMAND
-        ${CMAKE_COMMAND} -E copy "${SK_LIB}/win64/*.dll" $<TARGET_FILE_DIR:sktest>)
+        ${CMAKE_COMMAND} -E copy_directory "${SK_LIB}/win64" $<TARGET_FILE_DIR:sktest>)
 endif()
 
 #### END sktest EXECUTABLE ####
