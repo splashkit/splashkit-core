@@ -54,6 +54,7 @@ elseif(MSYS)
                    -lSDL2main")
 
     add_definitions(-DWINDOWS)
+    add_definitions(-D_WIN32)
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
