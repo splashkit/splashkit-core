@@ -1,14 +1,15 @@
+image:
+    - Visual Studio 2015
 
 environment:
     matrix:
-        - HOST_ARCH_ARG: --host=x86_64-w64-mingw32
-          MSYS_BITS: 64
+        - MSYS_BITS: 64
           ADD_PATH: /mingw64/bin
           platform: x64
-        - HOST_ARCH_ARG: --host=i686-w64-mingw32
-          MSYS_BITS: 32
-          ADD_PATH: /mingw64/bin
-          platform: x32
+        # - HOST_ARCH_ARG: --host=i686-w64-mingw32
+        #   MSYS_BITS: 32
+        #   ADD_PATH: /mingw64/bin
+        #   platform: x32
 
 install:
     # - C:\"Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
