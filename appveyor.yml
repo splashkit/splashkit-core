@@ -23,13 +23,13 @@ install:
 build_script:
     - set MSYSTEM=MINGW64
     - echo "TESTING Win64"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake .  -G "Unix Makefiles""
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake .  -G \"Unix Makefiles\""
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/bin; ./skunit_tests"
     - set MSYSTEM=MINGW32
     - echo "TESTING Win32"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; rm -rf CMakeFiles Makefile CMakeCache.txt cmake_install.cmake"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake . -G "Unix Makefiles""
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake . -G \"Unix Makefiles\""
     
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/bin; ./skunit_tests"
