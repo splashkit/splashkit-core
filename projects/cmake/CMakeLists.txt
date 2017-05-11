@@ -8,9 +8,27 @@ set(SK_LIB "../../coresdk/lib")
 set(SK_OUT "../../out")
 set(SK_BIN "../../bin")
 
+# Detect Windows and flag MSYS
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
+
+  string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
+  string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
+
+  if (${MINGW32})
+    message("Using mingw32")
+    set(WIN_PATH_SUFFIX "win32")
+    set(MINGW_PATH_PART "mingw32")
+  elseif (${MINGW64})
+    message("Using mingw64")
+    set(WIN_PATH_SUFFIX "win64")
+    set(MINGW_PATH_PART "mingw64")
+  else ( )
+    message(SEND_ERROR "Failed to detect windows architecture")
+    return ()
+  endif()
 endif()
+
 
 #### SETUP ####
 if (APPLE)
@@ -48,13 +66,28 @@ if (APPLE)
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(LIB_FLAGS "-L${SK_LIB}/win64 \
-                   -L/mingw64/lib \
-                   -L/usr/lib \
-                   -lSDL2main")
-
+    set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
+                    -L/${MINGW_PATH_PART}/lib \
+                    -L/usr/lib \
+                    -lSDL2main \
+                    -lSDL2_mixer \
+                    -lSDL2_image \
+                    -lSDL2_net \
+                    -llibcivetweb \
+                    -lSDL2 \
+                    -lSDL2_ttf \
+                    -llibcurl \
+                    -llibSDL2_gfx-1-0-0 \
+                    -llibpng16-16 \
+                    -llibsqlite \
+                    -lws2_32 \
+                    -llibncursesw \
+                    -lsetupapi \
+                    -static-libstdc++ -static-libgcc \
+                    -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
+                    )
+    
     add_definitions(-DWINDOWS)
-    add_definitions(-D_WIN32)
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -136,8 +169,8 @@ if (APPLE)
 endif()
 # WINDOWS ONLY DIRECTORY INCLUDES
 if (MSYS)
-    include_directories(/mingw64/include)
-    include_directories(/mingw64/include/libpng16)
+    include_directories(/${MINGW_PATH_PART}/include)
+    include_directories(/${MINGW_PATH_PART}/include/libpng16)
     include_directories("${SK_LIB}/win_inc")
     include_directories("${SK_EXT}/sqlite")
 endif()
@@ -151,25 +184,7 @@ add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
-if (MSYS)
-    link_directories("${SK_LIB}/win64")
-    target_link_libraries(SplashKitBackend SDL2_mixer
-                                           SDL2_image
-                                           SDL2_net
-                                           libcivetweb
-                                           SDL2
-                                           SDL2_ttf
-                                           libcurl
-                                           libSDL2_gfx-1-0-0
-                                           libpng16-16
-                                           libsqlite
-                                           pthread
-                                           stdc++
-                                           ws2_32
-                                           libncursesw
-                                           setupapi 
-                                           )
-elseif(APPLE)
+if(APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
     file(GLOB APPLE_STATIC_LIBS
