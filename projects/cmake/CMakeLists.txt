@@ -223,7 +223,7 @@ add_custom_command(TARGET sktest
 if (MSYS)
     add_custom_command(TARGET sktest
         PRE_BUILD COMMAND
-        ${CMAKE_COMMAND} -E copy_directory "${SK_LIB}/win64" $<TARGET_FILE_DIR:sktest>)
+        ${CMAKE_COMMAND} -E copy_directory "${SK_LIB}/${WIN_PATH_SUFFIX}" $<TARGET_FILE_DIR:sktest>)
 endif()
 
 #### END sktest EXECUTABLE ####
