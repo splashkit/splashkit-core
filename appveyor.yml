@@ -12,19 +12,25 @@ environment:
         #   platform: x32
 
 install:
-    # - C:\"Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
-    - if defined MSYS_BITS set PATH=C:\msys64\mingw%MSYS_BITS%\bin;C:\msys64\usr\bin
+    - set PATH=
     - C:\msys64\usr\bin\bash -lc "pacman --sync --noconfirm pacman-mirrors"
     - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm"
     - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm" # Hackity hack hacks
-    # - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S base-devel mingw-w64-{x86_64,i686}-toolchain"
-    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-{x86_64,i686}-ca-certificates mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-gcc-fortran mingw-w64-{x86_64,i686}-libpng mingw-w64-{x86_64,i686}-cmake svn mercurial"
+    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S cmake mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-libpng mingw-w64-{x86_64,i686}-make"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git submodule update --init --recursive"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; env"
 
 build_script:
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; env"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git clone --depth 10 https://github.com/splashkit/splashkit --recursive"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; git submodule update --init --recursive"
-    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake -G \"Unix Makefiles\" ."
+    - set MSYSTEM=MINGW64
+    - echo "TESTING Win64"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake .  -G "Unix Makefiles""
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/bin; ./skunit_tests"
+    - set MSYSTEM=MINGW32
+    - echo "TESTING Win32"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; rm -rf CMakeFiles Makefile CMakeCache.txt cmake_install.cmake"
+    - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; cmake . -G "Unix Makefiles""
+    
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/projects/cmake; make -j 2"
     - C:\msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER/bin; ./skunit_tests"
 
