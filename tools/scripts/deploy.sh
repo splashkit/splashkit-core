@@ -96,6 +96,13 @@ echo
 cd "${SK_CMAKE_CSHARP}"
 do_make
 
+echo
+echo "Building -- Python adapter"
+echo
+cd "${SK_CMAKE_PYTHON}"
+do_make
+
+
 
 cd "${APP_PATH}"
 
