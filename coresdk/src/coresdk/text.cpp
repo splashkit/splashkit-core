@@ -28,6 +28,7 @@ namespace splashkit_lib
 
     bool has_font(string name)
     {
+        if ( _fonts.count(name) <= 0 ) return false;
         return has_font(_fonts.find(name)->second);
     }
 
