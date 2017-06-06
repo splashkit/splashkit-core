@@ -341,6 +341,13 @@ procedure UpdateAnimation(anim: Animation; pct: Single);
 function AudioReady(): Boolean;
 procedure CloseAudio();
 procedure OpenAudio();
+function ConvertToDouble(const text: String): Double;
+function ConvertToInteger(const text: String): Integer;
+function IsInteger(const text: String): Boolean;
+function IsNumber(const text: String): Boolean;
+function ToLowercase(const text: String): String;
+function ToUppercase(const text: String): String;
+function Trim(const text: String): String;
 procedure FreeResourceBundle(name: String);
 function HasResourceBundle(const name: String): Boolean;
 procedure LoadResourceBundle(const name: String; const filename: String);
@@ -2409,6 +2416,13 @@ procedure __sklib__update_animation__animation__float(anim: __sklib_ptr; pct: Si
 function __sklib__audio_ready(): LongInt; cdecl; external;
 procedure __sklib__close_audio(); cdecl; external;
 procedure __sklib__open_audio(); cdecl; external;
+function __sklib__convert_to_double__string_ref(const text: __sklib_string): Double; cdecl; external;
+function __sklib__convert_to_integer__string_ref(const text: __sklib_string): Integer; cdecl; external;
+function __sklib__is_integer__string_ref(const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__is_number__string_ref(const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__to_uppercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__trim__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 procedure __sklib__free_resource_bundle__string(name: __sklib_string); cdecl; external;
 function __sklib__has_resource_bundle__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 procedure __sklib__load_resource_bundle__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string); cdecl; external;
@@ -3861,6 +3875,69 @@ end;
 procedure OpenAudio();
 begin
   __sklib__open_audio();
+end;
+function ConvertToDouble(const text: String): Double;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: Double;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__convert_to_double__string_ref(__skparam__text);
+  result := __skadapter__to_double(__skreturn);
+end;
+function ConvertToInteger(const text: String): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__convert_to_integer__string_ref(__skparam__text);
+  result := __skadapter__to_int(__skreturn);
+end;
+function IsInteger(const text: String): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__is_integer__string_ref(__skparam__text);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function IsNumber(const text: String): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__is_number__string_ref(__skparam__text);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ToLowercase(const text: String): String;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__to_lowercase__string_ref(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function ToUppercase(const text: String): String;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__to_uppercase__string_ref(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
+end;
+function Trim(const text: String): String;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__trim__string_ref(__skparam__text);
+  result := __skadapter__to_string(__skreturn);
 end;
 procedure FreeResourceBundle(name: String);
 var

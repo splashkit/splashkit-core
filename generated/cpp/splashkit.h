@@ -5,6 +5,7 @@
 
 #include "animations.h"
 #include "audio.h"
+#include "basics.h"
 #include "bundles.h"
 #include "camera.h"
 #include "circle_drawing.h"

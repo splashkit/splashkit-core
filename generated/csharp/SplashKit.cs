@@ -1113,6 +1113,27 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_audio", CharSet=CharSet.Ansi)]
     private static extern void __sklib__open_audio();
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_double__string_ref", CharSet=CharSet.Ansi)]
+    private static extern double __sklib__convert_to_double__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_integer__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__convert_to_integer__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_integer__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_integer__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_number__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_number__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__to_lowercase__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_uppercase__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__to_uppercase__string_ref(__sklib_string text);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__trim__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__trim__string_ref(__sklib_string text);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_resource_bundle__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_resource_bundle__string(__sklib_string name);
 
@@ -4779,6 +4800,69 @@ namespace SplashKitSDK
     public static void OpenAudio()
     {
       __sklib__open_audio();
+    }
+    public static double ConvertToDouble(string text)
+    {
+      __sklib_string __skparam__text;
+      double __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__convert_to_double__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_double(__skreturn);
+    }
+    public static int ConvertToInteger(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__convert_to_integer__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_int(__skreturn);
+    }
+    public static bool IsInteger(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__is_integer__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool IsNumber(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__is_number__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static string ToLowercase(string text)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__to_lowercase__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string ToUppercase(string text)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__to_uppercase__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string Trim(string text)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__trim__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_string(__skreturn);
     }
     public static void FreeResourceBundle(string name)
     {

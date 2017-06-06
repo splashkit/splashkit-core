@@ -201,6 +201,13 @@ void __sklib__update_animation__animation__float(__sklib_animation anim, float p
 int __sklib__audio_ready();
 void __sklib__close_audio();
 void __sklib__open_audio();
+double __sklib__convert_to_double__string_ref(const __sklib_string text);
+int __sklib__convert_to_integer__string_ref(const __sklib_string text);
+int __sklib__is_integer__string_ref(const __sklib_string text);
+int __sklib__is_number__string_ref(const __sklib_string text);
+__sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text);
+__sklib_string __sklib__to_uppercase__string_ref(const __sklib_string text);
+__sklib_string __sklib__trim__string_ref(const __sklib_string text);
 void __sklib__free_resource_bundle__string(const __sklib_string name);
 int __sklib__has_resource_bundle__string_ref(const __sklib_string name);
 void __sklib__load_resource_bundle__string_ref__string_ref(const __sklib_string name, const __sklib_string filename);

@@ -1323,6 +1323,20 @@ sklib.__sklib__close_audio.argtypes = [  ]
 sklib.__sklib__close_audio.restype = None
 sklib.__sklib__open_audio.argtypes = [  ]
 sklib.__sklib__open_audio.restype = None
+sklib.__sklib__convert_to_double__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__convert_to_double__string_ref.restype = c_double
+sklib.__sklib__convert_to_integer__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__convert_to_integer__string_ref.restype = c_int
+sklib.__sklib__is_integer__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__is_integer__string_ref.restype = c_bool
+sklib.__sklib__is_number__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__is_number__string_ref.restype = c_bool
+sklib.__sklib__to_lowercase__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__to_lowercase__string_ref.restype = _sklib_string
+sklib.__sklib__to_uppercase__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__to_uppercase__string_ref.restype = _sklib_string
+sklib.__sklib__trim__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__trim__string_ref.restype = _sklib_string
 sklib.__sklib__free_resource_bundle__string.argtypes = [ _sklib_string ]
 sklib.__sklib__free_resource_bundle__string.restype = None
 sklib.__sklib__has_resource_bundle__string_ref.argtypes = [ _sklib_string ]
@@ -3705,6 +3719,34 @@ def close_audio (  ):
     sklib.__sklib__close_audio()
 def open_audio (  ):
     sklib.__sklib__open_audio()
+def convert_to_double ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__convert_to_double__string_ref(__skparam__text)
+    return __skadapter__to_double(__skreturn)
+def convert_to_integer ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__convert_to_integer__string_ref(__skparam__text)
+    return __skadapter__to_int(__skreturn)
+def is_integer ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__is_integer__string_ref(__skparam__text)
+    return __skadapter__to_bool(__skreturn)
+def is_number ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__is_number__string_ref(__skparam__text)
+    return __skadapter__to_bool(__skreturn)
+def to_lowercase ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__to_lowercase__string_ref(__skparam__text)
+    return __skadapter__to_string(__skreturn)
+def to_uppercase ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__to_uppercase__string_ref(__skparam__text)
+    return __skadapter__to_string(__skreturn)
+def trim ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__trim__string_ref(__skparam__text)
+    return __skadapter__to_string(__skreturn)
 def free_resource_bundle ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__free_resource_bundle__string(__skparam__name)

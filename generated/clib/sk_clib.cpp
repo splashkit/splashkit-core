@@ -195,6 +195,41 @@ void __sklib__close_audio() {
 void __sklib__open_audio() {
     open_audio();
 }
+double __sklib__convert_to_double__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    double __skreturn = convert_to_double(__skparam__text);
+    return __sklib__to_double(__skreturn);
+}
+int __sklib__convert_to_integer__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    int __skreturn = convert_to_integer(__skparam__text);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__is_integer__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    bool __skreturn = is_integer(__skparam__text);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__is_number__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    bool __skreturn = is_number(__skparam__text);
+    return __sklib__to_int(__skreturn);
+}
+__sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    string __skreturn = to_lowercase(__skparam__text);
+    return __sklib__to_sklib_string(__skreturn);
+}
+__sklib_string __sklib__to_uppercase__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    string __skreturn = to_uppercase(__skparam__text);
+    return __sklib__to_sklib_string(__skreturn);
+}
+__sklib_string __sklib__trim__string_ref(const __sklib_string text) {
+    string __skparam__text = __sklib__to_string(text);
+    string __skreturn = trim(__skparam__text);
+    return __sklib__to_sklib_string(__skreturn);
+}
 void __sklib__free_resource_bundle__string(const __sklib_string name) {
     const string __skparam__name = __sklib__to_string(name);
     free_resource_bundle(__skparam__name);
