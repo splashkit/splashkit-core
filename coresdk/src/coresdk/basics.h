@@ -1,10 +1,12 @@
-//
-//  basics.hpp
-//  splashkit
-//
-//  Created by Andrew Cain on 3/6/17.
-//  Copyright © 2017 Andrew Cain. All rights reserved.
-//
+/**
+ * @header  basics
+ * @author  Andrew Cain
+ * @brief   SplashKit provides some basic data manipulation functions to
+ *          help make it easy to get some basic tasks performed.
+ *
+ * @attribute group  utilities
+ * @attribute static utilities
+ */
 
 #ifndef basics_hpp
 #define basics_hpp
