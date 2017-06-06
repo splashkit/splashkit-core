@@ -309,7 +309,7 @@ namespace splashkit_lib
         if ( not _ncurses_active )
         {
             string result;
-            cin >> result;
+            getline(std::cin, result);
             return result;
         }
         else
