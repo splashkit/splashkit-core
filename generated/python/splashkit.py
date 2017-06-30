@@ -3107,12 +3107,20 @@ sklib.__sklib__terminal_height.argtypes = [  ]
 sklib.__sklib__terminal_height.restype = c_int
 sklib.__sklib__terminal_width.argtypes = [  ]
 sklib.__sklib__terminal_width.restype = c_int
+sklib.__sklib__write__double.argtypes = [ c_double ]
+sklib.__sklib__write__double.restype = None
+sklib.__sklib__write__int.argtypes = [ c_int ]
+sklib.__sklib__write__int.restype = None
 sklib.__sklib__write__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write__string.restype = None
 sklib.__sklib__write_at__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
 sklib.__sklib__write_at__string__int__int.restype = None
 sklib.__sklib__write_line.argtypes = [  ]
 sklib.__sklib__write_line.restype = None
+sklib.__sklib__write_line__double.argtypes = [ c_double ]
+sklib.__sklib__write_line__double.restype = None
+sklib.__sklib__write_line__int.argtypes = [ c_int ]
+sklib.__sklib__write_line__int.restype = None
 sklib.__sklib__write_line__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write_line__string.restype = None
 sklib.__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double.argtypes = [ _sklib_string, _sklib_color, _sklib_string, c_int, c_double, c_double ]
@@ -7575,6 +7583,12 @@ def terminal_height (  ):
 def terminal_width (  ):
     __skreturn = sklib.__sklib__terminal_width()
     return __skadapter__to_int(__skreturn)
+def write_double ( data ):
+    __skparam__data = __skadapter__to_sklib_double(data)
+    sklib.__sklib__write__double(__skparam__data)
+def write_int ( data ):
+    __skparam__data = __skadapter__to_sklib_int(data)
+    sklib.__sklib__write__int(__skparam__data)
 def write ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     sklib.__sklib__write__string(__skparam__text)
@@ -7585,7 +7599,13 @@ def write_at ( text, x, y ):
     sklib.__sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y)
 def write_line_empty (  ):
     sklib.__sklib__write_line()
-def write_line_with_options ( line ):
+def write_line_double ( data ):
+    __skparam__data = __skadapter__to_sklib_double(data)
+    sklib.__sklib__write_line__double(__skparam__data)
+def write_line_int ( data ):
+    __skparam__data = __skadapter__to_sklib_int(data)
+    sklib.__sklib__write_line__int(__skparam__data)
+def write_line ( line ):
     __skparam__line = __skadapter__to_sklib_string(line)
     sklib.__sklib__write_line__string(__skparam__line)
 def draw_text_font_as_string ( text, clr, fnt, font_size, x, y ):

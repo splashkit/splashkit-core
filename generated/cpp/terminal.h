@@ -25,9 +25,13 @@ void set_terminal_colors(color foreground, color background);
 void set_terminal_echo_input(bool value);
 int terminal_height();
 int terminal_width();
+void write(double data);
+void write(int data);
 void write(string text);
 void write_at(string text, int x, int y);
 void write_line();
+void write_line(double data);
+void write_line(int data);
 void write_line(string line);
 
 #endif /* __terminal_h */

@@ -1233,9 +1233,13 @@ procedure SetTerminalColors(foreground: Color; background: Color);
 procedure SetTerminalEchoInput(value: Boolean);
 function TerminalHeight(): Integer;
 function TerminalWidth(): Integer;
+procedure Write(data: Double);
+procedure Write(data: Integer);
 procedure Write(text: String);
 procedure WriteAt(text: String; x: Integer; y: Integer);
 procedure WriteLine();
+procedure WriteLine(data: Double);
+procedure WriteLine(data: Integer);
 procedure WriteLine(line: String);
 procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Double; y: Double);
 procedure DrawText(const text: String; const clr: Color; const fnt: String; fontSize: Integer; x: Double; y: Double; const opts: DrawingOptions);
@@ -3308,9 +3312,13 @@ procedure __sklib__set_terminal_colors__color__color(foreground: __sklib_color; 
 procedure __sklib__set_terminal_echo_input__bool(value: LongInt); cdecl; external;
 function __sklib__terminal_height(): Integer; cdecl; external;
 function __sklib__terminal_width(): Integer; cdecl; external;
+procedure __sklib__write__double(data: Double); cdecl; external;
+procedure __sklib__write__int(data: Integer); cdecl; external;
 procedure __sklib__write__string(text: __sklib_string); cdecl; external;
 procedure __sklib__write_at__string__int__int(text: __sklib_string; x: Integer; y: Integer); cdecl; external;
 procedure __sklib__write_line(); cdecl; external;
+procedure __sklib__write_line__double(data: Double); cdecl; external;
+procedure __sklib__write_line__int(data: Integer); cdecl; external;
 procedure __sklib__write_line__string(line: __sklib_string); cdecl; external;
 procedure __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double(const text: __sklib_string; const clr: __sklib_color; const fnt: __sklib_string; fontSize: Integer; x: Double; y: Double); cdecl; external;
 procedure __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(const text: __sklib_string; const clr: __sklib_color; const fnt: __sklib_string; fontSize: Integer; x: Double; y: Double; const opts: __sklib_drawing_options); cdecl; external;
@@ -12438,6 +12446,20 @@ begin
   __skreturn := __sklib__terminal_width();
   result := __skadapter__to_int(__skreturn);
 end;
+procedure Write(data: Double);
+var
+  __skparam__data: Double;
+begin
+  __skparam__data := __skadapter__to_sklib_double(data);
+  __sklib__write__double(__skparam__data);
+end;
+procedure Write(data: Integer);
+var
+  __skparam__data: Integer;
+begin
+  __skparam__data := __skadapter__to_sklib_int(data);
+  __sklib__write__int(__skparam__data);
+end;
 procedure Write(text: String);
 var
   __skparam__text: __sklib_string;
@@ -12459,6 +12481,20 @@ end;
 procedure WriteLine();
 begin
   __sklib__write_line();
+end;
+procedure WriteLine(data: Double);
+var
+  __skparam__data: Double;
+begin
+  __skparam__data := __skadapter__to_sklib_double(data);
+  __sklib__write_line__double(__skparam__data);
+end;
+procedure WriteLine(data: Integer);
+var
+  __skparam__data: Integer;
+begin
+  __skparam__data := __skadapter__to_sklib_int(data);
+  __sklib__write_line__int(__skparam__data);
 end;
 procedure WriteLine(line: String);
 var

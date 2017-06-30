@@ -20744,7 +20744,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1496729774,
+    "parsed_at": 1497953576,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -45893,7 +45893,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1496729805,
+    "parsed_at": 1497953483,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -46287,6 +46287,82 @@
         }
       },
       {
+        "signature": "void write(double data);",
+        "name": "write",
+        "method_name": null,
+        "unique_global_name": "write_double",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data to the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "double",
+            "description": "The text to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "double",
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
+        "signature": "void write(int data);",
+        "name": "write",
+        "method_name": null,
+        "unique_global_name": "write_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data to the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "int",
+            "description": "The text to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "int",
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
         "signature": "void write(string text);",
         "name": "write",
         "method_name": null,
@@ -46412,10 +46488,86 @@
         }
       },
       {
+        "signature": "void write_line(double data);",
+        "name": "write_line",
+        "method_name": null,
+        "unique_global_name": "write_line_double",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data, then move to the next line/row of the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "double",
+            "description": "The text to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "double",
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
+        "signature": "void write_line(int data);",
+        "name": "write_line",
+        "method_name": null,
+        "unique_global_name": "write_line_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data, then move to the next line/row of the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "int",
+            "description": "The text to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "int",
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
         "signature": "void write_line(string line);",
         "name": "write_line",
         "method_name": null,
-        "unique_global_name": "write_line_with_options",
+        "unique_global_name": "write_line",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Write the passed in text, then move to the next line/row of the terminal.",
@@ -46444,7 +46596,6 @@
           }
         },
         "attributes": {
-          "suffix": "with_options",
           "group": "terminal",
           "static": "terminal"
         }

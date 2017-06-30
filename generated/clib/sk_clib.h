@@ -1093,9 +1093,13 @@ void __sklib__set_terminal_colors__color__color(__sklib_color foreground, __skli
 void __sklib__set_terminal_echo_input__bool(int value);
 int __sklib__terminal_height();
 int __sklib__terminal_width();
+void __sklib__write__double(double data);
+void __sklib__write__int(int data);
 void __sklib__write__string(__sklib_string text);
 void __sklib__write_at__string__int__int(__sklib_string text, int x, int y);
 void __sklib__write_line();
+void __sklib__write_line__double(double data);
+void __sklib__write_line__int(int data);
 void __sklib__write_line__string(__sklib_string line);
 void __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double(const __sklib_string text, const __sklib_color clr, const __sklib_string fnt, int font_size, double x, double y);
 void __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(const __sklib_string text, const __sklib_color clr, const __sklib_string fnt, int font_size, double x, double y, const __sklib_drawing_options opts);

@@ -100,6 +100,24 @@ namespace splashkit_lib
      * @param text The text to write
      */
     void write(string text);
+    
+    /**
+     * Write the passed in data to the terminal.
+     *
+     * @param data The text to write
+     *
+     * @attribute suffix int
+     */
+    void write(int data);
+    
+    /**
+     * Write the passed in data to the terminal.
+     *
+     * @param data The text to write
+     *
+     * @attribute suffix double
+     */
+    void write(double data);
 
     /**
      * Move to the next line/row of the terminal.
@@ -112,10 +130,26 @@ namespace splashkit_lib
      * Write the passed in text, then move to the next line/row of the terminal.
      *
      * @param line The text to write
-     *
-     * @attribute suffix  with_options
      */
     void write_line(string line);
+    
+    /**
+     * Write the passed in data, then move to the next line/row of the terminal.
+     *
+     * @param data The text to write
+     *
+     * @attribute suffix int
+     */
+    void write_line(int data);
+    
+    /**
+     * Write the passed in data, then move to the next line/row of the terminal.
+     *
+     * @param data The text to write
+     *
+     * @attribute suffix double
+     */
+    void write_line(double data);
 
     /**
      * In advanced mode, this will write the supplied text at the indicated

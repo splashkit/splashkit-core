@@ -4943,6 +4943,14 @@ int __sklib__terminal_width() {
     int __skreturn = terminal_width();
     return __sklib__to_int(__skreturn);
 }
+void __sklib__write__double(double data) {
+    double __skparam__data = __sklib__to_double(data);
+    write(__skparam__data);
+}
+void __sklib__write__int(int data) {
+    int __skparam__data = __sklib__to_int(data);
+    write(__skparam__data);
+}
 void __sklib__write__string(__sklib_string text) {
     string __skparam__text = __sklib__to_string(text);
     write(__skparam__text);
@@ -4955,6 +4963,14 @@ void __sklib__write_at__string__int__int(__sklib_string text, int x, int y) {
 }
 void __sklib__write_line() {
     write_line();
+}
+void __sklib__write_line__double(double data) {
+    double __skparam__data = __sklib__to_double(data);
+    write_line(__skparam__data);
+}
+void __sklib__write_line__int(int data) {
+    int __skparam__data = __sklib__to_int(data);
+    write_line(__skparam__data);
 }
 void __sklib__write_line__string(__sklib_string line) {
     string __skparam__line = __sklib__to_string(line);
