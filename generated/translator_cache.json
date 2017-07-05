@@ -1803,7 +1803,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1496729751,
+    "parsed_at": 1499251633,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
