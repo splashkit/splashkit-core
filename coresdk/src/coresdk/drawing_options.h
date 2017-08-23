@@ -316,6 +316,30 @@ namespace splashkit_lib
      * @attribute suffix  with_options
      */
     drawing_options option_with_animation(animation anim, drawing_options opts);
+    
+    /**
+     * When drawing the bitmap this will only draw the cell. To use this the bitmap
+     * needs to have been provided with its cell details (see `bitmap_set_cell_details`).
+     * This option overrides the animation or part drawing options. This extends
+     * the passed in drawing options with the cell details.
+     *
+     * @param  cell The cell to draw from the bitmap (-1 for entire bitmap)
+     * @param  opts The existing options to extend.
+     * @return      A drawing option that will draw the selected cell.
+     *
+     * @attribute suffix  with_options
+     */
+    drawing_options option_with_bitmap_cell(int cell, drawing_options opts);
+    
+    /**
+     * When drawing the bitmap this will only draw the cell. To use this the bitmap
+     * needs to have been provided with its cell details (see `bitmap_set_cell_details`).
+     * This option overrides the animation or part drawing options.
+     *
+     * @param  cell The cell to draw from the bitmap (-1 for entire bitmap)
+     * @return      A drawing option that will draw the selected cell.
+     */
+    drawing_options option_with_bitmap_cell(int cell);
 
 }
 #endif /* drawing_options_hpp */

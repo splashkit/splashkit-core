@@ -255,6 +255,7 @@ namespace splashkit_lib
         bool  flip_y;           //
         bool  is_part;          // Draw just a part?
         rectangle part;         // Part to draw
+        int draw_cell;          // The cell to draw - overridden by animation or part
         drawing_dest camera;    // Draw to world or screen coordinates (camera has effect?)
         int line_width;         // Specify the width of line drawings.
         animation anim;         // The animation for bitmap drawing

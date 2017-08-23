@@ -217,28 +217,36 @@ namespace splashkit_lib
         double dst_data[7];
         sk_renderer_flip flip;
         sk_drawing_surface * dest;
+        
+        
 
-        if ( VALID_PTR(opts.anim, ANIMATION_PTR) )
+        if ( VALID_PTR(opts.anim, ANIMATION_PTR) || opts.draw_cell >= 0 )
         {
-            rectangle part = bitmap_rectangle_of_cell(bmp, animation_current_cell(opts.anim));
+            int cell;
+            if ( opts.draw_cell >= 0 )
+                cell = opts.draw_cell;
+            else
+                cell = animation_current_cell(opts.anim);
+            
+            rectangle part = bitmap_rectangle_of_cell(bmp, cell);
             src_data[0] = part.x;
             src_data[1] = part.y;
             src_data[2] = part.width;
             src_data[3] = part.height;
         }
-        else if (not opts.is_part)
-        {
-            src_data[0] = 0;
-            src_data[1] = 0;
-            src_data[2] = bmp->image.surface.width;
-            src_data[3] = bmp->image.surface.height;
-        }
-        else
+        else if (opts.is_part)
         {
             src_data[0] = opts.part.x;
             src_data[1] = opts.part.y;
             src_data[2] = opts.part.width;
             src_data[3] = opts.part.height;
+        }
+        else
+        {
+            src_data[0] = 0;
+            src_data[1] = 0;
+            src_data[2] = bmp->image.surface.width;
+            src_data[3] = bmp->image.surface.height;
         }
 
         //
