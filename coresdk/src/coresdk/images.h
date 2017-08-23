@@ -335,7 +335,7 @@ namespace splashkit_lib
      * @returns     The width of each cells in bmp
      *
      * @attribute class bitmap
-     * @attribute getter width
+     * @attribute getter cell_width
      */
     int bitmap_cell_width(bitmap bmp);
 
