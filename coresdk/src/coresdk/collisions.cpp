@@ -179,6 +179,16 @@ namespace splashkit_lib
     {
         return bitmap_point_collision(bmp, 0, translation_matrix(bmp_x, bmp_y), point_at(x, y));
     }
+    
+    bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d& pt)
+    {
+        return bitmap_point_collision(bmp, cell, translation_matrix(bmp_pt), pt);
+    }
+    
+    bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y)
+    {
+        return bitmap_point_collision(bmp, cell, translation_matrix(bmp_x, bmp_y), point_at(x, y));
+    }
 
     bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
     {

@@ -61,14 +61,52 @@ namespace splashkit_lib
      * @param bmp_y The y location where the bitmap is drawn
      * @param  x    The x location of the point to test
      * @param  y    The y location of the point to test
-     * @returns     True if drawing the bitmap, at `bmp_pt`,
-     *              will draw a pixel at the indicated point (`pt`).
+     * @returns     True if drawing the bitmap, at the indicated location,
+     *              will draw a pixel at the indicated point.
      *
      * @attribute class bitmap
      * @attribute method point_collision
      */
     bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 
+    /**
+     * Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
+     * to check collisions between a point and a bitmap.
+     *
+     * @param bmp           The bitmap to test
+     * @param cell          The cell of the bitmap to test
+     * @param bmp_pt        The point where the bitmap is drawn.
+     * @param pt            The point in the resulting drawing that is being tested.
+     * @returns             True if drawing the bitmap cell, at the indicated location,
+     *                      will draw a pixel at the indicated point.
+     *
+     * @attribute class bitmap
+     * @attribute method point_collision
+     *
+     * @attribute suffix    for_cell_at_point
+     */
+    bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d& pt);
+
+    /**
+     * Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
+     * to check collisions between a point and a bitmap.
+     *
+     * @param bmp   The bitmap to test
+     * @param cell  The cell of the bitmap to test
+     * @param bmp_x The x location where the bitmap is drawn
+     * @param bmp_y The y location where the bitmap is drawn
+     * @param  x    The x location of the point to test
+     * @param  y    The y location of the point to test
+     * @returns     True if drawing the bitmap cell, at the indicated location,
+     *              will draw a pixel at the indicated point.
+     *
+     * @attribute class bitmap
+     * @attribute method point_collision
+     *
+     * @attribute suffix    for_cell
+     */
+    bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y);
+    
     /**
      * Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
      * at the passed in point.
