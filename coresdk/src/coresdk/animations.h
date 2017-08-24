@@ -218,9 +218,71 @@ namespace splashkit_lib
      */
     void free_animation(animation ani);
 
-
     /**
-     * Assigns an `animation` to an `animation_script`.
+     * Setup an `animation` to follow the script from an indicated index.
+     * This uses the index from the current animation script and
+     * sets the supplied animation to start at that point in the script.
+     *
+     * @param anim          The `animation` to be assigned.
+     * @param idx           The index of the animation to use from its current script.
+     * @param with_sound    Denotes whether the `animation` should play audio.
+     *
+     * @attribute class     animation
+     * @attribute method    assign
+     *
+     * @attribute suffix    index_with_sound
+     */
+    void assign_animation(animation anim, int idx, bool with_sound);
+    
+    /**
+     * Setup an `animation` to follow the script from an indicated name.
+     * This locates the name of the animation from the current animation script and
+     * sets the supplied animation to start at that point in the script.
+     *
+     * @param anim          The `animation` to be assigned.
+     * @param name          The name of the animation to use from its current script.
+     * @param with_sound    Denotes whether the `animation` should play audio.
+     *
+     * @attribute class     animation
+     * @attribute method    assign
+     *
+     * @attribute suffix    with_sound
+     */
+    void assign_animation(animation anim, string name, bool with_sound);
+    
+    /**
+     * Setup an `animation` to follow the script from an indicated index.
+     * This uses the index from the current animation script and
+     * sets the supplied animation to start at that point in the script.
+     *
+     * @param anim          The `animation` to be assigned.
+     * @param idx           The index of the animation to use from its current script.
+     *
+     * @attribute class     animation
+     * @attribute method    assign
+     *
+     * @attribute suffix    index
+     */
+    void assign_animation(animation anim, int idx);
+    
+    /**
+     * Setup an `animation` to follow the script from an indicated name.
+     * This locates the name of the animation from the current animation script and
+     * sets the supplied animation to start at that point in the script.
+     *
+     * @param anim          The `animation` to be assigned.
+     * @param name          The name of the animation to use from its current script.
+     *
+     * @attribute class     animation
+     * @attribute method    assign
+     */
+    void assign_animation(animation anim, string name);
+    
+    /**
+     * Setup an `animation` to follow the script from an indicated name.
+     * This will switch the animation to use the supplied script.
+     * It locates the name of the animation with the animation script and
+     * sets the `anim` to start at that point in the script.
      *
      * @param anim          The `animation` to be assigned.
      * @param script        The `animation_script` to assign the `animation` to.
@@ -229,6 +291,8 @@ namespace splashkit_lib
      * @attribute class     animation
      * @attribute method    assign
      * @attribute self      anim
+     *
+     * @attribute suffix    with_script
      */
     void assign_animation(animation anim, animation_script script, const string &name);
 
@@ -246,7 +310,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      *
-     * @attribute suffix    with_sound
+     * @attribute suffix    with_script_and_sound
      */
     void assign_animation(animation anim, animation_script script, const string &name, bool with_sound);
 
@@ -261,7 +325,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      *
-     * @attribute suffix    script_named
+     * @attribute suffix    with_script_named
      */
     void assign_animation(animation anim, const string &script_name, const string &name);
 
@@ -279,7 +343,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      *
-     * @attribute suffix    script_named_with_sound
+     * @attribute suffix    with_script_named_and_sound
      */
     void assign_animation(animation anim, const string &script_name, const string &name, bool with_sound);
 
@@ -294,7 +358,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      *
-     * @attribute suffix    index
+     * @attribute suffix    index_with_script
      */
     void assign_animation(animation anim, animation_script script, int idx);
 
@@ -312,7 +376,7 @@ namespace splashkit_lib
      * @attribute method    assign
      * @attribute self      anim
      *
-     * @attribute suffix    index_with_sound
+     * @attribute suffix    index_with_script_and_sound
      */
     void assign_animation(animation anim, animation_script script, int idx, bool with_sound);
 

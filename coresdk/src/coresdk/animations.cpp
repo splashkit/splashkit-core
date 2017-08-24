@@ -712,6 +712,40 @@ namespace splashkit_lib
         restart_animation(anim, with_sound);
     }
 
+    void assign_animation(animation anim, int idx, bool with_sound)
+    {
+        if (INVALID_PTR(anim, ANIMATION_PTR))
+        {
+            LOG(WARNING) << "Attempting to setup an assign animation for invalid animation";
+            return;
+        }
+
+        assign_animation(anim, anim->script, idx, with_sound);
+    }
+    
+    void assign_animation(animation anim, string name, bool with_sound)
+    {
+        if (INVALID_PTR(anim, ANIMATION_PTR))
+        {
+            LOG(WARNING) << "Attempting to setup an assign animation for invalid animation";
+            return;
+        }
+
+        assign_animation(anim, anim->script, name, with_sound);
+    }
+
+    
+    void assign_animation(animation anim, int idx)
+    {
+        assign_animation(anim, idx, true);
+    }
+
+    void assign_animation(animation anim, string name)
+    {
+        assign_animation(anim, name, true);
+    }
+    
+    
     void assign_animation(animation anim, animation_script script, int idx)
     {
         assign_animation(anim, script, idx, true);
