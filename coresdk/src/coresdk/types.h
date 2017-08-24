@@ -242,6 +242,8 @@ namespace splashkit_lib
      * @field line_width      How wide are lines (only lines at this stage)
      * @field anim            The animation to use, which overrides the part
      *                        option
+     * @field draw_cell       Which cell of a bitmap to draw, or -1 for all. Overrides
+     *                        parts and animation settings.
      */
     struct drawing_options
     {
