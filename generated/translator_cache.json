@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1503535357,
+    "parsed_at": 1503543198,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -89,9 +89,9 @@
       {
         "signature": "vector_2d animation_current_vector(animation anim);",
         "name": "animation_current_vector",
-        "method_name": "current_vector",
+        "method_name": null,
         "unique_global_name": "animation_current_vector",
-        "unique_method_name": "animation.current_vector",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Returns the `vector_2d` assigned to the current frame in the animation.",
         "brief": null,
@@ -120,18 +120,18 @@
         },
         "attributes": {
           "class": "animation",
-          "method": "current_vector",
-          "self": "anim",
+          "getter": "current_vector",
           "group": "animations",
-          "static": "animation"
+          "static": "animation",
+          "self": "anim"
         }
       },
       {
         "signature": "bool animation_ended(animation anim);",
         "name": "animation_ended",
-        "method_name": "ended",
+        "method_name": null,
         "unique_global_name": "animation_ended",
-        "unique_method_name": "animation.ended",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Checks if an `animation` has ended.",
         "brief": null,
@@ -160,18 +160,18 @@
         },
         "attributes": {
           "class": "animation",
-          "method": "ended",
-          "self": "anim",
+          "getter": "ended",
           "group": "animations",
-          "static": "animation"
+          "static": "animation",
+          "self": "anim"
         }
       },
       {
         "signature": "bool animation_entered_frame(animation anim);",
         "name": "animation_entered_frame",
-        "method_name": "entered_frame",
+        "method_name": null,
         "unique_global_name": "animation_entered_frame",
-        "unique_method_name": "animation.entered_frame",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Returns true if the `animation` entered a new frame on its last update.\nThis can be used to trigger actions on frames within an animation.",
         "brief": null,
@@ -200,18 +200,18 @@
         },
         "attributes": {
           "class": "animation",
-          "method": "entered_frame",
-          "self": "anim",
+          "getter": "entered_frame",
           "group": "animations",
-          "static": "animation"
+          "static": "animation",
+          "self": "anim"
         }
       },
       {
         "signature": "float animation_frame_time(animation anim);",
         "name": "animation_frame_time",
-        "method_name": "frame_time",
+        "method_name": null,
         "unique_global_name": "animation_frame_time",
-        "unique_method_name": "animation.frame_time",
+        "unique_method_name": null,
         "suffix_name": null,
         "description": "Returns the amount of time spent in the current frame. When this\nexceeds the frames duration the animation moves to the next frame.",
         "brief": null,
@@ -240,10 +240,10 @@
         },
         "attributes": {
           "class": "animation",
-          "method": "frame_time",
-          "self": "anim",
+          "getter": "frame_time",
           "group": "animations",
-          "static": "animation"
+          "static": "animation",
+          "self": "anim"
         }
       },
       {

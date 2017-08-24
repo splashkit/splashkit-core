@@ -17677,30 +17677,6 @@ public class Animation : PointerWrapper
         SplashKit.FreeAnimation(this);
     }
 
-    public Vector2D CurrentVector()
-    {
-        return SplashKit.AnimationCurrentVector(this);
-    }
-
-
-    public bool Ended()
-    {
-        return SplashKit.AnimationEnded(this);
-    }
-
-
-    public bool EnteredFrame()
-    {
-        return SplashKit.AnimationEnteredFrame(this);
-    }
-
-
-    public float FrameTime()
-    {
-        return SplashKit.AnimationFrameTime(this);
-    }
-
-
     public void Assign(AnimationScript script, string name)
     {
         SplashKit.AssignAnimation(this, script, name);
@@ -17793,6 +17769,22 @@ public class Animation : PointerWrapper
     public int CurrentCell
     {
         get { return SplashKit.AnimationCurrentCell(this); }
+    }
+    public Vector2D CurrentVector
+    {
+        get { return SplashKit.AnimationCurrentVector(this); }
+    }
+    public bool Ended
+    {
+        get { return SplashKit.AnimationEnded(this); }
+    }
+    public bool EnteredFrame
+    {
+        get { return SplashKit.AnimationEnteredFrame(this); }
+    }
+    public float FrameTime
+    {
+        get { return SplashKit.AnimationFrameTime(this); }
     }
     public string Name
     {
