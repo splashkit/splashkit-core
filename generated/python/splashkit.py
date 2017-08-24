@@ -297,6 +297,7 @@ class _sklib_drawing_options(Structure):
         ("_camera", c_int),
         ("line_width", c_int),
         ("anim", c_void_p),
+        ("draw_cell", c_int),
     ]
 
     def __init__(self):
@@ -724,6 +725,7 @@ def __skadapter__to_sklib_drawing_options(v):
     result.camera = __skadapter__to_sklib_drawing_dest(v.camera)
     result.line_width = __skadapter__to_sklib_int(v.line_width)
     result.anim = __skadapter__to_sklib_animation(v.anim)
+    result.draw_cell = __skadapter__to_sklib_int(v.draw_cell)
     return result
 def __skadapter__to_drawing_options(v):
     if isinstance(v, DrawingOptions):
@@ -742,6 +744,7 @@ def __skadapter__to_drawing_options(v):
     result.camera = __skadapter__to_drawing_dest(v.camera)
     result.line_width = __skadapter__to_int(v.line_width)
     result.anim = __skadapter__to_animation(v.anim)
+    result.draw_cell = __skadapter__to_int(v.draw_cell)
     return result
 def __skadapter__to_sklib_line(v):
     if isinstance(v, _sklib_line):
@@ -1283,6 +1286,14 @@ sklib.__sklib__assign_animation__animation__string_ref__string_ref.argtypes = [ 
 sklib.__sklib__assign_animation__animation__string_ref__string_ref.restype = None
 sklib.__sklib__assign_animation__animation__string_ref__string_ref__bool.argtypes = [ c_void_p, _sklib_string, _sklib_string, c_bool ]
 sklib.__sklib__assign_animation__animation__string_ref__string_ref__bool.restype = None
+sklib.__sklib__assign_animation__animation__int.argtypes = [ c_void_p, c_int ]
+sklib.__sklib__assign_animation__animation__int.restype = None
+sklib.__sklib__assign_animation__animation__int__bool.argtypes = [ c_void_p, c_int, c_bool ]
+sklib.__sklib__assign_animation__animation__int__bool.restype = None
+sklib.__sklib__assign_animation__animation__string.argtypes = [ c_void_p, _sklib_string ]
+sklib.__sklib__assign_animation__animation__string.restype = None
+sklib.__sklib__assign_animation__animation__string__bool.argtypes = [ c_void_p, _sklib_string, c_bool ]
+sklib.__sklib__assign_animation__animation__string__bool.restype = None
 sklib.__sklib__create_animation__animation_script__int__bool.argtypes = [ c_void_p, c_int, c_bool ]
 sklib.__sklib__create_animation__animation_script__int__bool.restype = c_void_p
 sklib.__sklib__create_animation__animation_script__string_ref.argtypes = [ c_void_p, _sklib_string ]
@@ -1515,6 +1526,10 @@ sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.ar
 sklib.__sklib__bitmap_point_collision__bitmap__double__double__double__double.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_point_2d ]
+sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.argtypes = [ c_void_p, c_int, c_double, c_double, c_double, c_double ]
+sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_rectangle ]
@@ -1953,6 +1968,10 @@ sklib.__sklib__option_with_animation__animation.argtypes = [ c_void_p ]
 sklib.__sklib__option_with_animation__animation.restype = _sklib_drawing_options
 sklib.__sklib__option_with_animation__animation__drawing_options.argtypes = [ c_void_p, _sklib_drawing_options ]
 sklib.__sklib__option_with_animation__animation__drawing_options.restype = _sklib_drawing_options
+sklib.__sklib__option_with_bitmap_cell__int.argtypes = [ c_int ]
+sklib.__sklib__option_with_bitmap_cell__int.restype = _sklib_drawing_options
+sklib.__sklib__option_with_bitmap_cell__int__drawing_options.argtypes = [ c_int, _sklib_drawing_options ]
+sklib.__sklib__option_with_bitmap_cell__int__drawing_options.restype = _sklib_drawing_options
 sklib.__sklib__draw_ellipse__color__rectangle.argtypes = [ _sklib_color, _sklib_rectangle ]
 sklib.__sklib__draw_ellipse__color__rectangle.restype = None
 sklib.__sklib__draw_ellipse__color__rectangle__drawing_options.argtypes = [ _sklib_color, _sklib_rectangle, _sklib_drawing_options ]
@@ -3615,39 +3634,57 @@ def animation_script_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__animation_script_named__string_ref(__skparam__name)
     return __skadapter__to_animation_script(__skreturn)
-def assign_animation ( anim, script, name ):
+def assign_animation_with_script ( anim, script, name ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script = __skadapter__to_sklib_animation_script(script)
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__assign_animation__animation__animation_script__string_ref(__skparam__anim, __skparam__script, __skparam__name)
-def assign_animation_with_sound ( anim, script, name, with_sound ):
+def assign_animation_with_script_and_sound ( anim, script, name, with_sound ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script = __skadapter__to_sklib_animation_script(script)
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__with_sound = __skadapter__to_sklib_bool(with_sound)
     sklib.__sklib__assign_animation__animation__animation_script__string_ref__bool(__skparam__anim, __skparam__script, __skparam__name, __skparam__with_sound)
-def assign_animation_index ( anim, script, idx ):
+def assign_animation_index_with_script ( anim, script, idx ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script = __skadapter__to_sklib_animation_script(script)
     __skparam__idx = __skadapter__to_sklib_int(idx)
     sklib.__sklib__assign_animation__animation__animation_script__int(__skparam__anim, __skparam__script, __skparam__idx)
-def assign_animation_index_with_sound ( anim, script, idx, with_sound ):
+def assign_animation_index_with_script_and_sound ( anim, script, idx, with_sound ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script = __skadapter__to_sklib_animation_script(script)
     __skparam__idx = __skadapter__to_sklib_int(idx)
     __skparam__with_sound = __skadapter__to_sklib_bool(with_sound)
     sklib.__sklib__assign_animation__animation__animation_script__int__bool(__skparam__anim, __skparam__script, __skparam__idx, __skparam__with_sound)
-def assign_animation_script_named ( anim, script_name, name ):
+def assign_animation_with_script_named ( anim, script_name, name ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script_name = __skadapter__to_sklib_string(script_name)
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__assign_animation__animation__string_ref__string_ref(__skparam__anim, __skparam__script_name, __skparam__name)
-def assign_animation_script_named_with_sound ( anim, script_name, name, with_sound ):
+def assign_animation_with_script_named_and_sound ( anim, script_name, name, with_sound ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__script_name = __skadapter__to_sklib_string(script_name)
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__with_sound = __skadapter__to_sklib_bool(with_sound)
     sklib.__sklib__assign_animation__animation__string_ref__string_ref__bool(__skparam__anim, __skparam__script_name, __skparam__name, __skparam__with_sound)
+def assign_animation_index ( anim, idx ):
+    __skparam__anim = __skadapter__to_sklib_animation(anim)
+    __skparam__idx = __skadapter__to_sklib_int(idx)
+    sklib.__sklib__assign_animation__animation__int(__skparam__anim, __skparam__idx)
+def assign_animation_index_with_sound ( anim, idx, with_sound ):
+    __skparam__anim = __skadapter__to_sklib_animation(anim)
+    __skparam__idx = __skadapter__to_sklib_int(idx)
+    __skparam__with_sound = __skadapter__to_sklib_bool(with_sound)
+    sklib.__sklib__assign_animation__animation__int__bool(__skparam__anim, __skparam__idx, __skparam__with_sound)
+def assign_animation ( anim, name ):
+    __skparam__anim = __skadapter__to_sklib_animation(anim)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__assign_animation__animation__string(__skparam__anim, __skparam__name)
+def assign_animation_with_sound ( anim, name, with_sound ):
+    __skparam__anim = __skadapter__to_sklib_animation(anim)
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skparam__with_sound = __skadapter__to_sklib_bool(with_sound)
+    sklib.__sklib__assign_animation__animation__string__bool(__skparam__anim, __skparam__name, __skparam__with_sound)
 def create_animation_from_index_with_sound ( script, idx, with_sound ):
     __skparam__script = __skadapter__to_sklib_animation_script(script)
     __skparam__idx = __skadapter__to_sklib_int(idx)
@@ -4205,6 +4242,22 @@ def bitmap_point_collision_for_cell_with_translation ( bmp, cell, translation, p
     __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_point_collision_for_cell_at_point ( bmp, cell, bmp_pt, pt ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmp_pt)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__bmp_pt, __skparam__pt)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_point_collision_for_cell ( bmp, cell, bmp_x, bmp_y, x, y ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__bmp_x = __skadapter__to_sklib_double(bmp_x)
+    __skparam__bmp_y = __skadapter__to_sklib_double(bmp_y)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
 def bitmap_rectangle_collision_at_point ( bmp, pt, rect ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4992,6 +5045,15 @@ def option_with_animation_with_options ( anim, opts ):
     __skparam__anim = __skadapter__to_sklib_animation(anim)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     __skreturn = sklib.__sklib__option_with_animation__animation__drawing_options(__skparam__anim, __skparam__opts)
+    return __skadapter__to_drawing_options(__skreturn)
+def option_with_bitmap_cell ( cell ):
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skreturn = sklib.__sklib__option_with_bitmap_cell__int(__skparam__cell)
+    return __skadapter__to_drawing_options(__skreturn)
+def option_with_bitmap_cell_with_options ( cell, opts ):
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    __skreturn = sklib.__sklib__option_with_bitmap_cell__int__drawing_options(__skparam__cell, __skparam__opts)
     return __skadapter__to_drawing_options(__skreturn)
 def draw_ellipse_within_rectangle ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)

@@ -28,6 +28,8 @@ bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const poin
 bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt);
 bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt);
+bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d &pt);
+bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y);
 bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect);
 bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle &rect);
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect);

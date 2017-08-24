@@ -81,6 +81,7 @@ typedef struct {
     drawing_dest camera;
     int line_width;
     animation anim;
+    int draw_cell;
 } drawing_options;
 typedef struct {
     point_2d start_point;

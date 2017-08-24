@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1496729750,
+    "parsed_at": 1503535357,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -420,10 +420,10 @@
         "signature": "void assign_animation(animation anim,animation_script script,const string &name);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation",
-        "unique_method_name": "animation.assign",
+        "unique_global_name": "assign_animation_with_script",
+        "unique_method_name": "animation.assign_with_script",
         "suffix_name": null,
-        "description": "Assigns an `animation` to an `animation_script`.",
+        "description": "Setup an `animation` to follow the script from an indicated name.\nThis will switch the animation to use the supplied script.\nIt locates the name of the animation with the animation script and\nsets the `anim` to start at that point in the script.",
         "brief": null,
         "return": {
           "type": "void",
@@ -478,6 +478,7 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
+          "suffix": "with_script",
           "group": "animations",
           "static": "animation"
         }
@@ -486,8 +487,8 @@
         "signature": "void assign_animation(animation anim,animation_script script,const string &name,bool with_sound);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation_with_sound",
-        "unique_method_name": "animation.assign_with_sound",
+        "unique_global_name": "assign_animation_with_script_and_sound",
+        "unique_method_name": "animation.assign_with_script_and_sound",
         "suffix_name": null,
         "description": "Assigns an `animation` to an `animation_script`. This may play a\nsound effect if the animation is set to play a sound effect on its\nfirst frame.",
         "brief": null,
@@ -557,7 +558,7 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
-          "suffix": "with_sound",
+          "suffix": "with_script_and_sound",
           "group": "animations",
           "static": "animation"
         }
@@ -566,8 +567,8 @@
         "signature": "void assign_animation(animation anim,animation_script script,int idx);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation_index",
-        "unique_method_name": "animation.assign_index",
+        "unique_global_name": "assign_animation_index_with_script",
+        "unique_method_name": "animation.assign_index_with_script",
         "suffix_name": null,
         "description": "Assigns an `animation` to an `animation_script`.",
         "brief": null,
@@ -624,7 +625,7 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
-          "suffix": "index",
+          "suffix": "index_with_script",
           "group": "animations",
           "static": "animation"
         }
@@ -633,8 +634,8 @@
         "signature": "void assign_animation(animation anim,animation_script script,int idx,bool with_sound);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation_index_with_sound",
-        "unique_method_name": "animation.assign_index_with_sound",
+        "unique_global_name": "assign_animation_index_with_script_and_sound",
+        "unique_method_name": "animation.assign_index_with_script_and_sound",
         "suffix_name": null,
         "description": "Assigns an `animation` to an `animation_script`. This may play a\nsound effect if the animation is set to play a sound effect on its\nfirst frame.",
         "brief": null,
@@ -704,7 +705,7 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
-          "suffix": "index_with_sound",
+          "suffix": "index_with_script_and_sound",
           "group": "animations",
           "static": "animation"
         }
@@ -713,8 +714,8 @@
         "signature": "void assign_animation(animation anim,const string &script_name,const string &name);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation_script_named",
-        "unique_method_name": "animation.assign_script_named",
+        "unique_global_name": "assign_animation_with_script_named",
+        "unique_method_name": "animation.assign_with_script_named",
         "suffix_name": null,
         "description": "Assigns an `animation` to an `animation_script`.",
         "brief": null,
@@ -771,7 +772,7 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
-          "suffix": "script_named",
+          "suffix": "with_script_named",
           "group": "animations",
           "static": "animation"
         }
@@ -780,8 +781,8 @@
         "signature": "void assign_animation(animation anim,const string &script_name,const string &name,bool with_sound);",
         "name": "assign_animation",
         "method_name": "assign",
-        "unique_global_name": "assign_animation_script_named_with_sound",
-        "unique_method_name": "animation.assign_script_named_with_sound",
+        "unique_global_name": "assign_animation_with_script_named_and_sound",
+        "unique_method_name": "animation.assign_with_script_named_and_sound",
         "suffix_name": null,
         "description": "Assigns an `animation` to an `animation_script`. This may play a\nsound effect if the animation is set to play a sound effect on its\nfirst frame.",
         "brief": null,
@@ -851,9 +852,250 @@
           "class": "animation",
           "method": "assign",
           "self": "anim",
-          "suffix": "script_named_with_sound",
+          "suffix": "with_script_named_and_sound",
           "group": "animations",
           "static": "animation"
+        }
+      },
+      {
+        "signature": "void assign_animation(animation anim,int idx);",
+        "name": "assign_animation",
+        "method_name": "assign",
+        "unique_global_name": "assign_animation_index",
+        "unique_method_name": "animation.assign_index",
+        "suffix_name": null,
+        "description": "Setup an `animation` to follow the script from an indicated index.\nThis uses the index from the current animation script and\nsets the supplied animation to start at that point in the script.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "anim": {
+            "type": "animation",
+            "description": "The `animation` to be assigned.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "idx": {
+            "type": "int",
+            "description": "The index of the animation to use from its current script.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "animation",
+          "method": "assign",
+          "suffix": "index",
+          "group": "animations",
+          "static": "animation",
+          "self": "anim"
+        }
+      },
+      {
+        "signature": "void assign_animation(animation anim,int idx,bool with_sound);",
+        "name": "assign_animation",
+        "method_name": "assign",
+        "unique_global_name": "assign_animation_index_with_sound",
+        "unique_method_name": "animation.assign_index_with_sound",
+        "suffix_name": null,
+        "description": "Setup an `animation` to follow the script from an indicated index.\nThis uses the index from the current animation script and\nsets the supplied animation to start at that point in the script.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "anim": {
+            "type": "animation",
+            "description": "The `animation` to be assigned.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "idx": {
+            "type": "int",
+            "description": "The index of the animation to use from its current script.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "with_sound": {
+            "type": "bool",
+            "description": "Denotes whether the `animation` should play audio.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "animation",
+          "method": "assign",
+          "suffix": "index_with_sound",
+          "group": "animations",
+          "static": "animation",
+          "self": "anim"
+        }
+      },
+      {
+        "signature": "void assign_animation(animation anim,string name);",
+        "name": "assign_animation",
+        "method_name": "assign",
+        "unique_global_name": "assign_animation",
+        "unique_method_name": "animation.assign",
+        "suffix_name": null,
+        "description": "Setup an `animation` to follow the script from an indicated name.\nThis locates the name of the animation from the current animation script and\nsets the supplied animation to start at that point in the script.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "anim": {
+            "type": "animation",
+            "description": "The `animation` to be assigned.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the animation to use from its current script.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "animation",
+          "method": "assign",
+          "group": "animations",
+          "static": "animation",
+          "self": "anim"
+        }
+      },
+      {
+        "signature": "void assign_animation(animation anim,string name,bool with_sound);",
+        "name": "assign_animation",
+        "method_name": "assign",
+        "unique_global_name": "assign_animation_with_sound",
+        "unique_method_name": "animation.assign_with_sound",
+        "suffix_name": null,
+        "description": "Setup an `animation` to follow the script from an indicated name.\nThis locates the name of the animation from the current animation script and\nsets the supplied animation to start at that point in the script.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "anim": {
+            "type": "animation",
+            "description": "The `animation` to be assigned.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the animation to use from its current script.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "with_sound": {
+            "type": "bool",
+            "description": "Denotes whether the `animation` should play audio.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "animation",
+          "method": "assign",
+          "suffix": "with_sound",
+          "group": "animations",
+          "static": "animation",
+          "self": "anim"
         }
       },
       {
@@ -1803,7 +2045,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1499251633,
+    "parsed_at": 1503535357,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -6036,7 +6278,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1496729758,
+    "parsed_at": 1503535359,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -7112,7 +7354,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if drawing the bitmap, at `bmp_pt`,\nwill draw a pixel at the indicated point (`pt`).",
+          "description": "True if drawing the bitmap, at the indicated location,\nwill draw a pixel at the indicated point.",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -7268,6 +7510,192 @@
           "class": "bitmap",
           "method": "point_collision",
           "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_point_collision(bitmap bmp,int cell,const point_2d &bmp_pt,const point_2d& pt);",
+        "name": "bitmap_point_collision",
+        "method_name": "point_collision",
+        "unique_global_name": "bitmap_point_collision_for_cell_at_point",
+        "unique_method_name": "bitmap.point_collision_for_cell_at_point",
+        "suffix_name": null,
+        "description": "Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use\nto check collisions between a point and a bitmap.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if drawing the bitmap cell, at the indicated location,\nwill draw a pixel at the indicated point.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bmp_pt": {
+            "type": "point_2d",
+            "description": "The point where the bitmap is drawn.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The point in the resulting drawing that is being tested.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
+          "suffix": "for_cell_at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_point_collision(bitmap bmp,int cell,double bmp_x,double bmp_y,double x,double y);",
+        "name": "bitmap_point_collision",
+        "method_name": "point_collision",
+        "unique_global_name": "bitmap_point_collision_for_cell",
+        "unique_method_name": "bitmap.point_collision_for_cell",
+        "suffix_name": null,
+        "description": "Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use\nto check collisions between a point and a bitmap.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if drawing the bitmap cell, at the indicated location,\nwill draw a pixel at the indicated point.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bmp_x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bmp_y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location of the point to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location of the point to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "point_collision",
+          "suffix": "for_cell",
           "group": "physics",
           "static": "collisions",
           "self": "bmp"
@@ -14215,7 +14643,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1496729768,
+    "parsed_at": 1503535361,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -15446,6 +15874,92 @@
           "anim": {
             "type": "animation",
             "description": "The animation with the cell details to be used.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The existing options to extend.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_options",
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "drawing_options option_with_bitmap_cell(int cell);",
+        "name": "option_with_bitmap_cell",
+        "method_name": null,
+        "unique_global_name": "option_with_bitmap_cell",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "When drawing the bitmap this will only draw the cell. To use this the bitmap\nneeds to have been provided with its cell details (see `bitmap_set_cell_details`).\nThis option overrides the animation or part drawing options.",
+        "brief": null,
+        "return": {
+          "type": "drawing_options",
+          "description": "A drawing option that will draw the selected cell.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "cell": {
+            "type": "int",
+            "description": "The cell to draw from the bitmap (-1 for entire bitmap)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "drawing_options option_with_bitmap_cell(int cell,drawing_options opts);",
+        "name": "option_with_bitmap_cell",
+        "method_name": null,
+        "unique_global_name": "option_with_bitmap_cell_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "When drawing the bitmap this will only draw the cell. To use this the bitmap\nneeds to have been provided with its cell details (see `bitmap_set_cell_details`).\nThis option overrides the animation or part drawing options. This extends\nthe passed in drawing options with the cell details.",
+        "brief": null,
+        "return": {
+          "type": "drawing_options",
+          "description": "A drawing option that will draw the selected cell.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "cell": {
+            "type": "int",
+            "description": "The cell to draw from the bitmap (-1 for entire bitmap)",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -18296,7 +18810,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1496729774,
+    "parsed_at": 1503535363,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -19027,7 +19541,7 @@
         },
         "attributes": {
           "class": "bitmap",
-          "getter": "width",
+          "getter": "cell_width",
           "group": "graphics",
           "static": "images",
           "self": "bmp"
@@ -45893,7 +46407,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1497953483,
+    "parsed_at": 1503535364,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -53684,7 +54198,7 @@
     "group": "types",
     "brief": null,
     "description": null,
-    "parsed_at": 1496729814,
+    "parsed_at": 1503535365,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -53869,7 +54383,7 @@
         }
       },
       {
-        "signature": "struct drawing_options {void *dest; // The bitmap or window used to draw on tofloat scale_x; // Scale datafloat scale_y; //float angle; // Angle for rotationsfloat anchor_offset_x; // Centre point for rotationsfloat anchor_offset_y; //bool flip_x; // Flip databool flip_y; //bool is_part; // Draw just a part?rectangle part; // Part to drawdrawing_dest camera; // Draw to world or screen coordinates (camera has effect?)int line_width; // Specify the width of line drawings.animation anim; // The animation for bitmap drawing};",
+        "signature": "struct drawing_options {void *dest; // The bitmap or window used to draw on tofloat scale_x; // Scale datafloat scale_y; //float angle; // Angle for rotationsfloat anchor_offset_x; // Centre point for rotationsfloat anchor_offset_y; //bool flip_x; // Flip databool flip_y; //bool is_part; // Draw just a part?rectangle part; // Part to drawint draw_cell; // The cell to draw - overridden by animation or partdrawing_dest camera; // Draw to world or screen coordinates (camera has effect?)int line_width; // Specify the width of line drawings.animation anim; // The animation for bitmap drawing};",
         "name": "drawing_options",
         "description": "Drawing options allow you to customise drawing options. These should be\ninitialised using the drawing option functions.",
         "brief": null,
@@ -54033,6 +54547,19 @@
           "anim": {
             "type": "animation",
             "description": "The animation to use, which overrides the part\noption",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "draw_cell": {
+            "type": "int",
+            "description": "Drawing options allow you to customise drawing options. These should be\ninitialised using the drawing option functions.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,

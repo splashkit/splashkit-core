@@ -275,6 +275,7 @@ namespace SplashKitSDK
       __skreturn.Camera = __skadapter__to_sklib_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_sklib_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_sklib_animation(v.Anim);
+      __skreturn.DrawCell = __skadapter__to_sklib_int(v.DrawCell);
       return __skreturn;
     }
     private static DrawingOptions __skadapter__to_drawing_options(__sklib_drawing_options v)
@@ -293,6 +294,7 @@ namespace SplashKitSDK
       __skreturn.Camera = __skadapter__to_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_animation(v.Anim);
+      __skreturn.DrawCell = __skadapter__to_int(v.DrawCell);
       return __skreturn;
     }
 
@@ -1053,6 +1055,18 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__string_ref__string_ref__bool(__sklib_ptr anim, __sklib_string scriptName, __sklib_string name, int withSound);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__assign_animation__animation__int(__sklib_ptr anim, int idx);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int__bool", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__assign_animation__animation__int__bool(__sklib_ptr anim, int idx, int withSound);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__assign_animation__animation__string(__sklib_ptr anim, __sklib_string name);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string__bool", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__assign_animation__animation__string__bool(__sklib_ptr anim, __sklib_string name, int withSound);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__int__bool", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__animation_script__int__bool(__sklib_ptr script, int idx, int withSound);
 
@@ -1400,6 +1414,12 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_point_2d pt);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_point_2d bmpPt, __sklib_point_2d pt);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__sklib_ptr bmp, int cell, double bmpX, double bmpY, double x, double y);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_rectangle rect);
@@ -2057,6 +2077,12 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_animation__animation__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_with_animation__animation__drawing_options(__sklib_ptr anim, __sklib_drawing_options opts);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_with_bitmap_cell__int(int cell);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern __sklib_drawing_options __sklib__option_with_bitmap_cell__int__drawing_options(int cell, __sklib_drawing_options opts);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse__color__rectangle(__sklib_color clr, __sklib_rectangle rect);
@@ -4644,6 +4670,44 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__script_name);
     __skadapter__free__sklib_string(ref __skparam__name);
     }
+    public static void AssignAnimation(Animation anim, int idx)
+    {
+      __sklib_ptr __skparam__anim;
+      int __skparam__idx;
+      __skparam__anim = __skadapter__to_sklib_animation(anim);
+      __skparam__idx = __skadapter__to_sklib_int(idx);
+      __sklib__assign_animation__animation__int(__skparam__anim, __skparam__idx);
+    }
+    public static void AssignAnimation(Animation anim, int idx, bool withSound)
+    {
+      __sklib_ptr __skparam__anim;
+      int __skparam__idx;
+      int __skparam__with_sound;
+      __skparam__anim = __skadapter__to_sklib_animation(anim);
+      __skparam__idx = __skadapter__to_sklib_int(idx);
+      __skparam__with_sound = __skadapter__to_sklib_bool(withSound);
+      __sklib__assign_animation__animation__int__bool(__skparam__anim, __skparam__idx, __skparam__with_sound);
+    }
+    public static void AssignAnimation(Animation anim, string name)
+    {
+      __sklib_ptr __skparam__anim;
+      __sklib_string __skparam__name;
+      __skparam__anim = __skadapter__to_sklib_animation(anim);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__assign_animation__animation__string(__skparam__anim, __skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void AssignAnimation(Animation anim, string name, bool withSound)
+    {
+      __sklib_ptr __skparam__anim;
+      __sklib_string __skparam__name;
+      int __skparam__with_sound;
+      __skparam__anim = __skadapter__to_sklib_animation(anim);
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__with_sound = __skadapter__to_sklib_bool(withSound);
+      __sklib__assign_animation__animation__string__bool(__skparam__anim, __skparam__name, __skparam__with_sound);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
     public static Animation CreateAnimation(AnimationScript script, int idx, bool withSound)
     {
       __sklib_ptr __skparam__script;
@@ -5775,6 +5839,38 @@ namespace SplashKitSDK
       __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skreturn = __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapPointCollision(Bitmap bmp, int cell, Point2D bmpPt, Point2D pt)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_point_2d __skparam__bmp_pt;
+      __sklib_point_2d __skparam__pt;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmpPt);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skreturn = __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__bmp_pt, __skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapPointCollision(Bitmap bmp, int cell, double bmpX, double bmpY, double x, double y)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__bmp_x;
+      double __skparam__bmp_y;
+      double __skparam__x;
+      double __skparam__y;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__bmp_x = __skadapter__to_sklib_double(bmpX);
+      __skparam__bmp_y = __skadapter__to_sklib_double(bmpY);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skreturn = __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool BitmapRectangleCollision(Bitmap bmp, Point2D pt, Rectangle rect)
@@ -7358,6 +7454,24 @@ namespace SplashKitSDK
       __skparam__anim = __skadapter__to_sklib_animation(anim);
       __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
       __skreturn = __sklib__option_with_animation__animation__drawing_options(__skparam__anim, __skparam__opts);
+      return __skadapter__to_drawing_options(__skreturn);
+    }
+    public static DrawingOptions OptionWithBitmapCell(int cell)
+    {
+      int __skparam__cell;
+      __sklib_drawing_options __skreturn;
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skreturn = __sklib__option_with_bitmap_cell__int(__skparam__cell);
+      return __skadapter__to_drawing_options(__skreturn);
+    }
+    public static DrawingOptions OptionWithBitmapCell(int cell, DrawingOptions opts)
+    {
+      int __skparam__cell;
+      __sklib_drawing_options __skparam__opts;
+      __sklib_drawing_options __skreturn;
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __skreturn = __sklib__option_with_bitmap_cell__int__drawing_options(__skparam__cell, __skparam__opts);
       return __skadapter__to_drawing_options(__skreturn);
     }
     public static void DrawEllipse(Color clr, Rectangle rect)
@@ -15980,6 +16094,7 @@ namespace SplashKitSDK
     public int Camera;
     public int LineWidth;
     public __sklib_ptr Anim;
+    public int DrawCell;
 
   }
 
@@ -15998,6 +16113,7 @@ namespace SplashKitSDK
     public DrawingDest Camera;
     public int LineWidth;
     public Animation Anim;
+    public int DrawCell;
   }
 
   [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
@@ -17621,6 +17737,30 @@ public class Animation : PointerWrapper
     }
 
 
+    public void Assign(int idx)
+    {
+        SplashKit.AssignAnimation(this, idx);
+    }
+
+
+    public void Assign(int idx, bool withSound)
+    {
+        SplashKit.AssignAnimation(this, idx, withSound);
+    }
+
+
+    public void Assign(string name)
+    {
+        SplashKit.AssignAnimation(this, name);
+    }
+
+
+    public void Assign(string name, bool withSound)
+    {
+        SplashKit.AssignAnimation(this, name, withSound);
+    }
+
+
     public static void FreeAll()
     {
         SplashKit.FreeAllAnimationScripts();
@@ -17833,6 +17973,18 @@ public class Bitmap : PointerWrapper
     public bool PointCollision(int cell, Matrix2D translation, Point2D pt)
     {
         return SplashKit.BitmapPointCollision(this, cell, translation, pt);
+    }
+
+
+    public bool PointCollision(int cell, Point2D bmpPt, Point2D pt)
+    {
+        return SplashKit.BitmapPointCollision(this, cell, bmpPt, pt);
+    }
+
+
+    public bool PointCollision(int cell, double bmpX, double bmpY, double x, double y)
+    {
+        return SplashKit.BitmapPointCollision(this, cell, bmpX, bmpY, x, y);
     }
 
 
@@ -18275,9 +18427,9 @@ public class Bitmap : PointerWrapper
     {
         get { return SplashKit.BitmapCellRows(this); }
     }
-    public int Width
+    public int CellWidth
     {
-        get { return SplashKit.BitmapWidth(this); }
+        get { return SplashKit.BitmapCellWidth(this); }
     }
     public Point2D Center
     {
@@ -18294,6 +18446,10 @@ public class Bitmap : PointerWrapper
     public string Name
     {
         get { return SplashKit.BitmapName(this); }
+    }
+    public int Width
+    {
+        get { return SplashKit.BitmapWidth(this); }
     }
 }
 public class Display : PointerWrapper

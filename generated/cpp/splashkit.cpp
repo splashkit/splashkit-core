@@ -105,6 +105,30 @@ void assign_animation(animation anim, const string &script_name, const string &n
     __skadapter__free__sklib_string(__skparam__script_name);
     __skadapter__free__sklib_string(__skparam__name);
 }
+void assign_animation(animation anim, int idx) {
+    __sklib_animation __skparam__anim = __skadapter__to_sklib_animation(anim);
+    int __skparam__idx = __skadapter__to_int(idx);
+    __sklib__assign_animation__animation__int(__skparam__anim, __skparam__idx);
+}
+void assign_animation(animation anim, int idx, bool with_sound) {
+    __sklib_animation __skparam__anim = __skadapter__to_sklib_animation(anim);
+    int __skparam__idx = __skadapter__to_int(idx);
+    int __skparam__with_sound = __skadapter__to_int(with_sound);
+    __sklib__assign_animation__animation__int__bool(__skparam__anim, __skparam__idx, __skparam__with_sound);
+}
+void assign_animation(animation anim, string name) {
+    __sklib_animation __skparam__anim = __skadapter__to_sklib_animation(anim);
+    __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    __sklib__assign_animation__animation__string(__skparam__anim, __skparam__name);
+    __skadapter__free__sklib_string(__skparam__name);
+}
+void assign_animation(animation anim, string name, bool with_sound) {
+    __sklib_animation __skparam__anim = __skadapter__to_sklib_animation(anim);
+    __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
+    int __skparam__with_sound = __skadapter__to_int(with_sound);
+    __sklib__assign_animation__animation__string__bool(__skparam__anim, __skparam__name, __skparam__with_sound);
+    __skadapter__free__sklib_string(__skparam__name);
+}
 animation create_animation(animation_script script, int idx, bool with_sound) {
     __sklib_animation_script __skparam__script = __skadapter__to_sklib_animation_script(script);
     int __skparam__idx = __skadapter__to_int(idx);
@@ -799,6 +823,24 @@ bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, 
     const __sklib_matrix_2d __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
     const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     int __skreturn = __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d &pt) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    const __sklib_point_2d __skparam__bmp_pt = __skadapter__to_sklib_point_2d(bmp_pt);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__bmp_pt, __skparam__pt);
+    return __skadapter__to_bool(__skreturn);
+}
+bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skparam__cell = __skadapter__to_int(cell);
+    double __skparam__bmp_x = __skadapter__to_double(bmp_x);
+    double __skparam__bmp_y = __skadapter__to_double(bmp_y);
+    double __skparam__x = __skadapter__to_double(x);
+    double __skparam__y = __skadapter__to_double(y);
+    int __skreturn = __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
     return __skadapter__to_bool(__skreturn);
 }
 bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect) {
@@ -1814,6 +1856,17 @@ drawing_options option_with_animation(animation anim, drawing_options opts) {
     __sklib_animation __skparam__anim = __skadapter__to_sklib_animation(anim);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
     __sklib_drawing_options __skreturn = __sklib__option_with_animation__animation__drawing_options(__skparam__anim, __skparam__opts);
+    return __skadapter__to_drawing_options(__skreturn);
+}
+drawing_options option_with_bitmap_cell(int cell) {
+    int __skparam__cell = __skadapter__to_int(cell);
+    __sklib_drawing_options __skreturn = __sklib__option_with_bitmap_cell__int(__skparam__cell);
+    return __skadapter__to_drawing_options(__skreturn);
+}
+drawing_options option_with_bitmap_cell(int cell, drawing_options opts) {
+    int __skparam__cell = __skadapter__to_int(cell);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib_drawing_options __skreturn = __sklib__option_with_bitmap_cell__int__drawing_options(__skparam__cell, __skparam__opts);
     return __skadapter__to_drawing_options(__skreturn);
 }
 void draw_ellipse(color clr, const rectangle rect) {

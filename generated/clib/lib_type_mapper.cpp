@@ -360,6 +360,7 @@ __sklib_drawing_options __sklib__to_sklib_drawing_options(drawing_options v) {
     __skreturn.camera = __sklib__to_int(v.camera);
     __skreturn.line_width = __sklib__to_int(v.line_width);
     __skreturn.anim = __sklib__to_sklib_animation(v.anim);
+    __skreturn.draw_cell = __sklib__to_int(v.draw_cell);
     return __skreturn;
 }
 drawing_options __sklib__to_drawing_options(__sklib_drawing_options v) {
@@ -377,6 +378,7 @@ drawing_options __sklib__to_drawing_options(__sklib_drawing_options v) {
     __skreturn.camera = __sklib__to_drawing_dest(v.camera);
     __skreturn.line_width = __sklib__to_int(v.line_width);
     __skreturn.anim = __sklib__to_animation(v.anim);
+    __skreturn.draw_cell = __sklib__to_int(v.draw_cell);
     return __skreturn;
 }
 __sklib_line __sklib__to_sklib_line(line v) {

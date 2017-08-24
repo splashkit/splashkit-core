@@ -278,6 +278,7 @@ type DrawingOptions = record
   camera: DrawingDest;
   lineWidth: Integer;
   anim: Animation;
+  drawCell: Integer;
 end;
 type Line = record
   startPoint: Point2D;
@@ -321,6 +322,10 @@ procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer
 procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer; withSound: Boolean);
 procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String);
 procedure AssignAnimation(anim: Animation; const scriptName: String; const name: String; withSound: Boolean);
+procedure AssignAnimation(anim: Animation; idx: Integer);
+procedure AssignAnimation(anim: Animation; idx: Integer; withSound: Boolean);
+procedure AssignAnimation(anim: Animation; name: String);
+procedure AssignAnimation(anim: Animation; name: String; withSound: Boolean);
 function CreateAnimation(script: AnimationScript; idx: Integer; withSound: Boolean): Animation;
 function CreateAnimation(script: AnimationScript; const name: String): Animation;
 function CreateAnimation(script: AnimationScript; const name: String; withSound: Boolean): Animation;
@@ -437,6 +442,8 @@ function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt
 function BitmapPointCollision(bmp: Bitmap; const bmpPt: Point2D; const pt: Point2D): Boolean;
 function BitmapPointCollision(bmp: Bitmap; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
 function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const pt: Point2D): Boolean;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const bmpPt: Point2D; const pt: Point2D): Boolean;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; const pt: Point2D; const rect: Rectangle): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; x: Double; y: Double; const rect: Rectangle): Boolean;
 function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const rect: Rectangle): Boolean;
@@ -656,6 +663,8 @@ function OptionToWorld(): DrawingOptions;
 function OptionToWorld(opts: DrawingOptions): DrawingOptions;
 function OptionWithAnimation(anim: Animation): DrawingOptions;
 function OptionWithAnimation(anim: Animation; opts: DrawingOptions): DrawingOptions;
+function OptionWithBitmapCell(cell: Integer): DrawingOptions;
+function OptionWithBitmapCell(cell: Integer; opts: DrawingOptions): DrawingOptions;
 procedure DrawEllipse(clr: Color; rect: Rectangle);
 procedure DrawEllipse(clr: Color; rect: Rectangle; opts: DrawingOptions);
 procedure DrawEllipse(clr: Color; x: Double; y: Double; width: Double; height: Double);
@@ -1513,6 +1522,7 @@ type __sklib_drawing_options = record
   camera: LongInt;
   lineWidth: Integer;
   anim: __sklib_ptr;
+  drawCell: Integer;
 end;
 type __sklib_line = record
   startPoint: __sklib_point_2d;
@@ -1968,6 +1978,7 @@ begin
   result.camera := __skadapter__to_sklib_drawing_dest(v.camera);
   result.lineWidth := __skadapter__to_sklib_int(v.lineWidth);
   result.anim := __skadapter__to_sklib_animation(v.anim);
+  result.drawCell := __skadapter__to_sklib_int(v.drawCell);
 end;
 function __skadapter__to_drawing_options(v: __sklib_drawing_options): DrawingOptions;
 begin
@@ -1984,6 +1995,7 @@ begin
   result.camera := __skadapter__to_drawing_dest(v.camera);
   result.lineWidth := __skadapter__to_int(v.lineWidth);
   result.anim := __skadapter__to_animation(v.anim);
+  result.drawCell := __skadapter__to_int(v.drawCell);
 end;
 function __skadapter__to_sklib_line(v: Line): __sklib_line;
 begin
@@ -2400,6 +2412,10 @@ procedure __sklib__assign_animation__animation__animation_script__int(anim: __sk
 procedure __sklib__assign_animation__animation__animation_script__int__bool(anim: __sklib_ptr; script: __sklib_ptr; idx: Integer; withSound: LongInt); cdecl; external;
 procedure __sklib__assign_animation__animation__string_ref__string_ref(anim: __sklib_ptr; const scriptName: __sklib_string; const name: __sklib_string); cdecl; external;
 procedure __sklib__assign_animation__animation__string_ref__string_ref__bool(anim: __sklib_ptr; const scriptName: __sklib_string; const name: __sklib_string; withSound: LongInt); cdecl; external;
+procedure __sklib__assign_animation__animation__int(anim: __sklib_ptr; idx: Integer); cdecl; external;
+procedure __sklib__assign_animation__animation__int__bool(anim: __sklib_ptr; idx: Integer; withSound: LongInt); cdecl; external;
+procedure __sklib__assign_animation__animation__string(anim: __sklib_ptr; name: __sklib_string); cdecl; external;
+procedure __sklib__assign_animation__animation__string__bool(anim: __sklib_ptr; name: __sklib_string; withSound: LongInt); cdecl; external;
 function __sklib__create_animation__animation_script__int__bool(script: __sklib_ptr; idx: Integer; withSound: LongInt): __sklib_ptr; cdecl; external;
 function __sklib__create_animation__animation_script__string_ref(script: __sklib_ptr; const name: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__create_animation__animation_script__string_ref__bool(script: __sklib_ptr; const name: __sklib_string; withSound: LongInt): __sklib_ptr; cdecl; external;
@@ -2516,6 +2532,8 @@ function __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(bm
 function __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; const bmpPt: __sklib_point_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__double__double__double__double(bmp: __sklib_ptr; bmpX: Double; bmpY: Double; x: Double; y: Double): LongInt; cdecl; external;
 function __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(bmp: __sklib_ptr; cell: Integer; const bmpPt: __sklib_point_2d; const pt: __sklib_point_2d): LongInt; cdecl; external;
+function __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(bmp: __sklib_ptr; cell: Integer; bmpX: Double; bmpY: Double; x: Double; y: Double): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(bmp: __sklib_ptr; const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(bmp: __sklib_ptr; x: Double; y: Double; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(bmp: __sklib_ptr; cell: Integer; const translation: __sklib_matrix_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
@@ -2735,6 +2753,8 @@ function __sklib__option_to_world(): __sklib_drawing_options; cdecl; external;
 function __sklib__option_to_world__drawing_options(opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 function __sklib__option_with_animation__animation(anim: __sklib_ptr): __sklib_drawing_options; cdecl; external;
 function __sklib__option_with_animation__animation__drawing_options(anim: __sklib_ptr; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
+function __sklib__option_with_bitmap_cell__int(cell: Integer): __sklib_drawing_options; cdecl; external;
+function __sklib__option_with_bitmap_cell__int__drawing_options(cell: Integer; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
 procedure __sklib__draw_ellipse__color__rectangle(clr: __sklib_color; rect: __sklib_rectangle); cdecl; external;
 procedure __sklib__draw_ellipse__color__rectangle__drawing_options(clr: __sklib_color; rect: __sklib_rectangle; opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_ellipse__color__double__double__double__double(clr: __sklib_color; x: Double; y: Double; width: Double; height: Double); cdecl; external;
@@ -3708,6 +3728,46 @@ begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __skparam__with_sound := __skadapter__to_sklib_bool(withSound);
   __sklib__assign_animation__animation__string_ref__string_ref__bool(__skparam__anim, __skparam__script_name, __skparam__name, __skparam__with_sound);
+end;
+procedure AssignAnimation(anim: Animation; idx: Integer);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__idx: Integer;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __sklib__assign_animation__animation__int(__skparam__anim, __skparam__idx);
+end;
+procedure AssignAnimation(anim: Animation; idx: Integer; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__idx: Integer;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__idx := __skadapter__to_sklib_int(idx);
+  __skparam__with_sound := __skadapter__to_sklib_bool(withSound);
+  __sklib__assign_animation__animation__int__bool(__skparam__anim, __skparam__idx, __skparam__with_sound);
+end;
+procedure AssignAnimation(anim: Animation; name: String);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__name: __sklib_string;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__assign_animation__animation__string(__skparam__anim, __skparam__name);
+end;
+procedure AssignAnimation(anim: Animation; name: String; withSound: Boolean);
+var
+  __skparam__anim: __sklib_ptr;
+  __skparam__name: __sklib_string;
+  __skparam__with_sound: LongInt;
+begin
+  __skparam__anim := __skadapter__to_sklib_animation(anim);
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__with_sound := __skadapter__to_sklib_bool(withSound);
+  __sklib__assign_animation__animation__string__bool(__skparam__anim, __skparam__name, __skparam__with_sound);
 end;
 function CreateAnimation(script: AnimationScript; idx: Integer; withSound: Boolean): Animation;
 var
@@ -4929,6 +4989,40 @@ begin
   __skparam__translation := __skadapter__to_sklib_matrix_2d(translation);
   __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __skreturn := __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; const bmpPt: Point2D; const pt: Point2D): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__bmp_pt: __sklib_point_2d;
+  __skparam__pt: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__bmp_pt := __skadapter__to_sklib_point_2d(bmpPt);
+  __skparam__pt := __skadapter__to_sklib_point_2d(pt);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__skparam__bmp, __skparam__cell, __skparam__bmp_pt, __skparam__pt);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapPointCollision(bmp: Bitmap; cell: Integer; bmpX: Double; bmpY: Double; x: Double; y: Double): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__cell: Integer;
+  __skparam__bmp_x: Double;
+  __skparam__bmp_y: Double;
+  __skparam__x: Double;
+  __skparam__y: Double;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__bmp_x := __skadapter__to_sklib_double(bmpX);
+  __skparam__bmp_y := __skadapter__to_sklib_double(bmpY);
+  __skparam__x := __skadapter__to_sklib_double(x);
+  __skparam__y := __skadapter__to_sklib_double(y);
+  __skreturn := __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
   result := __skadapter__to_bool(__skreturn);
 end;
 function BitmapRectangleCollision(bmp: Bitmap; const pt: Point2D; const rect: Rectangle): Boolean;
@@ -6720,6 +6814,26 @@ begin
   __skparam__anim := __skadapter__to_sklib_animation(anim);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
   __skreturn := __sklib__option_with_animation__animation__drawing_options(__skparam__anim, __skparam__opts);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionWithBitmapCell(cell: Integer): DrawingOptions;
+var
+  __skparam__cell: Integer;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skreturn := __sklib__option_with_bitmap_cell__int(__skparam__cell);
+  result := __skadapter__to_drawing_options(__skreturn);
+end;
+function OptionWithBitmapCell(cell: Integer; opts: DrawingOptions): DrawingOptions;
+var
+  __skparam__cell: Integer;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: __sklib_drawing_options;
+begin
+  __skparam__cell := __skadapter__to_sklib_int(cell);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__option_with_bitmap_cell__int__drawing_options(__skparam__cell, __skparam__opts);
   result := __skadapter__to_drawing_options(__skreturn);
 end;
 procedure DrawEllipse(clr: Color; rect: Rectangle);

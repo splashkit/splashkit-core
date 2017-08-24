@@ -96,6 +96,7 @@ typedef struct {
     __sklib_drawing_dest camera;
     __sklib_int line_width;
     __sklib_animation anim;
+    __sklib_int draw_cell;
 } __sklib_drawing_options;
 typedef struct {
     __sklib_point_2d start_point;
@@ -181,6 +182,10 @@ void __sklib__assign_animation__animation__animation_script__int(__sklib_animati
 void __sklib__assign_animation__animation__animation_script__int__bool(__sklib_animation anim, __sklib_animation_script script, int idx, int with_sound);
 void __sklib__assign_animation__animation__string_ref__string_ref(__sklib_animation anim, const __sklib_string script_name, const __sklib_string name);
 void __sklib__assign_animation__animation__string_ref__string_ref__bool(__sklib_animation anim, const __sklib_string script_name, const __sklib_string name, int with_sound);
+void __sklib__assign_animation__animation__int(__sklib_animation anim, int idx);
+void __sklib__assign_animation__animation__int__bool(__sklib_animation anim, int idx, int with_sound);
+void __sklib__assign_animation__animation__string(__sklib_animation anim, __sklib_string name);
+void __sklib__assign_animation__animation__string__bool(__sklib_animation anim, __sklib_string name, int with_sound);
 __sklib_animation __sklib__create_animation__animation_script__int__bool(__sklib_animation_script script, int idx, int with_sound);
 __sklib_animation __sklib__create_animation__animation_script__string_ref(__sklib_animation_script script, const __sklib_string name);
 __sklib_animation __sklib__create_animation__animation_script__string_ref__bool(__sklib_animation_script script, const __sklib_string name, int with_sound);
@@ -297,6 +302,8 @@ int __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__sklib
 int __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__sklib_bitmap bmp, const __sklib_point_2d bmp_pt, const __sklib_point_2d pt);
 int __sklib__bitmap_point_collision__bitmap__double__double__double__double(__sklib_bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_point_2d pt);
+int __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__sklib_bitmap bmp, int cell, const __sklib_point_2d bmp_pt, const __sklib_point_2d pt);
+int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__sklib_bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y);
 int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_bitmap bmp, const __sklib_point_2d pt, const __sklib_rectangle rect);
 int __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__sklib_bitmap bmp, double x, double y, const __sklib_rectangle rect);
 int __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_rectangle rect);
@@ -516,6 +523,8 @@ __sklib_drawing_options __sklib__option_to_world();
 __sklib_drawing_options __sklib__option_to_world__drawing_options(__sklib_drawing_options opts);
 __sklib_drawing_options __sklib__option_with_animation__animation(__sklib_animation anim);
 __sklib_drawing_options __sklib__option_with_animation__animation__drawing_options(__sklib_animation anim, __sklib_drawing_options opts);
+__sklib_drawing_options __sklib__option_with_bitmap_cell__int(int cell);
+__sklib_drawing_options __sklib__option_with_bitmap_cell__int__drawing_options(int cell, __sklib_drawing_options opts);
 void __sklib__draw_ellipse__color__rectangle(__sklib_color clr, const __sklib_rectangle rect);
 void __sklib__draw_ellipse__color__rectangle__drawing_options(__sklib_color clr, const __sklib_rectangle rect, __sklib_drawing_options opts);
 void __sklib__draw_ellipse__color__double__double__double__double(__sklib_color clr, double x, double y, double width, double height);

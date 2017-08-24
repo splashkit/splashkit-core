@@ -42,5 +42,7 @@ drawing_options option_to_world();
 drawing_options option_to_world(drawing_options opts);
 drawing_options option_with_animation(animation anim);
 drawing_options option_with_animation(animation anim, drawing_options opts);
+drawing_options option_with_bitmap_cell(int cell);
+drawing_options option_with_bitmap_cell(int cell, drawing_options opts);
 
 #endif /* __drawing_options_h */
