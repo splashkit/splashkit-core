@@ -428,8 +428,7 @@ namespace splashkit_lib
      * @param anim          The animation to check.
      *
      * @attribute class     animation
-     * @attribute method    ended
-     * @attribute self      anim
+     * @attribute getter    ended
      *
      * @returns Returns a `bool` denoting whether the `animation` has ended.
      */
@@ -442,8 +441,7 @@ namespace splashkit_lib
      * @param anim          The animation to check.
      *
      * @attribute class     animation
-     * @attribute method    entered_frame
-     * @attribute self      anim
+     * @attribute getter    entered_frame
      *
      * @returns Returns a `bool` denoting whether the `animation` has ended.
      */
@@ -456,8 +454,7 @@ namespace splashkit_lib
      * @param anim          The animation to check.
      *
      * @attribute class     animation
-     * @attribute method    frame_time
-     * @attribute self      anim
+     * @attribute getter    frame_time
      *
      * @returns Returns the amount of time spent in the current frame as a `float`.
      */
@@ -469,8 +466,7 @@ namespace splashkit_lib
      * @param anim          The animation to check the vector of.
      *
      * @attribute class     animation
-     * @attribute method    current_vector
-     * @attribute self      anim
+     * @attribute getter    current_vector
      *
      * @returns Returns the `vector_2d` assigned to the current frame in the animation.
      */
