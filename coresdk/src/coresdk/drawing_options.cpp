@@ -31,6 +31,7 @@ namespace splashkit_lib
         result.camera	 		= DRAW_DEFAULT;
         result.line_width 		= 1;
         result.anim             = nullptr;
+        result.draw_cell        = -1;
 
         return result;
     }
