@@ -238,12 +238,12 @@ namespace splashkit_lib
      * @field flip_y          Should bitmaps be flipped vertically
      * @field is_part         Indicates that part of a bitmap should be drawn
      * @field part            The area of the bitmap to draw
+     * @field draw_cell       Which cell of a bitmap to draw, or -1 for all. Overrides
+     *                        parts and animation settings.
      * @field camera          How the current window camera affects the drawing
      * @field line_width      How wide are lines (only lines at this stage)
      * @field anim            The animation to use, which overrides the part
      *                        option
-     * @field draw_cell       Which cell of a bitmap to draw, or -1 for all. Overrides
-     *                        parts and animation settings.
      */
     struct drawing_options
     {
