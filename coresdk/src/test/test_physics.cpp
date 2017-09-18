@@ -26,6 +26,11 @@ void do_test_vector()
     line l;
     vector_2d velocity = vector_to(10, 0);
     
+    bitmap bmp = create_bitmap("test", 100, 100);
+    clear_bitmap(bmp, COLOR_RED);
+    
+    setup_collision_mask(bmp);
+    
     while( not window_close_requested(w1))
     {
         mouse_circle = circle_at(mouse_position(), 10);
@@ -45,6 +50,7 @@ void do_test_vector()
         clear_screen(COLOR_WHITE);
         draw_rectangle(COLOR_GREEN, r1);
         draw_circle(COLOR_GREEN, c);
+        draw_bitmap(bmp, 100, 100);
         
         draw_circle(COLOR_RED, mouse_circle);
         draw_rectangle(COLOR_RED, mouse_rect);
@@ -73,9 +79,15 @@ void do_test_vector()
             draw_circle(COLOR_RED, circle_at(l.end_point, 10));
         }
         
+        if ( bitmap_point_collision(bmp, 100, 100, mouse_x(), mouse_y()))
+        {
+            draw_rectangle(COLOR_BLACK, 100, 100, 100, 100);
+        }
+        
         refresh_screen();
     }
     
+    free_bitmap(bmp);
     close_window(w1);
 }
 

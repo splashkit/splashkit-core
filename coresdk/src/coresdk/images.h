@@ -70,6 +70,21 @@ namespace splashkit_lib
     void free_all_bitmaps();
 
     /**
+     * Sets up the collision mask for a bitmap. This enables collision detection between
+     * this bitmap and other bitmaps or shapes.
+     *
+     * This is automatically called when a bitmap is loaded, and only needs to be 
+     * called on bitmaps created using `create_bitmap`, and when a bitmap is
+     * changed by drawing onto the bitmap.
+     *
+     * @param bmp the bitmap to setup
+     *
+     * @attribute class   bitmap
+     * @attribute method  setup_collision_mask
+     */
+    void setup_collision_mask(bitmap bmp);
+    
+    /**
      * Draws the bitmap supplied into `bmp` to the current window.
      * at `x` and `y`.
      *

@@ -22,8 +22,14 @@ namespace splashkit_lib
 {
     static map<string, bitmap> _bitmaps;
 
-    void setup_collision_mask(_bitmap_data *bmp)
+    void setup_collision_mask(bitmap bmp)
     {
+        if ( INVALID_PTR(bmp, BITMAP_PTR) )
+        {
+            LOG(WARNING) << "Attempt to setup collision map with invalid bitmp";
+            return;
+        }
+        
         int *pixels;
         int sz;
         int r, c;
@@ -33,7 +39,8 @@ namespace splashkit_lib
 
         sk_to_pixels(&bmp->image.surface, pixels, sz);
 
-        bmp->pixel_mask = (bool *) malloc( sizeof(bool) * sz );
+        if ( bmp->pixel_mask == nullptr )
+            bmp->pixel_mask = (bool *) malloc( sizeof(bool) * sz );
 
         // WriteLn(bmp^.name);
         for (r = 0; r < bmp->image.surface.height; r++)
@@ -49,6 +56,7 @@ namespace splashkit_lib
 
         free(pixels);
     }
+    
 
     bool has_bitmap(string name)
     {
@@ -106,6 +114,7 @@ namespace splashkit_lib
         result->cell_cols  = 1;
         result->cell_rows  = 1;
         result->cell_count = 1;
+        result->pixel_mask = nullptr;
 
         result->name       = name;
         result->filename   = file_path;
@@ -129,6 +138,7 @@ namespace splashkit_lib
         result->cell_cols  = 1;
         result->cell_rows  = 1;
         result->cell_count = 1;
+        result->pixel_mask = nullptr;
 
         result->filename   = "";
 
@@ -156,6 +166,8 @@ namespace splashkit_lib
             _bitmaps.erase(bmp->name);
             sk_close_drawing_surface(&bmp->image.surface);
             bmp->id = NONE_PTR;  // ensure future use of this pointer will fail...
+            if ( bmp->pixel_mask != nullptr )
+                free(bmp->pixel_mask);
             delete(bmp);
         }
         else
@@ -508,7 +520,7 @@ namespace splashkit_lib
         int px = ceil(x);
         int py = ceil(y);
 
-        if ( INVALID_PTR(bmp, BITMAP_PTR) or px < 0 or px >= bitmap_width(bmp) or py < 0 or py >= bitmap_height(bmp) ) return false;
+        if ( INVALID_PTR(bmp, BITMAP_PTR) or px < 0 or px >= bitmap_width(bmp) or py < 0 or py >= bitmap_height(bmp) or bmp->pixel_mask == nullptr ) return false;
 
         return bmp->pixel_mask[px + py * bmp->image.surface.width];
     }
