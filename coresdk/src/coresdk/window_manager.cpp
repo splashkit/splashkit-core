@@ -37,6 +37,8 @@ namespace splashkit_lib
         int idx;
         window result;
 
+        _sk_quit = false;
+        
         real_caption = caption;
         idx = 0;
 
