@@ -18,6 +18,29 @@
 using namespace std;
 using namespace splashkit_lib;
 
+void test_drawing_on_new_window()
+{
+    bitmap user_image;
+
+    user_image = create_bitmap ("user_image", 20, 20);
+    clear_bitmap (user_image, COLOR_BRIGHT_GREEN);
+    save_bitmap(user_image, "1");
+    fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 0, 0, 10, 10);
+    save_bitmap(user_image, "2");
+
+    window my_window = open_window ("Check black top left", 200, 200);
+    clear_window (my_window, COLOR_WHITE);
+    save_bitmap(user_image, "3");
+
+    draw_bitmap_on_window (my_window, user_image, 0, 0);
+    save_bitmap(user_image, "4");
+    refresh_window(my_window);
+    delay (5000);
+    
+    close_window(my_window);
+    free_bitmap(user_image);
+}
+
 void test_clipping(window w1)
 {
     clear_window(w1, COLOR_WHITE_SMOKE);
@@ -83,6 +106,8 @@ void run_graphics_test()
         cout << "     s: " << display_width(d) << "x" << display_height(d) << endl;
         cout << "------------------------" << endl;
     }
+    
+    test_drawing_on_new_window();
     
     window w1 = open_window("Testing Graphics", 300, 300);
     
