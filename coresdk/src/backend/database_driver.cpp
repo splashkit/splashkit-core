@@ -60,7 +60,16 @@ namespace splashkit_lib
     int sk_step_statement(sk_query_result *result)
     {
         sqlite3_stmt *stmt = sqlite3_stmt_from_void(result->_stmt);
-        return result->_result = sqlite3_step(stmt);
+        result->_result = sqlite3_step(stmt);
+        sqlite3 *data = sqlite3_from_void(result->_database->_data);
+        result->_error_code = sqlite3_extended_errcode(data);
+        
+        return result->_result;
+    }
+    
+    string sk_db_error_message(sk_query_result *result)
+    {
+        return string(sqlite3_errstr(result->_error_code));
     }
 
     sk_query_result sk_prepare_statement(sk_database *db, string sql)

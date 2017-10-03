@@ -70,6 +70,16 @@ namespace splashkit_lib
 
         return result;
     }
+    
+    string error_message(query_result query)
+    {
+        if ( INVALID_PTR(query, QUERY_PTR))
+        {
+            return "Attempting to get error message for invalid query result";
+        }
+        
+        return sk_db_error_message(query);
+    }
 
     query_result run_sql(string database_name, string sql)
     {
@@ -115,6 +125,12 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to access invalid query to get next row.";
             return false;
         }
+        if ( INVALID_PTR(result->_database, DATABASE_PTR))
+        {
+            LOG(WARNING) << "Attempting to get next row when database has been closed for this query";
+            return false;
+        }
+        
         return sk_query_get_next_row(result);
     }
 
@@ -134,6 +150,11 @@ namespace splashkit_lib
         if ( INVALID_PTR(result, QUERY_PTR))
         {
             LOG(WARNING) << "Attempting to access invalid query to reset.";
+            return;
+        }
+        if ( INVALID_PTR(result->_database, DATABASE_PTR))
+        {
+            LOG(WARNING) << "Attempting to reset query when database has been closed";
             return;
         }
 
