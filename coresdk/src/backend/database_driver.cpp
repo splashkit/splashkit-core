@@ -82,6 +82,7 @@ namespace splashkit_lib
 
         sk_query_result result;
 
+        result._database = db;
         result._result = sqlite3_prepare_v2(data, sql_char, size_sql_inc_null, &statement, nullptr);
         result._stmt = statement;
         result.id = QUERY_PTR;
