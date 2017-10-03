@@ -58,7 +58,7 @@ int main()
 {
     setup_tests();
 
-    int opt;
+    int opt = 0;
     do
     {
         cout << "---------------------" << endl;

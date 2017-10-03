@@ -62,7 +62,7 @@ void test_advanced_terminal()
 
 void run_terminal_test()
 {
-    int go;
+    int go = 0;
 
     cout << "Activate advanced terminal (1-yes, 0-no): ";
     cin >> go;

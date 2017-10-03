@@ -163,7 +163,7 @@ void run_web_server_tests()
 
     cout << "Select test to run: ";
 
-    int option;
+    int option = 0;
     cin >> option;
 
     if (option >= 0 && option < tests.size())

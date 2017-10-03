@@ -188,7 +188,7 @@ namespace splashkit_lib
             return COLOR_WHITE;
         }
 
-        unsigned int clr_int;
+        unsigned int clr_int = 0;
         byte r, g, b, a;
 
         str.erase(str.begin());     // Remove the #

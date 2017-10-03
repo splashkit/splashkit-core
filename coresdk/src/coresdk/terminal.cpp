@@ -342,7 +342,7 @@ namespace splashkit_lib
 
     char read_char()
     {
-        char result;
+        char result = 0;
         if ( not _ncurses_active )
             cin >> result;
         else
