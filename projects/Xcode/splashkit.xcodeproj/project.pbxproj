@@ -181,6 +181,9 @@
 		94A501AE1DA8593E007859A1 /* terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A501AC1DA8593E007859A1 /* terminal.h */; };
 		94A501AF1DA85943007859A1 /* terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A501AB1DA8593E007859A1 /* terminal.cpp */; };
 		94A501B21DA85D3C007859A1 /* test_terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A501B01DA85D3C007859A1 /* test_terminal.cpp */; };
+		94A580411F6F6A7200A3BEEB /* basics.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A5803F1F6F6A7200A3BEEB /* basics.h */; };
+		94A580421F6F6A9800A3BEEB /* basics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A5803E1F6F6A7200A3BEEB /* basics.cpp */; };
+		94A580431F6F6AA000A3BEEB /* basics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A5803E1F6F6A7200A3BEEB /* basics.cpp */; };
 		94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB01D657F45002920A5 /* point_drawing.cpp */; };
 		94AC3DB31D657F45002920A5 /* point_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AC3DB11D657F45002920A5 /* point_drawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AC3DB61D6BF0D8002920A5 /* quad_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */; };
@@ -258,9 +261,7 @@
 		F86951921D508BF100E1BCC9 /* database_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951901D508BF100E1BCC9 /* database_driver.cpp */; };
 		F86951931D508BF100E1BCC9 /* database_driver.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951911D508BF100E1BCC9 /* database_driver.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		F86951961D5093F800E1BCC9 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951941D5093F800E1BCC9 /* database.cpp */; };
-
-		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; };
-		F869519B1D51C84A00E1BCC9 /* test_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86951991D51C84A00E1BCC9 /* test_database.cpp */; };
+		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F877ED901D90FF2B002B9BF9 /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED811D90FF2B002B9BF9 /* crc32.h */; };
 		F877ED921D90FF2B002B9BF9 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED831D90FF2B002B9BF9 /* hash.h */; };
 		F877ED931D90FF2B002B9BF9 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = F877ED841D90FF2B002B9BF9 /* hmac.h */; };
@@ -287,9 +288,6 @@
 		F877EDD41D9150FC002B9BF9 /* sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED891D90FF2B002B9BF9 /* sha1.cpp */; };
 		F877EDD51D9150FC002B9BF9 /* sha3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED8B1D90FF2B002B9BF9 /* sha3.cpp */; };
 		F877EDD61D9150FC002B9BF9 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F877ED8D1D90FF2B002B9BF9 /* sha256.cpp */; };
-
-		F86951971D5093F800E1BCC9 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = F86951951D5093F800E1BCC9 /* database.h */; settings = {ATTRIBUTES = (Public, ); }; };
-
 		FA3821BD1D7930FA00AD1C2B /* libSplashKitBackend.a in Copy libSplashKit.a to out/lib */ = {isa = PBXBuildFile; fileRef = 942371DC1D1D540C0020CCE2 /* libSplashKitBackend.a */; };
 		FA3ABFA81D82493A0064C29A /* logging_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAC94071D801C9600B73558 /* logging_driver.cpp */; };
 		FA3ABFA91D82493A0064C29A /* json_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAAB8D1A1D822A0F00D7C7FF /* json_driver.cpp */; };
@@ -600,6 +598,8 @@
 		94A501AB1DA8593E007859A1 /* terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terminal.cpp; sourceTree = "<group>"; };
 		94A501AC1DA8593E007859A1 /* terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terminal.h; sourceTree = "<group>"; };
 		94A501B01DA85D3C007859A1 /* test_terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_terminal.cpp; sourceTree = "<group>"; };
+		94A5803E1F6F6A7200A3BEEB /* basics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = basics.cpp; sourceTree = "<group>"; };
+		94A5803F1F6F6A7200A3BEEB /* basics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = basics.h; sourceTree = "<group>"; };
 		94AC3DB01D657F45002920A5 /* point_drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = point_drawing.cpp; sourceTree = "<group>"; };
 		94AC3DB11D657F45002920A5 /* point_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = point_drawing.h; sourceTree = "<group>"; };
 		94AC3DB41D6BF0D8002920A5 /* quad_geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quad_geometry.cpp; sourceTree = "<group>"; };
@@ -1007,6 +1007,7 @@
 			children = (
 				94A501AA1DA85917007859A1 /* Terminal */,
 				941C8A2D1D5B2EC1003112B2 /* animations.cpp */,
+				94A5803E1F6F6A7200A3BEEB /* basics.cpp */,
 				9424B5B01D449C4F0039B3AF /* camera.cpp */,
 				F86951941D5093F800E1BCC9 /* database.cpp */,
 				9424B5AC1D44910B0039B3AF /* images.cpp */,
@@ -1018,6 +1019,7 @@
 				9424B5981D436C850039B3AF /* utils.cpp */,
 				940864621D38B756009EA048 /* window_manager.cpp */,
 				941C8A2E1D5B2EC1003112B2 /* animations.h */,
+				94A5803F1F6F6A7200A3BEEB /* basics.h */,
 				9424B5B11D449C4F0039B3AF /* camera.h */,
 				F86951951D5093F800E1BCC9 /* database.h */,
 				9424B5AD1D44910B0039B3AF /* images.h */,
@@ -1460,7 +1462,6 @@
 				94DF47001D7402C800E3D9AF /* civetweb.h in Headers */,
 				9408645D1D37B6AF009EA048 /* utils_driver.h in Headers */,
 				F877EDB11D9114D4002B9BF9 /* Base64.h in Headers */,
-				FAAC94001D8016D500B73558 /* json.h in Headers */,
 				9424B5B31D449C4F0039B3AF /* camera.h in Headers */,
 				FCB6B3BC1D61423E00011965 /* music.h in Headers */,
 				9424B5A31D4442220039B3AF /* types.h in Headers */,
@@ -1565,6 +1566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DF46FF1D7402C300E3D9AF /* civetweb.h in Headers */,
+				94A580411F6F6A7200A3BEEB /* basics.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1808,7 +1810,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */;
+			buildConfigurationList = 942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1873,6 +1875,7 @@
 				9408645C1D37B6AF009EA048 /* utils_driver.cpp in Sources */,
 				16238ACC1D669A2E00A88176 /* rectangle_geometry.cpp in Sources */,
 				94444B3A1D644BB50059BF3B /* triangle_drawing.cpp in Sources */,
+				94A580421F6F6A9800A3BEEB /* basics.cpp in Sources */,
 				94AC3DBF1D6C0DA0002920A5 /* sprites.cpp in Sources */,
 				94444B361D644B680059BF3B /* rectangle_drawing.cpp in Sources */,
 				940864681D38BA14009EA048 /* geometry.cpp in Sources */,
@@ -1894,7 +1897,6 @@
 				9424B5961D436A0A0039B3AF /* graphics.cpp in Sources */,
 				94C749221D478BBB006A9052 /* web_client.cpp in Sources */,
 				94AC3DB21D657F45002920A5 /* point_drawing.cpp in Sources */,
-				941C8A3E1D5DFDC6003112B2 /* test_timers.cpp in Sources */,
 				F84278CD1D8FF898007EFA4D /* twitter.cpp in Sources */,
 				942372741D239BF70020CCE2 /* utility_functions.cpp in Sources */,
 				943AF76F1D67F53100DBEA84 /* line_geometry.cpp in Sources */,
@@ -1948,7 +1950,6 @@
 				945BCE981D95512900F54A38 /* test_database.cpp in Sources */,
 				8680129C1D483F9200AE3694 /* test_graphics.cpp in Sources */,
 				FAAB8D191D8227E500D7C7FF /* test_networking.cpp in Sources */,
-				FAAB8D171D82273700D7C7FF /* test_json.cpp in Sources */,
 				F84278D11D901112007EFA4D /* test_twitter.cpp in Sources */,
 				945BCE951D95510C00F54A38 /* test_windows.cpp in Sources */,
 				942372381D1D69700020CCE2 /* test_audio.cpp in Sources */,
@@ -2071,6 +2072,7 @@
 				FA3ABFD61D82493A0064C29A /* text_input.cpp in Sources */,
 				FA3ABFD71D82493A0064C29A /* json.cpp in Sources */,
 				FA3ABFD81D82493A0064C29A /* animations.cpp in Sources */,
+				94A580431F6F6AA000A3BEEB /* basics.cpp in Sources */,
 				FA91DAFB1DB9EFC400BB5E39 /* adapter_type_mapper.cpp in Sources */,
 				FA3ABFD91D82493A0064C29A /* window_manager.cpp in Sources */,
 				FA3ABFDA1D82493A0064C29A /* utils.cpp in Sources */,
@@ -2572,7 +2574,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "SplashKit" */ = {
+		942371D71D1D540C0020CCE2 /* Build configuration list for PBXProject "splashkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				942371E51D1D540C0020CCE2 /* Debug */,
