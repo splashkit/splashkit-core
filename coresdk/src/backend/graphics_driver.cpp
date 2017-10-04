@@ -433,6 +433,9 @@ namespace splashkit_lib
                 }
 
                 SDL_UnlockSurface(_sk_open_bitmaps[i]->surface);
+                
+                // Last window is being closed, saving the surface means the loaded bitmap will no longer be drawable!
+                _sk_open_bitmaps[i]->drawable = false;
             }
         }
     }
