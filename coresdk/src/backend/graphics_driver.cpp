@@ -352,7 +352,11 @@ namespace splashkit_lib
         for (int row = 0; row < h; row++)
         {
             // Copy a row from the paw pixels to the dest pixels
+#ifdef __APPLE__
+            memcpy(&pixels[row * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
+#else
             memcpy(&pixels[(h - row - 1) * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
+#endif
         }
         free(raw_pixels);
     }
@@ -1233,9 +1237,13 @@ namespace splashkit_lib
     {
         sk_color result = {0,0,0,0};
         unsigned int clr = 0;
+        
+#ifdef __APPLE__
+        SDL_Rect rect = {x, y, 1, 1};
+#else
         // Texture is inverted so flip y
         SDL_Rect rect = {x, surface->height - y - 1, 1, 1};
-
+#endif
         if ( ! surface || ! surface->_data ) return result;
 
         if ( _sk_num_open_windows == 0 ) _sk_create_initial_window();

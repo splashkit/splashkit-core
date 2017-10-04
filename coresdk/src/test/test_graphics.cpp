@@ -28,7 +28,7 @@ void test_drawing_on_new_window()
     fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 0, 0, 10, 10);
     save_bitmap(user_image, "2");
 
-    window my_window = open_window ("Check black top left", 200, 200);
+    window my_window = open_window ("Black TL+BR", 200, 200);
     clear_window (my_window, COLOR_WHITE);
     fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 10, 10, 10, 10);
     save_bitmap(user_image, "3");
