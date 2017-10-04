@@ -168,7 +168,7 @@ namespace splashkit_lib
 
         _sk_has_initial_window = true;
         _sk_initial_window = static_cast<sk_window_be *>(malloc(sizeof(sk_window_be)));
-        _sk_initial_window->window = SDL_CreateWindow("SwinGame",
+        _sk_initial_window->window = SDL_CreateWindow("SplashKit",
                                                       SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 200, 200,
                                                       SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
 
@@ -1403,13 +1403,8 @@ namespace splashkit_lib
                 window_be = static_cast<sk_window_be *>(surface->_data);
 
                 window_be->clipped = true;
-#ifdef __APPLE__
-                window_be->clip = { x1, surface->height - y1 - h, w, h };
-#else
                 window_be->clip = { x1, y1, w, h };
-#endif
 
-                //Should be: window_be->clip = { x1, y1, w, h };
                 SDL_RenderSetClipRect(window_be->renderer, &window_be->clip);
                 break;
             }
@@ -1419,13 +1414,7 @@ namespace splashkit_lib
                 bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
 
                 bitmap_be->clipped = true;
-
-#ifdef WINDOWS
                 bitmap_be->clip = { x1, y1, w, h };
-#else
-                //HACK: Current hack to fix SDL clip rect error
-                bitmap_be->clip = { x1, surface->height - h - y1, w, h };
-#endif
 
                 break;
             }

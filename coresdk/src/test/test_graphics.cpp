@@ -30,6 +30,7 @@ void test_drawing_on_new_window()
 
     window my_window = open_window ("Check black top left", 200, 200);
     clear_window (my_window, COLOR_WHITE);
+    fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 10, 10, 10, 10);
     save_bitmap(user_image, "3");
 
     draw_bitmap_on_window (my_window, user_image, 0, 0);
@@ -45,21 +46,20 @@ void test_clipping(window w1)
 {
     clear_window(w1, COLOR_WHITE_SMOKE);
     draw_text("White Smoke Bottom Right", COLOR_BLACK, 10, 280);
-    
     set_clip(w1, rectangle_from(0, 0, 250, 250));
-    clear_window(w1, string_to_color("#ff0000ff"));
+    fill_rectangle(string_to_color("#ff0000ff"), 0, 0, 300, 300, option_draw_to(w1));
     draw_text("Testing Clipping", COLOR_BLACK, 10, 10);
     draw_text("Red Top Left", COLOR_BLACK, 10, 20);
     
     push_clip(rectangle_from(50, 50, 250, 250));
-    clear_window(w1, string_to_color("#00ff00ff"));
+    fill_rectangle(string_to_color("#00ff00ff"), 0, 0, 300, 300, option_draw_to(w1));
     
     push_clip(rectangle_from(145, 0, 10, 300));
-    clear_window(w1, COLOR_GOLD);
+    fill_rectangle(COLOR_GOLD, 0, 0, 300, 300, option_draw_to(w1));
     
     pop_clip();
     push_clip(rectangle_from(0, 145, 300, 10));
-    clear_window(w1, COLOR_GOLD);
+    fill_rectangle(COLOR_GOLD, 0, 0, 300, 300, option_draw_to(w1));
     
     reset_clip();
     
@@ -68,20 +68,20 @@ void test_clipping(window w1)
     
     bitmap bmp = create_bitmap("bmp", 100, 100);
     set_clip(bmp, rectangle_from(0, 0, 75, 75));
-    clear_bitmap(bmp, COLOR_RED);
+    fill_rectangle(COLOR_RED, 0, 0, 100, 100, option_draw_to(bmp));
     push_clip(bmp, rectangle_from(0, 0, 50, 50));
-    clear_bitmap(bmp, COLOR_GREEN);
+    fill_rectangle(COLOR_GREEN, 0, 0, 100, 100, option_draw_to(bmp));
     
     push_clip(bmp, rectangle_from(20, 0, 10, 100));
-    clear_bitmap(bmp, COLOR_GOLD);
+    fill_rectangle(COLOR_GOLD, 0, 0, 100, 100, option_draw_to(bmp));
     pop_clip(bmp);
     
     push_clip(bmp, rectangle_from(0, 20, 100, 10));
-    clear_bitmap(bmp, COLOR_GOLD);
+    fill_rectangle(COLOR_GOLD, 0, 0, 100, 100, option_draw_to(bmp));
     pop_clip(bmp);
     
     push_clip(bmp, rectangle_from(0, 0, 25, 25));
-    clear_bitmap(bmp, COLOR_BLUE);
+    fill_rectangle(COLOR_BLUE, 0, 0, 100, 100, option_draw_to(bmp));
     reset_clip(bmp);
     
     clear_window(w1, COLOR_SILVER);
