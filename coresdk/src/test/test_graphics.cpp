@@ -36,8 +36,21 @@ void test_drawing_on_new_window()
     draw_bitmap_on_window (my_window, user_image, 0, 0);
     save_bitmap(user_image, "4");
     refresh_window(my_window);
+    
+    bitmap user_image1;
+    
+    user_image1 = create_bitmap ("user_image1", 20, 20);
+    clear_bitmap (user_image1, COLOR_BLACK);
+    fill_rectangle_on_bitmap (user_image, COLOR_BRIGHT_GREEN, 10, 0, 10, 10);
+    fill_rectangle_on_bitmap (user_image, COLOR_BRIGHT_GREEN, 0, 10, 10, 10);
+    
+    draw_bitmap_on_window (my_window, user_image, 30, 0);
+    save_bitmap(user_image, "4");
+    refresh_window(my_window);
+    
     delay (5000);
     
+
     close_window(my_window);
     free_bitmap(user_image);
 }

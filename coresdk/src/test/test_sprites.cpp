@@ -136,7 +136,7 @@ void run_sprite_test()
 
         draw_line(COLOR_GREEN, line_from(center_point(sprt), matrix_multiply(rotation_matrix(sprite_rotation(sprt)), vector_multiply(sprite_velocity(sprt), 30.0))));
 
-        refresh_screen();
+        refresh_screen(60);
     }
     
     show_mouse();

@@ -319,7 +319,7 @@ void test_cave_escape()
         clear_screen(COLOR_WHITE);
         update_game(game);
         draw_game(game);
-        refresh_screen();
+        refresh_screen(60);
 
     } while(!window_close_requested("Cave Escape"));
 
