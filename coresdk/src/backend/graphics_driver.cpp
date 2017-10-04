@@ -629,11 +629,6 @@ namespace splashkit_lib
 
     bool _sk_open_window(const char *title, int width, int height, unsigned int options, sk_window_be *window_be)
     {
-        if( _sk_has_initial_window )
-        {
-            _sk_destroy_initial_window();
-        }
-
         window_be->window = SDL_CreateWindow(title,
                                              SDL_WINDOWPOS_CENTERED,
                                              SDL_WINDOWPOS_CENTERED,
@@ -672,6 +667,11 @@ namespace splashkit_lib
         SDL_RenderClear(window_be->renderer);
 
         _sk_add_window(window_be);
+        
+        if( _sk_has_initial_window )
+        {
+            _sk_destroy_initial_window();
+        }
 
         SDL_RaiseWindow(window_be->window);
         _sk_present_window(window_be);
