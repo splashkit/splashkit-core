@@ -1,8 +1,19 @@
 from ctypes import *
 from enum import Enum
+from platform import system
 
-cdll.LoadLibrary("libSplashKit.dylib")
-sklib = CDLL("libsplashkit.dylib")
+if system() == 'Darwin':
+  # macOS uses .dylib extension
+  cdll.LoadLibrary("libSplashKit.dylib")
+  sklib = CDLL("libsplashkit.dylib")
+elif system() == 'Linux':
+  # Linux uses .so extension
+  cdll.LoadLibrary("libSplashKit.so")
+  sklib = CDLL("libsplashkit.so")
+else:
+  # Windows uses .dll extension:
+  cdll.LoadLibrary("libSplashKit.dll")
+  sklib = CDLL("libsplashkit.dll")
 
 class _sklib_string(Structure):
     _fields_ = [
@@ -294,10 +305,10 @@ class _sklib_drawing_options(Structure):
         ("flip_y", c_bool),
         ("is_part", c_bool),
         ("part", _sklib_rectangle),
+        ("draw_cell", c_int),
         ("_camera", c_int),
         ("line_width", c_int),
         ("anim", c_void_p),
-        ("draw_cell", c_int),
     ]
 
     def __init__(self):
@@ -722,10 +733,10 @@ def __skadapter__to_sklib_drawing_options(v):
     result.flip_y = __skadapter__to_sklib_bool(v.flip_y)
     result.is_part = __skadapter__to_sklib_bool(v.is_part)
     result.part = __skadapter__to_sklib_rectangle(v.part)
+    result.draw_cell = __skadapter__to_sklib_int(v.draw_cell)
     result.camera = __skadapter__to_sklib_drawing_dest(v.camera)
     result.line_width = __skadapter__to_sklib_int(v.line_width)
     result.anim = __skadapter__to_sklib_animation(v.anim)
-    result.draw_cell = __skadapter__to_sklib_int(v.draw_cell)
     return result
 def __skadapter__to_drawing_options(v):
     if isinstance(v, DrawingOptions):
@@ -741,10 +752,10 @@ def __skadapter__to_drawing_options(v):
     result.flip_y = __skadapter__to_bool(v.flip_y)
     result.is_part = __skadapter__to_bool(v.is_part)
     result.part = __skadapter__to_rectangle(v.part)
+    result.draw_cell = __skadapter__to_int(v.draw_cell)
     result.camera = __skadapter__to_drawing_dest(v.camera)
     result.line_width = __skadapter__to_int(v.line_width)
     result.anim = __skadapter__to_animation(v.anim)
-    result.draw_cell = __skadapter__to_int(v.draw_cell)
     return result
 def __skadapter__to_sklib_line(v):
     if isinstance(v, _sklib_line):
@@ -2146,6 +2157,8 @@ sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.argtypes = [ c_vo
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref.restype = c_bool
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double.argtypes = [ c_void_p, c_int, c_double, c_double ]
 sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double.restype = c_bool
+sklib.__sklib__setup_collision_mask__bitmap.argtypes = [ c_void_p ]
+sklib.__sklib__setup_collision_mask__bitmap.restype = None
 sklib.__sklib__process_events.argtypes = [  ]
 sklib.__sklib__process_events.restype = None
 sklib.__sklib__quit_requested.argtypes = [  ]
@@ -5496,6 +5509,9 @@ def pixel_drawn_at_point_in_cell ( bmp, cell, x, y ):
     __skparam__y = __skadapter__to_sklib_double(y)
     __skreturn = sklib.__sklib__pixel_drawn_at_point__bitmap__int__double__double(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
+def setup_collision_mask ( bmp ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    sklib.__sklib__setup_collision_mask__bitmap(__skparam__bmp)
 def process_events (  ):
     sklib.__sklib__process_events()
 def quit_requested (  ):

@@ -21,21 +21,26 @@ SK_CMAKE_FPC="${SK_TOOLS}/scripts/cmake/splashkitpas"
 SK_CMAKE_PYTHON="${SK_TOOLS}/scripts/cmake/splashkit-python"
 SK_CMAKE_CSHARP="${SK_TOOLS}/scripts/cmake/splashkit-csharp"
 
+function update_distro {
+  if [ ! -d $1 ]; then
+    cd "$SK_OUT"
+    git clone "https://github.com/splashkit/$1.git"
+    cd "$SK_OUT/$1"
+  else
+    cd "$SK_OUT/$1"
+  fi
+  git checkout develop
+  git pull
+}
 
-cd ../../out/splashkit-macos
-git checkout develop
-git pull
-cd ../splashkit-windows
-git checkout develop
-git pull
-cd ../splashkit-linux
-git checkout develop
-git pull
+update_distro "splashkit-win32"
+update_distro "splashkit-windows"
+update_distro "splashkit-macos"
+update_distro "splashkit-linux"
 
 cd "$APP_PATH"
 
-
-read -p "Regenerate SplashKit? [y,n] " doit
+read -p "New C++ code - Regenerate SplashKit? [y,n] " doit
 case $doit in
   y|Y) GENERATE_LIB=true ;;
   n|N) echo ; echo "Skipping generation" ;;
