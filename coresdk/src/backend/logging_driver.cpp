@@ -27,5 +27,6 @@ namespace splashkit_lib
         Loggers::reconfigureLogger("default", conf);
         
         Loggers::addFlag(LoggingFlag::ColoredTerminalOutput);
+        Loggers::addFlag(LoggingFlag::DisableApplicationAbortOnFatalLog);
     }
 }
