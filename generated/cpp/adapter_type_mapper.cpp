@@ -358,10 +358,10 @@ __sklib_drawing_options __skadapter__to_sklib_drawing_options(drawing_options v)
     __skreturn.flip_y = __skadapter__to_int(v.flip_y);
     __skreturn.is_part = __skadapter__to_int(v.is_part);
     __skreturn.part = __skadapter__to_sklib_rectangle(v.part);
+    __skreturn.draw_cell = __skadapter__to_int(v.draw_cell);
     __skreturn.camera = __skadapter__to_int(v.camera);
     __skreturn.line_width = __skadapter__to_int(v.line_width);
     __skreturn.anim = __skadapter__to_sklib_animation(v.anim);
-    __skreturn.draw_cell = __skadapter__to_int(v.draw_cell);
     return __skreturn;
 }
 drawing_options __skadapter__to_drawing_options(__sklib_drawing_options v) {
@@ -376,10 +376,10 @@ drawing_options __skadapter__to_drawing_options(__sklib_drawing_options v) {
     __skreturn.flip_y = __skadapter__to_bool(v.flip_y);
     __skreturn.is_part = __skadapter__to_bool(v.is_part);
     __skreturn.part = __skadapter__to_rectangle(v.part);
+    __skreturn.draw_cell = __skadapter__to_int(v.draw_cell);
     __skreturn.camera = __skadapter__to_drawing_dest(v.camera);
     __skreturn.line_width = __skadapter__to_int(v.line_width);
     __skreturn.anim = __skadapter__to_animation(v.anim);
-    __skreturn.draw_cell = __skadapter__to_int(v.draw_cell);
     return __skreturn;
 }
 __sklib_line __skadapter__to_sklib_line(line v) {

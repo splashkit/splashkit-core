@@ -2410,6 +2410,10 @@ bool pixel_drawn_at_point(bitmap bmp, int cell, double x, double y) {
     int __skreturn = __sklib__pixel_drawn_at_point__bitmap__int__double__double(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
     return __skadapter__to_bool(__skreturn);
 }
+void setup_collision_mask(bitmap bmp) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    __sklib__setup_collision_mask__bitmap(__skparam__bmp);
+}
 void process_events() {
     __sklib__process_events();
 }

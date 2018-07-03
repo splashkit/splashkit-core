@@ -2355,6 +2355,10 @@ int __sklib__pixel_drawn_at_point__bitmap__int__double__double(__sklib_bitmap bm
     bool __skreturn = pixel_drawn_at_point(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
     return __sklib__to_int(__skreturn);
 }
+void __sklib__setup_collision_mask__bitmap(__sklib_bitmap bmp) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    setup_collision_mask(__skparam__bmp);
+}
 void __sklib__process_events() {
     process_events();
 }

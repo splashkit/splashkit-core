@@ -87,6 +87,7 @@ file(GLOB SOURCE_FILES
     "${SK_EXT}/civetweb/src/civetweb.c"
     "${SK_EXT}/sqlite/sqlite3.c"
     "${SK_EXT}/hash-library/*.cpp"
+    "${SK_EXT}/easyloggingpp/*.cc"
 )
 
 # TEST FILE INCLUDES

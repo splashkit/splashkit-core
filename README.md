@@ -1,6 +1,6 @@
 # SplashKit
 
-[![Build Status (Linux / OSX)](https://travis-ci.org/splashkit/splashkit.svg?branch=develop)](https://travis-ci.org/splashkit/splashkit)
+[![Build Status (Linux / OSX)](https://travis-ci.org/splashkit/splashkit-core.svg?branch=develop)](https://travis-ci.org/splashkit/splashkit-core)
 [![Build status](https://ci.appveyor.com/api/projects/status/rp46q64glrttols6/branch/develop?svg=true)](https://ci.appveyor.com/project/macite/splashkit/branch/develop)
 
 Get involved:

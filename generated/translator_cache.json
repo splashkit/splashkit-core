@@ -18810,7 +18810,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1503535363,
+    "parsed_at": 1527686991,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -21235,6 +21235,46 @@
           "class": "bitmap",
           "method": "pixel_drawn_at_point",
           "suffix": "in_cell",
+          "group": "graphics",
+          "static": "images",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "void setup_collision_mask(bitmap bmp);",
+        "name": "setup_collision_mask",
+        "method_name": "setup_collision_mask",
+        "unique_global_name": "setup_collision_mask",
+        "unique_method_name": "bitmap.setup_collision_mask",
+        "suffix_name": null,
+        "description": "Sets up the collision mask for a bitmap. This enables collision detection between\nthis bitmap and other bitmaps or shapes.\n\nThis is automatically called when a bitmap is loaded, and only needs to be \ncalled on bitmaps created using `create_bitmap`, and when a bitmap is\nchanged by drawing onto the bitmap.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "the bitmap to setup",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "setup_collision_mask",
           "group": "graphics",
           "static": "images",
           "self": "bmp"
@@ -54198,7 +54238,7 @@
     "group": "types",
     "brief": null,
     "description": null,
-    "parsed_at": 1503535365,
+    "parsed_at": 1527686993,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -54518,6 +54558,19 @@
             "is_vector": false,
             "type_parameter": null
           },
+          "draw_cell": {
+            "type": "int",
+            "description": "Which cell of a bitmap to draw, or -1 for all. Overrides\nparts and animation settings.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
           "camera": {
             "type": "drawing_dest",
             "description": "How the current window camera affects the drawing",
@@ -54547,19 +54600,6 @@
           "anim": {
             "type": "animation",
             "description": "The animation to use, which overrides the part\noption",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "draw_cell": {
-            "type": "int",
-            "description": "Drawing options allow you to customise drawing options. These should be\ninitialised using the drawing option functions.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,

@@ -1,6 +1,11 @@
 #
 # CMake file for generating the splashkit core library
 #
+
+if (APPLE)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.10" CACHE STRING "Minimum OS X deployment version")
+endif()
+
 cmake_minimum_required(VERSION 3.2)
 project(splashkit)
 
@@ -78,7 +83,11 @@ if (APPLE)
          )
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
+    if (${MINGW32})
+        set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-win32")
+    else ( )
+        set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
+    endif()
 
     add_definitions(-DWINDOWS)
     set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
@@ -145,6 +154,7 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/backend/*.cpp"
     "${SK_GENERATED}/clib/*.cpp"
     "${SK_EXT}/hash-library/*.cpp"
+    "${SK_EXT}/easyloggingpp/easylogging++.cc"
 )
 
 # SKSDK FILE INCLUDES

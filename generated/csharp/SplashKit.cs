@@ -272,10 +272,10 @@ namespace SplashKitSDK
       __skreturn.FlipY = __skadapter__to_sklib_bool(v.FlipY);
       __skreturn.IsPart = __skadapter__to_sklib_bool(v.IsPart);
       __skreturn.Part = __skadapter__to_sklib_rectangle(v.Part);
+      __skreturn.DrawCell = __skadapter__to_sklib_int(v.DrawCell);
       __skreturn.Camera = __skadapter__to_sklib_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_sklib_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_sklib_animation(v.Anim);
-      __skreturn.DrawCell = __skadapter__to_sklib_int(v.DrawCell);
       return __skreturn;
     }
     private static DrawingOptions __skadapter__to_drawing_options(__sklib_drawing_options v)
@@ -291,10 +291,10 @@ namespace SplashKitSDK
       __skreturn.FlipY = __skadapter__to_bool(v.FlipY);
       __skreturn.IsPart = __skadapter__to_bool(v.IsPart);
       __skreturn.Part = __skadapter__to_rectangle(v.Part);
+      __skreturn.DrawCell = __skadapter__to_int(v.DrawCell);
       __skreturn.Camera = __skadapter__to_drawing_dest(v.Camera);
       __skreturn.LineWidth = __skadapter__to_int(v.LineWidth);
       __skreturn.Anim = __skadapter__to_animation(v.Anim);
-      __skreturn.DrawCell = __skadapter__to_int(v.DrawCell);
       return __skreturn;
     }
 
@@ -2344,6 +2344,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__int__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__pixel_drawn_at_point__bitmap__int__double__double(__sklib_ptr bmp, int cell, double x, double y);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__setup_collision_mask__bitmap", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__setup_collision_mask__bitmap(__sklib_ptr bmp);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__process_events", CharSet=CharSet.Ansi)]
     private static extern void __sklib__process_events();
@@ -8368,6 +8371,12 @@ namespace SplashKitSDK
       __skparam__y = __skadapter__to_sklib_double(y);
       __skreturn = __sklib__pixel_drawn_at_point__bitmap__int__double__double(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
+    }
+    public static void SetupCollisionMask(Bitmap bmp)
+    {
+      __sklib_ptr __skparam__bmp;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __sklib__setup_collision_mask__bitmap(__skparam__bmp);
     }
     public static void ProcessEvents()
     {
@@ -16091,10 +16100,10 @@ namespace SplashKitSDK
     public int FlipY;
     public int IsPart;
     public __sklib_rectangle Part;
+    public int DrawCell;
     public int Camera;
     public int LineWidth;
     public __sklib_ptr Anim;
-    public int DrawCell;
 
   }
 
@@ -16110,10 +16119,10 @@ namespace SplashKitSDK
     public bool FlipY;
     public bool IsPart;
     public Rectangle Part;
+    public int DrawCell;
     public DrawingDest Camera;
     public int LineWidth;
     public Animation Anim;
-    public int DrawCell;
   }
 
   [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi ) ]
@@ -18181,6 +18190,12 @@ public class Bitmap : PointerWrapper
     public bool PixelDrawnAtPoint(int cell, double x, double y)
     {
         return SplashKit.PixelDrawnAtPoint(this, cell, x, y);
+    }
+
+
+    public void SetupCollisionMask()
+    {
+        SplashKit.SetupCollisionMask(this);
     }
 
 
