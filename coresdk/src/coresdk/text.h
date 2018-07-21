@@ -76,6 +76,22 @@ namespace splashkit_lib
      */
     font_style get_font_style(const string &name);
 
+	/**
+	 * @brief Gets the system font path.
+	 * 
+	 * @returns Returns the current `system font path`.
+	 */
+	string get_system_font_path();
+
+	/**
+	 * @brief Gets the system font path for a given font name.
+	 * 
+	 * @param name			The name of the font to locate.
+	 * 
+	 * @returns Returns the system font path for a given font, or an empty string.
+	 */
+	string find_system_font_path(string name);
+
     /**
      * @brief Loads a new font from a file.
      *
