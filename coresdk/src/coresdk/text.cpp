@@ -181,7 +181,12 @@ namespace splashkit_lib
 
     string find_system_font_path(string name)
     {
-        //Find all files in directory.
+#ifdef WINDOWS
+#define PATH_SEP "\\"
+#else
+#define PATH_SEP "/"
+#endif
+
         vector<string> files;
         scan_dir_recursive(get_system_font_path(), files);
 
@@ -189,7 +194,7 @@ namespace splashkit_lib
 
         for (size_t i=0; i<files.size(); ++i)
         {
-            int fi = files[i].find_last_of('/') +1;
+            int fi = files[i].find_last_of(PATH_SEP) +1;
             int fd = files[i].find_last_of('.') - fi;
             string file_name = files[i].substr(fi, fd);
             transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
