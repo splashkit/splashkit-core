@@ -164,41 +164,41 @@ namespace splashkit_lib
         return get_font_style(font_named(name));
     }
 
-	string get_system_font_path()
-	{
-		string base_fp = base_fs_path();
-		
-		#if __linux__
-			base_fp += "usr/share/fonts";
-		#elif WINDOWS
-			base_fp += "Windows\Fonts";
-		#else
-			base_fp += "System/Library/Fonts";
-		#endif
+    string get_system_font_path()
+    {
+        string base_fp = base_fs_path();
 
-		return base_fp;
-	}
+        #if __linux__
+            base_fp += "usr/share/fonts";
+        #elif WINDOWS
+            base_fp += "Windows\Fonts";
+        #else
+            base_fp += "System/Library/Fonts";
+        #endif
 
-	string find_system_font_path(string name)
-	{
-		//Find all files in directory.
-		vector<string> files;
-		scan_dir_recursive(get_system_font_path(), files);
+        return base_fp;
+    }
 
-		transform(name.begin(), name.end(), name.begin(), ::tolower);
+    string find_system_font_path(string name)
+    {
+        //Find all files in directory.
+        vector<string> files;
+        scan_dir_recursive(get_system_font_path(), files);
 
-		for (size_t i=0; i<files.size(); ++i)
-		{
-			int fi = files[i].find_last_of('/') +1;
-			int fd = files[i].find_last_of('.') - fi;
-			string file_name = files[i].substr(fi, fd);
-			transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
-			if (file_name == name)
-				return files[i];
-		}
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-		return "";
-	}
+        for (size_t i=0; i<files.size(); ++i)
+        {
+            int fi = files[i].find_last_of('/') +1;
+            int fd = files[i].find_last_of('.') - fi;
+            string file_name = files[i].substr(fi, fd);
+            transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
+            if (file_name == name)
+                return files[i];
+        }
+
+        return "";
+    }
 
     font load_font(const string &name, const string &filename)
     {
@@ -216,13 +216,13 @@ namespace splashkit_lib
 
                 if ( ! file_exists(file_path) )
                 {
-					file_path = find_system_font_path(filename);
+                    file_path = find_system_font_path(filename);
 
-					if ( ! file_exists(file_path) )
-					{
+                    if ( ! file_exists(file_path) )
+                    {
 						LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
-						return nullptr;
-					}
+                        return nullptr;
+                    }
                 }
             }
         }

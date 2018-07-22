@@ -134,42 +134,42 @@ namespace splashkit_lib
         return result + filename;
     }
 
-	string base_fs_path()
-	{
-		#if WINDOWS
-			return get_env_var("SystemDrive");
-		#else
-			return "/";
-		#endif
-	}
+    string base_fs_path()
+    {
+        #if WINDOWS
+            return get_env_var("SystemDrive");
+        #else
+            return "/";
+        #endif
+    }
 
-	bool scan_dir_recursive(const string &directory, vector<string> &dest)
-	{
-		DIR *dirhnd;
-		struct dirent *dirpnt;
-		string fn_buffer;
+    bool scan_dir_recursive(const string &directory, vector<string> &dest)
+    {
+        DIR *dirhnd;
+        struct dirent *dirpnt;
+        string fn_buffer;
 
-		vector<string> directories;
-		directories.push_back(directory);
+        vector<string> directories;
+        directories.push_back(directory);
 
-		for (size_t i=0; i<directories.size(); ++i)
-		{
-			dirhnd = opendir(directories[i].c_str());
-			while ((dirpnt = readdir(dirhnd)) != NULL)
-			{
-				fn_buffer = string(dirpnt->d_name);
-				if (dirpnt->d_type == DT_DIR &&
-					fn_buffer != "." && fn_buffer != "..")
-					directories.push_back(directories[i] + "/" + fn_buffer);
-				else
-					dest.push_back(directories[i] + "/" + fn_buffer);
-			}
-			closedir(dirhnd);
-		}
+        for (size_t i=0; i<directories.size(); ++i)
+        {
+            dirhnd = opendir(directories[i].c_str());
+            while ((dirpnt = readdir(dirhnd)) != NULL)
+            {
+                fn_buffer = string(dirpnt->d_name);
+                if (dirpnt->d_type == DT_DIR &&
+                    fn_buffer != "." && fn_buffer != "..")
+                    directories.push_back(directories[i] + "/" + fn_buffer);
+                else
+                    dest.push_back(directories[i] + "/" + fn_buffer);
+            }
+            closedir(dirhnd);
+        }
 
-		return dest.size() > 0 ? true : false;
+        return dest.size() > 0 ? true : false;
 
-	}
+    }
 
     struct unknown_data {
         pointer_identifier id;
