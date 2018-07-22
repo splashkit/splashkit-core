@@ -145,6 +145,11 @@ namespace splashkit_lib
 
     bool scan_dir_recursive(const string &directory, vector<string> &dest)
     {
+        //Windows support is not yet implemented.
+        #if WINDOWS 
+            return false;
+        #endif        
+
         DIR *dirhnd;
         struct dirent *dirpnt;
         string fn_buffer;
