@@ -31,6 +31,16 @@ namespace splashkit_lib
      * @attribute suffix  int
      */
     int rnd(int ubound);
+    
+    /**
+     * Generates a random number between 'min' and `max`, including 'min' and 'max'.
+     *
+     * @param min    the `int` representing of minimum bound.
+     * @param max    the `int` representing of maximum bound.
+     * @returns Returns an `int` between and including `min` and `max`
+     *
+     */
+    int rnd(int min, int max);
 
 #endif /* random_hpp */
 }
