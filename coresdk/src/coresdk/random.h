@@ -39,6 +39,7 @@ namespace splashkit_lib
      * @param max    the `int` representing of maximum bound.
      * @returns Returns an `int` between and including `min` and `max`
      *
+     * @attribute suffix  range
      */
     int rnd(int min, int max);
 
