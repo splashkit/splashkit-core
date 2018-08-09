@@ -29,4 +29,15 @@ namespace splashkit_lib
         
         return rand() % ubound;
     }
+    
+    int rnd(int min, int max)
+    {
+        if (_do_seed)
+        {
+            _do_seed = false;
+            srand((unsigned)time(0));
+        }
+        
+        return min + rand() % (max - min);
+    }
 }
