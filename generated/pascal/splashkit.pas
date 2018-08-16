@@ -1444,6 +1444,7 @@ function KeyUp(key: KeyCode): Boolean;
 procedure RegisterCallbackOnKeyDown(callback: KeyCallback);
 procedure RegisterCallbackOnKeyTyped(callback: KeyCallback);
 procedure RegisterCallbackOnKeyUp(callback: KeyCallback);
+function Rnd(min: Integer; max: Integer): Integer;
 function Rnd(): Single;
 function Rnd(ubound: Integer): Integer;
 function Cosine(degrees: Single): Single;
@@ -3537,6 +3538,7 @@ function __sklib__key_up__key_code(key: LongInt): LongInt; cdecl; external;
 procedure __sklib__register_callback_on_key_down__key_callback_ptr(callback: KeyCallback); cdecl; external;
 procedure __sklib__register_callback_on_key_typed__key_callback_ptr(callback: KeyCallback); cdecl; external;
 procedure __sklib__register_callback_on_key_up__key_callback_ptr(callback: KeyCallback); cdecl; external;
+function __sklib__rnd__int__int(min: Integer; max: Integer): Integer; cdecl; external;
 function __sklib__rnd(): Single; cdecl; external;
 function __sklib__rnd__int(ubound: Integer): Integer; cdecl; external;
 function __sklib__cosine__float(degrees: Single): Single; cdecl; external;
@@ -14707,6 +14709,17 @@ var
 begin
   __skparam__callback := __skadapter__to_sklib_key_callback(callback);
   __sklib__register_callback_on_key_up__key_callback_ptr(__skparam__callback);
+end;
+function Rnd(min: Integer; max: Integer): Integer;
+var
+  __skparam__min: Integer;
+  __skparam__max: Integer;
+  __skreturn: Integer;
+begin
+  __skparam__min := __skadapter__to_sklib_int(min);
+  __skparam__max := __skadapter__to_sklib_int(max);
+  __skreturn := __sklib__rnd__int__int(__skparam__min, __skparam__max);
+  result := __skadapter__to_int(__skreturn);
 end;
 function Rnd(): Single;
 var

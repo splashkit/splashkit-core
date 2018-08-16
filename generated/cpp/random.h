@@ -11,6 +11,7 @@
 using std::string;
 using std::vector;
 
+int rnd(int min, int max);
 float rnd();
 int rnd(int ubound);
 

@@ -4478,7 +4478,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1534409458,
+    "parsed_at": 1534420492,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
@@ -22242,7 +22242,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1534418196,
+    "parsed_at": 1534420493,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -51300,7 +51300,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1534409511,
+    "parsed_at": 1534420494,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -59243,9 +59243,60 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1534409524,
+    "parsed_at": 1534420495,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
+      {
+        "signature": "int rnd(int min,int max);",
+        "name": "rnd",
+        "method_name": null,
+        "unique_global_name": "rnd_range",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Generates a random number between 'min' and `max`, including 'min' and 'max'.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "Returns an `int` between and including `min` and `max`",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "min": {
+            "type": "int",
+            "description": "the `int` representing of minimum bound.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max": {
+            "type": "int",
+            "description": "the `int` representing of maximum bound.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "range",
+          "group": "utilities",
+          "static": "random"
+        }
+      },
       {
         "signature": "float rnd();",
         "name": "rnd",

@@ -4421,6 +4421,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_up__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__register_callback_on_key_up__key_callback_ptr(KeyCallback callback);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int__int", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__rnd__int__int(int min, int max);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rnd();
 
@@ -14847,6 +14850,16 @@ namespace SplashKitSDK
       KeyCallback __skparam__callback;
       __skparam__callback = __skadapter__to_sklib_key_callback(callback);
       __sklib__register_callback_on_key_up__key_callback_ptr(__skparam__callback);
+    }
+    public static int Rnd(int min, int max)
+    {
+      int __skparam__min;
+      int __skparam__max;
+      int __skreturn;
+      __skparam__min = __skadapter__to_sklib_int(min);
+      __skparam__max = __skadapter__to_sklib_int(max);
+      __skreturn = __sklib__rnd__int__int(__skparam__min, __skparam__max);
+      return __skadapter__to_int(__skreturn);
     }
     public static float Rnd()
     {

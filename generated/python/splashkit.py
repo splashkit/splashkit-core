@@ -3541,6 +3541,8 @@ sklib.__sklib__register_callback_on_key_typed__key_callback_ptr.argtypes = [ Key
 sklib.__sklib__register_callback_on_key_typed__key_callback_ptr.restype = None
 sklib.__sklib__register_callback_on_key_up__key_callback_ptr.argtypes = [ KeyCallback ]
 sklib.__sklib__register_callback_on_key_up__key_callback_ptr.restype = None
+sklib.__sklib__rnd__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__rnd__int__int.restype = c_int
 sklib.__sklib__rnd.argtypes = [  ]
 sklib.__sklib__rnd.restype = c_float
 sklib.__sklib__rnd__int.argtypes = [ c_int ]
@@ -8636,6 +8638,11 @@ def register_callback_on_key_typed ( callback ):
 def register_callback_on_key_up ( callback ):
     __skparam__callback = __skadapter__to_sklib_key_callback(callback)
     sklib.__sklib__register_callback_on_key_up__key_callback_ptr(__skparam__callback)
+def rnd_range ( min, max ):
+    __skparam__min = __skadapter__to_sklib_int(min)
+    __skparam__max = __skadapter__to_sklib_int(max)
+    __skreturn = sklib.__sklib__rnd__int__int(__skparam__min, __skparam__max)
+    return __skadapter__to_int(__skreturn)
 def rnd (  ):
     __skreturn = sklib.__sklib__rnd()
     return __skadapter__to_float(__skreturn)

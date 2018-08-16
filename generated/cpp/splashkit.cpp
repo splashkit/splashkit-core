@@ -6458,6 +6458,12 @@ void register_callback_on_key_up(key_callback *callback) {
     __sklib_key_callback *__skparam__callback = callback;
     __sklib__register_callback_on_key_up__key_callback_ptr(__skparam__callback);
 }
+int rnd(int min, int max) {
+    int __skparam__min = __skadapter__to_int(min);
+    int __skparam__max = __skadapter__to_int(max);
+    int __skreturn = __sklib__rnd__int__int(__skparam__min, __skparam__max);
+    return __skadapter__to_int(__skreturn);
+}
 float rnd() {
     float __skreturn = __sklib__rnd();
     return __skadapter__to_float(__skreturn);

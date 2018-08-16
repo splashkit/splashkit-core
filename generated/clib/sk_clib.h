@@ -1304,6 +1304,7 @@ int __sklib__key_up__key_code(int key);
 void __sklib__register_callback_on_key_down__key_callback_ptr(__sklib_key_callback *callback);
 void __sklib__register_callback_on_key_typed__key_callback_ptr(__sklib_key_callback *callback);
 void __sklib__register_callback_on_key_up__key_callback_ptr(__sklib_key_callback *callback);
+int __sklib__rnd__int__int(int min, int max);
 float __sklib__rnd();
 int __sklib__rnd__int(int ubound);
 float __sklib__cosine__float(float degrees);
