@@ -243,6 +243,8 @@ namespace splashkit_lib
         SDL_PumpEvents();
     }
 
+    void _sk_get_pixels_from_renderer(SDL_Renderer *renderer, int x, int y, int w, int h, int *pixels);
+
     SDL_Texture* _sk_copy_texture(SDL_Texture *src_tex, SDL_Renderer *src_renderer, SDL_Renderer *dest_renderer)
     {
         // Read from initial window
@@ -253,7 +255,9 @@ namespace splashkit_lib
         pixels = malloc(static_cast<size_t>(4 * w * h));
 
         SDL_SetRenderTarget(src_renderer, src_tex);
-        SDL_RenderReadPixels(src_renderer, nullptr, SDL_PIXELFORMAT_RGBA8888, pixels, 4 * w);
+        _sk_get_pixels_from_renderer(src_renderer, 0, 0, w, h, (int*)pixels);
+        
+        //SDL_RenderReadPixels(src_renderer, nullptr, SDL_PIXELFORMAT_RGBA8888, pixels, 4 * w);
 
         SDL_Texture *tex = SDL_CreateTexture(dest_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
         SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_BLEND);
@@ -272,7 +276,7 @@ namespace splashkit_lib
         sk_window_be *window = _sk_open_windows[dest_window_idx];
 
         // if the surface exists, use that to create the new bitmap... otherwise extract from texture
-        if (current_bmp->surface)
+        if (current_bmp->surface && not current_bmp->drawable)
         {
             current_bmp->texture[dest_window_idx] = SDL_CreateTextureFromSurface(window->renderer, current_bmp->surface );
         }
@@ -351,7 +355,11 @@ namespace splashkit_lib
         for (int row = 0; row < h; row++)
         {
             // Copy a row from the paw pixels to the dest pixels
+#ifdef WINDOWS
+            memcpy(&pixels[(h - row - 1) * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
+#else
             memcpy(&pixels[row * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
+#endif
         }
         free(raw_pixels);
     }
@@ -1236,7 +1244,12 @@ namespace splashkit_lib
         sk_color result = {0,0,0,0};
         unsigned int clr = 0;
         
+#ifdef WINDOWS
+        // Texture is inverted so flip y
+        SDL_Rect rect = {x, surface->height - y - 1, 1, 1};	
+#else
         SDL_Rect rect = {x, y, 1, 1};
+#endif
 
         if ( ! surface || ! surface->_data ) return result;
 

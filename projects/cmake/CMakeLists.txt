@@ -147,6 +147,7 @@ add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (MSYS)
+    add_definitions(-DWINDOWS)
     link_directories("${SK_LIB}/win64")
     target_link_libraries(SplashKitBackend SDL2_mixer
                                            SDL2_image
@@ -199,11 +200,12 @@ add_custom_command(TARGET sktest
     PRE_BUILD COMMAND
     ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources" $<TARGET_FILE_DIR:sktest>/Resources)
 
-if (MSYS)
-    add_custom_command(TARGET sktest
-        PRE_BUILD COMMAND
-        ${CMAKE_COMMAND} -E copy "${SK_LIB}/win64/*.dll" $<TARGET_FILE_DIR:sktest>)
-endif()
+# if (MSYS)
+#     add_custom_command(TARGET sktest
+#         PRE_BUILD COMMAND
+#         cmake -E copy ../../coresdk/lib/win64/*.dll ../../bin
+#         )
+# endif()
 
 #### END sktest EXECUTABLE ####
 
