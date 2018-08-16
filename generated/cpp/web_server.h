@@ -6,8 +6,8 @@
 #ifndef __web_server_h
 #define __web_server_h
 
-#include "json.h"
 #include "types.h"
+#include "json.h"
 #include "web_server.h"
 #include <string>
 #include <vector>

@@ -6,8 +6,8 @@
 #ifndef __triangle_drawing_h
 #define __triangle_drawing_h
 
-#include "types.h"
 #include "window_manager.h"
+#include "types.h"
 #include <string>
 #include <vector>
 using std::string;
