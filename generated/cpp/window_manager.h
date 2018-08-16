@@ -6,8 +6,8 @@
 #ifndef __window_manager_h
 #define __window_manager_h
 
-#include "types.h"
 #include "window_manager.h"
+#include "types.h"
 #include <string>
 #include <vector>
 using std::string;

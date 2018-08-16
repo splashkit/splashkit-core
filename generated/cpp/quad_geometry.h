@@ -6,8 +6,8 @@
 #ifndef __quad_geometry_h
 #define __quad_geometry_h
 
-#include "matrix_2d.h"
 #include "types.h"
+#include "matrix_2d.h"
 #include <string>
 #include <vector>
 using std::string;

@@ -13,6 +13,7 @@ using std::vector;
 
 double convert_to_double(const string &text);
 int convert_to_integer(const string &text);
+bool is_double(const string &text);
 bool is_integer(const string &text);
 bool is_number(const string &text);
 string to_lowercase(const string &text);

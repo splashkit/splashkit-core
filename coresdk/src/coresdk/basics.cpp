@@ -69,6 +69,11 @@ namespace splashkit_lib
         return (*p == 0);
     }
 
+    bool is_double(const string &text)
+    {
+        return is_number(text);
+    }
+
     bool is_number(const string &text)
     {
         string s = trim(text);

@@ -6,8 +6,8 @@
 #ifndef __point_geometry_h
 #define __point_geometry_h
 
-#include "types.h"
 #include "window_manager.h"
+#include "types.h"
 #include <string>
 #include <vector>
 using std::string;

@@ -59,6 +59,14 @@ namespace splashkit_lib
      * @param  text The text to check.
      * @return      True if the text contains a number (and only a number).
      */
+    bool is_double(const string &text);
+
+    /**
+     * Checks if a string contains a number.
+     *
+     * @param  text The text to check.
+     * @return      True if the text contains a number (and only a number).
+     */
     bool is_number(const string &text);
 
     /**

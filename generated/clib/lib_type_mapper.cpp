@@ -89,23 +89,11 @@ unsigned char __sklib__to_unsigned_char(unsigned char v) {
 __sklib_ptr __sklib__to_sklib_ptr(__sklib_ptr v) {
     return v;
 }
-__sklib_ptr __sklib__to_sklib_database(splashkit_lib::database v) {
+__sklib_ptr __sklib__to_sklib_timer(splashkit_lib::timer v) {
     return static_cast<__sklib_ptr>(v);
 }
-database __sklib__to_database(__sklib_ptr v) {
-    return static_cast<splashkit_lib::database>(v);
-}
-__sklib_ptr __sklib__to_sklib_query_result(splashkit_lib::query_result v) {
-    return static_cast<__sklib_ptr>(v);
-}
-query_result __sklib__to_query_result(__sklib_ptr v) {
-    return static_cast<splashkit_lib::query_result>(v);
-}
-__sklib_ptr __sklib__to_sklib_json(splashkit_lib::json v) {
-    return static_cast<__sklib_ptr>(v);
-}
-json __sklib__to_json(__sklib_ptr v) {
-    return static_cast<splashkit_lib::json>(v);
+timer __sklib__to_timer(__sklib_ptr v) {
+    return static_cast<splashkit_lib::timer>(v);
 }
 __sklib_ptr __sklib__to_sklib_music(splashkit_lib::music v) {
     return static_cast<__sklib_ptr>(v);
@@ -113,41 +101,17 @@ __sklib_ptr __sklib__to_sklib_music(splashkit_lib::music v) {
 music __sklib__to_music(__sklib_ptr v) {
     return static_cast<splashkit_lib::music>(v);
 }
-__sklib_ptr __sklib__to_sklib_connection(splashkit_lib::connection v) {
-    return static_cast<__sklib_ptr>(v);
-}
-connection __sklib__to_connection(__sklib_ptr v) {
-    return static_cast<splashkit_lib::connection>(v);
-}
-__sklib_ptr __sklib__to_sklib_message(splashkit_lib::message v) {
-    return static_cast<__sklib_ptr>(v);
-}
-message __sklib__to_message(__sklib_ptr v) {
-    return static_cast<splashkit_lib::message>(v);
-}
-__sklib_ptr __sklib__to_sklib_server_socket(splashkit_lib::server_socket v) {
-    return static_cast<__sklib_ptr>(v);
-}
-server_socket __sklib__to_server_socket(__sklib_ptr v) {
-    return static_cast<splashkit_lib::server_socket>(v);
-}
 __sklib_ptr __sklib__to_sklib_sound_effect(splashkit_lib::sound_effect v) {
     return static_cast<__sklib_ptr>(v);
 }
 sound_effect __sklib__to_sound_effect(__sklib_ptr v) {
     return static_cast<splashkit_lib::sound_effect>(v);
 }
-__sklib_ptr __sklib__to_sklib_sprite(splashkit_lib::sprite v) {
+__sklib_ptr __sklib__to_sklib_window(splashkit_lib::window v) {
     return static_cast<__sklib_ptr>(v);
 }
-sprite __sklib__to_sprite(__sklib_ptr v) {
-    return static_cast<splashkit_lib::sprite>(v);
-}
-__sklib_ptr __sklib__to_sklib_timer(splashkit_lib::timer v) {
-    return static_cast<__sklib_ptr>(v);
-}
-timer __sklib__to_timer(__sklib_ptr v) {
-    return static_cast<splashkit_lib::timer>(v);
+window __sklib__to_window(__sklib_ptr v) {
+    return static_cast<splashkit_lib::window>(v);
 }
 __sklib_ptr __sklib__to_sklib_animation(splashkit_lib::animation v) {
     return static_cast<__sklib_ptr>(v);
@@ -185,6 +149,24 @@ __sklib_ptr __sklib__to_sklib_http_response(splashkit_lib::http_response v) {
 http_response __sklib__to_http_response(__sklib_ptr v) {
     return static_cast<splashkit_lib::http_response>(v);
 }
+__sklib_ptr __sklib__to_sklib_json(splashkit_lib::json v) {
+    return static_cast<__sklib_ptr>(v);
+}
+json __sklib__to_json(__sklib_ptr v) {
+    return static_cast<splashkit_lib::json>(v);
+}
+__sklib_ptr __sklib__to_sklib_database(splashkit_lib::database v) {
+    return static_cast<__sklib_ptr>(v);
+}
+database __sklib__to_database(__sklib_ptr v) {
+    return static_cast<splashkit_lib::database>(v);
+}
+__sklib_ptr __sklib__to_sklib_query_result(splashkit_lib::query_result v) {
+    return static_cast<__sklib_ptr>(v);
+}
+query_result __sklib__to_query_result(__sklib_ptr v) {
+    return static_cast<splashkit_lib::query_result>(v);
+}
 __sklib_ptr __sklib__to_sklib_http_request(splashkit_lib::http_request v) {
     return static_cast<__sklib_ptr>(v);
 }
@@ -197,47 +179,35 @@ __sklib_ptr __sklib__to_sklib_web_server(splashkit_lib::web_server v) {
 web_server __sklib__to_web_server(__sklib_ptr v) {
     return static_cast<splashkit_lib::web_server>(v);
 }
-__sklib_ptr __sklib__to_sklib_window(splashkit_lib::window v) {
+__sklib_ptr __sklib__to_sklib_sprite(splashkit_lib::sprite v) {
     return static_cast<__sklib_ptr>(v);
 }
-window __sklib__to_window(__sklib_ptr v) {
-    return static_cast<splashkit_lib::window>(v);
+sprite __sklib__to_sprite(__sklib_ptr v) {
+    return static_cast<splashkit_lib::sprite>(v);
 }
-int __sklib__to_sklib_key_code(key_code v) {
-    return static_cast<int>(v);
+__sklib_ptr __sklib__to_sklib_connection(splashkit_lib::connection v) {
+    return static_cast<__sklib_ptr>(v);
 }
-key_code __sklib__to_key_code(int v) {
-    return static_cast<key_code>(v);
+connection __sklib__to_connection(__sklib_ptr v) {
+    return static_cast<splashkit_lib::connection>(v);
 }
-int __sklib__to_sklib_mouse_button(mouse_button v) {
-    return static_cast<int>(v);
+__sklib_ptr __sklib__to_sklib_message(splashkit_lib::message v) {
+    return static_cast<__sklib_ptr>(v);
 }
-mouse_button __sklib__to_mouse_button(int v) {
-    return static_cast<mouse_button>(v);
+message __sklib__to_message(__sklib_ptr v) {
+    return static_cast<splashkit_lib::message>(v);
 }
-int __sklib__to_sklib_connection_type(connection_type v) {
-    return static_cast<int>(v);
+__sklib_ptr __sklib__to_sklib_server_socket(splashkit_lib::server_socket v) {
+    return static_cast<__sklib_ptr>(v);
 }
-connection_type __sklib__to_connection_type(int v) {
-    return static_cast<connection_type>(v);
+server_socket __sklib__to_server_socket(__sklib_ptr v) {
+    return static_cast<splashkit_lib::server_socket>(v);
 }
 int __sklib__to_sklib_resource_kind(resource_kind v) {
     return static_cast<int>(v);
 }
 resource_kind __sklib__to_resource_kind(int v) {
     return static_cast<resource_kind>(v);
-}
-int __sklib__to_sklib_collision_test_kind(collision_test_kind v) {
-    return static_cast<int>(v);
-}
-collision_test_kind __sklib__to_collision_test_kind(int v) {
-    return static_cast<collision_test_kind>(v);
-}
-int __sklib__to_sklib_sprite_event_kind(sprite_event_kind v) {
-    return static_cast<int>(v);
-}
-sprite_event_kind __sklib__to_sprite_event_kind(int v) {
-    return static_cast<sprite_event_kind>(v);
 }
 int __sklib__to_sklib_drawing_dest(drawing_dest v) {
     return static_cast<int>(v);
@@ -257,37 +227,41 @@ int __sklib__to_sklib_http_status_code(http_status_code v) {
 http_status_code __sklib__to_http_status_code(int v) {
     return static_cast<http_status_code>(v);
 }
+int __sklib__to_sklib_mouse_button(mouse_button v) {
+    return static_cast<int>(v);
+}
+mouse_button __sklib__to_mouse_button(int v) {
+    return static_cast<mouse_button>(v);
+}
 int __sklib__to_sklib_http_method(http_method v) {
     return static_cast<int>(v);
 }
 http_method __sklib__to_http_method(int v) {
     return static_cast<http_method>(v);
 }
-__sklib_matrix_2d __sklib__to_sklib_matrix_2d(matrix_2d v) {
-    __sklib_matrix_2d __skreturn;
-    __skreturn.elements[0] = __sklib__to_double(v.elements[0][0]);
-    __skreturn.elements[1] = __sklib__to_double(v.elements[0][1]);
-    __skreturn.elements[2] = __sklib__to_double(v.elements[0][2]);
-    __skreturn.elements[3] = __sklib__to_double(v.elements[1][0]);
-    __skreturn.elements[4] = __sklib__to_double(v.elements[1][1]);
-    __skreturn.elements[5] = __sklib__to_double(v.elements[1][2]);
-    __skreturn.elements[6] = __sklib__to_double(v.elements[2][0]);
-    __skreturn.elements[7] = __sklib__to_double(v.elements[2][1]);
-    __skreturn.elements[8] = __sklib__to_double(v.elements[2][2]);
-    return __skreturn;
+int __sklib__to_sklib_collision_test_kind(collision_test_kind v) {
+    return static_cast<int>(v);
 }
-matrix_2d __sklib__to_matrix_2d(__sklib_matrix_2d v) {
-    matrix_2d __skreturn;
-    __skreturn.elements[0][0] = __sklib__to_double(v.elements[0]);
-    __skreturn.elements[0][1] = __sklib__to_double(v.elements[1]);
-    __skreturn.elements[0][2] = __sklib__to_double(v.elements[2]);
-    __skreturn.elements[1][0] = __sklib__to_double(v.elements[3]);
-    __skreturn.elements[1][1] = __sklib__to_double(v.elements[4]);
-    __skreturn.elements[1][2] = __sklib__to_double(v.elements[5]);
-    __skreturn.elements[2][0] = __sklib__to_double(v.elements[6]);
-    __skreturn.elements[2][1] = __sklib__to_double(v.elements[7]);
-    __skreturn.elements[2][2] = __sklib__to_double(v.elements[8]);
-    return __skreturn;
+collision_test_kind __sklib__to_collision_test_kind(int v) {
+    return static_cast<collision_test_kind>(v);
+}
+int __sklib__to_sklib_sprite_event_kind(sprite_event_kind v) {
+    return static_cast<int>(v);
+}
+sprite_event_kind __sklib__to_sprite_event_kind(int v) {
+    return static_cast<sprite_event_kind>(v);
+}
+int __sklib__to_sklib_connection_type(connection_type v) {
+    return static_cast<int>(v);
+}
+connection_type __sklib__to_connection_type(int v) {
+    return static_cast<connection_type>(v);
+}
+int __sklib__to_sklib_key_code(key_code v) {
+    return static_cast<int>(v);
+}
+key_code __sklib__to_key_code(int v) {
+    return static_cast<key_code>(v);
 }
 __sklib_point_2d __sklib__to_sklib_point_2d(point_2d v) {
     __sklib_point_2d __skreturn;
@@ -435,11 +409,31 @@ vector_2d __sklib__to_vector_2d(__sklib_vector_2d v) {
     __skreturn.y = __sklib__to_double(v.y);
     return __skreturn;
 }
-void (*__sklib__to_key_callback(__sklib_key_callback *v))(int code) {
-    return v;
+__sklib_matrix_2d __sklib__to_sklib_matrix_2d(matrix_2d v) {
+    __sklib_matrix_2d __skreturn;
+    __skreturn.elements[0] = __sklib__to_double(v.elements[0][0]);
+    __skreturn.elements[1] = __sklib__to_double(v.elements[0][1]);
+    __skreturn.elements[2] = __sklib__to_double(v.elements[0][2]);
+    __skreturn.elements[3] = __sklib__to_double(v.elements[1][0]);
+    __skreturn.elements[4] = __sklib__to_double(v.elements[1][1]);
+    __skreturn.elements[5] = __sklib__to_double(v.elements[1][2]);
+    __skreturn.elements[6] = __sklib__to_double(v.elements[2][0]);
+    __skreturn.elements[7] = __sklib__to_double(v.elements[2][1]);
+    __skreturn.elements[8] = __sklib__to_double(v.elements[2][2]);
+    return __skreturn;
 }
-void (*__sklib__to_sklib_key_callback(key_callback *v))(int code) {
-    return v;
+matrix_2d __sklib__to_matrix_2d(__sklib_matrix_2d v) {
+    matrix_2d __skreturn;
+    __skreturn.elements[0][0] = __sklib__to_double(v.elements[0]);
+    __skreturn.elements[0][1] = __sklib__to_double(v.elements[1]);
+    __skreturn.elements[0][2] = __sklib__to_double(v.elements[2]);
+    __skreturn.elements[1][0] = __sklib__to_double(v.elements[3]);
+    __skreturn.elements[1][1] = __sklib__to_double(v.elements[4]);
+    __skreturn.elements[1][2] = __sklib__to_double(v.elements[5]);
+    __skreturn.elements[2][0] = __sklib__to_double(v.elements[6]);
+    __skreturn.elements[2][1] = __sklib__to_double(v.elements[7]);
+    __skreturn.elements[2][2] = __sklib__to_double(v.elements[8]);
+    return __skreturn;
 }
 void (*__sklib__to_free_notifier(__sklib_free_notifier *v))(__sklib_ptr pointer) {
     return v;
@@ -463,6 +457,12 @@ void (*__sklib__to_sprite_function(__sklib_sprite_function *v))(__sklib_ptr s) {
     return v;
 }
 void (*__sklib__to_sklib_sprite_function(sprite_function *v))(__sklib_ptr s) {
+    return v;
+}
+void (*__sklib__to_key_callback(__sklib_key_callback *v))(int code) {
+    return v;
+}
+void (*__sklib__to_sklib_key_callback(key_callback *v))(int code) {
     return v;
 }
 extern "C" void __sklib__free__sklib_vector_line(__sklib_vector_line v) {
@@ -497,35 +497,35 @@ void __sklib__update_from_vector_line(const std::vector<line> &v, __sklib_vector
         i++;
     }
 }
-extern "C" void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v) {
+extern "C" void __sklib__free__sklib_vector_string(__sklib_vector_string v) {
     free(v.data_from_lib);
 }
-__sklib_vector_int8_t __sklib__to_sklib_vector_int8_t(const std::vector<int8_t> &v) {
-    __sklib_vector_int8_t __skreturn;
+__sklib_vector_string __sklib__to_sklib_vector_string(const std::vector<string> &v) {
+    __sklib_vector_string __skreturn;
     __skreturn.size_from_app = 0;
     __skreturn.data_from_app = nullptr;
     __skreturn.size_from_lib = static_cast<unsigned int>(v.size());
-    __skreturn.data_from_lib = (unsigned char *)malloc(__skreturn.size_from_lib * sizeof(unsigned char));
+    __skreturn.data_from_lib = (__sklib_string *)malloc(__skreturn.size_from_lib * sizeof(__sklib_string));
     unsigned int i = 0;
-    for (int8_t d : v) {
-        __skreturn.data_from_lib[i] = __sklib__to_sklib_int8_t(d);
+    for (string d : v) {
+        __skreturn.data_from_lib[i] = __sklib__to_sklib_string(d);
         i++;
     }
     return __skreturn;
 }
-vector<int8_t> __sklib__to_vector_int8_t(const __sklib_vector_int8_t &v) {
-    vector<int8_t> __skreturn;
+vector<string> __sklib__to_vector_string(const __sklib_vector_string &v) {
+    vector<string> __skreturn;
     for (int i = 0; i < v.size_from_app; i++) {
-        __skreturn.push_back(__sklib__to_int8_t(v.data_from_app[i]));
+        __skreturn.push_back(__sklib__to_string(v.data_from_app[i]));
     }
     return __skreturn;
 }
-void __sklib__update_from_vector_int8_t(const std::vector<int8_t> &v, __sklib_vector_int8_t *__skreturn) {
+void __sklib__update_from_vector_string(const std::vector<string> &v, __sklib_vector_string *__skreturn) {
     __skreturn->size_from_lib = static_cast<unsigned int>(v.size());
-    __skreturn->data_from_lib = (unsigned char *)malloc(__skreturn->size_from_lib * sizeof(unsigned char));
+    __skreturn->data_from_lib = (__sklib_string *)malloc(__skreturn->size_from_lib * sizeof(__sklib_string));
     unsigned int i = 0;
-    for (int8_t d : v) {
-        __skreturn->data_from_lib[i] = __sklib__to_sklib_int8_t(d);
+    for (string d : v) {
+        __skreturn->data_from_lib[i] = __sklib__to_sklib_string(d);
         i++;
     }
 }
@@ -561,35 +561,35 @@ void __sklib__update_from_vector_triangle(const std::vector<triangle> &v, __skli
         i++;
     }
 }
-extern "C" void __sklib__free__sklib_vector_string(__sklib_vector_string v) {
+extern "C" void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v) {
     free(v.data_from_lib);
 }
-__sklib_vector_string __sklib__to_sklib_vector_string(const std::vector<string> &v) {
-    __sklib_vector_string __skreturn;
+__sklib_vector_int8_t __sklib__to_sklib_vector_int8_t(const std::vector<int8_t> &v) {
+    __sklib_vector_int8_t __skreturn;
     __skreturn.size_from_app = 0;
     __skreturn.data_from_app = nullptr;
     __skreturn.size_from_lib = static_cast<unsigned int>(v.size());
-    __skreturn.data_from_lib = (__sklib_string *)malloc(__skreturn.size_from_lib * sizeof(__sklib_string));
+    __skreturn.data_from_lib = (unsigned char *)malloc(__skreturn.size_from_lib * sizeof(unsigned char));
     unsigned int i = 0;
-    for (string d : v) {
-        __skreturn.data_from_lib[i] = __sklib__to_sklib_string(d);
+    for (int8_t d : v) {
+        __skreturn.data_from_lib[i] = __sklib__to_sklib_int8_t(d);
         i++;
     }
     return __skreturn;
 }
-vector<string> __sklib__to_vector_string(const __sklib_vector_string &v) {
-    vector<string> __skreturn;
+vector<int8_t> __sklib__to_vector_int8_t(const __sklib_vector_int8_t &v) {
+    vector<int8_t> __skreturn;
     for (int i = 0; i < v.size_from_app; i++) {
-        __skreturn.push_back(__sklib__to_string(v.data_from_app[i]));
+        __skreturn.push_back(__sklib__to_int8_t(v.data_from_app[i]));
     }
     return __skreturn;
 }
-void __sklib__update_from_vector_string(const std::vector<string> &v, __sklib_vector_string *__skreturn) {
+void __sklib__update_from_vector_int8_t(const std::vector<int8_t> &v, __sklib_vector_int8_t *__skreturn) {
     __skreturn->size_from_lib = static_cast<unsigned int>(v.size());
-    __skreturn->data_from_lib = (__sklib_string *)malloc(__skreturn->size_from_lib * sizeof(__sklib_string));
+    __skreturn->data_from_lib = (unsigned char *)malloc(__skreturn->size_from_lib * sizeof(unsigned char));
     unsigned int i = 0;
-    for (string d : v) {
-        __skreturn->data_from_lib[i] = __sklib__to_sklib_string(d);
+    for (int8_t d : v) {
+        __skreturn->data_from_lib[i] = __sklib__to_sklib_int8_t(d);
         i++;
     }
 }

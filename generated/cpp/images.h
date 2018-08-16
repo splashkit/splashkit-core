@@ -6,8 +6,8 @@
 #ifndef __images_h
 #define __images_h
 
-#include "types.h"
 #include "window_manager.h"
+#include "types.h"
 #include <string>
 #include <vector>
 using std::string;

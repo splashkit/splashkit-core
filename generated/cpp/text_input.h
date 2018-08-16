@@ -6,8 +6,8 @@
 #ifndef __text_input_h
 #define __text_input_h
 
-#include "types.h"
 #include "window_manager.h"
+#include "types.h"
 #include <string>
 #include <vector>
 using std::string;
