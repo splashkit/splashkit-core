@@ -27,7 +27,7 @@ namespace splashkit_lib
      *
      * @attribute getter x
      */
-    float camera_x();
+    double camera_x();
 
     /**
      * Returns the y location of the camera in game coordinates. This represents
@@ -38,9 +38,9 @@ namespace splashkit_lib
      *
      * @attribute getter y
      */
-    float camera_y();
+    double camera_y();
 
-    /*
+    /**
      * Change the X position of the camera to a specified world coordinate. This
      * will then be the new left most position of the screen within the world.
      *
@@ -102,7 +102,7 @@ namespace splashkit_lib
      *
      * @attribute method to_screen_x
      */
-    float to_screen_x(float world_x);
+    double to_screen_x(double world_x);
 
     /**
      * Translate a world y value to the current screen y value set by the camera.
@@ -112,7 +112,7 @@ namespace splashkit_lib
      *
      * @attribute method to_screen_y
      */
-    float to_screen_y(float world_y);
+    double to_screen_y(double world_y);
 
     /**
      * Convert the passed in world coordinates to screen coordinates.
@@ -182,7 +182,7 @@ namespace splashkit_lib
      *
      * @attribute method to_world_x
      */
-    float to_world_x(float screen_x);
+    double to_world_x(double screen_x);
 
     /**
      * Translate a screen y value (based on the camera) to a world y value
@@ -193,7 +193,7 @@ namespace splashkit_lib
      *
      * @attribute method to_world_y
      */
-    float to_world_y(float screen_y);
+    double to_world_y(double screen_y);
 
     /**
      * Converts the passed in point from screen coordinates to world coordinates.
@@ -290,7 +290,7 @@ namespace splashkit_lib
      *
      * @attribute method move_by
      */
-    void move_camera_by(float dx, float dy);
+    void move_camera_by(double dx, double dy);
 
     /**
      * Move the camera (offset its world x and y values) using the specified
@@ -316,7 +316,7 @@ namespace splashkit_lib
      *
      * @attribute method center_on
      */
-    void center_camera_on(sprite s, float offset_x, float offset_y);
+    void center_camera_on(sprite s, double offset_x, double offset_y);
 
     /**
      * Set the camera view to be centered over the specific sprite. The offset

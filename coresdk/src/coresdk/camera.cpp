@@ -12,20 +12,20 @@
 #include "graphics.h"
 namespace splashkit_lib
 {
-    static float _camera_x = 0;
-    static float _camera_y = 0;
+    static double _camera_x = 0;
+    static double _camera_y = 0;
 
 
     //---------------------------------------------------------------------------
     // Camera - position
     //---------------------------------------------------------------------------
 
-    float camera_x()
+    double camera_x()
     {
         return _camera_x;
     }
 
-    float camera_y()
+    double camera_y()
     {
         return _camera_y;
     }
@@ -62,12 +62,12 @@ namespace splashkit_lib
     // World-To-Screen Translation
     //---------------------------------------------------------------------------
 
-    float to_screen_x(float world_x)
+    double to_screen_x(double world_x)
     {
         return world_x - _camera_x;
     }
 
-    float to_screen_y(float world_y)
+    double to_screen_y(double world_y)
     {
         return world_y - _camera_y;
     }
@@ -101,12 +101,12 @@ namespace splashkit_lib
     // Screen-To-World Translation
     //---------------------------------------------------------------------------
 
-    float to_world_x(float screen_x)
+    double to_world_x(double screen_x)
     {
         return screen_x + _camera_x;
     }
 
-    float to_world_y(float screen_y)
+    double to_world_y(double screen_y)
     {
         return screen_y + _camera_y;
     }
@@ -157,7 +157,7 @@ namespace splashkit_lib
         move_camera_to(pt.x, pt.y);
     }
 
-    void move_camera_by(float dx, float dy)
+    void move_camera_by(double dx, double dy)
     {
         _camera_x += dx;
         _camera_y += dy;
@@ -168,12 +168,12 @@ namespace splashkit_lib
         move_camera_by(offset.x, offset.y);
     }
 
-    void center_camera_on(sprite s, float offset_x, float offset_y)
+    void center_camera_on(sprite s, double offset_x, double offset_y)
     {
         point_2d center = sprite_position(s);
 
-        float sc_x = center.x + offset_x - (screen_width() / 2);
-        float sc_y = center.y + offset_y - (screen_height() / 2);
+        double sc_x = center.x + offset_x - (screen_width() / 2);
+        double sc_y = center.y + offset_y - (screen_height() / 2);
 
         move_camera_to(sc_x, sc_y);
     }
