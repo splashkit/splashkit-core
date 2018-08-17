@@ -198,6 +198,8 @@ void run_restful_web_service()
     {
         process_events();
 
+        if ( not has_incoming_requests(server)) continue;
+
         auto request = next_web_request(server);
 
         http_method method = request_method(request);
