@@ -12,6 +12,9 @@
 
 #include <sstream>
 #include <cmath>
+
+using std::ostringstream;
+
 namespace splashkit_lib
 {
     rectangle rectangle_from(double x, double y, double width, double height)

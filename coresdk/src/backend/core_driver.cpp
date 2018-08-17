@@ -18,9 +18,6 @@
 
 #include <stdlib.h>
 
-//#include <iostream>
-//using namespace std;
-
 #include "audio_driver.h"
 #include "web_driver.h"
 

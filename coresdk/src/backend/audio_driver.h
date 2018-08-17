@@ -10,7 +10,8 @@
 #define sk_AudioDriver_h
 
 #include <string>
-using namespace std;
+using std::string;
+
 namespace splashkit_lib
 {
     typedef enum sk_sound_kind

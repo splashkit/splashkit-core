@@ -15,6 +15,7 @@
 const int LISTEN_PORTB = 5000;
 
 using namespace splashkit_lib;
+using namespace std;
 
 void pause_tcp_test()
 {

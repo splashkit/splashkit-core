@@ -22,6 +22,10 @@
 #include "backend_types.h"
 #include "core_driver.h"
 #include "utility_functions.h"
+
+using std::cerr;
+using std::endl;
+
 namespace splashkit_lib
 {
     void sk_init_text()

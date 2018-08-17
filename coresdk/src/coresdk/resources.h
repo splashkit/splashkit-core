@@ -12,8 +12,8 @@
 #define resources_hpp
 
 #include <string>
+using std::string;
 
-using namespace std;
 namespace splashkit_lib
 {
     /**

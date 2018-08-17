@@ -19,7 +19,10 @@
 #include <functional>
 
 using backend_json = nlohmann::json;
-using namespace std;
+using std::string;
+using std::vector;
+using std::make_pair;
+
 namespace splashkit_lib
 {
     struct sk_json

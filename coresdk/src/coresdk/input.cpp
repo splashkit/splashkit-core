@@ -17,7 +17,9 @@
 #include <vector>
 #include <map>
 #include <iostream>
-using namespace std;
+using std::vector;
+using std::map;
+
 namespace splashkit_lib
 {
     void quit()

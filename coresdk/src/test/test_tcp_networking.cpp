@@ -16,6 +16,7 @@ const int SERVER1_PORT = 5000;
 const int SERVER2_PORT = SERVER1_PORT + 1;
 
 using namespace splashkit_lib;
+using namespace std;
 
 server_socket svr;
 connection lConA, lConB, lTmp, lTmpA;

@@ -17,7 +17,9 @@
 #include <iostream>
 #include <map>
 
-using namespace std;
+using std::vector;
+using std::map;
+
 namespace splashkit_lib
 {
     static map<string, database> _databases;

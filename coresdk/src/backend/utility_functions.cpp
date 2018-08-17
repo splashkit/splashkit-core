@@ -27,10 +27,12 @@
 #include <Windows.h>
 #include <Shlobj.h>
 #endif
+
+using std::string;
+using std::locale;
+
 namespace splashkit_lib
 {
-    using namespace std;
-
 #define PI 3.141592653589793238L
 
     template <typename T>

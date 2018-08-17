@@ -12,7 +12,10 @@
 
 #include <vector>
 #include <map>
-using namespace std;
+
+using std::vector;
+using std::map;
+
 namespace splashkit_lib
 {
     bool _mouse_button_clicked[6] = { false };

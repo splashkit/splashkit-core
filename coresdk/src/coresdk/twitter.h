@@ -19,11 +19,11 @@
 #ifndef twitter_hpp
 #define twitter_hpp
 
-#include <stdio.h>
 #include "json.h"
 #include "web_client.h"
+
 #include <string>
-using namespace std;
+using std::string;
 
 #endif /* twitter_h */
 namespace splashkit_lib

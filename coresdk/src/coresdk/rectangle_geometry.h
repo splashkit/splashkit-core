@@ -11,7 +11,8 @@
 #include "types.h"
 #include <string>
 
-using namespace std;
+using std::string;
+
 namespace splashkit_lib
 {
     /**

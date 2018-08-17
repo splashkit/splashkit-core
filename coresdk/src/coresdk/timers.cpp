@@ -13,7 +13,9 @@
 #include "utility_functions.h"
 
 #include <map>
-using namespace std;
+
+using std::map;
+
 namespace splashkit_lib
 {
     static map<string, timer> _timers;

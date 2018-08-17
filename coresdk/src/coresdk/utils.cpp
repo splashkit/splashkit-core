@@ -19,7 +19,8 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
+using std::string;
+using std::ifstream;
 
 namespace splashkit_lib
 {

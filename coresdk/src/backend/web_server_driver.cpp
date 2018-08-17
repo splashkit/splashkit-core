@@ -14,6 +14,8 @@
 #include <iostream>
 #include <cstring>
 
+using std::to_string;
+
 namespace splashkit_lib
 {
     static map<unsigned short, sk_web_server*> servers;

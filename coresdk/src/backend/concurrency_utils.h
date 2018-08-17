@@ -14,7 +14,13 @@
 #include <condition_variable>
 #include <queue>
 
-using namespace std;
+using std::mutex;
+using std::thread;
+using std::condition_variable;
+using std::unique_lock;
+using std::lock_guard;
+using std::queue;
+
 namespace splashkit_lib
 {
     class semaphore

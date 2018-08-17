@@ -14,7 +14,10 @@
 
 #include <vector>
 #include <map>
-using namespace std;
+
+using std::map;
+using std::vector;
+
 namespace splashkit_lib
 {
     void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts)

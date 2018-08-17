@@ -16,6 +16,9 @@
 
 #include "graphics.h"
 #include "utils.h"
+
+using std::function;
+
 namespace splashkit_lib
 {
     //#define DEBUG_STEP
