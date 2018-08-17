@@ -13,7 +13,10 @@
 
 #include <vector>
 #include <map>
-using namespace std;
+
+using std::vector;
+using std::map;
+
 namespace splashkit_lib
 {
     static map<key_code, bool> _keys_down;

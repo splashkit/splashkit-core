@@ -14,6 +14,10 @@
 #include <cmath>
 #include <iomanip>
 #include <sstream>
+
+using std::stringstream;
+using std::endl;
+
 namespace splashkit_lib
 {
     matrix_2d identity_matrix()

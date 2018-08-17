@@ -18,6 +18,8 @@
 
 #include <cmath>
 
+using std::to_string;
+
 // Used in checking point similarities
 #define SMALL 1.4
 namespace splashkit_lib

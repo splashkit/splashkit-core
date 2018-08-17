@@ -21,7 +21,12 @@
 #include <cmath>
 #include <map>
 #include <vector>
-using namespace std;
+
+using std::map;
+using std::vector;
+using std::to_string;
+using std::swap;
+
 namespace splashkit_lib
 {
     timer _sprite_timer = nullptr;

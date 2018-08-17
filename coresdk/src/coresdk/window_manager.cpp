@@ -17,7 +17,7 @@
 
 #include <map>
 
-using namespace std;
+using std::map;
 
 namespace splashkit_lib
 {

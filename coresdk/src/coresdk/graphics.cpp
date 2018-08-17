@@ -18,7 +18,9 @@
 
 #include <map>
 
-using namespace std;
+using std::map;
+using std::to_string;
+
 namespace splashkit_lib
 {
     extern map<string, window> _windows;

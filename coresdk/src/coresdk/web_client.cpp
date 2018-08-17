@@ -17,6 +17,9 @@
 
 #include "backend_types.h"
 
+using std::ofstream;
+using std::ios;
+
 #ifdef WINDOWS
 #include <Windows.h>
 #endif

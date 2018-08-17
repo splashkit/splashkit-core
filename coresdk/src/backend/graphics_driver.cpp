@@ -9,8 +9,6 @@
 #include <limits.h>
 #include <iostream>
 
-using namespace std;
-
 #ifdef __linux__
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
@@ -26,6 +24,10 @@ using namespace std;
 
 #include "core_driver.h"
 #include "graphics_driver.h"
+
+using std::cerr;
+using std::endl;
+
 namespace splashkit_lib
 {
     unsigned int _sk_renderer_count(sk_drawing_surface *surface);

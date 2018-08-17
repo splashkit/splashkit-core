@@ -15,7 +15,9 @@
 
 #include "utility_functions.h"
 
-using namespace std;
+using std::ostringstream;
+using std::hex;
+using std::stringstream;
 
 namespace splashkit_lib
 {

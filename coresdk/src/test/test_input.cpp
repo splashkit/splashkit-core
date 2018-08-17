@@ -11,6 +11,7 @@
 #include "text.h"
 
 using namespace splashkit_lib;
+using namespace std;
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 

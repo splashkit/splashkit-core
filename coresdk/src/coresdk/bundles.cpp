@@ -20,6 +20,10 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+
+using std::ifstream;
+using std::to_string;
+
 namespace splashkit_lib
 {
     struct bundled_resource

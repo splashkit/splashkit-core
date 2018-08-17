@@ -12,7 +12,8 @@
 #include "backend_types.h"
 
 #include <string>
-using namespace std;
+using std::string;
+
 namespace splashkit_lib
 {
     struct sk_database

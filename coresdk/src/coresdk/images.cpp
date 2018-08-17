@@ -17,7 +17,9 @@
 #include <cstdlib>
 #include <cmath>
 
-using namespace std;
+using std::map;
+using std::to_string;
+
 namespace splashkit_lib
 {
     static map<string, bitmap> _bitmaps;

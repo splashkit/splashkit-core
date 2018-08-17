@@ -14,6 +14,7 @@
 #include "graphics.h"
 
 using namespace splashkit_lib;
+using namespace std;
 
 void run_timer_test()
 {

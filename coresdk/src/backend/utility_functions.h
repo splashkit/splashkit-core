@@ -17,7 +17,8 @@
 
 #include <easylogging++.h>
 
-using namespace std;
+using std::string;
+
 namespace splashkit_lib
 {
     // smallest positive value: less than that to be considered zero

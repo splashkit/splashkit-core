@@ -18,7 +18,13 @@
 
 #include <iostream>
 #include <map>
-using namespace std;
+
+using std::map;
+using std::pair;
+using std::cout;
+using std::to_string;
+using std::endl;
+using std::cin;
 
 namespace splashkit_lib
 {

@@ -9,7 +9,9 @@
 
 #include <algorithm>
 #include <string>
-using namespace std;
+
+using std::string;
+
 namespace splashkit_lib
 {
 #ifdef HELP_KEY

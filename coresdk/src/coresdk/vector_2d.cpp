@@ -14,6 +14,9 @@
 #include "utility_functions.h"
 
 #include <cmath>
+
+using std::to_string;
+
 namespace splashkit_lib
 {
     string vector_to_string(const vector_2d &v)

@@ -18,6 +18,9 @@
 #include "audio_driver.h"
 #include "core_driver.h"
 
+using std::cerr;
+using std::endl;
+
 #define SG_MAX_CHANNELS 64
 namespace splashkit_lib
 {

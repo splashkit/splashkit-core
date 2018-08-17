@@ -21,7 +21,11 @@
 #include <vector>
 #include <map>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::map;
+using std::ifstream;
+using std::to_string;
 
 namespace splashkit_lib
 {

@@ -16,7 +16,7 @@
 #include "drawing_options.h"
 
 #include <string>
-using namespace std;
+using std::string;
 
 namespace splashkit_lib
 {

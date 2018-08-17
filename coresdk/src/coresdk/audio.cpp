@@ -7,7 +7,8 @@
 #include <iostream>
 #include <map>
 
-using namespace std;
+using std::map;
+
 namespace splashkit_lib
 {
     static map<string, sound_effect> _sound_effects;

@@ -17,6 +17,16 @@
 #include <string.h>
 #endif
 
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
+using std::ostringstream;
+using std::hex;
+using std::uppercase;
+using std::setw;
+using std::nouppercase;
+using std::to_string;
+
 namespace splashkit_lib
 {
 

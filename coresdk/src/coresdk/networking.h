@@ -17,7 +17,10 @@
 
 #include "types.h"
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::map;
+
 namespace splashkit_lib
 {
     /**

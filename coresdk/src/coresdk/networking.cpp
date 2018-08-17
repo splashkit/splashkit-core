@@ -8,6 +8,14 @@
 #include "network_driver.h"
 #include "utility_functions.h"
 
+using std::endl;
+using std::stringstream;
+using std::to_string;
+using std::uppercase;
+using std::hex;
+using std::setw;
+using std::setfill;
+
 namespace splashkit_lib
 {
     #define PACKET_SIZE 512

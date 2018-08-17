@@ -13,6 +13,8 @@
 #include "core_driver.h"
 #include "utils.h"
 
+using std::ofstream;
+
 namespace splashkit_lib
 {
     static vector<json> objects;

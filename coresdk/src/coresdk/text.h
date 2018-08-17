@@ -15,7 +15,8 @@
 #include "drawing_options.h"
 
 #include <string>
-using namespace std;
+using std::string;
+
 namespace splashkit_lib
 {
     /// Loads a font from file with the specified side. Fonts must be freed using
