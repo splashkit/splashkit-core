@@ -12,7 +12,6 @@
 #include "json.h"
 #include "backend_types.h"
 #include "utility_functions.h"
-#include "easylogging++.h"
 #include "json.hpp"
 
 #include <string>
@@ -30,6 +29,8 @@ namespace splashkit_lib
     };
 
     void sk_delete_json(json j);
+
+    string json_type_to_string(backend_json::value_t type);
 
     template <typename T>
     void sk_json_add_value(json j, string key, T value)
@@ -64,7 +65,7 @@ namespace splashkit_lib
         if ((temp.type() != type) &&
             !(is_type_number(temp.type()) && is_type_number(type)))
         {
-            LOG(ERROR) << "JSON key value is not expected in sk_json_read_value. Has type " << j->data[key].type();
+            LOG(ERROR) << "JSON key value is not expected in sk_json_read_value. Has type " << json_type_to_string(j->data[key].type());
             return T();
         }
 
@@ -82,7 +83,7 @@ namespace splashkit_lib
 
         if (!j->data[key].is_array())
         {
-            LOG(ERROR) << "JSON key value is not an array. Has type " << j->data[key].type();
+            LOG(ERROR) << "JSON key value is not an array. Has type " << json_type_to_string(j->data[key].type());
             return;
         }
         
