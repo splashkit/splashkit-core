@@ -13,6 +13,9 @@
 #include "line_geometry.h"
 
 #include <cmath>
+
+using std::abs;
+
 namespace splashkit_lib
 {
     circle circle_at(const point_2d &pt, double radius)

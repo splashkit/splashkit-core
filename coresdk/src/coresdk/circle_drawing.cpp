@@ -19,6 +19,9 @@
 #include "graphics_driver.h"
 
 #include <cmath>
+
+using std::abs;
+
 namespace splashkit_lib
 {
 
