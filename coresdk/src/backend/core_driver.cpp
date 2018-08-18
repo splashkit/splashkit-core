@@ -21,6 +21,8 @@
 #include "audio_driver.h"
 #include "web_driver.h"
 
+#include "easylogging++.h"
+
 namespace splashkit_lib
 {
     // Storage for the system data
@@ -32,6 +34,8 @@ namespace splashkit_lib
 
     void internal_sk_init()
     {
+        el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
+
         static bool done_init = false;
         if ( done_init ) return;
         done_init = true;
