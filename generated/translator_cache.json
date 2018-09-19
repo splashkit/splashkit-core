@@ -3,7 +3,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1534409451,
+    "parsed_at": 1537137965,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -1834,7 +1834,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409453,
+    "parsed_at": 1537137966,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -4478,7 +4478,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1534420492,
+    "parsed_at": 1537137969,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
@@ -6518,7 +6518,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1534409458,
+    "parsed_at": 1537137969,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -6839,7 +6839,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1534409461,
+    "parsed_at": 1537137973,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -21223,7 +21223,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1534409474,
+    "parsed_at": 1537137973,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -23309,7 +23309,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409479,
+    "parsed_at": 1537137974,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -29685,7 +29685,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1534409490,
+    "parsed_at": 1537137976,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -31437,7 +31437,7 @@
     "group": "database",
     "brief": "SplashKit Database allows you to create, query and otherwise\nmanipulate a database.",
     "description": "SplashKit's database library allows you to easily create or load databases\nand to perform queries on them. To get started with databases in SplashKit,\nthe first thinkg you need to do is to load or create a database file. You can\ndo this by calling the `open_database(string name)` function.",
-    "parsed_at": 1534409491,
+    "parsed_at": 1537137978,
     "path": "coresdk/src/coresdk/database.h",
     "functions": [
       {
@@ -32351,7 +32351,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1534409492,
+    "parsed_at": 1537137979,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -33089,7 +33089,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1534409494,
+    "parsed_at": 1537137981,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -35577,7 +35577,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409495,
+    "parsed_at": 1537137982,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -37050,7 +37050,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409498,
+    "parsed_at": 1537137985,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -48776,7 +48776,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1534409509,
+    "parsed_at": 1537137987,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -52448,7 +52448,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409513,
+    "parsed_at": 1537137988,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -55057,7 +55057,7 @@
     "group": "social",
     "brief": "SplashKit provides functionality to post material to twitter",
     "description": null,
-    "parsed_at": 1534409516,
+    "parsed_at": 1537137989,
     "path": "coresdk/src/coresdk/twitter.h",
     "functions": [
 
@@ -55079,7 +55079,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1534409520,
+    "parsed_at": 1537137993,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -58223,7 +58223,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1534409523,
+    "parsed_at": 1537137996,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -59509,7 +59509,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1534409526,
+    "parsed_at": 1537137998,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {

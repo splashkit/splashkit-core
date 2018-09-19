@@ -17,7 +17,7 @@ __sklib_string __skadapter__to_sklib_string(const std::string &s) {
     return __skreturn;
 }
 std::string __skadapter__to_string(const __sklib_string &s) {
-    std:string result = std::string(s.string);
+    std::string result = std::string(s.string);
     __sklib__free__sklib_string(s);
     return result;
 }

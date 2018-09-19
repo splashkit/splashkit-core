@@ -17,7 +17,7 @@ __sklib_string __sklib__to_sklib_string(const std::string &s) {
     return __skreturn;
 }
 std::string __sklib__to_string(const __sklib_string &s) {
-    std:string result = std::string(s.string);
+    std::string result = std::string(s.string);
     return result;
 }
 int __sklib__to_sklib_bool(bool v) {
