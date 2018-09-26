@@ -34,11 +34,11 @@ namespace splashkit_lib
 
     void internal_sk_init()
     {
-        el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
-
         static bool done_init = false;
         if ( done_init ) return;
         done_init = true;
+        
+        el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
 
         //    cout << "pre init" << endl;
         if ( -1 == SDL_Init( SDL_INIT_EVERYTHING ) )
