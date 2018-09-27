@@ -170,9 +170,10 @@ namespace splashkit_lib
 
         _sk_has_initial_window = true;
         _sk_initial_window = static_cast<sk_window_be *>(malloc(sizeof(sk_window_be)));
+
         _sk_initial_window->window = SDL_CreateWindow("SplashKit",
                                                       SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 200, 200,
-                                                      SDL_WINDOW_HIDDEN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_SKIP_TASKBAR );
+                                                      SDL_WINDOW_HIDDEN | SDL_WINDOW_ALLOW_HIGHDPI );
 
         if ( ! _sk_initial_window->window )
         {
