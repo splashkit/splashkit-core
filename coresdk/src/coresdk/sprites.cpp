@@ -1584,7 +1584,7 @@ namespace splashkit_lib
         if ( INVALID_PTR(s, SPRITE_PTR))
             return false;
         else
-            return rectangles_intersect(sprite_layer_rectangle(s, 0), screen_rectangle());
+            return not rectangles_intersect(sprite_layer_rectangle(s, 0), screen_rectangle());
     }
 
 
