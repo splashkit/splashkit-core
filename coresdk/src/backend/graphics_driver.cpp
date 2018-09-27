@@ -197,6 +197,8 @@ namespace splashkit_lib
 
         SDL_SetRenderDrawBlendMode(_sk_initial_window->renderer, SDL_BLENDMODE_BLEND);
         SDL_PumpEvents();
+        //HACK: Change size of Mojave
+        SDL_SetWindowSize(_sk_initial_window->window, 200, 200);
 
         //    std::cout << "Initial Renderer is " << _sk_initial_window->renderer << std::endl;
 
@@ -710,6 +712,8 @@ namespace splashkit_lib
         SDL_RaiseWindow(window_be->window);
         _sk_present_window(window_be);
         SDL_PumpEvents();
+        //HACK: Change size of Mojave
+        SDL_SetWindowSize(window_be->window, width, height);
 
         return true;
     }
