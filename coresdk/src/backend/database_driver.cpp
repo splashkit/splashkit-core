@@ -72,6 +72,7 @@ namespace splashkit_lib
         return string(sqlite3_errstr(result->_error_code));
     }
 
+
     sk_query_result sk_prepare_statement(sk_database *db, string sql)
     {
         const char* sql_char = sql.c_str();
@@ -82,10 +83,12 @@ namespace splashkit_lib
 
         sk_query_result result;
 
+        result.id = QUERY_PTR;
         result._database = db;
         result._result = sqlite3_prepare_v2(data, sql_char, size_sql_inc_null, &statement, nullptr);
+        result._error_code = result._result;
         result._stmt = statement;
-        result.id = QUERY_PTR;
+        
         return result;
     }
 
@@ -104,6 +107,16 @@ namespace splashkit_lib
         return sqlite3_changes(sqlite3_from_void(db->_data));
     }
 
+    int sk_columns_ready_to_read(sk_query_result *result)
+    {
+        return sqlite3_data_count(sqlite3_stmt_from_void(result->_stmt));
+    }
+
+    int sk_column_count(sk_query_result *result)
+    {
+        return sqlite3_column_count(sqlite3_stmt_from_void(result->_stmt));
+    }
+
     bool sk_query_get_next_row(sk_query_result *result)
     {
         sk_step_statement(result);
@@ -118,35 +131,46 @@ namespace splashkit_lib
 
     int sk_query_read_column_int(sk_query_result *result, int col)
     {
-        if (result->_result == SQLITE_ROW)
+        if (result->_result == SQLITE_ROW and col < sk_columns_ready_to_read(result))
         {
             return sqlite3_column_int(sqlite3_stmt_from_void(result->_stmt), col);
         }
 
-        LOG(WARNING) << "Failed to read column as int";
+        LOG(WARNING) << "Failed to read int from column " << col << ". Ensure query succeeded, there is a row ready to read, and there are sufficient columns.";
         return 0;
     }
 
     double sk_query_read_column_double(sk_query_result *result, int col)
     {
-        if (result->_result == SQLITE_ROW)
+        if (result->_result == SQLITE_ROW and col < sk_columns_ready_to_read(result))
         {
             return sqlite3_column_double(sqlite3_stmt_from_void(result->_stmt), col);
         }
 
-        LOG(WARNING) << "Failed to read double from column";
+        LOG(WARNING) << "Failed to read double from column " << col << ". Ensure query succeeded, there is a row ready to read, and there are sufficient columns.";
         return 0.0;
     }
 
     string sk_query_read_column_text(sk_query_result *result, int col)
     {
-        if (result->_result == SQLITE_ROW)
+        if (result->_result == SQLITE_ROW and col < sk_columns_ready_to_read(result))
         {
             const unsigned char* data = sqlite3_column_text(sqlite3_stmt_from_void(result->_stmt), col);
             return string(reinterpret_cast<const char *>(data));
         }
-        LOG(WARNING) << "Failed to read column as text";
+        LOG(WARNING) << "Failed to read text from column " << col << ". Ensure query succeeded, there is a row ready to read, and there are sufficient columns.";
         return "";
+    }
+
+    bool sk_query_read_column_bool(sk_query_result *result, int col)
+    {
+        if (result->_result == SQLITE_ROW and col < sk_columns_ready_to_read(result))
+        {
+            return sqlite3_column_int(sqlite3_stmt_from_void(result->_stmt), col) != 0;
+        }
+        
+        LOG(WARNING) << "Failed to read boolean from column " << col << ". Ensure query succeeded, there is a row ready to read, and there are sufficient columns.";
+        return false;
     }
 
     void sk_finalise_query(sk_query_result *result)
@@ -184,16 +208,5 @@ namespace splashkit_lib
         }
         LOG(WARNING) << "Failed to read type of column";
         return "";
-    }
-    
-    bool sk_query_read_column_bool(sk_query_result *result, int col)
-    {
-        if (result->_result == SQLITE_ROW)
-        {
-            return sqlite3_column_int(sqlite3_stmt_from_void(result->_stmt), col) != 0;
-        }
-        
-        LOG(WARNING) << "Failed to read column as boolean";
-        return false;
-    }
+    }    
 }

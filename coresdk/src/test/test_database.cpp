@@ -41,7 +41,12 @@ void run_database_tests()
     cursor = run_sql("test1", "garbage_queryfkdsafjkdls :(");
     result = query_success(cursor);
     cout << (result ? "Query successful\n" : "Query unsuccessful\n");
+    cout << error_message(cursor) << endl;
 
+    cout << "Testing unclosed query..." << endl;
+    cursor = run_sql("test1", "INSERT INTO friends VALUES (30003, \"Alex C\", 20, 42.43, 0");
+    result = query_success(cursor);
+    cout << (result ? "Query successful\n" : "Query unsuccessful\n");
 
     cout << "Testing good query..." << endl;
     cursor = run_sql("test1", "select * from friends;");
@@ -52,16 +57,22 @@ void run_database_tests()
 
     //--------------------------------------------------------------
 
-
+    cout << "Query has " << query_column_count(cursor) << " columns - expect 5" << endl;
 
     for (reset_query_result(cursor); has_row(cursor); get_next_row(cursor))
     {
+        cout << "Test read int past cols available... " << query_column_for_int(cursor, 100) << endl;
+        cout << "Test read string past cols available... " << query_column_for_string(cursor, 100) << endl;
+        cout << "Test read double past cols available... " << query_column_for_double(cursor, 100) << endl;
+        cout << "Test read bool past cols available... " << query_column_for_bool(cursor, 100) << endl;
         cout << "data in index 0 is: " << query_column_for_int(cursor, 0) << endl;
         cout << "data in index 1 is: " << query_column_for_string(cursor, 1) << endl;
         cout << "data in index 2 is: " << query_column_for_int(cursor, 2) << endl;
         cout << "data in index 3 is: " << query_column_for_double(cursor, 3) << endl;
         cout << "data in index 4 is: " << query_column_for_bool(cursor, 4) << endl << endl;
     }
+
+    cout << "Test read after end... " << query_column_for_int(cursor, 0) << endl;
 
     while (has_row(cursor))
     {

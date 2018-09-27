@@ -50,6 +50,8 @@ namespace splashkit_lib
 
     sk_query_result sk_prepare_statement(sk_database *db, string sql);
 
+    int sk_column_count(sk_query_result *result);
+
     bool sk_query_has_data(sk_query_result *result);
 
     bool sk_query_success(sk_query_result *result);

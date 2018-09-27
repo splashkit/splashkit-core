@@ -147,6 +147,17 @@ namespace splashkit_lib
         return sk_query_has_data(result);
     }
 
+    int query_column_count(query_result db_result)
+    {
+        if ( INVALID_PTR(db_result, QUERY_PTR))
+        {
+            LOG(WARNING) << "Attempting to access invalid query for column count.";
+            return 0;
+        }
+
+        return sk_column_count(db_result);
+    }
+
     void reset_query_result(query_result result)
     {
         if ( INVALID_PTR(result, QUERY_PTR))

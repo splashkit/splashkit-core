@@ -55,6 +55,13 @@ namespace splashkit_lib
      */
     typedef struct sk_query_result *query_result;
 
+    /**
+     * Returns an error message from the executed query.
+     * 
+     * @param query     The query that was run and had an error
+     * @returns         A string with the error message
+     */
+    string error_message(query_result query);
 
     /**
      * Determines if SplashKit has a database loaded for the supplied name.
@@ -161,6 +168,19 @@ namespace splashkit_lib
      * @attribute destructor true
      */
     void free_query_result(query_result query);
+
+    /**
+     * Returns the number of columns returned to the query from the database.
+     * 
+     * @param db_result The `query_result` to get the number of columns from.
+     *
+     * @returns Returns the number of columns of data you can read from the query result.
+     *
+     * @attribute class   query_result
+     * @attribute getter  columns
+     * @attribute self    db_result
+     */
+    int query_column_count(query_result db_result);
 
     /**
      * Gets the next row available on a given `query_result`.
