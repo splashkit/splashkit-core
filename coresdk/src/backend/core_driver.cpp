@@ -37,7 +37,7 @@ namespace splashkit_lib
         static bool done_init = false;
         if ( done_init ) return;
         done_init = true;
-        
+
         el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
 
         //    cout << "pre init" << endl;
@@ -51,7 +51,7 @@ namespace splashkit_lib
         }
         //    cout << "post init" << endl;
 
-        SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
+        // SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
 
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
@@ -62,7 +62,7 @@ namespace splashkit_lib
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   8);
         SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  8);
 
-        SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL,  1);
+        // SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL,  1);
 
         sk_setup_displays();
         sk_init_audio();

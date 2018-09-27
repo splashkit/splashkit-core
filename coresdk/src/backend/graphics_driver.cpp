@@ -172,7 +172,7 @@ namespace splashkit_lib
         _sk_initial_window = static_cast<sk_window_be *>(malloc(sizeof(sk_window_be)));
         _sk_initial_window->window = SDL_CreateWindow("SplashKit",
                                                       SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 200, 200,
-                                                      SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
+                                                      SDL_WINDOW_HIDDEN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_SKIP_TASKBAR );
 
         if ( ! _sk_initial_window->window )
         {
@@ -182,7 +182,18 @@ namespace splashkit_lib
 
         _sk_initial_window->renderer = SDL_CreateRenderer(_sk_initial_window->window,
                                                           -1,
-                                                          SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE );
+                                                          SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE );
+
+        if ( ! _sk_initial_window->renderer )
+        {
+            _sk_initial_window->renderer = SDL_CreateRenderer(_sk_initial_window->window, -1, SDL_RENDERER_TARGETTEXTURE );
+
+            if ( ! _sk_initial_window->renderer )
+            {
+                cerr << "Splashkit failed to create a renderer for the window." << endl << (SDL_GetError()) << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
 
         SDL_SetRenderDrawBlendMode(_sk_initial_window->renderer, SDL_BLENDMODE_BLEND);
         SDL_PumpEvents();
@@ -646,7 +657,7 @@ namespace splashkit_lib
                                              SDL_WINDOWPOS_CENTERED,
                                              width,
                                              height,
-                                             options | SDL_WINDOW_OPENGL);
+                                             options | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_INPUT_FOCUS);
 
         if ( ! window_be->window )
         {
@@ -663,7 +674,18 @@ namespace splashkit_lib
         // Create the actual renderer -- accellerated,
         window_be->renderer = SDL_CreateRenderer(window_be->window,
                                                  -1,
-                                                 SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE );
+                                                 SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE );
+
+        if ( ! window_be->renderer )
+        {
+            window_be->renderer = SDL_CreateRenderer(window_be->window, -1, SDL_RENDERER_TARGETTEXTURE );
+
+            if ( ! window_be->renderer )
+            {
+                cerr << "Splashkit failed to create a renderer for the window." << endl << (SDL_GetError()) << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
 
         //std::cout << "Renderer is " << window_be->renderer << std::endl;
 
