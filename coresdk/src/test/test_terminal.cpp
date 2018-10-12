@@ -22,6 +22,10 @@ void test_simple_terminal()
     write(" ");
     write("World!");
     write_line();
+    write_line("Test character output");
+    write('a');
+    write_line();
+    write_line('c');
 
     if ( advanced_terminal_active() )
     {

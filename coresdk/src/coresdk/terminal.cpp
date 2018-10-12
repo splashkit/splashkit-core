@@ -230,6 +230,11 @@ namespace splashkit_lib
     {
         write(to_string(data));
     }
+
+    void write(char data)
+    {
+        write(string("") + data);
+    }
     
     void write(double data)
     {
@@ -262,6 +267,11 @@ namespace splashkit_lib
         write_line(to_string(data));
     }
 
+    void write_line(char data)
+    {
+        write_line(string("") + data);
+    }
+
     int terminal_width()
     {
         if ( not _ncurses_active )
@@ -290,6 +300,11 @@ namespace splashkit_lib
 
     void set_terminal_colors(color foreground, color background)
     {
+        if ( not _ncurses_active )
+        {
+            LOG(WARNING) << "You must activate advanced terminal features to print bold text";
+            return;
+        }
         if ( not can_change_color() )
         {
             LOG(WARNING) << "Unable to change terminal colors in this Terminal";

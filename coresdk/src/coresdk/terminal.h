@@ -120,6 +120,15 @@ namespace splashkit_lib
     void write(double data);
 
     /**
+     * Write the passed in data to the terminal.
+     *
+     * @param data The character to write
+     *
+     * @attribute suffix char
+     */
+    void write(char data);
+
+    /**
      * Move to the next line/row of the terminal.
      *
      * @attribute suffix  empty
@@ -150,6 +159,15 @@ namespace splashkit_lib
      * @attribute suffix double
      */
     void write_line(double data);
+
+    /**
+     * Write the passed in data, then move to the next line/row of the terminal.
+     *
+     * @param data The character to write
+     *
+     * @attribute suffix char
+     */
+    void write_line(char data);
 
     /**
      * In advanced mode, this will write the supplied text at the indicated
