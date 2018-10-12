@@ -2443,6 +2443,8 @@ sklib.__sklib__json_to_string__json.argtypes = [ c_void_p ]
 sklib.__sklib__json_to_string__json.restype = _sklib_string
 sklib.__sklib__database_named__string.argtypes = [ _sklib_string ]
 sklib.__sklib__database_named__string.restype = c_void_p
+sklib.__sklib__error_message__query_result.argtypes = [ c_void_p ]
+sklib.__sklib__error_message__query_result.restype = _sklib_string
 sklib.__sklib__free_all_databases.argtypes = [  ]
 sklib.__sklib__free_all_databases.restype = None
 sklib.__sklib__free_all_query_results.argtypes = [  ]
@@ -2461,6 +2463,8 @@ sklib.__sklib__has_row__query_result.argtypes = [ c_void_p ]
 sklib.__sklib__has_row__query_result.restype = c_bool
 sklib.__sklib__open_database__string__string.argtypes = [ _sklib_string, _sklib_string ]
 sklib.__sklib__open_database__string__string.restype = c_void_p
+sklib.__sklib__query_column_count__query_result.argtypes = [ c_void_p ]
+sklib.__sklib__query_column_count__query_result.restype = c_int
 sklib.__sklib__query_column_for_bool__query_result__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__query_column_for_bool__query_result__int.restype = c_bool
 sklib.__sklib__query_column_for_double__query_result__int.argtypes = [ c_void_p, c_int ]
@@ -2661,6 +2665,8 @@ sklib.__sklib__terminal_height.argtypes = [  ]
 sklib.__sklib__terminal_height.restype = c_int
 sklib.__sklib__terminal_width.argtypes = [  ]
 sklib.__sklib__terminal_width.restype = c_int
+sklib.__sklib__write__char.argtypes = [ c_char ]
+sklib.__sklib__write__char.restype = None
 sklib.__sklib__write__double.argtypes = [ c_double ]
 sklib.__sklib__write__double.restype = None
 sklib.__sklib__write__int.argtypes = [ c_int ]
@@ -2669,6 +2675,8 @@ sklib.__sklib__write__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write__string.restype = None
 sklib.__sklib__write_at__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
 sklib.__sklib__write_at__string__int__int.restype = None
+sklib.__sklib__write_line__char.argtypes = [ c_char ]
+sklib.__sklib__write_line__char.restype = None
 sklib.__sklib__write_line.argtypes = [  ]
 sklib.__sklib__write_line.restype = None
 sklib.__sklib__write_line__double.argtypes = [ c_double ]
@@ -6233,6 +6241,10 @@ def database_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__database_named__string(__skparam__name)
     return __skadapter__to_database(__skreturn)
+def error_message ( query ):
+    __skparam__query = __skadapter__to_sklib_query_result(query)
+    __skreturn = sklib.__sklib__error_message__query_result(__skparam__query)
+    return __skadapter__to_string(__skreturn)
 def free_all_databases (  ):
     sklib.__sklib__free_all_databases()
 def free_all_query_results (  ):
@@ -6263,6 +6275,10 @@ def open_database ( name, filename ):
     __skparam__filename = __skadapter__to_sklib_string(filename)
     __skreturn = sklib.__sklib__open_database__string__string(__skparam__name, __skparam__filename)
     return __skadapter__to_database(__skreturn)
+def query_column_count ( db_result ):
+    __skparam__db_result = __skadapter__to_sklib_query_result(db_result)
+    __skreturn = sklib.__sklib__query_column_count__query_result(__skparam__db_result)
+    return __skadapter__to_int(__skreturn)
 def query_column_for_bool ( db_result, col ):
     __skparam__db_result = __skadapter__to_sklib_query_result(db_result)
     __skparam__col = __skadapter__to_sklib_int(col)
@@ -6709,6 +6725,9 @@ def terminal_height (  ):
 def terminal_width (  ):
     __skreturn = sklib.__sklib__terminal_width()
     return __skadapter__to_int(__skreturn)
+def write_char ( data ):
+    __skparam__data = __skadapter__to_sklib_char(data)
+    sklib.__sklib__write__char(__skparam__data)
 def write_double ( data ):
     __skparam__data = __skadapter__to_sklib_double(data)
     sklib.__sklib__write__double(__skparam__data)
@@ -6723,6 +6742,9 @@ def write_at ( text, x, y ):
     __skparam__x = __skadapter__to_sklib_int(x)
     __skparam__y = __skadapter__to_sklib_int(y)
     sklib.__sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y)
+def write_line_char ( data ):
+    __skparam__data = __skadapter__to_sklib_char(data)
+    sklib.__sklib__write_line__char(__skparam__data)
 def write_line_empty (  ):
     sklib.__sklib__write_line()
 def write_line_double ( data ):

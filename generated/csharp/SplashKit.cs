@@ -2774,6 +2774,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__database_named__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__database_named__string(__sklib_string name);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__error_message__query_result", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__error_message__query_result(__sklib_ptr query);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_databases", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_databases();
 
@@ -2800,6 +2803,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_database__string__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_database__string__string(__sklib_string name, __sklib_string filename);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__query_column_count__query_result", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__query_column_count__query_result(__sklib_ptr dbResult);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__query_column_for_bool__query_result__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__query_column_for_bool__query_result__int(__sklib_ptr dbResult, int col);
@@ -3101,6 +3107,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_width", CharSet=CharSet.Ansi)]
     private static extern int __sklib__terminal_width();
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__char", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__write__char(char data);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__double(double data);
 
@@ -3112,6 +3121,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_at__string__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_at__string__int__int(__sklib_string text, int x, int y);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__char", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__write_line__char(char data);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line();
@@ -9909,6 +9921,14 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_database(__skreturn);
     }
+    public static string ErrorMessage(QueryResult query)
+    {
+      __sklib_ptr __skparam__query;
+      __sklib_string __skreturn;
+      __skparam__query = __skadapter__to_sklib_query_result(query);
+      __skreturn = __sklib__error_message__query_result(__skparam__query);
+      return __skadapter__to_string(__skreturn);
+    }
     public static void FreeAllDatabases()
     {
       __sklib__free_all_databases();
@@ -9972,6 +9992,14 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__name);
     __skadapter__free__sklib_string(ref __skparam__filename);
       return __skadapter__to_database(__skreturn);
+    }
+    public static int QueryColumnCount(QueryResult dbResult)
+    {
+      __sklib_ptr __skparam__db_result;
+      int __skreturn;
+      __skparam__db_result = __skadapter__to_sklib_query_result(dbResult);
+      __skreturn = __sklib__query_column_count__query_result(__skparam__db_result);
+      return __skadapter__to_int(__skreturn);
     }
     public static bool QueryColumnForBool(QueryResult dbResult, int col)
     {
@@ -10876,6 +10904,12 @@ namespace SplashKitSDK
       __skreturn = __sklib__terminal_width();
       return __skadapter__to_int(__skreturn);
     }
+    public static void Write(char data)
+    {
+      char __skparam__data;
+      __skparam__data = __skadapter__to_sklib_char(data);
+      __sklib__write__char(__skparam__data);
+    }
     public static void Write(double data)
     {
       double __skparam__data;
@@ -10905,6 +10939,12 @@ namespace SplashKitSDK
       __skparam__y = __skadapter__to_sklib_int(y);
       __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
     __skadapter__free__sklib_string(ref __skparam__text);
+    }
+    public static void WriteLine(char data)
+    {
+      char __skparam__data;
+      __skparam__data = __skadapter__to_sklib_char(data);
+      __sklib__write_line__char(__skparam__data);
     }
     public static void WriteLine()
     {
@@ -18148,6 +18188,10 @@ public class QueryResult : PointerWrapper
     public bool HasRow
     {
         get { return SplashKit.HasRow(this); }
+    }
+    public int Columns
+    {
+        get { return SplashKit.QueryColumnCount(this); }
     }
     public bool Successful
     {

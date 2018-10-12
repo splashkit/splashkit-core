@@ -14461,6 +14461,58 @@
         }
       },
       {
+        "signature": "string error_message(query_result query);",
+        "name": "error_message",
+        "method_name": null,
+        "unique_global_name": "error_message",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns an error message from the executed query.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "A string with the error message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "query": {
+            "type": "query_result",
+            "description": "The query that was run and had an error",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "database",
+          "static": "database"
+        },
+        "signatures": {
+          "pascal": [
+            "function ErrorMessage(query: QueryResult): String"
+          ],
+          "python": [
+            "def error_message(query):"
+          ],
+          "csharp": [
+            "public static string Database.ErrorMessage(QueryResult query);",
+            "public static string SplashKit.ErrorMessage(QueryResult query);"
+          ],
+          "cpp": [
+            "string error_message(query_result query)"
+          ]
+        }
+      },
+      {
         "signature": "void free_all_databases();",
         "name": "free_all_databases",
         "method_name": null,
@@ -14928,6 +14980,61 @@
           ],
           "cpp": [
             "database open_database(string name, string filename)"
+          ]
+        }
+      },
+      {
+        "signature": "int query_column_count(query_result db_result);",
+        "name": "query_column_count",
+        "method_name": null,
+        "unique_global_name": "query_column_count",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of columns returned to the query from the database.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "Returns the number of columns of data you can read from the query result.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "db_result": {
+            "type": "query_result",
+            "description": "The `query_result` to get the number of columns from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "query_result",
+          "getter": "columns",
+          "self": "db_result",
+          "group": "database",
+          "static": "database"
+        },
+        "signatures": {
+          "pascal": [
+            "function QueryColumnCount(dbResult: QueryResult): Integer"
+          ],
+          "python": [
+            "def query_column_count(db_result):"
+          ],
+          "csharp": [
+            "public int QueryResult.Columns { get }",
+            "public static int SplashKit.QueryColumnCount(QueryResult dbResult);"
+          ],
+          "cpp": [
+            "int query_column_count(query_result db_result)"
           ]
         }
       },
@@ -71912,6 +72019,59 @@
         }
       },
       {
+        "signature": "void write(char data);",
+        "name": "write",
+        "method_name": null,
+        "unique_global_name": "write_char",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data to the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "char",
+            "description": "The character to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "char",
+          "group": "terminal",
+          "static": "terminal"
+        },
+        "signatures": {
+          "pascal": [
+            "procedure Write(data: Char)"
+          ],
+          "python": [
+            "def write_char(data):"
+          ],
+          "csharp": [
+            "public static void Terminal.Write(char data);",
+            "public static void SplashKit.Write(char data);"
+          ],
+          "cpp": [
+            "void write(char data)"
+          ]
+        }
+      },
+      {
         "signature": "void write(double data);",
         "name": "write",
         "method_name": null,
@@ -72144,6 +72304,59 @@
           ],
           "cpp": [
             "void write_at(string text, int x, int y)"
+          ]
+        }
+      },
+      {
+        "signature": "void write_line(char data);",
+        "name": "write_line",
+        "method_name": null,
+        "unique_global_name": "write_line_char",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data, then move to the next line/row of the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "char",
+            "description": "The character to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "char",
+          "group": "terminal",
+          "static": "terminal"
+        },
+        "signatures": {
+          "pascal": [
+            "procedure WriteLine(data: Char)"
+          ],
+          "python": [
+            "def write_line_char(data):"
+          ],
+          "csharp": [
+            "public static void Terminal.WriteLine(char data);",
+            "public static void SplashKit.WriteLine(char data);"
+          ],
+          "cpp": [
+            "void write_line(char data)"
           ]
         }
       },

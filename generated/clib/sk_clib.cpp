@@ -3216,6 +3216,11 @@ __sklib_database __sklib__database_named__string(__sklib_string name) {
     database __skreturn = database_named(__skparam__name);
     return __sklib__to_sklib_database(__skreturn);
 }
+__sklib_string __sklib__error_message__query_result(__sklib_query_result query) {
+    query_result __skparam__query = __sklib__to_query_result(query);
+    string __skreturn = error_message(__skparam__query);
+    return __sklib__to_sklib_string(__skreturn);
+}
 void __sklib__free_all_databases() {
     free_all_databases();
 }
@@ -3254,6 +3259,11 @@ __sklib_database __sklib__open_database__string__string(__sklib_string name, __s
     string __skparam__filename = __sklib__to_string(filename);
     database __skreturn = open_database(__skparam__name, __skparam__filename);
     return __sklib__to_sklib_database(__skreturn);
+}
+int __sklib__query_column_count__query_result(__sklib_query_result db_result) {
+    query_result __skparam__db_result = __sklib__to_query_result(db_result);
+    int __skreturn = query_column_count(__skparam__db_result);
+    return __sklib__to_int(__skreturn);
 }
 int __sklib__query_column_for_bool__query_result__int(__sklib_query_result db_result, int col) {
     query_result __skparam__db_result = __sklib__to_query_result(db_result);
@@ -3801,6 +3811,10 @@ int __sklib__terminal_width() {
     int __skreturn = terminal_width();
     return __sklib__to_int(__skreturn);
 }
+void __sklib__write__char(char data) {
+    char __skparam__data = __sklib__to_char(data);
+    write(__skparam__data);
+}
 void __sklib__write__double(double data) {
     double __skparam__data = __sklib__to_double(data);
     write(__skparam__data);
@@ -3818,6 +3832,10 @@ void __sklib__write_at__string__int__int(__sklib_string text, int x, int y) {
     int __skparam__x = __sklib__to_int(x);
     int __skparam__y = __sklib__to_int(y);
     write_at(__skparam__text, __skparam__x, __skparam__y);
+}
+void __sklib__write_line__char(char data) {
+    char __skparam__data = __sklib__to_char(data);
+    write_line(__skparam__data);
 }
 void __sklib__write_line() {
     write_line();

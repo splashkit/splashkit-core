@@ -31437,7 +31437,7 @@
     "group": "database",
     "brief": "SplashKit Database allows you to create, query and otherwise\nmanipulate a database.",
     "description": "SplashKit's database library allows you to easily create or load databases\nand to perform queries on them. To get started with databases in SplashKit,\nthe first thinkg you need to do is to load or create a database file. You can\ndo this by calling the `open_database(string name)` function.",
-    "parsed_at": 1537137978,
+    "parsed_at": 1538008681,
     "path": "coresdk/src/coresdk/database.h",
     "functions": [
       {
@@ -31461,6 +31461,43 @@
           "name": {
             "type": "string",
             "description": "The name of the database to return.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "database",
+          "static": "database"
+        }
+      },
+      {
+        "signature": "string error_message(query_result query);",
+        "name": "error_message",
+        "method_name": null,
+        "unique_global_name": "error_message",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns an error message from the executed query.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "A string with the error message",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "query": {
+            "type": "query_result",
+            "description": "The query that was run and had an error",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -31809,6 +31846,46 @@
         "attributes": {
           "class": "database",
           "constructor": true,
+          "group": "database",
+          "static": "database"
+        }
+      },
+      {
+        "signature": "int query_column_count(query_result db_result);",
+        "name": "query_column_count",
+        "method_name": null,
+        "unique_global_name": "query_column_count",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the number of columns returned to the query from the database.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "Returns the number of columns of data you can read from the query result.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "db_result": {
+            "type": "query_result",
+            "description": "The `query_result` to get the number of columns from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "query_result",
+          "getter": "columns",
+          "self": "db_result",
           "group": "database",
           "static": "database"
         }
@@ -36325,7 +36402,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1534409496,
+    "parsed_at": 1539334153,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -36719,6 +36796,44 @@
         }
       },
       {
+        "signature": "void write(char data);",
+        "name": "write",
+        "method_name": null,
+        "unique_global_name": "write_char",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data to the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "char",
+            "description": "The character to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "char",
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
         "signature": "void write(double data);",
         "name": "write",
         "method_name": null,
@@ -36890,6 +37005,44 @@
           }
         },
         "attributes": {
+          "group": "terminal",
+          "static": "terminal"
+        }
+      },
+      {
+        "signature": "void write_line(char data);",
+        "name": "write_line",
+        "method_name": null,
+        "unique_global_name": "write_line_char",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Write the passed in data, then move to the next line/row of the terminal.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "data": {
+            "type": "char",
+            "description": "The character to write",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "char",
           "group": "terminal",
           "static": "terminal"
         }

@@ -895,6 +895,7 @@ function JsonToColor(j: Json): Color;
 procedure JsonToFile(j: Json; const filename: String);
 function JsonToString(j: Json): String;
 function DatabaseNamed(name: String): Database;
+function ErrorMessage(query: QueryResult): String;
 procedure FreeAllDatabases();
 procedure FreeAllQueryResults();
 procedure FreeDatabase(dbToClose: Database);
@@ -904,6 +905,7 @@ function GetNextRow(dbResult: QueryResult): Boolean;
 function HasDatabase(name: String): Boolean;
 function HasRow(dbResult: QueryResult): Boolean;
 function OpenDatabase(name: String; filename: String): Database;
+function QueryColumnCount(dbResult: QueryResult): Integer;
 function QueryColumnForBool(dbResult: QueryResult; col: Integer): Boolean;
 function QueryColumnForDouble(dbResult: QueryResult; col: Integer): Double;
 function QueryColumnForInt(dbResult: QueryResult; col: Integer): Integer;
@@ -1004,10 +1006,12 @@ procedure SetTerminalColors(foreground: Color; background: Color);
 procedure SetTerminalEchoInput(value: Boolean);
 function TerminalHeight(): Integer;
 function TerminalWidth(): Integer;
+procedure Write(data: Char);
 procedure Write(data: Double);
 procedure Write(data: Integer);
 procedure Write(text: String);
 procedure WriteAt(text: String; x: Integer; y: Integer);
+procedure WriteLine(data: Char);
 procedure WriteLine();
 procedure WriteLine(data: Double);
 procedure WriteLine(data: Integer);
@@ -2989,6 +2993,7 @@ function __sklib__json_to_color__json(j: __sklib_ptr): __sklib_color; cdecl; ext
 procedure __sklib__json_to_file__json__string_ref(j: __sklib_ptr; const filename: __sklib_string); cdecl; external;
 function __sklib__json_to_string__json(j: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__database_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__error_message__query_result(query: __sklib_ptr): __sklib_string; cdecl; external;
 procedure __sklib__free_all_databases(); cdecl; external;
 procedure __sklib__free_all_query_results(); cdecl; external;
 procedure __sklib__free_database__database(dbToClose: __sklib_ptr); cdecl; external;
@@ -2998,6 +3003,7 @@ function __sklib__get_next_row__query_result(dbResult: __sklib_ptr): LongInt; cd
 function __sklib__has_database__string(name: __sklib_string): LongInt; cdecl; external;
 function __sklib__has_row__query_result(dbResult: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__open_database__string__string(name: __sklib_string; filename: __sklib_string): __sklib_ptr; cdecl; external;
+function __sklib__query_column_count__query_result(dbResult: __sklib_ptr): Integer; cdecl; external;
 function __sklib__query_column_for_bool__query_result__int(dbResult: __sklib_ptr; col: Integer): LongInt; cdecl; external;
 function __sklib__query_column_for_double__query_result__int(dbResult: __sklib_ptr; col: Integer): Double; cdecl; external;
 function __sklib__query_column_for_int__query_result__int(dbResult: __sklib_ptr; col: Integer): Integer; cdecl; external;
@@ -3098,10 +3104,12 @@ procedure __sklib__set_terminal_colors__color__color(foreground: __sklib_color; 
 procedure __sklib__set_terminal_echo_input__bool(value: LongInt); cdecl; external;
 function __sklib__terminal_height(): Integer; cdecl; external;
 function __sklib__terminal_width(): Integer; cdecl; external;
+procedure __sklib__write__char(data: Char); cdecl; external;
 procedure __sklib__write__double(data: Double); cdecl; external;
 procedure __sklib__write__int(data: Integer); cdecl; external;
 procedure __sklib__write__string(text: __sklib_string); cdecl; external;
 procedure __sklib__write_at__string__int__int(text: __sklib_string; x: Integer; y: Integer); cdecl; external;
+procedure __sklib__write_line__char(data: Char); cdecl; external;
 procedure __sklib__write_line(); cdecl; external;
 procedure __sklib__write_line__double(data: Double); cdecl; external;
 procedure __sklib__write_line__int(data: Integer); cdecl; external;
@@ -9377,6 +9385,15 @@ begin
   __skreturn := __sklib__database_named__string(__skparam__name);
   result := __skadapter__to_database(__skreturn);
 end;
+function ErrorMessage(query: QueryResult): String;
+var
+  __skparam__query: __sklib_ptr;
+  __skreturn: __sklib_string;
+begin
+  __skparam__query := __skadapter__to_sklib_query_result(query);
+  __skreturn := __sklib__error_message__query_result(__skparam__query);
+  result := __skadapter__to_string(__skreturn);
+end;
 procedure FreeAllDatabases();
 begin
   __sklib__free_all_databases();
@@ -9443,6 +9460,15 @@ begin
   __skparam__filename := __skadapter__to_sklib_string(filename);
   __skreturn := __sklib__open_database__string__string(__skparam__name, __skparam__filename);
   result := __skadapter__to_database(__skreturn);
+end;
+function QueryColumnCount(dbResult: QueryResult): Integer;
+var
+  __skparam__db_result: __sklib_ptr;
+  __skreturn: Integer;
+begin
+  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
+  __skreturn := __sklib__query_column_count__query_result(__skparam__db_result);
+  result := __skadapter__to_int(__skreturn);
 end;
 function QueryColumnForBool(dbResult: QueryResult; col: Integer): Boolean;
 var
@@ -10429,6 +10455,13 @@ begin
   __skreturn := __sklib__terminal_width();
   result := __skadapter__to_int(__skreturn);
 end;
+procedure Write(data: Char);
+var
+  __skparam__data: Char;
+begin
+  __skparam__data := __skadapter__to_sklib_char(data);
+  __sklib__write__char(__skparam__data);
+end;
 procedure Write(data: Double);
 var
   __skparam__data: Double;
@@ -10460,6 +10493,13 @@ begin
   __skparam__x := __skadapter__to_sklib_int(x);
   __skparam__y := __skadapter__to_sklib_int(y);
   __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
+end;
+procedure WriteLine(data: Char);
+var
+  __skparam__data: Char;
+begin
+  __skparam__data := __skadapter__to_sklib_char(data);
+  __sklib__write_line__char(__skparam__data);
 end;
 procedure WriteLine();
 begin

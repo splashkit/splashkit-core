@@ -3364,6 +3364,11 @@ database database_named(string name) {
     __skadapter__free__sklib_string(__skparam__name);
     return __skadapter__to_database(__skreturn);
 }
+string error_message(query_result query) {
+    __sklib_query_result __skparam__query = __skadapter__to_sklib_query_result(query);
+    __sklib_string __skreturn = __sklib__error_message__query_result(__skparam__query);
+    return __skadapter__to_string(__skreturn);
+}
 void free_all_databases() {
     __sklib__free_all_databases();
 }
@@ -3406,6 +3411,11 @@ database open_database(string name, string filename) {
     __skadapter__free__sklib_string(__skparam__name);
     __skadapter__free__sklib_string(__skparam__filename);
     return __skadapter__to_database(__skreturn);
+}
+int query_column_count(query_result db_result) {
+    __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
+    int __skreturn = __sklib__query_column_count__query_result(__skparam__db_result);
+    return __skadapter__to_int(__skreturn);
 }
 bool query_column_for_bool(query_result db_result, int col) {
     __sklib_query_result __skparam__db_result = __skadapter__to_sklib_query_result(db_result);
@@ -3966,6 +3976,10 @@ int terminal_width() {
     int __skreturn = __sklib__terminal_width();
     return __skadapter__to_int(__skreturn);
 }
+void write(char data) {
+    char __skparam__data = __skadapter__to_char(data);
+    __sklib__write__char(__skparam__data);
+}
 void write(double data) {
     double __skparam__data = __skadapter__to_double(data);
     __sklib__write__double(__skparam__data);
@@ -3985,6 +3999,10 @@ void write_at(string text, int x, int y) {
     int __skparam__y = __skadapter__to_int(y);
     __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
     __skadapter__free__sklib_string(__skparam__text);
+}
+void write_line(char data) {
+    char __skparam__data = __skadapter__to_char(data);
+    __sklib__write_line__char(__skparam__data);
 }
 void write_line() {
     __sklib__write_line();
