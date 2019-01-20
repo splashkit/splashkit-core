@@ -3,7 +3,7 @@
 #
 
 if (APPLE)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.10" CACHE STRING "Minimum OS X deployment version")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.11" CACHE STRING "Minimum OS X deployment version")
 endif()
 
 cmake_minimum_required(VERSION 3.2)
@@ -18,11 +18,11 @@ if (WIN32 OR MSYS OR MINGW)
 
   if (${MINGW32})
     message("Using mingw32")
-    set(WIN_PATH_SUFFIX "win32")
+    set(OS_PATH_SUFFIX "win32")
     set(MINGW_PATH_PART "mingw32")
   elseif (${MINGW64})
     message("Using mingw64")
-    set(WIN_PATH_SUFFIX "win64")
+    set(OS_PATH_SUFFIX "win64")
     set(MINGW_PATH_PART "mingw64")
   else ( )
     message(SEND_ERROR "Failed to detect windows architecture")
@@ -40,9 +40,11 @@ set(SK_GENERATED "${SK_ROOT}/generated")
 set(SK_BIN "${SK_ROOT}/bin")
 set(SK_OUT "${SK_ROOT}/out")
 
+set(SK_DEPLOY_ROOT "${SK_OUT}/skm")
+
 # Setup OS specific flags
 if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos")
+    set(OS_PATH_SUFFIX "macos")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_LIB}/mac \
                    -framework IOKit \
@@ -83,14 +85,8 @@ if (APPLE)
          )
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    if (${MINGW32})
-        set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-win32")
-    else ( )
-        set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows")
-    endif()
-
     add_definitions(-DWINDOWS)
-    set(LIB_FLAGS  "-L${SK_LIB}/${WIN_PATH_SUFFIX} \
+    set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
                     -L/${MINGW_PATH_PART}/lib \
                     -L/usr/lib \
                     -lSDL2main \
@@ -111,11 +107,11 @@ elseif(MSYS)
                     )
 
     file(GLOB SK_LIB_DLL_FILES
-        "${SK_LIB}/${WIN_PATH_SUFFIX}/*.dll"
+        "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
     )
 # LINUX PROJECT FLAGS
 else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux")
+    set(OS_PATH_SUFFIX "linux")
     find_package(PNG REQUIRED)
     include_directories(${PNG_INCLUDE_DIR})    
     SET(LINUX "true")
@@ -216,32 +212,30 @@ endif()
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
-install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
-install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
-install(FILES ${INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/include)
+install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${OS_PATH_SUFFIX})
+install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/source/include)
+install(FILES ${INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/source/include)
 
 if ( MSYS )
-  install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${WIN_PATH_SUFFIX})
+  install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${OS_PATH_SUFFIX})
 endif()
 
-if ( ${LINUX} )
-  file(GLOB LINUX_INCLUDE_FILES
-      "${SK_EXT}/civetweb/include/*.h"
-      "${SK_EXT}/hash-library/*.h"
-      "${SK_SRC}/backend/*.h"
-      "${SK_EXT}/easyloggingpp/*.h"
-      "${SK_EXT}/json/*.hpp"
-      "${SK_EXT}/sqlite/*.h"
-      "${SK_EXT}/catch/*.h"
-  )
-  
-  file(GLOB INL_FILES
-      "${SK_EXT}/civetweb/src/*.inl"
-  )
+file(GLOB LINUX_INCLUDE_FILES
+    "${SK_EXT}/civetweb/include/*.h"
+    "${SK_EXT}/hash-library/*.h"
+    "${SK_SRC}/backend/*.h"
+    "${SK_EXT}/easyloggingpp/*.h"
+    "${SK_EXT}/json/*.hpp"
+    "${SK_EXT}/sqlite/*.h"
+    "${SK_EXT}/catch/*.h"
+)
 
-  install(FILES ${LINUX_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/include)
-  install(FILES ${INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/include)
-  install(FILES ${OS_SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
-  install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
-  install(FILES ${INL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
-endif()
+file(GLOB INL_FILES
+    "${SK_EXT}/civetweb/src/*.inl"
+)
+
+install(FILES ${LINUX_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/source/include)
+install(FILES ${INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/source/include)
+install(FILES ${OS_SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
+install(FILES ${SOURCE_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
+install(FILES ${INL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/source)
