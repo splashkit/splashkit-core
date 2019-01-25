@@ -33,14 +33,11 @@ function update_distro {
   git pull
 }
 
-update_distro "splashkit-win32"
-update_distro "splashkit-windows"
-update_distro "splashkit-macos"
-update_distro "splashkit-linux"
+update_distro "skm"
 
 cd "$APP_PATH"
 
-read -p "New C++ code - Regenerate SplashKit? [y,n] " doit
+read -p "New C++ code? - Regenerate SplashKit core library? [y,n] " doit
 case $doit in
   y|Y) GENERATE_LIB=true ;;
   n|N) echo ; echo "Skipping generation" ;;
@@ -112,8 +109,8 @@ do_make
 cd "${APP_PATH}"
 
 if [[ `uname` == MINGW* ]]; then
-  rm ${SK_OUT}/splashkit-windows/lib/win32/*.a
-  rm ${SK_OUT}/splashkit-windows/lib/win64/*.a
-  cp ${SK_OUT}/splashkit-windows/lib/win64/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win64/SplashKit.dll
-  cp ${SK_OUT}/splashkit-windows/lib/win32/libSplashKit.dll ${SK_OUT}/splashkit-windows/lib/win32/SplashKit.dll
+  rm ${SK_OUT}/skm/lib/win32/*.a
+  rm ${SK_OUT}/skm/lib/win64/*.a
+  cp ${SK_OUT}/skm/lib/win64/libSplashKit.dll ${SK_OUT}/skm/lib/win64/SplashKit.dll
+  cp ${SK_OUT}/skm/lib/win32/libSplashKit.dll ${SK_OUT}/skm/lib/win32/SplashKit.dll
 fi
