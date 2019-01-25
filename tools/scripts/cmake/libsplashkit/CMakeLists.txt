@@ -9,6 +9,18 @@ endif()
 cmake_minimum_required(VERSION 3.2)
 project(splashkit)
 
+# SK Directories relative to cmake project
+set(SK_ROOT "../../../..")
+set(SK_SRC "${SK_ROOT}/coresdk/src")
+set(SK_EXT "${SK_ROOT}/coresdk/external")
+set(SK_LIB "${SK_ROOT}/coresdk/lib")
+
+set(SK_GENERATED "${SK_ROOT}/generated")
+set(SK_BIN "${SK_ROOT}/bin")
+set(SK_OUT "${SK_ROOT}/out")
+
+set(SK_DEPLOY_ROOT "${SK_OUT}/skm")
+
 # Detect Windows and flag MSYS
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
@@ -28,22 +40,7 @@ if (WIN32 OR MSYS OR MINGW)
     message(SEND_ERROR "Failed to detect windows architecture")
     return ()
   endif()
-endif()
-
-# SK Directories relative to cmake project
-set(SK_ROOT "../../../..")
-set(SK_SRC "${SK_ROOT}/coresdk/src")
-set(SK_EXT "${SK_ROOT}/coresdk/external")
-set(SK_LIB "${SK_ROOT}/coresdk/lib")
-
-set(SK_GENERATED "${SK_ROOT}/generated")
-set(SK_BIN "${SK_ROOT}/bin")
-set(SK_OUT "${SK_ROOT}/out")
-
-set(SK_DEPLOY_ROOT "${SK_OUT}/skm")
-
-# Setup OS specific flags
-if (APPLE)
+elseif (APPLE)
     set(OS_PATH_SUFFIX "macos")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_LIB}/mac \
