@@ -16,35 +16,9 @@ set(SK_OUT "${SK_ROOT}/out")
 
 set(SK_DEPLOY_ROOT "${SK_OUT}/skm")
 
-# Detect Windows and flag MSYS
-if (WIN32 OR MSYS OR MINGW)
-    SET(MSYS "true")
-
-    string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
-    string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
-
-    if (${MINGW32})
-        message("Using mingw32")
-        set(OS_PATH_SUFFIX "win32")
-        set(MINGW_PATH_PART "mingw32")
-    elseif (${MINGW64})
-        message("Using mingw64")
-        set(OS_PATH_SUFFIX "win64")
-        set(MINGW_PATH_PART "mingw64")
-    else ( )
-        message(SEND_ERROR "Failed to detect windows architecture")
-        return ()
-    endif()
-
-elseif (APPLE)
-    set(OS_PATH_SUFFIX "macos")
-else()
-    set(OS_PATH_SUFFIX "linux")
-endif()
-
 #### END SETUP ####
 
-# PASCAL FILES
+# C# FILES
 file(GLOB SK_ADAPTER_SOURCE_FILES
     "${SK_GENERATED}/csharp/*.cs"
 )
