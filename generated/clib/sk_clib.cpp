@@ -3683,11 +3683,6 @@ __sklib_rectangle __sklib__intersection__rectangle_ref__rectangle_ref(const __sk
     rectangle __skreturn = intersection(__skparam__rect1, __skparam__rect2);
     return __sklib__to_sklib_rectangle(__skreturn);
 }
-__sklib_rectangle __sklib__rectangle_around__triangle_ref(const __sklib_triangle t) {
-    triangle __skparam__t = __sklib__to_triangle(t);
-    rectangle __skreturn = rectangle_around(__skparam__t);
-    return __sklib__to_sklib_rectangle(__skreturn);
-}
 __sklib_rectangle __sklib__rectangle_around__circle_ref(const __sklib_circle c) {
     circle __skparam__c = __sklib__to_circle(c);
     rectangle __skreturn = rectangle_around(__skparam__c);
@@ -3696,6 +3691,16 @@ __sklib_rectangle __sklib__rectangle_around__circle_ref(const __sklib_circle c) 
 __sklib_rectangle __sklib__rectangle_around__line_ref(const __sklib_line l) {
     line __skparam__l = __sklib__to_line(l);
     rectangle __skreturn = rectangle_around(__skparam__l);
+    return __sklib__to_sklib_rectangle(__skreturn);
+}
+__sklib_rectangle __sklib__rectangle_around__quad_ref(const __sklib_quad q) {
+    quad __skparam__q = __sklib__to_quad(q);
+    rectangle __skreturn = rectangle_around(__skparam__q);
+    return __sklib__to_sklib_rectangle(__skreturn);
+}
+__sklib_rectangle __sklib__rectangle_around__triangle_ref(const __sklib_triangle t) {
+    triangle __skparam__t = __sklib__to_triangle(t);
+    rectangle __skreturn = rectangle_around(__skparam__t);
     return __sklib__to_sklib_rectangle(__skreturn);
 }
 float __sklib__rectangle_bottom__rectangle_ref(const __sklib_rectangle rect) {

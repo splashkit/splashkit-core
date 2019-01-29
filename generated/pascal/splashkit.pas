@@ -979,9 +979,10 @@ function PixelDrawnAtPoint(bmp: Bitmap; cell: Integer; x: Double; y: Double): Bo
 procedure SetupCollisionMask(bmp: Bitmap);
 function InsetRectangle(const rect: Rectangle; insetAmount: Single): Rectangle;
 function Intersection(const rect1: Rectangle; const rect2: Rectangle): Rectangle;
-function RectangleAround(const t: Triangle): Rectangle;
 function RectangleAround(const c: Circle): Rectangle;
 function RectangleAround(const l: Line): Rectangle;
+function RectangleAround(const q: Quad): Rectangle;
+function RectangleAround(const t: Triangle): Rectangle;
 function RectangleBottom(const rect: Rectangle): Single;
 function RectangleCenter(const rect: Rectangle): Point2D;
 function RectangleFrom(pt: Point2D; width: Double; height: Double): Rectangle;
@@ -3077,9 +3078,10 @@ function __sklib__pixel_drawn_at_point__bitmap__int__double__double(bmp: __sklib
 procedure __sklib__setup_collision_mask__bitmap(bmp: __sklib_ptr); cdecl; external;
 function __sklib__inset_rectangle__rectangle_ref__float(const rect: __sklib_rectangle; insetAmount: Single): __sklib_rectangle; cdecl; external;
 function __sklib__intersection__rectangle_ref__rectangle_ref(const rect1: __sklib_rectangle; const rect2: __sklib_rectangle): __sklib_rectangle; cdecl; external;
-function __sklib__rectangle_around__triangle_ref(const t: __sklib_triangle): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_around__circle_ref(const c: __sklib_circle): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_around__line_ref(const l: __sklib_line): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_around__quad_ref(const q: __sklib_quad): __sklib_rectangle; cdecl; external;
+function __sklib__rectangle_around__triangle_ref(const t: __sklib_triangle): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_bottom__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
 function __sklib__rectangle_center__rectangle_ref(const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
 function __sklib__rectangle_from__point_2d__double__double(pt: __sklib_point_2d; width: Double; height: Double): __sklib_rectangle; cdecl; external;
@@ -10230,15 +10232,6 @@ begin
   __skreturn := __sklib__intersection__rectangle_ref__rectangle_ref(__skparam__rect1, __skparam__rect2);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function RectangleAround(const t: Triangle): Rectangle;
-var
-  __skparam__t: __sklib_triangle;
-  __skreturn: __sklib_rectangle;
-begin
-  __skparam__t := __skadapter__to_sklib_triangle(t);
-  __skreturn := __sklib__rectangle_around__triangle_ref(__skparam__t);
-  result := __skadapter__to_rectangle(__skreturn);
-end;
 function RectangleAround(const c: Circle): Rectangle;
 var
   __skparam__c: __sklib_circle;
@@ -10255,6 +10248,24 @@ var
 begin
   __skparam__l := __skadapter__to_sklib_line(l);
   __skreturn := __sklib__rectangle_around__line_ref(__skparam__l);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleAround(const q: Quad): Rectangle;
+var
+  __skparam__q: __sklib_quad;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__q := __skadapter__to_sklib_quad(q);
+  __skreturn := __sklib__rectangle_around__quad_ref(__skparam__q);
+  result := __skadapter__to_rectangle(__skreturn);
+end;
+function RectangleAround(const t: Triangle): Rectangle;
+var
+  __skparam__t: __sklib_triangle;
+  __skreturn: __sklib_rectangle;
+begin
+  __skparam__t := __skadapter__to_sklib_triangle(t);
+  __skreturn := __sklib__rectangle_around__triangle_ref(__skparam__t);
   result := __skadapter__to_rectangle(__skreturn);
 end;
 function RectangleBottom(const rect: Rectangle): Single;

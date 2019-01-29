@@ -35654,7 +35654,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1537137982,
+    "parsed_at": 1548759431,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -35758,44 +35758,6 @@
         }
       },
       {
-        "signature": "rectangle rectangle_around(const triangle &t);",
-        "name": "rectangle_around",
-        "method_name": null,
-        "unique_global_name": "rectangle_around_triangle",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns a rectangle that surrounds a given triangle",
-        "brief": null,
-        "return": {
-          "type": "rectangle",
-          "description": "A rectangle that will surround the triangle",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "t": {
-            "type": "triangle",
-            "description": "The triangle",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "triangle",
-          "group": "geometry",
-          "static": "geometry"
-        }
-      },
-      {
         "signature": "rectangle rectangle_around(const circle &c);",
         "name": "rectangle_around",
         "method_name": null,
@@ -35867,6 +35829,82 @@
         },
         "attributes": {
           "suffix": "line",
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
+      {
+        "signature": "rectangle rectangle_around(const quad &q);",
+        "name": "rectangle_around",
+        "method_name": null,
+        "unique_global_name": "rectangle_around_quad",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a rectangle that surrounds a given quad.",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle that will surround the quad",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "q": {
+            "type": "quad",
+            "description": "The quad",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "quad",
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
+      {
+        "signature": "rectangle rectangle_around(const triangle &t);",
+        "name": "rectangle_around",
+        "method_name": null,
+        "unique_global_name": "rectangle_around_triangle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a rectangle that surrounds a given triangle",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle that will surround the triangle",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "t": {
+            "type": "triangle",
+            "description": "The triangle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "triangle",
           "group": "geometry",
           "static": "geometry"
         }
@@ -36402,7 +36440,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1539334153,
+    "parsed_at": 1548759432,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {

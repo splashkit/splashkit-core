@@ -839,9 +839,10 @@ int __sklib__pixel_drawn_at_point__bitmap__int__double__double(__sklib_bitmap bm
 void __sklib__setup_collision_mask__bitmap(__sklib_bitmap bmp);
 __sklib_rectangle __sklib__inset_rectangle__rectangle_ref__float(const __sklib_rectangle rect, float inset_amount);
 __sklib_rectangle __sklib__intersection__rectangle_ref__rectangle_ref(const __sklib_rectangle rect1, const __sklib_rectangle rect2);
-__sklib_rectangle __sklib__rectangle_around__triangle_ref(const __sklib_triangle t);
 __sklib_rectangle __sklib__rectangle_around__circle_ref(const __sklib_circle c);
 __sklib_rectangle __sklib__rectangle_around__line_ref(const __sklib_line l);
+__sklib_rectangle __sklib__rectangle_around__quad_ref(const __sklib_quad q);
+__sklib_rectangle __sklib__rectangle_around__triangle_ref(const __sklib_triangle t);
 float __sklib__rectangle_bottom__rectangle_ref(const __sklib_rectangle rect);
 __sklib_point_2d __sklib__rectangle_center__rectangle_ref(const __sklib_rectangle rect);
 __sklib_rectangle __sklib__rectangle_from__point_2d__double__double(const __sklib_point_2d pt, const double width, const double height);

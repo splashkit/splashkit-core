@@ -3026,14 +3026,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__intersection__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__intersection__rectangle_ref__rectangle_ref(__sklib_rectangle rect1, __sklib_rectangle rect2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__triangle_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_rectangle __sklib__rectangle_around__triangle_ref(__sklib_triangle t);
-
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__circle_ref(__sklib_circle c);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__line_ref(__sklib_line l);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_rectangle __sklib__rectangle_around__quad_ref(__sklib_quad q);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_rectangle __sklib__rectangle_around__triangle_ref(__sklib_triangle t);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_bottom__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rectangle_bottom__rectangle_ref(__sklib_rectangle rect);
@@ -10702,14 +10705,6 @@ namespace SplashKitSDK
       __skreturn = __sklib__intersection__rectangle_ref__rectangle_ref(__skparam__rect1, __skparam__rect2);
       return __skadapter__to_rectangle(__skreturn);
     }
-    public static Rectangle RectangleAround(Triangle t)
-    {
-      __sklib_triangle __skparam__t;
-      __sklib_rectangle __skreturn;
-      __skparam__t = __skadapter__to_sklib_triangle(t);
-      __skreturn = __sklib__rectangle_around__triangle_ref(__skparam__t);
-      return __skadapter__to_rectangle(__skreturn);
-    }
     public static Rectangle RectangleAround(Circle c)
     {
       __sklib_circle __skparam__c;
@@ -10724,6 +10719,22 @@ namespace SplashKitSDK
       __sklib_rectangle __skreturn;
       __skparam__l = __skadapter__to_sklib_line(l);
       __skreturn = __sklib__rectangle_around__line_ref(__skparam__l);
+      return __skadapter__to_rectangle(__skreturn);
+    }
+    public static Rectangle RectangleAround(Quad q)
+    {
+      __sklib_quad __skparam__q;
+      __sklib_rectangle __skreturn;
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__rectangle_around__quad_ref(__skparam__q);
+      return __skadapter__to_rectangle(__skreturn);
+    }
+    public static Rectangle RectangleAround(Triangle t)
+    {
+      __sklib_triangle __skparam__t;
+      __sklib_rectangle __skreturn;
+      __skparam__t = __skadapter__to_sklib_triangle(t);
+      __skreturn = __sklib__rectangle_around__triangle_ref(__skparam__t);
       return __skadapter__to_rectangle(__skreturn);
     }
     public static float RectangleBottom(Rectangle rect)

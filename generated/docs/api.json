@@ -16980,59 +16980,6 @@
         }
       },
       {
-        "signature": "rectangle rectangle_around(const triangle &t);",
-        "name": "rectangle_around",
-        "method_name": null,
-        "unique_global_name": "rectangle_around_triangle",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns a rectangle that surrounds a given triangle",
-        "brief": null,
-        "return": {
-          "type": "rectangle",
-          "description": "A rectangle that will surround the triangle",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "t": {
-            "type": "triangle",
-            "description": "The triangle",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "triangle",
-          "group": "geometry",
-          "static": "geometry"
-        },
-        "signatures": {
-          "pascal": [
-            "function RectangleAround(const t: Triangle): Rectangle"
-          ],
-          "python": [
-            "def rectangle_around_triangle(t):"
-          ],
-          "csharp": [
-            "public static Rectangle Geometry.RectangleAround(Triangle t);",
-            "public static Rectangle SplashKit.RectangleAround(Triangle t);"
-          ],
-          "cpp": [
-            "rectangle rectangle_around(const triangle &t)"
-          ]
-        }
-      },
-      {
         "signature": "rectangle rectangle_around(const circle &c);",
         "name": "rectangle_around",
         "method_name": null,
@@ -17135,6 +17082,112 @@
           ],
           "cpp": [
             "rectangle rectangle_around(const line &l)"
+          ]
+        }
+      },
+      {
+        "signature": "rectangle rectangle_around(const quad &q);",
+        "name": "rectangle_around",
+        "method_name": null,
+        "unique_global_name": "rectangle_around_quad",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a rectangle that surrounds a given quad.",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle that will surround the quad",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "q": {
+            "type": "quad",
+            "description": "The quad",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "quad",
+          "group": "geometry",
+          "static": "geometry"
+        },
+        "signatures": {
+          "pascal": [
+            "function RectangleAround(const q: Quad): Rectangle"
+          ],
+          "python": [
+            "def rectangle_around_quad(q):"
+          ],
+          "csharp": [
+            "public static Rectangle Geometry.RectangleAround(Quad q);",
+            "public static Rectangle SplashKit.RectangleAround(Quad q);"
+          ],
+          "cpp": [
+            "rectangle rectangle_around(const quad &q)"
+          ]
+        }
+      },
+      {
+        "signature": "rectangle rectangle_around(const triangle &t);",
+        "name": "rectangle_around",
+        "method_name": null,
+        "unique_global_name": "rectangle_around_triangle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a rectangle that surrounds a given triangle",
+        "brief": null,
+        "return": {
+          "type": "rectangle",
+          "description": "A rectangle that will surround the triangle",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "t": {
+            "type": "triangle",
+            "description": "The triangle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "triangle",
+          "group": "geometry",
+          "static": "geometry"
+        },
+        "signatures": {
+          "pascal": [
+            "function RectangleAround(const t: Triangle): Rectangle"
+          ],
+          "python": [
+            "def rectangle_around_triangle(t):"
+          ],
+          "csharp": [
+            "public static Rectangle Geometry.RectangleAround(Triangle t);",
+            "public static Rectangle SplashKit.RectangleAround(Triangle t);"
+          ],
+          "cpp": [
+            "rectangle rectangle_around(const triangle &t)"
           ]
         }
       },

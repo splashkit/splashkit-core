@@ -2611,12 +2611,14 @@ sklib.__sklib__inset_rectangle__rectangle_ref__float.argtypes = [ _sklib_rectang
 sklib.__sklib__inset_rectangle__rectangle_ref__float.restype = _sklib_rectangle
 sklib.__sklib__intersection__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
 sklib.__sklib__intersection__rectangle_ref__rectangle_ref.restype = _sklib_rectangle
-sklib.__sklib__rectangle_around__triangle_ref.argtypes = [ _sklib_triangle ]
-sklib.__sklib__rectangle_around__triangle_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_around__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__rectangle_around__circle_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_around__line_ref.argtypes = [ _sklib_line ]
 sklib.__sklib__rectangle_around__line_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_around__quad_ref.argtypes = [ _sklib_quad ]
+sklib.__sklib__rectangle_around__quad_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_around__triangle_ref.argtypes = [ _sklib_triangle ]
+sklib.__sklib__rectangle_around__triangle_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_float
 sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ _sklib_rectangle ]
@@ -6624,10 +6626,6 @@ def intersection ( rect1, rect2 ):
     __skparam__rect2 = __skadapter__to_sklib_rectangle(rect2)
     __skreturn = sklib.__sklib__intersection__rectangle_ref__rectangle_ref(__skparam__rect1, __skparam__rect2)
     return __skadapter__to_rectangle(__skreturn)
-def rectangle_around_triangle ( t ):
-    __skparam__t = __skadapter__to_sklib_triangle(t)
-    __skreturn = sklib.__sklib__rectangle_around__triangle_ref(__skparam__t)
-    return __skadapter__to_rectangle(__skreturn)
 def rectangle_around_circle ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__rectangle_around__circle_ref(__skparam__c)
@@ -6635,6 +6633,14 @@ def rectangle_around_circle ( c ):
 def rectangle_around_line ( l ):
     __skparam__l = __skadapter__to_sklib_line(l)
     __skreturn = sklib.__sklib__rectangle_around__line_ref(__skparam__l)
+    return __skadapter__to_rectangle(__skreturn)
+def rectangle_around_quad ( q ):
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__rectangle_around__quad_ref(__skparam__q)
+    return __skadapter__to_rectangle(__skreturn)
+def rectangle_around_triangle ( t ):
+    __skparam__t = __skadapter__to_sklib_triangle(t)
+    __skreturn = sklib.__sklib__rectangle_around__triangle_ref(__skparam__t)
     return __skadapter__to_rectangle(__skreturn)
 def rectangle_bottom ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)

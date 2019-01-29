@@ -14,9 +14,10 @@ using std::vector;
 
 rectangle inset_rectangle(const rectangle &rect, float inset_amount);
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);
-rectangle rectangle_around(const triangle &t);
 rectangle rectangle_around(const circle &c);
 rectangle rectangle_around(const line &l);
+rectangle rectangle_around(const quad &q);
+rectangle rectangle_around(const triangle &t);
 float rectangle_bottom(const rectangle &rect);
 point_2d rectangle_center(const rectangle &rect);
 rectangle rectangle_from(const point_2d pt, const double width, const double height);

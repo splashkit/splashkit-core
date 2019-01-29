@@ -6,7 +6,7 @@
 #ifndef __splashkit_lib_type_mapper
 #define __splashkit_lib_type_mapper
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 #include <cstring>
 #include <vector>
