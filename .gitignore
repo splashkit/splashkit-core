@@ -87,3 +87,4 @@ tools/scripts/deploy/splashkitcpp/*.a
 ### Generated Folders ###
 bin/
 logs/
+out/skm
