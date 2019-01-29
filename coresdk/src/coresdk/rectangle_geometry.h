@@ -86,7 +86,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  quad
      */
-    rectangle rectangle_around(const quad &q)
+    rectangle rectangle_around(const quad &q);
 
     /**
      * Returns a rectangle that surrounds a given circle
