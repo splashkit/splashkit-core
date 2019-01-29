@@ -69,6 +69,29 @@ namespace splashkit_lib
         return result;
     }
 
+    rectangle rectangle_around(const quad &q)
+    {
+        rectangle result;
+
+        float minX = q.points[0].x, maxX = q.points[0].x;
+        float minY = q.points[0].y, maxY = q.points[0].y;
+
+        for ( int i = 1; i < 4; i++ )
+        {
+            minX = MIN(q.points[i].x, minX);
+            maxX = MAX(q.points[i].x, maxX);
+            minY = MIN(q.points[i].y, minY);
+            maxY = MAX(q.points[i].y, maxY);
+        }
+
+        result.x = minX;
+        result.y = minY;
+        result.width = ceil(maxX - minX);
+        result.height = ceil(maxY - minY);
+
+        return result;
+    }
+
     rectangle rectangle_around(const circle &c)
     {
         rectangle result;
@@ -86,7 +109,7 @@ namespace splashkit_lib
         float minX = t.points[0].x, maxX = t.points[0].x;
         float minY = t.points[0].y, maxY = t.points[0].y;
 
-        for ( int i = 0; i < 3; i++ ) {
+        for ( int i = 1; i < 3; i++ ) {
 
             if ( t.points[i].x < minX ) {
                 minX = t.points[i].x;
