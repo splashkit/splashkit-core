@@ -37,14 +37,9 @@ set(SK_GENERATED "${SK_ROOT}/generated")
 set(SK_BIN "${SK_ROOT}/bin")
 set(SK_OUT "${SK_ROOT}/out")
 
-# Setup OS specific flags
-if (APPLE)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-macos/commands/fpc")
-elseif(MSYS)
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-windows/commands/fpc")
-else()
-    set(SK_DEPLOY_ROOT "${SK_OUT}/splashkit-linux/commands/fpc")
-endif()
+set(SK_OUT "${SK_ROOT}/out")
+
+set(SK_DEPLOY_ROOT "${SK_OUT}/skm/fpc")
 
 #### END SETUP ####
 

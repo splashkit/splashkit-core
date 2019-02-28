@@ -25,6 +25,8 @@ set(SK_DEPLOY_ROOT "${SK_OUT}/skm")
 if (WIN32 OR MSYS OR MINGW)
     SET(MSYS "true")
 
+    
+
     string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
     string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
 
@@ -40,6 +42,31 @@ if (WIN32 OR MSYS OR MINGW)
         message(SEND_ERROR "Failed to detect windows architecture")
         return ()
     endif()
+    
+    add_definitions(-DWINDOWS)
+    set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
+                    -L/${MINGW_PATH_PART}/lib \
+                    -L/usr/lib \
+                    -lSDL2main \
+                    -lSDL2_mixer \
+                    -lSDL2_image \
+                    -lSDL2_net \
+                    -llibcivetweb \
+                    -lSDL2 \
+                    -lSDL2_ttf \
+                    -llibcurl \
+                    -llibSDL2_gfx-1-0-0 \
+                    -llibpng16-16 \
+                    -llibsqlite \
+                    -lws2_32 \
+                    -llibncursesw \
+                    -static-libstdc++ -static-libgcc \
+                    -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
+                    )
+
+    file(GLOB SK_LIB_DLL_FILES
+        "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
+    )
 elseif (APPLE)
     set(OS_PATH_SUFFIX "macos")
     # MAC OS PROJECT FLAGS
@@ -80,32 +107,6 @@ elseif (APPLE)
              "${SK_EXT}/sqlite/sqlite3.c"
              "${SK_EXT}/civetweb/src/civetweb.c"
          )
-# WINDOWS PROJECT FLAGS
-elseif(MSYS)
-    add_definitions(-DWINDOWS)
-    set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
-                    -L/${MINGW_PATH_PART}/lib \
-                    -L/usr/lib \
-                    -lSDL2main \
-                    -lSDL2_mixer \
-                    -lSDL2_image \
-                    -lSDL2_net \
-                    -llibcivetweb \
-                    -lSDL2 \
-                    -lSDL2_ttf \
-                    -llibcurl \
-                    -llibSDL2_gfx-1-0-0 \
-                    -llibpng16-16 \
-                    -llibsqlite \
-                    -lws2_32 \
-                    -llibncursesw \
-                    -static-libstdc++ -static-libgcc \
-                    -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
-                    )
-
-    file(GLOB SK_LIB_DLL_FILES
-        "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
-    )
 # LINUX PROJECT FLAGS
 else()
     set(OS_PATH_SUFFIX "linux")
