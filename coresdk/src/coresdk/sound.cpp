@@ -133,15 +133,16 @@ namespace splashkit_lib
             return;
         }
 
-        // dont play if loops = 0
-        if (times <= 0) return;
+        // convert to SDL-compatible loops count
+        // (-1 = inf, 0 = once, 1 = twice)
+        int loops;
+        if(times == -1) loops = -1;
+        else if(times <= 0) return;
+        else loops = times - 1;
 
         // correct volume to be between 0 and 1
         if (volume < 0) volume = 0;
         else if (volume > 1) volume = 1;
-
-        // alter repeats for multiple loops
-        int loops = times - 1;
 
         // play the effect, seaching for a channel
         sk_play_sound(&effect->effect, loops, volume);
