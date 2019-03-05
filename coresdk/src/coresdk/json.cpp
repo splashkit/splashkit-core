@@ -99,6 +99,12 @@ namespace splashkit_lib
     json json_from_file(const string &filename)
     {
         string result = file_as_string(filename, JSON_RESOURCE);
+        if (result.length() == 0)
+        {
+            LOG(WARNING) << "No input received when trying to open json from file " \
+                << filename << ". Does the file exist?";
+            return create_json();
+        }
 
         return json_from_string(result);
     };
