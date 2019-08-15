@@ -914,6 +914,7 @@ namespace splashkit_lib
             }
 
             case SGDS_Unknown:
+            default:
                 return nullptr;
         }
     }
@@ -929,6 +930,7 @@ namespace splashkit_lib
                     _sk_restore_default_render_target(_sk_open_windows[idx], static_cast<sk_bitmap_be *>(surface->_data));
                 break;
             case SGDS_Unknown:
+            default:
                 break;
         }
     }
@@ -944,6 +946,7 @@ namespace splashkit_lib
                 if ( _sk_num_open_windows == 0 ) _sk_create_initial_window();
                 return _sk_num_open_windows;
             case SGDS_Unknown:
+            default:
                 return 0;
         }
     }
