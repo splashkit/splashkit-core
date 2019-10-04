@@ -543,4 +543,18 @@ namespace splashkit_lib
         else if (v.y >= rect.y + rect.height) return false;
         else return true;
     }
+
+    /**
+     * Operator Overloading
+     */
+    vector_2d vector_2d::operator+(const vector_2d& a) const
+    {
+        return vector_to(x+a.x, y+a.y);
+    }
+
+    vector_2d vector_2d::operator-(const vector_2d& a) const
+    {
+        return vector_to(x-a.x, y-a.y);
+    }
+
 }
