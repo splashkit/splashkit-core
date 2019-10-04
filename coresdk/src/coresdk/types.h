@@ -97,31 +97,6 @@ namespace splashkit_lib
     typedef struct _animation_data *animation;
 
     /**
-     * A Point2D represents an location in Cartesian coordinates (x,y).
-     * The x value represents the distance from the left edge of the window or bitmap, increasing
-     * in value as you travel right. The y value represents the distance from the top
-     * edge of the window or bitmap, and increases as you travel down toward the bottom.
-     *
-     * Point2D is a great way to keep track of the location of something in a 2D space like
-     * a Window or Bitmap.
-     *
-     * @field x   The distance from the left side of the bitmap or window (
-     *            increasing as you go to the right)
-     * @field y   The distance from the top of a bitmap or window (increasing
-     *            as you go down).
-     */
-    struct point_2d
-    {
-        double x, y;
-
-        // Operator Overloads
-        point_2d operator+(const point_2d& a) const;
-        point_2d operator-(const point_2d& a) const;
-        point_2d operator+(const vector_2d& a) const;
-        point_2d operator-(const vector_2d& a) const;
-    };
-
-    /**
      * Vectors represent a direction and distance, and can be visualised as an
      * arrow from one point to another in 2 dimensional space. Internally, the
      * `vector_2d` is stored as its x and y components.
@@ -144,6 +119,31 @@ namespace splashkit_lib
         // Operator Overloads
         vector_2d operator+(const vector_2d& a) const;
         vector_2d operator-(const vector_2d& a) const;
+    };
+
+    /**
+     * A Point2D represents an location in Cartesian coordinates (x,y).
+     * The x value represents the distance from the left edge of the window or bitmap, increasing
+     * in value as you travel right. The y value represents the distance from the top
+     * edge of the window or bitmap, and increases as you travel down toward the bottom.
+     *
+     * Point2D is a great way to keep track of the location of something in a 2D space like
+     * a Window or Bitmap.
+     *
+     * @field x   The distance from the left side of the bitmap or window (
+     *            increasing as you go to the right)
+     * @field y   The distance from the top of a bitmap or window (increasing
+     *            as you go down).
+     */
+    struct point_2d
+    {
+        double x, y;
+
+        // Operator Overloads
+        point_2d operator+(const point_2d& a) const;
+        point_2d operator-(const point_2d& a) const;
+        point_2d operator+(const vector_2d& a) const;
+        point_2d operator-(const vector_2d& a) const;
     };
 
     /**
