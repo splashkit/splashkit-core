@@ -238,4 +238,27 @@ namespace splashkit_lib
         return point_point_distance(pt, closest_point_on_line(pt, l));
     }
     
+    /**
+     * Operator Overloading
+     */
+    point_2d point_2d::operator+(const point_2d& a) const
+    {
+        return point_at(x+a.x, y+a.y);
+    }
+
+    point_2d point_2d::operator-(const point_2d& a) const
+    {
+        return point_at(x-a.x, y-a.y);
+    }
+
+    point_2d point_2d::operator+(const vector_2d& a) const
+    {
+        return point_at(x+a.x, y+a.y);
+    }
+
+    point_2d point_2d::operator-(const vector_2d& a) const
+    {
+        return point_at(x-a.x, y-a.y);
+    }
+    
 }
