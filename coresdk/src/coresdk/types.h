@@ -113,6 +113,12 @@ namespace splashkit_lib
     struct point_2d
     {
         double x, y;
+
+        // Operator Overloads
+        point_2d operator+(const point_2d& a) const;
+        point_2d operator-(const point_2d& a) const;
+        point_2d operator+(const vector_2d& a) const;
+        point_2d operator-(const vector_2d& a) const;
     };
 
     /**
@@ -134,6 +140,10 @@ namespace splashkit_lib
     {
         double x;
         double y;
+
+        // Operator Overloads
+        vector_2d operator+(const vector_2d& a) const;
+        vector_2d operator-(const vector_2d& a) const;
     };
 
     /**
