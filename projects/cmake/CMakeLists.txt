@@ -46,13 +46,25 @@ if (APPLE)
                    -lfreetype \
                    -lcurl \
                    -lncurses \
-                   -ldl")
+                   -ldl"
+                   -lopenal
+                   -lavcodec
+                   -lavformat
+                   -lavutil
+                   -lswresample
+        )
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
     set(LIB_FLAGS "-L${SK_LIB}/win64 \
                    -L/mingw64/lib \
                    -L/usr/lib \
-                   -lSDL2main")
+                   -lSDL2main"
+                   -lopenal
+                   -lavcodec
+                   -lavformat
+                   -lavutil
+                   -lswresample
+        )
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -74,7 +86,13 @@ else()
                    -lfreetype \
                    -lcurl \
                    -lncurses \
-                   -ldl")
+                   -ldl"
+                   -lopenal
+                   -lavcodec
+                   -lavformat
+                   -lavutil
+                   -lswresample
+        )
 endif()
 
 # FLAGS
@@ -97,6 +115,7 @@ file(GLOB TEST_SOURCE_FILES
 
 file(GLOB UNIT_TEST_SOURCE_FILES
     "${SK_SRC}/test/unit_tests/*.cpp"
+    ${SK_SRC}/test/unit_tests/unit_test_audio.cpp
 )
 
 # SKSDK FILE INCLUDES
@@ -109,12 +128,14 @@ include_directories("${SK_SRC}")
 include_directories("${SK_SRC}/coresdk")
 include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
+include_directories("${SK_EXT}/")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
+include_directories("${SK_EXT}/ffmpeg")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)

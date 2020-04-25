@@ -191,7 +191,7 @@ namespace splashkit_lib
 
     void fade_music_out(int ms)
     {
-        sk_fade_music_out(ms);
+        sk_fade_out(sk_current_music(), ms);
     }
 
     void pause_music()
