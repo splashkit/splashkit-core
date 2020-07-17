@@ -224,7 +224,7 @@ namespace splashkit_lib
 
     /**
      * Drawing options allow you to customise drawing options. These should be
-     * initialised using the drawing option functions.
+     * initialised using the drawing option functions such as `option_defaults`.
      *
      * @field dest            The destination of the drawing: a window or bitmap.
      * @field scale_x         How much x values are scaled.
