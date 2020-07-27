@@ -41,8 +41,8 @@ namespace splashkit_lib
      *   `json_from_string(string s)` or `json_from_file(json j)`
      *
      *
-     *   - and must be released using `free_json()` (to release a specific `json object)
-     *   or `free_all_json()` (to release all loaded `json objects).
+     *   - and must be released using `free_json()` (to release a specific `json` object)
+     *   or `free_all_json()` (to release all loaded `json` objects).
      *
      *
      * @attribute class json
