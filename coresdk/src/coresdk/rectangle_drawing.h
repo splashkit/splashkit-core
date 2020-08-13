@@ -53,7 +53,7 @@ namespace splashkit_lib
      */
     void draw_rectangle(color clr, const rectangle &rect, const drawing_options &opts);
 
-    /**git stat
+    /**
      * Draw a rectangle onto the current window.
      *
      * @param clr     The color of the rectangle
