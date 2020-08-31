@@ -66,7 +66,7 @@ else()
                    -lFLAC \
                    -lvorbis \
                    -lz \
-                   -lpng12 \
+                   -lpng16 \
                    -lvorbisfile \
                    -lmikmod \
                    -logg \
