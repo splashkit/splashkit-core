@@ -102,7 +102,8 @@ namespace splashkit_lib
         delete resp.message;
     }
 
-    void send_response(http_request r, http_status_code code, const string &message, const string &content_type) {
+    void send_response(http_request r, http_status_code code, const string &message, const string &content_type)
+    {
       send_response(r, code, message, content_type, {});
     }
 
