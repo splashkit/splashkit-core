@@ -323,6 +323,20 @@ namespace splashkit_lib
      */
     string request_body(http_request r);
 
+
+    /**
+     * Returns the headers of the request.
+     *
+     * @param r A request object.
+     *
+     * @returns The headers of the request.
+     *
+     * @attribute class http_request
+     * @attribute getter headers
+     */
+    vector<string> request_headers(http_request r);
+
+
     /**
      * Returns an array of strings representing each stub of the URI.
      *
