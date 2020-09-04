@@ -151,7 +151,7 @@ namespace splashkit_lib
 
         long status;
         curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result->code = static_cast<http_status_code>((int)status);
+        result->code = static_cast<http_status_code>(status);
 
         char *content_type;
         curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &content_type);
