@@ -41,41 +41,41 @@ If you are reading this then you have probably already found the Splashkit-core 
 3. Install core Splashkit SDK
     - Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing : ```pacman -S git --noconfirm --disable-download-timeout```
     - Now clone and install Splashkit via install-scripts:
-<br>
+
 ```bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)```
     - Restart terminal, type
-<br>
+
 ```skm```
-<br>
+
 in terminal after restarting to verify successful install.
 4. Install [VSCode](https://code.visualstudio.com/).
 5. Install language tools (compilers / libs):
     - For C#, install the DotNet core sdk.
     - For C++, install GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
       - Run the following command in terminal:
-  <br>
+  
   ```pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb```
       - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGw32 or MinGw64 terminals.
 6. Install  remaining tools to build Splashkit:
     - Install cmake:
-<br>
+
 ```pacman -S mingw-w64-x86_64-cmake```8
     - install make:
-<br>
+
 ```pacman -S mingw-w64-x86_64-make```
 7. Build the test project:
     - Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
-<br>
+
 ```cd projects/cmake```
-<br>
+
 ```cmake -G "Unix Makefiles" .```
-<br>
+
 ```make```
     - Note: if the above does not work, try using the actual unix make and cmake installations, rather than the MinGw-specific ones; but do not try a combination of both. Remove packages with ```pacman -Rs <pacmage>``` and ```pacman -S cmake make```
 8. Run the test program by executing
-<br>
+
 ```cd ../../bin```
-<br>
+
 ```./sktest```
 9. Add features to code in ```./coresdk```
 10. Add test code into ```coresdk/src/test```
