@@ -23,6 +23,7 @@
 
 #ifndef WINDOWS
 #include <pwd.h>
+#include <dirent.h>
 #else
 #include <Windows.h>
 #include <Shlobj.h>
@@ -133,6 +134,48 @@ namespace splashkit_lib
         }
 
         return result + filename;
+    }
+
+    string base_fs_path()
+    {
+        #if WINDOWS
+            return get_env_var("SystemDrive");
+        #else
+            return "/";
+        #endif
+    }
+
+    bool scan_dir_recursive(const string &directory, vector<string> &dest)
+    {
+        //Windows support is not yet implemented.
+        #if WINDOWS 
+            return false;
+        #endif        
+
+        DIR *dirhnd;
+        struct dirent *dirpnt;
+        string fn_buffer;
+
+        vector<string> directories;
+        directories.push_back(directory);
+
+        for (size_t i=0; i<directories.size(); ++i)
+        {
+            dirhnd = opendir(directories[i].c_str());
+            while ((dirpnt = readdir(dirhnd)) != NULL)
+            {
+                fn_buffer = string(dirpnt->d_name);
+                if (dirpnt->d_type == DT_DIR &&
+                    fn_buffer != "." && fn_buffer != "..")
+                    directories.push_back(directories[i] + "/" + fn_buffer);
+                else
+                    dest.push_back(directories[i] + "/" + fn_buffer);
+            }
+            closedir(dirhnd);
+        }
+
+        return dest.size() > 0 ? true : false;
+
     }
 
     struct unknown_data {
