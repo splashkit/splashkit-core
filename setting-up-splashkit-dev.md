@@ -41,16 +41,16 @@ If you are reading this then you have probably already found the Splashkit-core 
 3. Install core Splashkit SDK
     - Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing :
     ```
-pacman -S git --noconfirm --disable-download-timeout
-```
+    pacman -S git --noconfirm --disable-download-timeout
+    ```
     - Now clone and install Splashkit via install-scripts:
     ```
-bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-```
+    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+    ```
     - Restart terminal, type
     ```
-skm
-```
+    skm
+    ```
     in terminal after restarting to verify successful install.
 4. Install [VSCode](https://code.visualstudio.com/).
 5. Install language tools (compilers / libs):
@@ -58,37 +58,37 @@ skm
     - For C++, install GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
       - Run the following command in terminal:
       ```
-pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb
-```
+      pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb
+      ```
       - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGW32 or MinGW64 terminals.
 6. Install  remaining tools to build Splashkit:
     - Install cmake:
     ```
-pacman -S mingw-w64-x86_64-cmake
-```
+    pacman -S mingw-w64-x86_64-cmake
+    ```
     - install make:
     ```
-pacman -S mingw-w64-x86_64-make
-```
+    pacman -S mingw-w64-x86_64-make
+    ```
 7. Build the test project:
     - Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
     ```
-cd projects/cmake
-```
+    cd projects/cmake
+   ```
     ```
-cmake -G "Unix Makefiles" .
-```
+    cmake -G "Unix Makefiles" .
     ```
-make
-```
+    ```
+    make
+    ```
     - Note: if the above does not work, try using the actual unix make and cmake installations, rather than the MinGw-specific ones; but do not try a combination of both. Remove packages with
     ```
-pacman -Rs <package>
-```
+    pacman -Rs <package>
+    ```
     and
     ```
-pacman -S cmake make
-```
+    pacman -S cmake make
+    ```
 8. Run the test program by executing
 ```
 cd ../../bin
