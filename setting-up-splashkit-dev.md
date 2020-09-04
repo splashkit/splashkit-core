@@ -36,60 +36,47 @@ If you are reading this then you have probably already found the Splashkit-core 
   -  Build and Run from in XCode.  
 
 ### Windows
-<ol>
-<li>If an issue, potentially consider **temporarily** disabling antivirus software.</li>
-<li>Install [MSYS2](https://www.msys2.org/) subsystem and follow fairly self-explanatory installer instructions &ndash; use defaults if unsure, **DO NOT INSTALL TO DIRECTORY WITH SPACES!**</li>
-<li>Install core Splashkit SDK</li>
-<ul>
-<li>Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing : ```pacman -S git --noconfirm --disable-download-timeout```</li>
-<li>Now clone and install Splashkit via install-scripts:
-<b>
-```bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)```</li>
-<li>Restart terminal, type
-<b>
+1. If an issue, potentially consider **temporarily** disabling antivirus software.
+2. Install [MSYS2](https://www.msys2.org/) subsystem and follow fairly self-explanatory installer instructions &ndash; use defaults if unsure, **DO NOT INSTALL TO DIRECTORY WITH SPACES!**
+3. Install core Splashkit SDK
+    - Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing : ```pacman -S git --noconfirm --disable-download-timeout```
+    - Now clone and install Splashkit via install-scripts:
+<br>
+```bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)```
+    - Restart terminal, type
+<br>
 ```skm```
-<b>
-in terminal after restarting to verify successful install.</li>
-</ul>
-<li>Install [VSCode](https://code.visualstudio.com/).</li>
-<li>Install language tools (compilers / libs):</li>
-<ul>
-<li> For C#, install the DotNet core sdk.</li>
-<li>For C++, install GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.</li>
-<ul>
-<li>Run the following command in terminal:
-  <b>
-  ```pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb```</li>
-<li>Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGw32 or MinGw64 terminals.</li>
-</ul>
-</ul>
-<li>Install  remaining tools to build Splashkit:</li>
-<ul>
-<li>Install cmake:
-<b>
-```pacman -S mingw-w64-x86_64-cmake```8</li>
-<li>install make:
-<b>
-```pacman -S mingw-w64-x86_64-make```</li>
-</ul>
-<li>Build the test project:</li>
-<ul>
-<li>Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
-<b>
+<br>
+in terminal after restarting to verify successful install.
+4. Install [VSCode](https://code.visualstudio.com/).
+5. Install language tools (compilers / libs):
+    - For C#, install the DotNet core sdk.
+    - For C++, install GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
+      - Run the following command in terminal:
+  <br>
+  ```pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb```
+      - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGw32 or MinGw64 terminals.
+6. Install  remaining tools to build Splashkit:
+    - Install cmake:
+<br>
+```pacman -S mingw-w64-x86_64-cmake```8
+    - install make:
+<br>
+```pacman -S mingw-w64-x86_64-make```
+7. Build the test project:
+    - Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
+<br>
 ```cd projects/cmake```
-<b>
+<br>
 ```cmake -G "Unix Makefiles" .```
-<b>
-```make```</li>
-<li>Note: if the above does not work, try using the actual unix make and cmake installations, rather than the MinGw-specific ones; but do not try a combination of both. Remove packages with ```pacman -Rs <pacmage>``` and ```pacman -S cmake make```</li>
-</ul>
-<li>Run the test program by executing
-<b>
+<br>
+```make```
+    - Note: if the above does not work, try using the actual unix make and cmake installations, rather than the MinGw-specific ones; but do not try a combination of both. Remove packages with ```pacman -Rs <pacmage>``` and ```pacman -S cmake make```
+8. Run the test program by executing
+<br>
 ```cd ../../bin```
-<b>
-```./sktest```</li>
-</ul>
-<li>Add features to code in ```./coresdk```</li>
-<li>Add test code into ```coresdk/src/test```</li>
-</ol>
+<br>
+```./sktest```
+9. Add features to code in ```./coresdk```
+10. Add test code into ```coresdk/src/test```
 Now you should be good to go.
