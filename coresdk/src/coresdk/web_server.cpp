@@ -251,6 +251,17 @@ namespace splashkit_lib
         return r->body;
     }
 
+    vector<string> request_headers(http_request r)
+    {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "Getting request headers on an invalid request";
+            return {};
+        }
+
+        return r->headers;
+    }
+
     vector<string> request_uri_stubs(http_request r)
     {
         string uri = request_uri(r);
