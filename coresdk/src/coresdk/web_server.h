@@ -126,6 +126,23 @@ namespace splashkit_lib
      * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
      * @param message       The messsage, in the form of a `http_response`, to be sent.
      * @param content_type  The content type of the response.
+     * @param headers       The response headers
+     *
+     * @attribute class http_request
+     * @attribute self  r
+     * @attribute method send_response
+     *
+     * @attribute suffix  with_status_and_content_type
+     */
+    void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers);
+
+  /**
+     * Sends a message to a given `http_request` with the specified content type.
+     *
+     * @param r             The `http_request` to send the response to
+     * @param code          The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.
+     * @param message       The messsage, in the form of a `http_response`, to be sent.
+     * @param content_type  The content type of the response.
      *
      * @attribute class http_request
      * @attribute self  r
@@ -212,7 +229,7 @@ namespace splashkit_lib
      * @attribute method send_file_response
      */
     void send_file_response(http_request r, const string &filename, const string &content_type);
-    
+
     /**
      * Serves a HTML file to the given `http_request`.
      *
@@ -234,7 +251,7 @@ namespace splashkit_lib
      * @attribute method send_javascript_file_response
      */
     void send_javascript_file_response(http_request r, const string &filename);
-    
+
     /**
      * Serves a css file to the given `http_request`.
      *
@@ -245,7 +262,7 @@ namespace splashkit_lib
      * @attribute method send_css_file_response
      */
     void send_css_file_response(http_request r, const string &filename);
-    
+
     /**
      * Returns the server URI of the client request.
      *
@@ -257,7 +274,7 @@ namespace splashkit_lib
      * @attribute getter uri
      */
     string request_uri(http_request r);
-    
+
     /**
      * Returns the URI query string of the client request.
      *
@@ -284,7 +301,7 @@ namespace splashkit_lib
      * @attribute method query_parameter
      */
     string request_query_parameter(http_request r, const string &name, const string &default_value);
-    
+
     /**
      * Returns true if the parameter exists in the query string.
      *
@@ -309,7 +326,7 @@ namespace splashkit_lib
      * @attribute getter method
      */
     http_method request_method(http_request r);
-    
+
 
     /**
      * Returns the body of the request.

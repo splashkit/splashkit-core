@@ -235,7 +235,8 @@ namespace splashkit_lib
         char                *message;
         unsigned long       message_size;
         http_status_code    code;
-        
+        vector<string>      headers;
+
         semaphore           response_sent;
     };
 
