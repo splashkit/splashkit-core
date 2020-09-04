@@ -280,6 +280,9 @@ namespace splashkit_lib
      * @constant HTTP_STATUS_OK                         The server accepted the request.
      * @constant HTTP_STATUS_CREATED                    The request has been fulfilled, resulting in the creation of a new resource.
      * @constant HTTP_STATUS_NO_CONTENT                 The server successfully processed the request and is not returning any content.
+     * @constant HTTP_STATUS_MOVED_PERMANENTLY          The URL of the requested resource has been changed permanently.
+     * @constant HTTP_STATUS_FOUND                      The URI of requested resource has been changed temporarily.
+     * @constant HTTP_STATUS_SEE_OTHER                  The server sent this response to direct the client to get the requested resource at another URI with a GET request.
      * @constant HTTP_STATUS_BAD_REQUEST                The server cannot or will not process the request due to an apparent client error.
      * @constant HTTP_STATUS_UNAUTHORIZED               The server requires authentication or has failed to process provided authentication.
      * @constant HTTP_STATUS_FORBIDDEN                  The request was a valid request, but the server is refusing to respond to it.
@@ -295,6 +298,9 @@ namespace splashkit_lib
         HTTP_STATUS_OK = 200,
         HTTP_STATUS_CREATED = 201,
         HTTP_STATUS_NO_CONTENT = 204,
+        HTTP_STATUS_MOVED_PERMANENTLY = 301,
+        HTTP_STATUS_FOUND = 302,
+        HTTP_STATUS_SEE_OTHER = 303,
         HTTP_STATUS_BAD_REQUEST = 400,
         HTTP_STATUS_UNAUTHORIZED = 401,
         HTTP_STATUS_FORBIDDEN = 403,
