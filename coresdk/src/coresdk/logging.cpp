@@ -35,15 +35,3 @@ void conf_and_init (el::Configurations &log_conf, string log_conf_category, stri
 		START_EASYLOGGINGPP (argc, argv);/// If the developer wants command-line arguments to be passed to their application, otherwise do nothing.  also definitely do this last so that func params hopefully don't override command-line args.
 	}
 }
-
-/*Example code for use:
-int main()
-{
-	el::Configurations app_log_conf;
-	conf_and_init (
-		app_log_conf,
-		log_conf_category = "default",
-log_filename = "app.log",
-log_format = "%level (%datetime{%d/%M/%Y, %h:%m:%s}): %msg [in %fbase, ln %line]");
-	return 0;
-}*/
