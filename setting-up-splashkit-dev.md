@@ -36,9 +36,9 @@ If you are reading this then you have probably already found the Splashkit-core 
   -  Build and Run from in XCode.  
 
 ### Windows
-1. If an issue, potentially consider **temporarily** disabling antivirus software.
-2. Install [MSYS2](https://www.msys2.org/) subsystem and follow fairly self-explanatory installer instructions &ndash; use defaults if unsure, **DO NOT INSTALL TO DIRECTORY WITH SPACES!**
-3. Install core Splashkit SDK
+* If an issue, potentially consider **temporarily** disabling antivirus software.
+* Install [MSYS2](https://www.msys2.org/) subsystem and follow fairly self-explanatory installer instructions &ndash; use defaults if unsure, **DO NOT INSTALL TO DIRECTORY WITH SPACES!**
+* Install core Splashkit SDK
     - Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing :
       ```
     pacman -S git --noconfirm --disable-download-timeout
@@ -52,8 +52,8 @@ If you are reading this then you have probably already found the Splashkit-core 
     skm
       ```
     in terminal after restarting to verify successful install.
-4. Install [VSCode](https://code.visualstudio.com/).
-5. Install language tools (compilers / libs):
+* Install [VSCode](https://code.visualstudio.com/).
+* Install language tools (compilers / libs):
     - For C#, install the DotNet core sdk.
     - For C++, install GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
       - Run the following command in terminal:
@@ -61,7 +61,7 @@ If you are reading this then you have probably already found the Splashkit-core 
       pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb
         ```
       - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGW32 or MinGW64 terminals.
-6. Install  remaining tools to build Splashkit:
+* Install  remaining tools to build Splashkit:
     - Install cmake:
       ```
     pacman -S mingw-w64-x86_64-cmake
@@ -70,7 +70,7 @@ If you are reading this then you have probably already found the Splashkit-core 
       ```
     pacman -S mingw-w64-x86_64-make
       ```
-7. Build the test project:
+* Build the test project:
     - Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
       ```
     cd projects/cmake
@@ -89,18 +89,18 @@ If you are reading this then you have probably already found the Splashkit-core 
       ```
     pacman -S cmake make
       ```
-8. Run the test program by executing
+* Run the test program by executing
   ```
 cd ../../bin
   ```
   ```
 ./sktest
   ```
-9. Add features to code in
+* Add features to code in
   ```
 ./coresdk
   ```
-10. Add test code into
+* Add test code into
   ```
 coresdk/src/test
   ```
