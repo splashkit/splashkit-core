@@ -90,18 +90,18 @@ If you are reading this then you have probably already found the Splashkit-core 
     pacman -S cmake make
       ```
 * Run the test program by executing
-  ```
-cd ../../bin
-  ```
-  ```
-./sktest
-  ```
+    ```
+    cd ../../bin
+    ```
+    ```
+    ./sktest
+      ```
 * Add features to code in
-  ```
-./coresdk
-  ```
+    ```
+    ./coresdk
+    ```
 * Add test code into
-  ```
-coresdk/src/test
-  ```
+    ```
+    coresdk/src/test
+    ```
 Now you should be good to go.
