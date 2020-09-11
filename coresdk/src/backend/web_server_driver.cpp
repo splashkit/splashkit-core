@@ -105,7 +105,6 @@ namespace splashkit_lib
           headers.append(header.append("\r\n"));
         }
 
-
         // Send HTTP reply to the client
         mg_printf(conn,
                   "HTTP/1.1 %d\r\n"
