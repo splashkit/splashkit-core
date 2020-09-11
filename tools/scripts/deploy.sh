@@ -44,14 +44,12 @@ case $doit in
   *) exit -1 ;;
 esac
 
-if [[ `uname` == MINGW* ]]; then
-  read -p "Delete cmake cache? [y,n] " doit
-  case $doit in
-    y|Y) DELETE_CMAKE_CACHE=true ;;
-    n|N) echo ; echo "Keeping cache" ;;
-    *) exit -1 ;;
-  esac
-fi
+read -p "Delete cmake cache? [y,n] " doit
+case $doit in
+  y|Y) DELETE_CMAKE_CACHE=true ;;
+  n|N) echo ; echo "Keeping cache" ;;
+  *) exit -1 ;;
+esac
 
 if [[ $GENERATE_LIB ]]; then
   echo
