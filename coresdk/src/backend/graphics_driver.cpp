@@ -102,6 +102,10 @@ namespace splashkit_lib
         {
             SDL_RenderSetClipRect(window_be->renderer, &target->clip);
         }
+        else if ( window_be->clipped )
+        {
+            SDL_RenderSetClipRect(window_be->renderer, nullptr);
+        }
     }
 
     void _sk_make_drawable(sk_bitmap_be *bitmap)
@@ -173,7 +177,7 @@ namespace splashkit_lib
 
         _sk_initial_window->window = SDL_CreateWindow("SplashKit",
                                                       SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 200, 200,
-                                                      SDL_WINDOW_HIDDEN | SDL_WINDOW_ALLOW_HIGHDPI );
+                                                      SDL_WINDOW_ALLOW_HIGHDPI );
 
         if ( ! _sk_initial_window->window )
         {
@@ -204,7 +208,7 @@ namespace splashkit_lib
         //    std::cout << "Initial Renderer is " << _sk_initial_window->renderer << std::endl;
 
         // The user cannot draw onto this window!
-        _sk_initial_window->backing = nullptr;
+        _sk_initial_window->backing = SDL_CreateTexture(_sk_initial_window->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 200, 200);
         _sk_initial_window->surface = nullptr;
 
         _sk_initial_window->event_data.close_requested = false;
@@ -1857,6 +1861,7 @@ namespace splashkit_lib
             _sk_set_renderer_target(i, data);
             SDL_SetRenderDrawColor(_sk_open_windows[i]->renderer, 255, 255, 255, 0);
             SDL_RenderClear(_sk_open_windows[i]->renderer);
+            SDL_RenderPresent(_sk_open_windows[i]->renderer);
             _sk_restore_default_render_target(i, data);
         }
         

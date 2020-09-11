@@ -23,6 +23,7 @@ void test_drawing_on_new_window()
     bitmap user_image;
 
     user_image = create_bitmap ("user_image", 20, 20);
+    save_bitmap(user_image, "0");
     clear_bitmap (user_image, COLOR_BRIGHT_GREEN);
     save_bitmap(user_image, "1");
     fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 0, 0, 10, 10);
@@ -49,7 +50,6 @@ void test_drawing_on_new_window()
     refresh_window(my_window);
     
     delay (5000);
-    
 
     close_window(my_window);
     free_bitmap(user_image);
@@ -100,6 +100,7 @@ void test_clipping(window w1)
     clear_window(w1, COLOR_SILVER);
     draw_text("B > G > R from top left of bmp", COLOR_BLACK, 10, 10);
     draw_bitmap(bmp, 100, 100);
+    save_bitmap(bmp, "bmp");
     refresh_screen();
     delay(3000);
 }
