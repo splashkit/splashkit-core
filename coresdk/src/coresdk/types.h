@@ -289,6 +289,7 @@ namespace splashkit_lib
      * @constant HTTP_STATUS_NOT_FOUND                  The requested resource could not be found but may be available in the future.
      * @constant HTTP_STATUS_METHOD_NOT_ALLOWED         The request method is not support for the requested resource.
      * @constant HTTP_STATUS_REQUEST_TIMEOUT            The server timed out waiting for the request.
+     * @constant HTTP_STATUS_CONFLICT                   The request conflicts with current state of the server.
      * @constant HTTP_STATUS_INTERNAL_SERVER_ERROR      The server encountered an unexpected condition.
      * @constant HTTP_STATUS_NOT_IMPLEMENTED            The server does not recognize or implement the request method.
      * @constant HTTP_STATUS_SERVICE_UNAVAILABLE        The server is currently unavailable.
@@ -307,6 +308,7 @@ namespace splashkit_lib
         HTTP_STATUS_NOT_FOUND = 404,
         HTTP_STATUS_METHOD_NOT_ALLOWED = 405,
         HTTP_STATUS_REQUEST_TIMEOUT = 408,
+        HTTP_STATUS_CONFLICT = 409,
         HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
         HTTP_STATUS_NOT_IMPLEMENTED = 501,
         HTTP_STATUS_SERVICE_UNAVAILABLE = 503
