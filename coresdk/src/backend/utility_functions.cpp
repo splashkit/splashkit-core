@@ -148,9 +148,9 @@ namespace splashkit_lib
     bool scan_dir_recursive(const string &directory, vector<string> &dest)
     {
         //Windows support is not yet implemented.
-        #if WINDOWS 
+        #if WINDOWS
             return false;
-        #endif        
+        #endif
 
         DIR *dirhnd;
         struct dirent *dirpnt;
@@ -174,7 +174,7 @@ namespace splashkit_lib
             closedir(dirhnd);
         }
 
-        return dest.size() > 0 ? true : false;
+        return dest.size() > 0;
 
     }
 
@@ -520,10 +520,10 @@ namespace splashkit_lib
     {
         int i, j, count, temp, low_part, high_part, dash_count;
         string part, value;
-        
+
         value = trim(value_in);
         result.clear();
-        
+
         if ((value[0] != '[') or (value[value.size() - 1] != ']'))
         {
             // is number?
@@ -533,16 +533,16 @@ namespace splashkit_lib
             }
             return; // not a range
         }
-        
+
         value = value.substr(1, value.size() - 2);
-        
+
         i = 0;
         count = count_delimiter(value, ',');
-        
+
         while (i <= count)
         {
             part = trim(extract_delimited(i + 1, value, ','));
-            
+
             if (try_str_to_int(part, temp))
             {
                 //just "a" so...
@@ -551,12 +551,12 @@ namespace splashkit_lib
             else //Should be range
             {
                 dash_count = count_delimiter(part, '-');
-                
+
                 if ((dash_count == 1) or ((dash_count == 2) and (part[1] != '-'))) //a-b or a--b
                     low_part = str_to_int(extract_delimited(1, part, '-'));
                 else //assume -a...
                     low_part = -str_to_int(extract_delimited(2, part, '-'));
-                
+
                 if (dash_count == 1) //a-b
                     high_part = str_to_int(extract_delimited(2, part, '-'));
                 else if ((dash_count == 2) and (part[1] = '-')) //-a-b
@@ -571,23 +571,23 @@ namespace splashkit_lib
                     result.clear();
                     return;
                 }
-                
+
                 for (j = 0; j <= abs(high_part - low_part); j++)
                 {
                     //low_part + j * (-1 or +1)
                     result.push_back(low_part + (j * sign(high_part - low_part)));
                 }
             }
-            
+
             i++;
         }
     }
-    
+
     double rad_to_deg(double radians)
     {
         return radians * 180 / PI;
     }
-    
+
     double deg_to_rad(double degrees)
     {
         return degrees * PI / 180;
