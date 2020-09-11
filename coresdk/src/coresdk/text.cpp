@@ -89,7 +89,7 @@ namespace splashkit_lib
         if ( VALID_PTR(fnt, FONT_PTR) )
         {
             notify_of_free(fnt);
-            
+
             if (fnt->was_downloaded && file_exists(fnt->filename) )
             {
                 remove(fnt->filename.c_str());
@@ -190,14 +190,12 @@ namespace splashkit_lib
         vector<string> files;
         scan_dir_recursive(get_system_font_path(), files);
 
-        transform(name.begin(), name.end(), name.begin(), ::tolower);
 
         for (size_t i=0; i<files.size(); ++i)
         {
             int fi = files[i].find_last_of(PATH_SEP) +1;
-            int fd = files[i].find_last_of('.') - fi;
+            int fd = i - fi;
             string file_name = files[i].substr(fi, fd);
-            transform(file_name.begin(), file_name.end(), file_name.begin(), ::tolower);
             if (file_name == name)
                 return files[i];
         }
@@ -292,27 +290,27 @@ namespace splashkit_lib
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd, opts));
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, font fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd));
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd, opts));
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, const string &fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(wnd));
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, x, y, option_draw_to(wnd, opts));
     }
-    
+
     void draw_text_on_window(window wnd, const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_draw_to(wnd));
@@ -322,32 +320,32 @@ namespace splashkit_lib
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp, opts));
     }
-    
+
     void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, font fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp));
     }
-    
+
     void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp, opts));
     }
-    
+
     void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, const string &fnt, int font_size, double x, double y)
     {
         draw_text(text, clr, fnt, font_size, x, y, option_draw_to(bmp));
     }
-    
+
     void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y, const drawing_options &opts)
     {
         draw_text(text, clr, x, y, option_draw_to(bmp, opts));
     }
-    
+
     void draw_text_on_bitmap(bitmap bmp, const string &text, const color &clr, double x, double y)
     {
         draw_text(text, clr, x, y, option_draw_to(bmp));
     }
-    
+
     int text_width(const string &text, font fnt, int font_size)
     {
         if ( fnt != nullptr && INVALID_PTR(fnt, FONT_PTR) )
