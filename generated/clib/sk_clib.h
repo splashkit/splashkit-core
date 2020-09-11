@@ -888,6 +888,7 @@ int __sklib__is_trace_request_for__http_request__string_ref(__sklib_http_request
 __sklib_http_request __sklib__next_web_request__web_server(__sklib_web_server server);
 __sklib_string __sklib__request_body__http_request(__sklib_http_request r);
 int __sklib__request_has_query_parameter__http_request__string_ref(__sklib_http_request r, const __sklib_string name);
+__sklib_vector_string __sklib__request_headers__http_request(__sklib_http_request r);
 int __sklib__request_method__http_request(__sklib_http_request r);
 __sklib_string __sklib__request_query_parameter__http_request__string_ref__string_ref(__sklib_http_request r, const __sklib_string name, const __sklib_string default_value);
 __sklib_string __sklib__request_query_string__http_request(__sklib_http_request r);
@@ -902,6 +903,7 @@ void __sklib__send_response__http_request__string_ref(__sklib_http_request r, co
 void __sklib__send_response__http_request__http_status_code(__sklib_http_request r, int code);
 void __sklib__send_response__http_request__http_status_code__string_ref(__sklib_http_request r, int code, const __sklib_string message);
 void __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__sklib_http_request r, int code, const __sklib_string message, const __sklib_string content_type);
+void __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__sklib_http_request r, int code, const __sklib_string message, const __sklib_string content_type, const __sklib_vector_string headers);
 void __sklib__send_response__http_request__json(__sklib_http_request r, __sklib_json j);
 __sklib_vector_string __sklib__split_uri_stubs__string_ref(const __sklib_string uri);
 __sklib_web_server __sklib__start_web_server();

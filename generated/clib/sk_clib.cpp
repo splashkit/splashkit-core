@@ -3921,6 +3921,11 @@ int __sklib__request_has_query_parameter__http_request__string_ref(__sklib_http_
     bool __skreturn = request_has_query_parameter(__skparam__r, __skparam__name);
     return __sklib__to_int(__skreturn);
 }
+__sklib_vector_string __sklib__request_headers__http_request(__sklib_http_request r) {
+    http_request __skparam__r = __sklib__to_http_request(r);
+    vector<string> __skreturn = request_headers(__skparam__r);
+    return __sklib__to_sklib_vector_string(__skreturn);
+}
 int __sklib__request_method__http_request(__sklib_http_request r) {
     http_request __skparam__r = __sklib__to_http_request(r);
     http_method __skreturn = request_method(__skparam__r);
@@ -3995,6 +4000,14 @@ void __sklib__send_response__http_request__http_status_code__string_ref__string_
     string __skparam__message = __sklib__to_string(message);
     string __skparam__content_type = __sklib__to_string(content_type);
     send_response(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type);
+}
+void __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__sklib_http_request r, int code, const __sklib_string message, const __sklib_string content_type, const __sklib_vector_string headers) {
+    http_request __skparam__r = __sklib__to_http_request(r);
+    http_status_code __skparam__code = __sklib__to_http_status_code(code);
+    string __skparam__message = __sklib__to_string(message);
+    string __skparam__content_type = __sklib__to_string(content_type);
+    vector<string> __skparam__headers = __sklib__to_vector_string(headers);
+    send_response(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type, __skparam__headers);
 }
 void __sklib__send_response__http_request__json(__sklib_http_request r, __sklib_json j) {
     http_request __skparam__r = __sklib__to_http_request(r);

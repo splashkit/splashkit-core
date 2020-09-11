@@ -26633,7 +26633,7 @@
         "unique_global_name": "draw_rectangle_record",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "git stat\nDraw a rectangle onto the current window.",
+        "description": "Draw a rectangle onto the current window.",
         "brief": null,
         "return": {
           "type": "void",
@@ -49420,7 +49420,7 @@
       {
         "signature": "typedef struct sk_json *json;",
         "name": "json",
-        "description": "The `json` type is used to refer to objects in the JSON format that can be\nmanipulated by the SplashKit `json` functions and procedures.\n\n\nAll `json` objects are:\n\n\n- created with `create_json()` or `create_json(string s)` or\n`json_from_string(string s)` or `json_from_file(json j)`\n\n\n- and must be released using `free_json()` (to release a specific `json object)\nor `free_all_json()` (to release all loaded `json objects).",
+        "description": "The `json` type is used to refer to objects in the JSON format that can be\nmanipulated by the SplashKit `json` functions and procedures.\n\n\nAll `json` objects are:\n\n\n- created with `create_json()` or `create_json(string s)` or\n`json_from_string(string s)` or `json_from_file(json j)`\n\n\n- and must be released using `free_json()` (to release a specific `json` object)\nor `free_all_json()` (to release all loaded `json` objects).",
         "brief": null,
         "attributes": {
           "class": "json",
@@ -50872,6 +50872,61 @@
         }
       },
       {
+        "signature": "vector<string> request_headers(http_request r);",
+        "name": "request_headers",
+        "method_name": null,
+        "unique_global_name": "request_headers",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the headers of the request.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "The headers of the request.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "string"
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "A request object.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "getter": "headers",
+          "group": "networking",
+          "static": "web_server",
+          "self": "r"
+        },
+        "signatures": {
+          "pascal": [
+            "function RequestHeaders(r: HttpRequest): ArrayOfString"
+          ],
+          "python": [
+            "def request_headers(r):"
+          ],
+          "csharp": [
+            "public List<string> HttpRequest.Headers { get }",
+            "public static List<string> SplashKit.RequestHeaders(HttpRequest r);"
+          ],
+          "cpp": [
+            "vector<string> request_headers(http_request r)"
+          ]
+        }
+      },
+      {
         "signature": "http_method request_method(http_request r);",
         "name": "request_method",
         "method_name": null,
@@ -51824,6 +51879,114 @@
           ],
           "cpp": [
             "void send_response(http_request r, http_status_code code, const string &message, const string &content_type)"
+          ]
+        }
+      },
+      {
+        "signature": "void send_response(http_request r,http_status_code code,const string &message,const string &content_type,const vector<string> &headers);",
+        "name": "send_response",
+        "method_name": "send_response",
+        "unique_global_name": "send_response_with_status_and_content_type_and_headers",
+        "unique_method_name": "http_request.send_response_with_status_and_content_type_and_headers",
+        "suffix_name": null,
+        "description": "Sends a message to a given `http_request` with the specified content type.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "r": {
+            "type": "http_request",
+            "description": "The `http_request` to send the response to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "code": {
+            "type": "http_status_code",
+            "description": "The [HTTP status code](See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to be sent.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "message": {
+            "type": "string",
+            "description": "The messsage, in the form of a `http_response`, to be sent.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "content_type": {
+            "type": "string",
+            "description": "The content type of the response.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "headers": {
+            "type": "vector",
+            "description": "The response headers",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": true,
+            "type_parameter": "string"
+          }
+        },
+        "attributes": {
+          "class": "http_request",
+          "method": "send_response",
+          "self": "r",
+          "suffix": "with_status_and_content_type_and_headers",
+          "group": "networking",
+          "static": "web_server"
+        },
+        "signatures": {
+          "pascal": [
+            "procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String; const headers: ArrayOfString)"
+          ],
+          "python": [
+            "def send_response_with_status_and_content_type_and_headers(r, code, message, content_type, headers):"
+          ],
+          "csharp": [
+            "public void HttpRequest.SendResponse(HttpStatusCode code, string message, string contentType, List<string> headers);",
+            "public static void SplashKit.SendResponse(HttpRequest r, HttpStatusCode code, string message, string contentType, List<string> headers);"
+          ],
+          "cpp": [
+            "void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers)"
           ]
         }
       },
@@ -81087,7 +81250,7 @@
       {
         "signature": "struct drawing_options {void *dest; // The bitmap or window used to draw on tofloat scale_x; // Scale datafloat scale_y; //float angle; // Angle for rotationsfloat anchor_offset_x; // Centre point for rotationsfloat anchor_offset_y; //bool flip_x; // Flip databool flip_y; //bool is_part; // Draw just a part?rectangle part; // Part to drawint draw_cell; // The cell to draw - overridden by animation or partdrawing_dest camera; // Draw to world or screen coordinates (camera has effect?)int line_width; // Specify the width of line drawings.animation anim; // The animation for bitmap drawing};",
         "name": "drawing_options",
-        "description": "Drawing options allow you to customise drawing options. These should be\ninitialised using the drawing option functions.",
+        "description": "Drawing options allow you to customise drawing options. These should be\ninitialised using the drawing option functions such as `option_defaults`.",
         "brief": null,
         "fields": {
           "dest": {
@@ -81619,7 +81782,7 @@
         }
       },
       {
-        "signature": "enum http_status_code {HTTP_STATUS_OK = 200,HTTP_STATUS_CREATED = 201,HTTP_STATUS_NO_CONTENT = 204,HTTP_STATUS_BAD_REQUEST = 400,HTTP_STATUS_UNAUTHORIZED = 401,HTTP_STATUS_FORBIDDEN = 403,HTTP_STATUS_NOT_FOUND = 404,HTTP_STATUS_METHOD_NOT_ALLOWED = 405,HTTP_STATUS_REQUEST_TIMEOUT = 408,HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,HTTP_STATUS_NOT_IMPLEMENTED = 501,HTTP_STATUS_SERVICE_UNAVAILABLE = 503};",
+        "signature": "enum http_status_code {HTTP_STATUS_OK = 200,HTTP_STATUS_CREATED = 201,HTTP_STATUS_NO_CONTENT = 204,HTTP_STATUS_MOVED_PERMANENTLY = 301,HTTP_STATUS_FOUND = 302,HTTP_STATUS_SEE_OTHER = 303,HTTP_STATUS_BAD_REQUEST = 400,HTTP_STATUS_UNAUTHORIZED = 401,HTTP_STATUS_FORBIDDEN = 403,HTTP_STATUS_NOT_FOUND = 404,HTTP_STATUS_METHOD_NOT_ALLOWED = 405,HTTP_STATUS_REQUEST_TIMEOUT = 408,HTTP_STATUS_CONFLICT = 409,HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,HTTP_STATUS_NOT_IMPLEMENTED = 501,HTTP_STATUS_SERVICE_UNAVAILABLE = 503};",
         "name": "http_status_code",
         "description": "Defines the HTTP status codes supported by SplashKit.\nRefer to [this article](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)\nfor a detailed description of each code.",
         "brief": null,
@@ -81635,6 +81798,18 @@
           "HTTP_STATUS_NO_CONTENT": {
             "description": "The server successfully processed the request and is not returning any content.",
             "number": 204
+          },
+          "HTTP_STATUS_MOVED_PERMANENTLY": {
+            "description": "The URL of the requested resource has been changed permanently.",
+            "number": 301
+          },
+          "HTTP_STATUS_FOUND": {
+            "description": "The URI of requested resource has been changed temporarily.",
+            "number": 302
+          },
+          "HTTP_STATUS_SEE_OTHER": {
+            "description": "The server sent this response to direct the client to get the requested resource at another URI with a GET request.",
+            "number": 303
           },
           "HTTP_STATUS_BAD_REQUEST": {
             "description": "The server cannot or will not process the request due to an apparent client error.",
@@ -81659,6 +81834,10 @@
           "HTTP_STATUS_REQUEST_TIMEOUT": {
             "description": "The server timed out waiting for the request.",
             "number": 408
+          },
+          "HTTP_STATUS_CONFLICT": {
+            "description": "The request conflicts with current state of the server.",
+            "number": 409
           },
           "HTTP_STATUS_INTERNAL_SERVER_ERROR": {
             "description": "The server encountered an unexpected condition.",

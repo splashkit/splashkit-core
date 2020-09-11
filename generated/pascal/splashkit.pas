@@ -68,12 +68,16 @@ type HttpStatusCode = (
   HTTP_STATUS_OK = 200,
   HTTP_STATUS_CREATED = 201,
   HTTP_STATUS_NO_CONTENT = 204,
+  HTTP_STATUS_MOVED_PERMANENTLY = 301,
+  HTTP_STATUS_FOUND = 302,
+  HTTP_STATUS_SEE_OTHER = 303,
   HTTP_STATUS_BAD_REQUEST = 400,
   HTTP_STATUS_UNAUTHORIZED = 401,
   HTTP_STATUS_FORBIDDEN = 403,
   HTTP_STATUS_NOT_FOUND = 404,
   HTTP_STATUS_METHOD_NOT_ALLOWED = 405,
   HTTP_STATUS_REQUEST_TIMEOUT = 408,
+  HTTP_STATUS_CONFLICT = 409,
   HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
   HTTP_STATUS_NOT_IMPLEMENTED = 501,
   HTTP_STATUS_SERVICE_UNAVAILABLE = 503
@@ -1028,6 +1032,7 @@ function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean;
 function NextWebRequest(server: WebServer): HttpRequest;
 function RequestBody(r: HttpRequest): String;
 function RequestHasQueryParameter(r: HttpRequest; const name: String): Boolean;
+function RequestHeaders(r: HttpRequest): ArrayOfString;
 function RequestMethod(r: HttpRequest): HttpMethod;
 function RequestQueryParameter(r: HttpRequest; const name: String; const defaultValue: String): String;
 function RequestQueryString(r: HttpRequest): String;
@@ -1042,6 +1047,7 @@ procedure SendResponse(r: HttpRequest; const message: String);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String);
 procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String);
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String; const headers: ArrayOfString);
 procedure SendResponse(r: HttpRequest; j: Json);
 function SplitURIStubs(const uri: String): ArrayOfString;
 function StartWebServer(): WebServer;
@@ -3127,6 +3133,7 @@ function __sklib__is_trace_request_for__http_request__string_ref(request: __skli
 function __sklib__next_web_request__web_server(server: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__request_body__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__request_has_query_parameter__http_request__string_ref(r: __sklib_ptr; const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__request_headers__http_request(r: __sklib_ptr): __sklib_vector_string; cdecl; external;
 function __sklib__request_method__http_request(r: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__request_query_parameter__http_request__string_ref__string_ref(r: __sklib_ptr; const name: __sklib_string; const defaultValue: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__request_query_string__http_request(r: __sklib_ptr): __sklib_string; cdecl; external;
@@ -3141,6 +3148,7 @@ procedure __sklib__send_response__http_request__string_ref(r: __sklib_ptr; const
 procedure __sklib__send_response__http_request__http_status_code(r: __sklib_ptr; code: LongInt); cdecl; external;
 procedure __sklib__send_response__http_request__http_status_code__string_ref(r: __sklib_ptr; code: LongInt; const message: __sklib_string); cdecl; external;
 procedure __sklib__send_response__http_request__http_status_code__string_ref__string_ref(r: __sklib_ptr; code: LongInt; const message: __sklib_string; const contentType: __sklib_string); cdecl; external;
+procedure __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(r: __sklib_ptr; code: LongInt; const message: __sklib_string; const contentType: __sklib_string; const headers: __sklib_vector_string); cdecl; external;
 procedure __sklib__send_response__http_request__json(r: __sklib_ptr; j: __sklib_ptr); cdecl; external;
 function __sklib__split_uri_stubs__string_ref(const uri: __sklib_string): __sklib_vector_string; cdecl; external;
 function __sklib__start_web_server(): __sklib_ptr; cdecl; external;
@@ -10654,6 +10662,15 @@ begin
   __skreturn := __sklib__request_has_query_parameter__http_request__string_ref(__skparam__r, __skparam__name);
   result := __skadapter__to_bool(__skreturn);
 end;
+function RequestHeaders(r: HttpRequest): ArrayOfString;
+var
+  __skparam__r: __sklib_ptr;
+  __skreturn: __sklib_vector_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skreturn := __sklib__request_headers__http_request(__skparam__r);
+  result := __skadapter__to_vector_string(__skreturn);
+end;
 function RequestMethod(r: HttpRequest): HttpMethod;
 var
   __skparam__r: __sklib_ptr;
@@ -10789,6 +10806,21 @@ begin
   __skparam__message := __skadapter__to_sklib_string(message);
   __skparam__content_type := __skadapter__to_sklib_string(contentType);
   __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type);
+end;
+procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: String; const contentType: String; const headers: ArrayOfString);
+var
+  __skparam__r: __sklib_ptr;
+  __skparam__code: LongInt;
+  __skparam__message: __sklib_string;
+  __skparam__content_type: __sklib_string;
+  __skparam__headers: __sklib_vector_string;
+begin
+  __skparam__r := __skadapter__to_sklib_http_request(r);
+  __skparam__code := __skadapter__to_sklib_http_status_code(code);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __skparam__content_type := __skadapter__to_sklib_string(contentType);
+  __skparam__headers := __skadapter__to_sklib_vector_string(headers);
+  __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type, __skparam__headers);
 end;
 procedure SendResponse(r: HttpRequest; j: Json);
 var

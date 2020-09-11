@@ -4097,6 +4097,11 @@ bool request_has_query_parameter(http_request r, const string &name) {
     __skadapter__free__sklib_string(__skparam__name);
     return __skadapter__to_bool(__skreturn);
 }
+vector<string> request_headers(http_request r) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    __sklib_vector_string __skreturn = __sklib__request_headers__http_request(__skparam__r);
+    return __skadapter__to_vector_string(__skreturn);
+}
 http_method request_method(http_request r) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
     int __skreturn = __sklib__request_method__http_request(__skparam__r);
@@ -4182,6 +4187,17 @@ void send_response(http_request r, http_status_code code, const string &message,
     __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type);
     __skadapter__free__sklib_string(__skparam__message);
     __skadapter__free__sklib_string(__skparam__content_type);
+}
+void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers) {
+    __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);
+    int __skparam__code = __skadapter__to_int(code);
+    const __sklib_string __skparam__message = __skadapter__to_sklib_string(message);
+    const __sklib_string __skparam__content_type = __skadapter__to_sklib_string(content_type);
+    const __sklib_vector_string __skparam__headers = __skadapter__to_sklib_vector_string(headers);
+    __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type, __skparam__headers);
+    __skadapter__free__sklib_string(__skparam__message);
+    __skadapter__free__sklib_string(__skparam__content_type);
+    __skadapter__free__sklib_vector_string(__skparam__headers);
 }
 void send_response(http_request r, json j) {
     __sklib_http_request __skparam__r = __skadapter__to_sklib_http_request(r);

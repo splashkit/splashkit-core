@@ -9,7 +9,7 @@ if system() == 'Darwin':
 elif system() == 'Linux':
   # Linux uses .so extension
   cdll.LoadLibrary("libSplashKit.so")
-  sklib = CDLL("libsplashkit.so")
+  sklib = CDLL("libSplashKit.so")
 else:
   # Windows uses .dll extension:
   cdll.LoadLibrary("libSplashKit.dll")
@@ -52,12 +52,16 @@ class HttpStatusCode(Enum):
     http_status_ok = 200
     http_status_created = 201
     http_status_no_content = 204
+    http_status_moved_permanently = 301
+    http_status_found = 302
+    http_status_see_other = 303
     http_status_bad_request = 400
     http_status_unauthorized = 401
     http_status_forbidden = 403
     http_status_not_found = 404
     http_status_method_not_allowed = 405
     http_status_request_timeout = 408
+    http_status_conflict = 409
     http_status_internal_server_error = 500
     http_status_not_implemented = 501
     http_status_service_unavailable = 503
@@ -2709,6 +2713,8 @@ sklib.__sklib__request_body__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_body__http_request.restype = _sklib_string
 sklib.__sklib__request_has_query_parameter__http_request__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__request_has_query_parameter__http_request__string_ref.restype = c_bool
+sklib.__sklib__request_headers__http_request.argtypes = [ c_void_p ]
+sklib.__sklib__request_headers__http_request.restype = _sklib_vector_string
 sklib.__sklib__request_method__http_request.argtypes = [ c_void_p ]
 sklib.__sklib__request_method__http_request.restype = c_int
 sklib.__sklib__request_query_parameter__http_request__string_ref__string_ref.argtypes = [ c_void_p, _sklib_string, _sklib_string ]
@@ -2737,6 +2743,8 @@ sklib.__sklib__send_response__http_request__http_status_code__string_ref.argtype
 sklib.__sklib__send_response__http_request__http_status_code__string_ref.restype = None
 sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref.argtypes = [ c_void_p, c_int, _sklib_string, _sklib_string ]
 sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref.restype = None
+sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref.argtypes = [ c_void_p, c_int, _sklib_string, _sklib_string, _sklib_vector_string ]
+sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref.restype = None
 sklib.__sklib__send_response__http_request__json.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__send_response__http_request__json.restype = None
 sklib.__sklib__split_uri_stubs__string_ref.argtypes = [ _sklib_string ]
@@ -6815,6 +6823,10 @@ def request_has_query_parameter ( r, name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__request_has_query_parameter__http_request__string_ref(__skparam__r, __skparam__name)
     return __skadapter__to_bool(__skreturn)
+def request_headers ( r ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skreturn = sklib.__sklib__request_headers__http_request(__skparam__r)
+    return __skadapter__to_vector_string(__skreturn)
 def request_method ( r ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skreturn = sklib.__sklib__request_method__http_request(__skparam__r)
@@ -6876,6 +6888,13 @@ def send_response_with_status_and_content_type ( r, code, message, content_type 
     __skparam__message = __skadapter__to_sklib_string(message)
     __skparam__content_type = __skadapter__to_sklib_string(content_type)
     sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type)
+def send_response_with_status_and_content_type_and_headers ( r, code, message, content_type, headers ):
+    __skparam__r = __skadapter__to_sklib_http_request(r)
+    __skparam__code = __skadapter__to_sklib_http_status_code(code)
+    __skparam__message = __skadapter__to_sklib_string(message)
+    __skparam__content_type = __skadapter__to_sklib_string(content_type)
+    __skparam__headers = __skadapter__to_sklib_vector_string(headers)
+    sklib.__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type, __skparam__headers)
 def send_response_json ( r, j ):
     __skparam__r = __skadapter__to_sklib_http_request(r)
     __skparam__j = __skadapter__to_sklib_json(j)

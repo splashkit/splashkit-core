@@ -3173,6 +3173,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_has_query_parameter__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__request_has_query_parameter__http_request__string_ref(__sklib_ptr r, __sklib_string name);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_headers__http_request", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_string __sklib__request_headers__http_request(__sklib_ptr r);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_method__http_request", CharSet=CharSet.Ansi)]
     private static extern int __sklib__request_method__http_request(__sklib_ptr r);
 
@@ -3214,6 +3217,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__sklib_ptr r, int code, __sklib_string message, __sklib_string contentType);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__sklib_ptr r, int code, __sklib_string message, __sklib_string contentType, __sklib_vector_string headers);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__json(__sklib_ptr r, __sklib_ptr j);
@@ -11094,6 +11100,14 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_bool(__skreturn);
     }
+    public static List<string> RequestHeaders(HttpRequest r)
+    {
+      __sklib_ptr __skparam__r;
+      __sklib_vector_string __skreturn;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skreturn = __sklib__request_headers__http_request(__skparam__r);
+      return __skadapter__to_vector_string(__skreturn);
+    }
     public static HttpMethod RequestMethod(HttpRequest r)
     {
       __sklib_ptr __skparam__r;
@@ -11226,6 +11240,23 @@ namespace SplashKitSDK
       __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type);
     __skadapter__free__sklib_string(ref __skparam__message);
     __skadapter__free__sklib_string(ref __skparam__content_type);
+    }
+    public static void SendResponse(HttpRequest r, HttpStatusCode code, string message, string contentType, List<string> headers)
+    {
+      __sklib_ptr __skparam__r;
+      int __skparam__code;
+      __sklib_string __skparam__message;
+      __sklib_string __skparam__content_type;
+      __sklib_vector_string __skparam__headers;
+      __skparam__r = __skadapter__to_sklib_http_request(r);
+      __skparam__code = __skadapter__to_sklib_http_status_code(code);
+      __skparam__message = __skadapter__to_sklib_string(message);
+      __skparam__content_type = __skadapter__to_sklib_string(contentType);
+      __skparam__headers = __skadapter__to_sklib_vector_string(headers);
+      __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__skparam__r, __skparam__code, __skparam__message, __skparam__content_type, __skparam__headers);
+    __skadapter__free__sklib_string(ref __skparam__message);
+    __skadapter__free__sklib_string(ref __skparam__content_type);
+    __skadapter__free__sklib_vector_string(ref __skparam__headers);
     }
     public static void SendResponse(HttpRequest r, Json j)
     {
@@ -15269,12 +15300,16 @@ namespace SplashKitSDK
     HttpStatusOk = 200,
     HttpStatusCreated = 201,
     HttpStatusNoContent = 204,
+    HttpStatusMovedPermanently = 301,
+    HttpStatusFound = 302,
+    HttpStatusSeeOther = 303,
     HttpStatusBadRequest = 400,
     HttpStatusUnauthorized = 401,
     HttpStatusForbidden = 403,
     HttpStatusNotFound = 404,
     HttpStatusMethodNotAllowed = 405,
     HttpStatusRequestTimeout = 408,
+    HttpStatusConflict = 409,
     HttpStatusInternalServerError = 500,
     HttpStatusNotImplemented = 501,
     HttpStatusServiceUnavailable = 503
@@ -18331,6 +18366,12 @@ public class HttpRequest : PointerWrapper
     }
 
 
+    public void SendResponse(HttpStatusCode code, string message, string contentType, List<string> headers)
+    {
+        SplashKit.SendResponse(this, code, message, contentType, headers);
+    }
+
+
     public void SendResponse(Json j)
     {
         SplashKit.SendResponse(this, j);
@@ -18339,6 +18380,10 @@ public class HttpRequest : PointerWrapper
     public string Body
     {
         get { return SplashKit.RequestBody(this); }
+    }
+    public List<string> Headers
+    {
+        get { return SplashKit.RequestHeaders(this); }
     }
     public HttpMethod Method
     {
