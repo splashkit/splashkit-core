@@ -87,28 +87,6 @@ namespace splashkit_lib
         curl_global_cleanup();
     }
 
-    http_status_code code_to_status(int code)
-    {
-        switch (code)
-        {
-            case 200: return HTTP_STATUS_OK;
-            case 201: return HTTP_STATUS_CREATED;
-            case 204: return HTTP_STATUS_NO_CONTENT;
-            case 400: return HTTP_STATUS_BAD_REQUEST;
-            case 401: return HTTP_STATUS_UNAUTHORIZED;
-            case 403: return HTTP_STATUS_FORBIDDEN;
-            case 404: return HTTP_STATUS_NOT_FOUND;
-            case 405: return HTTP_STATUS_METHOD_NOT_ALLOWED;
-            case 408: return HTTP_STATUS_REQUEST_TIMEOUT;
-            case 500: return HTTP_STATUS_INTERNAL_SERVER_ERROR;
-            case 501: return HTTP_STATUS_NOT_IMPLEMENTED;
-            case 503: return HTTP_STATUS_SERVICE_UNAVAILABLE;
-
-            default:
-                return static_cast<http_status_code>(code);
-        }
-    }
-
     void _init_curl(CURL *curl_handle, const string &host, unsigned short port)
     {
         // specify URL to get
@@ -142,7 +120,7 @@ namespace splashkit_lib
             list = curl_slist_append(list, "Content-Type: application/json;charset=UTF8");
             list = curl_slist_append(list, "Accept: application/json, text/plain, */*");
         }
-        
+
         curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, list);
         curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, body.c_str());
 
@@ -173,7 +151,7 @@ namespace splashkit_lib
 
         long status;
         curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &status);
-        result->code = code_to_status((int)status);
+        result->code = static_cast<http_status_code>(status);
 
         char *content_type;
         curl_easy_getinfo(curl_handle, CURLINFO_CONTENT_TYPE, &content_type);
@@ -278,7 +256,7 @@ namespace splashkit_lib
         CURL *curl_handle = curl_easy_init();;
         CURLcode res;
 
-        
+
         //TODO: Add headers param
         _init_curl(curl_handle, host, port);
         struct curl_slist *list = _setup_curl_upload(curl_handle, body, {});

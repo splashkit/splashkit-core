@@ -168,9 +168,16 @@ void get_person_route(http_request request, string uri)
     send_html_file_response(request, "get.html");
 }
 
+void api_login_route(http_request request, string uri)
+{
+  send_response(request, HTTP_STATUS_OK, "Check your cookies", "text", {"Set-Cookie: user=admin"});
+}
+
 void add_routes()
 {
     routes[HTTP_GET_METHOD].insert({"", root_route});
+
+    routes[HTTP_GET_METHOD].insert({"login", api_login_route});
 
     routes[HTTP_GET_METHOD].insert({"names", names_get_routes});
     routes[HTTP_POST_METHOD].insert({"names", names_post_routes});
