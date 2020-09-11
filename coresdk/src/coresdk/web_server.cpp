@@ -78,11 +78,6 @@ namespace splashkit_lib
         r->control.release();
     }
 
-    void send_response(http_request r, const string &message)
-    {
-        send_response(r, HTTP_STATUS_OK, message, "text/plain", {});
-    }
-
     void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers)
     {
         sk_http_response resp;
@@ -105,6 +100,11 @@ namespace splashkit_lib
     void send_response(http_request r, http_status_code code, const string &message, const string &content_type)
     {
       send_response(r, code, message, content_type, {});
+    }
+
+    void send_response(http_request r, const string &message)
+    {
+        send_response(r, HTTP_STATUS_OK, message, "text/plain");
     }
 
     void send_response(http_request r, http_status_code code, const string &message)
