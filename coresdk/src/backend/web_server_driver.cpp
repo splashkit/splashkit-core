@@ -50,6 +50,13 @@ namespace splashkit_lib
         r->query_string = request_info->query_string ? request_info->query_string : "";
         r->filename = "";
 
+        // Populate headers
+        for (auto header : request_info->http_headers) {
+          if (header.name != nullptr) {
+            r->headers.push_back(string(header.name) + ": " + string(header.value));
+          }
+        }
+
         if ( strncmp(request_info->request_method, "GET", 4) == 0 )
         {
             r->method = HTTP_GET_METHOD;
@@ -97,6 +104,7 @@ namespace splashkit_lib
         for (string &header : r->response->headers) {
           headers.append(header.append("\r\n"));
         }
+
 
         // Send HTTP reply to the client
         mg_printf(conn,
