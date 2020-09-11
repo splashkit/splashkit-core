@@ -161,7 +161,7 @@ namespace splashkit_lib
     {
         rectangle intersect = intersection(rect1, rect2);
 
-        return (abs(intersect.width) + abs(intersect.height)) != 0;
+        return (abs((long long)intersect.width) + abs((long long)intersect.height)) != 0;
     }
 
     float rectangle_top(const rectangle &rect)

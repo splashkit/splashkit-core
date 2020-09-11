@@ -1334,7 +1334,7 @@ namespace splashkit_lib
         {
             if (value < 0)
             {
-                value = 360 + (value + abs(trunc(value / 360) * 360));
+                value = 360 + (value + abs((long long)(trunc(value / 360) * 360)));
             }
 
             if (value > 360)

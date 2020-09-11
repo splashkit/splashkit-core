@@ -77,7 +77,7 @@ namespace splashkit_lib
 
     bool vectors_equal(const vector_2d &v1, const vector_2d v2)
     {
-        return abs(v1.x - v2.x) < EPSEPS and abs(v1.y - v2.y) < EPSEPS;
+        return abs((long long)(v1.x - v2.x)) < EPSEPS and abs((long long)(v1.y - v2.y)) < EPSEPS;
     }
 
     bool vectors_not_equal(const vector_2d &v1, const vector_2d v2)
@@ -145,7 +145,7 @@ namespace splashkit_lib
 
     vector_2d vector_limit(const vector_2d &v, double limit)
     {
-        if ( abs(vector_magnitude(v)) > abs(limit) )
+        if ( abs((long long)vector_magnitude(v)) > abs((long long)limit) )
         {
             return vector_multiply(unit_vector(v), limit);
         }

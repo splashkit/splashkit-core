@@ -133,7 +133,7 @@ namespace splashkit_lib
 
     bool point_in_circle(const point_2d &pt, const circle &c)
     {
-        return point_point_distance(c.center, pt) <= abs(c.radius);
+        return point_point_distance(c.center, pt) <= abs((long long)c.radius);
     }
 
     bool point_on_line(const point_2d &pt, const line &l)
