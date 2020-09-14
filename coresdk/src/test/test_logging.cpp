@@ -1,13 +1,15 @@
-#include "splashkit.h"
 #include "logging.h"
 
-int main ()
+using namespace splashkit_lib;
+
+void run_logging_test ()
 {
-	el::Configurations app_log_conf;
-	conf_and_init (
-		app_log_conf,
-		log_conf_category = "default",
-log_filename = "app.log",
-log_format = "%level (%datetime{%d/%M/%Y, %h:%m:%s}): %msg [in %fbase, ln %line]");
-	return 0;
+    // Test log output to console
+    log (INFO, "Test info Message");
+    log (DEBUG, "Test debug Message");
+    log (WARNING, "Test warning Message");
+    log (ERROR, "Test error Message");
+    
+    // Test output to plain text file:
+    
 }
