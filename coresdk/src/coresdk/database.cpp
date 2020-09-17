@@ -249,7 +249,7 @@ namespace splashkit_lib
 
         if ( not sk_open_database(file_path, result) )
         {
-            LOG(WARNING) << "Failed to open database " + file_path;
+            LOG(WARNING) << "Failed to open database " << file_path;
             delete result;
             return nullptr;
         }
