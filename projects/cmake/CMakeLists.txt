@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.2)
 project(splashkit)
 
 # SK Directories relative to cmake project
-set(SK_SRC "../../coresdk/src")
-set(SK_EXT "../../coresdk/external")
-set(SK_LIB "../../coresdk/lib")
-set(SK_OUT "../../out")
-set(SK_BIN "../../bin")
+set(SK_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/src")
+set(SK_EXT "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/external")
+set(SK_LIB "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/lib")
+set(SK_OUT "${CMAKE_CURRENT_SOURCE_DIR}/../../out")
+set(SK_BIN "${CMAKE_CURRENT_SOURCE_DIR}/../../bin")
 
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
