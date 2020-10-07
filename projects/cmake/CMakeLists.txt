@@ -46,13 +46,16 @@ if (APPLE)
                    -lfreetype \
                    -lcurl \
                    -lncurses \
-                   -ldl")
+                   -ldl \
+                   -lBox2D")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
     set(LIB_FLAGS "-L${SK_LIB}/win64 \
                    -L/mingw64/lib \
                    -L/usr/lib \
-                   -lSDL2main")
+                   -lSDL2main"
+                   -lBox2D
+									 )
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -74,7 +77,9 @@ else()
                    -lfreetype \
                    -lcurl \
                    -lncurses \
-                   -ldl")
+                   -ldl"
+                   -lBox2D
+        )
 endif()
 
 # FLAGS
@@ -109,6 +114,7 @@ include_directories("${SK_SRC}")
 include_directories("${SK_SRC}/coresdk")
 include_directories("${SK_SRC}/backend")
 include_directories("${SK_SRC}/test")
+include_directories("${SK_EXT}")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/hash-library")
