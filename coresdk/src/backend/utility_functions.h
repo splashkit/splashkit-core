@@ -186,6 +186,8 @@ collection.erase(collection.begin());\
     bool try_str_to_double(string str, double &result);
     
     string to_lower (string str);
+    string base_fs_path();
+    bool scan_dir_recursive(const string &directory, vector<string> &dest);
     
     double rad_to_deg(double radians);
     
