@@ -4,12 +4,12 @@ using namespace splashkit_lib;
 
 void run_logging_test ()
 {
-    // Test log output to console
-    log (INFO, "Test info Message");
-    log (DEBUG, "Test debug Message");
-    log (WARNING, "Test warning Message");
-    log (ERROR, "Test error Message");
+    log_level _log_level = INFO;
+log_mode _log_mode = CONSOLE_AND_FILE;
     
-    // Test output to plain text file:
-    
+    set_logger_status ("../../../logs/test_logging", _log_mode);
+    log (INFO, "Testing info");
+	    log (DEBUG, "Testing debug");
+		    log (WARNING, "Testing warning");
+			    log (ERROR, "Testing error");
 }
