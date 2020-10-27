@@ -7,13 +7,19 @@ jobs:
     defaults:
       run:
         shell: msys2 {0}
+        working-directory: projects/cmake
     steps:
       - uses: actions/checkout@v2
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
-          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-{x86_64,i686}-ca-certificates mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-libpng cmake
-      - name: CI-Build
+          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-x86_64-ca-certificates mingw-w64-x86_64-gcc mingw-w64-x86_64-libpng cmake
+      - name: Build
+        working-directory: ./projects/cmake
         run: |
-          ./ci-build.sh
+          cmake .
+          make -j 2
+      - name: Build
+        working-directory: ./bin
+        run: ./skunit_tests"
