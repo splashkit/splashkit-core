@@ -18,6 +18,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
+          path-type: inherit
           update: true
           install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake
       - uses: actions/checkout@v2
@@ -31,5 +32,6 @@ jobs:
       - name: execute
         working-directory: ./bin
         run: |
-          export PATH=`pwd`/coresdk/lib/${{ matrix.path }}
+          export PATH=../coresdk/lib/${{ matrix.path }}
+          echo $PATH
           ./skunit_tests
