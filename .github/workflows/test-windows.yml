@@ -1,8 +1,8 @@
-name: Test SplashKit Core Windows
+name: SplashKit Core Windows
 on: [push, pull_request]
 
 jobs:
-  build:
+  test-win32-win64:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -23,11 +23,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      - name: Build
+      - name: build
         working-directory: ./projects/cmake
         run: |
           cmake .
           make -j 2
-      - name: Build
+      - name: execute
         working-directory: ./bin
         run: ./skunit_tests"
