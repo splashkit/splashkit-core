@@ -1,0 +1,19 @@
+name: Test SplashKit Core Windows
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-{x86_64,i686}-ca-certificates mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-libpng cmake
+      - name: CI-Build
+        run: |
+          ./ci-build.sh
