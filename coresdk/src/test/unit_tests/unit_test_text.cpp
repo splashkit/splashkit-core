@@ -15,8 +15,13 @@ using namespace splashkit_lib;
 
 TEST_CASE("can load system fonts", "[text]")
 {
+    
     font test;
+    #ifndef __linux__
     test = load_font("Arial", "Arial");
+    #else
+    test = load_font("Arial", "UbuntuMono-R.ttf");
+    #endif
 
     SECTION("can load arial")
     {
