@@ -49,10 +49,23 @@ if (APPLE)
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-    set(LIB_FLAGS "-L${SK_LIB}/win64 \
-                   -L/mingw64/lib \
-                   -L/usr/lib \
-                   -lSDL2main")
+    if (${MINGW32})
+        message("Using mingw32")
+        set(OS_PATH_SUFFIX "win32")
+        set(MINGW_PATH_PART "mingw32")
+    elseif (${MINGW64})
+        message("Using mingw64")
+        set(OS_PATH_SUFFIX "win64")
+        set(MINGW_PATH_PART "mingw64")
+    else ( )
+        message(SEND_ERROR "Failed to detect windows architecture")
+        return ()
+    endif()
+
+    set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
+                    -L/${MINGW_PATH_PART}/lib \
+                    -L/usr/lib \
+                    -lSDL2main")
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -131,8 +144,8 @@ if (APPLE)
 endif()
 # WINDOWS ONLY DIRECTORY INCLUDES
 if (MSYS)
-    include_directories(/mingw64/include)
-    include_directories(/mingw64/include/libpng16)
+    include_directories(/${MINGW_PATH_PART}/include)
+    include_directories(/${MINGW_PATH_PART}/include/libpng16)
     include_directories("${SK_LIB}/win_inc")
     include_directories("${SK_EXT}/sqlite")
 endif()
@@ -148,7 +161,7 @@ target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (MSYS)
     add_definitions(-DWINDOWS)
-    link_directories("${SK_LIB}/win64")
+    link_directories("${SK_LIB}/${OS_PATH_SUFFIX}")
     target_link_libraries(SplashKitBackend SDL2_mixer
                                            SDL2_image
                                            SDL2_net
