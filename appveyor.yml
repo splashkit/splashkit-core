@@ -9,14 +9,13 @@ environment:
           MSYS_BITS: 32
           ADD_PATH: /mingw64/bin
           platform: x32
+          CHERE_INVOKING: 'yes'
+          MSYSTEM: 'MINGW32'
 
 install:
-    - C:\"Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
-    - if defined MSYS_BITS set PATH=C:\msys64\mingw%MSYS_BITS%\bin;C:\msys64\usr\bin;%PATH%
-    - C:\msys64\usr\bin\bash -lc "pacman --sync --noconfirm pacman-mirrors"
-    - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm"
-    - C:\msys64\usr\bin\bash -lc "pacman -Syu --noconfirm" # Hackity hack hacks
-    #- C:\msys64\usr\bin\bash -lc "pacman --noconfirm base-devel mingw-w64-{x86_64,i686}-toolchain"
+    # Update MSYS2
+    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"  # Core update (in case any core packages are outdated)
+    - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -Syuu"  # Normal update
     - C:\msys64\usr\bin\bash -lc "pacman --noconfirm -S make wget tar patch dos2unix diffutils ca-certificates mingw-w64-{x86_64,i686}-ca-certificates mingw-w64-{x86_64,i686}-gcc mingw-w64-{x86_64,i686}-gcc-fortran mingw-w64-{x86_64,i686}-libpng cmake svn mercurial"
 
 build_script:
