@@ -7,8 +7,8 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: MINGW64, arch: x86_64 },
-          { msystem: MINGW32, arch: i686   }
+          { msystem: MINGW64, arch: x86_64, path: win64 },
+          { msystem: MINGW32, arch: i686,   path: win32 }
         ]
     defaults:
       run:
@@ -29,5 +29,8 @@ jobs:
           cmake .
           make -j 2
       - name: execute
+        env:
         working-directory: ./bin
-        run: ./skunit_tests
+        run: |
+          export PATH=`pwd`/coresdk/lib/${{ matrix.path }}
+          ./skunit_tests
