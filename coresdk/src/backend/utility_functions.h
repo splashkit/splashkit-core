@@ -187,7 +187,7 @@ collection.erase(collection.begin());\
     
     string to_lower (string str);
     string base_fs_path();
-    bool scan_dir_recursive(const string &directory, vector<string> &dest);
+    vector<string> scan_dir_recursive(const string &directory);
     
     double rad_to_deg(double radians);
     

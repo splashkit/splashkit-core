@@ -28,6 +28,20 @@ using std::endl;
 
 namespace splashkit_lib
 {
+    /**
+     * @brief Paths to search for system fonts
+     * 
+     * Loaded in 
+     */
+    vector<string> _system_font_paths;
+
+    /**
+     * @brief Load the system font paths vector.
+     * 
+     * Forward declaration.
+     */
+    void load_system_font_paths();
+
     void sk_init_text()
     {
         if (TTF_Init() == -1)
@@ -35,6 +49,8 @@ namespace splashkit_lib
             std::cerr << "Text loading is broken." << std::endl;
             exit(-1);
         }
+
+        load_system_font_paths();
     }
 
     void sk_finalize_text()
@@ -290,5 +306,45 @@ namespace splashkit_lib
             }
             SDL_FreeSurface(text_surface);
         }
+    }
+
+    string system_font_path()
+    {
+        string base_fp = base_fs_path();
+
+        #if __linux__
+            base_fp += "usr/share/fonts";
+        #elif WINDOWS
+            base_fp += "Windows\\Fonts";
+        #else
+            base_fp += "System/Library/Fonts";
+        #endif
+
+        return base_fp;
+    }
+
+    void load_system_font_paths()
+    {
+        _system_font_paths = scan_dir_recursive(system_font_path());
+    }
+
+    string sk_find_system_font_path(string name)
+    {
+        string path;
+        for(string dir : _system_font_paths)
+        {
+            path = path_from( { dir }, name);
+            if ( file_exists( path ))
+            {
+                return path;
+            }
+
+            if ( file_exists( path + ".ttf" ))
+            {
+                return path + ".ttf";
+            }
+        }
+
+        return "";
     }
 }

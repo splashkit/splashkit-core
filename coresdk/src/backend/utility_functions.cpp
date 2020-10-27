@@ -23,14 +23,16 @@
 
 #ifndef WINDOWS
 #include <pwd.h>
-#include <dirent.h>
 #else
 #include <Windows.h>
 #include <Shlobj.h>
 #endif
 
+#include <filesystem>
+
 using std::string;
 using std::locale;
+using std::filesystem::recursive_directory_iterator;
 
 namespace splashkit_lib
 {
@@ -145,37 +147,18 @@ namespace splashkit_lib
         #endif
     }
 
-    bool scan_dir_recursive(const string &directory, vector<string> &dest)
+    vector<string> scan_dir_recursive(const string &directory)
     {
-        //Windows support is not yet implemented.
-        #if WINDOWS
-            return false;
-        #endif
-
-        DIR *dirhnd;
-        struct dirent *dirpnt;
-        string fn_buffer;
-
-        vector<string> directories;
-        directories.push_back(directory);
-
-        for (size_t i=0; i<directories.size(); ++i)
+        vector<string> result;
+        result.push_back(directory);
+        
+        for (const auto& dir_entry : recursive_directory_iterator(directory))
         {
-            dirhnd = opendir(directories[i].c_str());
-            while ((dirpnt = readdir(dirhnd)) != NULL)
-            {
-                fn_buffer = string(dirpnt->d_name);
-                if (dirpnt->d_type == DT_DIR &&
-                    fn_buffer != "." && fn_buffer != "..")
-                    directories.push_back(directories[i] + "/" + fn_buffer);
-                else
-                    dest.push_back(directories[i] + "/" + fn_buffer);
-            }
-            closedir(dirhnd);
+            if(dir_entry.is_directory())
+                result.push_back(dir_entry.path().generic_string());
         }
 
-        return dest.size() > 0;
-
+        return result;
     }
 
     struct unknown_data {
