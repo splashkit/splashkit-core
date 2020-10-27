@@ -30,4 +30,4 @@ jobs:
           make -j 2
       - name: execute
         working-directory: ./bin
-        run: ./skunit_tests"
+        run: ./skunit_tests
