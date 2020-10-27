@@ -29,7 +29,6 @@ jobs:
           cmake .
           make -j 2
       - name: execute
-        env:
         working-directory: ./bin
         run: |
           export PATH=`pwd`/coresdk/lib/${{ matrix.path }}
