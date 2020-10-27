@@ -90,7 +90,8 @@ else()
                    -lfreetype \
                    -lcurl \
                    -lncurses \
-                   -ldl")
+                   -ldl \
+                   -lstdc++fs")
 endif()
 
 # FLAGS
