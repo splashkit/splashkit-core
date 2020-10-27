@@ -2,7 +2,7 @@ name: SplashKit Core Windows
 on: [push, pull_request]
 
 jobs:
-  test-win32-win64:
+  build:
     runs-on: windows-latest
     strategy:
       matrix:
