@@ -49,6 +49,9 @@ if (APPLE)
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
+    string(COMPARE EQUAL "MINGW32" "$ENV{MSYSTEM}" MINGW32)
+    string(COMPARE EQUAL "MINGW64" "$ENV{MSYSTEM}" MINGW64)
+
     if (${MINGW32})
         message("Using mingw32")
         set(OS_PATH_SUFFIX "win32")
