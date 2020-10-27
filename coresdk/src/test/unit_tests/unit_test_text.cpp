@@ -13,7 +13,7 @@
 
 using namespace splashkit_lib;
 
-#ifndef __APPLE__
+#ifdef __APPLE__
 
 TEST_CASE("can load system fonts", "[text]")
 {
