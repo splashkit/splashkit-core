@@ -4,6 +4,12 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        include: [
+          { msystem: MINGW64, arch: x86_64 },
+          { msystem: MINGW32, arch: i686   }
+        ]
     defaults:
       run:
         shell: msys2 {0}
@@ -11,9 +17,9 @@ jobs:
     steps:
       - uses: msys2/setup-msys2@v2
         with:
-          msystem: MINGW64
+          msystem: ${{ matrix.msystem }}
           update: true
-          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-x86_64-ca-certificates mingw-w64-x86_64-gcc mingw-w64-x86_64-libpng cmake
+          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
