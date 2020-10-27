@@ -32,6 +32,6 @@ jobs:
       - name: execute
         working-directory: ./bin
         run: |
-          export PATH=../coresdk/lib/${{ matrix.path }}
+          export PATH=../coresdk/lib/${{ matrix.path }}:$PATH
           echo $PATH
           ./skunit_tests

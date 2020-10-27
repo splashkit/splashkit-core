@@ -12,7 +12,7 @@ jobs:
           sudo apt-get install -y libflac-dev libwebp-dev libvorbis-dev libpng-dev
           sudo apt-get install -y libcurl4-openssl-dev libmikmod2-dev
           sudo apt-get install -y libsdl2-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
-          echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+          sudo echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
           sudo apt-get install ttf-mscorefonts-installer
           sudo fc-cache
       - uses: actions/checkout@v2
