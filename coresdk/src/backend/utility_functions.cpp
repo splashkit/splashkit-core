@@ -141,7 +141,7 @@ namespace splashkit_lib
     string base_fs_path()
     {
         #if WINDOWS
-            return get_env_var("SystemDrive");
+            return get_env_var("SYSTEMDRIVE") + "\\";
         #else
             return "/";
         #endif

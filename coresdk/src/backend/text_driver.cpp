@@ -315,7 +315,7 @@ namespace splashkit_lib
         #if __linux__
             base_fp += "usr/share/fonts";
         #elif WINDOWS
-            base_fp += "Windows\\Fonts";
+            base_fp += get_env_var("SYSTEMROOT") + "\\Fonts";
         #else
             base_fp += "System/Library/Fonts";
         #endif
