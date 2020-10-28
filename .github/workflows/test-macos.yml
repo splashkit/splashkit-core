@@ -1,0 +1,27 @@
+name: SplashKit Core macOS
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - name: build
+        working-directory: ./projects/cmake
+        run: |
+          cmake .
+          make -j 2
+      - name: execute
+        working-directory: ./bin
+        run: ./skunit_tests
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.3.8 # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: translate
+        working-directory: ./tools/translator
+        run: |
+          bundle install
+          bundle exec translate -v -i ../../
