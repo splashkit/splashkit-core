@@ -19,7 +19,7 @@ TEST_CASE("can load system fonts", "[text]")
     #ifndef __linux__
     test = load_font("Arial", "Arial");
     #else
-    test = load_font("Arial", "UbuntuMono-R.ttf");
+    test = load_font("Arial", "DejaVuSans.ttf");
     #endif
 
     SECTION("can load arial")
