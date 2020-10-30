@@ -181,7 +181,7 @@ namespace splashkit_lib
                 if ( ! file_exists(file_path) )
                 {
                     file_path = sk_find_system_font_path(filename);
-
+                    // LOG(TRACE) << "Loading font: " << file_path;
                     if ( ! file_exists(file_path) )
                     {
 						LOG(WARNING) << cat({ "Unable to locate font file for ", name, " (", filename, ")"});

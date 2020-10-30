@@ -152,10 +152,15 @@ namespace splashkit_lib
         vector<string> result;
         result.push_back(directory);
         
+        // LOG(TRACE) << "Adding dir: " << directory;
+
         for (const auto& dir_entry : recursive_directory_iterator(directory))
         {
             if(dir_entry.is_directory())
+            {
+                // LOG(TRACE) << "Adding dir: " << dir_entry.path().generic_string();
                 result.push_back(dir_entry.path().generic_string());
+            }
         }
 
         return result;

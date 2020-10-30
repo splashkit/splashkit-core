@@ -44,6 +44,7 @@ namespace splashkit_lib
 
     void sk_init_text()
     {
+        // LOG(TRACE) << "About to initialise splashkit - text";
         if (TTF_Init() == -1)
         {
             std::cerr << "Text loading is broken." << std::endl;
@@ -315,7 +316,8 @@ namespace splashkit_lib
         #if __linux__
             base_fp += "usr/share/fonts";
         #elif WINDOWS
-            base_fp += get_env_var("SYSTEMROOT") + "\\Fonts";
+            base_fp = get_env_var("SYSTEMROOT") + "\\Fonts";
+            //LOG(TRACE) << "base fp: " << base_fp;
         #else
             base_fp += "System/Library/Fonts";
         #endif
@@ -330,18 +332,32 @@ namespace splashkit_lib
 
     string sk_find_system_font_path(string name)
     {
-        string path;
+        internal_sk_init();
+        
+        string path, lcpath;
         for(string dir : _system_font_paths)
         {
             path = path_from( { dir }, name);
+            lcpath = path_from( { dir }, to_lower(name));
+
+            std::cout << "loading font at system path: " << path << std::endl << lcpath << std::endl;
+
             if ( file_exists( path ))
             {
                 return path;
+            }
+            else if ( file_exists( lcpath ))
+            {
+                return lcpath;
             }
 
             if ( file_exists( path + ".ttf" ))
             {
                 return path + ".ttf";
+            }
+            else if ( file_exists( lcpath + ".ttf" ))
+            {
+                return lcpath + ".ttf";
             }
         }
 

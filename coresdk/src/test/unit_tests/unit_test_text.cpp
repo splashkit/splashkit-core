@@ -13,8 +13,6 @@
 
 using namespace splashkit_lib;
 
-#ifdef __APPLE__
-
 TEST_CASE("can load system fonts", "[text]")
 {
     font test;
@@ -30,5 +28,3 @@ TEST_CASE("can load system fonts", "[text]")
         REQUIRE(VALID_PTR(test, FONT_PTR));
     }
 }
-
-#endif

@@ -28,7 +28,6 @@ namespace splashkit_lib
     // Storage for the system data
     sk_system_data _sk_system_data;
 
-
     void sk_setup_displays();
     void _init_key_maps();
 
@@ -40,7 +39,7 @@ namespace splashkit_lib
 
         el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
 
-        //    cout << "pre init" << endl;
+        // LOG(TRACE) << "About to initialise splashkit";
         if ( -1 == SDL_Init( SDL_INIT_EVERYTHING ) )
         {
             // fatal error so...
