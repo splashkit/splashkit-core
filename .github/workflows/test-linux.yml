@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: install-dependencies
         run: |
+          cd /usr/share/fonts
+          find .
           sudo apt-get -qq update
           sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev
           sudo apt-get install -y libflac-dev libwebp-dev libvorbis-dev libpng-dev
