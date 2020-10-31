@@ -36,5 +36,6 @@ namespace splashkit_lib
                       const char * text,
                       sk_color clr);
     
+    string sk_find_system_font_path(string name);
 }
 #endif /* defined(__sgsdl2__SGSDL2Text__) */

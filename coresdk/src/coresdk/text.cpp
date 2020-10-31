@@ -164,45 +164,6 @@ namespace splashkit_lib
         return get_font_style(font_named(name));
     }
 
-    string get_system_font_path()
-    {
-        string base_fp = base_fs_path();
-
-        #if __linux__
-            base_fp += "usr/share/fonts";
-        #elif WINDOWS
-            base_fp += "Windows\Fonts";
-        #else
-            base_fp += "System/Library/Fonts";
-        #endif
-
-        return base_fp;
-    }
-
-    string find_system_font_path(string name)
-    {
-#ifdef WINDOWS
-#define PATH_SEP "\\"
-#else
-#define PATH_SEP "/"
-#endif
-
-        vector<string> files;
-        scan_dir_recursive(get_system_font_path(), files);
-
-
-        for (size_t i=0; i<files.size(); ++i)
-        {
-            int fi = files[i].find_last_of(PATH_SEP) +1;
-            int fd = i - fi;
-            string file_name = files[i].substr(fi, fd);
-            if (file_name == name)
-                return files[i];
-        }
-
-        return "";
-    }
-
     font load_font(const string &name, const string &filename)
     {
         if (has_font(name)) return font_named(name);
@@ -219,11 +180,11 @@ namespace splashkit_lib
 
                 if ( ! file_exists(file_path) )
                 {
-                    file_path = find_system_font_path(filename);
-
+                    file_path = sk_find_system_font_path(filename);
+                    // LOG(TRACE) << "Loading font: " << file_path;
                     if ( ! file_exists(file_path) )
                     {
-						LOG(WARNING) << cat({ "Unable to locate file for ", name, " (", file_path, ")"});
+						LOG(WARNING) << cat({ "Unable to locate font file for ", name, " (", filename, ")"});
                         return nullptr;
                     }
                 }

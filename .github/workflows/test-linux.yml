@@ -4,22 +4,28 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DISPLAY: :99
+      SDL_VIDEODRIVER: x11
     steps:
       - name: install-dependencies
         run: |
+          cd /usr/share/fonts
+          find .
           sudo apt-get -qq update
           sudo apt-get install -y libegl1-mesa-dev libgles2-mesa-dev
-          sudo apt-get install -y libflac-dev libwebp-dev libvorbis-dev libpng-dev
-          sudo apt-get install -y libcurl4-openssl-dev libmikmod2-dev
-          sudo apt-get install -y libsdl2-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
+          sudo apt-get install -y -qq xvfb
+          sudo apt-get install -y cmake libpng-dev libcurl4-openssl-dev libsdl2-dev libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-net-dev libsdl2-ttf-dev libmikmod-dev libncurses5-dev libbz2-dev libflac-dev libvorbis-dev libwebp-dev 
+      - name: setup display
+        run: /sbin/start-stop-daemon --start --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 800x600x24 -ac +extension GLX
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
       - name: build
         working-directory: ./projects/cmake
         run: |
-          cmake .
-          make -j 2
+          CC=/usr/bin/gcc-8 CXX=/usr/bin/g++-8 cmake .
+          CC=/usr/bin/gcc-8 CXX=/usr/bin/g++-8 make -j 2
       - name: execute
         working-directory: ./bin
         run: ./skunit_tests

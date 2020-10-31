@@ -23,14 +23,16 @@
 
 #ifndef WINDOWS
 #include <pwd.h>
-#include <dirent.h>
 #else
 #include <Windows.h>
 #include <Shlobj.h>
 #endif
 
+#include <filesystem>
+
 using std::string;
 using std::locale;
+using std::filesystem::recursive_directory_iterator;
 
 namespace splashkit_lib
 {
@@ -139,43 +141,29 @@ namespace splashkit_lib
     string base_fs_path()
     {
         #if WINDOWS
-            return get_env_var("SystemDrive");
+            return get_env_var("SYSTEMDRIVE") + "\\";
         #else
             return "/";
         #endif
     }
 
-    bool scan_dir_recursive(const string &directory, vector<string> &dest)
+    vector<string> scan_dir_recursive(const string &directory)
     {
-        //Windows support is not yet implemented.
-        #if WINDOWS
-            return false;
-        #endif
+        vector<string> result;
+        result.push_back(directory);
+        
+        // LOG(TRACE) << "Adding dir: " << directory;
 
-        DIR *dirhnd;
-        struct dirent *dirpnt;
-        string fn_buffer;
-
-        vector<string> directories;
-        directories.push_back(directory);
-
-        for (size_t i=0; i<directories.size(); ++i)
+        for (const auto& dir_entry : recursive_directory_iterator(directory))
         {
-            dirhnd = opendir(directories[i].c_str());
-            while ((dirpnt = readdir(dirhnd)) != NULL)
+            if(dir_entry.is_directory())
             {
-                fn_buffer = string(dirpnt->d_name);
-                if (dirpnt->d_type == DT_DIR &&
-                    fn_buffer != "." && fn_buffer != "..")
-                    directories.push_back(directories[i] + "/" + fn_buffer);
-                else
-                    dest.push_back(directories[i] + "/" + fn_buffer);
+                // LOG(TRACE) << "Adding dir: " << dir_entry.path().generic_string();
+                result.push_back(dir_entry.path().generic_string());
             }
-            closedir(dirhnd);
         }
 
-        return dest.size() > 0;
-
+        return result;
     }
 
     struct unknown_data {
