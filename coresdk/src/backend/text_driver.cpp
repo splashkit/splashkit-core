@@ -28,13 +28,30 @@ using std::endl;
 
 namespace splashkit_lib
 {
+    /**
+     * @brief Paths to search for system fonts
+     * 
+     * Loaded in 
+     */
+    vector<string> _system_font_paths;
+
+    /**
+     * @brief Load the system font paths vector.
+     * 
+     * Forward declaration.
+     */
+    void load_system_font_paths();
+
     void sk_init_text()
     {
+        // LOG(TRACE) << "About to initialise splashkit - text";
         if (TTF_Init() == -1)
         {
             std::cerr << "Text loading is broken." << std::endl;
             exit(-1);
         }
+
+        load_system_font_paths();
     }
 
     void sk_finalize_text()
@@ -290,5 +307,60 @@ namespace splashkit_lib
             }
             SDL_FreeSurface(text_surface);
         }
+    }
+
+    string system_font_path()
+    {
+        string base_fp = base_fs_path();
+
+        #if __linux__
+            base_fp += "usr/share/fonts";
+        #elif WINDOWS
+            base_fp = get_env_var("SYSTEMROOT") + "\\Fonts";
+            //LOG(TRACE) << "base fp: " << base_fp;
+        #else
+            base_fp += "System/Library/Fonts";
+        #endif
+
+        return base_fp;
+    }
+
+    void load_system_font_paths()
+    {
+        _system_font_paths = scan_dir_recursive(system_font_path());
+    }
+
+    string sk_find_system_font_path(string name)
+    {
+        internal_sk_init();
+        
+        string path, lcpath;
+        for(string dir : _system_font_paths)
+        {
+            path = path_from( { dir }, name);
+            lcpath = path_from( { dir }, to_lower(name));
+
+            // LOG(TRACE) << "Loading font at system path: " << path;
+
+            if ( file_exists( path ))
+            {
+                return path;
+            }
+            else if ( file_exists( lcpath ))
+            {
+                return lcpath;
+            }
+
+            if ( file_exists( path + ".ttf" ))
+            {
+                return path + ".ttf";
+            }
+            else if ( file_exists( lcpath + ".ttf" ))
+            {
+                return lcpath + ".ttf";
+            }
+        }
+
+        return "";
     }
 }

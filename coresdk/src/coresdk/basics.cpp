@@ -24,7 +24,7 @@ namespace splashkit_lib
     string ltrim(const string &text)
     {
         string s = text;
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+        s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int c) { return !std::isspace(c);}));
         return s;
     }
 
@@ -32,7 +32,7 @@ namespace splashkit_lib
     string rtrim(const string &text)
     {
         string s = text;
-        s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+        s.erase(std::find_if(s.rbegin(), s.rend(), [](int c) { return !std::isspace(c);}).base(), s.end());
         return s;
     }
 

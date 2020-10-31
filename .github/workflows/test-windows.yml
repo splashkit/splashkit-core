@@ -7,8 +7,8 @@ jobs:
     strategy:
       matrix:
         include: [
-          { msystem: MINGW64, arch: x86_64 },
-          { msystem: MINGW32, arch: i686   }
+          { msystem: MINGW64, arch: x86_64, path: win64 },
+          { msystem: MINGW32, arch: i686,   path: win32 }
         ]
     defaults:
       run:
@@ -18,6 +18,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
+          path-type: inherit
           update: true
           install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake
       - uses: actions/checkout@v2
@@ -30,4 +31,7 @@ jobs:
           make -j 2
       - name: execute
         working-directory: ./bin
-        run: ./skunit_tests
+        run: |
+          export PATH=../coresdk/lib/${{ matrix.path }}:$PATH
+          echo $PATH
+          ./skunit_tests
