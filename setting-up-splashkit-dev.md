@@ -40,70 +40,40 @@ If you are reading this then you have probably already found the Splashkit-core 
 * Install [MSYS2](https://www.msys2.org/) subsystem and follow fairly self-explanatory installer instructions &ndash; use defaults if unsure, **DO NOT INSTALL TO DIRECTORY WITH SPACES!**
 * Install core Splashkit SDK
     - Go into MSYS2 terminal emulator and install [Git](https://git-scm.com/) over MSYS2 subsystem by typing :
-      ```
-    pacman -S git --noconfirm --disable-download-timeout
-      ```
+    `pacman -S git --noconfirm --disable-download-timeout`
     - Now clone and install Splashkit via install-scripts:
-      ```
-    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-      ```
+    ```bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)`
     - Restart terminal, type
-      ```
-    skm
-      ```
+    `skm`
     in terminal after restarting to verify successful install.
 * Install [VSCode](https://code.visualstudio.com/).
 * Install language tools (compilers / libs):
     - For C#, install the DotNet core sdk.
-    - For C++, install MinGW-W64: a Windows port of GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
-      - Run the following command in terminal:
-        ```
-      pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb
-        ```
-      - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGW32 or MinGW64 terminals.
+    8- For C++, install MinGW-W64: a Windows port of the GNU Compiler Collection (GCC) - g++ and clang++ in MSYS2.
+        - Run the following command in terminal:
+        `pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb`
+        - Do not run compiler from main MSYS2 MSYS terminal, instead run from MSYS2 MinGW32 or MinGW64 terminals.
 * Install  remaining tools to build Splashkit:
     - Install cmake:
-      ```
-    pacman -S mingw-w64-x86_64-cmake
-      ```
+    `pacman -S mingw-w64-x86_64-cmake`
     - install make:
-      ```
-    pacman -S mingw-w64-x86_64-make
-      ```
+    `pacman -S mingw-w64-x86_64-make`
 * Build the test project:
     - Go into the cloned directory of your Splashkit fork, open a MinGw-W64 MSYS2 shell and type:
-      ```
-    cd projects/cmake
-     ```
-      ```
-    cmake -G "Unix Makefiles" .
-      ```
-      ```
-    make
-      ```
+    `cd projects/cmake`
+    `cmake . -G "Unix Makefiles"`
+    `make`
     - Note: if the above does not work, try using the actual unix make and cmake installations, rather than the MinGw-specific ones; but do not try a combination of both. Remove packages with
-      ```
-    pacman -Rs <package>
-      ```
+    `pacman -Rs <package>`
     and
-      ```
-    pacman -S cmake make
-      ```
+    `pacman -S cmake make`
 * Run the test program by executing
-    ```
-    cd ../../bin
-    ```
-    ```
-    ./sktest
-      ```
+    `cd ../../bin`
+    `./sktest`
 * Add features to code in
-    ```
-    ./coresdk
-    ```
+    `./coresdk`
 * Add test code into
-    ```
-    coresdk/src/test
-    ```
+    `coresdk/src/test`
 Now you should be good to go.
 
 ## Developing and building extension and test code for Splashkit
@@ -111,21 +81,22 @@ Although concise instructions are contained above, further substantiation may be
 
 If you have gotten this far then it is assumed that you already know how to recursively Git clone your already-created fork of the splashkit-core repository on GitHub.  Being keen to start working, you can do the following:
 
-- From your cloned fork, you can add your new coded extensions into ```./coresdk```.
-  -  If you are writing backend code such as a driver for a core module, you can add source and header files into ```coresdk/src/backend```.
-  -  If you are writing a module or extension that will be used by other third-party applications using Splashkit, you can add it directly into ```coresdk/src/coresdk```.
-  -  When writing the code, ensure that callable types, procedures and functions are placed directly into the Splashkit library namespace.  You can do this in one of two ways:
-    -    Utilise global access in your source file by typing
-    ```using namespace splashkit_lib;```
-    -    To be more flexable, identify which components of the file you want included by creating a splashkit_lib scope i.e.
-    ```namespace splashkit_lib
-    {
-    ...
-    }```
-- Once you think you may have the code working, you can add the test code by placing it into coresdk/src/test.
-  -  First, Create a ```test_<ext>``` file, where ```<ext>``` is the name of the extension i.e. ```animations```.
-  -  Ensure this file globally uses the splashkit_lib namespace.
-  -  Within the same file, declare a ```run_<ext>_test``` procedure (void function) and place in a sequence(s) to test your new code.
-  -  Next, edit ```coresdk/src/test/test_main.cpp```, move to its declared ```setup_tests()``` procedure, call the ```add_test``` procedure and pass in
- (a) the test's name as a string i.e. ```"animations"```; and (b) pass in the function running the test i.e. ```run_animation_test```.
-- Re-build the test project contained in ```./projects/cmake``` (See Windows build instructions for immediate help if unsure from the10:40 PM 28/10/2020 line staring with &ldquo;Run the test program&rdquo;, should work on any platform from that point) and you're done.
+- From your cloned fork, you can add your new coded extensions into `./coresdk`.
+    -    If you are writing backend code such as a driver for a core module, you can add source and header files into `coresdk/src/backend`.
+    -    If you are writing a module or extension that will be used by other third-party applications using Splashkit, you can add it directly into `coresdk/src/coresdk`.
+    -    When writing the code, ensure that callable types, procedures and functions are placed directly into the Splashkit library namespace.  You can do this in one of two ways:
+        -        Utilise global access in your source file by typing
+        `using namespace splashkit_lib;`
+        -        To be more flexable, identify which components of the file you want included by creating a splashkit_lib scope i.e.
+        `namespace splashkit_lib
+        {
+        ...
+        }`
+- Once you think you may have the code working, you can add the test code by placing it into `coresdk/src/test`.
+    -    First, Create a `test_<ext>` file, where `<ext>` is the name of the extension i.e. `animations`.
+    -    Ensure this file globally uses the `splashkit_lib` namespace.
+    -    Within the same file, declare a `run_<ext>_test` procedure (void function) and place in a sequence(s) to test your new code.
+    -    Next, edit `coresdk/src/test/test_main.cpp`, move to its declared `setup_tests()` procedure, call the `add_test` procedure and pass in
+        -        (a) the test's name as a string i.e. `animations`; and
+        -        (b) pass in the function running the test i.e. `run_animation_test`.
+- Re-build the test project contained in `./projects/cmake` (See Windows build instructions for immediate help if unsure from the line starting with &ldquo;Run the test program&rdquo;, should work on any platform from that point) and you're done.
