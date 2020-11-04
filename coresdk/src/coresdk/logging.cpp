@@ -1,10 +1,12 @@
 #include "logging.h"
 
+using namespace std;
+
 namespace splashkit_lib
 {
 
   log_level _log_level = DEBUG;
-  ofstream log_file ;
+  ofstream log_file;
   log_mode _log_mode = CONSOLE;
   
   void set_logger_status (string app_name = "sk_log", log_mode &mode, bool override_prev_log = false)
@@ -21,22 +23,22 @@ namespace splashkit_lib
       case FILE:
         if (override_prev_log == false)// Default
         {
-          log_file.open (app_name + ".log", fstream::app);
+          log_file.open (app_name + ".log", ofstream::out | ofstream::app);
         }
         else
         {
-          log_file.open (app_name + ".log", fstream::out);
+          log_file.open (app_name + ".log", ofstream::out);
         }
         atexit (log_file.close);
         break;
         case CONSOLE_AND_FILE:
         if (override_prev_log == false)// Default
         {
-          log_file.open (app_name + ".log", fstream::app);
+          log_file.open (app_name + ".log", ofstream::out | ofstream::app);
         }
         else
         {
-          log_file.open (app_name + ".log", fstream::out);
+          log_file.open (app_name + ".log", ofstream::out);
         }
           atexit (log_file.close);
           break;
@@ -52,13 +54,13 @@ namespace splashkit_lib
       {
         return;
       }
-      if (log_mode == CONSOLE || log_mode == CONSOLE_AND_FILE)
+      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
       {
         write("INFO: ");
       }
-      else if (log_mode == FILE || log_mode == CONSOLE_AND_FILE)
+      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
       {
-        log_file << "INFO: "
+        log_file << "INFO: ";
       }
       break;
     case DEBUG:
@@ -66,13 +68,13 @@ namespace splashkit_lib
       {
         return;
       }
-      if (log_mode == CONSOLE || log_mode == CONSOLE_AND_FILE)
+      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
       {
         write("DEBUG: ");
       }
-      else if (log_mode == FILE || log_mode == CONSOLE_AND_FILE)
+      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
       {
-        log_file << "DEBUG: "
+        log_file << "DEBUG: ";
       }
       break;
     case WARNING:
@@ -80,23 +82,23 @@ namespace splashkit_lib
       {
         return;
       }
-      if (log_mode == CONSOLE || log_mode == CONSOLE_AND_FILE)
+      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
       {
         write("WARNING: ");
       }
-      else if (log_mode == FILE || log_mode == CONSOLE_AND_FILE)
+      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
       {
-        log_file << "WARNING: "
+        log_file << "WARNING: ";
       }
       break;
     case ERROR:
-      if (log_mode == CONSOLE || log_mode == CONSOLE_AND_FILE)
+      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
       {
         write("ERROR: ");
       }
-      else if (log_mode == FILE || log_mode == CONSOLE_AND_FILE)
+      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
       {
-        log_file << "ERROR: "
+        log_file << "ERROR: ";
       }
       break;
     }

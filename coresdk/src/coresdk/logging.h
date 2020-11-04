@@ -4,7 +4,7 @@
 #include "terminal.h"
 #include <chrono>
 #include <ctime>
-#INCLUDE <FSTREAM>
+#include <fstream>
 
 namespace splashkit_lib
 {
@@ -26,8 +26,9 @@ namespace splashkit_lib
   enum log_mode
   {
     CONSOLE,
-    FILE
-  }
+    FILE,
+    CONSOLE_AND_FILE
+  };
   
   /**
    * Changes the logging mode between either writing to the console, or a file, or both.
@@ -35,7 +36,7 @@ namespace splashkit_lib
    * @param app_name The name of the application being written requiring logging
    * override_prev_log Determines whether or not a new logging session should override the existing file, if any.  Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.  This parameter is assigned the value of false by default.
    */
-    void set_logger_status (string app_name, bool override_prev_log = false);
+    void set_logger_status (string app_name = "sk_log", log_mode &mode, bool override_prev_log = false);
   
   /**
    * Send a message to the message log. The message will be written if the log level for
