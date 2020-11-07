@@ -9,7 +9,7 @@ namespace splashkit_lib
   ofstream log_file;
   log_mode _log_mode = CONSOLE;
   
-  void set_logger_status (string app_name = "sk_log", log_mode &mode, bool override_prev_log = false)
+  void set_logger_status (string app_name, bool override_prev_log, log_mode &mode)
   {
     switch (mode)
     {
@@ -107,13 +107,13 @@ namespace splashkit_lib
     std::time_t c_time = std::chrono::system_clock::to_time_t(time);
     string str_time = std::ctime(&c_time);
     // Required to remove the new line character ctime decides to add, then we add the log message
-    if (log_mode == CONSOLE || log_mode == CONSOLE_AND_FILE)
+    if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
     {
       write(str_time.substr(0, str_time.length() - 1));
       write(" ");
       write(message);
     }
-    else if (log_mode == FILE || log_mode == CONSOLE_AND_FILE)
+    else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
     {
       log_file << str_time.substr(0, str_time.length() - 1);
       log_file << " ";

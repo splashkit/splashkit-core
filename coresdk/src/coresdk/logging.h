@@ -34,9 +34,9 @@ namespace splashkit_lib
    * Changes the logging mode between either writing to the console, or a file, or both.
    * 
    * @param app_name The name of the application being written requiring logging
-   * override_prev_log Determines whether or not a new logging session should override the existing file, if any.  Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.  This parameter is assigned the value of false by default.
+   * override_prev_log Determines whether or not a new logging session should override the existing file, if any.  Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.  This parameter is assigned false by default.
    */
-    void set_logger_status (string app_name = "sk_log", log_mode &mode, bool override_prev_log = false);
+    void set_logger_status (string app_name = "sk_log", bool override_prev_log = false, log_mode &mode);
   
   /**
    * Send a message to the message log. The message will be written if the log level for
