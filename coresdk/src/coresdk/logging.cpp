@@ -4,120 +4,138 @@ using namespace std;
 
 namespace splashkit_lib
 {
-
-  log_level _log_level = DEBUG;
-  ofstream log_file;
-  log_mode _log_mode = CONSOLE;
-  
-  void set_logger_status (string app_name, bool override_prev_log, log_mode &mode)
-  {
-    switch (mode)
+    log_level _log_level;
+    ofstream custom_log_file;
+    log_mode _log_mode;
+    
+    log_mode init_custom_logger (string app_name, bool override_prev_log, log_mode &mode)
     {
-      case CONSOLE:
-        if (log_file.is_open ())
+        switch (mode)
         {
-          log_file.close ();
+            case NONE:
+                if (custom_log_file.is_open ())
+                {
+                    custom_log_file.close ();
+                }
+                break;
+            case CONSOLE:
+                if (custom_log_file.is_open ())
+                {
+                    custom_log_file.close ();
+                }
+                break;// Easy as just using log procedure by itself, also helpful if there is no logging to be done in a portion of a program if it is modularised
+            case FILE:
+                if (override_prev_log == false)// Default
+                {
+                    custom_log_file.open (app_name + ".log", ofstream::out | ofstream::app);
+                }
+                else
+                {
+                    custom_log_file.open (app_name + ".log", ofstream::out);
+                }
+                break;
+                case CONSOLE_AND_FILE:
+                if (override_prev_log == false)// Default
+                {
+                    custom_log_file.open (app_name + ".log", ofstream::out | ofstream::app);
+                }
+                else
+                {
+                    custom_log_file.open (app_name + ".log", ofstream::out);
+                }
+                    break;
         }
-        return;// Easy as just using log procedure by itself, also helpful if there is no logging to be done in a portion of a program if it is modularised
-        break;
-      case FILE:
-        if (override_prev_log == false)// Default
-        {
-          log_file.open (app_name + ".log", ofstream::out | ofstream::app);
-        }
-        else
-        {
-          log_file.open (app_name + ".log", ofstream::out);
-        }
-        atexit (log_file.close);
-        break;
-        case CONSOLE_AND_FILE:
-        if (override_prev_log == false)// Default
-        {
-          log_file.open (app_name + ".log", ofstream::out | ofstream::app);
-        }
-        else
-        {
-          log_file.open (app_name + ".log", ofstream::out);
-        }
-          atexit (log_file.close);
-          break;
-    }
-  }
-
-  void log (log_level level, string message)
-  {
-    switch (level)
-    {
-    case INFO:
-      if (_log_level == DEBUG)
-      {
-        return;
-      }
-      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
-      {
-        write("INFO: ");
-      }
-      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
-      {
-        log_file << "INFO: ";
-      }
-      break;
-    case DEBUG:
-      if (_log_level == WARNING)
-      {
-        return;
-      }
-      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
-      {
-        write("DEBUG: ");
-      }
-      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
-      {
-        log_file << "DEBUG: ";
-      }
-      break;
-    case WARNING:
-      if (_log_level == ERROR)
-      {
-        return;
-      }
-      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
-      {
-        write("WARNING: ");
-      }
-      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
-      {
-        log_file << "WARNING: ";
-      }
-      break;
-    case ERROR:
-      if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
-      {
-        write("ERROR: ");
-      }
-      else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
-      {
-        log_file << "ERROR: ";
-      }
-      break;
     }
 
-    auto time = std::chrono::system_clock::now();
-    std::time_t c_time = std::chrono::system_clock::to_time_t(time);
-    string str_time = std::ctime(&c_time);
-    // Required to remove the new line character ctime decides to add, then we add the log message
-    if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+    void log (log_level level, string message)
     {
-      write(str_time.substr(0, str_time.length() - 1));
-      write(" ");
-      write(message);
+        switch (level)
+        {
+            case NONE:
+                break;
+            case INFO:
+                if (level < _log_level)
+                {
+                    return;
+                }
+                if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    write("INFO: ");
+                }
+                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    custom_log_file << "INFO: ";
+                }
+                break;
+            case DEBUG:
+                if (level < _log_level)
+                {
+                    return;
+                }
+                if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    write("DEBUG: ");
+                }
+                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    custom_log_file << "DEBUG: ";
+                }
+                break;
+            case WARNING:
+                if (level < _log_level)
+                {
+                    return;
+                }
+                if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    write("WARNING: ");
+                }
+                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    custom_log_file << "WARNING: ";
+                }
+                break;
+            case ERROR:
+                if (level < _log_level)
+                {
+                    return;
+                }
+                if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    write("ERROR: ");
+                }
+                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    custom_log_file << "ERROR: ";
+                }
+                break;
+            case FATAL:
+                if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    wri9te("FATAL: ");
+                }
+                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                {
+                    custom_log_file << "FATAL: ";
+                }
+                break;
+            }
+
+        auto time = std::chrono::system_clock::now();
+        std::time_t c_time = std::chrono::system_clock::to_time_t(time);
+        string str_time = std::ctime(&c_time);
+        // Required to remove the new line character ctime decides to add, then we add the log message
+        if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
+        {
+            write(str_time.substr(0, str_time.length() - 1));
+            write(" ");
+            write(message);
+        }
+        else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+        {
+            custom_log_file << str_time.substr(0, str_time.length() - 1);
+            custom_log_file << " ";
+            custom_log_file << message;
+        }
     }
-    else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
-    {
-      log_file << str_time.substr(0, str_time.length() - 1);
-      log_file << " ";
-      log_file << message;
-    }
-  }
 } // namespace splashkit_lib
