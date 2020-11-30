@@ -36,7 +36,6 @@ namespace splashkit_lib
     */
     enum log_mode
     {
-        NONE,
         CONSOLE,
         FILE,
         CONSOLE_AND_FILE

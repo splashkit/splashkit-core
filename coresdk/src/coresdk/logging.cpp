@@ -12,12 +12,6 @@ namespace splashkit_lib
     {
         switch (mode)
         {
-            case NONE:
-                if (custom_log_file.is_open ())
-                {
-                    custom_log_file.close ();
-                }
-                break;
             case CONSOLE:
                 if (custom_log_file.is_open ())
                 {
