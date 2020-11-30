@@ -4,11 +4,11 @@ using namespace std;
 
 namespace splashkit_lib
 {
-    log_level _log_level;
+    extern log_level _log_level;
     ofstream custom_log_file;
     log_mode _log_mode;
     
-    log_mode init_custom_logger (string app_name, bool override_prev_log, log_mode &mode)
+    void init_custom_logger (string app_name, bool override_prev_log, log_mode &mode)
     {
         switch (mode)
         {
@@ -106,7 +106,7 @@ namespace splashkit_lib
             case FATAL:
                 if (_log_mode == CONSOLE || _log_mode == CONSOLE_AND_FILE)
                 {
-                    wri9te("FATAL: ");
+                    write("FATAL: ");
                 }
                 else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
                 {
