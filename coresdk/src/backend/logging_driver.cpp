@@ -33,6 +33,6 @@ namespace splashkit_lib
         Loggers::addFlag(LoggingFlag::DisableApplicationAbortOnFatalLog);
         
         // For use via core SDK
-        
+        atexit (close_log_process);
     }
 }

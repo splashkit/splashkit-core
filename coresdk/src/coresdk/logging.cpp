@@ -4,7 +4,7 @@ using namespace std;
 
 namespace splashkit_lib
 {
-    extern log_level _log_level;
+    log_level _log_level;
     ofstream custom_log_file;
     log_mode _log_mode;
     
@@ -130,6 +130,14 @@ namespace splashkit_lib
             custom_log_file << str_time.substr(0, str_time.length() - 1);
             custom_log_file << " ";
             custom_log_file << message;
+        }
+    }
+    
+    void close_log_process ()
+    {
+        if (custom_log_file.is_open ())
+        {
+            custom_log_file.close ();
         }
     }
 } // namespace splashkit_lib
