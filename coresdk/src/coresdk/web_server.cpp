@@ -68,19 +68,9 @@ namespace splashkit_lib
 
     void _send_response(http_request r, http_response resp)
     {
-        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
-        {
-            LOG(WARNING) << "send_response called on an invalid request";
-            return;
-        }
-        else if (INVALID_PTR(resp, HTTP_RESPONSE_PTR))
+        if (INVALID_PTR(resp, HTTP_RESPONSE_PTR))
         {
             LOG(WARNING) << "send_response called on an invalid response";
-            return;
-        }
-        else if (INVALID_PTR(r->server, WEB_SERVER_PTR))
-        {
-            LOG(WARNING) << "send_response called on a request that was not received by a server. You cannot sent responses to requests you make.";
             return;
         }
 
@@ -99,6 +89,17 @@ namespace splashkit_lib
 
     void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers)
     {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "send_response called on an invalid request";
+            return;
+        }
+        else if (INVALID_PTR(r->server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "send_response called on a request that was not received by a server. You cannot sent responses to requests you make.";
+            return;
+        }
+
         sk_http_response resp;
 
         resp.id = HTTP_RESPONSE_PTR;
@@ -111,8 +112,10 @@ namespace splashkit_lib
         _send_response(r, &resp);
 
         // Wait for sending thread to actually send the data...
+        // After this the request will have been deleted
         resp.response_sent.acquire();
-        // Safe to delete
+
+        // Safe to delete the response message copy
         delete resp.message;
     }
 

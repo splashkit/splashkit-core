@@ -121,10 +121,13 @@ namespace splashkit_lib
                   headers.c_str(),
                   r->response->message);
 
+        // Indicate that the request has been dealt with - so it is no longer a request ptr
+        r->id = NONE_PTR;
+
+        // Signal to the front end that the response has been sent
         r->response->response_sent.release();
 
-        // Remove the request
-        r->id = NONE_PTR;
+        // Now we can delete the request
         delete r;
 
         // Non-zero return means civetweb has replied to client
