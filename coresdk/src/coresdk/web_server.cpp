@@ -86,10 +86,8 @@ namespace splashkit_lib
 
         for(auto it = std::begin(r->server->outstanding_requests); it != std::end(r->server->outstanding_requests); ++it)
         {
-            std::cout << "checking " << *it << " == " << r << std::endl;
             if ( *it == r )
             {
-                std::cout << "got response " << *it << std::endl;
                 // if this is the request...
                 r->server->outstanding_requests.erase(it);
                 break;
