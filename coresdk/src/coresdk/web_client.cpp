@@ -36,6 +36,7 @@ namespace splashkit_lib
         request.body = body;
         request.filename = "";
         request.headers = headers;
+        request.server = nullptr;
 
         return sk_http_make_request(request);
     }

@@ -30,7 +30,8 @@ bool handle_request(http_request r)
             return false;
         }
         cout << "Matched to the stop route\n";
-        send_response(r, "Goodbye");
+        // do not send response on close, to test that you can still stop the server.
+        // send_response(r, "Goodbye");
         return true;
     }
     else

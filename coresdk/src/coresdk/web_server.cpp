@@ -58,7 +58,12 @@ namespace splashkit_lib
             return nullptr;
         }
 
-        return sk_get_request(server);
+        http_request result = sk_get_request(server);
+
+        // about to return this... so add as an outstanding request
+        server->outstanding_requests.push_back(result);
+
+        return result;
     }
 
     void _send_response(http_request r, http_response resp)
@@ -73,7 +78,23 @@ namespace splashkit_lib
             LOG(WARNING) << "send_response called on an invalid response";
             return;
         }
+        else if (INVALID_PTR(r->server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "send_response called on a request that was not received by a server. You cannot sent responses to requests you make.";
+            return;
+        }
 
+        for(auto it = std::begin(r->server->outstanding_requests); it != std::end(r->server->outstanding_requests); ++it)
+        {
+            std::cout << "checking " << *it << " == " << r << std::endl;
+            if ( *it == r )
+            {
+                std::cout << "got response " << *it << std::endl;
+                // if this is the request...
+                r->server->outstanding_requests.erase(it);
+                break;
+            }
+        }
         r->response = resp;
         r->control.release();
     }
