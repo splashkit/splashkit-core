@@ -37,7 +37,7 @@ namespace splashkit_lib
     enum log_mode
     {
         CONSOLE,
-        FILE,
+        FILE_ONLY,
         CONSOLE_AND_FILE
     };
     
@@ -48,7 +48,7 @@ namespace splashkit_lib
      * @param override_prev_log Determines whether or not a new logging session should override the existing file, if any.    Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.  
      * @param mode The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.
      */
-        void init_custom_logger (string app_name, bool override_prev_log, log_mode &mode);
+        void init_custom_logger (string app_name, bool override_prev_log, log_mode mode);
 
     /**
      * This Function is overloaded.
@@ -56,7 +56,7 @@ namespace splashkit_lib
 true if you would like a new file to be created on top of the old one.  
      * @param mode The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.
      */
-        void init_custom_logger (log_mode &mode);
+        void init_custom_logger (log_mode mode);
 
     /**
      * Send a message to the message log. The message will be written if the log level for

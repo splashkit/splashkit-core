@@ -5,10 +5,10 @@ using namespace std;
 namespace splashkit_lib
 {
     log_level _log_level;
+    log_mode _log_mode;// Necessary for telling the logger where to send messages to
     ofstream custom_log_file;
-    log_mode _log_mode;
     
-    void init_custom_logger (string app_name, bool override_prev_log, log_mode &mode)
+    void init_custom_logger (string app_name, bool override_prev_log, log_mode mode)
     {
         switch (mode)
         {
@@ -17,8 +17,9 @@ namespace splashkit_lib
                 {
                     custom_log_file.close ();
                 }
+                _log_mode = mode;
                 break;// Easy as just using log procedure by itself, also helpful if there is no logging to be done in a portion of a program if it is modularised
-            case FILE:
+            case FILE_ONLY:
                 if (override_prev_log == false)// Default
                 {
                     custom_log_file.open (app_name + ".log", ofstream::out | ofstream::app);
@@ -27,6 +28,7 @@ namespace splashkit_lib
                 {
                     custom_log_file.open (app_name + ".log", ofstream::out);
                 }
+                _log_mode = mode;
                 break;
                 case CONSOLE_AND_FILE:
                 if (override_prev_log == false)// Default
@@ -37,10 +39,17 @@ namespace splashkit_lib
                 {
                     custom_log_file.open (app_name + ".log", ofstream::out);
                 }
+                _log_mode = mode;
                     break;
         }
     }
-
+    
+    void init_custom_logger (log_mode mode)
+    {
+        // Give default values for simpler overloading;
+        init_custom_logger ("console", true, mode);
+    }
+    
     void log (log_level level, string message)
     {
         switch (level)
@@ -56,7 +65,7 @@ namespace splashkit_lib
                 {
                     write("INFO: ");
                 }
-                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
                 {
                     custom_log_file << "INFO: ";
                 }
@@ -70,7 +79,7 @@ namespace splashkit_lib
                 {
                     write("DEBUG: ");
                 }
-                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
                 {
                     custom_log_file << "DEBUG: ";
                 }
@@ -84,7 +93,7 @@ namespace splashkit_lib
                 {
                     write("WARNING: ");
                 }
-                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
                 {
                     custom_log_file << "WARNING: ";
                 }
@@ -98,7 +107,7 @@ namespace splashkit_lib
                 {
                     write("ERROR: ");
                 }
-                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
                 {
                     custom_log_file << "ERROR: ";
                 }
@@ -108,7 +117,7 @@ namespace splashkit_lib
                 {
                     write("FATAL: ");
                 }
-                else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+                else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
                 {
                     custom_log_file << "FATAL: ";
                 }
@@ -125,7 +134,7 @@ namespace splashkit_lib
             write(" ");
             write(message);
         }
-        else if (_log_mode == FILE || _log_mode == CONSOLE_AND_FILE)
+        else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
         {
             custom_log_file << str_time.substr(0, str_time.length() - 1);
             custom_log_file << " ";
