@@ -203,6 +203,10 @@ if (LINUX)
     target_link_libraries(SplashKit ${PNG_LIBRARY})
 endif()
 
+if ( MSYS )
+  set_target_properties(SplashKit PROPERTIES PREFIX "")
+endif()
+
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 
 install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${OS_PATH_SUFFIX})
