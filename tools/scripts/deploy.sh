@@ -109,6 +109,4 @@ cd "${APP_PATH}"
 if [[ `uname` == MINGW* ]]; then
   rm ${SK_OUT}/skm/lib/win32/*.a
   rm ${SK_OUT}/skm/lib/win64/*.a
-  cp ${SK_OUT}/skm/lib/win64/libSplashKit.dll ${SK_OUT}/skm/lib/win64/SplashKit.dll
-  cp ${SK_OUT}/skm/lib/win32/libSplashKit.dll ${SK_OUT}/skm/lib/win32/SplashKit.dll
 fi
