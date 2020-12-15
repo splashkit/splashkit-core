@@ -132,13 +132,13 @@ namespace splashkit_lib
         {
             write(str_time.substr(0, str_time.length() - 1));
             write(" ");
-            write(message);
+            write_line(message);
         }
         else if (_log_mode == FILE_ONLY || _log_mode == CONSOLE_AND_FILE)
         {
             custom_log_file << str_time.substr(0, str_time.length() - 1);
             custom_log_file << " ";
-            custom_log_file << message;
+            custom_log_file << message + "\n";
         }
     }
     
