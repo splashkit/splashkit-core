@@ -62649,7 +62649,7 @@
     ],
     "enums": [
       {
-        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,DATABASE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,SERVER_RESOURCE,MUSIC_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
+        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,DATABASE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,MUSIC_RESOURCE,SERVER_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
         "name": "resource_kind",
         "description": "SplashKit is able to manage a number of different kinds of resources\nfor you.",
         "brief": null,

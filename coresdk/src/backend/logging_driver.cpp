@@ -24,15 +24,17 @@ namespace splashkit_lib
         conf.setToDefault();
         conf.setGlobally(
                          ConfigurationType::Format,
-                         "(%datetime{%d/%m/%Y}) %level -> %msg [%file:%line]");
+                         "(%datetime{%d/%M/%Y}) %level -> %msg [raised in %fbase:%line]");
         conf.setGlobally(ConfigurationType::Filename, "logs/splashkit.log");
 
         Loggers::reconfigureLogger("default", conf);
         
         Loggers::addFlag(LoggingFlag::ColoredTerminalOutput);
         Loggers::addFlag(LoggingFlag::DisableApplicationAbortOnFatalLog);
+        Loggers::addFlag(LoggingFlag::LogDetailedCrashReason);
+        Loggers::addFlag(LoggingFlag::ImmediateFlush);
         
         // For use in core SDK
         atexit (close_log_process);
-    }
+            }
 }
