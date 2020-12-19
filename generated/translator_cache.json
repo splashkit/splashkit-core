@@ -6518,7 +6518,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1537137969,
+    "parsed_at": 1607369436,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -6786,7 +6786,7 @@
     ],
     "enums": [
       {
-        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,DATABASE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,SERVER_RESOURCE,MUSIC_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
+        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,DATABASE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,MUSIC_RESOURCE,SERVER_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
         "name": "resource_kind",
         "description": "SplashKit is able to manage a number of different kinds of resources\nfor you.",
         "brief": null,
@@ -6839,7 +6839,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1537137973,
+    "parsed_at": 1607369439,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {

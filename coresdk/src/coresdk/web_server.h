@@ -70,7 +70,7 @@ namespace splashkit_lib
     web_server start_web_server(unsigned short port);
 
     /**
-     * Creates a new web server instance and starts it.
+     * Creates a new web server listening for connections on port 8080.
      *
      * @attribute constructor true
      * @attribute class       web_server

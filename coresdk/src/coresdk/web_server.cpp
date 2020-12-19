@@ -58,28 +58,48 @@ namespace splashkit_lib
             return nullptr;
         }
 
-        return sk_get_request(server);
+        http_request result = sk_get_request(server);
+
+        // about to return this... so add as an outstanding request
+        server->outstanding_requests.push_back(result);
+
+        return result;
     }
 
     void _send_response(http_request r, http_response resp)
     {
-        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
-        {
-            LOG(WARNING) << "send_response called on an invalid request";
-            return;
-        }
-        else if (INVALID_PTR(resp, HTTP_RESPONSE_PTR))
+        if (INVALID_PTR(resp, HTTP_RESPONSE_PTR))
         {
             LOG(WARNING) << "send_response called on an invalid response";
             return;
         }
 
+        for(auto it = std::begin(r->server->outstanding_requests); it != std::end(r->server->outstanding_requests); ++it)
+        {
+            if ( *it == r )
+            {
+                // if this is the request...
+                r->server->outstanding_requests.erase(it);
+                break;
+            }
+        }
         r->response = resp;
         r->control.release();
     }
 
     void send_response(http_request r, http_status_code code, const string &message, const string &content_type, const vector<string> &headers)
     {
+        if (INVALID_PTR(r, HTTP_REQUEST_PTR))
+        {
+            LOG(WARNING) << "send_response called on an invalid request";
+            return;
+        }
+        else if (INVALID_PTR(r->server, WEB_SERVER_PTR))
+        {
+            LOG(WARNING) << "send_response called on a request that was not received by a server. You cannot sent responses to requests you make.";
+            return;
+        }
+
         sk_http_response resp;
 
         resp.id = HTTP_RESPONSE_PTR;
@@ -92,8 +112,10 @@ namespace splashkit_lib
         _send_response(r, &resp);
 
         // Wait for sending thread to actually send the data...
+        // After this the request will have been deleted
         resp.response_sent.acquire();
-        // Safe to delete
+
+        // Safe to delete the response message copy
         delete resp.message;
     }
 

@@ -96,6 +96,7 @@ namespace splashkit_lib
             r->body = string(post_data);
         }
 
+        r->server = servers[port];
         servers[port]->request_queue.put(r); // Add request to concurrent queue
         r->control.acquire(); // Waits until user returns response.
 
@@ -120,10 +121,13 @@ namespace splashkit_lib
                   headers.c_str(),
                   r->response->message);
 
+        // Indicate that the request has been dealt with - so it is no longer a request ptr
+        r->id = NONE_PTR;
+
+        // Signal to the front end that the response has been sent
         r->response->response_sent.release();
 
-        // Remove the request
-        r->id = NONE_PTR;
+        // Now we can delete the request
         delete r;
 
         // Non-zero return means civetweb has replied to client
@@ -132,15 +136,7 @@ namespace splashkit_lib
 
     void sk_flush_request(sk_http_request *request)
     {
-        request->response = new sk_http_response;
-
-        request->response->id = HTTP_RESPONSE_PTR;
-        request->response->message = nullptr;
-        request->response->message_size = 0;
-        request->response->code = HTTP_STATUS_SERVICE_UNAVAILABLE;
-        request->response->content_type = "text/plain";
-
-        request->control.release();
+        send_response(request, HTTP_STATUS_SERVICE_UNAVAILABLE, "Server closed");
     }
 
     /*
@@ -224,13 +220,20 @@ namespace splashkit_lib
 
     void sk_stop_web_server(sk_web_server *server)
     {
-        // Clear requests
+        // Clear requests - outstanding requests
+        for(auto it = std::rbegin(server->outstanding_requests); it != std::rend(server->outstanding_requests); ++it)
+        {
+            sk_flush_request(*it);
+        }
+
+        // Any loaded requests
         if (server->last_request)
         {
             sk_flush_request(server->last_request);
             delete server->last_request;
         }
 
+        // Any yet to be processed requests
         sk_http_request *request;
         while (server->request_queue.try_take(request))
         {
