@@ -372,7 +372,7 @@ namespace SplashKitSDK
 
 
     // Based on: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0f5ba27d-92c2-4b41-b717-16e759b68087/how-to-marshal-an-array-of-struct-pointer?forum=csharpgeneral
-    private static IntPtr ToIntPtr<T>(T[] items)
+    private static IntPtr ToIntPtr<T>(T[] items) where T : struct
     {
         IntPtr result, tmp = IntPtr.Zero;
 
@@ -397,7 +397,7 @@ namespace SplashKitSDK
         return result;
     }
 
-    private static T[] FromIntPtr<T>(IntPtr ptr, int count)
+    private static T[] FromIntPtr<T>(IntPtr ptr, int count) where T : struct
     {
         T[] result = new T[count];
         IntPtr tmp;
@@ -16396,7 +16396,7 @@ namespace SplashKitSDK
         }
 
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough(),System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        public static implicit operator IntPtr(PointerWrapper p)
+        public static implicit operator IntPtr(PointerWrapper? p)
         {
             if ( p == null ) return IntPtr.Zero;
             else return p.Pointer;
@@ -16430,7 +16430,7 @@ namespace SplashKitSDK
         /// Determines if the PointerWrappers is equal to the passed in object.
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough()]
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
         {
             if (other == null) return this.Pointer == IntPtr.Zero;
             if (other is PointerWrapper) return this.Pointer == ((PointerWrapper)other).Pointer;
@@ -16451,10 +16451,10 @@ namespace SplashKitSDK
         /// Determines if two PointerWrappers are equal.
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough()]
-        public static bool operator ==(PointerWrapper pw1, PointerWrapper pw2)
+        public static bool operator ==(PointerWrapper? pw1, PointerWrapper? pw2)
         {
-            if ((object)pw1 == null && (object)pw2 == null) return true;
-            if ((object)pw1 == null || (object)pw2 == null) return false;
+            if (pw1 == null && pw2 == null) return true;
+            if (pw1 == null || pw2 == null) return false;
             return pw1.Pointer == pw2.Pointer;
         }
 
@@ -16462,10 +16462,10 @@ namespace SplashKitSDK
         /// Determines if two PointerWrappers are not equal.
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough()]
-        public static bool operator !=(PointerWrapper pw1, PointerWrapper pw2)
+        public static bool operator !=(PointerWrapper? pw1, PointerWrapper? pw2)
         {
-            if ((object)pw1 == null && (object)pw2 == null) return false;
-            if ((object)pw1 == null || (object)pw2 == null) return true;
+            if (pw1 == null && pw2 == null) return false;
+            if (pw1 == null || pw2 == null) return true;
             return pw1.Pointer != pw2.Pointer;
         }
     }
@@ -16476,9 +16476,11 @@ public class Timer : PointerWrapper
 
   internal static Timer FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Timer;
+    #pragma warning restore CS8603
     return new Timer(ptr);
   }
 
@@ -16538,9 +16540,11 @@ public class Music : PointerWrapper
 
   internal static Music FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Music;
+    #pragma warning restore CS8603
     return new Music(ptr);
   }
 
@@ -16596,9 +16600,11 @@ public class SoundEffect : PointerWrapper
 
   internal static SoundEffect FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as SoundEffect;
+    #pragma warning restore CS8603
     return new SoundEffect(ptr);
   }
 
@@ -16670,9 +16676,11 @@ public class Window : PointerWrapper
 
   internal static Window FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Window;
+    #pragma warning restore CS8603
     return new Window(ptr);
   }
 
@@ -17066,9 +17074,11 @@ public class Animation : PointerWrapper
 
   internal static Animation FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Animation;
+    #pragma warning restore CS8603
     return new Animation(ptr);
   }
     protected internal override void DoFree()
@@ -17197,9 +17207,11 @@ public class AnimationScript : PointerWrapper
 
   internal static AnimationScript FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as AnimationScript;
+    #pragma warning restore CS8603
     return new AnimationScript(ptr);
   }
 
@@ -17243,9 +17255,11 @@ public class Bitmap : PointerWrapper
 
   internal static Bitmap FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Bitmap;
+    #pragma warning restore CS8603
     return new Bitmap(ptr);
   }
 
@@ -17856,9 +17870,11 @@ public class Display : PointerWrapper
 
   internal static Display FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Display;
+    #pragma warning restore CS8603
     return new Display(ptr);
   }
         protected internal override void DoFree()
@@ -17890,9 +17906,11 @@ public class Font : PointerWrapper
 
   internal static Font FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Font;
+    #pragma warning restore CS8603
     return new Font(ptr);
   }
 
@@ -17933,9 +17951,11 @@ public class HttpResponse : PointerWrapper
 
   internal static HttpResponse FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as HttpResponse;
+    #pragma warning restore CS8603
     return new HttpResponse(ptr);
   }
     protected internal override void DoFree()
@@ -17956,9 +17976,11 @@ public class Json : PointerWrapper
 
   internal static Json FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Json;
+    #pragma warning restore CS8603
     return new Json(ptr);
   }
 
@@ -18141,9 +18163,11 @@ public class Database : PointerWrapper
 
   internal static Database FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Database;
+    #pragma warning restore CS8603
     return new Database(ptr);
   }
 
@@ -18179,9 +18203,11 @@ public class QueryResult : PointerWrapper
 
   internal static QueryResult FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as QueryResult;
+    #pragma warning restore CS8603
     return new QueryResult(ptr);
   }
     protected internal override void DoFree()
@@ -18250,9 +18276,11 @@ public class HttpRequest : PointerWrapper
 
   internal static HttpRequest FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as HttpRequest;
+    #pragma warning restore CS8603
     return new HttpRequest(ptr);
   }
         protected internal override void DoFree()
@@ -18408,9 +18436,11 @@ public class WebServer : PointerWrapper
 
   internal static WebServer FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as WebServer;
+    #pragma warning restore CS8603
     return new WebServer(ptr);
   }
 
@@ -18445,9 +18475,11 @@ public class Sprite : PointerWrapper
 
   internal static Sprite FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Sprite;
+    #pragma warning restore CS8603
     return new Sprite(ptr);
   }
 
@@ -19057,9 +19089,11 @@ public class Connection : PointerWrapper
 
   internal static Connection FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Connection;
+    #pragma warning restore CS8603
     return new Connection(ptr);
   }
 
@@ -19136,9 +19170,11 @@ public class Message : PointerWrapper
 
   internal static Message FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as Message;
+    #pragma warning restore CS8603
     return new Message(ptr);
   }
     protected internal override void DoFree()
@@ -19179,9 +19215,11 @@ public class ServerSocket : PointerWrapper
 
   internal static ServerSocket FetchOrCreate(IntPtr ptr)
   {
+    #pragma warning disable CS8603
     if (ptr == IntPtr.Zero) return null;
 
     if (_ptrRegister.ContainsKey(ptr)) return _ptrRegister[ptr] as ServerSocket;
+    #pragma warning restore CS8603
     return new ServerSocket(ptr);
   }
 
