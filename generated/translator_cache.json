@@ -37257,7 +37257,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1599800740,
+    "parsed_at": 1608095423,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -38794,7 +38794,7 @@
         "unique_global_name": "start_web_server_with_default_port",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Creates a new web server instance and starts it.",
+        "description": "Creates a new web server listening for connections on port 8080.",
         "brief": null,
         "return": {
           "type": "web_server",
