@@ -16453,8 +16453,8 @@ namespace SplashKitSDK
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough()]
         public static bool operator ==(PointerWrapper? pw1, PointerWrapper? pw2)
         {
-            if (pw1 == null && pw2 == null) return true;
-            if (pw1 == null || pw2 == null) return false;
+            if ((object?)pw1 == null && (object?)pw2 == null) return true;
+            if ((object?)pw1 == null || (object?)pw2 == null) return false;
             return pw1.Pointer == pw2.Pointer;
         }
 
@@ -16464,8 +16464,8 @@ namespace SplashKitSDK
         [System.Diagnostics.DebuggerNonUserCode(), System.Diagnostics.DebuggerStepThrough()]
         public static bool operator !=(PointerWrapper? pw1, PointerWrapper? pw2)
         {
-            if (pw1 == null && pw2 == null) return false;
-            if (pw1 == null || pw2 == null) return true;
+            if ((object?)pw1 == null && (object?)pw2 == null) return false;
+            if ((object?)pw1 == null || (object?)pw2 == null) return true;
             return pw1.Pointer != pw2.Pointer;
         }
     }
