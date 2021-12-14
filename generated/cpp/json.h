@@ -7,7 +7,6 @@
 #define __json_h
 
 #include "types.h"
-#include "json.h"
 #include <string>
 #include <vector>
 using std::string;

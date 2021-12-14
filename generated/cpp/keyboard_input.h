@@ -6,7 +6,6 @@
 #ifndef __keyboard_input_h
 #define __keyboard_input_h
 
-#include "keyboard_input.h"
 #include <string>
 #include <vector>
 using std::string;

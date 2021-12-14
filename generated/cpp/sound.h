@@ -6,7 +6,6 @@
 #ifndef __sound_h
 #define __sound_h
 
-#include "sound.h"
 #include <string>
 #include <vector>
 using std::string;

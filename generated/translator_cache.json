@@ -3,7 +3,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1637831863,
+    "parsed_at": 1639482780,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -841,7 +841,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831865,
+    "parsed_at": 1639482781,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -1834,7 +1834,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831866,
+    "parsed_at": 1639482782,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -2806,7 +2806,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831867,
+    "parsed_at": 1639482784,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -4177,7 +4177,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1637831868,
+    "parsed_at": 1639482785,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -4385,7 +4385,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1637831868,
+    "parsed_at": 1639482785,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -4478,7 +4478,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1637831870,
+    "parsed_at": 1639482788,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
@@ -6518,7 +6518,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1637831871,
+    "parsed_at": 1639482789,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -6839,7 +6839,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1637831874,
+    "parsed_at": 1639482793,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -9742,7 +9742,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831877,
+    "parsed_at": 1639482797,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -12635,7 +12635,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831878,
+    "parsed_at": 1639482798,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -13219,7 +13219,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831879,
+    "parsed_at": 1639482800,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -13754,7 +13754,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1637831881,
+    "parsed_at": 1639482806,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -16005,7 +16005,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831884,
+    "parsed_at": 1639482811,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -18412,7 +18412,7 @@
     "group": "types",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831885,
+    "parsed_at": 1639482815,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -19144,7 +19144,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831887,
+    "parsed_at": 1639482818,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -21239,7 +21239,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1637831888,
+    "parsed_at": 1639482819,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -21384,7 +21384,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831889,
+    "parsed_at": 1639482820,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -22258,7 +22258,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1637831890,
+    "parsed_at": 1639482822,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -23325,7 +23325,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831891,
+    "parsed_at": 1639482823,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -23920,7 +23920,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831892,
+    "parsed_at": 1639482824,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -24407,7 +24407,7 @@
     "group": "color",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831901,
+    "parsed_at": 1639482834,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -29607,7 +29607,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1637831902,
+    "parsed_at": 1639482835,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -29697,11 +29697,260 @@
 
     ]
   },
+  "logging": {
+    "group": "logging",
+    "brief": null,
+    "description": null,
+    "parsed_at": 1639482836,
+    "path": "coresdk/src/coresdk/logging.h",
+    "functions": [
+      {
+        "signature": "void close_log_process ();",
+        "name": "close_log_process",
+        "method_name": null,
+        "unique_global_name": "close_log_process",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Ensures propper memory clean-up prior to exit, if needed.  Used in sk_init_looging ().",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      },
+      {
+        "signature": "void init_custom_logger (log_mode mode);",
+        "name": "init_custom_logger",
+        "method_name": null,
+        "unique_global_name": "init_custom_logger",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Initialises the logging mode for logged messages to be written to the text-based console.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "mode": {
+            "type": "log_mode",
+            "description": "The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      },
+      {
+        "signature": "void init_custom_logger (string app_name,bool override_prev_log,log_mode mode);",
+        "name": "init_custom_logger",
+        "method_name": null,
+        "unique_global_name": "init_custom_logger__name_override_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Initialises the logging mode between either writing to a file or both a file and the text-based console.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "app_name": {
+            "type": "string",
+            "description": "The name of the application being written requiring logging",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "override_prev_log": {
+            "type": "bool",
+            "description": "Determines whether or not a new logging session should override the existing file, if any. Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "mode": {
+            "type": "log_mode",
+            "description": "The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "_name_override_mode",
+          "group": "logging",
+          "static": "logging"
+        }
+      },
+      {
+        "signature": "void log(log_level level,string message);",
+        "name": "log",
+        "method_name": null,
+        "unique_global_name": "log",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Send a message to the message log. The message will be written if the log level for\nthe program is set to display this.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "level": {
+            "type": "log_level",
+            "description": "The level of the message to log",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "message": {
+            "type": "string",
+            "description": "The message to be shown",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+      {
+        "signature": "enum log_level {NONE,INFO,DEBUG,WARNING,ERROR,FATAL};",
+        "name": "log_level",
+        "description": "Defines the available levels for log messages. This allows categorisation of log\nmessages which can then be filtered allowing messages below a given level to be\nignored.",
+        "brief": null,
+        "constants": {
+          "NONE": {
+            "description": "Output to the message log but without a specified level"
+          },
+          "INFO": {
+            "description": "Output information to the message log"
+          },
+          "DEBUG": {
+            "description": "Output a debug message to the message log"
+          },
+          "WARNING": {
+            "description": "Output a warning message to the message log"
+          },
+          "ERROR": {
+            "description": "Output an error message to the message log"
+          },
+          "FATAL": {
+            "description": "Output an error message to the message log"
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      },
+      {
+        "signature": "enum log_mode {LOG_NONE,LOG_CONSOLE,LOG_FILE_ONLY,LOG_CONSOLE_AND_FILE};",
+        "name": "log_mode",
+        "description": "Defines the available modes of logging, indicating where messages are written to.",
+        "brief": null,
+        "constants": {
+          "LOG_NONE": {
+            "description": "Set the logging mode to none for nothing to be logged to the console or a file."
+          },
+          "LOG_CONSOLE": {
+            "description": "Ensure that output only directs to the on-screen, text-based console.."
+          },
+          "LOG_FILE_ONLY": {
+            "description": "Ensure that output only directs to a text file.."
+          },
+          "LOG_CONSOLE_AND_FILE": {
+            "description": "Direct ouput to both the console and a file."
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      }
+    ],
+    "defines": [
+
+    ]
+  },
   "json": {
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1637831904,
+    "parsed_at": 1639482838,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -31453,7 +31702,7 @@
     "group": "database",
     "brief": "SplashKit Database allows you to create, query and otherwise\nmanipulate a database.",
     "description": "SplashKit's database library allows you to easily create or load databases\nand to perform queries on them. To get started with databases in SplashKit,\nthe first thinkg you need to do is to load or create a database file. You can\ndo this by calling the `open_database(string name)` function.",
-    "parsed_at": 1637831905,
+    "parsed_at": 1639482839,
     "path": "coresdk/src/coresdk/database.h",
     "functions": [
       {
@@ -32444,7 +32693,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1637831907,
+    "parsed_at": 1639482841,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -33182,7 +33431,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1637831909,
+    "parsed_at": 1639482844,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -35670,7 +35919,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831910,
+    "parsed_at": 1639482845,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -36456,7 +36705,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1637831912,
+    "parsed_at": 1639482846,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -37257,7 +37506,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831913,
+    "parsed_at": 1639482848,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -38976,7 +39225,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831914,
+    "parsed_at": 1639482849,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -39337,7 +39586,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831916,
+    "parsed_at": 1639482851,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -40876,7 +41125,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1637831923,
+    "parsed_at": 1639482858,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -47752,7 +48001,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831925,
+    "parsed_at": 1639482859,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -49116,7 +49365,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1637831927,
+    "parsed_at": 1639482862,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -51064,7 +51313,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831928,
+    "parsed_at": 1639482862,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -51640,7 +51889,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1637831928,
+    "parsed_at": 1639482863,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -51957,7 +52206,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831929,
+    "parsed_at": 1639482864,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -52788,7 +53037,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831930,
+    "parsed_at": 1639482866,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -53612,7 +53861,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831932,
+    "parsed_at": 1639482868,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -54932,7 +55181,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831933,
+    "parsed_at": 1639482868,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -55397,7 +55646,7 @@
     "group": "social",
     "brief": "SplashKit provides functionality to post material to twitter",
     "description": null,
-    "parsed_at": 1637831934,
+    "parsed_at": 1639482869,
     "path": "coresdk/src/coresdk/twitter.h",
     "functions": [
 
@@ -55419,7 +55668,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1637831938,
+    "parsed_at": 1639482873,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -58563,7 +58812,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831941,
+    "parsed_at": 1639482875,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -59561,7 +59810,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1637831942,
+    "parsed_at": 1639482876,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -59583,7 +59832,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1637831942,
+    "parsed_at": 1639482876,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -59717,7 +59966,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1637831943,
+    "parsed_at": 1639482877,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -59849,7 +60098,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1637831945,
+    "parsed_at": 1639482879,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {

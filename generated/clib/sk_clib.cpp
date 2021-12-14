@@ -3030,6 +3030,24 @@ void __sklib__close_audio() {
 void __sklib__open_audio() {
     open_audio();
 }
+void __sklib__close_log_process() {
+    close_log_process();
+}
+void __sklib__init_custom_logger__log_mode(int mode) {
+    log_mode __skparam__mode = __sklib__to_log_mode(mode);
+    init_custom_logger(__skparam__mode);
+}
+void __sklib__init_custom_logger__string__bool__log_mode(__sklib_string app_name, int override_prev_log, int mode) {
+    string __skparam__app_name = __sklib__to_string(app_name);
+    bool __skparam__override_prev_log = __sklib__to_bool(override_prev_log);
+    log_mode __skparam__mode = __sklib__to_log_mode(mode);
+    init_custom_logger(__skparam__app_name, __skparam__override_prev_log, __skparam__mode);
+}
+void __sklib__log__log_level__string(int level, __sklib_string message) {
+    log_level __skparam__level = __sklib__to_log_level(level);
+    string __skparam__message = __sklib__to_string(message);
+    log(__skparam__level, __skparam__message);
+}
 __sklib_json __sklib__create_json() {
     json __skreturn = create_json();
     return __sklib__to_sklib_json(__skreturn);

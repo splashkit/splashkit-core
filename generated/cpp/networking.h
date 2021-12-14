@@ -6,7 +6,6 @@
 #ifndef __networking_h
 #define __networking_h
 
-#include "networking.h"
 #include <string>
 #include <vector>
 using std::string;

@@ -6,7 +6,6 @@
 #ifndef __database_h
 #define __database_h
 
-#include "database.h"
 #include <string>
 #include <vector>
 using std::string;

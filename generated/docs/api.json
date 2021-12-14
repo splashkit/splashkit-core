@@ -42868,6 +42868,276 @@
 
     ]
   },
+  "logging": {
+    "brief": "",
+    "description": "",
+    "functions": [
+      {
+        "signature": "void close_log_process ();",
+        "name": "close_log_process",
+        "method_name": null,
+        "unique_global_name": "close_log_process",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Ensures propper memory clean-up prior to exit, if needed.  Used in sk_init_looging ().",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        },
+        "signatures": {
+          "pascal": "procedure CloseLogProcess()",
+          "python": "def close_log_process():",
+          "csharp": "public static void CloseLogProcess()",
+          "cpp": "void close_log_process()"
+        }
+      },
+      {
+        "signature": "void init_custom_logger (log_mode mode);",
+        "name": "init_custom_logger",
+        "method_name": null,
+        "unique_global_name": "init_custom_logger",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Initialises the logging mode for logged messages to be written to the text-based console.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "mode": {
+            "type": "log_mode",
+            "description": "The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        },
+        "signatures": {
+          "pascal": "procedure InitCustomLogger(mode: LogMode)",
+          "python": "def init_custom_logger(mode):",
+          "csharp": "public static void InitCustomLogger(LogMode mode)",
+          "cpp": "void init_custom_logger(log_mode mode)"
+        }
+      },
+      {
+        "signature": "void init_custom_logger (string app_name,bool override_prev_log,log_mode mode);",
+        "name": "init_custom_logger",
+        "method_name": null,
+        "unique_global_name": "init_custom_logger__name_override_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Initialises the logging mode between either writing to a file or both a file and the text-based console.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "app_name": {
+            "type": "string",
+            "description": "The name of the application being written requiring logging",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "override_prev_log": {
+            "type": "bool",
+            "description": "Determines whether or not a new logging session should override the existing file, if any. Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "mode": {
+            "type": "log_mode",
+            "description": "The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "_name_override_mode",
+          "group": "logging",
+          "static": "logging"
+        },
+        "signatures": {
+          "pascal": "procedure InitCustomLogger(appName: String; overridePrevLog: Boolean; mode: LogMode)",
+          "python": "def init_custom_logger__name_override_mode(app_name, override_prev_log, mode):",
+          "csharp": "public static void InitCustomLogger(string appName, bool overridePrevLog, LogMode mode)",
+          "cpp": "void init_custom_logger(string app_name, bool override_prev_log, log_mode mode)"
+        }
+      },
+      {
+        "signature": "void log(log_level level,string message);",
+        "name": "log",
+        "method_name": null,
+        "unique_global_name": "log",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Send a message to the message log. The message will be written if the log level for\nthe program is set to display this.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "level": {
+            "type": "log_level",
+            "description": "The level of the message to log",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "message": {
+            "type": "string",
+            "description": "The message to be shown",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        },
+        "signatures": {
+          "pascal": "procedure Log(level: LogLevel; message: String)",
+          "python": "def log(level, message):",
+          "csharp": "public static void Log(LogLevel level, string message)",
+          "cpp": "void log(log_level level, string message)"
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+      {
+        "signature": "enum log_level {NONE,INFO,DEBUG,WARNING,ERROR,FATAL};",
+        "name": "log_level",
+        "description": "Defines the available levels for log messages. This allows categorisation of log\nmessages which can then be filtered allowing messages below a given level to be\nignored.",
+        "brief": null,
+        "constants": {
+          "NONE": {
+            "description": "Output to the message log but without a specified level"
+          },
+          "INFO": {
+            "description": "Output information to the message log"
+          },
+          "DEBUG": {
+            "description": "Output a debug message to the message log"
+          },
+          "WARNING": {
+            "description": "Output a warning message to the message log"
+          },
+          "ERROR": {
+            "description": "Output an error message to the message log"
+          },
+          "FATAL": {
+            "description": "Output an error message to the message log"
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      },
+      {
+        "signature": "enum log_mode {LOG_NONE,LOG_CONSOLE,LOG_FILE_ONLY,LOG_CONSOLE_AND_FILE};",
+        "name": "log_mode",
+        "description": "Defines the available modes of logging, indicating where messages are written to.",
+        "brief": null,
+        "constants": {
+          "LOG_NONE": {
+            "description": "Set the logging mode to none for nothing to be logged to the console or a file."
+          },
+          "LOG_CONSOLE": {
+            "description": "Ensure that output only directs to the on-screen, text-based console.."
+          },
+          "LOG_FILE_ONLY": {
+            "description": "Ensure that output only directs to a text file.."
+          },
+          "LOG_CONSOLE_AND_FILE": {
+            "description": "Direct ouput to both the console and a file."
+          }
+        },
+        "attributes": {
+          "group": "logging",
+          "static": "logging"
+        }
+      }
+    ],
+    "defines": [
+
+    ]
+  },
   "networking": {
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": "",

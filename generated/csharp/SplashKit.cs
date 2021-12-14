@@ -89,6 +89,16 @@ namespace SplashKitSDK
     private static MouseButton __skadapter__to_mouse_button(int v) { return (MouseButton)v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_log_level(LogLevel v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static LogLevel __skadapter__to_log_level(int v) { return (LogLevel)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_log_mode(LogMode v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static LogMode __skadapter__to_log_mode(int v) { return (LogMode)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_http_method(HttpMethod v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static HttpMethod __skadapter__to_http_method(int v) { return (HttpMethod)v; }
@@ -2674,6 +2684,18 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_audio", CharSet=CharSet.Ansi)]
     private static extern void __sklib__open_audio();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_log_process", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__close_log_process();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__log_mode", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__init_custom_logger__log_mode(int mode);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__string__bool__log_mode", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__init_custom_logger__string__bool__log_mode(__sklib_string appName, int overridePrevLog, int mode);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__log__log_level__string", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__log__log_level__string(int level, __sklib_string message);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_json();
@@ -9593,6 +9615,36 @@ namespace SplashKitSDK
     {
       __sklib__open_audio();
     }
+    public static void CloseLogProcess()
+    {
+      __sklib__close_log_process();
+    }
+    public static void InitCustomLogger(LogMode mode)
+    {
+      int __skparam__mode;
+      __skparam__mode = __skadapter__to_sklib_log_mode(mode);
+      __sklib__init_custom_logger__log_mode(__skparam__mode);
+    }
+    public static void InitCustomLogger(string appName, bool overridePrevLog, LogMode mode)
+    {
+      __sklib_string __skparam__app_name;
+      int __skparam__override_prev_log;
+      int __skparam__mode;
+      __skparam__app_name = __skadapter__to_sklib_string(appName);
+      __skparam__override_prev_log = __skadapter__to_sklib_bool(overridePrevLog);
+      __skparam__mode = __skadapter__to_sklib_log_mode(mode);
+      __sklib__init_custom_logger__string__bool__log_mode(__skparam__app_name, __skparam__override_prev_log, __skparam__mode);
+    __skadapter__free__sklib_string(ref __skparam__app_name);
+    }
+    public static void Log(LogLevel level, string message)
+    {
+      int __skparam__level;
+      __sklib_string __skparam__message;
+      __skparam__level = __skadapter__to_sklib_log_level(level);
+      __skparam__message = __skadapter__to_sklib_string(message);
+      __sklib__log__log_level__string(__skparam__level, __skparam__message);
+    __skadapter__free__sklib_string(ref __skparam__message);
+    }
     public static Json CreateJson()
     {
       __sklib_ptr __skreturn;
@@ -15322,6 +15374,22 @@ namespace SplashKitSDK
     RightButton,
     MouseX1Button,
     MouseX2Button
+  }
+  public enum LogLevel
+  {
+    None,
+    Info,
+    Debug,
+    Warning,
+    Error,
+    Fatal
+  }
+  public enum LogMode
+  {
+    LogNone,
+    LogConsole,
+    LogFileOnly,
+    LogConsoleAndFile
   }
   public enum HttpMethod
   {

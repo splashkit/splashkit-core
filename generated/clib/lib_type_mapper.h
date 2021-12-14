@@ -34,6 +34,7 @@
 #include "mouse_input.h"
 #include "color.h"
 #include "audio.h"
+#include "logging.h"
 #include "json.h"
 #include "database.h"
 #include "matrix_2d.h"
@@ -137,6 +138,10 @@ int __sklib__to_sklib_http_status_code(http_status_code v);
 http_status_code __sklib__to_http_status_code(int v);
 int __sklib__to_sklib_mouse_button(mouse_button v);
 mouse_button __sklib__to_mouse_button(int v);
+int __sklib__to_sklib_log_level(log_level v);
+log_level __sklib__to_log_level(int v);
+int __sklib__to_sklib_log_mode(log_mode v);
+log_mode __sklib__to_log_mode(int v);
 int __sklib__to_sklib_http_method(http_method v);
 http_method __sklib__to_http_method(int v);
 int __sklib__to_sklib_collision_test_kind(collision_test_kind v);

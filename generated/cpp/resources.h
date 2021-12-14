@@ -6,7 +6,6 @@
 #ifndef __resources_h
 #define __resources_h
 
-#include "resources.h"
 #include <string>
 #include <vector>
 using std::string;

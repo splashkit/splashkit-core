@@ -26,6 +26,7 @@
 #include "mouse_input.h"
 #include "color.h"
 #include "audio.h"
+#include "logging.h"
 #include "json.h"
 #include "database.h"
 #include "matrix_2d.h"

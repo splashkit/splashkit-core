@@ -72,6 +72,18 @@ class MouseButton(Enum):
     right_button = 3
     mouse_x1_button = 4
     mouse_x2_button = 5
+class LogLevel(Enum):
+    none = 0
+    info = 1
+    debug = 2
+    warning = 3
+    error = 4
+    fatal = 5
+class LogMode(Enum):
+    log_none = 0
+    log_console = 1
+    log_file_only = 2
+    log_console_and_file = 3
 class HttpMethod(Enum):
     http_get_method = 0
     http_post_method = 1
@@ -583,6 +595,22 @@ def __skadapter__to_mouse_button(v):
     return MouseButton(v)
 
 def __skadapter__to_sklib_mouse_button(v):
+    return c_int(v.value)
+
+def __skadapter__to_log_level(v):
+    if isinstance(v, LogLevel):
+        return v
+    return LogLevel(v)
+
+def __skadapter__to_sklib_log_level(v):
+    return c_int(v.value)
+
+def __skadapter__to_log_mode(v):
+    if isinstance(v, LogMode):
+        return v
+    return LogMode(v)
+
+def __skadapter__to_sklib_log_mode(v):
     return c_int(v.value)
 
 def __skadapter__to_http_method(v):
@@ -2381,6 +2409,14 @@ sklib.__sklib__close_audio.argtypes = [  ]
 sklib.__sklib__close_audio.restype = None
 sklib.__sklib__open_audio.argtypes = [  ]
 sklib.__sklib__open_audio.restype = None
+sklib.__sklib__close_log_process.argtypes = [  ]
+sklib.__sklib__close_log_process.restype = None
+sklib.__sklib__init_custom_logger__log_mode.argtypes = [ c_int ]
+sklib.__sklib__init_custom_logger__log_mode.restype = None
+sklib.__sklib__init_custom_logger__string__bool__log_mode.argtypes = [ _sklib_string, c_bool, c_int ]
+sklib.__sklib__init_custom_logger__string__bool__log_mode.restype = None
+sklib.__sklib__log__log_level__string.argtypes = [ c_int, _sklib_string ]
+sklib.__sklib__log__log_level__string.restype = None
 sklib.__sklib__create_json.argtypes = [  ]
 sklib.__sklib__create_json.restype = c_void_p
 sklib.__sklib__create_json__string.argtypes = [ _sklib_string ]
@@ -6098,6 +6134,20 @@ def close_audio (  ):
     sklib.__sklib__close_audio()
 def open_audio (  ):
     sklib.__sklib__open_audio()
+def close_log_process (  ):
+    sklib.__sklib__close_log_process()
+def init_custom_logger ( mode ):
+    __skparam__mode = __skadapter__to_sklib_log_mode(mode)
+    sklib.__sklib__init_custom_logger__log_mode(__skparam__mode)
+def init_custom_logger__name_override_mode ( app_name, override_prev_log, mode ):
+    __skparam__app_name = __skadapter__to_sklib_string(app_name)
+    __skparam__override_prev_log = __skadapter__to_sklib_bool(override_prev_log)
+    __skparam__mode = __skadapter__to_sklib_log_mode(mode)
+    sklib.__sklib__init_custom_logger__string__bool__log_mode(__skparam__app_name, __skparam__override_prev_log, __skparam__mode)
+def log ( level, message ):
+    __skparam__level = __skadapter__to_sklib_log_level(level)
+    __skparam__message = __skadapter__to_sklib_string(message)
+    sklib.__sklib__log__log_level__string(__skparam__level, __skparam__message)
 def create_json (  ):
     __skreturn = sklib.__sklib__create_json()
     return __skadapter__to_json(__skreturn)

@@ -7,7 +7,6 @@
 #define __matrix_2d_h
 
 #include "types.h"
-#include "matrix_2d.h"
 #include <string>
 #include <vector>
 using std::string;

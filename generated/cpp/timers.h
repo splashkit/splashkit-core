@@ -6,7 +6,6 @@
 #ifndef __timers_h
 #define __timers_h
 
-#include "timers.h"
 #include <string>
 #include <vector>
 using std::string;

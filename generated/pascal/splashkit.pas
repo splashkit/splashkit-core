@@ -90,6 +90,20 @@ type MouseButton = (
   MOUSE_X1_BUTTON,
   MOUSE_X2_BUTTON
 );
+type LogLevel = (
+  NONE,
+  INFO,
+  DEBUG,
+  WARNING,
+  ERROR,
+  FATAL
+);
+type LogMode = (
+  LOG_NONE,
+  LOG_CONSOLE,
+  LOG_FILE_ONLY,
+  LOG_CONSOLE_AND_FILE
+);
 type HttpMethod = (
   HTTP_GET_METHOD,
   HTTP_POST_METHOD,
@@ -866,6 +880,10 @@ function StringToColor(str: String): Color;
 function AudioReady(): Boolean;
 procedure CloseAudio();
 procedure OpenAudio();
+procedure CloseLogProcess();
+procedure InitCustomLogger(mode: LogMode);
+procedure InitCustomLogger(appName: String; overridePrevLog: Boolean; mode: LogMode);
+procedure Log(level: LogLevel; message: String);
 function CreateJson(): Json;
 function CreateJson(jsonString: String): Json;
 procedure FreeAllJson();
@@ -1703,6 +1721,22 @@ begin
   result := MouseButton(v);
 end;
 function __skadapter__to_sklib_mouse_button(v: MouseButton): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_log_level(v: LongInt): LogLevel;
+begin
+  result := LogLevel(v);
+end;
+function __skadapter__to_sklib_log_level(v: LogLevel): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_log_mode(v: LongInt): LogMode;
+begin
+  result := LogMode(v);
+end;
+function __skadapter__to_sklib_log_mode(v: LogMode): LongInt;
 begin
   result := Integer(v);
 end;
@@ -2967,6 +3001,10 @@ function __sklib__string_to_color__string(str: __sklib_string): __sklib_color; c
 function __sklib__audio_ready(): LongInt; cdecl; external;
 procedure __sklib__close_audio(); cdecl; external;
 procedure __sklib__open_audio(); cdecl; external;
+procedure __sklib__close_log_process(); cdecl; external;
+procedure __sklib__init_custom_logger__log_mode(mode: LongInt); cdecl; external;
+procedure __sklib__init_custom_logger__string__bool__log_mode(appName: __sklib_string; overridePrevLog: LongInt; mode: LongInt); cdecl; external;
+procedure __sklib__log__log_level__string(level: LongInt; message: __sklib_string); cdecl; external;
 function __sklib__create_json(): __sklib_ptr; cdecl; external;
 function __sklib__create_json__string(jsonString: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__free_all_json(); cdecl; external;
@@ -9060,6 +9098,37 @@ end;
 procedure OpenAudio();
 begin
   __sklib__open_audio();
+end;
+procedure CloseLogProcess();
+begin
+  __sklib__close_log_process();
+end;
+procedure InitCustomLogger(mode: LogMode);
+var
+  __skparam__mode: LongInt;
+begin
+  __skparam__mode := __skadapter__to_sklib_log_mode(mode);
+  __sklib__init_custom_logger__log_mode(__skparam__mode);
+end;
+procedure InitCustomLogger(appName: String; overridePrevLog: Boolean; mode: LogMode);
+var
+  __skparam__app_name: __sklib_string;
+  __skparam__override_prev_log: LongInt;
+  __skparam__mode: LongInt;
+begin
+  __skparam__app_name := __skadapter__to_sklib_string(appName);
+  __skparam__override_prev_log := __skadapter__to_sklib_bool(overridePrevLog);
+  __skparam__mode := __skadapter__to_sklib_log_mode(mode);
+  __sklib__init_custom_logger__string__bool__log_mode(__skparam__app_name, __skparam__override_prev_log, __skparam__mode);
+end;
+procedure Log(level: LogLevel; message: String);
+var
+  __skparam__level: LongInt;
+  __skparam__message: __sklib_string;
+begin
+  __skparam__level := __skadapter__to_sklib_log_level(level);
+  __skparam__message := __skadapter__to_sklib_string(message);
+  __sklib__log__log_level__string(__skparam__level, __skparam__message);
 end;
 function CreateJson(): Json;
 var

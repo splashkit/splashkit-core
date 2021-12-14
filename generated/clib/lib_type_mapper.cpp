@@ -233,6 +233,18 @@ int __sklib__to_sklib_mouse_button(mouse_button v) {
 mouse_button __sklib__to_mouse_button(int v) {
     return static_cast<mouse_button>(v);
 }
+int __sklib__to_sklib_log_level(log_level v) {
+    return static_cast<int>(v);
+}
+log_level __sklib__to_log_level(int v) {
+    return static_cast<log_level>(v);
+}
+int __sklib__to_sklib_log_mode(log_mode v) {
+    return static_cast<int>(v);
+}
+log_mode __sklib__to_log_mode(int v) {
+    return static_cast<log_mode>(v);
+}
 int __sklib__to_sklib_http_method(http_method v) {
     return static_cast<int>(v);
 }

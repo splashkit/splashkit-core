@@ -6,7 +6,6 @@
 #ifndef __types_h
 #define __types_h
 
-#include "types.h"
 #include <string>
 #include <vector>
 using std::string;
