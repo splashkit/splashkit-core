@@ -40,16 +40,17 @@ namespace splashkit_lib
     /**
      * Defines the available modes of logging, indicating where messages are written to.
      * 
-     * @constant NONE Set the logging mode to none for nothing to be logged to the console or a file.
-     * @constant CONSOLE Ensure that output only directs to the on-screen, text-based console..
-     * @constant FILE Ensure that output only directs to a text file..
-     * @constant CONSOLE_AND_FILE Direct ouput to both the console and a file.
+     * @constant LOG_NONE Set the logging mode to none for nothing to be logged to the console or a file.
+     * @constant LOG_CONSOLE Ensure that output only directs to the on-screen, text-based console..
+     * @constant LOG_FILE_ONLY Ensure that output only directs to a text file..
+     * @constant LOG_CONSOLE_AND_FILE Direct ouput to both the console and a file.
     */
     enum log_mode
     {
-        CONSOLE,
-        FILE_ONLY,
-        CONSOLE_AND_FILE
+        LOG_NONE,
+        LOG_CONSOLE,
+        LOG_FILE_ONLY,
+        LOG_CONSOLE_AND_FILE
     };
     
     /**
@@ -58,6 +59,8 @@ namespace splashkit_lib
      * @param app_name The name of the application being written requiring logging
      * @param override_prev_log Determines whether or not a new logging session should override the existing file, if any. Set this to false if you want new log messages to be appended to the bottom of the file; otherwise set it to true if you would like a new file to be created on top of the old one.  
      * @param mode The mode of log output i.e. whether there should be output to the console, a text file, or both.  Pass your choice of mode variable in by reference.
+     * 
+     * @attribute suffix  _name_override_mode
      */
     void init_custom_logger (string app_name, bool override_prev_log, log_mode mode);
 
