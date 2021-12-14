@@ -88,3 +88,4 @@ tools/scripts/deploy/splashkitcpp/*.a
 bin/
 logs/
 out/skm
+out/lib/
