@@ -1,3 +1,10 @@
+/**
+ * @header logging
+ * @author Nathaniel Schmidt
+ * @attribute group  logging
+ * @attribute static logging
+ */
+
 #ifndef logging_h
 #define logging_h
 
