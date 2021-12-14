@@ -53,10 +53,10 @@ esac
 
 if [[ $GENERATE_LIB ]]; then
   echo
-  echo "Running Translator"
+  echo "Running Translator - this is a long process...."
   echo
   sleep 0.5
-  ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp,pascal,python,csharp,docs -w ${SK_GENERATED}/translator_cache.json -r ${SK_GENERATED}/translator_cache.json
+  ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp,pascal,python,csharp,docs -w ${SK_GENERATED}/translator_cache.json
 fi
 
 function do_make {
