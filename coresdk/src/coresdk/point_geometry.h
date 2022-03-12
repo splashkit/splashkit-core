@@ -176,5 +176,24 @@ namespace splashkit_lib
      * @return    The distance from `pt` to `l`
      */
     float point_line_distance(const point_2d &pt, const line &l);
+
+    /**
+     * Returns a point_2d object with x and y values set to
+     * the x and y valyes of the vector_2d input.
+     *
+     * @param  v  The vector input
+     * @return    A point_2d object with x and y values.
+     */
+    point_2d vector_to_point(const vector_2d &v);
+
+    /**
+     * Returns a vector_2d object with x and y values set to
+     * the x and y valyes of the point_2d input.
+     *
+     * @param  v  The vector input
+     * @return    A vector_2d object with x and y values.
+     */
+    vector_2d point_to_vector(const point_2d &p);
+
 }
 #endif /* point_geometry_h */
