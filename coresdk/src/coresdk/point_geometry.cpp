@@ -238,4 +238,24 @@ namespace splashkit_lib
         return point_point_distance(pt, closest_point_on_line(pt, l));
     }
     
+    /**
+     *  Convert a vector_2d object to a point_2d object
+    **/
+    point_2d vector_to_point(const vector_2d &v)
+    {
+        point_2d temp;
+        temp.x = v.x;
+        temp.y = v.y;
+        return temp;
+    }
+
+    /**
+     *  Convert a point_2d object to a vector_2d object
+    **/
+    vector_2d point_to_vector(const point_2d &p)
+    {
+        vector_2d temp;
+        temp.x = p.x;
+        temp.y = p.y;
+    }
 }
