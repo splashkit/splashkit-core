@@ -46,6 +46,61 @@
 
 6. Add test code into `coresdk/src/test`. Now you should be good to go.
 
+## Linux
+
+### Install prerequisites
+
+1.  Update your system
+
+    ```sh
+    sudo apt-get update
+    sudo apt-get upgrade -y
+    ```
+
+2.  Install the packages
+
+    ```sh
+    sudo apt-get install -y \
+      git build-essential cmake g++ libpng-dev libcurl4-openssl-dev libsdl2-dev \
+      libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-net-dev libsdl2-ttf-dev \
+      libmikmod-dev libncurses5-dev libbz2-dev libflac-dev libvorbis-dev libwebp-dev libfreetype6-dev
+    ```
+
+### Build & test
+
+1.  [Create a fork](https://guides.github.com/activities/forking/) of SplashKit.
+2.  Clone the forked repository into your preferred location.
+
+    ```sh
+    git clone --recursive -j2 https://github.com/<username>/splashkit-core.git
+    ```
+
+3.  Build the test project:
+
+    - In a terminal application, go into the cloned directory of your SplashKit
+      fork, and type:
+
+      ```sh
+      cd projects/cmake
+      cmake .
+      make
+      ```
+
+4.  Run the test program by executing
+
+    ```sh
+    cd ../../bin
+    ./sktest
+    ```
+
+5.  Add features to code in
+
+    ```sh
+    ./coresdk
+    ```
+
+6.  Add test code into `coresdk/src/test`. Now you should be good to go.
+
 ## Windows
 
 ### Install prerequisites
