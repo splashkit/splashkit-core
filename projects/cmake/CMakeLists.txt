@@ -1,6 +1,17 @@
 cmake_minimum_required(VERSION 3.2)
 project(splashkit)
 
+if (APPLE)
+    include(CheckCXXCompilerFlag)
+    check_cxx_compiler_flag("-arch arm64" armSupported)
+
+    # Temporarily force x86_64 via Rosetta on M1 macs until
+    # precompiled external libraries have symbols added for arm64.
+    if (armSupported)
+        set(CMAKE_OSX_ARCHITECTURES "x86_64")
+    endif()
+endif()
+
 # SK Directories relative to cmake project
 set(SK_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/src")
 set(SK_EXT "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/external")
@@ -184,13 +195,13 @@ if (MSYS)
 elseif(APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
-    file(GLOB APPLE_STATIC_LIBS
-        "${SK_LIB}/mac/*.a"
-    )
-    add_custom_command(TARGET SplashKitBackend POST_BUILD
-      COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
-      $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
-    )
+    #file(GLOB APPLE_STATIC_LIBS
+        #"${SK_LIB}/mac/*.a"
+    #)
+    #add_custom_command(TARGET SplashKitBackend POST_BUILD
+      #COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
+      #$<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
+    ##)
 endif()
 
 
