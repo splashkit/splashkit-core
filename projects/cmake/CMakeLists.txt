@@ -195,13 +195,13 @@ if (MSYS)
 elseif(APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
-    #file(GLOB APPLE_STATIC_LIBS
-        #"${SK_LIB}/mac/*.a"
-    #)
-    #add_custom_command(TARGET SplashKitBackend POST_BUILD
-      #COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
-      #$<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
-    ##)
+    file(GLOB APPLE_STATIC_LIBS
+        "${SK_LIB}/mac/*.a"
+    )
+    add_custom_command(TARGET SplashKitBackend POST_BUILD
+      COMMAND /usr/bin/libtool -static -o $<TARGET_FILE:SplashKitBackend>
+      $<TARGET_FILE:SplashKitBackend> ${APPLE_STATIC_LIBS}
+    )
 endif()
 
 
