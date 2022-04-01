@@ -7,46 +7,149 @@
 using namespace std;
 using namespace splashkit_lib;
 
-namespace tic_tac_toe {
-	enum class Cell {
+class OutputFormat
+{
+public:
+	enum class Type
+	{
+		Position,
+		Number,
+		Category
+	};
+
+	vector<Type> format;
+	vector<int> f_data;
+	int board_size;
+
+	void add_type(Type type, int data)
+	{
+		format.push_back(type);
+		f_data.push_back(data);
+	}
+
+	void process_category(vector<float> output, int start, int size)
+	{
+		cout << "Category: [ ";
+		for (int i = start; i < start + size; i++)
+		{
+			cout << output[i] << " ";
+		}
+		cout << "]" << endl;
+	}
+
+	void process_output(vector<float> output)
+	{
+		int cur_index = 0;
+		for (int i = 0; i < format.size(); i++)
+		{
+			switch (format[i])
+			{
+			case Type::Number:
+				cout << "Number: " << output[cur_index] * f_data[i] << endl;
+				cur_index++;
+				break;
+			case Type::Position:
+			case Type::Category:
+				process_category(output, cur_index, f_data[i]);
+				cur_index += f_data[i];
+				break;
+			}
+		}
+	}
+};
+
+class Game
+{
+public:
+	// The number of different 'pieces' that can exist on the field throughout any game
+	// e.g. Tic-Tac-Toe [Empty + O + X = 2], Chess [Empty + Pawn + Bishop + Knight + Rook + Queen + King = 6]
+	// Pong [Empty + Ball/Paddle = 1]
+	virtual int get_max_board_index();
+
+	// The number of tiles on the board e.g. Tic-Tac-Toe = 3*3 = 9, Chess = 8*8 = 64
+	virtual int get_board_size();
+
+	virtual OutputFormat get_output_format();
+	virtual vector<int> get_board();
+
+	// convert board to categorical vector
+	/*
+	vector<int> convert_board(vector<int> board) {
+		vector<int> new_board(board.size() * get_max_board_index());
+		fill(new_board.begin(), new_board.end(), 0);
+		for (int i = 0; i < board.size(); i++) {
+			if (board[i] != 0) {
+				new_board[i * get_max_board_index() + board[i] - 1] = 1;
+			}
+		}
+		return new_board;
+	} */
+};
+
+class TicTacToe : public Game
+{
+public:
+	enum class Cell
+	{
 		Empty,
 		X,
 		O
 	};
 
-	enum class GameState {
+	struct Board
+	{
+		Cell cells[3][3];
+	};
+
+	enum class GameState
+	{
 		Playing,
 		X_Won,
 		O_Won,
 		Draw
 	};
 
-	enum class Player {
+	enum class Player
+	{
 		X,
 		O
 	};
 
-	struct Board {
-		Cell cells[3][3];
-	};
-
-	struct Game {
-		Board board;
-		Player current_player;
-		GameState state;
-	};
-
-	struct Move {
+	struct Move
+	{
 		int row;
 		int col;
 	};
 
-	void init(Game &game) {
-		game.board = {{
-			{Cell::Empty, Cell::Empty, Cell::Empty},
-			{Cell::Empty, Cell::Empty, Cell::Empty},
-			{Cell::Empty, Cell::Empty, Cell::Empty}
-		}};
+	Board board;
+	Player current_player;
+	GameState state;
+	OutputFormat format;
+
+	int get_max_board_index() { return 2; } // O or X
+	int get_board_size() { return 9; }		// 3x3 = 9
+	OutputFormat get_output_format() { return format; }
+	vector<int> get_board()
+	{
+		vector<int> board_data(9);
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				board_data[i * 3 + j] = (int)board.cells[i][j];
+			}
+		}
+		return board_data;
+	}
+
+	void init()
+	{
+		board = {{{Cell::Empty, Cell::Empty, Cell::Empty},
+				  {Cell::Empty, Cell::Empty, Cell::Empty},
+				  {Cell::Empty, Cell::Empty, Cell::Empty}}};
+
+		format = OutputFormat();
+		format.add_type(OutputFormat::Type::Position, 9);
 
 		// When passing to AI
 		// convert board to int array
@@ -54,69 +157,90 @@ namespace tic_tac_toe {
 		//		 _, O, _,  -> 	 0, 2, 0,  ->	 [0, 0], [0, 1], [0, 0],  ->	[01 10 01 | 00 01 00 | 00 00 00]
 		//		 _, _, _}		 0, 0, 0}		 [0, 0], [0, 0], [0, 0]}
 
-		game.current_player = Player::X;
-		game.state = GameState::Playing;
+		current_player = Player::X;
+		state = GameState::Playing;
 	}
 
 	// Checks whether the board is won or drawn
-	void update_state(Game &game) {
+	void update_state()
+	{
 		// Check rows
-		for (int y = 0; y < 3; y++) {
-			if (game.board.cells[y][0] != Cell::Empty &&
-				game.board.cells[y][0] == game.board.cells[y][1] &&
-				game.board.cells[y][1] == game.board.cells[y][2]) {
-				game.state = game.board.cells[y][0] == Cell::X ? GameState::X_Won : GameState::O_Won;
+		for (int y = 0; y < 3; y++)
+		{
+			if (board.cells[y][0] != Cell::Empty &&
+				board.cells[y][0] == board.cells[y][1] &&
+				board.cells[y][1] == board.cells[y][2])
+			{
+				state = board.cells[y][0] == Cell::X ? GameState::X_Won : GameState::O_Won;
 				return;
 			}
 		}
 
 		// Check columns
-		for (int x = 0; x < 3; x++) {
-			if (game.board.cells[0][x] != Cell::Empty &&
-				game.board.cells[0][x] == game.board.cells[1][x] &&
-				game.board.cells[1][x] == game.board.cells[2][x]) {
-				game.state = game.board.cells[0][x] == Cell::X ? GameState::X_Won : GameState::O_Won;
+		for (int x = 0; x < 3; x++)
+		{
+			if (board.cells[0][x] != Cell::Empty &&
+				board.cells[0][x] == board.cells[1][x] &&
+				board.cells[1][x] == board.cells[2][x])
+			{
+				state = board.cells[0][x] == Cell::X ? GameState::X_Won : GameState::O_Won;
 				return;
 			}
 		}
 
 		// Check diagonals
-		if (game.board.cells[0][0] != Cell::Empty &&
-			game.board.cells[0][0] == game.board.cells[1][1] &&
-			game.board.cells[1][1] == game.board.cells[2][2]) {
-			game.state = game.board.cells[0][0] == Cell::X ? GameState::X_Won : GameState::O_Won;
+		if (board.cells[0][0] != Cell::Empty &&
+			board.cells[0][0] == board.cells[1][1] &&
+			board.cells[1][1] == board.cells[2][2])
+		{
+			state = board.cells[0][0] == Cell::X ? GameState::X_Won : GameState::O_Won;
 			return;
 		}
 
-		if (game.board.cells[0][2] != Cell::Empty &&
-			game.board.cells[0][2] == game.board.cells[1][1] &&
-			game.board.cells[1][1] == game.board.cells[2][0]) {
-			game.state = game.board.cells[0][2] == Cell::X ? GameState::X_Won : GameState::O_Won;
+		if (board.cells[0][2] != Cell::Empty &&
+			board.cells[0][2] == board.cells[1][1] &&
+			board.cells[1][1] == board.cells[2][0])
+		{
+			state = board.cells[0][2] == Cell::X ? GameState::X_Won : GameState::O_Won;
 			return;
 		}
 
 		// Check draw
 		bool found_empty = false;
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 3; x++) {
-				if (game.board.cells[y][x] == Cell::Empty) {
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				if (board.cells[y][x] == Cell::Empty)
+				{
 					found_empty = true;
 					break;
 				}
 			}
 		}
-		if (!found_empty) { game.state = GameState::Draw; }
+		if (!found_empty)
+		{
+			state = GameState::Draw;
+		}
 	}
 
-	void draw_board(Game &game) {
+	void draw_board()
+	{
 		write_line();
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 3; x++) {
-				if (game.board.cells[y][x] == Cell::Empty) {
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				if (board.cells[y][x] == Cell::Empty)
+				{
 					write("_");
-				} else if (game.board.cells[y][x] == Cell::X) {
+				}
+				else if (board.cells[y][x] == Cell::X)
+				{
 					write("X");
-				} else if (game.board.cells[y][x] == Cell::O) {
+				}
+				else if (board.cells[y][x] == Cell::O)
+				{
 					write("O");
 				}
 			}
@@ -124,22 +248,32 @@ namespace tic_tac_toe {
 		}
 	}
 
-	void draw_game(Game &game) {
-		draw_board(game);
-		if (game.state == GameState::X_Won) {
+	void draw_game()
+	{
+		draw_board();
+		if (state == GameState::X_Won)
+		{
 			write_line("X Won!");
-		} else if (game.state == GameState::O_Won) {
+		}
+		else if (state == GameState::O_Won)
+		{
 			write_line("O Won!");
-		} else if (game.state == GameState::Draw) {
+		}
+		else if (state == GameState::Draw)
+		{
 			write_line("Draw!");
 		}
 	}
 
-	vector<Move> get_possible_moves(Game &game) {
+	vector<Move> get_possible_moves()
+	{
 		vector<Move> moves = {};
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 3; x++) {
-				if (game.board.cells[y][x] == Cell::Empty) {
+		for (int y = 0; y < 3; y++)
+		{
+			for (int x = 0; x < 3; x++)
+			{
+				if (board.cells[y][x] == Cell::Empty)
+				{
 					Move move = {y, x};
 					moves.push_back(move);
 				}
@@ -148,21 +282,28 @@ namespace tic_tac_toe {
 		return moves;
 	}
 
-	void submit_move(Game &game, Move move) {
-		game.board.cells[move.row][move.col] = game.current_player == Player::X ? Cell::X : Cell::O;
-		game.current_player = game.current_player == Player::X ? Player::O : Player::X;
-		update_state(game);
-		draw_game(game);
+	void make_move(Move move)
+	{
+		board.cells[move.row][move.col] = current_player == Player::X ? Cell::X : Cell::O;
+		current_player = current_player == Player::X ? Player::O : Player::X;
+		update_state();
+		draw_game();
 	}
+};
+
+int random_agent_play(int posb_moves)
+{
+	return rnd(0, posb_moves - 1);
 }
 
-void run_machine_learning_test() { 
-	tic_tac_toe::Game game;
-	tic_tac_toe::init(game);
-	tic_tac_toe::draw_game(game);
-	while (game.state == tic_tac_toe::GameState::Playing) {
-		vector<tic_tac_toe::Move> moves = tic_tac_toe::get_possible_moves(game);
-		int move_index = rnd(0, moves.size() - 1);
-		tic_tac_toe::submit_move(game, moves[move_index]);
+void run_machine_learning_test()
+{
+	TicTacToe game;
+	game.init();
+	game.draw_game();
+	while (game.state == TicTacToe::GameState::Playing)
+	{
+		vector<TicTacToe::Move> moves = game.get_possible_moves();
+		game.make_move(moves[random_agent_play(moves.size())]);
 	}
 }
