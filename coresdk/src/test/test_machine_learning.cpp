@@ -19,6 +19,7 @@ public:
 
 	vector<Type> format;
 	vector<int> f_data;
+	vector<int> indexes;
 	int board_size;
 	int output_width = 0;
 
@@ -26,6 +27,7 @@ public:
 	{
 		format.push_back(type);
 		f_data.push_back(data);
+		indexes.push_back(output_width);
 		switch (type)
 		{
 		case Type::Number:
@@ -38,54 +40,59 @@ public:
 		}
 	}
 
-	void process_category(vector<float> output, int start, int size)
+	vector<float> process_output_position(vector<float> output, int index)
 	{
-		cout << "Category: [ ";
-		for (int i = start; i < start + size; i++)
+		if (format[index] != Type::Position) throw invalid_argument("Format at index is not of type Position!");
+		vector<float> result(f_data[index]);
+		for (int i = 0; i < f_data[index]; i++)
 		{
-			cout << output[i] << " ";
+			result[i] = output[indexes[index] + i];
 		}
-		cout << "]" << endl;
+		return result;
 	}
 
-	void process_output(vector<float> output)
+	int get_max_position(vector<float> position_data, vector<int> filter) 
 	{
-		int cur_index = 0;
-		for (int i = 0; i < format.size(); i++)
+		float max = position_data[filter[0]];
+		int max_pos = filter[0];
+		for (int i = 1; i < filter.size(); i++)
 		{
-			switch (format[i])
+			if (position_data[filter[i]] > max)
 			{
-			case Type::Number:
-				cout << "Number: " << output[cur_index] * f_data[i] << endl;
-				cur_index++;
-				break;
-			case Type::Position:
-			case Type::Category:
-				process_category(output, cur_index, f_data[i]);
-				cur_index += f_data[i];
-				break;
+				max = position_data[filter[i]];
+				max_pos = filter[i];
 			}
 		}
+		return max_pos;
+	}
+
+	float process_output_number(vector<float> output, int index)
+	{
+		if (format[index] != Type::Number) throw invalid_argument("Format at index is not of type Number!");
+		int out_index = indexes[index];
+		return output[out_index] * f_data[index];
 	}
 };
 
 class Game
 {
 public:
+	virtual int get_current_player() { return 0; };
+
 	// The number of different 'pieces' that can exist on the field throughout any game
 	// e.g. Tic-Tac-Toe [Empty + O + X = 2], Chess [Empty + (Pawn + Bishop + Knight + Rook + Queen + King) * 2 Players = 12]
 	// Pong [Empty + Ball/Paddle = 1]
-	virtual int get_max_board_index() { throw logic_error("Function needs to be overridden; should return the highest number possible in get_board()"); };
+	virtual int get_max_board_index() { throw logic_error("get_max_board_index(): Function needs to be overridden; should return the highest number possible in get_board()"); };
 
 	// The number of tiles on the board e.g. Tic-Tac-Toe = 3*3 = 9, Chess = 8*8 = 64
-	virtual int get_board_size() { throw logic_error("Function needs to be overridden; should return the length of get_board()"); };
+	virtual int get_board_size() { throw logic_error("get_board_size(): Function needs to be overridden; should return the length of get_board()"); };
 
-	virtual OutputFormat get_output_format() { throw logic_error("Function needs to be overridden; should return an OutputFormat that can represent any possible move"); };
-	virtual vector<int> get_board() { throw logic_error("Function needs to be overridden; should return a vector of all the tiles on the board"); };
+	virtual OutputFormat get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); };
+	virtual vector<int> get_board() { throw logic_error("get_board(): Function needs to be overridden; should return a vector of all the tiles on the board"); };
 
 	// convert board to categorical vector
-	/*
-	vector<int> convert_board(vector<int> board) {
+	vector<int> convert_board() {
+		vector<int> board = get_board();
 		vector<int> new_board(board.size() * get_max_board_index());
 		fill(new_board.begin(), new_board.end(), 0);
 		for (int i = 0; i < board.size(); i++) {
@@ -94,7 +101,7 @@ public:
 			}
 		}
 		return new_board;
-	} */
+	}
 };
 
 class TicTacToe : public Game
@@ -137,10 +144,11 @@ public:
 	GameState state;
 	OutputFormat format;
 
-	int get_max_board_index() { return 2; } // O or X
-	int get_board_size() { return 9; }		// 3x3 = 9
-	OutputFormat get_output_format() { return format; }
-	vector<int> get_board()
+	int get_current_player() override { return (int)current_player; }
+	int get_max_board_index() override { return 2; } // O or X
+	int get_board_size() override { return 9; }		// 3x3 = 9
+	OutputFormat get_output_format() override { return format; }
+	vector<int> get_board() override
 	{
 		vector<int> board_data(9);
 		for (int i = 0; i < 3; i++)
@@ -258,26 +266,25 @@ public:
 		else if (state == GameState::Draw) { write_line("Draw!"); }
 	}
 
-	vector<Move> get_possible_moves()
+	vector<int> get_possible_moves()
 	{
-		vector<Move> moves = {};
+		vector<int> moves = {};
 		for (int y = 0; y < 3; y++)
 		{
 			for (int x = 0; x < 3; x++)
 			{
 				if (board.cells[y][x] == Cell::Empty)
 				{
-					Move move = {y, x};
-					moves.push_back(move);
+					moves.push_back(y * 3 + x);
 				}
 			}
 		}
 		return moves;
 	}
 
-	void make_move(Move move)
+	void make_move(int move)
 	{
-		board.cells[move.row][move.col] = current_player == Player::X ? Cell::X : Cell::O;
+		board.cells[move / 3][move % 3] = current_player == Player::X ? Cell::X : Cell::O;
 		current_player = current_player == Player::X ? Player::O : Player::X;
 		update_state();
 		draw_game();
@@ -291,6 +298,21 @@ int random_agent_play(int posb_moves)
 	return rnd(0, posb_moves - 1);
 }
 
+vector<float> q_agent_play(Game &game, int posb_moves) {
+	if (posb_moves < 1) throw logic_error("No moves available; Game over?");
+	if (posb_moves == 1) return {1};
+
+	OutputFormat format = game.get_output_format();
+	vector<int> input = game.convert_board();
+
+	// vector<float> q_output = q_learning(input)
+	vector<float> q_output = {0.1, 0.9, 0, 0, 0.9, 0, 0, 0.9, 0};
+
+	vector<float> position_data = format.process_output_position(q_output, 0);
+
+	return position_data;
+}
+
 void run_machine_learning_test()
 {
 	TicTacToe game;
@@ -298,7 +320,15 @@ void run_machine_learning_test()
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		vector<TicTacToe::Move> moves = game.get_possible_moves();
-		game.make_move(moves[random_agent_play(moves.size())]);
+		vector<int> moves = game.get_possible_moves();
+		if (game.current_player == TicTacToe::Player::X)
+		{
+			OutputFormat format = game.get_output_format();
+			vector<float> moves_weight = q_agent_play(game, moves.size());
+			int ai_move = format.get_max_position(moves_weight, moves);
+			game.make_move(ai_move);
+		} else {
+			game.make_move(moves[random_agent_play(moves.size())]);
+		}
 	}
 }
