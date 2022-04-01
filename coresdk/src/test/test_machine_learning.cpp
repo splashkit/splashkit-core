@@ -20,11 +20,22 @@ public:
 	vector<Type> format;
 	vector<int> f_data;
 	int board_size;
+	int output_width = 0;
 
 	void add_type(Type type, int data)
 	{
 		format.push_back(type);
 		f_data.push_back(data);
+		switch (type)
+		{
+		case Type::Number:
+			output_width++;
+			break;
+		case Type::Position:
+		case Type::Category:
+			output_width += data;
+			break;
+		}
 	}
 
 	void process_category(vector<float> output, int start, int size)
@@ -62,15 +73,15 @@ class Game
 {
 public:
 	// The number of different 'pieces' that can exist on the field throughout any game
-	// e.g. Tic-Tac-Toe [Empty + O + X = 2], Chess [Empty + Pawn + Bishop + Knight + Rook + Queen + King = 6]
+	// e.g. Tic-Tac-Toe [Empty + O + X = 2], Chess [Empty + (Pawn + Bishop + Knight + Rook + Queen + King) * 2 Players = 12]
 	// Pong [Empty + Ball/Paddle = 1]
-	virtual int get_max_board_index();
+	virtual int get_max_board_index() { throw logic_error("Function needs to be overridden; should return the highest number possible in get_board()"); };
 
 	// The number of tiles on the board e.g. Tic-Tac-Toe = 3*3 = 9, Chess = 8*8 = 64
-	virtual int get_board_size();
+	virtual int get_board_size() { throw logic_error("Function needs to be overridden; should return the length of get_board()"); };
 
-	virtual OutputFormat get_output_format();
-	virtual vector<int> get_board();
+	virtual OutputFormat get_output_format() { throw logic_error("Function needs to be overridden; should return an OutputFormat that can represent any possible move"); };
+	virtual vector<int> get_board() { throw logic_error("Function needs to be overridden; should return a vector of all the tiles on the board"); };
 
 	// convert board to categorical vector
 	/*
@@ -149,7 +160,7 @@ public:
 				  {Cell::Empty, Cell::Empty, Cell::Empty}}};
 
 		format = OutputFormat();
-		format.add_type(OutputFormat::Type::Position, 9);
+		format.add_type(OutputFormat::Type::Position, get_board_size());
 
 		// When passing to AI
 		// convert board to int array
@@ -231,18 +242,9 @@ public:
 		{
 			for (int x = 0; x < 3; x++)
 			{
-				if (board.cells[y][x] == Cell::Empty)
-				{
-					write("_");
-				}
-				else if (board.cells[y][x] == Cell::X)
-				{
-					write("X");
-				}
-				else if (board.cells[y][x] == Cell::O)
-				{
-					write("O");
-				}
+				if (board.cells[y][x] == Cell::Empty) { write("_"); }
+				else if (board.cells[y][x] == Cell::X) { write("X"); }
+				else if (board.cells[y][x] == Cell::O) { write("O"); }
 			}
 			write_line();
 		}
@@ -251,18 +253,9 @@ public:
 	void draw_game()
 	{
 		draw_board();
-		if (state == GameState::X_Won)
-		{
-			write_line("X Won!");
-		}
-		else if (state == GameState::O_Won)
-		{
-			write_line("O Won!");
-		}
-		else if (state == GameState::Draw)
-		{
-			write_line("Draw!");
-		}
+		if (state == GameState::X_Won) { write_line("X Won!"); }
+		else if (state == GameState::O_Won) { write_line("O Won!"); }
+		else if (state == GameState::Draw) { write_line("Draw!"); }
 	}
 
 	vector<Move> get_possible_moves()
@@ -293,6 +286,8 @@ public:
 
 int random_agent_play(int posb_moves)
 {
+	if (posb_moves < 1) throw logic_error("No moves available; Game over?");
+	if (posb_moves == 1) return 0;
 	return rnd(0, posb_moves - 1);
 }
 
