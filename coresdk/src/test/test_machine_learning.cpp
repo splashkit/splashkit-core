@@ -97,8 +97,8 @@ public:
 			scores[1] = 1.0f;
 			break;
 		case GameState::Draw:
-			scores[0] = -0.3f;
-			scores[1] = -0.3f;
+			scores[0] = -0.1f;
+			scores[1] = -0.1f;
 			break;
 		}
 		return scores;
@@ -345,7 +345,9 @@ QTrainer *test_q_trainer()
 	QTrainer *trainer = new QTrainer(&game);
 
 	// log(INFO, "Training for 5 iterations");
+	write_line("Training for 1,000,000 iterations. Please wait...");
 	trainer->train(2, 1000000);
+	write_line("Training complete.");
 
 	write_line("q_table?");
 	game.draw_game();
@@ -373,14 +375,15 @@ void run_machine_learning_test()
 		game.draw_game();
 		while (game.state == TicTacToe::GameState::Playing)
 		{
-			vector<int> moves = game.get_possible_moves();
 			if (game.current_player == TicTacToe::Player::X)
 			{
+				write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
 				int ai_move = agent.get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
 			{
+				vector<int> moves = game.get_possible_moves();
 				game.make_move(moves[random_agent_play(moves.size())]);
 			}
 			game.draw_game();
@@ -391,7 +394,7 @@ void run_machine_learning_test()
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		vector<int> moves = game.get_possible_moves();
+		write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
 		if (game.current_player == TicTacToe::Player::X)
 		{
 			game.make_move(agent.get_move(&game));

@@ -237,7 +237,7 @@ namespace splashkit_lib
 				for (int i = 0; i < player_count; i++)
 				{
 					agents.push_back(QAgent(q_table, game->get_output_format())); // generate the agents to play the game
-					agents[i].epsilon = 0.3f; // Agents have high chance of playing random move while training
+					// agents[i].epsilon = 0.3f; // Agents have high chance of playing random move while training
 				}
 				while (game->step())
 				{
