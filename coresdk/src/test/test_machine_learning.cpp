@@ -1,6 +1,5 @@
 #include "window_manager.h"
 #include "terminal.h"
-#include "logging.h"
 #include "random.h"
 #include "machine_learning.h"
 
@@ -53,7 +52,7 @@ public:
 	int get_current_player() override { return (int)current_player; }
 	int get_max_board_index() override { return 2; } // O or X
 	int get_board_size() override { return 9; }		 // 3x3 = 9
-	OutputFormat get_output_format() override { return format; }
+	OutputFormat *get_output_format() override { return &format; }
 	vector<int> get_board() override
 	{
 		vector<int> board_data(9);
@@ -66,17 +65,48 @@ public:
 		}
 		return board_data;
 	}
-	int convert_output(QValue output, bool random) override
+	int convert_output(QValue *output, bool random) override
 	{
 		return format.get_max_position(output, 0, get_possible_moves(), random);
 	}
-
-	TicTacToe()
+	void reset() override
 	{
 		board = {{{Cell::Empty, Cell::Empty, Cell::Empty},
 				  {Cell::Empty, Cell::Empty, Cell::Empty},
 				  {Cell::Empty, Cell::Empty, Cell::Empty}}};
+		current_player = Player::X;
+		state = GameState::Playing;
+	}
+	bool step() override
+	{
+		return state == GameState::Playing;
+	}
+	vector<float> score() override
+	{
+		vector<float> scores(2);
+		switch (state)
+		{
+		case GameState::Playing:
+			throw logic_error("Cannot score a game in progress!");
+		case GameState::X_Won:
+			scores[0] = 1.0f;
+			scores[1] = -1.0f;
+			break;
+		case GameState::O_Won:
+			scores[0] = -1.0f;
+			scores[1] = 1.0f;
+			break;
+		case GameState::Draw:
+			scores[0] = -0.3f;
+			scores[1] = -0.3f;
+			break;
+		}
+		return scores;
+	}
 
+	TicTacToe()
+	{
+		reset();
 		format.add_type(OutputFormat::Type::Position, get_board_size());
 
 		// When passing to AI
@@ -84,9 +114,6 @@ public:
 		// e.g. {X, O, X, 		{1, 2, 1,		{[0, 1], [1, 0], [0, 1],
 		//		 _, O, _,  -> 	 0, 2, 0,  ->	 [0, 0], [1, 0], [0, 0],  ->	[01 10 01 | 00 10 00 | 00 00 00]
 		//		 _, _, _}		 0, 0, 0}		 [0, 0], [0, 0], [0, 0]}
-
-		current_player = Player::X;
-		state = GameState::Playing;
 	}
 
 	// Checks whether the board is won or drawn
@@ -214,7 +241,6 @@ public:
 		board.cells[move / 3][move % 3] = current_player == Player::X ? Cell::X : Cell::O;
 		current_player = current_player == Player::X ? Player::O : Player::X;
 		update_state();
-		draw_game();
 	}
 };
 
@@ -227,33 +253,21 @@ int random_agent_play(int posb_moves)
 	return rnd(0, posb_moves - 1);
 }
 
-int q_agent_play(Game &game)
-{
-	OutputFormat format = game.get_output_format();
-	vector<bool> input = game.convert_board();
-
-	// vector<float> q_output = q_learning(input)
-	vector<float> q_output = {0.2, 0.9, 0, 0, 1, 0, 0, 0.9, 0.3};
-
-	return game.convert_output(QValue(q_output), false);
-}
-
 bool test_q_table()
 {
 	bool passes = true;
 
 	TicTacToe game;
-	OutputFormat format = game.get_output_format();
-	QTable q_table = QTable(&format);
-	QValue test = q_table.get_q_value(game.convert_board());
-	if (test[0] != 0.5f)
+	QTable q_table = QTable(game.get_output_format());
+	QValue *test = q_table.get_q_value(game.convert_board());
+	if ((*test)[0] != 0.5f)
 	{
 		passes = false;
 	}
-	write("Initial QValues = 0.5? ");
-	write(((test[0] == 0.5f) ? "true" : "false"));
-	write_line(" (" + to_string(test[0]) + ")");
-	write_line(test.to_string());
+	write("Initial QValues == 0.5? ");
+	write((((*test)[0] == 0.5f) ? "true" : "false"));
+	write_line(" (" + to_string((*test)[0]) + ")");
+	write_line(test->to_string());
 
 	return passes;
 }
@@ -274,8 +288,9 @@ bool test_q_value()
 	if (abs(-1 - test[0]) > F_ERR || abs(0 - test[1]) > F_ERR || abs(0 - test[2]) > F_ERR)
 	{
 		passes = false;
-		write("Expected: {-1, 0, 0}, Actual: "); write_line(test.to_string());
-		log(WARNING, "LEFT turn failed");
+		write("Expected: {-1, 0, 0}, Actual: ");
+		write_line(test.to_string());
+		// log(WARNING, "LEFT turn failed");
 	}
 
 	// We take a LEFT CENTER turn
@@ -286,8 +301,9 @@ bool test_q_value()
 	if (abs(-1.7 - test[0]) > F_ERR || abs(-0.7 - test[1]) > F_ERR || abs(0 - test[2]) > F_ERR)
 	{
 		passes = false;
-		write("Expected: {-1.7, -0.7, 0}, Actual: "); write_line(test.to_string());
-		log(WARNING, "LEFT CENTER turn failed");
+		write("Expected: {-1.7, -0.7, 0}, Actual: ");
+		write_line(test.to_string());
+		// log(WARNING, "LEFT CENTER turn failed");
 	}
 
 	// We take a RIGHT CENTER turn
@@ -298,8 +314,9 @@ bool test_q_value()
 	if (abs(-1.7 - test[0]) > F_ERR || abs(0.3 - test[1]) > F_ERR || abs(1 - test[2]) > F_ERR)
 	{
 		passes = false;
-		write("Expected: {-1.7, 0.3, 1}, Actual: "); write_line(test.to_string());
-		log(WARNING, "RIGHT CENTER turn failed");
+		write("Expected: {-1.7, 0.3, 1}, Actual: ");
+		write_line(test.to_string());
+		// log(WARNING, "RIGHT CENTER turn failed");
 	}
 
 	// We take no action
@@ -307,38 +324,83 @@ bool test_q_value()
 	if (abs(-1.7 - test[0]) > F_ERR || abs(0.3 - test[1]) > F_ERR || abs(1 - test[2]) > F_ERR)
 	{
 		passes = false;
-		write("Expected: {-1.7, 0.3, 1}, Actual: "); write_line(test.to_string());
-		log(WARNING, "NULL update failed");
+		write("Expected: {-1.7, 0.3, 1}, Actual: ");
+		write_line(test.to_string());
+		// log(WARNING, "NULL update failed");
 	}
 
-	write("test_q_value: "); write_line(test.to_string());
+	write("test_q_value: ");
+	write_line(test.to_string());
 
 	return passes;
 }
 
+QTrainer *test_q_trainer()
+{
+	bool passes = true;
+
+	// log(INFO, "Initialising TicTacToe");
+	TicTacToe game;
+	// log(INFO, "Initialising QTrainer");
+	QTrainer *trainer = new QTrainer(&game);
+
+	// log(INFO, "Training for 5 iterations");
+	trainer->train(2, 1000000);
+
+	write_line("q_table?");
+	game.draw_game();
+	write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+
+	return trainer;
+}
+
 void run_machine_learning_test()
 {
-	log_level _log_level = INFO;
-	log_mode _log_mode = LOG_CONSOLE;
-	init_custom_logger(_log_mode);
+	// log_mode _log_mode = LOG_CONSOLE;
+	// init_custom_logger(_log_mode);
 
 	test_q_table();
 	test_q_value();
+	QTrainer *trainer = test_q_trainer();
 
 	TicTacToe game;
+	QAgent agent = QAgent(trainer->q_table, game.get_output_format());
+	agent.epsilon = 0.0f;
+	for (int i = 0; i < 5; i++)
+	{
+		write("AI vs Random GAME ");
+		write_line(i);
+		game.draw_game();
+		while (game.state == TicTacToe::GameState::Playing)
+		{
+			vector<int> moves = game.get_possible_moves();
+			if (game.current_player == TicTacToe::Player::X)
+			{
+				int ai_move = agent.get_move(&game);
+				game.make_move(ai_move);
+			}
+			else
+			{
+				game.make_move(moves[random_agent_play(moves.size())]);
+			}
+			game.draw_game();
+		}
+		game.reset();
+	}
+	write_line("AI vs AI GAME");
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
 		vector<int> moves = game.get_possible_moves();
 		if (game.current_player == TicTacToe::Player::X)
 		{
-			OutputFormat format = game.get_output_format();
-			int ai_move = q_agent_play(game);
-			game.make_move(ai_move);
+			game.make_move(agent.get_move(&game));
 		}
 		else
 		{
-			game.make_move(moves[random_agent_play(moves.size())]);
+			game.make_move(agent.get_move(&game));
 		}
+		game.draw_game();
 	}
+	game.reset();
 }

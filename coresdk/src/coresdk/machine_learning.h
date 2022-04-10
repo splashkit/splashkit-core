@@ -8,7 +8,6 @@
 #include <sstream>
 #include "random.h"
 #include "terminal.h"
-#include "logging.h"
 using namespace std;
 
 namespace splashkit_lib
@@ -58,7 +57,7 @@ namespace splashkit_lib
 			}
 		}
 
-		int get_max_position(QValue &data, int index, vector<int> filter, bool random);
+		int get_max_position(QValue* data, int index, vector<int> filter, bool random);
 
 		/*
 		float process_output_number(QValue &output, int index)
@@ -93,7 +92,7 @@ namespace splashkit_lib
 			indexes.push_back(index);
 		}
 
-		void update(float reward) 
+		void update(float reward)
 		{
 			for (int i = 0; i < indexes.size(); i++)
 			{
@@ -103,11 +102,12 @@ namespace splashkit_lib
 		}
 
 		float operator[](int index) { return value[index]; }
-		string to_string() 
-		{ 
+		float at(int index) { return value[index]; }
+		string to_string()
+		{
 			stringstream ss;
 			ss << "[ ";
-			for(float v : value)
+			for (float v : value)
 			{
 				ss << v << " ";
 			}
@@ -121,21 +121,22 @@ namespace splashkit_lib
 	private:
 		OutputFormat *format;
 		unordered_map<vector<bool>, QValue> q_table;
+
 	public:
 		QTable(OutputFormat *format)
 		{
 			this->format = format;
 		}
 
-		QValue get_q_value(vector<bool> key)
+		QValue* get_q_value(vector<bool> key)
 		{
-			log(INFO, "QTable::get_q_value");
-			if (q_table.find(key) == q_table.end())
+			// log(INFO, "QTable::get_q_value");
+			if (q_table.find(key) == q_table.end()) // key not found
 			{
-				log(INFO, "QTable::get_q_value - creating new q_value");
+				// log(INFO, "QTable::get_q_value - creating new q_value");
 				q_table[key] = QValue(format);
 			}
-			return q_table[key];
+			return &q_table[key];
 		}
 	};
 
@@ -153,14 +154,15 @@ namespace splashkit_lib
 		// The number of tiles on the board e.g. Tic-Tac-Toe = 3*3 = 9, Chess = 8*8 = 64
 		virtual int get_board_size() { throw logic_error("get_board_size(): Function needs to be overridden; should return the length of get_board()"); }
 
-		virtual OutputFormat get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
+		virtual OutputFormat* get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
 		virtual vector<int> get_board() { throw logic_error("get_board(): Function needs to be overridden; should return a vector of all the tiles on the board"); }
 
 		virtual vector<int> get_possible_moves() { return get_possible_moves(get_board()); }
 		virtual vector<int> get_possible_moves(vector<int> board) { throw logic_error("get_possible_moves(): Function needs to be overridden; should return a vector of all the possible moves"); }
 		virtual void make_move(int move) { throw logic_error("make_move(): Function needs to be overridden; should take a move and update the board"); }
 		virtual bool step() { throw logic_error("step(): Function needs to be overridden; should return false if the game is over"); }
-		virtual int convert_output(QValue output, bool random) { throw logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
+		virtual void reset() { throw logic_error("reset(): Function needs to be overridden; should reset the game to its initial state"); }
+		virtual int convert_output(QValue* output, bool random) { throw logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
 
 		// convert board to categorical vector
 		vector<bool> convert_board()
@@ -178,6 +180,81 @@ namespace splashkit_lib
 		}
 	};
 
+	class QAgent
+	{
+	private:
+		OutputFormat *out_format;
+
+		QTable *q_table;
+		vector<QValue*> q_history; // Store the q_values used for the last game
+	public:
+		float learning_rate = 0.1f;
+		float discount_factor = 0.9f;
+		float epsilon = 0.1f;
+
+		QAgent(QTable *q_table, OutputFormat *out_format)
+		{
+			this->q_table = q_table;
+			this->out_format = out_format;
+		}
+
+		int get_move(Game *game)
+		{
+			vector<bool> input = game->convert_board();
+			QValue* q_output = q_table->get_q_value(input);
+			q_history.push_back(q_output);
+			return game->convert_output(q_output, rnd() < epsilon);
+		}
+
+		void reward(float score)
+		{
+			for (QValue* q : q_history)
+			{
+				q->update(score);
+			}
+			q_history.clear();
+		}
+	};
+
+	class QTrainer
+	{
+	private:
+		Game *game;
+	public:
+		QTable *q_table;
+
+		QTrainer(Game *game)
+		{
+			this->game = game;
+			q_table = new QTable(game->get_output_format());
+		}
+
+		void train(int player_count, int iterations)
+		{
+			for (int i = 0; i < iterations; i++)
+			{
+				vector<QAgent> agents;
+				for (int i = 0; i < player_count; i++)
+				{
+					agents.push_back(QAgent(q_table, game->get_output_format())); // generate the agents to play the game
+					agents[i].epsilon = 0.3f; // Agents have high chance of playing random move while training
+				}
+				while (game->step())
+				{
+					int move = agents[game->get_current_player()].get_move(game);
+					game->make_move(move);
+				}
+				// Update q_table
+				vector<float> scores = game->score();
+				for (int i = 0; i < scores.size(); i++)
+				{
+					float score = scores[i];
+					agents[i].reward(score);
+				}
+				game->reset();
+			}
+		}
+	};
 }
 
 #endif
