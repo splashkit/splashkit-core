@@ -29,5 +29,4 @@ namespace splashkit_lib
 		data->to_update(max_pos);
 		return max_pos;
 	}
-
 }

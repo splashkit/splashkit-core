@@ -1,5 +1,6 @@
 #include "window_manager.h"
 #include "terminal.h"
+#include "utility_functions.h"
 #include "random.h"
 #include "machine_learning.h"
 
@@ -77,14 +78,24 @@ public:
 		current_player = Player::X;
 		state = GameState::Playing;
 	}
-	bool step() override
+	Game* clone() override
 	{
-		return state == GameState::Playing;
+		TicTacToe* game = new TicTacToe(); // Essential that the new keyword is used!!!
+		game->board = board;
+		game->current_player = current_player;
+		game->state = state;
+		game->format = format;
+		return game;
 	}
-	vector<float> score() override
+	bool is_finished() override
 	{
+		return state != GameState::Playing;
+	}
+	vector<float> score(Game *game) override
+	{
+		TicTacToe* t = (TicTacToe*)game;
 		vector<float> scores(2);
-		switch (state)
+		switch (t->state)
 		{
 		case GameState::Playing:
 			throw logic_error("Cannot score a game in progress!");
@@ -272,6 +283,7 @@ bool test_q_table()
 	return passes;
 }
 
+
 bool test_q_value()
 {
 	bool passes = true;
@@ -339,32 +351,33 @@ QTrainer *test_q_trainer()
 {
 	bool passes = true;
 
-	// log(INFO, "Initialising TicTacToe");
 	TicTacToe game;
-	// log(INFO, "Initialising QTrainer");
 	QTrainer *trainer = new QTrainer(&game);
 
-	// log(INFO, "Training for 5 iterations");
 	write_line("Training for 1,000,000 iterations. Please wait...");
 	trainer->train(2, 1000000);
 	write_line("Training complete.");
 
-	write_line("q_table?");
 	game.draw_game();
 	write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
 
 	return trainer;
 }
 
-void run_machine_learning_test()
+string to_string(vector<int> vec)
 {
-	// log_mode _log_mode = LOG_CONSOLE;
-	// init_custom_logger(_log_mode);
+	stringstream ss;
+	ss << "[ ";
+	for (float v : vec)
+	{
+		ss << v << " ";
+	}
+	ss << "]";
+	return ss.str();
+}
 
-	test_q_table();
-	test_q_value();
-	QTrainer *trainer = test_q_trainer();
-
+void play_games(QTrainer *trainer)
+{
 	TicTacToe game;
 	QAgent agent = QAgent(trainer->q_table, game.get_output_format());
 	agent.epsilon = 0.0f;
@@ -395,15 +408,92 @@ void run_machine_learning_test()
 	while (game.state == TicTacToe::GameState::Playing)
 	{
 		write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
-		if (game.current_player == TicTacToe::Player::X)
+		game.make_move(agent.get_move(&game));
+		game.draw_game();
+	}
+	do
+	{
+		game.reset();
+		write_line("\nAI vs Human GAME");
+		write_line("Do you want to start first? (Y/N)");
+		if (read_line() == "Y")
 		{
-			game.make_move(agent.get_move(&game));
+			game.current_player = TicTacToe::Player::X;
 		}
 		else
 		{
-			game.make_move(agent.get_move(&game));
+			game.current_player = TicTacToe::Player::O;
 		}
 		game.draw_game();
-	}
+		while (game.state == TicTacToe::GameState::Playing)
+		{
+			if (game.current_player == TicTacToe::Player::O)
+			{
+				write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+				int ai_move = agent.get_move(&game);
+				game.make_move(ai_move);
+			}
+			else
+			{
+				vector<int> moves = game.get_possible_moves();
+				write_line("Your move: ");
+				write_line(to_string(moves));
+				int move;
+				while(!try_str_to_int(read_line(), move));
+				game.make_move(moves[move]);
+			}
+			game.draw_game();
+		}
+		write_line("Do you want to go again? (Y/N)");
+	} while (read_line() == "Y");
+
 	game.reset();
+}
+
+void run_machine_learning_test()
+{
+	// log_mode _log_mode = LOG_CONSOLE;
+	// init_custom_logger(_log_mode);
+
+	test_q_table();
+	test_q_value();
+	// QTrainer *trainer = test_q_trainer();
+
+	// play_games(trainer);
+
+	TicTacToe game;
+	do
+	{
+		game.reset();
+		write_line("\nAI vs Human GAME");
+		write_line("Do you want to start first? (Y/N)");
+		if (read_line() == "Y")
+		{
+			game.current_player = TicTacToe::Player::X;
+		}
+		else
+		{
+			game.current_player = TicTacToe::Player::O;
+		}
+		game.draw_game();
+		while (game.state == TicTacToe::GameState::Playing)
+		{
+			if (game.current_player == TicTacToe::Player::O)
+			{
+				int ai_move = MiniMax::get_move(&game);
+				game.make_move(ai_move);
+			}
+			else
+			{
+				vector<int> moves = game.get_possible_moves();
+				write_line("Your move: ");
+				write_line(to_string(moves));
+				int move;
+				while(!try_str_to_int(read_line(), move));
+				game.make_move(moves[move]);
+			}
+			game.draw_game();
+		}
+		write_line("Do you want to go again? (Y/N)");
+	} while (read_line() == "Y");
 }
