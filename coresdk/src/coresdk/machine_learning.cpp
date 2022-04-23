@@ -4,7 +4,7 @@ using namespace std;
 namespace splashkit_lib
 {
 	// Late declaration of OutputFormat functions that require QValue
-	int OutputFormat::get_max_position(QValue* data, int index, vector<int> filter, bool random)
+	int OutputFormat::get_max_position(QValue *data, int index, vector<int> filter, bool random)
 	{
 		if (format[index] != Type::Position)
 			throw invalid_argument("Format at index is not of type Position!");
@@ -17,16 +17,28 @@ namespace splashkit_lib
 			return out;
 		}
 		float max = data->at(index + filter[0]);
-		int max_pos = filter[0];
+		int max_pos = index + filter[0];
 		for (int i = 1; i < filter.size(); i++)
 		{
 			if (data->at(index + filter[i]) > max)
 			{
 				max = data->at(index + filter[i]);
-				max_pos = filter[i];
+				max_pos = index + filter[i];
 			}
 		}
 		data->to_update(max_pos);
 		return max_pos;
+	}
+
+	float OutputFormat::process_output_number(QValue *data, int index, bool random)
+	{
+		if (format[index] != Type::Number) throw invalid_argument("Format at index is not of type Number!");
+		data->to_update(indexes[index]);
+		return (random ? rnd() : data->at(indexes[index])) * f_data[index];
+	}
+
+	QValue *QTable::get_q_value(Game *game)
+	{
+		return get_q_value(game->get_input_format()->convert_input(game->get_input()));
 	}
 }

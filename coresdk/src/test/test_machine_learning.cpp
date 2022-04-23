@@ -48,13 +48,15 @@ public:
 	Board board;
 	Player current_player;
 	GameState state;
-	OutputFormat format = OutputFormat(get_board_size());
+	InputFormat input_format;
+	OutputFormat out_format;
 
 	int get_current_player() override { return (int)current_player; }
-	int get_max_board_index() override { return 2; } // O or X
-	int get_board_size() override { return 9; }		 // 3x3 = 9
-	OutputFormat *get_output_format() override { return &format; }
-	vector<int> get_board() override
+	// int get_max_board_index() override { return 2; } // O or X
+	// int get_board_size() override { return 9; }		 // 3x3 = 9
+	InputFormat *get_input_format() override { return &input_format; }
+	OutputFormat *get_output_format() override { return &out_format; }
+	vector<int> get_input() override
 	{
 		vector<int> board_data(9);
 		for (int i = 0; i < 3; i++)
@@ -68,7 +70,7 @@ public:
 	}
 	int convert_output(QValue *output, bool random) override
 	{
-		return format.get_max_position(output, 0, get_possible_moves(), random);
+		return out_format.get_max_position(output, 0, get_possible_moves(), random);
 	}
 	void reset() override
 	{
@@ -84,18 +86,17 @@ public:
 		game->board = board;
 		game->current_player = current_player;
 		game->state = state;
-		game->format = format;
+		game->out_format = out_format;
 		return game;
 	}
 	bool is_finished() override
 	{
 		return state != GameState::Playing;
 	}
-	vector<float> score(Game *game) override
+	vector<float> score() override
 	{
-		TicTacToe* t = (TicTacToe*)game;
 		vector<float> scores(2);
-		switch (t->state)
+		switch (state)
 		{
 		case GameState::Playing:
 			throw logic_error("Cannot score a game in progress!");
@@ -118,7 +119,8 @@ public:
 	TicTacToe()
 	{
 		reset();
-		format.add_type(OutputFormat::Type::Position, get_board_size());
+		out_format.add_type(OutputFormat::Type::Position, 9);
+		input_format.add_type(InputFormat::Type::Board, 9, 2);
 
 		// When passing to AI
 		// convert board to int array
@@ -270,7 +272,7 @@ bool test_q_table()
 
 	TicTacToe game;
 	QTable q_table = QTable(game.get_output_format());
-	QValue *test = q_table.get_q_value(game.convert_board());
+	QValue *test = q_table.get_q_value(game.get_input_format()->convert_input(game.get_input()));
 	if ((*test)[0] != 0.5f)
 	{
 		passes = false;
@@ -359,7 +361,7 @@ QTrainer *test_q_trainer()
 	write_line("Training complete.");
 
 	game.draw_game();
-	write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+	write_line(trainer->q_table->get_q_value(&game)->to_string());
 
 	return trainer;
 }
@@ -379,7 +381,7 @@ string to_string(vector<int> vec)
 void play_games(QTrainer *trainer)
 {
 	TicTacToe game;
-	QAgent agent = QAgent(trainer->q_table, game.get_output_format());
+	QAgent agent = QAgent(trainer->q_table, game.get_input_format(), game.get_output_format());
 	agent.epsilon = 0.0f;
 	for (int i = 0; i < 5; i++)
 	{
@@ -390,7 +392,7 @@ void play_games(QTrainer *trainer)
 		{
 			if (game.current_player == TicTacToe::Player::X)
 			{
-				write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+				write_line(trainer->q_table->get_q_value(&game)->to_string());
 				int ai_move = agent.get_move(&game);
 				game.make_move(ai_move);
 			}
@@ -407,7 +409,7 @@ void play_games(QTrainer *trainer)
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+		write_line(trainer->q_table->get_q_value(&game)->to_string());
 		game.make_move(agent.get_move(&game));
 		game.draw_game();
 	}
@@ -429,7 +431,7 @@ void play_games(QTrainer *trainer)
 		{
 			if (game.current_player == TicTacToe::Player::O)
 			{
-				write_line(trainer->q_table->get_q_value(game.convert_board())->to_string());
+				write_line(trainer->q_table->get_q_value(&game)->to_string());
 				int ai_move = agent.get_move(&game);
 				game.make_move(ai_move);
 			}
@@ -440,7 +442,7 @@ void play_games(QTrainer *trainer)
 				write_line(to_string(moves));
 				int move;
 				while(!try_str_to_int(read_line(), move));
-				game.make_move(moves[move]);
+				game.make_move(move);
 			}
 			game.draw_game();
 		}
@@ -490,7 +492,7 @@ void run_machine_learning_test()
 				write_line(to_string(moves));
 				int move;
 				while(!try_str_to_int(read_line(), move));
-				game.make_move(moves[move]);
+				game.make_move(move);
 			}
 			game.draw_game();
 		}
