@@ -459,8 +459,9 @@ void run_machine_learning_test()
 
 	test_q_table();
 	test_q_value();
-	// QTrainer *trainer = test_q_trainer();
 
+	// Test RL components
+	// QTrainer *trainer = test_q_trainer();
 	// play_games(trainer);
 
 	TicTacToe game;
