@@ -68,7 +68,7 @@ public:
 		}
 		return board_data;
 	}
-	int convert_output(QValue *output, bool random) override
+	int convert_output(OutputValue *output, bool random) override
 	{
 		return out_format.get_max_position(output, 0, get_possible_moves(), random);
 	}
@@ -266,18 +266,18 @@ int random_agent_play(int posb_moves)
 	return rnd(0, posb_moves - 1);
 }
 
-bool test_q_table()
+bool test_reward_table()
 {
 	bool passes = true;
 
 	TicTacToe game;
-	QTable q_table = QTable(game.get_output_format());
-	QValue *test = q_table.get_q_value(game.get_input_format()->convert_input(game.get_input()));
+	RewardTable reward_table = RewardTable(game.get_output_format());
+	OutputValue *test = reward_table.get_value(game.get_input_format()->convert_input(game.get_input()));
 	if ((*test)[0] != 0.5f)
 	{
 		passes = false;
 	}
-	write("Initial QValues == 0.5? ");
+	write("Initial OutputValues == 0.5? ");
 	write((((*test)[0] == 0.5f) ? "true" : "false"));
 	write_line(" (" + to_string((*test)[0]) + ")");
 	write_line(test->to_string());
@@ -286,14 +286,14 @@ bool test_q_table()
 }
 
 
-bool test_q_value()
+bool test_output_value()
 {
 	bool passes = true;
 	const float F_ERR = 0.01f; // Float error for comparisons.
 
 	// Consider a right hand turn represented with possible actions LEFT=0 CENTER=1 or RIGHT=2
 	vector<float> val = {0, 0, 0};
-	QValue test = QValue(val);
+	OutputValue test = OutputValue(val);
 
 	// We take a left turn
 	test.to_update(0);
@@ -343,27 +343,27 @@ bool test_q_value()
 		// log(WARNING, "NULL update failed");
 	}
 
-	write("test_q_value: ");
+	write("test_output_value: ");
 	write_line(test.to_string());
 
 	return passes;
 }
 
-QTrainer *test_q_trainer()
+TableAgent *test_table_agent()
 {
 	bool passes = true;
 
 	TicTacToe game;
-	QTrainer *trainer = new QTrainer(&game);
+	TableAgent *table_agent = new TableAgent(&game);
 
 	write_line("Training for 1,000,000 iterations. Please wait...");
-	trainer->train(2, 1000000);
+	table_agent->train(2, 1000000);
 	write_line("Training complete.");
 
 	game.draw_game();
-	write_line(trainer->q_table->get_q_value(&game)->to_string());
+	write_line(table_agent->reward_table->get_value(&game)->to_string());
 
-	return trainer;
+	return table_agent;
 }
 
 string to_string(vector<int> vec)
@@ -378,11 +378,9 @@ string to_string(vector<int> vec)
 	return ss.str();
 }
 
-void play_games(QTrainer *trainer)
+void play_games(TableAgent *table_agent)
 {
 	TicTacToe game;
-	QAgent agent = QAgent(trainer->q_table, game.get_input_format(), game.get_output_format());
-	agent.epsilon = 0.0f;
 	for (int i = 0; i < 5; i++)
 	{
 		write("AI vs Random GAME ");
@@ -392,8 +390,8 @@ void play_games(QTrainer *trainer)
 		{
 			if (game.current_player == TicTacToe::Player::X)
 			{
-				write_line(trainer->q_table->get_q_value(&game)->to_string());
-				int ai_move = agent.get_move(&game);
+				write_line(table_agent->reward_table->get_value(&game)->to_string());
+				int ai_move = table_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
@@ -409,8 +407,8 @@ void play_games(QTrainer *trainer)
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		write_line(trainer->q_table->get_q_value(&game)->to_string());
-		game.make_move(agent.get_move(&game));
+		write_line(table_agent->reward_table->get_value(&game)->to_string());
+		game.make_move(table_agent->get_move(&game));
 		game.draw_game();
 	}
 	do
@@ -431,8 +429,8 @@ void play_games(QTrainer *trainer)
 		{
 			if (game.current_player == TicTacToe::Player::O)
 			{
-				write_line(trainer->q_table->get_q_value(&game)->to_string());
-				int ai_move = agent.get_move(&game);
+				write_line(table_agent->reward_table->get_value(&game)->to_string());
+				int ai_move = table_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
@@ -457,12 +455,12 @@ void run_machine_learning_test()
 	// log_mode _log_mode = LOG_CONSOLE;
 	// init_custom_logger(_log_mode);
 
-	test_q_table();
-	test_q_value();
+	test_reward_table();
+	test_output_value();
 
 	// Test RL components
-	// QTrainer *trainer = test_q_trainer();
-	// play_games(trainer);
+	// TableAgent *table_agent = test_table_agent();
+	// play_games(table_agent);
 
 	TicTacToe game;
 	do

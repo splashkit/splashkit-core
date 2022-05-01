@@ -3,7 +3,7 @@ using namespace std;
 
 namespace splashkit_lib
 {
-	// Late declaration of OutputFormat functions that require QValue
+	// Late declaration of OutputFormat functions that require OutputValue
 
 	/**
 	 * @brief Gets the index of the maximum reward value for the given format index.
@@ -14,7 +14,7 @@ namespace splashkit_lib
 	 * @param random The global random to be passed down, determines if the move should be randomly chosen.
 	 * @return int The index of the maximum reward value.
 	 */
-	int OutputFormat::get_max_position(QValue *data, int index, vector<int> filter, bool random)
+	int OutputFormat::get_max_position(OutputValue *data, int index, vector<int> filter, bool random)
 	{
 		if (format[index] != Type::Position)
 			throw invalid_argument("Format at index is not of type Position!");
@@ -22,7 +22,7 @@ namespace splashkit_lib
 		if (random)
 		{
 			int out = filter[rnd(filter.size())];
-			// update q_table
+			// update reward_table
 			data->to_update(out);
 			return out;
 		}
@@ -48,15 +48,15 @@ namespace splashkit_lib
 	 * @param random The global random passed down, determines if the number should be randomly chosen.
 	 * @return float
 	 */
-	float OutputFormat::process_output_number(QValue *data, int index, bool random)
+	float OutputFormat::process_output_number(OutputValue *data, int index, bool random)
 	{
 		if (format[index] != Type::Number) throw invalid_argument("Format at index is not of type Number!");
 		data->to_update(indexes[index]); // Tells the AI that the number was retrieved and should be updated during reward/punishment
 		return (random ? rnd() : data->at(indexes[index])) * f_data[index]; // Scale the number to the previously given range [0, f_data[index]]
 	}
 
-	QValue *QTable::get_q_value(Game *game)
+	OutputValue *RewardTable::get_value(Game *game)
 	{
-		return get_q_value(game->get_input_format()->convert_input(game->get_input()));
+		return get_value(game->get_input_format()->convert_input(game->get_input()));
 	}
 }
