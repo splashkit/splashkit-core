@@ -39,7 +39,7 @@ namespace splashkit_lib
 		int output_width = 0;	 // sum (sizes * max_vals)
 
 		// convert list of integers to categorical vector, assuming out starts as all 0/false
-		void convert_int(vector<int> input, vector<bool> *out, int index) const
+		void convert_int(vector<int> input, vector<bool> *out, int index)
 		{
 			for (int i = 0; i < sizes[index]; i++)
 			{
@@ -101,7 +101,7 @@ namespace splashkit_lib
 		 * @param input game.get_input()
 		 * @return vector<bool> a boolean representation of the input data
 		 */
-		vector<bool> convert_input(vector<int> input) const
+		vector<bool> convert_input(vector<int> input)
 		{
 			vector<bool> out(output_width, false);
 			for (int i = 0; i < format.size(); i++)
@@ -193,21 +193,99 @@ namespace splashkit_lib
 		}
 
 		/**
-		 * @see machine_learning.cpp for implementation (due to forward declaration of OutputValue)
-		 *
+		 * @brief Get the format type at the given format index.
+		 * 
+		 * @param index format index: the number representing the order of when add_type was called starting at 0
+		 * @return Type format type: meta data detailing how that index should be interpreted
+		 */
+		Type get_type(int index) const { return format[index]; }
+
+		/**
+		 * @brief Get the output index of the data at the given format index.
+		 * 
+		 * @param index format index: the number representing the order of when add_type was called starting at 0
+		 * @return int output index: the first index correspoding to the given format index
+		 */
+		int get_output_index(int index) const { return indexes[index]; }
+
+		/**
+		 * @brief Get the output info of the data at the given format index.
+		 * 
+		 * For Position or Category types output info is the length or size of the data to be outputted.  \n
+		 * For Number type output info is the range of the number to be outputted, [0, data].  \n
+		 * 
+		 * @param index format index: the number representing the order of when add_type was called starting at 0
+		 * @return int the data for the given type, size (Position, Category) or max_val (Number)
+		 */
+		int get_output_info(int index) const { return f_data[index]; }
+	};
+
+	/**
+	 * @brief The set of reward values produced by an AI, detailing what it thinks about each possible move.
+	 *
+	 * @see OutputFormat
+	 */
+	class OutputValue
+	{
+	private:
+		OutputFormat *format;
+
+		vector<float> value;
+		vector<int> indexes; // indexes to affect during reward/punishment
+
+		float learning_rate = 0.1f; // learning rate, how fast the ai learns
+		float discount_rate = 0.9f; // discount rate, how much future reward is considered
+	public:
+		/// Not to be used, only for vector initialisation.
+		OutputValue() {}
+
+		OutputValue(OutputFormat *format)
+		{
+			this->format = format;
+			value = vector<float>(format->get_width(), 0.5f);
+		}
+
+		OutputValue(OutputFormat *format, vector<float> value)
+		{
+			this->format = format;
+			this->value = value;
+		}
+
+		/**
 		 * @brief Gets the index of the maximum reward value for the given format index.
 		 *
-		 * @param data The reward values.
 		 * @param index The format index indicating which subsection of the reward values to consider.
-		 * @param filter A whitelist filter to filter the reward values based on the valid indexes to consider.
+		 * @param filter A whitelist filter to filter the reward values based on the valid indexes to consider. TODO: allow none or null values
 		 * @param random The global random to be passed down, determines if the move should be randomly chosen.
 		 * @return int The index of the maximum reward value.
 		 */
-		int get_max_position(OutputValue *data, int index, vector<int> filter, bool random);
+		int get_max_position(int index, vector<int> filter, bool random)
+		{
+			if (format->get_type(index) != OutputFormat::Type::Position)
+				throw invalid_argument("Format at index is not of type Position!");
+			index = format->get_output_index(index); // Grab the starting index for the given position data
+			if (random)
+			{
+				int out = filter[rnd(filter.size())];
+				// update reward_table
+				to_update(out);
+				return out;
+			}
+			float max = value[index + filter[0]];
+			int max_pos = filter[0];
+			for (int i = 1; i < filter.size(); i++)
+			{
+				if (value[index + filter[i]] > max)
+				{
+					max = value[index + filter[i]];
+					max_pos = filter[i];
+				}
+			}
+			to_update(max_pos);
+			return max_pos;
+		}
 
 		/**
-		 * @see machine_learning.cpp for implementation (due to forward declaration of OutputValue)
-		 *
 		 * @brief Gets the number in the data at the given format index.
 		 *
 		 * @param data The AI data to retrieve the number from.
@@ -215,27 +293,12 @@ namespace splashkit_lib
 		 * @param random The global random passed down, determines if the number should be randomly chosen.
 		 * @return float
 		 */
-		float process_output_number(OutputValue *data, int index, bool random);
-	};
-
-	class OutputValue
-	{
-	private:
-		vector<float> value;
-		vector<int> indexes; // indexes to affect during reward/punishment
-							 // vector<float> reward_mod; // reward method for each index
-	public:
-		/// Not to be used, only for vector initialisation.
-		OutputValue() {}
-
-		OutputValue(OutputFormat *format)
+		float process_output_number(int index, bool random)
 		{
-			value = vector<float>(format->get_width(), 0.5f);
-		}
-
-		OutputValue(vector<float> value)
-		{
-			this->value = value;
+			if (format->get_type(index) != OutputFormat::Type::Number)
+				throw invalid_argument("Format at index is not of type Number!");
+			to_update(format->get_output_index(index));									// Tells the AI that the number was retrieved and should be updated during reward/punishment
+			return (random ? rnd() : value[format->get_output_index(index)] * format->get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
 		}
 
 		// adds an index to be updated during reward/punishment, TODO: extra directional information
@@ -244,11 +307,17 @@ namespace splashkit_lib
 			indexes.push_back(index);
 		}
 
-		void update(float reward)
+		void update(float reward, OutputValue *next_move)
 		{
 			for (int i = 0; i < indexes.size(); i++)
 			{
-				value[indexes[i]] += reward;
+				if (next_move == NULL) {
+					value[indexes[i]] = reward; // Next move is game over with this reward. i.e. instant win/instant loss
+					continue;
+				}
+
+				// QLearning method, using the next move as future reward
+				value[indexes[i]] += learning_rate * (reward + discount_rate * next_move->value[indexes[i]] - value[indexes[i]]);
 			}
 			indexes.clear();
 		}
@@ -268,16 +337,29 @@ namespace splashkit_lib
 		}
 	};
 
+	/**
+	 * @brief A HashMap wrapper that allows game states to be mapped to reward values.
+	 *
+	 * TODO: Consider moving InputForamt and OutputFormat into this class as subclasses as they used exclusively to facilitate this class right now.
+	 * Keys should be created using InputFormat
+	 * Values should be created using OutputFormat
+	 *
+	 * This class also allows OutputFormat to provide extra meta data after the reward value is retrieved.
+	 * This information is used to determine which values are used to determine the final AI move, and reward them accordingly.
+	 *
+	 * @see InputFormat
+	 * @see OutputFormat
+	 */
 	class RewardTable
 	{
 	private:
-		OutputFormat *format;
+		OutputFormat out_format;
 		unordered_map<vector<bool>, OutputValue> reward_table;
 
 	public:
-		RewardTable(OutputFormat *format)
+		RewardTable(OutputFormat out_format)
 		{
-			this->format = format;
+			this->out_format = out_format;
 		}
 
 		/**
@@ -295,12 +377,12 @@ namespace splashkit_lib
 			if (reward_table.find(key) == reward_table.end()) // key not found
 			{
 				// log(INFO, "RewardTable::get_value - creating new q_value");
-				reward_table[key] = OutputValue(format);
+				reward_table[key] = OutputValue(&out_format);
 			}
 			return &reward_table[key];
 		}
 
-		/// converts the Game object into the converted game state, used as a key for the reward_table
+		/// used for testing should not be called on the hot path
 		OutputValue *get_value(Game *game);
 	};
 
@@ -339,17 +421,17 @@ namespace splashkit_lib
 		 * @brief Returns an InputFormat that can be used by an agent to understand the current state of the game
 		 *
 		 * @see InputFormat
-		 * @return InputFormat* the format of information given to the AI to play its next move
+		 * @return InputFormat the format of information given to the AI to play its next move
 		 */
-		virtual InputFormat *get_input_format() { throw logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
+		virtual InputFormat get_input_format() { throw logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
 
 		/**
 		 * @brief Returns an OutputFormat that can represent any possible move
 		 *
 		 * @see OutputFormat
-		 * @return OutputFormat* the format of information produced by the AI to play its next move
+		 * @return OutputFormat the format of information produced by the AI to play its next move
 		 */
-		virtual OutputFormat *get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
+		virtual OutputFormat get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
 
 		/**
 		 * @brief Gets the list possible moves that can be played in the current state of the game
@@ -418,13 +500,16 @@ namespace splashkit_lib
 	/**
 	 * @brief Uses a reward table to determine the best move for the current state of the game.
 	 * The table is generated based on wins and losses, if the agent wins a game, all the moves it played are given a reward and are played more often in the future.
-	 * 
+	 *
 	 * The agent uses Reinforcement Learning concepts and is based on QLearning, it plays random games to attempt to find optimal moves.
 	 * The agent may not converge to the optimal move, but will eventually reach a point where it has a good understanding of the game.
-	 * 
-	 * This agent requires high training. It is recommended to train over game amounts in units of millions of games.
-	 * This agent requires high memory. It stores all board states it has ever encountered.
-	 * This agent requires very low move time. It can compute it's move in O(1) time.
+	 *
+	 * Agent Information
+	 * Training: Very High. It is recommended to train over game amounts in units of millions of games.
+	 * Memory: Very High. It stores all board states it has ever encountered.
+	 * Move Time: Very Fast. It can compute it's move in O(1) time.
+	 * Performance: Unknown. TODO: more testing required
+	 * Complexity: Very High. Requires most API functions to be implemented
 	 */
 	class TableAgent
 	{
@@ -453,7 +538,7 @@ namespace splashkit_lib
 			int get_move(Game *game)
 			{
 				vector<bool> input = input_format->convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
-				OutputValue *output = reward_table->get_value(input);					 // get the q_value for the current state
+				OutputValue *output = reward_table->get_value(input);				 // get the q_value for the current state
 				move_history.push_back(output);										 // remember that we took this move for reward if we win or lose
 				return game->convert_output(output, rnd() < epsilon);				 // convert the q_value into a move, if epsilon take a random move (e.g. take the highest value (best) move)
 			}
@@ -465,17 +550,18 @@ namespace splashkit_lib
 			 */
 			void reward(float score)
 			{
-				for (OutputValue *q : move_history)
+				for (int i = 0; i < move_history.size(); i++)
 				{
-					q->update(score);
+					move_history[i]->update(score, i == move_history.size() - 1 ? NULL : move_history[i + 1]);
 				}
 				move_history.clear();
 			}
 		};
+
 	private:
 		Game *game;
-		InputFormat *input_format;
-		OutputFormat *out_format;
+		InputFormat input_format;
+		OutputFormat out_format;
 
 	public:
 		RewardTable *reward_table;
@@ -496,7 +582,7 @@ namespace splashkit_lib
 		 */
 		int get_move(Game *game)
 		{
-			vector<bool> input = input_format->convert_input(game->get_input());
+			vector<bool> input = input_format.convert_input(game->get_input());
 			OutputValue *output = reward_table->get_value(input);
 			return game->convert_output(output, false);
 		}
@@ -508,9 +594,7 @@ namespace splashkit_lib
 				vector<TableAgent::SelfPlay> agents;
 				for (int i = 0; i < player_count; i++)
 				{
-					agents.push_back(TableAgent::SelfPlay(reward_table, input_format, out_format)); // generate the agents to play the game
-
-					// agents[i].epsilon = 0.3f; // Agents have high chance of playing random move while training
+					agents.push_back(TableAgent::SelfPlay(reward_table, &input_format, &out_format)); // generate the agents to play the game
 				}
 				while (!game->is_finished())
 				{
@@ -531,14 +615,17 @@ namespace splashkit_lib
 
 	/**
 	 * @brief Uses brute force to compute the optimal move. This agent will always perform the optimal move. You may use it for small games that require strong AI's.
-	 * 
-	 * This agent requires no training.
-	 * This agent requires medium memory. It will store game states it encounters during computation (not yet implemented). TODO: Add transposition tables
-	 * This agent requires very high move time. It can take O(n*m) time to compute a move, where n is the number of moves available per step, and m is the step count of the game.
-	 * 
+	 *
+	 * Agent Information
+	 * Training: None
+	 * Memory: Medium-High. It will store game states it encounters during computation (not yet implemented). TODO: Add transposition tables
+	 * Move Time: Very Slow. It can take O(n*m) time to compute a move, where n is the number of moves available per step, and m is the step count of the game.
+	 * Performance: Optimal. recommended for impossible AI
+	 * Complexity: Very Low. Requires clone(), score(), is_finished(), get_current_player(), get_possible_moves(), and make_move() to be implemented.
+	 *
 	 * TODO: add global option for transposition tables. Where the table is stored between move calcs.
 	 */
-	class MiniMax
+	class MiniMaxAgent
 	{
 	public:
 		static int get_move(Game *game)

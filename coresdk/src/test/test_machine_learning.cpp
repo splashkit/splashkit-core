@@ -54,8 +54,8 @@ public:
 	int get_current_player() override { return (int)current_player; }
 	// int get_max_board_index() override { return 2; } // O or X
 	// int get_board_size() override { return 9; }		 // 3x3 = 9
-	InputFormat *get_input_format() override { return &input_format; }
-	OutputFormat *get_output_format() override { return &out_format; }
+	InputFormat get_input_format() override { return input_format; }
+	OutputFormat get_output_format() override { return out_format; }
 	vector<int> get_input() override
 	{
 		vector<int> board_data(9);
@@ -70,7 +70,7 @@ public:
 	}
 	int convert_output(OutputValue *output, bool random) override
 	{
-		return out_format.get_max_position(output, 0, get_possible_moves(), random);
+		return output->get_max_position(0, get_possible_moves(), random);
 	}
 	void reset() override
 	{
@@ -118,9 +118,10 @@ public:
 
 	TicTacToe()
 	{
+		out_format.add_type(OutputFormat::Type::Position, 9); // 3*3 = 9
+		input_format.add_type(InputFormat::Type::Board, 9, 2); // 9 is board size, 2 is player count ([Empty, X, O] max index of this array)
+
 		reset();
-		out_format.add_type(OutputFormat::Type::Position, 9);
-		input_format.add_type(InputFormat::Type::Board, 9, 2);
 
 		// When passing to AI
 		// convert board to int array
@@ -272,7 +273,7 @@ bool test_reward_table()
 
 	TicTacToe game;
 	RewardTable reward_table = RewardTable(game.get_output_format());
-	OutputValue *test = reward_table.get_value(game.get_input_format()->convert_input(game.get_input()));
+	OutputValue *test = reward_table.get_value(game.get_input_format().convert_input(game.get_input()));
 	if ((*test)[0] != 0.5f)
 	{
 		passes = false;
@@ -291,60 +292,19 @@ bool test_output_value()
 	bool passes = true;
 	const float F_ERR = 0.01f; // Float error for comparisons.
 
-	// Consider a right hand turn represented with possible actions LEFT=0 CENTER=1 or RIGHT=2
-	vector<float> val = {0, 0, 0};
-	OutputValue test = OutputValue(val);
+	OutputFormat format = OutputFormat();
+	format.add_type(OutputFormat::Type::Category, 3);
+	OutputValue test = OutputValue(&format); // expected starting state = {0.5, 0.5, 0.5}
 
-	// We take a left turn
+	// We increase the first value
 	test.to_update(0);
-	// We punish the left turn
-	test.update(-1);
-	if (abs(-1 - test[0]) > F_ERR || abs(0 - test[1]) > F_ERR || abs(0 - test[2]) > F_ERR)
+	test.update(1, NULL); // We give absolute reward of 1
+	if (abs(1 - test[0]) > F_ERR || abs(0.5 - test[1]) > F_ERR || abs(0.5 - test[2]) > F_ERR)
 	{
 		passes = false;
-		write("Expected: {-1, 0, 0}, Actual: ");
+		write("Expected: {1, 0.5, 0.5}, Actual: ");
 		write_line(test.to_string());
-		// log(WARNING, "LEFT turn failed");
 	}
-
-	// We take a LEFT CENTER turn
-	test.to_update(0);
-	test.to_update(1);
-	// We punish the center less
-	test.update(-0.7);
-	if (abs(-1.7 - test[0]) > F_ERR || abs(-0.7 - test[1]) > F_ERR || abs(0 - test[2]) > F_ERR)
-	{
-		passes = false;
-		write("Expected: {-1.7, -0.7, 0}, Actual: ");
-		write_line(test.to_string());
-		// log(WARNING, "LEFT CENTER turn failed");
-	}
-
-	// We take a RIGHT CENTER turn
-	test.to_update(1);
-	test.to_update(2);
-	// We reward a correct turn
-	test.update(1);
-	if (abs(-1.7 - test[0]) > F_ERR || abs(0.3 - test[1]) > F_ERR || abs(1 - test[2]) > F_ERR)
-	{
-		passes = false;
-		write("Expected: {-1.7, 0.3, 1}, Actual: ");
-		write_line(test.to_string());
-		// log(WARNING, "RIGHT CENTER turn failed");
-	}
-
-	// We take no action
-	test.update(999);
-	if (abs(-1.7 - test[0]) > F_ERR || abs(0.3 - test[1]) > F_ERR || abs(1 - test[2]) > F_ERR)
-	{
-		passes = false;
-		write("Expected: {-1.7, 0.3, 1}, Actual: ");
-		write_line(test.to_string());
-		// log(WARNING, "NULL update failed");
-	}
-
-	write("test_output_value: ");
-	write_line(test.to_string());
 
 	return passes;
 }
@@ -450,18 +410,8 @@ void play_games(TableAgent *table_agent)
 	game.reset();
 }
 
-void run_machine_learning_test()
+void test_minimax()
 {
-	// log_mode _log_mode = LOG_CONSOLE;
-	// init_custom_logger(_log_mode);
-
-	test_reward_table();
-	test_output_value();
-
-	// Test RL components
-	// TableAgent *table_agent = test_table_agent();
-	// play_games(table_agent);
-
 	TicTacToe game;
 	do
 	{
@@ -481,7 +431,7 @@ void run_machine_learning_test()
 		{
 			if (game.current_player == TicTacToe::Player::O)
 			{
-				int ai_move = MiniMax::get_move(&game);
+				int ai_move = MiniMaxAgent::get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
@@ -497,4 +447,20 @@ void run_machine_learning_test()
 		}
 		write_line("Do you want to go again? (Y/N)");
 	} while (read_line() == "Y");
+}
+
+void run_machine_learning_test()
+{
+	// log_mode _log_mode = LOG_CONSOLE;
+	// init_custom_logger(_log_mode);
+
+	test_reward_table();
+	test_output_value();
+
+	// Test RL components
+	TableAgent *table_agent = test_table_agent();
+	play_games(table_agent);
+
+	// Test minimax
+	// test_minimax();
 }
