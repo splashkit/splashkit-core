@@ -140,7 +140,7 @@ namespace splashkit_lib
 		{
 			Position,
 			Number,
-			Category
+			Category, // not implemented use Position instead
 		};
 
 	private:
@@ -271,9 +271,10 @@ namespace splashkit_lib
 				to_update(out);
 				return out;
 			}
-			float max = value[index + filter[0]];
-			int max_pos = filter[0];
-			for (int i = 1; i < filter.size(); i++)
+			int initial_index = rnd(filter.size()); // Set the initial index to a random position, this prevents the AI from always playing the first move when all equal
+			float max = value[index + filter[initial_index]];
+			int max_pos = filter[initial_index];
+			for (int i = 0; i < filter.size(); i++)
 			{
 				if (value[index + filter[i]] > max)
 				{
@@ -317,7 +318,9 @@ namespace splashkit_lib
 				}
 
 				// QLearning method, using the next move as future reward
-				value[indexes[i]] += learning_rate * (reward + discount_rate * next_move->value[indexes[i]] - value[indexes[i]]);
+				value[indexes[i]] += learning_rate * (reward + discount_rate * next_move->value[indexes[i]] - value[indexes[i]]); 
+				/// TODO: next_move->value[indexes[i]] is always 0.5 for TicTacToe
+				// Possibly grab the maximum predicted reward for that format type?
 			}
 			indexes.clear();
 		}
@@ -503,6 +506,8 @@ namespace splashkit_lib
 	 *
 	 * The agent uses Reinforcement Learning concepts and is based on QLearning, it plays random games to attempt to find optimal moves.
 	 * The agent may not converge to the optimal move, but will eventually reach a point where it has a good understanding of the game.
+	 * 
+	 * This agent may not know what to do in all situations, it will play randomly in obscure positions.
 	 *
 	 * Agent Information
 	 * Training: Very High. It is recommended to train over game amounts in units of millions of games.
@@ -550,7 +555,7 @@ namespace splashkit_lib
 			 */
 			void reward(float score)
 			{
-				for (int i = 0; i < move_history.size(); i++)
+				for (int i = move_history.size() - 1; i >= 0; i--)
 				{
 					move_history[i]->update(score, i == move_history.size() - 1 ? NULL : move_history[i + 1]);
 				}

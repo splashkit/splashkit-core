@@ -77,7 +77,7 @@ public:
 		board = {{{Cell::Empty, Cell::Empty, Cell::Empty},
 				  {Cell::Empty, Cell::Empty, Cell::Empty},
 				  {Cell::Empty, Cell::Empty, Cell::Empty}}};
-		current_player = Player::X;
+		current_player = (Player)rnd(2);
 		state = GameState::Playing;
 	}
 	Game* clone() override
