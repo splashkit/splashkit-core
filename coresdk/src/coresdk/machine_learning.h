@@ -72,6 +72,22 @@ namespace splashkit_lib
 
 		/**
 		 * @brief Adds a section to the input format.
+		 * 
+		 * Example Tic-Tac-Toe: 
+		 * Add Board type of 
+		 * - size = 3*3 = 9
+		 * - max_val = Empty + O + X = 3
+		 * Add player type of
+		 * - size = 1, Player is almost always represented by 1 number
+		 * - max_val = O + X = 2
+		 * 
+		 * Example Chess:
+		 * Add Board type of
+		 * - size = 8*8 = 64
+		 * - max_val = Empty + (Pawn + Bishop + Knight + Rook + Queen + King) * 2 Players = 12
+		 * Add player type of
+		 * - size = 1
+		 * - max_val = White or Black = 2
 		 *
 		 * @param type the type of the data (currently unused)
 		 * @param size the length of the data
@@ -140,7 +156,7 @@ namespace splashkit_lib
 		{
 			Position,
 			Number,
-			Category, // not implemented use Position instead
+			Category,
 		};
 
 	private:
@@ -263,7 +279,7 @@ namespace splashkit_lib
 		 */
 		int get_max_position(int index, vector<int> filter, bool random)
 		{
-			if (format->get_type(index) != OutputFormat::Type::Position)
+			if (format->get_type(index) != OutputFormat::Type::Position && format->get_type(index) != OutputFormat::Type::Category)
 				throw invalid_argument("Format at index is not of type Position!");
 			index = format->get_output_index(index); // Grab the starting index for the given position data
 			if (random)
@@ -427,16 +443,6 @@ namespace splashkit_lib
 		 */
 		virtual vector<float> score() { throw logic_error("score(): Function needs to be overridden; should return a vector with player indexes mapped to score at the end of the game"); }
 
-		/// TODO: Move to documentation of InputFormat as example
-		// The number of different 'pieces' that can exist on the field throughout any game
-		// e.g. Tic-Tac-Toe [Empty + O + X = 2], Chess [Empty + (Pawn + Bishop + Knight + Rook + Queen + King) * 2 Players = 12]
-		// Pong [Empty + Ball/Paddle = 1]
-		// virtual int get_max_board_index() { throw logic_error("get_max_board_index(): Function needs to be overridden; should return the highest number possible in get_board()"); }
-
-		/// TODO: move comment to documentation of InputFormat as example
-		// The number of tiles on the board e.g. Tic-Tac-Toe = 3*3 = 9, Chess = 8*8 = 64
-		// virtual int get_board_size() { throw logic_error("get_board_size(): Function needs to be overridden; should return the length of get_board()"); }
-
 		/**
 		 * @brief Returns an InputFormat that can be used by an agent to understand the current state of the game
 		 *
@@ -572,7 +578,7 @@ namespace splashkit_lib
 			 */
 			void reward(float score)
 			{
-				move_history[move_history.size() - 1]->update(score, NULL); // Special case for first instace
+				move_history[move_history.size() - 1]->update(score, NULL); // Special case for first instance
 				for (int i = move_history.size() - 2; i >= 0; i--)
 				{
 					move_history[i]->update(score, move_history[i + 1]);
