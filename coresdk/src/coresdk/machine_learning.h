@@ -25,7 +25,7 @@ namespace splashkit_lib
 		enum class Type
 		{
 			Board,
-			Current_Player,
+			Player,
 			Number, // generic integer
 		};
 
@@ -45,7 +45,7 @@ namespace splashkit_lib
 			{
 				if (input[i] != 0)
 				{
-					out->at(indexes_out[index] + i * max_vals[index] + input[i] - 1) = true;
+					out->at(indexes_out[index] + i * max_vals[index] + input[indexes_in[index] + i] - 1) = true;
 				}
 			}
 		}
@@ -75,7 +75,7 @@ namespace splashkit_lib
 		 *
 		 * @param type the type of the data (currently unused)
 		 * @param size the length of the data
-		 * @param max_val the maximum value (inclusive) that could be contained within the data.
+		 * @param max_val the maximum value (exclusive) that could be contained within the data.
 		 * This should be the maximum value for all elements for the given data segment.
 		 * @return int the format index to be used later on in other functions
 		 */
@@ -83,15 +83,15 @@ namespace splashkit_lib
 		{
 			if (size < 1)
 				throw invalid_argument("Size must be greater than 0!");
-			if (max_val < 1)
-				throw invalid_argument("Max Value must be greater than 0!");
-			format.push_back(type);				 // How to interpret the data
-			sizes.push_back(size);				 // How many values to read
-			max_vals.push_back(max_val);		 // The range of the given values, with a domain of [0, max_val] inclusive
-			indexes_in.push_back(input_width);	 // The starting index for the given data in int form
-			indexes_out.push_back(output_width); // The starting index for the given data in bool form
-			input_width += size;				 // The total width of the inputted data
-			output_width += size * max_val;		 // The total width of the outputted data
+			if (max_val <= 1)
+				throw invalid_argument("Max Value must be greater than 1!");
+			format.push_back(type);				  // How to interpret the data
+			sizes.push_back(size);				  // How many values to read
+			max_vals.push_back(max_val - 1);	  // The range of the given values, with a domain of [0, max_val) exclusive
+			indexes_in.push_back(input_width);	  // The starting index for the given data in int form
+			indexes_out.push_back(output_width);  // The starting index for the given data in bool form
+			input_width += size;				  // The total width of the inputted data
+			output_width += size * (max_val - 1); // The total width of the outputted data
 			return format.size() - 1;
 		}
 
@@ -194,7 +194,7 @@ namespace splashkit_lib
 
 		/**
 		 * @brief Get the format type at the given format index.
-		 * 
+		 *
 		 * @param index format index: the number representing the order of when add_type was called starting at 0
 		 * @return Type format type: meta data detailing how that index should be interpreted
 		 */
@@ -202,7 +202,7 @@ namespace splashkit_lib
 
 		/**
 		 * @brief Get the output index of the data at the given format index.
-		 * 
+		 *
 		 * @param index format index: the number representing the order of when add_type was called starting at 0
 		 * @return int output index: the first index correspoding to the given format index
 		 */
@@ -210,10 +210,10 @@ namespace splashkit_lib
 
 		/**
 		 * @brief Get the output info of the data at the given format index.
-		 * 
+		 *
 		 * For Position or Category types output info is the length or size of the data to be outputted.  \n
 		 * For Number type output info is the range of the number to be outputted, [0, data].  \n
-		 * 
+		 *
 		 * @param index format index: the number representing the order of when add_type was called starting at 0
 		 * @return int the data for the given type, size (Position, Category) or max_val (Number)
 		 */
@@ -231,6 +231,8 @@ namespace splashkit_lib
 		OutputFormat *format;
 
 		vector<float> value;
+
+		// reward/punishment
 		vector<int> indexes; // indexes to affect during reward/punishment
 
 		float learning_rate = 0.1f; // learning rate, how fast the ai learns
@@ -298,7 +300,7 @@ namespace splashkit_lib
 		{
 			if (format->get_type(index) != OutputFormat::Type::Number)
 				throw invalid_argument("Format at index is not of type Number!");
-			to_update(format->get_output_index(index));									// Tells the AI that the number was retrieved and should be updated during reward/punishment
+			to_update(format->get_output_index(index));														   // Tells the AI that the number was retrieved and should be updated during reward/punishment
 			return (random ? rnd() : value[format->get_output_index(index)] * format->get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
 		}
 
@@ -312,16 +314,31 @@ namespace splashkit_lib
 		{
 			for (int i = 0; i < indexes.size(); i++)
 			{
-				if (next_move == NULL) {
+				if (next_move == NULL)
+				{
 					value[indexes[i]] = reward; // Next move is game over with this reward. i.e. instant win/instant loss
 					continue;
 				}
 
+				float max_future;
+				if (indexes.size() != next_move->indexes.size())
+				{
+					// Warn user that we are falling back to suboptimal behaviour due to dynamic move conversion
+					write_line("WARNING: dynamic move conversion detected");
+					max_future = next_move->value[indexes[i]];
+				}
+				else
+				{
+					max_future = next_move->value[next_move->indexes[i]];
+				}
+
 				// QLearning method, using the next move as future reward
-				value[indexes[i]] += learning_rate * (reward + discount_rate * next_move->value[indexes[i]] - value[indexes[i]]); 
-				/// TODO: next_move->value[indexes[i]] is always 0.5 for TicTacToe
-				// Possibly grab the maximum predicted reward for that format type?
+				value[indexes[i]] += learning_rate * (reward + discount_rate * max_future - value[indexes[i]]);
 			}
+		}
+
+		void reset() 
+		{
 			indexes.clear();
 		}
 
@@ -343,7 +360,7 @@ namespace splashkit_lib
 	/**
 	 * @brief A HashMap wrapper that allows game states to be mapped to reward values.
 	 *
-	 * TODO: Consider moving InputForamt and OutputFormat into this class as subclasses as they used exclusively to facilitate this class right now.
+	 * TODO: Consider moving InputFormat and OutputFormat into this class as subclasses as they used exclusively to facilitate this class right now.
 	 * Keys should be created using InputFormat
 	 * Values should be created using OutputFormat
 	 *
@@ -480,7 +497,7 @@ namespace splashkit_lib
 		 * @brief Function used to convert AI move data into move index.
 		 * Must utilise OutputFormat functions to decode OutputValue into int.
 		 *
-		 * Used by TableAgent, override not required for other agents.
+		 * Used by QAgent, override not required for other agents.
 		 *
 		 * @see OutputFormat
 		 * @param output to be passed into OutputFormat functions contains the move data
@@ -506,7 +523,7 @@ namespace splashkit_lib
 	 *
 	 * The agent uses Reinforcement Learning concepts and is based on QLearning, it plays random games to attempt to find optimal moves.
 	 * The agent may not converge to the optimal move, but will eventually reach a point where it has a good understanding of the game.
-	 * 
+	 *
 	 * This agent may not know what to do in all situations, it will play randomly in obscure positions.
 	 *
 	 * Agent Information
@@ -516,7 +533,7 @@ namespace splashkit_lib
 	 * Performance: Unknown. TODO: more testing required
 	 * Complexity: Very High. Requires most API functions to be implemented
 	 */
-	class TableAgent
+	class QAgent
 	{
 	public:
 		class SelfPlay
@@ -555,10 +572,13 @@ namespace splashkit_lib
 			 */
 			void reward(float score)
 			{
-				for (int i = move_history.size() - 1; i >= 0; i--)
+				move_history[move_history.size() - 1]->update(score, NULL); // Special case for first instace
+				for (int i = move_history.size() - 2; i >= 0; i--)
 				{
-					move_history[i]->update(score, i == move_history.size() - 1 ? NULL : move_history[i + 1]);
+					move_history[i]->update(score, move_history[i + 1]);
+					move_history[i + 1]->reset();
 				}
+				move_history[0]->reset();
 				move_history.clear();
 			}
 		};
@@ -571,7 +591,7 @@ namespace splashkit_lib
 	public:
 		RewardTable *reward_table;
 
-		TableAgent(Game *game)
+		QAgent(Game *game)
 		{
 			this->game = game;
 			input_format = game->get_input_format();
@@ -596,10 +616,10 @@ namespace splashkit_lib
 		{
 			for (int i = 0; i < iterations; i++)
 			{
-				vector<TableAgent::SelfPlay> agents;
+				vector<QAgent::SelfPlay> agents;
 				for (int i = 0; i < player_count; i++)
 				{
-					agents.push_back(TableAgent::SelfPlay(reward_table, &input_format, &out_format)); // generate the agents to play the game
+					agents.push_back(QAgent::SelfPlay(reward_table, &input_format, &out_format)); // generate the agents to play the game
 				}
 				while (!game->is_finished())
 				{
@@ -630,7 +650,7 @@ namespace splashkit_lib
 	 *
 	 * TODO: add global option for transposition tables. Where the table is stored between move calcs.
 	 */
-	class MiniMaxAgent
+	class MinimaxAgent
 	{
 	public:
 		static int get_move(Game *game)

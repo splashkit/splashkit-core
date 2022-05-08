@@ -58,7 +58,7 @@ public:
 	OutputFormat get_output_format() override { return out_format; }
 	vector<int> get_input() override
 	{
-		vector<int> board_data(9);
+		vector<int> board_data(10);
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 3; j++)
@@ -66,6 +66,7 @@ public:
 				board_data[i * 3 + j] = (int)board.cells[i][j];
 			}
 		}
+		board_data[9] = (int)current_player;
 		return board_data;
 	}
 	int convert_output(OutputValue *output, bool random) override
@@ -80,9 +81,9 @@ public:
 		current_player = (Player)rnd(2);
 		state = GameState::Playing;
 	}
-	Game* clone() override
+	Game *clone() override
 	{
-		TicTacToe* game = new TicTacToe(); // Essential that the new keyword is used!!!
+		TicTacToe *game = new TicTacToe(); // Essential that the new keyword is used!!!
 		game->board = board;
 		game->current_player = current_player;
 		game->state = state;
@@ -118,8 +119,9 @@ public:
 
 	TicTacToe()
 	{
-		out_format.add_type(OutputFormat::Type::Position, 9); // 3*3 = 9
-		input_format.add_type(InputFormat::Type::Board, 9, 2); // 9 is board size, 2 is player count ([Empty, X, O] max index of this array)
+		out_format.add_type(OutputFormat::Type::Position, 9);	// 3*3 = 9
+		input_format.add_type(InputFormat::Type::Board, 9, 3);	// 9 is board size, 3 is player count [Empty, X, O]
+		input_format.add_type(InputFormat::Type::Player, 1, 2); // 1 is player dim, 2 is player count [X, O]
 
 		reset();
 
@@ -236,7 +238,7 @@ public:
 
 	vector<int> get_possible_moves() override
 	{
-		vector<int> moves = {};
+		vector<int> moves;
 		for (int y = 0; y < 3; y++)
 		{
 			for (int x = 0; x < 3; x++)
@@ -286,7 +288,6 @@ bool test_reward_table()
 	return passes;
 }
 
-
 bool test_output_value()
 {
 	bool passes = true;
@@ -309,21 +310,17 @@ bool test_output_value()
 	return passes;
 }
 
-TableAgent *test_table_agent()
+QAgent *test_q_agent(Game *game)
 {
 	bool passes = true;
 
-	TicTacToe game;
-	TableAgent *table_agent = new TableAgent(&game);
+	QAgent *q_agent = new QAgent(game);
 
 	write_line("Training for 1,000,000 iterations. Please wait...");
-	table_agent->train(2, 1000000);
+	q_agent->train(2, 1000000);
 	write_line("Training complete.");
 
-	game.draw_game();
-	write_line(table_agent->reward_table->get_value(&game)->to_string());
-
-	return table_agent;
+	return q_agent;
 }
 
 string to_string(vector<int> vec)
@@ -338,7 +335,7 @@ string to_string(vector<int> vec)
 	return ss.str();
 }
 
-void play_games(TableAgent *table_agent)
+void play_games(QAgent *q_agent)
 {
 	TicTacToe game;
 	for (int i = 0; i < 5; i++)
@@ -350,8 +347,8 @@ void play_games(TableAgent *table_agent)
 		{
 			if (game.current_player == TicTacToe::Player::X)
 			{
-				write_line(table_agent->reward_table->get_value(&game)->to_string());
-				int ai_move = table_agent->get_move(&game);
+				write_line(q_agent->reward_table->get_value(&game)->to_string());
+				int ai_move = q_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
@@ -367,8 +364,8 @@ void play_games(TableAgent *table_agent)
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		write_line(table_agent->reward_table->get_value(&game)->to_string());
-		game.make_move(table_agent->get_move(&game));
+		write_line(q_agent->reward_table->get_value(&game)->to_string());
+		game.make_move(q_agent->get_move(&game));
 		game.draw_game();
 	}
 	do
@@ -389,8 +386,8 @@ void play_games(TableAgent *table_agent)
 		{
 			if (game.current_player == TicTacToe::Player::O)
 			{
-				write_line(table_agent->reward_table->get_value(&game)->to_string());
-				int ai_move = table_agent->get_move(&game);
+				write_line(q_agent->reward_table->get_value(&game)->to_string());
+				int ai_move = q_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
 			else
@@ -399,7 +396,7 @@ void play_games(TableAgent *table_agent)
 				write_line("Your move: ");
 				write_line(to_string(moves));
 				int move;
-				while(!try_str_to_int(read_line(), move));
+				while (!try_str_to_int(read_line(), move));
 				game.make_move(move);
 			}
 			game.draw_game();
@@ -410,57 +407,119 @@ void play_games(TableAgent *table_agent)
 	game.reset();
 }
 
-void test_minimax()
+void test_minimax(TicTacToe *game)
 {
-	TicTacToe game;
 	do
 	{
-		game.reset();
+		game->reset();
 		write_line("\nAI vs Human GAME");
 		write_line("Do you want to start first? (Y/N)");
 		if (read_line() == "Y")
 		{
-			game.current_player = TicTacToe::Player::X;
+			game->current_player = TicTacToe::Player::X;
 		}
 		else
 		{
-			game.current_player = TicTacToe::Player::O;
+			game->current_player = TicTacToe::Player::O;
 		}
-		game.draw_game();
-		while (game.state == TicTacToe::GameState::Playing)
+		game->draw_game();
+		while (game->state == TicTacToe::GameState::Playing)
 		{
-			if (game.current_player == TicTacToe::Player::O)
+			if (game->current_player == TicTacToe::Player::O)
 			{
-				int ai_move = MiniMaxAgent::get_move(&game);
-				game.make_move(ai_move);
+				int ai_move = MinimaxAgent::get_move(game);
+				game->make_move(ai_move);
 			}
 			else
 			{
-				vector<int> moves = game.get_possible_moves();
+				vector<int> moves = game->get_possible_moves();
 				write_line("Your move: ");
 				write_line(to_string(moves));
 				int move;
-				while(!try_str_to_int(read_line(), move));
-				game.make_move(move);
+				while (!try_str_to_int(read_line(), move));
+				game->make_move(move);
 			}
-			game.draw_game();
+			game->draw_game();
 		}
 		write_line("Do you want to go again? (Y/N)");
 	} while (read_line() == "Y");
 }
 
+void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
+{
+	write_line("Evaluating agents... Playing 20,000 random games to test performace");
+	enum class Agent
+	{
+		QLearning,
+		MiniMax, // SLOW
+	};
+	const int agent_count = 1; // only test QLearning due to extremely slow Minimax
+	vector<string> agent_names = { "QLearning", "MiniMax" };
+	int games_played[2] = {10000, 100};
+
+	int games_won;
+	int games_drawn;
+
+	for (int cur_agent = 0; cur_agent < agent_count; cur_agent++)
+	{
+		games_won = 0; games_drawn = 0;
+		for (int i = 0; i < games_played[cur_agent]; i++)
+		{
+			while (game->state == TicTacToe::GameState::Playing)
+			{
+				if (game->current_player == TicTacToe::Player::X)
+				{
+					int ai_move;
+					switch (cur_agent)
+					{
+					case (int)Agent::MiniMax:
+						ai_move = MinimaxAgent::get_move(game);
+						break;
+					case (int)Agent::QLearning:
+						ai_move = q_agent->get_move(game);
+						break;
+					}
+					
+					game->make_move(ai_move);
+				}
+				else
+				{
+					vector<int> moves = game->get_possible_moves();
+					game->make_move(moves[random_agent_play(moves.size())]);
+				}
+			}
+			if (game->state == TicTacToe::GameState::X_Won)
+			{
+				games_won++;
+			}
+			if (game->state == TicTacToe::GameState::Draw)
+			{
+				games_drawn++;
+			}
+			game->reset();
+		}
+		cout << agent_names[cur_agent] << " Evaluation" << endl;
+		cout << "Games played: " << games_played[cur_agent] << endl;
+		cout << "Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << endl;
+		cout << "Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << endl;
+	}
+}
+
 void run_machine_learning_test()
 {
-	// log_mode _log_mode = LOG_CONSOLE;
-	// init_custom_logger(_log_mode);
+	TicTacToe *game = new TicTacToe();
 
 	test_reward_table();
 	test_output_value();
 
 	// Test RL components
-	TableAgent *table_agent = test_table_agent();
-	play_games(table_agent);
+	QAgent *q_agent = test_q_agent(game);
+	// play_games(q_agent);
 
 	// Test minimax
-	// test_minimax();
+	// test_minimax(game);
+
+	// Test all agents against random agent
+	evaluate_agents_random(game, q_agent);
+	
 }
