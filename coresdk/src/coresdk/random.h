@@ -43,5 +43,5 @@ namespace splashkit_lib
      */
     int rnd(int min, int max);
 
-#endif /* random_hpp */
 }
+#endif /* random_hpp */
