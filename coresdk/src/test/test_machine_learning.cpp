@@ -274,7 +274,7 @@ bool test_reward_table()
 	bool passes = true;
 
 	TicTacToe game;
-	RewardTable reward_table = RewardTable(game.get_output_format());
+	RewardTable reward_table = RewardTable(game.get_output_format(), 0, 0);
 	OutputValue *test = reward_table.get_value(game.get_input_format().convert_input(game.get_input()));
 	if ((*test)[0] != 0.5f)
 	{
@@ -295,7 +295,7 @@ bool test_output_value()
 
 	OutputFormat format = OutputFormat();
 	format.add_type(OutputFormat::Type::Category, 3);
-	OutputValue test = OutputValue(&format); // expected starting state = {0.5, 0.5, 0.5}
+	OutputValue test = OutputValue(&format, 0, 0); // expected starting state = {0.5, 0.5, 0.5}
 
 	// We increase the first value
 	test.to_update(0);
@@ -514,12 +514,12 @@ void run_machine_learning_test()
 
 	// Test RL components
 	QAgent *q_agent = test_q_agent(game);
-	// play_games(q_agent);
+	play_games(q_agent);
 
 	// Test minimax
 	// test_minimax(game);
 
 	// Test all agents against random agent
-	evaluate_agents_random(game, q_agent);
+	// evaluate_agents_random(game, q_agent);
 	
 }

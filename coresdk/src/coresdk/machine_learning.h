@@ -7,7 +7,6 @@
 #include <string>
 #include <sstream>
 #include "random.h"
-#include "terminal.h"
 using namespace std;
 
 namespace splashkit_lib
@@ -257,16 +256,12 @@ namespace splashkit_lib
 		/// Not to be used, only for vector initialisation.
 		OutputValue() {}
 
-		OutputValue(OutputFormat *format)
+		OutputValue(OutputFormat *format, float learning_rate, float discount_rate)
 		{
 			this->format = format;
+			this->learning_rate = learning_rate;
+			this->discount_rate = discount_rate;
 			value = vector<float>(format->get_width(), 0.5f);
-		}
-
-		OutputValue(OutputFormat *format, vector<float> value)
-		{
-			this->format = format;
-			this->value = value;
 		}
 
 		/**
@@ -320,12 +315,27 @@ namespace splashkit_lib
 			return (random ? rnd() : value[format->get_output_index(index)] * format->get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
 		}
 
-		// adds an index to be updated during reward/punishment, TODO: extra directional information
+		/**
+		 * @brief adds an index to be updated during reward/punishment
+		 * 
+		 * TODO: add the ability to determine the format index of this output index
+		 * TODO: make private as it should not be accessed elsewhere
+		 * 
+		 * @param index output index
+		 */
 		void to_update(int index)
 		{
 			indexes.push_back(index);
 		}
 
+		/**
+		 * @brief Performs an update on the reward values, uses Q-Learning algorithm to calculate the new reward values.
+		 * 
+		 * Uses temporal difference to obtain a reward value after the game is finished.
+		 * 
+		 * @param reward 
+		 * @param next_move 
+		 */
 		void update(float reward, OutputValue *next_move)
 		{
 			for (int i = 0; i < indexes.size(); i++)
@@ -339,9 +349,7 @@ namespace splashkit_lib
 				float max_future;
 				if (indexes.size() != next_move->indexes.size())
 				{
-					// Warn user that we are falling back to suboptimal behaviour due to dynamic move conversion
-					write_line("WARNING: dynamic move conversion detected");
-					max_future = next_move->value[indexes[i]];
+					max_future = next_move->value[indexes[i]]; // Fall-back to this to ensure index is in bounds
 				}
 				else
 				{
@@ -353,6 +361,11 @@ namespace splashkit_lib
 			}
 		}
 
+		/**
+		 * @brief Resets the tracked reward values for use in temporal difference.
+		 * 
+		 * This needs to be called sometime between one game finishing and another starting.
+		 */
 		void reset() 
 		{
 			indexes.clear();
@@ -392,10 +405,14 @@ namespace splashkit_lib
 		OutputFormat out_format;
 		unordered_map<vector<bool>, OutputValue> reward_table;
 
+		float learning_rate;
+		float discount_rate;
 	public:
-		RewardTable(OutputFormat out_format)
+		RewardTable(OutputFormat out_format, float learning_rate, float discount_rate)
 		{
 			this->out_format = out_format;
+			this->learning_rate = learning_rate;
+			this->discount_rate = discount_rate;
 		}
 
 		/**
@@ -413,7 +430,7 @@ namespace splashkit_lib
 			if (reward_table.find(key) == reward_table.end()) // key not found
 			{
 				// log(INFO, "RewardTable::get_value - creating new q_value");
-				reward_table[key] = OutputValue(&out_format);
+				reward_table[key] = OutputValue(&out_format, learning_rate, discount_rate);
 			}
 			return &reward_table[key];
 		}
@@ -551,10 +568,7 @@ namespace splashkit_lib
 			RewardTable *reward_table;
 			vector<OutputValue *> move_history; // Store the q_values used for the last game
 		public:
-			float learning_rate = 0.1f;	  // How much to change the q_value
-			float discount_factor = 0.9f; // Used for future state predictions
 			float epsilon = 0.1f;
-			int depth = 0; // The number of moves to look ahead
 
 			SelfPlay(RewardTable *reward_table, InputFormat *input_format, OutputFormat *out_format)
 			{
@@ -563,6 +577,14 @@ namespace splashkit_lib
 				this->out_format = out_format;
 			}
 
+			/**
+			 * @brief Get the move this agent wishes to play.
+			 * 
+			 * 
+			 * 
+			 * @param game 
+			 * @return int 
+			 */
 			int get_move(Game *game)
 			{
 				vector<bool> input = input_format->convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
@@ -594,6 +616,8 @@ namespace splashkit_lib
 		InputFormat input_format;
 		OutputFormat out_format;
 
+		float learning_rate = 0.1f;	  // How much to change the q_value
+		float discount_factor = 0.9f; // Used for future state predictions
 	public:
 		RewardTable *reward_table;
 
@@ -602,7 +626,7 @@ namespace splashkit_lib
 			this->game = game;
 			input_format = game->get_input_format();
 			out_format = game->get_output_format();
-			reward_table = new RewardTable(out_format);
+			reward_table = new RewardTable(out_format, learning_rate, discount_factor);
 		}
 
 		/**
