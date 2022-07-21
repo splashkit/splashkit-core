@@ -36,5 +36,6 @@ void run_twitter_test();
 void run_terminal_test();
 void run_logging_test();
 void run_machine_learning_test();
+void run_matrix_test();
 
 #endif /* test_main_h */

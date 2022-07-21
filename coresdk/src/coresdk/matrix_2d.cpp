@@ -15,27 +15,26 @@
 #include <iomanip>
 #include <sstream>
 
-using std::stringstream;
 using std::endl;
+using std::stringstream;
 
 namespace splashkit_lib
 {
-    matrix_2d identity_matrix()
+    matrix_2d fill_matrix(int x, int y, double fill)
     {
-        matrix_2d result;
+        matrix_2d result(x, y);
 
-        result.elements[0][0] = 1;
-        result.elements[0][1] = 0;
-        result.elements[0][2] = 0;
+        for (int i = 0; i < x; i++)
+            memset(result.elements[i], fill, y * sizeof(double));
 
-        result.elements[1][0] = 0;
-        result.elements[1][1] = 1;
-        result.elements[1][2] = 0;
+        return result;
+    }
 
-        result.elements[2][0] = 0;
-        result.elements[2][1] = 0;
-        result.elements[2][2] = 1;
-
+    matrix_2d identity_matrix(int n)
+    {
+        matrix_2d result = fill_matrix(n, n, 0);
+        for (int i = 0; i < n; i++)
+            result.elements[i][i] = 1;
         return result;
     }
 
@@ -129,12 +128,12 @@ namespace splashkit_lib
 
     matrix_2d matrix_inverse(const matrix_2d &m)
     {
-        double det =  m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
-        m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
-        m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
+        double det = m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
+                     m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
+                     m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
 
         double invdet;
-        if (det == 0) //cant actually compute inverse!
+        if (det == 0) // cant actually compute inverse!
         {
             invdet = 3.4E38;
             LOG(WARNING) << "Unable to compute inverse of matrix.";
@@ -158,54 +157,51 @@ namespace splashkit_lib
     string matrix_to_string(const matrix_2d &matrix)
     {
         stringstream result;
-        result << " ------------------------------" << endl;
+        result << " " << string(10 * matrix.y, '-') << endl;
 
-        for (int i = 0; i < 3; i++)
+        for (size_t i = 0; i < matrix.x; i++)
         {
             result << '|';
-            for(int j = 0; j < 3; j++)
+            for (size_t j = 0; j < matrix.y; j++)
             {
-                result << ' ' << std::setw( 8 ) << std::setprecision( 3 ) << matrix.elements[i][j] << ' ';
+                result << ' ' << std::setw(8) << std::setprecision(3) << matrix.elements[i][j] << ' ';
             }
             result << '|' << endl;
         }
-        result << " ------------------------------";
+        result << " " << string(10 * matrix.y, '-');
         return result.str();
     }
 
-    matrix_2d matrix_multiply(const matrix_2d &m2, const matrix_2d &m1)
+    matrix_2d matrix_multiply(const matrix_2d &m1, const matrix_2d &m2)
     {
-        matrix_2d result;
+        if (m1.y != m2.x)
+            LOG(WARNING) << "Matrix dimensions do not match.";
 
-        result.elements[0][0] = m1.elements[0][0] * m2.elements[0][0] +
-        m1.elements[0][1] * m2.elements[1][0] +
-        m1.elements[0][2] * m2.elements[2][0];
-        result.elements[0][1] = m1.elements[0][0] * m2.elements[0][1] +
-        m1.elements[0][1] * m2.elements[1][1] +
-        m1.elements[0][2] * m2.elements[2][1];
-        result.elements[0][2] = m1.elements[0][0] * m2.elements[0][2] +
-        m1.elements[0][1] * m2.elements[1][2] +
-        m1.elements[0][2] * m2.elements[2][2];
+        matrix_2d result = matrix_2d(m1.x, m2.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m2.y; y++)
+            {
+                result.elements[x][y] = 0;
+                for (size_t inner = 0; inner < m1.y; inner++)
+                {
+                    result.elements[x][y] += m1.elements[x][inner] * m2.elements[inner][y];
+                }
+            }
+        }
+        return result;
+    }
 
-        result.elements[1][0] = m1.elements[1][0] * m2.elements[0][0] +
-        m1.elements[1][1] * m2.elements[1][0] +
-        m1.elements[1][2] * m2.elements[2][0];
-        result.elements[1][1] = m1.elements[1][0] * m2.elements[0][1] +
-        m1.elements[1][1] * m2.elements[1][1] +
-        m1.elements[1][2] * m2.elements[2][1];
-        result.elements[1][2] = m1.elements[1][0] * m2.elements[0][2] +
-        m1.elements[1][1] * m2.elements[1][2] +
-        m1.elements[1][2] * m2.elements[2][2];
-
-        result.elements[2][0] = m1.elements[2][0] * m2.elements[0][0] +
-        m1.elements[2][1] * m2.elements[1][0] +
-        m1.elements[2][2] * m2.elements[2][0];
-        result.elements[2][1] = m1.elements[2][0] * m2.elements[0][1] +
-        m1.elements[2][1] * m2.elements[1][1] +
-        m1.elements[2][2] * m2.elements[2][1];
-        result.elements[2][2] = m1.elements[2][0] * m2.elements[0][2] +
-        m1.elements[2][1] * m2.elements[1][2] +
-        m1.elements[2][2] * m2.elements[2][2];
+    matrix_2d matrix_multiply(const matrix_2d &m, double scalar)
+    {
+        matrix_2d result = matrix_2d(m);
+        for (size_t x = 0; x < m.x; x++)
+        {
+            for (size_t y = 0; y < m.y; y++)
+            {
+                result.elements[x][y] *= scalar;
+            }
+        }
         return result;
     }
 
@@ -223,9 +219,25 @@ namespace splashkit_lib
     {
         vector_2d result;
 
-        result.x = v.x * m.elements[0][0]  +  v.y * m.elements[0][1] + m.elements[0][2];
-        result.y = v.x * m.elements[1][0]  +  v.y * m.elements[1][1] + m.elements[1][2];
+        result.x = v.x * m.elements[0][0] + v.y * m.elements[0][1] + m.elements[0][2];
+        result.y = v.x * m.elements[1][0] + v.y * m.elements[1][1] + m.elements[1][2];
 
+        return result;
+    }
+
+    matrix_2d matrix_multiply_components(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.x != m2.x || m1.y != m2.y)
+            LOG(WARNING) << "Matrix dimensions do not match.";
+
+        matrix_2d result = matrix_2d(m1.x, m1.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y] * m2.elements[x][y];
+            }
+        }
         return result;
     }
 
@@ -238,9 +250,61 @@ namespace splashkit_lib
 
     void apply_matrix(const matrix_2d &m, quad &q)
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             q.points[i] = matrix_multiply(m, q.points[i]);
         }
+    }
+
+    matrix_2d matrix_add(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.x != m2.x || m1.y != m2.y)
+            LOG(WARNING) << "Matrix dimensions do not match.";
+
+        matrix_2d result = matrix_2d(m1.x, m1.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y] + m2.elements[x][y];
+            }
+        }
+        return result;
+    }
+
+    matrix_2d matrix_transpose(const matrix_2d &m)
+    {
+        matrix_2d result = matrix_2d(m.y, m.x);
+        for (size_t x = 0; x < m.x; x++)
+        {
+            for (size_t y = 0; y < m.y; y++)
+            {
+                result.elements[y][x] = m.elements[x][y];
+            }
+        }
+        return result;
+    }
+
+    matrix_2d matrix_horizontal_concat(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.y != m2.y)
+            LOG(WARNING) << "Matrix dimensions do not match.";
+
+        matrix_2d result(m1.x + m2.x, m1.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y];
+            }
+        }
+        for (size_t x = 0; x < m2.x; x++)
+        {
+            for (size_t y = 0; y < m2.y; y++)
+            {
+                result.elements[m1.x + x][y] = m2.elements[x][y];
+            }
+        }
+        return result;
     }
 }
