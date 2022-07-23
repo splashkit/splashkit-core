@@ -24,8 +24,9 @@ namespace splashkit_lib
     {
         matrix_2d result(x, y);
 
-        for (int i = 0; i < x; i++)
-            memset(result.elements[i], fill, y * sizeof(double));
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = fill;
 
         return result;
     }
@@ -305,6 +306,24 @@ namespace splashkit_lib
                 result.elements[m1.x + x][y] = m2.elements[x][y];
             }
         }
+        return result;
+    }
+
+    inline constexpr int negative_index(int max, int index)
+    {
+        return index < 0 ? max + index : index;
+    }
+
+    matrix_2d matrix_slice(const matrix_2d& m, int x_start, int x_end, int y_start, int y_end)
+    {
+        x_start = negative_index(m.x, x_start); x_end = negative_index(m.x, x_end);
+        y_start = negative_index(m.y, y_start); y_end = negative_index(m.y, y_end);
+        matrix_2d result(x_end - x_start + 1, y_end - y_start + 1);
+
+        for (size_t x = 0; x <= x_end - x_start; x++)
+            for (size_t y = 0; y <= y_end - y_start; y++)
+                result.elements[x][y] = m.elements[x_start + x][y_start + y];
+        
         return result;
     }
 }

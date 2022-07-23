@@ -1,13 +1,14 @@
 #ifndef game_learning_h
 #define game_learning_h
 
+#include "random.h"
+#include "utility_functions.h"
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>
 #include <string>
 #include <sstream>
-#include "random.h"
-using namespace std;
 
 namespace splashkit_lib
 {
@@ -29,16 +30,16 @@ namespace splashkit_lib
 		};
 
 	private:
-		vector<Type> format;	 // size n
-		vector<int> max_vals;	 // size n
-		vector<int> sizes;		 // size n
-		vector<int> indexes_in;	 // size n
-		vector<int> indexes_out; // size n
+		std::vector<Type> format;	 // size n
+		std::vector<int> max_vals;	 // size n
+		std::vector<int> sizes;		 // size n
+		std::vector<int> indexes_in;	 // size n
+		std::vector<int> indexes_out; // size n
 		int input_width = 0;	 // sum sizes
 		int output_width = 0;	 // sum (sizes * max_vals)
 
-		// convert list of integers to categorical vector, assuming out starts as all 0/false
-		void convert_int(vector<int> input, vector<bool> *out, int index)
+		// convert list of integers to categorical std::vector, assuming out starts as all 0/false
+		void convert_int(std::vector<int> input, std::vector<bool> *out, int index)
 		{
 			for (int i = 0; i < sizes[index]; i++)
 			{
@@ -96,10 +97,8 @@ namespace splashkit_lib
 		 */
 		int add_type(Type type, int size, int max_val)
 		{
-			if (size < 1)
-				throw invalid_argument("Size must be greater than 0!");
-			if (max_val <= 1)
-				throw invalid_argument("Max Value must be greater than 1!");
+			if (size < 1) LOG(WARNING) << "Size must be greater than 0!";
+			if (max_val <= 1) LOG(WARNING) << "Max Value must be greater than 1!";
 			format.push_back(type);				  // How to interpret the data
 			sizes.push_back(size);				  // How many values to read
 			max_vals.push_back(max_val - 1);	  // The range of the given values, with a domain of [0, max_val) exclusive
@@ -114,11 +113,11 @@ namespace splashkit_lib
 		 * @brief Converts the input data into boolean format for ease of use in neural networks
 		 *
 		 * @param input game.get_input()
-		 * @return vector<bool> a boolean representation of the input data
+		 * @return std::vector<bool> a boolean representation of the input data
 		 */
-		vector<bool> convert_input(vector<int> input)
+		std::vector<bool> convert_input(std::vector<int> input)
 		{
-			vector<bool> out(output_width, false);
+			std::vector<bool> out(output_width, false);
 			for (int i = 0; i < format.size(); i++)
 			{
 				convert_int(input, &out, i);
@@ -159,9 +158,9 @@ namespace splashkit_lib
 		};
 
 	private:
-		vector<Type> format;
-		vector<int> f_data;
-		vector<int> indexes;
+		std::vector<Type> format;
+		std::vector<int> f_data;
+		std::vector<int> indexes;
 		int output_width = 0;
 
 	public:
@@ -245,15 +244,15 @@ namespace splashkit_lib
 	private:
 		OutputFormat *format;
 
-		vector<float> value;
+		std::vector<float> value;
 
 		// reward/punishment
-		vector<int> indexes; // indexes to affect during reward/punishment
+		std::vector<int> indexes; // indexes to affect during reward/punishment
 
 		float learning_rate = 0.1f; // learning rate, how fast the ai learns
 		float discount_rate = 0.9f; // discount rate, how much future reward is considered
 	public:
-		/// Not to be used, only for vector initialisation.
+		/// Not to be used, only for std::vector initialisation.
 		OutputValue() {}
 
 		OutputValue(OutputFormat *format, float learning_rate, float discount_rate)
@@ -261,7 +260,7 @@ namespace splashkit_lib
 			this->format = format;
 			this->learning_rate = learning_rate;
 			this->discount_rate = discount_rate;
-			value = vector<float>(format->get_width(), 0.5f);
+			value = std::vector<float>(format->get_width(), 0.5f);
 		}
 
 		/**
@@ -272,10 +271,10 @@ namespace splashkit_lib
 		 * @param random The global random to be passed down, determines if the move should be randomly chosen.
 		 * @return int The index of the maximum reward value.
 		 */
-		int get_max_position(int index, vector<int> filter, bool random)
+		int get_max_position(int index, std::vector<int> filter, bool random)
 		{
-			if (format->get_type(index) != OutputFormat::Type::Position && format->get_type(index) != OutputFormat::Type::Category)
-				throw invalid_argument("Format at index is not of type Position!");
+			if (format->get_type(index) != OutputFormat::Type::Position && format->get_type(index) != OutputFormat::Type::Category) 
+				LOG(WARNING) << "Format at index is not of type Position!";
 			index = format->get_output_index(index); // Grab the starting index for the given position data
 			if (random)
 			{
@@ -310,8 +309,8 @@ namespace splashkit_lib
 		float process_output_number(int index, bool random)
 		{
 			if (format->get_type(index) != OutputFormat::Type::Number)
-				throw invalid_argument("Format at index is not of type Number!");
-			to_update(format->get_output_index(index));														   // Tells the AI that the number was retrieved and should be updated during reward/punishment
+				LOG(WARNING) << "Format at index is not of type Number!";
+			to_update(format->get_output_index(index));   // Tells the AI that the number was retrieved and should be updated during reward/punishment
 			return (random ? rnd() : value[format->get_output_index(index)] * format->get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
 		}
 
@@ -375,7 +374,7 @@ namespace splashkit_lib
 		float operator[](int index) const { return value[index]; }
 		string to_string() const
 		{
-			stringstream ss;
+			std::stringstream ss;
 			ss << "[ ";
 			for (float v : value)
 			{
@@ -403,7 +402,7 @@ namespace splashkit_lib
 	{
 	private:
 		OutputFormat out_format;
-		unordered_map<vector<bool>, OutputValue> reward_table;
+		std::unordered_map<std::vector<bool>, OutputValue> reward_table;
 
 		float learning_rate;
 		float discount_rate;
@@ -424,7 +423,7 @@ namespace splashkit_lib
 		 * @see OutputFormat
 		 * @return OutputValue* the AI reward values for the given board state in the requested OutputFormat
 		 */
-		OutputValue *get_value(vector<bool> key)
+		OutputValue *get_value(std::vector<bool> key)
 		{
 			// log(INFO, "RewardTable::get_value");
 			if (reward_table.find(key) == reward_table.end()) // key not found
@@ -451,14 +450,14 @@ namespace splashkit_lib
 		 *
 		 * @return int player index
 		 */
-		virtual int get_current_player() { throw logic_error("get_current_player(): Function needs to be overridden; should return the current player or 0 if single player"); }
+		virtual int get_current_player() { throw std::logic_error("get_current_player(): Function needs to be overridden; should return the current player or 0 if single player"); }
 
 		/**
 		 * @brief Get the score of the game for each player. Negative scores for losing players, positive scores for winning. Draws are 0.
 		 *
-		 * @return vector<float> the score of each player retrieved by their player index
+		 * @return std::vector<float> the score of each player retrieved by their player index
 		 */
-		virtual vector<float> score() { throw logic_error("score(): Function needs to be overridden; should return a vector with player indexes mapped to score at the end of the game"); }
+		virtual std::vector<float> score() { throw std::logic_error("score(): Function needs to be overridden; should return a vector with player indexes mapped to score at the end of the game"); }
 
 		/**
 		 * @brief Returns an InputFormat that can be used by an agent to understand the current state of the game
@@ -466,7 +465,7 @@ namespace splashkit_lib
 		 * @see InputFormat
 		 * @return InputFormat the format of information given to the AI to play its next move
 		 */
-		virtual InputFormat get_input_format() { throw logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
+		virtual InputFormat get_input_format() { throw std::logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
 
 		/**
 		 * @brief Returns an OutputFormat that can represent any possible move
@@ -474,14 +473,14 @@ namespace splashkit_lib
 		 * @see OutputFormat
 		 * @return OutputFormat the format of information produced by the AI to play its next move
 		 */
-		virtual OutputFormat get_output_format() { throw logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
+		virtual OutputFormat get_output_format() { throw std::logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
 
 		/**
 		 * @brief Gets the list possible moves that can be played in the current state of the game
 		 *
-		 * @return vector<int> list of possible move indexes
+		 * @return std::vector<int> list of possible move indexes
 		 */
-		virtual vector<int> get_possible_moves() { throw logic_error("get_possible_moves(): Function needs to be overridden; should return a vector of all the possible moves"); }
+		virtual vector<int> get_possible_moves() { throw std::logic_error("get_possible_moves(): Function needs to be overridden; should return a vector of all the possible moves"); }
 
 		/**
 		 * @brief Plays a move on the board.
@@ -490,7 +489,7 @@ namespace splashkit_lib
 		 *
 		 * @param move the move index to play
 		 */
-		virtual void make_move(int move) { throw logic_error("make_move(): Function needs to be overridden; should take a move and update the board"); }
+		virtual void make_move(int move) { throw std::logic_error("make_move(): Function needs to be overridden; should take a move and update the board"); }
 
 		/**
 		 * @brief Checks if the game is finished
@@ -498,13 +497,13 @@ namespace splashkit_lib
 		 * @return true if the game is over
 		 * @return false if moves can still be played
 		 */
-		virtual bool is_finished() { throw logic_error("is_finished(): Function needs to be overridden; should return true if the game is over"); }
+		virtual bool is_finished() { throw std::logic_error("is_finished(): Function needs to be overridden; should return true if the game is over"); }
 
 		/**
 		 * @brief Resets the game state to the initial state. Used during AI self-play, must be robust to many calls.
 		 *
 		 */
-		virtual void reset() { throw logic_error("reset(): Function needs to be overridden; should reset the game to its initial state"); }
+		virtual void reset() { throw std::logic_error("reset(): Function needs to be overridden; should reset the game to its initial state"); }
 
 		/**
 		 * @brief Creates a new Game object of the super type. The new object should be a deep copy of the current game with the same board state, current players, and random seed (if used).
@@ -514,7 +513,7 @@ namespace splashkit_lib
 		 *
 		 * @return Game*
 		 */
-		virtual Game *clone() { throw logic_error("clone(): Function needs to be overridden; should create a new game object copying the current state"); }
+		virtual Game *clone() { throw std::logic_error("clone(): Function needs to be overridden; should create a new game object copying the current state"); }
 
 		/**
 		 * @brief Function used to convert AI move data into move index.
@@ -527,7 +526,7 @@ namespace splashkit_lib
 		 * @param random to be passed into OutputFormat functions determines if the move is random (during learning to explore possible options)
 		 * @return int the move value to be played, must return a value of get_possible_moves()
 		 */
-		virtual int convert_output(OutputValue *output, bool random) { throw logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
+		virtual int convert_output(OutputValue *output, bool random) { throw std::logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
 
 		/**
 		 * @brief Get the current game state based on InputFormat.
@@ -535,9 +534,9 @@ namespace splashkit_lib
 		 * Will be later converted to a machine readable format using InputFormat.
 		 *
 		 * @see InputFormat
-		 * @return vector<int> the current game state
+		 * @return std::vector<int> the current game state
 		 */
-		virtual vector<int> get_input() { throw logic_error("get_input(): Function needs to be overridden; should return a vector following the submitted input format"); }
+		virtual std::vector<int> get_input() { throw std::logic_error("get_input(): Function needs to be overridden; should return a vector following the submitted input format"); }
 	};
 
 	/**
@@ -566,7 +565,7 @@ namespace splashkit_lib
 			OutputFormat *out_format;
 
 			RewardTable *reward_table;
-			vector<OutputValue *> move_history; // Store the q_values used for the last game
+			std::vector<OutputValue *> move_history; // Store the q_values used for the last game
 		public:
 			float epsilon = 0.1f;
 
@@ -587,7 +586,7 @@ namespace splashkit_lib
 			 */
 			int get_move(Game *game)
 			{
-				vector<bool> input = input_format->convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
+				std::vector<bool> input = input_format->convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
 				OutputValue *output = reward_table->get_value(input);				 // get the q_value for the current state
 				move_history.push_back(output);										 // remember that we took this move for reward if we win or lose
 				return game->convert_output(output, rnd() < epsilon);				 // convert the q_value into a move, if epsilon take a random move (e.g. take the highest value (best) move)
@@ -637,7 +636,7 @@ namespace splashkit_lib
 		 */
 		int get_move(Game *game)
 		{
-			vector<bool> input = input_format.convert_input(game->get_input());
+			std::vector<bool> input = input_format.convert_input(game->get_input());
 			OutputValue *output = reward_table->get_value(input);
 			return game->convert_output(output, false);
 		}
@@ -646,7 +645,7 @@ namespace splashkit_lib
 		{
 			for (int i = 0; i < iterations; i++)
 			{
-				vector<QAgent::SelfPlay> agents;
+				std::vector<QAgent::SelfPlay> agents;
 				for (int i = 0; i < player_count; i++)
 				{
 					agents.push_back(QAgent::SelfPlay(reward_table, &input_format, &out_format)); // generate the agents to play the game
@@ -657,7 +656,7 @@ namespace splashkit_lib
 					game->make_move(move);
 				}
 				// Update reward_table
-				vector<float> scores = game->score();
+				std::vector<float> scores = game->score();
 				for (int i = 0; i < scores.size(); i++)
 				{
 					float score = scores[i];
@@ -690,7 +689,7 @@ namespace splashkit_lib
 			return move;
 		}
 
-		static vector<float> search_move(Game *game, int &best_move)
+		static std::vector<float> search_move(Game *game, int &best_move)
 		{
 			// TODO: Research Alpha Beta pruning for multiple players
 
@@ -701,15 +700,15 @@ namespace splashkit_lib
 
 			int next_best_move = 0;
 			int cur_player = game->get_current_player();
-			vector<float> best_score(cur_player + 1, -999999); // TODO: Better default
+			std::vector<float> best_score(cur_player + 1, -999999); // TODO: Better default
 			int temp;
 
-			vector<int> all_moves = game->get_possible_moves();
+			std::vector<int> all_moves = game->get_possible_moves();
 			for (int move : all_moves)
 			{
 				Game *new_position = game->clone();
 				new_position->make_move(move);
-				vector<float> score = search_move(new_position, temp);
+				std::vector<float> score = search_move(new_position, temp);
 				delete new_position;
 
 				if (score[cur_player] > best_score[cur_player])

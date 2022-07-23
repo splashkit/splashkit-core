@@ -3,6 +3,7 @@
 #include "random.h"
 #include "utils.h"
 #include "game_learning.h"
+#include "machine_learning.h"
 
 #include <iostream>
 #include <string>
@@ -448,7 +449,7 @@ void test_minimax(TicTacToe *game)
 
 void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 {
-	write_line("Evaluating agents... Playing 20,000 random games to test performace");
+	write_line("Evaluating agents... Playing 20,000 random games to test performance");
 	enum class Agent
 	{
 		QLearning,
@@ -535,10 +536,20 @@ matrix_2d load_iris()
 	return result;
 }
 
+void test_ann(matrix_2d &data)
+{
+	matrix_2d input = matrix_slice(data, 0, -1, 0, -4); // remove last 3 columns from dataset
+	matrix_2d target = matrix_slice(data, 0, -1, -3, -1); // take last 3 columns from dataset
+	write_line(matrix_to_string(input));
+	write_line(matrix_to_string(target));
+	Model model(input.x, input.y, input.x, 3);
+}
+
 void run_machine_learning_test()
 {
 	matrix_2d iris_data = load_iris();
 	write_line(matrix_to_string(iris_data));
+	test_ann(iris_data);
 
 	// TicTacToe *game = new TicTacToe();
 

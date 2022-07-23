@@ -1,5 +1,6 @@
 #include "random.h"
 #include "matrix_2d.h"
+#include "machine_learning.h"
 
 #include <iostream>
 
@@ -17,6 +18,20 @@ namespace splashkit_lib
 					for (size_t l = 0; l < m2.y; l++)
 						result.elements[i * m2.x + k][j * m2.y + l] = m1.elements[i][j] * m2.elements[k][l];
 
+		return result;
+	}
+
+	matrix_2d sqr(const matrix_2d &m)
+	{
+		return matrix_multiply_components(m, m);
+	}
+
+	double sum(const matrix_2d &m)
+	{
+		double result = 0;
+		for (size_t i = 0; i < m.x; i++)
+			for (size_t j = 0; j < m.y; j++)
+				result += m.elements[i][j];
 		return result;
 	}
 
@@ -42,67 +57,108 @@ namespace splashkit_lib
 		return result;
 	}
 
-	template <typename inT, typename ouT>
-	struct Function
+	/* #region  ActivationFunctions */
+	class ReLu : _ActivationFunction
 	{
-		virtual ouT apply(inT input);
-
-		virtual ouT df(inT input);
-	};
-
-	class Model
-	{
-	private:
-		matrix_2d input_shape;
-		matrix_2d output_shape;
-	public:
-		Model(const matrix_2d &input_shape, const matrix_2d &output_shape)
+		matrix_2d apply(const matrix_2d &input)
 		{
-			this->input_shape = input_shape;
-			this->output_shape = output_shape;
-		}
-
-		matrix_2d predict(const matrix_2d &input);
-		void train(const matrix_2d &input, const matrix_2d &output);
-		void save(const string &filename);
-		void load(const string &filename);
-	};
-
-	class Layer
-	{
-	public:
-		matrix_2d input_shape;
-		matrix_2d output_shape;
-	};
-
-	class Dense : public Layer
-	{
-		matrix_2d weights;
-		matrix_2d biases;
-
-		Function<matrix_2d, matrix_2d> activation_function;
-		Function<matrix_2d, double> error_function;
-
-		Dense(size_t input_size, size_t output_size, Function<matrix_2d, matrix_2d> activation_function, Function<matrix_2d, double> error_function)
-		{
-			this->biases = fill_matrix(input_size, 1, 1);
-			this->weights = matrix_2d(output_size, 1);
-
-			// initialise weights
-			constexpr double max_weight = 1;
-			for (double &cell : weights)
-			{
-				cell = rnd() * max_weight * 2 - max_weight;
-			}
-
-			this->activation_function = activation_function;
-			this->error_function = error_function;
-		}
-
-		matrix_2d forward(const matrix_2d &input)
-		{
-			matrix_2d net = matrix_multiply(weights, matrix_horizontal_concat(input, biases));
-			return activation_function.apply(net);
+			
 		}
 	};
+
+	_ActivationFunction get_activation_function(ActivationFunction name)
+	{
+		switch (name) 
+		{
+		default: 
+			return _ActivationFunction();
+		}
+	}
+	/* #endregion */
+
+	/* #region  Model */
+	void Model::forward(const matrix_2d &input)
+	{
+		vector<matrix_2d> outputs(layers.size() + 1);
+		outputs[0] = input;
+		for (size_t i = 0; i < layers.size(); i++)
+		{
+			outputs[i + 1] = layers[i].forward(outputs[i]);
+		}
+	}
+
+	Model::Model(size_t input_x, size_t input_y, size_t output_x, size_t output_y)
+	{
+		this->input_x = input_x;
+		this->input_y = input_y;
+		this->output_x = output_x;
+		this->output_y = output_y;
+	}
+
+	matrix_2d Model::predict(const matrix_2d &input)
+	{
+		matrix_2d result = input;
+		for (Layer &layer : layers)
+		{
+			result = layer.forward(result);
+		}
+		return result;
+	}
+
+	void Model::train(const matrix_2d &input, const matrix_2d &output)
+	{
+	}
+
+	void Model::save(const string &filename)
+	{
+	}
+
+	void Model::load(const string &filename)
+	{
+	}
+	/* #endregion Model */
+
+	/* #region Dense */
+	Dense::Dense(size_t input_size, size_t output_size, ActivationFunction activation_function, ErrorFunction error_function)
+	{
+		this->biases = fill_matrix(input_size, 1, 1);
+		this->weights = matrix_2d(output_size, 1);
+
+		// initialise weights
+		constexpr double max_weight = 1;
+		for (double &cell : weights)
+		{
+			cell = rnd() * max_weight * 2 - max_weight;
+		}
+
+		// this->activation_function = activation_function;
+		// this->error_function = error_function;
+	}
+
+	matrix_2d Dense::forward(const matrix_2d &input)
+	{
+		matrix_2d net = matrix_multiply(weights, matrix_horizontal_concat(input, biases));
+		return activation_function.apply(net);
+	}
+
+	matrix_2d Dense::backward(const matrix_2d &input)
+	{
+		return weights;
+	}
+
+	void Dense::compute_error(const matrix_2d &input, const matrix_2d &target_output)
+	{
+		matrix_2d output = forward(input);
+		matrix_2d error = sum(sqr(target_output - output)); // Residual sum of squares, RSS
+
+		vector<int> target_classes = to_categorical(target_output);
+		vector<int> classes = to_categorical(output);
+
+		double class_error = 0;
+		for (size_t i = 0; i < target_classes.size(); i++)
+			if (classes[i] == target_classes[i])
+				class_error++;
+		class_error /= target_classes.size();
+	}
+	/* #endregion Dense */
 }

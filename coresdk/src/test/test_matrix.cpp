@@ -79,7 +79,7 @@ void run_matrix_test()
 {
 	write_line(matrix_to_string(identity_matrix()));
 	write_line(matrix_to_string(fill_matrix()));
-	write_line(matrix_to_string(fill_matrix(4, 5)));
+	write_line(matrix_to_string(fill_matrix(4, 5, rnd())));
 	matrix_2d matrix = fill_matrix(1, 2);
 	matrix[0][1] = 1;
 	write_line(matrix_to_string(matrix));
@@ -124,18 +124,18 @@ void run_matrix_test()
 	m4[1][0] = 320; m4[1][1] = 335;
 	if (matrix_multiply(m2, m3) != m4) throw logic_error("Multiplication should result in the specified matrix!");
 
-	matrix_2d m5 = matrix_2d(4, 5);
+	matrix_2d m5 = matrix_2d(4, 4);
+	int i = 1;
 	for (double &cell : m5) // left to right top to bottom, i.e. fills row-wise, NEEDS to be by reference to write data
 	{
-		cell = rnd();
+		cell = i++;
 	}
 	write("Matrix 5 ("); write(m5.x); write(", "); write(m5.y);
 	write_line("): \n" + matrix_to_string(m5));
 
-	int i = 1;
 	for (double &cell : m5)
 	{
-		cell = i++;
+		cell = rnd();
 	}
 	write("Matrix 5 ("); write(m5.x); write(", "); write(m5.y);
 	write_line("): \n" + matrix_to_string(m5));
@@ -144,15 +144,13 @@ void run_matrix_test()
 	for (matrix_2d::iterator itr = m6.begin(); itr != m6.end(); ++itr)
 	{
 		if (itr.x == itr.y)
-		{
 			*itr = 1;
-		}
 		else
-		{
 			*itr = 0;
-		}
 	}
 	write("Matrix 6 ("); write(m6.x); write(", "); write(m6.y);
 	write_line("): \n" + matrix_to_string(m6));
 	if (m6 != identity_matrix(4)) throw logic_error("Matrix 6 should be the identity matrix!");
+
+	write_line(matrix_to_string(m5[m6]));
 }

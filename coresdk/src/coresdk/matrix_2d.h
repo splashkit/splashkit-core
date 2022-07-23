@@ -14,8 +14,6 @@
 #include <string>
 #include "types.h"
 
-using std::string;
-
 namespace splashkit_lib
 {
 
@@ -46,9 +44,7 @@ namespace splashkit_lib
         {
             elements = new double *[x];
             for (size_t i = 0; i < x; i++)
-            {
                 elements[i] = new double[y];
-            }
             this->x = x;
             this->y = y;
         }
@@ -72,24 +68,48 @@ namespace splashkit_lib
             }
         }
 
-        bool operator==(const matrix_2d &other)
+        matrix_2d operator==(const matrix_2d &other)
         {
             if (x != other.x || y != other.y)
-                return false;
+                return matrix_2d(0, 0);
 
+            matrix_2d result(x, y);
             for (size_t i = 0; i < x; i++)
-            {
                 for (size_t j = 0; j < y; j++)
-                {
-                    if (elements[i][j] != other.elements[i][j])
-                        return false;
-                }
-            }
+                    result.elements[i][j] = (elements[i][j] == other.elements[i][j]);
 
-            return true;
+            return result;
         }
 
-        inline bool operator!=(const matrix_2d &other) { return !(*this == other); }
+        matrix_2d operator!=(const matrix_2d &other)
+        {
+            if (x > other.x || y > other.y)
+            {
+                matrix_2d result(1, 1);
+                result.elements[0][0] = 1.0;
+                return result;
+            }
+
+            matrix_2d result(x, y);
+            for (size_t i = 0; i < x; i++)
+                for (size_t j = 0; j < y; j++)
+                    result.elements[i][j] = (elements[i][j] != other.elements[i][j]);
+
+            return result;
+        }
+
+        friend matrix_2d operator-(const matrix_2d &m1, const matrix_2d &m2)
+        {
+            matrix_2d result(m1.x, m1.y);
+            for (size_t i = 0; i < m1.x; i++)
+            {
+                for (size_t j = 0; j < m1.y; j++)
+                {
+                    result.elements[i][j] = m1.elements[i][j] - m2.elements[i][j];
+                }
+            }
+            return result;
+        }
 
         /**
          * @brief Elements in the matrix can be referenced using the matrix[x][y] notation.
@@ -100,15 +120,32 @@ namespace splashkit_lib
          * @return double
          */
         inline constexpr double *operator[](int x) { return elements[x]; }
+        matrix_2d operator[](const matrix_2d &other) 
+        {
+            matrix_2d result(x, y);
+            for (size_t i = 0; i < x; i++)
+                for (size_t j = 0; j < y; j++)
+                    result.elements[i][j] = other.elements[i][j] ? elements[i][j] : 0;
+            return result;
+        }
+
+        explicit operator bool() const
+        {
+            if (x <= 0 || y <= 0)
+                return false;
+            for (size_t i = 0; i < x; i++)
+                for (size_t j = 0; j < y; j++)
+                    if (!elements[i][j])
+                        return false;
+            return true;
+        }
 
         void operator delete(void *ptr)
         {
             matrix_2d *m = (matrix_2d *)ptr;
             for (size_t i = 0; i < m->x; i++)
-            {
-                delete[] m->elements[i];
-            }
-            delete[] m->elements;
+                delete[] m->elements[i]; // delete each row
+            delete[] m->elements;        // delete pointers to each row
         }
 
         struct iterator
@@ -364,5 +401,18 @@ namespace splashkit_lib
      * @return matrix_2d A new matrix
      */
     matrix_2d matrix_horizontal_concat(const matrix_2d &m1, const matrix_2d &m2);
+
+    /**
+     * @brief Creates a sub-matrix from the given matrix and ranges.
+     * The new matrix will be formed from the original matrix with domain [x_start,x_end) and range [y_start,y_end) given.
+     *
+     * @param m The matrix to slice from
+     * @param x_start The row to start at (inclusive)
+     * @param x_end The row to end at (inclusive)
+     * @param y_start The column to start at (inclusive)
+     * @param y_end The column to end at (inclusive)
+     * @return matrix_2d
+     */
+    matrix_2d matrix_slice(const matrix_2d &m, int x_start = 0, int x_end = -1, int y_start = 0, int y_end = -1);
 }
 #endif /* matrix_2d_h */
