@@ -1,10 +1,11 @@
-#include "window_manager.h"
 #include "terminal.h"
 #include "utility_functions.h"
 #include "random.h"
-#include "machine_learning.h"
+#include "utils.h"
+#include "game_learning.h"
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <unordered_map>
 using namespace std;
@@ -505,16 +506,48 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 	}
 }
 
+matrix_2d load_iris()
+{
+	string path = path_to_resource("iris_training.txt", resource_kind::OTHER_RESOURCE);
+
+	ifstream ifs(path);
+	string line;
+	vector<string> lines;
+	while(getline(ifs, line))
+	{
+		lines.push_back(line);
+	}
+	
+	size_t width = count(lines[0].begin(), lines[0].end(), '\t') + 1;
+
+	matrix_2d result(lines.size(), width);
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		stringstream ss(lines[i]);
+		string item;
+		size_t j = 0;
+		while(ss >> item) {
+			result[i][j] = stod(item);
+			j++;
+		}
+	}
+
+	return result;
+}
+
 void run_machine_learning_test()
 {
-	TicTacToe *game = new TicTacToe();
+	matrix_2d iris_data = load_iris();
+	write_line(matrix_to_string(iris_data));
 
-	test_reward_table();
-	test_output_value();
+	// TicTacToe *game = new TicTacToe();
+
+	// test_reward_table();
+	// test_output_value();
 
 	// Test RL components
-	QAgent *q_agent = test_q_agent(game);
-	play_games(q_agent);
+	// QAgent *q_agent = test_q_agent(game);
+	// play_games(q_agent);
 
 	// Test minimax
 	// test_minimax(game);
