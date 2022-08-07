@@ -3,28 +3,17 @@
 
 #include <iostream>
 
+
 namespace splashkit_lib
 {
-	/**
-	 * @brief Hidden layer for Machine Learning models
-	 * 
-	 */
-	class Layer
-	{
-	public:
-		matrix_2d input_shape;
-		matrix_2d output_shape;
-		virtual matrix_2d forward(const matrix_2d &input) { throw std::logic_error("not implemented"); };
-	};
-
 	enum ActivationFunction
 	{
 		ReLu, // Rectified Linear Unit
+		Sigmoid,
 	};
 
-	class _ActivationFunction
+	struct _ActivationFunction
 	{
-	public:
 		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
@@ -33,29 +22,38 @@ namespace splashkit_lib
 		RSS, // Residual Sum of Squares
 	};
 
-	class _ErrorFunction
+	struct _ErrorFunction
 	{
-	public:
-		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
+		virtual double apply(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
+	};
+
+	/**
+	 * @brief Hidden layer for Machine Learning models
+	 * 
+	 */
+	struct Layer
+	{
+		matrix_2d input_shape;
+		matrix_2d output_shape;
+
+		_ActivationFunction activation_function;
+		
+		virtual matrix_2d forward(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
 	/**
 	 * @brief Fully connected layer, slowest type, but can be used for any purpose.
 	 * 
 	 */
-	
 	class Dense : public Layer
 	{
 		matrix_2d weights;
 		matrix_2d biases;
-
-		_ActivationFunction activation_function;
-		_ErrorFunction error_function;
 	public:
 		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function, ErrorFunction error_function);
-		matrix_2d forward(const matrix_2d &input);
+		matrix_2d forward(const matrix_2d &input) override;
 		matrix_2d backward(const matrix_2d &input);
-		void compute_error(const matrix_2d &input, const matrix_2d &target_output);
+		void compute_error(const matrix_2d &input, const matrix_2d &output, const matrix_2d &target_output);
 	};
 
 	/**
@@ -65,17 +63,15 @@ namespace splashkit_lib
 	class Model
 	{
 	private:
-		size_t input_x;
-		size_t input_y;
-		size_t output_x;
-		size_t output_y;
+		_ErrorFunction error_function;
 
 		vector<Layer> layers;
 		void forward(const matrix_2d &input);
 	public:
-		Model(size_t input_x, size_t input_y, size_t output_x, size_t output_y);
+		Model();
+		void add_layer(Layer layer);
 		matrix_2d predict(const matrix_2d &input);
-		void train(const matrix_2d &input, const matrix_2d &output);
+		void train(const matrix_2d &input, const matrix_2d &target_output);
 		void save(const string &filename);
 		void load(const string &filename);
 	};

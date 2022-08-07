@@ -21,7 +21,7 @@ namespace splashkit_lib
 		return result;
 	}
 
-	matrix_2d sqr(const matrix_2d &m)
+	matrix_2d sq(const matrix_2d &m)
 	{
 		return matrix_multiply_components(m, m);
 	}
@@ -58,20 +58,43 @@ namespace splashkit_lib
 	}
 
 	/* #region  ActivationFunctions */
-	class ReLu : _ActivationFunction
+	class f_ReLu : public _ActivationFunction
 	{
-		matrix_2d apply(const matrix_2d &input)
+		matrix_2d apply(const matrix_2d &input) override
 		{
-			
+			return input[input > 0];
 		}
 	};
 
 	_ActivationFunction get_activation_function(ActivationFunction name)
 	{
-		switch (name) 
+		switch (name)
 		{
-		default: 
+		case ActivationFunction::ReLu:
+			return f_ReLu();
+		default:
 			return _ActivationFunction();
+		}
+	}
+	/* #endregion */
+
+	/* #region  ErrorFunctions */
+	class f_RSS : public _ErrorFunction
+	{
+		double apply(const matrix_2d &output, const matrix_2d &target_output) override
+		{
+			return sum(sq(target_output - output));
+		}
+	};
+
+	_ErrorFunction get_activation_function(ErrorFunction name)
+	{
+		switch (name)
+		{
+		case ErrorFunction::RSS:
+			return f_RSS();
+		default:
+			return _ErrorFunction();
 		}
 	}
 	/* #endregion */
@@ -87,12 +110,14 @@ namespace splashkit_lib
 		}
 	}
 
-	Model::Model(size_t input_x, size_t input_y, size_t output_x, size_t output_y)
+	Model::Model()
 	{
-		this->input_x = input_x;
-		this->input_y = input_y;
-		this->output_x = output_x;
-		this->output_y = output_y;
+
+	}
+
+	void Model::add_layer(Layer layer)
+	{
+		layers.push_back(layer);
 	}
 
 	matrix_2d Model::predict(const matrix_2d &input)
@@ -105,16 +130,33 @@ namespace splashkit_lib
 		return result;
 	}
 
-	void Model::train(const matrix_2d &input, const matrix_2d &output)
+	void Model::train(const matrix_2d &input, const matrix_2d &target_output)
 	{
+		while (true)
+		{
+			/* #region Forward Propagation */
+			vector<matrix_2d> outputs(layers.size() + 1);
+			outputs[0] = input;
+			for (size_t i = 0; i < layers.size(); i++)
+			{
+				outputs[i + 1] = layers[i].forward(outputs[i]);
+			}
+			/* #endregion */
+
+			matrix_2d difference = target_output - outputs[layers.size()];
+			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net)); // sensitivity
+
+		}
 	}
 
 	void Model::save(const string &filename)
 	{
+		// Write weights and biases to file
 	}
 
 	void Model::load(const string &filename)
 	{
+		// Read weights and biases from a file
 	}
 	/* #endregion Model */
 
@@ -131,7 +173,7 @@ namespace splashkit_lib
 			cell = rnd() * max_weight * 2 - max_weight;
 		}
 
-		// this->activation_function = activation_function;
+		this->activation_function = get_activation_function(activation_function);
 		// this->error_function = error_function;
 	}
 
@@ -146,10 +188,9 @@ namespace splashkit_lib
 		return weights;
 	}
 
-	void Dense::compute_error(const matrix_2d &input, const matrix_2d &target_output)
+	void Dense::compute_error(const matrix_2d &input, const matrix_2d &output, const matrix_2d &target_output)
 	{
-		matrix_2d output = forward(input);
-		matrix_2d error = sum(sqr(target_output - output)); // Residual sum of squares, RSS
+		matrix_2d error = sum(sq(target_output - output)); // Residual sum of squares, RSS
 
 		vector<int> target_classes = to_categorical(target_output);
 		vector<int> classes = to_categorical(output);

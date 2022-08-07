@@ -99,7 +99,7 @@ void run_matrix_test()
 
 	matrix_2d m3 = matrix_2d(m2);
 	if (m2 != m3) throw logic_error("Matrix should be copied by value");
-	m3[0][0] = 0;
+	m3[0][0]++;
 	if (m2 == m3) throw logic_error("Matrix should be copied by value, changing copy should not change original");
 
 	m3 = matrix_2d(3, 2);

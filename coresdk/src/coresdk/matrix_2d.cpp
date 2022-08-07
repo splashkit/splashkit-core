@@ -176,7 +176,7 @@ namespace splashkit_lib
     matrix_2d matrix_multiply(const matrix_2d &m1, const matrix_2d &m2)
     {
         if (m1.y != m2.x)
-            LOG(WARNING) << "Matrix dimensions do not match.";
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
         matrix_2d result = matrix_2d(m1.x, m2.y);
         for (size_t x = 0; x < m1.x; x++)
@@ -229,7 +229,7 @@ namespace splashkit_lib
     matrix_2d matrix_multiply_components(const matrix_2d &m1, const matrix_2d &m2)
     {
         if (m1.x != m2.x || m1.y != m2.y)
-            LOG(WARNING) << "Matrix dimensions do not match.";
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
         matrix_2d result = matrix_2d(m1.x, m1.y);
         for (size_t x = 0; x < m1.x; x++)
@@ -260,7 +260,7 @@ namespace splashkit_lib
     matrix_2d matrix_add(const matrix_2d &m1, const matrix_2d &m2)
     {
         if (m1.x != m2.x || m1.y != m2.y)
-            LOG(WARNING) << "Matrix dimensions do not match.";
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
         matrix_2d result = matrix_2d(m1.x, m1.y);
         for (size_t x = 0; x < m1.x; x++)
@@ -289,7 +289,7 @@ namespace splashkit_lib
     matrix_2d matrix_horizontal_concat(const matrix_2d &m1, const matrix_2d &m2)
     {
         if (m1.y != m2.y)
-            LOG(WARNING) << "Matrix dimensions do not match.";
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
         matrix_2d result(m1.x + m2.x, m1.y);
         for (size_t x = 0; x < m1.x; x++)
