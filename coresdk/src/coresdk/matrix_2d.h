@@ -14,6 +14,34 @@
 #include <string>
 #include "types.h"
 
+#define MATRIX_OP(OP)                                                           \
+matrix_2d operator OP (const double scalar) const                               \
+{                                                                               \
+    matrix_2d result(x, y);                                                     \
+    for (size_t i = 0; i < x; i++)                                              \
+        for (size_t j = 0; j < y; j++)                                          \
+            result.elements[i][j] = (elements[i][j] OP scalar);                 \
+    return result;                                                              \
+}                                                                               \
+matrix_2d operator OP (const int scalar) const                                  \
+{                                                                               \
+    matrix_2d result(x, y);                                                     \
+    for (size_t i = 0; i < x; i++)                                              \
+        for (size_t j = 0; j < y; j++)                                          \
+            result.elements[i][j] = (elements[i][j] OP scalar);                 \
+    return result;                                                              \
+}                                                                               \
+matrix_2d operator OP (const matrix_2d &other) const                            \
+{                                                                               \
+    if (x != other.x || y != other.y)                                           \
+        return matrix_2d(0, 0);                                                 \
+    matrix_2d result(x, y);                                                     \
+    for (size_t i = 0; i < x; i++)                                              \
+        for (size_t j = 0; j < y; j++)                                          \
+            result.elements[i][j] = (elements[i][j] OP other.elements[i][j]);   \
+    return result;                                                              \
+}
+
 namespace splashkit_lib
 {
 
@@ -53,19 +81,43 @@ namespace splashkit_lib
         {
             elements = new double *[other.x];
             for (size_t i = 0; i < other.x; i++)
-            {
                 elements[i] = new double[other.y];
-            }
             this->x = other.x;
             this->y = other.y;
 
             for (size_t i = 0; i < x; i++)
-            {
                 for (size_t j = 0; j < y; j++)
-                {
                     elements[i][j] = other.elements[i][j];
+        }
+        
+        ~matrix_2d()
+        {
+            for (size_t i = 0; i < x; i++)
+                delete[] elements[i]; // delete each row
+            delete[] elements;        // delete pointers to each row
+        }
+
+        matrix_2d& operator=(const matrix_2d &other)
+        {
+            if (this != &other)
+            {
+                if (x != other.x || y != other.y)
+                {
+                    for (size_t i = 0; i < x; i++)
+                        delete[] elements[i];
+                    delete[] elements;
+                    elements = new double *[other.x];
+                    for (size_t i = 0; i < other.x; i++)
+                        elements[i] = new double[other.y];
+                    x = other.x;
+                    y = other.y;
                 }
+
+                for (size_t i = 0; i < x; i++)
+                    for (size_t j = 0; j < y; j++)
+                        elements[i][j] = other.elements[i][j];
             }
+            return *this;
         }
 
         matrix_2d operator==(const matrix_2d &other)
@@ -98,16 +150,14 @@ namespace splashkit_lib
             return result;
         }
 
+        MATRIX_OP(>)
+
         friend matrix_2d operator-(const matrix_2d &m1, const matrix_2d &m2)
         {
             matrix_2d result(m1.x, m1.y);
             for (size_t i = 0; i < m1.x; i++)
-            {
                 for (size_t j = 0; j < m1.y; j++)
-                {
                     result.elements[i][j] = m1.elements[i][j] - m2.elements[i][j];
-                }
-            }
             return result;
         }
 
@@ -120,7 +170,7 @@ namespace splashkit_lib
          * @return double
          */
         inline constexpr double *operator[](int x) { return elements[x]; }
-        matrix_2d operator[](const matrix_2d &other) 
+        matrix_2d operator[](const matrix_2d &other) const
         {
             matrix_2d result(x, y);
             for (size_t i = 0; i < x; i++)
@@ -138,14 +188,6 @@ namespace splashkit_lib
                     if (!elements[i][j])
                         return false;
             return true;
-        }
-
-        void operator delete(void *ptr)
-        {
-            matrix_2d *m = (matrix_2d *)ptr;
-            for (size_t i = 0; i < m->x; i++)
-                delete[] m->elements[i]; // delete each row
-            delete[] m->elements;        // delete pointers to each row
         }
 
         struct iterator
@@ -394,7 +436,7 @@ namespace splashkit_lib
     matrix_2d matrix_transpose(const matrix_2d &m);
 
     /**
-     * @brief Combines two matrices with the same number of rows.
+     * @brief Combines two matrices with the same number of rows. x values are the same.
      *
      * @param m1 The first matrix (can be referenced using the same x, y values)
      * @param m2 The second matrix to be concatenated onto the end of the first

@@ -536,13 +536,24 @@ matrix_2d load_iris()
 	return result;
 }
 
+Dense test_dense(matrix_2d &input, matrix_2d &target)
+{
+	// Dense dense = *(new Dense(2, 2, ReLu, RSS)); // memory leak?
+	Dense dense = Dense(2, 2, ReLu, RSS);
+	matrix_2d output = dense.forward(input);
+	write_line(matrix_to_string(output));
+	return dense;
+}
+
 void test_ann(matrix_2d &data)
 {
 	matrix_2d input = matrix_slice(data, 0, -1, 0, -4); // remove last 3 columns from dataset
 	matrix_2d target = matrix_slice(data, 0, -1, -3, -1); // take last 3 columns from dataset
 	write_line(matrix_to_string(input));
 	write_line(matrix_to_string(target));
-	Model model(input.x, input.y, input.x, 3);
+	Model model;
+	Dense l1 = test_dense(input, target);
+	model.add_layer(Dense(2, 2, ReLu, RSS));
 }
 
 void run_machine_learning_test()
