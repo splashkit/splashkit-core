@@ -12,6 +12,7 @@
 #define matrix_2d_h
 
 #include <string>
+#include <iostream>
 #include "types.h"
 
 #define MATRIX_OP(OP)                                                           \
@@ -34,7 +35,7 @@ matrix_2d operator OP (const int scalar) const                                  
 matrix_2d operator OP (const matrix_2d &other) const                            \
 {                                                                               \
     if (x != other.x || y != other.y)                                           \
-        return matrix_2d(0, 0);                                                 \
+        throw std::logic_error("dimensions must match for " #OP);            \
     matrix_2d result(x, y);                                                     \
     for (size_t i = 0; i < x; i++)                                              \
         for (size_t j = 0; j < y; j++)                                          \
@@ -60,7 +61,10 @@ namespace splashkit_lib
     {
     public:
         double **elements;
-        int x, y;
+        /// Rows
+        int x;
+        /// Columns
+        int y;
 
         /**
          * @brief Construct a new matrix 2d object
@@ -120,6 +124,12 @@ namespace splashkit_lib
             return *this;
         }
 
+        MATRIX_OP(==)
+        MATRIX_OP(>)
+        MATRIX_OP(<)
+        MATRIX_OP(+)
+        MATRIX_OP(-)
+
         matrix_2d operator==(const matrix_2d &other)
         {
             if (x != other.x || y != other.y)
@@ -147,17 +157,6 @@ namespace splashkit_lib
                 for (size_t j = 0; j < y; j++)
                     result.elements[i][j] = (elements[i][j] != other.elements[i][j]);
 
-            return result;
-        }
-
-        MATRIX_OP(>)
-
-        friend matrix_2d operator-(const matrix_2d &m1, const matrix_2d &m2)
-        {
-            matrix_2d result(m1.x, m1.y);
-            for (size_t i = 0; i < m1.x; i++)
-                for (size_t j = 0; j < m1.y; j++)
-                    result.elements[i][j] = m1.elements[i][j] - m2.elements[i][j];
             return result;
         }
 

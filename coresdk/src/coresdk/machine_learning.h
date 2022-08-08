@@ -2,19 +2,19 @@
 #define machine_learning_h
 
 #include <iostream>
-
+#include <memory>
 
 namespace splashkit_lib
 {
 	enum ActivationFunction
 	{
 		ReLu, // Rectified Linear Unit
-		Sigmoid,
 	};
 
 	struct _ActivationFunction
 	{
 		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d derivative(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
 	enum ErrorFunction
@@ -25,6 +25,7 @@ namespace splashkit_lib
 	struct _ErrorFunction
 	{
 		virtual double apply(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
+		virtual double derivative(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
 	/**
@@ -36,8 +37,8 @@ namespace splashkit_lib
 		matrix_2d input_shape;
 		matrix_2d output_shape;
 
-		_ActivationFunction activation_function;
-		
+		std::shared_ptr<_ActivationFunction> activation_function;
+
 		virtual matrix_2d forward(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
@@ -50,7 +51,7 @@ namespace splashkit_lib
 		matrix_2d weights;
 		matrix_2d biases;
 	public:
-		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function, ErrorFunction error_function);
+		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function);
 		matrix_2d forward(const matrix_2d &input) override;
 		matrix_2d backward(const matrix_2d &input);
 		void compute_error(const matrix_2d &input, const matrix_2d &output, const matrix_2d &target_output);
@@ -63,12 +64,12 @@ namespace splashkit_lib
 	class Model
 	{
 	private:
-		_ErrorFunction error_function;
+		std::shared_ptr<_ErrorFunction> error_function;
 
 		vector<Layer> layers;
 		void forward(const matrix_2d &input);
 	public:
-		Model();
+		Model(ErrorFunction error_function);
 		void add_layer(Layer layer);
 		matrix_2d predict(const matrix_2d &input);
 		void train(const matrix_2d &input, const matrix_2d &target_output);

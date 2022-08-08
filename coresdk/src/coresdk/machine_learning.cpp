@@ -3,6 +3,7 @@
 #include "machine_learning.h"
 
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -58,22 +59,27 @@ namespace splashkit_lib
 	}
 
 	/* #region  ActivationFunctions */
-	class f_ReLu : public _ActivationFunction
+	struct f_ReLu : public _ActivationFunction
 	{
 		matrix_2d apply(const matrix_2d &input) override
 		{
 			return input[input > 0];
 		}
+
+		matrix_2d derivative(const matrix_2d &input) override
+		{
+			return input > 0;
+		}
 	};
 
-	_ActivationFunction get_activation_function(ActivationFunction name)
+	shared_ptr<_ActivationFunction> get_activation_function(ActivationFunction name)
 	{
 		switch (name)
 		{
 		case ActivationFunction::ReLu:
-			return f_ReLu();
+			return shared_ptr<_ActivationFunction>(new f_ReLu());
 		default:
-			return _ActivationFunction();
+			throw logic_error("Unknown activation function");
 		}
 	}
 	/* #endregion */
@@ -87,14 +93,14 @@ namespace splashkit_lib
 		}
 	};
 
-	_ErrorFunction get_activation_function(ErrorFunction name)
+	shared_ptr<_ErrorFunction> get_error_function(ErrorFunction name)
 	{
 		switch (name)
 		{
 		case ErrorFunction::RSS:
-			return f_RSS();
+			return shared_ptr<_ErrorFunction>(new f_RSS());
 		default:
-			return _ErrorFunction();
+			throw logic_error("Unknown error function");
 		}
 	}
 	/* #endregion */
@@ -110,9 +116,9 @@ namespace splashkit_lib
 		}
 	}
 
-	Model::Model()
+	Model::Model(ErrorFunction error_function)
 	{
-
+		this->error_function = get_error_function(error_function);
 	}
 
 	void Model::add_layer(Layer layer)
@@ -161,10 +167,10 @@ namespace splashkit_lib
 	/* #endregion Model */
 
 	/* #region Dense */
-	Dense::Dense(size_t input_size, size_t output_size, ActivationFunction activation_function, ErrorFunction error_function)
+	Dense::Dense(size_t input_size, size_t output_size, ActivationFunction activation_function)
 	{
-		this->biases = fill_matrix(input_size, 1, 1);
-		this->weights = matrix_2d(output_size, 1);
+		this->biases = fill_matrix(1, output_size, 0);
+		this->weights = matrix_2d(input_size, output_size);
 
 		// initialise weights
 		constexpr double max_weight = 1;
@@ -174,13 +180,12 @@ namespace splashkit_lib
 		}
 
 		this->activation_function = get_activation_function(activation_function);
-		// this->error_function = error_function;
 	}
 
 	matrix_2d Dense::forward(const matrix_2d &input)
 	{
-		matrix_2d net = matrix_multiply(weights, matrix_horizontal_concat(input, biases));
-		return activation_function.apply(net);
+		matrix_2d net = matrix_multiply(input, weights) + biases;
+		return activation_function->apply(net);
 	}
 
 	matrix_2d Dense::backward(const matrix_2d &input)
