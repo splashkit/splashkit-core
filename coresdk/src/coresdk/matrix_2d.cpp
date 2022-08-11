@@ -20,6 +20,144 @@ using std::stringstream;
 
 namespace splashkit_lib
 {
+    /* #region matrix_2d */
+    matrix_2d::matrix_2d(int x, int y)
+    {
+        elements = new double *[x];
+        for (size_t i = 0; i < x; i++)
+            elements[i] = new double[y];
+        this->x = x;
+        this->y = y;
+    }
+
+    matrix_2d::matrix_2d(const matrix_2d &other)
+    {
+        elements = new double *[other.x];
+        for (size_t i = 0; i < other.x; i++)
+            elements[i] = new double[other.y];
+        this->x = other.x;
+        this->y = other.y;
+
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                elements[i][j] = other.elements[i][j];
+    }
+
+    matrix_2d::~matrix_2d()
+    {
+        for (size_t i = 0; i < x; i++)
+            delete[] elements[i]; // delete each row
+        delete[] elements;        // delete pointers to each row
+    }
+
+    matrix_2d &matrix_2d::operator=(const matrix_2d &other)
+    {
+        if (this != &other)
+        {
+            if (x != other.x || y != other.y)
+            {
+                for (size_t i = 0; i < x; i++)
+                    delete[] elements[i];
+                delete[] elements;
+                elements = new double *[other.x];
+                for (size_t i = 0; i < other.x; i++)
+                    elements[i] = new double[other.y];
+                x = other.x;
+                y = other.y;
+            }
+
+            for (size_t i = 0; i < x; i++)
+                for (size_t j = 0; j < y; j++)
+                    elements[i][j] = other.elements[i][j];
+        }
+        return *this;
+    }
+
+    matrix_2d matrix_2d::operator==(const matrix_2d &other) const
+    {
+        if (x != other.x || y != other.y)
+            return matrix_2d(0, 0);
+
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = (elements[i][j] == other.elements[i][j]);
+
+        return result;
+    }
+
+    matrix_2d matrix_2d::operator!=(const matrix_2d &other) const
+    {
+        if (x != other.x || y != other.y)
+        {
+            static matrix_2d result(1, 1);
+            result.elements[0][0] = 1.0; // true
+            return result;
+        }
+
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = (elements[i][j] != other.elements[i][j]);
+
+        return result;
+    }
+
+    matrix_2d matrix_2d::operator[](const matrix_2d &other) const
+    {
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = other.elements[i][j] ? elements[i][j] : 0;
+        return result;
+    }
+
+    bool matrix_2d::all()
+    {
+        if (x <= 0 || y <= 0)
+            return false;
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                if (!elements[i][j])
+                    return false;
+        return true;
+    }
+
+    bool matrix_2d::any()
+    {
+        if (x <= 0 || y <= 0)
+            return false;
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                if (elements[i][j])
+                    return true;
+        return false;
+    }
+
+    matrix_2d::iterator::iterator(matrix_2d *ptr, size_t x = 0)
+    {
+        this->ptr = ptr;
+        this->x = x;
+    }
+
+    double &matrix_2d::iterator::operator*() { return ptr->elements[x][y]; }
+
+    void matrix_2d::iterator::operator++()
+    {
+        if (y >= ptr->y - 1)
+        {
+            y = 0;
+            x++;
+        }
+        else
+        {
+            y++;
+        }
+    }
+
+    bool matrix_2d::iterator::operator!=(const iterator &other) { return x != other.x || y != other.y; }
+    /* #endregion */
+
     matrix_2d fill_matrix(int x, int y, double fill)
     {
         matrix_2d result(x, y);
@@ -288,10 +426,10 @@ namespace splashkit_lib
 
     matrix_2d matrix_horizontal_concat(const matrix_2d &m1, const matrix_2d &m2)
     {
-        if (m1.y != m2.y)
+        if (m1.x != m2.x)
             LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
-        matrix_2d result(m1.x + m2.x, m1.y);
+        matrix_2d result(m1.x, m1.y + m2.y);
         for (size_t x = 0; x < m1.x; x++)
         {
             for (size_t y = 0; y < m1.y; y++)
@@ -303,7 +441,7 @@ namespace splashkit_lib
         {
             for (size_t y = 0; y < m2.y; y++)
             {
-                result.elements[m1.x + x][y] = m2.elements[x][y];
+                result.elements[x][m1.y + y] = m2.elements[x][y];
             }
         }
         return result;
@@ -314,16 +452,18 @@ namespace splashkit_lib
         return index < 0 ? max + index : index;
     }
 
-    matrix_2d matrix_slice(const matrix_2d& m, int x_start, int x_end, int y_start, int y_end)
+    matrix_2d matrix_slice(const matrix_2d &m, int x_start, int x_end, int y_start, int y_end)
     {
-        x_start = negative_index(m.x, x_start); x_end = negative_index(m.x, x_end);
-        y_start = negative_index(m.y, y_start); y_end = negative_index(m.y, y_end);
+        x_start = negative_index(m.x, x_start);
+        x_end = negative_index(m.x, x_end);
+        y_start = negative_index(m.y, y_start);
+        y_end = negative_index(m.y, y_end);
         matrix_2d result(x_end - x_start + 1, y_end - y_start + 1);
 
         for (size_t x = 0; x <= x_end - x_start; x++)
             for (size_t y = 0; y <= y_end - y_start; y++)
                 result.elements[x][y] = m.elements[x_start + x][y_start + y];
-        
+
         return result;
     }
 }

@@ -15,33 +15,37 @@
 #include <iostream>
 #include "types.h"
 
-#define MATRIX_OP(OP)                                                           \
-matrix_2d operator OP (const double scalar) const                               \
-{                                                                               \
-    matrix_2d result(x, y);                                                     \
-    for (size_t i = 0; i < x; i++)                                              \
-        for (size_t j = 0; j < y; j++)                                          \
-            result.elements[i][j] = (elements[i][j] OP scalar);                 \
-    return result;                                                              \
-}                                                                               \
-matrix_2d operator OP (const int scalar) const                                  \
-{                                                                               \
-    matrix_2d result(x, y);                                                     \
-    for (size_t i = 0; i < x; i++)                                              \
-        for (size_t j = 0; j < y; j++)                                          \
-            result.elements[i][j] = (elements[i][j] OP scalar);                 \
-    return result;                                                              \
-}                                                                               \
-matrix_2d operator OP (const matrix_2d &other) const                            \
-{                                                                               \
-    if (x != other.x || y != other.y)                                           \
-        throw std::logic_error("dimensions must match for " #OP);            \
-    matrix_2d result(x, y);                                                     \
-    for (size_t i = 0; i < x; i++)                                              \
-        for (size_t j = 0; j < y; j++)                                          \
-            result.elements[i][j] = (elements[i][j] OP other.elements[i][j]);   \
-    return result;                                                              \
-}
+/**
+ * @brief Apply the operator for every element of the matrix.
+ * 
+ */
+#define MATRIX_ELEMENT_OP(OP)                                                     \
+    matrix_2d operator OP(const double scalar) const                              \
+    {                                                                             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP scalar);               \
+        return result;                                                            \
+    }                                                                             \
+    matrix_2d operator OP(const int scalar) const                                 \
+    {                                                                             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP scalar);               \
+        return result;                                                            \
+    }                                                                             \
+    matrix_2d operator OP(const matrix_2d &other) const                           \
+    {                                                                             \
+        if (x != other.x || y != other.y)                                         \
+            throw std::logic_error("dimensions must match for " #OP);             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP other.elements[i][j]); \
+        return result;                                                            \
+    }
 
 namespace splashkit_lib
 {
@@ -72,93 +76,19 @@ namespace splashkit_lib
          * @param x Number of rows
          * @param y Number of columns
          */
-        matrix_2d(int x = 3, int y = 3)
-        {
-            elements = new double *[x];
-            for (size_t i = 0; i < x; i++)
-                elements[i] = new double[y];
-            this->x = x;
-            this->y = y;
-        }
+        matrix_2d(int x = 3, int y = 3);
+        matrix_2d(const matrix_2d &other);
 
-        matrix_2d(const matrix_2d &other)
-        {
-            elements = new double *[other.x];
-            for (size_t i = 0; i < other.x; i++)
-                elements[i] = new double[other.y];
-            this->x = other.x;
-            this->y = other.y;
+        ~matrix_2d();
+        matrix_2d &operator=(const matrix_2d &other);
 
-            for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    elements[i][j] = other.elements[i][j];
-        }
-        
-        ~matrix_2d()
-        {
-            for (size_t i = 0; i < x; i++)
-                delete[] elements[i]; // delete each row
-            delete[] elements;        // delete pointers to each row
-        }
+        MATRIX_ELEMENT_OP(>)
+        MATRIX_ELEMENT_OP(<)
+        MATRIX_ELEMENT_OP(+)
+        MATRIX_ELEMENT_OP(-)
 
-        matrix_2d& operator=(const matrix_2d &other)
-        {
-            if (this != &other)
-            {
-                if (x != other.x || y != other.y)
-                {
-                    for (size_t i = 0; i < x; i++)
-                        delete[] elements[i];
-                    delete[] elements;
-                    elements = new double *[other.x];
-                    for (size_t i = 0; i < other.x; i++)
-                        elements[i] = new double[other.y];
-                    x = other.x;
-                    y = other.y;
-                }
-
-                for (size_t i = 0; i < x; i++)
-                    for (size_t j = 0; j < y; j++)
-                        elements[i][j] = other.elements[i][j];
-            }
-            return *this;
-        }
-
-        MATRIX_OP(==)
-        MATRIX_OP(>)
-        MATRIX_OP(<)
-        MATRIX_OP(+)
-        MATRIX_OP(-)
-
-        matrix_2d operator==(const matrix_2d &other)
-        {
-            if (x != other.x || y != other.y)
-                return matrix_2d(0, 0);
-
-            matrix_2d result(x, y);
-            for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    result.elements[i][j] = (elements[i][j] == other.elements[i][j]);
-
-            return result;
-        }
-
-        matrix_2d operator!=(const matrix_2d &other)
-        {
-            if (x > other.x || y > other.y)
-            {
-                matrix_2d result(1, 1);
-                result.elements[0][0] = 1.0;
-                return result;
-            }
-
-            matrix_2d result(x, y);
-            for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    result.elements[i][j] = (elements[i][j] != other.elements[i][j]);
-
-            return result;
-        }
+        matrix_2d operator==(const matrix_2d &other) const;
+        matrix_2d operator!=(const matrix_2d &other) const;
 
         /**
          * @brief Elements in the matrix can be referenced using the matrix[x][y] notation.
@@ -169,59 +99,36 @@ namespace splashkit_lib
          * @return double
          */
         inline constexpr double *operator[](int x) { return elements[x]; }
-        matrix_2d operator[](const matrix_2d &other) const
-        {
-            matrix_2d result(x, y);
-            for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    result.elements[i][j] = other.elements[i][j] ? elements[i][j] : 0;
-            return result;
-        }
+        matrix_2d operator[](const matrix_2d &other) const;
 
-        explicit operator bool() const
-        {
-            if (x <= 0 || y <= 0)
-                return false;
-            for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    if (!elements[i][j])
-                        return false;
-            return true;
-        }
+        /**
+         * @brief Checks whether all of the elements in the matrix are true (not 0)
+         * 
+         * @return true if all elements in the matrix are not 0
+         * @return false if one or more elements in the matrix are not 0
+         */
+        bool all();
+
+        /**
+         * @brief Checks whether any of the elements in the matrix are true (not 0)
+         * 
+         * @return true if one or more elements in the matrix are not 0
+         * @return false if all elements in the matrix are not 0
+         */
+        bool any();
 
         struct iterator
         {
             size_t x = 0, y = 0;
             matrix_2d *ptr;
-            iterator(matrix_2d *ptr, size_t x = 0)
-            {
-                this->ptr = ptr;
-                this->x = x;
-            }
-            double &operator*() { return ptr->elements[x][y]; }
-            void operator++()
-            {
-                if (y >= ptr->y - 1)
-                {
-                    y = 0;
-                    x++;
-                }
-                else
-                {
-                    y++;
-                }
-            }
-            bool operator!=(const iterator &other) { return x != other.x || y != other.y; }
+            iterator(matrix_2d *ptr, size_t x = 0);
+            double &operator*();
+            void operator++();
+            bool operator!=(const iterator &other);
         };
 
-        iterator begin()
-        {
-            return iterator(this);
-        }
-        iterator end()
-        {
-            return iterator(this, x);
-        }
+        iterator begin() { return iterator(this); }
+        iterator end() { return iterator(this, x); }
     };
 
     /**

@@ -536,10 +536,10 @@ matrix_2d load_iris()
 	return result;
 }
 
-Dense test_dense(matrix_2d &input, matrix_2d &target)
+Dense *test_dense(matrix_2d &input, matrix_2d &target)
 {
-	Dense dense = Dense(input.y, 3, ReLu);
-	matrix_2d output = dense.forward(matrix_slice(input, 0, 0));
+	Dense *dense = new Dense(input.y, 3, ReLu);
+	matrix_2d output = dense->forward(matrix_slice(input, 0, 0));
 	write_line(matrix_to_string(output));
 	return dense;
 }
@@ -550,9 +550,24 @@ void test_ann(matrix_2d &data)
 	matrix_2d target = matrix_slice(data, 0, -1, -3, -1); // take last 3 columns from dataset
 	write_line(matrix_to_string(input));
 	write_line(matrix_to_string(target));
-	Model model(RSS);
-	Dense l1 = test_dense(input, target);
+
+	Model model(RSS, 0.1);
+	Dense *l1 = test_dense(input, target);
+	matrix_2d initial = l1->forward(matrix_slice(input, 0, 0));
+	matrix_2d initial_weights = matrix_2d(l1->get_weights());
+
 	model.add_layer(l1);
+	model.add_layer(new Dense(3, 3, Softmax));
+
+	model.train(input, target);
+
+	matrix_2d result = model.predict(input);
+	write_line(matrix_to_string(matrix_horizontal_concat(target, result)));
+
+	matrix_2d trained = l1->forward(matrix_slice(input, 0, 0));
+	
+	if ((initial_weights == l1->get_weights()).all()) { write_line("WARNING: Training should change weights"); }
+	if ((initial == trained).all()) { write_line("WARNING: Training should change output"); }
 }
 
 void run_machine_learning_test()
