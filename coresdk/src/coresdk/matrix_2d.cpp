@@ -134,7 +134,7 @@ namespace splashkit_lib
         return false;
     }
 
-    matrix_2d::iterator::iterator(matrix_2d *ptr, size_t x = 0)
+    matrix_2d::iterator::iterator(matrix_2d *ptr, size_t x)
     {
         this->ptr = ptr;
         this->x = x;
