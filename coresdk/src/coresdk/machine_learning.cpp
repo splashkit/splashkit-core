@@ -228,11 +228,12 @@ namespace splashkit_lib
 			matrix_2d row = matrix_slice(input, i, i);
 
 			/* #region Forward Propagation */
-			vector<matrix_2d> outputs(layers.size() + 1);
+			vector<matrix_2d> outputs(layers.size()*2+1);
 			outputs[0] = row;
-			for (size_t i = 0; i < layers.size(); i++)
+			for (size_t i = 0; i < layers.size(); i ++)
 			{
-				outputs[i + 1] = layers[i]->forward(outputs[i]);
+				outputs[i*2+1] = layers[i]->forward(outputs[i*2]); // weights * x + bias
+				outputs[i*2+2] = layers[i]->activation_function->apply(outputs[i*2+1]);
 			}
 			/* #endregion */
 
@@ -240,13 +241,14 @@ namespace splashkit_lib
 			matrix_2d difference = target_output_row - outputs[layers.size()];
 			vector<matrix_2d> delta(layers.size() + 1);
 
-			delta[layers.size()] = difference;
+			delta[layers.size()] = matrix_multiply_components(layers.back()->activation_function->derivative(outputs[layers.size()], difference), difference); // error_function->derivative(difference); // TODO look at this line
 			for (size_t i = layers.size(); i > 0; i--)
 			{
 				if (i == layers.size()) {
-					layers.back()->update_weights(outputs[i-1], outputs[i], delta[i]); // first pass uses difference as delta
+					layers.back()->update_weights(outputs[i*2-2], outputs[i*2], delta[i]); // first pass uses difference as delta
+					// delta[i-1] = NULL; // pass delta backwards
 				} else {
-					delta[i-1] = layers[i-1]->backward(outputs[i-1], outputs[i], delta[i]);
+					delta[i-1] = layers[i-1]->backward(outputs[i*2-2], outputs[i*2-1], outputs[i*2], delta[i]);
 				}
 			}
 			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net)); // sensitivity
@@ -290,22 +292,21 @@ namespace splashkit_lib
 
 	matrix_2d Dense::forward(const matrix_2d &input)
 	{
-		matrix_2d net = matrix_multiply(input, weights) + biases;
-		return activation_function->apply(net);
+		return matrix_multiply(input, weights) + biases;
 	}
 
-	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &next_delta)
+	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta)
 	{
-		matrix_2d delta = matrix_2d(input.x, input.y);
-		matrix_2d derivative = activation_function->derivative(output, next_delta);
+		matrix_2d delta = matrix_2d(1, input.y);
+		matrix_2d derivative = activation_function->derivative(before_activation, next_delta);
 		for (size_t x = 0; x < input_size; x++)
 		{
 			double error = 0.0;
 			for (size_t y = 0; y < output_size; y++)
 			{
-				error += weights.elements[x][y] * next_delta.elements[0][y] * derivative.elements[0][y]; // TODO
+				error += weights.elements[x][y] * next_delta.elements[0][y] * derivative.elements[0][y]; // TODO: This could be the wrong line
 			}
-			delta.elements[0][x] = error;
+			delta.elements[0][x] = error; // Could be changed
 		}
 		update_weights(input, output, delta);
 		return delta;

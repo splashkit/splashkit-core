@@ -556,13 +556,16 @@ void test_ann(matrix_2d &data)
 	matrix_2d initial = l1->forward(matrix_slice(input, 0, 0));
 	matrix_2d initial_weights = matrix_2d(l1->get_weights());
 
-	model.add_layer(l1);
-	model.add_layer(new Dense(3, 3, Softmax));
+	// model.add_layer(l1);
+	model.add_layer(new Dense(4, 3, ReLu));
 
-	model.train(input, target);
+	for (size_t i = 0; i < 50; i++)
+	{
+		model.train(input, target);
+	}
 
 	matrix_2d result = model.predict(input);
-	write_line(matrix_to_string(matrix_horizontal_concat(target, result)));
+	write_line(matrix_to_string(matrix_horizontal_concat(data, result)));
 
 	matrix_2d trained = l1->forward(matrix_slice(input, 0, 0));
 	

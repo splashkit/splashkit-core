@@ -113,7 +113,7 @@ namespace splashkit_lib
 		 * @param next_delta The delta/derivative of the next layer during feed-forward.
 		 * @return matrix_2d 
 		 */
-		virtual matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &next_delta) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta) { throw std::logic_error("not implemented"); };
 		virtual void update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
 	};
 
@@ -132,7 +132,7 @@ namespace splashkit_lib
 		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function);
 		matrix_2d get_weights() { return weights; };
 		matrix_2d forward(const matrix_2d &input) override;
-		matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &next_delta) override;
+		matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta) override;
 		void update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override;
 		void compute_error(const matrix_2d &output, const matrix_2d &target_output);
 	};

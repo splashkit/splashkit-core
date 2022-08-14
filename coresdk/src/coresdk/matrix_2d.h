@@ -107,7 +107,7 @@ namespace splashkit_lib
          * @return true if all elements in the matrix are not 0
          * @return false if one or more elements in the matrix are not 0
          */
-        bool all();
+        bool all() const;
 
         /**
          * @brief Checks whether any of the elements in the matrix are true (not 0)
@@ -115,7 +115,7 @@ namespace splashkit_lib
          * @return true if one or more elements in the matrix are not 0
          * @return false if all elements in the matrix are not 0
          */
-        bool any();
+        bool any() const;
 
         struct iterator
         {
@@ -352,7 +352,7 @@ namespace splashkit_lib
 
     /**
      * @brief Creates a sub-matrix from the given matrix and ranges.
-     * The new matrix will be formed from the original matrix with domain [x_start,x_end) and range [y_start,y_end) given.
+     * The new matrix will be formed from the original matrix with domain [x_start,x_end] and range [y_start,y_end] given.
      *
      * @param m The matrix to slice from
      * @param x_start The row to start at (inclusive)

@@ -52,24 +52,21 @@ namespace splashkit_lib
 
     matrix_2d &matrix_2d::operator=(const matrix_2d &other)
     {
-        if (this != &other)
+        if (x != other.x || y != other.y)
         {
-            if (x != other.x || y != other.y)
-            {
-                for (size_t i = 0; i < x; i++)
-                    delete[] elements[i];
-                delete[] elements;
-                elements = new double *[other.x];
-                for (size_t i = 0; i < other.x; i++)
-                    elements[i] = new double[other.y];
-                x = other.x;
-                y = other.y;
-            }
-
             for (size_t i = 0; i < x; i++)
-                for (size_t j = 0; j < y; j++)
-                    elements[i][j] = other.elements[i][j];
+                delete[] elements[i];
+            delete[] elements;
+            elements = new double *[other.x];
+            for (size_t i = 0; i < other.x; i++)
+                elements[i] = new double[other.y];
+            x = other.x;
+            y = other.y;
         }
+
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                elements[i][j] = other.elements[i][j];
         return *this;
     }
 
@@ -112,7 +109,7 @@ namespace splashkit_lib
         return result;
     }
 
-    bool matrix_2d::all()
+    bool matrix_2d::all() const
     {
         if (x <= 0 || y <= 0)
             return false;
@@ -123,7 +120,7 @@ namespace splashkit_lib
         return true;
     }
 
-    bool matrix_2d::any()
+    bool matrix_2d::any() const
     {
         if (x <= 0 || y <= 0)
             return false;
@@ -455,13 +452,13 @@ namespace splashkit_lib
     matrix_2d matrix_slice(const matrix_2d &m, int x_start, int x_end, int y_start, int y_end)
     {
         x_start = negative_index(m.x, x_start);
-        x_end = negative_index(m.x, x_end);
+        x_end = negative_index(m.x, x_end) - x_start;
         y_start = negative_index(m.y, y_start);
-        y_end = negative_index(m.y, y_end);
-        matrix_2d result(x_end - x_start + 1, y_end - y_start + 1);
+        y_end = negative_index(m.y, y_end) - y_start;
+        matrix_2d result(x_end + 1, y_end + 1);
 
-        for (size_t x = 0; x <= x_end - x_start; x++)
-            for (size_t y = 0; y <= y_end - y_start; y++)
+        for (size_t x = 0; x <= x_end; x++)
+            for (size_t y = 0; y <= y_end; y++)
                 result.elements[x][y] = m.elements[x_start + x][y_start + y];
 
         return result;
