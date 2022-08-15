@@ -40,10 +40,13 @@ private slots:
     void install_git();
     void install_skm();
     void process_finished(int code, QProcess::ExitStatus status);
-    void stateChangedslot(QProcess::ProcessState state);
+    void on_btn_sel_path_clicked();
+
+    void on_btn_cancel_clicked();
 
 private:
     Ui::MainWindow *ui;
     QString cProcess;
+    bool completeProc;
 };
 #endif // MAINWINDOW_H
