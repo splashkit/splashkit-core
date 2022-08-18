@@ -411,6 +411,7 @@ void play_games(QAgent *q_agent)
 
 void test_minimax(TicTacToe *game)
 {
+	MinimaxAgent minimax;
 	do
 	{
 		game->reset();
@@ -429,7 +430,7 @@ void test_minimax(TicTacToe *game)
 		{
 			if (game->current_player == TicTacToe::Player::O)
 			{
-				int ai_move = MinimaxAgent::get_move(game);
+				int ai_move = minimax.get_move(game);
 				game->make_move(ai_move);
 			}
 			else
@@ -449,6 +450,8 @@ void test_minimax(TicTacToe *game)
 
 void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 {
+	MinimaxAgent minimax;
+
 	write_line("Evaluating agents... Playing 20,000 random games to test performance");
 	enum class Agent
 	{
@@ -475,7 +478,7 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 					switch (cur_agent)
 					{
 					case (int)Agent::MiniMax:
-						ai_move = MinimaxAgent::get_move(game);
+						ai_move = minimax.get_move(game);
 						break;
 					case (int)Agent::QLearning:
 						ai_move = q_agent->get_move(game);
@@ -500,10 +503,13 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 			}
 			game->reset();
 		}
-		cout << agent_names[cur_agent] << " Evaluation" << endl;
-		cout << "Games played: " << games_played[cur_agent] << endl;
-		cout << "Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << endl;
-		cout << "Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << endl;
+
+		stringstream ss;
+		ss << agent_names[cur_agent] << " Evaluation\n";
+		ss << "Games played: " << games_played[cur_agent] << "\n";
+		ss << "Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << "\n";
+		ss << "Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << "\n";
+		write(ss.str());
 	}
 }
 
@@ -579,18 +585,18 @@ void run_machine_learning_test()
 	// write_line(matrix_to_string(iris_data));
 	// test_ann(iris_data);
 
-	/* TEST GAME API (Slow TicTacToe)
+	//* TEST GAME API (Slow TicTacToe)
 	TicTacToe *game = new TicTacToe();
 
 	test_reward_table();
 	test_output_value();
 
 	// Test RL components
-	QAgent *q_agent = test_q_agent(game);
-	play_games(q_agent);
+	// QAgent *q_agent = test_q_agent(game);
+	// play_games(q_agent);
 
 	// Test minimax
-	// test_minimax(game);
+	test_minimax(game);
 
 	// Test all agents against random agent
 	// evaluate_agents_random(game, q_agent);

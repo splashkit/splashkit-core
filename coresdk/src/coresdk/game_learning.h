@@ -410,6 +410,12 @@ namespace splashkit_lib
 		virtual std::vector<int> get_input() { throw std::logic_error("get_input(): Function needs to be overridden; should return a vector following the submitted input format"); }
 	};
 
+	struct Agent
+	{
+		virtual int get_move(Game *game) = 0;
+		virtual void train(int player_count, int iterations) {};
+	};
+
 	/**
 	 * @brief Uses a reward table to determine the best move for the current state of the game.
 	 * The table is generated based on wins and losses, if the agent wins a game, all the moves it played are given a reward and are played more often in the future.
@@ -426,7 +432,7 @@ namespace splashkit_lib
 	 * Performance: Unknown. TODO: more testing required
 	 * Complexity: Very High. Requires most API functions to be implemented
 	 */
-	class QAgent
+	class QAgent : Agent
 	{
 	private:
 		class SelfPlay; // Internally used class for training
@@ -448,9 +454,9 @@ namespace splashkit_lib
 		 * @param game The current game state
 		 * @return int the move value to play, used by game.make_move()
 		 */
-		int get_move(Game *game);
+		int get_move(Game *game) override;
 
-		void train(int player_count, int iterations);
+		void train(int player_count, int iterations) override;
 	};
 
 	/**
@@ -465,48 +471,19 @@ namespace splashkit_lib
 	 *
 	 * TODO: add global option for transposition tables. Where the table is stored between move calcs.
 	 */
-	class MinimaxAgent
+	class MinimaxAgent : Agent
 	{
+	private:
+		/**
+		 * @brief Find the best move for the current game state.
+		 * 
+		 * @param game 
+		 * @param best_move 
+		 * @return std::vector<float> 
+		 */
+		std::vector<float> search_move(Game *game, int &best_move);
 	public:
-		static int get_move(Game *game)
-		{
-			int move = -1;
-			search_move(game, move);
-			return move;
-		}
-
-		static std::vector<float> search_move(Game *game, int &best_move)
-		{
-			// TODO: Research Alpha Beta pruning for multiple players
-
-			if (game->is_finished())
-			{
-				return game->score(); // TODO: Maybe AI gets stuck if scores are not normalised
-			}
-
-			int next_best_move = 0;
-			int cur_player = game->get_current_player();
-			std::vector<float> best_score(cur_player + 1, -999999); // TODO: Better default
-			int temp;
-
-			std::vector<int> all_moves = game->get_possible_moves();
-			for (int move : all_moves)
-			{
-				Game *new_position = game->clone();
-				new_position->make_move(move);
-				std::vector<float> score = search_move(new_position, temp);
-				delete new_position;
-
-				if (score[cur_player] > best_score[cur_player])
-				{
-					best_score = score;
-					next_best_move = move;
-				}
-			}
-
-			best_move = next_best_move;
-			return best_score;
-		}
+		int get_move(Game *game) override;
 	};
 }
 

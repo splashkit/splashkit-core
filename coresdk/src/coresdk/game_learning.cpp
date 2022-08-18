@@ -252,4 +252,44 @@ namespace splashkit_lib
 			game->reset();
 		}
 	}
+
+	std::vector<float> MinimaxAgent::search_move(Game *game, int &best_move)
+	{
+		// TODO: Research Alpha Beta pruning for multiple players
+
+		if (game->is_finished())
+		{
+			return game->score(); // TODO: Maybe AI gets stuck if scores are not normalised
+		}
+
+		int next_best_move = 0;
+		int cur_player = game->get_current_player();
+		std::vector<float> best_score(cur_player + 1, -999999); // TODO: Better default
+		int temp;
+
+		std::vector<int> all_moves = game->get_possible_moves();
+		for (int move : all_moves)
+		{
+			Game *new_position = game->clone();
+			new_position->make_move(move);
+			std::vector<float> score = search_move(new_position, temp);
+			delete new_position;
+
+			if (score[cur_player] > best_score[cur_player])
+			{
+				best_score = score;
+				next_best_move = move;
+			}
+		}
+
+		best_move = next_best_move;
+		return best_score;
+	}
+
+	int MinimaxAgent::get_move(Game *game)
+	{
+		int move = -1;
+		search_move(game, move);
+		return move;
+	}
 }
