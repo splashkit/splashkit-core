@@ -40,6 +40,11 @@ namespace splashkit_lib
 		return out;
 	}
 
+	bool InputFormat::operator==(const InputFormat &other) const
+	{
+		return input_width == other.input_width && output_width == other.output_width && format == other.format && sizes == other.sizes && max_vals == other.max_vals && indexes_in == other.indexes_in && indexes_out == other.indexes_out;
+	}
+
 	int OutputFormat::add_type(Type type, int data)
 	{
 		format.push_back(type);
@@ -253,6 +258,11 @@ namespace splashkit_lib
 		}
 	}
 
+	MinimaxAgent::MinimaxAgent(InputFormat input_format)
+	{
+		this->input_format = input_format;
+	}
+
 	std::vector<float> MinimaxAgent::search_move(Game *game, int &best_move)
 	{
 		// TODO: Research Alpha Beta pruning for multiple players
@@ -272,7 +282,14 @@ namespace splashkit_lib
 		{
 			Game *new_position = game->clone();
 			new_position->make_move(move);
-			std::vector<float> score = search_move(new_position, temp);
+
+			std::vector<bool> new_game_state = input_format.convert_input(new_position->get_input());
+
+			if (true || cache.find(new_game_state) == cache.end()) // TODO: produces non-optimal outputs?
+			{
+				cache[new_game_state] = search_move(new_position, temp);
+			}
+			std::vector<float> score = cache[new_game_state];
 			delete new_position;
 
 			if (score[cur_player] > best_score[cur_player])
@@ -288,6 +305,11 @@ namespace splashkit_lib
 
 	int MinimaxAgent::get_move(Game *game)
 	{
+		if (input_format != game->get_input_format())
+		{
+			throw invalid_argument("Input format of game and agent do not match");
+		}
+
 		int move = -1;
 		search_move(game, move);
 		return move;

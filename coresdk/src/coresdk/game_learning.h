@@ -40,7 +40,6 @@ namespace splashkit_lib
 
 		// convert list of integers to categorical std::vector, assuming out starts as all 0/false
 		void convert_int(std::vector<int> input, std::vector<bool> *out, int index);
-
 	public:
 		/**
 		 * @brief Returns the total number of sections in the InputFormat
@@ -111,6 +110,9 @@ namespace splashkit_lib
 		 * @return int
 		 */
 		int get_size(int index) const { return sizes[index]; }
+
+		bool operator==(const InputFormat &other) const;
+		bool inline operator!=(const InputFormat &other) const { return !(*this == other); };
 	};
 
 	/**
@@ -474,6 +476,10 @@ namespace splashkit_lib
 	class MinimaxAgent : Agent
 	{
 	private:
+		InputFormat input_format;
+
+		std::unordered_map<std::vector<bool>, std::vector<float>> cache; // transposition/memoisation table
+
 		/**
 		 * @brief Find the best move for the current game state.
 		 * 
@@ -483,6 +489,8 @@ namespace splashkit_lib
 		 */
 		std::vector<float> search_move(Game *game, int &best_move);
 	public:
+		MinimaxAgent(InputFormat input_format);
+
 		int get_move(Game *game) override;
 	};
 }

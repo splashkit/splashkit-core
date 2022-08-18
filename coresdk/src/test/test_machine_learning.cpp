@@ -50,13 +50,13 @@ public:
 	Board board;
 	Player current_player;
 	GameState state;
-	InputFormat input_format;
+	static inline InputFormat input_format = InputFormat();
 	OutputFormat out_format;
 
 	int get_current_player() override { return (int)current_player; }
 	// int get_max_board_index() override { return 2; } // O or X
 	// int get_board_size() override { return 9; }		 // 3x3 = 9
-	InputFormat get_input_format() override { return input_format; }
+	InputFormat get_input_format() override { return TicTacToe::input_format; }
 	OutputFormat get_output_format() override { return out_format; }
 	vector<int> get_input() override
 	{
@@ -85,7 +85,7 @@ public:
 	}
 	Game *clone() override
 	{
-		TicTacToe *game = new TicTacToe(); // Essential that the new keyword is used!!!
+		TicTacToe *game = new TicTacToe(); // New keyword must be used
 		game->board = board;
 		game->current_player = current_player;
 		game->state = state;
@@ -122,8 +122,12 @@ public:
 	TicTacToe()
 	{
 		out_format.add_type(OutputFormat::Type::Position, 9);	// 3*3 = 9
-		input_format.add_type(InputFormat::Type::Board, 9, 3);	// 9 is board size, 3 is player count [Empty, X, O]
-		input_format.add_type(InputFormat::Type::Player, 1, 2); // 1 is player dim, 2 is player count [X, O]
+
+		if (TicTacToe::input_format.get_width() == 0) // uninitialized
+		{
+			TicTacToe::input_format.add_type(InputFormat::Type::Board, 9, 3);	// 9 is board size, 3 is player count [Empty, X, O]
+			TicTacToe::input_format.add_type(InputFormat::Type::Player, 1, 2); // 1 is player dim, 2 is player count [X, O]
+		}
 
 		reset();
 
@@ -411,7 +415,7 @@ void play_games(QAgent *q_agent)
 
 void test_minimax(TicTacToe *game)
 {
-	MinimaxAgent minimax;
+	MinimaxAgent minimax = MinimaxAgent(game->get_input_format());
 	do
 	{
 		game->reset();
@@ -450,7 +454,7 @@ void test_minimax(TicTacToe *game)
 
 void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 {
-	MinimaxAgent minimax;
+	MinimaxAgent minimax = MinimaxAgent(game->get_input_format());
 
 	write_line("Evaluating agents... Playing 20,000 random games to test performance");
 	enum class Agent
