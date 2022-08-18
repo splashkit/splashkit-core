@@ -575,23 +575,24 @@ void test_ann(matrix_2d &data)
 
 void run_machine_learning_test()
 {
-	matrix_2d iris_data = load_iris();
-	write_line(matrix_to_string(iris_data));
-	test_ann(iris_data);
+	// matrix_2d iris_data = load_iris();
+	// write_line(matrix_to_string(iris_data));
+	// test_ann(iris_data);
 
-	// TicTacToe *game = new TicTacToe();
+	/* TEST GAME API (Slow TicTacToe)
+	TicTacToe *game = new TicTacToe();
 
-	// test_reward_table();
-	// test_output_value();
+	test_reward_table();
+	test_output_value();
 
 	// Test RL components
-	// QAgent *q_agent = test_q_agent(game);
-	// play_games(q_agent);
+	QAgent *q_agent = test_q_agent(game);
+	play_games(q_agent);
 
 	// Test minimax
 	// test_minimax(game);
 
 	// Test all agents against random agent
 	// evaluate_agents_random(game, q_agent);
-	
+	//*/
 }

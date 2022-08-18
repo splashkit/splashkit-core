@@ -82,11 +82,11 @@ namespace splashkit_lib
 		/**
 		 * @brief The expected shape to be inputted into this layer.
 		 */
-		std::pair<size_t, size_t> input_shape;
+		size_t input_size;
 		/**
 		 * @brief The expected shape to be outputted from this layer.
 		 */
-		std::pair<size_t, size_t> output_shape;
+		size_t output_size;
 
 		/**
 		 * @brief The activation function to use for this layer.
@@ -125,16 +125,12 @@ namespace splashkit_lib
 	{
 		matrix_2d weights;
 		matrix_2d biases;
-
-		size_t input_size;
-		size_t output_size;
 	public:
 		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function);
 		matrix_2d get_weights() { return weights; };
 		matrix_2d forward(const matrix_2d &input) override;
 		matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta) override;
 		void update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override;
-		void compute_error(const matrix_2d &output, const matrix_2d &target_output);
 	};
 
 	/**

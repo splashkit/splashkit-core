@@ -142,6 +142,7 @@ namespace splashkit_lib
 		}
 	};
 
+	// Simple factory
 	shared_ptr<_ActivationFunction> get_activation_function(ActivationFunction name)
 	{
 		switch (name)
@@ -167,6 +168,7 @@ namespace splashkit_lib
 		}
 	};
 
+	// Simple factory
 	shared_ptr<_ErrorFunction> get_error_function(ErrorFunction name)
 	{
 		switch (name)
@@ -205,7 +207,7 @@ namespace splashkit_lib
 	/// predicts rows of matrix and returns the result
 	matrix_2d Model::predict(const matrix_2d &input)
 	{
-		matrix_2d result(input.x, layers.back()->output_shape.second);
+		matrix_2d result(input.x, layers.back()->output_size);
 		for (size_t i = 0; i < input.x; i++)
 		{
 			matrix_2d row = matrix_slice(input, i, i);
@@ -213,7 +215,7 @@ namespace splashkit_lib
 			{
 				row = layer->forward(row);
 			}
-			for (size_t j = 0; j < layers.back()->output_shape.second; j++)
+			for (size_t j = 0; j < layers.back()->output_size; j++)
 			{
 				result.elements[i][j] = row.elements[0][j];
 			}
@@ -251,7 +253,7 @@ namespace splashkit_lib
 					delta[i-1] = layers[i-1]->backward(outputs[i*2-2], outputs[i*2-1], outputs[i*2], delta[i]);
 				}
 			}
-			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net)); // sensitivity
+			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net));
 
 		}
 	}
@@ -273,9 +275,6 @@ namespace splashkit_lib
 		this->name = "Dense";
 		this->biases = fill_matrix(1, output_size, 0);
 		this->weights = matrix_2d(input_size, output_size);
-
-		this->input_shape = { 1, input_size };
-		this->output_shape = { 1, output_size };
 
 		this->input_size = input_size;
 		this->output_size = output_size;
@@ -321,20 +320,6 @@ namespace splashkit_lib
 				weights.elements[x][y] -= learning_rate * delta.elements[0][y] * input.elements[0][x];
 			}
 		}
-	}
-
-	void Dense::compute_error(const matrix_2d &output, const matrix_2d &target_output)
-	{
-		matrix_2d error = sum(sq(target_output - output)); // Residual sum of squares, RSS
-
-		vector<int> target_classes = to_categorical(target_output);
-		vector<int> classes = to_categorical(output);
-
-		double class_error = 0;
-		for (size_t i = 0; i < target_classes.size(); i++)
-			if (classes[i] == target_classes[i])
-				class_error++;
-		class_error /= target_classes.size();
 	}
 	/* #endregion Dense */
 }
