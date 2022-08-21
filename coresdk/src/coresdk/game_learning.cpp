@@ -285,7 +285,7 @@ namespace splashkit_lib
 
 			std::vector<bool> new_game_state = input_format.convert_input(new_position->get_input());
 
-			if (true || cache.find(new_game_state) == cache.end()) // TODO: produces non-optimal outputs?
+			if (true || cache.find(new_game_state) == cache.end()) // TODO: produces sub-optimal outputs?
 			{
 				cache[new_game_state] = search_move(new_position, temp);
 			}

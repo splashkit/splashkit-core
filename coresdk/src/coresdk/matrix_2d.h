@@ -15,38 +15,6 @@
 #include <iostream>
 #include "types.h"
 
-/**
- * @brief Apply the operator for every element of the matrix.
- * 
- */
-#define MATRIX_ELEMENT_OP(OP)                                                     \
-    matrix_2d operator OP(const double scalar) const                              \
-    {                                                                             \
-        matrix_2d result(x, y);                                                   \
-        for (size_t i = 0; i < x; i++)                                            \
-            for (size_t j = 0; j < y; j++)                                        \
-                result.elements[i][j] = (elements[i][j] OP scalar);               \
-        return result;                                                            \
-    }                                                                             \
-    matrix_2d operator OP(const int scalar) const                                 \
-    {                                                                             \
-        matrix_2d result(x, y);                                                   \
-        for (size_t i = 0; i < x; i++)                                            \
-            for (size_t j = 0; j < y; j++)                                        \
-                result.elements[i][j] = (elements[i][j] OP scalar);               \
-        return result;                                                            \
-    }                                                                             \
-    matrix_2d operator OP(const matrix_2d &other) const                           \
-    {                                                                             \
-        if (x != other.x || y != other.y)                                         \
-            throw std::logic_error("dimensions must match for " #OP);             \
-        matrix_2d result(x, y);                                                   \
-        for (size_t i = 0; i < x; i++)                                            \
-            for (size_t j = 0; j < y; j++)                                        \
-                result.elements[i][j] = (elements[i][j] OP other.elements[i][j]); \
-        return result;                                                            \
-    }
-
 namespace splashkit_lib
 {
 
@@ -77,15 +45,40 @@ namespace splashkit_lib
          * @param y Number of columns
          */
         matrix_2d(int x = 3, int y = 3);
+
+        /**
+         * @brief Copy constructor. Creates a new matrix 2d object that is a copy of the given matrix_2d object.
+         * 
+         * @param other The matrix_2d object to copy.
+         */
         matrix_2d(const matrix_2d &other);
 
         ~matrix_2d();
-        matrix_2d &operator=(const matrix_2d &other);
+        matrix_2d &operator=(const matrix_2d &other); // assignment operator (faster if same size)
 
-        MATRIX_ELEMENT_OP(>)
-        MATRIX_ELEMENT_OP(<)
-        MATRIX_ELEMENT_OP(+)
-        MATRIX_ELEMENT_OP(-)
+        /**
+         * @brief Element wise > operator. 
+         * Returns a new matrix with the same size as the original matrix, 
+         * where each element is the result of the comparison (1 if true, 0 otherwise)
+         * 
+         * @param scalar 
+         * @return matrix_2d 
+         */
+        matrix_2d operator>(const double scalar) const;
+        matrix_2d operator>(const int scalar) const;
+        matrix_2d operator>(const matrix_2d &other) const;
+
+        matrix_2d operator<(const double scalar) const;
+        matrix_2d operator<(const int scalar) const;
+        matrix_2d operator<(const matrix_2d &other) const;
+
+        matrix_2d operator+(const double scalar) const;
+        matrix_2d operator+(const int scalar) const;
+        matrix_2d operator+(const matrix_2d &other) const;
+
+        matrix_2d operator-(const double scalar) const;
+        matrix_2d operator-(const int scalar) const;
+        matrix_2d operator-(const matrix_2d &other) const;
 
         matrix_2d operator==(const matrix_2d &other) const;
         matrix_2d operator!=(const matrix_2d &other) const;
@@ -117,6 +110,12 @@ namespace splashkit_lib
          */
         bool any() const;
 
+        /**
+         * @brief Iterates over the elements in the matrix columns first then rows.
+         * 
+         * @example matrix of size rows = 2 columns = 3, iterates over the order:
+         * [0][0] (BEGIN) -> [0][1] -> [0][2] -> [1][0] -> [1][1] -> [1][2] -> [2][0] (END)
+         */
         struct iterator
         {
             size_t x = 0, y = 0;
@@ -145,7 +144,7 @@ namespace splashkit_lib
      * Returns the identity matrix. When a matrix_2d or Vector is multiplied by
      * the identity matrix the result is the original matrix or vector.
      *
-     * @returns     An identify matrix.
+     * @returns     An identity matrix of size n * n.
      */
     matrix_2d identity_matrix(int n = 3);
 
