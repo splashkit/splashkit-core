@@ -80,7 +80,7 @@ namespace splashkit_lib
 			return input[input > 0];
 		}
 
-		matrix_2d derivative(const matrix_2d &output, const matrix_2d &delta) override
+		matrix_2d backward(const matrix_2d &output, const matrix_2d &delta) override
 		{
 			return output > 0;
 		}
@@ -109,7 +109,7 @@ namespace splashkit_lib
 			return result;
 		}
 
-		matrix_2d derivative(const matrix_2d &output, const matrix_2d &delta) override
+		matrix_2d backward(const matrix_2d &output, const matrix_2d &delta) override
 		{
 			matrix_2d result(output.y, output.y); // n^2 matrix
 
@@ -158,23 +158,29 @@ namespace splashkit_lib
 	/* #endregion */
 
 	/* #region  ErrorFunctions */
-	class f_RSS : public _ErrorFunction
+	class f_RSS : public _LossFunction
 	{
-		static const ErrorFunction type = RSS;
+		static const LossFunction type = RSS;
 
-		double apply(const matrix_2d &output, const matrix_2d &target_output) override
+		double loss(const matrix_2d &output, const matrix_2d &target_output) override
 		{
+			// Check if this is called MSE or RSS or something else
 			return sum(sq(target_output - output));
+		}
+
+		double backward(const matrix_2d &output, const matrix_2d &target_output) override
+		{
+			return output - target_output; // -(target_output - output) is derivative of (1/2)*RSS?
 		}
 	};
 
 	// Simple factory
-	shared_ptr<_ErrorFunction> get_error_function(ErrorFunction name)
+	shared_ptr<_LossFunction> get_error_function(LossFunction name)
 	{
 		switch (name)
 		{
-		case ErrorFunction::RSS:
-			return shared_ptr<_ErrorFunction>(new f_RSS());
+		case LossFunction::RSS:
+			return shared_ptr<_LossFunction>(new f_RSS());
 		default:
 			throw invalid_argument("Unknown error function");
 		}
@@ -192,7 +198,7 @@ namespace splashkit_lib
 		}
 	}
 
-	Model::Model(ErrorFunction error_function, double learning_rate)
+	Model::Model(LossFunction error_function, double learning_rate)
 	{
 		this->learning_rate = learning_rate;
 		this->error_function = get_error_function(error_function);
@@ -241,17 +247,11 @@ namespace splashkit_lib
 
 			matrix_2d target_output_row = matrix_slice(target_output, i, i);
 			matrix_2d difference = target_output_row - outputs[layers.size()];
-			vector<matrix_2d> delta(layers.size() + 1);
 
-			delta[layers.size()] = matrix_multiply_components(layers.back()->activation_function->derivative(outputs[layers.size()], difference), difference); // error_function->derivative(difference); // TODO look at this line
+			matrix_2d delta = error_function->backward(difference); // TODO look at this line
 			for (size_t i = layers.size(); i > 0; i--)
 			{
-				if (i == layers.size()) {
-					layers.back()->update_weights(outputs[i*2-2], outputs[i*2], delta[i]); // first pass uses difference as delta
-					// delta[i-1] = NULL; // pass delta backwards
-				} else {
-					delta[i-1] = layers[i-1]->backward(outputs[i*2-2], outputs[i*2-1], outputs[i*2], delta[i]);
-				}
+				delta = layers[i-1]->backward(outputs[i*2-2], outputs[i*2-1], outputs[i*2], delta);
 			}
 			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net));
 
@@ -294,21 +294,24 @@ namespace splashkit_lib
 		return matrix_multiply(input, weights) + biases;
 	}
 
-	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta)
+	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &delta)
 	{
-		matrix_2d delta = matrix_2d(1, input.y);
-		matrix_2d derivative = activation_function->derivative(before_activation, next_delta);
+		matrix_2d new_delta = matrix_2d(1, input.y);
+
+		// new_delta = result
+
+		delta = activation_function->backward(before_activation, delta);
 		for (size_t x = 0; x < input_size; x++)
 		{
-			double error = 0.0;
+			double error = 0.0; // tmp result
 			for (size_t y = 0; y < output_size; y++)
 			{
-				error += weights.elements[x][y] * next_delta.elements[0][y] * derivative.elements[0][y]; // TODO: This could be the wrong line
+				error += weights.elements[x][y] * delta.elements[0][y];
+				weights.elements[x][y] -= learning_rate * delta.elements[0][y] * input.elements[0][x];
 			}
-			delta.elements[0][x] = error; // Could be changed
+			new_delta.elements[0][x] = error; // Could be changed
 		}
-		update_weights(input, output, delta);
-		return delta;
+		return new_delta;
 	}
 
 	inline void Dense::update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta)

@@ -29,26 +29,26 @@ namespace splashkit_lib
 		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 
 		/**
-		 * @brief The derivative of the activation function.
+		 * @brief The backward of the activation function.
 		 * 
 		 * @param input The input that was passed to the activation function.
 		 * @return matrix_2d 
 		 */
-		virtual matrix_2d derivative(const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d backward(const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
 	};
 
-	enum ErrorFunction
+	enum LossFunction
 	{
 		RSS, // Residual Sum of Squares
 	};
 
-	struct _ErrorFunction
+	struct _LossFunction
 	{
 		/**
 		 * @brief The enum identifier for this error function.
 		 * This is used to distinguish between different error functions for saving/debugging purposes.
 		 */
-		static const ErrorFunction type;
+		static const LossFunction type;
 
 		/**
 		 * @brief Apply the error function to the given output and target output.
@@ -57,15 +57,15 @@ namespace splashkit_lib
 		 * @param target_output The target output.
 		 * @return double 
 		 */
-		virtual double apply(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
+		virtual double loss(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
 
 		/**
-		 * @brief The derivative of the error function.
+		 * @brief The backward of the error function.
 		 * 
 		 * @param output The output that was passed to the error function.
 		 * @return matrix_2d 
 		 */
-		virtual double derivative(const matrix_2d &input) { throw std::logic_error("not implemented"); };
+		virtual double backward(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 	};
 
 	/**
@@ -140,14 +140,14 @@ namespace splashkit_lib
 	class Model
 	{
 	private:
-		std::shared_ptr<_ErrorFunction> error_function;
+		std::shared_ptr<_LossFunction> error_function;
 
 		double learning_rate;
 
 		vector<std::shared_ptr<Layer>> layers;
 		void forward(const matrix_2d &input);
 	public:
-		Model(ErrorFunction error_function, double learning_rate=0.01);
+		Model(LossFunction error_function, double learning_rate=0.01);
 		void add_layer(Layer *layer);
 		matrix_2d predict(const matrix_2d &input);
 		void train(const matrix_2d &input, const matrix_2d &target_output);
