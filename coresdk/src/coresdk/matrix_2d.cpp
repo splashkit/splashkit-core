@@ -110,6 +110,17 @@ namespace splashkit_lib
     MATRIX_ELEMENT_OP(<)
     MATRIX_ELEMENT_OP(+)
     MATRIX_ELEMENT_OP(-)
+    MATRIX_ELEMENT_OP(/)
+    MATRIX_ELEMENT_OP(*)
+
+    matrix_2d matrix_2d::operator-() const
+    {
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = -elements[i][j];
+        return result;
+    }
 
     matrix_2d matrix_2d::operator==(const matrix_2d &other) const
     {

@@ -76,9 +76,18 @@ namespace splashkit_lib
         matrix_2d operator+(const int scalar) const;
         matrix_2d operator+(const matrix_2d &other) const;
 
+        matrix_2d operator-() const;
         matrix_2d operator-(const double scalar) const;
         matrix_2d operator-(const int scalar) const;
         matrix_2d operator-(const matrix_2d &other) const;
+
+        matrix_2d operator/(const double scalar) const;
+        matrix_2d operator/(const int scalar) const;
+        matrix_2d operator/(const matrix_2d &other) const;
+
+        matrix_2d operator*(const double scalar) const;
+        matrix_2d operator*(const int scalar) const;
+        matrix_2d operator*(const matrix_2d &other) const;
 
         matrix_2d operator==(const matrix_2d &other) const;
         matrix_2d operator!=(const matrix_2d &other) const;
