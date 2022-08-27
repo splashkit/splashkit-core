@@ -45,16 +45,17 @@ namespace splashkit_lib
 		return result;
 	}
 
-	vector<int> to_categorical(const matrix_2d &m)
+	matrix_2d to_categorical(const matrix_2d &m)
 	{
-		vector<int> result(m.x);
+		matrix_2d result(m.x, 1);
 
 		for (size_t x = 0; x < m.x; x++)
 		{
-			result[x] = 0;
+			int max = 0;
 			for (size_t y = 1; y < m.y; y++)
-				if (m.elements[x][y] > result[x])
-					result[x] = y;
+				if (m.elements[x][y] > m.elements[x][max])
+					max = y;
+			result[x][0] = max;
 		}
 
 		return result;
@@ -71,6 +72,26 @@ namespace splashkit_lib
 	}
 
 	/* #region  ActivationFunctions */
+	struct f_Sigmoid : public _ActivationFunction
+	{
+		static const ActivationFunction type = Sigmoid;
+
+		matrix_2d apply(const matrix_2d &input) override
+		{
+			matrix_2d result(1, input.y);
+
+			for (size_t y = 0; y < input.y; y++)
+				result.elements[0][y] = 1 / (1 + exp(-input.elements[0][y]));
+
+			return result;
+		}
+
+		matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override
+		{
+			return delta * output * (-output + 1); // element wise delta * output * (1 - output)
+		}
+	};
+
 	struct f_ReLu : public _ActivationFunction
 	{
 		static const ActivationFunction type = ReLu;
@@ -80,9 +101,9 @@ namespace splashkit_lib
 			return input[input > 0];
 		}
 
-		matrix_2d backward(const matrix_2d &output, const matrix_2d &delta) override
+		matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override
 		{
-			return output > 0;
+			return input > 0;
 		}
 	};
 
@@ -109,33 +130,33 @@ namespace splashkit_lib
 			return result;
 		}
 
-		matrix_2d backward(const matrix_2d &output, const matrix_2d &delta) override
+		matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override
 		{
-			matrix_2d result(output.y, output.y); // n^2 matrix
+			matrix_2d result(input.y, input.y); // n^2 matrix
 
 			for (size_t x = 0; x < result.x; x++)
 				for (size_t y = 0; y < result.y; y++)
 				{
 					if (x == y)
-						result.elements[x][y] = output.elements[0][x] * (1 - output.elements[0][x]);
+						result.elements[x][y] = input.elements[0][x] * (1 - input.elements[0][x]);
 					else
-						result.elements[x][y] = -output.elements[0][x] * output.elements[0][y];
+						result.elements[x][y] = -input.elements[0][x] * input.elements[0][y];
 				}
 			return result;
 			/* idk
-			matrix_2d result(output.x, output.y);
-			for (size_t x = 0; x < output.x; x++)
+			matrix_2d result(input.x, input.y);
+			for (size_t x = 0; x < input.x; x++)
 			{
-				for (size_t y = 0; y < output.y; y++)
+				for (size_t y = 0; y < input.y; y++)
 				{
 					double sum = 0.0;
-					const double neg_sft_i = -output.elements[x][y];
+					const double neg_sft_i = -input.elements[x][y];
 
-					for (size_t x1 = 0; x1 < output.x; x1++)
-						for (size_t y1 = 0; y1 < output.y; y1++)
-							sum += delta.elements[x1][y1] * output.elements[x1][y1] * neg_sft_i;
+					for (size_t x1 = 0; x1 < input.x; x1++)
+						for (size_t y1 = 0; y1 < input.y; y1++)
+							sum += delta.elements[x1][y1] * input.elements[x1][y1] * neg_sft_i;
 
-					result.elements[x][y] = sum + output.elements[x][y] * delta.elements[x][y];
+					result.elements[x][y] = sum + input.elements[x][y] * delta.elements[x][y];
 				}
 			}
 			return result; //*/
@@ -149,6 +170,8 @@ namespace splashkit_lib
 		{
 		case ActivationFunction::ReLu:
 			return shared_ptr<_ActivationFunction>(new f_ReLu());
+		case ActivationFunction::Sigmoid:
+			return shared_ptr<_ActivationFunction>(new f_Sigmoid());
 		case ActivationFunction::Softmax:
 			return shared_ptr<_ActivationFunction>(new f_Softmax());
 		default:
@@ -158,19 +181,18 @@ namespace splashkit_lib
 	/* #endregion */
 
 	/* #region  ErrorFunctions */
-	class f_RSS : public _LossFunction
+	class f_MSE : public _LossFunction
 	{
-		static const LossFunction type = RSS;
+		static const LossFunction type = MSE;
 
 		double loss(const matrix_2d &output, const matrix_2d &target_output) override
 		{
-			// Check if this is called MSE or RSS or something else
-			return sum(sq(target_output - output));
+			return sum(sq(target_output - output)) / (2.0 * output.y);
 		}
 
-		double backward(const matrix_2d &output, const matrix_2d &target_output) override
+		matrix_2d backward(const matrix_2d &output, const matrix_2d &target_output) override
 		{
-			return output - target_output; // -(target_output - output) is derivative of (1/2)*RSS?
+			return (output - target_output) / output.y; // -(target_output - output)/m is derivative of (1/2)*MSE
 		}
 	};
 
@@ -179,8 +201,8 @@ namespace splashkit_lib
 	{
 		switch (name)
 		{
-		case LossFunction::RSS:
-			return shared_ptr<_LossFunction>(new f_RSS());
+		case LossFunction::MSE:
+			return shared_ptr<_LossFunction>(new f_MSE());
 		default:
 			throw invalid_argument("Unknown error function");
 		}
@@ -220,6 +242,7 @@ namespace splashkit_lib
 			for (auto &layer : layers)
 			{
 				row = layer->forward(row);
+				row = layer->activation_function->apply(row);
 			}
 			for (size_t j = 0; j < layers.back()->output_size; j++)
 			{
@@ -229,33 +252,35 @@ namespace splashkit_lib
 		return result;
 	}
 
-	void Model::train(const matrix_2d &input, const matrix_2d &target_output)
+	vector<double> Model::train(const matrix_2d &input, const matrix_2d &target_output)
 	{
-		for (size_t i = 0; i < input.x; i++)
+		vector<double> losses;
+		for (int i = 0; i < input.x; i++)
 		{
 			matrix_2d row = matrix_slice(input, i, i);
 
 			/* #region Forward Propagation */
 			vector<matrix_2d> outputs(layers.size()*2+1);
 			outputs[0] = row;
-			for (size_t i = 0; i < layers.size(); i ++)
+			for (int j = 0; j < layers.size(); j++)
 			{
-				outputs[i*2+1] = layers[i]->forward(outputs[i*2]); // weights * x + bias
-				outputs[i*2+2] = layers[i]->activation_function->apply(outputs[i*2+1]);
+				outputs[j*2+1] = layers[j]->forward(outputs[j*2]); // weights * x + bias
+				outputs[j*2+2] = layers[j]->activation_function->apply(outputs[j*2+1]);
 			}
 			/* #endregion */
 
 			matrix_2d target_output_row = matrix_slice(target_output, i, i);
-			matrix_2d difference = target_output_row - outputs[layers.size()];
+			matrix_2d difference = target_output_row - outputs[layers.size()*2];
 
-			matrix_2d delta = error_function->backward(difference); // TODO look at this line
-			for (size_t i = layers.size(); i > 0; i--)
+			losses.push_back(error_function->loss(outputs[layers.size()*2], target_output_row));
+
+			matrix_2d delta = error_function->backward(outputs[layers.size()*2], target_output_row);
+			for (int j = layers.size(); j > 0; j--)
 			{
-				delta = layers[i-1]->backward(outputs[i*2-2], outputs[i*2-1], outputs[i*2], delta);
+				delta = layers[j-1]->backward(outputs[j*2-2], outputs[j*2-1], outputs[j*2], delta);
 			}
-			// matrix_2d delta = matrix_multiply_components(difference, activation_diff(net));
-
 		}
+		return losses;
 	}
 
 	void Model::save(const string &filename)
@@ -294,35 +319,22 @@ namespace splashkit_lib
 		return matrix_multiply(input, weights) + biases;
 	}
 
-	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &delta)
+	matrix_2d Dense::backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, matrix_2d &delta)
 	{
 		matrix_2d new_delta = matrix_2d(1, input.y);
 
-		// new_delta = result
-
-		delta = activation_function->backward(before_activation, delta);
-		for (size_t x = 0; x < input_size; x++)
+		delta = activation_function->backward(before_activation, output, delta);
+		for (int x = 0; x < input_size; x++)
 		{
-			double error = 0.0; // tmp result
-			for (size_t y = 0; y < output_size; y++)
+			double error = 0.0;
+			for (int y = 0; y < output_size; y++)
 			{
 				error += weights.elements[x][y] * delta.elements[0][y];
 				weights.elements[x][y] -= learning_rate * delta.elements[0][y] * input.elements[0][x];
 			}
-			new_delta.elements[0][x] = error; // Could be changed
+			new_delta.elements[0][x] = error;
 		}
 		return new_delta;
-	}
-
-	inline void Dense::update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta)
-	{
-		for (size_t x = 0; x < input_size; x++)
-		{
-			for (size_t y = 0; y < output_size; y++)
-			{
-				weights.elements[x][y] -= learning_rate * delta.elements[0][y] * input.elements[0][x];
-			}
-		}
 	}
 	/* #endregion Dense */
 }
