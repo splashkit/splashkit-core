@@ -222,7 +222,7 @@ namespace splashkit_lib
 		 * @param random The global random to be passed down, determines if the move should be randomly chosen.
 		 * @return int The index of the maximum reward value.
 		 */
-		int get_max_position(int index, std::vector<int> filter, bool random);
+		int get_max_position(int index, const std::vector<int> filter, bool random);
 
 		/**
 		 * @brief Gets the number in the data at the given format index.

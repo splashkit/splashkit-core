@@ -71,7 +71,7 @@ namespace splashkit_lib
 		value = std::vector<float>(format->get_width(), 0.5f);
 	}
 
-	int OutputValue::get_max_position(int index, std::vector<int> filter, bool random)
+	int OutputValue::get_max_position(int index, const std::vector<int> filter, bool random)
 	{
 		if (format->get_type(index) != OutputFormat::Type::Position && format->get_type(index) != OutputFormat::Type::Category)
 			LOG(WARNING) << "Format at index is not of type Position!";

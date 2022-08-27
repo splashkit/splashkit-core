@@ -2,6 +2,13 @@
 #include "utility_functions.h"
 #include "random.h"
 #include "utils.h"
+#include "window_manager.h"
+#include "graphics.h"
+#include "text.h"
+#include "rectangle_drawing.h"
+#include "rectangle_geometry.h"
+#include "input.h"
+
 #include "game_learning.h"
 #include "machine_learning.h"
 
@@ -10,6 +17,7 @@
 #include <vector>
 #include <unordered_map>
 #include <numeric>
+#include <cmath>
 using namespace std;
 using namespace splashkit_lib;
 
@@ -267,6 +275,230 @@ public:
 	}
 };
 
+class Pong : public Game
+{
+public:
+	struct Ball
+	{
+		float x;
+		float y;
+		float vx;
+		float vy;
+	};
+
+	struct Player
+	{
+		float x;
+		float y;
+		float score;
+	};
+
+	enum class GameState
+	{
+		Playing,
+		Player1_Won,
+		Player2_Won
+	};
+
+	Ball ball;
+	Player player1;
+	Player player2;
+	GameState state;
+	bool is_player1;
+	vector<int> moves;
+
+	#define PONG_PLAY_TO 3
+	#define PONG_BALL_SPEED 0.1f
+	#define PONG_PLAYER_SPEED 0.1f
+
+	// Drawing options
+	#define PONG_GAME_WIDTH 20
+	#define PONG_GAME_HEIGHT 10
+	#define PONG_SCALE 50.0f
+	#define PONG_PADDLE_WIDTH 1.0f
+	#define PONG_PADDLE_HEIGHT 3.0f
+	#define PONG_MARGIN 1.0f
+	#define PONG_BALL_RADIUS 0.5f
+	bool silent = false;
+	window win;
+
+	// Game API Objects
+	static inline InputFormat input_format = InputFormat();
+	static inline OutputFormat output_format = OutputFormat();
+
+	Pong(bool silent=true)
+	{
+		if (Pong::input_format.get_width() == 0) // uninitialized
+		{
+			Pong::input_format.add_type(InputFormat::Type::Player, 1, 2); // which side the player is controlling
+			Pong::input_format.add_type(InputFormat::Type::Board, PONG_GAME_WIDTH * PONG_GAME_HEIGHT, 2); // paddle/player and board information
+		}
+		if (Pong::output_format.get_width() == 0) // uninitialized
+		{
+			Pong::output_format.add_type(OutputFormat::Type::Category, 3); // stay still, move up, move down
+		}
+
+		moves.push_back(0);
+		moves.push_back(1);
+		moves.push_back(2);
+		
+		reset();
+		this->silent = silent;
+		if (!silent)
+		{
+			win = open_window("Pong", PONG_GAME_WIDTH * PONG_SCALE, PONG_GAME_HEIGHT * PONG_SCALE);
+		}
+	}
+
+	void reset() override
+	{
+		ball.x = PONG_GAME_WIDTH / 2.0f;
+		ball.y = PONG_GAME_HEIGHT / 2.0f;
+		ball.vx = PONG_BALL_SPEED;
+		ball.vy = (rnd() - 0.5f) * PONG_BALL_SPEED;
+
+		player1.x = PONG_MARGIN;
+		player1.y = PONG_GAME_HEIGHT / 2.0f - PONG_PADDLE_HEIGHT / 2.0f;
+
+		player2.x = PONG_GAME_WIDTH - PONG_MARGIN - PONG_PADDLE_WIDTH;
+		player2.y = PONG_GAME_HEIGHT / 2.0f - PONG_PADDLE_HEIGHT / 2.0f;
+		state = GameState::Playing;
+	}
+
+	void update_state()
+	{
+		// Update ball position
+		ball.x += ball.vx;
+		ball.y += ball.vy;
+
+		// Check if ball is out of bounds
+		if (ball.x < 0.0f)
+		{
+			player2.score++;
+			if (player2.score >= PONG_PLAY_TO)
+			{
+				state = GameState::Player2_Won;
+				return;
+			}
+			reset();
+			return;
+		}
+		else if (ball.x > PONG_GAME_WIDTH)
+		{
+			player1.score++;
+			if (player1.score >= PONG_PLAY_TO)
+			{
+				state = GameState::Player1_Won;
+				return;
+			}
+			reset();
+			return;
+		}
+
+		// Check if ball is hitting a paddle
+		if (ball.x - PONG_BALL_RADIUS < player1.x + PONG_PADDLE_WIDTH && // hitting front of paddle
+			ball.x + PONG_BALL_RADIUS > player1.x && // not behind paddle
+			ball.y + PONG_BALL_RADIUS > player1.y && // below top of the paddle
+			ball.y - PONG_BALL_RADIUS < player1.y + PONG_PADDLE_HEIGHT && // above bottom of the paddle
+			ball.vx < 0.0f) // ball going towards paddle 1
+		{
+			ball.vx = -ball.vx;
+			ball.vy = ((ball.y - player1.y) / 2.0f) * PONG_BALL_SPEED;
+		}
+		else if (ball.x + PONG_BALL_RADIUS > player2.x && // hitting front of paddle
+				 ball.x - PONG_BALL_RADIUS < player2.x + PONG_PADDLE_WIDTH && // not behind paddle
+				 ball.y + PONG_BALL_RADIUS > player2.y && // below top of the paddle
+				 ball.y - PONG_BALL_RADIUS < player2.y + PONG_PADDLE_HEIGHT && // above bottom of the paddle
+				 ball.vx > 0.0f) // ball going towards paddle 2
+		{
+			ball.vx = -ball.vx;
+			ball.vy = ((ball.y - player2.y) / 2.0f) * PONG_BALL_SPEED;
+		}
+
+		// Check if ball is hitting a wall
+		if (ball.y < PONG_BALL_RADIUS || ball.y > PONG_GAME_HEIGHT - PONG_BALL_RADIUS)
+		{
+			ball.vy = -ball.vy;
+		}
+	}
+
+	void draw_game()
+	{
+		clear_window(win, COLOR_BLACK);
+
+		// Draw ball
+		draw_circle_on_window(win, COLOR_WHITE, ball.x * PONG_SCALE, ball.y * PONG_SCALE, PONG_BALL_RADIUS * PONG_SCALE);
+
+		// Draw paddles
+		draw_rectangle_on_window(win, COLOR_WHITE, player1.x * PONG_SCALE, player1.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
+		draw_rectangle_on_window(win, COLOR_WHITE, player2.x * PONG_SCALE, player2.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
+
+		// Draw score
+		string score = to_string((int)player1.score) + " - " + to_string((int)player2.score);
+		draw_text_on_window(win, score, COLOR_WHITE, ((PONG_GAME_WIDTH - 1) / 2.0f) * PONG_SCALE, (PONG_MARGIN / 2.0f) * PONG_SCALE);
+
+		refresh_window(win, 30);
+	}
+
+	/**
+	 * @brief Get the possible moves.
+	 * 
+	 * vector will be reused, should be immutable.
+	 * 
+	 * @return vector<int> 
+	 */
+	vector<int> get_possible_moves() override
+	{
+		return moves;
+	}
+
+	void make_move(int move) override
+	{
+		float action;
+		if (move == 0)
+			action = 0.0f;
+		else if (move == 1)
+			action = -PONG_PLAYER_SPEED;
+		else if (move == 2)
+			action = PONG_PLAYER_SPEED;
+		
+		if (is_player1)
+			player1.y = MAX(0, MIN(player1.y + action, PONG_GAME_HEIGHT - PONG_PADDLE_HEIGHT));
+		else
+			player2.y = MAX(0, MIN(player2.y + action, PONG_GAME_HEIGHT - PONG_PADDLE_HEIGHT));
+	}
+
+	// misc Game API
+	int get_current_player() override { return is_player1 ? 0 : 1; }
+	InputFormat get_input_format() override { return Pong::input_format; }
+	OutputFormat get_output_format() override { return Pong::output_format; }
+	int convert_output(OutputValue *output, bool random) override 
+	{ 
+		return output->get_max_position(0, get_possible_moves(), random);
+	}
+	vector<float> score() override { return { player1.score, player2.score }; }
+	bool is_finished() override { return state != GameState::Playing; }
+	Game *clone() override {  return new Pong(*this); }
+	vector<int> get_input() override { 
+		vector<int> input(PONG_GAME_WIDTH * PONG_GAME_HEIGHT);
+		for (int i = 0; i < PONG_GAME_WIDTH; i++)
+		{
+			for (int j = 0; j < PONG_GAME_HEIGHT; j++)
+			{
+				int temp = 0;
+				if (round(ball.x) == i && round(ball.y) == j)
+					temp = 1;
+				else if (round(player1.x) == i && round(player1.y) == j)
+					temp = 1;
+				else if (round(player2.x) == i && round(player2.y) == j)
+					temp = 1;
+				input[i * PONG_GAME_HEIGHT + j] = temp;
+			}
+		}
+		return input;
+	}
+};
+
 int random_agent_play(int posb_moves)
 {
 	if (posb_moves < 1)
@@ -342,7 +574,13 @@ string to_string(vector<int> vec)
 	return ss.str();
 }
 
-void play_games(QAgent *q_agent)
+bool ask(string question)
+{
+	write(question + "? (Y/N) ");
+	return read_line() == "Y";
+}
+
+void play_tictactoe(QAgent *q_agent)
 {
 	TicTacToe game;
 	for (int i = 0; i < 5; i++)
@@ -360,7 +598,7 @@ void play_games(QAgent *q_agent)
 			}
 			else
 			{
-				vector<int> moves = game.get_possible_moves();
+				const vector<int> moves = game.get_possible_moves();
 				game.make_move(moves[random_agent_play(moves.size())]);
 			}
 			game.draw_game();
@@ -399,7 +637,7 @@ void play_games(QAgent *q_agent)
 			}
 			else
 			{
-				vector<int> moves = game.get_possible_moves();
+				const vector<int> moves = game.get_possible_moves();
 				write_line("Your move: ");
 				write_line(to_string(moves));
 				int move;
@@ -412,6 +650,53 @@ void play_games(QAgent *q_agent)
 	} while (read_line() == "Y");
 
 	game.reset();
+}
+
+void test_pong()
+{
+	if (ask("Human (W/S) vs Human (Up/Dn) Game"))
+	{
+		Pong game(false);
+		bool ready = false;
+		while (!ready)
+		{
+			game.draw_game();
+			process_events();
+			if (key_down(W_KEY) || key_down(S_KEY) || key_down(UP_KEY) || key_down(DOWN_KEY))
+				ready = true;
+		}
+		while (game.state == Pong::GameState::Playing)
+		{
+			process_events();
+
+			// Player 1
+			game.is_player1 = true;
+			int action = 0;
+			if (key_down(W_KEY))
+				action = 1;
+			else if (key_down(S_KEY))
+				action = 2;
+			game.make_move(action);
+
+			// Player 2
+			game.is_player1 = false;
+			action = 0;
+			if (key_down(UP_KEY))
+				action = 1;
+			else if (key_down(DOWN_KEY))
+				action = 2;
+			game.make_move(action);
+
+			game.update_state();
+			game.draw_game();
+		}
+		if (game.state == Pong::GameState::Player1_Won)
+			write_line("Player 1 Wins!");
+		else if (game.state == Pong::GameState::Player2_Won)
+			write_line("Player 2 Wins!");
+		delay(5);
+		close_window(game.win);
+	}
 }
 
 void test_minimax(TicTacToe *game)
@@ -440,7 +725,7 @@ void test_minimax(TicTacToe *game)
 			}
 			else
 			{
-				vector<int> moves = game->get_possible_moves();
+				const vector<int> moves = game->get_possible_moves();
 				write_line("Your move: ");
 				write_line(to_string(moves));
 				int move;
@@ -494,7 +779,7 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 				}
 				else
 				{
-					vector<int> moves = game->get_possible_moves();
+					const vector<int> moves = game->get_possible_moves();
 					game->make_move(moves[random_agent_play(moves.size())]);
 				}
 			}
@@ -589,12 +874,6 @@ void test_ann(matrix_2d &data)
 	write_line(matrix_to_string(matrix_horizontal_concat(matrix_horizontal_concat(input, to_categorical(target)), to_categorical(result))));
 }
 
-bool ask(string question)
-{
-	write(question + "? (Y/N) ");
-	return read_line() == "Y";
-}
-
 void run_machine_learning_test()
 {
 	if (ask("Run ANN test"))
@@ -602,6 +881,11 @@ void run_machine_learning_test()
 		matrix_2d iris_data = load_iris();
 		write_line(matrix_to_string(iris_data));
 		test_ann(iris_data);
+	}
+
+	if (ask("Run Pong test"))
+	{
+		test_pong();
 	}
 
 	if (ask("Run TicTacToe test"))
@@ -615,7 +899,7 @@ void run_machine_learning_test()
 		{
 			// Test RL components
 			QAgent *q_agent = test_q_agent(game);
-			play_games(q_agent);
+			play_tictactoe(q_agent);
 
 			if (ask("Evaluate QAgent against minimax (slow)"))
 			{
