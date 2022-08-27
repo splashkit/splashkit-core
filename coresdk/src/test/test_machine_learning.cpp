@@ -574,7 +574,7 @@ void test_ann(matrix_2d &data)
 	for (size_t i = 0; i < 1000; i++)
 	{
 		auto temp = model.train(input, target);
-		loss.push_back(std::accumulate(temp.begin(), temp.end(), 0.0) / temp.size());
+		loss.push_back(std::accumulate(temp.begin(), temp.end(), 0.0) / temp.size()); // Store average loss of epoch
 		write_line("Loss: " + to_string(loss.back()));
 	}
 

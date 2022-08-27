@@ -32,7 +32,7 @@ namespace splashkit_lib
 		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 
 		/**
-		 * @brief The backward of the activation function.
+		 * @brief The backward pass of the activation function.
 		 * 
 		 * @param input The input that was passed to the activation function.
 		 * @return matrix_2d 
