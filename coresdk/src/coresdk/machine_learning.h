@@ -6,9 +6,12 @@
 
 namespace splashkit_lib
 {
+	matrix_2d to_categorical(const matrix_2d &m);
+
 	enum ActivationFunction
 	{
 		ReLu, // Rectified Linear Unit
+		Sigmoid,
 		Softmax, // Softmax
 	};
 
@@ -29,43 +32,45 @@ namespace splashkit_lib
 		virtual matrix_2d apply(const matrix_2d &input) { throw std::logic_error("not implemented"); };
 
 		/**
-		 * @brief The derivative of the activation function.
+		 * @brief The backward pass of the activation function.
 		 * 
 		 * @param input The input that was passed to the activation function.
 		 * @return matrix_2d 
 		 */
-		virtual matrix_2d derivative(const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d backward(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
 	};
 
-	enum ErrorFunction
+	enum LossFunction
 	{
-		RSS, // Residual Sum of Squares
+		MSE, // Residual Sum of Squares
 	};
 
-	struct _ErrorFunction
+	struct _LossFunction
 	{
 		/**
-		 * @brief The enum identifier for this error function.
-		 * This is used to distinguish between different error functions for saving/debugging purposes.
+		 * @brief The enum identifier for this loss function.
+		 * This is used to distinguish between different loss functions for saving/debugging purposes.
 		 */
-		static const ErrorFunction type;
+		static const LossFunction type;
 
 		/**
-		 * @brief Apply the error function to the given output and target output.
+		 * @brief Apply the loss function to the given output and target output.
 		 * 
 		 * @param output The output of the model.
 		 * @param target_output The target output.
 		 * @return double 
 		 */
-		virtual double apply(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
+		virtual double loss(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
 
 		/**
-		 * @brief The derivative of the error function.
+		 * @brief The backward pass of the loss function.
+		 * Calculates dE/dO where E is the loss and O is the output.
 		 * 
-		 * @param output The output that was passed to the error function.
+		 * @param output The output of the model.
+		 * @param target_output The target output.
 		 * @return matrix_2d 
 		 */
-		virtual double derivative(const matrix_2d &input) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d backward(const matrix_2d &output, const matrix_2d &target_output) { throw std::logic_error("not implemented"); };
 	};
 
 	/**
@@ -110,11 +115,10 @@ namespace splashkit_lib
 		 * 
 		 * @param input 
 		 * @param output 
-		 * @param next_delta The delta/derivative of the next layer during feed-forward.
+		 * @param delta The delta/derivative of the previous layer during back propagation.
 		 * @return matrix_2d 
 		 */
-		virtual matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta) { throw std::logic_error("not implemented"); };
-		virtual void update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) { throw std::logic_error("not implemented"); };
+		virtual matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, matrix_2d &delta) { throw std::logic_error("not implemented"); };
 	};
 
 	/**
@@ -129,8 +133,7 @@ namespace splashkit_lib
 		Dense(size_t input_size, size_t output_size, ActivationFunction activation_function);
 		matrix_2d get_weights() { return weights; };
 		matrix_2d forward(const matrix_2d &input) override;
-		matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, const matrix_2d &next_delta) override;
-		void update_weights(const matrix_2d &input, const matrix_2d &output, const matrix_2d &delta) override;
+		matrix_2d backward(const matrix_2d &input, const matrix_2d &before_activation, const matrix_2d &output, matrix_2d &delta) override;
 	};
 
 	/**
@@ -140,17 +143,17 @@ namespace splashkit_lib
 	class Model
 	{
 	private:
-		std::shared_ptr<_ErrorFunction> error_function;
+		std::shared_ptr<_LossFunction> error_function;
 
 		double learning_rate;
 
 		vector<std::shared_ptr<Layer>> layers;
 		void forward(const matrix_2d &input);
 	public:
-		Model(ErrorFunction error_function, double learning_rate=0.01);
+		Model(LossFunction error_function, double learning_rate=0.01);
 		void add_layer(Layer *layer);
 		matrix_2d predict(const matrix_2d &input);
-		void train(const matrix_2d &input, const matrix_2d &target_output);
+		vector<double> train(const matrix_2d &input, const matrix_2d &target_output);
 
 		/**
 		 * @brief Save a trained model to disk so that it can be loaded later using the model.load() function.

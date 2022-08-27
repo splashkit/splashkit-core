@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <numeric>
 using namespace std;
 using namespace splashkit_lib;
 
@@ -548,7 +549,7 @@ matrix_2d load_iris()
 
 Dense *test_dense(matrix_2d &input, matrix_2d &target)
 {
-	Dense *dense = new Dense(input.y, 3, ReLu);
+	Dense *dense = new Dense(input.y, 4, Sigmoid);
 	matrix_2d output = dense->forward(matrix_slice(input, 0, 0));
 	write_line(matrix_to_string(output));
 	return dense;
@@ -561,17 +562,20 @@ void test_ann(matrix_2d &data)
 	write_line(matrix_to_string(input));
 	write_line(matrix_to_string(target));
 
-	Model model(RSS, 0.1);
+	Model model(MSE, 0.1);
 	Dense *l1 = test_dense(input, target);
 	matrix_2d initial = l1->forward(matrix_slice(input, 0, 0));
 	matrix_2d initial_weights = matrix_2d(l1->get_weights());
 
-	// model.add_layer(l1);
-	model.add_layer(new Dense(4, 3, ReLu));
+	model.add_layer(l1);
+	model.add_layer(new Dense(4, 3, Sigmoid));
 
-	for (size_t i = 0; i < 50; i++)
+	vector<double> loss;
+	for (size_t i = 0; i < 1000; i++)
 	{
-		model.train(input, target);
+		auto temp = model.train(input, target);
+		loss.push_back(std::accumulate(temp.begin(), temp.end(), 0.0) / temp.size()); // Store average loss of epoch
+		write_line("Loss: " + to_string(loss.back()));
 	}
 
 	matrix_2d result = model.predict(input);
@@ -581,28 +585,49 @@ void test_ann(matrix_2d &data)
 	
 	if ((initial_weights == l1->get_weights()).all()) { write_line("WARNING: Training should change weights"); }
 	if ((initial == trained).all()) { write_line("WARNING: Training should change output"); }
+
+	write_line(matrix_to_string(matrix_horizontal_concat(matrix_horizontal_concat(input, to_categorical(target)), to_categorical(result))));
+}
+
+bool ask(string question)
+{
+	write(question + "? (Y/N) ");
+	return read_line() == "Y";
 }
 
 void run_machine_learning_test()
 {
-	// matrix_2d iris_data = load_iris();
-	// write_line(matrix_to_string(iris_data));
-	// test_ann(iris_data);
+	if (ask("Run ANN test"))
+	{
+		matrix_2d iris_data = load_iris();
+		write_line(matrix_to_string(iris_data));
+		test_ann(iris_data);
+	}
 
-	//* TEST GAME API (Slow TicTacToe)
-	TicTacToe *game = new TicTacToe();
+	if (ask("Run TicTacToe test"))
+	{
+		TicTacToe *game = new TicTacToe();
 
-	test_reward_table();
-	test_output_value();
+		test_reward_table();
+		test_output_value();
+		
+		if (ask("Run QAgent test"))
+		{
+			// Test RL components
+			QAgent *q_agent = test_q_agent(game);
+			play_games(q_agent);
 
-	// Test RL components
-	// QAgent *q_agent = test_q_agent(game);
-	// play_games(q_agent);
+			if (ask("Evaluate QAgent against minimax (slow)"))
+			{
+				// Test all agents against random agent
+				evaluate_agents_random(game, q_agent);
+			}
+		}
 
-	// Test minimax
-	test_minimax(game);
-
-	// Test all agents against random agent
-	// evaluate_agents_random(game, q_agent);
-	//*/
+		if (ask("Run minimax test"))
+		{
+			// Test minimax
+			test_minimax(game);
+		}
+	}
 }
