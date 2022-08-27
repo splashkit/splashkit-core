@@ -350,7 +350,7 @@ public:
 		}
 	}
 
-	void reset() override
+	void new_round()
 	{
 		ball.x = PONG_GAME_WIDTH / 2.0f;
 		ball.y = PONG_GAME_HEIGHT / 2.0f;
@@ -362,6 +362,13 @@ public:
 
 		player2.x = PONG_GAME_WIDTH - PONG_MARGIN - PONG_PADDLE_WIDTH;
 		player2.y = PONG_GAME_HEIGHT / 2.0f - PONG_PADDLE_HEIGHT / 2.0f;
+	}
+
+	void reset() override
+	{
+		new_round();
+		player1.score = 0;
+		player2.score = 0;
 		state = GameState::Playing;
 	}
 
@@ -380,7 +387,7 @@ public:
 				state = GameState::Player2_Won;
 				return;
 			}
-			reset();
+			new_round();
 			return;
 		}
 		else if (ball.x > PONG_GAME_WIDTH)
@@ -391,7 +398,7 @@ public:
 				state = GameState::Player1_Won;
 				return;
 			}
-			reset();
+			new_round();
 			return;
 		}
 
@@ -505,7 +512,7 @@ int random_agent_play(int posb_moves)
 		throw logic_error("No moves available; Game over?");
 	if (posb_moves == 1)
 		return 0;
-	return rnd(0, posb_moves - 1);
+	return rnd(0, posb_moves);
 }
 
 bool test_reward_table()
@@ -652,51 +659,87 @@ void play_tictactoe(QAgent *q_agent)
 	game.reset();
 }
 
+enum class PongPlayer
+{
+	WS,
+	UpDown,
+	Random
+};
+
+int pong_rnd_prev1 = 0;
+int pong_rnd_prev2 = 0;
+bool play_pong(PongPlayer player_1, PongPlayer player_2)
+{
+	Pong game(false);
+	bool ready = false;
+	while (!ready)
+	{
+		game.draw_game();
+		process_events();
+		if (key_down(W_KEY) || key_down(S_KEY) || key_down(UP_KEY) || key_down(DOWN_KEY))
+			ready = true;
+	}
+	while (game.state == Pong::GameState::Playing)
+	{
+		process_events();
+
+		game.is_player1 = false;
+		for (int i = 0; i < 2; i++)
+		{
+			game.is_player1 = !game.is_player1;
+			PongPlayer cur_player = game.is_player1 ? player_1 : player_2;
+			int action = 0;
+			switch(cur_player)
+			{
+				case PongPlayer::WS:
+					if (key_down(W_KEY))
+						action = 1;
+					else if (key_down(S_KEY))
+						action = 2;
+					break;
+				case PongPlayer::UpDown:
+					if (key_down(UP_KEY))
+						action = 1;
+					else if (key_down(DOWN_KEY))
+						action = 2;
+					break;
+				case PongPlayer::Random:
+					if (game.is_player1) {
+						action = rnd() > 0.05 ? pong_rnd_prev1 : random_agent_play(2) + 1;
+						pong_rnd_prev1 = action;
+					} else {
+						action = rnd() > 0.05 ? pong_rnd_prev2 : random_agent_play(2) + 1;
+						pong_rnd_prev2 = action;
+					}
+					break;
+			}
+			game.make_move(action);
+		}
+
+		game.update_state();
+		game.draw_game();
+	}
+	if (game.state == Pong::GameState::Player1_Won)
+		write_line("Player 1 Wins!");
+	else if (game.state == Pong::GameState::Player2_Won)
+		write_line("Player 2 Wins!");
+	delay(5);
+	close_window(game.win);
+	return game.state == Pong::GameState::Player1_Won;
+}
+
 void test_pong()
 {
 	if (ask("Human (W/S) vs Human (Up/Dn) Game"))
-	{
-		Pong game(false);
-		bool ready = false;
-		while (!ready)
-		{
-			game.draw_game();
-			process_events();
-			if (key_down(W_KEY) || key_down(S_KEY) || key_down(UP_KEY) || key_down(DOWN_KEY))
-				ready = true;
-		}
-		while (game.state == Pong::GameState::Playing)
-		{
-			process_events();
+		play_pong(PongPlayer::WS, PongPlayer::UpDown);
 
-			// Player 1
-			game.is_player1 = true;
-			int action = 0;
-			if (key_down(W_KEY))
-				action = 1;
-			else if (key_down(S_KEY))
-				action = 2;
-			game.make_move(action);
+	if (ask("Human (W/S) vs Random Game"))
+		play_pong(PongPlayer::WS, PongPlayer::Random);
 
-			// Player 2
-			game.is_player1 = false;
-			action = 0;
-			if (key_down(UP_KEY))
-				action = 1;
-			else if (key_down(DOWN_KEY))
-				action = 2;
-			game.make_move(action);
+	if (ask("Random vs Random Game"))
+		play_pong(PongPlayer::Random, PongPlayer::Random);
 
-			game.update_state();
-			game.draw_game();
-		}
-		if (game.state == Pong::GameState::Player1_Won)
-			write_line("Player 1 Wins!");
-		else if (game.state == Pong::GameState::Player2_Won)
-			write_line("Player 2 Wins!");
-		delay(5);
-		close_window(game.win);
-	}
+	
 }
 
 void test_minimax(TicTacToe *game)
