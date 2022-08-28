@@ -246,7 +246,7 @@ namespace splashkit_lib
 				agents[i].reward(score);
 			}
 			game->reset();
-			// cout << "\rIteration " << i << std::flush; // TODO: Slow fix this with faster loading bar
+			cout << "\rIteration " << i << std::flush; // TODO: Slow fix this with faster loading bar
 		}
 		total_iterations += iterations;
 	}
