@@ -60,13 +60,13 @@ public:
 	Player current_player;
 	GameState state;
 	static inline InputFormat input_format = InputFormat();
-	OutputFormat out_format;
+	static inline OutputFormat out_format = OutputFormat();
 
 	int get_current_player() override { return (int)current_player; }
-	// int get_max_board_index() override { return 2; } // O or X
-	// int get_board_size() override { return 9; }		 // 3x3 = 9
-	InputFormat get_input_format() override { return TicTacToe::input_format; }
-	OutputFormat get_output_format() override { return out_format; }
+	// int get_max_board_index() override { return 2; }	// O or X
+	// int get_board_size() override { return 9; }		// 3x3 = 9
+	InputFormat &get_input_format() override { return TicTacToe::input_format; }
+	OutputFormat &get_output_format() override { return TicTacToe::out_format; }
 	vector<int> get_input() override
 	{
 		vector<int> board_data(10);
@@ -80,9 +80,9 @@ public:
 		board_data[9] = (int)current_player;
 		return board_data;
 	}
-	int convert_output(OutputValue *output, bool random) override
+	int convert_output(OutputValue &output, bool random) override
 	{
-		return output->get_max_position(0, get_possible_moves(), random);
+		return output.get_max_position(TicTacToe::out_format, 0, get_possible_moves(), random);
 	}
 	void reset() override
 	{
@@ -98,7 +98,6 @@ public:
 		game->board = board;
 		game->current_player = current_player;
 		game->state = state;
-		game->out_format = out_format;
 		return game;
 	}
 	bool is_finished() override
@@ -130,20 +129,23 @@ public:
 
 	TicTacToe()
 	{
-		out_format.add_type(OutputFormat::Type::Position, 9);	// 3*3 = 9
-
 		if (TicTacToe::input_format.get_width() == 0) // uninitialized
 		{
 			TicTacToe::input_format.add_type(InputFormat::Type::Board, 9, 3);	// 9 is board size, 3 is player count [Empty, X, O]
-			TicTacToe::input_format.add_type(InputFormat::Type::Player, 1, 2); // 1 is player dim, 2 is player count [X, O]
+			TicTacToe::input_format.add_type(InputFormat::Type::Player, 1, 2);	// 1 is player dim, 2 is player count [X, O]
+		}
+
+		if (TicTacToe::out_format.get_width() == 0) // uninitialized
+		{
+			TicTacToe::out_format.add_type(OutputFormat::Type::Position, 9);	// 3*3 = 9
 		}
 
 		reset();
 
 		// When passing to AI
 		// convert board to int array
-		// e.g. {X, O, X, 		{1, 2, 1,		{[0, 1], [1, 0], [0, 1],
-		//		 _, O, _,  -> 	 0, 2, 0,  ->	 [0, 0], [1, 0], [0, 0],  ->	[01 10 01 | 00 10 00 | 00 00 00]
+		// e.g. {X, O, X, 		{1, 2, 1,		{[1, 0], [0, 1], [1, 0],
+		//		 _, O, _,  -> 	 0, 2, 0,  ->	 [0, 0], [0, 1], [0, 0],  ->	[10 01 10 | 00 01 00 | 00 00 00] -> [100110000100000000]
 		//		 _, _, _}		 0, 0, 0}		 [0, 0], [0, 0], [0, 0]}
 	}
 
@@ -304,10 +306,10 @@ public:
 	Player player1;
 	Player player2;
 	GameState state;
-	bool is_player1;
+	bool is_player1 = true;
 	vector<int> moves;
+	int play_to;
 
-	#define PONG_PLAY_TO 3
 	#define PONG_BALL_SPEED 0.1f
 	#define PONG_PLAYER_SPEED 0.1f
 
@@ -326,8 +328,9 @@ public:
 	static inline InputFormat input_format = InputFormat();
 	static inline OutputFormat output_format = OutputFormat();
 
-	Pong(bool silent=true)
+	Pong(int play_to = 3)
 	{
+		this->play_to = play_to;
 		if (Pong::input_format.get_width() == 0) // uninitialized
 		{
 			Pong::input_format.add_type(InputFormat::Type::Player, 1, 2); // which side the player is controlling
@@ -343,11 +346,12 @@ public:
 		moves.push_back(2);
 		
 		reset();
-		this->silent = silent;
-		if (!silent)
-		{
-			win = open_window("Pong", PONG_GAME_WIDTH * PONG_SCALE, PONG_GAME_HEIGHT * PONG_SCALE);
-		}
+	}
+
+	void open_window()
+	{
+		silent = true;
+		win = splashkit_lib::open_window("Pong", PONG_GAME_WIDTH * PONG_SCALE, PONG_GAME_HEIGHT * PONG_SCALE);
 	}
 
 	void new_round()
@@ -382,7 +386,7 @@ public:
 		if (ball.x < 0.0f)
 		{
 			player2.score++;
-			if (player2.score >= PONG_PLAY_TO)
+			if (player2.score >= play_to)
 			{
 				state = GameState::Player2_Won;
 				return;
@@ -393,7 +397,7 @@ public:
 		else if (ball.x > PONG_GAME_WIDTH)
 		{
 			player1.score++;
-			if (player1.score >= PONG_PLAY_TO)
+			if (player1.score >= play_to)
 			{
 				state = GameState::Player1_Won;
 				return;
@@ -410,7 +414,7 @@ public:
 			ball.vx < 0.0f) // ball going towards paddle 1
 		{
 			ball.vx = -ball.vx;
-			ball.vy = ((ball.y - player1.y) / 2.0f) * PONG_BALL_SPEED;
+			ball.vy = (ball.y - (player1.y + PONG_PADDLE_HEIGHT / 2.0f)) * PONG_BALL_SPEED;
 		}
 		else if (ball.x + PONG_BALL_RADIUS > player2.x && // hitting front of paddle
 				 ball.x - PONG_BALL_RADIUS < player2.x + PONG_PADDLE_WIDTH && // not behind paddle
@@ -419,7 +423,7 @@ public:
 				 ball.vx > 0.0f) // ball going towards paddle 2
 		{
 			ball.vx = -ball.vx;
-			ball.vy = ((ball.y - player2.y) / 2.0f) * PONG_BALL_SPEED;
+			ball.vy = (ball.y - (player2.y + PONG_PADDLE_HEIGHT / 2.0f)) * PONG_BALL_SPEED;
 		}
 
 		// Check if ball is hitting a wall
@@ -470,36 +474,43 @@ public:
 			action = PONG_PLAYER_SPEED;
 		
 		if (is_player1)
+		{
 			player1.y = MAX(0, MIN(player1.y + action, PONG_GAME_HEIGHT - PONG_PADDLE_HEIGHT));
+		}
 		else
+		{
 			player2.y = MAX(0, MIN(player2.y + action, PONG_GAME_HEIGHT - PONG_PADDLE_HEIGHT));
+			update_state();
+		}
+		is_player1 = !is_player1;
 	}
 
 	// misc Game API
 	int get_current_player() override { return is_player1 ? 0 : 1; }
-	InputFormat get_input_format() override { return Pong::input_format; }
-	OutputFormat get_output_format() override { return Pong::output_format; }
-	int convert_output(OutputValue *output, bool random) override 
+	InputFormat &get_input_format() override { return Pong::input_format; }
+	OutputFormat &get_output_format() override { return Pong::output_format; }
+	int convert_output(OutputValue &output, bool random) override 
 	{ 
-		return output->get_max_position(0, get_possible_moves(), random);
+		return output.get_max_position(Pong::output_format, 0, get_possible_moves(), random);
 	}
 	vector<float> score() override { return { player1.score, player2.score }; }
 	bool is_finished() override { return state != GameState::Playing; }
 	Game *clone() override {  return new Pong(*this); }
 	vector<int> get_input() override { 
-		vector<int> input(PONG_GAME_WIDTH * PONG_GAME_HEIGHT);
+		vector<int> input(PONG_GAME_WIDTH * PONG_GAME_HEIGHT + 1);
+		input[0] = is_player1 ? 0 : 1;
 		for (int i = 0; i < PONG_GAME_WIDTH; i++)
 		{
 			for (int j = 0; j < PONG_GAME_HEIGHT; j++)
 			{
 				int temp = 0;
-				if (round(ball.x) == i && round(ball.y) == j)
+				if (((int)ball.x) == i && ((int)ball.y) == j)
 					temp = 1;
-				else if (round(player1.x) == i && round(player1.y) == j)
+				else if (((int)player1.x) == i && ((int)player1.y) == j)
 					temp = 1;
-				else if (round(player2.x) == i && round(player2.y) == j)
+				else if (((int)player2.x) == i && ((int)player2.y) == j)
 					temp = 1;
-				input[i * PONG_GAME_HEIGHT + j] = temp;
+				input[i * PONG_GAME_HEIGHT + j + 1] = temp;
 			}
 		}
 		return input;
@@ -520,16 +531,17 @@ bool test_reward_table()
 	bool passes = true;
 
 	TicTacToe game;
-	RewardTable reward_table = RewardTable(game.get_output_format(), 0, 0);
-	OutputValue *test = reward_table.get_value(game.get_input_format().convert_input(game.get_input()));
-	if ((*test)[0] != 0.5f)
+	RewardTable reward_table = RewardTable(game.get_output_format().get_width());
+	vector<bool> game_state = game.get_input_format().convert_input(game.get_input());
+	OutputValue &test = reward_table.get_value(game_state);
+	if (test[0] != 0.5f)
 	{
 		passes = false;
 	}
 	write("Initial OutputValues == 0.5? ");
-	write((((*test)[0] == 0.5f) ? "true" : "false"));
-	write_line(" (" + to_string((*test)[0]) + ")");
-	write_line(test->to_string());
+	write(((test[0] == 0.5f) ? "true" : "false"));
+	write_line(" (" + to_string(test[0]) + ")");
+	write_line(test.to_string());
 
 	return passes;
 }
@@ -541,11 +553,11 @@ bool test_output_value()
 
 	OutputFormat format = OutputFormat();
 	format.add_type(OutputFormat::Type::Category, 3);
-	OutputValue test = OutputValue(&format, 0, 0); // expected starting state = {0.5, 0.5, 0.5}
+	OutputValue test = OutputValue(format.get_width()); // expected starting state = {0.5, 0.5, 0.5}
 
 	// We increase the first value
 	test.to_update(0);
-	test.update(1, NULL); // We give absolute reward of 1
+	test.update(1, 0, 1, nullptr); // We give absolute reward of 1
 	if (abs(1 - test[0]) > F_ERR || abs(0.5 - test[1]) > F_ERR || abs(0.5 - test[2]) > F_ERR)
 	{
 		passes = false;
@@ -554,19 +566,6 @@ bool test_output_value()
 	}
 
 	return passes;
-}
-
-QAgent *test_q_agent(Game *game)
-{
-	bool passes = true;
-
-	QAgent *q_agent = new QAgent(game);
-
-	write_line("Training for 1,000,000 iterations. Please wait...");
-	q_agent->train(2, 1000000);
-	write_line("Training complete.");
-
-	return q_agent;
 }
 
 string to_string(vector<int> vec)
@@ -584,7 +583,8 @@ string to_string(vector<int> vec)
 bool ask(string question)
 {
 	write(question + "? (Y/N) ");
-	return read_line() == "Y";
+	string answer = read_line();
+	return answer == "Y" || answer == "y";
 }
 
 void play_tictactoe(QAgent *q_agent)
@@ -599,7 +599,7 @@ void play_tictactoe(QAgent *q_agent)
 		{
 			if (game.current_player == TicTacToe::Player::X)
 			{
-				write_line(q_agent->reward_table->get_value(&game)->to_string());
+				write_line(q_agent->reward_table->get_value(&game).to_string());
 				int ai_move = q_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
@@ -616,7 +616,7 @@ void play_tictactoe(QAgent *q_agent)
 	game.draw_game();
 	while (game.state == TicTacToe::GameState::Playing)
 	{
-		write_line(q_agent->reward_table->get_value(&game)->to_string());
+		write_line(q_agent->reward_table->get_value(&game).to_string());
 		game.make_move(q_agent->get_move(&game));
 		game.draw_game();
 	}
@@ -624,8 +624,7 @@ void play_tictactoe(QAgent *q_agent)
 	{
 		game.reset();
 		write_line("\nAI vs Human GAME");
-		write_line("Do you want to start first? (Y/N)");
-		if (read_line() == "Y")
+		if (ask("Do you want to start first"))
 		{
 			game.current_player = TicTacToe::Player::X;
 		}
@@ -638,7 +637,7 @@ void play_tictactoe(QAgent *q_agent)
 		{
 			if (game.current_player == TicTacToe::Player::O)
 			{
-				write_line(q_agent->reward_table->get_value(&game)->to_string());
+				write_line(q_agent->reward_table->get_value(&game).to_string()); // print ai 'thoughts' on best move
 				int ai_move = q_agent->get_move(&game);
 				game.make_move(ai_move);
 			}
@@ -653,26 +652,39 @@ void play_tictactoe(QAgent *q_agent)
 			}
 			game.draw_game();
 		}
-		write_line("Do you want to go again? (Y/N)");
-	} while (read_line() == "Y");
+	} while (ask("Do you want to go again"));
 
 	game.reset();
 }
 
-enum class PongPlayer
+class PongKeyAgent : public Agent
 {
-	WS,
-	UpDown,
-	Random
+	key_code up_key;
+	key_code down_key;
+public:
+	PongKeyAgent(key_code up_key, key_code down_key)
+	{
+		this->up_key = up_key;
+		this->down_key = down_key;
+	}
+
+	int get_move(Game *game)
+	{
+		if (key_down(up_key))
+			return 1;
+		if (key_down(down_key))
+			return 2;
+		return 0;
+	}
 };
 
-int pong_rnd_prev1 = 0;
-int pong_rnd_prev2 = 0;
-bool play_pong(PongPlayer player_1, PongPlayer player_2)
+bool play_pong(Agent *p1_agent, Agent *p2_agent, bool silent=false)
 {
-	Pong game(false);
+	Pong game;
+	if (!silent)
+		game.open_window();
 	bool ready = false;
-	while (!ready)
+	while (!ready && !silent)
 	{
 		game.draw_game();
 		process_events();
@@ -681,65 +693,74 @@ bool play_pong(PongPlayer player_1, PongPlayer player_2)
 	}
 	while (game.state == Pong::GameState::Playing)
 	{
-		process_events();
-
-		game.is_player1 = false;
-		for (int i = 0; i < 2; i++)
+		if (!silent)
 		{
-			game.is_player1 = !game.is_player1;
-			PongPlayer cur_player = game.is_player1 ? player_1 : player_2;
-			int action = 0;
-			switch(cur_player)
-			{
-				case PongPlayer::WS:
-					if (key_down(W_KEY))
-						action = 1;
-					else if (key_down(S_KEY))
-						action = 2;
-					break;
-				case PongPlayer::UpDown:
-					if (key_down(UP_KEY))
-						action = 1;
-					else if (key_down(DOWN_KEY))
-						action = 2;
-					break;
-				case PongPlayer::Random:
-					if (game.is_player1) {
-						action = rnd() > 0.05 ? pong_rnd_prev1 : random_agent_play(2) + 1;
-						pong_rnd_prev1 = action;
-					} else {
-						action = rnd() > 0.05 ? pong_rnd_prev2 : random_agent_play(2) + 1;
-						pong_rnd_prev2 = action;
-					}
-					break;
-			}
-			game.make_move(action);
+			game.draw_game();
+			process_events(); // check keypresses
 		}
 
-		game.update_state();
-		game.draw_game();
+		game.make_move(p1_agent->get_move(&game));
+		game.make_move(p2_agent->get_move(&game));
 	}
-	if (game.state == Pong::GameState::Player1_Won)
-		write_line("Player 1 Wins!");
-	else if (game.state == Pong::GameState::Player2_Won)
-		write_line("Player 2 Wins!");
-	delay(5);
-	close_window(game.win);
+	if (!silent)
+	{
+		if (game.state == Pong::GameState::Player1_Won)
+			write_line("Player 1 Wins!");
+		else if (game.state == Pong::GameState::Player2_Won)
+			write_line("Player 2 Wins!");
+		delay(5);
+		close_window(game.win);
+	}
 	return game.state == Pong::GameState::Player1_Won;
 }
 
 void test_pong()
 {
+	Pong *trainer = new Pong(1);
+
+	Agent *ws = new PongKeyAgent(W_KEY, S_KEY);
+	Agent *ud = new PongKeyAgent(UP_KEY, DOWN_KEY);
+	Agent *rnd1 = new RandomAgent(0.07f);
+	Agent *rnd2 = new RandomAgent(0.07f);
+	Agent *q_agent = new QAgent(Pong::output_format);
+
 	if (ask("Human (W/S) vs Human (Up/Dn) Game"))
-		play_pong(PongPlayer::WS, PongPlayer::UpDown);
+		play_pong(ws, ud);
 
 	if (ask("Human (W/S) vs Random Game"))
-		play_pong(PongPlayer::WS, PongPlayer::Random);
+		play_pong(ws, rnd1);
 
-	if (ask("Random vs Random Game"))
-		play_pong(PongPlayer::Random, PongPlayer::Random);
+	if (ask("Random vs Random Visible Game"))
+		play_pong(rnd1, rnd2);
 
+	if (ask("Random vs Random Batch Games"))
+	{
+		const int pong_games = 1000;
+		int wins = 0;
+		auto start = chrono::high_resolution_clock::now();
+		for (int i = 0; i < pong_games; i++)
+		{
+			if (play_pong(rnd1, rnd2, true))
+				wins++;
+		}
+		auto time = chrono::high_resolution_clock::now() - start;
+		write_line(to_string(pong_games) + " pong games in " + to_string(chrono::duration_cast<chrono::milliseconds>(time).count()) + "ms, " + to_string(wins) + "/" + to_string(pong_games-wins) + " p1/p2 wins.");
+	}
 	
+	int q_agent_itr = 10000;
+	if (ask("Human (W/S) vs QAgent Game"))
+	{
+		q_agent->train(trainer, 2, q_agent_itr);
+		play_pong(ws, q_agent);
+	}
+
+	if (ask("QAgent vs QAgent Game"))
+	{
+		if (((QAgent*)q_agent)->total_iterations == 0) q_agent->train(trainer, 2, q_agent_itr);
+		play_pong(q_agent, q_agent);
+	}
+
+	delete trainer;
 }
 
 void test_minimax(TicTacToe *game)
@@ -941,7 +962,12 @@ void run_machine_learning_test()
 		if (ask("Run QAgent test"))
 		{
 			// Test RL components
-			QAgent *q_agent = test_q_agent(game);
+			QAgent *q_agent = new QAgent(game->get_output_format());
+
+			write_line("Training for 100,000 iterations. Please wait...");
+			q_agent->train(game, 2, 100000);
+			write_line("Training complete.");
+
 			play_tictactoe(q_agent);
 
 			if (ask("Evaluate QAgent against minimax (slow)"))

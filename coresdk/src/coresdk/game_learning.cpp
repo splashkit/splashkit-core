@@ -9,7 +9,7 @@ namespace splashkit_lib
 		{
 			if (input[i] != 0)
 			{
-				out->at(indexes_out[index] + i * max_vals[index] + input[indexes_in[index] + i] - 1) = true;
+				(*out)[indexes_out[index] + i * max_vals[index] + input[indexes_in[index] + i] - 1] = true;
 			}
 		}
 	}
@@ -63,19 +63,16 @@ namespace splashkit_lib
 		return format.size() - 1;
 	}
 
-	OutputValue::OutputValue(OutputFormat *format, float learning_rate, float discount_rate)
+	OutputValue::OutputValue(int width)
 	{
-		this->format = format;
-		this->learning_rate = learning_rate;
-		this->discount_rate = discount_rate;
-		value = std::vector<float>(format->get_width(), 0.5f);
+		value = std::vector<float>(width, 0.5f);
 	}
 
-	int OutputValue::get_max_position(int index, const std::vector<int> filter, bool random)
+	int OutputValue::get_max_position(OutputFormat format, int index, const std::vector<int> filter, bool random)
 	{
-		if (format->get_type(index) != OutputFormat::Type::Position && format->get_type(index) != OutputFormat::Type::Category)
+		if (format.get_type(index) != OutputFormat::Type::Position && format.get_type(index) != OutputFormat::Type::Category)
 			LOG(WARNING) << "Format at index is not of type Position!";
-		index = format->get_output_index(index); // Grab the starting index for the given position data
+		index = format.get_output_index(index); // Grab the starting index for the given position data
 		if (random)
 		{
 			int out = filter[rnd(filter.size())];
@@ -98,21 +95,21 @@ namespace splashkit_lib
 		return max_pos;
 	}
 
-	float OutputValue::process_output_number(int index, bool random)
+	float OutputValue::process_output_number(OutputFormat format, int index, bool random)
 	{
-		if (format->get_type(index) != OutputFormat::Type::Number)
+		if (format.get_type(index) != OutputFormat::Type::Number)
 			LOG(WARNING) << "Format at index is not of type Number!";
-		to_update(format->get_output_index(index));														   // Tells the AI that the number was retrieved and should be updated during reward/punishment
-		return (random ? rnd() : value[format->get_output_index(index)] * format->get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
+		to_update(format.get_output_index(index));														 // Tells the AI that the number was retrieved and should be updated during reward/punishment
+		return (random ? rnd() : value[format.get_output_index(index)] * format.get_output_info(index)); // Scale the number to the previously given range [0, f_data[index]]
 	}
 
-	void OutputValue::update(float reward, OutputValue *next_move)
+	void OutputValue::update(float learning_rate, float discount_factor, float reward, OutputValue *next_move)
 	{
 		for (int i = 0; i < indexes.size(); i++)
 		{
-			if (next_move == NULL)
+			if (next_move == nullptr)
 			{
-				value[indexes[i]] = reward; // Next move is game over with this reward. i.e. instant win/instant loss
+				value[indexes[i]] += learning_rate * reward; // Next move is game over with this reward. i.e. instant win/instant loss
 				continue;
 			}
 
@@ -127,7 +124,7 @@ namespace splashkit_lib
 			}
 
 			// QLearning method, using the next move as future reward
-			value[indexes[i]] += learning_rate * (reward + discount_rate * max_future - value[indexes[i]]);
+			value[indexes[i]] += learning_rate * (reward + discount_factor * max_future - value[indexes[i]]);
 		}
 	}
 
@@ -143,45 +140,41 @@ namespace splashkit_lib
 		return ss.str();
 	}
 
-	RewardTable::RewardTable(OutputFormat out_format, float learning_rate, float discount_rate)
+	RewardTable::RewardTable(int width)
 	{
-		this->out_format = out_format;
-		this->learning_rate = learning_rate;
-		this->discount_rate = discount_rate;
+		this->width = width;
 	}
 
-	OutputValue *RewardTable::get_value(std::vector<bool> key)
+	OutputValue &RewardTable::get_value(std::vector<bool> &key)
 	{
 		// log(INFO, "RewardTable::get_value");
 		if (reward_table.find(key) == reward_table.end()) // key not found
 		{
 			// log(INFO, "RewardTable::get_value - creating new q_value");
-			reward_table[key] = OutputValue(&out_format, learning_rate, discount_rate);
+			reward_table[key] = OutputValue(width);
 		}
-		return &reward_table[key];
+		return reward_table[key];
 	}
 
-	OutputValue *RewardTable::get_value(Game *game)
+	OutputValue &RewardTable::get_value(Game *game)
 	{
-		return get_value(game->get_input_format().convert_input(game->get_input()));
+		vector<bool> game_state = game->get_input_format().convert_input(game->get_input());
+		return get_value(game_state);
 	}
 
 	class QAgent::SelfPlay
 	{
 	private:
-		InputFormat *input_format;
-		OutputFormat *out_format;
-
 		RewardTable *reward_table;
 		std::vector<OutputValue *> move_history; // Store the q_values used for the last game
 	public:
+		float learning_rate = 0.1f;
+		float discount_factor = 0.9f;
 		float epsilon = 0.1f;
 
-		SelfPlay(RewardTable *reward_table, InputFormat *input_format, OutputFormat *out_format)
+		SelfPlay(RewardTable *reward_table)
 		{
 			this->reward_table = reward_table;
-			this->input_format = input_format;
-			this->out_format = out_format;
 		}
 
 		/**
@@ -194,10 +187,10 @@ namespace splashkit_lib
 		 */
 		int get_move(Game *game)
 		{
-			std::vector<bool> input = input_format->convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
-			OutputValue *output = reward_table->get_value(input);					  // get the q_value for the current state
-			move_history.push_back(output);											  // remember that we took this move for reward if we win or lose
-			return game->convert_output(output, rnd() < epsilon);					  // convert the q_value into a move, if epsilon take a random move (e.g. take the highest value (best) move)
+			std::vector<bool> input = game->get_input_format().convert_input(game->get_input()); // convert input to boolean for neural networks / ease of hashing
+			OutputValue &output = reward_table->get_value(input);								 // get the q_value for the current state
+			move_history.push_back(&output);													 // remember that we took this move for reward if we win or lose
+			return game->convert_output(output, rnd() < epsilon);								 // convert the q_value into a move, if epsilon take a random move (e.g. take the highest value (best) move)
 		}
 
 		/**
@@ -207,10 +200,10 @@ namespace splashkit_lib
 		 */
 		void reward(float score)
 		{
-			move_history[move_history.size() - 1]->update(score, NULL); // Special case for first instance
+			move_history[move_history.size() - 1]->update(learning_rate, discount_factor, score, nullptr); // Special case for first instance
 			for (int i = move_history.size() - 2; i >= 0; i--)
 			{
-				move_history[i]->update(score, move_history[i + 1]);
+				move_history[i]->update(learning_rate, discount_factor, score, move_history[i + 1]);
 				move_history[i + 1]->reset();
 			}
 			move_history[0]->reset();
@@ -218,30 +211,28 @@ namespace splashkit_lib
 		}
 	};
 
-	QAgent::QAgent(Game *game)
+	QAgent::QAgent(OutputFormat &out_format)
 	{
-		this->game = game;
-		input_format = game->get_input_format();
-		out_format = game->get_output_format();
-		reward_table = new RewardTable(out_format, learning_rate, discount_factor);
+		reward_table = new RewardTable(out_format.get_width());
 	}
 
 	int QAgent::get_move(Game *game)
 	{
-		std::vector<bool> input = input_format.convert_input(game->get_input());
-		OutputValue *output = reward_table->get_value(input);
+		std::vector<bool> input = game->get_input_format().convert_input(game->get_input());
+		OutputValue &output = reward_table->get_value(input);
 		return game->convert_output(output, false);
 	}
 
-	void QAgent::train(int player_count, int iterations)
+	void QAgent::train(Game *game, int player_count, int iterations)
 	{
+		cout << "Training QAgent for " << iterations << " iterations" << endl;
+		std::vector<QAgent::SelfPlay> agents;
+		for (int i = 0; i < player_count; i++)
+		{
+			agents.push_back(QAgent::SelfPlay(reward_table)); // generate the agents to play the game
+		}
 		for (int i = 0; i < iterations; i++)
 		{
-			std::vector<QAgent::SelfPlay> agents;
-			for (int i = 0; i < player_count; i++)
-			{
-				agents.push_back(QAgent::SelfPlay(reward_table, &input_format, &out_format)); // generate the agents to play the game
-			}
 			while (!game->is_finished())
 			{
 				int move = agents[game->get_current_player()].get_move(game);
@@ -255,7 +246,9 @@ namespace splashkit_lib
 				agents[i].reward(score);
 			}
 			game->reset();
+			// cout << "\rIteration " << i << std::flush; // TODO: Slow fix this with faster loading bar
 		}
+		total_iterations += iterations;
 	}
 
 	MinimaxAgent::MinimaxAgent(InputFormat input_format)

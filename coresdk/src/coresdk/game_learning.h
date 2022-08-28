@@ -199,20 +199,15 @@ namespace splashkit_lib
 	class OutputValue
 	{
 	private:
-		OutputFormat *format;
-
 		std::vector<float> value;
 
 		// reward/punishment
 		std::vector<int> indexes; // indexes to affect during reward/punishment
-
-		float learning_rate = 0.1f; // learning rate, how fast the ai learns
-		float discount_rate = 0.9f; // discount rate, how much future reward is considered
 	public:
 		/// Not to be used, only for std::vector initialisation.
 		OutputValue() {}
 
-		OutputValue(OutputFormat *format, float learning_rate, float discount_rate);
+		OutputValue(int width);
 
 		/**
 		 * @brief Gets the index of the maximum reward value for the given format index.
@@ -222,7 +217,7 @@ namespace splashkit_lib
 		 * @param random The global random to be passed down, determines if the move should be randomly chosen.
 		 * @return int The index of the maximum reward value.
 		 */
-		int get_max_position(int index, const std::vector<int> filter, bool random);
+		int get_max_position(OutputFormat format, int index, const std::vector<int> filter, bool random);
 
 		/**
 		 * @brief Gets the number in the data at the given format index.
@@ -232,7 +227,7 @@ namespace splashkit_lib
 		 * @param random The global random passed down, determines if the number should be randomly chosen.
 		 * @return float
 		 */
-		float process_output_number(int index, bool random);
+		float process_output_number(OutputFormat format, int index, bool random);
 
 		/**
 		 * @brief adds an index to be updated during reward/punishment
@@ -242,30 +237,26 @@ namespace splashkit_lib
 		 * 
 		 * @param index output index
 		 */
-		void to_update(int index)
-		{
-			indexes.push_back(index);
-		}
+		void to_update(int index) { indexes.push_back(index); }
 
 		/**
 		 * @brief Performs an update on the reward values, uses Q-Learning algorithm to calculate the new reward values.
 		 * 
 		 * Uses temporal difference to obtain a reward value after the game is finished.
 		 * 
+		 * @param learning_rate
+		 * @param discount_factor
 		 * @param reward 
 		 * @param next_move 
 		 */
-		void update(float reward, OutputValue *next_move);
+		void update(float learning_rate, float discount_factor, float reward, OutputValue *next_move);
 
 		/**
 		 * @brief Resets the tracked reward values for use in temporal difference.
 		 * 
 		 * This needs to be called sometime between one game finishing and another starting.
 		 */
-		void reset() 
-		{
-			indexes.clear();
-		}
+		void reset() { indexes.clear(); }
 
 		float at(int index) const { return value[index]; }
 		float operator[](int index) const { return value[index]; }
@@ -288,13 +279,13 @@ namespace splashkit_lib
 	class RewardTable
 	{
 	private:
-		OutputFormat out_format;
 		std::unordered_map<std::vector<bool>, OutputValue> reward_table;
 
 		float learning_rate;
 		float discount_rate;
+		int width;
 	public:
-		RewardTable(OutputFormat out_format, float learning_rate, float discount_rate);
+		RewardTable(int width);
 
 		/**
 		 * @brief Gets the q value object at the given game state or generates a new one if it doesn't exist.
@@ -305,10 +296,10 @@ namespace splashkit_lib
 		 * @see OutputFormat
 		 * @return OutputValue* the AI reward values for the given board state in the requested OutputFormat
 		 */
-		OutputValue *get_value(std::vector<bool> key);
+		OutputValue &get_value(std::vector<bool> &key);
 
 		/// used for testing should not be called on the hot path
-		OutputValue *get_value(Game *game);
+		OutputValue &get_value(Game *game);
 	};
 
 	/**
@@ -338,7 +329,7 @@ namespace splashkit_lib
 		 * @see InputFormat
 		 * @return InputFormat the format of information given to the AI to play its next move
 		 */
-		virtual InputFormat get_input_format() { throw std::logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
+		virtual InputFormat &get_input_format() { throw std::logic_error("get_input_format(): Function needs to be overridden; should return an InputFormat that can be used by a player to understand the current state of the game"); }
 
 		/**
 		 * @brief Returns an OutputFormat that can represent any possible move
@@ -346,7 +337,7 @@ namespace splashkit_lib
 		 * @see OutputFormat
 		 * @return OutputFormat the format of information produced by the AI to play its next move
 		 */
-		virtual OutputFormat get_output_format() { throw std::logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
+		virtual OutputFormat &get_output_format() { throw std::logic_error("get_output_format(): Function needs to be overridden; should return an OutputFormat that can represent any possible move"); }
 
 		/**
 		 * @brief Gets the list possible moves that can be played in the current state of the game
@@ -399,7 +390,7 @@ namespace splashkit_lib
 		 * @param random to be passed into OutputFormat functions determines if the move is random (during learning to explore possible options)
 		 * @return int the move value to be played, must return a value of get_possible_moves()
 		 */
-		virtual int convert_output(OutputValue *output, bool random) { throw std::logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
+		virtual int convert_output(OutputValue &output, bool random) { throw std::logic_error("convert_output(): Function needs to be overridden; should return the index of the move that the output represents"); }
 
 		/**
 		 * @brief Get the current game state based on InputFormat.
@@ -415,7 +406,7 @@ namespace splashkit_lib
 	struct Agent
 	{
 		virtual int get_move(Game *game) = 0;
-		virtual void train(int player_count, int iterations) {};
+		virtual void train(Game *game, int player_count, int iterations) {};
 	};
 
 	/**
@@ -434,21 +425,18 @@ namespace splashkit_lib
 	 * Performance: Unknown. TODO: more testing required
 	 * Complexity: Very High. Requires most API functions to be implemented
 	 */
-	class QAgent : Agent
+	class QAgent : public Agent
 	{
 	private:
 		class SelfPlay; // Internally used class for training
-
-		Game *game;
-		InputFormat input_format;
-		OutputFormat out_format;
 
 		float learning_rate = 0.1f;	  // How much to change the q_value
 		float discount_factor = 0.9f; // Used for future state predictions
 	public:
 		RewardTable *reward_table;
+		int total_iterations = 0;
 
-		QAgent(Game *game);
+		QAgent(OutputFormat &out_format);
 
 		/**
 		 * @brief Get the best move based on the previous training.
@@ -458,7 +446,7 @@ namespace splashkit_lib
 		 */
 		int get_move(Game *game) override;
 
-		void train(int player_count, int iterations) override;
+		void train(Game *game, int player_count, int iterations) override;
 	};
 
 	/**
@@ -473,7 +461,7 @@ namespace splashkit_lib
 	 *
 	 * TODO: add global option for transposition tables. Where the table is stored between move calcs.
 	 */
-	class MinimaxAgent : Agent
+	class MinimaxAgent : public Agent
 	{
 	private:
 		InputFormat input_format;
@@ -492,6 +480,24 @@ namespace splashkit_lib
 		MinimaxAgent(InputFormat input_format);
 
 		int get_move(Game *game) override;
+	};
+
+	class RandomAgent : public Agent
+	{
+		int prev_move = 0;
+		float prob = 0; // probability of playing the same move again
+	public:
+		RandomAgent(float prob = 0.0f) { this->prob = prob; }
+
+		int get_move(Game *game) override
+		{
+			std::vector<int> moves = game->get_possible_moves();
+			if (moves.size() == 1)
+				return moves[0];
+			if (rnd() < prob || moves.size() <= prev_move)
+				prev_move = rnd(0, moves.size());
+			return moves[prev_move];
+		}
 	};
 }
 
