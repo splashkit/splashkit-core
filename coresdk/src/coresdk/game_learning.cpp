@@ -180,8 +180,6 @@ namespace splashkit_lib
 		/**
 		 * @brief Get the move this agent wishes to play.
 		 *
-		 *
-		 *
 		 * @param game
 		 * @return int
 		 */
@@ -278,7 +276,7 @@ namespace splashkit_lib
 
 			std::vector<bool> new_game_state = input_format.convert_input(new_position->get_input());
 
-			if (true || cache.find(new_game_state) == cache.end()) // TODO: produces sub-optimal outputs?
+			if (cache.find(new_game_state) == cache.end()) // TODO: produces sub-optimal outputs?
 			{
 				cache[new_game_state] = search_move(new_position, temp);
 			}
