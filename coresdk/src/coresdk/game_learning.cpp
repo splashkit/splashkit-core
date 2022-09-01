@@ -225,9 +225,8 @@ namespace splashkit_lib
 
 	void QAgent::train(Game *game, int player_count, int iterations)
 	{
-		int bar_length = 50;					 
-		int percentage = 0, progress = 0;		 // current percentage of training // how many bar units achieved
-		char bar = '#';							 // character used to fill bar
+		int bar_length = 50;
+		int progress = 0;						 // how many bar units achieved
 		int bar_units = iterations / bar_length; // calculates how many iterations account for each bar
 
 		cout << "Training QAgent for " << iterations << " iterations" << endl;
@@ -237,13 +236,7 @@ namespace splashkit_lib
 			agents.push_back(QAgent::SelfPlay(reward_table)); // generate the agents to play the game
 		}
 
-		cout << "  0 % [";
-		for (int i = 0; i <= bar_length; i++)
-		{
-			cout << "_";
-		}
-		cout << "]";
-		cout << "\r";
+		cout << "  0  % [" << string(bar_length, '_') << "]\r";
 		for (int i = 0; i < iterations; i++)
 		{
 			while (!game->is_finished())
@@ -259,17 +252,17 @@ namespace splashkit_lib
 				agents[i].reward(score);
 			}
 			game->reset();
-			//
-			cout << "\r";
 			if (i % bar_units == 0)
 			{
+				cout << "\r";
 				progress += 1;
-				percentage += 2;
+				int percentage = (progress * 100) / bar_length;
 				cout << "  " << percentage << "% "
-					 << "[" << string(progress, bar);
+					 << "[" << string(progress, '#');
 			}
 		}
-		cout << "  100%" << endl;
+		cout << "\r"
+			 << "  100%" << endl;
 		total_iterations += iterations;
 	}
 
