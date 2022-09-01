@@ -77,6 +77,16 @@ namespace splashkit_lib
      * @param  text The text to convert.
      * @return      The integer value read from the text.
      */
+    
+    bool is_char(const string &text);
+    
+    /**
+     * Checks if a string contains a character.
+     *
+     * @param  text The text to check.
+     * @return      True if the text contains a character (and only a character).
+     */
+    
     int convert_to_integer(const string &text);
 
     /**
