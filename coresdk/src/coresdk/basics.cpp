@@ -92,6 +92,12 @@ namespace splashkit_lib
         return s.length()==1;
     }
     
+    bool is_bool(const string &text)
+    {
+        string s = to_lowercase(trim(text));
+        return s == "true" || s == "t" || s == "false" || s = "f" || s == "0" || s == "1"; 
+    }
+    
     int convert_to_integer(const string &text)
     {
         return std::stoi( text );
