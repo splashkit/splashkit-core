@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include "terminal.h"
 #include "utility_functions.h"
 #include "random.h"
@@ -20,8 +22,6 @@
 #include <cmath>
 using namespace std;
 using namespace splashkit_lib;
-
-#define M_PI 3.1415926535f
 
 class TicTacToe : public Game
 {
@@ -323,7 +323,7 @@ public:
 	#define PONG_PADDLE_HEIGHT 3.0f
 	#define PONG_MARGIN 1.0f
 	#define PONG_BALL_RADIUS 0.5f
-	bool silent = false;
+	bool silent = true;
 	window win;
 
 	// Game API Objects
@@ -353,7 +353,7 @@ public:
 
 	void open_window()
 	{
-		silent = true;
+		silent = false;
 		win = splashkit_lib::open_window("Pong", PONG_GAME_WIDTH * PONG_SCALE, PONG_GAME_HEIGHT * PONG_SCALE);
 	}
 
@@ -438,6 +438,8 @@ public:
 
 	void draw_game()
 	{
+		if (silent) return;
+
 		clear_window(win, COLOR_BLACK);
 
 		// Draw ball
@@ -447,20 +449,13 @@ public:
 		draw_rectangle_on_window(win, COLOR_WHITE, player1.x * PONG_SCALE, player1.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
 		draw_rectangle_on_window(win, COLOR_WHITE, player2.x * PONG_SCALE, player2.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
 
-		// Draw score
-		string score = to_string((int)player1.score) + " - " + to_string((int)player2.score);
-		draw_text_on_window(win, score, COLOR_WHITE, ((PONG_GAME_WIDTH - 1) / 2.0f) * PONG_SCALE, (PONG_MARGIN / 2.0f) * PONG_SCALE);
+		// Draw score (TODO: Splashkit assertion error)
+		// string score = to_string((int)player1.score) + " - " + to_string((int)player2.score);
+		// draw_text_on_window(win, score, COLOR_WHITE, ((PONG_GAME_WIDTH - 1) / 2.0f) * PONG_SCALE, (PONG_MARGIN / 2.0f) * PONG_SCALE);
 
 		refresh_window(win, 30);
 	}
 
-	/**
-	 * @brief Get the possible moves.
-	 * 
-	 * vector will be reused, should be immutable.
-	 * 
-	 * @return vector<int> 
-	 */
 	vector<int> get_possible_moves() override
 	{
 		return moves;
@@ -829,11 +824,11 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 	enum class Agent
 	{
 		QLearning,
-		MiniMax, // SLOW
+		MiniMax,
 	};
-	const int agent_count = 1; // only test QLearning due to extremely slow Minimax
+	const int agent_count = 2;
 	vector<string> agent_names = { "QLearning", "MiniMax" };
-	int games_played[2] = {10000, 100};
+	int games_played[2] = {10000, 10000};
 
 	int games_won;
 	int games_drawn;
@@ -879,9 +874,9 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 
 		stringstream ss;
 		ss << agent_names[cur_agent] << " Evaluation\n";
-		ss << "Games played: " << games_played[cur_agent] << "\n";
-		ss << "Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << "\n";
-		ss << "Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << "\n";
+		ss << "  Games played: " << games_played[cur_agent] << "\n";
+		ss << "  Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << "\n";
+		ss << "  Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << "\n";
 		write(ss.str());
 	}
 }
@@ -989,7 +984,7 @@ void run_machine_learning_test()
 
 			play_tictactoe(q_agent);
 
-			if (ask("Evaluate QAgent against minimax (slow)"))
+			if (ask("Evaluate QAgent and minimax against random"))
 			{
 				// Test all agents against random agent
 				evaluate_agents_random(game, q_agent);

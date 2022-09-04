@@ -1,4 +1,5 @@
 #include "game_learning.h"
+#include "machine_learning.h"
 using namespace std;
 
 namespace splashkit_lib
@@ -168,13 +169,16 @@ namespace splashkit_lib
 		RewardTable *reward_table;
 		std::vector<OutputValue *> move_history; // Store the q_values used for the last game
 	public:
-		float learning_rate = 0.1f;
-		float discount_factor = 0.9f;
-		float epsilon = 0.1f;
+		float learning_rate;
+		float discount_factor;
+		float epsilon;
 
-		SelfPlay(RewardTable *reward_table)
+		SelfPlay(RewardTable *reward_table, float learning_rate, float discount_factor, float epsilon)
 		{
 			this->reward_table = reward_table;
+			this->learning_rate = learning_rate;
+			this->discount_factor = discount_factor;
+			this->epsilon = epsilon;
 		}
 
 		/**
@@ -209,8 +213,11 @@ namespace splashkit_lib
 		}
 	};
 
-	QAgent::QAgent(OutputFormat &out_format)
+	QAgent::QAgent(OutputFormat &out_format, float learning_rate, float discount_factor, float epsilon)
 	{
+		this->learning_rate = learning_rate;
+		this->discount_factor = discount_factor;
+		this->epsilon = epsilon;
 		reward_table = new RewardTable(out_format.get_width());
 	}
 
@@ -231,10 +238,13 @@ namespace splashkit_lib
 		std::vector<QAgent::SelfPlay> agents;
 		for (int i = 0; i < player_count; i++)
 		{
-			agents.push_back(QAgent::SelfPlay(reward_table)); // generate the agents to play the game
+			agents.push_back(QAgent::SelfPlay(reward_table, learning_rate, discount_factor, epsilon)); // generate the agents to play the game
 		}
 
-		cout << "  0  % [" << string(bar_length, '_') << "]\r";
+		// Initialise progress bar
+		cout << "  0  % [" << string(bar_length, '_') << "]\r" << std::flush;
+
+		// Main loop
 		for (int i = 0; i < iterations; i++)
 		{
 			while (!game->is_finished())
@@ -250,19 +260,30 @@ namespace splashkit_lib
 				agents[i].reward(score);
 			}
 			game->reset();
+
+			// Draw progress bar
 			if (i % bar_units == 0)
 			{
-				cout << "\r";
-				progress += 1;
+				progress++;
 				int percentage = (progress * 100) / bar_length;
-				cout << "  " << percentage << "% "
-					 << "[" << string(progress, '#');
+				cout << "  " << percentage << "% [" << string(progress, '#') << '\r' << std::flush;
 			}
 		}
-		cout << "\r"
-			 << "  100%" << endl;
+		cout << "\r  100%" << endl;
 		total_iterations += iterations;
 	}
+
+	class DenseAgent::SelfPlay
+	{
+	private:
+		Model *model;
+		std::vector<OutputValue *> move_history; // Store the moves played for the last game
+	public:
+		SelfPlay(Model *model)
+		{
+			this->model = model;
+		}
+	};
 
 	MinimaxAgent::MinimaxAgent(InputFormat input_format)
 	{
