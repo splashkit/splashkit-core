@@ -430,13 +430,14 @@ namespace splashkit_lib
 	private:
 		class SelfPlay; // Internally used class for training
 
-		float learning_rate = 0.1f;	  // How much to change the q_value
-		float discount_factor = 0.9f; // Used for future state predictions
+		float learning_rate;	// How much to change the q_value
+		float discount_factor;	// Used for future state predictions
+		float epsilon;			// Exploration rate, the probability of choosing a random move during training
 	public:
 		RewardTable *reward_table;
 		int total_iterations = 0;
 
-		QAgent(OutputFormat &out_format);
+		QAgent(OutputFormat &out_format, float learning_rate=0.1f, float discount_factor=0.9f, float epsilon=0.1f);
 
 		/**
 		 * @brief Get the best move based on the previous training.
@@ -444,6 +445,35 @@ namespace splashkit_lib
 		 * @param game The current game state
 		 * @return int the move value to play, used by game.make_move()
 		 */
+		int get_move(Game *game) override;
+
+		void train(Game *game, int player_count, int iterations) override;
+	};
+
+	/**
+	 * @brief Neural Network based agent that trains a fully connected 
+	 * neural network to determine the best move for the current state of the game.
+	 * 
+	 */
+	class DenseAgent : public Agent
+	{
+	private:
+		class SelfPlay; // Internally used class for training
+
+		float learning_rate = 0.1f;
+	public:
+		enum class Type 
+		{
+			Small,
+			Medium,
+			Large
+		};
+
+		// Model *model;
+		int total_iterations = 0;
+
+		DenseAgent(InputFormat &in_format, OutputFormat &out_format, Type type);
+
 		int get_move(Game *game) override;
 
 		void train(Game *game, int player_count, int iterations) override;

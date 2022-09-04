@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include "terminal.h"
 #include "utility_functions.h"
 #include "random.h"
@@ -308,7 +310,7 @@ public:
 	GameState state;
 	bool is_player1 = true;
 	vector<int> moves;
-	int play_to;
+	int play_to = 1;
 
 	#define PONG_BALL_SPEED 0.1f
 	#define PONG_PLAYER_SPEED 0.1f
@@ -321,7 +323,7 @@ public:
 	#define PONG_PADDLE_HEIGHT 3.0f
 	#define PONG_MARGIN 1.0f
 	#define PONG_BALL_RADIUS 0.5f
-	bool silent = false;
+	bool silent = true;
 	window win;
 
 	// Game API Objects
@@ -334,6 +336,7 @@ public:
 		if (Pong::input_format.get_width() == 0) // uninitialized
 		{
 			Pong::input_format.add_type(InputFormat::Type::Player, 1, 2); // which side the player is controlling
+			Pong::input_format.add_type(InputFormat::Type::Board, 1, 8); // ball velocity information
 			Pong::input_format.add_type(InputFormat::Type::Board, PONG_GAME_WIDTH * PONG_GAME_HEIGHT, 2); // paddle/player and board information
 		}
 		if (Pong::output_format.get_width() == 0) // uninitialized
@@ -341,16 +344,16 @@ public:
 			Pong::output_format.add_type(OutputFormat::Type::Category, 3); // stay still, move up, move down
 		}
 
-		moves.push_back(0);
-		moves.push_back(1);
-		moves.push_back(2);
+		moves.push_back(0); // stay still
+		moves.push_back(1); // move up
+		moves.push_back(2); // move down
 		
 		reset();
 	}
 
 	void open_window()
 	{
-		silent = true;
+		silent = false;
 		win = splashkit_lib::open_window("Pong", PONG_GAME_WIDTH * PONG_SCALE, PONG_GAME_HEIGHT * PONG_SCALE);
 	}
 
@@ -408,7 +411,7 @@ public:
 
 		// Check if ball is hitting a paddle
 		if (ball.x - PONG_BALL_RADIUS < player1.x + PONG_PADDLE_WIDTH && // hitting front of paddle
-			ball.x + PONG_BALL_RADIUS > player1.x && // not behind paddle
+			ball.x 					  > player1.x && // not behind paddle
 			ball.y + PONG_BALL_RADIUS > player1.y && // below top of the paddle
 			ball.y - PONG_BALL_RADIUS < player1.y + PONG_PADDLE_HEIGHT && // above bottom of the paddle
 			ball.vx < 0.0f) // ball going towards paddle 1
@@ -417,7 +420,7 @@ public:
 			ball.vy = (ball.y - (player1.y + PONG_PADDLE_HEIGHT / 2.0f)) * PONG_BALL_SPEED;
 		}
 		else if (ball.x + PONG_BALL_RADIUS > player2.x && // hitting front of paddle
-				 ball.x - PONG_BALL_RADIUS < player2.x + PONG_PADDLE_WIDTH && // not behind paddle
+				 ball.x 				   < player2.x + PONG_PADDLE_WIDTH && // not behind paddle
 				 ball.y + PONG_BALL_RADIUS > player2.y && // below top of the paddle
 				 ball.y - PONG_BALL_RADIUS < player2.y + PONG_PADDLE_HEIGHT && // above bottom of the paddle
 				 ball.vx > 0.0f) // ball going towards paddle 2
@@ -435,6 +438,8 @@ public:
 
 	void draw_game()
 	{
+		if (silent) return;
+
 		clear_window(win, COLOR_BLACK);
 
 		// Draw ball
@@ -444,20 +449,13 @@ public:
 		draw_rectangle_on_window(win, COLOR_WHITE, player1.x * PONG_SCALE, player1.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
 		draw_rectangle_on_window(win, COLOR_WHITE, player2.x * PONG_SCALE, player2.y * PONG_SCALE, PONG_PADDLE_WIDTH * PONG_SCALE, PONG_PADDLE_HEIGHT * PONG_SCALE);
 
-		// Draw score
-		string score = to_string((int)player1.score) + " - " + to_string((int)player2.score);
-		draw_text_on_window(win, score, COLOR_WHITE, ((PONG_GAME_WIDTH - 1) / 2.0f) * PONG_SCALE, (PONG_MARGIN / 2.0f) * PONG_SCALE);
+		// Draw score (TODO: Splashkit assertion error)
+		// string score = to_string((int)player1.score) + " - " + to_string((int)player2.score);
+		// draw_text_on_window(win, score, COLOR_WHITE, ((PONG_GAME_WIDTH - 1) / 2.0f) * PONG_SCALE, (PONG_MARGIN / 2.0f) * PONG_SCALE);
 
 		refresh_window(win, 30);
 	}
 
-	/**
-	 * @brief Get the possible moves.
-	 * 
-	 * vector will be reused, should be immutable.
-	 * 
-	 * @return vector<int> 
-	 */
 	vector<int> get_possible_moves() override
 	{
 		return moves;
@@ -497,8 +495,11 @@ public:
 	bool is_finished() override { return state != GameState::Playing; }
 	Game *clone() override {  return new Pong(*this); }
 	vector<int> get_input() override { 
-		vector<int> input(PONG_GAME_WIDTH * PONG_GAME_HEIGHT + 1);
+		vector<int> input(PONG_GAME_WIDTH * PONG_GAME_HEIGHT + 2);
 		input[0] = is_player1 ? 0 : 1;
+		// ball velocity direction 0-7
+		// (vx, vy) | (1, 0) = 0 🡢, (0.5, 0.5) = 1 🡦, (0, 1) = 2 🡣, (-0.5, 0.5) = 3 🡧, (-1, 0) = 4 🡠, (-0.5, -0.5) = 5 🡤, (0, -1) = 6 🡡, (0.5, -0.5) = 7 🡥
+		input[1] = ((int)(atan2(ball.vy, ball.vx) / (2.0f * M_PI) * 8.5f) + 8) % 8;
 		for (int i = 0; i < PONG_GAME_WIDTH; i++)
 		{
 			for (int j = 0; j < PONG_GAME_HEIGHT; j++)
@@ -510,7 +511,7 @@ public:
 					temp = 1;
 				else if (((int)player2.x) == i && ((int)player2.y) == j)
 					temp = 1;
-				input[i * PONG_GAME_HEIGHT + j + 1] = temp;
+				input[i * PONG_GAME_HEIGHT + j + 2] = temp;
 			}
 		}
 		return input;
@@ -760,6 +761,21 @@ void test_pong()
 		play_pong(q_agent, q_agent);
 	}
 
+	if (ask("Random vs QAgent Batch Games"))
+	{
+		if (((QAgent*)q_agent)->total_iterations == 0) q_agent->train(trainer, 2, q_agent_itr);
+		const int pong_games = 1000;
+		int wins = 0;
+		auto start = chrono::high_resolution_clock::now();
+		for (int i = 0; i < pong_games; i++)
+		{
+			if (play_pong(rnd1, q_agent, true))
+				wins++;
+		}
+		auto time = chrono::high_resolution_clock::now() - start;
+		write_line(to_string(pong_games) + " pong games in " + to_string(chrono::duration_cast<chrono::milliseconds>(time).count()) + "ms, " + to_string(wins) + "/" + to_string(pong_games - wins) + " rnd/QAgent wins.");
+	}
+
 	delete trainer;
 }
 
@@ -770,8 +786,7 @@ void test_minimax(TicTacToe *game)
 	{
 		game->reset();
 		write_line("\nAI vs Human GAME");
-		write_line("Do you want to start first? (Y/N)");
-		if (read_line() == "Y")
+		if (ask("Do you want to start first"))
 		{
 			game->current_player = TicTacToe::Player::X;
 		}
@@ -798,8 +813,7 @@ void test_minimax(TicTacToe *game)
 			}
 			game->draw_game();
 		}
-		write_line("Do you want to go again? (Y/N)");
-	} while (read_line() == "Y");
+	} while (ask("Do you want to go again"));
 }
 
 void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
@@ -810,11 +824,11 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 	enum class Agent
 	{
 		QLearning,
-		MiniMax, // SLOW
+		MiniMax,
 	};
-	const int agent_count = 1; // only test QLearning due to extremely slow Minimax
+	const int agent_count = 2;
 	vector<string> agent_names = { "QLearning", "MiniMax" };
-	int games_played[2] = {10000, 100};
+	int games_played[2] = {10000, 10000};
 
 	int games_won;
 	int games_drawn;
@@ -860,9 +874,9 @@ void evaluate_agents_random(TicTacToe *game, QAgent *q_agent)
 
 		stringstream ss;
 		ss << agent_names[cur_agent] << " Evaluation\n";
-		ss << "Games played: " << games_played[cur_agent] << "\n";
-		ss << "Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << "\n";
-		ss << "Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << "\n";
+		ss << "  Games played: " << games_played[cur_agent] << "\n";
+		ss << "  Games won: " << games_won << " (" << games_won * 100 / games_played[cur_agent] << "%)" << "\n";
+		ss << "  Games drawn: " << games_drawn << " (" << games_drawn * 100 / games_played[cur_agent] << "%)" << "\n";
 		write(ss.str());
 	}
 }
@@ -970,7 +984,7 @@ void run_machine_learning_test()
 
 			play_tictactoe(q_agent);
 
-			if (ask("Evaluate QAgent against minimax (slow)"))
+			if (ask("Evaluate QAgent and minimax against random"))
 			{
 				// Test all agents against random agent
 				evaluate_agents_random(game, q_agent);

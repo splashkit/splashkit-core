@@ -103,6 +103,11 @@ else()
                    -lncurses \
                    -ldl \
                    -lstdc++fs")
+
+    if(CMAKE_BUILD_TYPE MATCHES Debug)
+        add_compile_options(-fsanitize=address)
+        add_link_options(-fsanitize=address)
+    endif()
 endif()
 
 # FLAGS
