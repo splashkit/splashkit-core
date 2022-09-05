@@ -103,7 +103,7 @@ namespace splashkit_lib
      * @param  text The text to check.
      * @return      True if the text contains string of datatype boolean.
      */
-    bool is_bool(const string &text):
+    bool is_bool(const string &text);
    
     
 }
