@@ -107,7 +107,7 @@ namespace splashkit_lib
     {
         string s = to_lowercase(trim(text));
         
-        return s == "true" || s == "t" || s == "false" || s = "f" || s == "0" || s == "1"; 
+        return s == "true" || s == "t" || s == "false" || s == "f" || s == "0" || s == "1"; 
     }
     
 }
