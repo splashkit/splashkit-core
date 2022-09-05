@@ -15,27 +15,214 @@
 #include <iomanip>
 #include <sstream>
 
-using std::stringstream;
 using std::endl;
+using std::stringstream;
+
+/**
+ * @brief Apply the operator for every element of the matrix.
+ * 
+ * Returns a new matrix with the same size as the original matrix (both matrices need to be the same size),
+ * where each element is the result of the comparison (1 if true, 0 otherwise)
+ */
+#ifndef MATRIX_ELEMENT_OP
+#define MATRIX_ELEMENT_OP(OP)                                                     \
+    matrix_2d matrix_2d::operator OP(const double scalar) const                   \
+    {                                                                             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP scalar);               \
+        return result;                                                            \
+    }                                                                             \
+    matrix_2d matrix_2d::operator OP(const int scalar) const                      \
+    {                                                                             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP scalar);               \
+        return result;                                                            \
+    }                                                                             \
+    matrix_2d matrix_2d::operator OP(const matrix_2d &other) const                \
+    {                                                                             \
+        if (x != other.x || y != other.y)                                         \
+            throw std::logic_error("dimensions must match for " #OP);             \
+        matrix_2d result(x, y);                                                   \
+        for (size_t i = 0; i < x; i++)                                            \
+            for (size_t j = 0; j < y; j++)                                        \
+                result.elements[i][j] = (elements[i][j] OP other.elements[i][j]); \
+        return result;                                                            \
+    }
+#endif
 
 namespace splashkit_lib
 {
-    matrix_2d identity_matrix()
+    /* #region matrix_2d */
+    matrix_2d::matrix_2d(int x, int y)
     {
-        matrix_2d result;
+        elements = new double *[x];
+        for (size_t i = 0; i < x; i++)
+            elements[i] = new double[y];
+        this->x = x;
+        this->y = y;
+    }
 
-        result.elements[0][0] = 1;
-        result.elements[0][1] = 0;
-        result.elements[0][2] = 0;
+    matrix_2d::matrix_2d(const matrix_2d &other)
+    {
+        elements = new double *[other.x];
+        for (size_t i = 0; i < other.x; i++)
+            elements[i] = new double[other.y];
+        this->x = other.x;
+        this->y = other.y;
 
-        result.elements[1][0] = 0;
-        result.elements[1][1] = 1;
-        result.elements[1][2] = 0;
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                elements[i][j] = other.elements[i][j];
+    }
 
-        result.elements[2][0] = 0;
-        result.elements[2][1] = 0;
-        result.elements[2][2] = 1;
+    matrix_2d::~matrix_2d()
+    {
+        for (size_t i = 0; i < x; i++)
+            delete[] elements[i]; // delete each row
+        delete[] elements;        // delete pointers to each row
+    }
 
+    matrix_2d &matrix_2d::operator=(const matrix_2d &other)
+    {
+        if (x != other.x || y != other.y)
+        {
+            for (size_t i = 0; i < x; i++)
+                delete[] elements[i];
+            delete[] elements;
+            elements = new double *[other.x];
+            for (size_t i = 0; i < other.x; i++)
+                elements[i] = new double[other.y];
+            x = other.x;
+            y = other.y;
+        }
+
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                elements[i][j] = other.elements[i][j];
+        return *this;
+    }
+
+    MATRIX_ELEMENT_OP(>)
+    MATRIX_ELEMENT_OP(<)
+    MATRIX_ELEMENT_OP(+)
+    MATRIX_ELEMENT_OP(-)
+    MATRIX_ELEMENT_OP(/)
+    MATRIX_ELEMENT_OP(*)
+
+    matrix_2d matrix_2d::operator-() const
+    {
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = -elements[i][j];
+        return result;
+    }
+
+    matrix_2d matrix_2d::operator==(const matrix_2d &other) const
+    {
+        if (x != other.x || y != other.y)
+            return matrix_2d(0, 0);
+
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = (elements[i][j] == other.elements[i][j]);
+
+        return result;
+    }
+
+    matrix_2d matrix_2d::operator!=(const matrix_2d &other) const
+    {
+        if (x != other.x || y != other.y)
+        {
+            static matrix_2d result(1, 1);
+            result.elements[0][0] = 1.0; // true
+            return result;
+        }
+
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = (elements[i][j] != other.elements[i][j]);
+
+        return result;
+    }
+
+    matrix_2d matrix_2d::operator[](const matrix_2d &other) const
+    {
+        matrix_2d result(x, y);
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = other.elements[i][j] ? elements[i][j] : 0;
+        return result;
+    }
+
+    bool matrix_2d::all() const
+    {
+        if (x <= 0 || y <= 0)
+            return false;
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                if (!elements[i][j])
+                    return false;
+        return true;
+    }
+
+    bool matrix_2d::any() const
+    {
+        if (x <= 0 || y <= 0)
+            return false;
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                if (elements[i][j])
+                    return true;
+        return false;
+    }
+
+    matrix_2d::iterator::iterator(matrix_2d *ptr, size_t x)
+    {
+        this->ptr = ptr;
+        this->x = x;
+    }
+
+    double &matrix_2d::iterator::operator*() { return ptr->elements[x][y]; }
+
+    void matrix_2d::iterator::operator++()
+    {
+        if (y >= ptr->y - 1)
+        {
+            y = 0;
+            x++;
+        }
+        else
+        {
+            y++;
+        }
+    }
+
+    bool matrix_2d::iterator::operator!=(const iterator &other) { return x != other.x || y != other.y; }
+    /* #endregion */
+
+    matrix_2d fill_matrix(int x, int y, double fill)
+    {
+        matrix_2d result(x, y);
+
+        for (size_t i = 0; i < x; i++)
+            for (size_t j = 0; j < y; j++)
+                result.elements[i][j] = fill;
+
+        return result;
+    }
+
+    matrix_2d identity_matrix(int n)
+    {
+        matrix_2d result = fill_matrix(n, n, 0);
+        for (int i = 0; i < n; i++)
+            result.elements[i][i] = 1;
         return result;
     }
 
@@ -129,12 +316,12 @@ namespace splashkit_lib
 
     matrix_2d matrix_inverse(const matrix_2d &m)
     {
-        double det =  m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
-        m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
-        m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
+        double det = m.elements[0][0] * (m.elements[1][1] * m.elements[2][2] - m.elements[2][1] * m.elements[1][2]) -
+                     m.elements[0][1] * (m.elements[1][0] * m.elements[2][2] - m.elements[1][2] * m.elements[2][0]) +
+                     m.elements[0][2] * (m.elements[1][0] * m.elements[2][1] - m.elements[1][1] * m.elements[2][0]);
 
         double invdet;
-        if (det == 0) //cant actually compute inverse!
+        if (det == 0) // cant actually compute inverse!
         {
             invdet = 3.4E38;
             LOG(WARNING) << "Unable to compute inverse of matrix.";
@@ -158,54 +345,51 @@ namespace splashkit_lib
     string matrix_to_string(const matrix_2d &matrix)
     {
         stringstream result;
-        result << " ------------------------------" << endl;
+        result << " " << string(10 * matrix.y, '-') << endl;
 
-        for (int i = 0; i < 3; i++)
+        for (size_t i = 0; i < matrix.x; i++)
         {
             result << '|';
-            for(int j = 0; j < 3; j++)
+            for (size_t j = 0; j < matrix.y; j++)
             {
-                result << ' ' << std::setw( 8 ) << std::setprecision( 3 ) << matrix.elements[i][j] << ' ';
+                result << ' ' << std::setw(8) << std::setprecision(3) << matrix.elements[i][j] << ' ';
             }
             result << '|' << endl;
         }
-        result << " ------------------------------";
+        result << " " << string(10 * matrix.y, '-');
         return result.str();
     }
 
-    matrix_2d matrix_multiply(const matrix_2d &m2, const matrix_2d &m1)
+    matrix_2d matrix_multiply(const matrix_2d &m1, const matrix_2d &m2)
     {
-        matrix_2d result;
+        if (m1.y != m2.x)
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
 
-        result.elements[0][0] = m1.elements[0][0] * m2.elements[0][0] +
-        m1.elements[0][1] * m2.elements[1][0] +
-        m1.elements[0][2] * m2.elements[2][0];
-        result.elements[0][1] = m1.elements[0][0] * m2.elements[0][1] +
-        m1.elements[0][1] * m2.elements[1][1] +
-        m1.elements[0][2] * m2.elements[2][1];
-        result.elements[0][2] = m1.elements[0][0] * m2.elements[0][2] +
-        m1.elements[0][1] * m2.elements[1][2] +
-        m1.elements[0][2] * m2.elements[2][2];
+        matrix_2d result = matrix_2d(m1.x, m2.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m2.y; y++)
+            {
+                result.elements[x][y] = 0;
+                for (size_t inner = 0; inner < m1.y; inner++)
+                {
+                    result.elements[x][y] += m1.elements[x][inner] * m2.elements[inner][y];
+                }
+            }
+        }
+        return result;
+    }
 
-        result.elements[1][0] = m1.elements[1][0] * m2.elements[0][0] +
-        m1.elements[1][1] * m2.elements[1][0] +
-        m1.elements[1][2] * m2.elements[2][0];
-        result.elements[1][1] = m1.elements[1][0] * m2.elements[0][1] +
-        m1.elements[1][1] * m2.elements[1][1] +
-        m1.elements[1][2] * m2.elements[2][1];
-        result.elements[1][2] = m1.elements[1][0] * m2.elements[0][2] +
-        m1.elements[1][1] * m2.elements[1][2] +
-        m1.elements[1][2] * m2.elements[2][2];
-
-        result.elements[2][0] = m1.elements[2][0] * m2.elements[0][0] +
-        m1.elements[2][1] * m2.elements[1][0] +
-        m1.elements[2][2] * m2.elements[2][0];
-        result.elements[2][1] = m1.elements[2][0] * m2.elements[0][1] +
-        m1.elements[2][1] * m2.elements[1][1] +
-        m1.elements[2][2] * m2.elements[2][1];
-        result.elements[2][2] = m1.elements[2][0] * m2.elements[0][2] +
-        m1.elements[2][1] * m2.elements[1][2] +
-        m1.elements[2][2] * m2.elements[2][2];
+    matrix_2d matrix_multiply(const matrix_2d &m, double scalar)
+    {
+        matrix_2d result = matrix_2d(m);
+        for (size_t x = 0; x < m.x; x++)
+        {
+            for (size_t y = 0; y < m.y; y++)
+            {
+                result.elements[x][y] *= scalar;
+            }
+        }
         return result;
     }
 
@@ -223,9 +407,25 @@ namespace splashkit_lib
     {
         vector_2d result;
 
-        result.x = v.x * m.elements[0][0]  +  v.y * m.elements[0][1] + m.elements[0][2];
-        result.y = v.x * m.elements[1][0]  +  v.y * m.elements[1][1] + m.elements[1][2];
+        result.x = v.x * m.elements[0][0] + v.y * m.elements[0][1] + m.elements[0][2];
+        result.y = v.x * m.elements[1][0] + v.y * m.elements[1][1] + m.elements[1][2];
 
+        return result;
+    }
+
+    matrix_2d matrix_multiply_components(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.x != m2.x || m1.y != m2.y)
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
+
+        matrix_2d result = matrix_2d(m1.x, m1.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y] * m2.elements[x][y];
+            }
+        }
         return result;
     }
 
@@ -238,9 +438,81 @@ namespace splashkit_lib
 
     void apply_matrix(const matrix_2d &m, quad &q)
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             q.points[i] = matrix_multiply(m, q.points[i]);
         }
+    }
+
+    matrix_2d matrix_add(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.x != m2.x || m1.y != m2.y)
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
+
+        matrix_2d result = matrix_2d(m1.x, m1.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y] + m2.elements[x][y];
+            }
+        }
+        return result;
+    }
+
+    matrix_2d matrix_transpose(const matrix_2d &m)
+    {
+        matrix_2d result = matrix_2d(m.y, m.x);
+        for (size_t x = 0; x < m.x; x++)
+        {
+            for (size_t y = 0; y < m.y; y++)
+            {
+                result.elements[y][x] = m.elements[x][y];
+            }
+        }
+        return result;
+    }
+
+    matrix_2d matrix_horizontal_concat(const matrix_2d &m1, const matrix_2d &m2)
+    {
+        if (m1.x != m2.x)
+            LOG(WARNING) << __FUNCTION__ << ": Matrix dimensions do not match.";
+
+        matrix_2d result(m1.x, m1.y + m2.y);
+        for (size_t x = 0; x < m1.x; x++)
+        {
+            for (size_t y = 0; y < m1.y; y++)
+            {
+                result.elements[x][y] = m1.elements[x][y];
+            }
+        }
+        for (size_t x = 0; x < m2.x; x++)
+        {
+            for (size_t y = 0; y < m2.y; y++)
+            {
+                result.elements[x][m1.y + y] = m2.elements[x][y];
+            }
+        }
+        return result;
+    }
+
+    inline constexpr int negative_index(int max, int index)
+    {
+        return index < 0 ? max + index : index;
+    }
+
+    matrix_2d matrix_slice(const matrix_2d &m, int x_start, int x_end, int y_start, int y_end)
+    {
+        x_start = negative_index(m.x, x_start);
+        x_end = negative_index(m.x, x_end) - x_start;
+        y_start = negative_index(m.y, y_start);
+        y_end = negative_index(m.y, y_end) - y_start;
+        matrix_2d result(x_end + 1, y_end + 1);
+
+        for (size_t x = 0; x <= x_end; x++)
+            for (size_t y = 0; y <= y_end; y++)
+                result.elements[x][y] = m.elements[x_start + x][y_start + y];
+
+        return result;
     }
 }
