@@ -84,7 +84,8 @@ namespace splashkit_lib
         
         return (*p == 0);
     }
-
+    
+    
     int convert_to_integer(const string &text)
     {
         return std::stoi( text );
@@ -94,4 +95,19 @@ namespace splashkit_lib
     {
         return std::stod( text );
     }
+    
+    bool is_char(const string &text)
+    {   
+        string s = trim(text);
+        
+        return s.length()==1;
+    }
+    
+    bool is_bool(const string &text)
+    {
+        string s = to_lowercase(trim(text));
+        
+        return s == "true" || s == "t" || s == "false" || s == "f" || s == "0" || s == "1"; 
+    }
+    
 }
