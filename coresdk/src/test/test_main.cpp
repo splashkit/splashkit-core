@@ -53,6 +53,8 @@ void setup_tests()
     add_test("UDP Networking Test", run_udp_networking_test);
     add_test("TCP Networking Test", run_tcp_networking_test);
     add_test("Twitter Test", run_twitter_test);
+    add_test("Machine Learning", run_machine_learning_test);
+    add_test("Matrix Test", run_matrix_test);
 }
 
 int main()

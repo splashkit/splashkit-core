@@ -96,6 +96,24 @@ namespace splashkit_lib
      * @return      The double value read from the text.
      */
     double convert_to_double(const string &text);
+    
+    /**
+     * Checks if a string contains a character.
+     *
+     * @param  text The text to check.
+     * @return      True if the text contains a character (and only a character).
+     */
+    bool is_char(const string &text);
+    
+    /**
+     * Checks if the string is of datatype boolean.
+     *
+     * @param  text The text to check.
+     * @return      True if the text contains string of datatype boolean.
+     */
+    bool is_bool(const string &text);
+   
+    
 }
 
 #endif /* basics_hpp */
