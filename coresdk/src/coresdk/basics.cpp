@@ -84,8 +84,18 @@ namespace splashkit_lib
         
         return (*p == 0);
     }
-    
-    
+
+    bool is_float(const string &text)
+    {
+        string s = trim(text);
+        if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false;
+        
+        char * p;
+        strtof(s.c_str(), &p);
+        
+        return (*p == 0);
+    }
+
     int convert_to_integer(const string &text)
     {
         return std::stoi( text );

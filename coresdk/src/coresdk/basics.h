@@ -54,6 +54,14 @@ namespace splashkit_lib
     bool is_integer(const string &text);
 
     /**
+     * Checks if a string contains a float value.
+     *
+     * @param  text The text to check.
+     * @return      True if the text contains a number (and only a number).
+     */
+    bool is_float(const string &text);
+
+    /**
      * Checks if a string contains a number.
      *
      * @param  text The text to check.
