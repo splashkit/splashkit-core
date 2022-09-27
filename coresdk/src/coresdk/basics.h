@@ -78,6 +78,16 @@ namespace splashkit_lib
     bool is_number(const string &text);
 
     /**
+     * Convert the passed in string into a float. This can fail in an error if
+     * the value is not a float, consider using `is_float` to check before
+     * converting a string.
+     *
+     * @param  text The text to convert.
+     * @return      The float value read from the text.
+     */
+    float convert_to_float(const string &text);
+
+    /**
      * Convert the passed in string into an integer. This can fail in an error if
      * the value is not an integer, consider using `is_integer` to check before
      * converting a string.

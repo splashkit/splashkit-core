@@ -96,6 +96,11 @@ namespace splashkit_lib
         return (*p == 0);
     }
 
+    float convert_to_float(const string &text)
+    {
+        return std::stof( text );
+    }
+
     int convert_to_integer(const string &text)
     {
         return std::stoi( text );
