@@ -45,6 +45,7 @@ elseif (APPLE)
     set(CMAKE_OSX_DEPLOYMENT_TARGET "10.5" CACHE STRING "Minimum OS X deployment version")
     set(OS_PATH_SUFFIX "macos")
     # MAC OS PROJECT FLAGS
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
     set(LIB_FLAGS "-L${SK_OUT}/splashkit-macos/lib \
                    -llibSplashKit \
                    -framework IOKit \
@@ -52,6 +53,7 @@ elseif (APPLE)
                    -framework CoreFoundation \
                    -framework Cocoa \
                    -framework Carbon \
+                   -framework Metal \
                    -framework AudioUnit \
                    -framework AudioToolbox \
                    -framework CoreAudio \

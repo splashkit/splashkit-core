@@ -64,7 +64,7 @@ function do_make {
   if [[ ${DELETE_CMAKE_CACHE} ]]; then
     ./clean.sh
   fi
-  cmake -DCMAKE_OSX_ARCHITECTURES="x86_64" -G "Unix Makefiles" .
+  cmake -G "Unix Makefiles" .
   make
   if [ $? != 0 ]; then echo "Error compiling"; exit 1; fi
 
@@ -109,4 +109,8 @@ cd "${APP_PATH}"
 if [[ `uname` == MINGW* ]]; then
   rm ${SK_OUT}/skm/lib/win32/*.a
   rm ${SK_OUT}/skm/lib/win64/*.a
+fi
+
+if [[ `uname` == Darwin ]]; then
+  strip -x ${SK_OUT}/skm/lib/macos/libSplashKit.dylib
 fi

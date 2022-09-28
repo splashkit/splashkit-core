@@ -16,10 +16,12 @@ endif()
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
+    add_link_options("-Wl-U,___darwin_check_fd_set_overflow")
     set(LIB_FLAGS "-L${SK_LIB}/mac \
                    -framework IOKit \
                    -framework ForceFeedback \
                    -framework CoreFoundation \
+                   -framework Metal \
                    -framework Cocoa \
                    -framework Carbon \
                    -framework AudioUnit \
@@ -39,13 +41,11 @@ if (APPLE)
                    -lz \
                    -lpng16 \
                    -lvorbisfile \
-                   -lmikmod \
                    -logg \
                    -lwebp \
-                   -lsmpeg2 \
-                   -lfreetype \
                    -lcurl \
                    -lncurses \
+                   -liconv \
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
@@ -84,7 +84,6 @@ else()
                    -lz \
                    -lpng16 \
                    -lvorbisfile \
-                   -lmikmod \
                    -logg \
                    -lwebp \
                    -lfreetype \
@@ -207,6 +206,8 @@ add_executable(sktest ${TEST_SOURCE_FILES})
 target_link_libraries(sktest SplashKitBackend)
 target_link_libraries(sktest ${LIB_FLAGS})
 
+target_link_options(sktest PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
+
 set_target_properties(sktest
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
@@ -229,6 +230,7 @@ add_custom_command(TARGET sktest
 #### skunit_tests EXECUTABLE ####
 add_executable(skunit_tests ${UNIT_TEST_SOURCE_FILES})
 
+target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
 target_link_libraries(skunit_tests SplashKitBackend)
 target_link_libraries(skunit_tests ${LIB_FLAGS})
 

@@ -1861,7 +1861,7 @@ namespace splashkit_lib
             _sk_set_renderer_target(i, data);
             SDL_SetRenderDrawColor(_sk_open_windows[i]->renderer, 255, 255, 255, 0);
             SDL_RenderClear(_sk_open_windows[i]->renderer);
-            SDL_RenderPresent(_sk_open_windows[i]->renderer);
+           // SDL_RenderPresent(_sk_open_windows[i]->renderer);
             _sk_restore_default_render_target(i, data);
         }
         

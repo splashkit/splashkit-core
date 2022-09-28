@@ -71,6 +71,7 @@ elseif (APPLE)
                    -framework CoreFoundation \
                    -framework Cocoa \
                    -framework Carbon \
+                   -framework Metal \
                    -framework AudioUnit \
                    -framework AudioToolbox \
                    -framework CoreAudio \
@@ -82,19 +83,11 @@ elseif (APPLE)
                    -lSDL2_image \
                    -lSDL2_net \
                    -lpthread \
-                   -lbz2 \
-                   -lFLAC \
-                   -lvorbis \
-                   -lz \
                    -lpng16 \
-                   -lvorbisfile \
-                   -lmikmod \
-                   -logg \
-                   -lwebp \
-                   -lsmpeg2 \
-                   -lfreetype \
+                   -lz \
                    -lcurl \
                    -lncurses \
+                   -liconv \
                    -ldl")
 
          # SOURCE FILES
@@ -179,6 +172,7 @@ endif()
 # MAC OS ONLY DIRECTORY INCLUDES
 if (APPLE)
     include_directories("${SK_EXT}/SDL_image/external/libpng-1.6.2")
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 endif()
 
 # WINDOWS ONLY DIRECTORY INCLUDES
