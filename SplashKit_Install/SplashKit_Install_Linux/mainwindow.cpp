@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->txt_process->setText("");
     completeProc = false;
     cSteps = 1;
+    instStarted = false;
+    skExist = false;
 }
 
 MainWindow::~MainWindow()
@@ -37,13 +39,16 @@ void MainWindow::readOutput(){
                 process->waitForBytesWritten();
             }
     }
-    if(cProcess == "skm" && output_val.contains("SplashKit Successfully installed!")){
-        ui->txt_process->setText("Setting up SplashKit");
-        progressbar_update();
-        make_splashkit();
+
+
+    if(cProcess == "skm" && output_val.contains("bash")){
+        shFile = output_val;
     }
 
-    if(cProcess == "make_splashkit" && output_val.contains("SplashKit Successfully installed!")){
+    if(cProcess == "skm_handle" && output_val.contains("Looks like you already have splashkit") && output_val.length() < 300){
+        skExist = true;
+    }
+    if(cProcess == "skm_handle" && output_val.contains("SplashKit Successfully installed!")){
         progressbar_update();
         install_dotnet();
     }
@@ -75,13 +80,17 @@ void MainWindow::progressbar_update()
 
 void MainWindow::on_btn_install_clicked()
 {
-    if(completeProc == true){
+    if(instStarted == true){
           QApplication::quit();
+          return;
      }
+    instStarted = true;
+    ui->lbl_steps->setText("Installing 1/5");
     ui->btn_install->setEnabled(false);
     ui->pb_process->setVisible(true);
     install_curl_git();
 
+    process->waitForFinished();
 }
 
 void MainWindow::install_curl_git()
@@ -94,7 +103,7 @@ void MainWindow::install_curl_git()
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
     process->start("sudo", QStringList() << "-S" << "apt-get" << "install" << "curl" << "git" << "-y" );
-
+    process->waitForFinished();
 }
 
 void MainWindow::install_skm()
@@ -106,9 +115,26 @@ void MainWindow::install_skm()
     process->setProcessChannelMode(QProcess::MergedChannels);
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
-    process->start("curl", QStringList() << "-s"
-                     << "https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh" );
+    process->start("curl", QStringList() << "-s" <<
+           "https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh");
+    process->waitForFinished();
+    completeProc = true;
 
+}
+
+void MainWindow::handle_bash()
+{
+    skExist = false;
+    cSteps = 2;
+    cProcess = "skm_handle";
+    ui->txt_process->setText("Starting to install Splashkit SDK");
+    process = new QProcess(this);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
+    connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
+    process->start("/bin/bash", QStringList() << "-c" << shFile);
+    process->waitForFinished();
+    completeProc = true;
 }
 
 void MainWindow::make_splashkit()
@@ -121,6 +147,7 @@ void MainWindow::make_splashkit()
     connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
     process->start("skm", QStringList() << "linux" << "install" << "-y");
+    process->waitForFinished();
 
 }
 
@@ -140,6 +167,7 @@ void MainWindow::install_vscode()
             connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
             connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
             process->start("sudo", QStringList() << "-S" << "snap" << "install" << "code" << "--classic" );
+            process->waitForFinished();
             qDebug() << "visual studio code";
         } else {
             cSteps = 5;
@@ -163,11 +191,28 @@ void MainWindow::install_dotnet()
     connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
     process->start("sudo", QStringList() << "-S" << "apt-get" << "install" << "dotnet6" << "-y" );
     completeProc = true;
+    process->waitForFinished();
+}
+
+void MainWindow::remove_splashkit()
+{
+    cProcess = "skremove";
+    ui->txt_process->setText("Removing SplashKit");
+    process = new QProcess(this);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
+    connect(process, SIGNAL(finished(int, QProcess::ExitStatus )), this, SLOT(process_finished(int, QProcess::ExitStatus )));
+    QString cmd = "rm -rf /home/" + qgetenv("USER") + "/.splashkit";
+
+    process->start("sudo", QStringList() << "-S" << "bash"  << "-c" << cmd  );
+    completeProc = true;
+    process->waitForFinished();
 }
 
 
 void MainWindow::process_finished(int code, QProcess::ExitStatus status)
 {
+
     if(code == 0 && cProcess == "git_crul"){
         progressbar_update();
         install_skm();
@@ -179,6 +224,34 @@ void MainWindow::process_finished(int code, QProcess::ExitStatus status)
         install_vscode();
         completeProc = false;
     }
+    if(code == 0 && cProcess == "skm" && completeProc == true){
+        ui->txt_process->setText("Setting up SplashKit");
+        handle_bash();
+    }
+    if(code == 0 && cProcess == "skremove" && completeProc == true){
+        ui->txt_process->setText("Setting up SplashKit");
+        handle_bash();
+    }
+    if(code == 0 && cProcess == "skm_handle" && completeProc == true){
+        if(skExist){
+            qDebug() << cProcess;
+            QMessageBox::StandardButton reply;
+                reply = QMessageBox::question(this, "Confirm", "SplashKit already installed. Do you want remove and intall?", QMessageBox::Yes|QMessageBox::No);
+                if (reply == QMessageBox::Yes) {
+                    skExist = false;
+                    remove_splashkit();
+                    return;
+                } else {
+                    QApplication::quit();
+                }
+        }else{
+            ui->txt_process->setText("Setting up SplashKit");
+            make_splashkit();
+        }
+
+    }
+
+
 
 }
 

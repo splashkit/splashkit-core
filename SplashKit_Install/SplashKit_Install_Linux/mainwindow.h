@@ -36,9 +36,11 @@ private slots:
     void on_btn_install_clicked();
     void install_curl_git();
     void install_skm();
+    void handle_bash();
     void make_splashkit();
     void install_vscode();
     void install_dotnet();
+    void remove_splashkit();
     void process_finished(int code, QProcess::ExitStatus status);
 
     void on_btn_cancel_clicked();
@@ -48,6 +50,9 @@ private:
     QString cProcess;
     QString cStatus;
     bool completeProc;
+    bool instStarted;
     int cSteps;
+    QString shFile;
+    bool skExist;
 };
 #endif // MAINWINDOW_H
