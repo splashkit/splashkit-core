@@ -184,7 +184,7 @@ namespace splashkit_lib
     // }
 
     // Function to center the camera on a vector array
-    void center_camera_on(vector<sprite>& s, double offset_x, double offset_y) {
+    void center_camera_on(vector<sprite> s, double offset_x, double offset_y) {
 		
 		double sc_x{0};
 		double sc_y{0};
@@ -227,6 +227,16 @@ namespace splashkit_lib
     }
 
     void center_camera_on(sprite s, const vector_2d &offset)
+    {
+        center_camera_on(s, offset.x, offset.y);
+    }
+	
+	void center_camera_on(sprite s[],int size , const vector_2d &offset)
+    {
+        center_camera_on(s, offset.x, offset.y);
+    }
+	
+	void center_camera_on(vector<sprite> s, const vector_2d &offset)
     {
         center_camera_on(s, offset.x, offset.y);
     }
