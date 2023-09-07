@@ -79,7 +79,7 @@ void run_camera_test()
         update_sprite(s3);
 
         if ( follow ){
-            center_camera_on(arr, 0, 0);
+            center_camera_on(vec_arr, 0, 0);
         }else{
             set_camera_x(0);
             set_camera_y(0);
