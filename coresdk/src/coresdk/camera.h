@@ -376,4 +376,3 @@ namespace splashkit_lib
 
 
 #endif /* camera_hpp */
-}
