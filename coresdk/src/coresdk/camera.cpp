@@ -233,7 +233,7 @@ namespace splashkit_lib
 	
 	void center_camera_on(sprite s[],int size , const vector_2d &offset)
     {
-        center_camera_on(s, offset.x, offset.y);
+        center_camera_on(s,size, offset.x, offset.y);
     }
 	
 	void center_camera_on(vector<sprite> s, const vector_2d &offset)
