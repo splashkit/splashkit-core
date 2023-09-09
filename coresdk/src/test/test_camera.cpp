@@ -15,27 +15,35 @@
 
 using namespace splashkit_lib;
 
+void set_keys(std::vector<key_code> keys, sprite s){
+    if ( key_down(keys[0]) ) sprite_set_dx(s, -1);
+    else if ( key_down(keys[1]) ) sprite_set_dx(s, 1);
+    else sprite_set_dx(s, 0);
+
+    if ( key_down(keys[2]) ) sprite_set_dy(s, -1);
+    else if ( key_down(keys[3]) ) sprite_set_dy(s, 1);
+    else sprite_set_dy(s, 0);
+}
+
 void run_camera_test()
 {
     window w1 = open_window("Camera Test", 600, 600);
 
     load_bitmap("ufo", "ufo.png");
-    sprite s1 = create_sprite("ufo");
-    sprite s2 = create_sprite("ufo");
-    sprite s3 = create_sprite("ufo");
+    std::vector<sprite> s_array;
+    int size = 3;
 
-    sprite_set_position(s1, screen_center());
-    sprite_set_position(s2, screen_center());
-    sprite_set_position(s3, screen_center());
+    for(int i{0};i < size ; i++){
+        s_array.push_back(create_sprite("ufo"));
+        sprite_set_position(s_array[i], screen_center());
+    }
 
-    sprite arr[3] = {s1, s2, s3};
+    std::vector<std::vector<key_code>> key_arr;
+    key_arr.push_back({LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY});
+    key_arr.push_back({A_KEY, D_KEY, W_KEY, S_KEY});
+    key_arr.push_back({J_KEY, L_KEY, I_KEY, K_KEY});
 
-    std::vector<sprite> vec_arr;
-    vec_arr.push_back(s1);
-    vec_arr.push_back(s2);
-    vec_arr.push_back(s3);
-
-    sprite_set_anchor_point(s1, bitmap_cell_center(sprite_layer(s1, 0)));
+    sprite_set_anchor_point(s_array[0], bitmap_cell_center(sprite_layer(s_array[0], 0)));
 
     bool follow = true;
 
@@ -43,43 +51,18 @@ void run_camera_test()
     {
         process_events();
 
-        if ( key_down( LEFT_KEY) ) sprite_set_dx(s1, -1);
-        else if ( key_down( RIGHT_KEY) ) sprite_set_dx(s1, 1);
-        else sprite_set_dx(s1, 0);
-
-        if ( key_down( UP_KEY) ) sprite_set_dy(s1, -1);
-        else if ( key_down( DOWN_KEY) ) sprite_set_dy(s1, 1);
-        else sprite_set_dy(s1, 0);
-
-
-        if ( key_down( A_KEY) ) sprite_set_dx(s2, -1);
-        else if ( key_down( D_KEY) ) sprite_set_dx(s2, 1);
-        else sprite_set_dx(s2, 0);
-
-        if ( key_down( W_KEY) ) sprite_set_dy(s2, -1);
-        else if ( key_down( S_KEY) ) sprite_set_dy(s2, 1);
-        else sprite_set_dy(s2, 0);
-
-
-        if ( key_down( J_KEY) ) sprite_set_dx(s3, -1);
-        else if ( key_down( L_KEY) ) sprite_set_dx(s3, 1);
-        else sprite_set_dx(s3, 0);
-
-        if ( key_down( I_KEY) ) sprite_set_dy(s3, -1);
-        else if ( key_down( K_KEY) ) sprite_set_dy(s3, 1);
-        else sprite_set_dy(s3, 0);
-
         if ( key_typed(F_KEY) )
         {
-            follow = not follow;
+            follow =  !follow;
+        }
+        
+        for(int i{0};i < size ; i++){
+            set_keys(key_arr[i], s_array[i]);
+            update_sprite(s_array[i]);
         }
 
-        update_sprite(s1);
-        update_sprite(s2);
-        update_sprite(s3);
-
-        if ( follow ){
-            center_camera_on(vec_arr, 0, 0);
+        if (follow){
+            center_camera_on(s_array, 0, 0);
         }else{
             set_camera_x(0);
             set_camera_y(0);
@@ -94,9 +77,10 @@ void run_camera_test()
 
         draw_triangle(COLOR_AQUA, screen_width() / 2, 0, 0, screen_height(), screen_width(), screen_height());
 
-        draw_sprite(s1);
-        draw_sprite(s2);
-        draw_sprite(s3);
+        for(int i{0};i < size ; i++){
+            draw_sprite(s_array[i]);
+        }
+
         refresh_screen();
     }
 

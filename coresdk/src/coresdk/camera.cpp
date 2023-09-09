@@ -168,28 +168,12 @@ namespace splashkit_lib
         move_camera_by(offset.x, offset.y);
     }
 
-    // void center_camera_on(sprite s, double offset_x, double offset_y)
-    // {
-    //     point_2d center = sprite_position(s);
-
-    //     double sc_x = center.x + offset_x - (screen_width() / 2);
-    //     double sc_y = center.y + offset_y - (screen_height() / 2);
-
-    //     move_camera_to(sc_x, sc_y);
-    // }
-
-    // void center_camera_on(sprite s, const vector_2d &offset)
-    // {
-    //     center_camera_on(s, offset.x, offset.y);
-    // }
-
-    // Function to center the camera on a vector array
     void center_camera_on(vector<sprite> s, double offset_x, double offset_y) {
 		
 		double sc_x{0};
 		double sc_y{0};
 		
-        for (const auto& ele : s) {
+        for (const sprite& ele : s) {
             sc_x += (sprite_position(ele).x /s.size());
             sc_y += (sprite_position(ele).y /s.size());
         }
@@ -199,16 +183,13 @@ namespace splashkit_lib
 		move_camera_to(sc_x, sc_y);
     }
     
-    // Function to center the camera on a static array, doube anyone needed this but made it anyways
     void center_camera_on(sprite s[],int size, double offset_x, double offset_y) {
-        // int size = sizeof(s)/sizeof(s[0]);
 		double sc_x{0};
 		double sc_y{0};
         
         for (int i = 0; i < size; ++i) {
             sc_x += (sprite_position(s[i]).x /size);
             sc_y += (sprite_position(s[i]).y /size);
-            
         }
 		
 		sc_x = sc_x + offset_x - (screen_width() / 2);
@@ -216,7 +197,6 @@ namespace splashkit_lib
 		move_camera_to(sc_x, sc_y);
     }
 
-    // Function to center the camera on a single sprite
     void center_camera_on(sprite s, double offset_x, double offset_y) {
 
         point_2d center = sprite_position(s);
