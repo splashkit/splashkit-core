@@ -170,31 +170,31 @@ namespace splashkit_lib
 
     void center_camera_on(vector<sprite> s, double offset_x, double offset_y) {
 		
-		double sc_x{0};
-		double sc_y{0};
+        double sc_x{0};
+        double sc_y{0};
 		
         for (const sprite& ele : s) {
             sc_x += (sprite_position(ele).x /s.size());
             sc_y += (sprite_position(ele).y /s.size());
         }
 		
-		sc_x = sc_x + offset_x - (screen_width() / 2);
-		sc_y = sc_y + offset_y - (screen_height() / 2);
-		move_camera_to(sc_x, sc_y);
+        sc_x = sc_x + offset_x - (screen_width() / 2);
+        sc_y = sc_y + offset_y - (screen_height() / 2);
+        move_camera_to(sc_x, sc_y);
     }
     
     void center_camera_on(sprite s[],int size, double offset_x, double offset_y) {
-		double sc_x{0};
-		double sc_y{0};
+        double sc_x{0};
+        double sc_y{0};
         
         for (int i = 0; i < size; ++i) {
             sc_x += (sprite_position(s[i]).x /size);
             sc_y += (sprite_position(s[i]).y /size);
         }
 		
-		sc_x = sc_x + offset_x - (screen_width() / 2);
-		sc_y = sc_y + offset_y - (screen_height() / 2);
-		move_camera_to(sc_x, sc_y);
+        sc_x = sc_x + offset_x - (screen_width() / 2);
+        sc_y = sc_y + offset_y - (screen_height() / 2);
+        move_camera_to(sc_x, sc_y);
     }
 
     void center_camera_on(sprite s, double offset_x, double offset_y) {
