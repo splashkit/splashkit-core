@@ -253,7 +253,7 @@ namespace splashkit_lib
     bool point_in_window(window wind, const point_2d &pt);
 
 
-    
+
     //---------------------------------------------------------------------------
     // Camera movement
     //---------------------------------------------------------------------------
@@ -318,19 +318,6 @@ namespace splashkit_lib
     void center_camera_on(sprite s, double offset_x, double offset_y);
 
     /**
-     * Set the camera view to be centered over the specific sprite. The offset
-     * vector allows you to move the sprite from the direct center of the screen.
-     *
-     * @param s        The sprite to track.
-     * @param offset   The amount to offset the camera, allowing you to position
-     *                 the sprite away from the center of the screen.
-     *
-     * @attribute suffix    vector
-     * @attribute method center_on
-     */
-    void center_camera_on(sprite s, const vector_2d &offset);
-
-    /**
      * Set the camera view to be centered over a list of sprites. The offset
      * vector allows you to move the sprites from the direct center of the screen.
      *
@@ -375,6 +362,19 @@ namespace splashkit_lib
      *                 the sprites away from the center of the screen.
      */
     void center_camera_on(vector<sprite> s, const vector_2d &offset);
+
+    /**
+     * Set the camera view to be centered over the specific sprite. The offset
+     * vector allows you to move the sprite from the direct center of the screen.
+     *
+     * @param s        The sprite to track.
+     * @param offset   The amount to offset the camera, allowing you to position
+     *                 the sprite away from the center of the screen.
+     *
+     * @attribute suffix    vector
+     * @attribute method center_on
+     */
+    void center_camera_on(sprite s, const vector_2d &offset);
 
 
 #endif /* camera_hpp */
