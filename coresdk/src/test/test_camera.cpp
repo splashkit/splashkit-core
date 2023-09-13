@@ -11,19 +11,39 @@
 #include "graphics.h"
 #include "camera.h"
 #include "input.h"
+#include <vector>
 
 using namespace splashkit_lib;
+
+void set_keys(std::vector<key_code> keys, sprite s){
+    if ( key_down(keys[0]) ) sprite_set_dx(s, -1);
+    else if ( key_down(keys[1]) ) sprite_set_dx(s, 1);
+    else sprite_set_dx(s, 0);
+
+    if ( key_down(keys[2]) ) sprite_set_dy(s, -1);
+    else if ( key_down(keys[3]) ) sprite_set_dy(s, 1);
+    else sprite_set_dy(s, 0);
+}
 
 void run_camera_test()
 {
     window w1 = open_window("Camera Test", 600, 600);
 
     load_bitmap("ufo", "ufo.png");
-    sprite s = create_sprite("ufo");
+    std::vector<sprite> s_array;
+    int size = 3;
 
-    sprite_set_position(s, screen_center());
+    for(int i{0};i < size ; i++){
+        s_array.push_back(create_sprite("ufo"));
+        sprite_set_position(s_array[i], screen_center());
+    }
 
-    sprite_set_anchor_point(s, bitmap_cell_center(sprite_layer(s, 0)));
+    std::vector<std::vector<key_code>> key_arr;
+    key_arr.push_back({LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY});
+    key_arr.push_back({A_KEY, D_KEY, W_KEY, S_KEY});
+    key_arr.push_back({J_KEY, L_KEY, I_KEY, K_KEY});
+
+    sprite_set_anchor_point(s_array[0], bitmap_cell_center(sprite_layer(s_array[0], 0)));
 
     bool follow = true;
 
@@ -31,27 +51,19 @@ void run_camera_test()
     {
         process_events();
 
-        if ( key_down( LEFT_KEY) ) sprite_set_dx(s, -1);
-        else if ( key_down( RIGHT_KEY) ) sprite_set_dx(s, 1);
-        else sprite_set_dx(s, 0);
-
-        if ( key_down( UP_KEY) ) sprite_set_dy(s, -1);
-        else if ( key_down( DOWN_KEY) ) sprite_set_dy(s, 1);
-        else sprite_set_dy(s, 0);
-
         if ( key_typed(F_KEY) )
         {
-            follow = not follow;
+            follow =  !follow;
+        }
+        
+        for(int i{0};i < size ; i++){
+            set_keys(key_arr[i], s_array[i]);
+            update_sprite(s_array[i]);
         }
 
-        update_sprite(s);
-
-        if ( follow )
-        {
-            center_camera_on(s, 0, 0);
-        }
-        else
-        {
+        if (follow){
+            center_camera_on(s_array, 0, 0);
+        }else{
             set_camera_x(0);
             set_camera_y(0);
         }
@@ -65,7 +77,10 @@ void run_camera_test()
 
         draw_triangle(COLOR_AQUA, screen_width() / 2, 0, 0, screen_height(), screen_width(), screen_height());
 
-        draw_sprite(s);
+        for(int i{0};i < size ; i++){
+            draw_sprite(s_array[i]);
+        }
+
         refresh_screen();
     }
 
