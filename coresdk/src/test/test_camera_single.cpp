@@ -11,7 +11,6 @@
 #include "graphics.h"
 #include "camera.h"
 #include "input.h"
-#include <vector>
 
 using namespace splashkit_lib;
 
