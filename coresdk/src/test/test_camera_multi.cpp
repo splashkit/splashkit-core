@@ -25,9 +25,9 @@ void set_keys(std::vector<key_code> keys, sprite s){
     else sprite_set_dy(s, 0);
 }
 
-void run_camera_test()
+void run_camera_test_multi()
 {
-    window w1 = open_window("Camera Test", 600, 600);
+    window w1 = open_window("Camera Test Multi", 600, 600);
 
     load_bitmap("ufo", "ufo.png");
     std::vector<sprite> s_array;
@@ -35,7 +35,7 @@ void run_camera_test()
 
     for(int i{0};i < size ; i++){
         s_array.push_back(create_sprite("ufo"));
-        sprite_set_position(s_array[i], screen_center());
+        sprite_set_position(s_array[i], {300,300});
     }
 
     std::vector<std::vector<key_code>> key_arr;
