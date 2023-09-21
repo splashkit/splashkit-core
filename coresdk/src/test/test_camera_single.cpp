@@ -14,14 +14,25 @@
 
 using namespace splashkit_lib;
 
-void run_camera_test()
+void set_keys(key_code keys[], sprite s){
+    if ( key_down(keys[0]) ) sprite_set_dx(s, -1);
+    else if ( key_down(keys[1]) ) sprite_set_dx(s, 1);
+    else sprite_set_dx(s, 0);
+
+    if ( key_down(keys[2]) ) sprite_set_dy(s, -1);
+    else if ( key_down(keys[3]) ) sprite_set_dy(s, 1);
+    else sprite_set_dy(s, 0);
+}
+
+void run_camera_test_single()
 {
-    window w1 = open_window("Camera Test", 600, 600);
+    window w1 = open_window("Camera Test Single", 600, 600);
 
     load_bitmap("ufo", "ufo.png");
     sprite s = create_sprite("ufo");
+    sprite_set_position(s, {300,300});
 
-    sprite_set_position(s, screen_center());
+    key_code keys [] = {LEFT_KEY, RIGHT_KEY, UP_KEY, DOWN_KEY};
 
     sprite_set_anchor_point(s, bitmap_cell_center(sprite_layer(s, 0)));
 
@@ -31,27 +42,17 @@ void run_camera_test()
     {
         process_events();
 
-        if ( key_down( LEFT_KEY) ) sprite_set_dx(s, -1);
-        else if ( key_down( RIGHT_KEY) ) sprite_set_dx(s, 1);
-        else sprite_set_dx(s, 0);
-
-        if ( key_down( UP_KEY) ) sprite_set_dy(s, -1);
-        else if ( key_down( DOWN_KEY) ) sprite_set_dy(s, 1);
-        else sprite_set_dy(s, 0);
-
         if ( key_typed(F_KEY) )
         {
-            follow = not follow;
+            follow =  !follow;
         }
-
+        
+        set_keys(keys, s);
         update_sprite(s);
 
-        if ( follow )
-        {
+        if (follow){
             center_camera_on(s, 0, 0);
-        }
-        else
-        {
+        }else{
             set_camera_x(0);
             set_camera_y(0);
         }
@@ -66,6 +67,7 @@ void run_camera_test()
         draw_triangle(COLOR_AQUA, screen_width() / 2, 0, 0, screen_height(), screen_width(), screen_height());
 
         draw_sprite(s);
+
         refresh_screen();
     }
 
