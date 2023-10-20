@@ -11,6 +11,7 @@
 #include "types.h"
 #include <string>
 #include <vector>
+#include <cstdint>
 using std::string;
 using std::vector;
 

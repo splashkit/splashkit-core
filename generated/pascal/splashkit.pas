@@ -1327,8 +1327,10 @@ function Trim(const text: String): String;
 function PointAt(x: Double; y: Double): Point2D;
 function PointAtOrigin(): Point2D;
 function PointInCircle(const pt: Point2D; const c: Circle): Boolean;
+function PointInCircle(ptx: Double; pty: Double; cx: Double; cy: Double; radius: Double): Boolean;
 function PointInQuad(const pt: Point2D; const q: Quad): Boolean;
 function PointInRectangle(const pt: Point2D; const rect: Rectangle): Boolean;
+function PointInRectangle(ptx: Double; pty: Double; rectX: Double; rectY: Double; rectWidth: Double; rectHeight: Double): Boolean;
 function PointInTriangle(const pt: Point2D; const tri: Triangle): Boolean;
 function PointLineDistance(const pt: Point2D; const l: Line): Single;
 function PointOffsetBy(const startPoint: Point2D; const offset: Vector2D): Point2D;
@@ -1349,6 +1351,7 @@ function CircleRadius(c: Circle): Single;
 function CircleX(const c: Circle): Single;
 function CircleY(const c: Circle): Single;
 function CirclesIntersect(c1: Circle; c2: Circle): Boolean;
+function CirclesIntersect(c1X: Double; c1Y: Double; c1Radius: Double; c2X: Double; c2Y: Double; c2Radius: Double): Boolean;
 function ClosestPointOnCircle(const fromPt: Point2D; const c: Circle): Point2D;
 function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2D;
 function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2D;
@@ -3448,8 +3451,10 @@ function __sklib__trim__string_ref(const text: __sklib_string): __sklib_string; 
 function __sklib__point_at__double__double(x: Double; y: Double): __sklib_point_2d; cdecl; external;
 function __sklib__point_at_origin(): __sklib_point_2d; cdecl; external;
 function __sklib__point_in_circle__point_2d_ref__circle_ref(const pt: __sklib_point_2d; const c: __sklib_circle): LongInt; cdecl; external;
+function __sklib__point_in_circle__double__double__double__double__double(ptx: Double; pty: Double; cx: Double; cy: Double; radius: Double): LongInt; cdecl; external;
 function __sklib__point_in_quad__point_2d_ref__quad_ref(const pt: __sklib_point_2d; const q: __sklib_quad): LongInt; cdecl; external;
 function __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(const pt: __sklib_point_2d; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__point_in_rectangle__double__double__double__double__double__double(ptx: Double; pty: Double; rectX: Double; rectY: Double; rectWidth: Double; rectHeight: Double): LongInt; cdecl; external;
 function __sklib__point_in_triangle__point_2d_ref__triangle_ref(const pt: __sklib_point_2d; const tri: __sklib_triangle): LongInt; cdecl; external;
 function __sklib__point_line_distance__point_2d_ref__line_ref(const pt: __sklib_point_2d; const l: __sklib_line): Single; cdecl; external;
 function __sklib__point_offset_by__point_2d_ref__vector_2d_ref(const startPoint: __sklib_point_2d; const offset: __sklib_vector_2d): __sklib_point_2d; cdecl; external;
@@ -3470,6 +3475,7 @@ function __sklib__circle_radius__circle(c: __sklib_circle): Single; cdecl; exter
 function __sklib__circle_x__circle_ref(const c: __sklib_circle): Single; cdecl; external;
 function __sklib__circle_y__circle_ref(const c: __sklib_circle): Single; cdecl; external;
 function __sklib__circles_intersect__circle__circle(c1: __sklib_circle; c2: __sklib_circle): LongInt; cdecl; external;
+function __sklib__circles_intersect__double__double__double__double__double__double(c1X: Double; c1Y: Double; c1Radius: Double; c2X: Double; c2Y: Double; c2Radius: Double): LongInt; cdecl; external;
 function __sklib__closest_point_on_circle__point_2d_ref__circle_ref(const fromPt: __sklib_point_2d; const c: __sklib_circle): __sklib_point_2d; cdecl; external;
 function __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(const c: __sklib_circle; const l: __sklib_line): __sklib_point_2d; cdecl; external;
 function __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(const c: __sklib_circle; const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
@@ -13438,6 +13444,23 @@ begin
   __skreturn := __sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
   result := __skadapter__to_bool(__skreturn);
 end;
+function PointInCircle(ptx: Double; pty: Double; cx: Double; cy: Double; radius: Double): Boolean;
+var
+  __skparam__ptx: Double;
+  __skparam__pty: Double;
+  __skparam__cx: Double;
+  __skparam__cy: Double;
+  __skparam__radius: Double;
+  __skreturn: LongInt;
+begin
+  __skparam__ptx := __skadapter__to_sklib_double(ptx);
+  __skparam__pty := __skadapter__to_sklib_double(pty);
+  __skparam__cx := __skadapter__to_sklib_double(cx);
+  __skparam__cy := __skadapter__to_sklib_double(cy);
+  __skparam__radius := __skadapter__to_sklib_double(radius);
+  __skreturn := __sklib__point_in_circle__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__cx, __skparam__cy, __skparam__radius);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function PointInQuad(const pt: Point2D; const q: Quad): Boolean;
 var
   __skparam__pt: __sklib_point_2d;
@@ -13458,6 +13481,25 @@ begin
   __skparam__pt := __skadapter__to_sklib_point_2d(pt);
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function PointInRectangle(ptx: Double; pty: Double; rectX: Double; rectY: Double; rectWidth: Double; rectHeight: Double): Boolean;
+var
+  __skparam__ptx: Double;
+  __skparam__pty: Double;
+  __skparam__rect_x: Double;
+  __skparam__rect_y: Double;
+  __skparam__rect_width: Double;
+  __skparam__rect_height: Double;
+  __skreturn: LongInt;
+begin
+  __skparam__ptx := __skadapter__to_sklib_double(ptx);
+  __skparam__pty := __skadapter__to_sklib_double(pty);
+  __skparam__rect_x := __skadapter__to_sklib_double(rectX);
+  __skparam__rect_y := __skadapter__to_sklib_double(rectY);
+  __skparam__rect_width := __skadapter__to_sklib_double(rectWidth);
+  __skparam__rect_height := __skadapter__to_sklib_double(rectHeight);
+  __skreturn := __sklib__point_in_rectangle__double__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__rect_x, __skparam__rect_y, __skparam__rect_width, __skparam__rect_height);
   result := __skadapter__to_bool(__skreturn);
 end;
 function PointInTriangle(const pt: Point2D; const tri: Triangle): Boolean;
@@ -13662,6 +13704,25 @@ begin
   __skparam__c1 := __skadapter__to_sklib_circle(c1);
   __skparam__c2 := __skadapter__to_sklib_circle(c2);
   __skreturn := __sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CirclesIntersect(c1X: Double; c1Y: Double; c1Radius: Double; c2X: Double; c2Y: Double; c2Radius: Double): Boolean;
+var
+  __skparam__c1_x: Double;
+  __skparam__c1_y: Double;
+  __skparam__c1_radius: Double;
+  __skparam__c2_x: Double;
+  __skparam__c2_y: Double;
+  __skparam__c2_radius: Double;
+  __skreturn: LongInt;
+begin
+  __skparam__c1_x := __skadapter__to_sklib_double(c1X);
+  __skparam__c1_y := __skadapter__to_sklib_double(c1Y);
+  __skparam__c1_radius := __skadapter__to_sklib_double(c1Radius);
+  __skparam__c2_x := __skadapter__to_sklib_double(c2X);
+  __skparam__c2_y := __skadapter__to_sklib_double(c2Y);
+  __skparam__c2_radius := __skadapter__to_sklib_double(c2Radius);
+  __skreturn := __sklib__circles_intersect__double__double__double__double__double__double(__skparam__c1_x, __skparam__c1_y, __skparam__c1_radius, __skparam__c2_x, __skparam__c2_y, __skparam__c2_radius);
   result := __skadapter__to_bool(__skreturn);
 end;
 function ClosestPointOnCircle(const fromPt: Point2D; const c: Circle): Point2D;

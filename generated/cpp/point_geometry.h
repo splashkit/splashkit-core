@@ -10,14 +10,17 @@
 #include "types.h"
 #include <string>
 #include <vector>
+#include <cstdint>
 using std::string;
 using std::vector;
 
 point_2d point_at(double x, double y);
 point_2d point_at_origin();
 bool point_in_circle(const point_2d &pt, const circle &c);
+bool point_in_circle(double ptx, double pty, double cx, double cy, double radius);
 bool point_in_quad(const point_2d &pt, const quad &q);
 bool point_in_rectangle(const point_2d &pt, const rectangle &rect);
+bool point_in_rectangle(double ptx, double pty, double rect_x, double rect_y, double rect_width, double rect_height);
 bool point_in_triangle(const point_2d &pt, const triangle &tri);
 float point_line_distance(const point_2d &pt, const line &l);
 point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset);

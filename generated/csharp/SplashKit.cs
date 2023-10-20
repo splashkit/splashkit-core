@@ -4026,11 +4026,17 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_circle__point_2d_ref__circle_ref(__sklib_point_2d pt, __sklib_circle c);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__point_in_circle__double__double__double__double__double(double ptx, double pty, double cx, double cy, double radius);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_quad__point_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_quad__point_2d_ref__quad_ref(__sklib_point_2d pt, __sklib_quad q);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__sklib_point_2d pt, __sklib_rectangle rect);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__point_in_rectangle__double__double__double__double__double__double(double ptx, double pty, double rectX, double rectY, double rectWidth, double rectHeight);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_triangle__point_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_triangle__point_2d_ref__triangle_ref(__sklib_point_2d pt, __sklib_triangle tri);
@@ -4091,6 +4097,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__circle__circle", CharSet=CharSet.Ansi)]
     private static extern int __sklib__circles_intersect__circle__circle(__sklib_circle c1, __sklib_circle c2);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__circles_intersect__double__double__double__double__double__double(double c1X, double c1Y, double c1Radius, double c2X, double c2Y, double c2Radius);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_circle__point_2d_ref__circle_ref(__sklib_point_2d fromPt, __sklib_circle c);
@@ -13666,6 +13675,22 @@ namespace SplashKitSDK
       __skreturn = __sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool PointInCircle(double ptx, double pty, double cx, double cy, double radius)
+    {
+      double __skparam__ptx;
+      double __skparam__pty;
+      double __skparam__cx;
+      double __skparam__cy;
+      double __skparam__radius;
+      int __skreturn;
+      __skparam__ptx = __skadapter__to_sklib_double(ptx);
+      __skparam__pty = __skadapter__to_sklib_double(pty);
+      __skparam__cx = __skadapter__to_sklib_double(cx);
+      __skparam__cy = __skadapter__to_sklib_double(cy);
+      __skparam__radius = __skadapter__to_sklib_double(radius);
+      __skreturn = __sklib__point_in_circle__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__cx, __skparam__cy, __skparam__radius);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool PointInQuad(Point2D pt, Quad q)
     {
       __sklib_point_2d __skparam__pt;
@@ -13684,6 +13709,24 @@ namespace SplashKitSDK
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skparam__rect = __skadapter__to_sklib_rectangle(rect);
       __skreturn = __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool PointInRectangle(double ptx, double pty, double rectX, double rectY, double rectWidth, double rectHeight)
+    {
+      double __skparam__ptx;
+      double __skparam__pty;
+      double __skparam__rect_x;
+      double __skparam__rect_y;
+      double __skparam__rect_width;
+      double __skparam__rect_height;
+      int __skreturn;
+      __skparam__ptx = __skadapter__to_sklib_double(ptx);
+      __skparam__pty = __skadapter__to_sklib_double(pty);
+      __skparam__rect_x = __skadapter__to_sklib_double(rectX);
+      __skparam__rect_y = __skadapter__to_sklib_double(rectY);
+      __skparam__rect_width = __skadapter__to_sklib_double(rectWidth);
+      __skparam__rect_height = __skadapter__to_sklib_double(rectHeight);
+      __skreturn = __sklib__point_in_rectangle__double__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__rect_x, __skparam__rect_y, __skparam__rect_width, __skparam__rect_height);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool PointInTriangle(Point2D pt, Triangle tri)
@@ -13868,6 +13911,24 @@ namespace SplashKitSDK
       __skparam__c1 = __skadapter__to_sklib_circle(c1);
       __skparam__c2 = __skadapter__to_sklib_circle(c2);
       __skreturn = __sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool CirclesIntersect(double c1X, double c1Y, double c1Radius, double c2X, double c2Y, double c2Radius)
+    {
+      double __skparam__c1_x;
+      double __skparam__c1_y;
+      double __skparam__c1_radius;
+      double __skparam__c2_x;
+      double __skparam__c2_y;
+      double __skparam__c2_radius;
+      int __skreturn;
+      __skparam__c1_x = __skadapter__to_sklib_double(c1X);
+      __skparam__c1_y = __skadapter__to_sklib_double(c1Y);
+      __skparam__c1_radius = __skadapter__to_sklib_double(c1Radius);
+      __skparam__c2_x = __skadapter__to_sklib_double(c2X);
+      __skparam__c2_y = __skadapter__to_sklib_double(c2Y);
+      __skparam__c2_radius = __skadapter__to_sklib_double(c2Radius);
+      __skreturn = __sklib__circles_intersect__double__double__double__double__double__double(__skparam__c1_x, __skparam__c1_y, __skparam__c1_radius, __skparam__c2_x, __skparam__c2_y, __skparam__c2_radius);
       return __skadapter__to_bool(__skreturn);
     }
     public static Point2D ClosestPointOnCircle(Point2D fromPt, Circle c)

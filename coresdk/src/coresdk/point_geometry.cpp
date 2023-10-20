@@ -119,6 +119,11 @@ namespace splashkit_lib
         else return true;
     }
 
+    bool point_in_rectangle(double ptx, double pty, double rect_x, double rect_y, double rect_width, double rect_height)
+    {
+        return point_in_rectangle(point_at(ptx, pty), rectangle_from(rect_x, rect_y, rect_width, rect_height));
+    }
+
     bool point_in_quad(const point_2d &pt, const quad &q)
     {
         return
@@ -134,6 +139,11 @@ namespace splashkit_lib
     bool point_in_circle(const point_2d &pt, const circle &c)
     {
         return point_point_distance(c.center, pt) <= abs((long long)c.radius);
+    }
+
+    bool point_in_circle(double ptx, double pty, double cx, double cy, double radius)
+    {
+        return point_in_circle(point_at(ptx, pty), circle_at(cx, cy, radius));
     }
 
     bool point_on_line(const point_2d &pt, const line &l)

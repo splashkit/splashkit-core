@@ -100,6 +100,21 @@ namespace splashkit_lib
     bool point_in_rectangle(const point_2d &pt, const rectangle &rect);
 
     /**
+     * Returns true if the point is within the bounds of a Rectangle.
+     * 
+     * @param ptx the x value of the point
+     * @param pty the y value of the point
+     * @param rect_x x value of the rectangle
+     * @param rect_y y value of the rectangle
+     * @param rect_width width of the rectangle
+     * @param rect_height height of the rectangle
+     * @returns true when the point is in the rectangle, otherwise it returns false.
+     *
+     * @attribute suffix  with_values
+     */
+    bool point_in_rectangle(double ptx, double pty, double rect_x, double rect_y, double rect_width, double rect_height);
+
+    /**
      *  Tests if a point is in a quad.
      *
      * @param pt    The point to test.
@@ -116,6 +131,20 @@ namespace splashkit_lib
      * @return    True if the point is within the area of the circle
      */
     bool point_in_circle(const point_2d &pt, const circle &c);
+
+    /**
+     * Return true if the point is in the circle.
+     * 
+     * @param ptx the x value of the point
+     * @param pty the y value of the point
+     * @param cx the x value of the centre of the circle
+     * @param cy the y value of the centre of the circle
+     * @param radius the radius of the circle
+     * @returns True when the point is in the circle, otherwise it returns false.
+     * 
+     * @attribute suffix  with_values
+     */
+    bool point_in_circle(double ptx, double pty, double cx, double cy, double radius);
 
     /**
      *  Returns true if point `pt` is on the line `l`.

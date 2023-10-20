@@ -9,6 +9,7 @@
 #include "types.h"
 #include <string>
 #include <vector>
+#include <cstdint>
 using std::string;
 using std::vector;
 
@@ -19,6 +20,7 @@ float circle_radius(const circle c);
 float circle_x(const circle &c);
 float circle_y(const circle &c);
 bool circles_intersect(circle c1, circle c2);
+bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius);
 point_2d closest_point_on_circle(const point_2d &from_pt, const circle &c);
 point_2d closest_point_on_line_from_circle(const circle &c, const line &l);
 point_2d closest_point_on_rect_from_circle(const circle &c, const rectangle &rect);

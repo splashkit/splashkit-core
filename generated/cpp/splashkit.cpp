@@ -5690,6 +5690,15 @@ bool point_in_circle(const point_2d &pt, const circle &c) {
     int __skreturn = __sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c);
     return __skadapter__to_bool(__skreturn);
 }
+bool point_in_circle(double ptx, double pty, double cx, double cy, double radius) {
+    double __skparam__ptx = __skadapter__to_double(ptx);
+    double __skparam__pty = __skadapter__to_double(pty);
+    double __skparam__cx = __skadapter__to_double(cx);
+    double __skparam__cy = __skadapter__to_double(cy);
+    double __skparam__radius = __skadapter__to_double(radius);
+    int __skreturn = __sklib__point_in_circle__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__cx, __skparam__cy, __skparam__radius);
+    return __skadapter__to_bool(__skreturn);
+}
 bool point_in_quad(const point_2d &pt, const quad &q) {
     const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     const __sklib_quad __skparam__q = __skadapter__to_sklib_quad(q);
@@ -5700,6 +5709,16 @@ bool point_in_rectangle(const point_2d &pt, const rectangle &rect) {
     const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
     const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
     int __skreturn = __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect);
+    return __skadapter__to_bool(__skreturn);
+}
+bool point_in_rectangle(double ptx, double pty, double rect_x, double rect_y, double rect_width, double rect_height) {
+    double __skparam__ptx = __skadapter__to_double(ptx);
+    double __skparam__pty = __skadapter__to_double(pty);
+    double __skparam__rect_x = __skadapter__to_double(rect_x);
+    double __skparam__rect_y = __skadapter__to_double(rect_y);
+    double __skparam__rect_width = __skadapter__to_double(rect_width);
+    double __skparam__rect_height = __skadapter__to_double(rect_height);
+    int __skreturn = __sklib__point_in_rectangle__double__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__rect_x, __skparam__rect_y, __skparam__rect_width, __skparam__rect_height);
     return __skadapter__to_bool(__skreturn);
 }
 bool point_in_triangle(const point_2d &pt, const triangle &tri) {
@@ -5812,6 +5831,16 @@ bool circles_intersect(circle c1, circle c2) {
     __sklib_circle __skparam__c1 = __skadapter__to_sklib_circle(c1);
     __sklib_circle __skparam__c2 = __skadapter__to_sklib_circle(c2);
     int __skreturn = __sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2);
+    return __skadapter__to_bool(__skreturn);
+}
+bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius) {
+    double __skparam__c1_x = __skadapter__to_double(c1_x);
+    double __skparam__c1_y = __skadapter__to_double(c1_y);
+    double __skparam__c1_radius = __skadapter__to_double(c1_radius);
+    double __skparam__c2_x = __skadapter__to_double(c2_x);
+    double __skparam__c2_y = __skadapter__to_double(c2_y);
+    double __skparam__c2_radius = __skadapter__to_double(c2_radius);
+    int __skreturn = __sklib__circles_intersect__double__double__double__double__double__double(__skparam__c1_x, __skparam__c1_y, __skparam__c1_radius, __skparam__c2_x, __skparam__c2_y, __skparam__c2_radius);
     return __skadapter__to_bool(__skreturn);
 }
 point_2d closest_point_on_circle(const point_2d &from_pt, const circle &c) {

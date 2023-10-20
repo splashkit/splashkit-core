@@ -3303,10 +3303,14 @@ sklib.__sklib__point_at_origin.argtypes = [  ]
 sklib.__sklib__point_at_origin.restype = _sklib_point_2d
 sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
 sklib.__sklib__point_in_circle__point_2d_ref__circle_ref.restype = c_bool
+sklib.__sklib__point_in_circle__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__point_in_circle__double__double__double__double__double.restype = c_bool
 sklib.__sklib__point_in_quad__point_2d_ref__quad_ref.argtypes = [ _sklib_point_2d, _sklib_quad ]
 sklib.__sklib__point_in_quad__point_2d_ref__quad_ref.restype = c_bool
 sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref.argtypes = [ _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__point_in_rectangle__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__point_in_rectangle__double__double__double__double__double__double.restype = c_bool
 sklib.__sklib__point_in_triangle__point_2d_ref__triangle_ref.argtypes = [ _sklib_point_2d, _sklib_triangle ]
 sklib.__sklib__point_in_triangle__point_2d_ref__triangle_ref.restype = c_bool
 sklib.__sklib__point_line_distance__point_2d_ref__line_ref.argtypes = [ _sklib_point_2d, _sklib_line ]
@@ -3347,6 +3351,8 @@ sklib.__sklib__circle_y__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_y__circle_ref.restype = c_float
 sklib.__sklib__circles_intersect__circle__circle.argtypes = [ _sklib_circle, _sklib_circle ]
 sklib.__sklib__circles_intersect__circle__circle.restype = c_bool
+sklib.__sklib__circles_intersect__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double ]
+sklib.__sklib__circles_intersect__double__double__double__double__double__double.restype = c_bool
 sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
 sklib.__sklib__closest_point_on_circle__point_2d_ref__circle_ref.restype = _sklib_point_2d
 sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.argtypes = [ _sklib_circle, _sklib_line ]
@@ -8091,6 +8097,14 @@ def point_in_circle ( pt, c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__point_in_circle__point_2d_ref__circle_ref(__skparam__pt, __skparam__c)
     return __skadapter__to_bool(__skreturn)
+def point_in_circle_with_values ( ptx, pty, cx, cy, radius ):
+    __skparam__ptx = __skadapter__to_sklib_double(ptx)
+    __skparam__pty = __skadapter__to_sklib_double(pty)
+    __skparam__cx = __skadapter__to_sklib_double(cx)
+    __skparam__cy = __skadapter__to_sklib_double(cy)
+    __skparam__radius = __skadapter__to_sklib_double(radius)
+    __skreturn = sklib.__sklib__point_in_circle__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__cx, __skparam__cy, __skparam__radius)
+    return __skadapter__to_bool(__skreturn)
 def point_in_quad ( pt, q ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skparam__q = __skadapter__to_sklib_quad(q)
@@ -8100,6 +8114,15 @@ def point_in_rectangle ( pt, rect ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__skparam__pt, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def point_in_rectangle_with_values ( ptx, pty, rect_x, rect_y, rect_width, rect_height ):
+    __skparam__ptx = __skadapter__to_sklib_double(ptx)
+    __skparam__pty = __skadapter__to_sklib_double(pty)
+    __skparam__rect_x = __skadapter__to_sklib_double(rect_x)
+    __skparam__rect_y = __skadapter__to_sklib_double(rect_y)
+    __skparam__rect_width = __skadapter__to_sklib_double(rect_width)
+    __skparam__rect_height = __skadapter__to_sklib_double(rect_height)
+    __skreturn = sklib.__sklib__point_in_rectangle__double__double__double__double__double__double(__skparam__ptx, __skparam__pty, __skparam__rect_x, __skparam__rect_y, __skparam__rect_width, __skparam__rect_height)
     return __skadapter__to_bool(__skreturn)
 def point_in_triangle ( pt, tri ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -8192,6 +8215,15 @@ def circles_intersect ( c1, c2 ):
     __skparam__c1 = __skadapter__to_sklib_circle(c1)
     __skparam__c2 = __skadapter__to_sklib_circle(c2)
     __skreturn = sklib.__sklib__circles_intersect__circle__circle(__skparam__c1, __skparam__c2)
+    return __skadapter__to_bool(__skreturn)
+def circles_intersect_using_values ( c1_x, c1_y, c1_radius, c2_x, c2_y, c2_radius ):
+    __skparam__c1_x = __skadapter__to_sklib_double(c1_x)
+    __skparam__c1_y = __skadapter__to_sklib_double(c1_y)
+    __skparam__c1_radius = __skadapter__to_sklib_double(c1_radius)
+    __skparam__c2_x = __skadapter__to_sklib_double(c2_x)
+    __skparam__c2_y = __skadapter__to_sklib_double(c2_y)
+    __skparam__c2_radius = __skadapter__to_sklib_double(c2_radius)
+    __skreturn = sklib.__sklib__circles_intersect__double__double__double__double__double__double(__skparam__c1_x, __skparam__c1_y, __skparam__c1_radius, __skparam__c2_x, __skparam__c2_y, __skparam__c2_radius)
     return __skadapter__to_bool(__skreturn)
 def closest_point_on_circle ( from_pt, c ):
     __skparam__from_pt = __skadapter__to_sklib_point_2d(from_pt)
