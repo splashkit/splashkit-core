@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.2)
 project(splashkit)
 
+cmake_policy(SET CMP0083 NEW)
+include(CheckPIESupported)
+check_pie_supported()
+
 # SK Directories relative to cmake project
 set(SK_SRC "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/src")
 set(SK_EXT "${CMAKE_CURRENT_SOURCE_DIR}/../../coresdk/external")
@@ -202,11 +206,12 @@ set_target_properties(SplashKitBackend
 #### END SplashKitBackend STATIC LIBRARY ####
 #### sktest EXECUTABLE ####
 add_executable(sktest ${TEST_SOURCE_FILES})
+set_property(TARGET sktest PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
 target_link_libraries(sktest SplashKitBackend)
 target_link_libraries(sktest ${LIB_FLAGS})
 
-target_link_options(sktest PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
+# target_link_options(sktest PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
 
 set_target_properties(sktest
     PROPERTIES
@@ -229,8 +234,9 @@ add_custom_command(TARGET sktest
 
 #### skunit_tests EXECUTABLE ####
 add_executable(skunit_tests ${UNIT_TEST_SOURCE_FILES})
+set_property(TARGET skunit_tests PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
-target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
+# target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
 target_link_libraries(skunit_tests SplashKitBackend)
 target_link_libraries(skunit_tests ${LIB_FLAGS})
 
