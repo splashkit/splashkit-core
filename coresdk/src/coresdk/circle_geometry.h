@@ -43,6 +43,22 @@ namespace splashkit_lib
     bool circles_intersect(circle c1, circle c2);
 
     /**
+     * Detects if two circles intersect. This can be used to detect collisions between
+     * bounding circles. The circle data is passed in as individual values.
+     * 
+     * @param c1_x the x location of the first circle
+     * @param c1_y the y location of the first circle
+     * @param c1_radius the radius of the first circle
+     * @param c2_x the x location of the second circle
+     * @param c2_y the y location of the second circle
+     * @param c2_radius the radius of the second circle
+     * @return true when the two circles intersect
+     *
+     * @attribute suffix using_values
+     */
+    bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius);
+
+    /**
      *  Returns the center point of the circle.
      *
      * @param c   The circle to get the center point

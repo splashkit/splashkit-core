@@ -103,6 +103,11 @@ namespace splashkit_lib
         return point_point_distance(c1.center, c2.center) < c1.radius + c2.radius;
     }
 
+    bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius)
+    {
+        return point_point_distance(point_at(c1_x, c1_y), point_at(c2_x, c2_y)) < c1_radius + c2_radius;
+    }
+
 
     float circle_radius(const circle c)
     {
