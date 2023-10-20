@@ -89,3 +89,5 @@ bin/
 logs/
 out/skm
 out/lib/
+tools/scripts/nuget-pkg/obj
+tools/scripts/test/obj

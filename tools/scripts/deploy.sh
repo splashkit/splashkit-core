@@ -57,6 +57,20 @@ if [[ $GENERATE_LIB ]]; then
   echo
   sleep 0.5
   ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp,pascal,python,csharp,docs -w ${SK_GENERATED}/translator_cache.json
+  
+  cd "$APP_PATH/nuget-pkg"
+
+  echo
+  echo "What version for nuget?"
+  read nugetver
+
+  dotnet build --configuration Release /p:version=$nugetver
+
+  echo "Check you are happy to publish this, then publish using:"
+
+  echo "dotnet nuget push ./bin/Release/*.nupkg  --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
+  
+  cd "$APP_PATH"
 fi
 
 function do_make {
