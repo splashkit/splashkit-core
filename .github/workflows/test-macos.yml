@@ -11,6 +11,7 @@ jobs:
       - name: build
         working-directory: ./projects/cmake
         run: |
+          xcode-select --install
           cmake .
           make -j 2
       - name: execute
