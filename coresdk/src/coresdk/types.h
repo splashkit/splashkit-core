@@ -11,6 +11,7 @@
 #ifndef types_hpp
 #define types_hpp
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
