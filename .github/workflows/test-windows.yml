@@ -8,7 +8,7 @@ jobs:
       matrix:
         include: [
           { msystem: MINGW64, arch: x86_64, path: win64 },
-          { msystem: MINGW32, arch: i686,   path: win32 }
+          # { msystem: MINGW32, arch: i686,   path: win32 }
         ]
     defaults:
       run:

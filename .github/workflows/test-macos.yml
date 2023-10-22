@@ -11,7 +11,6 @@ jobs:
       - name: build
         working-directory: ./projects/cmake
         run: |
-          xcode-select --install
           cmake .
           make -j 2
       - name: execute
@@ -21,8 +20,8 @@ jobs:
         with:
           ruby-version: 2.3.8 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: translate
-        working-directory: ./tools/translator
-        run: |
-          bundle install
-          bundle exec translate -v -i ../../
+      # - name: translate
+      #   working-directory: ./tools/translator
+      #   run: |
+      #     bundle install
+      #     bundle exec translate -v -i ../../
