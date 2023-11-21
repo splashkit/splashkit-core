@@ -17,6 +17,10 @@ if (WIN32 OR MSYS OR MINGW)
   add_definitions(-DWINDOWS)
 endif()
 
+if(EMSCRIPTEN)
+  SET(MSYS "false")
+endif()
+
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
@@ -73,6 +77,36 @@ elseif(MSYS)
                     -L/${MINGW_PATH_PART}/lib \
                     -L/usr/lib \
                     -lSDL2main")
+# EMSCRIPTEN PROJECT FLAGS
+elseif(EMSCRIPTEN)
+    message("Using emscripten")
+    set(LIB_FLAGS "-lpthread \
+                   -ldl \
+                   -s LINKABLE=1 \
+                   -s EXPORT_ALL=1 \
+                   -sUSE_SDL=2 \
+                   -sUSE_SDL_TTF=2 \
+                   -sUSE_SDL_GFX=2 \
+                   -sUSE_SDL_NET=2 \
+                   -sUSE_SDL_MIXER=2 \
+                   -sUSE_SDL_IMAGE=2 \
+                   -sSDL2_IMAGE_FORMATS='[\"bmp\",\"png\",\"xpm\"]'")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -sUSE_SDL=2")
+
+    file(GLOB BUILD_AS_WINDOWS_FILES
+        "${SK_EXT}/civetweb/src/civetweb.c"
+        "${SK_EXT}/sqlite/sqlite3.c"
+        "${SK_EXT}/hash-library/*.cpp"
+        "${SK_SRC}/coresdk/terminal.cpp"
+    )
+    file(GLOB BUILD_AS_LINUX_FILES
+        "${SK_EXT}/easyloggingpp/*.cc"
+    )
+
+    set_source_files_properties(${BUILD_AS_WINDOWS_FILES} PROPERTIES COMPILE_DEFINITIONS "WINDOWS")
+    set_source_files_properties(${BUILD_AS_LINUX_FILES} PROPERTIES COMPILE_DEFINITIONS "__linux")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -110,6 +144,13 @@ file(GLOB SOURCE_FILES
     "${SK_EXT}/easyloggingpp/*.cc"
 )
 
+if (EMSCRIPTEN)
+  file(GLOB WASM_SOURCE_FILES
+    "${SK_LIB}/wasm/*.cpp"
+  )
+  set(SOURCE_FILES ${SOURCE_FILES} ${WASM_SOURCE_FILES})
+endif()
+
 # TEST FILE INCLUDES
 file(GLOB TEST_SOURCE_FILES
     "${SK_SRC}/test/*.cpp"
@@ -137,7 +178,7 @@ include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
-if (APPLE OR MSYS)
+if (APPLE OR MSYS OR EMSCRIPTEN)
     include_directories("${SK_EXT}/SDL/include")
     include_directories("${SK_EXT}/SDL_gfx")
     include_directories("${SK_EXT}/SDL_image")
@@ -150,7 +191,7 @@ if (APPLE)
     include_directories("${SK_EXT}/SDL_image/external/libpng-1.6.2")
 endif()
 # WINDOWS ONLY DIRECTORY INCLUDES
-if (MSYS)
+if (MSYS OR EMSCRIPTEN)
     include_directories(/${MINGW_PATH_PART}/include)
     include_directories(/${MINGW_PATH_PART}/include/libpng16)
     include_directories("${SK_LIB}/win_inc")
@@ -223,6 +264,11 @@ add_custom_command(TARGET sktest
     PRE_BUILD COMMAND
     ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources" $<TARGET_FILE_DIR:sktest>/Resources)
 
+
+if (EMSCRIPTEN)
+    set_target_properties(sktest PROPERTIES LINK_FLAGS "--preload-file ${SK_SRC}/test/Resources@Resources")
+endif()
+
 # if (MSYS)
 #     add_custom_command(TARGET sktest
 #         PRE_BUILD COMMAND
@@ -239,6 +285,10 @@ set_property(TARGET skunit_tests PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 # target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
 target_link_libraries(skunit_tests SplashKitBackend)
 target_link_libraries(skunit_tests ${LIB_FLAGS})
+
+if (EMSCRIPTEN)
+    set_target_properties(skunit_tests PROPERTIES LINK_FLAGS "--preload-file ${SK_SRC}/test/Resources@Resources")
+endif()
 
 set_target_properties(skunit_tests
         PROPERTIES
