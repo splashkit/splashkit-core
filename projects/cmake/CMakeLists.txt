@@ -209,7 +209,7 @@ target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (EMSCRIPTEN)
     add_custom_command(TARGET SplashKitBackend
-        PRE_BUILD COMMAND
+        POST_BUILD COMMAND
         python "$ENV{EMSCRIPTEN}/tools/webidl_binder.py" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue")
 
     list(FILTER SOURCE_FILES EXCLUDE REGEX ".*SplashKitWasmGlue\\.cpp$")
