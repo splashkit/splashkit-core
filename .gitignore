@@ -91,3 +91,4 @@ out/skm
 out/lib/
 tools/scripts/nuget-pkg/obj
 tools/scripts/test/obj
+coresdk/src/emscripten_javascript/generated
