@@ -17,7 +17,7 @@ class SplashKitJavascript
 	void refresh_screen(){
 		::refresh_screen();
 	}
-	color color(float r, float g, float b, float a)
+	color rgba_color_from_double(float r, float g, float b, float a)
 	{
 		return (::color){r,g,b,a};
 	}

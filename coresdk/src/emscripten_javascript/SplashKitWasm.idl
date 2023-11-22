@@ -13,7 +13,7 @@ interface SplashKitJavascript {
 	void clear_screen([Ref] color col);
 	[Value] SKwindow open_window(DOMString name, long width, long height);
 	void refresh_screen();
-	[Value] color color(float r, float g, float b, float a);
+	[Value] color rgba_color_from_double(float r, float g, float b, float a);
 	void fill_ellipse([Ref] color c, long x1, long y1, long x2, long y2);
 	void fill_rectangle([Ref] color c, long x1, long y1, long x2, long y2);
 	void fill_triangle([Ref] color c, long x1, long y1, long x2, long y2, long x3, long y3);
