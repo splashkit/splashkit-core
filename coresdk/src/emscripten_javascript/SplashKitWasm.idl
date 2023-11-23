@@ -1,20 +1,1485 @@
-interface color {
-	void color();
-	attribute float r;
-	attribute float g;
-	attribute float b;
-	attribute float a;
+interface music {
+    void music();
 };
-interface SKwindow {
-	void SKwindow();
+interface sound_effect {
+    void sound_effect();
+};
+interface database {
+    void database();
+};
+interface query_result {
+    void query_result();
+};
+enum mouse_button {
+    "NO_BUTTON",
+    "LEFT_BUTTON",
+    "MIDDLE_BUTTON",
+    "RIGHT_BUTTON",
+    "MOUSE_X1_BUTTON",
+    "MOUSE_X2_BUTTON",
+};
+enum key_code {
+    "UNKNOWN_KEY",
+    "BACKSPACE_KEY",
+    "TAB_KEY",
+    "CLEAR_KEY",
+    "RETURN_KEY",
+    "PAUSE_KEY",
+    "ESCAPE_KEY",
+    "SPACE_KEY",
+    "EXCLAIM_KEY",
+    "DOUBLE_QUOTE_KEY",
+    "HASH_KEY",
+    "DOLLAR_KEY",
+    "AMPERSAND_KEY",
+    "QUOTE_KEY",
+    "LEFT_PAREN_KEY",
+    "RIGHT_PAREN_KEY",
+    "ASTERISK_KEY",
+    "PLUS_KEY",
+    "COMMA_KEY",
+    "MINUS_KEY",
+    "PERIOD_KEY",
+    "SLASH_KEY",
+    "NUM_0_KEY",
+    "NUM_1_KEY",
+    "NUM_2_KEY",
+    "NUM_3_KEY",
+    "NUM_4_KEY",
+    "NUM_5_KEY",
+    "NUM_6_KEY",
+    "NUM_7_KEY",
+    "NUM_8_KEY",
+    "NUM_9_KEY",
+    "COLON_KEY",
+    "SEMI_COLON_KEY",
+    "LESS_KEY",
+    "EQUALS_KEY",
+    "GREATER_KEY",
+    "QUESTION_KEY",
+    "AT_KEY",
+    "LEFT_BRACKET_KEY",
+    "BACKSLASH_KEY",
+    "RIGHT_BRACKET_KEY",
+    "CARET_KEY",
+    "UNDERSCORE_KEY",
+    "BACKQUOTE_KEY",
+    "A_KEY",
+    "B_KEY",
+    "C_KEY",
+    "D_KEY",
+    "E_KEY",
+    "F_KEY",
+    "G_KEY",
+    "H_KEY",
+    "I_KEY",
+    "J_KEY",
+    "K_KEY",
+    "L_KEY",
+    "M_KEY",
+    "N_KEY",
+    "O_KEY",
+    "P_KEY",
+    "Q_KEY",
+    "R_KEY",
+    "S_KEY",
+    "T_KEY",
+    "U_KEY",
+    "V_KEY",
+    "W_KEY",
+    "X_KEY",
+    "Y_KEY",
+    "Z_KEY",
+    "DELETE_KEY",
+    "KEYPAD_0",
+    "KEYPAD_1",
+    "KEYPAD_2",
+    "KEYPAD_3",
+    "KEYPAD_4",
+    "KEYPAD_5",
+    "KEYPAD_6",
+    "KEYPAD_7",
+    "KEYPAD_8",
+    "KEYPAD_9",
+    "KEYPAD_PERIOD",
+    "KEYPAD_DIVIDE",
+    "KEYPAD_MULTIPLY",
+    "KEYPAD_MINUS",
+    "KEYPAD_PLUS",
+    "KEYPAD_ENTER",
+    "KEYPAD_EQUALS",
+    "UP_KEY",
+    "DOWN_KEY",
+    "RIGHT_KEY",
+    "LEFT_KEY",
+    "INSERT_KEY",
+    "HOME_KEY",
+    "END_KEY",
+    "PAGE_UP_KEY",
+    "PAGE_DOWN_KEY",
+    "F1_KEY",
+    "F2_KEY",
+    "F3_KEY",
+    "F4_KEY",
+    "F5_KEY",
+    "F6_KEY",
+    "F7_KEY",
+    "F8_KEY",
+    "F9_KEY",
+    "F10_KEY",
+    "F11_KEY",
+    "F12_KEY",
+    "F13_KEY",
+    "F14_KEY",
+    "F15_KEY",
+    "NUM_LOCK_KEY",
+    "CAPS_LOCK_KEY",
+    "SCROLL_LOCK_KEY",
+    "RIGHT_SHIFT_KEY",
+    "LEFT_SHIFT_KEY",
+    "RIGHT_CTRL_KEY",
+    "LEFT_CTRL_KEY",
+    "RIGHT_ALT_KEY",
+    "LEFT_ALT_KEY",
+    "LEFT_SUPER_KEY",
+    "RIGHT_SUPER_KEY",
+    "MODE_KEY",
+    "HELP_KEY",
+    "SYS_REQ_KEY",
+    "MENU_KEY",
+    "POWER_KEY",
+};
+interface json {
+    void json();
+};
+enum log_level {
+    "NONE",
+    "INFO",
+    "DEBUG",
+    "WARNING",
+    "ERROR",
+    "FATAL",
+};
+enum log_mode {
+    "LOG_NONE",
+    "LOG_CONSOLE",
+    "LOG_FILE_ONLY",
+    "LOG_CONSOLE_AND_FILE",
+};
+interface http_response {
+    void http_response();
+};
+interface http_request {
+    void http_request();
+};
+interface web_server {
+    void web_server();
+};
+interface connection {
+    void connection();
+};
+interface message {
+    void message();
+};
+interface server_socket {
+    void server_socket();
+};
+enum http_method {
+    "HTTP_GET_METHOD",
+    "HTTP_POST_METHOD",
+    "HTTP_PUT_METHOD",
+    "HTTP_DELETE_METHOD",
+    "HTTP_OPTIONS_METHOD",
+    "HTTP_TRACE_METHOD",
+    "UNKNOWN_HTTP_METHOD",
+};
+enum connection_type {
+    "TCP",
+    "UDP",
+    "UNKNOWN",
+};
+interface matrix_2d {
+    void matrix_2d();
+};
+enum resource_kind {
+    "ANIMATION_RESOURCE",
+    "BUNDLE_RESOURCE",
+    "DATABASE_RESOURCE",
+    "FONT_RESOURCE",
+    "IMAGE_RESOURCE",
+    "JSON_RESOURCE",
+    "MUSIC_RESOURCE",
+    "SERVER_RESOURCE",
+    "SOUND_RESOURCE",
+    "TIMER_RESOURCE",
+    "OTHER_RESOURCE",
+};
+interface sprite {
+    void sprite();
+};
+enum collision_test_kind {
+    "PIXEL_COLLISIONS",
+    "AABB_COLLISIONS",
+};
+enum sprite_event_kind {
+    "SPRITE_ARRIVED_EVENT",
+    "SPRITE_ANIMATION_ENDED_EVENT",
+    "SPRITE_TOUCHED_EVENT",
+    "SPRITE_CLICKED_EVENT",
+};
+interface timer {
+    void timer();
+};
+interface circle {
+    void circle();
+    [Value] attribute point_2d center;
+     attribute double radius;
+};
+interface color {
+    void color();
+     attribute float r;
+     attribute float g;
+     attribute float b;
+     attribute float a;
+};
+interface drawing_options {
+    void drawing_options();
+     attribute float scale_x;
+     attribute float scale_y;
+     attribute float angle;
+     attribute float anchor_offset_x;
+     attribute float anchor_offset_y;
+     attribute boolean flip_x;
+     attribute boolean flip_y;
+     attribute boolean is_part;
+    [Value] attribute rectangle part;
+     attribute long draw_cell;
+     attribute drawing_dest camera;
+     attribute long line_width;
+    [Value] attribute animation anim;
+};
+interface line {
+    void line();
+    [Value] attribute point_2d start_point;
+    [Value] attribute point_2d end_point;
+};
+interface point_2d {
+    void point_2d();
+     attribute double x;
+     attribute double y;
+};
+interface quad {
+    void quad();
+    [Value] attribute point_2d[] points;
+};
+interface rectangle {
+    void rectangle();
+     attribute double x;
+     attribute double y;
+     attribute double width;
+     attribute double height;
+};
+interface triangle {
+    void triangle();
+    [Value] attribute point_2d[] points;
+};
+interface vector_2d {
+    void vector_2d();
+     attribute double x;
+     attribute double y;
+};
+interface animation {
+    void animation();
+};
+interface animation_script {
+    void animation_script();
+};
+interface bitmap {
+    void bitmap();
+};
+interface display {
+    void display();
+};
+interface font {
+    void font();
+};
+enum drawing_dest {
+    "DRAW_TO_SCREEN",
+    "DRAW_TO_WORLD",
+    "DRAW_DEFAULT",
+};
+enum font_style {
+    "NORMAL_FONT",
+    "BOLD_FONT",
+    "ITALIC_FONT",
+    "UNDERLINE_FONT",
+};
+enum http_status_code {
+    "HTTP_STATUS_OK",
+    "HTTP_STATUS_CREATED",
+    "HTTP_STATUS_NO_CONTENT",
+    "HTTP_STATUS_MOVED_PERMANENTLY",
+    "HTTP_STATUS_FOUND",
+    "HTTP_STATUS_SEE_OTHER",
+    "HTTP_STATUS_BAD_REQUEST",
+    "HTTP_STATUS_UNAUTHORIZED",
+    "HTTP_STATUS_FORBIDDEN",
+    "HTTP_STATUS_NOT_FOUND",
+    "HTTP_STATUS_METHOD_NOT_ALLOWED",
+    "HTTP_STATUS_REQUEST_TIMEOUT",
+    "HTTP_STATUS_CONFLICT",
+    "HTTP_STATUS_INTERNAL_SERVER_ERROR",
+    "HTTP_STATUS_NOT_IMPLEMENTED",
+    "HTTP_STATUS_SERVICE_UNAVAILABLE",
+};
+interface window {
+    void window();
 };
 interface SplashKitJavascript {
-	void SplashKitJavascript();
-	void clear_screen([Ref] color col);
-	[Value] SKwindow open_window(DOMString name, long width, long height);
-	void refresh_screen();
-	[Value] color rgba_color_from_double(float r, float g, float b, float a);
-	void fill_ellipse([Ref] color c, long x1, long y1, long x2, long y2);
-	void fill_rectangle([Ref] color c, long x1, long y1, long x2, long y2);
-	void fill_triangle([Ref] color c, long x1, long y1, long x2, long y2, long x3, long y3);
+     long animation_count([Ref] animation_script script);
+     long animation_current_cell([Ref] animation anim);
+    [Value] vector_2d animation_current_vector([Ref] animation anim);
+     boolean animation_ended([Ref] animation anim);
+     boolean animation_entered_frame([Ref] animation anim);
+     float animation_frame_time([Ref] animation anim);
+     long animation_index([Ref] animation_script script, DOMString name);
+     DOMString animation_name([Ref] animation temp);
+     DOMString animation_script_name([Ref] animation_script script);
+    [Value] animation_script animation_script_named( DOMString name);
+     void assign_animation_with_script([Ref] animation anim,[Ref] animation_script script, DOMString name);
+     void assign_animation_with_script_and_sound([Ref] animation anim,[Ref] animation_script script, DOMString name, boolean with_sound);
+     void assign_animation_index_with_script([Ref] animation anim,[Ref] animation_script script, long idx);
+     void assign_animation_index_with_script_and_sound([Ref] animation anim,[Ref] animation_script script, long idx, boolean with_sound);
+     void assign_animation_with_script_named([Ref] animation anim, DOMString script_name, DOMString name);
+     void assign_animation_with_script_named_and_sound([Ref] animation anim, DOMString script_name, DOMString name, boolean with_sound);
+     void assign_animation_index([Ref] animation anim, long idx);
+     void assign_animation_index_with_sound([Ref] animation anim, long idx, boolean with_sound);
+     void assign_animation([Ref] animation anim, DOMString name);
+     void assign_animation_with_sound([Ref] animation anim, DOMString name, boolean with_sound);
+    [Value] animation create_animation_from_index_with_sound([Ref] animation_script script, long idx, boolean with_sound);
+    [Value] animation create_animation([Ref] animation_script script, DOMString name);
+    [Value] animation create_animation_with_sound([Ref] animation_script script, DOMString name, boolean with_sound);
+    [Value] animation create_animation_from_script_named( DOMString script_name, DOMString name);
+    [Value] animation create_animation_from_script_named_with_sound( DOMString script_name, DOMString name, boolean with_sound);
+     void free_all_animation_scripts();
+     void free_animation([Ref] animation ani);
+     void free_animation_script([Ref] animation_script script_to_free);
+     void free_animation_script_with_name( DOMString name);
+     boolean has_animation_named([Ref] animation_script script, DOMString name);
+     boolean has_animation_script( DOMString name);
+    [Value] animation_script load_animation_script( DOMString name, DOMString filename);
+     void restart_animation([Ref] animation anim);
+     void restart_animation_with_sound([Ref] animation anim, boolean with_sound);
+     void update_animation_percent_with_sound([Ref] animation anim, float pct, boolean with_sound);
+     void update_animation([Ref] animation anim);
+     void update_animation_percent([Ref] animation anim, float pct);
+     void fade_music_in_named( DOMString name, long ms);
+     void fade_music_in_named_with_times( DOMString name, long times, long ms);
+     void fade_music_in([Ref] music data, long ms);
+     void fade_music_in_with_times([Ref] music data, long times, long ms);
+     void fade_music_out( long ms);
+     void free_all_music();
+     void free_music([Ref] music effect);
+     boolean has_music( DOMString name);
+    [Value] music load_music( DOMString name, DOMString filename);
+     DOMString music_filename([Ref] music data);
+     DOMString music_name([Ref] music data);
+    [Value] music music_named( DOMString name);
+     boolean music_playing();
+     float music_volume();
+     void pause_music();
+     void play_music_named( DOMString name);
+     void play_music_named_with_times( DOMString name, long times);
+     void play_music([Ref] music data);
+     void play_music_with_times([Ref] music data, long times);
+     void play_music_with_times_and_volume([Ref] music data, long times, float volume);
+     void resume_music();
+     void set_music_volume( float volume);
+     void stop_music();
+     void fade_all_sound_effects_out( long ms);
+     void fade_sound_effect_out([Ref] sound_effect effect, long ms);
+     void free_all_sound_effects();
+     void free_sound_effect([Ref] sound_effect effect);
+     boolean has_sound_effect( DOMString name);
+    [Value] sound_effect load_sound_effect( DOMString name, DOMString filename);
+     void play_sound_effect_named( DOMString name);
+     void play_sound_effect_named_with_volume( DOMString name, float volume);
+     void play_sound_effect_named_with_times( DOMString name, long times);
+     void play_sound_effect_named_with_times_and_volume( DOMString name, long times, float volume);
+     void play_sound_effect([Ref] sound_effect effect);
+     void play_sound_effect_with_volume([Ref] sound_effect effect, float volume);
+     void play_sound_effect_with_times([Ref] sound_effect effect, long times);
+     void play_sound_effect_with_times_and_volume([Ref] sound_effect effect, long times, float volume);
+     DOMString sound_effect_filename([Ref] sound_effect effect);
+     DOMString sound_effect_name([Ref] sound_effect effect);
+    [Value] sound_effect sound_effect_named( DOMString name);
+     boolean sound_effect_playing_named( DOMString name);
+     boolean sound_effect_playing([Ref] sound_effect effect);
+     void stop_sound_effect_named( DOMString name);
+     void stop_sound_effect([Ref] sound_effect effect);
+     boolean audio_ready();
+     void close_audio();
+     void open_audio();
+    [Value] point_2d camera_position();
+     double camera_x();
+     double camera_y();
+     void center_camera_on_vector([Ref] sprite s,[Ref] vector_2d offset);
+     void center_camera_on([Ref] sprite s, double offset_x, double offset_y);
+     void move_camera_by_vector([Ref] vector_2d offset);
+     void move_camera_by( double dx, double dy);
+     void move_camera_to_point([Ref] point_2d pt);
+     void move_camera_to( double x, double y);
+     boolean point_in_window([Ref] window wind,[Ref] point_2d pt);
+     boolean point_on_screen([Ref] point_2d pt);
+     boolean rect_in_window([Ref] window wind,[Ref] rectangle rect);
+     boolean rect_on_screen([Ref] rectangle rect);
+    [Value] point_2d screen_center();
+    [Value] rectangle screen_rectangle();
+     void set_camera_position([Ref] point_2d pos);
+     void set_camera_x( double x);
+     void set_camera_y( double y);
+    [Value] point_2d to_screen_point([Ref] point_2d pt);
+    [Value] rectangle to_screen_rectangle([Ref] rectangle rect);
+     double to_screen_x( double world_x);
+     double to_screen_y( double world_y);
+    [Value] point_2d to_world([Ref] point_2d pt);
+     double to_world_x( double screen_x);
+     double to_world_y( double screen_y);
+    [Value] vector_2d vector_world_to_screen();
+    [Value] rectangle window_area([Ref] window wind);
+     long alpha_of([Ref] color c);
+     long blue_of([Ref] color c);
+     double brightness_of([Ref] color c);
+    [Value] color color_alice_blue();
+    [Value] color color_antique_white();
+    [Value] color color_aqua();
+    [Value] color color_aquamarine();
+    [Value] color color_azure();
+    [Value] color color_beige();
+    [Value] color color_bisque();
+    [Value] color color_black();
+    [Value] color color_blanched_almond();
+    [Value] color color_blue();
+    [Value] color color_blue_violet();
+    [Value] color color_bright_green();
+    [Value] color color_brown();
+    [Value] color color_burly_wood();
+    [Value] color color_cadet_blue();
+    [Value] color color_chartreuse();
+    [Value] color color_chocolate();
+    [Value] color color_coral();
+    [Value] color color_cornflower_blue();
+    [Value] color color_cornsilk();
+    [Value] color color_crimson();
+    [Value] color color_cyan();
+    [Value] color color_dark_blue();
+    [Value] color color_dark_cyan();
+    [Value] color color_dark_goldenrod();
+    [Value] color color_dark_gray();
+    [Value] color color_dark_green();
+    [Value] color color_dark_khaki();
+    [Value] color color_dark_magenta();
+    [Value] color color_dark_olive_green();
+    [Value] color color_dark_orange();
+    [Value] color color_dark_orchid();
+    [Value] color color_dark_red();
+    [Value] color color_dark_salmon();
+    [Value] color color_dark_sea_green();
+    [Value] color color_dark_slate_blue();
+    [Value] color color_dark_slate_gray();
+    [Value] color color_dark_turquoise();
+    [Value] color color_dark_violet();
+    [Value] color color_deep_pink();
+    [Value] color color_deep_sky_blue();
+    [Value] color color_dim_gray();
+    [Value] color color_dodger_blue();
+    [Value] color color_firebrick();
+    [Value] color color_floral_white();
+    [Value] color color_forest_green();
+    [Value] color color_fuchsia();
+    [Value] color color_gainsboro();
+    [Value] color color_ghost_white();
+    [Value] color color_gold();
+    [Value] color color_goldenrod();
+    [Value] color color_gray();
+    [Value] color color_green();
+    [Value] color color_green_yellow();
+    [Value] color color_honeydew();
+    [Value] color color_hot_pink();
+    [Value] color color_indian_red();
+    [Value] color color_indigo();
+    [Value] color color_ivory();
+    [Value] color color_khaki();
+    [Value] color color_lavender();
+    [Value] color color_lavender_blush();
+    [Value] color color_lawn_green();
+    [Value] color color_lemon_chiffon();
+    [Value] color color_light_blue();
+    [Value] color color_light_coral();
+    [Value] color color_light_cyan();
+    [Value] color color_light_goldenrod_yellow();
+    [Value] color color_light_gray();
+    [Value] color color_light_green();
+    [Value] color color_light_pink();
+    [Value] color color_light_salmon();
+    [Value] color color_light_sea_green();
+    [Value] color color_light_sky_blue();
+    [Value] color color_light_slate_gray();
+    [Value] color color_light_steel_blue();
+    [Value] color color_light_yellow();
+    [Value] color color_lime();
+    [Value] color color_lime_green();
+    [Value] color color_linen();
+    [Value] color color_magenta();
+    [Value] color color_maroon();
+    [Value] color color_medium_aquamarine();
+    [Value] color color_medium_blue();
+    [Value] color color_medium_orchid();
+    [Value] color color_medium_purple();
+    [Value] color color_medium_sea_green();
+    [Value] color color_medium_slate_blue();
+    [Value] color color_medium_spring_green();
+    [Value] color color_medium_turquoise();
+    [Value] color color_medium_violet_red();
+    [Value] color color_midnight_blue();
+    [Value] color color_mint_cream();
+    [Value] color color_misty_rose();
+    [Value] color color_moccasin();
+    [Value] color color_navajo_white();
+    [Value] color color_navy();
+    [Value] color color_old_lace();
+    [Value] color color_olive();
+    [Value] color color_olive_drab();
+    [Value] color color_orange();
+    [Value] color color_orange_red();
+    [Value] color color_orchid();
+    [Value] color color_pale_goldenrod();
+    [Value] color color_pale_green();
+    [Value] color color_pale_turquoise();
+    [Value] color color_pale_violet_red();
+    [Value] color color_papaya_whip();
+    [Value] color color_peach_puff();
+    [Value] color color_peru();
+    [Value] color color_pink();
+    [Value] color color_plum();
+    [Value] color color_powder_blue();
+    [Value] color color_purple();
+    [Value] color color_red();
+    [Value] color color_rosy_brown();
+    [Value] color color_royal_blue();
+    [Value] color color_saddle_brown();
+    [Value] color color_salmon();
+    [Value] color color_sandy_brown();
+    [Value] color color_sea_green();
+    [Value] color color_sea_shell();
+    [Value] color color_sienna();
+    [Value] color color_silver();
+    [Value] color color_sky_blue();
+    [Value] color color_slate_blue();
+    [Value] color color_slate_gray();
+    [Value] color color_snow();
+    [Value] color color_spring_green();
+    [Value] color color_steel_blue();
+    [Value] color color_swinburne_red();
+    [Value] color color_tan();
+    [Value] color color_teal();
+    [Value] color color_thistle();
+     DOMString color_to_string([Ref] color c);
+    [Value] color color_tomato();
+    [Value] color color_transparent();
+    [Value] color color_turquoise();
+    [Value] color color_violet();
+    [Value] color color_wheat();
+    [Value] color color_white();
+    [Value] color color_white_smoke();
+    [Value] color color_yellow();
+    [Value] color color_yellow_green();
+     long green_of([Ref] color c);
+    [Value] color hsb_color( double hue, double saturation, double brightness);
+     double hue_of([Ref] color c);
+    [Value] color random_color();
+    [Value] color random_rgb_color( long alpha);
+     long red_of([Ref] color c);
+    [Value] color rgb_color_from_double( double red, double green, double blue);
+    [Value] color rgb_color( long red, long green, long blue);
+    [Value] color rgba_color_from_double( double red, double green, double blue, double alpha);
+    [Value] color rgba_color( long red, long green, long blue, long alpha);
+     double saturation_of([Ref] color c);
+    [Value] color string_to_color( DOMString str);
+    [Value] database database_named( DOMString name);
+     DOMString error_message([Ref] query_result query);
+     void free_all_databases();
+     void free_all_query_results();
+     void free_database([Ref] database db_to_close);
+     void free_database_named( DOMString name_of_db_to_close);
+     void free_query_result([Ref] query_result query);
+     boolean get_next_row([Ref] query_result db_result);
+     boolean has_database( DOMString name);
+     boolean has_row([Ref] query_result db_result);
+    [Value] database open_database( DOMString name, DOMString filename);
+     long query_column_count([Ref] query_result db_result);
+     boolean query_column_for_bool([Ref] query_result db_result, long col);
+     double query_column_for_double([Ref] query_result db_result, long col);
+     long query_column_for_int([Ref] query_result db_result, long col);
+     DOMString query_column_for_string([Ref] query_result db_result, long col);
+     boolean query_success([Ref] query_result db_result);
+     DOMString query_type_of_col([Ref] query_result db_result, long col);
+     void reset_query_result([Ref] query_result db_result);
+     long rows_changed([Ref] database db);
+    [Value] query_result run_sql([Ref] database db, DOMString sql);
+    [Value] query_result run_sql_from_name( DOMString database_name, DOMString sql);
+    [Value] point_2d closest_point_on_line([Ref] point_2d from_pt,[Ref] line l);
+    [Value] point_2d closest_point_on_lines([Ref] point_2d from_pt, line[] lines, long line_idx);
+    [Value] line line_from_point_to_point([Ref] point_2d start,[Ref] point_2d end_pt);
+    [Value] line line_from_start_with_offset([Ref] point_2d start,[Ref] vector_2d offset);
+    [Value] line line_from_vector([Ref] vector_2d v);
+    [Value] line line_from( double x1, double y1, double x2, double y2);
+     boolean line_intersection_point([Ref] line line1,[Ref] line line2,[Ref] point_2d pt);
+     boolean line_intersects_circle([Ref] line l,[Ref] circle c);
+     boolean line_intersects_lines([Ref] line l, line[] lines);
+     boolean line_intersects_rect([Ref] line l,[Ref] rectangle rect);
+     float line_length([Ref] line l);
+     float line_length_squared([Ref] line l);
+    [Value] point_2d line_mid_point([Ref] line l);
+    [Value] vector_2d line_normal([Ref] line l);
+     DOMString line_to_string([Ref] line ln);
+     boolean lines_intersect([Ref] line l1,[Ref] line l2);
+    [Value] rectangle inset_rectangle([Ref] rectangle rect, float inset_amount);
+    [Value] rectangle intersection([Ref] rectangle rect1,[Ref] rectangle rect2);
+    [Value] rectangle rectangle_around_circle([Ref] circle c);
+    [Value] rectangle rectangle_around_line([Ref] line l);
+    [Value] rectangle rectangle_around_quad([Ref] quad q);
+    [Value] rectangle rectangle_around_triangle([Ref] triangle t);
+     float rectangle_bottom([Ref] rectangle rect);
+    [Value] point_2d rectangle_center([Ref] rectangle rect);
+    [Value] rectangle rectangle_from_point_and_size([Ref] point_2d pt, double width, double height);
+    [Value] rectangle rectangle_from_points([Ref] point_2d pt1,[Ref] point_2d pt2);
+    [Value] rectangle rectangle_from( double x, double y, double width, double height);
+     float rectangle_left([Ref] rectangle rect);
+    [Value] rectangle rectangle_offset_by([Ref] rectangle rect,[Ref] vector_2d offset);
+     float rectangle_right([Ref] rectangle rect);
+     DOMString rectangle_to_string([Ref] rectangle rect);
+     float rectangle_top([Ref] rectangle rect);
+     boolean rectangles_intersect([Ref] rectangle rect1,[Ref] rectangle rect2);
+    [Value] point_2d triangle_barycenter([Ref] triangle tri);
+    [Value] triangle triangle_from([Ref] point_2d p1,[Ref] point_2d p2,[Ref] point_2d p3);
+    [Value] triangle triangle_from__from_coordinates( double x1, double y1, double x2, double y2, double x3, double y3);
+     boolean triangle_rectangle_intersect([Ref] triangle tri,[Ref] rectangle rect);
+     DOMString triangle_to_string([Ref] triangle tri);
+     boolean triangles_intersect([Ref] triangle t1,[Ref] triangle t2);
+    [Value] point_2d point_at( double x, double y);
+    [Value] point_2d point_at_origin();
+     boolean point_in_circle([Ref] point_2d pt,[Ref] circle c);
+     boolean point_in_quad([Ref] point_2d pt,[Ref] quad q);
+     boolean point_in_rectangle([Ref] point_2d pt,[Ref] rectangle rect);
+     boolean point_in_triangle([Ref] point_2d pt,[Ref] triangle tri);
+     float point_line_distance([Ref] point_2d pt,[Ref] line l);
+    [Value] point_2d point_offset_by([Ref] point_2d start_point,[Ref] vector_2d offset);
+    [Value] point_2d point_offset_from_origin([Ref] vector_2d offset);
+     boolean point_on_line([Ref] point_2d pt,[Ref] line l);
+     boolean point_on_line_with_proximity([Ref] point_2d pt,[Ref] line l, float proximity);
+     float point_point_angle([Ref] point_2d pt1,[Ref] point_2d pt2);
+     float point_point_distance([Ref] point_2d pt1,[Ref] point_2d pt2);
+     DOMString point_to_string([Ref] point_2d pt);
+    [Value] point_2d random_bitmap_point([Ref] bitmap bmp);
+    [Value] point_2d random_screen_point();
+    [Value] point_2d random_window_point([Ref] window wind);
+     boolean same_point([Ref] point_2d pt1,[Ref] point_2d pt2);
+    [Value] point_2d center_point_circle([Ref] circle c);
+    [Value] circle circle_at([Ref] point_2d pt, double radius);
+    [Value] circle circle_at_from_points( double x, double y, double radius);
+     float circle_radius([Ref] circle c);
+     float circle_x([Ref] circle c);
+     float circle_y([Ref] circle c);
+     boolean circles_intersect([Ref] circle c1,[Ref] circle c2);
+    [Value] point_2d closest_point_on_circle([Ref] point_2d from_pt,[Ref] circle c);
+    [Value] point_2d closest_point_on_line_from_circle([Ref] circle c,[Ref] line l);
+    [Value] point_2d closest_point_on_rect_from_circle([Ref] circle c,[Ref] rectangle rect);
+    [Value] point_2d distant_point_on_circle([Ref] point_2d pt,[Ref] circle c);
+     boolean distant_point_on_circle_heading([Ref] point_2d pt,[Ref] circle c,[Ref] vector_2d heading,[Ref] point_2d opposite_pt);
+     float ray_circle_intersect_distance([Ref] point_2d ray_origin,[Ref] vector_2d ray_heading,[Ref] circle c);
+     boolean tangent_points([Ref] point_2d from_pt,[Ref] circle c,[Ref] point_2d p1,[Ref] point_2d p2);
+     void widest_points([Ref] circle c,[Ref] vector_2d along,[Ref] point_2d pt1,[Ref] point_2d pt2);
+    [Value] quad quad_from_points([Ref] point_2d p1,[Ref] point_2d p2,[Ref] point_2d p3,[Ref] point_2d p4);
+    [Value] quad quad_from_rectangle([Ref] rectangle rect);
+    [Value] quad quad_from_rectangle_with_transformation([Ref] rectangle rect,[Ref] matrix_2d transform);
+    [Value] quad quad_from( double x_top_left, double y_top_left, double x_top_right, double y_top_right, double x_bottom_left, double y_bottom_left, double x_bottom_right, double y_bottom_right);
+     boolean quads_intersect([Ref] quad q1,[Ref] quad q2);
+     void set_quad_point([Ref] quad q, long idx,[Ref] point_2d value);
+     float cosine( float degrees);
+     float sine( float degrees);
+     float tangent( float degrees);
+     void draw_circle_record([Ref] color clr,[Ref] circle c);
+     void draw_circle_record_with_options([Ref] color clr,[Ref] circle c,[Ref] drawing_options opts);
+     void draw_circle([Ref] color clr, double x, double y, double radius);
+     void draw_circle_with_options([Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void draw_circle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double radius);
+     void draw_circle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void draw_circle_on_window([Ref] window destination,[Ref] color clr, double x, double y, double radius);
+     void draw_circle_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void fill_circle_record([Ref] color clr,[Ref] circle c);
+     void fill_circle_record_with_options([Ref] color clr,[Ref] circle c,[Ref] drawing_options opts);
+     void fill_circle([Ref] color clr, double x, double y, double radius);
+     void fill_circle_with_options([Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void fill_circle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double radius);
+     void fill_circle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void fill_circle_on_window([Ref] window destination,[Ref] color clr, double x, double y, double radius);
+     void fill_circle_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double radius,[Ref] drawing_options opts);
+     void draw_text_font_as_string( DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y);
+     void draw_text_with_options_font_as_string( DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     void draw_text_no_font_no_size( DOMString text,[Ref] color clr, double x, double y);
+     void draw_text_no_font_no_size_with_options( DOMString text,[Ref] color clr, double x, double y,[Ref] drawing_options opts);
+     void draw_text( DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y);
+     void draw_text_with_options( DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_bitmap_font_as_string([Ref] bitmap bmp, DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y);
+     void draw_text_on_bitmap_with_options_font_as_string([Ref] bitmap bmp, DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_bitmap_no_font_no_size([Ref] bitmap bmp, DOMString text,[Ref] color clr, double x, double y);
+     void draw_text_on_bitmap_no_font_no_size_with_options([Ref] bitmap bmp, DOMString text,[Ref] color clr, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_bitmap([Ref] bitmap bmp, DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y);
+     void draw_text_on_bitmap_with_options([Ref] bitmap bmp, DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_window_font_as_string([Ref] window wnd, DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y);
+     void draw_text_on_window_with_options_font_as_string([Ref] window wnd, DOMString text,[Ref] color clr, DOMString fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_window_no_font_no_size([Ref] window wnd, DOMString text,[Ref] color clr, double x, double y);
+     void draw_text_on_window_no_font_no_size_with_options([Ref] window wnd, DOMString text,[Ref] color clr, double x, double y,[Ref] drawing_options opts);
+     void draw_text_on_window([Ref] window wnd, DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y);
+     void draw_text_on_window_with_options([Ref] window wnd, DOMString text,[Ref] color clr,[Ref] font fnt, long font_size, double x, double y,[Ref] drawing_options opts);
+     boolean font_has_size_name_as_string( DOMString name, long font_size);
+     boolean font_has_size([Ref] font fnt, long font_size);
+     void font_load_size_name_as_string( DOMString name, long font_size);
+     void font_load_size([Ref] font fnt, long font_size);
+    [Value] font font_named( DOMString name);
+     void free_all_fonts();
+     void free_font([Ref] font fnt);
+     font_style get_font_style_name_as_string( DOMString name);
+     font_style get_font_style([Ref] font fnt);
+     boolean has_font([Ref] font fnt);
+     boolean has_font_name_as_string( DOMString name);
+    [Value] font load_font( DOMString name, DOMString filename);
+     void set_font_style_name_as_string( DOMString name, font_style style);
+     void set_font_style([Ref] font fnt, font_style style);
+     long text_height_font_named( DOMString text, DOMString fnt, long font_size);
+     long text_height( DOMString text,[Ref] font fnt, long font_size);
+     long text_width_font_named( DOMString text, DOMString fnt, long font_size);
+     long text_width( DOMString text,[Ref] font fnt, long font_size);
+     void draw_quad([Ref] color clr,[Ref] quad q);
+     void draw_quad_with_options([Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void draw_quad_on_bitmap([Ref] bitmap destination,[Ref] color clr,[Ref] quad q);
+     void draw_quad_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void draw_quad_on_window([Ref] window destination,[Ref] color clr,[Ref] quad q);
+     void draw_quad_on_window_with_options([Ref] window destination,[Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void draw_rectangle_record([Ref] color clr,[Ref] rectangle rect);
+     void draw_rectangle_record_with_options([Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_rectangle([Ref] color clr, double x, double y, double width, double height);
+     void draw_rectangle_with_options([Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void draw_rectangle_on_bitmap_record([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect);
+     void draw_rectangle_on_bitmap_record_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_rectangle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height);
+     void draw_rectangle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void draw_rectangle_on_window_record([Ref] window destination,[Ref] color clr,[Ref] rectangle rect);
+     void draw_rectangle_on_window_record_with_options([Ref] window destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_rectangle_on_window([Ref] window destination,[Ref] color clr, double x, double y, double width, double height);
+     void draw_rectangle_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_quad([Ref] color clr,[Ref] quad q);
+     void fill_quad_with_options([Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void fill_quad_on_bitmap([Ref] bitmap destination,[Ref] color clr,[Ref] quad q);
+     void fill_quad_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void fill_quad_on_window([Ref] window destination,[Ref] color clr,[Ref] quad q);
+     void fill_quad_on_window_with_options([Ref] window destination,[Ref] color clr,[Ref] quad q,[Ref] drawing_options opts);
+     void fill_rectangle_record([Ref] color clr,[Ref] rectangle rect);
+     void fill_rectangle_record_with_options([Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_rectangle([Ref] color clr, double x, double y, double width, double height);
+     void fill_rectangle_with_options([Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_rectangle_on_bitmap_record([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect);
+     void fill_rectangle_on_bitmap_record_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_rectangle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height);
+     void fill_rectangle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_rectangle_on_window_record([Ref] window destination,[Ref] color clr,[Ref] rectangle rect);
+     void fill_rectangle_on_window_record_with_options([Ref] window destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_rectangle_on_window([Ref] window destination,[Ref] color clr, double x, double y, double width, double height);
+     void fill_rectangle_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+    [Value] rectangle current_clip();
+    [Value] rectangle current_clip_for_bitmap([Ref] bitmap bmp);
+    [Value] rectangle current_clip_for_window([Ref] window wnd);
+     void pop_clip_for_window([Ref] window wnd);
+     void pop_clip();
+     void pop_clip_for_bitmap([Ref] bitmap bmp);
+     void push_clip_for_window([Ref] window wnd,[Ref] rectangle r);
+     void push_clip_for_bitmap([Ref] bitmap bmp,[Ref] rectangle r);
+     void push_clip([Ref] rectangle r);
+     void reset_clip_for_bitmap([Ref] bitmap bmp);
+     void reset_clip();
+     void reset_clip_for_window([Ref] window wnd);
+     void set_clip([Ref] rectangle r);
+     void set_clip_for_bitmap([Ref] bitmap bmp,[Ref] rectangle r);
+     void set_clip_for_window([Ref] window wnd,[Ref] rectangle r);
+     void draw_triangle_record([Ref] color clr,[Ref] triangle tri);
+     void draw_triangle_record_with_options([Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void draw_triangle([Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void draw_triangle_with_options([Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void draw_triangle_on_bitmap_record([Ref] bitmap destination,[Ref] color clr,[Ref] triangle tri);
+     void draw_triangle_on_bitmap_record_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void draw_triangle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void draw_triangle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void draw_triangle_on_window_record([Ref] window destination,[Ref] color clr,[Ref] triangle tri);
+     void draw_triangle_on_window_record_with_options([Ref] window destination,[Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void draw_triangle_on_window([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void draw_triangle_on_window_with_options([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void fill_triangle_record([Ref] color clr,[Ref] triangle tri);
+     void fill_triangle_record_with_options([Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void fill_triangle([Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void fill_triangle_with_options([Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void fill_triangle_on_bitmap_record([Ref] bitmap destination,[Ref] color clr,[Ref] triangle tri);
+     void fill_triangle_on_bitmap_record_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void fill_triangle_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void fill_triangle_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void fill_triangle_on_window_record([Ref] window destination,[Ref] color clr,[Ref] triangle tri);
+     void fill_triangle_on_window_record_with_options([Ref] window destination,[Ref] color clr,[Ref] triangle tri,[Ref] drawing_options opts);
+     void fill_triangle_on_window([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3);
+     void fill_triangle_on_window_with_options([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2, double x3, double y3,[Ref] drawing_options opts);
+     void draw_ellipse_within_rectangle([Ref] color clr,[Ref] rectangle rect);
+     void draw_ellipse_within_rectangle_with_options([Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_ellipse([Ref] color clr, double x, double y, double width, double height);
+     void draw_ellipse_with_options([Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void draw_ellipse_on_bitmap_within_rectangle([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect);
+     void draw_ellipse_on_bitmap_within_rectangle_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_ellipse_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height);
+     void draw_ellipse_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void draw_ellipse_on_window_within_rectangle([Ref] window destination,[Ref] color clr,[Ref] rectangle rect);
+     void draw_ellipse_on_window_within_rectangle_with_options([Ref] window destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void draw_ellipse_on_window([Ref] window destination,[Ref] color clr, double x, double y, double width, double height);
+     void draw_ellipse_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_ellipse_within_rectangle([Ref] color clr,[Ref] rectangle rect);
+     void fill_ellipse_within_rectangle_with_options([Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_ellipse([Ref] color clr, double x, double y, double width, double height);
+     void fill_ellipse_with_options([Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_ellipse_on_bitmap_within_rectangle([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect);
+     void fill_ellipse_on_bitmap_within_rectangle_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_ellipse_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height);
+     void fill_ellipse_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+     void fill_ellipse_on_window_within_rectangle([Ref] window destination,[Ref] color clr,[Ref] rectangle rect);
+     void fill_ellipse_on_window_within_rectangle_with_options([Ref] window destination,[Ref] color clr,[Ref] rectangle rect,[Ref] drawing_options opts);
+     void fill_ellipse_on_window([Ref] window destination,[Ref] color clr, double x, double y, double width, double height);
+     void fill_ellipse_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y, double width, double height,[Ref] drawing_options opts);
+    [Value] circle bitmap_bounding_circle([Ref] bitmap bmp,[Ref] point_2d pt);
+    [Value] rectangle bitmap_bounding_rectangle([Ref] bitmap bmp);
+    [Value] rectangle bitmap_bounding_rectangle_at_location([Ref] bitmap bmp, double x, double y);
+    [Value] point_2d bitmap_cell_center([Ref] bitmap bmp);
+    [Value] circle bitmap_cell_circle([Ref] bitmap bmp, double x, double y);
+    [Value] circle bitmap_cell_circle_at_point([Ref] bitmap bmp,[Ref] point_2d pt);
+    [Value] circle bitmap_cell_circle_at_point_with_scale([Ref] bitmap bmp,[Ref] point_2d pt, double scale);
+     long bitmap_cell_columns([Ref] bitmap bmp);
+     long bitmap_cell_count([Ref] bitmap bmp);
+     long bitmap_cell_height([Ref] bitmap bmp);
+    [Value] vector_2d bitmap_cell_offset([Ref] bitmap src, long cell);
+    [Value] rectangle bitmap_cell_rectangle([Ref] bitmap src);
+    [Value] rectangle bitmap_cell_rectangle_at_point([Ref] bitmap src,[Ref] point_2d pt);
+     long bitmap_cell_rows([Ref] bitmap bmp);
+     long bitmap_cell_width([Ref] bitmap bmp);
+    [Value] point_2d bitmap_center([Ref] bitmap bmp);
+     DOMString bitmap_filename([Ref] bitmap bmp);
+     long bitmap_height([Ref] bitmap bmp);
+     long bitmap_height_of_bitmap_named( DOMString name);
+     DOMString bitmap_name([Ref] bitmap bmp);
+    [Value] bitmap bitmap_named( DOMString name);
+    [Value] rectangle bitmap_rectangle_of_cell([Ref] bitmap src, long cell);
+     void bitmap_set_cell_details([Ref] bitmap bmp, long width, long height, long columns, long rows, long count);
+     long bitmap_width([Ref] bitmap bmp);
+     long bitmap_width_of_bitmap_named( DOMString name);
+     void clear_bitmap([Ref] bitmap bmp,[Ref] color clr);
+     void clear_bitmap_named( DOMString name,[Ref] color clr);
+    [Value] bitmap create_bitmap( DOMString name, long width, long height);
+     void draw_bitmap([Ref] bitmap bmp, double x, double y);
+     void draw_bitmap_with_options([Ref] bitmap bmp, double x, double y,[Ref] drawing_options opts);
+     void draw_bitmap_named( DOMString name, double x, double y);
+     void draw_bitmap_named_with_options( DOMString name, double x, double y,[Ref] drawing_options opts);
+     void draw_bitmap_on_bitmap_on_bitmap([Ref] bitmap destination,[Ref] bitmap bmp, double x, double y);
+     void draw_bitmap_on_bitmap_on_bitmap_with_options([Ref] bitmap destination,[Ref] bitmap bmp, double x, double y,[Ref] drawing_options opts);
+     void draw_bitmap_on_window([Ref] window destination,[Ref] bitmap bmp, double x, double y);
+     void draw_bitmap_on_window_with_options([Ref] window destination,[Ref] bitmap bmp, double x, double y,[Ref] drawing_options opts);
+     void free_all_bitmaps();
+     void free_bitmap([Ref] bitmap to_delete);
+     boolean has_bitmap( DOMString name);
+    [Value] bitmap load_bitmap( DOMString name, DOMString filename);
+     boolean pixel_drawn_at_point_pt([Ref] bitmap bmp,[Ref] point_2d pt);
+     boolean pixel_drawn_at_point([Ref] bitmap bmp, double x, double y);
+     boolean pixel_drawn_at_point_in_cell_pt([Ref] bitmap bmp, long cell,[Ref] point_2d pt);
+     boolean pixel_drawn_at_point_in_cell([Ref] bitmap bmp, long cell, double x, double y);
+     void setup_collision_mask([Ref] bitmap bmp);
+     void draw_line_record([Ref] color clr,[Ref] line l);
+     void draw_line_record_with_options([Ref] color clr,[Ref] line l,[Ref] drawing_options opts);
+     void draw_line_point_to_point([Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt);
+     void draw_line_point_to_point_with_options([Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt,[Ref] drawing_options opts);
+     void draw_line([Ref] color clr, double x1, double y1, double x2, double y2);
+     void draw_line_with_options([Ref] color clr, double x1, double y1, double x2, double y2,[Ref] drawing_options opts);
+     void draw_line_on_bitmap_record([Ref] bitmap destination,[Ref] color clr,[Ref] line l);
+     void draw_line_on_bitmap_record_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] line l,[Ref] drawing_options opts);
+     void draw_line_on_bitmap_point_to_point([Ref] bitmap destination,[Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt);
+     void draw_line_on_bitmap_point_to_point_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt,[Ref] drawing_options opts);
+     void draw_line_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2);
+     void draw_line_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x1, double y1, double x2, double y2,[Ref] drawing_options opts);
+     void draw_line_on_window_record([Ref] window destination,[Ref] color clr,[Ref] line l);
+     void draw_line_on_window_record_with_options([Ref] window destination,[Ref] color clr,[Ref] line l,[Ref] drawing_options opts);
+     void draw_line_on_window_point_to_point([Ref] window destination,[Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt);
+     void draw_line_on_window_point_to_point_with_options([Ref] window destination,[Ref] color clr,[Ref] point_2d from_pt,[Ref] point_2d to_pt,[Ref] drawing_options opts);
+     void draw_line_on_window([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2);
+     void draw_line_on_window_with_options([Ref] window destination,[Ref] color clr, double x1, double y1, double x2, double y2,[Ref] drawing_options opts);
+    [Value] drawing_options option_defaults();
+    [Value] drawing_options option_draw_to_bitmap([Ref] bitmap dest);
+    [Value] drawing_options option_draw_to_bitmap_with_options([Ref] bitmap dest,[Ref] drawing_options opts);
+    [Value] drawing_options option_draw_to_window([Ref] window dest);
+    [Value] drawing_options option_draw_to_window_with_options([Ref] window dest,[Ref] drawing_options opts);
+    [Value] drawing_options option_flip_x();
+    [Value] drawing_options option_flip_x_with_options([Ref] drawing_options opts);
+    [Value] drawing_options option_flip_xy();
+    [Value] drawing_options option_flip_xy_with_options([Ref] drawing_options opts);
+    [Value] drawing_options option_flip_y();
+    [Value] drawing_options option_flip_y_with_options([Ref] drawing_options opts);
+    [Value] drawing_options option_line_width( long width);
+    [Value] drawing_options option_line_width_with_options( long width,[Ref] drawing_options opts);
+    [Value] drawing_options option_part_bmp( double x, double y, double w, double h);
+    [Value] drawing_options option_part_bmp_with_options( double x, double y, double w, double h,[Ref] drawing_options opts);
+    [Value] drawing_options option_part_bmp_from_rectangle([Ref] rectangle part);
+    [Value] drawing_options option_part_bmp_from_rectangle_with_options([Ref] rectangle part,[Ref] drawing_options opts);
+    [Value] drawing_options option_rotate_bmp( double angle);
+    [Value] drawing_options option_rotate_bmp_with_anchor( double angle, double anchor_x, double anchor_y);
+    [Value] drawing_options option_rotate_bmp_with_anchor_and_options( double angle, double anchor_x, double anchor_y,[Ref] drawing_options opts);
+    [Value] drawing_options option_rotate_bmp_with_options( double angle,[Ref] drawing_options opts);
+    [Value] drawing_options option_scale_bmp( double scale_x, double scale_y);
+    [Value] drawing_options option_scale_bmp_with_options( double scale_x, double scale_y,[Ref] drawing_options opts);
+    [Value] drawing_options option_to_screen();
+    [Value] drawing_options option_to_screen_with_options([Ref] drawing_options opts);
+    [Value] drawing_options option_to_world();
+    [Value] drawing_options option_to_world_with_options([Ref] drawing_options opts);
+    [Value] drawing_options option_with_animation([Ref] animation anim);
+    [Value] drawing_options option_with_animation_with_options([Ref] animation anim,[Ref] drawing_options opts);
+    [Value] drawing_options option_with_bitmap_cell( long cell);
+    [Value] drawing_options option_with_bitmap_cell_with_options( long cell,[Ref] drawing_options opts);
+     void clear_screen_to_white();
+     void clear_screen([Ref] color clr);
+    [Value] display display_details( unsigned long index);
+     long display_height([Ref] display disp);
+     DOMString display_name([Ref] display disp);
+     long display_width([Ref] display disp);
+     long display_x([Ref] display disp);
+     long display_y([Ref] display disp);
+     long number_of_displays();
+     void refresh_screen();
+     void refresh_screen_with_target_fps( unsigned long target_fps);
+     void save_bitmap([Ref] bitmap bmp, DOMString basename);
+     long screen_height();
+     long screen_width();
+     void take_screenshot( DOMString basename);
+     void take_screenshot_of_window([Ref] window wind, DOMString basename);
+     void draw_pixel_at_point([Ref] color clr,[Ref] point_2d pt);
+     void draw_pixel_at_point_with_options([Ref] color clr,[Ref] point_2d pt,[Ref] drawing_options opts);
+     void draw_pixel([Ref] color clr, double x, double y);
+     void draw_pixel_with_options([Ref] color clr, double x, double y,[Ref] drawing_options opts);
+     void draw_pixel_on_bitmap_at_point([Ref] bitmap destination,[Ref] color clr,[Ref] point_2d pt);
+     void draw_pixel_on_bitmap_at_point_with_options([Ref] bitmap destination,[Ref] color clr,[Ref] point_2d pt,[Ref] drawing_options opts);
+     void draw_pixel_on_bitmap([Ref] bitmap destination,[Ref] color clr, double x, double y);
+     void draw_pixel_on_bitmap_with_options([Ref] bitmap destination,[Ref] color clr, double x, double y,[Ref] drawing_options opts);
+     void draw_pixel_on_window_at_point([Ref] window destination,[Ref] color clr,[Ref] point_2d pt);
+     void draw_pixel_on_window_at_point_with_options([Ref] window destination,[Ref] color clr,[Ref] point_2d pt,[Ref] drawing_options opts);
+     void draw_pixel_on_window([Ref] window destination,[Ref] color clr, double x, double y);
+     void draw_pixel_on_window_with_options([Ref] window destination,[Ref] color clr, double x, double y,[Ref] drawing_options opts);
+    [Value] color get_pixel_from_bitmap_at_point([Ref] bitmap bmp,[Ref] point_2d pt);
+    [Value] color get_pixel_from_bitmap([Ref] bitmap bmp, double x, double y);
+    [Value] color get_pixel_at_point([Ref] point_2d pt);
+    [Value] color get_pixel( double x, double y);
+    [Value] color get_pixel_from_window_at_point([Ref] window wnd,[Ref] point_2d pt);
+    [Value] color get_pixel_from_window([Ref] window wnd, double x, double y);
+    [Value] color get_pixel_from_window_at_point_from_window([Ref] window destination,[Ref] point_2d pt);
+    [Value] color get_pixel_from_window_from_window([Ref] window destination, double x, double y);
+     void process_events();
+     boolean quit_requested();
+     void reset_quit();
+     void draw_collected_text([Ref] color clr,[Ref] font fnt, long font_size,[Ref] drawing_options opts);
+     void end_reading_text();
+     void end_reading_text_in_window([Ref] window wind);
+     boolean reading_text();
+     boolean reading_text_in_window([Ref] window wind);
+     void start_reading_text([Ref] rectangle rect);
+     void start_reading_text_with_initial_text([Ref] rectangle rect, DOMString initial_text);
+     void start_reading_text_in_window([Ref] window wind,[Ref] rectangle rect);
+     void start_reading_text_in_window_with_initial_text([Ref] window wind,[Ref] rectangle rect, DOMString initial_text);
+     boolean text_entry_cancelled();
+     boolean text_entry_cancelled_in_window([Ref] window wind);
+     DOMString text_input();
+     DOMString text_input_in_window([Ref] window wind);
+     void hide_mouse();
+     boolean mouse_clicked( mouse_button button);
+     boolean mouse_down( mouse_button button);
+    [Value] vector_2d mouse_movement();
+    [Value] point_2d mouse_position();
+    [Value] vector_2d mouse_position_vector();
+     boolean mouse_shown();
+     boolean mouse_up( mouse_button button);
+    [Value] vector_2d mouse_wheel_scroll();
+     float mouse_x();
+     float mouse_y();
+     void move_mouse( double x, double y);
+     void move_mouse_to_point([Ref] point_2d point);
+     void show_mouse();
+     void show_mouse_with_boolean( boolean show);
+     boolean any_key_pressed();
+     boolean key_down( key_code key);
+     DOMString key_name( key_code key);
+     boolean key_released( key_code key);
+     boolean key_typed( key_code key);
+     boolean key_up( key_code key);
+    [Value] json create_json();
+    [Value] json create_json_from_string( DOMString json_string);
+     void free_all_json();
+     void free_json([Ref] json j);
+     long json_count_keys([Ref] json j);
+    [Value] json json_from_color([Ref] color clr);
+    [Value] json json_from_file( DOMString filename);
+    [Value] json json_from_string( DOMString j_string);
+     boolean json_has_key([Ref] json j, DOMString key);
+     boolean json_read_bool([Ref] json j, DOMString key);
+     float json_read_number([Ref] json j, DOMString key);
+     double json_read_number_as_double([Ref] json j, DOMString key);
+     long json_read_number_as_int([Ref] json j, DOMString key);
+    [Value] json json_read_object([Ref] json j, DOMString key);
+     DOMString json_read_string([Ref] json j, DOMString key);
+     void json_set_bool([Ref] json j, DOMString key, boolean value);
+     void json_set_number_integer([Ref] json j, DOMString key, long value);
+     void json_set_number_double([Ref] json j, DOMString key, double value);
+     void json_set_number_float([Ref] json j, DOMString key, float value);
+     void json_set_object([Ref] json j, DOMString key,[Ref] json obj);
+     void json_set_string([Ref] json j, DOMString key, DOMString value);
+    [Value] color json_to_color([Ref] json j);
+     void json_to_file([Ref] json j, DOMString filename);
+     DOMString json_to_string([Ref] json j);
+     void close_log_process();
+     void init_custom_logger( log_mode mode);
+     void init_custom_logger__name_override_mode( DOMString app_name, boolean override_prev_log, log_mode mode);
+     void log( log_level level, DOMString message);
+    [Value] bitmap download_bitmap( DOMString name, DOMString url, unsigned short port);
+    [Value] font download_font( DOMString name, DOMString url, unsigned short port);
+    [Value] music download_music( DOMString name, DOMString url, unsigned short port);
+    [Value] sound_effect download_sound_effect( DOMString name, DOMString url, unsigned short port);
+     void free_response([Ref] http_response response);
+    [Value] http_response http_get( DOMString url, unsigned short port);
+     DOMString http_response_to_string([Ref] http_response response);
+     void save_response_to_file([Ref] http_response response, DOMString path);
+     boolean has_incoming_requests([Ref] web_server server);
+     boolean is_delete_request_for([Ref] http_request request, DOMString path);
+     boolean is_get_request_for([Ref] http_request request, DOMString path);
+     boolean is_options_request_for([Ref] http_request request, DOMString path);
+     boolean is_post_request_for([Ref] http_request request, DOMString path);
+     boolean is_put_request_for([Ref] http_request request, DOMString path);
+     boolean is_request_for([Ref] http_request request, http_method method, DOMString path);
+     boolean is_trace_request_for([Ref] http_request request, DOMString path);
+    [Value] http_request next_web_request([Ref] web_server server);
+     DOMString request_body([Ref] http_request r);
+     boolean request_has_query_parameter([Ref] http_request r, DOMString name);
+     http_method request_method([Ref] http_request r);
+     DOMString request_query_parameter([Ref] http_request r, DOMString name, DOMString default_value);
+     DOMString request_query_string([Ref] http_request r);
+     DOMString request_uri([Ref] http_request r);
+     void send_css_file_response([Ref] http_request r, DOMString filename);
+     void send_file_response([Ref] http_request r, DOMString filename, DOMString content_type);
+     void send_html_file_response([Ref] http_request r, DOMString filename);
+     void send_javascript_file_response([Ref] http_request r, DOMString filename);
+    [Value] web_server start_web_server_with_default_port();
+    [Value] web_server start_web_server( unsigned short port);
+     void stop_web_server([Ref] web_server server);
+     boolean accept_all_new_connections();
+     boolean accept_new_connection([Ref] server_socket server);
+     void broadcast_message( DOMString a_msg,[Ref] server_socket svr);
+     void broadcast_message_to_all( DOMString a_msg);
+     void broadcast_message_to_server_named( DOMString a_msg, DOMString name);
+     void check_network_activity();
+     void clear_messages_from_name( DOMString name);
+     void clear_messages_from_connection([Ref] connection a_connection);
+     void clear_messages_from_server([Ref] server_socket svr);
+     void close_all_connections();
+     void close_all_servers();
+     boolean close_connection([Ref] connection a_connection);
+     boolean close_connection_named( DOMString name);
+     void close_message([Ref] message msg);
+     boolean close_server_named( DOMString name);
+     boolean close_server([Ref] server_socket svr);
+     unsigned long connection_count_named( DOMString name);
+     unsigned long connection_count([Ref] server_socket server);
+     unsigned long connection_ip([Ref] connection a_connection);
+     unsigned long connection_ip_from_name( DOMString name);
+    [Value] connection connection_named( DOMString name);
+     unsigned short connection_port([Ref] connection a_connection);
+     unsigned short connection_port_from_name( DOMString name);
+    [Value] server_socket create_server_with_port( DOMString name, unsigned short port);
+    [Value] server_socket create_server_with_port_and_protocol( DOMString name, unsigned short port, connection_type protocol);
+     DOMString dec_to_hex( unsigned long a_dec);
+    [Value] connection fetch_new_connection([Ref] server_socket server);
+     boolean has_connection( DOMString name);
+     boolean has_messages();
+     boolean has_messages_on_connection([Ref] connection con);
+     boolean has_messages_on_name( DOMString name);
+     boolean has_messages_on_server([Ref] server_socket svr);
+     boolean has_new_connections();
+     boolean has_server( DOMString name);
+     DOMString hex_str_to_ipv4( DOMString a_hex);
+     DOMString hex_to_dec_string( DOMString a_hex);
+     unsigned long ipv4_to_dec( DOMString a_ip);
+     DOMString ipv4_to_hex( DOMString a_ip);
+     DOMString ipv4_to_str( unsigned long ip);
+     boolean is_connection_open([Ref] connection con);
+     boolean is_connection_open_from_name( DOMString name);
+    [Value] connection last_connection_named( DOMString name);
+    [Value] connection last_connection([Ref] server_socket server);
+    [Value] connection message_connection([Ref] message msg);
+     unsigned long message_count_on_server([Ref] server_socket svr);
+     unsigned long message_count_on_connection([Ref] connection a_connection);
+     unsigned long message_count_from_name( DOMString name);
+     DOMString message_data([Ref] message msg);
+     DOMString message_host([Ref] message msg);
+     unsigned short message_port([Ref] message msg);
+     connection_type message_protocol([Ref] message msg);
+     DOMString my_ip();
+     DOMString name_for_connection( DOMString host, unsigned long port);
+     long new_connection_count([Ref] server_socket server);
+    [Value] connection open_connection( DOMString name, DOMString host, unsigned short port);
+    [Value] connection open_connection_with_protocol( DOMString name, DOMString host, unsigned short port, connection_type protocol);
+    [Value] message read_message();
+    [Value] message read_message_from_connection([Ref] connection a_connection);
+    [Value] message read_message_from_name( DOMString name);
+    [Value] message read_message_from_server([Ref] server_socket svr);
+     DOMString read_message_data_from_name( DOMString name);
+     DOMString read_message_data_from_connection([Ref] connection a_connection);
+     DOMString read_message_data_from_server([Ref] server_socket svr);
+     void reconnect([Ref] connection a_connection);
+     void reconnect_from_name( DOMString name);
+     void release_all_connections();
+     void reset_new_connection_count([Ref] server_socket server);
+    [Value] connection retrieve_connection_named( DOMString name, long idx);
+    [Value] connection retrieve_connection([Ref] server_socket server, long idx);
+     boolean send_message_to_connection( DOMString a_msg,[Ref] connection a_connection);
+     boolean send_message_to_name( DOMString a_msg, DOMString name);
+     boolean server_has_new_connection_named( DOMString name);
+     boolean server_has_new_connection([Ref] server_socket server);
+    [Value] server_socket server_named( DOMString name);
+     void set_udp_packet_size( unsigned long udp_packet_size);
+     unsigned long udp_packet_size();
+     boolean bitmap_circle_collision_at_point([Ref] bitmap bmp,[Ref] point_2d pt,[Ref] circle circ);
+     boolean bitmap_circle_collision([Ref] bitmap bmp, double x, double y,[Ref] circle circ);
+     boolean bitmap_circle_collision_for_cell_with_translation([Ref] bitmap bmp, long cell,[Ref] matrix_2d translation,[Ref] circle circ);
+     boolean bitmap_circle_collision_for_cell_at_point([Ref] bitmap bmp, long cell,[Ref] point_2d pt,[Ref] circle circ);
+     boolean bitmap_circle_collision_for_cell([Ref] bitmap bmp, long cell, double x, double y,[Ref] circle circ);
+     boolean bitmap_collision([Ref] bitmap bmp1, double x1, double y1,[Ref] bitmap bmp2, double x2, double y2);
+     boolean bitmap_collision_at_points([Ref] bitmap bmp1,[Ref] point_2d pt1,[Ref] bitmap bmp2,[Ref] point_2d pt2);
+     boolean bitmap_collision_for_cells_with_translations([Ref] bitmap bmp1, long cell1,[Ref] matrix_2d matrix1,[Ref] bitmap bmp2, long cell2,[Ref] matrix_2d matrix2);
+     boolean bitmap_collision_for_cells_at_points([Ref] bitmap bmp1, long cell1,[Ref] point_2d pt1,[Ref] bitmap bmp2, long cell2,[Ref] point_2d pt2);
+     boolean bitmap_collision_for_cells([Ref] bitmap bmp1, long cell1, double x1, double y1,[Ref] bitmap bmp2, long cell2, double x2, double y2);
+     boolean bitmap_point_collision_with_translation([Ref] bitmap bmp,[Ref] matrix_2d translation,[Ref] point_2d pt);
+     boolean bitmap_point_collision_at_point([Ref] bitmap bmp,[Ref] point_2d bmp_pt,[Ref] point_2d pt);
+     boolean bitmap_point_collision([Ref] bitmap bmp, double bmp_x, double bmp_y, double x, double y);
+     boolean bitmap_point_collision_for_cell_with_translation([Ref] bitmap bmp, long cell,[Ref] matrix_2d translation,[Ref] point_2d pt);
+     boolean bitmap_point_collision_for_cell_at_point([Ref] bitmap bmp, long cell,[Ref] point_2d bmp_pt,[Ref] point_2d pt);
+     boolean bitmap_point_collision_for_cell([Ref] bitmap bmp, long cell, double bmp_x, double bmp_y, double x, double y);
+     boolean bitmap_rectangle_collision_at_point([Ref] bitmap bmp,[Ref] point_2d pt,[Ref] rectangle rect);
+     boolean bitmap_rectangle_collision([Ref] bitmap bmp, double x, double y,[Ref] rectangle rect);
+     boolean bitmap_rectangle_collision_for_cell_with_translation([Ref] bitmap bmp, long cell,[Ref] matrix_2d translation,[Ref] rectangle rect);
+     boolean bitmap_rectangle_collision_for_cell_at_point([Ref] bitmap bmp, long cell,[Ref] point_2d pt,[Ref] rectangle rect);
+     boolean bitmap_rectangle_collision_for_cell([Ref] bitmap bmp, long cell, double x, double y,[Ref] rectangle rect);
+     boolean sprite_bitmap_collision([Ref] sprite s,[Ref] bitmap bmp, double x, double y);
+     boolean sprite_bitmap_collision_with_cell_at_point([Ref] sprite s,[Ref] bitmap bmp, long cell,[Ref] point_2d pt);
+     boolean sprite_bitmap_collision_with_cell([Ref] sprite s,[Ref] bitmap bmp, long cell, double x, double y);
+     boolean sprite_collision([Ref] sprite s1,[Ref] sprite s2);
+     boolean sprite_point_collision([Ref] sprite s,[Ref] point_2d pt);
+     boolean sprite_rectangle_collision([Ref] sprite s,[Ref] rectangle rect);
+     void apply_matrix_to_quad([Ref] matrix_2d matrix,[Ref] quad q);
+     void apply_matrix_to_triangle([Ref] matrix_2d m,[Ref] triangle tri);
+    [Value] matrix_2d identity_matrix();
+    [Value] matrix_2d matrix_inverse([Ref] matrix_2d m);
+    [Value] point_2d matrix_multiply_point([Ref] matrix_2d m,[Ref] point_2d pt);
+    [Value] matrix_2d matrix_multiply_matrix([Ref] matrix_2d m1,[Ref] matrix_2d m2);
+    [Value] vector_2d matrix_multiply_vector([Ref] matrix_2d m,[Ref] vector_2d v);
+     DOMString matrix_to_string([Ref] matrix_2d matrix);
+    [Value] matrix_2d rotation_matrix( double deg);
+    [Value] matrix_2d scale_matrix_from_point([Ref] point_2d scale);
+    [Value] matrix_2d scale_matrix_from_vector([Ref] vector_2d scale);
+    [Value] matrix_2d scale_matrix( double scale);
+    [Value] matrix_2d scale_rotate_translate_matrix([Ref] point_2d scale, double deg,[Ref] point_2d translate);
+    [Value] matrix_2d translation_matrix_to_point([Ref] point_2d pt);
+    [Value] matrix_2d translation_matrix_from_vector([Ref] vector_2d pt);
+    [Value] matrix_2d translation_matrix( double dx, double dy);
+     double angle_between([Ref] vector_2d v1,[Ref] vector_2d v2);
+     double dot_product([Ref] vector_2d v1,[Ref] vector_2d v2);
+     boolean is_zero_vector([Ref] vector_2d v);
+     boolean ray_intersection_point([Ref] point_2d from_pt,[Ref] vector_2d heading,[Ref] line l,[Ref] point_2d pt);
+    [Value] vector_2d unit_vector([Ref] vector_2d v);
+    [Value] vector_2d vector_add([Ref] vector_2d v1,[Ref] vector_2d v2);
+     double vector_angle([Ref] vector_2d v);
+    [Value] vector_2d vector_from_angle( double angle, double magnitude);
+    [Value] vector_2d vector_from_line([Ref] line l);
+    [Value] vector_2d vector_from_point_to_rect([Ref] point_2d pt,[Ref] rectangle rect);
+     boolean vector_in_rect([Ref] vector_2d v,[Ref] rectangle rect);
+    [Value] vector_2d vector_invert([Ref] vector_2d v);
+    [Value] vector_2d vector_limit([Ref] vector_2d v, double limit);
+     double vector_magnitude([Ref] vector_2d v);
+     double vector_magnitude_sqared([Ref] vector_2d v);
+    [Value] vector_2d vector_multiply([Ref] vector_2d v1, double s);
+    [Value] vector_2d vector_normal([Ref] vector_2d v);
+    [Value] vector_2d vector_out_of_circle_from_circle([Ref] circle src,[Ref] circle bounds,[Ref] vector_2d velocity);
+    [Value] vector_2d vector_out_of_circle_from_point([Ref] point_2d pt,[Ref] circle c,[Ref] vector_2d velocity);
+    [Value] vector_2d vector_out_of_rect_from_circle([Ref] circle c,[Ref] rectangle rect,[Ref] vector_2d velocity);
+    [Value] vector_2d vector_out_of_rect_from_point([Ref] point_2d pt,[Ref] rectangle rect,[Ref] vector_2d velocity);
+    [Value] vector_2d vector_out_of_rect_from_rect([Ref] rectangle src,[Ref] rectangle bounds,[Ref] vector_2d velocity);
+    [Value] vector_2d vector_point_to_point([Ref] point_2d start,[Ref] point_2d end_pt);
+    [Value] vector_2d vector_subtract([Ref] vector_2d v1,[Ref] vector_2d v2);
+    [Value] vector_2d vector_to_point([Ref] point_2d p1);
+    [Value] vector_2d vector_to( double x, double y);
+     DOMString vector_to_string([Ref] vector_2d v);
+     boolean vectors_equal([Ref] vector_2d v1,[Ref] vector_2d v2);
+     boolean vectors_not_equal([Ref] vector_2d v1,[Ref] vector_2d v2);
+     void free_resource_bundle( DOMString name);
+     boolean has_resource_bundle( DOMString name);
+     void load_resource_bundle( DOMString name, DOMString filename);
+     DOMString path_to_resource( DOMString filename, resource_kind kind);
+     DOMString path_to_resources();
+     DOMString path_to_resources_for_kind( resource_kind kind);
+     void set_resources_path( DOMString path);
+    [Value] point_2d center_point_sprite([Ref] sprite s);
+    [Value] sprite create_sprite([Ref] bitmap layer);
+    [Value] sprite create_sprite_with_animation([Ref] bitmap layer,[Ref] animation_script ani);
+    [Value] sprite create_sprite_with_bitmap_named( DOMString bitmap_name);
+    [Value] sprite create_sprite_named( DOMString name,[Ref] bitmap layer);
+    [Value] sprite create_sprite_named_with_animation( DOMString name,[Ref] bitmap layer,[Ref] animation_script ani);
+    [Value] sprite create_sprite_with_bitmap_and_animation_named( DOMString bitmap_name, DOMString animation_name);
+     void create_sprite_pack( DOMString name);
+     DOMString current_sprite_pack();
+     void draw_all_sprites();
+     void draw_sprite_offset_by([Ref] sprite s,[Ref] vector_2d offset);
+     void draw_sprite([Ref] sprite s);
+     void draw_sprite_offset_x_y([Ref] sprite s, double x_offset, double y_offset);
+     void free_all_sprites();
+     void free_sprite([Ref] sprite s);
+     void free_sprite_pack( DOMString name);
+     boolean has_sprite( DOMString name);
+     boolean has_sprite_pack( DOMString name);
+     void move_sprite([Ref] sprite s);
+     void move_sprite_by_vector([Ref] sprite s,[Ref] vector_2d distance);
+     void move_sprite_by_vector_percent([Ref] sprite s,[Ref] vector_2d distance, float pct);
+     void move_sprite_percent([Ref] sprite s, float pct);
+     void move_sprite_to([Ref] sprite s, double x, double y);
+     void select_sprite_pack( DOMString name);
+     long sprite_add_layer([Ref] sprite s,[Ref] bitmap new_layer, DOMString layer_name);
+     void sprite_add_to_velocity([Ref] sprite s,[Ref] vector_2d value);
+     void sprite_add_value([Ref] sprite s, DOMString name);
+     void sprite_add_value_with_default([Ref] sprite s, DOMString name, float init_val);
+    [Value] point_2d sprite_anchor_point([Ref] sprite s);
+    [Value] point_2d sprite_anchor_position([Ref] sprite s);
+     boolean sprite_animation_has_ended([Ref] sprite s);
+     DOMString sprite_animation_name([Ref] sprite s);
+     boolean sprite_at([Ref] sprite s,[Ref] point_2d pt);
+     void sprite_bring_layer_forward([Ref] sprite s, long visible_layer);
+     void sprite_bring_layer_to_front([Ref] sprite s, long visible_layer);
+    [Value] circle sprite_circle([Ref] sprite s);
+    [Value] bitmap sprite_collision_bitmap([Ref] sprite s);
+    [Value] circle sprite_collision_circle([Ref] sprite s);
+     collision_test_kind sprite_collision_kind([Ref] sprite s);
+    [Value] rectangle sprite_collision_rectangle([Ref] sprite s);
+     long sprite_current_cell([Ref] sprite s);
+    [Value] rectangle sprite_current_cell_rectangle([Ref] sprite s);
+     float sprite_dx([Ref] sprite s);
+     float sprite_dy([Ref] sprite s);
+     boolean sprite_has_value([Ref] sprite s, DOMString name);
+     float sprite_heading([Ref] sprite s);
+     long sprite_height([Ref] sprite s);
+     void sprite_hide_layer_named([Ref] sprite s, DOMString name);
+     void sprite_hide_layer([Ref] sprite s, long id);
+    [Value] bitmap sprite_layer_named([Ref] sprite s, DOMString name);
+    [Value] bitmap sprite_layer_at_index([Ref] sprite s, long idx);
+    [Value] circle sprite_layer_circle_named([Ref] sprite s, DOMString name);
+    [Value] circle sprite_layer_circle_at_index([Ref] sprite s, long idx);
+     long sprite_layer_count([Ref] sprite s);
+     long sprite_layer_height_named([Ref] sprite s, DOMString name);
+     long sprite_layer_height([Ref] sprite s, long idx);
+     long sprite_layer_index([Ref] sprite s, DOMString name);
+     DOMString sprite_layer_name([Ref] sprite s, long idx);
+    [Value] vector_2d sprite_layer_offset_named([Ref] sprite s, DOMString name);
+    [Value] vector_2d sprite_layer_offset([Ref] sprite s, long idx);
+    [Value] rectangle sprite_layer_rectangle_named([Ref] sprite s, DOMString name);
+    [Value] rectangle sprite_layer_rectangle_at_index([Ref] sprite s, long idx);
+     long sprite_layer_width_named([Ref] sprite s, DOMString name);
+     long sprite_layer_width([Ref] sprite s, long idx);
+    [Value] matrix_2d sprite_location_matrix([Ref] sprite s);
+     float sprite_mass([Ref] sprite s);
+     boolean sprite_move_from_anchor_point([Ref] sprite s);
+     void sprite_move_to_taking_seconds([Ref] sprite s,[Ref] point_2d pt, float taking_seconds);
+     DOMString sprite_name([Ref] sprite s);
+    [Value] sprite sprite_named( DOMString name);
+     boolean sprite_offscreen([Ref] sprite s);
+     boolean sprite_on_screen_at_point([Ref] sprite s,[Ref] point_2d pt);
+     boolean sprite_on_screen_at([Ref] sprite s, double x, double y);
+    [Value] point_2d sprite_position([Ref] sprite s);
+     void sprite_replay_animation([Ref] sprite s);
+     void sprite_replay_animation_with_sound([Ref] sprite s, boolean with_sound);
+     float sprite_rotation([Ref] sprite s);
+     float sprite_scale([Ref] sprite s);
+    [Value] rectangle sprite_screen_rectangle([Ref] sprite s);
+     void sprite_send_layer_backward([Ref] sprite s, long visible_layer);
+     void sprite_send_layer_to_back([Ref] sprite s, long visible_layer);
+     void sprite_set_anchor_point([Ref] sprite s,[Ref] point_2d pt);
+     void sprite_set_collision_bitmap([Ref] sprite s,[Ref] bitmap bmp);
+     void sprite_set_collision_kind([Ref] sprite s, collision_test_kind value);
+     void sprite_set_dx([Ref] sprite s, float value);
+     void sprite_set_dy([Ref] sprite s, float value);
+     void sprite_set_heading([Ref] sprite s, float value);
+     void sprite_set_layer_offset_named([Ref] sprite s, DOMString name,[Ref] vector_2d value);
+     void sprite_set_layer_offset_at_index([Ref] sprite s, long idx,[Ref] vector_2d value);
+     void sprite_set_mass([Ref] sprite s, float value);
+     void sprite_set_move_from_anchor_point([Ref] sprite s, boolean value);
+     void sprite_set_position([Ref] sprite s,[Ref] point_2d value);
+     void sprite_set_rotation([Ref] sprite s, float value);
+     void sprite_set_scale([Ref] sprite s, float value);
+     void sprite_set_speed([Ref] sprite s, float value);
+     void sprite_set_value_named([Ref] sprite s, DOMString name, float val);
+     void sprite_set_velocity([Ref] sprite s,[Ref] vector_2d value);
+     void sprite_set_x([Ref] sprite s, float value);
+     void sprite_set_y([Ref] sprite s, float value);
+     long sprite_show_layer_named([Ref] sprite s, DOMString name);
+     long sprite_show_layer([Ref] sprite s, long id);
+     float sprite_speed([Ref] sprite s);
+     void sprite_start_animation_named([Ref] sprite s, DOMString named);
+     void sprite_start_animation_named_with_sound([Ref] sprite s, DOMString named, boolean with_sound);
+     void sprite_start_animation([Ref] sprite s, long idx);
+     void sprite_start_animation_with_sound([Ref] sprite s, long idx, boolean with_sound);
+     void sprite_toggle_layer_visible_named([Ref] sprite s, DOMString name);
+     void sprite_toggle_layer_visible([Ref] sprite s, long id);
+     float sprite_value([Ref] sprite s, DOMString name);
+     long sprite_value_count([Ref] sprite s);
+    [Value] vector_2d sprite_velocity([Ref] sprite s);
+     long sprite_visible_index_of_layer_named([Ref] sprite s, DOMString name);
+     long sprite_visible_index_of_layer([Ref] sprite s, long id);
+     long sprite_visible_layer([Ref] sprite s, long idx);
+     long sprite_visible_layer_count([Ref] sprite s);
+     long sprite_visible_layer_id([Ref] sprite s, long idx);
+     long sprite_width([Ref] sprite s);
+     float sprite_x([Ref] sprite s);
+     float sprite_y([Ref] sprite s);
+     void update_all_sprites();
+     void update_all_sprites_percent( float pct);
+     void update_sprite([Ref] sprite s);
+     void update_sprite_with_sound([Ref] sprite s, boolean with_sound);
+     void update_sprite_percent([Ref] sprite s, float pct);
+     void update_sprite_percent_with_sound([Ref] sprite s, float pct, boolean with_sound);
+     void update_sprite_animation([Ref] sprite s);
+     void update_sprite_animation_with_sound([Ref] sprite s, boolean with_sound);
+     void update_sprite_animation_percent([Ref] sprite s, float pct);
+     void update_sprite_animation_percent_with_sound([Ref] sprite s, float pct, boolean with_sound);
+    [Value] vector_2d vector_from_center_sprite_to_point_point([Ref] sprite s,[Ref] point_2d pt);
+    [Value] vector_2d vector_from_to([Ref] sprite s1,[Ref] sprite s2);
+     void activate_advanced_terminal();
+     boolean advanced_terminal_active();
+     void clear_terminal();
+     void end_advanced_terminal();
+     void move_cursor_to( long x, long y);
+     byte read_char();
+     DOMString read_line();
+     void refresh_terminal();
+     void set_terminal_bold( boolean value);
+     void set_terminal_colors([Ref] color foreground,[Ref] color background);
+     void set_terminal_echo_input( boolean value);
+     long terminal_height();
+     long terminal_width();
+     void write_char( byte data);
+     void write_double( double data);
+     void write_int( long data);
+     void write( DOMString text);
+     void write_at( DOMString text, long x, long y);
+     void write_line_char( byte data);
+     void write_line_empty();
+     void write_line_double( double data);
+     void write_line_int( long data);
+     void write_line( DOMString line);
+    [Value] timer create_timer( DOMString name);
+     void free_all_timers();
+     void free_timer([Ref] timer to_free);
+     boolean has_timer__named( DOMString name);
+     void pause_timer__named( DOMString name);
+     void pause_timer([Ref] timer to_pause);
+     void reset_timer__named( DOMString name);
+     void reset_timer([Ref] timer tmr);
+     void resume_timer__named( DOMString name);
+     void resume_timer([Ref] timer to_resume);
+     void start_timer__named( DOMString name);
+     void start_timer([Ref] timer to_start);
+     void stop_timer__named( DOMString name);
+     void stop_timer([Ref] timer to_stop);
+    [Value] timer timer_named( DOMString name);
+     boolean timer_paused__named( DOMString name);
+     boolean timer_paused([Ref] timer to_get);
+     boolean timer_started__named( DOMString name);
+     boolean timer_started([Ref] timer to_get);
+     unsigned long timer_ticks__named( DOMString name);
+     unsigned long timer_ticks([Ref] timer to_get);
+     unsigned long current_ticks();
+     void delay( unsigned long milliseconds);
+     void display_dialog( DOMString title, DOMString msg,[Ref] font output_font, long font_size);
+     DOMString file_as_string( DOMString filename, resource_kind kind);
+     double convert_to_double( DOMString text);
+     long convert_to_integer( DOMString text);
+     boolean is_double( DOMString text);
+     boolean is_integer( DOMString text);
+     boolean is_number( DOMString text);
+     DOMString to_lowercase( DOMString text);
+     DOMString to_uppercase( DOMString text);
+     DOMString trim( DOMString text);
+     long rnd_range( long min, long max);
+     float rnd();
+     long rnd_int( long ubound);
+     void clear_window([Ref] window wind,[Ref] color clr);
+     void close_all_windows();
+     void close_current_window();
+     void close_window_named( DOMString name);
+     void close_window([Ref] window wind);
+    [Value] window current_window();
+     boolean current_window_has_border();
+     long current_window_height();
+     boolean current_window_is_fullscreen();
+    [Value] point_2d current_window_position();
+     void current_window_toggle_border();
+     void current_window_toggle_fullscreen();
+     long current_window_width();
+     long current_window_x();
+     long current_window_y();
+     boolean has_window( DOMString caption);
+     boolean is_current_window([Ref] window wind);
+     void move_current_window_to( long x, long y);
+     void move_window_to_named( DOMString name, long x, long y);
+     void move_window_to([Ref] window wind, long x, long y);
+    [Value] window open_window( DOMString caption, long width, long height);
+     void refresh_window([Ref] window wind);
+     void refresh_window_with_target_fps([Ref] window wind, unsigned long target_fps);
+     void resize_current_window( long width, long height);
+     void resize_window([Ref] window wnd, long width, long height);
+     void set_current_window_named( DOMString name);
+     void set_current_window([Ref] window wind);
+     DOMString window_caption([Ref] window wind);
+     boolean window_close_requested_named( DOMString name);
+     boolean window_close_requested([Ref] window wind);
+     boolean window_has_border_named( DOMString name);
+     boolean window_has_border([Ref] window wnd);
+     boolean window_has_focus([Ref] window wind);
+     long window_height_named( DOMString name);
+     long window_height([Ref] window wind);
+     boolean window_is_fullscreen_named( DOMString name);
+     boolean window_is_fullscreen([Ref] window wnd);
+    [Value] window window_named( DOMString caption);
+    [Value] point_2d window_position_named( DOMString name);
+    [Value] point_2d window_position([Ref] window wnd);
+     void window_set_icon([Ref] window wind,[Ref] bitmap bmp);
+     void window_toggle_border_named( DOMString name);
+     void window_toggle_border([Ref] window wnd);
+     void window_toggle_fullscreen_named( DOMString name);
+     void window_toggle_fullscreen([Ref] window wnd);
+     long window_width_named( DOMString name);
+     long window_width([Ref] window wind);
+    [Value] window window_with_focus();
+     long window_x_named( DOMString name);
+     long window_x([Ref] window wnd);
+     long window_y_named( DOMString name);
+     long window_y([Ref] window wnd);
 };
