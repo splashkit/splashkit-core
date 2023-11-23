@@ -217,6 +217,8 @@ def generateCType(t):
 def sanitizeCTypeInParam(arg_type):
     if arg_type == "string":
         return "char*"
+    if arg_type == "window":
+        return "SKwindow"
     return arg_type
 def sanitizeCTypeInConvertFront(arg):
     if arg["type"] == "string":
@@ -322,6 +324,8 @@ def sanitizeIDLTypeInParam(arg_type):
         return "byte"
     if arg_type == "char":
         return "byte"
+    if arg_type == "window":
+        return "SKwindow"
     return arg_type
 
 def generateIDLType(t, force_ref, attribute=False):
@@ -372,11 +376,14 @@ def generateIDLStructFields(fieldlist):
         }
     return fields
 
-
+def sanitizeStructName(name):
+    if name=="window":
+        return "SKwindow"
+    return name
 
 def generateIDLStruct(struct):
     return "interface %(name)s {\n    void %(name)s();\n%(fields)s};\n" % {
-        'name': struct["name"],
+        'name': sanitizeStructName(struct["name"]),
         'fields': generateIDLStructFields(struct["fields"]) if ("fields" in struct and struct["name"] not in ignore_structs) else ""
     }
     
@@ -406,6 +413,7 @@ for category_name in api:
 
 
 outputIDL("""interface SplashKitJavascript {
+    void SplashKitJavascript();
 """)
 for category_name in api:
     category = api[category_name]

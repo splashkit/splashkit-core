@@ -503,7 +503,7 @@ class SplashKitJavascript
             return splashkit_lib::move_camera_to(x,y);
         }
 
-        bool point_in_window(window wind,point_2d& pt){
+        bool point_in_window(SKwindow wind,point_2d& pt){
             return splashkit_lib::point_in_window(wind,pt);
         }
 
@@ -511,7 +511,7 @@ class SplashKitJavascript
             return splashkit_lib::point_on_screen(pt);
         }
 
-        bool rect_in_window(window wind,rectangle& rect){
+        bool rect_in_window(SKwindow wind,rectangle& rect){
             return splashkit_lib::rect_in_window(wind,rect);
         }
 
@@ -571,7 +571,7 @@ class SplashKitJavascript
             return splashkit_lib::vector_world_to_screen();
         }
 
-        rectangle window_area(window wind){
+        rectangle window_area(SKwindow wind){
             return splashkit_lib::window_area(wind);
         }
 
@@ -1519,7 +1519,7 @@ class SplashKitJavascript
             return splashkit_lib::random_screen_point();
         }
 
-        point_2d random_window_point(window wind){
+        point_2d random_window_point(SKwindow wind){
             return splashkit_lib::random_window_point(wind);
         }
 
@@ -1647,11 +1647,11 @@ class SplashKitJavascript
             return splashkit_lib::draw_circle_on_bitmap(destination,clr,x,y,radius,opts);
         }
 
-        void draw_circle_on_window(window destination,color clr,double x,double y,double radius){
+        void draw_circle_on_window(SKwindow destination,color clr,double x,double y,double radius){
             return splashkit_lib::draw_circle_on_window(destination,clr,x,y,radius);
         }
 
-        void draw_circle_on_window_with_options(window destination,color clr,double x,double y,double radius,drawing_options opts){
+        void draw_circle_on_window_with_options(SKwindow destination,color clr,double x,double y,double radius,drawing_options opts){
             return splashkit_lib::draw_circle_on_window(destination,clr,x,y,radius,opts);
         }
 
@@ -1679,11 +1679,11 @@ class SplashKitJavascript
             return splashkit_lib::fill_circle_on_bitmap(destination,clr,x,y,radius,opts);
         }
 
-        void fill_circle_on_window(window destination,color clr,double x,double y,double radius){
+        void fill_circle_on_window(SKwindow destination,color clr,double x,double y,double radius){
             return splashkit_lib::fill_circle_on_window(destination,clr,x,y,radius);
         }
 
-        void fill_circle_on_window_with_options(window destination,color clr,double x,double y,double radius,drawing_options opts){
+        void fill_circle_on_window_with_options(SKwindow destination,color clr,double x,double y,double radius,drawing_options opts){
             return splashkit_lib::fill_circle_on_window(destination,clr,x,y,radius,opts);
         }
 
@@ -1735,27 +1735,27 @@ class SplashKitJavascript
             return splashkit_lib::draw_text_on_bitmap(bmp,(string)text,clr,fnt,font_size,x,y,opts);
         }
 
-        void draw_text_on_window_font_as_string(window wnd,char*& text,color& clr,char*& fnt,int font_size,double x,double y){
+        void draw_text_on_window_font_as_string(SKwindow wnd,char*& text,color& clr,char*& fnt,int font_size,double x,double y){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,(string)fnt,font_size,x,y);
         }
 
-        void draw_text_on_window_with_options_font_as_string(window wnd,char*& text,color& clr,char*& fnt,int font_size,double x,double y,drawing_options& opts){
+        void draw_text_on_window_with_options_font_as_string(SKwindow wnd,char*& text,color& clr,char*& fnt,int font_size,double x,double y,drawing_options& opts){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,(string)fnt,font_size,x,y,opts);
         }
 
-        void draw_text_on_window_no_font_no_size(window wnd,char*& text,color& clr,double x,double y){
+        void draw_text_on_window_no_font_no_size(SKwindow wnd,char*& text,color& clr,double x,double y){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,x,y);
         }
 
-        void draw_text_on_window_no_font_no_size_with_options(window wnd,char*& text,color& clr,double x,double y,drawing_options& opts){
+        void draw_text_on_window_no_font_no_size_with_options(SKwindow wnd,char*& text,color& clr,double x,double y,drawing_options& opts){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,x,y,opts);
         }
 
-        void draw_text_on_window(window wnd,char*& text,color& clr,font fnt,int font_size,double x,double y){
+        void draw_text_on_window(SKwindow wnd,char*& text,color& clr,font fnt,int font_size,double x,double y){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,fnt,font_size,x,y);
         }
 
-        void draw_text_on_window_with_options(window wnd,char*& text,color& clr,font fnt,int font_size,double x,double y,drawing_options& opts){
+        void draw_text_on_window_with_options(SKwindow wnd,char*& text,color& clr,font fnt,int font_size,double x,double y,drawing_options& opts){
             return splashkit_lib::draw_text_on_window(wnd,(string)text,clr,fnt,font_size,x,y,opts);
         }
 
@@ -1847,11 +1847,11 @@ class SplashKitJavascript
             return splashkit_lib::draw_quad_on_bitmap(destination,clr,q,opts);
         }
 
-        void draw_quad_on_window(window destination,color clr,quad& q){
+        void draw_quad_on_window(SKwindow destination,color clr,quad& q){
             return splashkit_lib::draw_quad_on_window(destination,clr,q);
         }
 
-        void draw_quad_on_window_with_options(window destination,color clr,quad& q,drawing_options& opts){
+        void draw_quad_on_window_with_options(SKwindow destination,color clr,quad& q,drawing_options& opts){
             return splashkit_lib::draw_quad_on_window(destination,clr,q,opts);
         }
 
@@ -1887,19 +1887,19 @@ class SplashKitJavascript
             return splashkit_lib::draw_rectangle_on_bitmap(destination,clr,x,y,width,height,opts);
         }
 
-        void draw_rectangle_on_window_record(window destination,color clr,rectangle& rect){
+        void draw_rectangle_on_window_record(SKwindow destination,color clr,rectangle& rect){
             return splashkit_lib::draw_rectangle_on_window(destination,clr,rect);
         }
 
-        void draw_rectangle_on_window_record_with_options(window destination,color clr,rectangle& rect,drawing_options& opts){
+        void draw_rectangle_on_window_record_with_options(SKwindow destination,color clr,rectangle& rect,drawing_options& opts){
             return splashkit_lib::draw_rectangle_on_window(destination,clr,rect,opts);
         }
 
-        void draw_rectangle_on_window(window destination,color clr,double x,double y,double width,double height){
+        void draw_rectangle_on_window(SKwindow destination,color clr,double x,double y,double width,double height){
             return splashkit_lib::draw_rectangle_on_window(destination,clr,x,y,width,height);
         }
 
-        void draw_rectangle_on_window_with_options(window destination,color clr,double x,double y,double width,double height,drawing_options opts){
+        void draw_rectangle_on_window_with_options(SKwindow destination,color clr,double x,double y,double width,double height,drawing_options opts){
             return splashkit_lib::draw_rectangle_on_window(destination,clr,x,y,width,height,opts);
         }
 
@@ -1919,11 +1919,11 @@ class SplashKitJavascript
             return splashkit_lib::fill_quad_on_bitmap(destination,clr,q,opts);
         }
 
-        void fill_quad_on_window(window destination,color clr,quad& q){
+        void fill_quad_on_window(SKwindow destination,color clr,quad& q){
             return splashkit_lib::fill_quad_on_window(destination,clr,q);
         }
 
-        void fill_quad_on_window_with_options(window destination,color clr,quad& q,drawing_options& opts){
+        void fill_quad_on_window_with_options(SKwindow destination,color clr,quad& q,drawing_options& opts){
             return splashkit_lib::fill_quad_on_window(destination,clr,q,opts);
         }
 
@@ -1959,19 +1959,19 @@ class SplashKitJavascript
             return splashkit_lib::fill_rectangle_on_bitmap(destination,clr,x,y,width,height,opts);
         }
 
-        void fill_rectangle_on_window_record(window destination,color clr,rectangle& rect){
+        void fill_rectangle_on_window_record(SKwindow destination,color clr,rectangle& rect){
             return splashkit_lib::fill_rectangle_on_window(destination,clr,rect);
         }
 
-        void fill_rectangle_on_window_record_with_options(window destination,color clr,rectangle& rect,drawing_options& opts){
+        void fill_rectangle_on_window_record_with_options(SKwindow destination,color clr,rectangle& rect,drawing_options& opts){
             return splashkit_lib::fill_rectangle_on_window(destination,clr,rect,opts);
         }
 
-        void fill_rectangle_on_window(window destination,color clr,double x,double y,double width,double height){
+        void fill_rectangle_on_window(SKwindow destination,color clr,double x,double y,double width,double height){
             return splashkit_lib::fill_rectangle_on_window(destination,clr,x,y,width,height);
         }
 
-        void fill_rectangle_on_window_with_options(window destination,color clr,double x,double y,double width,double height,drawing_options& opts){
+        void fill_rectangle_on_window_with_options(SKwindow destination,color clr,double x,double y,double width,double height,drawing_options& opts){
             return splashkit_lib::fill_rectangle_on_window(destination,clr,x,y,width,height,opts);
         }
 
@@ -1983,11 +1983,11 @@ class SplashKitJavascript
             return splashkit_lib::current_clip(bmp);
         }
 
-        rectangle current_clip_for_window(window wnd){
+        rectangle current_clip_for_window(SKwindow wnd){
             return splashkit_lib::current_clip(wnd);
         }
 
-        void pop_clip_for_window(window wnd){
+        void pop_clip_for_window(SKwindow wnd){
             return splashkit_lib::pop_clip(wnd);
         }
 
@@ -1999,7 +1999,7 @@ class SplashKitJavascript
             return splashkit_lib::pop_clip(bmp);
         }
 
-        void push_clip_for_window(window wnd,rectangle& r){
+        void push_clip_for_window(SKwindow wnd,rectangle& r){
             return splashkit_lib::push_clip(wnd,r);
         }
 
@@ -2019,7 +2019,7 @@ class SplashKitJavascript
             return splashkit_lib::reset_clip();
         }
 
-        void reset_clip_for_window(window wnd){
+        void reset_clip_for_window(SKwindow wnd){
             return splashkit_lib::reset_clip(wnd);
         }
 
@@ -2031,7 +2031,7 @@ class SplashKitJavascript
             return splashkit_lib::set_clip(bmp,r);
         }
 
-        void set_clip_for_window(window wnd,rectangle& r){
+        void set_clip_for_window(SKwindow wnd,rectangle& r){
             return splashkit_lib::set_clip(wnd,r);
         }
 
@@ -2067,19 +2067,19 @@ class SplashKitJavascript
             return splashkit_lib::draw_triangle_on_bitmap(destination,clr,x1,y1,x2,y2,x3,y3,opts);
         }
 
-        void draw_triangle_on_window_record(window destination,color clr,triangle& tri){
+        void draw_triangle_on_window_record(SKwindow destination,color clr,triangle& tri){
             return splashkit_lib::draw_triangle_on_window(destination,clr,tri);
         }
 
-        void draw_triangle_on_window_record_with_options(window destination,color clr,triangle& tri,drawing_options opts){
+        void draw_triangle_on_window_record_with_options(SKwindow destination,color clr,triangle& tri,drawing_options opts){
             return splashkit_lib::draw_triangle_on_window(destination,clr,tri,opts);
         }
 
-        void draw_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3){
+        void draw_triangle_on_window(SKwindow destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3){
             return splashkit_lib::draw_triangle_on_window(destination,clr,x1,y1,x2,y2,x3,y3);
         }
 
-        void draw_triangle_on_window_with_options(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts){
+        void draw_triangle_on_window_with_options(SKwindow destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts){
             return splashkit_lib::draw_triangle_on_window(destination,clr,x1,y1,x2,y2,x3,y3,opts);
         }
 
@@ -2115,19 +2115,19 @@ class SplashKitJavascript
             return splashkit_lib::fill_triangle_on_bitmap(destination,clr,x1,y1,x2,y2,x3,y3,opts);
         }
 
-        void fill_triangle_on_window_record(window destination,color clr,triangle& tri){
+        void fill_triangle_on_window_record(SKwindow destination,color clr,triangle& tri){
             return splashkit_lib::fill_triangle_on_window(destination,clr,tri);
         }
 
-        void fill_triangle_on_window_record_with_options(window destination,color clr,triangle& tri,drawing_options opts){
+        void fill_triangle_on_window_record_with_options(SKwindow destination,color clr,triangle& tri,drawing_options opts){
             return splashkit_lib::fill_triangle_on_window(destination,clr,tri,opts);
         }
 
-        void fill_triangle_on_window(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3){
+        void fill_triangle_on_window(SKwindow destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3){
             return splashkit_lib::fill_triangle_on_window(destination,clr,x1,y1,x2,y2,x3,y3);
         }
 
-        void fill_triangle_on_window_with_options(window destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts){
+        void fill_triangle_on_window_with_options(SKwindow destination,color clr,double x1,double y1,double x2,double y2,double x3,double y3,drawing_options opts){
             return splashkit_lib::fill_triangle_on_window(destination,clr,x1,y1,x2,y2,x3,y3,opts);
         }
 
@@ -2163,19 +2163,19 @@ class SplashKitJavascript
             return splashkit_lib::draw_ellipse_on_bitmap(destination,clr,x,y,width,height,opts);
         }
 
-        void draw_ellipse_on_window_within_rectangle(window destination,color clr,rectangle rect){
+        void draw_ellipse_on_window_within_rectangle(SKwindow destination,color clr,rectangle rect){
             return splashkit_lib::draw_ellipse_on_window(destination,clr,rect);
         }
 
-        void draw_ellipse_on_window_within_rectangle_with_options(window destination,color clr,rectangle rect,drawing_options opts){
+        void draw_ellipse_on_window_within_rectangle_with_options(SKwindow destination,color clr,rectangle rect,drawing_options opts){
             return splashkit_lib::draw_ellipse_on_window(destination,clr,rect,opts);
         }
 
-        void draw_ellipse_on_window(window destination,color clr,double x,double y,double width,double height){
+        void draw_ellipse_on_window(SKwindow destination,color clr,double x,double y,double width,double height){
             return splashkit_lib::draw_ellipse_on_window(destination,clr,x,y,width,height);
         }
 
-        void draw_ellipse_on_window_with_options(window destination,color clr,double x,double y,double width,double height,drawing_options opts){
+        void draw_ellipse_on_window_with_options(SKwindow destination,color clr,double x,double y,double width,double height,drawing_options opts){
             return splashkit_lib::draw_ellipse_on_window(destination,clr,x,y,width,height,opts);
         }
 
@@ -2211,19 +2211,19 @@ class SplashKitJavascript
             return splashkit_lib::fill_ellipse_on_bitmap(destination,clr,x,y,width,height,opts);
         }
 
-        void fill_ellipse_on_window_within_rectangle(window destination,color clr,rectangle rect){
+        void fill_ellipse_on_window_within_rectangle(SKwindow destination,color clr,rectangle rect){
             return splashkit_lib::fill_ellipse_on_window(destination,clr,rect);
         }
 
-        void fill_ellipse_on_window_within_rectangle_with_options(window destination,color clr,rectangle rect,drawing_options opts){
+        void fill_ellipse_on_window_within_rectangle_with_options(SKwindow destination,color clr,rectangle rect,drawing_options opts){
             return splashkit_lib::fill_ellipse_on_window(destination,clr,rect,opts);
         }
 
-        void fill_ellipse_on_window(window destination,color clr,double x,double y,double width,double height){
+        void fill_ellipse_on_window(SKwindow destination,color clr,double x,double y,double width,double height){
             return splashkit_lib::fill_ellipse_on_window(destination,clr,x,y,width,height);
         }
 
-        void fill_ellipse_on_window_with_options(window destination,color clr,double x,double y,double width,double height,drawing_options opts){
+        void fill_ellipse_on_window_with_options(SKwindow destination,color clr,double x,double y,double width,double height,drawing_options opts){
             return splashkit_lib::fill_ellipse_on_window(destination,clr,x,y,width,height,opts);
         }
 
@@ -2363,11 +2363,11 @@ class SplashKitJavascript
             return splashkit_lib::draw_bitmap_on_bitmap(destination,bmp,x,y,opts);
         }
 
-        void draw_bitmap_on_window(window destination,bitmap bmp,double x,double y){
+        void draw_bitmap_on_window(SKwindow destination,bitmap bmp,double x,double y){
             return splashkit_lib::draw_bitmap_on_window(destination,bmp,x,y);
         }
 
-        void draw_bitmap_on_window_with_options(window destination,bitmap bmp,double x,double y,drawing_options opts){
+        void draw_bitmap_on_window_with_options(SKwindow destination,bitmap bmp,double x,double y,drawing_options opts){
             return splashkit_lib::draw_bitmap_on_window(destination,bmp,x,y,opts);
         }
 
@@ -2455,27 +2455,27 @@ class SplashKitJavascript
             return splashkit_lib::draw_line_on_bitmap(destination,clr,x1,y1,x2,y2,opts);
         }
 
-        void draw_line_on_window_record(window destination,color clr,line& l){
+        void draw_line_on_window_record(SKwindow destination,color clr,line& l){
             return splashkit_lib::draw_line_on_window(destination,clr,l);
         }
 
-        void draw_line_on_window_record_with_options(window destination,color clr,line& l,drawing_options opts){
+        void draw_line_on_window_record_with_options(SKwindow destination,color clr,line& l,drawing_options opts){
             return splashkit_lib::draw_line_on_window(destination,clr,l,opts);
         }
 
-        void draw_line_on_window_point_to_point(window destination,color clr,point_2d& from_pt,point_2d& to_pt){
+        void draw_line_on_window_point_to_point(SKwindow destination,color clr,point_2d& from_pt,point_2d& to_pt){
             return splashkit_lib::draw_line_on_window(destination,clr,from_pt,to_pt);
         }
 
-        void draw_line_on_window_point_to_point_with_options(window destination,color clr,point_2d& from_pt,point_2d& to_pt,drawing_options& opts){
+        void draw_line_on_window_point_to_point_with_options(SKwindow destination,color clr,point_2d& from_pt,point_2d& to_pt,drawing_options& opts){
             return splashkit_lib::draw_line_on_window(destination,clr,from_pt,to_pt,opts);
         }
 
-        void draw_line_on_window(window destination,color clr,double x1,double y1,double x2,double y2){
+        void draw_line_on_window(SKwindow destination,color clr,double x1,double y1,double x2,double y2){
             return splashkit_lib::draw_line_on_window(destination,clr,x1,y1,x2,y2);
         }
 
-        void draw_line_on_window_with_options(window destination,color clr,double x1,double y1,double x2,double y2,drawing_options& opts){
+        void draw_line_on_window_with_options(SKwindow destination,color clr,double x1,double y1,double x2,double y2,drawing_options& opts){
             return splashkit_lib::draw_line_on_window(destination,clr,x1,y1,x2,y2,opts);
         }
 
@@ -2491,11 +2491,11 @@ class SplashKitJavascript
             return splashkit_lib::option_draw_to(dest,opts);
         }
 
-        drawing_options option_draw_to_window(window dest){
+        drawing_options option_draw_to_window(SKwindow dest){
             return splashkit_lib::option_draw_to(dest);
         }
 
-        drawing_options option_draw_to_window_with_options(window dest,drawing_options opts){
+        drawing_options option_draw_to_window_with_options(SKwindow dest,drawing_options opts){
             return splashkit_lib::option_draw_to(dest,opts);
         }
 
@@ -2663,7 +2663,7 @@ class SplashKitJavascript
             return splashkit_lib::take_screenshot((string)basename);
         }
 
-        void take_screenshot_of_window(window wind,char*& basename){
+        void take_screenshot_of_window(SKwindow wind,char*& basename){
             return splashkit_lib::take_screenshot(wind,(string)basename);
         }
 
@@ -2699,19 +2699,19 @@ class SplashKitJavascript
             return splashkit_lib::draw_pixel_on_bitmap(destination,clr,x,y,opts);
         }
 
-        void draw_pixel_on_window_at_point(window destination,color clr,point_2d& pt){
+        void draw_pixel_on_window_at_point(SKwindow destination,color clr,point_2d& pt){
             return splashkit_lib::draw_pixel_on_window(destination,clr,pt);
         }
 
-        void draw_pixel_on_window_at_point_with_options(window destination,color clr,point_2d& pt,drawing_options opts){
+        void draw_pixel_on_window_at_point_with_options(SKwindow destination,color clr,point_2d& pt,drawing_options opts){
             return splashkit_lib::draw_pixel_on_window(destination,clr,pt,opts);
         }
 
-        void draw_pixel_on_window(window destination,color clr,double x,double y){
+        void draw_pixel_on_window(SKwindow destination,color clr,double x,double y){
             return splashkit_lib::draw_pixel_on_window(destination,clr,x,y);
         }
 
-        void draw_pixel_on_window_with_options(window destination,color clr,double x,double y,drawing_options opts){
+        void draw_pixel_on_window_with_options(SKwindow destination,color clr,double x,double y,drawing_options opts){
             return splashkit_lib::draw_pixel_on_window(destination,clr,x,y,opts);
         }
 
@@ -2731,19 +2731,19 @@ class SplashKitJavascript
             return splashkit_lib::get_pixel(x,y);
         }
 
-        color get_pixel_from_window_at_point(window wnd,point_2d& pt){
+        color get_pixel_from_window_at_point(SKwindow wnd,point_2d& pt){
             return splashkit_lib::get_pixel(wnd,pt);
         }
 
-        color get_pixel_from_window(window wnd,double x,double y){
+        color get_pixel_from_window(SKwindow wnd,double x,double y){
             return splashkit_lib::get_pixel(wnd,x,y);
         }
 
-        color get_pixel_from_window_at_point_from_window(window destination,point_2d& pt){
+        color get_pixel_from_window_at_point_from_window(SKwindow destination,point_2d& pt){
             return splashkit_lib::get_pixel_from_window(destination,pt);
         }
 
-        color get_pixel_from_window_from_window(window destination,double x,double y){
+        color get_pixel_from_window_from_window(SKwindow destination,double x,double y){
             return splashkit_lib::get_pixel_from_window(destination,x,y);
         }
 
@@ -2767,7 +2767,7 @@ class SplashKitJavascript
             return splashkit_lib::end_reading_text();
         }
 
-        void end_reading_text_in_window(window wind){
+        void end_reading_text_in_window(SKwindow wind){
             return splashkit_lib::end_reading_text(wind);
         }
 
@@ -2775,7 +2775,7 @@ class SplashKitJavascript
             return splashkit_lib::reading_text();
         }
 
-        bool reading_text_in_window(window wind){
+        bool reading_text_in_window(SKwindow wind){
             return splashkit_lib::reading_text(wind);
         }
 
@@ -2787,11 +2787,11 @@ class SplashKitJavascript
             return splashkit_lib::start_reading_text(rect,(string)initial_text);
         }
 
-        void start_reading_text_in_window(window wind,rectangle rect){
+        void start_reading_text_in_window(SKwindow wind,rectangle rect){
             return splashkit_lib::start_reading_text(wind,rect);
         }
 
-        void start_reading_text_in_window_with_initial_text(window wind,rectangle rect,char* initial_text){
+        void start_reading_text_in_window_with_initial_text(SKwindow wind,rectangle rect,char* initial_text){
             return splashkit_lib::start_reading_text(wind,rect,(string)initial_text);
         }
 
@@ -2799,7 +2799,7 @@ class SplashKitJavascript
             return splashkit_lib::text_entry_cancelled();
         }
 
-        bool text_entry_cancelled_in_window(window wind){
+        bool text_entry_cancelled_in_window(SKwindow wind){
             return splashkit_lib::text_entry_cancelled(wind);
         }
 
@@ -2807,7 +2807,7 @@ class SplashKitJavascript
             return outputCStr(splashkit_lib::text_input());
         }
 
-        char* text_input_in_window(window wind){
+        char* text_input_in_window(SKwindow wind){
             return outputCStr(splashkit_lib::text_input(wind));
         }
 
@@ -4507,7 +4507,7 @@ class SplashKitJavascript
             return splashkit_lib::rnd(ubound);
         }
 
-        void clear_window(window wind,color clr){
+        void clear_window(SKwindow wind,color clr){
             return splashkit_lib::clear_window(wind,clr);
         }
 
@@ -4523,11 +4523,11 @@ class SplashKitJavascript
             return splashkit_lib::close_window((string)name);
         }
 
-        void close_window(window wind){
+        void close_window(SKwindow wind){
             return splashkit_lib::close_window(wind);
         }
 
-        window current_window(){
+        SKwindow current_window(){
             return splashkit_lib::current_window();
         }
 
@@ -4571,7 +4571,7 @@ class SplashKitJavascript
             return splashkit_lib::has_window((string)caption);
         }
 
-        bool is_current_window(window wind){
+        bool is_current_window(SKwindow wind){
             return splashkit_lib::is_current_window(wind);
         }
 
@@ -4583,19 +4583,19 @@ class SplashKitJavascript
             return splashkit_lib::move_window_to((string)name,x,y);
         }
 
-        void move_window_to(window wind,int x,int y){
+        void move_window_to(SKwindow wind,int x,int y){
             return splashkit_lib::move_window_to(wind,x,y);
         }
 
-        window open_window(char* caption,int width,int height){
+        SKwindow open_window(char* caption,int width,int height){
             return splashkit_lib::open_window((string)caption,width,height);
         }
 
-        void refresh_window(window wind){
+        void refresh_window(SKwindow wind){
             return splashkit_lib::refresh_window(wind);
         }
 
-        void refresh_window_with_target_fps(window wind,unsigned int target_fps){
+        void refresh_window_with_target_fps(SKwindow wind,unsigned int target_fps){
             return splashkit_lib::refresh_window(wind,target_fps);
         }
 
@@ -4603,7 +4603,7 @@ class SplashKitJavascript
             return splashkit_lib::resize_current_window(width,height);
         }
 
-        void resize_window(window wnd,int width,int height){
+        void resize_window(SKwindow wnd,int width,int height){
             return splashkit_lib::resize_window(wnd,width,height);
         }
 
@@ -4611,11 +4611,11 @@ class SplashKitJavascript
             return splashkit_lib::set_current_window((string)name);
         }
 
-        void set_current_window(window wind){
+        void set_current_window(SKwindow wind){
             return splashkit_lib::set_current_window(wind);
         }
 
-        char* window_caption(window wind){
+        char* window_caption(SKwindow wind){
             return outputCStr(splashkit_lib::window_caption(wind));
         }
 
@@ -4623,7 +4623,7 @@ class SplashKitJavascript
             return splashkit_lib::window_close_requested((string)name);
         }
 
-        bool window_close_requested(window wind){
+        bool window_close_requested(SKwindow wind){
             return splashkit_lib::window_close_requested(wind);
         }
 
@@ -4631,11 +4631,11 @@ class SplashKitJavascript
             return splashkit_lib::window_has_border((string)name);
         }
 
-        bool window_has_border(window wnd){
+        bool window_has_border(SKwindow wnd){
             return splashkit_lib::window_has_border(wnd);
         }
 
-        bool window_has_focus(window wind){
+        bool window_has_focus(SKwindow wind){
             return splashkit_lib::window_has_focus(wind);
         }
 
@@ -4643,7 +4643,7 @@ class SplashKitJavascript
             return splashkit_lib::window_height((string)name);
         }
 
-        int window_height(window wind){
+        int window_height(SKwindow wind){
             return splashkit_lib::window_height(wind);
         }
 
@@ -4651,11 +4651,11 @@ class SplashKitJavascript
             return splashkit_lib::window_is_fullscreen((string)name);
         }
 
-        bool window_is_fullscreen(window wnd){
+        bool window_is_fullscreen(SKwindow wnd){
             return splashkit_lib::window_is_fullscreen(wnd);
         }
 
-        window window_named(char* caption){
+        SKwindow window_named(char* caption){
             return splashkit_lib::window_named((string)caption);
         }
 
@@ -4663,11 +4663,11 @@ class SplashKitJavascript
             return splashkit_lib::window_position((string)name);
         }
 
-        point_2d window_position(window wnd){
+        point_2d window_position(SKwindow wnd){
             return splashkit_lib::window_position(wnd);
         }
 
-        void window_set_icon(window wind,bitmap bmp){
+        void window_set_icon(SKwindow wind,bitmap bmp){
             return splashkit_lib::window_set_icon(wind,bmp);
         }
 
@@ -4675,7 +4675,7 @@ class SplashKitJavascript
             return splashkit_lib::window_toggle_border((string)name);
         }
 
-        void window_toggle_border(window wnd){
+        void window_toggle_border(SKwindow wnd){
             return splashkit_lib::window_toggle_border(wnd);
         }
 
@@ -4683,7 +4683,7 @@ class SplashKitJavascript
             return splashkit_lib::window_toggle_fullscreen((string)name);
         }
 
-        void window_toggle_fullscreen(window wnd){
+        void window_toggle_fullscreen(SKwindow wnd){
             return splashkit_lib::window_toggle_fullscreen(wnd);
         }
 
@@ -4691,11 +4691,11 @@ class SplashKitJavascript
             return splashkit_lib::window_width((string)name);
         }
 
-        int window_width(window wind){
+        int window_width(SKwindow wind){
             return splashkit_lib::window_width(wind);
         }
 
-        window window_with_focus(){
+        SKwindow window_with_focus(){
             return splashkit_lib::window_with_focus();
         }
 
@@ -4703,7 +4703,7 @@ class SplashKitJavascript
             return splashkit_lib::window_x((string)name);
         }
 
-        int window_x(window wnd){
+        int window_x(SKwindow wnd){
             return splashkit_lib::window_x(wnd);
         }
 
@@ -4711,7 +4711,7 @@ class SplashKitJavascript
             return splashkit_lib::window_y((string)name);
         }
 
-        int window_y(window wnd){
+        int window_y(SKwindow wnd){
             return splashkit_lib::window_y(wnd);
         }
 
