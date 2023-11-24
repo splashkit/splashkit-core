@@ -263,7 +263,7 @@ set_target_properties(SplashKitBackend
 #### SplashKitBackend WASM LIBRARY ####
 if (EMSCRIPTEN)
     add_executable(SplashKitBackendWASM "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp")
-    set_target_properties(SplashKitBackendWASM PROPERTIES LINK_FLAGS "--post-js ${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue.js")
+    set_target_properties(SplashKitBackendWASM PROPERTIES LINK_FLAGS "-sFS_DEBUG --post-js ${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue.js")
     target_link_libraries(SplashKitBackendWASM SplashKitBackend)
     set_target_properties(SplashKitBackendWASM
         PROPERTIES
