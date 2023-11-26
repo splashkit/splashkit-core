@@ -229,11 +229,11 @@ if (EMSCRIPTEN)
     add_custom_target( WebIDLBindings ALL DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json")
 
     add_custom_command(
-        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json"
-        OUTPUT "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl"
+        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json" "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/scripts/generateWebIDLBindings.py"
+        OUTPUT "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_OUT}/lib/SplashKitGlobalAPI.js"
         COMMENT "Generating Web IDL Bindings..."
         COMMAND
-        python "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/scripts/generateWebIDLBindings.py" "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json" "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl")
+        python "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/scripts/generateWebIDLBindings.py" "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json" "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_OUT}/lib/SplashKitGlobalAPI.js")
 
     add_dependencies(WASMBindings WebIDLBindings)
 

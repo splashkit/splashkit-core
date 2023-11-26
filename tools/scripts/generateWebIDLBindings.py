@@ -4,7 +4,8 @@ import sys
 inJSON = open(sys.argv[1], "r")
 outC = open(sys.argv[2], "w")
 outIDL = open(sys.argv[3], "w")
-print("Reading from "+sys.argv[1]+ ", writing to "+sys.argv[2]+" and "+sys.argv[3])
+outJS = open(sys.argv[4], "w")
+print("Reading from "+sys.argv[1]+ ", writing to "+sys.argv[2]+" and "+sys.argv[3]+" and "+sys.argv[4])
 
 api = json.load(inJSON)
 
@@ -12,6 +13,8 @@ def outputC(string):
     outC.write(string)
 def outputIDL(string):
     outIDL.write(string)
+def outputJS(string):
+    outJS.write(string)
             
 structs = set()
 function_ptrs = set()
@@ -51,7 +54,9 @@ def sigisSane(func):
     if func["name"] in ignore_functions or function_unique_name(func) in ignore_functions:
         return False
     return True
-    
+
+# Generate the C++ Wrapper Class
+
 outputC("""
 #include "animations.h"
 #include "audio.h"
@@ -308,7 +313,7 @@ outputC("""
 
 
 
-
+# Generate the WebIDL Bindings
 
 
 def sanitizeIDLTypeInParam(arg_type):
@@ -421,3 +426,37 @@ for category_name in api:
         if sigisSane(func):
             outputIDL("    "+generateIDLSig(func)+";\n")
 outputIDL("""};""")
+
+
+
+# Generate code to bind the functions from the module into the global scope
+outputJS("""let SK;
+
+""")
+for category_name in api:
+    category = api[category_name]
+    for enum in category["enums"]:
+        for const in enum["constants"]:
+            outputJS("let "+const+";\n")
+    outputJS("\n")
+    for func in category["functions"]:
+        if sigisSane(func):
+            outputJS("let "+function_unique_name(func)+";\n")
+    outputJS("\n\n")
+
+outputJS("""
+function initializeGlobalSplashKitScope(){
+    SK = new Module.SplashKitJavascript();
+
+""")
+for category_name in api:
+    category = api[category_name]
+    for enum in category["enums"]:
+        for const in enum["constants"]:
+            outputJS("    "+const+" = Module."+const+";\n")
+    outputJS("\n")
+    for func in category["functions"]:
+        if sigisSane(func):
+            outputJS("    "+function_unique_name(func)+" = SK."+function_unique_name(func)+";\n")
+    outputJS("\n\n")
+outputJS("""};""")
