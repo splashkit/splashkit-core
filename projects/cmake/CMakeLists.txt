@@ -208,6 +208,11 @@ add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (EMSCRIPTEN)
+    # Ensure the 'generated' folder exists
+    add_custom_target(WASMBindingsDirectory ALL
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${SK_SRC}/emscripten_javascript/generated/")
+
+    # Auto generate C++ Javascript Glue code from IDL bindings (the next dependency)
     add_custom_target( WASMBindings ALL DEPENDS "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue.cpp")
 
     add_custom_command(
@@ -217,7 +222,20 @@ if (EMSCRIPTEN)
         COMMAND
         python "$ENV{EMSCRIPTEN}/tools/webidl_binder.py" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue")
 
+    add_dependencies(WASMBindings WASMBindingsDirectory)
     add_dependencies(SplashKitBackend WASMBindings)
+
+    # Auto generate IDL bindings first
+    add_custom_target( WebIDLBindings ALL DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json")
+
+    add_custom_command(
+        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json"
+        OUTPUT "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl"
+        COMMENT "Generating Web IDL Bindings..."
+        COMMAND
+        python "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/scripts/generateWebIDLBindings.py" "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json" "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl")
+
+    add_dependencies(WASMBindings WebIDLBindings)
 
     list(FILTER SOURCE_FILES EXCLUDE REGEX ".*SplashKitWasmGlue\\.cpp$")
 endif()
