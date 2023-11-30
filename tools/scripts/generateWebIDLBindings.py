@@ -308,7 +308,7 @@ outputC("""
 };
 
 
-#include "generated/SplashKitWasmGlue.cpp"
+#include "SplashKitWasmGlue.cpp"
 """);
 
 
