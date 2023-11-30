@@ -223,7 +223,6 @@ if (EMSCRIPTEN)
         python "$ENV{EMSCRIPTEN}/tools/webidl_binder.py" "${SK_SRC}/emscripten_javascript/SplashKitWasm.idl" "${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue")
 
     add_dependencies(WASMBindings WASMBindingsDirectory)
-    add_dependencies(SplashKitBackend WASMBindings)
 
     # Auto generate IDL bindings first
     add_custom_target( WebIDLBindings ALL DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../../generated/docs/api.json")
@@ -237,7 +236,6 @@ if (EMSCRIPTEN)
 
     add_dependencies(WASMBindings WebIDLBindings)
 
-    list(FILTER SOURCE_FILES EXCLUDE REGEX ".*SplashKitWasmGlue\\.cpp$")
 endif()
 
 if (MSYS)
@@ -281,14 +279,14 @@ set_target_properties(SplashKitBackend
 #### SplashKitBackend WASM LIBRARY ####
 if (EMSCRIPTEN)
     add_executable(SplashKitBackendWASM "${SK_SRC}/emscripten_javascript/SplashKitWasmGlueWrapper.cpp")
-    set_target_properties(SplashKitBackendWASM PROPERTIES LINK_FLAGS "--post-js ${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue.js")
+    set_target_properties(SplashKitBackendWASM PROPERTIES LINK_FLAGS "-sFS_DEBUG --post-js ${SK_SRC}/emscripten_javascript/generated/SplashKitWasmGlue.js")
     target_link_libraries(SplashKitBackendWASM SplashKitBackend)
     set_target_properties(SplashKitBackendWASM
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${SK_OUT}/lib"
     )
     add_dependencies(SplashKitBackendWASM WASMBindings)
-    #set_target_properties(SplashKitBackendWASM PROPERTIES SUFFIX ".js")
+    set_target_properties(SplashKitBackendWASM PROPERTIES SUFFIX ".js")
 endif()
 #### END SplashKitBackend WASM LIBRARY ####
 #### sktest EXECUTABLE ####
