@@ -1,6 +1,12 @@
 /**
  * @header logging
  * @author Nathaniel Schmidt
+ * @brief SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.
+ * 
+ * SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). 
+ * The module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. 
+ * Users can close the logging process as needed, and the module handles customization for console and file output.
+ * 
  * @attribute group  logging
  * @attribute static logging
  */

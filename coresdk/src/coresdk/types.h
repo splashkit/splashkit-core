@@ -5,6 +5,7 @@
 
 /**
  * @header    types
+ * @brief SplashKit Types simplifies data type creation and management for streamlined programming.
  * @attribute group types
  */
 
