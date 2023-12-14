@@ -154,7 +154,9 @@ namespace splashkit_lib
         
         // LOG(TRACE) << "Adding dir: " << directory;
 
-        for (const auto& dir_entry : recursive_directory_iterator(directory))
+        std::error_code ec;
+
+        for (const auto& dir_entry : recursive_directory_iterator(directory, {}, ec))
         {
             if(dir_entry.is_directory())
             {

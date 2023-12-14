@@ -40,7 +40,11 @@ namespace splashkit_lib
         el::Loggers::reconfigureAllLoggers(el::ConfigurationType::Format, "%datetime %level: %msg");
 
         // LOG(TRACE) << "About to initialise splashkit";
+#ifdef __EMSCRIPTEN__
+        if ( -1 == SDL_Init( SDL_INIT_EVERYTHING & ~(SDL_INIT_TIMER | SDL_INIT_HAPTIC) ) )
+#else
         if ( -1 == SDL_Init( SDL_INIT_EVERYTHING ) )
+#endif
         {
             // fatal error so...
             // no other functions can now be called
