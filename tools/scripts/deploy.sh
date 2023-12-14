@@ -56,8 +56,11 @@ if [[ $GENERATE_LIB ]]; then
   echo "Running Translator - this is a long process...."
   echo
   sleep 0.5
-  ${SK_ROOT}/tools/translator/translate --no-color --verbose -o ${SK_GENERATED} -i ${SK_ROOT} -g clib,cpp,pascal,python,csharp,docs -w ${SK_GENERATED}/translator_cache.json
+  cd "${SK_ROOT}/tools/translator/"
   
+  docker compose build
+  docker-compose run --rm  headerdoc clib,cpp,pascal,python,csharp,docs
+
   cd "$APP_PATH/nuget-pkg"
 
   echo
@@ -71,6 +74,13 @@ if [[ $GENERATE_LIB ]]; then
   echo "dotnet nuget push ./bin/Release/*.nupkg  --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate"
   
   cd "$APP_PATH"
+  read -p "Rebuild website? [y,n]" doit
+  case $doit in
+    y|Y) bash deploy-website.sh ;;
+    n|N) echo ; echo "Skipping Website re-build" ;;
+  *) exit -1 ;;
+  esac
+
 fi
 
 function do_make {

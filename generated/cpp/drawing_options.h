@@ -6,8 +6,8 @@
 #ifndef __drawing_options_h
 #define __drawing_options_h
 
-#include "window_manager.h"
 #include "types.h"
+#include "window_manager.h"
 #include <string>
 #include <vector>
 #include <cstdint>

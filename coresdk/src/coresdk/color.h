@@ -1,6 +1,7 @@
 /**
  * @header color
  * @author Andrew Cain
+ * @brief SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.
  * @attribute group color
  */
 
