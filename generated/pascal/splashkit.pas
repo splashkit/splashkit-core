@@ -2,10 +2,6 @@ unit SplashKit;
 
 interface
 
-type __sklib_database__record_type = record end;
-type Database = ^__sklib_database__record_type;
-type __sklib_query_result__record_type = record end;
-type QueryResult = ^__sklib_query_result__record_type;
 type __sklib_json__record_type = record end;
 type Json = ^__sklib_json__record_type;
 type __sklib_music__record_type = record end;
@@ -635,28 +631,6 @@ function RGBAColor(red: Double; green: Double; blue: Double; alpha: Double): Col
 function RGBAColor(red: Integer; green: Integer; blue: Integer; alpha: Integer): Color;
 function SaturationOf(c: Color): Double;
 function StringToColor(str: String): Color;
-function DatabaseNamed(name: String): Database;
-function ErrorMessage(query: QueryResult): String;
-procedure FreeAllDatabases();
-procedure FreeAllQueryResults();
-procedure FreeDatabase(dbToClose: Database);
-procedure FreeDatabase(nameOfDbToClose: String);
-procedure FreeQueryResult(query: QueryResult);
-function GetNextRow(dbResult: QueryResult): Boolean;
-function HasDatabase(name: String): Boolean;
-function HasRow(dbResult: QueryResult): Boolean;
-function OpenDatabase(name: String; filename: String): Database;
-function QueryColumnCount(dbResult: QueryResult): Integer;
-function QueryColumnForBool(dbResult: QueryResult; col: Integer): Boolean;
-function QueryColumnForDouble(dbResult: QueryResult; col: Integer): Double;
-function QueryColumnForInt(dbResult: QueryResult; col: Integer): Integer;
-function QueryColumnForString(dbResult: QueryResult; col: Integer): String;
-function QuerySuccess(dbResult: QueryResult): Boolean;
-function QueryTypeOfCol(dbResult: QueryResult; col: Integer): String;
-procedure ResetQueryResult(dbResult: QueryResult);
-function RowsChanged(db: Database): Integer;
-function RunSql(db: Database; sql: String): QueryResult;
-function RunSql(databaseName: String; sql: String): QueryResult;
 function OptionDefaults(): DrawingOptions;
 function OptionDrawTo(dest: Bitmap): DrawingOptions;
 function OptionDrawTo(dest: Bitmap; opts: DrawingOptions): DrawingOptions;
@@ -1791,22 +1765,6 @@ function __skadapter__to_ptr(v: __sklib_ptr): Pointer;
 begin
   result := Pointer(v);
 end;
-function __skadapter__to_database(v: __sklib_ptr): Database;
-begin
-  result := Database(v);
-end;
-function __skadapter__to_sklib_database(v: Database): __sklib_ptr;
-begin
-  result := __sklib_ptr(v);
-end;
-function __skadapter__to_query_result(v: __sklib_ptr): QueryResult;
-begin
-  result := QueryResult(v);
-end;
-function __skadapter__to_sklib_query_result(v: QueryResult): __sklib_ptr;
-begin
-  result := __sklib_ptr(v);
-end;
 function __skadapter__to_json(v: __sklib_ptr): Json;
 begin
   result := Json(v);
@@ -2759,28 +2717,6 @@ function __sklib__rgba_color__double__double__double__double(red: Double; green:
 function __sklib__rgba_color__int__int__int__int(red: Integer; green: Integer; blue: Integer; alpha: Integer): __sklib_color; cdecl; external;
 function __sklib__saturation_of__color(c: __sklib_color): Double; cdecl; external;
 function __sklib__string_to_color__string(str: __sklib_string): __sklib_color; cdecl; external;
-function __sklib__database_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
-function __sklib__error_message__query_result(query: __sklib_ptr): __sklib_string; cdecl; external;
-procedure __sklib__free_all_databases(); cdecl; external;
-procedure __sklib__free_all_query_results(); cdecl; external;
-procedure __sklib__free_database__database(dbToClose: __sklib_ptr); cdecl; external;
-procedure __sklib__free_database__string(nameOfDbToClose: __sklib_string); cdecl; external;
-procedure __sklib__free_query_result__query_result(query: __sklib_ptr); cdecl; external;
-function __sklib__get_next_row__query_result(dbResult: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__has_database__string(name: __sklib_string): LongInt; cdecl; external;
-function __sklib__has_row__query_result(dbResult: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__open_database__string__string(name: __sklib_string; filename: __sklib_string): __sklib_ptr; cdecl; external;
-function __sklib__query_column_count__query_result(dbResult: __sklib_ptr): Integer; cdecl; external;
-function __sklib__query_column_for_bool__query_result__int(dbResult: __sklib_ptr; col: Integer): LongInt; cdecl; external;
-function __sklib__query_column_for_double__query_result__int(dbResult: __sklib_ptr; col: Integer): Double; cdecl; external;
-function __sklib__query_column_for_int__query_result__int(dbResult: __sklib_ptr; col: Integer): Integer; cdecl; external;
-function __sklib__query_column_for_string__query_result__int(dbResult: __sklib_ptr; col: Integer): __sklib_string; cdecl; external;
-function __sklib__query_success__query_result(dbResult: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__query_type_of_col__query_result__int(dbResult: __sklib_ptr; col: Integer): __sklib_string; cdecl; external;
-procedure __sklib__reset_query_result__query_result(dbResult: __sklib_ptr); cdecl; external;
-function __sklib__rows_changed__database(db: __sklib_ptr): Integer; cdecl; external;
-function __sklib__run_sql__database__string(db: __sklib_ptr; sql: __sklib_string): __sklib_ptr; cdecl; external;
-function __sklib__run_sql__string__string(databaseName: __sklib_string; sql: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__option_defaults(): __sklib_drawing_options; cdecl; external;
 function __sklib__option_draw_to__bitmap(dest: __sklib_ptr): __sklib_drawing_options; cdecl; external;
 function __sklib__option_draw_to__bitmap__drawing_options(dest: __sklib_ptr; opts: __sklib_drawing_options): __sklib_drawing_options; cdecl; external;
@@ -6451,202 +6387,6 @@ begin
   __skparam__str := __skadapter__to_sklib_string(str);
   __skreturn := __sklib__string_to_color__string(__skparam__str);
   result := __skadapter__to_color(__skreturn);
-end;
-function DatabaseNamed(name: String): Database;
-var
-  __skparam__name: __sklib_string;
-  __skreturn: __sklib_ptr;
-begin
-  __skparam__name := __skadapter__to_sklib_string(name);
-  __skreturn := __sklib__database_named__string(__skparam__name);
-  result := __skadapter__to_database(__skreturn);
-end;
-function ErrorMessage(query: QueryResult): String;
-var
-  __skparam__query: __sklib_ptr;
-  __skreturn: __sklib_string;
-begin
-  __skparam__query := __skadapter__to_sklib_query_result(query);
-  __skreturn := __sklib__error_message__query_result(__skparam__query);
-  result := __skadapter__to_string(__skreturn);
-end;
-procedure FreeAllDatabases();
-begin
-  __sklib__free_all_databases();
-end;
-procedure FreeAllQueryResults();
-begin
-  __sklib__free_all_query_results();
-end;
-procedure FreeDatabase(dbToClose: Database);
-var
-  __skparam__db_to_close: __sklib_ptr;
-begin
-  __skparam__db_to_close := __skadapter__to_sklib_database(dbToClose);
-  __sklib__free_database__database(__skparam__db_to_close);
-end;
-procedure FreeDatabase(nameOfDbToClose: String);
-var
-  __skparam__name_of_db_to_close: __sklib_string;
-begin
-  __skparam__name_of_db_to_close := __skadapter__to_sklib_string(nameOfDbToClose);
-  __sklib__free_database__string(__skparam__name_of_db_to_close);
-end;
-procedure FreeQueryResult(query: QueryResult);
-var
-  __skparam__query: __sklib_ptr;
-begin
-  __skparam__query := __skadapter__to_sklib_query_result(query);
-  __sklib__free_query_result__query_result(__skparam__query);
-end;
-function GetNextRow(dbResult: QueryResult): Boolean;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skreturn: LongInt;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skreturn := __sklib__get_next_row__query_result(__skparam__db_result);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function HasDatabase(name: String): Boolean;
-var
-  __skparam__name: __sklib_string;
-  __skreturn: LongInt;
-begin
-  __skparam__name := __skadapter__to_sklib_string(name);
-  __skreturn := __sklib__has_database__string(__skparam__name);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function HasRow(dbResult: QueryResult): Boolean;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skreturn: LongInt;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skreturn := __sklib__has_row__query_result(__skparam__db_result);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function OpenDatabase(name: String; filename: String): Database;
-var
-  __skparam__name: __sklib_string;
-  __skparam__filename: __sklib_string;
-  __skreturn: __sklib_ptr;
-begin
-  __skparam__name := __skadapter__to_sklib_string(name);
-  __skparam__filename := __skadapter__to_sklib_string(filename);
-  __skreturn := __sklib__open_database__string__string(__skparam__name, __skparam__filename);
-  result := __skadapter__to_database(__skreturn);
-end;
-function QueryColumnCount(dbResult: QueryResult): Integer;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skreturn: Integer;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skreturn := __sklib__query_column_count__query_result(__skparam__db_result);
-  result := __skadapter__to_int(__skreturn);
-end;
-function QueryColumnForBool(dbResult: QueryResult; col: Integer): Boolean;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skparam__col: Integer;
-  __skreturn: LongInt;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skparam__col := __skadapter__to_sklib_int(col);
-  __skreturn := __sklib__query_column_for_bool__query_result__int(__skparam__db_result, __skparam__col);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function QueryColumnForDouble(dbResult: QueryResult; col: Integer): Double;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skparam__col: Integer;
-  __skreturn: Double;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skparam__col := __skadapter__to_sklib_int(col);
-  __skreturn := __sklib__query_column_for_double__query_result__int(__skparam__db_result, __skparam__col);
-  result := __skadapter__to_double(__skreturn);
-end;
-function QueryColumnForInt(dbResult: QueryResult; col: Integer): Integer;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skparam__col: Integer;
-  __skreturn: Integer;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skparam__col := __skadapter__to_sklib_int(col);
-  __skreturn := __sklib__query_column_for_int__query_result__int(__skparam__db_result, __skparam__col);
-  result := __skadapter__to_int(__skreturn);
-end;
-function QueryColumnForString(dbResult: QueryResult; col: Integer): String;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skparam__col: Integer;
-  __skreturn: __sklib_string;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skparam__col := __skadapter__to_sklib_int(col);
-  __skreturn := __sklib__query_column_for_string__query_result__int(__skparam__db_result, __skparam__col);
-  result := __skadapter__to_string(__skreturn);
-end;
-function QuerySuccess(dbResult: QueryResult): Boolean;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skreturn: LongInt;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skreturn := __sklib__query_success__query_result(__skparam__db_result);
-  result := __skadapter__to_bool(__skreturn);
-end;
-function QueryTypeOfCol(dbResult: QueryResult; col: Integer): String;
-var
-  __skparam__db_result: __sklib_ptr;
-  __skparam__col: Integer;
-  __skreturn: __sklib_string;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __skparam__col := __skadapter__to_sklib_int(col);
-  __skreturn := __sklib__query_type_of_col__query_result__int(__skparam__db_result, __skparam__col);
-  result := __skadapter__to_string(__skreturn);
-end;
-procedure ResetQueryResult(dbResult: QueryResult);
-var
-  __skparam__db_result: __sklib_ptr;
-begin
-  __skparam__db_result := __skadapter__to_sklib_query_result(dbResult);
-  __sklib__reset_query_result__query_result(__skparam__db_result);
-end;
-function RowsChanged(db: Database): Integer;
-var
-  __skparam__db: __sklib_ptr;
-  __skreturn: Integer;
-begin
-  __skparam__db := __skadapter__to_sklib_database(db);
-  __skreturn := __sklib__rows_changed__database(__skparam__db);
-  result := __skadapter__to_int(__skreturn);
-end;
-function RunSql(db: Database; sql: String): QueryResult;
-var
-  __skparam__db: __sklib_ptr;
-  __skparam__sql: __sklib_string;
-  __skreturn: __sklib_ptr;
-begin
-  __skparam__db := __skadapter__to_sklib_database(db);
-  __skparam__sql := __skadapter__to_sklib_string(sql);
-  __skreturn := __sklib__run_sql__database__string(__skparam__db, __skparam__sql);
-  result := __skadapter__to_query_result(__skreturn);
-end;
-function RunSql(databaseName: String; sql: String): QueryResult;
-var
-  __skparam__database_name: __sklib_string;
-  __skparam__sql: __sklib_string;
-  __skreturn: __sklib_ptr;
-begin
-  __skparam__database_name := __skadapter__to_sklib_string(databaseName);
-  __skparam__sql := __skadapter__to_sklib_string(sql);
-  __skreturn := __sklib__run_sql__string__string(__skparam__database_name, __skparam__sql);
-  result := __skadapter__to_query_result(__skreturn);
 end;
 function OptionDefaults(): DrawingOptions;
 var

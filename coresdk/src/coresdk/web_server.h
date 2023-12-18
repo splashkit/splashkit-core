@@ -20,7 +20,7 @@ using std::vector;
 namespace splashkit_lib
 {
     /**
-     * The web server is able to listen for incomming requests, and you can then provide the response.
+     * The web server is able to listen for incoming requests, and you can then provide the response.
      *
      * @attribute class web_server
      */

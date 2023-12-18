@@ -90,18 +90,6 @@ unsigned char __skadapter__to_unsigned_char(unsigned char v) {
 __sklib_ptr __skadapter__to_sklib_ptr(__sklib_ptr v) {
     return v;
 }
-__sklib_ptr __skadapter__to_sklib_database(database v) {
-    return static_cast<__sklib_ptr>(v);
-}
-database __skadapter__to_database(__sklib_ptr v) {
-    return static_cast<database>(v);
-}
-__sklib_ptr __skadapter__to_sklib_query_result(query_result v) {
-    return static_cast<__sklib_ptr>(v);
-}
-query_result __skadapter__to_query_result(__sklib_ptr v) {
-    return static_cast<query_result>(v);
-}
 __sklib_ptr __skadapter__to_sklib_json(json v) {
     return static_cast<__sklib_ptr>(v);
 }

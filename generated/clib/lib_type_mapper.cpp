@@ -89,18 +89,6 @@ unsigned char __sklib__to_unsigned_char(unsigned char v) {
 __sklib_ptr __sklib__to_sklib_ptr(__sklib_ptr v) {
     return v;
 }
-__sklib_ptr __sklib__to_sklib_database(splashkit_lib::database v) {
-    return static_cast<__sklib_ptr>(v);
-}
-database __sklib__to_database(__sklib_ptr v) {
-    return static_cast<splashkit_lib::database>(v);
-}
-__sklib_ptr __sklib__to_sklib_query_result(splashkit_lib::query_result v) {
-    return static_cast<__sklib_ptr>(v);
-}
-query_result __sklib__to_query_result(__sklib_ptr v) {
-    return static_cast<splashkit_lib::query_result>(v);
-}
 __sklib_ptr __sklib__to_sklib_json(splashkit_lib::json v) {
     return static_cast<__sklib_ptr>(v);
 }
