@@ -21,7 +21,6 @@
 #include "clipping.h"
 #include "collisions.h"
 #include "color.h"
-#include "database.h"
 #include "drawing_options.h"
 #include "ellipse_drawing.h"
 #include "geometry.h"
@@ -89,10 +88,6 @@ unsigned short __sklib__to_unsigned_short(unsigned short v);
 __sklib_unsigned_char __sklib__to_sklib_unsigned_char(unsigned char v);
 unsigned char __sklib__to_unsigned_char(unsigned char v);
 __sklib_ptr __sklib__to_sklib_ptr(__sklib_ptr v);
-__sklib_ptr __sklib__to_sklib_database(splashkit_lib::database v);
-database __sklib__to_database(__sklib_ptr v);
-__sklib_ptr __sklib__to_sklib_query_result(splashkit_lib::query_result v);
-query_result __sklib__to_query_result(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_json(splashkit_lib::json v);
 json __sklib__to_json(__sklib_ptr v);
 __sklib_ptr __sklib__to_sklib_music(splashkit_lib::music v);

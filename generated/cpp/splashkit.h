@@ -13,7 +13,6 @@
 #include "clipping.h"
 #include "collisions.h"
 #include "color.h"
-#include "database.h"
 #include "drawing_options.h"
 #include "ellipse_drawing.h"
 #include "geometry.h"
