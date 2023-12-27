@@ -68,7 +68,6 @@ else()
 
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
-       "${SK_EXT}/sqlite/sqlite3.c"
        "${SK_EXT}/civetweb/src/civetweb.c"
     )
 endif()

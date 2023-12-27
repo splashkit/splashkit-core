@@ -51,7 +51,6 @@ if (WIN32 OR MSYS OR MINGW)
                     -llibcurl \
                     -llibSDL2_gfx-1-0-0 \
                     -llibpng16-16 \
-                    -llibsqlite \
                     -lws2_32 \
                     -llibncursesw \
                     -static-libstdc++ -static-libgcc \
@@ -92,7 +91,6 @@ elseif (APPLE)
 
          # SOURCE FILES
          file(GLOB OS_SOURCE_FILES
-             "${SK_EXT}/sqlite/sqlite3.c"
              "${SK_EXT}/civetweb/src/civetweb.c"
          )
 # LINUX PROJECT FLAGS
@@ -122,7 +120,6 @@ else()
                    -ldl")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES
-       "${SK_EXT}/sqlite/sqlite3.c"
        "${SK_EXT}/civetweb/src/civetweb.c"
     )
 endif()
@@ -155,7 +152,6 @@ include_directories("${SK_SRC}/backend")
 include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
-include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
 
@@ -217,7 +213,6 @@ file(GLOB LINUX_INCLUDE_FILES
     "${SK_SRC}/backend/*.h"
     "${SK_EXT}/easyloggingpp/*.h"
     "${SK_EXT}/json/*.hpp"
-    "${SK_EXT}/sqlite/*.h"
     "${SK_EXT}/catch/*.h"
 )
 
