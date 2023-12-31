@@ -15288,7 +15288,6 @@ namespace SplashKitSDK
   {
     AnimationResource,
     BundleResource,
-    DatabaseResource,
     FontResource,
     ImageResource,
     JsonResource,

@@ -183,15 +183,14 @@ class ConnectionType(Enum):
 class ResourceKind(Enum):
     animation_resource = 0
     bundle_resource = 1
-    database_resource = 2
-    font_resource = 3
-    image_resource = 4
-    json_resource = 5
-    music_resource = 6
-    server_resource = 7
-    sound_resource = 8
-    timer_resource = 9
-    other_resource = 10
+    font_resource = 2
+    image_resource = 3
+    json_resource = 4
+    music_resource = 5
+    server_resource = 6
+    sound_resource = 7
+    timer_resource = 8
+    other_resource = 9
 class CollisionTestKind(Enum):
     pixel_collisions = 0
     aabb_collisions = 1

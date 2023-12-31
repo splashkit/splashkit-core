@@ -15,7 +15,6 @@ using std::vector;
 typedef enum {
     ANIMATION_RESOURCE,
     BUNDLE_RESOURCE,
-    DATABASE_RESOURCE,
     FONT_RESOURCE,
     IMAGE_RESOURCE,
     JSON_RESOURCE,

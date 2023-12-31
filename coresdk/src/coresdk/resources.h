@@ -26,8 +26,6 @@ namespace splashkit_lib
      * @constant BUNDLE_RESOURCE    Resource bundles contain lists of other
      *                              resources. These are located in the projects
      *                              `Resources/bundles` folder.
-     * @constant DATABASE_RESOURCE  Database resources are located in the
-     *                              `Resources/databases` folder.
      * @constant FONT_RESOURCE      Fonts resources are located in the
      *                              `Resources/fonts` folder.
      * @constant IMAGE_RESOURCE     Image resources are located in the
@@ -53,7 +51,6 @@ namespace splashkit_lib
     {
         ANIMATION_RESOURCE,
         BUNDLE_RESOURCE,
-        DATABASE_RESOURCE,
         FONT_RESOURCE,
         IMAGE_RESOURCE,
         JSON_RESOURCE,

@@ -53746,7 +53746,7 @@
     ],
     "enums": [
       {
-        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,DATABASE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,MUSIC_RESOURCE,SERVER_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
+        "signature": "enum resource_kind {ANIMATION_RESOURCE,BUNDLE_RESOURCE,FONT_RESOURCE,IMAGE_RESOURCE,JSON_RESOURCE,MUSIC_RESOURCE,SERVER_RESOURCE,SOUND_RESOURCE,TIMER_RESOURCE,OTHER_RESOURCE};",
         "name": "resource_kind",
         "description": "SplashKit is able to manage a number of different kinds of resources\nfor you.",
         "brief": null,
@@ -53756,9 +53756,6 @@
           },
           "BUNDLE_RESOURCE": {
             "description": "Resource bundles contain lists of other\nresources. These are located in the projects\n`Resources/bundles` folder."
-          },
-          "DATABASE_RESOURCE": {
-            "description": "Database resources are located in the\n`Resources/databases` folder."
           },
           "FONT_RESOURCE": {
             "description": "Fonts resources are located in the\n`Resources/fonts` folder."
