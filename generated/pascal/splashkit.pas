@@ -245,6 +245,67 @@ type HttpStatusCode = (
   HTTP_STATUS_NOT_IMPLEMENTED = 501,
   HTTP_STATUS_SERVICE_UNAVAILABLE = 503
 );
+type PinModes = (
+  GPIO_INPUT = 0,
+  GPIO_OUTPUT = 1,
+  GPIO_ALT0 = 4,
+  GPIO_ALT1 = 5,
+  GPIO_ALT2 = 6,
+  GPIO_ALT3 = 7,
+  GPIO_ALT4 = 3,
+  GPIO_ALT5 = 2
+);
+type PinValues = (
+  GPIO_LOW = 0,
+  GPIO_HIGH = 1
+);
+type Pins = (
+  PIN_1 = 1,
+  PIN_2 = 2,
+  PIN_3 = 3,
+  PIN_4 = 4,
+  PIN_5 = 5,
+  PIN_6 = 6,
+  PIN_7 = 7,
+  PIN_8 = 8,
+  PIN_9 = 9,
+  PIN_10 = 10,
+  PIN_11 = 11,
+  PIN_12 = 12,
+  PIN_13 = 13,
+  PIN_14 = 14,
+  PIN_15 = 15,
+  PIN_16 = 16,
+  PIN_17 = 17,
+  PIN_18 = 18,
+  PIN_19 = 19,
+  PIN_20 = 20,
+  PIN_21 = 21,
+  PIN_22 = 22,
+  PIN_23 = 23,
+  PIN_24 = 24,
+  PIN_25 = 25,
+  PIN_26 = 26,
+  PIN_27 = 27,
+  PIN_28 = 28,
+  PIN_29 = 29,
+  PIN_30 = 30,
+  PIN_31 = 31,
+  PIN_32 = 32,
+  PIN_33 = 33,
+  PIN_34 = 34,
+  PIN_35 = 35,
+  PIN_36 = 36,
+  PIN_37 = 37,
+  PIN_38 = 38,
+  PIN_39 = 39,
+  PIN_40 = 40
+);
+type PullUpDown = (
+  PUD_OFF = 0,
+  PUD_DOWN = 1,
+  PUD_UP = 2
+);
 type HttpMethod = (
   HTTP_GET_METHOD,
   HTTP_POST_METHOD,
@@ -1234,24 +1295,12 @@ procedure UpdateSpriteAnimation(s: Sprite; pct: Single);
 procedure UpdateSpriteAnimation(s: Sprite; pct: Single; withSound: Boolean);
 function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2D): Vector2D;
 function VectorFromTo(s1: Sprite; s2: Sprite): Vector2D;
-procedure ActivateAdvancedTerminal();
-function AdvancedTerminalActive(): Boolean;
-procedure ClearTerminal();
-procedure EndAdvancedTerminal();
-procedure MoveCursorTo(x: Integer; y: Integer);
 function ReadChar(): Char;
 function ReadLine(): String;
-procedure RefreshTerminal();
-procedure SetTerminalBold(value: Boolean);
-procedure SetTerminalColors(foreground: Color; background: Color);
-procedure SetTerminalEchoInput(value: Boolean);
-function TerminalHeight(): Integer;
-function TerminalWidth(): Integer;
 procedure Write(data: Char);
 procedure Write(data: Double);
 procedure Write(data: Integer);
 procedure Write(text: String);
-procedure WriteAt(text: String; x: Integer; y: Integer);
 procedure WriteLine(data: Char);
 procedure WriteLine();
 procedure WriteLine(data: Double);
@@ -1745,6 +1794,38 @@ begin
   result := HttpStatusCode(v);
 end;
 function __skadapter__to_sklib_http_status_code(v: HttpStatusCode): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_pin_modes(v: LongInt): PinModes;
+begin
+  result := PinModes(v);
+end;
+function __skadapter__to_sklib_pin_modes(v: PinModes): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_pin_values(v: LongInt): PinValues;
+begin
+  result := PinValues(v);
+end;
+function __skadapter__to_sklib_pin_values(v: PinValues): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_pins(v: LongInt): Pins;
+begin
+  result := Pins(v);
+end;
+function __skadapter__to_sklib_pins(v: Pins): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_pull_up_down(v: LongInt): PullUpDown;
+begin
+  result := PullUpDown(v);
+end;
+function __skadapter__to_sklib_pull_up_down(v: PullUpDown): LongInt;
 begin
   result := Integer(v);
 end;
@@ -3320,24 +3401,12 @@ procedure __sklib__update_sprite_animation__sprite__float(s: __sklib_ptr; pct: S
 procedure __sklib__update_sprite_animation__sprite__float__bool(s: __sklib_ptr; pct: Single; withSound: LongInt); cdecl; external;
 function __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_from_to__sprite__sprite(s1: __sklib_ptr; s2: __sklib_ptr): __sklib_vector_2d; cdecl; external;
-procedure __sklib__activate_advanced_terminal(); cdecl; external;
-function __sklib__advanced_terminal_active(): LongInt; cdecl; external;
-procedure __sklib__clear_terminal(); cdecl; external;
-procedure __sklib__end_advanced_terminal(); cdecl; external;
-procedure __sklib__move_cursor_to__int__int(x: Integer; y: Integer); cdecl; external;
 function __sklib__read_char(): Char; cdecl; external;
 function __sklib__read_line(): __sklib_string; cdecl; external;
-procedure __sklib__refresh_terminal(); cdecl; external;
-procedure __sklib__set_terminal_bold__bool(value: LongInt); cdecl; external;
-procedure __sklib__set_terminal_colors__color__color(foreground: __sklib_color; background: __sklib_color); cdecl; external;
-procedure __sklib__set_terminal_echo_input__bool(value: LongInt); cdecl; external;
-function __sklib__terminal_height(): Integer; cdecl; external;
-function __sklib__terminal_width(): Integer; cdecl; external;
 procedure __sklib__write__char(data: Char); cdecl; external;
 procedure __sklib__write__double(data: Double); cdecl; external;
 procedure __sklib__write__int(data: Integer); cdecl; external;
 procedure __sklib__write__string(text: __sklib_string); cdecl; external;
-procedure __sklib__write_at__string__int__int(text: __sklib_string; x: Integer; y: Integer); cdecl; external;
 procedure __sklib__write_line__char(data: Char); cdecl; external;
 procedure __sklib__write_line(); cdecl; external;
 procedure __sklib__write_line__double(data: Double); cdecl; external;
@@ -12433,34 +12502,6 @@ begin
   __skreturn := __sklib__vector_from_to__sprite__sprite(__skparam__s1, __skparam__s2);
   result := __skadapter__to_vector_2d(__skreturn);
 end;
-procedure ActivateAdvancedTerminal();
-begin
-  __sklib__activate_advanced_terminal();
-end;
-function AdvancedTerminalActive(): Boolean;
-var
-  __skreturn: LongInt;
-begin
-  __skreturn := __sklib__advanced_terminal_active();
-  result := __skadapter__to_bool(__skreturn);
-end;
-procedure ClearTerminal();
-begin
-  __sklib__clear_terminal();
-end;
-procedure EndAdvancedTerminal();
-begin
-  __sklib__end_advanced_terminal();
-end;
-procedure MoveCursorTo(x: Integer; y: Integer);
-var
-  __skparam__x: Integer;
-  __skparam__y: Integer;
-begin
-  __skparam__x := __skadapter__to_sklib_int(x);
-  __skparam__y := __skadapter__to_sklib_int(y);
-  __sklib__move_cursor_to__int__int(__skparam__x, __skparam__y);
-end;
 function ReadChar(): Char;
 var
   __skreturn: Char;
@@ -12474,47 +12515,6 @@ var
 begin
   __skreturn := __sklib__read_line();
   result := __skadapter__to_string(__skreturn);
-end;
-procedure RefreshTerminal();
-begin
-  __sklib__refresh_terminal();
-end;
-procedure SetTerminalBold(value: Boolean);
-var
-  __skparam__value: LongInt;
-begin
-  __skparam__value := __skadapter__to_sklib_bool(value);
-  __sklib__set_terminal_bold__bool(__skparam__value);
-end;
-procedure SetTerminalColors(foreground: Color; background: Color);
-var
-  __skparam__foreground: __sklib_color;
-  __skparam__background: __sklib_color;
-begin
-  __skparam__foreground := __skadapter__to_sklib_color(foreground);
-  __skparam__background := __skadapter__to_sklib_color(background);
-  __sklib__set_terminal_colors__color__color(__skparam__foreground, __skparam__background);
-end;
-procedure SetTerminalEchoInput(value: Boolean);
-var
-  __skparam__value: LongInt;
-begin
-  __skparam__value := __skadapter__to_sklib_bool(value);
-  __sklib__set_terminal_echo_input__bool(__skparam__value);
-end;
-function TerminalHeight(): Integer;
-var
-  __skreturn: Integer;
-begin
-  __skreturn := __sklib__terminal_height();
-  result := __skadapter__to_int(__skreturn);
-end;
-function TerminalWidth(): Integer;
-var
-  __skreturn: Integer;
-begin
-  __skreturn := __sklib__terminal_width();
-  result := __skadapter__to_int(__skreturn);
 end;
 procedure Write(data: Char);
 var
@@ -12543,17 +12543,6 @@ var
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __sklib__write__string(__skparam__text);
-end;
-procedure WriteAt(text: String; x: Integer; y: Integer);
-var
-  __skparam__text: __sklib_string;
-  __skparam__x: Integer;
-  __skparam__y: Integer;
-begin
-  __skparam__text := __skadapter__to_sklib_string(text);
-  __skparam__x := __skadapter__to_sklib_int(x);
-  __skparam__y := __skadapter__to_sklib_int(y);
-  __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
 end;
 procedure WriteLine(data: Char);
 var

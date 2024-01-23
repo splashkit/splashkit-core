@@ -5089,24 +5089,6 @@ vector_2d vector_from_to(sprite s1, sprite s2) {
     __sklib_vector_2d __skreturn = __sklib__vector_from_to__sprite__sprite(__skparam__s1, __skparam__s2);
     return __skadapter__to_vector_2d(__skreturn);
 }
-void activate_advanced_terminal() {
-    __sklib__activate_advanced_terminal();
-}
-bool advanced_terminal_active() {
-    int __skreturn = __sklib__advanced_terminal_active();
-    return __skadapter__to_bool(__skreturn);
-}
-void clear_terminal() {
-    __sklib__clear_terminal();
-}
-void end_advanced_terminal() {
-    __sklib__end_advanced_terminal();
-}
-void move_cursor_to(int x, int y) {
-    int __skparam__x = __skadapter__to_int(x);
-    int __skparam__y = __skadapter__to_int(y);
-    __sklib__move_cursor_to__int__int(__skparam__x, __skparam__y);
-}
 char read_char() {
     char __skreturn = __sklib__read_char();
     return __skadapter__to_char(__skreturn);
@@ -5114,30 +5096,6 @@ char read_char() {
 string read_line() {
     __sklib_string __skreturn = __sklib__read_line();
     return __skadapter__to_string(__skreturn);
-}
-void refresh_terminal() {
-    __sklib__refresh_terminal();
-}
-void set_terminal_bold(bool value) {
-    int __skparam__value = __skadapter__to_int(value);
-    __sklib__set_terminal_bold__bool(__skparam__value);
-}
-void set_terminal_colors(color foreground, color background) {
-    __sklib_color __skparam__foreground = __skadapter__to_sklib_color(foreground);
-    __sklib_color __skparam__background = __skadapter__to_sklib_color(background);
-    __sklib__set_terminal_colors__color__color(__skparam__foreground, __skparam__background);
-}
-void set_terminal_echo_input(bool value) {
-    int __skparam__value = __skadapter__to_int(value);
-    __sklib__set_terminal_echo_input__bool(__skparam__value);
-}
-int terminal_height() {
-    int __skreturn = __sklib__terminal_height();
-    return __skadapter__to_int(__skreturn);
-}
-int terminal_width() {
-    int __skreturn = __sklib__terminal_width();
-    return __skadapter__to_int(__skreturn);
 }
 void write(char data) {
     char __skparam__data = __skadapter__to_char(data);
@@ -5154,13 +5112,6 @@ void write(int data) {
 void write(string text) {
     __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     __sklib__write__string(__skparam__text);
-    __skadapter__free__sklib_string(__skparam__text);
-}
-void write_at(string text, int x, int y) {
-    __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
-    int __skparam__x = __skadapter__to_int(x);
-    int __skparam__y = __skadapter__to_int(y);
-    __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
     __skadapter__free__sklib_string(__skparam__text);
 }
 void write_line(char data) {

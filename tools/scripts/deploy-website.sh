@@ -2,7 +2,15 @@
 
 # Website Redeployment Script
 # Purpose: Automate the redeployment of the website after api.json is regenerated.
+
 # Configuration
+## If you face any issues with the script, like $'\r': command not found
+## try running the following command in your terminal:
+## sudo apt-get install dos2unix
+## dos2unix deploy-website.sh
+## chmod +x deploy-website.sh
+## ./deploy-website.sh
+
 USER="splashkit" 
 SK_ROOT="$(cd ../../ && pwd)"
 SK_GENERATED="$SK_ROOT/generated"

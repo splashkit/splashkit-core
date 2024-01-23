@@ -119,6 +119,26 @@ namespace SplashKitSDK
     private static HttpStatusCode __skadapter__to_http_status_code(int v) { return (HttpStatusCode)v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_pin_modes(PinModes v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static PinModes __skadapter__to_pin_modes(int v) { return (PinModes)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_pin_values(PinValues v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static PinValues __skadapter__to_pin_values(int v) { return (PinValues)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_pins(Pins v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Pins __skadapter__to_pins(int v) { return (Pins)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_pull_up_down(PullUpDown v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static PullUpDown __skadapter__to_pull_up_down(int v) { return (PullUpDown)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_http_method(HttpMethod v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static HttpMethod __skadapter__to_http_method(int v) { return (HttpMethod)v; }
@@ -3752,44 +3772,11 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_to__sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_to__sprite__sprite(__sklib_ptr s1, __sklib_ptr s2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__activate_advanced_terminal", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__activate_advanced_terminal();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__advanced_terminal_active", CharSet=CharSet.Ansi)]
-    private static extern int __sklib__advanced_terminal_active();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_terminal", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__clear_terminal();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_advanced_terminal", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__end_advanced_terminal();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_cursor_to__int__int", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__move_cursor_to__int__int(int x, int y);
-
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_char", CharSet=CharSet.Ansi)]
     private static extern char __sklib__read_char();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_line", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_line();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_terminal", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__refresh_terminal();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_terminal_bold__bool", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__set_terminal_bold__bool(int value);
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_terminal_colors__color__color", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__set_terminal_colors__color__color(__sklib_color foreground, __sklib_color background);
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_terminal_echo_input__bool", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__set_terminal_echo_input__bool(int value);
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_height", CharSet=CharSet.Ansi)]
-    private static extern int __sklib__terminal_height();
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_width", CharSet=CharSet.Ansi)]
-    private static extern int __sklib__terminal_width();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__char", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__char(char data);
@@ -3802,9 +3789,6 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__string(__sklib_string text);
-
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_at__string__int__int", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__write_at__string__int__int(__sklib_string text, int x, int y);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__char", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line__char(char data);
@@ -12649,32 +12633,6 @@ namespace SplashKitSDK
       __skreturn = __sklib__vector_from_to__sprite__sprite(__skparam__s1, __skparam__s2);
       return __skadapter__to_vector_2d(__skreturn);
     }
-    public static void ActivateAdvancedTerminal()
-    {
-      __sklib__activate_advanced_terminal();
-    }
-    public static bool AdvancedTerminalActive()
-    {
-      int __skreturn;
-      __skreturn = __sklib__advanced_terminal_active();
-      return __skadapter__to_bool(__skreturn);
-    }
-    public static void ClearTerminal()
-    {
-      __sklib__clear_terminal();
-    }
-    public static void EndAdvancedTerminal()
-    {
-      __sklib__end_advanced_terminal();
-    }
-    public static void MoveCursorTo(int x, int y)
-    {
-      int __skparam__x;
-      int __skparam__y;
-      __skparam__x = __skadapter__to_sklib_int(x);
-      __skparam__y = __skadapter__to_sklib_int(y);
-      __sklib__move_cursor_to__int__int(__skparam__x, __skparam__y);
-    }
     public static char ReadChar()
     {
       char __skreturn;
@@ -12686,42 +12644,6 @@ namespace SplashKitSDK
       __sklib_string __skreturn;
       __skreturn = __sklib__read_line();
       return __skadapter__to_string(__skreturn);
-    }
-    public static void RefreshTerminal()
-    {
-      __sklib__refresh_terminal();
-    }
-    public static void SetTerminalBold(bool value)
-    {
-      int __skparam__value;
-      __skparam__value = __skadapter__to_sklib_bool(value);
-      __sklib__set_terminal_bold__bool(__skparam__value);
-    }
-    public static void SetTerminalColors(Color foreground, Color background)
-    {
-      __sklib_color __skparam__foreground;
-      __sklib_color __skparam__background;
-      __skparam__foreground = __skadapter__to_sklib_color(foreground);
-      __skparam__background = __skadapter__to_sklib_color(background);
-      __sklib__set_terminal_colors__color__color(__skparam__foreground, __skparam__background);
-    }
-    public static void SetTerminalEchoInput(bool value)
-    {
-      int __skparam__value;
-      __skparam__value = __skadapter__to_sklib_bool(value);
-      __sklib__set_terminal_echo_input__bool(__skparam__value);
-    }
-    public static int TerminalHeight()
-    {
-      int __skreturn;
-      __skreturn = __sklib__terminal_height();
-      return __skadapter__to_int(__skreturn);
-    }
-    public static int TerminalWidth()
-    {
-      int __skreturn;
-      __skreturn = __sklib__terminal_width();
-      return __skadapter__to_int(__skreturn);
     }
     public static void Write(char data)
     {
@@ -12746,17 +12668,6 @@ namespace SplashKitSDK
       __sklib_string __skparam__text;
       __skparam__text = __skadapter__to_sklib_string(text);
       __sklib__write__string(__skparam__text);
-    __skadapter__free__sklib_string(ref __skparam__text);
-    }
-    public static void WriteAt(string text, int x, int y)
-    {
-      __sklib_string __skparam__text;
-      int __skparam__x;
-      int __skparam__y;
-      __skparam__text = __skadapter__to_sklib_string(text);
-      __skparam__x = __skadapter__to_sklib_int(x);
-      __skparam__y = __skadapter__to_sklib_int(y);
-      __sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y);
     __skadapter__free__sklib_string(ref __skparam__text);
     }
     public static void WriteLine(char data)
@@ -15340,6 +15251,71 @@ namespace SplashKitSDK
     HttpStatusInternalServerError = 500,
     HttpStatusNotImplemented = 501,
     HttpStatusServiceUnavailable = 503
+  }
+  public enum PinModes
+  {
+    GpioInput = 0,
+    GpioOutput = 1,
+    GpioAlt0 = 4,
+    GpioAlt1 = 5,
+    GpioAlt2 = 6,
+    GpioAlt3 = 7,
+    GpioAlt4 = 3,
+    GpioAlt5 = 2
+  }
+  public enum PinValues
+  {
+    GpioLow = 0,
+    GpioHigh = 1
+  }
+  public enum Pins
+  {
+    Pin1 = 1,
+    Pin2 = 2,
+    Pin3 = 3,
+    Pin4 = 4,
+    Pin5 = 5,
+    Pin6 = 6,
+    Pin7 = 7,
+    Pin8 = 8,
+    Pin9 = 9,
+    Pin10 = 10,
+    Pin11 = 11,
+    Pin12 = 12,
+    Pin13 = 13,
+    Pin14 = 14,
+    Pin15 = 15,
+    Pin16 = 16,
+    Pin17 = 17,
+    Pin18 = 18,
+    Pin19 = 19,
+    Pin20 = 20,
+    Pin21 = 21,
+    Pin22 = 22,
+    Pin23 = 23,
+    Pin24 = 24,
+    Pin25 = 25,
+    Pin26 = 26,
+    Pin27 = 27,
+    Pin28 = 28,
+    Pin29 = 29,
+    Pin30 = 30,
+    Pin31 = 31,
+    Pin32 = 32,
+    Pin33 = 33,
+    Pin34 = 34,
+    Pin35 = 35,
+    Pin36 = 36,
+    Pin37 = 37,
+    Pin38 = 38,
+    Pin39 = 39,
+    Pin40 = 40
+  }
+  public enum PullUpDown
+  {
+    PudOff = 0,
+    PudDown = 1,
+    PudUp = 2
   }
   public enum HttpMethod
   {
