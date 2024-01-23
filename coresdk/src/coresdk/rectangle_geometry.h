@@ -1,4 +1,4 @@
-/**
+ /**
  * @header rectangle_geometry
  * @author Jacob Milligan
  * @attribute group  geometry

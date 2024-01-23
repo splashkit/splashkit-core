@@ -12,7 +12,6 @@
 #include "line_geometry.h"
 #include "circle_geometry.h"
 #include "utility_functions.h"
-
 #include <cmath>
 
 using std::to_string;
