@@ -65,7 +65,7 @@ namespace splashkit_lib
         {
             return static_cast<pin_modes>(sk_gpio_get_mode(bcmPin));
         }
-        return INPUT;
+        return GPIO_INPUT;
     }
 
     // Write a value to the given pin
@@ -93,13 +93,13 @@ namespace splashkit_lib
         if (bcmPin == -1)
         {
             cout << "Reading of PIN: " << pin << " would always be HIGH" << endl;
-            return HIGH;
+            return GPIO_HIGH;
         }
         else if (bcmPin == -2)
         {
 
             cout << "Reading of PIN: " << pin << " would always be LOW" << endl;
-            return LOW;
+            return GPIO_LOW;
         }
         return static_cast<pin_values>(sk_gpio_read(bcmPin));
     }
@@ -177,8 +177,8 @@ namespace splashkit_lib
             int bcmPin = boardToBCM(static_cast<pins>(i));
             if (bcmPin > 0)
             {
-                raspi_set_mode(static_cast<pins>(bcmPin), INPUT);
-                raspi_write(static_cast<pins>(bcmPin), LOW);
+                raspi_set_mode(static_cast<pins>(bcmPin), GPIO_INPUT);
+                raspi_write(static_cast<pins>(bcmPin), GPIO_LOW);
             }
         }
         sk_gpio_cleanup();

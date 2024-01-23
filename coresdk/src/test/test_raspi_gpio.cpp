@@ -17,7 +17,7 @@ void run_gpio_tests()
 
     // Set GPIO pin 11 as an output
     cout << "Setting GPIO pin 11 as an output" << endl;
-    raspi_set_mode(PIN_11, OUTPUT);
+    raspi_set_mode(PIN_11, GPIO_OUTPUT);
 
     // Read the initial value of GPIO pin 11
     int defaultValue = raspi_read(PIN_11);
@@ -25,7 +25,7 @@ void run_gpio_tests()
 
     // Write HIGH to GPIO pin 11
     cout << "Writing HIGH to GPIO pin 11" << endl;
-    raspi_write(PIN_11, HIGH);
+    raspi_write(PIN_11, GPIO_HIGH);
 
     // Read the value of GPIO pin 11
     int value = raspi_read(PIN_11);
@@ -33,11 +33,11 @@ void run_gpio_tests()
 
     // Write HIGH to GPIO pin 17
     cout << "Writing HIGH to GPIO pin 17" << endl;
-    raspi_write(PIN_17, HIGH);
+    raspi_write(PIN_17, GPIO_HIGH);
 
     // Write HIGH to Ground PIN
     cout << "Writing HIGH to Ground PIN" << endl;
-    raspi_write(PIN_6, HIGH);
+    raspi_write(PIN_6, GPIO_HIGH);
 
     // Clean up the GPIO
     raspi_cleanup();

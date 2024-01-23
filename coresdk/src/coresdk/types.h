@@ -403,41 +403,42 @@ enum pins
     PIN_39 = 39,
     PIN_40 = 40,
 };
+#include <cstdint>
+
 /**
  * GPIO Pin Modes:
  *
- * @constant INPUT   - Input mode.
- * @constant OUTPUT  - Output mode.
- * @constant ALT0    - Alternate function mode 0.
- * @constant ALT1    - Alternate function mode 1.
- * @constant ALT2    - Alternate function mode 2.
- * @constant ALT3    - Alternate function mode 3.
- * @constant ALT4    - Alternate function mode 4.
- * @constant ALT5    - Alternate function mode 5.
+ * @constant GPIO_INPUT   - Input mode.
+ * @constant GPIO_OUTPUT  - Output mode.
+ * @constant GPIO_ALT0    - Alternate function mode 0.
+ * @constant GPIO_ALT1    - Alternate function mode 1.
+ * @constant GPIO_ALT2    - Alternate function mode 2.
+ * @constant GPIO_ALT3    - Alternate function mode 3.
+ * @constant GPIO_ALT4    - Alternate function mode 4.
+ * @constant GPIO_ALT5    - Alternate function mode 5.
  */
-
 enum pin_modes
 {
-    INPUT = 0,
-    OUTPUT = 1,
-    ALT0 = 4,
-    ALT1 = 5,
-    ALT2 = 6,
-    ALT3 = 7,
-    ALT4 = 3,
-    ALT5 = 2
+    GPIO_INPUT = 0,
+    GPIO_OUTPUT = 1,
+    GPIO_ALT0 = 4,
+    GPIO_ALT1 = 5,
+    GPIO_ALT2 = 6,
+    GPIO_ALT3 = 7,
+    GPIO_ALT4 = 3,
+    GPIO_ALT5 = 2
 };
 
 /**
  * GPIO Pin Values:
  *
- * @constant LOW   - Logic low (0).
- * @constant HIGH  - Logic high (1).
+ * @constant GPIO_LOW   - Logic low (0).
+ * @constant GPIO_HIGH  - Logic high (1).
  */
 enum pin_values
 {
-    LOW = 0,
-    HIGH = 1
+    GPIO_LOW = 0,
+    GPIO_HIGH = 1
 };
 /**
  * GPIO Pull-up/Pull-down Configurations:
