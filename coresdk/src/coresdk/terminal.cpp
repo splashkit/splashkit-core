@@ -9,6 +9,7 @@
 #include <easylogging++.h>
 #include "types.h"
 #include <iostream>
+#
 #include <map>
 
 using std::map;
@@ -62,7 +63,7 @@ namespace splashkit_lib
 
     void write_line(char data)
     {
-        write_line(string("") + data);
+        write_line(std::to_string(data));
     }
 
     string read_line()

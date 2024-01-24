@@ -1,13 +1,12 @@
-/***********************************************
- * XQuestCode || Aditya Parmar
- * © 2024 Aditya Parmar. All Rights Reserved.
- * This file is part of the SplashKit Core Library.
- * Use https://abyz.me.uk/rpi/pigpio/pdif2.html for reference
- ***********************************************/
+// gpio_driver.h
+// This file is part of the SplashKit Core Library.
+// Copyright (©) 2024 Aditya Parmar. All Rights Reserved.
+
 #ifndef SPLASHKIT_GPIO_H
 #define SPLASHKIT_GPIO_H
 
 #include <stdint.h> // Include the appropriate header file for stdint.h
+#ifdef RASPBERRY_PI
 namespace splashkit_lib
 {
     int sk_gpio_init();
@@ -21,4 +20,5 @@ namespace splashkit_lib
     void sk_set_pwm_dutycycle(int pin, int dutycycle);
     void sk_gpio_cleanup();
 }
+#endif
 #endif /* defined(gpio_driver) */

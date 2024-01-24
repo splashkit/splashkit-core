@@ -234,9 +234,11 @@ class PinModes(Enum):
     gpio_alt3 = 7
     gpio_alt4 = 3
     gpio_alt5 = 2
+    gpio_default_mode = 1
 class PinValues(Enum):
     gpio_low = 0
     gpio_high = 1
+    gpio_default_value = 1
 class Pins(Enum):
     pin_1 = 1
     pin_2 = 2
@@ -2763,6 +2765,8 @@ sklib.__sklib__rnd.argtypes = [  ]
 sklib.__sklib__rnd.restype = c_float
 sklib.__sklib__rnd__int.argtypes = [ c_int ]
 sklib.__sklib__rnd__int.restype = c_int
+sklib.__sklib__has_gpio.argtypes = [  ]
+sklib.__sklib__has_gpio.restype = c_bool
 sklib.__sklib__raspi_cleanup.argtypes = [  ]
 sklib.__sklib__raspi_cleanup.restype = None
 sklib.__sklib__raspi_get_mode__pins.argtypes = [ c_int ]
@@ -6713,6 +6717,9 @@ def rnd_int ( ubound ):
     __skparam__ubound = __skadapter__to_sklib_int(ubound)
     __skreturn = sklib.__sklib__rnd__int(__skparam__ubound)
     return __skadapter__to_int(__skreturn)
+def has_gpio (  ):
+    __skreturn = sklib.__sklib__has_gpio()
+    return __skadapter__to_bool(__skreturn)
 def raspi_cleanup (  ):
     sklib.__sklib__raspi_cleanup()
 def raspi_get_mode ( pin ):

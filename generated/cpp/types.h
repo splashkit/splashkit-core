@@ -59,11 +59,13 @@ typedef enum {
     GPIO_ALT2 = 6,
     GPIO_ALT3 = 7,
     GPIO_ALT4 = 3,
-    GPIO_ALT5 = 2
+    GPIO_ALT5 = 2,
+    GPIO_DEFAULT_MODE = 1
 } pin_modes;
 typedef enum {
     GPIO_LOW = 0,
-    GPIO_HIGH = 1
+    GPIO_HIGH = 1,
+    GPIO_DEFAULT_VALUE = 1
 } pin_values;
 typedef enum {
     PIN_1 = 1,

@@ -23,6 +23,13 @@ namespace splashkit_lib
     void raspi_init();
 
     /**
+     * Checks if the system has GPIO capabilities.
+     *
+     * @return true if the system has GPIO capabilities, false otherwise.
+     */
+    bool has_gpio();
+
+    /**
      * @brief Sets the mode of the specified pin.
      *
      * This function sets the mode of the specified pin to the specified mode.

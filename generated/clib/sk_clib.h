@@ -868,6 +868,7 @@ __sklib_vector_triangle __sklib__triangles_from__quad_ref(const __sklib_quad q);
 int __sklib__rnd__int__int(int min, int max);
 float __sklib__rnd();
 int __sklib__rnd__int(int ubound);
+int __sklib__has_gpio();
 void __sklib__raspi_cleanup();
 int __sklib__raspi_get_mode__pins(int pin);
 void __sklib__raspi_init();

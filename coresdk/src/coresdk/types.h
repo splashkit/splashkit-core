@@ -416,6 +416,7 @@ enum pins
  * @constant GPIO_ALT3    Alternate function mode 3.
  * @constant GPIO_ALT4    Alternate function mode 4.
  * @constant GPIO_ALT5    Alternate function mode 5.
+ * @constant GPIO_DEFAULT_MODE  Default mode.
  */
 enum pin_modes
 {
@@ -426,7 +427,8 @@ enum pin_modes
     GPIO_ALT2 = 6,
     GPIO_ALT3 = 7,
     GPIO_ALT4 = 3,
-    GPIO_ALT5 = 2
+    GPIO_ALT5 = 2,
+    GPIO_DEFAULT_MODE = -1,
 };
 
 /**
@@ -434,11 +436,13 @@ enum pin_modes
  *
  * @constant GPIO_LOW   Logic low (0).
  * @constant GPIO_HIGH  Logic high (1).
+ * @constant GPIO_DEFAULT_VALUE  Default value.
  */
 enum pin_values
 {
     GPIO_LOW = 0,
-    GPIO_HIGH = 1
+    GPIO_HIGH = 1,
+    GPIO_DEFAULT_VALUE = -1
 };
 /**
  * GPIO Pull-up/Pull-down Configurations:

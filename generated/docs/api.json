@@ -61437,6 +61437,45 @@
     "description": "",
     "functions": [
       {
+        "signature": "bool has_gpio();",
+        "name": "has_gpio",
+        "method_name": null,
+        "unique_global_name": "has_gpio",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the system has GPIO capabilities.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if the system has GPIO capabilities, false otherwise.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def has_gpio():"
+          ],
+          "pascal": [
+            "function HasGpio(): Boolean"
+          ],
+          "csharp": [
+            "public static bool Raspberry.HasGpio();",
+            "public static bool SplashKit.HasGpio();"
+          ],
+          "cpp": [
+            "bool has_gpio()"
+          ]
+        }
+      },
+      {
         "signature": "void raspi_cleanup();",
         "name": "raspi_cleanup",
         "method_name": null,
@@ -81169,7 +81208,7 @@
         }
       },
       {
-        "signature": "enum pin_modes {GPIO_INPUT = 0,GPIO_OUTPUT = 1,GPIO_ALT0 = 4,GPIO_ALT1 = 5,GPIO_ALT2 = 6,GPIO_ALT3 = 7,GPIO_ALT4 = 3,GPIO_ALT5 = 2};",
+        "signature": "enum pin_modes {GPIO_INPUT = 0,GPIO_OUTPUT = 1,GPIO_ALT0 = 4,GPIO_ALT1 = 5,GPIO_ALT2 = 6,GPIO_ALT3 = 7,GPIO_ALT4 = 3,GPIO_ALT5 = 2,GPIO_DEFAULT_MODE = -1,};",
         "name": "pin_modes",
         "description": "GPIO Pin Modes:",
         "brief": null,
@@ -81205,6 +81244,10 @@
           "GPIO_ALT5": {
             "description": "Alternate function mode 5.",
             "number": 2
+          },
+          "GPIO_DEFAULT_MODE": {
+            "description": "Default mode.",
+            "number": 1
           }
         },
         "attributes": {
@@ -81212,7 +81255,7 @@
         }
       },
       {
-        "signature": "enum pin_values {GPIO_LOW = 0,GPIO_HIGH = 1};",
+        "signature": "enum pin_values {GPIO_LOW = 0,GPIO_HIGH = 1,GPIO_DEFAULT_VALUE = -1};",
         "name": "pin_values",
         "description": "GPIO Pin Values:",
         "brief": null,
@@ -81223,6 +81266,10 @@
           },
           "GPIO_HIGH": {
             "description": "Logic high (1).",
+            "number": 1
+          },
+          "GPIO_DEFAULT_VALUE": {
+            "description": "Default value.",
             "number": 1
           }
         },

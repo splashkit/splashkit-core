@@ -253,11 +253,13 @@ type PinModes = (
   GPIO_ALT2 = 6,
   GPIO_ALT3 = 7,
   GPIO_ALT4 = 3,
-  GPIO_ALT5 = 2
+  GPIO_ALT5 = 2,
+  GPIO_DEFAULT_MODE = 1
 );
 type PinValues = (
   GPIO_LOW = 0,
-  GPIO_HIGH = 1
+  GPIO_HIGH = 1,
+  GPIO_DEFAULT_VALUE = 1
 );
 type Pins = (
   PIN_1 = 1,
@@ -1078,6 +1080,7 @@ function TrianglesFrom(const q: Quad): ArrayOfTriangle;
 function Rnd(min: Integer; max: Integer): Integer;
 function Rnd(): Single;
 function Rnd(ubound: Integer): Integer;
+function HasGpio(): Boolean;
 procedure RaspiCleanup();
 function RaspiGetMode(pin: Pins): PinModes;
 procedure RaspiInit();
@@ -3194,6 +3197,7 @@ function __sklib__triangles_from__quad_ref(const q: __sklib_quad): __sklib_vecto
 function __sklib__rnd__int__int(min: Integer; max: Integer): Integer; cdecl; external;
 function __sklib__rnd(): Single; cdecl; external;
 function __sklib__rnd__int(ubound: Integer): Integer; cdecl; external;
+function __sklib__has_gpio(): LongInt; cdecl; external;
 procedure __sklib__raspi_cleanup(); cdecl; external;
 function __sklib__raspi_get_mode__pins(pin: LongInt): LongInt; cdecl; external;
 procedure __sklib__raspi_init(); cdecl; external;
@@ -10358,6 +10362,13 @@ begin
   __skparam__ubound := __skadapter__to_sklib_int(ubound);
   __skreturn := __sklib__rnd__int(__skparam__ubound);
   result := __skadapter__to_int(__skreturn);
+end;
+function HasGpio(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__has_gpio();
+  result := __skadapter__to_bool(__skreturn);
 end;
 procedure RaspiCleanup();
 begin

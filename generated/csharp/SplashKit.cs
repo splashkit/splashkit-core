@@ -3121,6 +3121,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rnd__int(int ubound);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_gpio", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__has_gpio();
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_cleanup", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_cleanup();
 
@@ -10670,6 +10673,12 @@ namespace SplashKitSDK
       __skreturn = __sklib__rnd__int(__skparam__ubound);
       return __skadapter__to_int(__skreturn);
     }
+    public static bool HasGpio()
+    {
+      int __skreturn;
+      __skreturn = __sklib__has_gpio();
+      return __skadapter__to_bool(__skreturn);
+    }
     public static void RaspiCleanup()
     {
       __sklib__raspi_cleanup();
@@ -15363,12 +15372,14 @@ namespace SplashKitSDK
     GpioAlt2 = 6,
     GpioAlt3 = 7,
     GpioAlt4 = 3,
-    GpioAlt5 = 2
+    GpioAlt5 = 2,
+    GpioDefaultMode = 1
   }
   public enum PinValues
   {
     GpioLow = 0,
-    GpioHigh = 1
+    GpioHigh = 1,
+    GpioDefaultValue = 1
   }
   public enum Pins
   {

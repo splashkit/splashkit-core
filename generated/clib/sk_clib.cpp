@@ -3723,6 +3723,10 @@ int __sklib__rnd__int(int ubound) {
     int __skreturn = rnd(__skparam__ubound);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__has_gpio() {
+    bool __skreturn = has_gpio();
+    return __sklib__to_int(__skreturn);
+}
 void __sklib__raspi_cleanup() {
     raspi_cleanup();
 }

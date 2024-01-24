@@ -13,6 +13,7 @@
 using std::string;
 using std::vector;
 
+bool has_gpio();
 void raspi_cleanup();
 pin_modes raspi_get_mode(pins pin);
 void raspi_init();
