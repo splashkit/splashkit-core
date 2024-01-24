@@ -3854,6 +3854,52 @@ int rnd(int ubound) {
     int __skreturn = __sklib__rnd__int(__skparam__ubound);
     return __skadapter__to_int(__skreturn);
 }
+void raspi_cleanup() {
+    __sklib__raspi_cleanup();
+}
+pin_modes raspi_get_mode(pins pin) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skreturn = __sklib__raspi_get_mode__pins(__skparam__pin);
+    return __skadapter__to_pin_modes(__skreturn);
+}
+void raspi_init() {
+    __sklib__raspi_init();
+}
+pin_values raspi_read(pins pin) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skreturn = __sklib__raspi_read__pins(__skparam__pin);
+    return __skadapter__to_pin_values(__skreturn);
+}
+void raspi_set_mode(pins pin, pin_modes mode) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__mode = __skadapter__to_int(mode);
+    __sklib__raspi_set_mode__pins__pin_modes(__skparam__pin, __skparam__mode);
+}
+void raspi_set_pull_up_down(pins pin, pull_up_down pud) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__pud = __skadapter__to_int(pud);
+    __sklib__raspi_set_pull_up_down__pins__pull_up_down(__skparam__pin, __skparam__pud);
+}
+void raspi_set_pwm_dutycycle(pins pin, int dutycycle) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__dutycycle = __skadapter__to_int(dutycycle);
+    __sklib__raspi_set_pwm_dutycycle__pins__int(__skparam__pin, __skparam__dutycycle);
+}
+void raspi_set_pwm_frequency(pins pin, int frequency) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__frequency = __skadapter__to_int(frequency);
+    __sklib__raspi_set_pwm_frequency__pins__int(__skparam__pin, __skparam__frequency);
+}
+void raspi_set_pwm_range(pins pin, int range) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__range = __skadapter__to_int(range);
+    __sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range);
+}
+void raspi_write(pins pin, pin_values value) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__value = __skadapter__to_int(value);
+    __sklib__raspi_write__pins__pin_values(__skparam__pin, __skparam__value);
+}
 void draw_quad(color clr, const quad &q) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
     const __sklib_quad __skparam__q = __skadapter__to_sklib_quad(q);

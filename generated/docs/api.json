@@ -61432,6 +61432,596 @@
 
     ]
   },
+  "raspberry": {
+    "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
+    "description": "",
+    "functions": [
+      {
+        "signature": "void raspi_cleanup();",
+        "name": "raspi_cleanup",
+        "method_name": null,
+        "unique_global_name": "raspi_cleanup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function should be called when you are finished using the GPIO library. It sets all pin modes to INPUT and values to LOW.",
+        "brief": "Cleans up and releases any resources used by the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_cleanup():"
+          ],
+          "pascal": [
+            "procedure RaspiCleanup()"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiCleanup();",
+            "public static void SplashKit.RaspiCleanup();"
+          ],
+          "cpp": [
+            "void raspi_cleanup()"
+          ]
+        }
+      },
+      {
+        "signature": "pin_modes raspi_get_mode(pins pin);",
+        "name": "raspi_get_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_get_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function retrieves the mode of the specified pin.",
+        "brief": "Gets the mode of the specified pin.",
+        "return": {
+          "type": "pin_modes",
+          "description": "The mode of the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to get the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_get_mode(pin):"
+          ],
+          "pascal": [
+            "function RaspiGetMode(pin: Pins): PinModes"
+          ],
+          "csharp": [
+            "public static PinModes Raspberry.RaspiGetMode(Pins pin);",
+            "public static PinModes SplashKit.RaspiGetMode(Pins pin);"
+          ],
+          "cpp": [
+            "pin_modes raspi_get_mode(pins pin)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_init();",
+        "name": "raspi_init",
+        "method_name": null,
+        "unique_global_name": "raspi_init",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function initializes the GPIO library for use. It should be called before any other GPIO functions.",
+        "brief": "Initializes the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_init():"
+          ],
+          "pascal": [
+            "procedure RaspiInit()"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiInit();",
+            "public static void SplashKit.RaspiInit();"
+          ],
+          "cpp": [
+            "void raspi_init()"
+          ]
+        }
+      },
+      {
+        "signature": "pin_values raspi_read(pins pin);",
+        "name": "raspi_read",
+        "method_name": null,
+        "unique_global_name": "raspi_read",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function reads the value from the specified pin.",
+        "brief": "Reads the value from the specified pin.",
+        "return": {
+          "type": "pin_values",
+          "description": "The value read from the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to read the value from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_read(pin):"
+          ],
+          "pascal": [
+            "function RaspiRead(pin: Pins): PinValues"
+          ],
+          "csharp": [
+            "public static PinValues Raspberry.RaspiRead(Pins pin);",
+            "public static PinValues SplashKit.RaspiRead(Pins pin);"
+          ],
+          "cpp": [
+            "pin_values raspi_read(pins pin)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_mode(pins pin,pin_modes mode);",
+        "name": "raspi_set_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_set_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the mode of the specified pin to the specified mode.",
+        "brief": "Sets the mode of the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "mode": {
+            "type": "pin_modes",
+            "description": "The mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_mode(pin, mode):"
+          ],
+          "pascal": [
+            "procedure RaspiSetMode(pin: Pins; mode: PinModes)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetMode(Pins pin, PinModes mode);",
+            "public static void SplashKit.RaspiSetMode(Pins pin, PinModes mode);"
+          ],
+          "cpp": [
+            "void raspi_set_mode(pins pin, pin_modes mode)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pull_up_down(pins pin,pull_up_down pud);",
+        "name": "raspi_set_pull_up_down",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pull_up_down",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the pull-up/down mode for the specified pin.",
+        "brief": "Sets the pull up/down mode for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the pull up/down mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pud": {
+            "type": "pull_up_down",
+            "description": "The pull up/down mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pull_up_down(pin, pud):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPullUpDown(pin: Pins; pud: PullUpDown)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPullUpDown(Pins pin, PullUpDown pud);",
+            "public static void SplashKit.RaspiSetPullUpDown(Pins pin, PullUpDown pud);"
+          ],
+          "cpp": [
+            "void raspi_set_pull_up_down(pins pin, pull_up_down pud)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_dutycycle(pins pin,int dutycycle);",
+        "name": "raspi_set_pwm_dutycycle",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_dutycycle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM duty cycle for the specified pin.",
+        "brief": "Sets the PWM duty cycle for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM duty cycle for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "dutycycle": {
+            "type": "int",
+            "description": "The PWM duty cycle to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_dutycycle(pin, dutycycle):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmDutycycle(pin: Pins; dutycycle: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmDutycycle(Pins pin, int dutycycle);",
+            "public static void SplashKit.RaspiSetPwmDutycycle(Pins pin, int dutycycle);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_dutycycle(pins pin, int dutycycle)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_frequency(pins pin,int frequency);",
+        "name": "raspi_set_pwm_frequency",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_frequency",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM frequency for the specified pin.",
+        "brief": "Sets the PWM frequency for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM frequency for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "frequency": {
+            "type": "int",
+            "description": "The PWM frequency to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_frequency(pin, frequency):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmFrequency(pin: Pins; frequency: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmFrequency(Pins pin, int frequency);",
+            "public static void SplashKit.RaspiSetPwmFrequency(Pins pin, int frequency);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_frequency(pins pin, int frequency)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_range(pins pin,int range);",
+        "name": "raspi_set_pwm_range",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_range",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM range for the specified pin.",
+        "brief": "Sets the PWM range for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM range for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "range": {
+            "type": "int",
+            "description": "The PWM range to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_range(pin, range):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmRange(pin: Pins; range: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmRange(Pins pin, int range);",
+            "public static void SplashKit.RaspiSetPwmRange(Pins pin, int range);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_range(pins pin, int range)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_write(pins pin,pin_values value);",
+        "name": "raspi_write",
+        "method_name": null,
+        "unique_global_name": "raspi_write",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function writes the specified value to the specified pin.",
+        "brief": "Writes a value to the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to write the value to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "pin_values",
+            "description": "The value to write to the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_write(pin, value):"
+          ],
+          "pascal": [
+            "procedure RaspiWrite(pin: Pins; value: PinValues)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiWrite(Pins pin, PinValues value);",
+            "public static void SplashKit.RaspiWrite(Pins pin, PinValues value);"
+          ],
+          "cpp": [
+            "void raspi_write(pins pin, pin_values value)"
+          ]
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "resource_bundles": {
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
@@ -80585,35 +81175,35 @@
         "brief": null,
         "constants": {
           "GPIO_INPUT": {
-            "description": "- Input mode.",
+            "description": "Input mode.",
             "number": 0
           },
           "GPIO_OUTPUT": {
-            "description": "- Output mode.",
+            "description": "Output mode.",
             "number": 1
           },
           "GPIO_ALT0": {
-            "description": "- Alternate function mode 0.",
+            "description": "Alternate function mode 0.",
             "number": 4
           },
           "GPIO_ALT1": {
-            "description": "- Alternate function mode 1.",
+            "description": "Alternate function mode 1.",
             "number": 5
           },
           "GPIO_ALT2": {
-            "description": "- Alternate function mode 2.",
+            "description": "Alternate function mode 2.",
             "number": 6
           },
           "GPIO_ALT3": {
-            "description": "- Alternate function mode 3.",
+            "description": "Alternate function mode 3.",
             "number": 7
           },
           "GPIO_ALT4": {
-            "description": "- Alternate function mode 4.",
+            "description": "Alternate function mode 4.",
             "number": 3
           },
           "GPIO_ALT5": {
-            "description": "- Alternate function mode 5.",
+            "description": "Alternate function mode 5.",
             "number": 2
           }
         },
@@ -80628,11 +81218,11 @@
         "brief": null,
         "constants": {
           "GPIO_LOW": {
-            "description": "- Logic low (0).",
+            "description": "Logic low (0).",
             "number": 0
           },
           "GPIO_HIGH": {
-            "description": "- Logic high (1).",
+            "description": "Logic high (1).",
             "number": 1
           }
         },
@@ -80647,163 +81237,163 @@
         "brief": null,
         "constants": {
           "PIN_1": {
-            "description": "- 3.3V Power Supply",
+            "description": "3.3V Power Supply",
             "number": 1
           },
           "PIN_2": {
-            "description": "- 5V Power Supply",
+            "description": "5V Power Supply",
             "number": 2
           },
           "PIN_3": {
-            "description": "- GPIO2 / SDA (I2C)",
+            "description": "GPIO2 / SDA (I2C)",
             "number": 3
           },
           "PIN_4": {
-            "description": "- 5V Power Supply",
+            "description": "5V Power Supply",
             "number": 4
           },
           "PIN_5": {
-            "description": "- GPIO3 / SCL (I2C)",
+            "description": "GPIO3 / SCL (I2C)",
             "number": 5
           },
           "PIN_6": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 6
           },
           "PIN_7": {
-            "description": "- GPIO4",
+            "description": "GPIO4",
             "number": 7
           },
           "PIN_8": {
-            "description": "- GPIO14 / TXD (UART)",
+            "description": "GPIO14 / TXD (UART)",
             "number": 8
           },
           "PIN_9": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 9
           },
           "PIN_10": {
-            "description": "- GPIO15 / RXD (UART)",
+            "description": "GPIO15 / RXD (UART)",
             "number": 10
           },
           "PIN_11": {
-            "description": "- GPIO17",
+            "description": "GPIO17",
             "number": 11
           },
           "PIN_12": {
-            "description": "- GPIO18 / PCM_CLK",
+            "description": "GPIO18 / PCM_CLK",
             "number": 12
           },
           "PIN_13": {
-            "description": "- GPIO27",
+            "description": "GPIO27",
             "number": 13
           },
           "PIN_14": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 14
           },
           "PIN_15": {
-            "description": "- GPIO22",
+            "description": "GPIO22",
             "number": 15
           },
           "PIN_16": {
-            "description": "- GPIO23",
+            "description": "GPIO23",
             "number": 16
           },
           "PIN_17": {
-            "description": "- 3.3V Power Supply",
+            "description": "3.3V Power Supply",
             "number": 17
           },
           "PIN_18": {
-            "description": "- GPIO24",
+            "description": "GPIO24",
             "number": 18
           },
           "PIN_19": {
-            "description": "- GPIO10 / MOSI (SPI)",
+            "description": "GPIO10 / MOSI (SPI)",
             "number": 19
           },
           "PIN_20": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 20
           },
           "PIN_21": {
-            "description": "- GPIO9 / MISO (SPI)",
+            "description": "GPIO9 / MISO (SPI)",
             "number": 21
           },
           "PIN_22": {
-            "description": "- GPIO25",
+            "description": "GPIO25",
             "number": 22
           },
           "PIN_23": {
-            "description": "- GPIO11 / SCLK (SPI)",
+            "description": "GPIO11 / SCLK (SPI)",
             "number": 23
           },
           "PIN_24": {
-            "description": "- GPIO8 / CE0 (SPI)",
+            "description": "GPIO8 / CE0 (SPI)",
             "number": 24
           },
           "PIN_25": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 25
           },
           "PIN_26": {
-            "description": "- GPIO7 / CE1 (SPI)",
+            "description": "GPIO7 / CE1 (SPI)",
             "number": 26
           },
           "PIN_27": {
-            "description": "- ID_SD (I2C ID EEPROM)",
+            "description": "ID_SD (I2C ID EEPROM)",
             "number": 27
           },
           "PIN_28": {
-            "description": "- ID_SC (I2C ID EEPROM)",
+            "description": "ID_SC (I2C ID EEPROM)",
             "number": 28
           },
           "PIN_29": {
-            "description": "- GPIO5",
+            "description": "GPIO5",
             "number": 29
           },
           "PIN_30": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 30
           },
           "PIN_31": {
-            "description": "- GPIO6",
+            "description": "GPIO6",
             "number": 31
           },
           "PIN_32": {
-            "description": "- GPIO12",
+            "description": "GPIO12",
             "number": 32
           },
           "PIN_33": {
-            "description": "- GPIO13",
+            "description": "GPIO13",
             "number": 33
           },
           "PIN_34": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 34
           },
           "PIN_35": {
-            "description": "- GPIO19 / MISO (PCM)",
+            "description": "GPIO19 / MISO (PCM)",
             "number": 35
           },
           "PIN_36": {
-            "description": "- GPIO16 / CE0 (PCM)",
+            "description": "GPIO16 / CE0 (PCM)",
             "number": 36
           },
           "PIN_37": {
-            "description": "- GPIO26",
+            "description": "GPIO26",
             "number": 37
           },
           "PIN_38": {
-            "description": "- GPIO20 / MOSI (PCM)",
+            "description": "GPIO20 / MOSI (PCM)",
             "number": 38
           },
           "PIN_39": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 39
           },
           "PIN_40": {
-            "description": "- GPIO21 / SCLK (PCM)",
+            "description": "GPIO21 / SCLK (PCM)",
             "number": 40
           }
         },
@@ -80818,15 +81408,15 @@
         "brief": null,
         "constants": {
           "PUD_OFF": {
-            "description": "- No pull-up or pull-down resistor.",
+            "description": "No pull-up or pull-down resistor.",
             "number": 0
           },
           "PUD_DOWN": {
-            "description": "- Enable pull-down resistor.",
+            "description": "Enable pull-down resistor.",
             "number": 1
           },
           "PUD_UP": {
-            "description": "- Enable pull-up resistor.",
+            "description": "Enable pull-up resistor.",
             "number": 2
           }
         },

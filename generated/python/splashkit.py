@@ -2763,6 +2763,26 @@ sklib.__sklib__rnd.argtypes = [  ]
 sklib.__sklib__rnd.restype = c_float
 sklib.__sklib__rnd__int.argtypes = [ c_int ]
 sklib.__sklib__rnd__int.restype = c_int
+sklib.__sklib__raspi_cleanup.argtypes = [  ]
+sklib.__sklib__raspi_cleanup.restype = None
+sklib.__sklib__raspi_get_mode__pins.argtypes = [ c_int ]
+sklib.__sklib__raspi_get_mode__pins.restype = c_int
+sklib.__sklib__raspi_init.argtypes = [  ]
+sklib.__sklib__raspi_init.restype = None
+sklib.__sklib__raspi_read__pins.argtypes = [ c_int ]
+sklib.__sklib__raspi_read__pins.restype = c_int
+sklib.__sklib__raspi_set_mode__pins__pin_modes.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_mode__pins__pin_modes.restype = None
+sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down.restype = None
+sklib.__sklib__raspi_set_pwm_dutycycle__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_dutycycle__pins__int.restype = None
+sklib.__sklib__raspi_set_pwm_frequency__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_frequency__pins__int.restype = None
+sklib.__sklib__raspi_set_pwm_range__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_range__pins__int.restype = None
+sklib.__sklib__raspi_write__pins__pin_values.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_write__pins__pin_values.restype = None
 sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
 sklib.__sklib__draw_quad__color__quad_ref.restype = None
 sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
@@ -6693,6 +6713,42 @@ def rnd_int ( ubound ):
     __skparam__ubound = __skadapter__to_sklib_int(ubound)
     __skreturn = sklib.__sklib__rnd__int(__skparam__ubound)
     return __skadapter__to_int(__skreturn)
+def raspi_cleanup (  ):
+    sklib.__sklib__raspi_cleanup()
+def raspi_get_mode ( pin ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skreturn = sklib.__sklib__raspi_get_mode__pins(__skparam__pin)
+    return __skadapter__to_pin_modes(__skreturn)
+def raspi_init (  ):
+    sklib.__sklib__raspi_init()
+def raspi_read ( pin ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skreturn = sklib.__sklib__raspi_read__pins(__skparam__pin)
+    return __skadapter__to_pin_values(__skreturn)
+def raspi_set_mode ( pin, mode ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__mode = __skadapter__to_sklib_pin_modes(mode)
+    sklib.__sklib__raspi_set_mode__pins__pin_modes(__skparam__pin, __skparam__mode)
+def raspi_set_pull_up_down ( pin, pud ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__pud = __skadapter__to_sklib_pull_up_down(pud)
+    sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down(__skparam__pin, __skparam__pud)
+def raspi_set_pwm_dutycycle ( pin, dutycycle ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__dutycycle = __skadapter__to_sklib_int(dutycycle)
+    sklib.__sklib__raspi_set_pwm_dutycycle__pins__int(__skparam__pin, __skparam__dutycycle)
+def raspi_set_pwm_frequency ( pin, frequency ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__frequency = __skadapter__to_sklib_int(frequency)
+    sklib.__sklib__raspi_set_pwm_frequency__pins__int(__skparam__pin, __skparam__frequency)
+def raspi_set_pwm_range ( pin, range ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__range = __skadapter__to_sklib_int(range)
+    sklib.__sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range)
+def raspi_write ( pin, value ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__value = __skadapter__to_sklib_pin_values(value)
+    sklib.__sklib__raspi_write__pins__pin_values(__skparam__pin, __skparam__value)
 def draw_quad ( clr, q ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__q = __skadapter__to_sklib_quad(q)

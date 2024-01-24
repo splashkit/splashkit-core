@@ -1078,6 +1078,16 @@ function TrianglesFrom(const q: Quad): ArrayOfTriangle;
 function Rnd(min: Integer; max: Integer): Integer;
 function Rnd(): Single;
 function Rnd(ubound: Integer): Integer;
+procedure RaspiCleanup();
+function RaspiGetMode(pin: Pins): PinModes;
+procedure RaspiInit();
+function RaspiRead(pin: Pins): PinValues;
+procedure RaspiSetMode(pin: Pins; mode: PinModes);
+procedure RaspiSetPullUpDown(pin: Pins; pud: PullUpDown);
+procedure RaspiSetPwmDutycycle(pin: Pins; dutycycle: Integer);
+procedure RaspiSetPwmFrequency(pin: Pins; frequency: Integer);
+procedure RaspiSetPwmRange(pin: Pins; range: Integer);
+procedure RaspiWrite(pin: Pins; value: PinValues);
 procedure DrawQuad(clr: Color; const q: Quad);
 procedure DrawQuad(clr: Color; const q: Quad; const opts: DrawingOptions);
 procedure DrawQuadOnBitmap(destination: Bitmap; clr: Color; const q: Quad);
@@ -3184,6 +3194,16 @@ function __sklib__triangles_from__quad_ref(const q: __sklib_quad): __sklib_vecto
 function __sklib__rnd__int__int(min: Integer; max: Integer): Integer; cdecl; external;
 function __sklib__rnd(): Single; cdecl; external;
 function __sklib__rnd__int(ubound: Integer): Integer; cdecl; external;
+procedure __sklib__raspi_cleanup(); cdecl; external;
+function __sklib__raspi_get_mode__pins(pin: LongInt): LongInt; cdecl; external;
+procedure __sklib__raspi_init(); cdecl; external;
+function __sklib__raspi_read__pins(pin: LongInt): LongInt; cdecl; external;
+procedure __sklib__raspi_set_mode__pins__pin_modes(pin: LongInt; mode: LongInt); cdecl; external;
+procedure __sklib__raspi_set_pull_up_down__pins__pull_up_down(pin: LongInt; pud: LongInt); cdecl; external;
+procedure __sklib__raspi_set_pwm_dutycycle__pins__int(pin: LongInt; dutycycle: Integer); cdecl; external;
+procedure __sklib__raspi_set_pwm_frequency__pins__int(pin: LongInt; frequency: Integer); cdecl; external;
+procedure __sklib__raspi_set_pwm_range__pins__int(pin: LongInt; range: Integer); cdecl; external;
+procedure __sklib__raspi_write__pins__pin_values(pin: LongInt; value: LongInt); cdecl; external;
 procedure __sklib__draw_quad__color__quad_ref(clr: __sklib_color; const q: __sklib_quad); cdecl; external;
 procedure __sklib__draw_quad__color__quad_ref__drawing_options_ref(clr: __sklib_color; const q: __sklib_quad; const opts: __sklib_drawing_options); cdecl; external;
 procedure __sklib__draw_quad_on_bitmap__bitmap__color__quad_ref(destination: __sklib_ptr; clr: __sklib_color; const q: __sklib_quad); cdecl; external;
@@ -10338,6 +10358,86 @@ begin
   __skparam__ubound := __skadapter__to_sklib_int(ubound);
   __skreturn := __sklib__rnd__int(__skparam__ubound);
   result := __skadapter__to_int(__skreturn);
+end;
+procedure RaspiCleanup();
+begin
+  __sklib__raspi_cleanup();
+end;
+function RaspiGetMode(pin: Pins): PinModes;
+var
+  __skparam__pin: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skreturn := __sklib__raspi_get_mode__pins(__skparam__pin);
+  result := __skadapter__to_pin_modes(__skreturn);
+end;
+procedure RaspiInit();
+begin
+  __sklib__raspi_init();
+end;
+function RaspiRead(pin: Pins): PinValues;
+var
+  __skparam__pin: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skreturn := __sklib__raspi_read__pins(__skparam__pin);
+  result := __skadapter__to_pin_values(__skreturn);
+end;
+procedure RaspiSetMode(pin: Pins; mode: PinModes);
+var
+  __skparam__pin: LongInt;
+  __skparam__mode: LongInt;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__mode := __skadapter__to_sklib_pin_modes(mode);
+  __sklib__raspi_set_mode__pins__pin_modes(__skparam__pin, __skparam__mode);
+end;
+procedure RaspiSetPullUpDown(pin: Pins; pud: PullUpDown);
+var
+  __skparam__pin: LongInt;
+  __skparam__pud: LongInt;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__pud := __skadapter__to_sklib_pull_up_down(pud);
+  __sklib__raspi_set_pull_up_down__pins__pull_up_down(__skparam__pin, __skparam__pud);
+end;
+procedure RaspiSetPwmDutycycle(pin: Pins; dutycycle: Integer);
+var
+  __skparam__pin: LongInt;
+  __skparam__dutycycle: Integer;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__dutycycle := __skadapter__to_sklib_int(dutycycle);
+  __sklib__raspi_set_pwm_dutycycle__pins__int(__skparam__pin, __skparam__dutycycle);
+end;
+procedure RaspiSetPwmFrequency(pin: Pins; frequency: Integer);
+var
+  __skparam__pin: LongInt;
+  __skparam__frequency: Integer;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__frequency := __skadapter__to_sklib_int(frequency);
+  __sklib__raspi_set_pwm_frequency__pins__int(__skparam__pin, __skparam__frequency);
+end;
+procedure RaspiSetPwmRange(pin: Pins; range: Integer);
+var
+  __skparam__pin: LongInt;
+  __skparam__range: Integer;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__range := __skadapter__to_sklib_int(range);
+  __sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range);
+end;
+procedure RaspiWrite(pin: Pins; value: PinValues);
+var
+  __skparam__pin: LongInt;
+  __skparam__value: LongInt;
+begin
+  __skparam__pin := __skadapter__to_sklib_pins(pin);
+  __skparam__value := __skadapter__to_sklib_pin_values(value);
+  __sklib__raspi_write__pins__pin_values(__skparam__pin, __skparam__value);
 end;
 procedure DrawQuad(clr: Color; const q: Quad);
 var

@@ -319,46 +319,46 @@ namespace splashkit_lib
 /**
  * Raspberry Pi GPIO Board Pin Descriptions:
  *
- * @constant PIN_1   - 3.3V Power Supply
- * @constant PIN_2   - 5V Power Supply
- * @constant PIN_3   - GPIO2 / SDA (I2C)
- * @constant PIN_4   - 5V Power Supply
- * @constant PIN_5   - GPIO3 / SCL (I2C)
- * @constant PIN_6   - Ground
- * @constant PIN_7   - GPIO4
- * @constant PIN_8   - GPIO14 / TXD (UART)
- * @constant PIN_9   - Ground
- * @constant PIN_10  - GPIO15 / RXD (UART)
- * @constant PIN_11  - GPIO17
- * @constant PIN_12  - GPIO18 / PCM_CLK
- * @constant PIN_13  - GPIO27
- * @constant PIN_14  - Ground
- * @constant PIN_15  - GPIO22
- * @constant PIN_16  - GPIO23
- * @constant PIN_17  - 3.3V Power Supply
- * @constant PIN_18  - GPIO24
- * @constant PIN_19  - GPIO10 / MOSI (SPI)
- * @constant PIN_20  - Ground
- * @constant PIN_21  - GPIO9 / MISO (SPI)
- * @constant PIN_22  - GPIO25
- * @constant PIN_23  - GPIO11 / SCLK (SPI)
- * @constant PIN_24  - GPIO8 / CE0 (SPI)
- * @constant PIN_25  - Ground
- * @constant PIN_26  - GPIO7 / CE1 (SPI)
- * @constant PIN_27  - ID_SD (I2C ID EEPROM)
- * @constant PIN_28  - ID_SC (I2C ID EEPROM)
- * @constant PIN_29  - GPIO5
- * @constant PIN_30  - Ground
- * @constant PIN_31  - GPIO6
- * @constant PIN_32  - GPIO12
- * @constant PIN_33  - GPIO13
- * @constant PIN_34  - Ground
- * @constant PIN_35  - GPIO19 / MISO (PCM)
- * @constant PIN_36  - GPIO16 / CE0 (PCM)
- * @constant PIN_37  - GPIO26
- * @constant PIN_38  - GPIO20 / MOSI (PCM)
- * @constant PIN_39  - Ground
- * @constant PIN_40  - GPIO21 / SCLK (PCM)
+ * @constant PIN_1    3.3V Power Supply
+ * @constant PIN_2    5V Power Supply
+ * @constant PIN_3    GPIO2 / SDA (I2C)
+ * @constant PIN_4    5V Power Supply
+ * @constant PIN_5    GPIO3 / SCL (I2C)
+ * @constant PIN_6    Ground
+ * @constant PIN_7    GPIO4
+ * @constant PIN_8    GPIO14 / TXD (UART)
+ * @constant PIN_9    Ground
+ * @constant PIN_10   GPIO15 / RXD (UART)
+ * @constant PIN_11   GPIO17
+ * @constant PIN_12   GPIO18 / PCM_CLK
+ * @constant PIN_13   GPIO27
+ * @constant PIN_14   Ground
+ * @constant PIN_15   GPIO22
+ * @constant PIN_16   GPIO23
+ * @constant PIN_17   3.3V Power Supply
+ * @constant PIN_18   GPIO24
+ * @constant PIN_19   GPIO10 / MOSI (SPI)
+ * @constant PIN_20   Ground
+ * @constant PIN_21   GPIO9 / MISO (SPI)
+ * @constant PIN_22   GPIO25
+ * @constant PIN_23   GPIO11 / SCLK (SPI)
+ * @constant PIN_24   GPIO8 / CE0 (SPI)
+ * @constant PIN_25   Ground
+ * @constant PIN_26   GPIO7 / CE1 (SPI)
+ * @constant PIN_27   ID_SD (I2C ID EEPROM)
+ * @constant PIN_28   ID_SC (I2C ID EEPROM)
+ * @constant PIN_29   GPIO5
+ * @constant PIN_30   Ground
+ * @constant PIN_31   GPIO6
+ * @constant PIN_32   GPIO12
+ * @constant PIN_33   GPIO13
+ * @constant PIN_34   Ground
+ * @constant PIN_35   GPIO19 / MISO (PCM)
+ * @constant PIN_36   GPIO16 / CE0 (PCM)
+ * @constant PIN_37   GPIO26
+ * @constant PIN_38   GPIO20 / MOSI (PCM)
+ * @constant PIN_39   Ground
+ * @constant PIN_40   GPIO21 / SCLK (PCM)
  */
 enum pins
 {
@@ -408,14 +408,14 @@ enum pins
 /**
  * GPIO Pin Modes:
  *
- * @constant GPIO_INPUT   - Input mode.
- * @constant GPIO_OUTPUT  - Output mode.
- * @constant GPIO_ALT0    - Alternate function mode 0.
- * @constant GPIO_ALT1    - Alternate function mode 1.
- * @constant GPIO_ALT2    - Alternate function mode 2.
- * @constant GPIO_ALT3    - Alternate function mode 3.
- * @constant GPIO_ALT4    - Alternate function mode 4.
- * @constant GPIO_ALT5    - Alternate function mode 5.
+ * @constant GPIO_INPUT   Input mode.
+ * @constant GPIO_OUTPUT  Output mode.
+ * @constant GPIO_ALT0    Alternate function mode 0.
+ * @constant GPIO_ALT1    Alternate function mode 1.
+ * @constant GPIO_ALT2    Alternate function mode 2.
+ * @constant GPIO_ALT3    Alternate function mode 3.
+ * @constant GPIO_ALT4    Alternate function mode 4.
+ * @constant GPIO_ALT5    Alternate function mode 5.
  */
 enum pin_modes
 {
@@ -432,8 +432,8 @@ enum pin_modes
 /**
  * GPIO Pin Values:
  *
- * @constant GPIO_LOW   - Logic low (0).
- * @constant GPIO_HIGH  - Logic high (1).
+ * @constant GPIO_LOW   Logic low (0).
+ * @constant GPIO_HIGH  Logic high (1).
  */
 enum pin_values
 {
@@ -443,9 +443,9 @@ enum pin_values
 /**
  * GPIO Pull-up/Pull-down Configurations:
  *
- * @constant PUD_OFF   - No pull-up or pull-down resistor.
- * @constant PUD_DOWN  - Enable pull-down resistor.
- * @constant PUD_UP    - Enable pull-up resistor.
+ * @constant PUD_OFF   No pull-up or pull-down resistor.
+ * @constant PUD_DOWN  Enable pull-down resistor.
+ * @constant PUD_UP    Enable pull-up resistor.
  */
 enum pull_up_down
 {

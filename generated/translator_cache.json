@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1705981404,
+    "parsed_at": 1706062545,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1951,7 +1951,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1705981405,
+    "parsed_at": 1706062546,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2045,7 +2045,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1705981405,
+    "parsed_at": 1706062546,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -2362,7 +2362,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1705981405,
+    "parsed_at": 1706062546,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -2507,7 +2507,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1705981406,
+    "parsed_at": 1706062547,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -3574,7 +3574,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981407,
+    "parsed_at": 1706062548,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -4945,7 +4945,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981408,
+    "parsed_at": 1706062549,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -5872,7 +5872,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981408,
+    "parsed_at": 1706062549,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -6456,7 +6456,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1705981410,
+    "parsed_at": 1706062551,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -8707,7 +8707,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1705981414,
+    "parsed_at": 1706062556,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -13907,7 +13907,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981416,
+    "parsed_at": 1706062557,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -15271,7 +15271,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981417,
+    "parsed_at": 1706062558,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -17366,7 +17366,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1705981417,
+    "parsed_at": 1706062558,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -17498,7 +17498,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981418,
+    "parsed_at": 1706062559,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -18074,7 +18074,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1705981419,
+    "parsed_at": 1706062560,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -20562,7 +20562,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1705981419,
+    "parsed_at": 1706062561,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -20655,7 +20655,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1705981421,
+    "parsed_at": 1706062562,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -22407,7 +22407,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981422,
+    "parsed_at": 1706062564,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -23405,7 +23405,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981423,
+    "parsed_at": 1706062565,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -24944,7 +24944,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981424,
+    "parsed_at": 1706062565,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -25818,7 +25818,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1705981425,
+    "parsed_at": 1706062566,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -26067,7 +26067,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1705981425,
+    "parsed_at": 1706062566,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -26805,7 +26805,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981426,
+    "parsed_at": 1706062567,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -27292,7 +27292,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981427,
+    "parsed_at": 1706062568,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -28285,7 +28285,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1705981430,
+    "parsed_at": 1706062570,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -31429,7 +31429,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981430,
+    "parsed_at": 1706062570,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -31451,7 +31451,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981431,
+    "parsed_at": 1706062571,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -32771,7 +32771,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981432,
+    "parsed_at": 1706062572,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -33795,7 +33795,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981433,
+    "parsed_at": 1706062572,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -34260,7 +34260,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1705981434,
+    "parsed_at": 1706062572,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -34390,11 +34390,454 @@
 
     ]
   },
+  "raspi_gpio": {
+    "group": "raspberry",
+    "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
+    "description": null,
+    "parsed_at": 1706062573,
+    "path": "coresdk/src/coresdk/raspi_gpio.h",
+    "functions": [
+      {
+        "signature": "void raspi_cleanup();",
+        "name": "raspi_cleanup",
+        "method_name": null,
+        "unique_global_name": "raspi_cleanup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function should be called when you are finished using the GPIO library. It sets all pin modes to INPUT and values to LOW.",
+        "brief": "Cleans up and releases any resources used by the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "pin_modes raspi_get_mode(pins pin);",
+        "name": "raspi_get_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_get_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function retrieves the mode of the specified pin.",
+        "brief": "Gets the mode of the specified pin.",
+        "return": {
+          "type": "pin_modes",
+          "description": "The mode of the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to get the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_init();",
+        "name": "raspi_init",
+        "method_name": null,
+        "unique_global_name": "raspi_init",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function initializes the GPIO library for use. It should be called before any other GPIO functions.",
+        "brief": "Initializes the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "pin_values raspi_read(pins pin);",
+        "name": "raspi_read",
+        "method_name": null,
+        "unique_global_name": "raspi_read",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function reads the value from the specified pin.",
+        "brief": "Reads the value from the specified pin.",
+        "return": {
+          "type": "pin_values",
+          "description": "The value read from the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to read the value from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_mode(pins pin,pin_modes mode);",
+        "name": "raspi_set_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_set_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the mode of the specified pin to the specified mode.",
+        "brief": "Sets the mode of the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "mode": {
+            "type": "pin_modes",
+            "description": "The mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_pull_up_down(pins pin,pull_up_down pud);",
+        "name": "raspi_set_pull_up_down",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pull_up_down",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the pull-up/down mode for the specified pin.",
+        "brief": "Sets the pull up/down mode for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the pull up/down mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pud": {
+            "type": "pull_up_down",
+            "description": "The pull up/down mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_dutycycle(pins pin,int dutycycle);",
+        "name": "raspi_set_pwm_dutycycle",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_dutycycle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM duty cycle for the specified pin.",
+        "brief": "Sets the PWM duty cycle for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM duty cycle for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "dutycycle": {
+            "type": "int",
+            "description": "The PWM duty cycle to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_frequency(pins pin,int frequency);",
+        "name": "raspi_set_pwm_frequency",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_frequency",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM frequency for the specified pin.",
+        "brief": "Sets the PWM frequency for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM frequency for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "frequency": {
+            "type": "int",
+            "description": "The PWM frequency to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_range(pins pin,int range);",
+        "name": "raspi_set_pwm_range",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_range",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM range for the specified pin.",
+        "brief": "Sets the PWM range for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM range for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "range": {
+            "type": "int",
+            "description": "The PWM range to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_write(pins pin,pin_values value);",
+        "name": "raspi_write",
+        "method_name": null,
+        "unique_global_name": "raspi_write",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function writes the specified value to the specified pin.",
+        "brief": "Writes a value to the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to write the value to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "pin_values",
+            "description": "The value to write to the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "rectangle_drawing": {
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981436,
+    "parsed_at": 1706062575,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -37287,7 +37730,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981437,
+    "parsed_at": 1706062576,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -38073,7 +38516,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1705981438,
+    "parsed_at": 1706062576,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -38391,7 +38834,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981440,
+    "parsed_at": 1706062577,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -39363,7 +39806,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1705981445,
+    "parsed_at": 1706062581,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -46239,7 +46682,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1705981446,
+    "parsed_at": 1706062581,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -46635,7 +47078,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1705981448,
+    "parsed_at": 1706062583,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -49538,7 +49981,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981449,
+    "parsed_at": 1706062584,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -50073,7 +50516,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1705981450,
+    "parsed_at": 1706062584,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -50911,7 +51354,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981452,
+    "parsed_at": 1706062586,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -53318,7 +53761,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981453,
+    "parsed_at": 1706062586,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -53679,7 +54122,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1705981455,
+    "parsed_at": 1706062588,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -54409,35 +54852,35 @@
         "brief": null,
         "constants": {
           "GPIO_INPUT": {
-            "description": "- Input mode.",
+            "description": "Input mode.",
             "number": 0
           },
           "GPIO_OUTPUT": {
-            "description": "- Output mode.",
+            "description": "Output mode.",
             "number": 1
           },
           "GPIO_ALT0": {
-            "description": "- Alternate function mode 0.",
+            "description": "Alternate function mode 0.",
             "number": 4
           },
           "GPIO_ALT1": {
-            "description": "- Alternate function mode 1.",
+            "description": "Alternate function mode 1.",
             "number": 5
           },
           "GPIO_ALT2": {
-            "description": "- Alternate function mode 2.",
+            "description": "Alternate function mode 2.",
             "number": 6
           },
           "GPIO_ALT3": {
-            "description": "- Alternate function mode 3.",
+            "description": "Alternate function mode 3.",
             "number": 7
           },
           "GPIO_ALT4": {
-            "description": "- Alternate function mode 4.",
+            "description": "Alternate function mode 4.",
             "number": 3
           },
           "GPIO_ALT5": {
-            "description": "- Alternate function mode 5.",
+            "description": "Alternate function mode 5.",
             "number": 2
           }
         },
@@ -54452,11 +54895,11 @@
         "brief": null,
         "constants": {
           "GPIO_LOW": {
-            "description": "- Logic low (0).",
+            "description": "Logic low (0).",
             "number": 0
           },
           "GPIO_HIGH": {
-            "description": "- Logic high (1).",
+            "description": "Logic high (1).",
             "number": 1
           }
         },
@@ -54471,163 +54914,163 @@
         "brief": null,
         "constants": {
           "PIN_1": {
-            "description": "- 3.3V Power Supply",
+            "description": "3.3V Power Supply",
             "number": 1
           },
           "PIN_2": {
-            "description": "- 5V Power Supply",
+            "description": "5V Power Supply",
             "number": 2
           },
           "PIN_3": {
-            "description": "- GPIO2 / SDA (I2C)",
+            "description": "GPIO2 / SDA (I2C)",
             "number": 3
           },
           "PIN_4": {
-            "description": "- 5V Power Supply",
+            "description": "5V Power Supply",
             "number": 4
           },
           "PIN_5": {
-            "description": "- GPIO3 / SCL (I2C)",
+            "description": "GPIO3 / SCL (I2C)",
             "number": 5
           },
           "PIN_6": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 6
           },
           "PIN_7": {
-            "description": "- GPIO4",
+            "description": "GPIO4",
             "number": 7
           },
           "PIN_8": {
-            "description": "- GPIO14 / TXD (UART)",
+            "description": "GPIO14 / TXD (UART)",
             "number": 8
           },
           "PIN_9": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 9
           },
           "PIN_10": {
-            "description": "- GPIO15 / RXD (UART)",
+            "description": "GPIO15 / RXD (UART)",
             "number": 10
           },
           "PIN_11": {
-            "description": "- GPIO17",
+            "description": "GPIO17",
             "number": 11
           },
           "PIN_12": {
-            "description": "- GPIO18 / PCM_CLK",
+            "description": "GPIO18 / PCM_CLK",
             "number": 12
           },
           "PIN_13": {
-            "description": "- GPIO27",
+            "description": "GPIO27",
             "number": 13
           },
           "PIN_14": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 14
           },
           "PIN_15": {
-            "description": "- GPIO22",
+            "description": "GPIO22",
             "number": 15
           },
           "PIN_16": {
-            "description": "- GPIO23",
+            "description": "GPIO23",
             "number": 16
           },
           "PIN_17": {
-            "description": "- 3.3V Power Supply",
+            "description": "3.3V Power Supply",
             "number": 17
           },
           "PIN_18": {
-            "description": "- GPIO24",
+            "description": "GPIO24",
             "number": 18
           },
           "PIN_19": {
-            "description": "- GPIO10 / MOSI (SPI)",
+            "description": "GPIO10 / MOSI (SPI)",
             "number": 19
           },
           "PIN_20": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 20
           },
           "PIN_21": {
-            "description": "- GPIO9 / MISO (SPI)",
+            "description": "GPIO9 / MISO (SPI)",
             "number": 21
           },
           "PIN_22": {
-            "description": "- GPIO25",
+            "description": "GPIO25",
             "number": 22
           },
           "PIN_23": {
-            "description": "- GPIO11 / SCLK (SPI)",
+            "description": "GPIO11 / SCLK (SPI)",
             "number": 23
           },
           "PIN_24": {
-            "description": "- GPIO8 / CE0 (SPI)",
+            "description": "GPIO8 / CE0 (SPI)",
             "number": 24
           },
           "PIN_25": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 25
           },
           "PIN_26": {
-            "description": "- GPIO7 / CE1 (SPI)",
+            "description": "GPIO7 / CE1 (SPI)",
             "number": 26
           },
           "PIN_27": {
-            "description": "- ID_SD (I2C ID EEPROM)",
+            "description": "ID_SD (I2C ID EEPROM)",
             "number": 27
           },
           "PIN_28": {
-            "description": "- ID_SC (I2C ID EEPROM)",
+            "description": "ID_SC (I2C ID EEPROM)",
             "number": 28
           },
           "PIN_29": {
-            "description": "- GPIO5",
+            "description": "GPIO5",
             "number": 29
           },
           "PIN_30": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 30
           },
           "PIN_31": {
-            "description": "- GPIO6",
+            "description": "GPIO6",
             "number": 31
           },
           "PIN_32": {
-            "description": "- GPIO12",
+            "description": "GPIO12",
             "number": 32
           },
           "PIN_33": {
-            "description": "- GPIO13",
+            "description": "GPIO13",
             "number": 33
           },
           "PIN_34": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 34
           },
           "PIN_35": {
-            "description": "- GPIO19 / MISO (PCM)",
+            "description": "GPIO19 / MISO (PCM)",
             "number": 35
           },
           "PIN_36": {
-            "description": "- GPIO16 / CE0 (PCM)",
+            "description": "GPIO16 / CE0 (PCM)",
             "number": 36
           },
           "PIN_37": {
-            "description": "- GPIO26",
+            "description": "GPIO26",
             "number": 37
           },
           "PIN_38": {
-            "description": "- GPIO20 / MOSI (PCM)",
+            "description": "GPIO20 / MOSI (PCM)",
             "number": 38
           },
           "PIN_39": {
-            "description": "- Ground",
+            "description": "Ground",
             "number": 39
           },
           "PIN_40": {
-            "description": "- GPIO21 / SCLK (PCM)",
+            "description": "GPIO21 / SCLK (PCM)",
             "number": 40
           }
         },
@@ -54642,15 +55085,15 @@
         "brief": null,
         "constants": {
           "PUD_OFF": {
-            "description": "- No pull-up or pull-down resistor.",
+            "description": "No pull-up or pull-down resistor.",
             "number": 0
           },
           "PUD_DOWN": {
-            "description": "- Enable pull-down resistor.",
+            "description": "Enable pull-down resistor.",
             "number": 1
           },
           "PUD_UP": {
-            "description": "- Enable pull-up resistor.",
+            "description": "Enable pull-up resistor.",
             "number": 2
           }
         },
@@ -54667,7 +55110,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1705981455,
+    "parsed_at": 1706062588,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -54875,7 +55318,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1705981456,
+    "parsed_at": 1706062589,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -56308,7 +56751,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981457,
+    "parsed_at": 1706062590,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -56903,7 +57346,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1705981458,
+    "parsed_at": 1706062591,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -58622,7 +59065,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1705981460,
+    "parsed_at": 1706062593,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {

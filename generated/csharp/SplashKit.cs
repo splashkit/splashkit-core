@@ -3121,6 +3121,36 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rnd__int(int ubound);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_cleanup", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_cleanup();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_get_mode__pins", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_get_mode__pins(int pin);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_init", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_init();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_read__pins", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_read__pins(int pin);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_mode__pins__pin_modes", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_set_mode__pins__pin_modes(int pin, int mode);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pull_up_down__pins__pull_up_down", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_set_pull_up_down__pins__pull_up_down(int pin, int pud);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_dutycycle__pins__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_set_pwm_dutycycle__pins__int(int pin, int dutycycle);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_frequency__pins__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_set_pwm_frequency__pins__int(int pin, int frequency);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_range__pins__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_set_pwm_range__pins__int(int pin, int range);
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_write__pins__pin_values", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_write__pins__pin_values(int pin, int value);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad__color__quad_ref(__sklib_color clr, __sklib_quad q);
 
@@ -10639,6 +10669,78 @@ namespace SplashKitSDK
       __skparam__ubound = __skadapter__to_sklib_int(ubound);
       __skreturn = __sklib__rnd__int(__skparam__ubound);
       return __skadapter__to_int(__skreturn);
+    }
+    public static void RaspiCleanup()
+    {
+      __sklib__raspi_cleanup();
+    }
+    public static PinModes RaspiGetMode(Pins pin)
+    {
+      int __skparam__pin;
+      int __skreturn;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skreturn = __sklib__raspi_get_mode__pins(__skparam__pin);
+      return __skadapter__to_pin_modes(__skreturn);
+    }
+    public static void RaspiInit()
+    {
+      __sklib__raspi_init();
+    }
+    public static PinValues RaspiRead(Pins pin)
+    {
+      int __skparam__pin;
+      int __skreturn;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skreturn = __sklib__raspi_read__pins(__skparam__pin);
+      return __skadapter__to_pin_values(__skreturn);
+    }
+    public static void RaspiSetMode(Pins pin, PinModes mode)
+    {
+      int __skparam__pin;
+      int __skparam__mode;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__mode = __skadapter__to_sklib_pin_modes(mode);
+      __sklib__raspi_set_mode__pins__pin_modes(__skparam__pin, __skparam__mode);
+    }
+    public static void RaspiSetPullUpDown(Pins pin, PullUpDown pud)
+    {
+      int __skparam__pin;
+      int __skparam__pud;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__pud = __skadapter__to_sklib_pull_up_down(pud);
+      __sklib__raspi_set_pull_up_down__pins__pull_up_down(__skparam__pin, __skparam__pud);
+    }
+    public static void RaspiSetPwmDutycycle(Pins pin, int dutycycle)
+    {
+      int __skparam__pin;
+      int __skparam__dutycycle;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__dutycycle = __skadapter__to_sklib_int(dutycycle);
+      __sklib__raspi_set_pwm_dutycycle__pins__int(__skparam__pin, __skparam__dutycycle);
+    }
+    public static void RaspiSetPwmFrequency(Pins pin, int frequency)
+    {
+      int __skparam__pin;
+      int __skparam__frequency;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__frequency = __skadapter__to_sklib_int(frequency);
+      __sklib__raspi_set_pwm_frequency__pins__int(__skparam__pin, __skparam__frequency);
+    }
+    public static void RaspiSetPwmRange(Pins pin, int range)
+    {
+      int __skparam__pin;
+      int __skparam__range;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__range = __skadapter__to_sklib_int(range);
+      __sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range);
+    }
+    public static void RaspiWrite(Pins pin, PinValues value)
+    {
+      int __skparam__pin;
+      int __skparam__value;
+      __skparam__pin = __skadapter__to_sklib_pins(pin);
+      __skparam__value = __skadapter__to_sklib_pin_values(value);
+      __sklib__raspi_write__pins__pin_values(__skparam__pin, __skparam__value);
     }
     public static void DrawQuad(Color clr, Quad q)
     {

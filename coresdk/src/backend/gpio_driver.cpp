@@ -1,6 +1,6 @@
 /***********************************************
  * XQuestCode || Aditya Parmar
- * 🚀 © 2024 Aditya Parmar. All Rights Reserved.
+ * © 2024 Aditya Parmar. All Rights Reserved.
  * This file is part of the SplashKit Core Library.
  * Use https://abyz.me.uk/rpi/pigpio/pdif2.html for reference
  ***********************************************/

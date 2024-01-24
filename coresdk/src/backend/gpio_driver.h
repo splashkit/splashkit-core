@@ -1,6 +1,6 @@
 /***********************************************
  * XQuestCode || Aditya Parmar
- * 🚀 © 2024 Aditya Parmar. All Rights Reserved.
+ * © 2024 Aditya Parmar. All Rights Reserved.
  * This file is part of the SplashKit Core Library.
  * Use https://abyz.me.uk/rpi/pigpio/pdif2.html for reference
  ***********************************************/
@@ -21,4 +21,4 @@ namespace splashkit_lib
     void sk_set_pwm_dutycycle(int pin, int dutycycle);
     void sk_gpio_cleanup();
 }
-#endif // SPLASHKIT_sk_gpio_H
+#endif /* defined(gpio_driver) */
