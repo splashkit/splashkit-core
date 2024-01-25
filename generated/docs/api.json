@@ -61432,6 +61432,635 @@
 
     ]
   },
+  "raspberry": {
+    "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
+    "description": "",
+    "functions": [
+      {
+        "signature": "bool has_gpio();",
+        "name": "has_gpio",
+        "method_name": null,
+        "unique_global_name": "has_gpio",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if the system has GPIO capabilities.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if the system has GPIO capabilities, false otherwise.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def has_gpio():"
+          ],
+          "pascal": [
+            "function HasGpio(): Boolean"
+          ],
+          "csharp": [
+            "public static bool Raspberry.HasGpio();",
+            "public static bool SplashKit.HasGpio();"
+          ],
+          "cpp": [
+            "bool has_gpio()"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_cleanup();",
+        "name": "raspi_cleanup",
+        "method_name": null,
+        "unique_global_name": "raspi_cleanup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function should be called when you are finished using the GPIO library. It sets all pin modes to INPUT and values to LOW.",
+        "brief": "Cleans up and releases any resources used by the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_cleanup():"
+          ],
+          "pascal": [
+            "procedure RaspiCleanup()"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiCleanup();",
+            "public static void SplashKit.RaspiCleanup();"
+          ],
+          "cpp": [
+            "void raspi_cleanup()"
+          ]
+        }
+      },
+      {
+        "signature": "pin_modes raspi_get_mode(pins pin);",
+        "name": "raspi_get_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_get_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function retrieves the mode of the specified pin.",
+        "brief": "Gets the mode of the specified pin.",
+        "return": {
+          "type": "pin_modes",
+          "description": "The mode of the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to get the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_get_mode(pin):"
+          ],
+          "pascal": [
+            "function RaspiGetMode(pin: Pins): PinModes"
+          ],
+          "csharp": [
+            "public static PinModes Raspberry.RaspiGetMode(Pins pin);",
+            "public static PinModes SplashKit.RaspiGetMode(Pins pin);"
+          ],
+          "cpp": [
+            "pin_modes raspi_get_mode(pins pin)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_init();",
+        "name": "raspi_init",
+        "method_name": null,
+        "unique_global_name": "raspi_init",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function initializes the GPIO library for use. It should be called before any other GPIO functions.",
+        "brief": "Initializes the GPIO library.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_init():"
+          ],
+          "pascal": [
+            "procedure RaspiInit()"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiInit();",
+            "public static void SplashKit.RaspiInit();"
+          ],
+          "cpp": [
+            "void raspi_init()"
+          ]
+        }
+      },
+      {
+        "signature": "pin_values raspi_read(pins pin);",
+        "name": "raspi_read",
+        "method_name": null,
+        "unique_global_name": "raspi_read",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function reads the value from the specified pin.",
+        "brief": "Reads the value from the specified pin.",
+        "return": {
+          "type": "pin_values",
+          "description": "The value read from the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to read the value from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_read(pin):"
+          ],
+          "pascal": [
+            "function RaspiRead(pin: Pins): PinValues"
+          ],
+          "csharp": [
+            "public static PinValues Raspberry.RaspiRead(Pins pin);",
+            "public static PinValues SplashKit.RaspiRead(Pins pin);"
+          ],
+          "cpp": [
+            "pin_values raspi_read(pins pin)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_mode(pins pin,pin_modes mode);",
+        "name": "raspi_set_mode",
+        "method_name": null,
+        "unique_global_name": "raspi_set_mode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the mode of the specified pin to the specified mode.",
+        "brief": "Sets the mode of the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "mode": {
+            "type": "pin_modes",
+            "description": "The mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_mode(pin, mode):"
+          ],
+          "pascal": [
+            "procedure RaspiSetMode(pin: Pins; mode: PinModes)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetMode(Pins pin, PinModes mode);",
+            "public static void SplashKit.RaspiSetMode(Pins pin, PinModes mode);"
+          ],
+          "cpp": [
+            "void raspi_set_mode(pins pin, pin_modes mode)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pull_up_down(pins pin,pull_up_down pud);",
+        "name": "raspi_set_pull_up_down",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pull_up_down",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the pull-up/down mode for the specified pin.",
+        "brief": "Sets the pull up/down mode for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the pull up/down mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pud": {
+            "type": "pull_up_down",
+            "description": "The pull up/down mode to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pull_up_down(pin, pud):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPullUpDown(pin: Pins; pud: PullUpDown)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPullUpDown(Pins pin, PullUpDown pud);",
+            "public static void SplashKit.RaspiSetPullUpDown(Pins pin, PullUpDown pud);"
+          ],
+          "cpp": [
+            "void raspi_set_pull_up_down(pins pin, pull_up_down pud)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_dutycycle(pins pin,int dutycycle);",
+        "name": "raspi_set_pwm_dutycycle",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_dutycycle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM duty cycle for the specified pin.",
+        "brief": "Sets the PWM duty cycle for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM duty cycle for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "dutycycle": {
+            "type": "int",
+            "description": "The PWM duty cycle to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_dutycycle(pin, dutycycle):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmDutycycle(pin: Pins; dutycycle: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmDutycycle(Pins pin, int dutycycle);",
+            "public static void SplashKit.RaspiSetPwmDutycycle(Pins pin, int dutycycle);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_dutycycle(pins pin, int dutycycle)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_frequency(pins pin,int frequency);",
+        "name": "raspi_set_pwm_frequency",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_frequency",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM frequency for the specified pin.",
+        "brief": "Sets the PWM frequency for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM frequency for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "frequency": {
+            "type": "int",
+            "description": "The PWM frequency to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_frequency(pin, frequency):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmFrequency(pin: Pins; frequency: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmFrequency(Pins pin, int frequency);",
+            "public static void SplashKit.RaspiSetPwmFrequency(Pins pin, int frequency);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_frequency(pins pin, int frequency)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_set_pwm_range(pins pin,int range);",
+        "name": "raspi_set_pwm_range",
+        "method_name": null,
+        "unique_global_name": "raspi_set_pwm_range",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the PWM range for the specified pin.",
+        "brief": "Sets the PWM range for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to set the PWM range for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "range": {
+            "type": "int",
+            "description": "The PWM range to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_set_pwm_range(pin, range):"
+          ],
+          "pascal": [
+            "procedure RaspiSetPwmRange(pin: Pins; range: Integer)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiSetPwmRange(Pins pin, int range);",
+            "public static void SplashKit.RaspiSetPwmRange(Pins pin, int range);"
+          ],
+          "cpp": [
+            "void raspi_set_pwm_range(pins pin, int range)"
+          ]
+        }
+      },
+      {
+        "signature": "void raspi_write(pins pin,pin_values value);",
+        "name": "raspi_write",
+        "method_name": null,
+        "unique_global_name": "raspi_write",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function writes the specified value to the specified pin.",
+        "brief": "Writes a value to the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "pins",
+            "description": "The pin to write the value to.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "pin_values",
+            "description": "The value to write to the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        },
+        "signatures": {
+          "python": [
+            "def raspi_write(pin, value):"
+          ],
+          "pascal": [
+            "procedure RaspiWrite(pin: Pins; value: PinValues)"
+          ],
+          "csharp": [
+            "public static void Raspberry.RaspiWrite(Pins pin, PinValues value);",
+            "public static void SplashKit.RaspiWrite(Pins pin, PinValues value);"
+          ],
+          "cpp": [
+            "void raspi_write(pins pin, pin_values value)"
+          ]
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "resource_bundles": {
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
@@ -70957,234 +71586,13 @@
     "description": "",
     "functions": [
       {
-        "signature": "void activate_advanced_terminal();",
-        "name": "activate_advanced_terminal",
-        "method_name": null,
-        "unique_global_name": "activate_advanced_terminal",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Start using the advanced terminal. Once you call this you will need\nto make sure you call `refresh_terminal` to show anything you have\nwritten. This will allow use of colors, bold, positioning, and other\nadvanced options.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def activate_advanced_terminal():"
-          ],
-          "pascal": [
-            "procedure ActivateAdvancedTerminal()"
-          ],
-          "csharp": [
-            "public static void Terminal.ActivateAdvancedTerminal();",
-            "public static void SplashKit.ActivateAdvancedTerminal();"
-          ],
-          "cpp": [
-            "void activate_advanced_terminal()"
-          ]
-        }
-      },
-      {
-        "signature": "bool advanced_terminal_active();",
-        "name": "advanced_terminal_active",
-        "method_name": null,
-        "unique_global_name": "advanced_terminal_active",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Is the terminal currently in advanced mode?",
-        "brief": null,
-        "return": {
-          "type": "bool",
-          "description": "True if the terminal is in advanced mode.",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def advanced_terminal_active():"
-          ],
-          "pascal": [
-            "function AdvancedTerminalActive(): Boolean"
-          ],
-          "csharp": [
-            "public static bool Terminal.AdvancedTerminalActive();",
-            "public static bool SplashKit.AdvancedTerminalActive();"
-          ],
-          "cpp": [
-            "bool advanced_terminal_active()"
-          ]
-        }
-      },
-      {
-        "signature": "void clear_terminal();",
-        "name": "clear_terminal",
-        "method_name": null,
-        "unique_global_name": "clear_terminal",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this will clear the terminal to the background color\nyou set in `set_terminal_color`.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def clear_terminal():"
-          ],
-          "pascal": [
-            "procedure ClearTerminal()"
-          ],
-          "csharp": [
-            "public static void Terminal.ClearTerminal();",
-            "public static void SplashKit.ClearTerminal();"
-          ],
-          "cpp": [
-            "void clear_terminal()"
-          ]
-        }
-      },
-      {
-        "signature": "void end_advanced_terminal();",
-        "name": "end_advanced_terminal",
-        "method_name": null,
-        "unique_global_name": "end_advanced_terminal",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Finish using advanced mode. The existing terminal display will be lost\nand the user will see what was in the terminal before you called\n`activate_advanced_terminal`.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def end_advanced_terminal():"
-          ],
-          "pascal": [
-            "procedure EndAdvancedTerminal()"
-          ],
-          "csharp": [
-            "public static void Terminal.EndAdvancedTerminal();",
-            "public static void SplashKit.EndAdvancedTerminal();"
-          ],
-          "cpp": [
-            "void end_advanced_terminal()"
-          ]
-        }
-      },
-      {
-        "signature": "void move_cursor_to(int x,int y);",
-        "name": "move_cursor_to",
-        "method_name": null,
-        "unique_global_name": "move_cursor_to",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this will move the cursor to a given col, row of the\nterminal. You can check the terminal size using `terminal_width` and\n`terminal_height`. If you try to move outside this bounds then then move\nwill not occur.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "x": {
-            "type": "int",
-            "description": "The column to move to, must be between 0 and `terminal_width`",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "y": {
-            "type": "int",
-            "description": "The row to move to, must be between 0 and `terminal_height`",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def move_cursor_to(x, y):"
-          ],
-          "pascal": [
-            "procedure MoveCursorTo(x: Integer; y: Integer)"
-          ],
-          "csharp": [
-            "public static void Terminal.MoveCursorTo(int x, int y);",
-            "public static void SplashKit.MoveCursorTo(int x, int y);"
-          ],
-          "cpp": [
-            "void move_cursor_to(int x, int y)"
-          ]
-        }
-      },
-      {
         "signature": "char read_char();",
         "name": "read_char",
         "method_name": null,
         "unique_global_name": "read_char",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Get a single character input by the user. This works in both standard and\nadvanced modes. In advanced mode, you can set if the character should\nalso be echoed to the terminal using `set_terminal_echo_input`.",
+        "description": "Get a single character input by the user.",
         "brief": null,
         "return": {
           "type": "char",
@@ -71252,292 +71660,6 @@
           ],
           "cpp": [
             "string read_line()"
-          ]
-        }
-      },
-      {
-        "signature": "void refresh_terminal();",
-        "name": "refresh_terminal",
-        "method_name": null,
-        "unique_global_name": "refresh_terminal",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this will display what has been written to the\nterminal. You need to call this for anything to be shown in advanced\nmode.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def refresh_terminal():"
-          ],
-          "pascal": [
-            "procedure RefreshTerminal()"
-          ],
-          "csharp": [
-            "public static void Terminal.RefreshTerminal();",
-            "public static void SplashKit.RefreshTerminal();"
-          ],
-          "cpp": [
-            "void refresh_terminal()"
-          ]
-        }
-      },
-      {
-        "signature": "void set_terminal_bold(bool value);",
-        "name": "set_terminal_bold",
-        "method_name": null,
-        "unique_global_name": "set_terminal_bold",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this allows you to set if the text should draw as bold.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "value": {
-            "type": "bool",
-            "description": "Pass true to have the terminal write in bold",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def set_terminal_bold(value):"
-          ],
-          "pascal": [
-            "procedure SetTerminalBold(value: Boolean)"
-          ],
-          "csharp": [
-            "public static void Terminal.SetTerminalBold(bool value);",
-            "public static void SplashKit.SetTerminalBold(bool value);"
-          ],
-          "cpp": [
-            "void set_terminal_bold(bool value)"
-          ]
-        }
-      },
-      {
-        "signature": "void set_terminal_colors(color foreground,color background);",
-        "name": "set_terminal_colors",
-        "method_name": null,
-        "unique_global_name": "set_terminal_colors",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode this allows you to set the color of the foreground and\nthe background. The foreground is the color of the text.\n\n\nNote that only the following colors are guaranteed to work on all\nTerminals (others may work):\n\n\n-  `color_black`\n\n\n-  `color_dark_gray`\n\n\n-  `color_gray`\n\n\n-  `color_white`\n\n\n-  `color_red`\n\n\n-  `color_dark_red`\n\n\n-  `color_green`\n\n\n-  `color_dark_green`\n\n\n-  `color_blue`\n\n\n-  `color_dark_blue`\n\n\n-  `color_cyan`\n\n\n-  `color_dark_cyan`\n\n\n-  `color_light_yellow`\n\n\n-  `color_yellow`\n\n\n-  `color_magenta`\n\n\n-  `color_dark_magenta`",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "foreground": {
-            "type": "color",
-            "description": "The color of text that is drawn.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "background": {
-            "type": "color",
-            "description": "The color of the background behind drawn text.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def set_terminal_colors(foreground, background):"
-          ],
-          "pascal": [
-            "procedure SetTerminalColors(foreground: Color; background: Color)"
-          ],
-          "csharp": [
-            "public static void Terminal.SetTerminalColors(Color foreground, Color background);",
-            "public static void SplashKit.SetTerminalColors(Color foreground, Color background);"
-          ],
-          "cpp": [
-            "void set_terminal_colors(color foreground, color background)"
-          ]
-        }
-      },
-      {
-        "signature": "void set_terminal_echo_input(bool value);",
-        "name": "set_terminal_echo_input",
-        "method_name": null,
-        "unique_global_name": "set_terminal_echo_input",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this allows you to stop text read with `read_char`\nappearing on the terminal. You can use this for reading passwords, or to\ncontrol what is written.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "value": {
-            "type": "bool",
-            "description": "Pass true if you want characters to appear as typed.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def set_terminal_echo_input(value):"
-          ],
-          "pascal": [
-            "procedure SetTerminalEchoInput(value: Boolean)"
-          ],
-          "csharp": [
-            "public static void Terminal.SetTerminalEchoInput(bool value);",
-            "public static void SplashKit.SetTerminalEchoInput(bool value);"
-          ],
-          "cpp": [
-            "void set_terminal_echo_input(bool value)"
-          ]
-        }
-      },
-      {
-        "signature": "int terminal_height();",
-        "name": "terminal_height",
-        "method_name": null,
-        "unique_global_name": "terminal_height",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this gives you the number of rows in the terminal.",
-        "brief": null,
-        "return": {
-          "type": "int",
-          "description": "The number of rows in the terminal",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def terminal_height():"
-          ],
-          "pascal": [
-            "function TerminalHeight(): Integer"
-          ],
-          "csharp": [
-            "public static int Terminal.TerminalHeight();",
-            "public static int SplashKit.TerminalHeight();"
-          ],
-          "cpp": [
-            "int terminal_height()"
-          ]
-        }
-      },
-      {
-        "signature": "int terminal_width();",
-        "name": "terminal_width",
-        "method_name": null,
-        "unique_global_name": "terminal_width",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this gives you the number of columns in the terminal.",
-        "brief": null,
-        "return": {
-          "type": "int",
-          "description": "The number of columns in the terminal",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def terminal_width():"
-          ],
-          "pascal": [
-            "function TerminalWidth(): Integer"
-          ],
-          "csharp": [
-            "public static int Terminal.TerminalWidth();",
-            "public static int SplashKit.TerminalWidth();"
-          ],
-          "cpp": [
-            "int terminal_width()"
           ]
         }
       },
@@ -71749,84 +71871,6 @@
           ],
           "cpp": [
             "void write(string text)"
-          ]
-        }
-      },
-      {
-        "signature": "void write_at(string text,int x,int y);",
-        "name": "write_at",
-        "method_name": null,
-        "unique_global_name": "write_at",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "In advanced mode, this will write the supplied text at the indicated\ncolumn and row.",
-        "brief": null,
-        "return": {
-          "type": "void",
-          "description": null,
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "text": {
-            "type": "string",
-            "description": "The text to write",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "x": {
-            "type": "int",
-            "description": "The row to position the text at",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "y": {
-            "type": "int",
-            "description": "The column to position the text at",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "terminal",
-          "static": "terminal"
-        },
-        "signatures": {
-          "python": [
-            "def write_at(text, x, y):"
-          ],
-          "pascal": [
-            "procedure WriteAt(text: String; x: Integer; y: Integer)"
-          ],
-          "csharp": [
-            "public static void Terminal.WriteAt(string text, int x, int y);",
-            "public static void SplashKit.WriteAt(string text, int x, int y);"
-          ],
-          "cpp": [
-            "void write_at(string text, int x, int y)"
           ]
         }
       },
@@ -81157,6 +81201,270 @@
           "HTTP_STATUS_SERVICE_UNAVAILABLE": {
             "description": "The server is currently unavailable.",
             "number": 503
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "enum pin_modes {GPIO_INPUT = 0,GPIO_OUTPUT = 1,GPIO_ALT0 = 4,GPIO_ALT1 = 5,GPIO_ALT2 = 6,GPIO_ALT3 = 7,GPIO_ALT4 = 3,GPIO_ALT5 = 2,GPIO_DEFAULT_MODE = -1,};",
+        "name": "pin_modes",
+        "description": "GPIO Pin Modes:",
+        "brief": null,
+        "constants": {
+          "GPIO_INPUT": {
+            "description": "Input mode.",
+            "number": 0
+          },
+          "GPIO_OUTPUT": {
+            "description": "Output mode.",
+            "number": 1
+          },
+          "GPIO_ALT0": {
+            "description": "Alternate function mode 0.",
+            "number": 4
+          },
+          "GPIO_ALT1": {
+            "description": "Alternate function mode 1.",
+            "number": 5
+          },
+          "GPIO_ALT2": {
+            "description": "Alternate function mode 2.",
+            "number": 6
+          },
+          "GPIO_ALT3": {
+            "description": "Alternate function mode 3.",
+            "number": 7
+          },
+          "GPIO_ALT4": {
+            "description": "Alternate function mode 4.",
+            "number": 3
+          },
+          "GPIO_ALT5": {
+            "description": "Alternate function mode 5.",
+            "number": 2
+          },
+          "GPIO_DEFAULT_MODE": {
+            "description": "Default mode.",
+            "number": 1
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "enum pin_values {GPIO_LOW = 0,GPIO_HIGH = 1,GPIO_DEFAULT_VALUE = -1};",
+        "name": "pin_values",
+        "description": "GPIO Pin Values:",
+        "brief": null,
+        "constants": {
+          "GPIO_LOW": {
+            "description": "Logic low (0).",
+            "number": 0
+          },
+          "GPIO_HIGH": {
+            "description": "Logic high (1).",
+            "number": 1
+          },
+          "GPIO_DEFAULT_VALUE": {
+            "description": "Default value.",
+            "number": 1
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "enum pins {PIN_1 = 1,PIN_2 = 2,PIN_3 = 3,PIN_4 = 4,PIN_5 = 5,PIN_6 = 6,PIN_7 = 7,PIN_8 = 8,PIN_9 = 9,PIN_10 = 10,PIN_11 = 11,PIN_12 = 12,PIN_13 = 13,PIN_14 = 14,PIN_15 = 15,PIN_16 = 16,PIN_17 = 17,PIN_18 = 18,PIN_19 = 19,PIN_20 = 20,PIN_21 = 21,PIN_22 = 22,PIN_23 = 23,PIN_24 = 24,PIN_25 = 25,PIN_26 = 26,PIN_27 = 27,PIN_28 = 28,PIN_29 = 29,PIN_30 = 30,PIN_31 = 31,PIN_32 = 32,PIN_33 = 33,PIN_34 = 34,PIN_35 = 35,PIN_36 = 36,PIN_37 = 37,PIN_38 = 38,PIN_39 = 39,PIN_40 = 40,};",
+        "name": "pins",
+        "description": "Raspberry Pi GPIO Board Pin Descriptions:",
+        "brief": null,
+        "constants": {
+          "PIN_1": {
+            "description": "3.3V Power Supply",
+            "number": 1
+          },
+          "PIN_2": {
+            "description": "5V Power Supply",
+            "number": 2
+          },
+          "PIN_3": {
+            "description": "GPIO2 / SDA (I2C)",
+            "number": 3
+          },
+          "PIN_4": {
+            "description": "5V Power Supply",
+            "number": 4
+          },
+          "PIN_5": {
+            "description": "GPIO3 / SCL (I2C)",
+            "number": 5
+          },
+          "PIN_6": {
+            "description": "Ground",
+            "number": 6
+          },
+          "PIN_7": {
+            "description": "GPIO4",
+            "number": 7
+          },
+          "PIN_8": {
+            "description": "GPIO14 / TXD (UART)",
+            "number": 8
+          },
+          "PIN_9": {
+            "description": "Ground",
+            "number": 9
+          },
+          "PIN_10": {
+            "description": "GPIO15 / RXD (UART)",
+            "number": 10
+          },
+          "PIN_11": {
+            "description": "GPIO17",
+            "number": 11
+          },
+          "PIN_12": {
+            "description": "GPIO18 / PCM_CLK",
+            "number": 12
+          },
+          "PIN_13": {
+            "description": "GPIO27",
+            "number": 13
+          },
+          "PIN_14": {
+            "description": "Ground",
+            "number": 14
+          },
+          "PIN_15": {
+            "description": "GPIO22",
+            "number": 15
+          },
+          "PIN_16": {
+            "description": "GPIO23",
+            "number": 16
+          },
+          "PIN_17": {
+            "description": "3.3V Power Supply",
+            "number": 17
+          },
+          "PIN_18": {
+            "description": "GPIO24",
+            "number": 18
+          },
+          "PIN_19": {
+            "description": "GPIO10 / MOSI (SPI)",
+            "number": 19
+          },
+          "PIN_20": {
+            "description": "Ground",
+            "number": 20
+          },
+          "PIN_21": {
+            "description": "GPIO9 / MISO (SPI)",
+            "number": 21
+          },
+          "PIN_22": {
+            "description": "GPIO25",
+            "number": 22
+          },
+          "PIN_23": {
+            "description": "GPIO11 / SCLK (SPI)",
+            "number": 23
+          },
+          "PIN_24": {
+            "description": "GPIO8 / CE0 (SPI)",
+            "number": 24
+          },
+          "PIN_25": {
+            "description": "Ground",
+            "number": 25
+          },
+          "PIN_26": {
+            "description": "GPIO7 / CE1 (SPI)",
+            "number": 26
+          },
+          "PIN_27": {
+            "description": "ID_SD (I2C ID EEPROM)",
+            "number": 27
+          },
+          "PIN_28": {
+            "description": "ID_SC (I2C ID EEPROM)",
+            "number": 28
+          },
+          "PIN_29": {
+            "description": "GPIO5",
+            "number": 29
+          },
+          "PIN_30": {
+            "description": "Ground",
+            "number": 30
+          },
+          "PIN_31": {
+            "description": "GPIO6",
+            "number": 31
+          },
+          "PIN_32": {
+            "description": "GPIO12",
+            "number": 32
+          },
+          "PIN_33": {
+            "description": "GPIO13",
+            "number": 33
+          },
+          "PIN_34": {
+            "description": "Ground",
+            "number": 34
+          },
+          "PIN_35": {
+            "description": "GPIO19 / MISO (PCM)",
+            "number": 35
+          },
+          "PIN_36": {
+            "description": "GPIO16 / CE0 (PCM)",
+            "number": 36
+          },
+          "PIN_37": {
+            "description": "GPIO26",
+            "number": 37
+          },
+          "PIN_38": {
+            "description": "GPIO20 / MOSI (PCM)",
+            "number": 38
+          },
+          "PIN_39": {
+            "description": "Ground",
+            "number": 39
+          },
+          "PIN_40": {
+            "description": "GPIO21 / SCLK (PCM)",
+            "number": 40
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "enum pull_up_down {PUD_OFF = 0,PUD_DOWN = 1,PUD_UP = 2};",
+        "name": "pull_up_down",
+        "description": "GPIO Pull-up/Pull-down Configurations:",
+        "brief": null,
+        "constants": {
+          "PUD_OFF": {
+            "description": "No pull-up or pull-down resistor.",
+            "number": 0
+          },
+          "PUD_DOWN": {
+            "description": "Enable pull-down resistor.",
+            "number": 1
+          },
+          "PUD_UP": {
+            "description": "Enable pull-up resistor.",
+            "number": 2
           }
         },
         "attributes": {

@@ -3723,6 +3723,56 @@ int __sklib__rnd__int(int ubound) {
     int __skreturn = rnd(__skparam__ubound);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__has_gpio() {
+    bool __skreturn = has_gpio();
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__raspi_cleanup() {
+    raspi_cleanup();
+}
+int __sklib__raspi_get_mode__pins(int pin) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    pin_modes __skreturn = raspi_get_mode(__skparam__pin);
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__raspi_init() {
+    raspi_init();
+}
+int __sklib__raspi_read__pins(int pin) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    pin_values __skreturn = raspi_read(__skparam__pin);
+    return __sklib__to_int(__skreturn);
+}
+void __sklib__raspi_set_mode__pins__pin_modes(int pin, int mode) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    pin_modes __skparam__mode = __sklib__to_pin_modes(mode);
+    raspi_set_mode(__skparam__pin, __skparam__mode);
+}
+void __sklib__raspi_set_pull_up_down__pins__pull_up_down(int pin, int pud) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    pull_up_down __skparam__pud = __sklib__to_pull_up_down(pud);
+    raspi_set_pull_up_down(__skparam__pin, __skparam__pud);
+}
+void __sklib__raspi_set_pwm_dutycycle__pins__int(int pin, int dutycycle) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    int __skparam__dutycycle = __sklib__to_int(dutycycle);
+    raspi_set_pwm_dutycycle(__skparam__pin, __skparam__dutycycle);
+}
+void __sklib__raspi_set_pwm_frequency__pins__int(int pin, int frequency) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    int __skparam__frequency = __sklib__to_int(frequency);
+    raspi_set_pwm_frequency(__skparam__pin, __skparam__frequency);
+}
+void __sklib__raspi_set_pwm_range__pins__int(int pin, int range) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    int __skparam__range = __sklib__to_int(range);
+    raspi_set_pwm_range(__skparam__pin, __skparam__range);
+}
+void __sklib__raspi_write__pins__pin_values(int pin, int value) {
+    pins __skparam__pin = __sklib__to_pins(pin);
+    pin_values __skparam__value = __sklib__to_pin_values(value);
+    raspi_write(__skparam__pin, __skparam__value);
+}
 void __sklib__draw_quad__color__quad_ref(__sklib_color clr, const __sklib_quad q) {
     color __skparam__clr = __sklib__to_color(clr);
     quad __skparam__q = __sklib__to_quad(q);
@@ -4915,24 +4965,6 @@ __sklib_vector_2d __sklib__vector_from_to__sprite__sprite(__sklib_sprite s1, __s
     vector_2d __skreturn = vector_from_to(__skparam__s1, __skparam__s2);
     return __sklib__to_sklib_vector_2d(__skreturn);
 }
-void __sklib__activate_advanced_terminal() {
-    activate_advanced_terminal();
-}
-int __sklib__advanced_terminal_active() {
-    bool __skreturn = advanced_terminal_active();
-    return __sklib__to_int(__skreturn);
-}
-void __sklib__clear_terminal() {
-    clear_terminal();
-}
-void __sklib__end_advanced_terminal() {
-    end_advanced_terminal();
-}
-void __sklib__move_cursor_to__int__int(int x, int y) {
-    int __skparam__x = __sklib__to_int(x);
-    int __skparam__y = __sklib__to_int(y);
-    move_cursor_to(__skparam__x, __skparam__y);
-}
 char __sklib__read_char() {
     char __skreturn = read_char();
     return __sklib__to_char(__skreturn);
@@ -4940,30 +4972,6 @@ char __sklib__read_char() {
 __sklib_string __sklib__read_line() {
     string __skreturn = read_line();
     return __sklib__to_sklib_string(__skreturn);
-}
-void __sklib__refresh_terminal() {
-    refresh_terminal();
-}
-void __sklib__set_terminal_bold__bool(int value) {
-    bool __skparam__value = __sklib__to_bool(value);
-    set_terminal_bold(__skparam__value);
-}
-void __sklib__set_terminal_colors__color__color(__sklib_color foreground, __sklib_color background) {
-    color __skparam__foreground = __sklib__to_color(foreground);
-    color __skparam__background = __sklib__to_color(background);
-    set_terminal_colors(__skparam__foreground, __skparam__background);
-}
-void __sklib__set_terminal_echo_input__bool(int value) {
-    bool __skparam__value = __sklib__to_bool(value);
-    set_terminal_echo_input(__skparam__value);
-}
-int __sklib__terminal_height() {
-    int __skreturn = terminal_height();
-    return __sklib__to_int(__skreturn);
-}
-int __sklib__terminal_width() {
-    int __skreturn = terminal_width();
-    return __sklib__to_int(__skreturn);
 }
 void __sklib__write__char(char data) {
     char __skparam__data = __sklib__to_char(data);
@@ -4980,12 +4988,6 @@ void __sklib__write__int(int data) {
 void __sklib__write__string(__sklib_string text) {
     string __skparam__text = __sklib__to_string(text);
     write(__skparam__text);
-}
-void __sklib__write_at__string__int__int(__sklib_string text, int x, int y) {
-    string __skparam__text = __sklib__to_string(text);
-    int __skparam__x = __sklib__to_int(x);
-    int __skparam__y = __sklib__to_int(y);
-    write_at(__skparam__text, __skparam__x, __skparam__y);
 }
 void __sklib__write_line__char(char data) {
     char __skparam__data = __sklib__to_char(data);

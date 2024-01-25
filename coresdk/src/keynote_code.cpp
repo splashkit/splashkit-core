@@ -10,7 +10,6 @@ void test_bitmaps()
 
     draw_bitmap("background", 0, 0);
 
-    
     refresh_screen();
 }
 

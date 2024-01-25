@@ -2232,7 +2232,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-static",
-					"-lncurses",
+					
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
@@ -2277,7 +2277,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-static",
-					"-lncurses",
+					
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = "-Wall";
@@ -2297,7 +2297,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lcurl",
-					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2316,7 +2315,6 @@
 				);
 				OTHER_LDFLAGS = (
 					"-lcurl",
-					"-lncurses",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2532,7 +2530,6 @@
 					"-ferror-limit=9999",
 				);
 				OTHER_LDFLAGS = (
-					"-lncurses",
 					"-lcurl",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2564,7 +2561,6 @@
 					"-ferror-limit=9999",
 				);
 				OTHER_LDFLAGS = (
-					"-lncurses",
 					"-lcurl",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

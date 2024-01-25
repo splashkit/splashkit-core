@@ -258,6 +258,30 @@ int __skadapter__to_sklib_http_status_code(http_status_code v) {
 http_status_code __skadapter__to_http_status_code(int v) {
     return static_cast<http_status_code>(v);
 }
+int __skadapter__to_sklib_pin_modes(pin_modes v) {
+    return static_cast<int>(v);
+}
+pin_modes __skadapter__to_pin_modes(int v) {
+    return static_cast<pin_modes>(v);
+}
+int __skadapter__to_sklib_pin_values(pin_values v) {
+    return static_cast<int>(v);
+}
+pin_values __skadapter__to_pin_values(int v) {
+    return static_cast<pin_values>(v);
+}
+int __skadapter__to_sklib_pins(pins v) {
+    return static_cast<int>(v);
+}
+pins __skadapter__to_pins(int v) {
+    return static_cast<pins>(v);
+}
+int __skadapter__to_sklib_pull_up_down(pull_up_down v) {
+    return static_cast<int>(v);
+}
+pull_up_down __skadapter__to_pull_up_down(int v) {
+    return static_cast<pull_up_down>(v);
+}
 int __skadapter__to_sklib_http_method(http_method v) {
     return static_cast<int>(v);
 }
