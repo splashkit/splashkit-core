@@ -58,7 +58,8 @@ elseif (APPLE)
                    -framework AudioToolbox \
                    -framework CoreAudio \
                    -framework CoreVideo \
-                   -lcurl )
+                   -lcurl"
+                   )
 else()
     # LINUX PROJECT FLAGS
     set(OS_PATH_SUFFIX "linux")
