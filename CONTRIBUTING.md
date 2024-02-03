@@ -63,7 +63,7 @@
     sudo apt-get install -y \
       git build-essential cmake g++ libpng-dev libcurl4-openssl-dev libsdl2-dev \
       libsdl2-mixer-dev libsdl2-gfx-dev libsdl2-image-dev libsdl2-net-dev libsdl2-ttf-dev \
-      libmikmod-dev libncurses5-dev libbz2-dev libflac-dev libvorbis-dev libwebp-dev libfreetype6-dev
+      libmikmod-dev libbz2-dev libflac-dev libvorbis-dev libwebp-dev libfreetype6-dev
     ```
 
 ### Build & test

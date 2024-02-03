@@ -51,7 +51,6 @@ if (APPLE)
                    -logg \
                    -lwebp \
                    -lcurl \
-                   -lncurses \
                    -liconv \
                    -ldl")
 # WINDOWS PROJECT FLAGS
@@ -95,7 +94,6 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
-                   -lncurses \
                    -ldl \
                    -lstdc++fs")
 endif()
@@ -239,7 +237,6 @@ if (MSYS)
                                            pthread
                                            stdc++
                                            ws2_32
-                                           libncursesw
                                            )
 elseif(APPLE)
     # To make a universal single static library from dependent

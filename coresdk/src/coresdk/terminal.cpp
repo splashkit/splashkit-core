@@ -9,7 +9,6 @@
 #include <easylogging++.h>
 #include "types.h"
 #include <iostream>
-#
 #include <map>
 
 using std::map;
