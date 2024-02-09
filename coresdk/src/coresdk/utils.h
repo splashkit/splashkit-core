@@ -27,7 +27,7 @@ namespace splashkit_lib
      *
      * @param milliseconds  The number of milliseconds to wait
      */
-    void delay(unsigned int milliseconds);
+    void delay(int milliseconds);
 
     /**
      * Gets the number of milliseconds that have passed since the program was

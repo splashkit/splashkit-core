@@ -27,7 +27,7 @@ namespace splashkit_lib
     // from window manager
     unsigned int number_open_windows();
 
-    void delay(unsigned int milliseconds)
+    void delay(int milliseconds)
     {
         if (milliseconds > 0)
         {
