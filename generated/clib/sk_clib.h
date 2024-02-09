@@ -1208,7 +1208,7 @@ int __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(const __s
 __sklib_string __sklib__triangle_to_string__triangle_ref(const __sklib_triangle tri);
 int __sklib__triangles_intersect__triangle_ref__triangle_ref(const __sklib_triangle t1, const __sklib_triangle t2);
 unsigned int __sklib__current_ticks();
-void __sklib__delay__unsigned_int(unsigned int milliseconds);
+void __sklib__delay__int(int milliseconds);
 void __sklib__display_dialog__string_ref__string_ref__font__int(const __sklib_string title, const __sklib_string msg, __sklib_font output_font, int font_size);
 __sklib_string __sklib__file_as_string__string__resource_kind(__sklib_string filename, int kind);
 double __sklib__angle_between__vector_2d_ref__vector_2d_ref(const __sklib_vector_2d v1, const __sklib_vector_2d v2);

@@ -15,7 +15,7 @@ using std::string;
 using std::vector;
 
 unsigned int current_ticks();
-void delay(unsigned int milliseconds);
+void delay(int milliseconds);
 void display_dialog(const string &title, const string &msg, font output_font, int font_size);
 string file_as_string(string filename, resource_kind kind);
 

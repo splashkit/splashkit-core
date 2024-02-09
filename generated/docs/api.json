@@ -82094,7 +82094,7 @@
         }
       },
       {
-        "signature": "void delay(unsigned int milliseconds);",
+        "signature": "void delay(int milliseconds);",
         "name": "delay",
         "method_name": null,
         "unique_global_name": "delay",
@@ -82112,7 +82112,7 @@
         },
         "parameters": {
           "milliseconds": {
-            "type": "unsigned int",
+            "type": "int",
             "description": "The number of milliseconds to wait",
             "is_pointer": false,
             "is_const": false,
@@ -82134,14 +82134,14 @@
             "def delay(milliseconds):"
           ],
           "pascal": [
-            "procedure Delay(milliseconds: Cardinal)"
+            "procedure Delay(milliseconds: Integer)"
           ],
           "csharp": [
-            "public static void Utilities.Delay(uint milliseconds);",
-            "public static void SplashKit.Delay(uint milliseconds);"
+            "public static void Utilities.Delay(int milliseconds);",
+            "public static void SplashKit.Delay(int milliseconds);"
           ],
           "cpp": [
-            "void delay(unsigned int milliseconds)"
+            "void delay(int milliseconds)"
           ]
         }
       },

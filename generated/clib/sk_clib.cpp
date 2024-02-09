@@ -5681,8 +5681,8 @@ unsigned int __sklib__current_ticks() {
     unsigned int __skreturn = current_ticks();
     return __sklib__to_unsigned_int(__skreturn);
 }
-void __sklib__delay__unsigned_int(unsigned int milliseconds) {
-    unsigned int __skparam__milliseconds = __sklib__to_unsigned_int(milliseconds);
+void __sklib__delay__int(int milliseconds) {
+    int __skparam__milliseconds = __sklib__to_int(milliseconds);
     delay(__skparam__milliseconds);
 }
 void __sklib__display_dialog__string_ref__string_ref__font__int(const __sklib_string title, const __sklib_string msg, __sklib_font output_font, int font_size) {

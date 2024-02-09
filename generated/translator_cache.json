@@ -34394,7 +34394,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1706101767,
+    "parsed_at": 1707472160,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -46706,7 +46706,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1706101776,
+    "parsed_at": 1707472162,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -54146,7 +54146,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1706101783,
+    "parsed_at": 1707472169,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -55142,7 +55142,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1706101783,
+    "parsed_at": 1707472170,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -55170,7 +55170,7 @@
         }
       },
       {
-        "signature": "void delay(unsigned int milliseconds);",
+        "signature": "void delay(int milliseconds);",
         "name": "delay",
         "method_name": null,
         "unique_global_name": "delay",
@@ -55188,7 +55188,7 @@
         },
         "parameters": {
           "milliseconds": {
-            "type": "unsigned int",
+            "type": "int",
             "description": "The number of milliseconds to wait",
             "is_pointer": false,
             "is_const": false,

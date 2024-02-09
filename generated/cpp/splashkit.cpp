@@ -5908,9 +5908,9 @@ unsigned int current_ticks() {
     unsigned int __skreturn = __sklib__current_ticks();
     return __skadapter__to_unsigned_int(__skreturn);
 }
-void delay(unsigned int milliseconds) {
-    unsigned int __skparam__milliseconds = __skadapter__to_unsigned_int(milliseconds);
-    __sklib__delay__unsigned_int(__skparam__milliseconds);
+void delay(int milliseconds) {
+    int __skparam__milliseconds = __skadapter__to_int(milliseconds);
+    __sklib__delay__int(__skparam__milliseconds);
 }
 void display_dialog(const string &title, const string &msg, font output_font, int font_size) {
     const __sklib_string __skparam__title = __skadapter__to_sklib_string(title);

@@ -3445,8 +3445,8 @@ sklib.__sklib__triangles_intersect__triangle_ref__triangle_ref.argtypes = [ _skl
 sklib.__sklib__triangles_intersect__triangle_ref__triangle_ref.restype = c_bool
 sklib.__sklib__current_ticks.argtypes = [  ]
 sklib.__sklib__current_ticks.restype = c_uint
-sklib.__sklib__delay__unsigned_int.argtypes = [ c_uint ]
-sklib.__sklib__delay__unsigned_int.restype = None
+sklib.__sklib__delay__int.argtypes = [ c_int ]
+sklib.__sklib__delay__int.restype = None
 sklib.__sklib__display_dialog__string_ref__string_ref__font__int.argtypes = [ _sklib_string, _sklib_string, c_void_p, c_int ]
 sklib.__sklib__display_dialog__string_ref__string_ref__font__int.restype = None
 sklib.__sklib__file_as_string__string__resource_kind.argtypes = [ _sklib_string, c_int ]
@@ -8336,8 +8336,8 @@ def current_ticks (  ):
     __skreturn = sklib.__sklib__current_ticks()
     return __skadapter__to_unsigned_int(__skreturn)
 def delay ( milliseconds ):
-    __skparam__milliseconds = __skadapter__to_sklib_unsigned_int(milliseconds)
-    sklib.__sklib__delay__unsigned_int(__skparam__milliseconds)
+    __skparam__milliseconds = __skadapter__to_sklib_int(milliseconds)
+    sklib.__sklib__delay__int(__skparam__milliseconds)
 def display_dialog ( title, msg, output_font, font_size ):
     __skparam__title = __skadapter__to_sklib_string(title)
     __skparam__msg = __skadapter__to_sklib_string(msg)

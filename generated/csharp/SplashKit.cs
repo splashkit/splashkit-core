@@ -4141,8 +4141,8 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_ticks", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__current_ticks();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__delay__unsigned_int", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__delay__unsigned_int(uint milliseconds);
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__delay__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__delay__int(int milliseconds);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_dialog__string_ref__string_ref__font__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__display_dialog__string_ref__string_ref__font__int(__sklib_string title, __sklib_string msg, __sklib_ptr outputFont, int fontSize);
@@ -14005,11 +14005,11 @@ namespace SplashKitSDK
       __skreturn = __sklib__current_ticks();
       return __skadapter__to_unsigned_int(__skreturn);
     }
-    public static void Delay(uint milliseconds)
+    public static void Delay(int milliseconds)
     {
-      uint __skparam__milliseconds;
-      __skparam__milliseconds = __skadapter__to_sklib_unsigned_int(milliseconds);
-      __sklib__delay__unsigned_int(__skparam__milliseconds);
+      int __skparam__milliseconds;
+      __skparam__milliseconds = __skadapter__to_sklib_int(milliseconds);
+      __sklib__delay__int(__skparam__milliseconds);
     }
     public static void DisplayDialog(string title, string msg, Font outputFont, int fontSize)
     {

@@ -1420,7 +1420,7 @@ function TriangleRectangleIntersect(const tri: Triangle; const rect: Rectangle):
 function TriangleToString(const tri: Triangle): String;
 function TrianglesIntersect(const t1: Triangle; const t2: Triangle): Boolean;
 function CurrentTicks(): Cardinal;
-procedure Delay(milliseconds: Cardinal);
+procedure Delay(milliseconds: Integer);
 procedure DisplayDialog(const title: String; const msg: String; outputFont: Font; fontSize: Integer);
 function FileAsString(filename: String; kind: ResourceKind): String;
 function AngleBetween(const v1: Vector2D; const v2: Vector2D): Double;
@@ -3537,7 +3537,7 @@ function __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(cons
 function __sklib__triangle_to_string__triangle_ref(const tri: __sklib_triangle): __sklib_string; cdecl; external;
 function __sklib__triangles_intersect__triangle_ref__triangle_ref(const t1: __sklib_triangle; const t2: __sklib_triangle): LongInt; cdecl; external;
 function __sklib__current_ticks(): Cardinal; cdecl; external;
-procedure __sklib__delay__unsigned_int(milliseconds: Cardinal); cdecl; external;
+procedure __sklib__delay__int(milliseconds: Integer); cdecl; external;
 procedure __sklib__display_dialog__string_ref__string_ref__font__int(const title: __sklib_string; const msg: __sklib_string; outputFont: __sklib_ptr; fontSize: Integer); cdecl; external;
 function __sklib__file_as_string__string__resource_kind(filename: __sklib_string; kind: LongInt): __sklib_string; cdecl; external;
 function __sklib__angle_between__vector_2d_ref__vector_2d_ref(const v1: __sklib_vector_2d; const v2: __sklib_vector_2d): Double; cdecl; external;
@@ -13929,12 +13929,12 @@ begin
   __skreturn := __sklib__current_ticks();
   result := __skadapter__to_unsigned_int(__skreturn);
 end;
-procedure Delay(milliseconds: Cardinal);
+procedure Delay(milliseconds: Integer);
 var
-  __skparam__milliseconds: Cardinal;
+  __skparam__milliseconds: Integer;
 begin
-  __skparam__milliseconds := __skadapter__to_sklib_unsigned_int(milliseconds);
-  __sklib__delay__unsigned_int(__skparam__milliseconds);
+  __skparam__milliseconds := __skadapter__to_sklib_int(milliseconds);
+  __sklib__delay__int(__skparam__milliseconds);
 end;
 procedure DisplayDialog(const title: String; const msg: String; outputFont: Font; fontSize: Integer);
 var
