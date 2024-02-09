@@ -41,6 +41,7 @@
 #include "point_geometry.h"
 #include "quad_geometry.h"
 #include "random.h"
+#include "raspi_gpio.h"
 #include "rectangle_drawing.h"
 #include "rectangle_geometry.h"
 #include "resources.h"
@@ -144,6 +145,14 @@ int __sklib__to_sklib_font_style(font_style v);
 font_style __sklib__to_font_style(int v);
 int __sklib__to_sklib_http_status_code(http_status_code v);
 http_status_code __sklib__to_http_status_code(int v);
+int __sklib__to_sklib_pin_modes(pin_modes v);
+pin_modes __sklib__to_pin_modes(int v);
+int __sklib__to_sklib_pin_values(pin_values v);
+pin_values __sklib__to_pin_values(int v);
+int __sklib__to_sklib_pins(pins v);
+pins __sklib__to_pins(int v);
+int __sklib__to_sklib_pull_up_down(pull_up_down v);
+pull_up_down __sklib__to_pull_up_down(int v);
 int __sklib__to_sklib_http_method(http_method v);
 http_method __sklib__to_http_method(int v);
 __sklib_matrix_2d __sklib__to_sklib_matrix_2d(matrix_2d v);

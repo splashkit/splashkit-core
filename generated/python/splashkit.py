@@ -225,6 +225,65 @@ class HttpStatusCode(Enum):
     http_status_internal_server_error = 500
     http_status_not_implemented = 501
     http_status_service_unavailable = 503
+class PinModes(Enum):
+    gpio_input = 0
+    gpio_output = 1
+    gpio_alt0 = 4
+    gpio_alt1 = 5
+    gpio_alt2 = 6
+    gpio_alt3 = 7
+    gpio_alt4 = 3
+    gpio_alt5 = 2
+    gpio_default_mode = 1
+class PinValues(Enum):
+    gpio_low = 0
+    gpio_high = 1
+    gpio_default_value = 1
+class Pins(Enum):
+    pin_1 = 1
+    pin_2 = 2
+    pin_3 = 3
+    pin_4 = 4
+    pin_5 = 5
+    pin_6 = 6
+    pin_7 = 7
+    pin_8 = 8
+    pin_9 = 9
+    pin_10 = 10
+    pin_11 = 11
+    pin_12 = 12
+    pin_13 = 13
+    pin_14 = 14
+    pin_15 = 15
+    pin_16 = 16
+    pin_17 = 17
+    pin_18 = 18
+    pin_19 = 19
+    pin_20 = 20
+    pin_21 = 21
+    pin_22 = 22
+    pin_23 = 23
+    pin_24 = 24
+    pin_25 = 25
+    pin_26 = 26
+    pin_27 = 27
+    pin_28 = 28
+    pin_29 = 29
+    pin_30 = 30
+    pin_31 = 31
+    pin_32 = 32
+    pin_33 = 33
+    pin_34 = 34
+    pin_35 = 35
+    pin_36 = 36
+    pin_37 = 37
+    pin_38 = 38
+    pin_39 = 39
+    pin_40 = 40
+class PullUpDown(Enum):
+    pud_off = 0
+    pud_down = 1
+    pud_up = 2
 class HttpMethod(Enum):
     http_get_method = 0
     http_post_method = 1
@@ -636,6 +695,38 @@ def __skadapter__to_http_status_code(v):
     return HttpStatusCode(v)
 
 def __skadapter__to_sklib_http_status_code(v):
+    return c_int(v.value)
+
+def __skadapter__to_pin_modes(v):
+    if isinstance(v, PinModes):
+        return v
+    return PinModes(v)
+
+def __skadapter__to_sklib_pin_modes(v):
+    return c_int(v.value)
+
+def __skadapter__to_pin_values(v):
+    if isinstance(v, PinValues):
+        return v
+    return PinValues(v)
+
+def __skadapter__to_sklib_pin_values(v):
+    return c_int(v.value)
+
+def __skadapter__to_pins(v):
+    if isinstance(v, Pins):
+        return v
+    return Pins(v)
+
+def __skadapter__to_sklib_pins(v):
+    return c_int(v.value)
+
+def __skadapter__to_pull_up_down(v):
+    if isinstance(v, PullUpDown):
+        return v
+    return PullUpDown(v)
+
+def __skadapter__to_sklib_pull_up_down(v):
     return c_int(v.value)
 
 def __skadapter__to_http_method(v):
@@ -2674,6 +2765,28 @@ sklib.__sklib__rnd.argtypes = [  ]
 sklib.__sklib__rnd.restype = c_float
 sklib.__sklib__rnd__int.argtypes = [ c_int ]
 sklib.__sklib__rnd__int.restype = c_int
+sklib.__sklib__has_gpio.argtypes = [  ]
+sklib.__sklib__has_gpio.restype = c_bool
+sklib.__sklib__raspi_cleanup.argtypes = [  ]
+sklib.__sklib__raspi_cleanup.restype = None
+sklib.__sklib__raspi_get_mode__pins.argtypes = [ c_int ]
+sklib.__sklib__raspi_get_mode__pins.restype = c_int
+sklib.__sklib__raspi_init.argtypes = [  ]
+sklib.__sklib__raspi_init.restype = None
+sklib.__sklib__raspi_read__pins.argtypes = [ c_int ]
+sklib.__sklib__raspi_read__pins.restype = c_int
+sklib.__sklib__raspi_set_mode__pins__pin_modes.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_mode__pins__pin_modes.restype = None
+sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down.restype = None
+sklib.__sklib__raspi_set_pwm_dutycycle__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_dutycycle__pins__int.restype = None
+sklib.__sklib__raspi_set_pwm_frequency__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_frequency__pins__int.restype = None
+sklib.__sklib__raspi_set_pwm_range__pins__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_set_pwm_range__pins__int.restype = None
+sklib.__sklib__raspi_write__pins__pin_values.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_write__pins__pin_values.restype = None
 sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
 sklib.__sklib__draw_quad__color__quad_ref.restype = None
 sklib.__sklib__draw_quad__color__quad_ref__drawing_options_ref.argtypes = [ _sklib_color, _sklib_quad, _sklib_drawing_options ]
@@ -3108,32 +3221,10 @@ sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.argtypes
 sklib.__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref.restype = _sklib_vector_2d
 sklib.__sklib__vector_from_to__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__vector_from_to__sprite__sprite.restype = _sklib_vector_2d
-sklib.__sklib__activate_advanced_terminal.argtypes = [  ]
-sklib.__sklib__activate_advanced_terminal.restype = None
-sklib.__sklib__advanced_terminal_active.argtypes = [  ]
-sklib.__sklib__advanced_terminal_active.restype = c_bool
-sklib.__sklib__clear_terminal.argtypes = [  ]
-sklib.__sklib__clear_terminal.restype = None
-sklib.__sklib__end_advanced_terminal.argtypes = [  ]
-sklib.__sklib__end_advanced_terminal.restype = None
-sklib.__sklib__move_cursor_to__int__int.argtypes = [ c_int, c_int ]
-sklib.__sklib__move_cursor_to__int__int.restype = None
 sklib.__sklib__read_char.argtypes = [  ]
 sklib.__sklib__read_char.restype = c_char
 sklib.__sklib__read_line.argtypes = [  ]
 sklib.__sklib__read_line.restype = _sklib_string
-sklib.__sklib__refresh_terminal.argtypes = [  ]
-sklib.__sklib__refresh_terminal.restype = None
-sklib.__sklib__set_terminal_bold__bool.argtypes = [ c_bool ]
-sklib.__sklib__set_terminal_bold__bool.restype = None
-sklib.__sklib__set_terminal_colors__color__color.argtypes = [ _sklib_color, _sklib_color ]
-sklib.__sklib__set_terminal_colors__color__color.restype = None
-sklib.__sklib__set_terminal_echo_input__bool.argtypes = [ c_bool ]
-sklib.__sklib__set_terminal_echo_input__bool.restype = None
-sklib.__sklib__terminal_height.argtypes = [  ]
-sklib.__sklib__terminal_height.restype = c_int
-sklib.__sklib__terminal_width.argtypes = [  ]
-sklib.__sklib__terminal_width.restype = c_int
 sklib.__sklib__write__char.argtypes = [ c_char ]
 sklib.__sklib__write__char.restype = None
 sklib.__sklib__write__double.argtypes = [ c_double ]
@@ -3142,8 +3233,6 @@ sklib.__sklib__write__int.argtypes = [ c_int ]
 sklib.__sklib__write__int.restype = None
 sklib.__sklib__write__string.argtypes = [ _sklib_string ]
 sklib.__sklib__write__string.restype = None
-sklib.__sklib__write_at__string__int__int.argtypes = [ _sklib_string, c_int, c_int ]
-sklib.__sklib__write_at__string__int__int.restype = None
 sklib.__sklib__write_line__char.argtypes = [ c_char ]
 sklib.__sklib__write_line__char.restype = None
 sklib.__sklib__write_line.argtypes = [  ]
@@ -6628,6 +6717,45 @@ def rnd_int ( ubound ):
     __skparam__ubound = __skadapter__to_sklib_int(ubound)
     __skreturn = sklib.__sklib__rnd__int(__skparam__ubound)
     return __skadapter__to_int(__skreturn)
+def has_gpio (  ):
+    __skreturn = sklib.__sklib__has_gpio()
+    return __skadapter__to_bool(__skreturn)
+def raspi_cleanup (  ):
+    sklib.__sklib__raspi_cleanup()
+def raspi_get_mode ( pin ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skreturn = sklib.__sklib__raspi_get_mode__pins(__skparam__pin)
+    return __skadapter__to_pin_modes(__skreturn)
+def raspi_init (  ):
+    sklib.__sklib__raspi_init()
+def raspi_read ( pin ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skreturn = sklib.__sklib__raspi_read__pins(__skparam__pin)
+    return __skadapter__to_pin_values(__skreturn)
+def raspi_set_mode ( pin, mode ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__mode = __skadapter__to_sklib_pin_modes(mode)
+    sklib.__sklib__raspi_set_mode__pins__pin_modes(__skparam__pin, __skparam__mode)
+def raspi_set_pull_up_down ( pin, pud ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__pud = __skadapter__to_sklib_pull_up_down(pud)
+    sklib.__sklib__raspi_set_pull_up_down__pins__pull_up_down(__skparam__pin, __skparam__pud)
+def raspi_set_pwm_dutycycle ( pin, dutycycle ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__dutycycle = __skadapter__to_sklib_int(dutycycle)
+    sklib.__sklib__raspi_set_pwm_dutycycle__pins__int(__skparam__pin, __skparam__dutycycle)
+def raspi_set_pwm_frequency ( pin, frequency ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__frequency = __skadapter__to_sklib_int(frequency)
+    sklib.__sklib__raspi_set_pwm_frequency__pins__int(__skparam__pin, __skparam__frequency)
+def raspi_set_pwm_range ( pin, range ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__range = __skadapter__to_sklib_int(range)
+    sklib.__sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range)
+def raspi_write ( pin, value ):
+    __skparam__pin = __skadapter__to_sklib_pins(pin)
+    __skparam__value = __skadapter__to_sklib_pin_values(value)
+    sklib.__sklib__raspi_write__pins__pin_values(__skparam__pin, __skparam__value)
 def draw_quad ( clr, q ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skparam__q = __skadapter__to_sklib_quad(q)
@@ -7603,43 +7731,12 @@ def vector_from_to ( s1, s2 ):
     __skparam__s2 = __skadapter__to_sklib_sprite(s2)
     __skreturn = sklib.__sklib__vector_from_to__sprite__sprite(__skparam__s1, __skparam__s2)
     return __skadapter__to_vector_2d(__skreturn)
-def activate_advanced_terminal (  ):
-    sklib.__sklib__activate_advanced_terminal()
-def advanced_terminal_active (  ):
-    __skreturn = sklib.__sklib__advanced_terminal_active()
-    return __skadapter__to_bool(__skreturn)
-def clear_terminal (  ):
-    sklib.__sklib__clear_terminal()
-def end_advanced_terminal (  ):
-    sklib.__sklib__end_advanced_terminal()
-def move_cursor_to ( x, y ):
-    __skparam__x = __skadapter__to_sklib_int(x)
-    __skparam__y = __skadapter__to_sklib_int(y)
-    sklib.__sklib__move_cursor_to__int__int(__skparam__x, __skparam__y)
 def read_char (  ):
     __skreturn = sklib.__sklib__read_char()
     return __skadapter__to_char(__skreturn)
 def read_line (  ):
     __skreturn = sklib.__sklib__read_line()
     return __skadapter__to_string(__skreturn)
-def refresh_terminal (  ):
-    sklib.__sklib__refresh_terminal()
-def set_terminal_bold ( value ):
-    __skparam__value = __skadapter__to_sklib_bool(value)
-    sklib.__sklib__set_terminal_bold__bool(__skparam__value)
-def set_terminal_colors ( foreground, background ):
-    __skparam__foreground = __skadapter__to_sklib_color(foreground)
-    __skparam__background = __skadapter__to_sklib_color(background)
-    sklib.__sklib__set_terminal_colors__color__color(__skparam__foreground, __skparam__background)
-def set_terminal_echo_input ( value ):
-    __skparam__value = __skadapter__to_sklib_bool(value)
-    sklib.__sklib__set_terminal_echo_input__bool(__skparam__value)
-def terminal_height (  ):
-    __skreturn = sklib.__sklib__terminal_height()
-    return __skadapter__to_int(__skreturn)
-def terminal_width (  ):
-    __skreturn = sklib.__sklib__terminal_width()
-    return __skadapter__to_int(__skreturn)
 def write_char ( data ):
     __skparam__data = __skadapter__to_sklib_char(data)
     sklib.__sklib__write__char(__skparam__data)
@@ -7652,11 +7749,6 @@ def write_int ( data ):
 def write ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     sklib.__sklib__write__string(__skparam__text)
-def write_at ( text, x, y ):
-    __skparam__text = __skadapter__to_sklib_string(text)
-    __skparam__x = __skadapter__to_sklib_int(x)
-    __skparam__y = __skadapter__to_sklib_int(y)
-    sklib.__sklib__write_at__string__int__int(__skparam__text, __skparam__x, __skparam__y)
 def write_line_char ( data ):
     __skparam__data = __skadapter__to_sklib_char(data)
     sklib.__sklib__write_line__char(__skparam__data)

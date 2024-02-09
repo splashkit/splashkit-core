@@ -52,7 +52,6 @@ if (WIN32 OR MSYS OR MINGW)
                     -llibSDL2_gfx-1-0-0 \
                     -llibpng16-16 \
                     -lws2_32 \
-                    -llibncursesw \
                     -static-libstdc++ -static-libgcc \
                     -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
                     )
@@ -85,7 +84,6 @@ elseif (APPLE)
                    -lpng16 \
                    -lz \
                    -lcurl \
-                   -lncurses \
                    -liconv \
                    -ldl")
 
@@ -116,7 +114,6 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
-                   -lncurses \
                    -ldl")
     # SOURCE FILES
     file(GLOB OS_SOURCE_FILES

@@ -17,6 +17,9 @@ if (WIN32 OR MSYS OR MINGW)
   add_definitions(-DWINDOWS)
 endif()
 
+# Check for Raspberry Pi
+include(CheckIncludeFile)
+find_path(BCM_HOST_INCLUDE_DIR bcm_host.h PATHS "/opt/vc/include")
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
@@ -48,7 +51,6 @@ if (APPLE)
                    -logg \
                    -lwebp \
                    -lcurl \
-                   -lncurses \
                    -liconv \
                    -ldl")
 # WINDOWS PROJECT FLAGS
@@ -92,10 +94,63 @@ else()
                    -lwebp \
                    -lfreetype \
                    -lcurl \
-                   -lncurses \
                    -ldl \
                    -lstdc++fs")
 endif()
+
+if (BCM_HOST_INCLUDE_DIR)
+    message("Raspberry Pi detected")
+
+    find_path(pigpio_INCLUDE_DIR NAMES pigpio.h pigpiod_if.h pigpiod_if2.h HINTS /usr/include)
+
+    # Find the pigpio libraries.
+    find_library(pigpio_LIBRARY NAMES libpigpio.so HINTS /usr/lib)
+
+    find_library(pigpiod_if_LIBRARY NAMES libpigpiod_if.so HINTS /usr/lib)
+    find_library(pigpiod_if2_LIBRARY NAMES libpigpiod_if2.so HINTS /usr/lib)
+    if(pigpiod_if2_LIBRARY)
+        set(pigpiod_if_LIBRARY ${pigpiod_if2_LIBRARY})
+        # target_link_libraries(SplashKitBackend ${LIB_FLAGS} pigpiod_if2)
+    endif()
+    
+    
+     
+    # Add necessary directories for Raspberry Pi
+    include_directories(/usr/include)
+    # target_link_libraries(/usr/lib)
+    # target_link_libraries(SplashKitBackend ${LIB_FLAGS} pigpio)
+    link_directories(/user/lib)
+    # include_directories("/opt/vc/include")
+    
+    # link_directories("/opt/vc/lib")
+    set(LIB_FLAGS "-lSDL2 \
+                   -lSDL2_mixer \
+                   -lSDL2_ttf \
+                   -lSDL2_gfx \
+                   -lSDL2_image \
+                   -lSDL2_net \
+                   -lpthread \
+                   -lbz2 \
+                   -lFLAC \
+                   -lvorbis \
+                   -lz \
+                   -lpng16 \
+                   -lvorbisfile \
+                   -logg \
+                   -lwebp \
+                   -lfreetype \
+                   -lcurl \
+                   -ldl \
+                   -lstdc++fs\
+                   -lpigpiod_if2")
+# Add -Wall and -pthread options
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+    # Define RASPBERRY_PI
+    add_definitions(-DRASPBERRY_PI)
+else()
+    message("Raspberry Pi not detected")
+endif()
+
 
 # FLAGS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
@@ -182,7 +237,6 @@ if (MSYS)
                                            pthread
                                            stdc++
                                            ws2_32
-                                           libncursesw
                                            )
 elseif(APPLE)
     # To make a universal single static library from dependent

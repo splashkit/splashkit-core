@@ -61,10 +61,10 @@ namespace splashkit_lib
      */
     enum font_style
     {
-        NORMAL_FONT      = 0,
-        BOLD_FONT        = 1,
-        ITALIC_FONT      = 2,
-        UNDERLINE_FONT   = 4
+        NORMAL_FONT = 0,
+        BOLD_FONT = 1,
+        ITALIC_FONT = 2,
+        UNDERLINE_FONT = 4
     };
 
     /**
@@ -219,9 +219,9 @@ namespace splashkit_lib
      */
     enum drawing_dest
     {
-        DRAW_TO_SCREEN,  // no camera effect
-        DRAW_TO_WORLD,   // camera effect
-        DRAW_DEFAULT     // camera effect on screen, but not on bitmaps
+        DRAW_TO_SCREEN, // no camera effect
+        DRAW_TO_WORLD,  // camera effect
+        DRAW_DEFAULT    // camera effect on screen, but not on bitmaps
     };
 
     /**
@@ -249,20 +249,20 @@ namespace splashkit_lib
      */
     struct drawing_options
     {
-        void *dest;             // The bitmap or window used to draw on to
-        float scale_x;          // Scale data
-        float scale_y;          //
-        float angle;            // Angle for rotations
-        float anchor_offset_x;  // Centre point for rotations
-        float anchor_offset_y;  //
-        bool  flip_x;           // Flip data
-        bool  flip_y;           //
-        bool  is_part;          // Draw just a part?
-        rectangle part;         // Part to draw
-        int draw_cell;          // The cell to draw - overridden by animation or part
-        drawing_dest camera;    // Draw to world or screen coordinates (camera has effect?)
-        int line_width;         // Specify the width of line drawings.
-        animation anim;         // The animation for bitmap drawing
+        void *dest;            // The bitmap or window used to draw on to
+        float scale_x;         // Scale data
+        float scale_y;         //
+        float angle;           // Angle for rotations
+        float anchor_offset_x; // Centre point for rotations
+        float anchor_offset_y; //
+        bool flip_x;           // Flip data
+        bool flip_y;           //
+        bool is_part;          // Draw just a part?
+        rectangle part;        // Part to draw
+        int draw_cell;         // The cell to draw - overridden by animation or part
+        drawing_dest camera;   // Draw to world or screen coordinates (camera has effect?)
+        int line_width;        // Specify the width of line drawings.
+        animation anim;        // The animation for bitmap drawing
     };
 
     /**
@@ -314,6 +314,149 @@ namespace splashkit_lib
         HTTP_STATUS_INTERNAL_SERVER_ERROR = 500,
         HTTP_STATUS_NOT_IMPLEMENTED = 501,
         HTTP_STATUS_SERVICE_UNAVAILABLE = 503
+    };
+
+    /**
+     * Raspberry Pi GPIO Board Pin Descriptions:
+     *
+     * @constant PIN_1    3.3V Power Supply
+     * @constant PIN_2    5V Power Supply
+     * @constant PIN_3    GPIO2 / SDA (I2C)
+     * @constant PIN_4    5V Power Supply
+     * @constant PIN_5    GPIO3 / SCL (I2C)
+     * @constant PIN_6    Ground
+     * @constant PIN_7    GPIO4
+     * @constant PIN_8    GPIO14 / TXD (UART)
+     * @constant PIN_9    Ground
+     * @constant PIN_10   GPIO15 / RXD (UART)
+     * @constant PIN_11   GPIO17
+     * @constant PIN_12   GPIO18 / PCM_CLK
+     * @constant PIN_13   GPIO27
+     * @constant PIN_14   Ground
+     * @constant PIN_15   GPIO22
+     * @constant PIN_16   GPIO23
+     * @constant PIN_17   3.3V Power Supply
+     * @constant PIN_18   GPIO24
+     * @constant PIN_19   GPIO10 / MOSI (SPI)
+     * @constant PIN_20   Ground
+     * @constant PIN_21   GPIO9 / MISO (SPI)
+     * @constant PIN_22   GPIO25
+     * @constant PIN_23   GPIO11 / SCLK (SPI)
+     * @constant PIN_24   GPIO8 / CE0 (SPI)
+     * @constant PIN_25   Ground
+     * @constant PIN_26   GPIO7 / CE1 (SPI)
+     * @constant PIN_27   ID_SD (I2C ID EEPROM)
+     * @constant PIN_28   ID_SC (I2C ID EEPROM)
+     * @constant PIN_29   GPIO5
+     * @constant PIN_30   Ground
+     * @constant PIN_31   GPIO6
+     * @constant PIN_32   GPIO12
+     * @constant PIN_33   GPIO13
+     * @constant PIN_34   Ground
+     * @constant PIN_35   GPIO19 / MISO (PCM)
+     * @constant PIN_36   GPIO16 / CE0 (PCM)
+     * @constant PIN_37   GPIO26
+     * @constant PIN_38   GPIO20 / MOSI (PCM)
+     * @constant PIN_39   Ground
+     * @constant PIN_40   GPIO21 / SCLK (PCM)
+     */
+    enum pins
+    {
+        PIN_1 = 1,
+        PIN_2 = 2,
+        PIN_3 = 3,
+        PIN_4 = 4,
+        PIN_5 = 5,
+        PIN_6 = 6,
+        PIN_7 = 7,
+        PIN_8 = 8,
+        PIN_9 = 9,
+        PIN_10 = 10,
+        PIN_11 = 11,
+        PIN_12 = 12,
+        PIN_13 = 13,
+        PIN_14 = 14,
+        PIN_15 = 15,
+        PIN_16 = 16,
+        PIN_17 = 17,
+        PIN_18 = 18,
+        PIN_19 = 19,
+        PIN_20 = 20,
+        PIN_21 = 21,
+        PIN_22 = 22,
+        PIN_23 = 23,
+        PIN_24 = 24,
+        PIN_25 = 25,
+        PIN_26 = 26,
+        PIN_27 = 27,
+        PIN_28 = 28,
+        PIN_29 = 29,
+        PIN_30 = 30,
+        PIN_31 = 31,
+        PIN_32 = 32,
+        PIN_33 = 33,
+        PIN_34 = 34,
+        PIN_35 = 35,
+        PIN_36 = 36,
+        PIN_37 = 37,
+        PIN_38 = 38,
+        PIN_39 = 39,
+        PIN_40 = 40,
+    };
+#include <cstdint>
+
+    /**
+     * GPIO Pin Modes:
+     *
+     * @constant GPIO_INPUT   Input mode.
+     * @constant GPIO_OUTPUT  Output mode.
+     * @constant GPIO_ALT0    Alternate function mode 0.
+     * @constant GPIO_ALT1    Alternate function mode 1.
+     * @constant GPIO_ALT2    Alternate function mode 2.
+     * @constant GPIO_ALT3    Alternate function mode 3.
+     * @constant GPIO_ALT4    Alternate function mode 4.
+     * @constant GPIO_ALT5    Alternate function mode 5.
+     * @constant GPIO_DEFAULT_MODE  Default mode.
+     */
+    enum pin_modes
+    {
+        GPIO_INPUT = 0,
+        GPIO_OUTPUT = 1,
+        GPIO_ALT0 = 4,
+        GPIO_ALT1 = 5,
+        GPIO_ALT2 = 6,
+        GPIO_ALT3 = 7,
+        GPIO_ALT4 = 3,
+        GPIO_ALT5 = 2,
+        GPIO_DEFAULT_MODE = -1,
+    };
+
+    /**
+     * GPIO Pin Values:
+     *
+     * @constant GPIO_LOW   Logic low (0).
+     * @constant GPIO_HIGH  Logic high (1).
+     * @constant GPIO_DEFAULT_VALUE  Default value.
+     */
+    enum pin_values
+    {
+        GPIO_LOW = 0,
+        GPIO_HIGH = 1,
+        GPIO_DEFAULT_VALUE = -1
+    };
+
+    /**
+     * GPIO Pull-up/Pull-down Configurations:
+     *
+     * @constant PUD_OFF   No pull-up or pull-down resistor.
+     * @constant PUD_DOWN  Enable pull-down resistor.
+     * @constant PUD_UP    Enable pull-up resistor.
+     */
+    enum pull_up_down
+    {
+        PUD_OFF = 0,
+        PUD_DOWN = 1,
+        PUD_UP = 2
     };
 }
 #endif /* types_hpp */
