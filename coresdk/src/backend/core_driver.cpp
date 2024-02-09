@@ -43,6 +43,7 @@ namespace splashkit_lib
 #ifdef __EMSCRIPTEN__
         if ( -1 == SDL_Init( SDL_INIT_EVERYTHING & ~(SDL_INIT_TIMER | SDL_INIT_HAPTIC) ) )
 #else
+        SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1");
         if ( -1 == SDL_Init( SDL_INIT_EVERYTHING | SDL_INIT_NOPARACHUTE ) )
 #endif
         {
