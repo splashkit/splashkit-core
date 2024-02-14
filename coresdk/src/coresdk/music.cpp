@@ -107,6 +107,11 @@ namespace splashkit_lib
         }
     }
 
+    bool music_valid(music effect)
+    {
+        return VALID_PTR(effect, MUSIC_PTR);
+    }
+
     bool has_music(const string &name)
     {
         return _music.count(name) > 0;

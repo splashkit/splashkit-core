@@ -59,6 +59,10 @@ namespace splashkit_lib
         free(pixels);
     }
     
+    bool bitmap_valid(bitmap bmp)
+    {
+        return VALID_PTR(bmp, BITMAP_PTR);
+    }
 
     bool has_bitmap(string name)
     {

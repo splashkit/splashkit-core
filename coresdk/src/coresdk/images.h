@@ -35,6 +35,14 @@ namespace splashkit_lib
     bitmap load_bitmap(string name, string filename);
 
     /**
+     * Lets you test if bitmap value is valid. This will return true when it is a valid bitmap.
+     * 
+     * @param bmp the bitmap to test
+     * @returns true when the bitmap is valid.
+     */
+    bool bitmap_valid(bitmap bmp);
+
+    /**
      * Determines if SplashKit has a bitmap loaded for the supplied name.
      * This checks against all bitmaps loaded.
      *

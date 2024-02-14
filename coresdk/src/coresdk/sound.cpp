@@ -123,6 +123,11 @@ namespace splashkit_lib
         FREE_ALL_FROM_MAP(_sound_effects, AUDIO_PTR, free_sound_effect);
     }
 
+    bool sound_effect_valid(sound_effect effect)
+    {
+        return VALID_PTR(effect, AUDIO_PTR);
+    }
+
     void play_sound_effect(sound_effect effect, int times, float volume)
     {
         if (not audio_ready()) return;

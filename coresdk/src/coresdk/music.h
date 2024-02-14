@@ -58,6 +58,14 @@ namespace splashkit_lib
     void free_all_music();
 
     /**
+     * Lets you test if music value is valid. This will return true when it is a valid music.
+     * 
+     * @param m the music source to test
+     * @returns true when the music is valid.
+     */
+    bool music_valid(music m);
+
+    /**
      * Determines if SplashKit has a music file loaded for the supplied name.
      * This checks against all music files loaded, those loaded without a name
      * are assigned the filename as a default. If this returns `false`, you may

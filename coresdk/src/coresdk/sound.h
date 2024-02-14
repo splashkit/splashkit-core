@@ -114,6 +114,14 @@ namespace splashkit_lib
     string sound_effect_filename(sound_effect effect);
 
     /**
+     * Lets you test if a sound effect is valid. This will return true when it is a valid sound effect.
+     * 
+     * @param effect the effect to test
+     * @returns true when the sound effect is valid.
+     */
+    bool sound_effect_valid(sound_effect effect);
+
+    /**
      * Checks whether the `sound_effect` is currently playing
      *
      * @param effect The `sound_effect` to be tested.
