@@ -23,6 +23,7 @@ namespace splashkit_lib
     void write(string text)
     {
         cout << text;
+        cout.flush();
     }
     
     void write(int data)
@@ -43,11 +44,13 @@ namespace splashkit_lib
     void write_line()
     {
         cout << endl;
+        cout.flush();
     }
 
     void write_line(string line)
     {
         cout << line << endl;
+        cout.flush();
     }
     
     void write_line(int data)
@@ -77,5 +80,10 @@ namespace splashkit_lib
         char result = 0;
         cin >> result;
         return result;
+    }
+
+    bool terminal_has_input()
+    {
+        return cin.peek() != EOF;
     }
 }

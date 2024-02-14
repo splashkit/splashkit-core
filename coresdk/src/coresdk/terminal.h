@@ -108,6 +108,13 @@ namespace splashkit_lib
      * @return The character typed by the user.
      */
     char read_char();
+
+    /**
+     * Checks if there is data waiting to be read by read line or read char.
+     * 
+     * @returns true if there is data waiting to be read.
+     */
+    bool terminal_has_input();
 }
 
 #endif /* terminal_h */
