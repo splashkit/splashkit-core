@@ -37,6 +37,7 @@ string bitmap_name(bitmap bmp);
 bitmap bitmap_named(string name);
 rectangle bitmap_rectangle_of_cell(bitmap src, int cell);
 void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count);
+bool bitmap_valid(bitmap bmp);
 int bitmap_width(bitmap bmp);
 int bitmap_width(string name);
 void clear_bitmap(bitmap bmp, color clr);

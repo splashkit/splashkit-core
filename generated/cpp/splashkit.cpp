@@ -2185,6 +2185,11 @@ void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int
     int __skparam__count = __skadapter__to_int(count);
     __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count);
 }
+bool bitmap_valid(bitmap bmp) {
+    __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+    int __skreturn = __sklib__bitmap_valid__bitmap(__skparam__bmp);
+    return __skadapter__to_bool(__skreturn);
+}
 int bitmap_width(bitmap bmp) {
     __sklib_bitmap __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
     int __skreturn = __sklib__bitmap_width__bitmap(__skparam__bmp);
@@ -3083,6 +3088,11 @@ music music_named(const string &name) {
 }
 bool music_playing() {
     int __skreturn = __sklib__music_playing();
+    return __skadapter__to_bool(__skreturn);
+}
+bool music_valid(music m) {
+    __sklib_music __skparam__m = __skadapter__to_sklib_music(m);
+    int __skreturn = __sklib__music_valid__music(__skparam__m);
     return __skadapter__to_bool(__skreturn);
 }
 float music_volume() {
@@ -4387,6 +4397,11 @@ bool sound_effect_playing(sound_effect effect) {
     int __skreturn = __sklib__sound_effect_playing__sound_effect(__skparam__effect);
     return __skadapter__to_bool(__skreturn);
 }
+bool sound_effect_valid(sound_effect effect) {
+    __sklib_sound_effect __skparam__effect = __skadapter__to_sklib_sound_effect(effect);
+    int __skreturn = __sklib__sound_effect_valid__sound_effect(__skparam__effect);
+    return __skadapter__to_bool(__skreturn);
+}
 void stop_sound_effect(const string &name) {
     const __sklib_string __skparam__name = __skadapter__to_sklib_string(name);
     __sklib__stop_sound_effect__string_ref(__skparam__name);
@@ -5146,6 +5161,10 @@ char read_char() {
 string read_line() {
     __sklib_string __skreturn = __sklib__read_line();
     return __skadapter__to_string(__skreturn);
+}
+bool terminal_has_input() {
+    int __skreturn = __sklib__terminal_has_input();
+    return __skadapter__to_bool(__skreturn);
 }
 void write(char data) {
     char __skparam__data = __skadapter__to_char(data);

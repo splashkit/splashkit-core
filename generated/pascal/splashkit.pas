@@ -790,6 +790,7 @@ function BitmapName(bmp: Bitmap): String;
 function BitmapNamed(name: String): Bitmap;
 function BitmapRectangleOfCell(src: Bitmap; cell: Integer): Rectangle;
 procedure BitmapSetCellDetails(bmp: Bitmap; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer);
+function BitmapValid(bmp: Bitmap): Boolean;
 function BitmapWidth(bmp: Bitmap): Integer;
 function BitmapWidth(name: String): Integer;
 procedure ClearBitmap(bmp: Bitmap; clr: Color);
@@ -943,6 +944,7 @@ function MusicFilename(data: Music): String;
 function MusicName(data: Music): String;
 function MusicNamed(const name: String): Music;
 function MusicPlaying(): Boolean;
+function MusicValid(m: Music): Boolean;
 function MusicVolume(): Single;
 procedure PauseMusic();
 procedure PlayMusic(const name: String);
@@ -1169,6 +1171,7 @@ function SoundEffectName(effect: SoundEffect): String;
 function SoundEffectNamed(const name: String): SoundEffect;
 function SoundEffectPlaying(const name: String): Boolean;
 function SoundEffectPlaying(effect: SoundEffect): Boolean;
+function SoundEffectValid(effect: SoundEffect): Boolean;
 procedure StopSoundEffect(const name: String);
 procedure StopSoundEffect(effect: SoundEffect);
 procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single);
@@ -1310,6 +1313,7 @@ function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2D): Vector2D;
 function VectorFromTo(s1: Sprite; s2: Sprite): Vector2D;
 function ReadChar(): Char;
 function ReadLine(): String;
+function TerminalHasInput(): Boolean;
 procedure Write(data: Char);
 procedure Write(data: Double);
 procedure Write(data: Integer);
@@ -2907,6 +2911,7 @@ function __sklib__bitmap_name__bitmap(bmp: __sklib_ptr): __sklib_string; cdecl; 
 function __sklib__bitmap_named__string(name: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__bitmap_rectangle_of_cell__bitmap__int(src: __sklib_ptr; cell: Integer): __sklib_rectangle; cdecl; external;
 procedure __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(bmp: __sklib_ptr; width: Integer; height: Integer; columns: Integer; rows: Integer; count: Integer); cdecl; external;
+function __sklib__bitmap_valid__bitmap(bmp: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__bitmap_width__bitmap(bmp: __sklib_ptr): Integer; cdecl; external;
 function __sklib__bitmap_width__string(name: __sklib_string): Integer; cdecl; external;
 procedure __sklib__clear_bitmap__bitmap__color(bmp: __sklib_ptr; clr: __sklib_color); cdecl; external;
@@ -3060,6 +3065,7 @@ function __sklib__music_filename__music(data: __sklib_ptr): __sklib_string; cdec
 function __sklib__music_name__music(data: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__music_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__music_playing(): LongInt; cdecl; external;
+function __sklib__music_valid__music(m: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__music_volume(): Single; cdecl; external;
 procedure __sklib__pause_music(); cdecl; external;
 procedure __sklib__play_music__string_ref(const name: __sklib_string); cdecl; external;
@@ -3286,6 +3292,7 @@ function __sklib__sound_effect_name__sound_effect(effect: __sklib_ptr): __sklib_
 function __sklib__sound_effect_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__sound_effect_playing__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__sound_effect_playing__sound_effect(effect: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__sound_effect_valid__sound_effect(effect: __sklib_ptr): LongInt; cdecl; external;
 procedure __sklib__stop_sound_effect__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__stop_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; external;
 procedure __sklib__call_for_all_sprites__sprite_float_function_ptr__float(fn: SpriteFloatFunction; val: Single); cdecl; external;
@@ -3427,6 +3434,7 @@ function __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(s: __
 function __sklib__vector_from_to__sprite__sprite(s1: __sklib_ptr; s2: __sklib_ptr): __sklib_vector_2d; cdecl; external;
 function __sklib__read_char(): Char; cdecl; external;
 function __sklib__read_line(): __sklib_string; cdecl; external;
+function __sklib__terminal_has_input(): LongInt; cdecl; external;
 procedure __sklib__write__char(data: Char); cdecl; external;
 procedure __sklib__write__double(data: Double); cdecl; external;
 procedure __sklib__write__int(data: Integer); cdecl; external;
@@ -7521,6 +7529,15 @@ begin
   __skparam__count := __skadapter__to_sklib_int(count);
   __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count);
 end;
+function BitmapValid(bmp: Bitmap): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_valid__bitmap(__skparam__bmp);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function BitmapWidth(bmp: Bitmap): Integer;
 var
   __skparam__bmp: __sklib_ptr;
@@ -9046,6 +9063,15 @@ var
   __skreturn: LongInt;
 begin
   __skreturn := __sklib__music_playing();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function MusicValid(m: Music): Boolean;
+var
+  __skparam__m: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__m := __skadapter__to_sklib_music(m);
+  __skreturn := __sklib__music_valid__music(__skparam__m);
   result := __skadapter__to_bool(__skreturn);
 end;
 function MusicVolume(): Single;
@@ -11315,6 +11341,15 @@ begin
   __skreturn := __sklib__sound_effect_playing__sound_effect(__skparam__effect);
   result := __skadapter__to_bool(__skreturn);
 end;
+function SoundEffectValid(effect: SoundEffect): Boolean;
+var
+  __skparam__effect: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
+  __skreturn := __sklib__sound_effect_valid__sound_effect(__skparam__effect);
+  result := __skadapter__to_bool(__skreturn);
+end;
 procedure StopSoundEffect(const name: String);
 var
   __skparam__name: __sklib_string;
@@ -12626,6 +12661,13 @@ var
 begin
   __skreturn := __sklib__read_line();
   result := __skadapter__to_string(__skreturn);
+end;
+function TerminalHasInput(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__terminal_has_input();
+  result := __skadapter__to_bool(__skreturn);
 end;
 procedure Write(data: Char);
 var

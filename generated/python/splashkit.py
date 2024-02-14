@@ -2185,6 +2185,8 @@ sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.argtypes = [ c_void_p, c_in
 sklib.__sklib__bitmap_rectangle_of_cell__bitmap__int.restype = _sklib_rectangle
 sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int.argtypes = [ c_void_p, c_int, c_int, c_int, c_int, c_int ]
 sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int.restype = None
+sklib.__sklib__bitmap_valid__bitmap.argtypes = [ c_void_p ]
+sklib.__sklib__bitmap_valid__bitmap.restype = c_bool
 sklib.__sklib__bitmap_width__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__bitmap_width__bitmap.restype = c_int
 sklib.__sklib__bitmap_width__string.argtypes = [ _sklib_string ]
@@ -2491,6 +2493,8 @@ sklib.__sklib__music_named__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__music_named__string_ref.restype = c_void_p
 sklib.__sklib__music_playing.argtypes = [  ]
 sklib.__sklib__music_playing.restype = c_bool
+sklib.__sklib__music_valid__music.argtypes = [ c_void_p ]
+sklib.__sklib__music_valid__music.restype = c_bool
 sklib.__sklib__music_volume.argtypes = [  ]
 sklib.__sklib__music_volume.restype = c_float
 sklib.__sklib__pause_music.argtypes = [  ]
@@ -2943,6 +2947,8 @@ sklib.__sklib__sound_effect_playing__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__sound_effect_playing__string_ref.restype = c_bool
 sklib.__sklib__sound_effect_playing__sound_effect.argtypes = [ c_void_p ]
 sklib.__sklib__sound_effect_playing__sound_effect.restype = c_bool
+sklib.__sklib__sound_effect_valid__sound_effect.argtypes = [ c_void_p ]
+sklib.__sklib__sound_effect_valid__sound_effect.restype = c_bool
 sklib.__sklib__stop_sound_effect__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__stop_sound_effect__string_ref.restype = None
 sklib.__sklib__stop_sound_effect__sound_effect.argtypes = [ c_void_p ]
@@ -3225,6 +3231,8 @@ sklib.__sklib__read_char.argtypes = [  ]
 sklib.__sklib__read_char.restype = c_char
 sklib.__sklib__read_line.argtypes = [  ]
 sklib.__sklib__read_line.restype = _sklib_string
+sklib.__sklib__terminal_has_input.argtypes = [  ]
+sklib.__sklib__terminal_has_input.restype = c_bool
 sklib.__sklib__write__char.argtypes = [ c_char ]
 sklib.__sklib__write__char.restype = None
 sklib.__sklib__write__double.argtypes = [ c_double ]
@@ -5429,6 +5437,10 @@ def bitmap_set_cell_details ( bmp, width, height, columns, rows, count ):
     __skparam__rows = __skadapter__to_sklib_int(rows)
     __skparam__count = __skadapter__to_sklib_int(count)
     sklib.__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count)
+def bitmap_valid ( bmp ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skreturn = sklib.__sklib__bitmap_valid__bitmap(__skparam__bmp)
+    return __skadapter__to_bool(__skreturn)
 def bitmap_width ( bmp ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skreturn = sklib.__sklib__bitmap_width__bitmap(__skparam__bmp)
@@ -6123,6 +6135,10 @@ def music_named ( name ):
     return __skadapter__to_music(__skreturn)
 def music_playing (  ):
     __skreturn = sklib.__sklib__music_playing()
+    return __skadapter__to_bool(__skreturn)
+def music_valid ( m ):
+    __skparam__m = __skadapter__to_sklib_music(m)
+    __skreturn = sklib.__sklib__music_valid__music(__skparam__m)
     return __skadapter__to_bool(__skreturn)
 def music_volume (  ):
     __skreturn = sklib.__sklib__music_volume()
@@ -7150,6 +7166,10 @@ def sound_effect_playing ( effect ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
     __skreturn = sklib.__sklib__sound_effect_playing__sound_effect(__skparam__effect)
     return __skadapter__to_bool(__skreturn)
+def sound_effect_valid ( effect ):
+    __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
+    __skreturn = sklib.__sklib__sound_effect_valid__sound_effect(__skparam__effect)
+    return __skadapter__to_bool(__skreturn)
 def stop_sound_effect_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__stop_sound_effect__string_ref(__skparam__name)
@@ -7737,6 +7757,9 @@ def read_char (  ):
 def read_line (  ):
     __skreturn = sklib.__sklib__read_line()
     return __skadapter__to_string(__skreturn)
+def terminal_has_input (  ):
+    __skreturn = sklib.__sklib__terminal_has_input()
+    return __skadapter__to_bool(__skreturn)
 def write_char ( data ):
     __skparam__data = __skadapter__to_sklib_char(data)
     sklib.__sklib__write__char(__skparam__data)

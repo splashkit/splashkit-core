@@ -3386,6 +3386,58 @@
         }
       },
       {
+        "signature": "bool music_valid(music m);",
+        "name": "music_valid",
+        "method_name": null,
+        "unique_global_name": "music_valid",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Lets you test if music value is valid. This will return true when it is a valid music.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true when the music is valid.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "m": {
+            "type": "music",
+            "description": "the music source to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "audio",
+          "static": "audio"
+        },
+        "signatures": {
+          "python": [
+            "def music_valid(m):"
+          ],
+          "pascal": [
+            "function MusicValid(m: Music): Boolean"
+          ],
+          "csharp": [
+            "public static bool Audio.MusicValid(Music m);",
+            "public static bool SplashKit.MusicValid(Music m);"
+          ],
+          "cpp": [
+            "bool music_valid(music m)"
+          ]
+        }
+      },
+      {
         "signature": "float music_volume();",
         "name": "music_volume",
         "method_name": null,
@@ -5063,6 +5115,58 @@
           ],
           "cpp": [
             "bool sound_effect_playing(sound_effect effect)"
+          ]
+        }
+      },
+      {
+        "signature": "bool sound_effect_valid(sound_effect effect);",
+        "name": "sound_effect_valid",
+        "method_name": null,
+        "unique_global_name": "sound_effect_valid",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Lets you test if a sound effect is valid. This will return true when it is a valid sound effect.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true when the sound effect is valid.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "effect": {
+            "type": "sound_effect",
+            "description": "the effect to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "audio",
+          "static": "audio"
+        },
+        "signatures": {
+          "python": [
+            "def sound_effect_valid(effect):"
+          ],
+          "pascal": [
+            "function SoundEffectValid(effect: SoundEffect): Boolean"
+          ],
+          "csharp": [
+            "public static bool Audio.SoundEffectValid(SoundEffect effect);",
+            "public static bool SplashKit.SoundEffectValid(SoundEffect effect);"
+          ],
+          "cpp": [
+            "bool sound_effect_valid(sound_effect effect)"
           ]
         }
       },
@@ -28968,6 +29072,58 @@
           ],
           "cpp": [
             "void bitmap_set_cell_details(bitmap bmp, int width, int height, int columns, int rows, int count)"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_valid(bitmap bmp);",
+        "name": "bitmap_valid",
+        "method_name": null,
+        "unique_global_name": "bitmap_valid",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Lets you test if bitmap value is valid. This will return true when it is a valid bitmap.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true when the bitmap is valid.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "the bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "images"
+        },
+        "signatures": {
+          "python": [
+            "def bitmap_valid(bmp):"
+          ],
+          "pascal": [
+            "function BitmapValid(bmp: Bitmap): Boolean"
+          ],
+          "csharp": [
+            "public static bool Images.BitmapValid(Bitmap bmp);",
+            "public static bool SplashKit.BitmapValid(Bitmap bmp);"
+          ],
+          "cpp": [
+            "bool bitmap_valid(bitmap bmp)"
           ]
         }
       },
@@ -71660,6 +71816,45 @@
           ],
           "cpp": [
             "string read_line()"
+          ]
+        }
+      },
+      {
+        "signature": "bool terminal_has_input();",
+        "name": "terminal_has_input",
+        "method_name": null,
+        "unique_global_name": "terminal_has_input",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks if there is data waiting to be read by read line or read char.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "true if there is data waiting to be read.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "terminal",
+          "static": "terminal"
+        },
+        "signatures": {
+          "python": [
+            "def terminal_has_input():"
+          ],
+          "pascal": [
+            "function TerminalHasInput(): Boolean"
+          ],
+          "csharp": [
+            "public static bool Terminal.TerminalHasInput();",
+            "public static bool SplashKit.TerminalHasInput();"
+          ],
+          "cpp": [
+            "bool terminal_has_input()"
           ]
         }
       },

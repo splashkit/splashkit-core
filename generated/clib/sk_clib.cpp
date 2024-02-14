@@ -2145,6 +2145,11 @@ void __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__sklib_b
     int __skparam__count = __sklib__to_int(count);
     bitmap_set_cell_details(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count);
 }
+int __sklib__bitmap_valid__bitmap(__sklib_bitmap bmp) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    bool __skreturn = bitmap_valid(__skparam__bmp);
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__bitmap_width__bitmap(__sklib_bitmap bmp) {
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     int __skreturn = bitmap_width(__skparam__bmp);
@@ -2991,6 +2996,11 @@ __sklib_music __sklib__music_named__string_ref(const __sklib_string name) {
 }
 int __sklib__music_playing() {
     bool __skreturn = music_playing();
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__music_valid__music(__sklib_music m) {
+    music __skparam__m = __sklib__to_music(m);
+    bool __skreturn = music_valid(__skparam__m);
     return __sklib__to_int(__skreturn);
 }
 float __sklib__music_volume() {
@@ -4245,6 +4255,11 @@ int __sklib__sound_effect_playing__sound_effect(__sklib_sound_effect effect) {
     bool __skreturn = sound_effect_playing(__skparam__effect);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__sound_effect_valid__sound_effect(__sklib_sound_effect effect) {
+    sound_effect __skparam__effect = __sklib__to_sound_effect(effect);
+    bool __skreturn = sound_effect_valid(__skparam__effect);
+    return __sklib__to_int(__skreturn);
+}
 void __sklib__stop_sound_effect__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     stop_sound_effect(__skparam__name);
@@ -4972,6 +4987,10 @@ char __sklib__read_char() {
 __sklib_string __sklib__read_line() {
     string __skreturn = read_line();
     return __sklib__to_sklib_string(__skreturn);
+}
+int __sklib__terminal_has_input() {
+    bool __skreturn = terminal_has_input();
+    return __sklib__to_int(__skreturn);
 }
 void __sklib__write__char(char data) {
     char __skparam__data = __sklib__to_char(data);

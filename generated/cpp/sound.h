@@ -33,6 +33,7 @@ string sound_effect_name(sound_effect effect);
 sound_effect sound_effect_named(const string &name);
 bool sound_effect_playing(const string &name);
 bool sound_effect_playing(sound_effect effect);
+bool sound_effect_valid(sound_effect effect);
 void stop_sound_effect(const string &name);
 void stop_sound_effect(sound_effect effect);
 

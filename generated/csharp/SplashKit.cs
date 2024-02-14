@@ -2251,6 +2251,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__sklib_ptr bmp, int width, int height, int columns, int rows, int count);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_valid__bitmap", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_valid__bitmap(__sklib_ptr bmp);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_width__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_width__bitmap(__sklib_ptr bmp);
 
@@ -2709,6 +2712,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_playing", CharSet=CharSet.Ansi)]
     private static extern int __sklib__music_playing();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_valid__music", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__music_valid__music(__sklib_ptr m);
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_volume", CharSet=CharSet.Ansi)]
     private static extern float __sklib__music_volume();
@@ -3388,6 +3394,9 @@ namespace SplashKitSDK
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_playing__sound_effect", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sound_effect_playing__sound_effect(__sklib_ptr effect);
 
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_valid__sound_effect", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__sound_effect_valid__sound_effect(__sklib_ptr effect);
+
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_sound_effect__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_sound_effect__string_ref(__sklib_string name);
 
@@ -3810,6 +3819,9 @@ namespace SplashKitSDK
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_line", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_line();
+
+    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_has_input", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__terminal_has_input();
 
     [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__char", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__char(char data);
@@ -8015,6 +8027,14 @@ namespace SplashKitSDK
       __skparam__count = __skadapter__to_sklib_int(count);
       __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__skparam__bmp, __skparam__width, __skparam__height, __skparam__columns, __skparam__rows, __skparam__count);
     }
+    public static bool BitmapValid(Bitmap bmp)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skreturn = __sklib__bitmap_valid__bitmap(__skparam__bmp);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static int BitmapWidth(Bitmap bmp)
     {
       __sklib_ptr __skparam__bmp;
@@ -9447,6 +9467,14 @@ namespace SplashKitSDK
     {
       int __skreturn;
       __skreturn = __sklib__music_playing();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool MusicValid(Music m)
+    {
+      __sklib_ptr __skparam__m;
+      int __skreturn;
+      __skparam__m = __skadapter__to_sklib_music(m);
+      __skreturn = __sklib__music_valid__music(__skparam__m);
       return __skadapter__to_bool(__skreturn);
     }
     public static float MusicVolume()
@@ -11550,6 +11578,14 @@ namespace SplashKitSDK
       __skreturn = __sklib__sound_effect_playing__sound_effect(__skparam__effect);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool SoundEffectValid(SoundEffect effect)
+    {
+      __sklib_ptr __skparam__effect;
+      int __skreturn;
+      __skparam__effect = __skadapter__to_sklib_sound_effect(effect);
+      __skreturn = __sklib__sound_effect_valid__sound_effect(__skparam__effect);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static void StopSoundEffect(string name)
     {
       __sklib_string __skparam__name;
@@ -12755,6 +12791,12 @@ namespace SplashKitSDK
       __sklib_string __skreturn;
       __skreturn = __sklib__read_line();
       return __skadapter__to_string(__skreturn);
+    }
+    public static bool TerminalHasInput()
+    {
+      int __skreturn;
+      __skreturn = __sklib__terminal_has_input();
+      return __skadapter__to_bool(__skreturn);
     }
     public static void Write(char data)
     {

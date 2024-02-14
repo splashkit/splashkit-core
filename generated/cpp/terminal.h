@@ -14,6 +14,7 @@ using std::vector;
 
 char read_char();
 string read_line();
+bool terminal_has_input();
 void write(char data);
 void write(double data);
 void write(int data);

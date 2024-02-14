@@ -27,6 +27,7 @@ string music_filename(music data);
 string music_name(music data);
 music music_named(const string &name);
 bool music_playing();
+bool music_valid(music m);
 float music_volume();
 void pause_music();
 void play_music(const string &name);
