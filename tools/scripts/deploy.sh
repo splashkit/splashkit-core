@@ -103,12 +103,6 @@ cd "${SK_CMAKE_CLIB}"
 do_make
 
 echo
-echo "Building -- cpp adapter"
-echo
-cd "${SK_CMAKE_CPP}"
-do_make
-
-echo
 echo "Building -- pascal adapter"
 echo
 cd "${SK_CMAKE_FPC}"

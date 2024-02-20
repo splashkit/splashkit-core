@@ -18074,7 +18074,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1707893327,
+    "parsed_at": 1708331003,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -27329,7 +27329,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1707893906,
+    "parsed_at": 1708331007,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -38932,7 +38932,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1707893335,
+    "parsed_at": 1708331011,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -46817,7 +46817,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1707893908,
+    "parsed_at": 1708331013,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -55277,7 +55277,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1707472170,
+    "parsed_at": 1708331014,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {

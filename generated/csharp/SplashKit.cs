@@ -167,7 +167,7 @@ namespace SplashKitSDK
       return result;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_string(__sklib_string s);
 
     private static void __skadapter__free__sklib_string(ref __sklib_string s)
@@ -473,7 +473,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_line", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_line", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_line(__sklib_vector_line v);
 
     private static void __skadapter__free__sklib_vector_line(ref __sklib_vector_line v)
@@ -541,7 +541,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_int8_t", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_int8_t", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_int8_t(__sklib_vector_int8_t v);
 
     private static void __skadapter__free__sklib_vector_int8_t(ref __sklib_vector_int8_t v)
@@ -609,7 +609,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_triangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_triangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_triangle(__sklib_vector_triangle v);
 
     private static void __skadapter__free__sklib_vector_triangle(ref __sklib_vector_triangle v)
@@ -677,7 +677,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_string(__sklib_vector_string v);
 
     private static void __skadapter__free__sklib_vector_string(ref __sklib_vector_string v)
@@ -745,7 +745,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_double(__sklib_vector_double v);
 
     private static void __skadapter__free__sklib_vector_double(ref __sklib_vector_double v)
@@ -813,7 +813,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_json(__sklib_vector_json v);
 
     private static void __skadapter__free__sklib_vector_json(ref __sklib_vector_json v)
@@ -881,7 +881,7 @@ namespace SplashKitSDK
       public uint size_from_lib;
     }
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free__sklib_vector_bool(__sklib_vector_bool v);
 
     private static void __skadapter__free__sklib_vector_bool(ref __sklib_vector_bool v)
@@ -1027,3508 +1027,3508 @@ namespace SplashKitSDK
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Window __skadapter__to_window(IntPtr v) { return Window.FetchOrCreate(v); }
     
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_count__animation_script", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_count__animation_script", CharSet=CharSet.Ansi)]
     private static extern int __sklib__animation_count__animation_script(__sklib_ptr script);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_current_cell__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_current_cell__animation", CharSet=CharSet.Ansi)]
     private static extern int __sklib__animation_current_cell__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_current_vector__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_current_vector__animation", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__animation_current_vector__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_ended__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_ended__animation", CharSet=CharSet.Ansi)]
     private static extern int __sklib__animation_ended__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_entered_frame__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_entered_frame__animation", CharSet=CharSet.Ansi)]
     private static extern int __sklib__animation_entered_frame__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_frame_time__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_frame_time__animation", CharSet=CharSet.Ansi)]
     private static extern float __sklib__animation_frame_time__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_index__animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_index__animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__animation_index__animation_script__string_ref(__sklib_ptr script, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_name__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_name__animation", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__animation_name__animation(__sklib_ptr temp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_script_name__animation_script", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_script_name__animation_script", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__animation_script_name__animation_script(__sklib_ptr script);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_script_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__animation_script_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__animation_script_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__animation_script__string_ref(__sklib_ptr anim, __sklib_ptr script, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__string_ref__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__animation_script__string_ref__bool(__sklib_ptr anim, __sklib_ptr script, __sklib_string name, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__animation_script__int(__sklib_ptr anim, __sklib_ptr script, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__int__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__animation_script__int__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__animation_script__int__bool(__sklib_ptr anim, __sklib_ptr script, int idx, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__string_ref__string_ref(__sklib_ptr anim, __sklib_string scriptName, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__string_ref__string_ref__bool(__sklib_ptr anim, __sklib_string scriptName, __sklib_string name, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__int(__sklib_ptr anim, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__int__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__int__bool(__sklib_ptr anim, int idx, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__string(__sklib_ptr anim, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__assign_animation__animation__string__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__assign_animation__animation__string__bool(__sklib_ptr anim, __sklib_string name, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__int__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__int__bool", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__animation_script__int__bool(__sklib_ptr script, int idx, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__animation_script__string_ref(__sklib_ptr script, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__string_ref__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__animation_script__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__animation_script__string_ref__bool(__sklib_ptr script, __sklib_string name, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__string_ref__string_ref(__sklib_string scriptName, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_animation__string_ref__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_animation__string_ref__string_ref__bool(__sklib_string scriptName, __sklib_string name, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_animation_scripts", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_animation_scripts", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_animation_scripts();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation__animation", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_animation__animation(__sklib_ptr ani);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation_script__animation_script", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation_script__animation_script", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_animation_script__animation_script(__sklib_ptr scriptToFree);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_animation_script__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_animation_named__animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_animation_named__animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_animation_named__animation_script__string_ref(__sklib_ptr script, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_animation_script__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_animation_script__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_animation_script__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_animation_script__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_animation_script__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__load_animation_script__string_ref__string_ref(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__restart_animation__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__restart_animation__animation", CharSet=CharSet.Ansi)]
     private static extern void __sklib__restart_animation__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__restart_animation__animation__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__restart_animation__animation__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__restart_animation__animation__bool(__sklib_ptr anim, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation__float__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation__float__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_animation__animation__float__bool(__sklib_ptr anim, float pct, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_animation__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_animation__animation__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_animation__animation__float(__sklib_ptr anim, float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__audio_ready", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__audio_ready", CharSet=CharSet.Ansi)]
     private static extern int __sklib__audio_ready();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_audio", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_audio", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_audio();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_audio", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_audio", CharSet=CharSet.Ansi)]
     private static extern void __sklib__open_audio();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_double__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_double__string_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__convert_to_double__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_integer__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_integer__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__convert_to_integer__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_double__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_double__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_double__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_integer__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_integer__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_integer__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_number__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_number__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_number__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_lowercase__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_uppercase__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_uppercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_uppercase__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__trim__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__trim__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__trim__string_ref(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_resource_bundle__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_resource_bundle__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_resource_bundle__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_resource_bundle__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_resource_bundle__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_resource_bundle__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_resource_bundle__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_resource_bundle__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__load_resource_bundle__string_ref__string_ref(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_position", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_position", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__camera_position();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_x", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_x", CharSet=CharSet.Ansi)]
     private static extern double __sklib__camera_x();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_y", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__camera_y", CharSet=CharSet.Ansi)]
     private static extern double __sklib__camera_y();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_camera_on__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_camera_on__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__center_camera_on__sprite__vector_2d_ref(__sklib_ptr s, __sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_camera_on__sprite__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_camera_on__sprite__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__center_camera_on__sprite__double__double(__sklib_ptr s, double offsetX, double offsetY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_by__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_by__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_camera_by__vector_2d_ref(__sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_by__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_by__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_camera_by__double__double(double dx, double dy);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_to__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_to__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_camera_to__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_to__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_camera_to__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_camera_to__double__double(double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_window__window__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_window__window__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_window__window__point_2d_ref(__sklib_ptr wind, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_screen__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_screen__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_on_screen__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_in_window__window__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_in_window__window__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rect_in_window__window__rectangle_ref(__sklib_ptr wind, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_on_screen__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rect_on_screen__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rect_on_screen__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_center", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_center", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__screen_center();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_rectangle", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__screen_rectangle();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_position__point_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_position__point_2d", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_camera_position__point_2d(__sklib_point_2d pos);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_x__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_x__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_camera_x__double(double x);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_y__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_camera_y__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_camera_y__double(double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__to_screen__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__to_screen__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen_x__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen_x__double", CharSet=CharSet.Ansi)]
     private static extern double __sklib__to_screen_x__double(double worldX);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen_y__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_screen_y__double", CharSet=CharSet.Ansi)]
     private static extern double __sklib__to_screen_y__double(double worldY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__to_world__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world_x__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world_x__double", CharSet=CharSet.Ansi)]
     private static extern double __sklib__to_world_x__double(double screenX);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world_y__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_world_y__double", CharSet=CharSet.Ansi)]
     private static extern double __sklib__to_world_y__double(double screenY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_world_to_screen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_world_to_screen", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_world_to_screen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_area__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_area__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__window_area__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__circle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle__color__circle_ref(__sklib_color clr, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__circle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__circle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle__color__circle_ref__drawing_options(__sklib_color clr, __sklib_circle c, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle__color__double__double__double(__sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle__color__double__double__double__drawing_options(__sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle_on_bitmap__bitmap__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle_on_window__window__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_circle_on_window__window__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__circle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__circle_ref(__sklib_color clr, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__circle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__circle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__circle_ref__drawing_options(__sklib_color clr, __sklib_circle c, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__double__double__double(__sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle__color__double__double__double__drawing_options(__sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle_on_bitmap__bitmap__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle_on_window__window__color__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_circle_on_window__window__color__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_circle_on_window__window__color__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double radius, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__center_point__circle_ref(__sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_at__point_2d_ref__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_at__point_2d_ref__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__circle_at__point_2d_ref__double(__sklib_point_2d pt, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_at__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_at__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__circle_at__double__double__double(double x, double y, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_radius__circle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_radius__circle", CharSet=CharSet.Ansi)]
     private static extern float __sklib__circle_radius__circle(__sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_x__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_x__circle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__circle_x__circle_ref(__sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_y__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_y__circle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__circle_y__circle_ref(__sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__circle__circle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__circle__circle", CharSet=CharSet.Ansi)]
     private static extern int __sklib__circles_intersect__circle__circle(__sklib_circle c1, __sklib_circle c2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circles_intersect__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__circles_intersect__double__double__double__double__double__double(double c1X, double c1Y, double c1Radius, double c2X, double c2Y, double c2Radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_circle__point_2d_ref__circle_ref(__sklib_point_2d fromPt, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_line_from_circle__circle_ref__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_line_from_circle__circle_ref__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(__sklib_circle c, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(__sklib_circle c, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__distant_point_on_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__distant_point_on_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__distant_point_on_circle__point_2d_ref__circle_ref(__sklib_point_2d pt, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref(__sklib_point_2d pt, __sklib_circle c, __sklib_vector_2d heading, ref __sklib_point_2d oppositePt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref(__sklib_point_2d rayOrigin, __sklib_vector_2d rayHeading, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__tangent_points__point_2d_ref__circle_ref__point_2d_ref__point_2d_ref(__sklib_point_2d fromPt, __sklib_circle c, ref __sklib_point_2d p1, ref __sklib_point_2d p2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__widest_points__circle_ref__vector_2d_ref__point_2d_ref__point_2d_ref(__sklib_circle c, __sklib_vector_2d along, ref __sklib_point_2d pt1, ref __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__current_clip();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__current_clip__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_clip__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__current_clip__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pop_clip__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pop_clip();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pop_clip__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pop_clip__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__window__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__window__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__push_clip__window__rectangle_ref(__sklib_ptr wnd, __sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__bitmap__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__bitmap__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__push_clip__bitmap__rectangle_ref(__sklib_ptr bmp, __sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__push_clip__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__push_clip__rectangle_ref(__sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_clip__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_clip();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_clip__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_clip__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_clip__rectangle_ref(__sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__bitmap__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__bitmap__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_clip__bitmap__rectangle_ref(__sklib_ptr bmp, __sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__window__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_clip__window__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_clip__window__rectangle_ref(__sklib_ptr wnd, __sklib_rectangle r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_circle_collision__bitmap__point_2d_ref__circle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_circle circ);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__double__double__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_circle_collision__bitmap__double__double__circle_ref(__sklib_ptr bmp, double x, double y, __sklib_circle circ);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_circle_collision__bitmap__int__matrix_2d_ref__circle_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_circle circ);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_circle_collision__bitmap__int__point_2d_ref__circle_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_circle circ);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_circle_collision__bitmap__int__double__double__circle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_circle circ);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__double__double__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__double__double__bitmap__double__double(__sklib_ptr bmp1, double x1, double y1, __sklib_ptr bmp2, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__point_2d_ref__bitmap__point_2d_ref(__sklib_ptr bmp1, __sklib_point_2d pt1, __sklib_ptr bmp2, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__int__matrix_2d_ref__bitmap__int__matrix_2d_ref(__sklib_ptr bmp1, int cell1, __sklib_matrix_2d matrix1, __sklib_ptr bmp2, int cell2, __sklib_matrix_2d matrix2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__int__point_2d_ref__bitmap__int__point_2d_ref(__sklib_ptr bmp1, int cell1, __sklib_point_2d pt1, __sklib_ptr bmp2, int cell2, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_collision__bitmap__int__double__double__bitmap__int__double__double(__sklib_ptr bmp1, int cell1, double x1, double y1, __sklib_ptr bmp2, int cell2, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, __sklib_matrix_2d translation, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__point_2d_ref__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d bmpPt, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__double__double__double__double(__sklib_ptr bmp, double bmpX, double bmpY, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__matrix_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_point_2d bmpPt, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__sklib_ptr bmp, int cell, double bmpX, double bmpY, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref(__sklib_ptr bmp, double x, double y, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__matrix_2d_ref__rectangle_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__double__double(__sklib_ptr s, __sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref(__sklib_ptr s, __sklib_ptr bmp, int cell, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(__sklib_ptr s, __sklib_ptr bmp, int cell, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision__sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision__sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_collision__sprite__sprite(__sklib_ptr s1, __sklib_ptr s2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_point_collision__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_point_collision__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_point_collision__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rectangle_collision__sprite__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rectangle_collision__sprite__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__sklib_ptr s, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__alpha_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__alpha_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__alpha_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__blue_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__blue_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__blue_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__brightness_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__brightness_of__color", CharSet=CharSet.Ansi)]
     private static extern double __sklib__brightness_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_alice_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_alice_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_alice_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_antique_white", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_antique_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_antique_white();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_aqua", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_aqua", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_aqua();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_aquamarine", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_aquamarine", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_aquamarine();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_azure", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_azure", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_azure();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_beige", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_beige", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_beige();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_bisque", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_bisque", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_bisque();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_black", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_black", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_black();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blanched_almond", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blanched_almond", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_blanched_almond();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blue_violet", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_blue_violet", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_blue_violet();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_bright_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_bright_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_bright_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_brown", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_brown", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_brown();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_burly_wood", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_burly_wood", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_burly_wood();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cadet_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cadet_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_cadet_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_chartreuse", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_chartreuse", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_chartreuse();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_chocolate", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_chocolate", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_chocolate();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_coral", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_coral", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_coral();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cornflower_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cornflower_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_cornflower_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cornsilk", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cornsilk", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_cornsilk();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_crimson", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_crimson", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_crimson();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cyan", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_cyan", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_cyan();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_cyan", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_cyan", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_cyan();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_goldenrod", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_goldenrod", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_goldenrod();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_khaki", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_khaki", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_khaki();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_magenta", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_magenta", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_magenta();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_olive_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_olive_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_olive_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_orange", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_orange", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_orange();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_orchid", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_orchid", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_orchid();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_salmon", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_salmon", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_salmon();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_sea_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_sea_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_sea_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_slate_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_slate_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_slate_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_slate_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_slate_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_slate_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_turquoise", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_turquoise", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_turquoise();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_violet", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dark_violet", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dark_violet();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_deep_pink", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_deep_pink", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_deep_pink();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_deep_sky_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_deep_sky_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_deep_sky_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dim_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dim_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dim_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dodger_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_dodger_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_dodger_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_firebrick", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_firebrick", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_firebrick();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_floral_white", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_floral_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_floral_white();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_forest_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_forest_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_forest_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_fuchsia", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_fuchsia", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_fuchsia();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gainsboro", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gainsboro", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_gainsboro();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_ghost_white", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_ghost_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_ghost_white();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gold", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gold", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_gold();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_goldenrod", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_goldenrod", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_goldenrod();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_green_yellow", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_green_yellow", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_green_yellow();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_honeydew", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_honeydew", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_honeydew();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_hot_pink", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_hot_pink", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_hot_pink();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_indian_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_indian_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_indian_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_indigo", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_indigo", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_indigo();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_ivory", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_ivory", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_ivory();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_khaki", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_khaki", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_khaki();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lavender", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lavender", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lavender();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lavender_blush", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lavender_blush", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lavender_blush();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lawn_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lawn_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lawn_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lemon_chiffon", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lemon_chiffon", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lemon_chiffon();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_coral", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_coral", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_coral();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_cyan", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_cyan", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_cyan();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_goldenrod_yellow", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_goldenrod_yellow", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_goldenrod_yellow();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_pink", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_pink", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_pink();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_salmon", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_salmon", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_salmon();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_sea_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_sea_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_sea_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_sky_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_sky_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_sky_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_slate_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_slate_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_slate_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_steel_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_steel_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_steel_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_yellow", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_light_yellow", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_light_yellow();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lime", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lime", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lime();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lime_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_lime_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_lime_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_linen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_linen", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_linen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_magenta", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_magenta", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_magenta();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_maroon", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_maroon", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_maroon();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_aquamarine", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_aquamarine", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_aquamarine();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_orchid", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_orchid", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_orchid();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_purple", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_purple", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_purple();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_sea_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_sea_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_sea_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_slate_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_slate_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_slate_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_spring_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_spring_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_spring_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_turquoise", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_turquoise", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_turquoise();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_violet_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_medium_violet_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_medium_violet_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_midnight_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_midnight_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_midnight_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_mint_cream", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_mint_cream", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_mint_cream();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_misty_rose", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_misty_rose", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_misty_rose();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_moccasin", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_moccasin", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_moccasin();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_navajo_white", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_navajo_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_navajo_white();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_navy", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_navy", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_navy();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_old_lace", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_old_lace", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_old_lace();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_olive", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_olive", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_olive();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_olive_drab", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_olive_drab", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_olive_drab();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orange", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orange", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_orange();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orange_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orange_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_orange_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orchid", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_orchid", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_orchid();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_goldenrod", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_goldenrod", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_pale_goldenrod();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_pale_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_turquoise", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_turquoise", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_pale_turquoise();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_violet_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pale_violet_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_pale_violet_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_papaya_whip", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_papaya_whip", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_papaya_whip();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_peach_puff", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_peach_puff", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_peach_puff();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_peru", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_peru", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_peru();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pink", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_pink", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_pink();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_plum", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_plum", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_plum();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_powder_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_powder_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_powder_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_purple", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_purple", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_purple();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_rosy_brown", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_rosy_brown", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_rosy_brown();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_royal_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_royal_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_royal_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_saddle_brown", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_saddle_brown", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_saddle_brown();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_salmon", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_salmon", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_salmon();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sandy_brown", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sandy_brown", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_sandy_brown();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sea_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sea_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_sea_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sea_shell", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sea_shell", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_sea_shell();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sienna", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sienna", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_sienna();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_silver", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_silver", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_silver();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sky_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_sky_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_sky_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slate_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slate_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_slate_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slate_gray", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slate_gray", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_slate_gray();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_snow", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_snow", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_snow();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_spring_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_spring_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_spring_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_steel_blue", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_steel_blue", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_steel_blue();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_swinburne_red", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_swinburne_red", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_swinburne_red();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_tan", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_tan", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_tan();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_teal", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_teal", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_teal();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_thistle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_thistle", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_thistle();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_to_string__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_to_string__color", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__color_to_string__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_tomato", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_tomato", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_tomato();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_transparent", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_transparent", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_transparent();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_turquoise", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_turquoise", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_turquoise();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_violet", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_violet", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_violet();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_wheat", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_wheat", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_wheat();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_white", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_white", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_white();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_white_smoke", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_white_smoke", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_white_smoke();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_yellow", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_yellow", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_yellow();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_yellow_green", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_yellow_green", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__color_yellow_green();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__green_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__green_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__green_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__hsb_color__double__double__double(double hue, double saturation, double brightness);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hue_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hue_of__color", CharSet=CharSet.Ansi)]
     private static extern double __sklib__hue_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_color", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__random_color();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_rgb_color__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_rgb_color__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__random_rgb_color__int(int alpha);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__red_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__red_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__red_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgb_color__double__double__double(double red, double green, double blue);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__int__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgb_color__int__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgb_color__int__int__int(int red, int green, int blue);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgba_color__double__double__double__double(double red, double green, double blue, double alpha);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__int__int__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rgba_color__int__int__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__rgba_color__int__int__int__int(int red, int green, int blue, int alpha);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__saturation_of__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__saturation_of__color", CharSet=CharSet.Ansi)]
     private static extern double __sklib__saturation_of__color(__sklib_color c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__string_to_color__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__string_to_color__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__string_to_color__string(__sklib_string str);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_defaults", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_defaults", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_defaults();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_draw_to__bitmap(__sklib_ptr dest);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__bitmap__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__bitmap__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_draw_to__bitmap__drawing_options(__sklib_ptr dest, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_draw_to__window(__sklib_ptr dest);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__window__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_draw_to__window__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_draw_to__window__drawing_options(__sklib_ptr dest, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_x", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_x", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_x();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_x__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_x__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_x__drawing_options(__sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_xy", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_xy", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_xy();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_xy__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_xy__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_xy__drawing_options(__sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_y", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_y", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_y();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_y__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_flip_y__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_flip_y__drawing_options(__sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_line_width__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_line_width__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_line_width__int(int width);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_line_width__int__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_line_width__int__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_line_width__int__drawing_options(int width, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__double__double(double x, double y, double w, double h);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__double__double__double__double__drawing_options(double x, double y, double w, double h, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__rectangle(__sklib_rectangle part);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_part_bmp__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_part_bmp__rectangle__drawing_options(__sklib_rectangle part, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double(double angle);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__double__double(double angle, double anchorX, double anchorY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__double__double__drawing_options(double angle, double anchorX, double anchorY, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_rotate_bmp__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_rotate_bmp__double__drawing_options(double angle, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_scale_bmp__double__double(double scaleX, double scaleY);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_scale_bmp__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_scale_bmp__double__double__drawing_options(double scaleX, double scaleY, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_screen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_screen", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_to_screen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_screen__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_screen__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_to_screen__drawing_options(__sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_world", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_world", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_to_world();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_world__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_to_world__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_to_world__drawing_options(__sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_animation__animation", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_animation__animation", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_with_animation__animation(__sklib_ptr anim);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_animation__animation__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_animation__animation__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_with_animation__animation__drawing_options(__sklib_ptr anim, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_with_bitmap_cell__int(int cell);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__option_with_bitmap_cell__int__drawing_options", CharSet=CharSet.Ansi)]
     private static extern __sklib_drawing_options __sklib__option_with_bitmap_cell__int__drawing_options(int cell, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse__color__rectangle(__sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse__color__rectangle__drawing_options(__sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse__color__double__double__double__double(__sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse__color__double__double__double__double__drawing_options(__sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_window__window__color__rectangle(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_window__window__color__rectangle__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_window__window__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_ellipse_on_window__window__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse__color__rectangle(__sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse__color__rectangle__drawing_options(__sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse__color__double__double__double__double(__sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse__color__double__double__double__double__drawing_options(__sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_bitmap__bitmap__color__rectangle__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_window__window__color__rectangle(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_window__window__color__rectangle__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_window__window__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_ellipse_on_window__window__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__cosine__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__cosine__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__cosine__float(float degrees);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sine__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sine__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sine__float(float degrees);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__tangent__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__tangent__float", CharSet=CharSet.Ansi)]
     private static extern float __sklib__tangent__float(float degrees);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_screen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_screen", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_screen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_screen__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_screen__color", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_screen__color(__sklib_color clr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_details__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_details__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__display_details__unsigned_int(uint index);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_height__display", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_height__display", CharSet=CharSet.Ansi)]
     private static extern int __sklib__display_height__display(__sklib_ptr disp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_name__display", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_name__display", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__display_name__display(__sklib_ptr disp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_width__display", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_width__display", CharSet=CharSet.Ansi)]
     private static extern int __sklib__display_width__display(__sklib_ptr disp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_x__display", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_x__display", CharSet=CharSet.Ansi)]
     private static extern int __sklib__display_x__display(__sklib_ptr disp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_y__display", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_y__display", CharSet=CharSet.Ansi)]
     private static extern int __sklib__display_y__display(__sklib_ptr disp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_of_displays", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_of_displays", CharSet=CharSet.Ansi)]
     private static extern int __sklib__number_of_displays();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_screen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_screen", CharSet=CharSet.Ansi)]
     private static extern void __sklib__refresh_screen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_screen__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_screen__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__refresh_screen__unsigned_int(uint targetFps);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__save_bitmap__bitmap__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__save_bitmap__bitmap__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__save_bitmap__bitmap__string_ref(__sklib_ptr bmp, __sklib_string basename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_height", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_height", CharSet=CharSet.Ansi)]
     private static extern int __sklib__screen_height();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_width", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__screen_width", CharSet=CharSet.Ansi)]
     private static extern int __sklib__screen_width();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__take_screenshot__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__take_screenshot__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__take_screenshot__string_ref(__sklib_string basename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__take_screenshot__window__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__take_screenshot__window__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__take_screenshot__window__string_ref(__sklib_ptr wind, __sklib_string basename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_circle__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_circle__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__bitmap_bounding_circle__bitmap__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_rectangle__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_rectangle__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__bitmap_bounding_rectangle__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_rectangle__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_bounding_rectangle__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__bitmap_bounding_rectangle__bitmap__double__double(__sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_center__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_center__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__bitmap_cell_center__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__bitmap_cell_circle__bitmap__double__double(__sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__point_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__point_2d", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__bitmap_cell_circle__bitmap__point_2d(__sklib_ptr bmp, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__point_2d__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_circle__bitmap__point_2d__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__bitmap_cell_circle__bitmap__point_2d__double(__sklib_ptr bmp, __sklib_point_2d pt, double scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_columns__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_columns__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_cell_columns__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_count__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_count__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_cell_count__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_height__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_height__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_cell_height__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_offset__bitmap__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_offset__bitmap__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__bitmap_cell_offset__bitmap__int(__sklib_ptr src, int cell);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rectangle__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rectangle__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__bitmap_cell_rectangle__bitmap(__sklib_ptr src);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rectangle__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__bitmap_cell_rectangle__bitmap__point_2d_ref(__sklib_ptr src, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rows__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_rows__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_cell_rows__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_width__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_cell_width__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_cell_width__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_center__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_center__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__bitmap_center__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_filename__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_filename__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__bitmap_filename__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_height__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_height__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_height__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_height__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_height__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_height__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_name__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_name__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__bitmap_name__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_named__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_named__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__bitmap_named__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_of_cell__bitmap__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_of_cell__bitmap__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__bitmap_rectangle_of_cell__bitmap__int(__sklib_ptr src, int cell);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__bitmap_set_cell_details__bitmap__int__int__int__int__int(__sklib_ptr bmp, int width, int height, int columns, int rows, int count);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_valid__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_valid__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_valid__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_width__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_width__bitmap", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_width__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_width__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_width__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_width__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_bitmap__bitmap__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_bitmap__bitmap__color", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_bitmap__bitmap__color(__sklib_ptr bmp, __sklib_color clr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_bitmap__string__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_bitmap__string__color", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_bitmap__string__color(__sklib_string name, __sklib_color clr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_bitmap__string__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_bitmap__string__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_bitmap__string__int__int(__sklib_string name, int width, int height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap__bitmap__double__double(__sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap__bitmap__double__double__drawing_options(__sklib_ptr bmp, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__string__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__string__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap__string__double__double(__sklib_string name, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__string__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap__string__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap__string__double__double__drawing_options(__sklib_string name, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double(__sklib_ptr destination, __sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap_on_bitmap__bitmap__bitmap__double__double__drawing_options(__sklib_ptr destination, __sklib_ptr bmp, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_window__window__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_window__window__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap_on_window__window__bitmap__double__double(__sklib_ptr destination, __sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_bitmap_on_window__window__bitmap__double__double__drawing_options(__sklib_ptr destination, __sklib_ptr bmp, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_bitmaps", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_bitmaps", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_bitmaps();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_bitmap__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_bitmap__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_bitmap__bitmap(__sklib_ptr toDelete);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_bitmap__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_bitmap__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_bitmap__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_bitmap__string__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_bitmap__string__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__load_bitmap__string__string(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__pixel_drawn_at_point__bitmap__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__pixel_drawn_at_point__bitmap__double__double(__sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__pixel_drawn_at_point__bitmap__int__point_2d_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pixel_drawn_at_point__bitmap__int__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__pixel_drawn_at_point__bitmap__int__double__double(__sklib_ptr bmp, int cell, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__setup_collision_mask__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__setup_collision_mask__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__setup_collision_mask__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__process_events", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__process_events", CharSet=CharSet.Ansi)]
     private static extern void __sklib__process_events();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quit_requested", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quit_requested", CharSet=CharSet.Ansi)]
     private static extern int __sklib__quit_requested();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_quit", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_quit", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_quit();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_json();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_json__string(__sklib_string jsonString);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_json();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_json__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_json__json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_json__json(__sklib_ptr j);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_count_keys__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_count_keys__json", CharSet=CharSet.Ansi)]
     private static extern int __sklib__json_count_keys__json(__sklib_ptr j);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_color__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_color__color", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__json_from_color__color(__sklib_color clr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_file__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_file__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__json_from_file__string_ref(__sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_string__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_from_string__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__json_from_string__string_ref(__sklib_string jString);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_has_key__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_has_key__json__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__json_has_key__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_double_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_double_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_read_array__json__string__vector_double_ref(__sklib_ptr j, __sklib_string key, ref __sklib_vector_double outResult);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_json_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_json_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_read_array__json__string__vector_json_ref(__sklib_ptr j, __sklib_string key, ref __sklib_vector_json outResult);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_read_array__json__string__vector_string_ref(__sklib_ptr j, __sklib_string key, ref __sklib_vector_string outResult);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_bool_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_array__json__string__vector_bool_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_read_array__json__string__vector_bool_ref(__sklib_ptr j, __sklib_string key, ref __sklib_vector_bool outResult);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_bool__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_bool__json__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__json_read_bool__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number__json__string", CharSet=CharSet.Ansi)]
     private static extern float __sklib__json_read_number__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number_as_double__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number_as_double__json__string", CharSet=CharSet.Ansi)]
     private static extern double __sklib__json_read_number_as_double__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number_as_int__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_number_as_int__json__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__json_read_number_as_int__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_object__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_object__json__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__json_read_object__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_string__json__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_read_string__json__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__json_read_string__json__string(__sklib_ptr j, __sklib_string key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_array__json__string__vector_string(__sklib_ptr j, __sklib_string key, __sklib_vector_string value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_array__json__string__vector_double(__sklib_ptr j, __sklib_string key, __sklib_vector_double value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_array__json__string__vector_bool(__sklib_ptr j, __sklib_string key, __sklib_vector_bool value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_array__json__string__vector_json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_array__json__string__vector_json(__sklib_ptr j, __sklib_string key, __sklib_vector_json value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_bool__json__string__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_bool__json__string__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_bool__json__string__bool(__sklib_ptr j, __sklib_string key, int value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_number__json__string__int(__sklib_ptr j, __sklib_string key, int value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_number__json__string__double(__sklib_ptr j, __sklib_string key, double value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_number__json__string__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_number__json__string__float(__sklib_ptr j, __sklib_string key, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_object__json__string__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_object__json__string__json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_object__json__string__json(__sklib_ptr j, __sklib_string key, __sklib_ptr obj);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_string__json__string__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_set_string__json__string__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_set_string__json__string__string(__sklib_ptr j, __sklib_string key, __sklib_string value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_color__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_color__json", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__json_to_color__json(__sklib_ptr j);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_file__json__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_file__json__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__json_to_file__json__string_ref(__sklib_ptr j, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_string__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__json_to_string__json", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__json_to_string__json(__sklib_ptr j);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__any_key_pressed", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__any_key_pressed", CharSet=CharSet.Ansi)]
     private static extern int __sklib__any_key_pressed();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_down__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_down__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__deregister_callback_on_key_down__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_typed__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_typed__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__deregister_callback_on_key_typed__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_up__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_callback_on_key_up__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__deregister_callback_on_key_up__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_down__key_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_down__key_code", CharSet=CharSet.Ansi)]
     private static extern int __sklib__key_down__key_code(int key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_name__key_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_name__key_code", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__key_name__key_code(int key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_released__key_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_released__key_code", CharSet=CharSet.Ansi)]
     private static extern int __sklib__key_released__key_code(int key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_typed__key_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_typed__key_code", CharSet=CharSet.Ansi)]
     private static extern int __sklib__key_typed__key_code(int key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_up__key_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__key_up__key_code", CharSet=CharSet.Ansi)]
     private static extern int __sklib__key_up__key_code(int key);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_down__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_down__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__register_callback_on_key_down__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_typed__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_typed__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__register_callback_on_key_typed__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_up__key_callback_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_callback_on_key_up__key_callback_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__register_callback_on_key_up__key_callback_ptr(KeyCallback callback);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__line_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__line_ref(__sklib_color clr, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__line_ref__drawing_options(__sklib_color clr, __sklib_line l, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__point_2d_ref__point_2d_ref(__sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__point_2d_ref__point_2d_ref__drawing_options_ref(__sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__double__double__double__double(__sklib_color clr, double x1, double y1, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line__color__double__double__double__double__drawing_options_ref(__sklib_color clr, double x1, double y1, double x2, double y2, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__line_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__line_ref(__sklib_ptr destination, __sklib_color clr, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__line_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_line l, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__point_2d_ref__point_2d_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__line_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__line_ref(__sklib_ptr destination, __sklib_color clr, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__line_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__line_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_line l, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__point_2d_ref__point_2d_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d fromPt, __sklib_point_2d toPt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_line_on_window__window__color__double__double__double__double__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_line__point_2d__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_line__point_2d__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_line__point_2d__line_ref(__sklib_point_2d fromPt, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__closest_point_on_lines__point_2d__vector_line_ref__int_ref(__sklib_point_2d fromPt, __sklib_vector_line lines, ref int lineIdx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_line __sklib__line_from__point_2d_ref__point_2d_ref(__sklib_point_2d start, __sklib_point_2d endPt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_line __sklib__line_from__point_2d_ref__vector_2d_ref(__sklib_point_2d start, __sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_line __sklib__line_from__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_from__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_line __sklib__line_from__double__double__double__double(double x1, double y1, double x2, double y2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersection_point__line_ref__line_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__line_intersection_point__line_ref__line_ref__point_2d_ref(__sklib_line line1, __sklib_line line2, ref __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_circle__line_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_circle__line_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__line_intersects_circle__line_ref__circle_ref(__sklib_line l, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_lines__line_ref__vector_line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_lines__line_ref__vector_line_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__line_intersects_lines__line_ref__vector_line_ref(__sklib_line l, __sklib_vector_line lines);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_rect__line_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_intersects_rect__line_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__line_intersects_rect__line_ref__rectangle_ref(__sklib_line l, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_length__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_length__line_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__line_length__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_length_squared__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_length_squared__line_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__line_length_squared__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_mid_point__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_mid_point__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__line_mid_point__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_normal__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_normal__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__line_normal__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_to_string__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__line_to_string__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__line_to_string__line_ref(__sklib_line ln);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_from__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_from__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_line __sklib__lines_from__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_from__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_from__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_line __sklib__lines_from__triangle_ref(__sklib_triangle t);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_intersect__line_ref__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__lines_intersect__line_ref__line_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__lines_intersect__line_ref__line_ref(__sklib_line l1, __sklib_line l2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_log_process", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_log_process", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_log_process();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__log_mode", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__log_mode", CharSet=CharSet.Ansi)]
     private static extern void __sklib__init_custom_logger__log_mode(int mode);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__string__bool__log_mode", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__init_custom_logger__string__bool__log_mode", CharSet=CharSet.Ansi)]
     private static extern void __sklib__init_custom_logger__string__bool__log_mode(__sklib_string appName, int overridePrevLog, int mode);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__log__log_level__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__log__log_level__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__log__log_level__string(int level, __sklib_string message);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__apply_matrix__matrix_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__apply_matrix__matrix_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__apply_matrix__matrix_2d_ref__quad_ref(__sklib_matrix_2d matrix, ref __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__apply_matrix__matrix_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__apply_matrix__matrix_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__apply_matrix__matrix_2d_ref__triangle_ref(__sklib_matrix_2d m, ref __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__identity_matrix", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__identity_matrix", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__identity_matrix();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_inverse__matrix_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_inverse__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__matrix_inverse__matrix_2d_ref(__sklib_matrix_2d m);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__matrix_multiply__matrix_2d_ref__point_2d_ref(__sklib_matrix_2d m, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__matrix_multiply__matrix_2d_ref__matrix_2d_ref(__sklib_matrix_2d m1, __sklib_matrix_2d m2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__matrix_multiply__matrix_2d_ref__vector_2d_ref(__sklib_matrix_2d m, __sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_to_string__matrix_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__matrix_to_string__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__matrix_to_string__matrix_2d_ref(__sklib_matrix_2d matrix);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rotation_matrix__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rotation_matrix__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__rotation_matrix__double(double deg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_matrix__point_2d_ref(__sklib_point_2d scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_matrix__vector_2d_ref(__sklib_vector_2d scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_matrix__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_matrix__double(double scale);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__scale_rotate_translate_matrix__point_2d_ref__double__point_2d_ref(__sklib_point_2d scale, double deg, __sklib_point_2d translate);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__translation_matrix__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__translation_matrix__vector_2d_ref(__sklib_vector_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__translation_matrix__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__translation_matrix__double__double(double dx, double dy);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hide_mouse", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hide_mouse", CharSet=CharSet.Ansi)]
     private static extern void __sklib__hide_mouse();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_clicked__mouse_button", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_clicked__mouse_button", CharSet=CharSet.Ansi)]
     private static extern int __sklib__mouse_clicked__mouse_button(int button);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_down__mouse_button", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_down__mouse_button", CharSet=CharSet.Ansi)]
     private static extern int __sklib__mouse_down__mouse_button(int button);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_movement", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_movement", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__mouse_movement();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_position", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_position", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__mouse_position();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_position_vector", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_position_vector", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__mouse_position_vector();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_shown", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_shown", CharSet=CharSet.Ansi)]
     private static extern int __sklib__mouse_shown();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_up__mouse_button", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_up__mouse_button", CharSet=CharSet.Ansi)]
     private static extern int __sklib__mouse_up__mouse_button(int button);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_wheel_scroll", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_wheel_scroll", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__mouse_wheel_scroll();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_x", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_x", CharSet=CharSet.Ansi)]
     private static extern float __sklib__mouse_x();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_y", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__mouse_y", CharSet=CharSet.Ansi)]
     private static extern float __sklib__mouse_y();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_mouse__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_mouse__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_mouse__double__double(double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_mouse__point_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_mouse__point_2d", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_mouse__point_2d(__sklib_point_2d point);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__show_mouse", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__show_mouse", CharSet=CharSet.Ansi)]
     private static extern void __sklib__show_mouse();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__show_mouse__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__show_mouse__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__show_mouse__bool(int show);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_music_in__string_ref__int(__sklib_string name, int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__string_ref__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__string_ref__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_music_in__string_ref__int__int(__sklib_string name, int times, int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__music__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__music__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_music_in__music__int(__sklib_ptr data, int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__music__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_in__music__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_music_in__music__int__int(__sklib_ptr data, int times, int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_out__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_music_out__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_music_out__int(int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_music();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_music__music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_music__music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_music__music(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_music__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_music__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_music__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_music__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_music__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__load_music__string_ref__string_ref(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_filename__music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_filename__music", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__music_filename__music(__sklib_ptr data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_name__music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_name__music", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__music_name__music(__sklib_ptr data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__music_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_playing", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_playing", CharSet=CharSet.Ansi)]
     private static extern int __sklib__music_playing();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_valid__music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_valid__music", CharSet=CharSet.Ansi)]
     private static extern int __sklib__music_valid__music(__sklib_ptr m);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_volume", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_volume", CharSet=CharSet.Ansi)]
     private static extern float __sklib__music_volume();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pause_music();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_music__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_music__string_ref__int(__sklib_string name, int times);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_music__music(__sklib_ptr data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_music__music__int(__sklib_ptr data, int times);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music__int__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_music__music__int__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_music__music__int__float(__sklib_ptr data, int times, float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__resume_music();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_music_volume__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_music_volume__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_music_volume__float(float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_music", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_music", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_music();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_all_new_connections", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_all_new_connections", CharSet=CharSet.Ansi)]
     private static extern int __sklib__accept_all_new_connections();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_new_connection__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__accept_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__accept_new_connection__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__server_socket", CharSet=CharSet.Ansi)]
     private static extern void __sklib__broadcast_message__string_ref__server_socket(__sklib_string aMsg, __sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__broadcast_message__string_ref(__sklib_string aMsg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__broadcast_message__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__broadcast_message__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__check_network_activity", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__check_network_activity", CharSet=CharSet.Ansi)]
     private static extern void __sklib__check_network_activity();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_messages__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__connection", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_messages__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_messages__server_socket", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_messages__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_connections", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_connections", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_all_connections();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_servers", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_servers", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_all_servers();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_connection__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_connection__connection", CharSet=CharSet.Ansi)]
     private static extern int __sklib__close_connection__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_connection__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__close_connection__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_message__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_message__message", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_message__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_server__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_server__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__close_server__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_server__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_server__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__close_server__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__string_ref", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_count__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_count__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__connection", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_ip__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_ip__string_ref", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__connection_ip__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__connection_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__connection", CharSet=CharSet.Ansi)]
     private static extern ushort __sklib__connection_port__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__connection_port__string_ref", CharSet=CharSet.Ansi)]
     private static extern ushort __sklib__connection_port__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_server__string_ref__unsigned_short(__sklib_string name, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_server__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_server__string_ref__unsigned_short__connection_type(__sklib_string name, ushort port, int protocol);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_hex__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_hex__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__dec_to_hex__unsigned_int(uint aDec);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fetch_new_connection__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fetch_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__fetch_new_connection__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_connection__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_connection__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_messages();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__connection", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_messages__connection(__sklib_ptr con);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_messages__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_messages__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_messages__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_new_connections", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_new_connections", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_new_connections();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_server__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_server__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_server__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hex_str_to_ipv4__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hex_str_to_ipv4__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__hex_str_to_ipv4__string_ref(__sklib_string aHex);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hex_to_dec_string__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hex_to_dec_string__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__hex_to_dec_string__string_ref(__sklib_string aHex);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_dec__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_dec__string_ref", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__ipv4_to_dec__string_ref(__sklib_string aIP);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_hex__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_hex__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIP);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_str__unsigned_int(uint ip);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__connection", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_connection_open__connection(__sklib_ptr con);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_connection_open__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_connection__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_connection__message", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__message_connection__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__message_count__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__connection", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__message_count__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_count__string_ref", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__message_count__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data__message", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__message_data__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data_bytes__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_data_bytes__message", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_int8_t __sklib__message_data_bytes__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_host__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_host__message", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__message_host__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_port__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_port__message", CharSet=CharSet.Ansi)]
     private static extern ushort __sklib__message_port__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_protocol__message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__message_protocol__message", CharSet=CharSet.Ansi)]
     private static extern int __sklib__message_protocol__message(__sklib_ptr msg);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__my_ip", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__my_ip", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__my_ip();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__name_for_connection__string__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__name_for_connection__string__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__name_for_connection__string__unsigned_int(__sklib_string host, uint port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__new_connection_count__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__new_connection_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__new_connection_count__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string host, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_connection__string_ref__string_ref__unsigned_short__connection_type(__sklib_string name, __sklib_string host, ushort port, int protocol);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__connection", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__read_message__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_message_data__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__connection", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_message_data__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_message_data__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_message_data__server_socket(__sklib_ptr svr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__connection", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reconnect__connection(__sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reconnect__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reconnect__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__release_all_connections", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__release_all_connections", CharSet=CharSet.Ansi)]
     private static extern void __sklib__release_all_connections();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_new_connection_count__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_new_connection_count__server_socket", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_new_connection_count__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__string_ref__int(__sklib_string name, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__server_socket__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__retrieve_connection__server_socket__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__retrieve_connection__server_socket__int(__sklib_ptr server, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__connection", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__connection", CharSet=CharSet.Ansi)]
     private static extern int __sklib__send_message_to__string_ref__connection(__sklib_string aMsg, __sklib_ptr aConnection);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_message_to__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__send_message_to__string_ref__string_ref(__sklib_string aMsg, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__server_has_new_connection__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__server_socket", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_has_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern int __sklib__server_has_new_connection__server_socket(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__server_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__server_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_udp_packet_size__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_udp_packet_size__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_udp_packet_size__unsigned_int(uint udpPacketSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__udp_packet_size", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__udp_packet_size", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__udp_packet_size();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__point_2d_ref(__sklib_color clr, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__point_2d_ref__drawing_options(__sklib_color clr, __sklib_point_2d pt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__double__double(__sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel__color__double__double__drawing_options(__sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_bitmap__bitmap__color__point_2d_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d pt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_bitmap__bitmap__color__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_bitmap__bitmap__color__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_window__window__color__point_2d_ref(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_window__window__color__point_2d_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_point_2d pt, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_window__window__color__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_pixel_on_window__window__color__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_pixel_on_window__window__color__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__bitmap__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__bitmap__point_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__bitmap__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__bitmap__double__double(__sklib_ptr bmp, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__double__double(double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__window__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__window__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__window__point_2d_ref(__sklib_ptr wnd, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__window__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel__window__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel__window__double__double(__sklib_ptr wnd, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel_from_window__window__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel_from_window__window__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel_from_window__window__point_2d_ref(__sklib_ptr destination, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel_from_window__window__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_pixel_from_window__window__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_color __sklib__get_pixel_from_window__window__double__double(__sklib_ptr destination, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_at__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_at__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__point_at__double__double(double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_at_origin", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_at_origin", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__point_at_origin();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__point_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_circle__point_2d_ref__circle_ref(__sklib_point_2d pt, __sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_circle__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_circle__double__double__double__double__double(double ptx, double pty, double cx, double cy, double radius);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_quad__point_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_quad__point_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_quad__point_2d_ref__quad_ref(__sklib_point_2d pt, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_rectangle__point_2d_ref__rectangle_ref(__sklib_point_2d pt, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_rectangle__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_rectangle__double__double__double__double__double__double(double ptx, double pty, double rectX, double rectY, double rectWidth, double rectHeight);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_triangle__point_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_in_triangle__point_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_in_triangle__point_2d_ref__triangle_ref(__sklib_point_2d pt, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_line_distance__point_2d_ref__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_line_distance__point_2d_ref__line_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__point_line_distance__point_2d_ref__line_ref(__sklib_point_2d pt, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_offset_by__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_offset_by__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__point_offset_by__point_2d_ref__vector_2d_ref(__sklib_point_2d startPoint, __sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_offset_from_origin__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_offset_from_origin__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__point_offset_from_origin__vector_2d_ref(__sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_line__point_2d_ref__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_line__point_2d_ref__line_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_on_line__point_2d_ref__line_ref(__sklib_point_2d pt, __sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_line__point_2d_ref__line_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_on_line__point_2d_ref__line_ref__float", CharSet=CharSet.Ansi)]
     private static extern int __sklib__point_on_line__point_2d_ref__line_ref__float(__sklib_point_2d pt, __sklib_line l, float proximity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_point_angle__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_point_angle__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__point_point_angle__point_2d_ref__point_2d_ref(__sklib_point_2d pt1, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_point_distance__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_point_distance__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__point_point_distance__point_2d_ref__point_2d_ref(__sklib_point_2d pt1, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_to_string__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__point_to_string__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__point_to_string__point_2d_ref(__sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_bitmap_point__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_bitmap_point__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__random_bitmap_point__bitmap(__sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_screen_point", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_screen_point", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__random_screen_point();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_window_point__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__random_window_point__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__random_window_point__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__same_point__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__same_point__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__same_point__point_2d_ref__point_2d_ref(__sklib_point_2d pt1, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref(__sklib_point_2d p1, __sklib_point_2d p2, __sklib_point_2d p3, __sklib_point_2d p4);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__rectangle_ref__matrix_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__rectangle_ref__matrix_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__rectangle_ref__matrix_2d_ref(__sklib_rectangle rect, __sklib_matrix_2d transform);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__double__double__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__double__double__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__double__double__double__double__double__double__double__double(double xTopLeft, double yTopLeft, double xTopRight, double yTopRight, double xBottomLeft, double yBottomLeft, double xBottomRight, double yBottomRight);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quads_intersect__quad_ref__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quads_intersect__quad_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__quads_intersect__quad_ref__quad_ref(__sklib_quad q1, __sklib_quad q2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_quad_point__quad_ref__int__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_quad_point__quad_ref__int__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_quad_point__quad_ref__int__point_2d_ref(ref __sklib_quad q, int idx, __sklib_point_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangles_from__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangles_from__quad_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_triangle __sklib__triangles_from__quad_ref(__sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rnd__int__int(int min, int max);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rnd();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rnd__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rnd__int(int ubound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_gpio", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_gpio", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_gpio();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_cleanup", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_cleanup", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_cleanup();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_get_mode__pins", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_get_mode__pins", CharSet=CharSet.Ansi)]
     private static extern int __sklib__raspi_get_mode__pins(int pin);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_init", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_init", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_init();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_read__pins", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_read__pins", CharSet=CharSet.Ansi)]
     private static extern int __sklib__raspi_read__pins(int pin);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_mode__pins__pin_modes", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_mode__pins__pin_modes", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_mode__pins__pin_modes(int pin, int mode);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pull_up_down__pins__pull_up_down", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pull_up_down__pins__pull_up_down", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_pull_up_down__pins__pull_up_down(int pin, int pud);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_dutycycle__pins__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_dutycycle__pins__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_pwm_dutycycle__pins__int(int pin, int dutycycle);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_frequency__pins__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_frequency__pins__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_pwm_frequency__pins__int(int pin, int frequency);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_range__pins__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_range__pins__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_pwm_range__pins__int(int pin, int range);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_write__pins__pin_values", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_write__pins__pin_values", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_write__pins__pin_values(int pin, int value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad__color__quad_ref(__sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad__color__quad_ref__drawing_options_ref(__sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad_on_bitmap__bitmap__color__quad_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_window__window__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_window__window__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad_on_window__window__color__quad_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_quad_on_window__window__color__quad_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle__color__rectangle_ref(__sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle__color__rectangle_ref__drawing_options_ref(__sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle__color__double__double__double__double(__sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle__color__double__double__double__double__drawing_options_ref(__sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_window__window__color__rectangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_window__window__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_rectangle_on_window__window__color__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad__color__quad_ref(__sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad__color__quad_ref__drawing_options_ref(__sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad_on_bitmap__bitmap__color__quad_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad_on_bitmap__bitmap__color__quad_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_window__window__color__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_window__window__color__quad_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad_on_window__window__color__quad_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_quad_on_window__window__color__quad_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_quad q, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle__color__rectangle_ref(__sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle__color__rectangle_ref__drawing_options_ref(__sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle__color__double__double__double__double(__sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle__color__double__double__double__double__drawing_options_ref(__sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_bitmap__bitmap__color__rectangle_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_bitmap__bitmap__color__double__double__double__double__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_window__window__color__rectangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_window__window__color__rectangle_ref__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, __sklib_rectangle rect, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_window__window__color__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_rectangle_on_window__window__color__double__double__double__double__drawing_options_ref(__sklib_ptr destination, __sklib_color clr, double x, double y, double width, double height, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__inset_rectangle__rectangle_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__inset_rectangle__rectangle_ref__float", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__inset_rectangle__rectangle_ref__float(__sklib_rectangle rect, float insetAmount);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__intersection__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__intersection__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__intersection__rectangle_ref__rectangle_ref(__sklib_rectangle rect1, __sklib_rectangle rect2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__circle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__circle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__circle_ref(__sklib_circle c);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__quad_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__quad_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__quad_ref(__sklib_quad q);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_around__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_around__triangle_ref(__sklib_triangle t);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_bottom__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_bottom__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rectangle_bottom__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_center__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_center__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__rectangle_center__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__point_2d__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__point_2d__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_from__point_2d__double__double(__sklib_point_2d pt, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__point_2d__point_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__point_2d__point_2d", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_from__point_2d__point_2d(__sklib_point_2d pt1, __sklib_point_2d pt2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_from__double__double__double__double(double x, double y, double width, double height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_left__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_left__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rectangle_left__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__sklib_rectangle rect, __sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_right__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_right__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rectangle_right__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_to_string__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_to_string__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__rectangle_to_string__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_top__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_top__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__rectangle_top__rectangle_ref(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangles_intersect__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangles_intersect__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__rectangles_intersect__rectangle_ref__rectangle_ref(__sklib_rectangle rect1, __sklib_rectangle rect2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_free_notifier__free_notifier_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__deregister_free_notifier__free_notifier_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__deregister_free_notifier__free_notifier_ptr(FreeNotifier handler);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resource__string_ref__resource_kind", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resource__string_ref__resource_kind", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__path_to_resource__string_ref__resource_kind(__sklib_string filename, int kind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resources", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resources", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__path_to_resources();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resources__resource_kind", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__path_to_resources__resource_kind", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__path_to_resources__resource_kind(int kind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_free_notifier__free_notifier_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__register_free_notifier__free_notifier_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__register_free_notifier__free_notifier_ptr(FreeNotifier fn);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_resources_path__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_resources_path__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_resources_path__string_ref(__sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_all_sound_effects_out__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_all_sound_effects_out__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_all_sound_effects_out__int(int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_sound_effect_out__sound_effect__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fade_sound_effect_out__sound_effect__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fade_sound_effect_out__sound_effect__int(__sklib_ptr effect, int ms);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_sound_effects", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_sound_effects", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_sound_effects();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_sound_effect__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sound_effect__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sound_effect__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_sound_effect__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_sound_effect__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_sound_effect__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__load_sound_effect__string_ref__string_ref(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__string_ref__float(__sklib_string name, float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__string_ref__int(__sklib_string name, int times);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__int__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__string_ref__int__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__string_ref__int__float(__sklib_string name, int times, float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__sound_effect__float(__sklib_ptr effect, float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__sound_effect__int(__sklib_ptr effect, int times);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__int__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__play_sound_effect__sound_effect__int__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__play_sound_effect__sound_effect__int__float(__sklib_ptr effect, int times, float volume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_filename__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_filename__sound_effect", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__sound_effect_filename__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_name__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_name__sound_effect", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__sound_effect_name__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__sound_effect_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_playing__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_playing__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sound_effect_playing__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_playing__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_playing__sound_effect", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sound_effect_playing__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_valid__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sound_effect_valid__sound_effect", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sound_effect_valid__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_sound_effect__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_sound_effect__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_sound_effect__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_sound_effect__sound_effect", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_sound_effect__sound_effect(__sklib_ptr effect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_for_all_sprites__sprite_float_function_ptr__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_for_all_sprites__sprite_float_function_ptr__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__call_for_all_sprites__sprite_float_function_ptr__float(SpriteFloatFunction fn, float val);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_for_all_sprites__sprite_function_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_for_all_sprites__sprite_function_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__call_for_all_sprites__sprite_function_ptr(SpriteFunction fn);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_on_sprite_event__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_on_sprite_event__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__call_on_sprite_event__sprite_event_handler_ptr(SpriteEventHandler handler);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__center_point__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__bitmap(__sklib_ptr layer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__bitmap__animation_script", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__bitmap__animation_script", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__bitmap__animation_script(__sklib_ptr layer, __sklib_ptr ani);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__string_ref(__sklib_string bitmapName);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__string_ref__bitmap(__sklib_string name, __sklib_ptr layer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__bitmap__animation_script", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__bitmap__animation_script", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__string_ref__bitmap__animation_script(__sklib_string name, __sklib_ptr layer, __sklib_ptr ani);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__string_ref__string_ref(__sklib_string bitmapName, __sklib_string animationName);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__create_sprite_pack__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_sprite_pack", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_sprite_pack", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__current_sprite_pack();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_all_sprites", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_all_sprites", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_all_sprites();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_sprite__sprite__vector_2d_ref(__sklib_ptr s, __sklib_vector_2d offset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_sprite__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_sprite__sprite__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_sprite__sprite__double__double(__sklib_ptr s, double xOffset, double yOffset);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_sprites", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_sprites", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_sprites();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_sprite__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_sprite_pack__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_sprite__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_sprite_pack__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_sprite__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_sprite__sprite__vector_2d_ref(__sklib_ptr s, __sklib_vector_2d distance);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__vector_2d_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__vector_2d_ref__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_sprite__sprite__vector_2d_ref__float(__sklib_ptr s, __sklib_vector_2d distance, float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_sprite__sprite__float(__sklib_ptr s, float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite_to__sprite__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_sprite_to__sprite__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_sprite_to__sprite__double__double(__sklib_ptr s, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__select_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__select_sprite_pack__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__select_sprite_pack__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_layer__sprite__bitmap__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_layer__sprite__bitmap__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_add_layer__sprite__bitmap__string_ref(__sklib_ptr s, __sklib_ptr newLayer, __sklib_string layerName);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_to_velocity__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_to_velocity__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_add_to_velocity__sprite__vector_2d_ref(__sklib_ptr s, __sklib_vector_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_value__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_value__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_add_value__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_value__sprite__string_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_add_value__sprite__string_ref__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_add_value__sprite__string_ref__float(__sklib_ptr s, __sklib_string name, float initVal);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_anchor_point__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_anchor_point__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__sprite_anchor_point__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_anchor_position__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_anchor_position__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__sprite_anchor_position__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_animation_has_ended__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_animation_has_ended__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_animation_has_ended__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_animation_name__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_animation_name__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__sprite_animation_name__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_at__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_at__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_at__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bring_layer_forward__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bring_layer_forward__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_bring_layer_forward__sprite__int(__sklib_ptr s, int visibleLayer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bring_layer_to_front__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bring_layer_to_front__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_bring_layer_to_front__sprite__int(__sklib_ptr s, int visibleLayer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__sklib_ptr s, SpriteEventHandler handler);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_circle__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_circle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__sprite_circle__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_bitmap__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_bitmap__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__sprite_collision_bitmap__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_circle__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_circle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__sprite_collision_circle__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_kind__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_kind__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_collision_kind__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_rectangle__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision_rectangle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__sprite_collision_rectangle__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_current_cell__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_current_cell__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_current_cell__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_current_cell_rectangle__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_current_cell_rectangle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__sprite_current_cell_rectangle__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_dx__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_dx__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_dx__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_dy__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_dy__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_dy__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_has_value__sprite__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_has_value__sprite__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_has_value__sprite__string(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_heading__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_heading__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_heading__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_height__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_height__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_height__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_hide_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_hide_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_hide_layer__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_hide_layer__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_hide_layer__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_hide_layer__sprite__int(__sklib_ptr s, int id);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__sprite_layer__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer__sprite__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__sprite_layer__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_circle__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_circle__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__sprite_layer_circle__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_circle__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_circle__sprite__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__sprite_layer_circle__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_count__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_count__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_count__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_height__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_height__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_height__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_height__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_height__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_height__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_index__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_index__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_index__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_name__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_name__sprite__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__sprite_layer_name__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_offset__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_offset__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__sprite_layer_offset__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_offset__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_offset__sprite__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__sprite_layer_offset__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_rectangle__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_rectangle__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__sprite_layer_rectangle__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_rectangle__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_rectangle__sprite__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__sprite_layer_rectangle__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_width__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_width__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_width__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_width__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_layer_width__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_layer_width__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_location_matrix__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_location_matrix__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_matrix_2d __sklib__sprite_location_matrix__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_mass__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_mass__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_mass__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_move_from_anchor_point__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_move_from_anchor_point__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_move_from_anchor_point__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_move_to__sprite__point_2d_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_move_to__sprite__point_2d_ref__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_move_to__sprite__point_2d_ref__float(__sklib_ptr s, __sklib_point_2d pt, float takingSeconds);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_name__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_name__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__sprite_name__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_named__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__sprite_named__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_offscreen__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_offscreen__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_offscreen__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_on_screen_at__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_on_screen_at__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_on_screen_at__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_on_screen_at__sprite__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_on_screen_at__sprite__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_on_screen_at__sprite__double__double(__sklib_ptr s, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_position__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_position__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__sprite_position__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_replay_animation__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_replay_animation__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_replay_animation__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_replay_animation__sprite__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_replay_animation__sprite__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_replay_animation__sprite__bool(__sklib_ptr s, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rotation__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rotation__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_rotation__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_scale__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_scale__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_scale__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_screen_rectangle__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_screen_rectangle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__sprite_screen_rectangle__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_send_layer_backward__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_send_layer_backward__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_send_layer_backward__sprite__int(__sklib_ptr s, int visibleLayer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_send_layer_to_back__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_send_layer_to_back__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_send_layer_to_back__sprite__int(__sklib_ptr s, int visibleLayer);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_anchor_point__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_anchor_point__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_anchor_point__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_collision_bitmap__sprite__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_collision_bitmap__sprite__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_collision_bitmap__sprite__bitmap(__sklib_ptr s, __sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_collision_kind__sprite__collision_test_kind", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_collision_kind__sprite__collision_test_kind", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_collision_kind__sprite__collision_test_kind(__sklib_ptr s, int value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_dx__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_dx__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_dx__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_dy__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_dy__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_dy__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_heading__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_heading__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_heading__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref(__sklib_ptr s, __sklib_string name, __sklib_vector_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref(__sklib_ptr s, int idx, __sklib_vector_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_mass__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_mass__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_mass__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_move_from_anchor_point__sprite__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_move_from_anchor_point__sprite__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_move_from_anchor_point__sprite__bool(__sklib_ptr s, int value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_position__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_position__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_position__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_rotation__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_rotation__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_rotation__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_scale__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_scale__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_scale__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_speed__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_speed__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_speed__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_value__sprite__string_ref__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_value__sprite__string_ref__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_value__sprite__string_ref__float(__sklib_ptr s, __sklib_string name, float val);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_velocity__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_velocity__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_velocity__sprite__vector_2d_ref(__sklib_ptr s, __sklib_vector_2d value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_x__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_x__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_x__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_y__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_set_y__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_set_y__sprite__float(__sklib_ptr s, float value);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_show_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_show_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_show_layer__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_show_layer__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_show_layer__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_show_layer__sprite__int(__sklib_ptr s, int id);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_speed__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_speed__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_speed__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_start_animation__sprite__string_ref(__sklib_ptr s, __sklib_string named);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__string_ref__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__string_ref__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_start_animation__sprite__string_ref__bool(__sklib_ptr s, __sklib_string named, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_start_animation__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__int__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_start_animation__sprite__int__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_start_animation__sprite__int__bool(__sklib_ptr s, int idx, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_stop_calling_on_event__sprite__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_stop_calling_on_event__sprite__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_stop_calling_on_event__sprite__sprite_event_handler_ptr(__sklib_ptr s, SpriteEventHandler handler);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_toggle_layer_visible__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_toggle_layer_visible__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_toggle_layer_visible__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_toggle_layer_visible__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_toggle_layer_visible__sprite__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_toggle_layer_visible__sprite__int(__sklib_ptr s, int id);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_value__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_value__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_value__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_value_count__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_value_count__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_value_count__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_velocity__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_velocity__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__sprite_velocity__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_index_of_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_index_of_layer__sprite__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_visible_index_of_layer__sprite__string_ref(__sklib_ptr s, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_index_of_layer__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_index_of_layer__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_visible_index_of_layer__sprite__int(__sklib_ptr s, int id);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_visible_layer__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer_count__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer_count__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_visible_layer_count__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer_id__sprite__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_visible_layer_id__sprite__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_visible_layer_id__sprite__int(__sklib_ptr s, int idx);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_width__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_width__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_width__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_x__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_x__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_x__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_y__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_y__sprite", CharSet=CharSet.Ansi)]
     private static extern float __sklib__sprite_y__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr(SpriteEventHandler handler);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_all_sprites", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_all_sprites", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_all_sprites();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_all_sprites__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_all_sprites__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_all_sprites__float(float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite__sprite__bool(__sklib_ptr s, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite__sprite__float(__sklib_ptr s, float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__float__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite__sprite__float__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite__sprite__float__bool(__sklib_ptr s, float pct, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite_animation__sprite(__sklib_ptr s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite_animation__sprite__bool(__sklib_ptr s, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__float", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__float", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite_animation__sprite__float(__sklib_ptr s, float pct);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__float__bool", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__update_sprite_animation__sprite__float__bool", CharSet=CharSet.Ansi)]
     private static extern void __sklib__update_sprite_animation__sprite__float__bool(__sklib_ptr s, float pct, int withSound);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_center_sprite_to_point__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_to__sprite__sprite", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_to__sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_to__sprite__sprite(__sklib_ptr s1, __sklib_ptr s2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_char", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_char", CharSet=CharSet.Ansi)]
     private static extern char __sklib__read_char();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_line", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_line", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__read_line();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_has_input", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__terminal_has_input", CharSet=CharSet.Ansi)]
     private static extern int __sklib__terminal_has_input();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__char", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__char", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__char(char data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__double(double data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__int(int data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write__string(__sklib_string text);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__char", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__char", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line__char(char data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line__double(double data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line__int(int data);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__write_line__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__write_line__string(__sklib_string line);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double(__sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__double__double(__sklib_string text, __sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__double__double__drawing_options_ref(__sklib_string text, __sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__font__int__double__double(__sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text__string_ref__color_ref__font__int__double__double__drawing_options_ref(__sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__double__double__drawing_options_ref(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_bitmap__bitmap__string_ref__color_ref__font__int__double__double__drawing_options_ref(__sklib_ptr bmp, __sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__string_ref__int__double__double__drawing_options_ref(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, __sklib_string fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__double__double(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__double__double__drawing_options_ref(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_text_on_window__window__string_ref__color_ref__font__int__double__double__drawing_options_ref(__sklib_ptr wnd, __sklib_string text, __sklib_color clr, __sklib_ptr fnt, int fontSize, double x, double y, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_has_size__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_has_size__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__font_has_size__string_ref__int(__sklib_string name, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_has_size__font__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_has_size__font__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__font_has_size__font__int(__sklib_ptr fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_load_size__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_load_size__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__font_load_size__string_ref__int(__sklib_string name, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_load_size__font__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_load_size__font__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__font_load_size__font__int(__sklib_ptr fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_named__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__font_named__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__font_named__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_fonts", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_fonts", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_fonts();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_font__font", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_font__font", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_font__font(__sklib_ptr fnt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_font_style__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_font_style__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__get_font_style__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_font_style__font", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_font_style__font", CharSet=CharSet.Ansi)]
     private static extern int __sklib__get_font_style__font(__sklib_ptr fnt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_font__font", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_font__font", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_font__font(__sklib_ptr fnt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_font__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_font__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_font__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_font__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__load_font__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__load_font__string_ref__string_ref(__sklib_string name, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_font_style__string_ref__font_style", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_font_style__string_ref__font_style", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_font_style__string_ref__font_style(__sklib_string name, int style);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_font_style__font__font_style", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_font_style__font__font_style", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_font_style__font__font_style(__sklib_ptr fnt, int style);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_height__string_ref__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_height__string_ref__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_height__string_ref__string_ref__int(__sklib_string text, __sklib_string fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_height__string_ref__font__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_height__string_ref__font__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_height__string_ref__font__int(__sklib_string text, __sklib_ptr fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_width__string_ref__string_ref__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_width__string_ref__string_ref__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_width__string_ref__string_ref__int(__sklib_string text, __sklib_string fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_width__string_ref__font__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_width__string_ref__font__int", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_width__string_ref__font__int(__sklib_string text, __sklib_ptr fnt, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_collected_text__color__font__int__drawing_options_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_collected_text__color__font__int__drawing_options_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_collected_text__color__font__int__drawing_options_ref(__sklib_color clr, __sklib_ptr fnt, int fontSize, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_reading_text", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_reading_text", CharSet=CharSet.Ansi)]
     private static extern void __sklib__end_reading_text();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_reading_text__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_reading_text__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__end_reading_text__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reading_text", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reading_text", CharSet=CharSet.Ansi)]
     private static extern int __sklib__reading_text();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reading_text__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reading_text__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__reading_text__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_reading_text__rectangle(__sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__rectangle__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__rectangle__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_reading_text__rectangle__string(__sklib_rectangle rect, __sklib_string initialText);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__window__rectangle", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__window__rectangle", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_reading_text__window__rectangle(__sklib_ptr wind, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__window__rectangle__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_reading_text__window__rectangle__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_reading_text__window__rectangle__string(__sklib_ptr wind, __sklib_rectangle rect, __sklib_string initialText);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_entry_cancelled", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_entry_cancelled", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_entry_cancelled();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_entry_cancelled__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_entry_cancelled__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__text_entry_cancelled__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_input", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_input", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__text_input();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_input__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_input__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__text_input__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_timer__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_timers", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_all_timers", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_all_timers();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_timer__timer(__sklib_ptr toFree);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_timer__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_timer__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pause_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__pause_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__pause_timer__timer(__sklib_ptr toPause);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_timer__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_timer__timer(__sklib_ptr tmr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_timer__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__resume_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resume_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__resume_timer__timer(__sklib_ptr toResume);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_timer__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__start_timer__timer(__sklib_ptr toStart);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_timer__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_timer__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_timer__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_timer__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_timer__timer", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_timer__timer(__sklib_ptr toStop);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_named__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_named__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__timer_named__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_paused__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_paused__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__timer_paused__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_paused__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_paused__timer", CharSet=CharSet.Ansi)]
     private static extern int __sklib__timer_paused__timer(__sklib_ptr toGet);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_started__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_started__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__timer_started__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_started__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_started__timer", CharSet=CharSet.Ansi)]
     private static extern int __sklib__timer_started__timer(__sklib_ptr toGet);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_ticks__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_ticks__string", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__timer_ticks__string(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_ticks__timer", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__timer_ticks__timer", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__timer_ticks__timer(__sklib_ptr toGet);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle__color__triangle_ref(__sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle__color__triangle_ref__drawing_options(__sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle__color__double__double__double__double__double__double(__sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle__color__double__double__double__double__double__double__drawing_options(__sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_window__window__color__triangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_window__window__color__triangle_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__draw_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle__color__triangle_ref(__sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle__color__triangle_ref__drawing_options(__sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle__color__double__double__double__double__double__double(__sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle__color__double__double__double__double__double__double__drawing_options(__sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_bitmap__bitmap__color__triangle_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_bitmap__bitmap__color__double__double__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_window__window__color__triangle_ref(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_window__window__color__triangle_ref__drawing_options(__sklib_ptr destination, __sklib_color clr, __sklib_triangle tri, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options", CharSet=CharSet.Ansi)]
     private static extern void __sklib__fill_triangle_on_window__window__color__double__double__double__double__double__double__drawing_options(__sklib_ptr destination, __sklib_color clr, double x1, double y1, double x2, double y2, double x3, double y3, __sklib_drawing_options opts);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_barycenter__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_barycenter__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__triangle_barycenter__triangle_ref(__sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_triangle __sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref(__sklib_point_2d p1, __sklib_point_2d p2, __sklib_point_2d p3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_from__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_from__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_triangle __sklib__triangle_from__double__double__double__double__double__double(double x1, double y1, double x2, double y2, double x3, double y3);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(__sklib_triangle tri, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_to_string__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_to_string__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__triangle_to_string__triangle_ref(__sklib_triangle tri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangles_intersect__triangle_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangles_intersect__triangle_ref__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__triangles_intersect__triangle_ref__triangle_ref(__sklib_triangle t1, __sklib_triangle t2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_ticks", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_ticks", CharSet=CharSet.Ansi)]
     private static extern uint __sklib__current_ticks();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__delay__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__delay__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__delay__int(int milliseconds);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_dialog__string_ref__string_ref__font__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__display_dialog__string_ref__string_ref__font__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__display_dialog__string_ref__string_ref__font__int(__sklib_string title, __sklib_string msg, __sklib_ptr outputFont, int fontSize);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__file_as_string__string__resource_kind", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__file_as_string__string__resource_kind", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__file_as_string__string__resource_kind(__sklib_string filename, int kind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__angle_between__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__angle_between__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__angle_between__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dot_product__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dot_product__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__dot_product__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_zero_vector__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_zero_vector__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_zero_vector__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__ray_intersection_point__point_2d_ref__vector_2d_ref__line_ref__point_2d_ref(__sklib_point_2d fromPt, __sklib_vector_2d heading, __sklib_line l, ref __sklib_point_2d pt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__unit_vector__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__unit_vector__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__unit_vector__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_add__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_add__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_add__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_angle__vector_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_angle__vector_2d", CharSet=CharSet.Ansi)]
     private static extern double __sklib__vector_angle__vector_2d(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_angle__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_angle__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_angle__double__double(double angle, double magnitude);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_line__line_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_line__line_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_line__line_ref(__sklib_line l);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_from_point_to_rect__point_2d_ref__rectangle_ref(__sklib_point_2d pt, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_in_rect__vector_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_in_rect__vector_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(__sklib_vector_2d v, __sklib_rectangle rect);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_invert__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_invert__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_invert__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_limit__vector_2d_ref__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_limit__vector_2d_ref__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_limit__vector_2d_ref__double(__sklib_vector_2d v, double limit);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__vector_magnitude__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude_sqared__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_magnitude_sqared__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__vector_magnitude_sqared__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_multiply__vector_2d_ref__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_multiply__vector_2d_ref__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_multiply__vector_2d_ref__double(__sklib_vector_2d v1, double s);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_normal__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_normal__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_normal__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(__sklib_circle src, __sklib_circle bounds, __sklib_vector_2d velocity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_out_of_circle_from_point__point_2d_ref__circle_ref__vector_2d_ref(__sklib_point_2d pt, __sklib_circle c, __sklib_vector_2d velocity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_out_of_rect_from_circle__circle_ref__rectangle_ref__vector_2d_ref(__sklib_circle c, __sklib_rectangle rect, __sklib_vector_2d velocity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_out_of_rect_from_point__point_2d_ref__rectangle_ref__vector_2d_ref(__sklib_point_2d pt, __sklib_rectangle rect, __sklib_vector_2d velocity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_out_of_rect_from_rect__rectangle_ref__rectangle_ref__vector_2d_ref(__sklib_rectangle src, __sklib_rectangle bounds, __sklib_vector_2d velocity);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_point_to_point__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_point_to_point__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_point_to_point__point_2d_ref__point_2d_ref(__sklib_point_2d start, __sklib_point_2d endPt);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_subtract__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_subtract__vector_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_subtract__vector_2d_ref__vector_2d_ref(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to__point_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_to__point_2d_ref(__sklib_point_2d p1);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to__double__double", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_2d __sklib__vector_to__double__double(double x, double y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to_string__vector_2d_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vector_to_string__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__vector_to_string__vector_2d_ref(__sklib_vector_2d v);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vectors_equal__vector_2d_ref__vector_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vectors_equal__vector_2d_ref__vector_2d", CharSet=CharSet.Ansi)]
     private static extern int __sklib__vectors_equal__vector_2d_ref__vector_2d(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vectors_not_equal__vector_2d_ref__vector_2d", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__vectors_not_equal__vector_2d_ref__vector_2d", CharSet=CharSet.Ansi)]
     private static extern int __sklib__vectors_not_equal__vector_2d_ref__vector_2d(__sklib_vector_2d v1, __sklib_vector_2d v2);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_bitmap__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_bitmap__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__download_bitmap__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string url, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_font__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_font__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__download_font__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string url, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_music__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_music__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__download_music__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string url, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_sound_effect__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__download_sound_effect__string_ref__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__download_sound_effect__string_ref__string_ref__unsigned_short(__sklib_string name, __sklib_string url, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_response__http_response", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free_response__http_response", CharSet=CharSet.Ansi)]
     private static extern void __sklib__free_response__http_response(__sklib_ptr response);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_get__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_get__string_ref__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__http_get__string_ref__unsigned_short(__sklib_string url, ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__http_post__string_ref__unsigned_short__string_ref__vector_string_ref(__sklib_string url, ushort port, __sklib_string body, __sklib_vector_string headers);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_post__string_ref__unsigned_short__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_post__string_ref__unsigned_short__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__http_post__string_ref__unsigned_short__string(__sklib_string url, ushort port, __sklib_string body);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_response_to_string__http_response", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__http_response_to_string__http_response", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__http_response_to_string__http_response(__sklib_ptr response);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__save_response_to_file__http_response__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__save_response_to_file__http_response__string", CharSet=CharSet.Ansi)]
     private static extern void __sklib__save_response_to_file__http_response__string(__sklib_ptr response, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_incoming_requests__web_server", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_incoming_requests__web_server", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_incoming_requests__web_server(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_delete_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_delete_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_delete_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_get_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_get_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_get_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_options_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_options_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_options_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_post_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_post_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_post_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_put_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_put_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_put_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_request_for__http_request__http_method__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_request_for__http_request__http_method__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_request_for__http_request__http_method__string_ref(__sklib_ptr request, int method, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_trace_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_trace_request_for__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_trace_request_for__http_request__string_ref(__sklib_ptr request, __sklib_string path);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__next_web_request__web_server", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__next_web_request__web_server", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__next_web_request__web_server(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_body__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_body__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__request_body__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_has_query_parameter__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_has_query_parameter__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__request_has_query_parameter__http_request__string_ref(__sklib_ptr r, __sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_headers__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_headers__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__request_headers__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_method__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_method__http_request", CharSet=CharSet.Ansi)]
     private static extern int __sklib__request_method__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_query_parameter__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_query_parameter__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__request_query_parameter__http_request__string_ref__string_ref(__sklib_ptr r, __sklib_string name, __sklib_string defaultValue);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_query_string__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_query_string__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__request_query_string__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__request_uri__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri_stubs__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__request_uri_stubs__http_request", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__request_uri_stubs__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_css_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_css_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_css_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_file_response__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_file_response__http_request__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_file_response__http_request__string_ref__string_ref(__sklib_ptr r, __sklib_string filename, __sklib_string contentType);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_html_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_html_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_html_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_javascript_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_javascript_file_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_javascript_file_response__http_request__string_ref(__sklib_ptr r, __sklib_string filename);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request(__sklib_ptr r);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__string_ref(__sklib_ptr r, __sklib_string message);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__http_status_code(__sklib_ptr r, int code);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__http_status_code__string_ref(__sklib_ptr r, int code, __sklib_string message);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__http_status_code__string_ref__string_ref(__sklib_ptr r, int code, __sklib_string message, __sklib_string contentType);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__http_status_code__string_ref__string_ref__vector_string_ref(__sklib_ptr r, int code, __sklib_string message, __sklib_string contentType, __sklib_vector_string headers);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__json", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__send_response__http_request__json", CharSet=CharSet.Ansi)]
     private static extern void __sklib__send_response__http_request__json(__sklib_ptr r, __sklib_ptr j);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split_uri_stubs__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split_uri_stubs__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__split_uri_stubs__string_ref(__sklib_string uri);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_web_server", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_web_server", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__start_web_server();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_web_server__unsigned_short", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_web_server__unsigned_short", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__start_web_server__unsigned_short(ushort port);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_web_server__web_server", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__stop_web_server__web_server", CharSet=CharSet.Ansi)]
     private static extern void __sklib__stop_web_server__web_server(__sklib_ptr server);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_window__window__color", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__clear_window__window__color", CharSet=CharSet.Ansi)]
     private static extern void __sklib__clear_window__window__color(__sklib_ptr wind, __sklib_color clr);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_windows", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_all_windows", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_all_windows();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_current_window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_current_window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_current_window();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_window__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_window__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_window__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_window__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__close_window__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__close_window__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__current_window();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_has_border", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_has_border", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_has_border();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_height", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_height", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_height();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_is_fullscreen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_is_fullscreen", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_is_fullscreen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_position", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_position", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__current_window_position();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_toggle_border", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_toggle_border", CharSet=CharSet.Ansi)]
     private static extern void __sklib__current_window_toggle_border();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_toggle_fullscreen", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_toggle_fullscreen", CharSet=CharSet.Ansi)]
     private static extern void __sklib__current_window_toggle_fullscreen();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_width", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_width", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_width();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_x", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_x", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_x();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_y", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__current_window_y", CharSet=CharSet.Ansi)]
     private static extern int __sklib__current_window_y();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_window__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_window__string", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_window__string(__sklib_string caption);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_current_window__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_current_window__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_current_window__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_current_window_to__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_current_window_to__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_current_window_to__int__int(int x, int y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_window_to__string_ref__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_window_to__string_ref__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_window_to__string_ref__int__int(__sklib_string name, int x, int y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_window_to__window__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__move_window_to__window__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__move_window_to__window__int__int(__sklib_ptr wind, int x, int y);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_window__string__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_window__string__int__int", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__open_window__string__int__int(__sklib_string caption, int width, int height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_window__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_window__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__refresh_window__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_window__window__unsigned_int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__refresh_window__window__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__refresh_window__window__unsigned_int(__sklib_ptr wind, uint targetFps);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resize_current_window__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resize_current_window__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__resize_current_window__int__int(int width, int height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resize_window__window__int__int", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resize_window__window__int__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__resize_window__window__int__int(__sklib_ptr wnd, int width, int height);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_current_window__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_current_window__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_current_window__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_current_window__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_current_window__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__set_current_window__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_caption__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_caption__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__window_caption__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_close_requested__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_close_requested__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_close_requested__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_close_requested__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_close_requested__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_close_requested__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_border__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_border__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_has_border__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_border__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_border__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_has_border__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_focus__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_has_focus__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_has_focus__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_height__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_height__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_height__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_height__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_height__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_height__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_is_fullscreen__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_is_fullscreen__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_is_fullscreen__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_is_fullscreen__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_is_fullscreen__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_is_fullscreen__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_named__string", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_named__string", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__window_named__string(__sklib_string caption);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_position__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_position__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__window_position__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_position__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_position__window", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__window_position__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_set_icon__window__bitmap", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_set_icon__window__bitmap", CharSet=CharSet.Ansi)]
     private static extern void __sklib__window_set_icon__window__bitmap(__sklib_ptr wind, __sklib_ptr bmp);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_border__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_border__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__window_toggle_border__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_border__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_border__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__window_toggle_border__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_fullscreen__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_fullscreen__string_ref", CharSet=CharSet.Ansi)]
     private static extern void __sklib__window_toggle_fullscreen__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_fullscreen__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_toggle_fullscreen__window", CharSet=CharSet.Ansi)]
     private static extern void __sklib__window_toggle_fullscreen__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_width__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_width__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_width__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_width__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_width__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_width__window(__sklib_ptr wind);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_with_focus", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_with_focus", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__window_with_focus();
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_x__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_x__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_x__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_x__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_x__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_x__window(__sklib_ptr wnd);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_y__string_ref", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_y__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_y__string_ref(__sklib_string name);
 
-    [DllImport("splashkit.dll", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_y__window", CharSet=CharSet.Ansi)]
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__window_y__window", CharSet=CharSet.Ansi)]
     private static extern int __sklib__window_y__window(__sklib_ptr wnd);
 
     public static int AnimationCount(AnimationScript script)

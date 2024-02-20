@@ -129,13 +129,23 @@ file(GLOB SOURCE_FILES
     "${SK_SRC}/coresdk/*.cpp"
     "${SK_SRC}/backend/*.cpp"
     "${SK_GENERATED}/clib/*.cpp"
-    "${SK_EXT}/hash-library/*.cpp"
+    "${SK_EXT}/civetweb/src/md5.inl"
     "${SK_EXT}/easyloggingpp/easylogging++.cc"
 )
 
 # SKSDK FILE INCLUDES
 file(GLOB INCLUDE_FILES
     "${SK_SRC}/coresdk/*.h"
+)
+
+# Adapter files
+
+file(GLOB ADAPTER_INCLUDE_FILES
+    "${SK_GENERATED}/cpp/*.h"
+)
+
+file(GLOB ADAPTER_CPP_FILES
+    "${SK_GENERATED}/cpp/*.cpp"
 )
 
 file(GLOB SK_LIB_INCLUDE_FILE
@@ -151,6 +161,7 @@ include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
+include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
@@ -183,7 +194,7 @@ add_definitions(-DELPP_THREAD_SAFE)
 #### SplashKitBackend STATIC LIBRARY ####
 
 
-add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES})
+add_library(SplashKit SHARED ${SOURCE_FILES} ${OS_SOURCE_FILES} ${INCLUDE_FILES} ${ADAPTER_INCLUDE_FILES} ${ADAPTER_CPP_FILES})
 target_link_libraries(SplashKit ${LIB_FLAGS})
 
 if (LINUX)
@@ -199,6 +210,8 @@ get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
 install(TARGETS SplashKit DESTINATION ${SK_DEPLOY_ROOT}/lib/${OS_PATH_SUFFIX})
 install(FILES ${SK_LIB_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/source/include)
 install(FILES ${INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/source/include)
+install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/clang++/include)
+install(FILES ${SK_ADAPTER_INCLUDE_FILE} DESTINATION ${SK_DEPLOY_ROOT}/g++/include)
 
 if ( MSYS )
   install(FILES ${SK_LIB_DLL_FILES} DESTINATION ${SK_DEPLOY_ROOT}/lib/${OS_PATH_SUFFIX})
@@ -216,6 +229,12 @@ file(GLOB LINUX_INCLUDE_FILES
 file(GLOB INL_FILES
     "${SK_EXT}/civetweb/src/*.inl"
 )
+
+# Adapter files
+install(FILES ${ADAPTER_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/g++/include)
+install(FILES ${ADAPTER_CPP_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/g++/src)
+install(FILES ${ADAPTER_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/clang++/include)
+install(FILES ${ADAPTER_CPP_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/clang++/src)
 
 install(FILES ${LINUX_INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/source/include)
 install(FILES ${INCLUDE_FILES}  DESTINATION ${SK_DEPLOY_ROOT}/source/include)
