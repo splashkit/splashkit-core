@@ -2,7 +2,7 @@
 # CMake file for generating the splashkit core library
 #
 
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 project(splashkit)
 
 # SK Directories relative to cmake project
@@ -60,7 +60,11 @@ if (WIN32 OR MSYS OR MINGW)
         "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
     )
 elseif (APPLE)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.5" CACHE STRING "Minimum OS X deployment version")
+    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk")
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "12.3") # CACHE STRING "Minimum OS X deployment version")
+    message(CMAKE_OSX_DEPLOYMENT_TARGET="${CMAKE_OSX_DEPLOYMENT_TARGET}")
+    message(CMAKE_OSX_SYSROOT="${CMAKE_OSX_SYSROOT}")
+
     set(OS_PATH_SUFFIX "macos")
     # MAC OS PROJECT FLAGS
     set(LIB_FLAGS "-L${SK_LIB}/mac \
