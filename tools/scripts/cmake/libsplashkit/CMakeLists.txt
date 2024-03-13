@@ -48,8 +48,24 @@ if (WIN32 OR MSYS OR MINGW)
                     -llibcivetweb \
                     -lSDL2 \
                     -lSDL2_ttf \
-                    -llibcurl \
                     -llibSDL2_gfx-1-0-0 \
+                    --static \
+                    -lcurl \
+                    -lnghttp2 \
+                    -lidn2 \
+                    -lssh2 \
+                    -lpsl \
+                    -ladvapi32 \
+                    -lcrypt32 \
+                    -lssl \
+                    -lcrypto \
+                    -lssl \
+                    -lcrypto \
+                    -lgdi32 \
+                    -lwldap32 \
+                    -lzstd \
+                    -lbrotlidec \
+                    -lz \
                     -llibpng16-16 \
                     -lws2_32 \
                     -static-libstdc++ -static-libgcc \
