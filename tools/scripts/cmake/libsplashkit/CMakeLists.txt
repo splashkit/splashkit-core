@@ -28,6 +28,8 @@ if (WIN32 OR MSYS OR MINGW)
         message("Using mingw32")
         set(OS_PATH_SUFFIX "win32")
         set(MINGW_PATH_PART "mingw32")
+        message(SEND_ERROR "32bit version no longer supported!")
+        return()
     elseif (${MINGW64})
         message("Using mingw64")
         set(OS_PATH_SUFFIX "win64")
@@ -37,39 +39,20 @@ if (WIN32 OR MSYS OR MINGW)
         return ()
     endif()
 
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SDL2 REQUIRED sdl2 sdl2_ttf sdl2_image sdl2_net sdl2_mixer sdl2_gfx libpng libcurl)
+
+#    target_link_libraries(testapp ${SDL2_LIBRARIES})
+#    target_include_directories(testapp PUBLIC ${SDL2_INCLUDE_DIRS})
+#    target_compile_options(testapp PUBLIC ${SDL2_CFLAGS_OTHER})
+
     add_definitions(-DWINDOWS)
     set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
                     -L/${MINGW_PATH_PART}/lib \
                     -L/usr/lib \
-                    -lSDL2main \
-                    -lSDL2_mixer \
-                    -lSDL2_image \
-                    -lSDL2_net \
-                    -llibcivetweb \
-                    -lSDL2 \
-                    -lSDL2_ttf \
-                    -llibSDL2_gfx-1-0-0 \
-                    --static \
-                    -lcurl \
-                    -lnghttp2 \
-                    -lidn2 \
-                    -lssh2 \
-                    -lpsl \
-                    -ladvapi32 \
-                    -lcrypt32 \
-                    -lssl \
-                    -lcrypto \
-                    -lssl \
-                    -lcrypto \
-                    -lgdi32 \
-                    -lwldap32 \
-                    -lzstd \
-                    -lbrotlidec \
-                    -lz \
-                    -llibpng16-16 \
-                    -lws2_32 \
-                    -static-libstdc++ -static-libgcc \
-                    -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic"
+                    ${SDL2_LDFLAGS} \
+                    -Wl,-Bdynamic \
+                    -lcivetweb"
                     )
 
     file(GLOB SK_LIB_DLL_FILES
@@ -184,7 +167,7 @@ include_directories("${SK_EXT}/hash-library")
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
-if (APPLE OR MSYS)
+if (APPLE)
     include_directories("${SK_EXT}/SDL/include")
     include_directories("${SK_EXT}/SDL_gfx")
     include_directories("${SK_EXT}/SDL_image")
@@ -223,6 +206,8 @@ endif()
 
 if ( MSYS )
   set_target_properties(SplashKit PROPERTIES PREFIX "")
+  target_include_directories(SplashKit PUBLIC ${SDL2_INCLUDE_DIRS})
+  target_compile_options(SplashKit PUBLIC ${SDL2_CFLAGS_OTHER})
 endif()
 
 get_filename_component(SK_DEPLOY_ROOT ${SK_DEPLOY_ROOT} ABSOLUTE)
