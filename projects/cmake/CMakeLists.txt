@@ -163,6 +163,7 @@ file(GLOB SOURCE_FILES
     "${SK_EXT}/sqlite/sqlite3.c"
     "${SK_EXT}/hash-library/*.cpp"
     "${SK_EXT}/easyloggingpp/*.cc"
+    "${SK_EXT}/microui/src/*.c"
 )
 
 # TEST FILE INCLUDES
@@ -190,6 +191,7 @@ include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
+include_directories("${SK_EXT}/microui/src")
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
 if (APPLE OR MSYS)
