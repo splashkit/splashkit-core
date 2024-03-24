@@ -13,9 +13,9 @@
 #include "graphics_driver.h"
 namespace splashkit_lib
 {
-    extern sk_drawing_surface ui_atlas;
-    extern rectangle atlas[64+128];
     void sk_interface_init();
+    void sk_interface_draw(drawing_options opts);
+
     void* sk_interface_get_context();
     void sk_interface_mousemove(int motion_x, int motion_y);
     void sk_interface_scroll(int motion_x, int motion_y);
