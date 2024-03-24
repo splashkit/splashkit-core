@@ -20,7 +20,10 @@ extern "C" {
 
 namespace splashkit_lib
 {
+    #include "interface_driver_atlas.h"
+
     static mu_Context *ctx = nullptr;
+    sk_drawing_surface ui_atlas;
 
     static char button_map[256];
     static char key_map[256];
@@ -32,7 +35,7 @@ namespace splashkit_lib
     }
 
     int _text_height(mu_Font font)
-	{
+    {
         // We don't recieve a string, so use a string that contains A-Z and a-z
         const char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         return text_height(alphabet, FONT_NAME, FONT_SIZE);
@@ -59,11 +62,31 @@ namespace splashkit_lib
         if (ctx == nullptr)
         {
             _initialize_button_and_key_map();
+            _initialize_atlas_map();
 
             ctx = (mu_Context*)malloc(sizeof(mu_Context));
             mu_init(ctx);
             ctx->text_width = _text_width;
             ctx->text_height = _text_height;
+
+            ui_atlas = sk_create_bitmap(ATLAS_WIDTH, ATLAS_HEIGHT);
+            for(unsigned int i = 0; i < 1/*_sk_num_open_windows*/; i++)
+            {
+                // sk_create_bitmap created SDL_Texture is SDL_PIXELFORMAT_RGBA8888, while atlas_texture only has 1 channel.
+                // Cannot use SDL_LockTexture/SDL_UnlockTexture because the SDL_Texture does not have SDL_TEXTUREACCESS_STREAMING enabled
+                // So create a temporary rgba copy of the data, update the texture, then tidy up.
+                const int channels = 4;
+                char* atlas_texture_rgba = (char*)malloc(sizeof(char) * ATLAS_WIDTH * ATLAS_HEIGHT * channels);
+
+                for(int y = 0; y < ATLAS_HEIGHT; y++)
+                    for(int x = 0; x < ATLAS_WIDTH; x++)
+                        for(int c = 0; c < channels; c++)
+                            atlas_texture_rgba[((y * ATLAS_WIDTH) + x) * channels + c] = atlas_texture[(ATLAS_HEIGHT - y - 1) * ATLAS_WIDTH + x];
+
+                SDL_UpdateTexture(static_cast<sk_bitmap_be *>(ui_atlas._data)->texture[i], NULL, (void*)atlas_texture_rgba, ATLAS_WIDTH * channels);
+
+                free((void*)atlas_texture_rgba);
+            }
         }
     }
 
