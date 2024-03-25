@@ -25,6 +25,9 @@ namespace splashkit_lib
 
     static mu_Context *ctx = nullptr;
 
+    static font global_font = nullptr;
+    static int global_font_size = 14;
+
 
     static char button_map[256];
     static char key_map[256];
@@ -32,14 +35,24 @@ namespace splashkit_lib
     int _text_width(mu_Font font, const char *text, int len)
     {
         if (len == -1) { len = strlen(text); }
-        return text_width((std::string)text, FONT_NAME, FONT_SIZE);
+
+        if (!global_font) return 8 * len;
+
+        int w,h;
+        sk_text_size(global_font, global_font_size, text, &w, &h);
+        return w;
     }
 
     int _text_height(mu_Font font)
     {
+        if (!global_font) return 8;
+
         // We don't recieve a string, so use a string that contains A-Z and a-z
         const char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        return text_height(alphabet, FONT_NAME, FONT_SIZE);
+
+        int w,h;
+        sk_text_size(global_font, global_font_size, alphabet, &w, &h);
+        return h;
     }
 
     void _initialize_button_and_key_map()
@@ -132,7 +145,7 @@ namespace splashkit_lib
             {
                 switch (cmd->type)
                 {
-                    case MU_COMMAND_TEXT: sk_draw_text(surface, FONT_NAME, FONT_SIZE, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));break;
+                    case MU_COMMAND_TEXT: sk_draw_text(surface, global_font, global_font_size, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));break;
                     case MU_COMMAND_RECT: sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h); break;
                     case MU_COMMAND_ICON:
                         double src_data[4];
@@ -161,6 +174,17 @@ namespace splashkit_lib
                 }
             }
         }
+    }
+
+    void sk_interface_style_set_font(font fnt)
+    {
+        global_font = fnt;
+        ctx->style->size.y = global_font_size;
+    }
+    void sk_interface_style_set_font_size(int size)
+    {
+        global_font_size = size;
+        ctx->style->size.y = global_font_size;
     }
 
     void sk_interface_start()

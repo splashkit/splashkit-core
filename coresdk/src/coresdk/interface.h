@@ -24,6 +24,9 @@ namespace splashkit_lib
      */
     void draw_interface();
 
+    void set_interface_font(font fnt);
+    void set_interface_font_size(int size);
+
     bool start_panel(const string& name, rectangle initial_rectangle);
     void end_panel(const string& name);
 

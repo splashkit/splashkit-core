@@ -24,8 +24,8 @@ void run_ui_test()
 {
     open_window("Test UI", 600, 600);
 
-    // temporary
-    load_font("input", "arial.ttf");
+    set_interface_font(load_font("input", "arial.ttf"));
+    set_interface_font_size(12);
 
     while( not quit_requested() )
     {

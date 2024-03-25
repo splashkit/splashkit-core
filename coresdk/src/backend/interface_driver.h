@@ -5,16 +5,15 @@
 #ifndef SPLASHKIT_INTERFACE_H
 #define SPLASHKIT_INTERFACE_H
 
-// temporary hash defines
-#define FONT_SIZE 12
-#define FONT_NAME font_named("input")
-
 #include <stdint.h>
 #include "graphics_driver.h"
 namespace splashkit_lib
 {
     void sk_interface_init();
     void sk_interface_draw(drawing_options opts);
+
+    void sk_interface_style_set_font(font fnt);
+    void sk_interface_style_set_font_size(int size);
 
     void sk_interface_start();
     void sk_interface_end();

@@ -24,6 +24,16 @@ namespace splashkit_lib
         sk_interface_draw(opts);
     }
 
+    void set_interface_font(font fnt)
+    {
+        sk_interface_style_set_font(fnt);
+    }
+
+    void set_interface_font_size(int size)
+    {
+        sk_interface_style_set_font_size(size);
+    }
+
     bool start_panel(const string& name, rectangle initial_rectangle)
     {
         bool open = sk_interface_start_panel(name, initial_rectangle);
