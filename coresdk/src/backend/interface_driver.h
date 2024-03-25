@@ -16,6 +16,20 @@ namespace splashkit_lib
     void sk_interface_init();
     void sk_interface_draw(drawing_options opts);
 
+    void sk_interface_start();
+    void sk_interface_end();
+
+    bool sk_interface_start_panel(const string& name, rectangle initial_rectangle);
+    void sk_interface_end_panel();
+
+    bool sk_interface_start_popup(const string& name);
+    void sk_interface_end_popup();
+
+    void sk_interface_open_popup(const string& name);
+
+    void sk_interface_label(const string& label);
+    bool sk_interface_button(const string& label);
+
     void* sk_interface_get_context();
     void sk_interface_mousemove(int motion_x, int motion_y);
     void sk_interface_scroll(int motion_x, int motion_y);

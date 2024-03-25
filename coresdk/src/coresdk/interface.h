@@ -10,6 +10,11 @@
  * @attribute static interface
  */
 
+#include "graphics.h"
+
+#include <string>
+using std::string;
+
 #ifndef interface_hpp
 #define interface_hpp
 namespace splashkit_lib
@@ -19,8 +24,17 @@ namespace splashkit_lib
      */
     void draw_interface();
 
-    // temporary
-    void* get_interface_ctx();
+    bool start_panel(const string& name, rectangle initial_rectangle);
+    void end_panel(const string& name);
+
+    bool start_popup(const string& name);
+    void end_popup(const string& name);
+
+    void open_popup(const string& name);
+
+    void label(const string& label);
+    bool button(const string& label);
+
 
 #endif /* interface_hpp */
 }

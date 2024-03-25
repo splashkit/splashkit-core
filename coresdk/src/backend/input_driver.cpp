@@ -663,6 +663,8 @@ namespace splashkit_lib
                 }
             }
         }
+
+        sk_interface_start();
     }
 
     int sk_window_close_requested(sk_drawing_surface* surf)

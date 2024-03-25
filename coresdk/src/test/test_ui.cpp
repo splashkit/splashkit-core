@@ -7,6 +7,7 @@
 //
 
 #include "graphics.h"
+#include "terminal.h"
 #include "window_manager.h"
 #include "utils.h"
 #include "input.h"
@@ -32,40 +33,38 @@ void run_ui_test()
 
         clear_screen(COLOR_WHITE);
 
-        // still need to wrap/abstract out usage of mu_*
-        mu_Context* ctx = (mu_Context*)get_interface_ctx();
-        mu_begin(ctx);
-        if (mu_begin_window(ctx, "My Window", mu_rect(10, 10, 140, 86)))
+        // Show a window if it hasn't been closed.
+        // Defaults to 2 column layout (for label + element)
+        if (start_panel("My Window", rectangle_from(100, 100, 240, 186)))
         {
-            int l[] = { 60, -1 };
-            mu_layout_row(ctx, 2, l, 0);
-
-            mu_label(ctx, "First:");
-            if (mu_button(ctx, "Button1"))
+            // Draw first label + button
+            label("First:");
+            if (button("Button1"))
             {
-                printf("Button1 pressed\n");
+                write_line("Button1 pressed");
             }
 
-            mu_label(ctx, "Second:");
-            if (mu_button(ctx, "Button2"))
+            // Draw second label + button
+            label("Second:");
+            if (button("Button2"))
             {
-                mu_open_popup(ctx, "My Popup");
+                open_popup("My Popup");
             }
 
-            if (mu_begin_popup(ctx, "My Popup"))
+            // Show the popup if it's been opened
+            if (start_popup("My Popup"))
             {
-                mu_label(ctx, "Hello world!");
-                mu_end_popup(ctx);
+                label("Hello world!");
+                end_popup("My Popup");
             }
 
-            mu_end_window(ctx);
+            end_panel("My Window");
         }
 
-        mu_end(ctx);
-
+        // Draw the interface
         draw_interface();
 
-        refresh_screen();
+        refresh_screen(60);
 
         if (quit_requested() ) break;
     }

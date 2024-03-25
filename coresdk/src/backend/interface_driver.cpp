@@ -24,7 +24,8 @@ namespace splashkit_lib
     #include "interface_driver_atlas.h"
 
     static mu_Context *ctx = nullptr;
-    sk_drawing_surface ui_atlas;
+    static sk_drawing_surface ui_atlas;
+
 
     static char button_map[256];
     static char key_map[256];
@@ -57,6 +58,27 @@ namespace splashkit_lib
         key_map[ SDLK_RETURN       & 0xff ] = MU_KEY_RETURN;
         key_map[ SDLK_BACKSPACE    & 0xff ] = MU_KEY_BACKSPACE;
     }
+
+
+
+    mu_Rect to_mu(rectangle rect)
+    {
+        return {(int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height};
+    }
+    mu_Color to_mu(color col)
+    {
+        return {(unsigned char)(col.r * 255), (unsigned char)(col.g * 255), (unsigned char)(col.b * 255), (unsigned char)(col.a * 255)};
+    }
+
+    rectangle from_mu(mu_Rect rect)
+    {
+        return {(double)rect.x, (double)rect.y, (double)rect.w, (double)rect.h};
+    }
+    color from_mu(mu_Color col)
+    {
+        return {col.r / 255.0f, col.g / 255.0f, col.b / 255.0f, col.a / 255.0f};
+    }
+
 
     void sk_interface_init()
     {
@@ -93,6 +115,8 @@ namespace splashkit_lib
 
     void sk_interface_draw(drawing_options opts)
     {
+        sk_interface_end();
+
         sk_drawing_surface *surface;
 
         surface = to_surface_ptr(opts.dest);
@@ -104,8 +128,8 @@ namespace splashkit_lib
             {
                 switch (cmd->type)
                 {
-                    case MU_COMMAND_TEXT: sk_draw_text(surface, FONT_NAME, FONT_SIZE, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, {cmd->text.color.r/255.f, cmd->text.color.g/255.f, cmd->text.color.b/255.f, cmd->text.color.a/255.f});break;
-                    case MU_COMMAND_RECT: sk_fill_aa_rect(surface, {cmd->rect.color.r/255.f, cmd->rect.color.g/255.f, cmd->rect.color.b/255.f, cmd->rect.color.a/255.f}, cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h); break;
+                    case MU_COMMAND_TEXT: sk_draw_text(surface, FONT_NAME, FONT_SIZE, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));break;
+                    case MU_COMMAND_RECT: sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h); break;
                     case MU_COMMAND_ICON:
                         double src_data[4];
                         double dst_data[7];
@@ -133,6 +157,57 @@ namespace splashkit_lib
                 }
             }
         }
+    }
+
+    void sk_interface_start()
+    {
+        mu_begin(ctx);
+    }
+
+    void sk_interface_end()
+    {
+        mu_end(ctx);
+    }
+
+    bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)
+    {
+        bool open = mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));
+
+        // Default label + element layout
+        int layout[] = { 60, -1 };
+        mu_layout_row(ctx, 2, layout, 0);
+
+        return open;
+    }
+
+    void sk_interface_end_panel()
+    {
+        mu_end_window(ctx);
+    }
+
+    bool sk_interface_start_popup(const string& name)
+    {
+        return mu_begin_popup(ctx, name.c_str());
+    }
+
+    void sk_interface_end_popup()
+    {
+        mu_end_popup(ctx);
+    }
+
+    void sk_interface_open_popup(const string& name)
+    {
+        mu_open_popup(ctx, name.c_str());
+    }
+
+    void sk_interface_label(const string& label)
+    {
+        mu_label(ctx, label.c_str());
+    }
+
+    bool sk_interface_button(const string& label)
+    {
+        return mu_button(ctx, label.c_str());
     }
 
     void* sk_interface_get_context()
