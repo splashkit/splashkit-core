@@ -233,7 +233,6 @@ if (MSYS)
                                            libcurl
                                            libSDL2_gfx-1-0-0
                                            libpng16-16
-                                           libsqlite
                                            pthread
                                            stdc++
                                            ws2_32
