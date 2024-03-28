@@ -231,8 +231,8 @@ if (MSYS)
                                            SDL2
                                            SDL2_ttf
                                            libcurl
-                                           libSDL2_gfx-1-0-0
-                                           libpng16-16
+                                           SDL2_gfx
+                                           libpng16
                                            pthread
                                            stdc++
                                            ws2_32
