@@ -24,7 +24,6 @@ namespace splashkit_lib
     #include "interface_driver_atlas.h"
 
     static mu_Context *ctx = nullptr;
-    static sk_drawing_surface ui_atlas;
 
 
     static char button_map[256];
@@ -79,6 +78,28 @@ namespace splashkit_lib
         return {col.r / 255.0f, col.g / 255.0f, col.b / 255.0f, col.a / 255.0f};
     }
 
+    // Delay loading of the ui atlas until it's actually needed
+    // otherwise we'll trigger creating the 'initial window' unnecessarily
+    sk_drawing_surface* get_ui_atlas()
+    {
+        static sk_drawing_surface ui_atlas;
+        static bool ui_atlas_loaded = false;
+
+        if (!ui_atlas_loaded)
+        {
+            ui_atlas = sk_create_bitmap(ATLAS_WIDTH, ATLAS_HEIGHT);
+
+            // Fill the bitmap with values from atlas_texture
+            for(int y = 0; y < ATLAS_HEIGHT; y++)
+                for(int x = 0; x < ATLAS_WIDTH; x++)
+                    sk_draw_pixel(&ui_atlas, {1.f, 1.f, 1.f, atlas_texture[y * ATLAS_WIDTH + x]/255.f}, x, y);
+
+            ui_atlas_loaded = true;
+        }
+
+        return &ui_atlas;
+    }
+
 
     void sk_interface_init()
     {
@@ -91,25 +112,6 @@ namespace splashkit_lib
             mu_init(ctx);
             ctx->text_width = _text_width;
             ctx->text_height = _text_height;
-
-            ui_atlas = sk_create_bitmap(ATLAS_WIDTH, ATLAS_HEIGHT);
-            for(unsigned int i = 0; i < 1/*_sk_num_open_windows*/; i++)
-            {
-                // sk_create_bitmap created SDL_Texture is SDL_PIXELFORMAT_RGBA8888, while atlas_texture only has 1 channel.
-                // Cannot use SDL_LockTexture/SDL_UnlockTexture because the SDL_Texture does not have SDL_TEXTUREACCESS_STREAMING enabled
-                // So create a temporary rgba copy of the data, update the texture, then tidy up.
-                const int channels = 4;
-                char* atlas_texture_rgba = (char*)malloc(sizeof(char) * ATLAS_WIDTH * ATLAS_HEIGHT * channels);
-
-                for(int y = 0; y < ATLAS_HEIGHT; y++)
-                    for(int x = 0; x < ATLAS_WIDTH; x++)
-                        for(int c = 0; c < channels; c++)
-                            atlas_texture_rgba[((y * ATLAS_WIDTH) + x) * channels + c] = atlas_texture[(ATLAS_HEIGHT - y - 1) * ATLAS_WIDTH + x];
-
-                SDL_UpdateTexture(static_cast<sk_bitmap_be *>(ui_atlas._data)->texture[i], NULL, (void*)atlas_texture_rgba, ATLAS_WIDTH * channels);
-
-                free((void*)atlas_texture_rgba);
-            }
         }
     }
 
@@ -120,6 +122,8 @@ namespace splashkit_lib
         sk_drawing_surface *surface;
 
         surface = to_surface_ptr(opts.dest);
+
+        sk_drawing_surface* ui_atlas = get_ui_atlas();
 
         if (surface)
         {
@@ -149,7 +153,7 @@ namespace splashkit_lib
                         dst_data[5] = opts.scale_x; // Scale X
                         dst_data[6] = opts.scale_y; // Scale Y
 
-                        sk_draw_bitmap(&ui_atlas, surface, src_data, 4, dst_data, 7, flip);
+                        sk_draw_bitmap(ui_atlas, surface, src_data, 4, dst_data, 7, flip);
 
                     break;
 
