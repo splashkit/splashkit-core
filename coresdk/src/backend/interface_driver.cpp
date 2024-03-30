@@ -12,6 +12,7 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include <set>
 
 using namespace std;
 
@@ -25,8 +26,30 @@ namespace splashkit_lib
 
     static mu_Context *ctx = nullptr;
 
-    static font global_font = nullptr;
-    static int global_font_size = 14;
+    // Font handling
+    static font current_font = nullptr;
+    static int current_font_size = 14;
+
+    // Store font/size pairs inside a set.
+    //
+    // Iterators stay valid while inserting,
+    // so this is used as a stable place to
+    // store these pairs, which can then be assigned
+    // to MicroUI's font void* and used later on
+    typedef std::pair<font, int> font_size_pair;
+    static std::set<font_size_pair> fonts_this_frame;
+
+    // Adds a pair to the set and returns a void* to it
+    void* _add_font_size_pair(font fnt, int size)
+    {
+        return (void*)&*fonts_this_frame.insert({fnt, size}).first;
+    }
+
+    // Returns the font/size pair from a pointer
+    font_size_pair* _get_font_size_pair(void* ptr)
+    {
+        return (font_size_pair*)ptr;
+    }
 
 
     static char button_map[256];
@@ -36,22 +59,26 @@ namespace splashkit_lib
     {
         if (len == -1) { len = strlen(text); }
 
-        if (!global_font) return 8 * len;
+        font_size_pair* font_info = _get_font_size_pair(font);
+
+        if (!font_info || !font_info->first) return 8 * len;
 
         int w,h;
-        sk_text_size(global_font, global_font_size, text, &w, &h);
+        sk_text_size(font_info->first, font_info->second, text, &w, &h);
         return w;
     }
 
     int _text_height(mu_Font font)
     {
-        if (!global_font) return 8;
+        font_size_pair* font_info = _get_font_size_pair(font);
+
+        if (!font_info || !font_info->first) return 8;
 
         // We don't recieve a string, so use a string that contains A-Z and a-z
         const char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
         int w,h;
-        sk_text_size(global_font, global_font_size, alphabet, &w, &h);
+        sk_text_size(font_info->first, font_info->second, alphabet, &w, &h);
         return h;
     }
 
@@ -145,8 +172,15 @@ namespace splashkit_lib
             {
                 switch (cmd->type)
                 {
-                    case MU_COMMAND_TEXT: sk_draw_text(surface, global_font, global_font_size, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));break;
                     case MU_COMMAND_RECT: sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h); break;
+                    case MU_COMMAND_TEXT:
+                        const font_size_pair* font_info;
+                        font_info = _get_font_size_pair(cmd->text.font);
+
+                        if (cmd->text.font)
+                            sk_draw_text(surface, font_info->first, font_info->second, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));
+
+                        break;
                     case MU_COMMAND_ICON:
                         double src_data[4];
                         double dst_data[7];
@@ -178,17 +212,24 @@ namespace splashkit_lib
 
     void sk_interface_style_set_font(font fnt)
     {
-        global_font = fnt;
-        ctx->style->size.y = global_font_size;
+        current_font = fnt;
+
+        ctx->style->font = _add_font_size_pair(current_font, current_font_size);
+        ctx->style->size.y = current_font_size;
     }
     void sk_interface_style_set_font_size(int size)
     {
-        global_font_size = size;
-        ctx->style->size.y = global_font_size;
+        current_font_size = size;
+
+        ctx->style->font = _add_font_size_pair(current_font, current_font_size);
+        ctx->style->size.y = current_font_size;
     }
 
     void sk_interface_start()
     {
+        fonts_this_frame.clear();
+        ctx->style->font = _add_font_size_pair(current_font, current_font_size);
+
         mu_begin(ctx);
     }
 

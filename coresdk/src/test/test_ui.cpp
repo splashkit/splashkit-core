@@ -24,7 +24,9 @@ void run_ui_test()
 {
     open_window("Test UI", 600, 600);
 
-    set_interface_font(load_font("input", "arial.ttf"));
+    font fontA = load_font("interface font 1", "arial.ttf");
+    font fontB = load_font("interface font 2", "kochi-gothic-subst.ttf");
+    set_interface_font(fontA);
     set_interface_font_size(12);
 
     while( not quit_requested() )
@@ -54,9 +56,25 @@ void run_ui_test()
             // Show the popup if it's been opened
             if (start_popup("My Popup"))
             {
+                // Increase the size of the text
+                // and change font for the popup
+                set_interface_font(fontB);
+                set_interface_font_size(14);
+
+                label("Hi world!");
+
+                // Switch back to the original font for
+                // second label.
+                set_interface_font(fontA);
+
                 label("Hello world!");
+
+                // Reset text size
+                set_interface_font_size(12);
+
                 end_popup("My Popup");
             }
+
 
             end_panel("My Window");
         }
