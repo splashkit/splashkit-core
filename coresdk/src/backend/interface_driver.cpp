@@ -26,6 +26,25 @@ namespace splashkit_lib
 
     static mu_Context *ctx = nullptr;
 
+    static char button_map[256];
+    static char key_map[256];
+
+    void _initialize_button_and_key_map()
+    {
+        button_map[ SDL_BUTTON_LEFT   & 0xff ] =  MU_MOUSE_LEFT;
+        button_map[ SDL_BUTTON_RIGHT  & 0xff ] =  MU_MOUSE_RIGHT;
+        button_map[ SDL_BUTTON_MIDDLE & 0xff ] =  MU_MOUSE_MIDDLE;
+
+        key_map[ SDLK_LSHIFT       & 0xff ] = MU_KEY_SHIFT;
+        key_map[ SDLK_RSHIFT       & 0xff ] = MU_KEY_SHIFT;
+        key_map[ SDLK_LCTRL        & 0xff ] = MU_KEY_CTRL;
+        key_map[ SDLK_RCTRL        & 0xff ] = MU_KEY_CTRL;
+        key_map[ SDLK_LALT         & 0xff ] = MU_KEY_ALT;
+        key_map[ SDLK_RALT         & 0xff ] = MU_KEY_ALT;
+        key_map[ SDLK_RETURN       & 0xff ] = MU_KEY_RETURN;
+        key_map[ SDLK_BACKSPACE    & 0xff ] = MU_KEY_BACKSPACE;
+    }
+
     // Font handling
     static font current_font = nullptr;
     static int current_font_size = 14;
@@ -50,10 +69,6 @@ namespace splashkit_lib
     {
         return (font_size_pair*)ptr;
     }
-
-
-    static char button_map[256];
-    static char key_map[256];
 
     int _text_width(mu_Font font, const char *text, int len)
     {
@@ -82,28 +97,11 @@ namespace splashkit_lib
         return h;
     }
 
-    void _initialize_button_and_key_map()
-    {
-        button_map[ SDL_BUTTON_LEFT   & 0xff ] =  MU_MOUSE_LEFT;
-        button_map[ SDL_BUTTON_RIGHT  & 0xff ] =  MU_MOUSE_RIGHT;
-        button_map[ SDL_BUTTON_MIDDLE & 0xff ] =  MU_MOUSE_MIDDLE;
-
-        key_map[ SDLK_LSHIFT       & 0xff ] = MU_KEY_SHIFT;
-        key_map[ SDLK_RSHIFT       & 0xff ] = MU_KEY_SHIFT;
-        key_map[ SDLK_LCTRL        & 0xff ] = MU_KEY_CTRL;
-        key_map[ SDLK_RCTRL        & 0xff ] = MU_KEY_CTRL;
-        key_map[ SDLK_LALT         & 0xff ] = MU_KEY_ALT;
-        key_map[ SDLK_RALT         & 0xff ] = MU_KEY_ALT;
-        key_map[ SDLK_RETURN       & 0xff ] = MU_KEY_RETURN;
-        key_map[ SDLK_BACKSPACE    & 0xff ] = MU_KEY_BACKSPACE;
-    }
-
-
-
     mu_Rect to_mu(rectangle rect)
     {
         return {(int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height};
     }
+
     mu_Color to_mu(color col)
     {
         return {(unsigned char)(col.r * 255), (unsigned char)(col.g * 255), (unsigned char)(col.b * 255), (unsigned char)(col.a * 255)};
@@ -113,6 +111,7 @@ namespace splashkit_lib
     {
         return {(double)rect.x, (double)rect.y, (double)rect.w, (double)rect.h};
     }
+
     color from_mu(mu_Color col)
     {
         return {col.r / 255.0f, col.g / 255.0f, col.b / 255.0f, col.a / 255.0f};
@@ -139,7 +138,6 @@ namespace splashkit_lib
 
         return &ui_atlas;
     }
-
 
     void sk_interface_init()
     {
@@ -172,7 +170,6 @@ namespace splashkit_lib
             {
                 switch (cmd->type)
                 {
-                    case MU_COMMAND_RECT: sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h); break;
                     case MU_COMMAND_TEXT:
                         const font_size_pair* font_info;
                         font_info = _get_font_size_pair(cmd->text.font);
@@ -181,30 +178,43 @@ namespace splashkit_lib
                             sk_draw_text(surface, font_info->first, font_info->second, cmd->text.pos.x, cmd->text.pos.y, cmd->text.str, from_mu(cmd->text.color));
 
                         break;
+
+                    case MU_COMMAND_RECT:
+                        sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h);
+
+                        break;
+
                     case MU_COMMAND_ICON:
+                        rectangle atlas_rect;
                         double src_data[4];
                         double dst_data[7];
                         sk_renderer_flip flip;
 
-                        src_data[0] = atlas[cmd->icon.id].x;
-                        src_data[1] = atlas[cmd->icon.id].y;
-                        src_data[2] = atlas[cmd->icon.id].width;
-                        src_data[3] = atlas[cmd->icon.id].height;
-                        flip = sk_FLIP_NONE;
+                        atlas_rect = atlas[cmd->icon.id];
 
-                        dst_data[0] = cmd->icon.rect.x + (cmd->icon.rect.w - atlas[cmd->icon.id].width) / 2; // X
-                        dst_data[1] = cmd->icon.rect.y + (cmd->icon.rect.h - atlas[cmd->icon.id].height) / 2; // Y
+                        src_data[0] = atlas_rect.x;
+                        src_data[1] = atlas_rect.y;
+                        src_data[2] = atlas_rect.width;
+                        src_data[3] = atlas_rect.height;
+
+                        dst_data[0] = cmd->icon.rect.x + (cmd->icon.rect.w - atlas_rect.width) / 2; // X
+                        dst_data[1] = cmd->icon.rect.y + (cmd->icon.rect.h - atlas_rect.height) / 2; // Y
                         dst_data[2] = opts.angle; // Angle
                         dst_data[3] = opts.anchor_offset_x; // Centre X
                         dst_data[4] = opts.anchor_offset_y; // Centre Y
                         dst_data[5] = opts.scale_x; // Scale X
                         dst_data[6] = opts.scale_y; // Scale Y
 
+                        flip = sk_FLIP_NONE;
+
                         sk_draw_bitmap(ui_atlas, surface, src_data, 4, dst_data, 7, flip);
 
-                    break;
+                        break;
 
-                    case MU_COMMAND_CLIP: sk_set_clip_rect(surface, cmd->clip.rect.x, cmd->clip.rect.y, cmd->clip.rect.w, cmd->clip.rect.h); break;
+                    case MU_COMMAND_CLIP:
+                        sk_set_clip_rect(surface, cmd->clip.rect.x, cmd->clip.rect.y, cmd->clip.rect.w, cmd->clip.rect.h);
+
+                        break;
                 }
             }
         }
@@ -217,6 +227,7 @@ namespace splashkit_lib
         ctx->style->font = _add_font_size_pair(current_font, current_font_size);
         ctx->style->size.y = current_font_size;
     }
+
     void sk_interface_style_set_font_size(int size)
     {
         current_font_size = size;
