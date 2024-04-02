@@ -89,12 +89,7 @@ namespace splashkit_lib
 
         if (!font_info || !font_info->first) return 8;
 
-        // We don't recieve a string, so use a string that contains A-Z and a-z
-        const char* alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
-        int w,h;
-        sk_text_size(font_info->first, font_info->second, alphabet, &w, &h);
-        return h;
+        return sk_text_height(font_info->first, font_info->second);
     }
 
     mu_Rect to_mu(rectangle rect)
