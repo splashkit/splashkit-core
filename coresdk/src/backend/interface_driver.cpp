@@ -126,8 +126,9 @@ namespace splashkit_lib
             // Fill the bitmap with values from atlas_texture
             for(int y = 0; y < ATLAS_HEIGHT; y++)
                 for(int x = 0; x < ATLAS_WIDTH; x++)
-                    sk_draw_pixel(&ui_atlas, {1.f, 1.f, 1.f, atlas_texture[y * ATLAS_WIDTH + x]/255.f}, x, y);
+                    sk_set_bitmap_pixel(&ui_atlas, {1.f, 1.f, 1.f, atlas_texture[y * ATLAS_WIDTH + x]/255.f}, x, y);
 
+            sk_refresh_bitmap(&ui_atlas);
             ui_atlas_loaded = true;
         }
 
