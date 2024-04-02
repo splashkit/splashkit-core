@@ -912,7 +912,7 @@ static unsigned char atlas_texture[ATLAS_WIDTH * ATLAS_HEIGHT] = {
 };
 
 
-rectangle atlas[ATLAS_FONT+128];
+static rectangle atlas[ATLAS_FONT+128];
 
 void _initialize_atlas_map(){
   atlas[ MU_ICON_CLOSE ] = { 88, 68, 16, 16 };
