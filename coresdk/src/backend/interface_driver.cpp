@@ -137,16 +137,13 @@ namespace splashkit_lib
 
     void sk_interface_init()
     {
-        if (ctx == nullptr)
-        {
-            _initialize_button_and_key_map();
-            _initialize_atlas_map();
+        _initialize_button_and_key_map();
+        _initialize_atlas_map();
 
-            ctx = (mu_Context*)malloc(sizeof(mu_Context));
-            mu_init(ctx);
-            ctx->text_width = _text_width;
-            ctx->text_height = _text_height;
-        }
+        ctx = (mu_Context*)malloc(sizeof(mu_Context));
+        mu_init(ctx);
+        ctx->text_width = _text_width;
+        ctx->text_height = _text_height;
     }
 
     void sk_interface_draw(drawing_options opts)
