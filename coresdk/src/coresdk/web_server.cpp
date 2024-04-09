@@ -292,11 +292,14 @@ namespace splashkit_lib
 
     vector<string> split_uri_stubs(const string &uri)
     {
-        stringstream ss(uri);
+        stringstream stubs;
         string stub;
         vector<string> result;
 
-        while (getline(ss, stub, '/'))
+        // Ensure args are removed if there isn't a / before the ?
+        stubs = (stringstream) uri.substr(0, uri.find('?'));
+
+        while (getline(stubs, stub, '/'))
         {
             result.push_back(stub);
         }
