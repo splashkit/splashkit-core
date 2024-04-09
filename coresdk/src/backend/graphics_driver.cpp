@@ -369,19 +369,7 @@ namespace splashkit_lib
     {
         SDL_Rect rect = {x, y, w, h};
 
-        int *raw_pixels = (int*)malloc( sizeof(int) * static_cast<unsigned long>(w * h) );
-        SDL_RenderReadPixels(renderer, &rect, SDL_PIXELFORMAT_RGBA8888, raw_pixels, w * 4);
-
-        for (int row = 0; row < h; row++)
-        {
-            // Copy a row from the paw pixels to the dest pixels
-#ifdef WINDOWS
-            memcpy(&pixels[(h - row - 1) * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
-#else
-            memcpy(&pixels[row * w], &raw_pixels[row *  w], sizeof(int) * static_cast<unsigned long>(w));
-#endif
-        }
-        free(raw_pixels);
+        SDL_RenderReadPixels(renderer, &rect, SDL_PIXELFORMAT_RGBA8888, pixels, w * 4);
     }
 
     void _sk_bitmap_be_texture_to_pixels(sk_bitmap_be *bitmap_be, int *pixels, int sz, int w, int h)
@@ -1280,12 +1268,7 @@ namespace splashkit_lib
         sk_color result = {0,0,0,0};
         unsigned int clr = 0;
         
-#ifdef WINDOWS
-        // Texture is inverted so flip y
-        SDL_Rect rect = {x, surface->height - y - 1, 1, 1};	
-#else
         SDL_Rect rect = {x, y, 1, 1};
-#endif
 
         if ( ! surface || ! surface->_data ) return result;
 
