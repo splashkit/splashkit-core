@@ -88,7 +88,7 @@ namespace splashkit_lib
     // Write a value to the given pin
     void raspi_write(pins pin, pin_values value)
     {
-#ifdef RASPBERRY_PIv
+#ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
