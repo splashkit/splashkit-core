@@ -1,4 +1,3 @@
-```
 //
 //  test_input.cpp
 //  splashkit
