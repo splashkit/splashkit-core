@@ -158,6 +158,3 @@ void run_input_test()
     
     free_all_fonts();
 }
-
-
-```
