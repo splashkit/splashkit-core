@@ -79,7 +79,7 @@ namespace splashkit_lib
         if (!font_info || !font_info->first) return 8 * len;
 
         int w,h;
-        sk_text_size(font_info->first, font_info->second, text, &w, &h);
+        sk_text_size(font_info->first, font_info->second, std::string(text, len), &w, &h);
         return w;
     }
 
