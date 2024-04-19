@@ -39,7 +39,15 @@ namespace splashkit_lib
 
     bool sk_interface_header(const string& label);
     void sk_interface_label(const string& label);
+    void sk_interface_text(const string& text);
     bool sk_interface_button(const string& label);
+    bool sk_interface_checkbox(const string& label, const bool& value);
+    float sk_interface_slider(const float& value, float min_value, float max_value);
+    float sk_interface_number(const float& value, float step);
+    std::string sk_interface_text_box(const std::string& value);
+
+    bool sk_interface_changed();
+    bool sk_interface_confirmed();
 
     void* sk_interface_get_context();
     void sk_interface_mousemove(int motion_x, int motion_y);

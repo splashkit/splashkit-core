@@ -37,11 +37,30 @@ namespace splashkit_lib
     void set_interface_font(font fnt);
 
     /**
+     * Sets the interface's font.
+     *
+     * @param fnt               The name of the font to be used.
+     *
+     * @attribute suffix        font_as_string
+     */
+    void set_interface_font(const string& fnt);
+
+    /**
      * Sets the interface's font size.
      *
      * @param size              The font size to be used.
      */
     void set_interface_font_size(int size);
+
+    /**
+     * Sets the width of element labels. This is the maximum width
+     * in pixels that a label can span in front of an element.
+     *
+     * Default is 60 pixels.
+     *
+     * @param width             The width of labels.
+     */
+    void set_interface_label_width(int width);
 
 
     /**
@@ -226,14 +245,167 @@ namespace splashkit_lib
     void label(const string& label);
 
     /**
+     * Creates a paragraph of text that auto-wraps.
+     *
+     * @param text              The text to show.
+     */
+    void paragraph(const string& text);
+
+    /**
+     * Creates a button with a label.
+     * Returns whether the button is pressed.
+     *
+     * Example usage:
+     * ```c++
+     * // Test if clicked:
+     * if (button("Button 1", "Click me!"))
+     * {
+     *      // do stuff..
+     * }
+     * ```
+     *
+     * @param label             The label to show in front of the button.
+     * @param text              The text to show inside the button.
+     * @return                  Whether the button is pressed.
+     *
+     * @attribute suffix        with_label
+     */
+    bool button(const string& label, const string& text);
+
+    /**
      * Creates a button without a label.
      * Returns whether the button is pressed.
      *
      * @param text              The text to show inside the button.
      * @return                  Whether the button is pressed.
      */
-    bool button(const string& label);
+    bool button(const string& text);
 
+    /**
+     * Creates a checkbox with a label.  
+     * Returns the updated value of the checkbox.
+     *
+     * Example usage:
+     * ```c++
+     * my_bool = checkbox("Checkbox 1", "Enabled?", my_bool);
+     * ```
+     *
+     * @param label             The label to show in front of the checkbox.
+     * @param text              The text to show next to the checkbox.
+     * @param value             The current value of the checkbox.
+     * @return                  The updated value of the checkbox.
+     *
+     * @attribute suffix        with_label
+     */
+    bool checkbox(const string& label, const string& text, const bool& value);
+
+    /**
+     * Creates a checkbox.  
+     * Returns the updated value of the checkbox.
+     *
+     * @param text              The text to show next to the checkbox.
+     * @param value             The current value of the checkbox.
+     * @return                  The updated value of the checkbox.
+     */
+    bool checkbox(const string& text, const bool& value);
+
+    /**
+     * Creates a slider with a label.  
+     * Returns the updated value of the slider.
+     *
+     * Example usage:
+     * ```c++
+     * my_float = slider("Percentage", my_float, 0, 100);
+     * ```
+     *
+     * @param label             The label to show in front of the slider.
+     * @param value             The current value of the slider.
+     * @param min_value         The minimum value of the slider.
+     * @param max_value         The maximum value of the slider.
+     * @return                  The updated value of the slider.
+     *
+     * @attribute suffix        with_label
+     */
+    float slider(const string& label, const float& value, float min_value, float max_value);
+
+    /**
+     * Creates a slider without a label.  
+     * Returns the updated value of the slider.
+     *
+     * @param value             The current value of the slider.
+     * @param min_value         The minimum value of the slider.
+     * @param max_value         The maximum value of the slider.
+     * @return                  The updated value of the slider.
+     */
+    float slider(const float& value, float min_value, float max_value);
+
+
+    /**
+     * Creates a number entry box with a label.  
+     * Returns the updated value of the number box.
+     *
+     * Example usage:
+     * ```c++
+     * my_float = number_box("Percentage", my_float, 1);
+     * ```
+     *
+     * @param label             The label to show in front of the number box.
+     * @param value             The current value of the number box.
+     * @param step              The amount incremented when dragging on the box.
+     * @return                  The updated value of the slider.
+     *
+     * @attribute suffix        with_label
+     */
+    float number_box(const string& label, const float& value, float step);
+
+    /**
+     * Creates a number entry box with a label.  
+     * Returns the updated value of the number box.
+     *
+     * @param value             The current value of the number box.
+     * @param step              The amount incremented when dragging on the box.
+     * @return                  The updated value of the slider.
+     */
+    float number_box(const float& value, float step);
+
+    /**
+     * Creates a text entry box with a label.  
+     * Returns the updated value of the text box.
+     *
+     * Example usage:
+     * ```c++
+     * my_string = text_box("Name", my_string);
+     * ```
+     *
+     * @param label             The label to show in front of the text box.
+     * @param value             The current value of the text box.
+     * @return                  The updated value of the text box.
+     *
+     * @attribute suffix        with_label
+     */
+    string text_box(const string& label, const string& value);
+
+    /**
+     * Creates a text entry box with a label.  
+     * Returns the updated value of the text box.
+     * @param value             The current value of the text box.
+     * @return                  The updated value of the text box.
+     */
+    string text_box(const string& value);
+
+    /**
+     * Returns if the last created element was changed at all (such as dragged, typed in, etc)
+     *
+     * @return                   Whether the last created element was changed.
+     */
+    bool last_element_changed();
+
+    /**
+     * Returns if the last created element was 'confirmed' (such as clicking a button, or hitting enter in a text box)
+     *
+     * @return                   Whether the last created element was confirmed.
+     */
+    bool last_element_confirmed();
 
 #endif /* interface_hpp */
 }

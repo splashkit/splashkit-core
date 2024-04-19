@@ -168,6 +168,16 @@ namespace splashkit_lib
         }
     }
 
+    void _two_column_layout()
+    {
+        if (container_stack.size() == 0) return;
+
+        container_stack.back().layout_widths.clear();
+        container_stack.back().layout_widths.push_back(label_width);
+        container_stack.back().layout_widths.push_back(-1);
+        _update_layout();
+    }
+
     void draw_interface()
     {
         // Close any unclosed containers, and alert user
@@ -196,9 +206,19 @@ namespace splashkit_lib
         sk_interface_style_set_font(fnt);
     }
 
+    void set_interface_font(const string& fnt)
+    {
+        set_interface_font(font_named(fnt));
+    }
+
     void set_interface_font_size(int size)
     {
         sk_interface_style_set_font_size(size);
+    }
+
+    void set_interface_label_width(int width)
+    {
+        label_width = width;
     }
 
     bool start_panel(const string& name, rectangle initial_rectangle)
@@ -335,11 +355,113 @@ namespace splashkit_lib
 
     void label(const string& label)
     {
+
         sk_interface_label(label);
     }
 
-    bool button(const string& label)
+    void paragraph(const string& text)
     {
-        return sk_interface_button(label);
+        sk_interface_text(text);
+    }
+
+    bool button(const string& label, const string& text)
+    {
+        enter_column();
+        _two_column_layout();
+
+        sk_interface_label(label);
+        bool res = button(text);
+
+        leave_column();
+
+        return res;
+    }
+
+    bool button(const string& text)
+    {
+        return sk_interface_button(text);
+    }
+
+    bool checkbox(const string& label, const string& text, const bool& value)
+    {
+        enter_column();
+        _two_column_layout();
+
+        sk_interface_label(label);
+        bool res = checkbox(text, value);
+
+        leave_column();
+
+        return res;
+    }
+
+    bool checkbox(const string& text, const bool& value)
+    {
+        return sk_interface_checkbox(text, value);
+    }
+
+    float slider(const string& label, const float& value, float min_value, float max_value)
+    {
+        enter_column();
+        _two_column_layout();
+
+        sk_interface_label(label);
+        float res = slider(value, min_value, max_value);
+
+        leave_column();
+
+        return res;
+    }
+
+    float slider(const float& value, float min_value, float max_value)
+    {
+        return sk_interface_slider(value, min_value, max_value);
+    }
+
+    float number_box(const string& label, const float& value, float step)
+    {
+
+        enter_column();
+        _two_column_layout();
+
+        sk_interface_label(label);
+        float res = number_box(value, step);
+
+        leave_column();
+
+        return res;
+    }
+
+    float number_box(const float& value, float step)
+    {
+        return sk_interface_number(value, step);
+    }
+
+    std::string text_box(const string& label, const std::string& value)
+    {
+        enter_column();
+        _two_column_layout();
+
+        sk_interface_label(label);
+        std::string res = text_box(value);
+
+        leave_column();
+
+        return res;
+    }
+
+    std::string text_box(const std::string& value)
+    {
+        return sk_interface_text_box(value);
+    }
+
+    bool last_element_changed()
+    {
+        return sk_interface_changed();
+    }
+
+    bool last_element_confirmed()
+    {
+        return sk_interface_confirmed();
     }
 }

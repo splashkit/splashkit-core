@@ -26,6 +26,11 @@ namespace splashkit_lib
 
     static mu_Context *ctx = nullptr;
 
+    static mu_Id focused_text_box = 0;
+
+    static bool element_changed = false;
+    static bool element_confirmed = false;
+
     static char button_map[256];
     static char key_map[256];
 
@@ -92,6 +97,7 @@ namespace splashkit_lib
         return sk_text_height(font_info->first, font_info->second);
     }
 
+    // conversion util functions
     mu_Rect to_mu(rectangle rect)
     {
         return {(int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height};
@@ -250,6 +256,14 @@ namespace splashkit_lib
     void sk_interface_end()
     {
         mu_end(ctx);
+
+        // If we were focussed on a text box previously, but now aren't,
+        // then stop reading.
+        if (focused_text_box != 0 && ctx->focus != focused_text_box)
+        {
+            focused_text_box = 0;
+            current_window()->reading_text = false;
+        }
     }
 
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)
@@ -318,6 +332,17 @@ namespace splashkit_lib
         h = mu_get_current_container(ctx)->body.h;
     }
 
+    void update_elements_changed(int result)
+    {
+        element_changed = result;
+        element_confirmed = result & MU_RES_SUBMIT;
+    }
+
+    void push_ptr_id(void* ptr)
+    {
+        mu_push_id(ctx, &ptr, sizeof(ptr));
+    }
+
     bool sk_interface_header(const string& label)
     {
         return mu_header(ctx, label.c_str());
@@ -328,9 +353,97 @@ namespace splashkit_lib
         mu_label(ctx, label.c_str());
     }
 
+    void sk_interface_text(const string& text)
+    {
+        mu_text(ctx, text.c_str());
+    }
+
     bool sk_interface_button(const string& label)
     {
-        return mu_button(ctx, label.c_str());
+        update_elements_changed(mu_button(ctx, label.c_str()));
+        return element_confirmed;
+    }
+
+    bool sk_interface_checkbox(const string& label, const bool& value)
+    {
+        push_ptr_id((void*)&value);
+
+        int temp_value = value;
+        update_elements_changed(mu_checkbox(ctx, label.c_str(), &temp_value));
+
+        mu_pop_id(ctx);
+        return temp_value;
+    }
+
+    float sk_interface_slider(const float& value, float min_value, float max_value)
+    {
+        push_ptr_id((void*)&value);
+
+        float temp_value = value;
+        update_elements_changed(mu_slider(ctx, &temp_value, min_value, max_value));
+
+        mu_pop_id(ctx);
+        return temp_value;
+    }
+
+    float sk_interface_number(const float& value, float step)
+    {
+        push_ptr_id((void*)&value);
+
+        float temp_value = value;
+        update_elements_changed(mu_number(ctx, &temp_value, step));
+
+        mu_pop_id(ctx);
+        return temp_value;
+    }
+
+    std::string sk_interface_text_box(const std::string& value)
+    {
+        const std::string* id = &value;
+        mu_Id m_id = mu_get_id(ctx, &id, sizeof(id));
+        mu_Rect r = mu_layout_next(ctx);
+
+        // max 512 characters
+        // considering the lack of word wrap or even
+        // keyboard navigation, this should be enough.
+        char temp_value[512];
+
+        bool was_focused = ctx->focus == m_id;
+
+        // If focussed, temporarily add the current composition to the string - we'll remove it at the end
+        if (was_focused)
+            strncpy(temp_value, (value+current_window()->composition).c_str(), sizeof(temp_value));
+        else
+            strncpy(temp_value, value.c_str(), sizeof(temp_value));
+
+        temp_value[sizeof(temp_value) - 1] = 0;
+
+        update_elements_changed(mu_textbox_raw(ctx, temp_value, sizeof(temp_value), m_id, r, 0));
+
+        // Is this element newly focussed?
+        if (ctx->focus == m_id)
+        {
+            // Start reading
+            if (focused_text_box == 0)
+                sk_start_reading_text(current_window(), r.x, r.y, r.w, r.h, "");
+            focused_text_box = m_id;
+        }
+
+        // Remove the composition from the string if it was added
+        if (was_focused)
+            return std::string(temp_value, 0, strlen(temp_value) - current_window()->composition.size());
+        else
+            return temp_value;
+    }
+
+    bool sk_interface_changed()
+    {
+        return element_changed;
+    }
+
+    bool sk_interface_confirmed()
+    {
+        return element_confirmed;
     }
 
     void* sk_interface_get_context()
