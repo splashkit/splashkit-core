@@ -244,13 +244,7 @@ namespace splashkit_lib
 
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)
     {
-        bool open = mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));
-
-        // Default label + element layout
-        int layout[] = { 60, -1 };
-        mu_layout_row(ctx, 2, layout, 0);
-
-        return open;
+        return mu_begin_window(ctx, name.c_str(), to_mu(initial_rectangle));
     }
 
     void sk_interface_end_panel()
@@ -268,9 +262,55 @@ namespace splashkit_lib
         mu_end_popup(ctx);
     }
 
+    void sk_interface_start_inset(const string& name)
+    {
+        mu_begin_panel(ctx, name.c_str());
+    }
+
+    void sk_interface_end_inset()
+    {
+        mu_end_panel(ctx);
+    }
+
+    bool sk_interface_start_treenode(const string& name)
+    {
+        return mu_begin_treenode(ctx, name.c_str());
+    }
+
+    void sk_interface_end_treenode()
+    {
+        mu_end_treenode(ctx);
+    }
+
     void sk_interface_open_popup(const string& name)
     {
         mu_open_popup(ctx, name.c_str());
+    }
+
+    void sk_interface_set_layout(int items, int* widths, int height)
+    {
+        mu_layout_row(ctx, items, widths, height);
+    }
+
+    void sk_interface_start_column()
+    {
+        mu_layout_begin_column(ctx);
+    }
+
+    void sk_interface_end_column()
+    {
+        mu_layout_end_column(ctx);
+    }
+
+    void sk_interface_get_container_size(int& w, int& h)
+    {
+        w = mu_get_current_container(ctx)->body.w;
+        h = mu_get_current_container(ctx)->body.h;
+    }
+
+    bool sk_interface_header(const string& label)
+    {
+        return mu_header(ctx, label.c_str());
     }
 
     void sk_interface_label(const string& label)

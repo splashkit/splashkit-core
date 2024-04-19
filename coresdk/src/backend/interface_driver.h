@@ -24,8 +24,20 @@ namespace splashkit_lib
     bool sk_interface_start_popup(const string& name);
     void sk_interface_end_popup();
 
+    void sk_interface_start_inset(const string& name);
+    void sk_interface_end_inset();
+
+    bool sk_interface_start_treenode(const string& name);
+    void sk_interface_end_treenode();
+
     void sk_interface_open_popup(const string& name);
 
+    void sk_interface_set_layout(int items, int* widths, int height);
+    void sk_interface_start_column();
+    void sk_interface_end_column();
+    void sk_interface_get_container_size(int& w, int& h);
+
+    bool sk_interface_header(const string& label);
     void sk_interface_label(const string& label);
     bool sk_interface_button(const string& label);
 

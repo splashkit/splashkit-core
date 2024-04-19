@@ -39,6 +39,9 @@ void run_ui_test()
         // Defaults to 2 column layout (for label + element)
         if (start_panel("My Window", rectangle_from(100, 100, 240, 186)))
         {
+            start_custom_layout();
+            add_column(60);
+            add_column(-1);
             // Draw first label + button
             label("First:");
             if (button("Button1"))
@@ -79,6 +82,29 @@ void run_ui_test()
             end_panel("My Window");
         }
 
+
+        if (start_panel("Second Window", rectangle_from(200, 200, 240, 186)))
+        {
+            start_inset("TreeView", -25);
+                if (start_treenode("Node1"))
+                {
+                    if (start_treenode("Inner Node"))
+                    {
+                        button("Hello!");
+                        end_treenode("Inner Node");
+                    }
+                    end_treenode("Node1");
+                }
+                if (start_treenode("Node2"))
+                {
+                    button("Hello again!");
+                    end_treenode("Node2");
+                }
+
+            end_inset("TreeView");
+
+            end_panel("Second Window");
+        }
         // Draw the interface
         draw_interface();
 

@@ -10,6 +10,10 @@
  * @attribute static interface
  */
 
+// Note to maintainers: This file deliberately uses double spaces at the end of some lines
+// to create newlines in the resulting markdown. Be careful not to remove these
+// when removing trailing newlines.
+
 #include "graphics.h"
 
 #include <string>
@@ -33,8 +37,123 @@ namespace splashkit_lib
     bool start_popup(const string& name);
     void end_popup(const string& name);
 
+
+    /**
+     * Starts the creation of an inset area inside a panel/popup.
+     *
+     * Use as follows:
+     * ```c++
+     * start_inset("Inset area", 60);
+     * // elements inside area goes here
+     * end_inset("Inset area");
+     *
+     * ```
+     * The function **must** be accompanied by a call to `end_inset`
+     * with the same name.
+     *
+     * @param name              The name of the area.
+     * @param height            Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom.
+     */
+    void start_inset(const string& name, int height);
+
+    /**
+     * Finishes the creation of an inset area.
+     *
+     * @param name              The area's name - must match with `start_inset`
+     */
+    void end_inset(const string& name);
+
+    /**
+     * Starts the creation of a tree node (such as those in a file tree view).  
+     * Returns whether the tree node is expanded or not.
+     *
+     * Usage is the same as `start_panel`.
+     * The function **must** be accompanied by a call to `end_treenode`
+     * with the same name.
+     *
+     * @param label             The name of the node.
+     * @return                  Whether the tree node is expanded or not.
+     */
+    bool start_treenode(const string& label);
+
+    /**
+     * Finishes the creation of a tree node.
+     *
+     * @param label             The node's name - must match with `start_treenode`
+     */
+    void end_treenode(const string& label);
+
     void open_popup(const string& name);
 
+    /**
+     * Resets to the default layout of a single column with default height.
+     */
+    void reset_layout();
+
+    /**
+     * Starts layouting all elements onto a single row. Reset with `reset_layout()`.
+     */
+    void single_line_layout();
+
+    /**
+     * Clears the default layout so that a custom layout can be made.
+     */
+    void start_custom_layout();
+
+    /**
+     * Adds a column to the current layout with width `width`.
+     *
+     * - Positive values of width just specify the width in pixels.
+     * - 0 means use the default control width - not always a good choice.
+     * - Negative values specify filling to the right _until_ `width - 1` pixels away from the edge.
+     *   - e.g -1 fills entirely to the right, while -20 leaves a 19 pixel gap on the right.
+     *
+     * @param width             Width of the column in pixels.
+     */
+    void add_column(int width);
+
+    /**
+     * Adds a column to the current layout with width `width` percentage of the container's width.
+     *
+     * @param width             Percentage of the container's width (between 0 and 1).
+     */
+    void add_column_relative(double width);
+
+    /**
+     * Sets the height of each row in the interface in pixels.
+     * 0 resets to default.
+     *
+     * @param height            Height of rows in pixels.
+     */
+    void set_layout_height(int height);
+
+    /**
+     * Begins placing elements inside the current column. Must be paired with a call to `leave_column`.
+     */
+    void enter_column();
+
+    /**
+     * Stops placing elements inside the current column and moves to the next one.
+     */
+    void leave_column();
+
+    /**
+     * Creates a collapsable header with a label.  
+     * Returns whether the header is expanded or not.
+     *
+     * Note: Unlike `start_panel` and other similar functions, there is
+     * no need to 'end' this one. Example usage:
+     * ```c++
+     * if (header("Section A"))
+     * {
+     *      // elements inside header go here
+     * }
+     * ```
+     *
+     * @param label             The label to show in the header.
+     * @return                  Whether the header is expanded or not.
+     */
+    bool header(const string& label);
     void label(const string& label);
     bool button(const string& label);
 
