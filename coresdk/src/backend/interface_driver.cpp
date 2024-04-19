@@ -25,6 +25,7 @@ namespace splashkit_lib
     #include "interface_driver_atlas.h"
 
     static mu_Context *ctx = nullptr;
+    bool ctx_started = false;
 
     static mu_Id focused_text_box = 0;
 
@@ -251,11 +252,13 @@ namespace splashkit_lib
         ctx->style->font = _add_font_size_pair(current_font, current_font_size);
 
         mu_begin(ctx);
+        ctx_started = true;
     }
 
     void sk_interface_end()
     {
         mu_end(ctx);
+        ctx_started = false;
 
         // If we were focussed on a text box previously, but now aren't,
         // then stop reading.
@@ -264,6 +267,24 @@ namespace splashkit_lib
             focused_text_box = 0;
             current_window()->reading_text = false;
         }
+    }
+
+    bool sk_interface_is_started()
+    {
+        return ctx_started;
+    }
+
+    bool sk_interface_capacity_limited()
+    {
+        #define INTERFACE_SAFE_CAPACITY 0.93 //~(30/32)
+        return
+        (ctx->command_list.idx      > MU_COMMANDLIST_SIZE    * INTERFACE_SAFE_CAPACITY) ||
+        (ctx->root_list.idx         > MU_ROOTLIST_SIZE       * INTERFACE_SAFE_CAPACITY) ||
+        (ctx->container_stack.idx   > MU_CONTAINERSTACK_SIZE * INTERFACE_SAFE_CAPACITY) ||
+        (ctx->clip_stack.idx        > MU_CLIPSTACK_SIZE      * INTERFACE_SAFE_CAPACITY) ||
+        (ctx->id_stack.idx          > MU_IDSTACK_SIZE        * INTERFACE_SAFE_CAPACITY) ||
+        (ctx->layout_stack.idx      > MU_LAYOUTSTACK_SIZE    * INTERFACE_SAFE_CAPACITY);
+        #undef INTERFACE_SAFE_CAPACITY
     }
 
     bool sk_interface_start_panel(const string& name, rectangle initial_rectangle)

@@ -52,6 +52,21 @@ namespace splashkit_lib
         return "";
     }
 
+    void _interface_sanity_check()
+    {
+        if (!sk_interface_is_started())
+        {
+            CLOG(WARNING, "interface") << "Interface function called before 'process_events' - make sure to call this first!";
+            sk_interface_start();
+        }
+        if (sk_interface_capacity_limited())
+        {
+            CLOG(WARNING, "interface") << "Too many interface items have been created without drawing/clearing them! Are you forgetting to call 'process_events' and 'draw_interface'?";
+            CLOG(WARNING, "interface") << "The interface has now been cleared, to stop the program from crashing.";
+            sk_interface_start();
+        }
+    }
+
     void _update_layout()
     {
         if (container_stack.size() == 0) return;
@@ -180,6 +195,8 @@ namespace splashkit_lib
 
     void draw_interface()
     {
+        _interface_sanity_check();
+
         // Close any unclosed containers, and alert user
         typedef std::vector<container_info>::reverse_iterator iterator;
         for(iterator i = container_stack.rbegin(); i != container_stack.rend(); i++)
@@ -223,6 +240,8 @@ namespace splashkit_lib
 
     bool start_panel(const string& name, rectangle initial_rectangle)
     {
+        _interface_sanity_check();
+
         bool open = sk_interface_start_panel(name, initial_rectangle);
 
         _push_container_stack(open, panel_type::panel, name);
@@ -232,27 +251,36 @@ namespace splashkit_lib
 
     void end_panel(const string& name)
     {
+        _interface_sanity_check();
+
         _pop_container_stack(panel_type::panel, name);
     }
 
     bool start_popup(const string& name)
     {
+        _interface_sanity_check();
+
         bool open = sk_interface_start_popup(name);
 
         _push_container_stack(open, panel_type::popup, name);
 
         if (open)
             single_line_layout();
+
         return open;
     }
 
     void end_popup(const string& name)
     {
+        _interface_sanity_check();
+
         _pop_container_stack(panel_type::popup, name);
     }
 
     void start_inset(const string& name, int height)
     {
+        _interface_sanity_check();
+
         set_layout_height(height);
         sk_interface_start_inset(name);
 
@@ -261,11 +289,15 @@ namespace splashkit_lib
 
     void end_inset(const string& name)
     {
+        _interface_sanity_check();
+
         _pop_container_stack(panel_type::inset, name);
     }
 
     bool start_treenode(const string& name)
     {
+        _interface_sanity_check();
+
         bool open = sk_interface_start_treenode(name);
 
         _push_container_stack(open, panel_type::treenode, name);
@@ -275,16 +307,22 @@ namespace splashkit_lib
 
     void end_treenode(const string& name)
     {
+        _interface_sanity_check();
+
         _pop_container_stack(panel_type::treenode, name);
     }
 
     void open_popup(const string& name)
     {
+        _interface_sanity_check();
+
         sk_interface_open_popup(name);
     }
 
     void reset_layout()
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
@@ -294,6 +332,8 @@ namespace splashkit_lib
 
     void single_line_layout()
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
@@ -302,6 +342,8 @@ namespace splashkit_lib
 
     void start_custom_layout()
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
@@ -310,6 +352,8 @@ namespace splashkit_lib
 
     void add_column(int width)
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.push_back(width);
@@ -318,7 +362,10 @@ namespace splashkit_lib
 
     void add_column_relative(double width)
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
+
         int w, h;
         sk_interface_get_container_size(w, h);
 
@@ -328,6 +375,8 @@ namespace splashkit_lib
 
     void set_layout_height(int height)
     {
+        _interface_sanity_check();
+
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_height = height;
@@ -336,6 +385,8 @@ namespace splashkit_lib
 
     void enter_column()
     {
+        _interface_sanity_check();
+
         sk_interface_start_column();
 
         _push_container_stack(true, panel_type::column, "");
@@ -343,11 +394,15 @@ namespace splashkit_lib
 
     void leave_column()
     {
+        _interface_sanity_check();
+
         _pop_container_stack(panel_type::column, "");
     }
 
     bool header(const string& label)
     {
+        _interface_sanity_check();
+
         bool open = sk_interface_header(label);
         _update_layout();
         return open;
@@ -355,17 +410,22 @@ namespace splashkit_lib
 
     void label(const string& label)
     {
+        _interface_sanity_check();
 
         sk_interface_label(label);
     }
 
     void paragraph(const string& text)
     {
+        _interface_sanity_check();
+
         sk_interface_text(text);
     }
 
     bool button(const string& label, const string& text)
     {
+        _interface_sanity_check();
+
         enter_column();
         _two_column_layout();
 
@@ -379,11 +439,15 @@ namespace splashkit_lib
 
     bool button(const string& text)
     {
+        _interface_sanity_check();
+
         return sk_interface_button(text);
     }
 
     bool checkbox(const string& label, const string& text, const bool& value)
     {
+        _interface_sanity_check();
+
         enter_column();
         _two_column_layout();
 
@@ -397,11 +461,15 @@ namespace splashkit_lib
 
     bool checkbox(const string& text, const bool& value)
     {
+        _interface_sanity_check();
+
         return sk_interface_checkbox(text, value);
     }
 
     float slider(const string& label, const float& value, float min_value, float max_value)
     {
+        _interface_sanity_check();
+
         enter_column();
         _two_column_layout();
 
@@ -415,11 +483,14 @@ namespace splashkit_lib
 
     float slider(const float& value, float min_value, float max_value)
     {
+        _interface_sanity_check();
+
         return sk_interface_slider(value, min_value, max_value);
     }
 
     float number_box(const string& label, const float& value, float step)
     {
+        _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
@@ -434,11 +505,15 @@ namespace splashkit_lib
 
     float number_box(const float& value, float step)
     {
+        _interface_sanity_check();
+
         return sk_interface_number(value, step);
     }
 
     std::string text_box(const string& label, const std::string& value)
     {
+        _interface_sanity_check();
+
         enter_column();
         _two_column_layout();
 
@@ -452,6 +527,8 @@ namespace splashkit_lib
 
     std::string text_box(const std::string& value)
     {
+        _interface_sanity_check();
+
         return sk_interface_text_box(value);
     }
 
