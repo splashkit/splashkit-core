@@ -144,6 +144,16 @@ namespace splashkit_lib
         mu_init(ctx);
         ctx->text_width = _text_width;
         ctx->text_height = _text_height;
+
+        // Create custom logger - the default SplashKit is a bit verbose
+        // for the messages this wants to be able to output
+        el::Logger* interfaceLogger = el::Loggers::getLogger("interface");
+        el::Configurations conf;
+        conf.setToDefault();
+        conf.setGlobally(el::ConfigurationType::Format, "%level -> %msg");
+        conf.setGlobally(el::ConfigurationType::Filename, "logs/splashkit.log");
+
+        el::Loggers::reconfigureLogger("interface", conf);
     }
 
     void sk_interface_draw(drawing_options opts)
