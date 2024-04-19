@@ -1,7 +1,7 @@
 /**
  * @header  interface
  * @author  Sean Boettger
- * @brief   SplashKit interface provides ability to create user interfaces
+ * @brief   SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.
  *
  * SplashKit`s interface library provides various functions for creating
  * panels, and drawing interface elements such as buttons, text boxes, and more
@@ -24,17 +24,74 @@ using std::string;
 namespace splashkit_lib
 {
     /**
-     * Draws the user interface that has been created so far
+     * Draws the user interface that all the previous calls (such as `start_panel`, `button`, etc) have created.  
+     * **Make sure to call this!** Without calling it, the interface won't be visible.
      */
     void draw_interface();
 
+    /**
+     * Sets the interface's font.
+     *
+     * @param fnt               The font to be used.
+     */
     void set_interface_font(font fnt);
+
+    /**
+     * Sets the interface's font size.
+     *
+     * @param size              The font size to be used.
+     */
     void set_interface_font_size(int size);
 
+
+    /**
+     * Starts the creation of a draggable panel with a title bar.  
+     * Returns whether the panel is visible or not.
+     *
+     * Use as follows:
+     * ```c++
+     * if (start_panel("My panel", rectangle_from(0,0,100,100)))
+     * {
+     *      // Rest of interface goes here
+     *      end_panel("My panel");
+     * }
+     * ```
+     * After calling this, you can then call functions to
+     * add elements such as buttons and text boxes inside the panel.
+     * The function **must** be accompanied by a call to `end_panel`,
+     * that is only called if the panel is visible, and is passed the same `name`.
+     *
+     * @param name              The name shown in the panel's titlebar.
+     * @param initial_rectangle The initial position/size the panel starts off in.
+     * @return                  Whether the panel is visible or not.
+     */
     bool start_panel(const string& name, rectangle initial_rectangle);
+
+    /**
+     * Finishes the creation of a panel.
+     *
+     * @param name              The name shown in the panel's titlebar - must match with `start_panel`
+     */
     void end_panel(const string& name);
 
+    /**
+     * Starts the creation of a popup.  
+     * Returns whether the popup is visible or not.
+     *
+     * Usage is the same as `start_panel`.
+     * The function **must** be accompanied by a call to `end_popup`
+     * with the same name.
+     *
+     * @param name              The name of the popup.
+     * @return                  Whether the popup is visible or not.
+     */
     bool start_popup(const string& name);
+
+    /**
+     * Finishes the creation of a popup.
+     *
+     * @param name              The popup's name - must match with `start_popup`
+     */
     void end_popup(const string& name);
 
 
@@ -83,6 +140,11 @@ namespace splashkit_lib
      */
     void end_treenode(const string& label);
 
+    /**
+     * Makes the popup named `name` open/popup at the cursor's position.
+     *
+     * @param name              The popup's name. Must match with the same name used in `start_popup`.
+     */
     void open_popup(const string& name);
 
     /**
@@ -154,7 +216,22 @@ namespace splashkit_lib
      * @return                  Whether the header is expanded or not.
      */
     bool header(const string& label);
+
+
+    /**
+     * Creates a label.
+     *
+     * @param label             The label to show.
+     */
     void label(const string& label);
+
+    /**
+     * Creates a button without a label.
+     * Returns whether the button is pressed.
+     *
+     * @param text              The text to show inside the button.
+     * @return                  Whether the button is pressed.
+     */
     bool button(const string& label);
 
 
