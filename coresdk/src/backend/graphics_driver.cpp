@@ -1281,8 +1281,7 @@ namespace splashkit_lib
         if (surface->kind != SGDS_Bitmap)
             return;
 
-        sk_bitmap_be * bitmap_be;
-        bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+        sk_bitmap_be * bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
 
         // ensure surface exists
 
