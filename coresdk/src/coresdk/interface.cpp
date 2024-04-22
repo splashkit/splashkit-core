@@ -366,8 +366,7 @@ namespace splashkit_lib
 
         if (container_stack.size() == 0) return;
 
-        int w, h;
-        sk_interface_get_container_size(w, h);
+        int w = sk_interface_get_container_width();
 
         container_stack.back().layout_widths.push_back((int)(w * width));
         _update_layout();

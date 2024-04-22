@@ -347,10 +347,14 @@ namespace splashkit_lib
         mu_layout_end_column(ctx);
     }
 
-    void sk_interface_get_container_size(int& w, int& h)
+    int sk_interface_get_container_width()
     {
-        w = mu_get_current_container(ctx)->body.w;
-        h = mu_get_current_container(ctx)->body.h;
+        return mu_get_current_container(ctx)->body.w;
+    }
+
+    int sk_interface_get_container_height()
+    {
+        return mu_get_current_container(ctx)->body.h;
     }
 
     void update_elements_changed(int result)
