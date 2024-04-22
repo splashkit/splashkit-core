@@ -1294,7 +1294,8 @@ namespace splashkit_lib
 
         if (SDL_MUSTLOCK(bitmap_be->surface))
         {
-            SDL_LockSurface(bitmap_be->surface);
+            if (SDL_LockSurface(bitmap_be->surface))
+                return;
         }
 
         // write to it
