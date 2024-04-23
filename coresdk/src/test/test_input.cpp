@@ -15,6 +15,7 @@ using namespace std;
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 
+
 void _on_key_typed(int code)
 {
     _key_typed = key_name( static_cast<key_code>(code));
@@ -81,18 +82,22 @@ void run_input_test()
         string right_clicked = "Right click status: ";
         right_clicked += to_string(mouse_clicked(RIGHT_BUTTON)) + " up: " + to_string(mouse_up(RIGHT_BUTTON)) + " down: " + to_string(mouse_down(RIGHT_BUTTON));
         
+        string any_key_input = "Any keys pressed: ";
+        if(any_key_pressed()) any_key_input += "yes";
+        else any_key_input += "no";
+
         string key_details = "T key is ";
         if ( key_down(T_KEY) ) key_details += "down";
         if ( key_up(T_KEY) ) key_details += "up";
         if ( key_released(T_KEY) ) key_details += " - released";
         if ( key_typed(T_KEY) ) key_details += " - typed";
-
         if ( key_typed(F_KEY) ) window_toggle_fullscreen(window_with_focus());
         if ( key_typed(B_KEY) ) window_toggle_border(window_with_focus());
 
         draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
         draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
         draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+        draw_text(any_key_input, COLOR_PLUM, "hara", 14, 18, 250);
         draw_text(key_details, COLOR_PLUM, "hara", 14, 18, 280);
         draw_text(_key_down, COLOR_PLUM, "hara", 14, 18, 300);
         draw_text(_key_up, COLOR_PLUM, "hara", 14, 18, 320);
@@ -122,6 +127,7 @@ void run_input_test()
         draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
         draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
         draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+        draw_text(any_key_input, COLOR_PLUM, "hara", 14, 18, 250);
         draw_text(key_details, COLOR_PLUM, "hara", 14, 18, 280);
         draw_text(_key_down, COLOR_PLUM, "hara", 14, 18, 300);
         draw_text(_key_up, COLOR_PLUM, "hara", 14, 18, 320);
