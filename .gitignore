@@ -91,3 +91,6 @@ out/skm
 out/lib/
 tools/scripts/nuget-pkg/obj
 tools/scripts/test/obj
+
+### Debian packaging ###
+tools/scripts/debian/libsplashkit-dev*
