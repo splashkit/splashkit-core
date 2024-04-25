@@ -94,3 +94,5 @@ tools/scripts/test/obj
 
 ### Debian packaging ###
 tools/scripts/debian/libsplashkit-dev*
+tools/scripts/debian/data.tar.xz
+tools/scripts/debian/control.tar.xz
