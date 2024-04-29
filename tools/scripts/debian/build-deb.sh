@@ -7,7 +7,6 @@ SKM_OUT=$SK_ROOT/out/skm
 # Build libSplashKit.so
 pushd $SK_ROOT/tools/scripts/cmake/libsplashkit
 cmake .
-make -j$nprocs
 make install
 popd
 
