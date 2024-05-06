@@ -15,7 +15,6 @@ using namespace std;
 
 static string _key_typed = "", _key_down = "", _key_up = "";
 
-
 void _on_key_typed(int code)
 {
     _key_typed = key_name( static_cast<key_code>(code));
