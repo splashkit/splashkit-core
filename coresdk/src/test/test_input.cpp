@@ -1,132 +1,147 @@
 //
-//  keyboard_input.cpp
+//  test_input.cpp
 //  splashkit
 //
-//  Created by Andrew Cain on 16/08/2016.
+//  Created by Andrew Cain on 15/08/2016.
 //  Copyright © 2016 Andrew Cain. All rights reserved.
 //
 
-#include "keyboard_input.h"
+#include "graphics.h"
+#include "input.h"
+#include "text.h"
 
-#include "input_driver.h"
-#include "utility_functions.h"
+using namespace splashkit_lib;
+using namespace std;
 
-#include <vector>
-#include <map>
+static string _key_typed = "", _key_down = "", _key_up = "";
 
-using std::vector;
-using std::map;
 
-namespace splashkit_lib
+void _on_key_typed(int code)
 {
-    static map<key_code, bool> _keys_down;
-    static map<key_code, bool> _keys_just_typed; // i.e. those that have just gone down
-    static map<key_code, bool> _keys_released; // i.e. those that have just gone up
+    _key_typed = key_name( static_cast<key_code>(code));
+}
 
-    static vector<key_callback *> _on_key_down;
-    static vector<key_callback *> _on_key_up;
-    static vector<key_callback *> _on_key_typed;
+void _on_key_down(int code)
+{
+    _key_down = key_name( static_cast<key_code>(code) );
+}
 
-    void register_callback_on_key_down(key_callback *callback)
-    {
-        _on_key_down.push_back(callback);
-    }
+void _on_key_up(int code)
+{
+    _key_up = key_name( static_cast<key_code>(code) );
+}
 
-    void register_callback_on_key_up(key_callback *callback)
-    {
-        _on_key_up.push_back(callback);
-    }
-
-    void register_callback_on_key_typed(key_callback *callback)
-    {
-        _on_key_typed.push_back(callback);
-    }
-
-    void deregister_callback_on_key_down(key_callback *callback)
-    {
-        _on_key_down.erase(std::remove(_on_key_down.begin(), _on_key_down.end(), callback), _on_key_down.end());
-    }
-
-    void deregister_callback_on_key_up(key_callback *callback)
-    {
-        _on_key_up.erase(std::remove(_on_key_up.begin(), _on_key_up.end(), callback), _on_key_up.end());
-    }
-
-    void deregister_callback_on_key_typed(key_callback *callback)
-    {
-        _on_key_typed.erase(std::remove(_on_key_typed.begin(), _on_key_typed.end(), callback), _on_key_typed.end());
-    }
-
-    void _raise_key_event(vector<key_callback *> &list, key_code code)
-    {
-        for(auto callback: list )
-        {
-            try {
-                callback(code);
-            } catch (...) {}
-        }
-    }
-
-    void _keyboard_start_process_events()
-    {
-        _keys_just_typed.clear();
-        _keys_released.clear();
-    }
-
-    void _handle_key_up_callback(key_code code)
-    {
-        key_code keycode = static_cast<key_code>(code);
-        _keys_released[keycode] = true;
-        _keys_down.erase(keycode);
-        _raise_key_event(_on_key_up, keycode);
-    }
-
-    void _handle_key_down_callback(key_code code)
-    {
-        key_code keycode = static_cast<key_code>(code);
-        if(not key_down(keycode))
-        {
-            _keys_down[keycode] = true;
-            _keys_just_typed[keycode] = true;
-            _raise_key_event(_on_key_typed, keycode);
-        }
-        _raise_key_event(_on_key_down, keycode);
-    }
-
-    bool key_down(key_code key)
-    {
-        return _keys_down.count(key) > 0 and _keys_down[key];
-    }
-
-    bool key_typed(key_code key)
-    {
-        return _keys_just_typed.count(key) > 0 and _keys_just_typed[key] ;
-    }
+void run_input_test()
+{
+    register_callback_on_key_typed(&_on_key_typed);
+    register_callback_on_key_down(&_on_key_down);
+    register_callback_on_key_up(&_on_key_up);
     
-    bool key_released(key_code key)
-    {
-        return _keys_released.count(key) > 0 and _keys_released[key] ;
-    }
+    rectangle rect = { 230.0f, 50.0f, 200.0f, 30.0f };
     
-    bool any_key_pressed()
+    window w1 = open_window("Test Input", 600, 600);
+    window w2 = open_window("Test Input Window 2", 600, 600);
+    
+    load_font("hara", "hara.ttf");
+    load_font("kochi", "kochi-gothic-subst");
+    
+    start_reading_text(rect);
+    
+    set_current_window(w2);
+    
+    start_reading_text(rect, "スプラッシュ・キット");
+    
+    color back = COLOR_WHEAT;
+    
+    while ( (not quit_requested()) && ( reading_text(w1) || reading_text(w2) ) )
     {
-        if (_keys_down.size() > 0)
-        {
-            return true;
-        }
+        process_events();
+        
+        set_current_window(w1);
+        
+        if ( not text_entry_cancelled(w1) )
+            clear_screen(COLOR_WHITE);
         else
+            clear_screen(COLOR_PERU);
+        
+        draw_text("Enter english string: ", COLOR_NAVY, "hara", 18, 30, 50);
+        draw_collected_text(COLOR_BLACK, font_named("hara"), 18, option_defaults());
+        
+        if ( not reading_text(w1) )
         {
-            return false;
+            draw_text(string("Read: "), COLOR_BLUE, "hara", 18, 30, 80);
+            draw_text(text_input(w1), COLOR_BLUE, "hara", 18, 30, 110);
         }
+        
+        string location = "Mouse location: ";
+        location += to_string(mouse_x()) + ":" + to_string(mouse_y());
+        
+        string left_clicked = "Left click status: ";
+        left_clicked += to_string(mouse_clicked(LEFT_BUTTON)) + " up: " + to_string(mouse_up(LEFT_BUTTON)) + " down: " + to_string(mouse_down(LEFT_BUTTON));
+        
+        string right_clicked = "Right click status: ";
+        right_clicked += to_string(mouse_clicked(RIGHT_BUTTON)) + " up: " + to_string(mouse_up(RIGHT_BUTTON)) + " down: " + to_string(mouse_down(RIGHT_BUTTON));
+        
+        string any_key_input = "Any keys pressed: ";
+        if(any_key_pressed()) any_key_input += "yes";
+        else any_key_input += "no";
+
+        string key_details = "T key is ";
+        if ( key_down(T_KEY) ) key_details += "down";
+        if ( key_up(T_KEY) ) key_details += "up";
+        if ( key_released(T_KEY) ) key_details += " - released";
+        if ( key_typed(T_KEY) ) key_details += " - typed";
+        if ( key_typed(F_KEY) ) window_toggle_fullscreen(window_with_focus());
+        if ( key_typed(B_KEY) ) window_toggle_border(window_with_focus());
+
+        draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
+        draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
+        draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+        draw_text(any_key_input, COLOR_PLUM, "hara", 14, 18, 250);
+        draw_text(key_details, COLOR_PLUM, "hara", 14, 18, 280);
+        draw_text(_key_down, COLOR_PLUM, "hara", 14, 18, 300);
+        draw_text(_key_up, COLOR_PLUM, "hara", 14, 18, 320);
+        draw_text(_key_typed, COLOR_PLUM, "hara", 14, 18, 340);
+        
+        set_current_window(w2);
+        
+        if ( key_typed(C_KEY) )
+        {
+            back = random_rgb_color(255);
+        }
+        
+        clear_screen(back);
+        draw_text("Enter Japanese string: ", COLOR_NAVY, "hara", 18, 30, 50);
+        draw_collected_text(COLOR_BLACK, font_named("kochi"), 18, option_defaults());
+        
+        if ( not reading_text(w2) )
+        {
+            draw_text(string("Read: "), COLOR_BLUE, "hara", 18, 30, 80);
+            draw_text(text_input(w2), COLOR_BLUE, "kochi", 18, 30, 110);
+        }
+        
+        // Get location of mouse in W2
+        location = "Mouse location: ";
+        location += to_string(mouse_x()) + ":" + to_string(mouse_y());
+        
+        draw_text(location, COLOR_PLUM, "hara", 14, 18, 200);
+        draw_text(left_clicked, COLOR_PLUM, "hara", 14, 18, 220);
+        draw_text(right_clicked, COLOR_PLUM, "hara", 14, 18, 240);
+        draw_text(any_key_input, COLOR_PLUM, "hara", 14, 18, 250);
+        draw_text(key_details, COLOR_PLUM, "hara", 14, 18, 280);
+        draw_text(_key_down, COLOR_PLUM, "hara", 14, 18, 300);
+        draw_text(_key_up, COLOR_PLUM, "hara", 14, 18, 320);
+        draw_text(_key_typed, COLOR_PLUM, "hara", 14, 18, 340);
+        
+        refresh_screen();
     }
     
-    string key_name(key_code key)
-    {
-        return sk_key_name(key);
-    }
+    close_window("Test Input");
+    close_window("Test Input Window 2");
     
-    bool key_up(key_code key)
-    {
-        return not key_down(key);
-    }
+    deregister_callback_on_key_typed(&_on_key_typed);
+    deregister_callback_on_key_down(&_on_key_down);
+    deregister_callback_on_key_up(&_on_key_up);
+    
+    free_all_fonts();
 }
