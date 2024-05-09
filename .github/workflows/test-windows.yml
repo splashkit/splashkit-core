@@ -20,7 +20,7 @@ jobs:
           msystem: ${{ matrix.msystem }}
           path-type: inherit
           update: true
-          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-make mingw-w64-${{ matrix.arch }}-cmake mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake
+          install: git make wget tar patch dos2unix diffutils ca-certificates mingw-w64-${{ matrix.arch }}-make mingw-w64-${{ matrix.arch }}-cmake mingw-w64-${{ matrix.arch }}-ca-certificates mingw-w64-${{ matrix.arch }}-gcc mingw-w64-${{ matrix.arch }}-libpng cmake mingw-w64-${{ matrix.arch }}-SDL2 mingw-w64-${{ matrix.arch }}-SDL2_gfx mingw-w64-${{ matrix.arch }}-SDL2_image mingw-w64-${{ matrix.arch }}-SDL2_mixer mingw-w64-${{ matrix.arch }}-SDL2_net mingw-w64-${{ matrix.arch }}-SDL2_sound mingw-w64-${{ matrix.arch }}-SDL2_ttf
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'

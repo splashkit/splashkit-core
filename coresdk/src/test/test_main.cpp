@@ -17,6 +17,12 @@
 #include <string>
 #include <vector>
 
+#ifdef __linux__
+#include <SDL2/SDL.h>
+#else
+#include <SDL.h>
+#endif
+
 using namespace std;
 using namespace splashkit_lib;
 
@@ -56,7 +62,7 @@ void setup_tests()
    
 }
 
-int main()
+int main(int argv, char **args)
 {
     setup_tests();
 
