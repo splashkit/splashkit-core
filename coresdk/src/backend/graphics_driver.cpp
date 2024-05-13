@@ -1346,6 +1346,26 @@ namespace splashkit_lib
         bitmap_be->drawable = false;
     }
 
+    void sk_set_bitmap_tint(sk_drawing_surface *surface, sk_color clr)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be;
+        bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        for (unsigned int i = 0; i < _sk_num_open_windows; i++)
+        {
+            SDL_SetTextureColorMod(bitmap_be->texture[i], static_cast<Uint8>(clr.r * 255),
+                                                          static_cast<Uint8>(clr.g * 255),
+                                                          static_cast<Uint8>(clr.b * 255)
+            );
+            SDL_SetTextureAlphaMod(bitmap_be->texture[i], static_cast<Uint8>(clr.a * 255));
+        }
+    }
+
 
     sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y)
     {

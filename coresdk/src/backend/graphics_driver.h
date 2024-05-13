@@ -78,6 +78,8 @@ namespace splashkit_lib
     void sk_set_bitmap_pixel(sk_drawing_surface *surface, sk_color clr, int x, int y);
     void sk_refresh_bitmap(sk_drawing_surface *surface);
 
+    void sk_set_bitmap_tint(sk_drawing_surface *surface, sk_color clr);
+
     void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius);
     void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius);
 
