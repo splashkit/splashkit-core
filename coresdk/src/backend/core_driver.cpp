@@ -15,6 +15,7 @@
 #include "text_driver.h"
 #include "logging_driver.h"
 #include "network_driver.h"
+#include "interface_driver.h"
 
 #include <stdlib.h>
 
@@ -82,6 +83,8 @@ namespace splashkit_lib
         _init_key_maps();
 
         open_audio();
+
+        sk_interface_init();
     }
 
     void sk_setup_display(int idx, sk_display &disp)

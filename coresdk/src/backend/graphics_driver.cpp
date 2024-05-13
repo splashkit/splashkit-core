@@ -1262,6 +1262,78 @@ namespace splashkit_lib
 
     }
 
+    void sk_set_bitmap_pixel(sk_drawing_surface *surface, sk_color clr, int x, int y)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        // ensure surface exists
+
+        if (bitmap_be->surface == nullptr)
+        {
+            bitmap_be->surface = SDL_CreateRGBSurfaceWithFormat(0, surface->width, surface->height, 32, SDL_PIXELFORMAT_RGBA8888);
+        }
+
+        // ensure we can write to it
+
+        if (SDL_MUSTLOCK(bitmap_be->surface))
+        {
+            if (SDL_LockSurface(bitmap_be->surface))
+                return;
+        }
+
+        // write to it
+
+        int* pixels = (int*)bitmap_be->surface->pixels;
+        if (x >= 0 && x < surface->width && y >= 0 && y < surface->height)
+        {
+            int index = x + (bitmap_be->surface->pitch * y / 4);
+            pixels[index] = SDL_MapRGBA(bitmap_be->surface->format,
+                                        static_cast<Uint8>(clr.r * 255),
+                                        static_cast<Uint8>(clr.g * 255),
+                                        static_cast<Uint8>(clr.b * 255),
+                                        static_cast<Uint8>(clr.a * 255));
+        }
+    }
+
+    void sk_refresh_bitmap(sk_drawing_surface *surface)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be;
+        bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        // unlock surface
+
+        SDL_UnlockSurface(bitmap_be->surface);
+
+        // recreate all textures from the surface
+
+        for (unsigned int i = 0; i < _sk_num_open_windows; i++)
+        {
+            SDL_Renderer *renderer = _sk_open_windows[i]->renderer;
+
+            SDL_Texture *orig_tex = bitmap_be->texture[i];
+
+            // Create new texture
+            SDL_Texture *tex = SDL_CreateTextureFromSurface(_sk_open_windows[i]->renderer, bitmap_be->surface);
+            bitmap_be->texture[i] = tex;
+
+            // Destroy old
+            SDL_DestroyTexture(orig_tex);
+        }
+
+        // Set drawable to false
+        bitmap_be->drawable = false;
+    }
+
 
     sk_color sk_read_pixel(sk_drawing_surface *surface, int x, int y)
     {
