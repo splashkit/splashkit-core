@@ -67,6 +67,8 @@ namespace splashkit_lib
     void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz);
     void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz);
 
+    void sk_draw_blurred_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height, int blur_radius);
+
     void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
     void sk_fill_triangle(sk_drawing_surface *surface, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
