@@ -1,0 +1,8 @@
+Package: libsplashkit-dev
+Version: 1.0
+Architecture: amd64
+Homepage: https://github.com/splashkit/splashkit-core
+Maintainer: Andrew Cain <andrew.cain@deakin.edu.au>
+Depends: libpng16-16, libcurl4, libsdl2-2.0-0, libsdl2-mixer-2.0-0, libsdl2-gfx-1.0-0, libsdl2-net-2.0-0, libsdl2-ttf-2.0-0, libmikmod3, libncurses6, libbz2-1.0, libflac12, libvorbis0a, libwebp7, libfreetype6
+Description: SplashKit is a beginner's all-purpose software toolkit
+
