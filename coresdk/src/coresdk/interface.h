@@ -635,6 +635,12 @@ namespace splashkit_lib
     void set_interface_text_color(color clr);
 
     /**
+     * Sets color of text drawn directly onto the main window
+     * @param clr                The color to set text drawn on the main window to
+     */
+    void set_interface_root_text_color(color clr);
+
+    /**
      * Sets the interface's border color.
      * @param clr                The color to set borders to
      */

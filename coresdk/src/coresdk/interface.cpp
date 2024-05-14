@@ -27,6 +27,7 @@ namespace splashkit_lib
             float contrast;
         };
 
+        color root_text_color;
         color text_color;
         color border_color;
 
@@ -96,6 +97,8 @@ namespace splashkit_lib
         return style;
     }
 
+
+    // Container stack handling
     enum class panel_type
     {
         panel,
@@ -114,12 +117,14 @@ namespace splashkit_lib
         // is reset
         std::vector<int> layout_widths = {-1};
         int layout_height = 0;
+        bool hasBackground = true;
     };
 
     // default inherited values
     int label_width = 60;
 
     static std::vector<container_info> container_stack;
+    static int filledContainerCount = 0;
     bool errors_occurred = false;
 
     const char* panel_type_to_string(panel_type type)
@@ -170,7 +175,14 @@ namespace splashkit_lib
     void _push_container_stack(bool open, panel_type type, std::string name)
     {
         if (open)
-            container_stack.push_back({type, name});
+        {
+            container_stack.push_back({type, name, get_interface_label_width()});
+            container_stack.back().hasBackground = type == panel_type::panel || type == panel_type::popup;
+
+            if (container_stack.back().hasBackground)
+                filledContainerCount++;
+        }
+
         _update_layout();
         _update_row_layout();
     }
@@ -226,6 +238,10 @@ namespace splashkit_lib
         {
             // If so, pop it and return!
             _pop_container_by_type(container.type);
+
+            if (container_stack.back().hasBackground)
+                filledContainerCount--;
+
             container_stack.pop_back();
             _update_layout();
             return;
@@ -274,6 +290,10 @@ namespace splashkit_lib
         for(iterator i = container_stack.rbegin(); i != correct_container; i++)
         {
             _pop_container_by_type(i->type);
+
+            if (container_stack.back().hasBackground)
+                filledContainerCount--;
+
             container_stack.pop_back();
         }
         _update_layout();
@@ -289,6 +309,15 @@ namespace splashkit_lib
         _update_row_layout();
     }
 
+    void _update_text_style(bool standaloneText = false)
+    {
+        if (standaloneText && filledContainerCount == 0)
+            sk_interface_style_set_text_color(current_interface_style.root_text_color);
+        else
+            sk_interface_style_set_text_color(current_interface_style.text_color);
+    }
+
+
     void draw_interface()
     {
         _interface_sanity_check();
@@ -300,6 +329,10 @@ namespace splashkit_lib
             CLOG(WARNING, "interface") << "\"" << i->name << "\" ( a "<<panel_type_to_string(i->type)<<" ) not closed before drawing! - make sure to call "
                                        << _get_end_function_prefix(i->type) << panel_type_to_string(i->type) << "(\"" << i->name << "\")!";
             _pop_container_by_type(i->type);
+
+            if (container_stack.back().hasBackground)
+                filledContainerCount--;
+
             container_stack.pop_back();
 
             errors_occurred = true;
@@ -575,7 +608,9 @@ namespace splashkit_lib
     {
         _interface_sanity_check();
 
+        _update_text_style(true);
         sk_interface_label(label);
+        _update_text_style();
     }
 
     void label(const string& text, const rectangle& rect)
@@ -599,7 +634,9 @@ namespace splashkit_lib
     {
         _interface_sanity_check();
 
+        _update_text_style(true);
         sk_interface_text(text);
+        _update_text_style();
     }
 
     bool button(const string& label, const string& text)
@@ -767,7 +804,9 @@ namespace splashkit_lib
     {
         _interface_sanity_check();
 
+        _update_text_style(true);
         bool res = sk_interface_checkbox(text, value);
+        _update_text_style();
 
         return res;
     }
@@ -886,8 +925,17 @@ namespace splashkit_lib
         current_interface_style.text_color = clr;
 
         sk_interface_style_set_text_color(current_interface_style.text_color);
+
+        _update_text_style();
     }
 
+    void set_interface_root_text_color(color clr)
+    {
+        current_interface_style.root_text_color = clr;
+
+
+        _update_text_style();
+    }
     void set_interface_border_color(color clr)
     {
         current_interface_style.border_color = clr;
@@ -981,6 +1029,8 @@ namespace splashkit_lib
         set_interface_spacing(style.spacing, style.padding);
         set_interface_border_color(style.border_color);
         set_interface_text_color(style.text_color);
+        set_interface_root_text_color(style.root_text_color);
+        _update_text_style();
     }
 
     void _update_interface_style_from_current_style()
