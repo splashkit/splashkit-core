@@ -163,9 +163,9 @@ namespace splashkit_lib
             break;
             case SHADED_LIGHT_STYLE:
                 if (!user_provided_color)
-                    shadow_color = hsba_color(0.64, 0.47, 0.22, 0.36);
+                    shadow_color = hsba_color(0.0, 0.0, 0.22, 0.12);
                 else
-                    shadow_color = hsba_color(hue, sat, bri*0.5, 0.36);
+                    shadow_color = hsba_color(hue, sat, bri*0.5, 0.12);
 
                 style.panel_shadows = {45, shadow_color, {18,18}};
                 style.element_shadows = {9, shadow_color, {3,3}};
@@ -173,7 +173,7 @@ namespace splashkit_lib
                 _set_interface_colors_auto(style,
                     hsba_color(0, 0, 1, 0.9),           // main color
                     hsba_color(hue, sat*0.2, bri, 0.9), // accent color
-                    0.0, 1.0, 0.0                       //contrast, accent contrast, border contrast
+                    0.0, 1.0, 0.1                       //contrast, accent contrast, border contrast
                 );
             break;
             case FLAT_DARK_STYLE:
