@@ -18,6 +18,21 @@
 namespace splashkit_lib
 {
 
+
+    // this is an awful hack to work around the fact that 'interface.cpp'
+    // has no way to run on initialization, not without directly referring to it
+    // from the backend, which also seems wrong.
+    static struct style_callback_handler
+    {
+        static void initial_style_set(){
+            sk_interface_style_set_font(get_system_font());
+        }
+
+        style_callback_handler() {
+            sk_interface_set_init_style_callback(&initial_style_set);
+        }
+    } set_style_callback_handler;
+
     enum class panel_type
     {
         panel,

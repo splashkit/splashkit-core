@@ -185,6 +185,7 @@ namespace splashkit_lib
         return &ui_atlas;
     }
 
+    static void(*style_init_callback)() = nullptr;
     void sk_interface_init()
     {
         _initialize_button_and_key_map();
@@ -195,6 +196,9 @@ namespace splashkit_lib
         ctx->text_width = _text_width;
         ctx->text_height = _text_height;
 
+        if (style_init_callback)
+            style_init_callback();
+
         // Create custom logger - the default SplashKit is a bit verbose
         // for the messages this wants to be able to output
         el::Logger* interfaceLogger = el::Loggers::getLogger("interface");
@@ -204,6 +208,14 @@ namespace splashkit_lib
         conf.setGlobally(el::ConfigurationType::Filename, "logs/splashkit.log");
 
         el::Loggers::reconfigureLogger("interface", conf);
+    }
+
+    void sk_interface_set_init_style_callback(void(*callback)())
+    {
+        style_init_callback = callback;
+        // if we've already initialized, call back now
+        if (ctx)
+            style_init_callback();
     }
 
     void sk_interface_draw(drawing_options opts)
