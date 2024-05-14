@@ -742,6 +742,13 @@ namespace splashkit_lib
     void set_interface_spacing(int spacing, int padding);
 
     /**
+     * A utility function to show a 'Style Panel', which will allows you to experiment with different interface styles.
+     *
+     * @param initial_rectangle The initial position/size the panel starts off in
+     */
+    void interface_style_panel(const rectangle& initial_rectangle);
+
+    /**
      * Disables the interface temporarily. Elements created after this function will appear disabled and cannot be interacted with.
      */
     void disable_interface();

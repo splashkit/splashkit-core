@@ -48,7 +48,7 @@ void run_ui_test()
         clear_screen(COLOR_WHITE);
 
         // Show a window if it hasn't been closed.
-        if (start_panel("My Window", rectangle_from(100, 100, 240, 186)))
+        if (start_panel("My Window", rectangle_from(300, 4, 240, 186)))
         {
             if (header("Buttons!"))
             {
@@ -163,7 +163,7 @@ void run_ui_test()
         }
 
 
-        if (start_panel("Second Window", rectangle_from(200, 200, 240, 186)))
+        if (start_panel("Second Window", rectangle_from(300, 200, 240, 186)))
         {
             start_inset("TreeView", -25);
                 if (start_treenode("Node1"))
@@ -196,6 +196,8 @@ void run_ui_test()
         }
         val2 = slider(val2, 0, 40, {40, 170, 150, 20});
         text_box_val2 = text_box(text_box_val2, rectangle_from(40, 200, 150, 20));
+
+        interface_style_panel(rectangle_from(0, 600-200, 600, 200));
 
         // Draw the interface
         draw_interface();

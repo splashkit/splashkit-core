@@ -1177,6 +1177,32 @@ namespace splashkit_lib
         _update_interface_style(current_interface_style);
     }
 
+
+    void interface_style_panel(const rectangle& initial_rectangle)
+    {
+        auto& style = current_interface_style;
+        if (start_panel("Interface Style", initial_rectangle))
+        {
+            if (header("Colors (Detailed)"))
+            {
+                style.elements.clr = hsb_color_slider("Main:", style.elements.clr);
+                style.accents.clr = hsb_color_slider("Accent:", style.accents.clr);
+
+                start_custom_layout();
+                split_into_columns(2);
+                    style.elements.contrast = slider("Contrast:", style.elements.contrast, 0, 1);
+                    style.accents.contrast = slider("Accent:", style.accents.contrast, 0, 1);
+                    style.border_color.a = slider("Borders:", style.border_color.a, 0, 1);
+                reset_layout();
+            }
+
+            set_interface_colors_auto(style.elements.clr, style.accents.clr, style.elements.contrast, style.accents.contrast, style.border_color.a);
+            _update_interface_style_from_current_style();
+
+            end_panel("Interface Style");
+        }
+    }
+
     void disable_interface()
     {
         sk_interface_set_enabled(false);
