@@ -285,7 +285,6 @@ namespace splashkit_lib
      */
     bool header(const string& label);
 
-
     /**
      * Creates a label.
      *
@@ -519,6 +518,81 @@ namespace splashkit_lib
      */
     float slider(const float& value, float min_value, float max_value, const rectangle& rect);
 
+    /**
+     * Creates a set of RGBA sliders to adjust a color, with a label.
+     * Returns the updated color value of the slider.
+     *
+     * Example usage:
+     * ```c++
+     * my_color = color_slider("Player Color", my_color);
+     * ```
+     *
+     * @param label             The label to show in front of the slider
+     * @param clr               The current value of the color slider
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        labeled
+     */
+    color color_slider(const string& label, const color& clr);
+
+    /**
+     * Creates a set of RGBA sliders to adjust a color.
+     * Returns the updated color value of the slider.
+     *
+     * @param clr               The current value of the color slider
+     * @return                  The updated value of the slider
+     */
+    color color_slider(const color& clr);
+
+    /**
+     * Creates a set of RGBA sliders to adjust a color, at a specific position on screen.
+     * Returns the updated color value of the slider.
+     *
+     * @param clr               The current value of the color slider
+     * @param rect              The rectangle to display the slider in.
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        at_position
+     */
+    color color_slider(const color& clr, const rectangle& rect);
+
+    /**
+     * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, with a label.
+     * Returns the updated color value of the slider.
+     *
+     * Example usage:
+     * ```c++
+     * my_color = hsb_color_slider("Player Color", my_color);
+     * ```
+     *
+     * @param label             The label to show in front of the slider
+     * @param clr               The current value of the color slider
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        labeled
+     */
+    color hsb_color_slider(const string& label, const color& clr);
+
+    /**
+     * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color.
+     * Returns the updated color value of the slider.
+     *
+     * @param clr               The current value of the color slider
+     * @return                  The updated value of the slider
+     */
+    color hsb_color_slider(const color& clr);
+
+    /**
+     * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, at a specific position on screen.
+     * Returns the updated color value of the slider.
+     *
+     * @param clr               The current value of the color slider
+     * @param rect              The rectangle to display the slider in.
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        at_position
+     */
+    color hsb_color_slider(const color& clr, const rectangle& rect);
 
     /**
      * Creates a number entry box with a label.

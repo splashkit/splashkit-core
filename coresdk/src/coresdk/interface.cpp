@@ -63,6 +63,12 @@ namespace splashkit_lib
     } set_style_callback_handler;
 
     // static convenience functions for adjusting colors when styling
+    static color hsba_color(double hue, double saturation, double brightness, double alpha){
+        color res = hsb_color(hue, saturation, brightness);
+        res.a = alpha;
+        return res;
+    }
+
     static color multiply_alpha(color clr, float modulation)
     {
         clr.a *= modulation;
@@ -856,6 +862,123 @@ namespace splashkit_lib
         sk_interface_set_layout_next(rect, true);
 
         return slider(value, min_value, max_value);
+    }
+
+    color _color_slider(const color& clr, bool hsb)
+    {
+        _interface_sanity_check();
+        enter_column();
+
+        sk_interface_push_ptr_id((void*)&clr);
+
+        color temp_value = clr;
+        if (hsb)
+        {
+            temp_value =
+            {
+                (float)hue_of(temp_value),
+                (float)saturation_of(temp_value),
+                (float)brightness_of(temp_value),
+                temp_value.a
+            };
+        }
+
+        start_custom_layout();
+
+        split_into_columns_relative(5, 0.1);
+
+        set_interface_label_width(20);
+
+        bool already_disabled = !interface_enabled();
+
+        // disable hue slider if can't be set
+        if (hsb && (temp_value.g == 0 || temp_value.b == 0))
+        {
+            disable_interface();
+            temp_value.r = 0.0; // hue_of returns 0.83 for some reason
+        }
+
+        temp_value.r = slider(hsb?"h:":"r:", temp_value.r, 0, 1);
+
+        // disable saturation slider if can't be set
+        if ((hsb && temp_value.b == 0) || already_disabled)
+            disable_interface();
+        else
+            enable_interface();
+
+        temp_value.g = slider(hsb?"s:":"g:", temp_value.g, 0, 1);
+
+        if (!already_disabled)
+            enable_interface();
+
+        temp_value.b = slider("b:", temp_value.b, 0, 1);
+        temp_value.a = slider("a:", temp_value.a, 0, 1);
+
+        temp_value = hsb ? hsba_color(temp_value.r, temp_value.g, temp_value.b, temp_value.a) : temp_value;
+
+        sk_interface_color_box(temp_value);
+
+        sk_interface_pop_id();
+
+        leave_column();
+
+        return temp_value;
+    }
+
+    color color_slider(const string& label, const color& clr)
+    {
+        _interface_sanity_check();
+
+        enter_column();
+        _two_column_layout();
+
+        splashkit_lib::label(label);
+        color res = color_slider(clr);
+
+        leave_column();
+
+        return res;
+    }
+
+    color color_slider(const color& clr)
+    {
+        return _color_slider(clr, false);
+    }
+
+    color color_slider(const color& clr, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return _color_slider(clr, false);
+    }
+
+    color hsb_color_slider(const string& label, const color& clr)
+    {
+        _interface_sanity_check();
+
+        enter_column();
+        _two_column_layout();
+
+        splashkit_lib::label(label);
+        color res = hsb_color_slider(clr);
+
+        leave_column();
+
+        return res;
+    }
+
+    color hsb_color_slider(const color& clr)
+    {
+        return _color_slider(clr, true);
+    }
+
+    color hsb_color_slider(const color& clr, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return _color_slider(clr, true);
     }
 
     float number_box(const string& label, const float& value, float step)

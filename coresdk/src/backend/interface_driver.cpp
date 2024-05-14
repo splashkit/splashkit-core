@@ -595,6 +595,13 @@ namespace splashkit_lib
             return temp_value;
     }
 
+    void sk_interface_color_box(color clr)
+    {
+        mu_Rect rect = mu_layout_next(ctx);
+        mu_draw_rect(ctx, rect, to_mu(clr));
+        mu_draw_box(ctx, rect, to_mu(COLOR_BLACK));
+    }
+
     bool sk_interface_changed()
     {
         return element_changed;

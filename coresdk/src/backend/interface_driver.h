@@ -63,6 +63,8 @@ namespace splashkit_lib
     float sk_interface_number(const float& value, float step);
     std::string sk_interface_text_box(const std::string& value);
 
+    void sk_interface_color_box(color clr);
+
     bool sk_interface_changed();
     bool sk_interface_confirmed();
 
