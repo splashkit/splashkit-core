@@ -519,7 +519,7 @@ namespace splashkit_lib
         enter_column();
         _two_column_layout();
 
-        sk_interface_label(label);
+        splashkit_lib::label(label);
         bool res = button(text);
 
         leave_column();
@@ -647,7 +647,7 @@ namespace splashkit_lib
         enter_column();
         _two_column_layout();
 
-        sk_interface_label(label);
+        splashkit_lib::label(label);
         bool res = checkbox(text, value);
 
         leave_column();
@@ -669,7 +669,7 @@ namespace splashkit_lib
         enter_column();
         _two_column_layout();
 
-        sk_interface_label(label);
+        splashkit_lib::label(label);
         float res = slider(value, min_value, max_value);
 
         leave_column();
@@ -691,7 +691,7 @@ namespace splashkit_lib
         enter_column();
         _two_column_layout();
 
-        sk_interface_label(label);
+        splashkit_lib::label(label);
         float res = number_box(value, step);
 
         leave_column();
@@ -713,7 +713,7 @@ namespace splashkit_lib
         enter_column();
         _two_column_layout();
 
-        sk_interface_label(label);
+        splashkit_lib::label(label);
         std::string res = text_box(value);
 
         leave_column();
