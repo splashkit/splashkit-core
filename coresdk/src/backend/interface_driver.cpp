@@ -330,6 +330,9 @@ namespace splashkit_lib
         registered_icons_this_frame.clear();
         ctx->style->font = _add_font_size_pair(current_font, current_font_size);
 
+        // if re-starting without properly ending, end first
+        if (ctx_started) sk_interface_end();
+
         mu_begin(ctx);
         ctx_started = true;
 
