@@ -51,6 +51,9 @@ namespace splashkit_lib
     int sk_interface_get_layout_width();
     int sk_interface_get_layout_height();
 
+    void sk_interface_push_ptr_id(void* ptr);
+    void sk_interface_pop_id();
+
     bool sk_interface_header(const string& label);
     void sk_interface_label(const string& label);
     void sk_interface_text(const string& text);

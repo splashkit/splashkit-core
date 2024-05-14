@@ -463,9 +463,14 @@ namespace splashkit_lib
         element_confirmed = result & MU_RES_SUBMIT;
     }
 
-    void push_ptr_id(void* ptr)
+    void sk_interface_push_ptr_id(void* ptr)
     {
         mu_push_id(ctx, &ptr, sizeof(ptr));
+    }
+
+    void sk_interface_pop_id()
+    {
+        mu_pop_id(ctx);
     }
 
     bool sk_interface_header(const string& label)
@@ -491,34 +496,34 @@ namespace splashkit_lib
 
     bool sk_interface_checkbox(const string& label, const bool& value)
     {
-        push_ptr_id((void*)&value);
+        sk_interface_push_ptr_id((void*)&value);
 
         int temp_value = value;
         update_elements_changed(mu_checkbox(ctx, label.c_str(), &temp_value));
 
-        mu_pop_id(ctx);
+        sk_interface_pop_id();
         return temp_value;
     }
 
     float sk_interface_slider(const float& value, float min_value, float max_value)
     {
-        push_ptr_id((void*)&value);
+        sk_interface_push_ptr_id((void*)&value);
 
         float temp_value = value;
         update_elements_changed(mu_slider(ctx, &temp_value, min_value, max_value));
 
-        mu_pop_id(ctx);
+        sk_interface_pop_id();
         return temp_value;
     }
 
     float sk_interface_number(const float& value, float step)
     {
-        push_ptr_id((void*)&value);
+        sk_interface_push_ptr_id((void*)&value);
 
         float temp_value = value;
         update_elements_changed(mu_number(ctx, &temp_value, step));
 
-        mu_pop_id(ctx);
+        sk_interface_pop_id();
         return temp_value;
     }
 
