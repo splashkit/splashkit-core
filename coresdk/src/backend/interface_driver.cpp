@@ -149,7 +149,12 @@ namespace splashkit_lib
 
     mu_Color to_mu(color col)
     {
-        return {(unsigned char)(col.r * 255), (unsigned char)(col.g * 255), (unsigned char)(col.b * 255), (unsigned char)(col.a * 255)};
+        return {
+            (unsigned char)((col.r>1.f?1.f:col.r) * 255),
+            (unsigned char)((col.g>1.f?1.f:col.g) * 255),
+            (unsigned char)((col.b>1.f?1.f:col.b) * 255),
+            (unsigned char)((col.a>1.f?1.f:col.a) * 255)
+        };
     }
 
     rectangle from_mu(mu_Rect rect)
