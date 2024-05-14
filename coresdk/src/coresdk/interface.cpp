@@ -331,6 +331,16 @@ namespace splashkit_lib
         _push_container_stack(true, panel_type::inset, name);
     }
 
+    void start_inset(const string& name, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        sk_interface_start_inset(name);
+
+        _push_container_stack(true, panel_type::inset, name);
+    }
+
     void end_inset(const string& name)
     {
         _interface_sanity_check();
@@ -505,6 +515,23 @@ namespace splashkit_lib
         sk_interface_label(label);
     }
 
+    void label(const string& text, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+
+        label(text);
+    }
+
+    void paragraph(const string& text, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        paragraph(text);
+    }
+
     void paragraph(const string& text)
     {
         _interface_sanity_check();
@@ -525,6 +552,14 @@ namespace splashkit_lib
         leave_column();
 
         return res;
+    }
+
+    bool button(const string& text, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return button(text);
     }
 
     bool button(const string& text)
@@ -640,6 +675,16 @@ namespace splashkit_lib
         return bitmap_button(label, bmp, option_defaults());
     }
 
+    bool bitmap_button(bitmap bmp, const rectangle& rect, drawing_options opts)
+    {
+        return _bitmap_button_internal(bmp, &rect, opts);
+    }
+
+    bool bitmap_button(bitmap bmp, const rectangle& rect)
+    {
+        return bitmap_button(bmp, rect, option_defaults());
+    }
+
     bool checkbox(const string& label, const string& text, const bool& value)
     {
         _interface_sanity_check();
@@ -659,7 +704,17 @@ namespace splashkit_lib
     {
         _interface_sanity_check();
 
-        return sk_interface_checkbox(text, value);
+        bool res = sk_interface_checkbox(text, value);
+
+        return res;
+    }
+
+    bool checkbox(const string& text, const bool& value, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return checkbox(text, value);
     }
 
     float slider(const string& label, const float& value, float min_value, float max_value)
@@ -684,6 +739,15 @@ namespace splashkit_lib
         return sk_interface_slider(value, min_value, max_value);
     }
 
+    float slider(const float& value, float min_value, float max_value, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+
+        return slider(value, min_value, max_value);
+    }
+
     float number_box(const string& label, const float& value, float step)
     {
         _interface_sanity_check();
@@ -706,6 +770,14 @@ namespace splashkit_lib
         return sk_interface_number(value, step);
     }
 
+    float number_box(const float& value, float step, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return number_box(value, step);
+    }
+
     std::string text_box(const string& label, const std::string& value)
     {
         _interface_sanity_check();
@@ -719,6 +791,14 @@ namespace splashkit_lib
         leave_column();
 
         return res;
+    }
+
+    std::string text_box(const string& value, const rectangle& rect)
+    {
+        _interface_sanity_check();
+
+        sk_interface_set_layout_next(rect, true);
+        return text_box(value);
     }
 
     std::string text_box(const std::string& value)

@@ -167,6 +167,9 @@ namespace splashkit_lib
         return {col.r / 255.0f, col.g / 255.0f, col.b / 255.0f, col.a / 255.0f};
     }
 
+    // static utility functions straight from microui.c - used for consistency
+    static mu_Rect unclipped_rect = { 0, 0, 0x1000000, 0x1000000 };
+
     // Delay loading of the ui atlas until it's actually needed
     // otherwise we'll trigger creating the 'initial window' unnecessarily
     sk_drawing_surface* get_ui_atlas()
@@ -329,10 +332,21 @@ namespace splashkit_lib
 
         mu_begin(ctx);
         ctx_started = true;
+
+        // create invisible root window, so we can draw directly on the main window
+        mu_begin_window_ex(ctx, "", unclipped_rect,
+            MU_OPT_NOFRAME|MU_OPT_NOTITLE|MU_OPT_NOCLOSE|MU_OPT_NORESIZE|
+            MU_OPT_NOINTERACT|MU_OPT_NOSCROLL
+        );
+        mu_get_current_container(ctx)->zindex = -1;
+        sk_interface_set_layout(1,{0},0);
     }
 
     void sk_interface_end()
     {
+        // end root window
+        mu_end_window(ctx);
+
         mu_end(ctx);
         ctx_started = false;
 

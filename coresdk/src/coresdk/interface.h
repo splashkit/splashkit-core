@@ -138,6 +138,19 @@ namespace splashkit_lib
     void start_inset(const string& name, int height);
 
     /**
+     * Starts the creation of an inset area inside an arbitrary rectangle.
+     *
+     * The function **must** be accompanied by a call to `end_inset`
+     * with the same name.
+     *
+     * @param name              The name of the area
+     * @param rect              The rectangle for the inset
+     *
+     * @attribute suffix        at_position
+     */
+    void start_inset(const string& name, const rectangle& rect);
+
+    /**
      * Finishes the creation of an inset area.
      *
      * @param name              The area's name - must match with `start_inset`
@@ -281,11 +294,31 @@ namespace splashkit_lib
     void label(const string& label);
 
     /**
+     * Creates a label at a specific position on screen.
+     *
+     * @param label             The label to show
+     * @param rect              The rectangle to display the label in
+     *
+     * @attribute suffix        at_position
+     */
+    void label(const string& label, const rectangle& rect);
+
+    /**
      * Creates a paragraph of text that auto-wraps.
      *
      * @param text              The text to show
      */
     void paragraph(const string& text);
+
+    /**
+     * Creates a paragraph of text that auto-wraps at a specific position on screen.
+     *
+     * @param text              The text to show
+     * @param rect              The rectangle to display the label in
+     *
+     * @attribute suffix        at_position
+     */
+    void paragraph(const string& text, const rectangle& rect);
 
     /**
      * Creates a button with a label.
@@ -316,6 +349,18 @@ namespace splashkit_lib
      * @return                  Whether the button was clicked
      */
     bool button(const string& text);
+
+    /**
+     * Creates a button at a specific position on screen.
+     * Returns whether the button was clicked.
+     *
+     * @param text              The text to show inside the button
+     * @param rect              The rectangle to display the button in
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        at_position
+     */
+    bool button(const string& text, const rectangle& rect);
 
     /**
      * Creates a button with a bitmap in it and a label.
@@ -365,6 +410,31 @@ namespace splashkit_lib
     bool bitmap_button(bitmap bmp, drawing_options opts);
 
     /**
+     * Creates a button with a bitmap in it at a specific position on screen.
+     * Returns whether the button was clicked.
+     *
+     * @param bmp               The bitmap to show inside the button
+     * @param rect              The rectangle to display the button in
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        at_position
+     */
+    bool bitmap_button(bitmap bmp, const rectangle& rect);
+
+    /**
+     * Creates a button with a bitmap in it at a specific position on screen.
+     * Returns whether the button was clicked.
+     *
+     * @param bmp               The bitmap to show inside the button
+     * @param rect              The rectangle to display the button in
+     * @param opts              The drawing options
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        at_position_with_options
+     */
+    bool bitmap_button(bitmap bmp, const rectangle& rect, drawing_options opts);
+
+    /**
      * Creates a checkbox with a label.
      * Returns the updated value of the checkbox.
      *
@@ -391,6 +461,19 @@ namespace splashkit_lib
      * @return                  The updated value of the checkbox
      */
     bool checkbox(const string& text, const bool& value);
+
+    /**
+     * Creates a checkbox at a specific position on screen.
+     * Returns the updated value of the checkbox.
+     *
+     * @param text              The text to show next to the checkbox
+     * @param value             The current value of the checkbox
+     * @param rect              The rectangle to display the checkbox in
+     * @return                  The updated value of the checkbox
+     *
+     * @attribute suffix        at_position
+     */
+    bool checkbox(const string& text, const bool& value, const rectangle& rect);
 
     /**
      * Creates a slider with a label.
@@ -422,6 +505,20 @@ namespace splashkit_lib
      */
     float slider(const float& value, float min_value, float max_value);
 
+    /**
+     * Creates a slider at a specific position on screen.
+     * Returns the updated value of the slider.
+     *
+     * @param value             The current value of the slider
+     * @param min_value         The minimum value of the slider
+     * @param max_value         The maximum value of the slider
+     * @param rect              The rectangle to display the slider in
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        at_position
+     */
+    float slider(const float& value, float min_value, float max_value, const rectangle& rect);
+
 
     /**
      * Creates a number entry box with a label.
@@ -452,6 +549,19 @@ namespace splashkit_lib
     float number_box(const float& value, float step);
 
     /**
+     * Creates a number entry box at a specific position on screen.
+     * Returns the updated value of the number box.
+     *
+     * @param value             The current value of the number box
+     * @param step              The amount incremented when dragging on the box
+     * @param rect              The rectangle to display the slider in
+     * @return                  The updated value of the slider
+     *
+     * @attribute suffix        at_position
+     */
+    float number_box(const float& value, float step, const rectangle& rect);
+
+    /**
      * Creates a text entry box with a label.
      * Returns the updated value of the text box.
      *
@@ -469,7 +579,22 @@ namespace splashkit_lib
     string text_box(const string& label, const string& value);
 
     /**
+     * Creates a text entry box at a specific position on screen.
      * Returns the updated value of the text box.
+     *
+     * Example usage:
+     * ```c++
+     * my_string = text_box("Name", my_string);
+     * ```
+     *
+     * @param value             The current value of the text box
+     * @param rect              The rectangle to display the button in
+     * @return                  The updated value of the text box
+     *
+     * @attribute suffix        at_position
+     */
+    string text_box(const string& value, const rectangle& rect);
+
     /**
      * Creates a text entry box with a label.
      * Returns the updated value of the text box.
