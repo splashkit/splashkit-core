@@ -693,6 +693,22 @@ namespace splashkit_lib
     bool last_element_confirmed();
 
     /**
+     * Sets the interface style to one of the presets in the interface_style enum.
+     * @param style              The preset style to use
+     */
+    void set_interface_style(interface_style style);
+
+    /**
+     * Sets the interface style to one of the presets in the interface_style enum.
+     * Also accepts a color used to customize the interface.
+     * @param style              The preset style to use
+     * @param clr                The color to style the interface after
+     *
+     * @attribute suffix        with_color
+     */
+    void set_interface_style(interface_style style, color clr);
+
+    /**
      * A convenience function to set the majority of the interface's colors in one go.
      * Some colors will be automatically chosen based on the parameters (such as text color).
      * @param main_clr           The main color of the interface - also decides if the interface is light or dark mode

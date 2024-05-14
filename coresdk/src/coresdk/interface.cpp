@@ -53,9 +53,9 @@ namespace splashkit_lib
     };
 
     void _set_interface_colors_auto(interface_style_settings& style, color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast);
-    interface_style_settings _get_interface_style();
+    interface_style_settings _get_interface_style(interface_style style, color clr = {0,0,0,-1} /*signal default color*/);
 
-    interface_style_settings current_interface_style = _get_interface_style();
+    interface_style_settings current_interface_style = _get_interface_style(SHADED_DARK_STYLE);
 
     void _update_interface_style_from_current_style();
 
@@ -107,21 +107,119 @@ namespace splashkit_lib
         return {valr, valg, valb, clr.a};
     }
 
-    interface_style_settings _get_interface_style()
+    interface_style_settings _get_interface_style(interface_style style_name, color clr)
     {
         interface_style_settings style;
 
         style.padding = 5;
         style.spacing = 4;
 
-        style.panel_shadows = {45, hsba_color(0.0, 0.0, 0.0, 0.36), {18,18}};
-        style.element_shadows = {9, hsba_color(0.0, 0.0, 0.0, 0.36), {3,3}};
+        bool user_provided_color = clr.a != -1;
 
-        _set_interface_colors_auto(style,
-            hsb_color(0.0, 0.0, 0.21),     // main color
-            hsb_color(0.0, 0.0, 0.4),      // accent color
-            1.0, 1.0, 1.0                  //contrast, accent contrast, border contrast
-        );
+        if (!user_provided_color)
+        {
+            switch (style_name)
+            {
+                case SHADED_DARK_STYLE:
+                    clr = hsba_color(0.0, 0.0, 0.5f, 1.0f);
+                break;
+                case SHADED_LIGHT_STYLE:
+                    clr = COLOR_WHITE;
+                break;
+                case FLAT_DARK_STYLE:
+                    clr = hsba_color(0.0, 0.0, 0.5f, 1.0f);
+                break;
+                case FLAT_LIGHT_STYLE:
+                    clr = COLOR_WHITE;
+                break;
+                case BUBBLE:
+                    clr = COLOR_WHITE;
+                break;
+                case BUBBLE_MULTICOLORED:
+                    clr = hsba_color(0.62, 0.39, 1.0f, 1.0f);
+                break;
+            }
+        }
+
+        float hue = hue_of(clr);
+        float sat = saturation_of(clr);
+        float bri = brightness_of(clr);
+        color shadow_color;
+
+        switch (style_name)
+        {
+            case SHADED_DARK_STYLE:
+                style.panel_shadows = {45, hsba_color(0.0, 0.0, 0.0, 0.36), {18,18}};
+                style.element_shadows = {9, hsba_color(0.0, 0.0, 0.0, 0.36), {3,3}};
+
+                if (user_provided_color)
+                    bri *= 0.5;
+
+                _set_interface_colors_auto(style,
+                    hsb_color(hue, sat*0.3, bri*0.42), // main color
+                    hsb_color(hue, sat, bri*0.6),      // accent color
+                    1.0, 1.0, 1.0                      //contrast, accent contrast, border contrast
+                );
+            break;
+            case SHADED_LIGHT_STYLE:
+                if (!user_provided_color)
+                    shadow_color = hsba_color(0.64, 0.47, 0.22, 0.36);
+                else
+                    shadow_color = hsba_color(hue, sat, bri*0.5, 0.36);
+
+                style.panel_shadows = {45, shadow_color, {18,18}};
+                style.element_shadows = {9, shadow_color, {3,3}};
+
+                _set_interface_colors_auto(style,
+                    hsba_color(0, 0, 1, 0.9),           // main color
+                    hsba_color(hue, sat*0.2, bri, 0.9), // accent color
+                    0.0, 1.0, 0.0                       //contrast, accent contrast, border contrast
+                );
+            break;
+            case FLAT_DARK_STYLE:
+                style.panel_shadows = {0, hsba_color(0.0, 0.0, 0.0, 0.0), {0,0}};
+                style.element_shadows = style.panel_shadows;
+
+                if (user_provided_color)
+                    bri *= 0.5;
+
+                _set_interface_colors_auto(style,
+                    hsb_color(hue, sat*0.3, bri*0.42), // main color
+                    hsb_color(hue, sat, bri*0.6),      // accent color
+                    1.0, 1.0, 1.0                      //contrast, accent contrast, border contrast
+                );
+            break;
+            case FLAT_LIGHT_STYLE:
+                style.panel_shadows = {0, hsba_color(0.0, 0.0, 0.0, 0.0), {0,0}};
+                style.element_shadows = style.panel_shadows;
+
+                _set_interface_colors_auto(style,
+                    hsba_color(0.83, 0, 1, 0.9),    // main color
+                    hsba_color(hue, sat, bri, 0.9), // accent color
+                    0.0, 1.0, 1.0                   //contrast, accent contrast, border contrast
+                );
+            break;
+            case BUBBLE:
+                style.panel_shadows = {65, hsba_color(hue, sat, bri*0.65, 0.41), {12,12}};
+                style.element_shadows = {15, hsba_color(hue, sat, bri*0.65, 0.41), {6,6}};
+
+                _set_interface_colors_auto(style,
+                    hsba_color(hue, sat*0.5, bri, 0.18),        // main color
+                    hsba_color(hue, sat*0.5, bri*0.66, 0.45),   // accent color
+                    1.0, 0.8, 0.6                               //contrast, accent contrast, border contrast
+                );
+            break;
+            case BUBBLE_MULTICOLORED:
+                style.panel_shadows = {65, hsba_color(std::fmod(hue-0.05, 1.0), sat, bri*0.65, 0.41), {12,12}};
+                style.element_shadows = {15, hsba_color(std::fmod(hue-0.05, 1.0), sat, bri*0.65, 0.41), {6,6}};
+
+                _set_interface_colors_auto(style,
+                    hsba_color(std::fmod(hue+0.1, 1.0), sat*0.5, bri, 0.18),      // main color
+                    hsba_color(std::fmod(hue+0.1, 1.0), sat*0.5, bri*0.66, 0.45), // accent color
+                    1.0, 0.8, 0.6                                                 //contrast, accent contrast, border contrast
+                );
+            break;
+        }
 
         return style;
     }
@@ -1226,12 +1324,48 @@ namespace splashkit_lib
         _update_interface_style(current_interface_style);
     }
 
+    void set_interface_style(interface_style style, color clr)
+    {
+        _update_interface_style(_get_interface_style(style, clr));
+    }
+
+    void set_interface_style(interface_style style)
+    {
+        _update_interface_style(_get_interface_style(style));
+    }
 
     void interface_style_panel(const rectangle& initial_rectangle)
     {
         auto& style = current_interface_style;
         if (start_panel("Interface Style", initial_rectangle))
         {
+            static color user_color = hsba_color(0.62, 0.39, 1.0f, 1.0f);
+            static bool use_user_color = false;
+            bool already_disabled = !interface_enabled();
+
+            start_custom_layout();
+                add_column(100);
+                add_column(-1);
+                use_user_color = checkbox("Use color", use_user_color);
+
+                if (!use_user_color && !already_disabled)
+                    disable_interface();
+                user_color = hsb_color_slider(user_color);
+                if (!already_disabled)
+                    enable_interface();
+            reset_layout();
+
+            start_custom_layout();
+            split_into_columns(6);
+                color user_color_resolved = use_user_color ? user_color : (color){0,0,0,-1};
+                if (button("Shaded Dark")) set_interface_style(SHADED_DARK_STYLE, user_color_resolved);
+                if (button("Flat Dark")) set_interface_style(FLAT_DARK_STYLE, user_color_resolved);
+                if (button("Shaded Light")) set_interface_style(SHADED_LIGHT_STYLE, user_color_resolved);
+                if (button("Flat Light")) set_interface_style(FLAT_LIGHT_STYLE, user_color_resolved);
+                if (button("Bubble")) set_interface_style(BUBBLE, user_color_resolved);
+                if (button("Bubble Multi-color")) set_interface_style(BUBBLE_MULTICOLORED, user_color_resolved);
+            reset_layout();
+
             if (header("Colors (Detailed)"))
             {
                 style.elements.clr = hsb_color_slider("Main:", style.elements.clr);
