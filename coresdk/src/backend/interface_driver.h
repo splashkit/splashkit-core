@@ -35,10 +35,17 @@ namespace splashkit_lib
     void sk_interface_open_popup(const string& name);
 
     void sk_interface_set_layout(int items, int* widths, int height);
+    void sk_interface_set_layout_next(const rectangle& rect, bool relative);
+    void sk_interface_set_layout_width(int width);
+    void sk_interface_set_layout_height(int height);
+
     void sk_interface_start_column();
     void sk_interface_end_column();
+
     int sk_interface_get_container_width();
     int sk_interface_get_container_height();
+    int sk_interface_get_layout_width();
+    int sk_interface_get_layout_height();
 
     bool sk_interface_header(const string& label);
     void sk_interface_label(const string& label);
@@ -60,5 +67,8 @@ namespace splashkit_lib
     void sk_interface_mouseup(int x, int y, int button);
     void sk_interface_keydown(int key);
     void sk_interface_keyup(int key);
+
+    int sk_interface_style_get_padding();
+    int sk_interface_style_get_spacing();
 }
 #endif

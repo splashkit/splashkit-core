@@ -59,6 +59,14 @@ namespace splashkit_lib
      */
     void set_interface_label_width(int width);
 
+    /**
+     * Returns the width of element labels.
+     *
+     * Default is 60 pixels.
+     *
+     * @return                   The width of labels
+     */
+    int get_interface_label_width();
 
     /**
      * Starts the creation of a draggable panel with a title bar.
@@ -196,6 +204,37 @@ namespace splashkit_lib
      * @param width             Percentage of the container's width (between 0 and 1)
      */
     void add_column_relative(double width);
+
+    /**
+     * Adds `count` columns to the current layout, with equal widths
+     *
+     * @param count             Number of columns to add
+     */
+    void split_into_columns(int count);
+
+    /**
+     * Adds `count` columns to the current layout, with equal widths.
+	 * Has extra parameter `last_width`, which lets you specify a specific
+	 * width (in pixels) for the last column.
+     *
+     * @param count             Number of columns to add
+     * @param last_width        The width of the last column in pixels
+     *
+     * @attribute suffix        with_last_width
+     */
+    void split_into_columns(int count, int last_width);
+
+    /**
+     * Adds `count` columns to the current layout, with equal widths.
+	 * Has extra parameter `last_width`, which lets you specify a specific
+	 * width (relative to the width of the container, between 0 and 1) for the last column.
+     *
+     * @param count             Number of columns to add
+     * @param last_width        The width of the last column as percentage of the container's width (between 0 and 1)
+     *
+     * @attribute suffix        with_last_width
+     */
+    void split_into_columns_relative(int count, double last_width);
 
     /**
      * Sets the height of each row in the interface in pixels.

@@ -17,6 +17,7 @@
 
 namespace splashkit_lib
 {
+
     enum class panel_type
     {
         panel,
@@ -30,10 +31,14 @@ namespace splashkit_lib
     {
         panel_type type;
         std::string name;
+        // is inherited
+        int label_width = 60;
+        // is reset
         std::vector<int> layout_widths = {-1};
         int layout_height = 0;
     };
 
+    // default inherited values
     int label_width = 60;
 
     static std::vector<container_info> container_stack;
@@ -67,7 +72,17 @@ namespace splashkit_lib
         }
     }
 
+    // updates the immediate layout settings - cannot update row widths
     void _update_layout()
+    {
+        if (container_stack.size() == 0) return;
+
+        sk_interface_set_layout_height(container_stack.back().layout_height);
+    }
+
+    // updates the layout of the row - will force to a new row
+    // if row has already started being used.
+    void _update_row_layout()
     {
         if (container_stack.size() == 0) return;
 
@@ -79,6 +94,7 @@ namespace splashkit_lib
         if (open)
             container_stack.push_back({type, name});
         _update_layout();
+        _update_row_layout();
     }
 
     const char* _get_end_function_prefix(panel_type type)
@@ -133,6 +149,7 @@ namespace splashkit_lib
             // If so, pop it and return!
             _pop_container_by_type(container.type);
             container_stack.pop_back();
+            _update_layout();
             return;
         }
 
@@ -181,6 +198,7 @@ namespace splashkit_lib
             _pop_container_by_type(i->type);
             container_stack.pop_back();
         }
+        _update_layout();
     }
 
     void _two_column_layout()
@@ -188,9 +206,9 @@ namespace splashkit_lib
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
-        container_stack.back().layout_widths.push_back(label_width);
+        container_stack.back().layout_widths.push_back(get_interface_label_width());
         container_stack.back().layout_widths.push_back(-1);
-        _update_layout();
+        _update_row_layout();
     }
 
     void draw_interface()
@@ -235,7 +253,18 @@ namespace splashkit_lib
 
     void set_interface_label_width(int width)
     {
-        label_width = width;
+        if (container_stack.size() == 0)
+            label_width = width;
+        else
+            container_stack.back().label_width = width;
+    }
+
+    int get_interface_label_width()
+    {
+        if (container_stack.size() == 0)
+            return label_width;
+        else
+            return container_stack.back().label_width;
     }
 
     bool start_panel(const string& name, rectangle initial_rectangle)
@@ -328,6 +357,7 @@ namespace splashkit_lib
         container_stack.back().layout_widths.clear();
         container_stack.back().layout_widths.push_back(-1);
         _update_layout();
+        _update_row_layout();
     }
 
     void single_line_layout()
@@ -337,7 +367,7 @@ namespace splashkit_lib
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
-        _update_layout();
+        _update_row_layout();
     }
 
     void start_custom_layout()
@@ -347,7 +377,7 @@ namespace splashkit_lib
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.clear();
-        _update_layout();
+        _update_row_layout();
     }
 
     void add_column(int width)
@@ -357,19 +387,65 @@ namespace splashkit_lib
         if (container_stack.size() == 0) return;
 
         container_stack.back().layout_widths.push_back(width);
-        _update_layout();
+        _update_row_layout();
     }
 
     void add_column_relative(double width)
+    {
+        if (width == -1) // handle -1 special case
+            return add_column(-1);
+
+        _interface_sanity_check();
+
+        if (container_stack.size() == 0) return;
+
+        int w = sk_interface_get_layout_width();
+        int p = sk_interface_style_get_padding();
+
+        container_stack.back().layout_widths.push_back((int)(w * width) - p);
+        _update_row_layout();
+    }
+
+    void split_into_columns(int count)
+    {
+        split_into_columns(count, -1);
+    }
+
+    void split_into_columns_relative(int count, double last_width)
+    {
+        int w = sk_interface_get_layout_width();
+
+        split_into_columns(count, w * last_width);
+    }
+
+    void split_into_columns(int count, int last_width)
     {
         _interface_sanity_check();
 
         if (container_stack.size() == 0) return;
 
-        int w = sk_interface_get_container_width();
+        int w = sk_interface_get_layout_width();
+        int p = sk_interface_style_get_padding();
 
-        container_stack.back().layout_widths.push_back((int)(w * width));
-        _update_layout();
+        if (last_width > 0)
+        {
+            w -= last_width;
+
+            if (count > 1)
+                w /= count-1;
+        }
+        else
+        {
+            w /= count;
+        }
+
+        for (int i = 0; i < count-1 ; i ++)
+        {
+            container_stack.back().layout_widths.push_back(w - p);
+        }
+        container_stack.back().layout_widths.push_back(-1);
+
+        _update_row_layout();
     }
 
     void set_layout_height(int height)
@@ -403,7 +479,7 @@ namespace splashkit_lib
         _interface_sanity_check();
 
         bool open = sk_interface_header(label);
-        _update_layout();
+
         return open;
     }
 

@@ -337,6 +337,21 @@ namespace splashkit_lib
         mu_layout_row(ctx, items, widths, height);
     }
 
+    void sk_interface_set_layout_next(const rectangle& rect, bool relative)
+    {
+        mu_layout_set_next(ctx, to_mu(rect), relative ? 1 : 2);/*see microui.c line 527*/
+    }
+
+    void sk_interface_set_layout_width(int width)
+    {
+        mu_layout_width(ctx, width);
+    }
+
+    void sk_interface_set_layout_height(int height)
+    {
+        mu_layout_height(ctx, height);
+    }
+
     void sk_interface_start_column()
     {
         mu_layout_begin_column(ctx);
@@ -355,6 +370,20 @@ namespace splashkit_lib
     int sk_interface_get_container_height()
     {
         return mu_get_current_container(ctx)->body.h;
+    }
+
+    int sk_interface_get_layout_width()
+    {
+        if (ctx->layout_stack.idx <= 0) return 0;
+
+        return ctx->layout_stack.items[ctx->layout_stack.idx - 1].body.w;
+    }
+
+    int sk_interface_get_layout_height()
+    {
+        if (ctx->layout_stack.idx <= 0) return 0;
+
+        return ctx->layout_stack.items[ctx->layout_stack.idx - 1].body.h;
     }
 
     void update_elements_changed(int result)
@@ -514,4 +543,13 @@ namespace splashkit_lib
         int c = key_map[key & 0xff];
         mu_input_keyup(ctx, c);
     }
+    int sk_interface_style_get_padding()
+    {
+        return ctx->style->padding;
+    }
+    int sk_interface_style_get_spacing()
+    {
+        return ctx->style->spacing;
+    }
+
 }
