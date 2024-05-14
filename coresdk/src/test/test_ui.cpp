@@ -179,6 +179,16 @@ void run_ui_test()
 
             end_panel("Second Window");
         }
+
+        // show some elements on the window directly
+        paragraph("Here we can see that elements can also be drawn directly onto the main window! Including paragraphs of text like this.", {40, 20, 200, 64});
+        if (button("Button1", rectangle_from(40, 140, 64, 20)))
+        {
+            write_line("Button1 pressed");
+        }
+        val2 = slider(val2, 0, 40, {40, 170, 150, 20});
+        text_box_val2 = text_box(text_box_val2, rectangle_from(40, 200, 150, 20));
+
         // Draw the interface
         draw_interface();
 
