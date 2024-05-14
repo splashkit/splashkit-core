@@ -36,7 +36,7 @@ namespace splashkit_lib
             float contrast;
         };
 
-        color root_text_color;
+        color root_text_color = COLOR_BLACK;
         color text_color;
         color border_color;
 
