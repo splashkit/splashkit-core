@@ -92,6 +92,14 @@ namespace splashkit_lib
     void sk_interface_style_set_scroll_base_color(sk_color clr);
     void sk_interface_style_set_scrollbar_color(sk_color clr);
 
+    void sk_interface_style_set_panel_shadow_color(sk_color clr);
+    void sk_interface_style_set_panel_shadow_radius(int radius);
+    void sk_interface_style_set_panel_shadow_offset(point_2d offset);
+
+    void sk_interface_style_set_element_shadow_color(sk_color clr);
+    void sk_interface_style_set_element_shadow_radius(int radius);
+    void sk_interface_style_set_element_shadow_offset(point_2d offset);
+
     void sk_interface_style_set_padding(int padding);
     void sk_interface_style_set_spacing(int spacing);
     void sk_interface_style_set_indent(int indent);

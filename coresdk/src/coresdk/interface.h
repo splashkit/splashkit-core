@@ -11,6 +11,7 @@
  */
 
 #include "graphics.h"
+#include "types.h"
 
 #include <string>
 using std::string;
@@ -703,6 +704,14 @@ namespace splashkit_lib
     void set_interface_colors_auto(color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast);
 
     /**
+     * Sets the style of all interface shadows. Use a fully transparent color to disable them.
+     * @param radius             The radius of the shadow's blur
+     * @param clr                The color of the shadows (commonly black, but can do coloured and semi-transparent too)
+     * @param offset             The offset in x/y coordinates of the shadows from their casting elements
+     */
+    void set_interface_shadows(int radius, color clr, point_2d offset);
+
+    /**
      * Sets the interface's text color.
      * @param clr                The color to set text to
      */
@@ -733,6 +742,22 @@ namespace splashkit_lib
      * @param contrast           The strength of how much the accents show (between 0 and 1)
      */
     void set_interface_accent_color(color clr, float contrast);
+
+    /**
+     * Sets the style of panel's shadows. Use a fully transparent color to disable them.
+     * @param radius             The radius of the shadow's blur
+     * @param clr                The color of the shadows (commonly black, but can do coloured and semi-transparent too)
+     * @param offset             The offset in x/y coordinates of the shadows from their casting elements
+     */
+    void set_interface_panel_shadows(int radius, color clr, point_2d offset);
+
+    /**
+     * Sets the style of element's shadows. Use a fully transparent color to disable them.
+     * @param radius             The radius of the shadow's blur
+     * @param clr                The color of the shadows (commonly black, but can do coloured and semi-transparent too)
+     * @param offset             The offset in x/y coordinates of the shadows from their casting elements
+     */
+    void set_interface_element_shadows(int radius, color clr, point_2d offset);
 
     /**
      * Sets the spacing within the interface.

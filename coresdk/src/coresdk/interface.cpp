@@ -15,12 +15,21 @@
 
 #include "interface_driver.h"
 
+#include <cmath>
+
 namespace splashkit_lib
 {
 
     // Styling
     struct interface_style_settings
     {
+        struct shadow_settings
+        {
+            int radius;
+            color clr;
+            point_2d offset;
+        };
+
         struct general_settings
         {
             color clr;
@@ -33,6 +42,9 @@ namespace splashkit_lib
 
         general_settings elements;
         general_settings accents;
+
+        shadow_settings panel_shadows;
+        shadow_settings element_shadows;
 
         int spacing;
         int padding;
@@ -101,6 +113,9 @@ namespace splashkit_lib
 
         style.padding = 5;
         style.spacing = 4;
+
+        style.panel_shadows = {45, hsba_color(0.0, 0.0, 0.0, 0.36), {18,18}};
+        style.element_shadows = {9, hsba_color(0.0, 0.0, 0.0, 0.36), {3,3}};
 
         _set_interface_colors_auto(style,
             hsb_color(0.0, 0.0, 0.21),     // main color
@@ -1078,6 +1093,38 @@ namespace splashkit_lib
         sk_interface_style_set_border_color(clr);
     }
 
+    void set_interface_shadows(int radius, color clr, point_2d offset)
+    {
+        set_interface_panel_shadows(radius, clr, offset);
+        set_interface_element_shadows(radius, clr, offset);
+    }
+
+    void set_interface_panel_shadows(int radius, color clr, point_2d offset)
+    {
+        current_interface_style.panel_shadows.radius = radius;
+        current_interface_style.panel_shadows.clr = clr;
+        current_interface_style.panel_shadows.offset = offset;
+
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
+
+        sk_interface_style_set_panel_shadow_color(clr);
+        sk_interface_style_set_panel_shadow_radius(radius);
+        sk_interface_style_set_panel_shadow_offset(offset);
+    }
+
+    void set_interface_element_shadows(int radius, color clr, point_2d offset)
+    {
+        current_interface_style.element_shadows.radius = radius;
+        current_interface_style.element_shadows.clr = clr;
+        current_interface_style.element_shadows.offset = offset;
+
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
+
+        sk_interface_style_set_element_shadow_color(clr);
+        sk_interface_style_set_element_shadow_radius(radius);
+        sk_interface_style_set_element_shadow_offset(offset);
+    }
+
     bool _is_light_mode(const interface_style_settings& style)
     {
         return brightness_of(style.elements.clr)>0.5;
@@ -1166,6 +1213,8 @@ namespace splashkit_lib
         set_interface_accent_color(style.accents.clr, style.accents.contrast);
         set_interface_element_color(style.elements.clr, style.elements.contrast);
         set_interface_spacing(style.spacing, style.padding);
+        set_interface_element_shadows(style.element_shadows.radius, style.element_shadows.clr, style.element_shadows.offset);
+        set_interface_panel_shadows(style.panel_shadows.radius, style.panel_shadows.clr, style.panel_shadows.offset);
         set_interface_border_color(style.border_color);
         set_interface_text_color(style.text_color);
         set_interface_root_text_color(style.root_text_color);
@@ -1193,6 +1242,24 @@ namespace splashkit_lib
                     style.elements.contrast = slider("Contrast:", style.elements.contrast, 0, 1);
                     style.accents.contrast = slider("Accent:", style.accents.contrast, 0, 1);
                     style.border_color.a = slider("Borders:", style.border_color.a, 0, 1);
+                reset_layout();
+            }
+
+            if (header("Shadows"))
+            {
+                style.element_shadows.clr = hsb_color_slider("Shadow:", style.element_shadows.clr);
+                style.panel_shadows.clr = style.element_shadows.clr;
+                start_custom_layout();
+                set_interface_label_width(110);
+                split_into_columns(2);
+                    style.panel_shadows.radius = slider("Radius (Panel):", style.panel_shadows.radius, 0, 200);
+                    style.element_shadows.radius = slider("Radius (Element):", style.element_shadows.radius, 0, 200);
+
+                    style.panel_shadows.offset.x = slider("Distance (Panel):", style.panel_shadows.offset.x, 0, 200);
+                    style.element_shadows.offset.x = slider("Distance (Element):", style.element_shadows.offset.x, 0, 200);
+
+                    style.panel_shadows.offset.y = style.panel_shadows.offset.x;
+                    style.element_shadows.offset.y = style.element_shadows.offset.x;
                 reset_layout();
             }
 

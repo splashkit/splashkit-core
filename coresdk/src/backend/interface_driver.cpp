@@ -55,6 +55,16 @@ namespace splashkit_lib
 
     static mu_Style default_style;
 
+    struct shadow_style
+    {
+        color color;
+        int radius;
+        point_2d offset;
+    };
+
+    static shadow_style panel_shadow_style;
+    static shadow_style element_shadow_style;
+
     // Font handling
     static font current_font = nullptr;
     static int current_font_size = 13;
@@ -172,7 +182,74 @@ namespace splashkit_lib
     }
 
     // static utility functions straight from microui.c - used for consistency
+    static mu_Rect expand_rect(mu_Rect rect, int n) {
+        return mu_rect(rect.x - n, rect.y - n, rect.w + n * 2, rect.h + n * 2);
+    }
+    static mu_Rect intersect_rects(mu_Rect r1, mu_Rect r2) {
+        int x1 = mu_max(r1.x, r2.x);
+        int y1 = mu_max(r1.y, r2.y);
+        int x2 = mu_min(r1.x + r1.w, r2.x + r2.w);
+        int y2 = mu_min(r1.y + r1.h, r2.y + r2.h);
+        if (x2 < x1) { x2 = x1; }
+        if (y2 < y1) { y2 = y1; }
+        return mu_rect(x1, y1, x2 - x1, y2 - y1);
+    }
     static mu_Rect unclipped_rect = { 0, 0, 0x1000000, 0x1000000 };
+
+    // custom microui commands
+    #define MU_COMMAND_BLUR_RECT (MU_COMMAND_MAX+1)
+
+    typedef struct { mu_BaseCommand base; mu_Rect rect; mu_Color color; int radius;} mu_BlurredRectCommand;
+
+
+    // custom drawning commands
+    void draw_blurred_rect(mu_Context *ctx, mu_Rect rect, mu_Color color, int blur_radius){
+        rect = intersect_rects(rect, expand_rect(mu_get_clip_rect(ctx), blur_radius));
+
+        if (rect.w > 0 && rect.h > 0) {
+            int clipped = mu_check_clip(ctx, rect);
+            if (clipped) { mu_set_clip(ctx, mu_get_clip_rect(ctx)); }
+
+            mu_BlurredRectCommand* cmd = (mu_BlurredRectCommand*)mu_push_command(ctx, MU_COMMAND_BLUR_RECT, sizeof(mu_BlurredRectCommand));
+            cmd->rect = rect;
+            cmd->color = color;
+            cmd->radius = blur_radius;
+
+            if (clipped) { mu_set_clip(ctx, unclipped_rect); }
+        }
+    }
+
+    static void draw_frame(mu_Context *ctx, mu_Rect rect, int colorid) {
+        shadow_style& shadow = colorid==MU_COLOR_WINDOWBG?panel_shadow_style:element_shadow_style;
+
+        // draw shadow if the right element type
+        if (shadow.color.a>0.f && (
+            colorid == MU_COLOR_WINDOWBG ||
+            colorid == MU_COLOR_BUTTON ||
+            colorid == MU_COLOR_BUTTONHOVER ||
+            colorid == MU_COLOR_BUTTONFOCUS ||
+            colorid == MU_COLOR_BASE ||
+            colorid == MU_COLOR_BASEHOVER ||
+            colorid == MU_COLOR_BASEFOCUS
+        )){
+            mu_Rect shadow_rect = rect;
+            shadow_rect.x += shadow.offset.x;
+            shadow_rect.y += shadow.offset.y;
+            draw_blurred_rect(ctx, shadow_rect, to_mu(shadow.color), shadow.radius);
+        }
+
+        // draw main frame
+        if (ctx->style->colors[colorid].a)
+            mu_draw_rect(ctx, rect, ctx->style->colors[colorid]);
+
+        if (colorid == MU_COLOR_SCROLLBASE  ||
+        colorid == MU_COLOR_SCROLLTHUMB ||
+        colorid == MU_COLOR_TITLEBG) { return; }
+
+        // draw border
+        if (ctx->style->colors[MU_COLOR_BORDER].a)
+            mu_draw_box(ctx, expand_rect(rect, 1), ctx->style->colors[MU_COLOR_BORDER]);
+    }
 
     // Delay loading of the ui atlas until it's actually needed
     // otherwise we'll trigger creating the 'initial window' unnecessarily
@@ -207,6 +284,7 @@ namespace splashkit_lib
         mu_init(ctx);
         ctx->text_width = _text_width;
         ctx->text_height = _text_height;
+        ctx->draw_frame = &draw_frame;
 
         default_style = *ctx->style;
         sk_interface_style_reset();
@@ -261,6 +339,13 @@ namespace splashkit_lib
 
                     case MU_COMMAND_RECT:
                         sk_fill_aa_rect(surface, from_mu(cmd->rect.color), cmd->rect.rect.x, cmd->rect.rect.y, cmd->rect.rect.w, cmd->rect.rect.h);
+
+                        break;
+
+                    case MU_COMMAND_BLUR_RECT:
+                        mu_BlurredRectCommand* brect;
+                        brect = (mu_BlurredRectCommand*)cmd;
+                        sk_draw_blurred_rect(surface, from_mu(brect->color), brect->rect.x, brect->rect.y, brect->rect.w, brect->rect.h, brect->radius);
 
                         break;
 
@@ -659,6 +744,12 @@ namespace splashkit_lib
     void sk_interface_style_reset()
     {
         *ctx->style = default_style;
+        panel_shadow_style.color = COLOR_BLACK;
+        panel_shadow_style.radius = 35;
+        panel_shadow_style.offset = {16,16};
+        element_shadow_style.color = COLOR_BLACK;
+        element_shadow_style.radius = 7;
+        element_shadow_style.offset = {3,3};
     }
 
     void sk_interface_style_set_border_color(sk_color clr)
@@ -722,6 +813,37 @@ namespace splashkit_lib
     {
         ctx->style->colors[MU_COLOR_SCROLLTHUMB] = to_mu(clr);
     }
+
+    void sk_interface_style_set_panel_shadow_color(sk_color clr)
+    {
+        panel_shadow_style.color = clr;
+    }
+
+    void sk_interface_style_set_panel_shadow_radius(int radius)
+    {
+        panel_shadow_style.radius = radius;
+    }
+
+    void sk_interface_style_set_panel_shadow_offset(point_2d offset)
+    {
+        panel_shadow_style.offset = offset;
+    }
+
+    void sk_interface_style_set_element_shadow_color(sk_color clr)
+    {
+        element_shadow_style.color = clr;
+    }
+
+    void sk_interface_style_set_element_shadow_radius(int radius)
+    {
+        element_shadow_style.radius = radius;
+    }
+
+    void sk_interface_style_set_element_shadow_offset(point_2d offset)
+    {
+        element_shadow_style.offset = offset;
+    }
+
     void sk_interface_style_set_padding(int padding)
     {
         ctx->style->padding = padding;
