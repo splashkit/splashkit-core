@@ -51,6 +51,10 @@ namespace splashkit_lib
         key_map[ SDLK_BACKSPACE    & 0xff ] = MU_KEY_BACKSPACE;
     }
 
+    // Style cache
+
+    static mu_Style default_style;
+
     // Font handling
     static font current_font = nullptr;
     static int current_font_size = 13;
@@ -203,6 +207,9 @@ namespace splashkit_lib
         mu_init(ctx);
         ctx->text_width = _text_width;
         ctx->text_height = _text_height;
+
+        default_style = *ctx->style;
+        sk_interface_style_reset();
 
         if (style_init_callback)
             style_init_callback();
@@ -641,6 +648,103 @@ namespace splashkit_lib
         int c = key_map[key & 0xff];
         mu_input_keyup(ctx, c);
     }
+
+    void sk_interface_style_reset()
+    {
+        *ctx->style = default_style;
+    }
+
+    void sk_interface_style_set_border_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_BORDER] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_text_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_TEXT] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_title_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_TITLETEXT] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_titlebar_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_TITLEBG] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_panel_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_WINDOWBG] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_inset_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_PANELBG] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_button_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_BUTTON] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_button_accent_colors(sk_color hover_clr, sk_color active_clr)
+    {
+        ctx->style->colors[MU_COLOR_BUTTONHOVER] = to_mu(hover_clr);
+        ctx->style->colors[MU_COLOR_BUTTONFOCUS] = to_mu(active_clr);
+    }
+
+    void sk_interface_style_set_control_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_BASE] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_control_accent_colors(sk_color hover_clr, sk_color active_clr)
+    {
+        ctx->style->colors[MU_COLOR_BASEHOVER] = to_mu(hover_clr);
+        ctx->style->colors[MU_COLOR_BASEFOCUS] = to_mu(active_clr);
+    }
+
+    void sk_interface_style_set_scroll_base_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_SCROLLBASE] = to_mu(clr);
+    }
+
+    void sk_interface_style_set_scrollbar_color(sk_color clr)
+    {
+        ctx->style->colors[MU_COLOR_SCROLLTHUMB] = to_mu(clr);
+    }
+    void sk_interface_style_set_padding(int padding)
+    {
+        ctx->style->padding = padding;
+    }
+
+    void sk_interface_style_set_spacing(int spacing)
+    {
+        ctx->style->spacing = spacing;
+    }
+
+    void sk_interface_style_set_indent(int indent)
+    {
+        ctx->style->indent = indent;
+    }
+
+    void sk_interface_style_set_title_height(int title_height)
+    {
+        ctx->style->title_height = title_height;
+    }
+
+    void sk_interface_style_set_scrollbar_size(int scrollbar_size)
+    {
+        ctx->style->scrollbar_size = scrollbar_size;
+    }
+
+    void sk_interface_style_set_thumb_size(int thumb_size)
+    {
+        ctx->style->thumb_size = thumb_size;
+    }
+
     int sk_interface_style_get_padding()
     {
         return ctx->style->padding;

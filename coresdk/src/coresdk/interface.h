@@ -617,5 +617,48 @@ namespace splashkit_lib
      */
     bool last_element_confirmed();
 
+    /**
+     * A convenience function to set the majority of the interface's colors in one go.
+     * Some colors will be automatically chosen based on the parameters (such as text color).
+     * @param main_clr           The main color of the interface - also decides if the interface is light or dark mode
+     * @param accent_clr         The color used to accent the interface - this will appear in highlighted areas
+     * @param contrast           The contrast between the frames of elements/containers and their internal elements
+     * @param accent_contrast    How strongly the accent color is used, for instance when highlighting elements
+     * @param border_contrast    Simply the opacity of the borders
+     */
+    void set_interface_colors_auto(color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast);
+
+    /**
+     * Sets the interface's text color.
+     * @param clr                The color to set text to
+     */
+    void set_interface_text_color(color clr);
+
+    /**
+     * Sets the interface's border color.
+     * @param clr                The color to set borders to
+     */
+    void set_interface_border_color(color clr);
+
+    /**
+     * Sets the main color of elements in the interface, and the contrast between their frame and internal pieces.
+     * @param clr                The color of elements
+     * @param contrast           The contrast between the frame of elements and their internal pieces (between 0 and 1)
+     */
+    void set_interface_element_color(color clr, float contrast);
+
+    /**
+     * Sets the color of accents in the interface, and the contrast of how strongly they appear when hovering/interacting.
+     * @param clr                The color of accents
+     * @param contrast           The strength of how much the accents show (between 0 and 1)
+     */
+    void set_interface_accent_color(color clr, float contrast);
+
+    /**
+     * Sets the spacing within the interface.
+     * @param spacing            The distance between elements
+     * @param padding            The padding within elements
+     */
+    void set_interface_spacing(int spacing, int padding);
 #endif /* interface_hpp */
 }

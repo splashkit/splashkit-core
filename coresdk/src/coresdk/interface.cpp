@@ -18,6 +18,31 @@
 namespace splashkit_lib
 {
 
+    // Styling
+    struct interface_style_settings
+    {
+        struct general_settings
+        {
+            color clr;
+            float contrast;
+        };
+
+        color text_color;
+        color border_color;
+
+        general_settings elements;
+        general_settings accents;
+
+        int spacing;
+        int padding;
+    };
+
+    void _set_interface_colors_auto(interface_style_settings& style, color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast);
+    interface_style_settings _get_interface_style();
+
+    interface_style_settings current_interface_style = _get_interface_style();
+
+    void _update_interface_style_from_current_style();
 
     // this is an awful hack to work around the fact that 'interface.cpp'
     // has no way to run on initialization, not without directly referring to it
@@ -26,12 +51,50 @@ namespace splashkit_lib
     {
         static void initial_style_set(){
             sk_interface_style_set_font(get_system_font());
+            _update_interface_style_from_current_style();
         }
 
         style_callback_handler() {
             sk_interface_set_init_style_callback(&initial_style_set);
         }
     } set_style_callback_handler;
+
+    // static convenience functions for adjusting colors when styling
+    static color _adjust_color_contrast(color clr, float root, float init, float contrast, bool light)
+    {
+        init /= 255.0;
+        root /= 255.0;
+
+        float ratio = (init / root);
+
+        float scale;
+        if (!light)
+            scale = (contrast * ratio + (1-contrast));
+        else
+            scale = (contrast / ratio + (1-contrast));
+
+        float valr = clr.r * scale;
+        float valg = clr.g * scale;
+        float valb = clr.b * scale;
+
+        return {valr, valg, valb, clr.a};
+    }
+
+    interface_style_settings _get_interface_style()
+    {
+        interface_style_settings style;
+
+        style.padding = 5;
+        style.spacing = 4;
+
+        _set_interface_colors_auto(style,
+            hsb_color(0.0, 0.0, 0.21),     // main color
+            hsb_color(0.0, 0.0, 0.4),      // accent color
+            1.0, 1.0, 1.0                  //contrast, accent contrast, border contrast
+        );
+
+        return style;
+    }
 
     enum class panel_type
     {
@@ -816,5 +879,112 @@ namespace splashkit_lib
     bool last_element_confirmed()
     {
         return sk_interface_confirmed();
+    }
+
+    void set_interface_text_color(color clr)
+    {
+        current_interface_style.text_color = clr;
+
+        sk_interface_style_set_text_color(current_interface_style.text_color);
+    }
+
+    void set_interface_border_color(color clr)
+    {
+        current_interface_style.border_color = clr;
+
+        sk_interface_style_set_border_color(clr);
+    }
+
+    bool _is_light_mode(const interface_style_settings& style)
+    {
+        return brightness_of(style.elements.clr)>0.5;
+    }
+
+    bool _is_light_mode()
+    {
+        return _is_light_mode(current_interface_style);
+    }
+
+    void set_interface_element_color(color clr, float contrast)
+    {
+        bool currently_light_mode = _is_light_mode();
+
+        current_interface_style.elements.clr = clr;
+        current_interface_style.elements.contrast = contrast;
+
+        bool light_mode = _is_light_mode();
+
+        sk_interface_style_set_border_color(_adjust_color_contrast(clr, 50, 25, contrast, false));
+        sk_interface_style_set_titlebar_color(_adjust_color_contrast(clr, 50, 25, contrast, false));
+        sk_interface_style_set_panel_color(_adjust_color_contrast(clr, 50, 50, contrast, light_mode));
+        sk_interface_style_set_control_color(_adjust_color_contrast(clr, 50, 30, contrast, false));
+        sk_interface_style_set_scroll_base_color(_adjust_color_contrast(clr, 50, 43, contrast, light_mode));
+
+        // if light mode changed, we need to update everything
+        if (light_mode != currently_light_mode)
+        {
+            _update_interface_style_from_current_style();
+        }
+    }
+
+    void set_interface_accent_color(color clr, float contrast)
+    {
+        bool light_mode = _is_light_mode();
+
+        current_interface_style.accents.clr = clr;
+        current_interface_style.accents.contrast = contrast;
+
+        sk_interface_style_set_button_color(_adjust_color_contrast(clr, 75, 75, contrast, light_mode));
+        sk_interface_style_set_title_color(_adjust_color_contrast(clr, 50, 240, contrast, light_mode));
+        sk_interface_style_set_button_accent_colors(_adjust_color_contrast(clr, 75, 95, contrast, light_mode), _adjust_color_contrast(clr, 75, 115, contrast, light_mode));
+        sk_interface_style_set_control_accent_colors(_adjust_color_contrast(clr, 75, 35, contrast, light_mode), _adjust_color_contrast(clr, 75, 40, contrast, light_mode));
+        sk_interface_style_set_scrollbar_color(_adjust_color_contrast(clr, 50, 30, contrast, light_mode));
+    }
+
+    void _set_interface_colors_auto(interface_style_settings& style, color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast)
+    {
+        style.elements.clr = main_clr;
+        style.elements.contrast = contrast;
+
+        style.accents.clr = accent_clr;
+        style.accents.contrast = accent_contrast;
+
+        style.border_color = _adjust_color_contrast(main_clr, 50, 25, 1.0, false);
+        style.border_color.a = border_contrast;
+
+        bool light_mode = _is_light_mode(style);
+
+        if (light_mode)
+            style.text_color = {0.f,0.f,0.f,1.f};
+        else
+            style.text_color = {1.f,1.f,1.f,1.f};
+    }
+
+    void set_interface_colors_auto(color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast)
+    {
+        _set_interface_colors_auto(current_interface_style, main_clr, accent_clr, contrast, accent_contrast, border_contrast);
+        _update_interface_style_from_current_style();
+    }
+
+    void set_interface_spacing(int spacing, int padding)
+    {
+        current_interface_style.spacing = spacing;
+        current_interface_style.padding = padding;
+        sk_interface_style_set_spacing(current_interface_style.spacing);
+        sk_interface_style_set_padding(current_interface_style.padding);
+    }
+
+    void _update_interface_style(const interface_style_settings& style)
+    {
+        set_interface_accent_color(style.accents.clr, style.accents.contrast);
+        set_interface_element_color(style.elements.clr, style.elements.contrast);
+        set_interface_spacing(style.spacing, style.padding);
+        set_interface_border_color(style.border_color);
+        set_interface_text_color(style.text_color);
+    }
+
+    void _update_interface_style_from_current_style()
+    {
+        _update_interface_style(current_interface_style);
     }
 }

@@ -75,6 +75,27 @@ namespace splashkit_lib
     void sk_interface_keydown(int key);
     void sk_interface_keyup(int key);
 
+    void sk_interface_style_reset();
+
+    void sk_interface_style_set_border_color(sk_color clr);
+    void sk_interface_style_set_text_color(sk_color clr);
+    void sk_interface_style_set_title_color(sk_color clr);
+    void sk_interface_style_set_titlebar_color(sk_color clr);
+    void sk_interface_style_set_panel_color(sk_color clr);
+    void sk_interface_style_set_inset_color(sk_color clr);
+    void sk_interface_style_set_button_color(sk_color clr);
+    void sk_interface_style_set_button_accent_colors(sk_color hover_clr, sk_color active_clr);
+    void sk_interface_style_set_control_color(sk_color clr);
+    void sk_interface_style_set_control_accent_colors(sk_color hover_clr, sk_color active_clr);
+    void sk_interface_style_set_scroll_base_color(sk_color clr);
+    void sk_interface_style_set_scrollbar_color(sk_color clr);
+
+    void sk_interface_style_set_padding(int padding);
+    void sk_interface_style_set_spacing(int spacing);
+    void sk_interface_style_set_indent(int indent);
+    void sk_interface_style_set_title_height(int title_height);
+    void sk_interface_style_set_scrollbar_size(int scrollbar_size);
+    void sk_interface_style_set_thumb_size(int thumb_size);
     int sk_interface_style_get_padding();
     int sk_interface_style_get_spacing();
 }
