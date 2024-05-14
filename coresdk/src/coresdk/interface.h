@@ -10,10 +10,6 @@
  * @attribute static interface
  */
 
-// Note to maintainers: This file deliberately uses double spaces at the end of some lines
-// to create newlines in the resulting markdown. Be careful not to remove these
-// when removing trailing newlines.
-
 #include "graphics.h"
 
 #include <string>
@@ -24,7 +20,8 @@ using std::string;
 namespace splashkit_lib
 {
     /**
-     * Draws the user interface that all the previous calls (such as `start_panel`, `button`, etc) have created.  
+     * Draws the user interface that all the previous calls (such as `start_panel`, `button`, etc) have created.
+     *
      * **Make sure to call this!** Without calling it, the interface won't be visible.
      */
     void draw_interface();
@@ -32,14 +29,14 @@ namespace splashkit_lib
     /**
      * Sets the interface's font.
      *
-     * @param fnt               The font to be used.
+     * @param fnt               The font to be used
      */
     void set_interface_font(font fnt);
 
     /**
      * Sets the interface's font.
      *
-     * @param fnt               The name of the font to be used.
+     * @param fnt               The name of the font to be used
      *
      * @attribute suffix        font_as_string
      */
@@ -48,7 +45,7 @@ namespace splashkit_lib
     /**
      * Sets the interface's font size.
      *
-     * @param size              The font size to be used.
+     * @param size              The font size to be used
      */
     void set_interface_font_size(int size);
 
@@ -58,13 +55,13 @@ namespace splashkit_lib
      *
      * Default is 60 pixels.
      *
-     * @param width             The width of labels.
+     * @param width             The width of labels
      */
     void set_interface_label_width(int width);
 
 
     /**
-     * Starts the creation of a draggable panel with a title bar.  
+     * Starts the creation of a draggable panel with a title bar.
      * Returns whether the panel is visible or not.
      *
      * Use as follows:
@@ -80,9 +77,9 @@ namespace splashkit_lib
      * The function **must** be accompanied by a call to `end_panel`,
      * that is only called if the panel is visible, and is passed the same `name`.
      *
-     * @param name              The name shown in the panel's titlebar.
-     * @param initial_rectangle The initial position/size the panel starts off in.
-     * @return                  Whether the panel is visible or not.
+     * @param name              The name shown in the panel's titlebar
+     * @param initial_rectangle The initial position/size the panel starts off in
+     * @return                  Whether the panel is visible or not
      */
     bool start_panel(const string& name, rectangle initial_rectangle);
 
@@ -94,15 +91,15 @@ namespace splashkit_lib
     void end_panel(const string& name);
 
     /**
-     * Starts the creation of a popup.  
+     * Starts the creation of a popup.
      * Returns whether the popup is visible or not.
      *
-     * Usage is the same as `start_panel`.
+     * Usage is the same as `start_panel`, other than the 'starting rectangle' will be automatically calculated.
      * The function **must** be accompanied by a call to `end_popup`
      * with the same name.
      *
-     * @param name              The name of the popup.
-     * @return                  Whether the popup is visible or not.
+     * @param name              The name of the popup
+     * @return                  Whether the popup is visible or not
      */
     bool start_popup(const string& name);
 
@@ -127,8 +124,8 @@ namespace splashkit_lib
      * The function **must** be accompanied by a call to `end_inset`
      * with the same name.
      *
-     * @param name              The name of the area.
-     * @param height            Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom.
+     * @param name              The name of the area
+     * @param height            Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom
      */
     void start_inset(const string& name, int height);
 
@@ -140,15 +137,15 @@ namespace splashkit_lib
     void end_inset(const string& name);
 
     /**
-     * Starts the creation of a tree node (such as those in a file tree view).  
+     * Starts the creation of a tree node (such as those in a file tree view).
      * Returns whether the tree node is expanded or not.
      *
      * Usage is the same as `start_panel`.
      * The function **must** be accompanied by a call to `end_treenode`
      * with the same name.
      *
-     * @param label             The name of the node.
-     * @return                  Whether the tree node is expanded or not.
+     * @param label             The name of the node
+     * @return                  Whether the tree node is expanded or not
      */
     bool start_treenode(const string& label);
 
@@ -162,7 +159,7 @@ namespace splashkit_lib
     /**
      * Makes the popup named `name` open/popup at the cursor's position.
      *
-     * @param name              The popup's name. Must match with the same name used in `start_popup`.
+     * @param name              The popup's name. Must match with the same name used in `start_popup`
      */
     void open_popup(const string& name);
 
@@ -186,17 +183,17 @@ namespace splashkit_lib
      *
      * - Positive values of width just specify the width in pixels.
      * - 0 means use the default control width - not always a good choice.
-     * - Negative values specify filling to the right _until_ `width - 1` pixels away from the edge.
+     * - Negative values specify filling to the right _until_ `width + 1` pixels away from the edge.
      *   - e.g -1 fills entirely to the right, while -20 leaves a 19 pixel gap on the right.
      *
-     * @param width             Width of the column in pixels.
+     * @param width             Width of the column in pixels
      */
     void add_column(int width);
 
     /**
      * Adds a column to the current layout with width `width` percentage of the container's width.
      *
-     * @param width             Percentage of the container's width (between 0 and 1).
+     * @param width             Percentage of the container's width (between 0 and 1)
      */
     void add_column_relative(double width);
 
@@ -204,7 +201,7 @@ namespace splashkit_lib
      * Sets the height of each row in the interface in pixels.
      * 0 resets to default.
      *
-     * @param height            Height of rows in pixels.
+     * @param height            Height of rows in pixels
      */
     void set_layout_height(int height);
 
@@ -219,7 +216,7 @@ namespace splashkit_lib
     void leave_column();
 
     /**
-     * Creates a collapsable header with a label.  
+     * Creates a collapsable header with a label.
      * Returns whether the header is expanded or not.
      *
      * Note: Unlike `start_panel` and other similar functions, there is
@@ -231,8 +228,8 @@ namespace splashkit_lib
      * }
      * ```
      *
-     * @param label             The label to show in the header.
-     * @return                  Whether the header is expanded or not.
+     * @param label             The label to show in the header
+     * @return                  Whether the header is expanded or not
      */
     bool header(const string& label);
 
@@ -240,20 +237,20 @@ namespace splashkit_lib
     /**
      * Creates a label.
      *
-     * @param label             The label to show.
+     * @param label             The label to show
      */
     void label(const string& label);
 
     /**
      * Creates a paragraph of text that auto-wraps.
      *
-     * @param text              The text to show.
+     * @param text              The text to show
      */
     void paragraph(const string& text);
 
     /**
      * Creates a button with a label.
-     * Returns whether the button is pressed.
+     * Returns whether the button was clicked.
      *
      * Example usage:
      * ```c++
@@ -264,25 +261,25 @@ namespace splashkit_lib
      * }
      * ```
      *
-     * @param label             The label to show in front of the button.
-     * @param text              The text to show inside the button.
-     * @return                  Whether the button is pressed.
+     * @param label             The label to show in front of the button
+     * @param text              The text to show inside the button
+     * @return                  Whether the button was clicked
      *
-     * @attribute suffix        with_label
+     * @attribute suffix        labeled
      */
     bool button(const string& label, const string& text);
 
     /**
      * Creates a button without a label.
-     * Returns whether the button is pressed.
+     * Returns whether the button was clicked.
      *
-     * @param text              The text to show inside the button.
-     * @return                  Whether the button is pressed.
+     * @param text              The text to show inside the button
+     * @return                  Whether the button was clicked
      */
     bool button(const string& text);
 
     /**
-     * Creates a checkbox with a label.  
+     * Creates a checkbox with a label.
      * Returns the updated value of the checkbox.
      *
      * Example usage:
@@ -290,27 +287,27 @@ namespace splashkit_lib
      * my_bool = checkbox("Checkbox 1", "Enabled?", my_bool);
      * ```
      *
-     * @param label             The label to show in front of the checkbox.
-     * @param text              The text to show next to the checkbox.
-     * @param value             The current value of the checkbox.
-     * @return                  The updated value of the checkbox.
+     * @param label             The label to show in front of the checkbox
+     * @param text              The text to show next to the checkbox
+     * @param value             The current value of the checkbox
+     * @return                  The updated value of the checkbox
      *
-     * @attribute suffix        with_label
+     * @attribute suffix        labeled
      */
     bool checkbox(const string& label, const string& text, const bool& value);
 
     /**
-     * Creates a checkbox.  
+     * Creates a checkbox.
      * Returns the updated value of the checkbox.
      *
-     * @param text              The text to show next to the checkbox.
-     * @param value             The current value of the checkbox.
-     * @return                  The updated value of the checkbox.
+     * @param text              The text to show next to the checkbox
+     * @param value             The current value of the checkbox
+     * @return                  The updated value of the checkbox
      */
     bool checkbox(const string& text, const bool& value);
 
     /**
-     * Creates a slider with a label.  
+     * Creates a slider with a label.
      * Returns the updated value of the slider.
      *
      * Example usage:
@@ -318,30 +315,30 @@ namespace splashkit_lib
      * my_float = slider("Percentage", my_float, 0, 100);
      * ```
      *
-     * @param label             The label to show in front of the slider.
-     * @param value             The current value of the slider.
-     * @param min_value         The minimum value of the slider.
-     * @param max_value         The maximum value of the slider.
-     * @return                  The updated value of the slider.
+     * @param label             The label to show in front of the slider
+     * @param value             The current value of the slider
+     * @param min_value         The minimum value of the slider
+     * @param max_value         The maximum value of the slider
+     * @return                  The updated value of the slider
      *
-     * @attribute suffix        with_label
+     * @attribute suffix        labeled
      */
     float slider(const string& label, const float& value, float min_value, float max_value);
 
     /**
-     * Creates a slider without a label.  
+     * Creates a slider without a label.
      * Returns the updated value of the slider.
      *
-     * @param value             The current value of the slider.
-     * @param min_value         The minimum value of the slider.
-     * @param max_value         The maximum value of the slider.
-     * @return                  The updated value of the slider.
+     * @param value             The current value of the slider
+     * @param min_value         The minimum value of the slider
+     * @param max_value         The maximum value of the slider
+     * @return                  The updated value of the slider
      */
     float slider(const float& value, float min_value, float max_value);
 
 
     /**
-     * Creates a number entry box with a label.  
+     * Creates a number entry box with a label.
      * Returns the updated value of the number box.
      *
      * Example usage:
@@ -349,27 +346,27 @@ namespace splashkit_lib
      * my_float = number_box("Percentage", my_float, 1);
      * ```
      *
-     * @param label             The label to show in front of the number box.
-     * @param value             The current value of the number box.
-     * @param step              The amount incremented when dragging on the box.
-     * @return                  The updated value of the slider.
+     * @param label             The label to show in front of the number box
+     * @param value             The current value of the number box
+     * @param step              The amount incremented when dragging on the box
+     * @return                  The updated value of the slider
      *
-     * @attribute suffix        with_label
+     * @attribute suffix        labeled
      */
     float number_box(const string& label, const float& value, float step);
 
     /**
-     * Creates a number entry box with a label.  
+     * Creates a number entry box with a label.
      * Returns the updated value of the number box.
      *
-     * @param value             The current value of the number box.
-     * @param step              The amount incremented when dragging on the box.
-     * @return                  The updated value of the slider.
+     * @param value             The current value of the number box
+     * @param step              The amount incremented when dragging on the box
+     * @return                  The updated value of the slider
      */
     float number_box(const float& value, float step);
 
     /**
-     * Creates a text entry box with a label.  
+     * Creates a text entry box with a label.
      * Returns the updated value of the text box.
      *
      * Example usage:
@@ -377,33 +374,35 @@ namespace splashkit_lib
      * my_string = text_box("Name", my_string);
      * ```
      *
-     * @param label             The label to show in front of the text box.
-     * @param value             The current value of the text box.
-     * @return                  The updated value of the text box.
+     * @param label             The label to show in front of the text box
+     * @param value             The current value of the text box
+     * @return                  The updated value of the text box
      *
-     * @attribute suffix        with_label
+     * @attribute suffix        labeled
      */
     string text_box(const string& label, const string& value);
 
     /**
-     * Creates a text entry box with a label.  
      * Returns the updated value of the text box.
-     * @param value             The current value of the text box.
-     * @return                  The updated value of the text box.
+    /**
+     * Creates a text entry box with a label.
+     * Returns the updated value of the text box.
+     * @param value             The current value of the text box
+     * @return                  The updated value of the text box
      */
     string text_box(const string& value);
 
     /**
      * Returns if the last created element was changed at all (such as dragged, typed in, etc)
      *
-     * @return                   Whether the last created element was changed.
+     * @return                   Whether the last created element was changed
      */
     bool last_element_changed();
 
     /**
      * Returns if the last created element was 'confirmed' (such as clicking a button, or hitting enter in a text box)
      *
-     * @return                   Whether the last created element was confirmed.
+     * @return                   Whether the last created element was confirmed
      */
     bool last_element_confirmed();
 
