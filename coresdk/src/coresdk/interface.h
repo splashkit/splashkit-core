@@ -666,5 +666,23 @@ namespace splashkit_lib
      * @param padding            The padding within elements
      */
     void set_interface_spacing(int spacing, int padding);
+
+    /**
+     * Disables the interface temporarily. Elements created after this function will appear disabled and cannot be interacted with.
+     */
+    void disable_interface();
+
+    /**
+     * Re-enables the interface, reverses the effects of disabling the interface.
+     */
+    void enable_interface();
+
+    /**
+     * Returns if the interface is currently enabled or not.
+     *
+     * @return                   Whether the interface is currently enabled or not
+     */
+    bool interface_enabled();
+
 #endif /* interface_hpp */
 }

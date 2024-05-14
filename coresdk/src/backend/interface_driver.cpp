@@ -754,4 +754,56 @@ namespace splashkit_lib
         return ctx->style->spacing;
     }
 
+    static bool interface_enabled = true;
+
+    // MicroUI has no inbuilt functionality for disabling
+    // the UI, so we emulate it by taking a copy of current
+    // input state, then zeroing out everything.
+    // We then restore it once the interface is enabled again.
+    void sk_interface_set_enabled(bool enabled)
+    {
+        // copy of relevant input state
+        static mu_Id focus;
+        static mu_Vec2 mouse_pos;
+        static int mouse_down;
+        static int mouse_pressed;
+        static int key_down;
+        static int key_pressed;
+
+        if (interface_enabled == enabled)
+            return;
+
+        interface_enabled = enabled;
+
+        if (interface_enabled)
+        {
+            ctx->focus =          focus;
+            ctx->mouse_pos =      mouse_pos;
+            ctx->mouse_down =     mouse_down;
+            ctx->mouse_pressed =  mouse_pressed;
+            ctx->key_down =       key_down;
+            ctx->key_pressed =    key_pressed;
+        }
+        else
+        {
+            focus =          ctx->focus;
+            mouse_pos =      ctx->mouse_pos;
+            mouse_down =     ctx->mouse_down;
+            mouse_pressed =  ctx->mouse_pressed;
+            key_down =       ctx->key_down;
+            key_pressed =    ctx->key_pressed;
+
+            ctx->focus = -1;
+            ctx->mouse_pos ={ -1, -1 };
+            ctx->mouse_down = 0;
+            ctx->mouse_pressed = 0;
+            ctx->key_down = 0;
+            ctx->key_pressed = 0;
+        }
+    }
+
+    bool sk_interface_is_enabled()
+    {
+        return interface_enabled;
+    }
 }

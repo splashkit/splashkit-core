@@ -96,7 +96,11 @@ namespace splashkit_lib
     void sk_interface_style_set_title_height(int title_height);
     void sk_interface_style_set_scrollbar_size(int scrollbar_size);
     void sk_interface_style_set_thumb_size(int thumb_size);
+
     int sk_interface_style_get_padding();
     int sk_interface_style_get_spacing();
+
+    void sk_interface_set_enabled(bool enabled);
+    bool sk_interface_is_enabled();
 }
 #endif

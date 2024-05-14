@@ -36,6 +36,8 @@ namespace splashkit_lib
 
         int spacing;
         int padding;
+
+        float global_transarency = 1.0;
     };
 
     void _set_interface_colors_auto(interface_style_settings& style, color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast);
@@ -61,6 +63,12 @@ namespace splashkit_lib
     } set_style_callback_handler;
 
     // static convenience functions for adjusting colors when styling
+    static color multiply_alpha(color clr, float modulation)
+    {
+        clr.a *= modulation;
+        return clr;
+    }
+
     static color _adjust_color_contrast(color clr, float root, float init, float contrast, bool light)
     {
         init /= 255.0;
@@ -312,9 +320,9 @@ namespace splashkit_lib
     void _update_text_style(bool standaloneText = false)
     {
         if (standaloneText && filledContainerCount == 0)
-            sk_interface_style_set_text_color(current_interface_style.root_text_color);
+            sk_interface_style_set_text_color(multiply_alpha(current_interface_style.root_text_color, current_interface_style.global_transarency));
         else
-            sk_interface_style_set_text_color(current_interface_style.text_color);
+            sk_interface_style_set_text_color(multiply_alpha(current_interface_style.text_color, current_interface_style.global_transarency));
     }
 
 
@@ -924,7 +932,7 @@ namespace splashkit_lib
     {
         current_interface_style.text_color = clr;
 
-        sk_interface_style_set_text_color(current_interface_style.text_color);
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
 
         _update_text_style();
     }
@@ -933,12 +941,16 @@ namespace splashkit_lib
     {
         current_interface_style.root_text_color = clr;
 
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
 
         _update_text_style();
     }
+
     void set_interface_border_color(color clr)
     {
         current_interface_style.border_color = clr;
+
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
 
         sk_interface_style_set_border_color(clr);
     }
@@ -962,6 +974,8 @@ namespace splashkit_lib
 
         bool light_mode = _is_light_mode();
 
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
+
         sk_interface_style_set_border_color(_adjust_color_contrast(clr, 50, 25, contrast, false));
         sk_interface_style_set_titlebar_color(_adjust_color_contrast(clr, 50, 25, contrast, false));
         sk_interface_style_set_panel_color(_adjust_color_contrast(clr, 50, 50, contrast, light_mode));
@@ -981,6 +995,8 @@ namespace splashkit_lib
 
         current_interface_style.accents.clr = clr;
         current_interface_style.accents.contrast = contrast;
+
+        clr = multiply_alpha(clr, current_interface_style.global_transarency);
 
         sk_interface_style_set_button_color(_adjust_color_contrast(clr, 75, 75, contrast, light_mode));
         sk_interface_style_set_title_color(_adjust_color_contrast(clr, 50, 240, contrast, light_mode));
@@ -1036,5 +1052,24 @@ namespace splashkit_lib
     void _update_interface_style_from_current_style()
     {
         _update_interface_style(current_interface_style);
+    }
+
+    void disable_interface()
+    {
+        sk_interface_set_enabled(false);
+        current_interface_style.global_transarency = 0.5f;
+        _update_interface_style_from_current_style();
+    }
+
+    void enable_interface()
+    {
+        sk_interface_set_enabled(true);
+        current_interface_style.global_transarency = 1.0f;
+        _update_interface_style_from_current_style();
+    }
+
+    bool interface_enabled()
+    {
+        return sk_interface_is_enabled();
     }
 }
