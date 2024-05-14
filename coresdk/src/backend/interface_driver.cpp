@@ -53,7 +53,7 @@ namespace splashkit_lib
 
     // Font handling
     static font current_font = nullptr;
-    static int current_font_size = 14;
+    static int current_font_size = 13;
 
     // Store font/size pairs inside a set.
     //
