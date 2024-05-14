@@ -318,6 +318,53 @@ namespace splashkit_lib
     bool button(const string& text);
 
     /**
+     * Creates a button with a bitmap in it and a label.
+     * Returns whether the button was clicked.
+     *
+     * @param label             The label to show in front of the button
+     * @param bmp               The bitmap to show inside the button
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        labeled
+     */
+    bool bitmap_button(const string& label, bitmap bmp);
+
+    /**
+     * Creates a button with a bitmap in it and a label.
+     * Returns whether the button was clicked.
+     *
+     * @param label             The label to show in front of the button
+     * @param bmp               The bitmap to show inside the button
+     * @param opts              The drawing options
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        labeled_with_options
+     */
+    bool bitmap_button(const string& label, bitmap bmp, drawing_options opts);
+
+    /**
+     * Creates a button with a bitmap in it, and no label.
+     * Returns whether the button was clicked.
+     *
+     * @param bmp               The bitmap to show inside the button
+     * @return                  Whether the button was clicked
+     *
+     */
+    bool bitmap_button(bitmap bmp);
+
+    /**
+     * Creates a button with a bitmap in it, and no label.
+     * Returns whether the button was clicked.
+     *
+     * @param bmp               The bitmap to show inside the button
+     * @param opts              The drawing options
+     * @return                  Whether the button was clicked
+     *
+     * @attribute suffix        with_options
+     */
+    bool bitmap_button(bitmap bmp, drawing_options opts);
+
+    /**
      * Creates a checkbox with a label.
      * Returns the updated value of the checkbox.
      *

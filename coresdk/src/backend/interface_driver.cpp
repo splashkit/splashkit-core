@@ -98,6 +98,49 @@ namespace splashkit_lib
         return sk_text_height(font_info->first, font_info->second);
     }
 
+    // Icon Handling
+    // MicroUI only allows us to pass an int (not even a void*!) for the icon, so we store
+    // all the bitmap data in a vector that can be referenced using that int.
+    struct registered_icon
+    {
+        sk_drawing_surface* src;
+        double src_data[4];
+        double dst_data[7];
+        sk_renderer_flip flip;
+    };
+
+    std::vector<registered_icon> registered_icons_this_frame;
+
+    // returns registered icon's index, with +MU_ICON_MAX offset
+    int sk_interface_register_icon(sk_drawing_surface* src, double* src_data, int src_data_sz, double* dst_data, int dst_data_sz, sk_renderer_flip flip)
+    {
+        if ( src_data_sz != 4)
+            return 0;
+
+        if ( dst_data_sz != 7 )
+            return 0;
+
+        registered_icons_this_frame.push_back({
+            src,
+            {src_data[0],src_data[1],src_data[2],src_data[3]},
+            {dst_data[0],dst_data[1],dst_data[2],dst_data[3],dst_data[4],dst_data[5],dst_data[6]},
+            flip
+        });
+
+        return registered_icons_this_frame.size()-1 + MU_ICON_MAX;
+    }
+
+    registered_icon* _get_registered_icon(int icon)
+    {
+        icon -= MU_ICON_MAX;
+
+        if (icon < 0 || icon > registered_icons_this_frame.size())
+            return nullptr;
+
+        return &registered_icons_this_frame[icon];
+    }
+
+
     // conversion util functions
     mu_Rect to_mu(rectangle rect)
     {
@@ -200,24 +243,39 @@ namespace splashkit_lib
                         double dst_data[7];
                         sk_renderer_flip flip;
 
-                        atlas_rect = atlas[cmd->icon.id];
+                        // if it's a custom icon, handle specially
+                        if (cmd->icon.id >= MU_ICON_MAX)
+                        {
+                            registered_icon* icon = _get_registered_icon(cmd->icon.id);
+                            if (icon)
+                            {
+                                icon->dst_data[0] = cmd->icon.rect.x + (cmd->icon.rect.w - icon->src_data[2]) / 2; // X
+                                icon->dst_data[1] = cmd->icon.rect.y + (cmd->icon.rect.h - icon->src_data[3]) / 2; // Y
+                                sk_draw_bitmap(icon->src, surface, icon->src_data, 4, icon->dst_data, 7, icon->flip);
+                            }
+                        }
+                        else // otherwise draw from atlas
+                        {
+                            atlas_rect = atlas[cmd->icon.id];
 
-                        src_data[0] = atlas_rect.x;
-                        src_data[1] = atlas_rect.y;
-                        src_data[2] = atlas_rect.width;
-                        src_data[3] = atlas_rect.height;
+                            src_data[0] = atlas_rect.x;
+                            src_data[1] = atlas_rect.y;
+                            src_data[2] = atlas_rect.width;
+                            src_data[3] = atlas_rect.height;
 
-                        dst_data[0] = cmd->icon.rect.x + (cmd->icon.rect.w - atlas_rect.width) / 2; // X
-                        dst_data[1] = cmd->icon.rect.y + (cmd->icon.rect.h - atlas_rect.height) / 2; // Y
-                        dst_data[2] = opts.angle; // Angle
-                        dst_data[3] = opts.anchor_offset_x; // Centre X
-                        dst_data[4] = opts.anchor_offset_y; // Centre Y
-                        dst_data[5] = opts.scale_x; // Scale X
-                        dst_data[6] = opts.scale_y; // Scale Y
+                            dst_data[0] = cmd->icon.rect.x + (cmd->icon.rect.w - atlas_rect.width) / 2; // X
+                            dst_data[1] = cmd->icon.rect.y + (cmd->icon.rect.h - atlas_rect.height) / 2; // Y
+                            dst_data[2] = opts.angle; // Angle
+                            dst_data[3] = opts.anchor_offset_x; // Centre X
+                            dst_data[4] = opts.anchor_offset_y; // Centre Y
+                            dst_data[5] = opts.scale_x; // Scale X
+                            dst_data[6] = opts.scale_y; // Scale Y
 
-                        flip = sk_FLIP_NONE;
+                            flip = sk_FLIP_NONE;
 
-                        sk_draw_bitmap(ui_atlas, surface, src_data, 4, dst_data, 7, flip);
+                            sk_set_bitmap_tint(ui_atlas, from_mu(cmd->icon.color));
+                            sk_draw_bitmap(ui_atlas, surface, src_data, 4, dst_data, 7, flip);
+                        }
 
                         break;
 
@@ -249,6 +307,7 @@ namespace splashkit_lib
     void sk_interface_start()
     {
         fonts_this_frame.clear();
+        registered_icons_this_frame.clear();
         ctx->style->font = _add_font_size_pair(current_font, current_font_size);
 
         mu_begin(ctx);
@@ -412,9 +471,9 @@ namespace splashkit_lib
         mu_text(ctx, text.c_str());
     }
 
-    bool sk_interface_button(const string& label)
+    bool sk_interface_button(const string& label, int icon)
     {
-        update_elements_changed(mu_button(ctx, label.c_str()));
+        update_elements_changed(mu_button_ex(ctx, label.c_str(), icon, MU_OPT_ALIGNCENTER));
         return element_confirmed;
     }
 

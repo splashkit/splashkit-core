@@ -34,6 +34,13 @@ void run_ui_test()
     std::string text_box_val1 = "Type here!";
     std::string text_box_val2 = "And here!";
 
+    // A sprite to test bitmap buttons
+    animation_script player_animations = load_animation_script("player_animations", "player_animations.txt");
+    animation anim = create_animation(player_animations, "Fly");
+    bitmap player = load_bitmap("player", "player.png");
+    bitmap_set_cell_details(player, 300/4, 42, 4, 1, 4);
+    bool scale_image = true;
+
     while( not quit_requested() )
     {
         process_events();
@@ -80,6 +87,13 @@ void run_ui_test()
 
                 // Draw a checkbox
                 checkbox_val = checkbox("Did they work?", checkbox_val);
+
+                bitmap_button("Image!", player, option_scale_bmp(scale_image?0.45f:1.f,scale_image?0.45f:1.f, option_with_animation(anim)));
+                scale_image = checkbox("Scale icon?", scale_image);
+                update_animation(anim);
+
+                if ( animation_ended(anim) )
+                    assign_animation(anim, player_animations, "Fly");
             }
 
             // Show the popup if it's been opened

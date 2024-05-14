@@ -12,6 +12,8 @@ namespace splashkit_lib
     void sk_interface_init();
     void sk_interface_draw(drawing_options opts);
 
+    int sk_interface_register_icon(sk_drawing_surface* src, double* src_data, int src_data_sz, double* dst_data, int dst_data_sz, sk_renderer_flip flip);
+
     void sk_interface_style_set_font(font fnt);
     void sk_interface_style_set_font_size(int size);
 
@@ -50,7 +52,7 @@ namespace splashkit_lib
     bool sk_interface_header(const string& label);
     void sk_interface_label(const string& label);
     void sk_interface_text(const string& text);
-    bool sk_interface_button(const string& label);
+    bool sk_interface_button(const string& label, int icon);
     bool sk_interface_checkbox(const string& label, const bool& value);
     float sk_interface_slider(const float& value, float min_value, float max_value);
     float sk_interface_number(const float& value, float step);

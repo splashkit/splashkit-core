@@ -516,7 +516,113 @@ namespace splashkit_lib
     {
         _interface_sanity_check();
 
-        return sk_interface_button(text);
+        return sk_interface_button(text, 0);
+    }
+
+    // this code inside here is copied straight from images.cpp
+    // perhaps this should be a method inside graphics.cpp instead,
+    // and images.cpp should use it too?
+    void _compute_bitmap_data(bitmap bmp, drawing_options opts, int x, int y, double* src_data, double* dst_data, sk_renderer_flip* flip)
+    {
+        if ( VALID_PTR(opts.anim, ANIMATION_PTR) || opts.draw_cell >= 0 )
+        {
+            int cell;
+            if ( opts.draw_cell >= 0 )
+                cell = opts.draw_cell;
+            else
+                cell = animation_current_cell(opts.anim);
+
+            rectangle part = bitmap_rectangle_of_cell(bmp, cell);
+            src_data[0] = part.x;
+            src_data[1] = part.y;
+            src_data[2] = part.width;
+            src_data[3] = part.height;
+        }
+        else if (opts.is_part)
+        {
+            src_data[0] = opts.part.x;
+            src_data[1] = opts.part.y;
+            src_data[2] = opts.part.width;
+            src_data[3] = opts.part.height;
+        }
+        else
+        {
+            src_data[0] = 0;
+            src_data[1] = 0;
+            src_data[2] = bmp->image.surface.width;
+            src_data[3] = bmp->image.surface.height;
+        }
+
+        //
+        if ((opts.flip_x) and (opts.flip_y))
+            *flip = sk_FLIP_BOTH;
+        else if (opts.flip_x)
+            *flip = sk_FLIP_VERTICAL;
+        else if (opts.flip_y)
+            *flip = sk_FLIP_HORIZONTAL;
+        else
+            *flip = sk_FLIP_NONE;
+
+        // make up dst data
+        dst_data[0] = x; // X
+        dst_data[1] = y; // Y
+        dst_data[2] = opts.angle; // Angle
+        dst_data[3] = opts.anchor_offset_x; // Centre X
+        dst_data[4] = opts.anchor_offset_y; // Centre Y
+        dst_data[5] = opts.scale_x; // Scale X
+        dst_data[6] = opts.scale_y; // Scale Y
+    }
+
+    bool _bitmap_button_internal(bitmap bmp, const rectangle* rect, drawing_options opts)
+    {
+        _interface_sanity_check();
+
+        if ( INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            LOG(WARNING) << "Error trying to draw button icon: passed in bmp is an invalid bitmap pointer.";
+            return false;
+        }
+        double src_data[4], dst_data[7];
+        sk_renderer_flip flip;
+
+        _compute_bitmap_data(bmp, opts, 0, 0, src_data, dst_data, &flip);
+        int icon = sk_interface_register_icon(&bmp->image.surface, src_data, 4, dst_data, 7, flip);
+
+        if (rect)
+            sk_interface_set_layout_next(*rect, true);
+
+        return sk_interface_button("", icon);
+    }
+
+    bool bitmap_button(bitmap bmp, drawing_options opts)
+    {
+        return _bitmap_button_internal(bmp, nullptr, opts);
+    }
+
+    bool bitmap_button(bitmap bmp)
+    {
+        return bitmap_button(bmp, option_defaults());
+    }
+
+    bool bitmap_button(const string& label, bitmap bmp, drawing_options opts)
+    {
+        _interface_sanity_check();
+
+        enter_column();
+        _two_column_layout();
+
+        splashkit_lib::label(label);
+
+        bool res = _bitmap_button_internal(bmp, nullptr, opts);
+
+        leave_column();
+
+        return res;
+    }
+
+    bool bitmap_button(const string& label, bitmap bmp)
+    {
+        return bitmap_button(label, bmp, option_defaults());
     }
 
     bool checkbox(const string& label, const string& text, const bool& value)
