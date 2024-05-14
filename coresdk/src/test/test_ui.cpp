@@ -64,6 +64,14 @@ void run_ui_test()
                     write_line("Button1 pressed");
                 }
 
+                // Draw a disabled button
+                disable_interface();
+                if (button("Disabled:", "Disabled button"))
+                {
+                    write_line("I can't be pressed!");
+                }
+                enable_interface();
+
                 // Example of custom layout
                 start_custom_layout();
                 add_column(60);
