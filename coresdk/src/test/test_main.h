@@ -33,6 +33,7 @@ void run_restful_web_service();
 void run_udp_networking_test();
 void run_tcp_networking_test();
 void run_gpio_tests();
+void run_gpio_spi_tests();
 void run_terminal_test();
 void run_logging_test();
 void run_ui_test();

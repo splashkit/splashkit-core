@@ -95,7 +95,18 @@ namespace splashkit_lib
                 check_pi();
                 set_PWM_dutycycle(pi, pin, dutycycle);
         }
-
+        int sk_spi_open(int channel, int speed, int spi_flags)
+        {
+                return spi_open(pi, channel, speed, spi_flags);
+        }
+        int sk_spi_close(int handle)
+        {
+                return spi_close(pi, handle);
+        }
+        int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
+        {
+                return spi_xfer(pi, handle, sendBuf, recvBuf, count);
+        }	
         // Cleanup the GPIO library
         void sk_gpio_cleanup()
         {
