@@ -210,7 +210,7 @@ namespace splashkit_lib
     font get_system_font()
     {
         // record if we've tried to find a system font
-        bool system_font_attempted_load = false;
+        static bool system_font_attempted_load = false;
         // the system font we found (if successfull)
         static font system_font = nullptr;
 
@@ -220,7 +220,7 @@ namespace splashkit_lib
         {
             system_font_attempted_load = true;
 
-            std::vector<std::string> commonFonts = {
+            static const std::string common_fonts[] = {
                 "meiryo.ttc", // should be on Windows 7 and up - looks good in English, and supports a variety of languages
                 "NotoSansCJK-Regular.ttc", // some Linux options - supports a variety of languages
                 "NotoSansJP-Regular", // some Linux options
@@ -230,30 +230,36 @@ namespace splashkit_lib
                 "Arial", // all-rounder, should be on Windows and Mac
             };
 
-            // try loading each font manually - this avoid unecessary warnings, and we expect failure to happen on some systems
-            for (auto& fontName : commonFonts)
+            // utility function to keep loading logic tidy
+            const auto try_load_system_font = [](const std::string& path) -> font
             {
-                // Try the system font paths, and also the local font resource folder
-                std::string file_path = sk_find_system_font_path(fontName);
-                std::string file_path2 = path_to_resource(fontName, FONT_RESOURCE);
-                std::string file_path3 = path_to_resource(fontName + ".ttf", FONT_RESOURCE);
-
-                if (
-                    !file_exists(file_path) &&
-                    !file_exists(file_path2) &&
-                    !file_exists(file_path3)
-                )
-                    continue;
-
-                font result = sk_load_font(file_path.c_str(), 64);
-                if (!sk_contains_valid_font(result))
+                if (file_exists(path))
                 {
-                    delete result;
-                    continue;
+                    font result = sk_load_font(path.c_str(), 64);
+
+                    if (!sk_contains_valid_font(result))
+                    {
+                        delete result;
+                        return nullptr;
+                    }
+
+                    system_font = result;
+                    return result;
                 }
 
-                system_font = result;
-                break;
+                return nullptr;
+            };
+
+            // try loading each font manually - this avoid unecessary warnings, and we expect failure to happen on some systems
+            for (auto& font_name : common_fonts)
+            {
+                // Try the system font paths, and also the local font resource folder
+                if (try_load_system_font(sk_find_system_font_path(font_name)))
+                    break;
+                if (try_load_system_font(path_to_resource(font_name, FONT_RESOURCE)))
+                    break;
+                if (try_load_system_font(path_to_resource(font_name + ".ttf", FONT_RESOURCE)))
+                    break;
             }
         }
 
