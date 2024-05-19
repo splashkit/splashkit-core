@@ -225,6 +225,7 @@ namespace splashkit_lib
         // draw shadow if the right element type
         if (shadow.color.a>0.f && (
             colorid == MU_COLOR_WINDOWBG ||
+            colorid == MU_COLOR_SCROLLTHUMB ||
             colorid == MU_COLOR_BUTTON ||
             colorid == MU_COLOR_BUTTONHOVER ||
             colorid == MU_COLOR_BUTTONFOCUS ||
@@ -243,7 +244,6 @@ namespace splashkit_lib
             mu_draw_rect(ctx, rect, ctx->style->colors[colorid]);
 
         if (colorid == MU_COLOR_SCROLLBASE  ||
-        colorid == MU_COLOR_SCROLLTHUMB ||
         colorid == MU_COLOR_TITLEBG) { return; }
 
         // draw border

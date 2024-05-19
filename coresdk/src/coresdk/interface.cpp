@@ -1248,7 +1248,7 @@ namespace splashkit_lib
         sk_interface_style_set_titlebar_color(_adjust_color_contrast(clr, 50, 25, contrast, false));
         sk_interface_style_set_panel_color(_adjust_color_contrast(clr, 50, 50, contrast, light_mode));
         sk_interface_style_set_control_color(_adjust_color_contrast(clr, 50, 30, contrast, false));
-        sk_interface_style_set_scroll_base_color(_adjust_color_contrast(clr, 50, 43, contrast, light_mode));
+        sk_interface_style_set_scroll_base_color(_adjust_color_contrast(clr, 50, 43, contrast, false));
 
         // if light mode changed, we need to update everything
         if (light_mode != currently_light_mode)
@@ -1270,7 +1270,7 @@ namespace splashkit_lib
         sk_interface_style_set_title_color(_adjust_color_contrast(clr, 50, 240, contrast, light_mode));
         sk_interface_style_set_button_accent_colors(_adjust_color_contrast(clr, 75, 95, contrast, light_mode), _adjust_color_contrast(clr, 75, 115, contrast, light_mode));
         sk_interface_style_set_control_accent_colors(_adjust_color_contrast(clr, 75, 35, contrast, light_mode), _adjust_color_contrast(clr, 75, 40, contrast, light_mode));
-        sk_interface_style_set_scrollbar_color(_adjust_color_contrast(clr, 50, 30, contrast, light_mode));
+        sk_interface_style_set_scrollbar_color(_adjust_color_contrast(clr, 50, light_mode?40:20, contrast, false));
     }
 
     void _set_interface_colors_auto(interface_style_settings& style, color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast)
