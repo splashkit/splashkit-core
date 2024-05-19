@@ -261,6 +261,9 @@ namespace splashkit_lib
                 if (try_load_system_font(path_to_resource(font_name + ".ttf", FONT_RESOURCE)))
                     break;
             }
+
+            if (system_font == nullptr)
+                LOG(WARNING) << "Failed to find valid system font file";
         }
 
         return system_font;
