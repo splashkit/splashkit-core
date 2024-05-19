@@ -230,36 +230,23 @@ namespace splashkit_lib
                 "Arial", // all-rounder, should be on Windows and Mac
             };
 
-            // utility function to keep loading logic tidy
-            const auto try_load_system_font = [](const std::string& path) -> font
-            {
-                if (file_exists(path))
-                {
-                    font result = sk_load_font(path.c_str(), 64);
-
-                    if (!sk_contains_valid_font(result))
-                    {
-                        delete result;
-                        return nullptr;
-                    }
-
-                    system_font = result;
-                    return result;
-                }
-
-                return nullptr;
-            };
-
-            // try loading each font manually - this avoid unecessary warnings, and we expect failure to happen on some systems
             for (auto& font_name : common_fonts)
             {
-                // Try the system font paths, and also the local font resource folder
-                if (try_load_system_font(sk_find_system_font_path(font_name)))
+                // check if the font exists first, to avoid warnings from load_font later
+                if (
+                    !file_exists(sk_find_system_font_path(font_name)) &&
+                    !file_exists(path_to_resource(font_name, FONT_RESOURCE)) &&
+                    !file_exists(path_to_resource(font_name + ".ttf", FONT_RESOURCE))
+                )
+                    continue;
+
+                // try loading the font - if it fails, we'll try the next
+                font result = load_font("__system_font__", font_name);
+                if (result)
+                {
+                    system_font = result;
                     break;
-                if (try_load_system_font(path_to_resource(font_name, FONT_RESOURCE)))
-                    break;
-                if (try_load_system_font(path_to_resource(font_name + ".ttf", FONT_RESOURCE)))
-                    break;
+                }
             }
 
             if (system_font == nullptr)
