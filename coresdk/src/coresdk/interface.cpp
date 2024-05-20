@@ -100,9 +100,9 @@ namespace splashkit_lib
         else
             scale = (contrast / ratio + (1-contrast));
 
-        float valr = clr.r * scale;
-        float valg = clr.g * scale;
-        float valb = clr.b * scale;
+        float valr = std::min(clr.r * scale, 1.f);
+        float valg = std::min(clr.g * scale, 1.f);
+        float valb = std::min(clr.b * scale, 1.f);
 
         return {valr, valg, valb, clr.a};
     }
