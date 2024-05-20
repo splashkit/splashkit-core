@@ -1126,7 +1126,7 @@ namespace splashkit_lib
         sk_draw_bitmap(src, dst, src_data, 4, dst_data, 7, flip);
     }
 
-    void sk_draw_blurred_rect(sk_drawing_surface *surface, sk_color clr, double _x, double _y, double width, double height, int blur_radius)
+    void sk_draw_blurred_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height, int blur_radius)
     {
         // this would be slow if we just drew individual pixels on the CPU
         // ideally we'd just do this using a GPU shader, since there's an analytical solution.
@@ -1242,8 +1242,8 @@ namespace splashkit_lib
         // shrink the edges by half the radius
         width -= radius_d;
         height -= radius_d;
-        _x += radius_d/2;
-        _y += radius_d/2;
+        x += radius_d/2;
+        y += radius_d/2;
 
         // adjust sizes if the radius has exceeded the extent of the rectangle.
         // we handle this by just clipping the blur to its outer edges, which looks
@@ -1252,15 +1252,15 @@ namespace splashkit_lib
         int oversized_h = (int)std::min(0.0, height/2);
 
         double radius_d_w = radius_d + oversized_w;
-        _x += oversized_w;
+        x += oversized_w;
         double radius_d_h = radius_d + oversized_h;
-        _y += oversized_h;
+        y += oversized_h;
 
         // tidy up and avoid any overlaps/gaps
         width = std::max(0.0, width);
         height = std::max(0.0, height);
-        _x = (int)_x;
-        _y = (int)_y;
+        x = (int)x;
+        y = (int)y;
 
         // finally we draw
 
@@ -1268,27 +1268,27 @@ namespace splashkit_lib
         sk_set_bitmap_tint(&gaussian->texture, {clr.r, clr.g, clr.b, clr.a});
 
         // top left corner
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {_x-radius_d_w, _y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_NONE);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x-radius_d_w, y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_NONE);
         // top right corner
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {_x+width, _y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_HORIZONTAL);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x+width, y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_HORIZONTAL);
 
         // bottom left corner
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {_x-radius_d_w, _y+height, radius_d_w, radius_d_h}, sk_FLIP_VERTICAL);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x-radius_d_w, y+height, radius_d_w, radius_d_h}, sk_FLIP_VERTICAL);
         // bottom right corner
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {_x+width, _y+height, radius_d_w, radius_d_h}, sk_FLIP_BOTH);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x+width, y+height, radius_d_w, radius_d_h}, sk_FLIP_BOTH);
 
         // top edge
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {_x, _y-radius_d_h, width, radius_d_h}, sk_FLIP_NONE);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {x, y-radius_d_h, width, radius_d_h}, sk_FLIP_NONE);
         // bottom edge
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {_x, _y+height, width, radius_d_h}, sk_FLIP_VERTICAL);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {x, y+height, width, radius_d_h}, sk_FLIP_VERTICAL);
 
         // left edge
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {_x-radius_d_w, _y, radius_d_w, height}, sk_FLIP_NONE);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {x-radius_d_w, y, radius_d_w, height}, sk_FLIP_NONE);
         // right edge
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {_x+width, _y, radius_d_w, height}, sk_FLIP_HORIZONTAL);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {x+width, y, radius_d_w, height}, sk_FLIP_HORIZONTAL);
 
         // center (could just as easily draw an actual rectangle here...)
-        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, radius_d_h-1, 1, 1}, {_x, _y, width, height}, sk_FLIP_NONE);
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, radius_d_h-1, 1, 1}, {x, y, width, height}, sk_FLIP_NONE);
     }
 
 

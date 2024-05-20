@@ -790,9 +790,9 @@ namespace splashkit_lib
         return sk_interface_button(text, 0);
     }
 
-    // this code inside here is copied straight from images.cpp
-    // perhaps this should be a method inside graphics.cpp instead,
-    // and images.cpp should use it too?
+    // TODO the code inside here is copied straight from images.cpp
+    // perhaps this should be a method inside utility_functions.cpp instead
+    // (similar to xy_from_opts), and images.cpp should use it too?
     void _compute_bitmap_data(bitmap bmp, drawing_options opts, int x, int y, double (&src_data)[4], double (&dst_data)[7], sk_renderer_flip* flip)
     {
         if ( VALID_PTR(opts.anim, ANIMATION_PTR) || opts.draw_cell >= 0 )
