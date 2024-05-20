@@ -53,12 +53,15 @@ namespace splashkit_lib
 
     void _update_interface_style_from_current_style();
 
+    static bool interface_is_initialized = false;
+
     // this is an awful hack to work around the fact that 'interface.cpp'
     // has no way to run on initialization, not without directly referring to it
     // from the backend, which also seems wrong.
     static struct style_callback_handler
     {
         static void initial_style_set(){
+            interface_is_initialized = true;
             sk_interface_style_set_font(get_system_font());
             _update_interface_style_from_current_style();
         }
@@ -261,8 +264,19 @@ namespace splashkit_lib
         return "";
     }
 
+    void _interface_exists_check()
+    {
+        if (!interface_is_initialized)
+        {
+            // note: cannot use "interface" logger since it hasn't been initialized yet.
+            LOG(ERROR) << "Interface function called before opening a window!\nMake sure to open a window before trying to use interface functionality.\nThe program will exit now.";
+            exit(-1);
+        }
+    }
+
     void _interface_sanity_check()
     {
+        _interface_exists_check();
         if (!sk_interface_is_started())
         {
             CLOG(WARNING, "interface") << "Interface function called before 'process_events' - make sure to call this first!";
@@ -1160,6 +1174,8 @@ namespace splashkit_lib
 
     void set_interface_text_color(color clr)
     {
+        _interface_exists_check();
+
         current_interface_style.text_color = clr;
 
         clr = multiply_alpha(clr, current_interface_style.global_transarency);
@@ -1169,6 +1185,8 @@ namespace splashkit_lib
 
     void set_interface_root_text_color(color clr)
     {
+        _interface_exists_check();
+
         current_interface_style.root_text_color = clr;
 
         clr = multiply_alpha(clr, current_interface_style.global_transarency);
@@ -1178,6 +1196,8 @@ namespace splashkit_lib
 
     void set_interface_border_color(color clr)
     {
+        _interface_exists_check();
+
         current_interface_style.border_color = clr;
 
         clr = multiply_alpha(clr, current_interface_style.global_transarency);
@@ -1187,12 +1207,16 @@ namespace splashkit_lib
 
     void set_interface_shadows(int radius, color clr, point_2d offset)
     {
+        _interface_exists_check();
+
         set_interface_panel_shadows(radius, clr, offset);
         set_interface_element_shadows(radius, clr, offset);
     }
 
     void set_interface_panel_shadows(int radius, color clr, point_2d offset)
     {
+        _interface_exists_check();
+
         current_interface_style.panel_shadows.radius = radius;
         current_interface_style.panel_shadows.clr = clr;
         current_interface_style.panel_shadows.offset = offset;
@@ -1206,6 +1230,8 @@ namespace splashkit_lib
 
     void set_interface_element_shadows(int radius, color clr, point_2d offset)
     {
+        _interface_exists_check();
+
         current_interface_style.element_shadows.radius = radius;
         current_interface_style.element_shadows.clr = clr;
         current_interface_style.element_shadows.offset = offset;
@@ -1229,6 +1255,8 @@ namespace splashkit_lib
 
     void set_interface_element_color(color clr, float contrast)
     {
+        _interface_exists_check();
+
         bool currently_light_mode = _is_light_mode();
 
         current_interface_style.elements.clr = clr;
@@ -1253,6 +1281,8 @@ namespace splashkit_lib
 
     void set_interface_accent_color(color clr, float contrast)
     {
+        _interface_exists_check();
+
         bool light_mode = _is_light_mode();
 
         current_interface_style.accents.clr = clr;
@@ -1288,12 +1318,16 @@ namespace splashkit_lib
 
     void set_interface_colors_auto(color main_clr, color accent_clr, float contrast, float accent_contrast, float border_contrast)
     {
+        _interface_exists_check();
+
         _set_interface_colors_auto(current_interface_style, main_clr, accent_clr, contrast, accent_contrast, border_contrast);
         _update_interface_style_from_current_style();
     }
 
     void set_interface_spacing(int spacing, int padding)
     {
+        _interface_exists_check();
+
         current_interface_style.spacing = spacing;
         current_interface_style.padding = padding;
         sk_interface_style_set_spacing(current_interface_style.spacing);
@@ -1302,6 +1336,8 @@ namespace splashkit_lib
 
     void _update_interface_style(const interface_style_settings& style)
     {
+        _interface_exists_check();
+
         set_interface_accent_color(style.accents.clr, style.accents.contrast);
         set_interface_element_color(style.elements.clr, style.elements.contrast);
         set_interface_spacing(style.spacing, style.padding);
@@ -1315,16 +1351,22 @@ namespace splashkit_lib
 
     void _update_interface_style_from_current_style()
     {
+        _interface_exists_check();
+
         _update_interface_style(current_interface_style);
     }
 
     void set_interface_style(interface_style style, color clr)
     {
+        _interface_exists_check();
+
         _update_interface_style(_get_interface_style(style, clr));
     }
 
     void set_interface_style(interface_style style)
     {
+        _interface_exists_check();
+
         _update_interface_style(_get_interface_style(style));
     }
 
@@ -1400,6 +1442,8 @@ namespace splashkit_lib
 
     void disable_interface()
     {
+        _interface_exists_check();
+
         sk_interface_set_enabled(false);
         current_interface_style.global_transarency = 0.5f;
         _update_interface_style_from_current_style();
@@ -1407,6 +1451,8 @@ namespace splashkit_lib
 
     void enable_interface()
     {
+        _interface_exists_check();
+
         sk_interface_set_enabled(true);
         current_interface_style.global_transarency = 1.0f;
         _update_interface_style_from_current_style();
