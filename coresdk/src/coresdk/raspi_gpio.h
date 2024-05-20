@@ -122,11 +122,11 @@ namespace splashkit_lib
     int raspi_spi_open(int channel, int speed, int spi_flags);
 
     /**
-     * @brief Opens SPI communication on selected channel.
+     * @brief Closes SPI communication on selected channel.
      *
      * This function closes SPI communication on a particular channel.
      *
-     * @param handle  A reference to the specific SPI communication to close.
+     * @param handle  A reference to the specific SPI connection to close.
      * @returns       A value indicating success or failure.
      */
     int raspi_spi_close(int handle);
