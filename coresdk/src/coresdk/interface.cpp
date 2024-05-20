@@ -23,28 +23,22 @@ namespace splashkit_lib
     // Styling
     struct interface_style_settings
     {
-        struct shadow_settings
-        {
-            int radius;
-            color clr;
-            point_2d offset;
-        };
+        color root_text_color = COLOR_BLACK;
+        color text_color;
+        color border_color;
 
         struct general_settings
         {
             color clr;
             float contrast;
-        };
+        } elements, accents;
 
-        color root_text_color = COLOR_BLACK;
-        color text_color;
-        color border_color;
-
-        general_settings elements;
-        general_settings accents;
-
-        shadow_settings panel_shadows;
-        shadow_settings element_shadows;
+        struct shadow_settings
+        {
+            int radius;
+            color clr;
+            point_2d offset;
+        } panel_shadows, element_shadows;
 
         int spacing;
         int padding;
