@@ -209,51 +209,37 @@ namespace splashkit_lib
 
     font get_system_font()
     {
-        // record if we've tried to find a system font
-        static bool system_font_attempted_load = false;
-        // the system font we found (if successfull)
-        static font system_font = nullptr;
-
         // attempt to find a common font that looks nice.
         // This way most computers will have nice text at least
-        if (!system_font_attempted_load)
+        static const std::string common_fonts[] = {
+            "meiryo.ttc", // should be on Windows 7 and up - looks good in English, and supports a variety of languages
+            "NotoSansCJK-Regular.ttc", // some Linux options - supports a variety of languages
+            "NotoSansJP-Regular", // some Linux options
+            "NotoSans-Regular", // some Linux options
+            "LiberationSans-Regular", // some Linux options
+            "DejaVuSans", // some Linux options
+            "Arial", // all-rounder, should be on Windows and Mac
+        };
+
+        for (auto& font_name : common_fonts)
         {
-            system_font_attempted_load = true;
+            // check if the font exists first, to avoid warnings from load_font later
+            if (
+                !file_exists(sk_find_system_font_path(font_name)) &&
+                !file_exists(path_to_resource(font_name, FONT_RESOURCE)) &&
+                !file_exists(path_to_resource(font_name + ".ttf", FONT_RESOURCE))
+            )
+                continue;
 
-            static const std::string common_fonts[] = {
-                "meiryo.ttc", // should be on Windows 7 and up - looks good in English, and supports a variety of languages
-                "NotoSansCJK-Regular.ttc", // some Linux options - supports a variety of languages
-                "NotoSansJP-Regular", // some Linux options
-                "NotoSans-Regular", // some Linux options
-                "LiberationSans-Regular", // some Linux options
-                "DejaVuSans", // some Linux options
-                "Arial", // all-rounder, should be on Windows and Mac
-            };
-
-            for (auto& font_name : common_fonts)
-            {
-                // check if the font exists first, to avoid warnings from load_font later
-                if (
-                    !file_exists(sk_find_system_font_path(font_name)) &&
-                    !file_exists(path_to_resource(font_name, FONT_RESOURCE)) &&
-                    !file_exists(path_to_resource(font_name + ".ttf", FONT_RESOURCE))
-                )
-                    continue;
-
-                // try loading the font - if it fails, we'll try the next
-                font result = load_font("__system_font__", font_name);
-                if (result)
-                {
-                    system_font = result;
-                    break;
-                }
-            }
-
-            if (system_font == nullptr)
-                LOG(WARNING) << "Failed to find valid system font file";
+            // try loading the font - if it fails, we'll try the next
+            font result = load_font("__system_font__", font_name);
+            if (result)
+                return result;
         }
 
-        return system_font;
+        LOG(WARNING) << "Failed to find valid system font file";
+
+        return nullptr;
     }
 
     void draw_text(const string &text, const color &clr, font fnt, int font_size, double x, double y, const drawing_options &opts)
