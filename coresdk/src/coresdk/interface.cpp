@@ -799,7 +799,7 @@ namespace splashkit_lib
     // this code inside here is copied straight from images.cpp
     // perhaps this should be a method inside graphics.cpp instead,
     // and images.cpp should use it too?
-    void _compute_bitmap_data(bitmap bmp, drawing_options opts, int x, int y, double* src_data, double* dst_data, sk_renderer_flip* flip)
+    void _compute_bitmap_data(bitmap bmp, drawing_options opts, int x, int y, double (&src_data)[4], double (&dst_data)[7], sk_renderer_flip* flip)
     {
         if ( VALID_PTR(opts.anim, ANIMATION_PTR) || opts.draw_cell >= 0 )
         {
@@ -863,7 +863,7 @@ namespace splashkit_lib
         sk_renderer_flip flip;
 
         _compute_bitmap_data(bmp, opts, 0, 0, src_data, dst_data, &flip);
-        int icon = sk_interface_register_icon(&bmp->image.surface, src_data, 4, dst_data, 7, flip);
+        int icon = sk_interface_register_icon(&bmp->image.surface, src_data, dst_data, flip);
 
         if (rect)
             sk_interface_set_layout_next(*rect, true);

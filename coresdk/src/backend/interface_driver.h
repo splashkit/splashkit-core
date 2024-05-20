@@ -14,7 +14,7 @@ namespace splashkit_lib
 
     void sk_interface_draw(drawing_options opts);
 
-    int sk_interface_register_icon(sk_drawing_surface* src, double* src_data, int src_data_sz, double* dst_data, int dst_data_sz, sk_renderer_flip flip);
+    int sk_interface_register_icon(sk_drawing_surface* src, const double (&src_data)[4], const double (&dst_data)[7], sk_renderer_flip flip);
 
     void sk_interface_style_set_font(font fnt);
     void sk_interface_style_set_font_size(int size);

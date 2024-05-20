@@ -126,14 +126,8 @@ namespace splashkit_lib
     std::vector<registered_icon> registered_icons_this_frame;
 
     // returns registered icon's index, with +MU_ICON_MAX offset
-    int sk_interface_register_icon(sk_drawing_surface* src, double* src_data, int src_data_sz, double* dst_data, int dst_data_sz, sk_renderer_flip flip)
+    int sk_interface_register_icon(sk_drawing_surface* src, const double (&src_data)[4], const double (&dst_data)[7], sk_renderer_flip flip)
     {
-        if ( src_data_sz != 4)
-            return 0;
-
-        if ( dst_data_sz != 7 )
-            return 0;
-
         registered_icons_this_frame.push_back({
             src,
             {src_data[0],src_data[1],src_data[2],src_data[3]},
