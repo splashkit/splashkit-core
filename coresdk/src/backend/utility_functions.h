@@ -194,6 +194,8 @@ collection.erase(collection.begin());\
     
     double deg_to_rad(double degrees);
 
+    double lin_interp(double v0, double v1, double t);
+
     // Notify the listeners that a resource has been freed. Implemented in resources.
     void notify_of_free(void *resource);
 }

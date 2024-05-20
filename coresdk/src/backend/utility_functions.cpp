@@ -582,4 +582,8 @@ namespace splashkit_lib
     {
         return degrees * PI / 180;
     }
+
+    double lin_interp(double v0, double v1, double t) {
+        return v0 * (1.0 - t) + v1 * t;
+    }
 }

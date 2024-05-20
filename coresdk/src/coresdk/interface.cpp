@@ -1290,8 +1290,29 @@ namespace splashkit_lib
 
         clr = multiply_alpha(clr, current_interface_style.global_transarency);
 
+        // title color handling - increase saturation and alter brightness
+        double title_hue = hue_of(clr);
+        double title_sat = saturation_of(clr);
+        double title_bri;
+
+        // increase saturation of title
+        // HSB brightness isn't perceptually consistent - saturated blue looks darker/like its been hue shifted,
+        // empirical correction - TODO perhaps using a different color space altogether would be better
+        // darkest region is centered around 0.68 with a radius of 0.12 + apply power to fit color space curve better
+        double blue_correction = 1.0 - std::pow(std::min(1.0, std::abs((title_hue - 0.68) / 0.12)), 2);
+
+        title_sat = lin_interp(1.0 - std::pow(1.0 - title_sat, 5), title_sat, blue_correction) * contrast;
+
+        if (light_mode)
+            // ensure text becomes darker when desaturated, to stay readable
+            // we also keep text a little off full black, which looks less harsh and is fairly common practice
+            title_bri = std::max(50.0/255.0, title_sat);
+        else
+            // ensure text is always bright
+            title_bri = 1.0;
+
         sk_interface_style_set_button_color(_adjust_color_contrast(clr, 75, 75, contrast, light_mode));
-        sk_interface_style_set_title_color(_adjust_color_contrast(clr, 50, 240, contrast, light_mode));
+        sk_interface_style_set_title_color(hsba_color(title_hue, title_sat, title_bri, clr.a));
         sk_interface_style_set_button_accent_colors(_adjust_color_contrast(clr, 75, 95, contrast, light_mode), _adjust_color_contrast(clr, 75, 115, contrast, light_mode));
         sk_interface_style_set_control_accent_colors(_adjust_color_contrast(clr, 75, 35, contrast, light_mode), _adjust_color_contrast(clr, 75, 40, contrast, light_mode));
         sk_interface_style_set_scrollbar_color(_adjust_color_contrast(clr, 50, light_mode?40:20, contrast, false));
