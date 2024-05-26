@@ -10,15 +10,56 @@
     <Version>1.0.3</Version>
     <Authors>Andrew Cain</Authors>
     <Company>SplashKit</Company>
+    <Description>Splashkit is a free and open-source software development kit (SDK) designed to simplify the process of creating 2D games and applications. It is primarily written in C++ and provides a set of libraries and tools that abstract away many of the low-level details of game development, allowing developers to focus on the core functionality and logic of their projects.</Description>
 
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/splashkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/splashkit</RepositoryUrl>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PlatformTarget>AnyCPU</PlatformTarget>
 
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+
+  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="readme.md" Pack="true" PackagePath="/"/>
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+<ItemGroup>
+  <Content Include="icon.ico" />
+</ItemGroup>
+	<ItemGroup>
+<Content Include=".\Libraries\win64\*.dll">
+	<Pack>true</Pack>
+	<PackagePath>lib\$(TargetFramework)</PackagePath>
+	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	<PackageCopyToOutput>true</PackageCopyToOutput>
+	<Link>%(FileName)%(Extension)</Link>
+</Content>
+<Content Include=".\Libraries\macos\libSplashKit.dylib">
+	<Pack>true</Pack>
+	<PackagePath>lib\$(TargetFramework)</PackagePath>
+	<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	<PackageCopyToOutput>true</PackageCopyToOutput>
+	<Link>%(FileName)%(Extension)</Link>
+</Content>
+	</ItemGroup>
+<ItemGroup>
+  <None Update="icon.png">
+    <Pack>True</Pack>
+    <PackagePath>\</PackagePath>
+  </None>
+  <None Update="readme.md">
+    <Pack>True</Pack>
+    <PackagePath>\</PackagePath>
+  </None>
+</ItemGroup>
+
+  
 
 </Project>
