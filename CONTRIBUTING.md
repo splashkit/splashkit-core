@@ -1,6 +1,9 @@
 # SplashKit development
 
-## macOS
+Follow the guides below to set up your device for SplashKit development:
+
+<details>
+<summary><h1>macOS💻</h1></summary>
 
 ### Install prerequisites
 
@@ -46,7 +49,10 @@
 
 6. Add test code into `coresdk/src/test`. Now you should be good to go.
 
-## Linux
+</details>
+
+<details>
+<summary><h1>Linux🐧</h1></summary>
 
 ### Install prerequisites
 
@@ -100,8 +106,11 @@
     ```
 
 6.  Add test code into `coresdk/src/test`. Now you should be good to go.
+</details>
 
-## Windows
+<details>
+<summary> <h1>Windows🪟</h1> </summary>
+
 
 ### Install prerequisites
 
@@ -183,3 +192,54 @@
    ```
 
 6. Add test code into `coresdk/src/test`. Now you should be good to go.
+
+</details>
+
+## Folder Structure
+Here is the folder structure tree for the SplashKit project:
+
+```
+SplashKit
+├── coresdk
+│   ├── external
+│   ├── lib
+│   └── src
+├── generated
+├── out
+└── projects
+    ├── cmake
+    └── tools
+        └── scripts
+```
+
+The folder structure is as follows:
+
+- `coresdk/`: This directory contains all the library files for SplashKit.
+  - `external/`: This directory points to another repository that has libraries that are compiled externally.
+  - `lib/`: This directory has all the libraries for each operating system.
+  - `src/`: This directory has all the source code functionalities for SplashKit.
+- `generated/`: This directory contains the CMake's translation for the C files.
+- `out/`: This directory contains the output from the build process from `tools/scripts`.
+- `projects/`:
+  - `cmake/`: This directory has the CMake configuration.
+  - `tools/`:
+    - `scripts/`: This directory has the NuGet package build script, translator script, and website deployment script.
+
+## Resources Needed for the Project
+
+### CMake
+CMake is an open-source, cross-platform family of tools designed to build, test and package software. It is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.[3]
+
+To learn more about CMake, you can refer to the official CMake documentation: [https://cmake.org/documentation/](https://cmake.org/documentation/)
+
+### SplashKit Translator
+The SplashKit Translator is a project that translates the SplashKit C++ source code into other languages. It uses HeaderDoc and a Ruby environment to generate the documentation.[1]
+
+You can find the SplashKit Translator repository on GitHub: [https://github.com/splashkit/splashkit-translator](https://github.com/splashkit/splashkit-translator)
+
+### NuGet Package
+The SplashKit NuGet package provides the SplashKit library for .NET projects. It allows you to easily add the SplashKit library to your C++ or C# projects.[2]
+
+You can find the SplashKit NuGet package on the NuGet Gallery: [https://www.nuget.org/packages/SplashKit](https://www.nuget.org/packages/SplashKit)
+
+To use the SplashKit NuGet package, you can follow the instructions provided on the package page, such as adding the package reference to your project file or using the NuGet Package Manager Console.
