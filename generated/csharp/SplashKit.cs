@@ -452,6 +452,74 @@ namespace SplashKitSDK
 
 
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
+    private struct __sklib_vector_string    {
+      internal IntPtr _data_from_app;
+      public __sklib_string[] data_from_app
+      {
+        set
+        {
+          _data_from_app = ToIntPtr(value);
+        }
+      }
+      public uint size_from_app;
+      private IntPtr _data_from_lib;
+      public __sklib_string[] data_from_lib
+      {
+        get
+        {
+          return FromIntPtr<__sklib_string>(_data_from_lib, (int)size_from_lib);
+        }
+      }
+      public uint size_from_lib;
+    }
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_string", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__free__sklib_vector_string(__sklib_vector_string v);
+
+    private static void __skadapter__free__sklib_vector_string(ref __sklib_vector_string v)
+    {
+      // System.Console.WriteLine("Freeing data");
+      Marshal.FreeHGlobal(v._data_from_app);
+    }
+    private static __sklib_vector_string __skadapter__to_sklib_vector_string(List<string> v)
+    {
+      int i = 0;
+      __sklib_vector_string result = new __sklib_vector_string();
+
+      result.size_from_lib = 0;
+      result.size_from_app = (uint)v.Count;
+      __sklib_string[] tmp = new __sklib_string[result.size_from_app];
+
+      foreach(string d in v)
+      {
+        tmp[i] = __skadapter__to_sklib_string(v[i]);
+        i++;
+      }
+
+      result.data_from_app = tmp;
+      return result;
+    }
+    private static List<string> __skadapter__to_vector_string(__sklib_vector_string v)
+    {
+      List<string> result = new List<string>();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        result.Add(__skadapter__to_string(v.data_from_lib[i]));
+      }
+      __sklib__free__sklib_vector_string(v);
+      return result;
+    }
+    private static void __skadapter__update_from_vector_string(ref __sklib_vector_string v, List<string> __skreturn)
+    {
+      __skreturn.Clear();
+      for (int i = 0; i < v.size_from_lib; i++)
+      {
+        __skreturn.Add(__skadapter__to_string(v.data_from_lib[i]));
+      }
+            __sklib__free__sklib_vector_string(v);
+    }
+
+    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
     private struct __sklib_vector_line    {
       internal IntPtr _data_from_app;
       public __sklib_line[] data_from_app
@@ -478,7 +546,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_line(ref __sklib_vector_line v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_line __skadapter__to_sklib_vector_line(List<Line> v)
@@ -546,7 +614,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_int8_t(ref __sklib_vector_int8_t v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_int8_t __skadapter__to_sklib_vector_int8_t(List<byte> v)
@@ -614,7 +682,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_triangle(ref __sklib_vector_triangle v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_triangle __skadapter__to_sklib_vector_triangle(List<Triangle> v)
@@ -656,74 +724,6 @@ namespace SplashKitSDK
     }
 
     [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
-    private struct __sklib_vector_string    {
-      internal IntPtr _data_from_app;
-      public __sklib_string[] data_from_app
-      {
-        set
-        {
-          _data_from_app = ToIntPtr(value);
-        }
-      }
-      public uint size_from_app;
-      private IntPtr _data_from_lib;
-      public __sklib_string[] data_from_lib
-      {
-        get
-        {
-          return FromIntPtr<__sklib_string>(_data_from_lib, (int)size_from_lib);
-        }
-      }
-      public uint size_from_lib;
-    }
-
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__free__sklib_vector_string", CharSet=CharSet.Ansi)]
-    private static extern void __sklib__free__sklib_vector_string(__sklib_vector_string v);
-
-    private static void __skadapter__free__sklib_vector_string(ref __sklib_vector_string v)
-    {
-      System.Console.WriteLine("Freeing data");
-      Marshal.FreeHGlobal(v._data_from_app);
-    }
-    private static __sklib_vector_string __skadapter__to_sklib_vector_string(List<string> v)
-    {
-      int i = 0;
-      __sklib_vector_string result = new __sklib_vector_string();
-
-      result.size_from_lib = 0;
-      result.size_from_app = (uint)v.Count;
-      __sklib_string[] tmp = new __sklib_string[result.size_from_app];
-
-      foreach(string d in v)
-      {
-        tmp[i] = __skadapter__to_sklib_string(v[i]);
-        i++;
-      }
-
-      result.data_from_app = tmp;
-      return result;
-    }
-    private static List<string> __skadapter__to_vector_string(__sklib_vector_string v)
-    {
-      List<string> result = new List<string>();
-      for (int i = 0; i < v.size_from_lib; i++)
-      {
-        result.Add(__skadapter__to_string(v.data_from_lib[i]));
-      }
-      __sklib__free__sklib_vector_string(v);
-      return result;
-    }
-    private static void __skadapter__update_from_vector_string(ref __sklib_vector_string v, List<string> __skreturn)
-    {
-      __skreturn.Clear();
-      for (int i = 0; i < v.size_from_lib; i++)
-      {
-        __skreturn.Add(__skadapter__to_string(v.data_from_lib[i]));
-      }
-            __sklib__free__sklib_vector_string(v);
-    }
-
-    [ StructLayout( LayoutKind.Sequential, CharSet=CharSet.Ansi )]
     private struct __sklib_vector_double    {
       internal IntPtr _data_from_app;
       public double[] data_from_app
@@ -750,7 +750,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_double(ref __sklib_vector_double v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_double __skadapter__to_sklib_vector_double(List<double> v)
@@ -818,7 +818,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_json(ref __sklib_vector_json v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_json __skadapter__to_sklib_vector_json(List<Json> v)
@@ -886,7 +886,7 @@ namespace SplashKitSDK
 
     private static void __skadapter__free__sklib_vector_bool(ref __sklib_vector_bool v)
     {
-      System.Console.WriteLine("Freeing data");
+      // System.Console.WriteLine("Freeing data");
       Marshal.FreeHGlobal(v._data_from_app);
     }
     private static __sklib_vector_bool __skadapter__to_sklib_vector_bool(List<bool> v)
@@ -1147,11 +1147,17 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_audio", CharSet=CharSet.Ansi)]
     private static extern void __sklib__open_audio();
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__contains__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__contains__string_ref__string_ref(__sklib_string text, __sklib_string subtext);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_double__string_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__convert_to_double__string_ref(__sklib_string text);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__convert_to_integer__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__convert_to_integer__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__index_of__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__index_of__string_ref__string_ref(__sklib_string text, __sklib_string subtext);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_double__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_double__string_ref(__sklib_string text);
@@ -1161,6 +1167,15 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_number__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_number__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__length_of__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__length_of__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__replace_all__string_ref__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(__sklib_string text, __sklib_string substr, __sklib_string newtext);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split__string_ref__char", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_string __sklib__split__string_ref__char(__sklib_string text, char delimiter);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__to_lowercase__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__to_lowercase__string_ref(__sklib_string text);
@@ -4894,6 +4909,18 @@ namespace SplashKitSDK
     {
       __sklib__open_audio();
     }
+    public static bool Contains(string text, string subtext)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skparam__subtext;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__subtext = __skadapter__to_sklib_string(subtext);
+      __skreturn = __sklib__contains__string_ref__string_ref(__skparam__text, __skparam__subtext);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__subtext);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static double ConvertToDouble(string text)
     {
       __sklib_string __skparam__text;
@@ -4910,6 +4937,18 @@ namespace SplashKitSDK
       __skparam__text = __skadapter__to_sklib_string(text);
       __skreturn = __sklib__convert_to_integer__string_ref(__skparam__text);
     __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_int(__skreturn);
+    }
+    public static int IndexOf(string text, string subtext)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skparam__subtext;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__subtext = __skadapter__to_sklib_string(subtext);
+      __skreturn = __sklib__index_of__string_ref__string_ref(__skparam__text, __skparam__subtext);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__subtext);
       return __skadapter__to_int(__skreturn);
     }
     public static bool IsDouble(string text)
@@ -4938,6 +4977,41 @@ namespace SplashKitSDK
       __skreturn = __sklib__is_number__string_ref(__skparam__text);
     __skadapter__free__sklib_string(ref __skparam__text);
       return __skadapter__to_bool(__skreturn);
+    }
+    public static int LengthOf(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__length_of__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_int(__skreturn);
+    }
+    public static string ReplaceAll(string text, string substr, string newtext)
+    {
+      __sklib_string __skparam__text;
+      __sklib_string __skparam__substr;
+      __sklib_string __skparam__newText;
+      __sklib_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__substr = __skadapter__to_sklib_string(substr);
+      __skparam__newText = __skadapter__to_sklib_string(newtext);
+      __skreturn = __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__substr);
+    __skadapter__free__sklib_string(ref __skparam__newText);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static List<string> Split(string text, char delimiter)
+    {
+      __sklib_string __skparam__text;
+      char __skparam__delimiter;
+      __sklib_vector_string __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__delimiter = __skadapter__to_sklib_char(delimiter);
+      __skreturn = __sklib__split__string_ref__char(__skparam__text, __skparam__delimiter);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_vector_string(__skreturn);
     }
     public static string ToLowercase(string text)
     {

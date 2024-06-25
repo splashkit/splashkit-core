@@ -185,6 +185,9 @@ void (*__sklib__to_sprite_float_function(__sklib_sprite_float_function *v))(__sk
 void (*__sklib__to_sklib_sprite_float_function(sprite_float_function *v))(__sklib_ptr s, float f);
 void (*__sklib__to_sprite_function(__sklib_sprite_function *v))(__sklib_ptr s);
 void (*__sklib__to_sklib_sprite_function(sprite_function *v))(__sklib_ptr s);
+__sklib_vector_string __sklib__to_sklib_vector_string(const std::vector<string> &v);
+vector<string> __sklib__to_vector_string(const __sklib_vector_string &v);
+void __sklib__update_from_vector_string(const std::vector<string> &v, __sklib_vector_string *__skreturn);
 __sklib_vector_line __sklib__to_sklib_vector_line(const std::vector<line> &v);
 vector<line> __sklib__to_vector_line(const __sklib_vector_line &v);
 void __sklib__update_from_vector_line(const std::vector<line> &v, __sklib_vector_line *__skreturn);
@@ -194,9 +197,6 @@ void __sklib__update_from_vector_int8_t(const std::vector<int8_t> &v, __sklib_ve
 __sklib_vector_triangle __sklib__to_sklib_vector_triangle(const std::vector<triangle> &v);
 vector<triangle> __sklib__to_vector_triangle(const __sklib_vector_triangle &v);
 void __sklib__update_from_vector_triangle(const std::vector<triangle> &v, __sklib_vector_triangle *__skreturn);
-__sklib_vector_string __sklib__to_sklib_vector_string(const std::vector<string> &v);
-vector<string> __sklib__to_vector_string(const __sklib_vector_string &v);
-void __sklib__update_from_vector_string(const std::vector<string> &v, __sklib_vector_string *__skreturn);
 __sklib_vector_double __sklib__to_sklib_vector_double(const std::vector<double> &v);
 vector<double> __sklib__to_vector_double(const __sklib_vector_double &v);
 void __sklib__update_from_vector_double(const std::vector<double> &v, __sklib_vector_double *__skreturn);

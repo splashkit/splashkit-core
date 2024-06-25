@@ -56,6 +56,51 @@ namespace splashkit_lib
         return data;
     }
 
+    int length_of(const string &text)
+    {
+        return text.length();
+    }
+
+    bool contains(const string &text, const string &subtext)
+    {
+        return index_of(text, subtext) != -1;
+    }
+
+    int index_of(const string &text, const string &subtext)
+    {
+        size_t pos = text.find(subtext);
+        if (pos == string::npos)
+            return -1;
+        return static_cast<int>(pos);
+    }
+
+    string replace_all(const string &text, const string &substr, const string &replacement)
+    {
+        string result = text;
+        size_t pos = 0;
+        while ((pos = result.find(substr, pos)) != string::npos)
+        {
+            result.replace(pos, substr.length(), replacement);
+            pos += replacement.length();
+        }
+        return result;
+    }
+
+    vector<string> split(const string &text, char delimiter)
+    {
+        vector<string> result;
+        string::size_type start = 0;
+        string::size_type end = text.find(delimiter);
+        while (end != string::npos)
+        {
+            result.push_back(text.substr(start, end - start));
+            start = end + 1;
+            end = text.find(delimiter, start);
+        }
+        result.push_back(text.substr(start));
+        return result;
+    }
+
     // integer check see: https://stackoverflow.com/questions/2844817/how-do-i-check-if-a-c-string-is-an-int#2845275
 
     bool is_integer(const string &text)
