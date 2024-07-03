@@ -57,7 +57,7 @@ namespace splashkit_lib
 
     struct shadow_style
     {
-        color color;
+        color clr;
         int radius;
         point_2d offset;
     };
@@ -217,7 +217,7 @@ namespace splashkit_lib
         shadow_style& shadow = colorid==MU_COLOR_WINDOWBG?panel_shadow_style:element_shadow_style;
 
         // draw shadow if the right element type
-        if (shadow.color.a>0.f && (
+        if (shadow.clr.a>0.f && (
             colorid == MU_COLOR_WINDOWBG ||
             colorid == MU_COLOR_SCROLLTHUMB ||
             colorid == MU_COLOR_BUTTON ||
@@ -230,7 +230,7 @@ namespace splashkit_lib
             mu_Rect shadow_rect = rect;
             shadow_rect.x += shadow.offset.x;
             shadow_rect.y += shadow.offset.y;
-            draw_blurred_rect(ctx, shadow_rect, to_mu(shadow.color), shadow.radius);
+            draw_blurred_rect(ctx, shadow_rect, to_mu(shadow.clr), shadow.radius);
         }
 
         // draw main frame
@@ -738,10 +738,10 @@ namespace splashkit_lib
     void sk_interface_style_reset()
     {
         *ctx->style = default_style;
-        panel_shadow_style.color = COLOR_BLACK;
+        panel_shadow_style.clr = COLOR_BLACK;
         panel_shadow_style.radius = 35;
         panel_shadow_style.offset = {16,16};
-        element_shadow_style.color = COLOR_BLACK;
+        element_shadow_style.clr = COLOR_BLACK;
         element_shadow_style.radius = 7;
         element_shadow_style.offset = {3,3};
     }
@@ -810,7 +810,7 @@ namespace splashkit_lib
 
     void sk_interface_style_set_panel_shadow_color(sk_color clr)
     {
-        panel_shadow_style.color = clr;
+        panel_shadow_style.clr = clr;
     }
 
     void sk_interface_style_set_panel_shadow_radius(int radius)
@@ -825,7 +825,7 @@ namespace splashkit_lib
 
     void sk_interface_style_set_element_shadow_color(sk_color clr)
     {
-        element_shadow_style.color = clr;
+        element_shadow_style.clr = clr;
     }
 
     void sk_interface_style_set_element_shadow_radius(int radius)
