@@ -239,6 +239,14 @@ void close_audio() {
 void open_audio() {
     __sklib__open_audio();
 }
+bool contains(const string &text, const string &subtext) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_string __skparam__subtext = __skadapter__to_sklib_string(subtext);
+    int __skreturn = __sklib__contains__string_ref__string_ref(__skparam__text, __skparam__subtext);
+    __skadapter__free__sklib_string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__subtext);
+    return __skadapter__to_bool(__skreturn);
+}
 double convert_to_double(const string &text) {
     const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     double __skreturn = __sklib__convert_to_double__string_ref(__skparam__text);
@@ -249,6 +257,14 @@ int convert_to_integer(const string &text) {
     const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
     int __skreturn = __sklib__convert_to_integer__string_ref(__skparam__text);
     __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_int(__skreturn);
+}
+int index_of(const string &text, const string &subtext) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_string __skparam__subtext = __skadapter__to_sklib_string(subtext);
+    int __skreturn = __sklib__index_of__string_ref__string_ref(__skparam__text, __skparam__subtext);
+    __skadapter__free__sklib_string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__subtext);
     return __skadapter__to_int(__skreturn);
 }
 bool is_double(const string &text) {
@@ -268,6 +284,29 @@ bool is_number(const string &text) {
     int __skreturn = __sklib__is_number__string_ref(__skparam__text);
     __skadapter__free__sklib_string(__skparam__text);
     return __skadapter__to_bool(__skreturn);
+}
+int length_of(const string &text) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    int __skreturn = __sklib__length_of__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_int(__skreturn);
+}
+string replace_all(const string &text, const string &substr, const string &newText) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    const __sklib_string __skparam__substr = __skadapter__to_sklib_string(substr);
+    const __sklib_string __skparam__newText = __skadapter__to_sklib_string(newText);
+    __sklib_string __skreturn = __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText);
+    __skadapter__free__sklib_string(__skparam__text);
+    __skadapter__free__sklib_string(__skparam__substr);
+    __skadapter__free__sklib_string(__skparam__newText);
+    return __skadapter__to_string(__skreturn);
+}
+vector<string> split(const string &text, char delimiter) {
+    const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);
+    char __skparam__delimiter = __skadapter__to_char(delimiter);
+    __sklib_vector_string __skreturn = __sklib__split__string_ref__char(__skparam__text, __skparam__delimiter);
+    __skadapter__free__sklib_string(__skparam__text);
+    return __skadapter__to_vector_string(__skreturn);
 }
 string to_lowercase(const string &text) {
     const __sklib_string __skparam__text = __skadapter__to_sklib_string(text);

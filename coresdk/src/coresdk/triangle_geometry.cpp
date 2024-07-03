@@ -58,7 +58,7 @@ namespace splashkit_lib
             // otherwise it's on the right
             else
             {
-                top_intersection    = m * l + c;
+                top_intersection    = m * r + c;
                 bottom_intersection = m * l + c;
             }
 

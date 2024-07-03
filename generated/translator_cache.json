@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1706101739,
+    "parsed_at": 1719296778,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1951,7 +1951,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1706101739,
+    "parsed_at": 1719296779,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2045,9 +2045,59 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1706101739,
+    "parsed_at": 1719310638,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
+      {
+        "signature": "bool contains(const string &text,const string &subtext);",
+        "name": "contains",
+        "method_name": null,
+        "unique_global_name": "contains",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns true if the string contains the substring.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the substring is found in the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
       {
         "signature": "double convert_to_double(const string &text);",
         "name": "convert_to_double",
@@ -2106,6 +2156,56 @@
           "text": {
             "type": "string",
             "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "int index_of(const string &text,const string &subtext);",
+        "name": "index_of",
+        "method_name": null,
+        "unique_global_name": "index_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the index of the first occurrence of the substring in the text.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The index of the first occurrence of the substring in the text, or -1 if the substring is not found.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -2220,6 +2320,156 @@
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "int length_of(const string &text);",
+        "name": "length_of",
+        "method_name": null,
+        "unique_global_name": "length_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the length of a string in characters.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The number of characters in the string.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to get the length of",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "name": "replace_all",
+        "method_name": null,
+        "unique_global_name": "replace_all",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Replace all occurrences of a substring in a string with another string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The text with all occurrences of the substring replaced with the new text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "substr": {
+            "type": "string",
+            "description": "The substring to find and replace",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "newText": {
+            "type": "string",
+            "description": "The string to replace the substring with",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "vector<string> split(const string &text,char delimiter);",
+        "name": "split",
+        "method_name": null,
+        "unique_global_name": "split",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Split a string into an array of strings based on a delimiter.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "An array of strings",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "string"
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to split",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "delimiter": {
+            "type": "char",
+            "description": "The character to split the text on",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
             "is_array": false,
             "array_dimension_sizes": [
 
@@ -2362,7 +2612,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1706101740,
+    "parsed_at": 1719296781,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -2507,7 +2757,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1706101741,
+    "parsed_at": 1719296785,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -3574,7 +3824,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101742,
+    "parsed_at": 1719296790,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -4945,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101742,
+    "parsed_at": 1719296793,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -5872,7 +6122,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101743,
+    "parsed_at": 1719296795,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -6456,7 +6706,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1706101744,
+    "parsed_at": 1719296802,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -8707,7 +8957,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1706101749,
+    "parsed_at": 1719296827,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -13907,7 +14157,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101750,
+    "parsed_at": 1719296832,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -15271,7 +15521,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1719296839,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -17366,7 +17616,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1719296840,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -17498,7 +17748,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1719296842,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -18074,7 +18324,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1708331003,
+    "parsed_at": 1719296849,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -20599,7 +20849,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1706101754,
+    "parsed_at": 1719296850,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -20692,7 +20942,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1706101755,
+    "parsed_at": 1719296856,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -22444,7 +22694,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101757,
+    "parsed_at": 1719296863,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -23442,7 +23692,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101758,
+    "parsed_at": 1719296868,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -24981,7 +25231,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101759,
+    "parsed_at": 1719296871,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -25855,7 +26105,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1706101759,
+    "parsed_at": 1719296873,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -26104,7 +26354,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1706101760,
+    "parsed_at": 1719296875,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -26842,7 +27092,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101761,
+    "parsed_at": 1719296877,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -27329,7 +27579,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1708331007,
+    "parsed_at": 1719296881,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -28359,7 +28609,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1706101764,
+    "parsed_at": 1719296891,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -31503,7 +31753,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101764,
+    "parsed_at": 1719296892,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -31525,7 +31775,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101765,
+    "parsed_at": 1719296896,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -32845,7 +33095,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101766,
+    "parsed_at": 1719296900,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -33869,7 +34119,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101766,
+    "parsed_at": 1719296901,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -34334,7 +34584,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1706101766,
+    "parsed_at": 1719296902,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -34468,7 +34718,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1707472160,
+    "parsed_at": 1719296904,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -34935,7 +35185,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101769,
+    "parsed_at": 1719296913,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -37828,7 +38078,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101769,
+    "parsed_at": 1719296916,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -38614,7 +38864,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1706101770,
+    "parsed_at": 1719296918,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -38932,7 +39182,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1708331011,
+    "parsed_at": 1719296921,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -39941,7 +40191,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1707893359,
+    "parsed_at": 1719296942,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -46817,7 +47067,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1708331013,
+    "parsed_at": 1719296944,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -47237,7 +47487,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1706101778,
+    "parsed_at": 1719296953,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -50140,7 +50390,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101778,
+    "parsed_at": 1719296955,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -50675,7 +50925,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1706101779,
+    "parsed_at": 1719296958,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -51513,7 +51763,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101781,
+    "parsed_at": 1719296966,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -53920,7 +54170,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101781,
+    "parsed_at": 1719296967,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -54281,7 +54531,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1707472169,
+    "parsed_at": 1719296974,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -55277,7 +55527,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1708331014,
+    "parsed_at": 1719310639,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -55485,7 +55735,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1706101784,
+    "parsed_at": 1719296981,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -56918,7 +57168,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101785,
+    "parsed_at": 1719296983,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -57513,7 +57763,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101786,
+    "parsed_at": 1719296989,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -59232,7 +59482,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1706101788,
+    "parsed_at": 1719296995,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {

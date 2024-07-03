@@ -183,7 +183,7 @@ namespace splashkit_lib
 
         if (ttf_font)
         {
-            return TTF_SizeText(ttf_font, text.c_str(), w, h);
+            return TTF_SizeUTF8(ttf_font, text.c_str(), w, h);
         }
         else
         {

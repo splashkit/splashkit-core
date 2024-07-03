@@ -25,10 +25,10 @@ namespace splashkit_lib
                 if (pi < 0)
                 {
                         cout << "gpio_init() must be called before any other GPIO functions" << endl;
-                        return true;
+                        return false; 
                 }
                 else
-                        return false;
+                        return true;
         }
 
         // Initialize the GPIO library

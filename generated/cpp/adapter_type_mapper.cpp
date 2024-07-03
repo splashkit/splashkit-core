@@ -490,6 +490,41 @@ void (*__skadapter__to_sprite_function(__sklib_sprite_function *v))(__sklib_ptr 
 void (*__skadapter__to_sklib_sprite_function(sprite_function *v))(__sklib_ptr s) {
     return v;
 }
+void __skadapter__free__sklib_vector_string(__sklib_vector_string v) {
+    for (unsigned int i = 0; i < v.size_from_app; i++) {
+        __skadapter__free__sklib_string(v.data_from_app[i]);
+    }
+    free(v.data_from_app);
+}
+__sklib_vector_string __skadapter__to_sklib_vector_string(const std::vector<string> &v) {
+    __sklib_vector_string __skreturn;
+    __skreturn.size_from_lib = 0;
+    __skreturn.data_from_lib = nullptr;
+    __skreturn.size_from_app = static_cast<unsigned int>(v.size());
+    __skreturn.data_from_app = (__sklib_string *)malloc(__skreturn.size_from_app * sizeof(__sklib_string));
+    unsigned int i = 0;
+    for (string d : v) {
+        __skreturn.data_from_app[i] = __skadapter__to_sklib_string(d);
+        i++;
+    }
+    return __skreturn;
+}
+vector<string> __skadapter__to_vector_string(const __sklib_vector_string &v) {
+    vector<string> __skreturn;
+    for (int i = 0; i < v.size_from_lib; i++) {
+        __skreturn.push_back(__skadapter__to_string(v.data_from_lib[i]));
+    }
+    __sklib__free__sklib_vector_string(v);
+    return __skreturn;
+}
+void __skadapter__update_from_vector_string(__sklib_vector_string &v, std::vector<string> &__skreturn) {
+    __skreturn.clear();
+    for (int i = 0; i < v.size_from_lib; i++) {
+        string d = __skadapter__to_string(v.data_from_lib[i]);
+        __skreturn.push_back(d);
+    }
+        __sklib__free__sklib_vector_string(v);
+}
 void __skadapter__free__sklib_vector_line(__sklib_vector_line v) {
     free(v.data_from_app);
 }
@@ -585,41 +620,6 @@ void __skadapter__update_from_vector_triangle(__sklib_vector_triangle &v, std::v
         __skreturn.push_back(d);
     }
         __sklib__free__sklib_vector_triangle(v);
-}
-void __skadapter__free__sklib_vector_string(__sklib_vector_string v) {
-    for (unsigned int i = 0; i < v.size_from_app; i++) {
-        __skadapter__free__sklib_string(v.data_from_app[i]);
-    }
-    free(v.data_from_app);
-}
-__sklib_vector_string __skadapter__to_sklib_vector_string(const std::vector<string> &v) {
-    __sklib_vector_string __skreturn;
-    __skreturn.size_from_lib = 0;
-    __skreturn.data_from_lib = nullptr;
-    __skreturn.size_from_app = static_cast<unsigned int>(v.size());
-    __skreturn.data_from_app = (__sklib_string *)malloc(__skreturn.size_from_app * sizeof(__sklib_string));
-    unsigned int i = 0;
-    for (string d : v) {
-        __skreturn.data_from_app[i] = __skadapter__to_sklib_string(d);
-        i++;
-    }
-    return __skreturn;
-}
-vector<string> __skadapter__to_vector_string(const __sklib_vector_string &v) {
-    vector<string> __skreturn;
-    for (int i = 0; i < v.size_from_lib; i++) {
-        __skreturn.push_back(__skadapter__to_string(v.data_from_lib[i]));
-    }
-    __sklib__free__sklib_vector_string(v);
-    return __skreturn;
-}
-void __skadapter__update_from_vector_string(__sklib_vector_string &v, std::vector<string> &__skreturn) {
-    __skreturn.clear();
-    for (int i = 0; i < v.size_from_lib; i++) {
-        string d = __skadapter__to_string(v.data_from_lib[i]);
-        __skreturn.push_back(d);
-    }
-        __sklib__free__sklib_vector_string(v);
 }
 void __skadapter__free__sklib_vector_double(__sklib_vector_double v) {
     free(v.data_from_app);

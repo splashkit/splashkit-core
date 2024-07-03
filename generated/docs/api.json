@@ -81676,6 +81676,71 @@
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
     "functions": [
       {
+        "signature": "bool contains(const string &text,const string &subtext);",
+        "name": "contains",
+        "method_name": null,
+        "unique_global_name": "contains",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns true if the string contains the substring.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the substring is found in the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def contains(text, subtext):"
+          ],
+          "pascal": [
+            "function Contains(const text: String; const subtext: String): Boolean"
+          ],
+          "csharp": [
+            "public static bool Utilities.Contains(string text, string subtext);",
+            "public static bool SplashKit.Contains(string text, string subtext);"
+          ],
+          "cpp": [
+            "bool contains(const string &text, const string &subtext)"
+          ]
+        }
+      },
+      {
         "signature": "double convert_to_double(const string &text);",
         "name": "convert_to_double",
         "method_name": null,
@@ -81776,6 +81841,71 @@
           ],
           "cpp": [
             "int convert_to_integer(const string &text)"
+          ]
+        }
+      },
+      {
+        "signature": "int index_of(const string &text,const string &subtext);",
+        "name": "index_of",
+        "method_name": null,
+        "unique_global_name": "index_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the index of the first occurrence of the substring in the text.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The index of the first occurrence of the substring in the text, or -1 if the substring is not found.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def index_of(text, subtext):"
+          ],
+          "pascal": [
+            "function IndexOf(const text: String; const subtext: String): Integer"
+          ],
+          "csharp": [
+            "public static int Utilities.IndexOf(string text, string subtext);",
+            "public static int SplashKit.IndexOf(string text, string subtext);"
+          ],
+          "cpp": [
+            "int index_of(const string &text, const string &subtext)"
           ]
         }
       },
@@ -81932,6 +82062,201 @@
           ],
           "cpp": [
             "bool is_number(const string &text)"
+          ]
+        }
+      },
+      {
+        "signature": "int length_of(const string &text);",
+        "name": "length_of",
+        "method_name": null,
+        "unique_global_name": "length_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the length of a string in characters.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The number of characters in the string.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to get the length of",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def length_of(text):"
+          ],
+          "pascal": [
+            "function LengthOf(const text: String): Integer"
+          ],
+          "csharp": [
+            "public static int Utilities.LengthOf(string text);",
+            "public static int SplashKit.LengthOf(string text);"
+          ],
+          "cpp": [
+            "int length_of(const string &text)"
+          ]
+        }
+      },
+      {
+        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "name": "replace_all",
+        "method_name": null,
+        "unique_global_name": "replace_all",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Replace all occurrences of a substring in a string with another string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The text with all occurrences of the substring replaced with the new text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "substr": {
+            "type": "string",
+            "description": "The substring to find and replace",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "newText": {
+            "type": "string",
+            "description": "The string to replace the substring with",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def replace_all(text, substr, newText):"
+          ],
+          "pascal": [
+            "function ReplaceAll(const text: String; const substr: String; const newtext: String): String"
+          ],
+          "csharp": [
+            "public static string Utilities.ReplaceAll(string text, string substr, string newtext);",
+            "public static string SplashKit.ReplaceAll(string text, string substr, string newtext);"
+          ],
+          "cpp": [
+            "string replace_all(const string &text, const string &substr, const string &newText)"
+          ]
+        }
+      },
+      {
+        "signature": "vector<string> split(const string &text,char delimiter);",
+        "name": "split",
+        "method_name": null,
+        "unique_global_name": "split",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Split a string into an array of strings based on a delimiter.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "An array of strings",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "string"
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to split",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "delimiter": {
+            "type": "char",
+            "description": "The character to split the text on",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        },
+        "signatures": {
+          "python": [
+            "def split(text, delimiter):"
+          ],
+          "pascal": [
+            "function Split(const text: String; delimiter: Char): ArrayOfString"
+          ],
+          "csharp": [
+            "public static List<string> Utilities.Split(string text, char delimiter);",
+            "public static List<string> SplashKit.Split(string text, char delimiter);"
+          ],
+          "cpp": [
+            "vector<string> split(const string &text, char delimiter)"
           ]
         }
       },

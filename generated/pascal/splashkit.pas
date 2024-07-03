@@ -370,10 +370,10 @@ type Vector2D = record
   x: Double;
   y: Double;
 end;
+type ArrayOfString = Array of String;
 type ArrayOfLine = Array of Line;
 type ArrayOfChar = Array of Char;
 type ArrayOfTriangle = Array of Triangle;
-type ArrayOfString = Array of String;
 type ArrayOfDouble = Array of Double;
 type ArrayOfJson = Array of Json;
 type ArrayOfBoolean = Array of Boolean;
@@ -422,11 +422,16 @@ procedure UpdateAnimation(anim: Animation; pct: Single);
 function AudioReady(): Boolean;
 procedure CloseAudio();
 procedure OpenAudio();
+function Contains(const text: String; const subtext: String): Boolean;
 function ConvertToDouble(const text: String): Double;
 function ConvertToInteger(const text: String): Integer;
+function IndexOf(const text: String; const subtext: String): Integer;
 function IsDouble(const text: String): Boolean;
 function IsInteger(const text: String): Boolean;
 function IsNumber(const text: String): Boolean;
+function LengthOf(const text: String): Integer;
+function ReplaceAll(const text: String; const substr: String; const newtext: String): String;
+function Split(const text: String; delimiter: Char): ArrayOfString;
 function ToLowercase(const text: String): String;
 function ToUppercase(const text: String): String;
 function Trim(const text: String): String;
@@ -2150,6 +2155,58 @@ begin
   result.x := __skadapter__to_double(v.x);
   result.y := __skadapter__to_double(v.y);
 end;
+type __sklib_vector_string = record
+  data_from_app: Array of __sklib_string;
+  size_from_app: Cardinal;
+  data_from_lib: ^__sklib_string;
+  size_from_lib: Cardinal;
+end;
+procedure __sklib__free__sklib_vector_string(v: __sklib_vector_string); cdecl; external;
+procedure __skadapter__free__sklib_vector_string(var v: __sklib_vector_string);
+var
+  i: Integer;
+begin
+  for i := 0 to v.size_from_app - 1 do
+  begin
+      __skadapter__free__sklib_string(v.data_from_app[i]);
+  end;
+  SetLength(v.data_from_app, 0);
+end;
+function __skadapter__to_sklib_vector_string(const v: ArrayOfString): __sklib_vector_string;
+var
+    i: Integer;
+begin
+  result.size_from_lib := 0;
+  result.data_from_lib := nil;
+  result.size_from_app := Length(v);
+  SetLength(result.data_from_app, Length(v));
+  for i := 0 to High(v) do
+  begin
+    result.data_from_app[i] := __skadapter__to_sklib_string(v[i]);
+  end;
+end;
+function __skadapter__to_vector_string(const v: __sklib_vector_string): ArrayOfString;
+var
+  i: Integer;
+begin
+  SetLength(result, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+    result[i] := __skadapter__to_string(v.data_from_lib[i]);
+  end;
+  __sklib__free__sklib_vector_string(v);
+end;
+procedure __skadapter__update_from_vector_string(var v: __sklib_vector_string; var __skreturn: ArrayOfString);
+var
+  i: Integer;
+begin
+  SetLength(__skreturn, v.size_from_lib);
+  for i := 0 to v.size_from_lib - 1 do
+  begin
+      __skreturn[i] := __skadapter__to_string(v.data_from_lib[i]);
+  end;
+    __sklib__free__sklib_vector_string(v);
+end;
 type __sklib_vector_line = record
   data_from_app: Array of __sklib_line;
   size_from_app: Cardinal;
@@ -2287,58 +2344,6 @@ begin
       __skreturn[i] := __skadapter__to_triangle(v.data_from_lib[i]);
   end;
     __sklib__free__sklib_vector_triangle(v);
-end;
-type __sklib_vector_string = record
-  data_from_app: Array of __sklib_string;
-  size_from_app: Cardinal;
-  data_from_lib: ^__sklib_string;
-  size_from_lib: Cardinal;
-end;
-procedure __sklib__free__sklib_vector_string(v: __sklib_vector_string); cdecl; external;
-procedure __skadapter__free__sklib_vector_string(var v: __sklib_vector_string);
-var
-  i: Integer;
-begin
-  for i := 0 to v.size_from_app - 1 do
-  begin
-      __skadapter__free__sklib_string(v.data_from_app[i]);
-  end;
-  SetLength(v.data_from_app, 0);
-end;
-function __skadapter__to_sklib_vector_string(const v: ArrayOfString): __sklib_vector_string;
-var
-    i: Integer;
-begin
-  result.size_from_lib := 0;
-  result.data_from_lib := nil;
-  result.size_from_app := Length(v);
-  SetLength(result.data_from_app, Length(v));
-  for i := 0 to High(v) do
-  begin
-    result.data_from_app[i] := __skadapter__to_sklib_string(v[i]);
-  end;
-end;
-function __skadapter__to_vector_string(const v: __sklib_vector_string): ArrayOfString;
-var
-  i: Integer;
-begin
-  SetLength(result, v.size_from_lib);
-  for i := 0 to v.size_from_lib - 1 do
-  begin
-    result[i] := __skadapter__to_string(v.data_from_lib[i]);
-  end;
-  __sklib__free__sklib_vector_string(v);
-end;
-procedure __skadapter__update_from_vector_string(var v: __sklib_vector_string; var __skreturn: ArrayOfString);
-var
-  i: Integer;
-begin
-  SetLength(__skreturn, v.size_from_lib);
-  for i := 0 to v.size_from_lib - 1 do
-  begin
-      __skreturn[i] := __skadapter__to_string(v.data_from_lib[i]);
-  end;
-    __sklib__free__sklib_vector_string(v);
 end;
 type __sklib_vector_double = record
   data_from_app: Array of Double;
@@ -2543,11 +2548,16 @@ procedure __sklib__update_animation__animation__float(anim: __sklib_ptr; pct: Si
 function __sklib__audio_ready(): LongInt; cdecl; external;
 procedure __sklib__close_audio(); cdecl; external;
 procedure __sklib__open_audio(); cdecl; external;
+function __sklib__contains__string_ref__string_ref(const text: __sklib_string; const subtext: __sklib_string): LongInt; cdecl; external;
 function __sklib__convert_to_double__string_ref(const text: __sklib_string): Double; cdecl; external;
 function __sklib__convert_to_integer__string_ref(const text: __sklib_string): Integer; cdecl; external;
+function __sklib__index_of__string_ref__string_ref(const text: __sklib_string; const subtext: __sklib_string): Integer; cdecl; external;
 function __sklib__is_double__string_ref(const text: __sklib_string): LongInt; cdecl; external;
 function __sklib__is_integer__string_ref(const text: __sklib_string): LongInt; cdecl; external;
 function __sklib__is_number__string_ref(const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__length_of__string_ref(const text: __sklib_string): Integer; cdecl; external;
+function __sklib__replace_all__string_ref__string_ref__string_ref(const text: __sklib_string; const substr: __sklib_string; const newtext: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__split__string_ref__char(const text: __sklib_string; delimiter: Char): __sklib_vector_string; cdecl; external;
 function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__to_uppercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__trim__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
@@ -4050,6 +4060,17 @@ procedure OpenAudio();
 begin
   __sklib__open_audio();
 end;
+function Contains(const text: String; const subtext: String): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skparam__subtext: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__subtext := __skadapter__to_sklib_string(subtext);
+  __skreturn := __sklib__contains__string_ref__string_ref(__skparam__text, __skparam__subtext);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function ConvertToDouble(const text: String): Double;
 var
   __skparam__text: __sklib_string;
@@ -4066,6 +4087,17 @@ var
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skreturn := __sklib__convert_to_integer__string_ref(__skparam__text);
+  result := __skadapter__to_int(__skreturn);
+end;
+function IndexOf(const text: String; const subtext: String): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skparam__subtext: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__subtext := __skadapter__to_sklib_string(subtext);
+  __skreturn := __sklib__index_of__string_ref__string_ref(__skparam__text, __skparam__subtext);
   result := __skadapter__to_int(__skreturn);
 end;
 function IsDouble(const text: String): Boolean;
@@ -4094,6 +4126,39 @@ begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skreturn := __sklib__is_number__string_ref(__skparam__text);
   result := __skadapter__to_bool(__skreturn);
+end;
+function LengthOf(const text: String): Integer;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: Integer;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__length_of__string_ref(__skparam__text);
+  result := __skadapter__to_int(__skreturn);
+end;
+function ReplaceAll(const text: String; const substr: String; const newtext: String): String;
+var
+  __skparam__text: __sklib_string;
+  __skparam__substr: __sklib_string;
+  __skparam__newText: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__substr := __skadapter__to_sklib_string(substr);
+  __skparam__newText := __skadapter__to_sklib_string(newtext);
+  __skreturn := __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText);
+  result := __skadapter__to_string(__skreturn);
+end;
+function Split(const text: String; delimiter: Char): ArrayOfString;
+var
+  __skparam__text: __sklib_string;
+  __skparam__delimiter: Char;
+  __skreturn: __sklib_vector_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__delimiter := __skadapter__to_sklib_char(delimiter);
+  __skreturn := __sklib__split__string_ref__char(__skparam__text, __skparam__delimiter);
+  result := __skadapter__to_vector_string(__skreturn);
 end;
 function ToLowercase(const text: String): String;
 var

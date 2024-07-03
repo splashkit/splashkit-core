@@ -134,6 +134,4 @@ namespace splashkit_lib
         set_current_window(old_current);
         close_window(dialog);
     }
-    
-    
 }

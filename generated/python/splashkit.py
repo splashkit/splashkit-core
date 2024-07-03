@@ -939,6 +939,46 @@ def __skadapter__to_vector_2d(v):
     result.x = __skadapter__to_double(v.x)
     result.y = __skadapter__to_double(v.y)
     return result
+class _sklib_vector_string(Structure):
+    _fields_ = [
+      ("data_from_app", POINTER(_sklib_string)),
+      ("size_from_app", c_uint),
+      ("data_from_lib", POINTER(_sklib_string)),
+      ("size_from_lib", c_uint),
+    ]
+
+    def __init__(self, num):
+        elems = (_sklib_string * num)()
+        self.data_from_app = cast(elems, POINTER(_sklib_string))
+        self.size_from_app = num
+        self.data_from_lib = None
+        self.size_from_lib = 0
+
+sklib.__sklib__free__sklib_vector_string.argtypes = [ _sklib_vector_string ]
+sklib.__sklib__free__sklib_vector_string.restype = None
+def __skadapter__free__sklib_vector_string(v):
+    for i in range(0, v.size_from_app):
+        __skadapter__free__sklib_string(v.data_from_app[i])
+    v.data_from_app = None
+
+def __skadapter__to_sklib_vector_string(v):
+    result = _sklib_vector_string(len(v))
+    for i in range(0, len(v)):
+        result.data_from_app[i] = __skadapter__to_sklib_string(v[i])
+    return result
+
+def __skadapter__to_vector_string(v):
+    result = []
+    for i in range(0, v.size_from_lib):
+        result.append ( __skadapter__to_string(v.data_from_lib[i]) )
+    sklib.__sklib__free__sklib_vector_string(v)
+    return result
+def __skadapter__update_from_vector_string(v, __skreturn):
+    del __skreturn[:]
+    for i in range(0, v.size_from_lib):
+        __skreturn.append( __skadapter__to_string(v.data_from_lib[i]) )
+
+    sklib.__sklib__free__sklib_vector_string(v)
 class _sklib_vector_line(Structure):
     _fields_ = [
       ("data_from_app", POINTER(_sklib_line)),
@@ -1053,46 +1093,6 @@ def __skadapter__update_from_vector_triangle(v, __skreturn):
         __skreturn.append( __skadapter__to_triangle(v.data_from_lib[i]) )
 
     sklib.__sklib__free__sklib_vector_triangle(v)
-class _sklib_vector_string(Structure):
-    _fields_ = [
-      ("data_from_app", POINTER(_sklib_string)),
-      ("size_from_app", c_uint),
-      ("data_from_lib", POINTER(_sklib_string)),
-      ("size_from_lib", c_uint),
-    ]
-
-    def __init__(self, num):
-        elems = (_sklib_string * num)()
-        self.data_from_app = cast(elems, POINTER(_sklib_string))
-        self.size_from_app = num
-        self.data_from_lib = None
-        self.size_from_lib = 0
-
-sklib.__sklib__free__sklib_vector_string.argtypes = [ _sklib_vector_string ]
-sklib.__sklib__free__sklib_vector_string.restype = None
-def __skadapter__free__sklib_vector_string(v):
-    for i in range(0, v.size_from_app):
-        __skadapter__free__sklib_string(v.data_from_app[i])
-    v.data_from_app = None
-
-def __skadapter__to_sklib_vector_string(v):
-    result = _sklib_vector_string(len(v))
-    for i in range(0, len(v)):
-        result.data_from_app[i] = __skadapter__to_sklib_string(v[i])
-    return result
-
-def __skadapter__to_vector_string(v):
-    result = []
-    for i in range(0, v.size_from_lib):
-        result.append ( __skadapter__to_string(v.data_from_lib[i]) )
-    sklib.__sklib__free__sklib_vector_string(v)
-    return result
-def __skadapter__update_from_vector_string(v, __skreturn):
-    del __skreturn[:]
-    for i in range(0, v.size_from_lib):
-        __skreturn.append( __skadapter__to_string(v.data_from_lib[i]) )
-
-    sklib.__sklib__free__sklib_vector_string(v)
 class _sklib_vector_double(Structure):
     _fields_ = [
       ("data_from_app", POINTER(c_double)),
@@ -1449,16 +1449,26 @@ sklib.__sklib__close_audio.argtypes = [  ]
 sklib.__sklib__close_audio.restype = None
 sklib.__sklib__open_audio.argtypes = [  ]
 sklib.__sklib__open_audio.restype = None
+sklib.__sklib__contains__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__contains__string_ref__string_ref.restype = c_bool
 sklib.__sklib__convert_to_double__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__convert_to_double__string_ref.restype = c_double
 sklib.__sklib__convert_to_integer__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__convert_to_integer__string_ref.restype = c_int
+sklib.__sklib__index_of__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__index_of__string_ref__string_ref.restype = c_int
 sklib.__sklib__is_double__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__is_double__string_ref.restype = c_bool
 sklib.__sklib__is_integer__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__is_integer__string_ref.restype = c_bool
 sklib.__sklib__is_number__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__is_number__string_ref.restype = c_bool
+sklib.__sklib__length_of__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__length_of__string_ref.restype = c_int
+sklib.__sklib__replace_all__string_ref__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string, _sklib_string ]
+sklib.__sklib__replace_all__string_ref__string_ref__string_ref.restype = _sklib_string
+sklib.__sklib__split__string_ref__char.argtypes = [ _sklib_string, c_char ]
+sklib.__sklib__split__string_ref__char.restype = _sklib_vector_string
 sklib.__sklib__to_lowercase__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__to_lowercase__string_ref.restype = _sklib_string
 sklib.__sklib__to_uppercase__string_ref.argtypes = [ _sklib_string ]
@@ -3877,6 +3887,11 @@ def close_audio (  ):
     sklib.__sklib__close_audio()
 def open_audio (  ):
     sklib.__sklib__open_audio()
+def contains ( text, subtext ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__subtext = __skadapter__to_sklib_string(subtext)
+    __skreturn = sklib.__sklib__contains__string_ref__string_ref(__skparam__text, __skparam__subtext)
+    return __skadapter__to_bool(__skreturn)
 def convert_to_double ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__convert_to_double__string_ref(__skparam__text)
@@ -3884,6 +3899,11 @@ def convert_to_double ( text ):
 def convert_to_integer ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__convert_to_integer__string_ref(__skparam__text)
+    return __skadapter__to_int(__skreturn)
+def index_of ( text, subtext ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__subtext = __skadapter__to_sklib_string(subtext)
+    __skreturn = sklib.__sklib__index_of__string_ref__string_ref(__skparam__text, __skparam__subtext)
     return __skadapter__to_int(__skreturn)
 def is_double ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
@@ -3897,6 +3917,21 @@ def is_number ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__is_number__string_ref(__skparam__text)
     return __skadapter__to_bool(__skreturn)
+def length_of ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__length_of__string_ref(__skparam__text)
+    return __skadapter__to_int(__skreturn)
+def replace_all ( text, substr, newText ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__substr = __skadapter__to_sklib_string(substr)
+    __skparam__newText = __skadapter__to_sklib_string(newtext)
+    __skreturn = sklib.__sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText)
+    return __skadapter__to_string(__skreturn)
+def split ( text, delimiter ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__delimiter = __skadapter__to_sklib_char(delimiter)
+    __skreturn = sklib.__sklib__split__string_ref__char(__skparam__text, __skparam__delimiter)
+    return __skadapter__to_vector_string(__skreturn)
 def to_lowercase ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__to_lowercase__string_ref(__skparam__text)

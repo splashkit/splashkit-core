@@ -122,6 +122,13 @@ typedef void (__sklib_sprite_event_handler)(__sklib_ptr s, int evt);
 typedef void (__sklib_sprite_float_function)(__sklib_ptr s, float f);
 typedef void (__sklib_sprite_function)(__sklib_ptr s);
 typedef struct {
+    __sklib_string *data_from_app;
+    unsigned int size_from_app;
+    __sklib_string *data_from_lib;
+    unsigned int size_from_lib;
+} __sklib_vector_string;
+void __sklib__free__sklib_vector_string(__sklib_vector_string v);
+typedef struct {
     __sklib_line *data_from_app;
     unsigned int size_from_app;
     __sklib_line *data_from_lib;
@@ -142,13 +149,6 @@ typedef struct {
     unsigned int size_from_lib;
 } __sklib_vector_triangle;
 void __sklib__free__sklib_vector_triangle(__sklib_vector_triangle v);
-typedef struct {
-    __sklib_string *data_from_app;
-    unsigned int size_from_app;
-    __sklib_string *data_from_lib;
-    unsigned int size_from_lib;
-} __sklib_vector_string;
-void __sklib__free__sklib_vector_string(__sklib_vector_string v);
 typedef struct {
     double *data_from_app;
     unsigned int size_from_app;
@@ -210,11 +210,16 @@ void __sklib__update_animation__animation__float(__sklib_animation anim, float p
 int __sklib__audio_ready();
 void __sklib__close_audio();
 void __sklib__open_audio();
+int __sklib__contains__string_ref__string_ref(const __sklib_string text, const __sklib_string subtext);
 double __sklib__convert_to_double__string_ref(const __sklib_string text);
 int __sklib__convert_to_integer__string_ref(const __sklib_string text);
+int __sklib__index_of__string_ref__string_ref(const __sklib_string text, const __sklib_string subtext);
 int __sklib__is_double__string_ref(const __sklib_string text);
 int __sklib__is_integer__string_ref(const __sklib_string text);
 int __sklib__is_number__string_ref(const __sklib_string text);
+int __sklib__length_of__string_ref(const __sklib_string text);
+__sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(const __sklib_string text, const __sklib_string substr, const __sklib_string newText);
+__sklib_vector_string __sklib__split__string_ref__char(const __sklib_string text, char delimiter);
 __sklib_string __sklib__to_lowercase__string_ref(const __sklib_string text);
 __sklib_string __sklib__to_uppercase__string_ref(const __sklib_string text);
 __sklib_string __sklib__trim__string_ref(const __sklib_string text);
