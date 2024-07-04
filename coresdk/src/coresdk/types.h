@@ -458,5 +458,26 @@ namespace splashkit_lib
         PUD_DOWN = 1,
         PUD_UP = 2
     };
+
+    /**
+     * Use these interface styles as a way to quickly
+     * customize your interface.
+     *
+     * @constant FLAT_DARK_STYLE       A flat, dark-mode interface.
+     * @constant SHADED_DARK_STYLE     A dark-mode interface with shadows and depth.
+     * @constant FLAT_LIGHT_STYLE      A flat, light-mode interface.
+     * @constant SHADED_LIGHT_STYLE    A light-mode interface with shadows and depth.
+     * @constant BUBBLE                A light-mode interface with a semi-transparent bubbly look.
+     * @constant BUBBLE_MULTICOLORED   A light-mode interface with a semi-transparent bubbly look - gives a multi-coloured result when provided a color.
+     */
+    enum interface_style
+    {
+        FLAT_DARK_STYLE = 0,
+        SHADED_DARK_STYLE = 1,
+        FLAT_LIGHT_STYLE = 2,
+        SHADED_LIGHT_STYLE = 3,
+        BUBBLE = 4,
+        BUBBLE_MULTICOLORED = 5
+    };
 }
 #endif /* types_hpp */

@@ -91,6 +91,15 @@ namespace splashkit_lib
     font load_font(const string &name, const string &filename);
 
     /**
+     * @brief Searches for and (if found) returns a default system font. Otherwise defaults to the in-built font.
+     *
+     * Searches for and (if found) returns a default system font. Otherwise defaults to the in-built font.
+     *
+     * @returns Returns the `font` found, or the in-built font if not
+     */
+    font get_system_font();
+
+    /**
      * @brief Frees a loaded font.
      *
      * @param fnt           The font to be freed.
