@@ -16,6 +16,7 @@
 #include "input_driver.h"
 #include "graphics_driver.h"
 #include "window_manager.h"
+#include "interface_driver.h"
 
 namespace splashkit_lib
 {
@@ -569,6 +570,9 @@ namespace splashkit_lib
                         key_code key_code = _sdl_key_map[event.key.keysym.sym];
                         _input_callbacks.handle_key_down(key_code);
                     }
+
+                    sk_interface_keydown(event.key.keysym.sym);
+
                     break;
                 }
 
@@ -580,6 +584,9 @@ namespace splashkit_lib
                         _handle_key_type(event.key.keysym.sym);
                         _input_callbacks.handle_key_up(key_code);
                     }
+
+                    sk_interface_keyup(event.key.keysym.sym);
+
                     break;
                 }
 
@@ -590,6 +597,9 @@ namespace splashkit_lib
                         int mouse_button = event.button.button;
                         _input_callbacks.handle_mouse_up(mouse_button);
                     }
+
+                    sk_interface_mouseup(event.button.x, event.button.y, event.button.button);
+
                     break;
                 }
 
@@ -600,6 +610,9 @@ namespace splashkit_lib
                         int mouse_button = event.button.button;
                         _input_callbacks.handle_mouse_down(mouse_button);
                     }
+
+                    sk_interface_mousedown(event.button.x, event.button.y, event.button.button);
+
                     break;
                 }
 
@@ -609,6 +622,9 @@ namespace splashkit_lib
                     {
                         _input_callbacks.handle_mouse_wheel(event.wheel.x, event.wheel.y);
                     }
+
+                    sk_interface_scroll(event.wheel.x, event.wheel.y);
+
                     break;
                 }
 
@@ -633,10 +649,22 @@ namespace splashkit_lib
 
                         _handle_input_text(text);
                     }
+
+                    sk_interface_text(event.text.text);
+
+                    break;
+                }
+
+                case SDL_MOUSEMOTION:
+                {
+                    sk_interface_mousemove(event.motion.x, event.motion.y);
+
                     break;
                 }
             }
         }
+
+        sk_interface_start();
     }
 
     int sk_window_close_requested(sk_drawing_surface* surf)
