@@ -95,6 +95,8 @@ int __skadapter__to_sklib_font_style(font_style v);
 font_style __skadapter__to_font_style(int v);
 int __skadapter__to_sklib_http_status_code(http_status_code v);
 http_status_code __skadapter__to_http_status_code(int v);
+int __skadapter__to_sklib_interface_style(interface_style v);
+interface_style __skadapter__to_interface_style(int v);
 int __skadapter__to_sklib_pin_modes(pin_modes v);
 pin_modes __skadapter__to_pin_modes(int v);
 int __skadapter__to_sklib_pin_values(pin_values v);

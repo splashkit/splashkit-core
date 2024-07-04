@@ -245,6 +245,14 @@ type HttpStatusCode = (
   HTTP_STATUS_NOT_IMPLEMENTED = 501,
   HTTP_STATUS_SERVICE_UNAVAILABLE = 503
 );
+type InterfaceStyle = (
+  FLAT_DARK_STYLE = 0,
+  SHADED_DARK_STYLE = 1,
+  FLAT_LIGHT_STYLE = 2,
+  SHADED_LIGHT_STYLE = 3,
+  BUBBLE = 4,
+  BUBBLE_MULTICOLORED = 5
+);
 type PinModes = (
   GPIO_INPUT = 0,
   GPIO_OUTPUT = 1,
@@ -821,6 +829,83 @@ procedure SetupCollisionMask(bmp: Bitmap);
 procedure ProcessEvents();
 function QuitRequested(): Boolean;
 procedure ResetQuit();
+procedure AddColumn(width: Integer);
+procedure AddColumnRelative(width: Double);
+function BitmapButton(bmp: Bitmap): Boolean;
+function BitmapButton(bmp: Bitmap; const rect: Rectangle): Boolean;
+function BitmapButton(bmp: Bitmap; const rect: Rectangle; opts: DrawingOptions): Boolean;
+function BitmapButton(bmp: Bitmap; opts: DrawingOptions): Boolean;
+function BitmapButton(const label: String; bmp: Bitmap): Boolean;
+function BitmapButton(const label: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
+function Button(const text: String; const rect: Rectangle): Boolean;
+function Button(const text: String): Boolean;
+function Button(const label: String; const text: String): Boolean;
+function Checkbox(const text: String; const value: Boolean; const rect: Rectangle): Boolean;
+function Checkbox(const text: String; const value: Boolean): Boolean;
+function Checkbox(const label: String; const text: String; const value: Boolean): Boolean;
+function ColorSlider(const clr: Color; const rect: Rectangle): Color;
+function ColorSlider(const clr: Color): Color;
+function ColorSlider(const label: String; const clr: Color): Color;
+procedure DisableInterface();
+procedure DrawInterface();
+procedure EnableInterface();
+procedure EndInset(const name: String);
+procedure EndPanel(const name: String);
+procedure EndPopup(const name: String);
+procedure EndTreenode(const label: String);
+procedure EnterColumn();
+function GetInterfaceLabelWidth(): Integer;
+function Header(const label: String): Boolean;
+function HSBColorSlider(const clr: Color; const rect: Rectangle): Color;
+function HSBColorSlider(const clr: Color): Color;
+function HSBColorSlider(const label: String; const clr: Color): Color;
+function InterfaceEnabled(): Boolean;
+procedure InterfaceStylePanel(const initialRectangle: Rectangle);
+procedure Label(const text: String);
+procedure Label(const text: String; const rect: Rectangle);
+function LastElementChanged(): Boolean;
+function LastElementConfirmed(): Boolean;
+procedure LeaveColumn();
+function NumberBox(const value: Single; step: Single; const rect: Rectangle): Single;
+function NumberBox(const value: Single; step: Single): Single;
+function NumberBox(const label: String; const value: Single; step: Single): Single;
+procedure OpenPopup(const name: String);
+procedure Paragraph(const text: String);
+procedure Paragraph(const text: String; const rect: Rectangle);
+procedure ResetLayout();
+procedure SetInterfaceAccentColor(clr: Color; contrast: Single);
+procedure SetInterfaceBorderColor(clr: Color);
+procedure SetInterfaceColorsAuto(mainClr: Color; accentClr: Color; contrast: Single; accentContrast: Single; borderContrast: Single);
+procedure SetInterfaceElementColor(clr: Color; contrast: Single);
+procedure SetInterfaceElementShadows(radius: Integer; clr: Color; offset: Point2D);
+procedure SetInterfaceFont(const fnt: String);
+procedure SetInterfaceFont(fnt: Font);
+procedure SetInterfaceFontSize(size: Integer);
+procedure SetInterfaceLabelWidth(width: Integer);
+procedure SetInterfacePanelShadows(radius: Integer; clr: Color; offset: Point2D);
+procedure SetInterfaceRootTextColor(clr: Color);
+procedure SetInterfaceShadows(radius: Integer; clr: Color; offset: Point2D);
+procedure SetInterfaceSpacing(spacing: Integer; padding: Integer);
+procedure SetInterfaceStyle(style: InterfaceStyle);
+procedure SetInterfaceStyle(style: InterfaceStyle; clr: Color);
+procedure SetInterfaceTextColor(clr: Color);
+procedure SetLayoutHeight(height: Integer);
+procedure SingleLineLayout();
+function Slider(const value: Single; minValue: Single; maxValue: Single; const rect: Rectangle): Single;
+function Slider(const value: Single; minValue: Single; maxValue: Single): Single;
+function Slider(const label: String; const value: Single; minValue: Single; maxValue: Single): Single;
+procedure SplitIntoColumns(count: Integer);
+procedure SplitIntoColumns(count: Integer; lastWidth: Integer);
+procedure SplitIntoColumnsRelative(count: Integer; lastWidth: Double);
+procedure StartCustomLayout();
+procedure StartInset(const name: String; const rect: Rectangle);
+procedure StartInset(const name: String; height: Integer);
+function StartPanel(const name: String; initialRectangle: Rectangle): Boolean;
+function StartPopup(const name: String): Boolean;
+function StartTreenode(const label: String): Boolean;
+function TextBox(const value: String): String;
+function TextBox(const value: String; const rect: Rectangle): String;
+function TextBox(const label: String; const value: String): String;
 function CreateJson(): Json;
 function CreateJson(jsonString: String): Json;
 procedure FreeAllJson();
@@ -1355,6 +1440,7 @@ procedure FreeAllFonts();
 procedure FreeFont(fnt: Font);
 function GetFontStyle(const name: String): FontStyle;
 function GetFontStyle(fnt: Font): FontStyle;
+function GetSystemFont(): Font;
 function HasFont(fnt: Font): Boolean;
 function HasFont(name: String): Boolean;
 function LoadFont(const name: String; const filename: String): Font;
@@ -1816,6 +1902,14 @@ begin
   result := HttpStatusCode(v);
 end;
 function __skadapter__to_sklib_http_status_code(v: HttpStatusCode): LongInt;
+begin
+  result := Integer(v);
+end;
+function __skadapter__to_interface_style(v: LongInt): InterfaceStyle;
+begin
+  result := InterfaceStyle(v);
+end;
+function __skadapter__to_sklib_interface_style(v: InterfaceStyle): LongInt;
 begin
   result := Integer(v);
 end;
@@ -2947,6 +3041,83 @@ procedure __sklib__setup_collision_mask__bitmap(bmp: __sklib_ptr); cdecl; extern
 procedure __sklib__process_events(); cdecl; external;
 function __sklib__quit_requested(): LongInt; cdecl; external;
 procedure __sklib__reset_quit(); cdecl; external;
+procedure __sklib__add_column__int(width: Integer); cdecl; external;
+procedure __sklib__add_column_relative__double(width: Double); cdecl; external;
+function __sklib__bitmap_button__bitmap(bmp: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__bitmap_button__bitmap__rectangle_ref(bmp: __sklib_ptr; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(bmp: __sklib_ptr; const rect: __sklib_rectangle; opts: __sklib_drawing_options): LongInt; cdecl; external;
+function __sklib__bitmap_button__bitmap__drawing_options(bmp: __sklib_ptr; opts: __sklib_drawing_options): LongInt; cdecl; external;
+function __sklib__bitmap_button__string_ref__bitmap(const label: __sklib_string; bmp: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__bitmap_button__string_ref__bitmap__drawing_options(const label: __sklib_string; bmp: __sklib_ptr; opts: __sklib_drawing_options): LongInt; cdecl; external;
+function __sklib__button__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__button__string_ref(const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__button__string_ref__string_ref(const label: __sklib_string; const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__checkbox__string_ref__bool_ref__rectangle_ref(const text: __sklib_string; const value: LongInt; const rect: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__checkbox__string_ref__bool_ref(const text: __sklib_string; const value: LongInt): LongInt; cdecl; external;
+function __sklib__checkbox__string_ref__string_ref__bool_ref(const label: __sklib_string; const text: __sklib_string; const value: LongInt): LongInt; cdecl; external;
+function __sklib__color_slider__color_ref__rectangle_ref(const clr: __sklib_color; const rect: __sklib_rectangle): __sklib_color; cdecl; external;
+function __sklib__color_slider__color_ref(const clr: __sklib_color): __sklib_color; cdecl; external;
+function __sklib__color_slider__string_ref__color_ref(const label: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
+procedure __sklib__disable_interface(); cdecl; external;
+procedure __sklib__draw_interface(); cdecl; external;
+procedure __sklib__enable_interface(); cdecl; external;
+procedure __sklib__end_inset__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__end_panel__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__end_popup__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__end_treenode__string_ref(const label: __sklib_string); cdecl; external;
+procedure __sklib__enter_column(); cdecl; external;
+function __sklib__get_interface_label_width(): Integer; cdecl; external;
+function __sklib__header__string_ref(const label: __sklib_string): LongInt; cdecl; external;
+function __sklib__hsb_color_slider__color_ref__rectangle_ref(const clr: __sklib_color; const rect: __sklib_rectangle): __sklib_color; cdecl; external;
+function __sklib__hsb_color_slider__color_ref(const clr: __sklib_color): __sklib_color; cdecl; external;
+function __sklib__hsb_color_slider__string_ref__color_ref(const label: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
+function __sklib__interface_enabled(): LongInt; cdecl; external;
+procedure __sklib__interface_style_panel__rectangle_ref(const initialRectangle: __sklib_rectangle); cdecl; external;
+procedure __sklib__label__string_ref(const text: __sklib_string); cdecl; external;
+procedure __sklib__label__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
+function __sklib__last_element_changed(): LongInt; cdecl; external;
+function __sklib__last_element_confirmed(): LongInt; cdecl; external;
+procedure __sklib__leave_column(); cdecl; external;
+function __sklib__number_box__float_ref__float__rectangle_ref(const value: Single; step: Single; const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__number_box__float_ref__float(const value: Single; step: Single): Single; cdecl; external;
+function __sklib__number_box__string_ref__float_ref__float(const label: __sklib_string; const value: Single; step: Single): Single; cdecl; external;
+procedure __sklib__open_popup__string_ref(const name: __sklib_string); cdecl; external;
+procedure __sklib__paragraph__string_ref(const text: __sklib_string); cdecl; external;
+procedure __sklib__paragraph__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__reset_layout(); cdecl; external;
+procedure __sklib__set_interface_accent_color__color__float(clr: __sklib_color; contrast: Single); cdecl; external;
+procedure __sklib__set_interface_border_color__color(clr: __sklib_color); cdecl; external;
+procedure __sklib__set_interface_colors_auto__color__color__float__float__float(mainClr: __sklib_color; accentClr: __sklib_color; contrast: Single; accentContrast: Single; borderContrast: Single); cdecl; external;
+procedure __sklib__set_interface_element_color__color__float(clr: __sklib_color; contrast: Single); cdecl; external;
+procedure __sklib__set_interface_element_shadows__int__color__point_2d(radius: Integer; clr: __sklib_color; offset: __sklib_point_2d); cdecl; external;
+procedure __sklib__set_interface_font__string_ref(const fnt: __sklib_string); cdecl; external;
+procedure __sklib__set_interface_font__font(fnt: __sklib_ptr); cdecl; external;
+procedure __sklib__set_interface_font_size__int(size: Integer); cdecl; external;
+procedure __sklib__set_interface_label_width__int(width: Integer); cdecl; external;
+procedure __sklib__set_interface_panel_shadows__int__color__point_2d(radius: Integer; clr: __sklib_color; offset: __sklib_point_2d); cdecl; external;
+procedure __sklib__set_interface_root_text_color__color(clr: __sklib_color); cdecl; external;
+procedure __sklib__set_interface_shadows__int__color__point_2d(radius: Integer; clr: __sklib_color; offset: __sklib_point_2d); cdecl; external;
+procedure __sklib__set_interface_spacing__int__int(spacing: Integer; padding: Integer); cdecl; external;
+procedure __sklib__set_interface_style__interface_style(style: LongInt); cdecl; external;
+procedure __sklib__set_interface_style__interface_style__color(style: LongInt; clr: __sklib_color); cdecl; external;
+procedure __sklib__set_interface_text_color__color(clr: __sklib_color); cdecl; external;
+procedure __sklib__set_layout_height__int(height: Integer); cdecl; external;
+procedure __sklib__single_line_layout(); cdecl; external;
+function __sklib__slider__float_ref__float__float__rectangle_ref(const value: Single; minValue: Single; maxValue: Single; const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__slider__float_ref__float__float(const value: Single; minValue: Single; maxValue: Single): Single; cdecl; external;
+function __sklib__slider__string_ref__float_ref__float__float(const label: __sklib_string; const value: Single; minValue: Single; maxValue: Single): Single; cdecl; external;
+procedure __sklib__split_into_columns__int(count: Integer); cdecl; external;
+procedure __sklib__split_into_columns__int__int(count: Integer; lastWidth: Integer); cdecl; external;
+procedure __sklib__split_into_columns_relative__int__double(count: Integer; lastWidth: Double); cdecl; external;
+procedure __sklib__start_custom_layout(); cdecl; external;
+procedure __sklib__start_inset__string_ref__rectangle_ref(const name: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__start_inset__string_ref__int(const name: __sklib_string; height: Integer); cdecl; external;
+function __sklib__start_panel__string_ref__rectangle(const name: __sklib_string; initialRectangle: __sklib_rectangle): LongInt; cdecl; external;
+function __sklib__start_popup__string_ref(const name: __sklib_string): LongInt; cdecl; external;
+function __sklib__start_treenode__string_ref(const label: __sklib_string): LongInt; cdecl; external;
+function __sklib__text_box__string_ref(const value: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__text_box__string_ref__rectangle_ref(const value: __sklib_string; const rect: __sklib_rectangle): __sklib_string; cdecl; external;
+function __sklib__text_box__string_ref__string_ref(const label: __sklib_string; const value: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__create_json(): __sklib_ptr; cdecl; external;
 function __sklib__create_json__string(jsonString: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__free_all_json(); cdecl; external;
@@ -3481,6 +3652,7 @@ procedure __sklib__free_all_fonts(); cdecl; external;
 procedure __sklib__free_font__font(fnt: __sklib_ptr); cdecl; external;
 function __sklib__get_font_style__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__get_font_style__font(fnt: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__get_system_font(): __sklib_ptr; cdecl; external;
 function __sklib__has_font__font(fnt: __sklib_ptr): LongInt; cdecl; external;
 function __sklib__has_font__string(name: __sklib_string): LongInt; cdecl; external;
 function __sklib__load_font__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
@@ -7860,6 +8032,691 @@ end;
 procedure ResetQuit();
 begin
   __sklib__reset_quit();
+end;
+procedure AddColumn(width: Integer);
+var
+  __skparam__width: Integer;
+begin
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __sklib__add_column__int(__skparam__width);
+end;
+procedure AddColumnRelative(width: Double);
+var
+  __skparam__width: Double;
+begin
+  __skparam__width := __skadapter__to_sklib_double(width);
+  __sklib__add_column_relative__double(__skparam__width);
+end;
+function BitmapButton(bmp: Bitmap): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_button__bitmap(__skparam__bmp);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapButton(bmp: Bitmap; const rect: Rectangle): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__bitmap_button__bitmap__rectangle_ref(__skparam__bmp, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapButton(bmp: Bitmap; const rect: Rectangle; opts: DrawingOptions): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__rect: __sklib_rectangle;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(__skparam__bmp, __skparam__rect, __skparam__opts);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapButton(bmp: Bitmap; opts: DrawingOptions): Boolean;
+var
+  __skparam__bmp: __sklib_ptr;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: LongInt;
+begin
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__bitmap_button__bitmap__drawing_options(__skparam__bmp, __skparam__opts);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapButton(const label: String; bmp: Bitmap): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skparam__bmp: __sklib_ptr;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skreturn := __sklib__bitmap_button__string_ref__bitmap(__skparam__label, __skparam__bmp);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function BitmapButton(const label: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skparam__bmp: __sklib_ptr;
+  __skparam__opts: __sklib_drawing_options;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
+  __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
+  __skreturn := __sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label, __skparam__bmp, __skparam__opts);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Button(const text: String; const rect: Rectangle): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__button__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Button(const text: String): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__button__string_ref(__skparam__text);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Button(const label: String; const text: String): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skparam__text: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skreturn := __sklib__button__string_ref__string_ref(__skparam__label, __skparam__text);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Checkbox(const text: String; const value: Boolean; const rect: Rectangle): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skparam__value: LongInt;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__checkbox__string_ref__bool_ref__rectangle_ref(__skparam__text, __skparam__value, __skparam__rect);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Checkbox(const text: String; const value: Boolean): Boolean;
+var
+  __skparam__text: __sklib_string;
+  __skparam__value: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __skreturn := __sklib__checkbox__string_ref__bool_ref(__skparam__text, __skparam__value);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function Checkbox(const label: String; const text: String; const value: Boolean): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skparam__text: __sklib_string;
+  __skparam__value: LongInt;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__value := __skadapter__to_sklib_bool(value);
+  __skreturn := __sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label, __skparam__text, __skparam__value);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function ColorSlider(const clr: Color; const rect: Rectangle): Color;
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect);
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSlider(const clr: Color): Color;
+var
+  __skparam__clr: __sklib_color;
+  __skreturn: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skreturn := __sklib__color_slider__color_ref(__skparam__clr);
+  result := __skadapter__to_color(__skreturn);
+end;
+function ColorSlider(const label: String; const clr: Color): Color;
+var
+  __skparam__label: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skreturn: __sklib_color;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skreturn := __sklib__color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+  result := __skadapter__to_color(__skreturn);
+end;
+procedure DisableInterface();
+begin
+  __sklib__disable_interface();
+end;
+procedure DrawInterface();
+begin
+  __sklib__draw_interface();
+end;
+procedure EnableInterface();
+begin
+  __sklib__enable_interface();
+end;
+procedure EndInset(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__end_inset__string_ref(__skparam__name);
+end;
+procedure EndPanel(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__end_panel__string_ref(__skparam__name);
+end;
+procedure EndPopup(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__end_popup__string_ref(__skparam__name);
+end;
+procedure EndTreenode(const label: String);
+var
+  __skparam__label: __sklib_string;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __sklib__end_treenode__string_ref(__skparam__label);
+end;
+procedure EnterColumn();
+begin
+  __sklib__enter_column();
+end;
+function GetInterfaceLabelWidth(): Integer;
+var
+  __skreturn: Integer;
+begin
+  __skreturn := __sklib__get_interface_label_width();
+  result := __skadapter__to_int(__skreturn);
+end;
+function Header(const label: String): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skreturn := __sklib__header__string_ref(__skparam__label);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function HSBColorSlider(const clr: Color; const rect: Rectangle): Color;
+var
+  __skparam__clr: __sklib_color;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__hsb_color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect);
+  result := __skadapter__to_color(__skreturn);
+end;
+function HSBColorSlider(const clr: Color): Color;
+var
+  __skparam__clr: __sklib_color;
+  __skreturn: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skreturn := __sklib__hsb_color_slider__color_ref(__skparam__clr);
+  result := __skadapter__to_color(__skreturn);
+end;
+function HSBColorSlider(const label: String; const clr: Color): Color;
+var
+  __skparam__label: __sklib_string;
+  __skparam__clr: __sklib_color;
+  __skreturn: __sklib_color;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skreturn := __sklib__hsb_color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+  result := __skadapter__to_color(__skreturn);
+end;
+function InterfaceEnabled(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__interface_enabled();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure InterfaceStylePanel(const initialRectangle: Rectangle);
+var
+  __skparam__initial_rectangle: __sklib_rectangle;
+begin
+  __skparam__initial_rectangle := __skadapter__to_sklib_rectangle(initialRectangle);
+  __sklib__interface_style_panel__rectangle_ref(__skparam__initial_rectangle);
+end;
+procedure Label(const text: String);
+var
+  __skparam__text: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __sklib__label__string_ref(__skparam__text);
+end;
+procedure Label(const text: String; const rect: Rectangle);
+var
+  __skparam__text: __sklib_string;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__label__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+end;
+function LastElementChanged(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__last_element_changed();
+  result := __skadapter__to_bool(__skreturn);
+end;
+function LastElementConfirmed(): Boolean;
+var
+  __skreturn: LongInt;
+begin
+  __skreturn := __sklib__last_element_confirmed();
+  result := __skadapter__to_bool(__skreturn);
+end;
+procedure LeaveColumn();
+begin
+  __sklib__leave_column();
+end;
+function NumberBox(const value: Single; step: Single; const rect: Rectangle): Single;
+var
+  __skparam__value: Single;
+  __skparam__step: Single;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__step := __skadapter__to_sklib_float(step);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__number_box__float_ref__float__rectangle_ref(__skparam__value, __skparam__step, __skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function NumberBox(const value: Single; step: Single): Single;
+var
+  __skparam__value: Single;
+  __skparam__step: Single;
+  __skreturn: Single;
+begin
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__step := __skadapter__to_sklib_float(step);
+  __skreturn := __sklib__number_box__float_ref__float(__skparam__value, __skparam__step);
+  result := __skadapter__to_float(__skreturn);
+end;
+function NumberBox(const label: String; const value: Single; step: Single): Single;
+var
+  __skparam__label: __sklib_string;
+  __skparam__value: Single;
+  __skparam__step: Single;
+  __skreturn: Single;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__step := __skadapter__to_sklib_float(step);
+  __skreturn := __sklib__number_box__string_ref__float_ref__float(__skparam__label, __skparam__value, __skparam__step);
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure OpenPopup(const name: String);
+var
+  __skparam__name: __sklib_string;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __sklib__open_popup__string_ref(__skparam__name);
+end;
+procedure Paragraph(const text: String);
+var
+  __skparam__text: __sklib_string;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __sklib__paragraph__string_ref(__skparam__text);
+end;
+procedure Paragraph(const text: String; const rect: Rectangle);
+var
+  __skparam__text: __sklib_string;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__text := __skadapter__to_sklib_string(text);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__paragraph__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+end;
+procedure ResetLayout();
+begin
+  __sklib__reset_layout();
+end;
+procedure SetInterfaceAccentColor(clr: Color; contrast: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__contrast: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__contrast := __skadapter__to_sklib_float(contrast);
+  __sklib__set_interface_accent_color__color__float(__skparam__clr, __skparam__contrast);
+end;
+procedure SetInterfaceBorderColor(clr: Color);
+var
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__set_interface_border_color__color(__skparam__clr);
+end;
+procedure SetInterfaceColorsAuto(mainClr: Color; accentClr: Color; contrast: Single; accentContrast: Single; borderContrast: Single);
+var
+  __skparam__main_clr: __sklib_color;
+  __skparam__accent_clr: __sklib_color;
+  __skparam__contrast: Single;
+  __skparam__accent_contrast: Single;
+  __skparam__border_contrast: Single;
+begin
+  __skparam__main_clr := __skadapter__to_sklib_color(mainClr);
+  __skparam__accent_clr := __skadapter__to_sklib_color(accentClr);
+  __skparam__contrast := __skadapter__to_sklib_float(contrast);
+  __skparam__accent_contrast := __skadapter__to_sklib_float(accentContrast);
+  __skparam__border_contrast := __skadapter__to_sklib_float(borderContrast);
+  __sklib__set_interface_colors_auto__color__color__float__float__float(__skparam__main_clr, __skparam__accent_clr, __skparam__contrast, __skparam__accent_contrast, __skparam__border_contrast);
+end;
+procedure SetInterfaceElementColor(clr: Color; contrast: Single);
+var
+  __skparam__clr: __sklib_color;
+  __skparam__contrast: Single;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__contrast := __skadapter__to_sklib_float(contrast);
+  __sklib__set_interface_element_color__color__float(__skparam__clr, __skparam__contrast);
+end;
+procedure SetInterfaceElementShadows(radius: Integer; clr: Color; offset: Point2D);
+var
+  __skparam__radius: Integer;
+  __skparam__clr: __sklib_color;
+  __skparam__offset: __sklib_point_2d;
+begin
+  __skparam__radius := __skadapter__to_sklib_int(radius);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__offset := __skadapter__to_sklib_point_2d(offset);
+  __sklib__set_interface_element_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+end;
+procedure SetInterfaceFont(const fnt: String);
+var
+  __skparam__fnt: __sklib_string;
+begin
+  __skparam__fnt := __skadapter__to_sklib_string(fnt);
+  __sklib__set_interface_font__string_ref(__skparam__fnt);
+end;
+procedure SetInterfaceFont(fnt: Font);
+var
+  __skparam__fnt: __sklib_ptr;
+begin
+  __skparam__fnt := __skadapter__to_sklib_font(fnt);
+  __sklib__set_interface_font__font(__skparam__fnt);
+end;
+procedure SetInterfaceFontSize(size: Integer);
+var
+  __skparam__size: Integer;
+begin
+  __skparam__size := __skadapter__to_sklib_int(size);
+  __sklib__set_interface_font_size__int(__skparam__size);
+end;
+procedure SetInterfaceLabelWidth(width: Integer);
+var
+  __skparam__width: Integer;
+begin
+  __skparam__width := __skadapter__to_sklib_int(width);
+  __sklib__set_interface_label_width__int(__skparam__width);
+end;
+procedure SetInterfacePanelShadows(radius: Integer; clr: Color; offset: Point2D);
+var
+  __skparam__radius: Integer;
+  __skparam__clr: __sklib_color;
+  __skparam__offset: __sklib_point_2d;
+begin
+  __skparam__radius := __skadapter__to_sklib_int(radius);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__offset := __skadapter__to_sklib_point_2d(offset);
+  __sklib__set_interface_panel_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+end;
+procedure SetInterfaceRootTextColor(clr: Color);
+var
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__set_interface_root_text_color__color(__skparam__clr);
+end;
+procedure SetInterfaceShadows(radius: Integer; clr: Color; offset: Point2D);
+var
+  __skparam__radius: Integer;
+  __skparam__clr: __sklib_color;
+  __skparam__offset: __sklib_point_2d;
+begin
+  __skparam__radius := __skadapter__to_sklib_int(radius);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __skparam__offset := __skadapter__to_sklib_point_2d(offset);
+  __sklib__set_interface_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+end;
+procedure SetInterfaceSpacing(spacing: Integer; padding: Integer);
+var
+  __skparam__spacing: Integer;
+  __skparam__padding: Integer;
+begin
+  __skparam__spacing := __skadapter__to_sklib_int(spacing);
+  __skparam__padding := __skadapter__to_sklib_int(padding);
+  __sklib__set_interface_spacing__int__int(__skparam__spacing, __skparam__padding);
+end;
+procedure SetInterfaceStyle(style: InterfaceStyle);
+var
+  __skparam__style: LongInt;
+begin
+  __skparam__style := __skadapter__to_sklib_interface_style(style);
+  __sklib__set_interface_style__interface_style(__skparam__style);
+end;
+procedure SetInterfaceStyle(style: InterfaceStyle; clr: Color);
+var
+  __skparam__style: LongInt;
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__style := __skadapter__to_sklib_interface_style(style);
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__set_interface_style__interface_style__color(__skparam__style, __skparam__clr);
+end;
+procedure SetInterfaceTextColor(clr: Color);
+var
+  __skparam__clr: __sklib_color;
+begin
+  __skparam__clr := __skadapter__to_sklib_color(clr);
+  __sklib__set_interface_text_color__color(__skparam__clr);
+end;
+procedure SetLayoutHeight(height: Integer);
+var
+  __skparam__height: Integer;
+begin
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __sklib__set_layout_height__int(__skparam__height);
+end;
+procedure SingleLineLayout();
+begin
+  __sklib__single_line_layout();
+end;
+function Slider(const value: Single; minValue: Single; maxValue: Single; const rect: Rectangle): Single;
+var
+  __skparam__value: Single;
+  __skparam__min_value: Single;
+  __skparam__max_value: Single;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: Single;
+begin
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__min_value := __skadapter__to_sklib_float(minValue);
+  __skparam__max_value := __skadapter__to_sklib_float(maxValue);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__slider__float_ref__float__float__rectangle_ref(__skparam__value, __skparam__min_value, __skparam__max_value, __skparam__rect);
+  result := __skadapter__to_float(__skreturn);
+end;
+function Slider(const value: Single; minValue: Single; maxValue: Single): Single;
+var
+  __skparam__value: Single;
+  __skparam__min_value: Single;
+  __skparam__max_value: Single;
+  __skreturn: Single;
+begin
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__min_value := __skadapter__to_sklib_float(minValue);
+  __skparam__max_value := __skadapter__to_sklib_float(maxValue);
+  __skreturn := __sklib__slider__float_ref__float__float(__skparam__value, __skparam__min_value, __skparam__max_value);
+  result := __skadapter__to_float(__skreturn);
+end;
+function Slider(const label: String; const value: Single; minValue: Single; maxValue: Single): Single;
+var
+  __skparam__label: __sklib_string;
+  __skparam__value: Single;
+  __skparam__min_value: Single;
+  __skparam__max_value: Single;
+  __skreturn: Single;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__value := __skadapter__to_sklib_float(value);
+  __skparam__min_value := __skadapter__to_sklib_float(minValue);
+  __skparam__max_value := __skadapter__to_sklib_float(maxValue);
+  __skreturn := __sklib__slider__string_ref__float_ref__float__float(__skparam__label, __skparam__value, __skparam__min_value, __skparam__max_value);
+  result := __skadapter__to_float(__skreturn);
+end;
+procedure SplitIntoColumns(count: Integer);
+var
+  __skparam__count: Integer;
+begin
+  __skparam__count := __skadapter__to_sklib_int(count);
+  __sklib__split_into_columns__int(__skparam__count);
+end;
+procedure SplitIntoColumns(count: Integer; lastWidth: Integer);
+var
+  __skparam__count: Integer;
+  __skparam__last_width: Integer;
+begin
+  __skparam__count := __skadapter__to_sklib_int(count);
+  __skparam__last_width := __skadapter__to_sklib_int(lastWidth);
+  __sklib__split_into_columns__int__int(__skparam__count, __skparam__last_width);
+end;
+procedure SplitIntoColumnsRelative(count: Integer; lastWidth: Double);
+var
+  __skparam__count: Integer;
+  __skparam__last_width: Double;
+begin
+  __skparam__count := __skadapter__to_sklib_int(count);
+  __skparam__last_width := __skadapter__to_sklib_double(lastWidth);
+  __sklib__split_into_columns_relative__int__double(__skparam__count, __skparam__last_width);
+end;
+procedure StartCustomLayout();
+begin
+  __sklib__start_custom_layout();
+end;
+procedure StartInset(const name: String; const rect: Rectangle);
+var
+  __skparam__name: __sklib_string;
+  __skparam__rect: __sklib_rectangle;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __sklib__start_inset__string_ref__rectangle_ref(__skparam__name, __skparam__rect);
+end;
+procedure StartInset(const name: String; height: Integer);
+var
+  __skparam__name: __sklib_string;
+  __skparam__height: Integer;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__height := __skadapter__to_sklib_int(height);
+  __sklib__start_inset__string_ref__int(__skparam__name, __skparam__height);
+end;
+function StartPanel(const name: String; initialRectangle: Rectangle): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skparam__initial_rectangle: __sklib_rectangle;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skparam__initial_rectangle := __skadapter__to_sklib_rectangle(initialRectangle);
+  __skreturn := __sklib__start_panel__string_ref__rectangle(__skparam__name, __skparam__initial_rectangle);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function StartPopup(const name: String): Boolean;
+var
+  __skparam__name: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__name := __skadapter__to_sklib_string(name);
+  __skreturn := __sklib__start_popup__string_ref(__skparam__name);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function StartTreenode(const label: String): Boolean;
+var
+  __skparam__label: __sklib_string;
+  __skreturn: LongInt;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skreturn := __sklib__start_treenode__string_ref(__skparam__label);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function TextBox(const value: String): String;
+var
+  __skparam__value: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__value := __skadapter__to_sklib_string(value);
+  __skreturn := __sklib__text_box__string_ref(__skparam__value);
+  result := __skadapter__to_string(__skreturn);
+end;
+function TextBox(const value: String; const rect: Rectangle): String;
+var
+  __skparam__value: __sklib_string;
+  __skparam__rect: __sklib_rectangle;
+  __skreturn: __sklib_string;
+begin
+  __skparam__value := __skadapter__to_sklib_string(value);
+  __skparam__rect := __skadapter__to_sklib_rectangle(rect);
+  __skreturn := __sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect);
+  result := __skadapter__to_string(__skreturn);
+end;
+function TextBox(const label: String; const value: String): String;
+var
+  __skparam__label: __sklib_string;
+  __skparam__value: __sklib_string;
+  __skreturn: __sklib_string;
+begin
+  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__value := __skadapter__to_sklib_string(value);
+  __skreturn := __sklib__text_box__string_ref__string_ref(__skparam__label, __skparam__value);
+  result := __skadapter__to_string(__skreturn);
 end;
 function CreateJson(): Json;
 var
@@ -13195,6 +14052,13 @@ begin
   __skparam__fnt := __skadapter__to_sklib_font(fnt);
   __skreturn := __sklib__get_font_style__font(__skparam__fnt);
   result := __skadapter__to_font_style(__skreturn);
+end;
+function GetSystemFont(): Font;
+var
+  __skreturn: __sklib_ptr;
+begin
+  __skreturn := __sklib__get_system_font();
+  result := __skadapter__to_font(__skreturn);
 end;
 function HasFont(fnt: Font): Boolean;
 var

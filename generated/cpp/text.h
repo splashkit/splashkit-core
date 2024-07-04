@@ -41,6 +41,7 @@ void free_all_fonts();
 void free_font(font fnt);
 font_style get_font_style(const string &name);
 font_style get_font_style(font fnt);
+font get_system_font();
 bool has_font(font fnt);
 bool has_font(string name);
 font load_font(const string &name, const string &filename);

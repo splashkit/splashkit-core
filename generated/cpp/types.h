@@ -52,6 +52,14 @@ typedef enum {
     HTTP_STATUS_SERVICE_UNAVAILABLE = 503
 } http_status_code;
 typedef enum {
+    FLAT_DARK_STYLE = 0,
+    SHADED_DARK_STYLE = 1,
+    FLAT_LIGHT_STYLE = 2,
+    SHADED_LIGHT_STYLE = 3,
+    BUBBLE = 4,
+    BUBBLE_MULTICOLORED = 5
+} interface_style;
+typedef enum {
     GPIO_INPUT = 0,
     GPIO_OUTPUT = 1,
     GPIO_ALT0 = 4,

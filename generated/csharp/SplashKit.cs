@@ -119,6 +119,11 @@ namespace SplashKitSDK
     private static HttpStatusCode __skadapter__to_http_status_code(int v) { return (HttpStatusCode)v; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int __skadapter__to_sklib_interface_style(InterfaceStyle v) { return (int)v; }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static InterfaceStyle __skadapter__to_interface_style(int v) { return (InterfaceStyle)v; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int __skadapter__to_sklib_pin_modes(PinModes v) { return (int)v; }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static PinModes __skadapter__to_pin_modes(int v) { return (PinModes)v; }
@@ -2344,6 +2349,237 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_quit", CharSet=CharSet.Ansi)]
     private static extern void __sklib__reset_quit();
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__add_column__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__add_column__int(int width);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__add_column_relative__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__add_column_relative__double(double width);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__bitmap", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__bitmap(__sklib_ptr bmp);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__bitmap__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__bitmap__rectangle_ref(__sklib_ptr bmp, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__bitmap__rectangle_ref__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(__sklib_ptr bmp, __sklib_rectangle rect, __sklib_drawing_options opts);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__bitmap__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__bitmap__drawing_options(__sklib_ptr bmp, __sklib_drawing_options opts);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__string_ref__bitmap", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__string_ref__bitmap(__sklib_string label, __sklib_ptr bmp);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_button__string_ref__bitmap__drawing_options", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_button__string_ref__bitmap__drawing_options(__sklib_string label, __sklib_ptr bmp, __sklib_drawing_options opts);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__button__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__button__string_ref__rectangle_ref(__sklib_string text, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__button__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__button__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__button__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__button__string_ref__string_ref(__sklib_string label, __sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__checkbox__string_ref__bool_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__checkbox__string_ref__bool_ref__rectangle_ref(__sklib_string text, int value, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__checkbox__string_ref__bool_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__checkbox__string_ref__bool_ref(__sklib_string text, int value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__checkbox__string_ref__string_ref__bool_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__checkbox__string_ref__string_ref__bool_ref(__sklib_string label, __sklib_string text, int value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slider__color_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__color_slider__color_ref__rectangle_ref(__sklib_color clr, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slider__color_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__color_slider__color_ref(__sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__color_slider__string_ref__color_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__color_slider__string_ref__color_ref(__sklib_string label, __sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__disable_interface", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__disable_interface();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__draw_interface", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__draw_interface();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__enable_interface", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__enable_interface();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_inset__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__end_inset__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_panel__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__end_panel__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_popup__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__end_popup__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__end_treenode__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__end_treenode__string_ref(__sklib_string label);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__enter_column", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__enter_column();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_interface_label_width", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__get_interface_label_width();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__header__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__header__string_ref(__sklib_string label);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color_slider__color_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__hsb_color_slider__color_ref__rectangle_ref(__sklib_color clr, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color_slider__color_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__hsb_color_slider__color_ref(__sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__hsb_color_slider__string_ref__color_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_color __sklib__hsb_color_slider__string_ref__color_ref(__sklib_string label, __sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__interface_enabled", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__interface_enabled();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__interface_style_panel__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__interface_style_panel__rectangle_ref(__sklib_rectangle initialRectangle);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__label__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__label__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__label__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__label__string_ref__rectangle_ref(__sklib_string text, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_element_changed", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__last_element_changed();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_element_confirmed", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__last_element_confirmed();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__leave_column", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__leave_column();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_box__float_ref__float__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__number_box__float_ref__float__rectangle_ref(float value, float step, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_box__float_ref__float", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__number_box__float_ref__float(float value, float step);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__number_box__string_ref__float_ref__float", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__number_box__string_ref__float_ref__float(__sklib_string label, float value, float step);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_popup__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__open_popup__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__paragraph__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__paragraph__string_ref(__sklib_string text);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__paragraph__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__paragraph__string_ref__rectangle_ref(__sklib_string text, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__reset_layout", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__reset_layout();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_accent_color__color__float", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_accent_color__color__float(__sklib_color clr, float contrast);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_border_color__color", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_border_color__color(__sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_colors_auto__color__color__float__float__float", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_colors_auto__color__color__float__float__float(__sklib_color mainClr, __sklib_color accentClr, float contrast, float accentContrast, float borderContrast);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_element_color__color__float", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_element_color__color__float(__sklib_color clr, float contrast);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_element_shadows__int__color__point_2d", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_element_shadows__int__color__point_2d(int radius, __sklib_color clr, __sklib_point_2d offset);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_font__string_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_font__string_ref(__sklib_string fnt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_font__font", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_font__font(__sklib_ptr fnt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_font_size__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_font_size__int(int size);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_label_width__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_label_width__int(int width);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_panel_shadows__int__color__point_2d", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_panel_shadows__int__color__point_2d(int radius, __sklib_color clr, __sklib_point_2d offset);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_root_text_color__color", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_root_text_color__color(__sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_shadows__int__color__point_2d", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_shadows__int__color__point_2d(int radius, __sklib_color clr, __sklib_point_2d offset);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_spacing__int__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_spacing__int__int(int spacing, int padding);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_style__interface_style", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_style__interface_style(int style);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_style__interface_style__color", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_style__interface_style__color(int style, __sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_interface_text_color__color", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_interface_text_color__color(__sklib_color clr);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__set_layout_height__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__set_layout_height__int(int height);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__single_line_layout", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__single_line_layout();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__slider__float_ref__float__float__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__slider__float_ref__float__float__rectangle_ref(float value, float minValue, float maxValue, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__slider__float_ref__float__float", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__slider__float_ref__float__float(float value, float minValue, float maxValue);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__slider__string_ref__float_ref__float__float", CharSet=CharSet.Ansi)]
+    private static extern float __sklib__slider__string_ref__float_ref__float__float(__sklib_string label, float value, float minValue, float maxValue);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split_into_columns__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__split_into_columns__int(int count);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split_into_columns__int__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__split_into_columns__int__int(int count, int lastWidth);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split_into_columns_relative__int__double", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__split_into_columns_relative__int__double(int count, double lastWidth);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_custom_layout", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__start_custom_layout();
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_inset__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__start_inset__string_ref__rectangle_ref(__sklib_string name, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_inset__string_ref__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__start_inset__string_ref__int(__sklib_string name, int height);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_panel__string_ref__rectangle", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__start_panel__string_ref__rectangle(__sklib_string name, __sklib_rectangle initialRectangle);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_popup__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__start_popup__string_ref(__sklib_string name);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__start_treenode__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__start_treenode__string_ref(__sklib_string label);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__text_box__string_ref(__sklib_string value);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__text_box__string_ref__rectangle_ref(__sklib_string value, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__text_box__string_ref__string_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__text_box__string_ref__string_ref(__sklib_string label, __sklib_string value);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_json", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_json();
 
@@ -3945,6 +4181,9 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_font_style__font", CharSet=CharSet.Ansi)]
     private static extern int __sklib__get_font_style__font(__sklib_ptr fnt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__get_system_font", CharSet=CharSet.Ansi)]
+    private static extern __sklib_ptr __sklib__get_system_font();
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__has_font__font", CharSet=CharSet.Ansi)]
     private static extern int __sklib__has_font__font(__sklib_ptr fnt);
@@ -8352,6 +8591,656 @@ namespace SplashKitSDK
     public static void ResetQuit()
     {
       __sklib__reset_quit();
+    }
+    public static void AddColumn(int width)
+    {
+      int __skparam__width;
+      __skparam__width = __skadapter__to_sklib_int(width);
+      __sklib__add_column__int(__skparam__width);
+    }
+    public static void AddColumnRelative(double width)
+    {
+      double __skparam__width;
+      __skparam__width = __skadapter__to_sklib_double(width);
+      __sklib__add_column_relative__double(__skparam__width);
+    }
+    public static bool BitmapButton(Bitmap bmp)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skreturn = __sklib__bitmap_button__bitmap(__skparam__bmp);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapButton(Bitmap bmp, Rectangle rect)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__bitmap_button__bitmap__rectangle_ref(__skparam__bmp, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapButton(Bitmap bmp, Rectangle rect, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_rectangle __skparam__rect;
+      __sklib_drawing_options __skparam__opts;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __skreturn = __sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(__skparam__bmp, __skparam__rect, __skparam__opts);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapButton(Bitmap bmp, DrawingOptions opts)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_drawing_options __skparam__opts;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __skreturn = __sklib__bitmap_button__bitmap__drawing_options(__skparam__bmp, __skparam__opts);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapButton(string label, Bitmap bmp)
+    {
+      __sklib_string __skparam__label;
+      __sklib_ptr __skparam__bmp;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skreturn = __sklib__bitmap_button__string_ref__bitmap(__skparam__label, __skparam__bmp);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapButton(string label, Bitmap bmp, DrawingOptions opts)
+    {
+      __sklib_string __skparam__label;
+      __sklib_ptr __skparam__bmp;
+      __sklib_drawing_options __skparam__opts;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+      __skreturn = __sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label, __skparam__bmp, __skparam__opts);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Button(string text, Rectangle rect)
+    {
+      __sklib_string __skparam__text;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__button__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Button(string text)
+    {
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__button__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Button(string label, string text)
+    {
+      __sklib_string __skparam__label;
+      __sklib_string __skparam__text;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skreturn = __sklib__button__string_ref__string_ref(__skparam__label, __skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Checkbox(string text, bool value, Rectangle rect)
+    {
+      __sklib_string __skparam__text;
+      int __skparam__value;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__value = __skadapter__to_sklib_bool(value);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__checkbox__string_ref__bool_ref__rectangle_ref(__skparam__text, __skparam__value, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Checkbox(string text, bool value)
+    {
+      __sklib_string __skparam__text;
+      int __skparam__value;
+      int __skreturn;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__value = __skadapter__to_sklib_bool(value);
+      __skreturn = __sklib__checkbox__string_ref__bool_ref(__skparam__text, __skparam__value);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool Checkbox(string label, string text, bool value)
+    {
+      __sklib_string __skparam__label;
+      __sklib_string __skparam__text;
+      int __skparam__value;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__value = __skadapter__to_sklib_bool(value);
+      __skreturn = __sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label, __skparam__text, __skparam__value);
+    __skadapter__free__sklib_string(ref __skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__text);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static Color ColorSlider(Color clr, Rectangle rect)
+    {
+      __sklib_color __skparam__clr;
+      __sklib_rectangle __skparam__rect;
+      __sklib_color __skreturn;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static Color ColorSlider(Color clr)
+    {
+      __sklib_color __skparam__clr;
+      __sklib_color __skreturn;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skreturn = __sklib__color_slider__color_ref(__skparam__clr);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static Color ColorSlider(string label, Color clr)
+    {
+      __sklib_string __skparam__label;
+      __sklib_color __skparam__clr;
+      __sklib_color __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skreturn = __sklib__color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static void DisableInterface()
+    {
+      __sklib__disable_interface();
+    }
+    public static void DrawInterface()
+    {
+      __sklib__draw_interface();
+    }
+    public static void EnableInterface()
+    {
+      __sklib__enable_interface();
+    }
+    public static void EndInset(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__end_inset__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void EndPanel(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__end_panel__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void EndPopup(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__end_popup__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void EndTreenode(string label)
+    {
+      __sklib_string __skparam__label;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __sklib__end_treenode__string_ref(__skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__label);
+    }
+    public static void EnterColumn()
+    {
+      __sklib__enter_column();
+    }
+    public static int GetInterfaceLabelWidth()
+    {
+      int __skreturn;
+      __skreturn = __sklib__get_interface_label_width();
+      return __skadapter__to_int(__skreturn);
+    }
+    public static bool Header(string label)
+    {
+      __sklib_string __skparam__label;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skreturn = __sklib__header__string_ref(__skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static Color HSBColorSlider(Color clr, Rectangle rect)
+    {
+      __sklib_color __skparam__clr;
+      __sklib_rectangle __skparam__rect;
+      __sklib_color __skreturn;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__hsb_color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static Color HSBColorSlider(Color clr)
+    {
+      __sklib_color __skparam__clr;
+      __sklib_color __skreturn;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skreturn = __sklib__hsb_color_slider__color_ref(__skparam__clr);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static Color HSBColorSlider(string label, Color clr)
+    {
+      __sklib_string __skparam__label;
+      __sklib_color __skparam__clr;
+      __sklib_color __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skreturn = __sklib__hsb_color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_color(__skreturn);
+    }
+    public static bool InterfaceEnabled()
+    {
+      int __skreturn;
+      __skreturn = __sklib__interface_enabled();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static void InterfaceStylePanel(Rectangle initialRectangle)
+    {
+      __sklib_rectangle __skparam__initial_rectangle;
+      __skparam__initial_rectangle = __skadapter__to_sklib_rectangle(initialRectangle);
+      __sklib__interface_style_panel__rectangle_ref(__skparam__initial_rectangle);
+    }
+    public static void Label(string text)
+    {
+      __sklib_string __skparam__text;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __sklib__label__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    }
+    public static void Label(string text, Rectangle rect)
+    {
+      __sklib_string __skparam__text;
+      __sklib_rectangle __skparam__rect;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __sklib__label__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    }
+    public static bool LastElementChanged()
+    {
+      int __skreturn;
+      __skreturn = __sklib__last_element_changed();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool LastElementConfirmed()
+    {
+      int __skreturn;
+      __skreturn = __sklib__last_element_confirmed();
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static void LeaveColumn()
+    {
+      __sklib__leave_column();
+    }
+    public static float NumberBox(float value, float step, Rectangle rect)
+    {
+      float __skparam__value;
+      float __skparam__step;
+      __sklib_rectangle __skparam__rect;
+      float __skreturn;
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__step = __skadapter__to_sklib_float(step);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__number_box__float_ref__float__rectangle_ref(__skparam__value, __skparam__step, __skparam__rect);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static float NumberBox(float value, float step)
+    {
+      float __skparam__value;
+      float __skparam__step;
+      float __skreturn;
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__step = __skadapter__to_sklib_float(step);
+      __skreturn = __sklib__number_box__float_ref__float(__skparam__value, __skparam__step);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static float NumberBox(string label, float value, float step)
+    {
+      __sklib_string __skparam__label;
+      float __skparam__value;
+      float __skparam__step;
+      float __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__step = __skadapter__to_sklib_float(step);
+      __skreturn = __sklib__number_box__string_ref__float_ref__float(__skparam__label, __skparam__value, __skparam__step);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static void OpenPopup(string name)
+    {
+      __sklib_string __skparam__name;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __sklib__open_popup__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void Paragraph(string text)
+    {
+      __sklib_string __skparam__text;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __sklib__paragraph__string_ref(__skparam__text);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    }
+    public static void Paragraph(string text, Rectangle rect)
+    {
+      __sklib_string __skparam__text;
+      __sklib_rectangle __skparam__rect;
+      __skparam__text = __skadapter__to_sklib_string(text);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __sklib__paragraph__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__text);
+    }
+    public static void ResetLayout()
+    {
+      __sklib__reset_layout();
+    }
+    public static void SetInterfaceAccentColor(Color clr, float contrast)
+    {
+      __sklib_color __skparam__clr;
+      float __skparam__contrast;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__contrast = __skadapter__to_sklib_float(contrast);
+      __sklib__set_interface_accent_color__color__float(__skparam__clr, __skparam__contrast);
+    }
+    public static void SetInterfaceBorderColor(Color clr)
+    {
+      __sklib_color __skparam__clr;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __sklib__set_interface_border_color__color(__skparam__clr);
+    }
+    public static void SetInterfaceColorsAuto(Color mainClr, Color accentClr, float contrast, float accentContrast, float borderContrast)
+    {
+      __sklib_color __skparam__main_clr;
+      __sklib_color __skparam__accent_clr;
+      float __skparam__contrast;
+      float __skparam__accent_contrast;
+      float __skparam__border_contrast;
+      __skparam__main_clr = __skadapter__to_sklib_color(mainClr);
+      __skparam__accent_clr = __skadapter__to_sklib_color(accentClr);
+      __skparam__contrast = __skadapter__to_sklib_float(contrast);
+      __skparam__accent_contrast = __skadapter__to_sklib_float(accentContrast);
+      __skparam__border_contrast = __skadapter__to_sklib_float(borderContrast);
+      __sklib__set_interface_colors_auto__color__color__float__float__float(__skparam__main_clr, __skparam__accent_clr, __skparam__contrast, __skparam__accent_contrast, __skparam__border_contrast);
+    }
+    public static void SetInterfaceElementColor(Color clr, float contrast)
+    {
+      __sklib_color __skparam__clr;
+      float __skparam__contrast;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__contrast = __skadapter__to_sklib_float(contrast);
+      __sklib__set_interface_element_color__color__float(__skparam__clr, __skparam__contrast);
+    }
+    public static void SetInterfaceElementShadows(int radius, Color clr, Point2D offset)
+    {
+      int __skparam__radius;
+      __sklib_color __skparam__clr;
+      __sklib_point_2d __skparam__offset;
+      __skparam__radius = __skadapter__to_sklib_int(radius);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__offset = __skadapter__to_sklib_point_2d(offset);
+      __sklib__set_interface_element_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+    }
+    public static void SetInterfaceFont(string fnt)
+    {
+      __sklib_string __skparam__fnt;
+      __skparam__fnt = __skadapter__to_sklib_string(fnt);
+      __sklib__set_interface_font__string_ref(__skparam__fnt);
+    __skadapter__free__sklib_string(ref __skparam__fnt);
+    }
+    public static void SetInterfaceFont(Font fnt)
+    {
+      __sklib_ptr __skparam__fnt;
+      __skparam__fnt = __skadapter__to_sklib_font(fnt);
+      __sklib__set_interface_font__font(__skparam__fnt);
+    }
+    public static void SetInterfaceFontSize(int size)
+    {
+      int __skparam__size;
+      __skparam__size = __skadapter__to_sklib_int(size);
+      __sklib__set_interface_font_size__int(__skparam__size);
+    }
+    public static void SetInterfaceLabelWidth(int width)
+    {
+      int __skparam__width;
+      __skparam__width = __skadapter__to_sklib_int(width);
+      __sklib__set_interface_label_width__int(__skparam__width);
+    }
+    public static void SetInterfacePanelShadows(int radius, Color clr, Point2D offset)
+    {
+      int __skparam__radius;
+      __sklib_color __skparam__clr;
+      __sklib_point_2d __skparam__offset;
+      __skparam__radius = __skadapter__to_sklib_int(radius);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__offset = __skadapter__to_sklib_point_2d(offset);
+      __sklib__set_interface_panel_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+    }
+    public static void SetInterfaceRootTextColor(Color clr)
+    {
+      __sklib_color __skparam__clr;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __sklib__set_interface_root_text_color__color(__skparam__clr);
+    }
+    public static void SetInterfaceShadows(int radius, Color clr, Point2D offset)
+    {
+      int __skparam__radius;
+      __sklib_color __skparam__clr;
+      __sklib_point_2d __skparam__offset;
+      __skparam__radius = __skadapter__to_sklib_int(radius);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __skparam__offset = __skadapter__to_sklib_point_2d(offset);
+      __sklib__set_interface_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset);
+    }
+    public static void SetInterfaceSpacing(int spacing, int padding)
+    {
+      int __skparam__spacing;
+      int __skparam__padding;
+      __skparam__spacing = __skadapter__to_sklib_int(spacing);
+      __skparam__padding = __skadapter__to_sklib_int(padding);
+      __sklib__set_interface_spacing__int__int(__skparam__spacing, __skparam__padding);
+    }
+    public static void SetInterfaceStyle(InterfaceStyle style)
+    {
+      int __skparam__style;
+      __skparam__style = __skadapter__to_sklib_interface_style(style);
+      __sklib__set_interface_style__interface_style(__skparam__style);
+    }
+    public static void SetInterfaceStyle(InterfaceStyle style, Color clr)
+    {
+      int __skparam__style;
+      __sklib_color __skparam__clr;
+      __skparam__style = __skadapter__to_sklib_interface_style(style);
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __sklib__set_interface_style__interface_style__color(__skparam__style, __skparam__clr);
+    }
+    public static void SetInterfaceTextColor(Color clr)
+    {
+      __sklib_color __skparam__clr;
+      __skparam__clr = __skadapter__to_sklib_color(clr);
+      __sklib__set_interface_text_color__color(__skparam__clr);
+    }
+    public static void SetLayoutHeight(int height)
+    {
+      int __skparam__height;
+      __skparam__height = __skadapter__to_sklib_int(height);
+      __sklib__set_layout_height__int(__skparam__height);
+    }
+    public static void SingleLineLayout()
+    {
+      __sklib__single_line_layout();
+    }
+    public static float Slider(float value, float minValue, float maxValue, Rectangle rect)
+    {
+      float __skparam__value;
+      float __skparam__min_value;
+      float __skparam__max_value;
+      __sklib_rectangle __skparam__rect;
+      float __skreturn;
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__min_value = __skadapter__to_sklib_float(minValue);
+      __skparam__max_value = __skadapter__to_sklib_float(maxValue);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__slider__float_ref__float__float__rectangle_ref(__skparam__value, __skparam__min_value, __skparam__max_value, __skparam__rect);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static float Slider(float value, float minValue, float maxValue)
+    {
+      float __skparam__value;
+      float __skparam__min_value;
+      float __skparam__max_value;
+      float __skreturn;
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__min_value = __skadapter__to_sklib_float(minValue);
+      __skparam__max_value = __skadapter__to_sklib_float(maxValue);
+      __skreturn = __sklib__slider__float_ref__float__float(__skparam__value, __skparam__min_value, __skparam__max_value);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static float Slider(string label, float value, float minValue, float maxValue)
+    {
+      __sklib_string __skparam__label;
+      float __skparam__value;
+      float __skparam__min_value;
+      float __skparam__max_value;
+      float __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__value = __skadapter__to_sklib_float(value);
+      __skparam__min_value = __skadapter__to_sklib_float(minValue);
+      __skparam__max_value = __skadapter__to_sklib_float(maxValue);
+      __skreturn = __sklib__slider__string_ref__float_ref__float__float(__skparam__label, __skparam__value, __skparam__min_value, __skparam__max_value);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_float(__skreturn);
+    }
+    public static void SplitIntoColumns(int count)
+    {
+      int __skparam__count;
+      __skparam__count = __skadapter__to_sklib_int(count);
+      __sklib__split_into_columns__int(__skparam__count);
+    }
+    public static void SplitIntoColumns(int count, int lastWidth)
+    {
+      int __skparam__count;
+      int __skparam__last_width;
+      __skparam__count = __skadapter__to_sklib_int(count);
+      __skparam__last_width = __skadapter__to_sklib_int(lastWidth);
+      __sklib__split_into_columns__int__int(__skparam__count, __skparam__last_width);
+    }
+    public static void SplitIntoColumnsRelative(int count, double lastWidth)
+    {
+      int __skparam__count;
+      double __skparam__last_width;
+      __skparam__count = __skadapter__to_sklib_int(count);
+      __skparam__last_width = __skadapter__to_sklib_double(lastWidth);
+      __sklib__split_into_columns_relative__int__double(__skparam__count, __skparam__last_width);
+    }
+    public static void StartCustomLayout()
+    {
+      __sklib__start_custom_layout();
+    }
+    public static void StartInset(string name, Rectangle rect)
+    {
+      __sklib_string __skparam__name;
+      __sklib_rectangle __skparam__rect;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __sklib__start_inset__string_ref__rectangle_ref(__skparam__name, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static void StartInset(string name, int height)
+    {
+      __sklib_string __skparam__name;
+      int __skparam__height;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__height = __skadapter__to_sklib_int(height);
+      __sklib__start_inset__string_ref__int(__skparam__name, __skparam__height);
+    __skadapter__free__sklib_string(ref __skparam__name);
+    }
+    public static bool StartPanel(string name, Rectangle initialRectangle)
+    {
+      __sklib_string __skparam__name;
+      __sklib_rectangle __skparam__initial_rectangle;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skparam__initial_rectangle = __skadapter__to_sklib_rectangle(initialRectangle);
+      __skreturn = __sklib__start_panel__string_ref__rectangle(__skparam__name, __skparam__initial_rectangle);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool StartPopup(string name)
+    {
+      __sklib_string __skparam__name;
+      int __skreturn;
+      __skparam__name = __skadapter__to_sklib_string(name);
+      __skreturn = __sklib__start_popup__string_ref(__skparam__name);
+    __skadapter__free__sklib_string(ref __skparam__name);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool StartTreenode(string label)
+    {
+      __sklib_string __skparam__label;
+      int __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skreturn = __sklib__start_treenode__string_ref(__skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__label);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static string TextBox(string value)
+    {
+      __sklib_string __skparam__value;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_string(value);
+      __skreturn = __sklib__text_box__string_ref(__skparam__value);
+    __skadapter__free__sklib_string(ref __skparam__value);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string TextBox(string value, Rectangle rect)
+    {
+      __sklib_string __skparam__value;
+      __sklib_rectangle __skparam__rect;
+      __sklib_string __skreturn;
+      __skparam__value = __skadapter__to_sklib_string(value);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect);
+    __skadapter__free__sklib_string(ref __skparam__value);
+      return __skadapter__to_string(__skreturn);
+    }
+    public static string TextBox(string label, string value)
+    {
+      __sklib_string __skparam__label;
+      __sklib_string __skparam__value;
+      __sklib_string __skreturn;
+      __skparam__label = __skadapter__to_sklib_string(label);
+      __skparam__value = __skadapter__to_sklib_string(value);
+      __skreturn = __sklib__text_box__string_ref__string_ref(__skparam__label, __skparam__value);
+    __skadapter__free__sklib_string(ref __skparam__label);
+    __skadapter__free__sklib_string(ref __skparam__value);
+      return __skadapter__to_string(__skreturn);
     }
     public static Json CreateJson()
     {
@@ -13330,6 +14219,12 @@ namespace SplashKitSDK
       __skreturn = __sklib__get_font_style__font(__skparam__fnt);
       return __skadapter__to_font_style(__skreturn);
     }
+    public static Font GetSystemFont()
+    {
+      __sklib_ptr __skreturn;
+      __skreturn = __sklib__get_system_font();
+      return __skadapter__to_font(__skreturn);
+    }
     public static bool HasFont(Font fnt)
     {
       __sklib_ptr __skparam__fnt;
@@ -15478,6 +16373,15 @@ namespace SplashKitSDK
     HttpStatusInternalServerError = 500,
     HttpStatusNotImplemented = 501,
     HttpStatusServiceUnavailable = 503
+  }
+  public enum InterfaceStyle
+  {
+    FlatDarkStyle = 0,
+    ShadedDarkStyle = 1,
+    FlatLightStyle = 2,
+    ShadedLightStyle = 3,
+    Bubble = 4,
+    BubbleMulticolored = 5
   }
   public enum PinModes
   {

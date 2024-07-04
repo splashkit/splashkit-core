@@ -225,6 +225,13 @@ class HttpStatusCode(Enum):
     http_status_internal_server_error = 500
     http_status_not_implemented = 501
     http_status_service_unavailable = 503
+class InterfaceStyle(Enum):
+    flat_dark_style = 0
+    shaded_dark_style = 1
+    flat_light_style = 2
+    shaded_light_style = 3
+    bubble = 4
+    bubble_multicolored = 5
 class PinModes(Enum):
     gpio_input = 0
     gpio_output = 1
@@ -695,6 +702,14 @@ def __skadapter__to_http_status_code(v):
     return HttpStatusCode(v)
 
 def __skadapter__to_sklib_http_status_code(v):
+    return c_int(v.value)
+
+def __skadapter__to_interface_style(v):
+    if isinstance(v, InterfaceStyle):
+        return v
+    return InterfaceStyle(v)
+
+def __skadapter__to_sklib_interface_style(v):
     return c_int(v.value)
 
 def __skadapter__to_pin_modes(v):
@@ -2247,6 +2262,160 @@ sklib.__sklib__quit_requested.argtypes = [  ]
 sklib.__sklib__quit_requested.restype = c_bool
 sklib.__sklib__reset_quit.argtypes = [  ]
 sklib.__sklib__reset_quit.restype = None
+sklib.__sklib__add_column__int.argtypes = [ c_int ]
+sklib.__sklib__add_column__int.restype = None
+sklib.__sklib__add_column_relative__double.argtypes = [ c_double ]
+sklib.__sklib__add_column_relative__double.restype = None
+sklib.__sklib__bitmap_button__bitmap.argtypes = [ c_void_p ]
+sklib.__sklib__bitmap_button__bitmap.restype = c_bool
+sklib.__sklib__bitmap_button__bitmap__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
+sklib.__sklib__bitmap_button__bitmap__rectangle_ref.restype = c_bool
+sklib.__sklib__bitmap_button__bitmap__rectangle_ref__drawing_options.argtypes = [ c_void_p, _sklib_rectangle, _sklib_drawing_options ]
+sklib.__sklib__bitmap_button__bitmap__rectangle_ref__drawing_options.restype = c_bool
+sklib.__sklib__bitmap_button__bitmap__drawing_options.argtypes = [ c_void_p, _sklib_drawing_options ]
+sklib.__sklib__bitmap_button__bitmap__drawing_options.restype = c_bool
+sklib.__sklib__bitmap_button__string_ref__bitmap.argtypes = [ _sklib_string, c_void_p ]
+sklib.__sklib__bitmap_button__string_ref__bitmap.restype = c_bool
+sklib.__sklib__bitmap_button__string_ref__bitmap__drawing_options.argtypes = [ _sklib_string, c_void_p, _sklib_drawing_options ]
+sklib.__sklib__bitmap_button__string_ref__bitmap__drawing_options.restype = c_bool
+sklib.__sklib__button__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__button__string_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__button__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__button__string_ref.restype = c_bool
+sklib.__sklib__button__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__button__string_ref__string_ref.restype = c_bool
+sklib.__sklib__checkbox__string_ref__bool_ref__rectangle_ref.argtypes = [ _sklib_string, c_bool, _sklib_rectangle ]
+sklib.__sklib__checkbox__string_ref__bool_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__checkbox__string_ref__bool_ref.argtypes = [ _sklib_string, c_bool ]
+sklib.__sklib__checkbox__string_ref__bool_ref.restype = c_bool
+sklib.__sklib__checkbox__string_ref__string_ref__bool_ref.argtypes = [ _sklib_string, _sklib_string, c_bool ]
+sklib.__sklib__checkbox__string_ref__string_ref__bool_ref.restype = c_bool
+sklib.__sklib__color_slider__color_ref__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
+sklib.__sklib__color_slider__color_ref__rectangle_ref.restype = _sklib_color
+sklib.__sklib__color_slider__color_ref.argtypes = [ _sklib_color ]
+sklib.__sklib__color_slider__color_ref.restype = _sklib_color
+sklib.__sklib__color_slider__string_ref__color_ref.argtypes = [ _sklib_string, _sklib_color ]
+sklib.__sklib__color_slider__string_ref__color_ref.restype = _sklib_color
+sklib.__sklib__disable_interface.argtypes = [  ]
+sklib.__sklib__disable_interface.restype = None
+sklib.__sklib__draw_interface.argtypes = [  ]
+sklib.__sklib__draw_interface.restype = None
+sklib.__sklib__enable_interface.argtypes = [  ]
+sklib.__sklib__enable_interface.restype = None
+sklib.__sklib__end_inset__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__end_inset__string_ref.restype = None
+sklib.__sklib__end_panel__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__end_panel__string_ref.restype = None
+sklib.__sklib__end_popup__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__end_popup__string_ref.restype = None
+sklib.__sklib__end_treenode__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__end_treenode__string_ref.restype = None
+sklib.__sklib__enter_column.argtypes = [  ]
+sklib.__sklib__enter_column.restype = None
+sklib.__sklib__get_interface_label_width.argtypes = [  ]
+sklib.__sklib__get_interface_label_width.restype = c_int
+sklib.__sklib__header__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__header__string_ref.restype = c_bool
+sklib.__sklib__hsb_color_slider__color_ref__rectangle_ref.argtypes = [ _sklib_color, _sklib_rectangle ]
+sklib.__sklib__hsb_color_slider__color_ref__rectangle_ref.restype = _sklib_color
+sklib.__sklib__hsb_color_slider__color_ref.argtypes = [ _sklib_color ]
+sklib.__sklib__hsb_color_slider__color_ref.restype = _sklib_color
+sklib.__sklib__hsb_color_slider__string_ref__color_ref.argtypes = [ _sklib_string, _sklib_color ]
+sklib.__sklib__hsb_color_slider__string_ref__color_ref.restype = _sklib_color
+sklib.__sklib__interface_enabled.argtypes = [  ]
+sklib.__sklib__interface_enabled.restype = c_bool
+sklib.__sklib__interface_style_panel__rectangle_ref.argtypes = [ _sklib_rectangle ]
+sklib.__sklib__interface_style_panel__rectangle_ref.restype = None
+sklib.__sklib__label__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__label__string_ref.restype = None
+sklib.__sklib__label__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__label__string_ref__rectangle_ref.restype = None
+sklib.__sklib__last_element_changed.argtypes = [  ]
+sklib.__sklib__last_element_changed.restype = c_bool
+sklib.__sklib__last_element_confirmed.argtypes = [  ]
+sklib.__sklib__last_element_confirmed.restype = c_bool
+sklib.__sklib__leave_column.argtypes = [  ]
+sklib.__sklib__leave_column.restype = None
+sklib.__sklib__number_box__float_ref__float__rectangle_ref.argtypes = [ c_float, c_float, _sklib_rectangle ]
+sklib.__sklib__number_box__float_ref__float__rectangle_ref.restype = c_float
+sklib.__sklib__number_box__float_ref__float.argtypes = [ c_float, c_float ]
+sklib.__sklib__number_box__float_ref__float.restype = c_float
+sklib.__sklib__number_box__string_ref__float_ref__float.argtypes = [ _sklib_string, c_float, c_float ]
+sklib.__sklib__number_box__string_ref__float_ref__float.restype = c_float
+sklib.__sklib__open_popup__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__open_popup__string_ref.restype = None
+sklib.__sklib__paragraph__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__paragraph__string_ref.restype = None
+sklib.__sklib__paragraph__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__paragraph__string_ref__rectangle_ref.restype = None
+sklib.__sklib__reset_layout.argtypes = [  ]
+sklib.__sklib__reset_layout.restype = None
+sklib.__sklib__set_interface_accent_color__color__float.argtypes = [ _sklib_color, c_float ]
+sklib.__sklib__set_interface_accent_color__color__float.restype = None
+sklib.__sklib__set_interface_border_color__color.argtypes = [ _sklib_color ]
+sklib.__sklib__set_interface_border_color__color.restype = None
+sklib.__sklib__set_interface_colors_auto__color__color__float__float__float.argtypes = [ _sklib_color, _sklib_color, c_float, c_float, c_float ]
+sklib.__sklib__set_interface_colors_auto__color__color__float__float__float.restype = None
+sklib.__sklib__set_interface_element_color__color__float.argtypes = [ _sklib_color, c_float ]
+sklib.__sklib__set_interface_element_color__color__float.restype = None
+sklib.__sklib__set_interface_element_shadows__int__color__point_2d.argtypes = [ c_int, _sklib_color, _sklib_point_2d ]
+sklib.__sklib__set_interface_element_shadows__int__color__point_2d.restype = None
+sklib.__sklib__set_interface_font__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__set_interface_font__string_ref.restype = None
+sklib.__sklib__set_interface_font__font.argtypes = [ c_void_p ]
+sklib.__sklib__set_interface_font__font.restype = None
+sklib.__sklib__set_interface_font_size__int.argtypes = [ c_int ]
+sklib.__sklib__set_interface_font_size__int.restype = None
+sklib.__sklib__set_interface_label_width__int.argtypes = [ c_int ]
+sklib.__sklib__set_interface_label_width__int.restype = None
+sklib.__sklib__set_interface_panel_shadows__int__color__point_2d.argtypes = [ c_int, _sklib_color, _sklib_point_2d ]
+sklib.__sklib__set_interface_panel_shadows__int__color__point_2d.restype = None
+sklib.__sklib__set_interface_root_text_color__color.argtypes = [ _sklib_color ]
+sklib.__sklib__set_interface_root_text_color__color.restype = None
+sklib.__sklib__set_interface_shadows__int__color__point_2d.argtypes = [ c_int, _sklib_color, _sklib_point_2d ]
+sklib.__sklib__set_interface_shadows__int__color__point_2d.restype = None
+sklib.__sklib__set_interface_spacing__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__set_interface_spacing__int__int.restype = None
+sklib.__sklib__set_interface_style__interface_style.argtypes = [ c_int ]
+sklib.__sklib__set_interface_style__interface_style.restype = None
+sklib.__sklib__set_interface_style__interface_style__color.argtypes = [ c_int, _sklib_color ]
+sklib.__sklib__set_interface_style__interface_style__color.restype = None
+sklib.__sklib__set_interface_text_color__color.argtypes = [ _sklib_color ]
+sklib.__sklib__set_interface_text_color__color.restype = None
+sklib.__sklib__set_layout_height__int.argtypes = [ c_int ]
+sklib.__sklib__set_layout_height__int.restype = None
+sklib.__sklib__single_line_layout.argtypes = [  ]
+sklib.__sklib__single_line_layout.restype = None
+sklib.__sklib__slider__float_ref__float__float__rectangle_ref.argtypes = [ c_float, c_float, c_float, _sklib_rectangle ]
+sklib.__sklib__slider__float_ref__float__float__rectangle_ref.restype = c_float
+sklib.__sklib__slider__float_ref__float__float.argtypes = [ c_float, c_float, c_float ]
+sklib.__sklib__slider__float_ref__float__float.restype = c_float
+sklib.__sklib__slider__string_ref__float_ref__float__float.argtypes = [ _sklib_string, c_float, c_float, c_float ]
+sklib.__sklib__slider__string_ref__float_ref__float__float.restype = c_float
+sklib.__sklib__split_into_columns__int.argtypes = [ c_int ]
+sklib.__sklib__split_into_columns__int.restype = None
+sklib.__sklib__split_into_columns__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__split_into_columns__int__int.restype = None
+sklib.__sklib__split_into_columns_relative__int__double.argtypes = [ c_int, c_double ]
+sklib.__sklib__split_into_columns_relative__int__double.restype = None
+sklib.__sklib__start_custom_layout.argtypes = [  ]
+sklib.__sklib__start_custom_layout.restype = None
+sklib.__sklib__start_inset__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__start_inset__string_ref__rectangle_ref.restype = None
+sklib.__sklib__start_inset__string_ref__int.argtypes = [ _sklib_string, c_int ]
+sklib.__sklib__start_inset__string_ref__int.restype = None
+sklib.__sklib__start_panel__string_ref__rectangle.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__start_panel__string_ref__rectangle.restype = c_bool
+sklib.__sklib__start_popup__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__start_popup__string_ref.restype = c_bool
+sklib.__sklib__start_treenode__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__start_treenode__string_ref.restype = c_bool
+sklib.__sklib__text_box__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__text_box__string_ref.restype = _sklib_string
+sklib.__sklib__text_box__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__text_box__string_ref__rectangle_ref.restype = _sklib_string
+sklib.__sklib__text_box__string_ref__string_ref.argtypes = [ _sklib_string, _sklib_string ]
+sklib.__sklib__text_box__string_ref__string_ref.restype = _sklib_string
 sklib.__sklib__create_json.argtypes = [  ]
 sklib.__sklib__create_json.restype = c_void_p
 sklib.__sklib__create_json__string.argtypes = [ _sklib_string ]
@@ -3315,6 +3484,8 @@ sklib.__sklib__get_font_style__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__get_font_style__string_ref.restype = c_int
 sklib.__sklib__get_font_style__font.argtypes = [ c_void_p ]
 sklib.__sklib__get_font_style__font.restype = c_int
+sklib.__sklib__get_system_font.argtypes = [  ]
+sklib.__sklib__get_system_font.restype = c_void_p
 sklib.__sklib__has_font__font.argtypes = [ c_void_p ]
 sklib.__sklib__has_font__font.restype = c_bool
 sklib.__sklib__has_font__string.argtypes = [ _sklib_string ]
@@ -5594,6 +5765,314 @@ def quit_requested (  ):
     return __skadapter__to_bool(__skreturn)
 def reset_quit (  ):
     sklib.__sklib__reset_quit()
+def add_column ( width ):
+    __skparam__width = __skadapter__to_sklib_int(width)
+    sklib.__sklib__add_column__int(__skparam__width)
+def add_column_relative ( width ):
+    __skparam__width = __skadapter__to_sklib_double(width)
+    sklib.__sklib__add_column_relative__double(__skparam__width)
+def bitmap_button ( bmp ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skreturn = sklib.__sklib__bitmap_button__bitmap(__skparam__bmp)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_button_at_position ( bmp, rect ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__bitmap_button__bitmap__rectangle_ref(__skparam__bmp, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_button_at_position_with_options ( bmp, rect, opts ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    __skreturn = sklib.__sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(__skparam__bmp, __skparam__rect, __skparam__opts)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_button_with_options ( bmp, opts ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    __skreturn = sklib.__sklib__bitmap_button__bitmap__drawing_options(__skparam__bmp, __skparam__opts)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_button_labeled ( label, bmp ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap(__skparam__label, __skparam__bmp)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_button_labeled_with_options ( label, bmp, opts ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
+    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label, __skparam__bmp, __skparam__opts)
+    return __skadapter__to_bool(__skreturn)
+def button_at_position ( text, rect ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__button__string_ref__rectangle_ref(__skparam__text, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def button ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__button__string_ref(__skparam__text)
+    return __skadapter__to_bool(__skreturn)
+def button_labeled ( label, text ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skreturn = sklib.__sklib__button__string_ref__string_ref(__skparam__label, __skparam__text)
+    return __skadapter__to_bool(__skreturn)
+def checkbox_at_position ( text, value, rect ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__value = __skadapter__to_sklib_bool(value)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__checkbox__string_ref__bool_ref__rectangle_ref(__skparam__text, __skparam__value, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def checkbox ( text, value ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__value = __skadapter__to_sklib_bool(value)
+    __skreturn = sklib.__sklib__checkbox__string_ref__bool_ref(__skparam__text, __skparam__value)
+    return __skadapter__to_bool(__skreturn)
+def checkbox_labeled ( label, text, value ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__value = __skadapter__to_sklib_bool(value)
+    __skreturn = sklib.__sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label, __skparam__text, __skparam__value)
+    return __skadapter__to_bool(__skreturn)
+def color_slider_at_position ( clr, rect ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect)
+    return __skadapter__to_color(__skreturn)
+def color_slider ( clr ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skreturn = sklib.__sklib__color_slider__color_ref(__skparam__clr)
+    return __skadapter__to_color(__skreturn)
+def color_slider_labeled ( label, clr ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skreturn = sklib.__sklib__color_slider__string_ref__color_ref(__skparam__label, __skparam__clr)
+    return __skadapter__to_color(__skreturn)
+def disable_interface (  ):
+    sklib.__sklib__disable_interface()
+def draw_interface (  ):
+    sklib.__sklib__draw_interface()
+def enable_interface (  ):
+    sklib.__sklib__enable_interface()
+def end_inset ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__end_inset__string_ref(__skparam__name)
+def end_panel ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__end_panel__string_ref(__skparam__name)
+def end_popup ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__end_popup__string_ref(__skparam__name)
+def end_treenode ( label ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    sklib.__sklib__end_treenode__string_ref(__skparam__label)
+def enter_column (  ):
+    sklib.__sklib__enter_column()
+def get_interface_label_width (  ):
+    __skreturn = sklib.__sklib__get_interface_label_width()
+    return __skadapter__to_int(__skreturn)
+def header ( label ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skreturn = sklib.__sklib__header__string_ref(__skparam__label)
+    return __skadapter__to_bool(__skreturn)
+def hsb_color_slider_at_position ( clr, rect ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__hsb_color_slider__color_ref__rectangle_ref(__skparam__clr, __skparam__rect)
+    return __skadapter__to_color(__skreturn)
+def hsb_color_slider ( clr ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skreturn = sklib.__sklib__hsb_color_slider__color_ref(__skparam__clr)
+    return __skadapter__to_color(__skreturn)
+def hsb_color_slider_labeled ( label, clr ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skreturn = sklib.__sklib__hsb_color_slider__string_ref__color_ref(__skparam__label, __skparam__clr)
+    return __skadapter__to_color(__skreturn)
+def interface_enabled (  ):
+    __skreturn = sklib.__sklib__interface_enabled()
+    return __skadapter__to_bool(__skreturn)
+def interface_style_panel ( initial_rectangle ):
+    __skparam__initial_rectangle = __skadapter__to_sklib_rectangle(initial_rectangle)
+    sklib.__sklib__interface_style_panel__rectangle_ref(__skparam__initial_rectangle)
+def label ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    sklib.__sklib__label__string_ref(__skparam__text)
+def label_at_position ( text, rect ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__label__string_ref__rectangle_ref(__skparam__text, __skparam__rect)
+def last_element_changed (  ):
+    __skreturn = sklib.__sklib__last_element_changed()
+    return __skadapter__to_bool(__skreturn)
+def last_element_confirmed (  ):
+    __skreturn = sklib.__sklib__last_element_confirmed()
+    return __skadapter__to_bool(__skreturn)
+def leave_column (  ):
+    sklib.__sklib__leave_column()
+def number_box_at_position ( value, step, rect ):
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__step = __skadapter__to_sklib_float(step)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__number_box__float_ref__float__rectangle_ref(__skparam__value, __skparam__step, __skparam__rect)
+    return __skadapter__to_float(__skreturn)
+def number_box ( value, step ):
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__step = __skadapter__to_sklib_float(step)
+    __skreturn = sklib.__sklib__number_box__float_ref__float(__skparam__value, __skparam__step)
+    return __skadapter__to_float(__skreturn)
+def number_box_labeled ( label, value, step ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__step = __skadapter__to_sklib_float(step)
+    __skreturn = sklib.__sklib__number_box__string_ref__float_ref__float(__skparam__label, __skparam__value, __skparam__step)
+    return __skadapter__to_float(__skreturn)
+def open_popup ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    sklib.__sklib__open_popup__string_ref(__skparam__name)
+def paragraph ( text ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    sklib.__sklib__paragraph__string_ref(__skparam__text)
+def paragraph_at_position ( text, rect ):
+    __skparam__text = __skadapter__to_sklib_string(text)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__paragraph__string_ref__rectangle_ref(__skparam__text, __skparam__rect)
+def reset_layout (  ):
+    sklib.__sklib__reset_layout()
+def set_interface_accent_color ( clr, contrast ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__contrast = __skadapter__to_sklib_float(contrast)
+    sklib.__sklib__set_interface_accent_color__color__float(__skparam__clr, __skparam__contrast)
+def set_interface_border_color ( clr ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    sklib.__sklib__set_interface_border_color__color(__skparam__clr)
+def set_interface_colors_auto ( main_clr, accent_clr, contrast, accent_contrast, border_contrast ):
+    __skparam__main_clr = __skadapter__to_sklib_color(main_clr)
+    __skparam__accent_clr = __skadapter__to_sklib_color(accent_clr)
+    __skparam__contrast = __skadapter__to_sklib_float(contrast)
+    __skparam__accent_contrast = __skadapter__to_sklib_float(accent_contrast)
+    __skparam__border_contrast = __skadapter__to_sklib_float(border_contrast)
+    sklib.__sklib__set_interface_colors_auto__color__color__float__float__float(__skparam__main_clr, __skparam__accent_clr, __skparam__contrast, __skparam__accent_contrast, __skparam__border_contrast)
+def set_interface_element_color ( clr, contrast ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__contrast = __skadapter__to_sklib_float(contrast)
+    sklib.__sklib__set_interface_element_color__color__float(__skparam__clr, __skparam__contrast)
+def set_interface_element_shadows ( radius, clr, offset ):
+    __skparam__radius = __skadapter__to_sklib_int(radius)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__offset = __skadapter__to_sklib_point_2d(offset)
+    sklib.__sklib__set_interface_element_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset)
+def set_interface_font_font_as_string ( fnt ):
+    __skparam__fnt = __skadapter__to_sklib_string(fnt)
+    sklib.__sklib__set_interface_font__string_ref(__skparam__fnt)
+def set_interface_font ( fnt ):
+    __skparam__fnt = __skadapter__to_sklib_font(fnt)
+    sklib.__sklib__set_interface_font__font(__skparam__fnt)
+def set_interface_font_size ( size ):
+    __skparam__size = __skadapter__to_sklib_int(size)
+    sklib.__sklib__set_interface_font_size__int(__skparam__size)
+def set_interface_label_width ( width ):
+    __skparam__width = __skadapter__to_sklib_int(width)
+    sklib.__sklib__set_interface_label_width__int(__skparam__width)
+def set_interface_panel_shadows ( radius, clr, offset ):
+    __skparam__radius = __skadapter__to_sklib_int(radius)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__offset = __skadapter__to_sklib_point_2d(offset)
+    sklib.__sklib__set_interface_panel_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset)
+def set_interface_root_text_color ( clr ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    sklib.__sklib__set_interface_root_text_color__color(__skparam__clr)
+def set_interface_shadows ( radius, clr, offset ):
+    __skparam__radius = __skadapter__to_sklib_int(radius)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    __skparam__offset = __skadapter__to_sklib_point_2d(offset)
+    sklib.__sklib__set_interface_shadows__int__color__point_2d(__skparam__radius, __skparam__clr, __skparam__offset)
+def set_interface_spacing ( spacing, padding ):
+    __skparam__spacing = __skadapter__to_sklib_int(spacing)
+    __skparam__padding = __skadapter__to_sklib_int(padding)
+    sklib.__sklib__set_interface_spacing__int__int(__skparam__spacing, __skparam__padding)
+def set_interface_style ( style ):
+    __skparam__style = __skadapter__to_sklib_interface_style(style)
+    sklib.__sklib__set_interface_style__interface_style(__skparam__style)
+def set_interface_style_with_color ( style, clr ):
+    __skparam__style = __skadapter__to_sklib_interface_style(style)
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    sklib.__sklib__set_interface_style__interface_style__color(__skparam__style, __skparam__clr)
+def set_interface_text_color ( clr ):
+    __skparam__clr = __skadapter__to_sklib_color(clr)
+    sklib.__sklib__set_interface_text_color__color(__skparam__clr)
+def set_layout_height ( height ):
+    __skparam__height = __skadapter__to_sklib_int(height)
+    sklib.__sklib__set_layout_height__int(__skparam__height)
+def single_line_layout (  ):
+    sklib.__sklib__single_line_layout()
+def slider_at_position ( value, min_value, max_value, rect ):
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__min_value = __skadapter__to_sklib_float(min_value)
+    __skparam__max_value = __skadapter__to_sklib_float(max_value)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__slider__float_ref__float__float__rectangle_ref(__skparam__value, __skparam__min_value, __skparam__max_value, __skparam__rect)
+    return __skadapter__to_float(__skreturn)
+def slider ( value, min_value, max_value ):
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__min_value = __skadapter__to_sklib_float(min_value)
+    __skparam__max_value = __skadapter__to_sklib_float(max_value)
+    __skreturn = sklib.__sklib__slider__float_ref__float__float(__skparam__value, __skparam__min_value, __skparam__max_value)
+    return __skadapter__to_float(__skreturn)
+def slider_labeled ( label, value, min_value, max_value ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__value = __skadapter__to_sklib_float(value)
+    __skparam__min_value = __skadapter__to_sklib_float(min_value)
+    __skparam__max_value = __skadapter__to_sklib_float(max_value)
+    __skreturn = sklib.__sklib__slider__string_ref__float_ref__float__float(__skparam__label, __skparam__value, __skparam__min_value, __skparam__max_value)
+    return __skadapter__to_float(__skreturn)
+def split_into_columns ( count ):
+    __skparam__count = __skadapter__to_sklib_int(count)
+    sklib.__sklib__split_into_columns__int(__skparam__count)
+def split_into_columns_with_last_width ( count, last_width ):
+    __skparam__count = __skadapter__to_sklib_int(count)
+    __skparam__last_width = __skadapter__to_sklib_int(last_width)
+    sklib.__sklib__split_into_columns__int__int(__skparam__count, __skparam__last_width)
+def split_into_columns_relative_with_last_width ( count, last_width ):
+    __skparam__count = __skadapter__to_sklib_int(count)
+    __skparam__last_width = __skadapter__to_sklib_double(last_width)
+    sklib.__sklib__split_into_columns_relative__int__double(__skparam__count, __skparam__last_width)
+def start_custom_layout (  ):
+    sklib.__sklib__start_custom_layout()
+def start_inset_at_position ( name, rect ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    sklib.__sklib__start_inset__string_ref__rectangle_ref(__skparam__name, __skparam__rect)
+def start_inset ( name, height ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skparam__height = __skadapter__to_sklib_int(height)
+    sklib.__sklib__start_inset__string_ref__int(__skparam__name, __skparam__height)
+def start_panel ( name, initial_rectangle ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skparam__initial_rectangle = __skadapter__to_sklib_rectangle(initial_rectangle)
+    __skreturn = sklib.__sklib__start_panel__string_ref__rectangle(__skparam__name, __skparam__initial_rectangle)
+    return __skadapter__to_bool(__skreturn)
+def start_popup ( name ):
+    __skparam__name = __skadapter__to_sklib_string(name)
+    __skreturn = sklib.__sklib__start_popup__string_ref(__skparam__name)
+    return __skadapter__to_bool(__skreturn)
+def start_treenode ( label ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skreturn = sklib.__sklib__start_treenode__string_ref(__skparam__label)
+    return __skadapter__to_bool(__skreturn)
+def text_box ( value ):
+    __skparam__value = __skadapter__to_sklib_string(value)
+    __skreturn = sklib.__sklib__text_box__string_ref(__skparam__value)
+    return __skadapter__to_string(__skreturn)
+def text_box_at_position ( value, rect ):
+    __skparam__value = __skadapter__to_sklib_string(value)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect)
+    return __skadapter__to_string(__skreturn)
+def text_box_labeled ( label, value ):
+    __skparam__label = __skadapter__to_sklib_string(label)
+    __skparam__value = __skadapter__to_sklib_string(value)
+    __skreturn = sklib.__sklib__text_box__string_ref__string_ref(__skparam__label, __skparam__value)
+    return __skadapter__to_string(__skreturn)
 def create_json (  ):
     __skreturn = sklib.__sklib__create_json()
     return __skadapter__to_json(__skreturn)
@@ -8009,6 +8488,9 @@ def get_font_style ( fnt ):
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
     __skreturn = sklib.__sklib__get_font_style__font(__skparam__fnt)
     return __skadapter__to_font_style(__skreturn)
+def get_system_font (  ):
+    __skreturn = sklib.__sklib__get_system_font()
+    return __skadapter__to_font(__skreturn)
 def has_font ( fnt ):
     __skparam__fnt = __skadapter__to_sklib_font(fnt)
     __skreturn = sklib.__sklib__has_font__font(__skparam__fnt)
