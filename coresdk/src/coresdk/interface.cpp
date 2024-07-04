@@ -739,12 +739,12 @@ namespace splashkit_lib
         return open;
     }
 
-    void label(const string& label)
+    void label(const string& text)
     {
         _interface_sanity_check();
 
         _update_text_style(true);
-        sk_interface_label(label);
+        sk_interface_label(text);
         _update_text_style();
     }
 

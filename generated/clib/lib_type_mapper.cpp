@@ -257,6 +257,12 @@ int __sklib__to_sklib_http_status_code(http_status_code v) {
 http_status_code __sklib__to_http_status_code(int v) {
     return static_cast<http_status_code>(v);
 }
+int __sklib__to_sklib_interface_style(interface_style v) {
+    return static_cast<int>(v);
+}
+interface_style __sklib__to_interface_style(int v) {
+    return static_cast<interface_style>(v);
+}
 int __sklib__to_sklib_pin_modes(pin_modes v) {
     return static_cast<int>(v);
 }

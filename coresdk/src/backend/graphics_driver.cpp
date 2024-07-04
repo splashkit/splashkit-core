@@ -22,6 +22,7 @@
 #include "png.h"
 #include <string.h>
 #include <vector>
+#include <cmath>
 
 #include "core_driver.h"
 #include "graphics_driver.h"

@@ -287,21 +287,21 @@ namespace splashkit_lib
     bool header(const string& label);
 
     /**
-     * Creates a label.
+     * Creates a label with the given text.
      *
-     * @param label             The label to show
+     * @param text             The label to show
      */
-    void label(const string& label);
+    void label(const string& text);
 
     /**
      * Creates a label at a specific position on screen.
      *
-     * @param label             The label to show
+     * @param text             The label to show
      * @param rect              The rectangle to display the label in
      *
      * @attribute suffix        at_position
      */
-    void label(const string& label, const rectangle& rect);
+    void label(const string& text, const rectangle& rect);
 
     /**
      * Creates a paragraph of text that auto-wraps.
