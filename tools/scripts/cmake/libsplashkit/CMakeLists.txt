@@ -231,6 +231,7 @@ file(GLOB LINUX_INCLUDE_FILES
     "${SK_EXT}/easyloggingpp/*.h"
     "${SK_EXT}/json/*.hpp"
     "${SK_EXT}/catch/*.h"
+    "${SK_EXT}/microui/src/microui.h"
 )
 
 file(GLOB INL_FILES
