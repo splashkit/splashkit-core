@@ -127,8 +127,62 @@ void test_rectangle()
     close_window(w1);
 }
 
+void test_triangle()
+{
+    auto t1 = triangle_from(110, 110, 120, 150, 170, 190);
+    auto t2 = triangle_from(200, 200, 200, 500, 500, 500);
+    auto t3 = triangle_from(300, 20, 280, 240, 550, 60);
+    auto t4 = triangle_from(150, 700, 265, 600, 510, 610);
+    auto c1 = circle_at(300, 300, 50);
+
+    window w1 = open_window("Triangle Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        if (key_down(UP_KEY))
+            c1.radius += 0.05;
+
+        if (key_down(DOWN_KEY))
+            c1.radius -= 0.05;
+
+        clear_screen(COLOR_WHEAT);
+
+        c1.center = mouse_position();
+
+        point_2d p1, p2, p3, p4;
+
+        if (circle_triangle_intersect_closest_point(c1, t1, p1))
+            fill_triangle(COLOR_TAN, t1);
+
+        if (circle_triangle_intersect_closest_point(c1, t2, p2))
+            fill_triangle(COLOR_TAN, t2);
+
+        if (circle_triangle_intersect_closest_point(c1, t3, p3))
+            fill_triangle(COLOR_TAN, t3);
+
+        if (circle_triangle_intersect_closest_point(c1, t4, p4))
+            fill_triangle(COLOR_TAN, t4);
+
+        draw_triangle(COLOR_RED, t1);
+        draw_triangle(COLOR_RED, t2);
+        draw_triangle(COLOR_RED, t3);
+        draw_triangle(COLOR_RED, t4);
+
+        draw_circle(COLOR_RED, p1.x, p1.y, 5);
+        draw_circle(COLOR_RED, p2.x, p2.y, 5);
+        draw_circle(COLOR_RED, p3.x, p3.y, 5);
+        draw_circle(COLOR_RED, p4.x, p4.y, 5);
+
+        draw_circle(COLOR_RED, c1);
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
 void run_geometry_test()
 {
     test_rectangle();
     test_points();
+    test_triangle();
 }
