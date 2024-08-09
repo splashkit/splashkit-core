@@ -69,9 +69,9 @@ namespace splashkit_lib
 
     /**
      * Detects if a circle intersects with a triangle. The closest point on the
-     * triangle to the circle is returned, even if the circle and triangle do not
+     * triangle to the circle is assigned to p, even if the circle and triangle do not
      * intersect. If the centre of the circle is inside the triangle,
-     * the point returned is the centre of the circle.
+     * the point assigned to p is the centre of the circle.
      * 
      * @param c The circle to test
      * @param tri The triangle to test
