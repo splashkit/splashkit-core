@@ -174,7 +174,7 @@ namespace splashkit_lib
     {
         vector_2d pm_c = vector_point_to_point(from_pt, c.center);
 
-        double sqr_len = vector_magnitude_sqared(pm_c);
+        double sqr_len = vector_magnitude_squared(pm_c);
         double r_sqr = c.radius * c.radius;
 
         // Quick check for P inside the circle, return False if so
