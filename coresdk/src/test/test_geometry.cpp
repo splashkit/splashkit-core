@@ -151,16 +151,16 @@ void test_triangle()
 
         point_2d p1, p2, p3, p4;
 
-        if (circle_triangle_intersect_closest_point(c1, t1, p1))
+        if (circle_triangle_intersect(c1, t1, p1))
             fill_triangle(COLOR_TAN, t1);
 
-        if (circle_triangle_intersect_closest_point(c1, t2, p2))
+        if (circle_triangle_intersect(c1, t2, p2))
             fill_triangle(COLOR_TAN, t2);
 
-        if (circle_triangle_intersect_closest_point(c1, t3, p3))
+        if (circle_triangle_intersect(c1, t3, p3))
             fill_triangle(COLOR_TAN, t3);
 
-        if (circle_triangle_intersect_closest_point(c1, t4, p4))
+        if (circle_triangle_intersect(c1, t4, p4))
             fill_triangle(COLOR_TAN, t4);
 
         draw_triangle(COLOR_RED, t1);

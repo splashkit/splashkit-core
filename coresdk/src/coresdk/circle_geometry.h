@@ -78,7 +78,19 @@ namespace splashkit_lib
      * @param p The point to set to the closest point on the triangle to the circle
      * @returns True if the circle and triangle intersect
      */
-    bool circle_triangle_intersect_closest_point(const circle &c, const triangle &tri, point_2d &p);
+    bool circle_triangle_intersect(const circle &c, const triangle &tri, point_2d &p);
+
+    /**
+     * Calculates the closest point on a triangle to a circle. If the circle and
+     * triangle do not intersect, the closest point on the triangle to the circle
+     * is returned. If the circle and triangle do intersect, the center of the
+     * circle is returned.
+     *
+     * @param c   The circle to test
+     * @param tri The triangle to test
+     * @returns   The closest point on the triangle to the circle
+     */
+    point_2d closest_point_on_triangle_from_circle(const circle &c, const triangle &tri);
 
     /**
      *  Returns the center point of the circle.
