@@ -730,16 +730,16 @@ namespace splashkit_lib
         _pop_container_stack(panel_type::column, "");
     }
 
-    bool header(const string& label)
+    bool header(const string& text_label)
     {
         _interface_sanity_check();
 
-        bool open = sk_interface_header(label);
+        bool open = sk_interface_header(text_label);
 
         return open;
     }
 
-    void label(const string& text)
+    void text_label(const string& text)
     {
         _interface_sanity_check();
 
@@ -748,13 +748,13 @@ namespace splashkit_lib
         _update_text_style();
     }
 
-    void label(const string& text, const rectangle& rect)
+    void text_label(const string& text, const rectangle& rect)
     {
         _interface_sanity_check();
 
         sk_interface_set_layout_next(rect, true);
 
-        label(text);
+        text_label(text);
     }
 
     void paragraph(const string& text, const rectangle& rect)
@@ -774,14 +774,14 @@ namespace splashkit_lib
         _update_text_style();
     }
 
-    bool button(const string& label, const string& text)
+    bool button(const string& text_label, const string& text)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         bool res = button(text);
 
         leave_column();
@@ -889,14 +889,14 @@ namespace splashkit_lib
         return bitmap_button(bmp, option_defaults());
     }
 
-    bool bitmap_button(const string& label, bitmap bmp, drawing_options opts)
+    bool bitmap_button(const string& text_label, bitmap bmp, drawing_options opts)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
 
         bool res = _bitmap_button_internal(bmp, nullptr, opts);
 
@@ -905,9 +905,9 @@ namespace splashkit_lib
         return res;
     }
 
-    bool bitmap_button(const string& label, bitmap bmp)
+    bool bitmap_button(const string& text_label, bitmap bmp)
     {
-        return bitmap_button(label, bmp, option_defaults());
+        return bitmap_button(text_label, bmp, option_defaults());
     }
 
     bool bitmap_button(bitmap bmp, const rectangle& rect, drawing_options opts)
@@ -920,14 +920,14 @@ namespace splashkit_lib
         return bitmap_button(bmp, rect, option_defaults());
     }
 
-    bool checkbox(const string& label, const string& text, const bool& value)
+    bool checkbox(const string& text_label, const string& text, const bool& value)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         bool res = checkbox(text, value);
 
         leave_column();
@@ -954,14 +954,14 @@ namespace splashkit_lib
         return checkbox(text, value);
     }
 
-    float slider(const string& label, const float& value, float min_value, float max_value)
+    float slider(const string& text_label, const float& value, float min_value, float max_value)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         float res = slider(value, min_value, max_value);
 
         leave_column();
@@ -1046,14 +1046,14 @@ namespace splashkit_lib
         return temp_value;
     }
 
-    color color_slider(const string& label, const color& clr)
+    color color_slider(const string& text_label, const color& clr)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         color res = color_slider(clr);
 
         leave_column();
@@ -1074,14 +1074,14 @@ namespace splashkit_lib
         return _color_slider(clr, false);
     }
 
-    color hsb_color_slider(const string& label, const color& clr)
+    color hsb_color_slider(const string& text_label, const color& clr)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         color res = hsb_color_slider(clr);
 
         leave_column();
@@ -1102,14 +1102,14 @@ namespace splashkit_lib
         return _color_slider(clr, true);
     }
 
-    float number_box(const string& label, const float& value, float step)
+    float number_box(const string& text_label, const float& value, float step)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         float res = number_box(value, step);
 
         leave_column();
@@ -1132,14 +1132,14 @@ namespace splashkit_lib
         return number_box(value, step);
     }
 
-    std::string text_box(const string& label, const std::string& value)
+    std::string text_box(const string& text_label, const std::string& value)
     {
         _interface_sanity_check();
 
         enter_column();
         _two_column_layout();
 
-        splashkit_lib::label(label);
+        splashkit_lib::text_label(text_label);
         std::string res = text_box(value);
 
         leave_column();

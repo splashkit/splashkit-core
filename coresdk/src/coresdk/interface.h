@@ -169,14 +169,14 @@ namespace splashkit_lib
      * @param label             The name of the node
      * @return                  Whether the tree node is expanded or not
      */
-    bool start_treenode(const string& label);
+    bool start_treenode(const string& text_label);
 
     /**
      * Finishes the creation of a tree node.
      *
      * @param label             The node's name - must match with `start_treenode`
      */
-    void end_treenode(const string& label);
+    void end_treenode(const string& text_label);
 
     /**
      * Makes the popup named `name` open/popup at the cursor's position.
@@ -284,14 +284,14 @@ namespace splashkit_lib
      * @param label             The label to show in the header
      * @return                  Whether the header is expanded or not
      */
-    bool header(const string& label);
+    bool header(const string& text_label);
 
     /**
      * Creates a label with the given text.
      *
      * @param text             The label to show
      */
-    void label(const string& text);
+    void text_label(const string& text);
 
     /**
      * Creates a label at a specific position on screen.
@@ -301,7 +301,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        at_position
      */
-    void label(const string& text, const rectangle& rect);
+    void text_label(const string& text, const rectangle& rect);
 
     /**
      * Creates a paragraph of text that auto-wraps.
@@ -339,7 +339,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool button(const string& label, const string& text);
+    bool button(const string& text_label, const string& text);
 
     /**
      * Creates a button without a label.
@@ -372,7 +372,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool bitmap_button(const string& label, bitmap bmp);
+    bool bitmap_button(const string& text_label, bitmap bmp);
 
     /**
      * Creates a button with a bitmap in it and a label.
@@ -385,7 +385,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled_with_options
      */
-    bool bitmap_button(const string& label, bitmap bmp, drawing_options opts);
+    bool bitmap_button(const string& text_label, bitmap bmp, drawing_options opts);
 
     /**
      * Creates a button with a bitmap in it, and no label.
@@ -450,7 +450,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    bool checkbox(const string& label, const string& text, const bool& value);
+    bool checkbox(const string& text_label, const string& text, const bool& value);
 
     /**
      * Creates a checkbox.
@@ -492,7 +492,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    float slider(const string& label, const float& value, float min_value, float max_value);
+    float slider(const string& text_label, const float& value, float min_value, float max_value);
 
     /**
      * Creates a slider without a label.
@@ -534,7 +534,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    color color_slider(const string& label, const color& clr);
+    color color_slider(const string& text_label, const color& clr);
 
     /**
      * Creates a set of RGBA sliders to adjust a color.
@@ -572,7 +572,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    color hsb_color_slider(const string& label, const color& clr);
+    color hsb_color_slider(const string& text_label, const color& clr);
 
     /**
      * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color.
@@ -611,7 +611,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    float number_box(const string& label, const float& value, float step);
+    float number_box(const string& text_label, const float& value, float step);
 
     /**
      * Creates a number entry box with a label.
@@ -651,7 +651,7 @@ namespace splashkit_lib
      *
      * @attribute suffix        labeled
      */
-    string text_box(const string& label, const string& value);
+    string text_box(const string& text_label, const string& value);
 
     /**
      * Creates a text entry box at a specific position on screen.
