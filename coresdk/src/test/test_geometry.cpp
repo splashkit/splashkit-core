@@ -127,8 +127,40 @@ void test_rectangle()
     close_window(w1);
 }
 
+void test_closest_point_on_lines()
+{
+    line l1 = line_from(10, 0, 10, 10);
+    line l2 = line_from(20, 0, 20, 10);
+    line l3 = line_from(30, 0, 30, 10);
+
+    point_2d pt = point_at(0, 5);
+
+    int line_idx = 0;
+    point_2d closest = closest_point_on_lines(pt, {l1, l2, l3}, line_idx);
+
+    cout << "Closes point should be 10,5 on line 0" << endl;
+    cout << "Closest point is " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    pt = point_at(35, 8);
+    closest = closest_point_on_lines(pt, {l1, l2, l3}, line_idx);
+
+    cout << "Closes point should be 30,8 on line 2" << endl;
+    cout << "Closest point is " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    pt = point_at(21, 3);
+    closest = closest_point_on_lines(pt, {l1, l2, l3}, line_idx);
+    cout << "Closest point should be 20,3 on line 1" << endl;
+    cout << "Closest point is " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    // no lines
+    closest = closest_point_on_lines(pt, {}, line_idx);
+    cout << "Closest point should be 0,0 on line -1" << endl;
+    cout << "Closest point is " << point_to_string(closest) << " on line " << line_idx << endl;
+}
+
 void run_geometry_test()
 {
     test_rectangle();
     test_points();
+    test_closest_point_on_lines();
 }
