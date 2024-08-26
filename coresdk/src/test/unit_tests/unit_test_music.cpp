@@ -26,16 +26,17 @@ TEST_CASE("music can be loaded, controlled and freed", "[music]")
     SECTION("can load, control and free music")
     {
         music mus;
+        string filename = "magical_night.ogg", name = "magical_night";
         SECTION("can load music")
         {
-            REQUIRE(has_music("magical_night") == false);
-            mus = load_music("magical_night", "magical_night.ogg");
+            REQUIRE(has_music(name) == false);
+            mus = load_music(name, filename);
             REQUIRE(mus != nullptr);
-            REQUIRE(has_music("magical_night") == true);
+            REQUIRE(has_music(name) == true);
             REQUIRE(music_valid(mus) == true);
-            REQUIRE(music_name(mus) == "magical_night");
-            REQUIRE(music_filename(mus) == path_to_resource("magical_night.ogg", SOUND_RESOURCE));
-            REQUIRE(music_named("magical_night") == mus);
+            REQUIRE(music_name(mus) == name);
+            REQUIRE(music_filename(mus) == path_to_resource(filename, SOUND_RESOURCE));
+            REQUIRE(music_named(name) == mus);
         }
         SECTION("can control music")
         {
@@ -63,37 +64,38 @@ TEST_CASE("music can be loaded, controlled and freed", "[music]")
         SECTION("can free music")
         {
             free_music(mus);
-            REQUIRE(has_music("magical_night") == false);
+            REQUIRE(has_music(name) == false);
         }
     }
     SECTION("can load and free multiple music files")
     {
-        music mus, mus2;
+        music mus1, mus2;
+        string filename1 = "280.mp3", name1 = "280", filename2 = "dancingFrog.wav", name2 = "dancingFrog";
         SECTION("can load and create two music files")
         {
-            REQUIRE(has_music("280") == false);
-            mus = load_music("280", "280.mp3");
-            REQUIRE(mus != nullptr);
-            REQUIRE(has_music("280") == true);
-            REQUIRE(music_valid(mus) == true);
-            REQUIRE(music_name(mus) == "280");
-            REQUIRE(music_filename(mus) == path_to_resource("280.mp3", SOUND_RESOURCE));
-            REQUIRE(music_named("280") == mus);
+            REQUIRE(has_music(name1) == false);
+            mus1 = load_music(name1, filename1);
+            REQUIRE(mus1 != nullptr);
+            REQUIRE(has_music(name1) == true);
+            REQUIRE(music_valid(mus1) == true);
+            REQUIRE(music_name(mus1) == name1);
+            REQUIRE(music_filename(mus1) == path_to_resource(filename1, SOUND_RESOURCE));
+            REQUIRE(music_named(name1) == mus1);
 
-            REQUIRE(has_music("dancingFrog") == false);
-            mus2 = load_music("dancingFrog", "dancingFrog.wav");
+            REQUIRE(has_music(name2) == false);
+            mus2 = load_music(name2, filename2);
             REQUIRE(mus2 != nullptr);
-            REQUIRE(has_music("dancingFrog") == true);
+            REQUIRE(has_music(name2) == true);
             REQUIRE(music_valid(mus2) == true);
-            REQUIRE(music_name(mus2) == "dancingFrog");
-            REQUIRE(music_filename(mus2) == path_to_resource("dancingFrog.wav", SOUND_RESOURCE));
-            REQUIRE(music_named("dancingFrog") == mus2);
+            REQUIRE(music_name(mus2) == name2);
+            REQUIRE(music_filename(mus2) == path_to_resource(filename2, SOUND_RESOURCE));
+            REQUIRE(music_named(name2) == mus2);
         }
         SECTION("can free all music")
         {
             free_all_music();
-            REQUIRE(has_music("280") == false);
-            REQUIRE(has_music("dancingFrog") == false);
+            REQUIRE(has_music(name1) == false);
+            REQUIRE(has_music(name2) == false);
         }
     }
 }
