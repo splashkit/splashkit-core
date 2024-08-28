@@ -78,7 +78,7 @@ void run_ui_test()
                 add_column(60);
                 add_column(-1);
 
-                text_label("Second:");
+                label_element("Second:");
                 // Draw second label + button
                 if (button("Button2"))
                 {
@@ -112,13 +112,13 @@ void run_ui_test()
                 set_interface_font(fontB);
                 set_interface_font_size(14);
 
-                text_label("Hi world!");
+                label_element("Hi world!");
 
                 // Switch back to the original font for
                 // second label.
                 set_interface_font(fontA);
 
-                text_label("Hello world!");
+                label_element("Hello world!");
 
                 // Reset text size
                 set_interface_font_size(12);
@@ -158,7 +158,7 @@ void run_ui_test()
 
             // Show if the window is currently reading text,
             // useful for testing that behaviour.
-            text_label("Is reading text: " + (std::string)(reading_text()?"Yea":"Nay"));
+            label_element("Is reading text: " + (std::string)(reading_text()?"Yea":"Nay"));
             end_panel("My Window");
         }
 
