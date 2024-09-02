@@ -21,6 +21,8 @@ namespace splashkit_lib
 
     int rnd(int ubound)
     {
+        if (ubound == 0) return 0;
+        
         if (_do_seed)
         {
             _do_seed = false;
@@ -32,6 +34,8 @@ namespace splashkit_lib
     
     int rnd(int min, int max)
     {
+        if (min == max) return min;
+        
         if (_do_seed)
         {
             _do_seed = false;
