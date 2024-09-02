@@ -76,6 +76,9 @@ namespace splashkit_lib
 
     string replace_all(const string &text, const string &substr, const string &replacement)
     {
+        if (substr.empty())
+            return text;
+        
         string result = text;
         size_t pos = 0;
         while ((pos = result.find(substr, pos)) != string::npos)
