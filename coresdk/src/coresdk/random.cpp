@@ -10,6 +10,7 @@
 #include "random.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 namespace splashkit_lib
 {
     static bool _do_seed = true;
@@ -34,6 +35,12 @@ namespace splashkit_lib
     
     int rnd(int min, int max)
     {
+        if (min > max)
+        {
+            std::cout << "Error: min value is greater than max value when calling rnd" << std::endl;
+            return rnd(max, min);
+        }
+
         if (min == max) return min;
         
         if (_do_seed)
