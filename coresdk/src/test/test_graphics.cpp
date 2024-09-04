@@ -26,8 +26,7 @@ void test_drawing_on_new_window()
     save_bitmap(user_image, "0");
     clear_bitmap (user_image, COLOR_BRIGHT_GREEN);
     save_bitmap(user_image, "1");
-    // rnd(0) should return 0, and rnd(10, 10) should return 10
-    fill_rectangle_on_bitmap (user_image, COLOR_BLACK, rnd(0), 0, rnd(10, 10), 10);
+    fill_rectangle_on_bitmap (user_image, COLOR_BLACK, 0, 0, 10, 10);
     save_bitmap(user_image, "2");
 
     window my_window = open_window ("Black TL+BR", 200, 200);
