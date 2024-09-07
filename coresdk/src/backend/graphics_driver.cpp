@@ -21,6 +21,8 @@
 
 #include "png.h"
 #include <string.h>
+#include <vector>
+#include <cmath>
 
 #include "core_driver.h"
 #include "graphics_driver.h"
@@ -1094,6 +1096,189 @@ namespace splashkit_lib
         }
     }
 
+    // utility function to draw a region of a source stretched over a region on the destination
+    void _sk_draw_bitmap_remapped( sk_drawing_surface * src, sk_drawing_surface * dst, rectangle src_rect, rectangle dst_rect, sk_renderer_flip flip) {
+        double dst_data[7];
+        dst_data[0] = dst_rect.x + (dst_rect.width - src_rect.width)/2;// x
+        dst_data[1] = dst_rect.y + (dst_rect.height - src_rect.height)/2;// y
+        dst_data[2] = 0;// angle
+        dst_data[3] = 0;// center_x
+        dst_data[4] = 0;// center_y
+        dst_data[5] = (double)dst_rect.width/src_rect.width;// scale_x
+        dst_data[6] = (double)dst_rect.height/src_rect.height;// scale_y
+        double src_data[4];
+        src_data[0] = src_rect.x;// x
+        src_data[1] = src_rect.y;// y
+        src_data[2] = src_rect.width;// w
+        src_data[3] = src_rect.height;// h
+
+        sk_draw_bitmap(src, dst, src_data, 4, dst_data, 7, flip);
+    }
+
+    void sk_draw_blurred_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height, int blur_radius)
+    {
+        // this would be slow if we just drew individual pixels on the CPU
+        // ideally we'd just do this using a GPU shader, since there's an analytical solution.
+        // no easy way to use shaders currently, so we'll use an atlas based solution.
+        // we'll generate textures for each size of gaussian we use.
+        // we can then draw the larger blurred rectangle out of pieces of this image.
+        // this will lose accuracy once the size of a blur exceeeds the size of the rectangle,
+        // but looks good enough and has minimal performance cost.
+        struct gaussian_cached_info
+        {
+            sk_drawing_surface texture;
+            float* gaussian_kernel;
+            int gaussian_kernel_count;
+            float gaussian_kernelSum;
+            int radius;
+        };
+
+        // we'll cache up to 20 of the latest sizes to avoid recomputing them
+        // even if every one had a huge radius of 256x256  (so each image is 513x513),
+        // our maximum memory usage would be 20mb total
+        #define MAX_GAUSSIAN_CACHE_SIZE 20
+        static std::vector<gaussian_cached_info> gaussian_cache;
+
+        gaussian_cached_info* gaussian = nullptr;
+
+        // first try and find one in the cache
+        for (int i = 0; i < gaussian_cache.size(); i ++)
+        {
+            if (gaussian_cache[i].radius == blur_radius)
+            {
+                // having found one, let's move it to the end of the vector
+                gaussian_cache.push_back(gaussian_cache[i]);
+                gaussian_cache.erase(gaussian_cache.begin() + i);
+                gaussian = &gaussian_cache[gaussian_cache.size()-1];
+                break;
+            }
+        }
+
+        int kernel_size = blur_radius * 2 + 1; //symmetric half + middle
+
+        // if we didn't find one, we'll create one
+        if (gaussian == nullptr)
+        {
+            // if there's too many, evict the earliest one
+            if (gaussian_cache.size() >= MAX_GAUSSIAN_CACHE_SIZE)
+            {
+                delete [] gaussian_cache[0].gaussian_kernel;
+
+                sk_close_drawing_surface(&gaussian_cache[0].texture);
+
+                gaussian_cache.erase(gaussian_cache.begin());
+            }
+
+            gaussian_cached_info new_gaussian;
+            new_gaussian.texture = sk_create_bitmap(kernel_size, kernel_size);
+            new_gaussian.gaussian_kernel_count = kernel_size;
+            new_gaussian.gaussian_kernel = new float[kernel_size];
+            new_gaussian.radius = blur_radius;
+
+            // calculate sigma to ensure gaussian is at min_val at radius
+            float min_val = 0.00001f; //(1/256)^2, or ~the minimum change between pixels from gamma space
+            float sigma = kernel_size/std::sqrt(-std::log(min_val));
+
+            // compute one half
+            new_gaussian.gaussian_kernelSum = 0;
+            for(int i = 0; i < blur_radius; i ++)
+            {
+                int x = blur_radius-i;
+                // compute gaussian kernel
+                new_gaussian.gaussian_kernel[i] = std::exp(-(x/sigma)*(x/sigma));
+                new_gaussian.gaussian_kernelSum += new_gaussian.gaussian_kernel[i];
+
+                new_gaussian.gaussian_kernel[kernel_size-i-1] = new_gaussian.gaussian_kernel[i];
+                new_gaussian.gaussian_kernelSum += new_gaussian.gaussian_kernel[i];
+            }
+
+            // fill middle
+            new_gaussian.gaussian_kernel[blur_radius] = 1;
+            new_gaussian.gaussian_kernelSum += 1;
+
+            // running sum (gives us a lookup table of pre-convolved results)
+            float sum = 0;
+            for(int i = 0; i <= kernel_size; i++)
+            {
+                sum += new_gaussian.gaussian_kernel[i];
+                new_gaussian.gaussian_kernel[i] = sum;
+            }
+
+            // fill the 2D bitmap based on the pre-convolved results
+            for(int y = 0; y < kernel_size; y++)
+            {
+                for(int x = 0; x < kernel_size; x++)
+                {
+                    float kernel_sum = new_gaussian.gaussian_kernel[kernel_size-1];
+                    kernel_sum *= kernel_sum;
+
+                    float local_sum = new_gaussian.gaussian_kernel[x] * new_gaussian.gaussian_kernel[y];
+
+                    sk_set_bitmap_pixel(&new_gaussian.texture, {1.f, 1.f, 1.f, ((local_sum/kernel_sum))}, x, y);
+                }
+            }
+
+            sk_refresh_bitmap(&new_gaussian.texture);
+
+            // done!
+            gaussian_cache.push_back(new_gaussian);
+            gaussian = &gaussian_cache[gaussian_cache.size()-1];
+        }
+
+        // do everything with doubles to avoid casting continuously later on
+        double radius_d = (double)kernel_size;
+
+        // shrink the edges by half the radius
+        width -= radius_d;
+        height -= radius_d;
+        x += radius_d/2;
+        y += radius_d/2;
+
+        // adjust sizes if the radius has exceeded the extent of the rectangle.
+        // we handle this by just clipping the blur to its outer edges, which looks
+        // alright though has a slight C1 discontinuity in the middle
+        int oversized_w = (int)std::min(0.0, width/2);
+        int oversized_h = (int)std::min(0.0, height/2);
+
+        double radius_d_w = radius_d + oversized_w;
+        x += oversized_w;
+        double radius_d_h = radius_d + oversized_h;
+        y += oversized_h;
+
+        // tidy up and avoid any overlaps/gaps
+        width = std::max(0.0, width);
+        height = std::max(0.0, height);
+        x = (int)x;
+        y = (int)y;
+
+        // finally we draw
+
+        // set rectangle color
+        sk_set_bitmap_tint(&gaussian->texture, {clr.r, clr.g, clr.b, clr.a});
+
+        // top left corner
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x-radius_d_w, y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_NONE);
+        // top right corner
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x+width, y-radius_d_h, radius_d_w, radius_d_h}, sk_FLIP_HORIZONTAL);
+
+        // bottom left corner
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x-radius_d_w, y+height, radius_d_w, radius_d_h}, sk_FLIP_VERTICAL);
+        // bottom right corner
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, 0, radius_d_w, radius_d_h}, {x+width, y+height, radius_d_w, radius_d_h}, sk_FLIP_BOTH);
+
+        // top edge
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {x, y-radius_d_h, width, radius_d_h}, sk_FLIP_NONE);
+        // bottom edge
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, 0, 1, radius_d_h}, {x, y+height, width, radius_d_h}, sk_FLIP_VERTICAL);
+
+        // left edge
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {x-radius_d_w, y, radius_d_w, height}, sk_FLIP_NONE);
+        // right edge
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {0, radius_d_h-1, radius_d_w, 1}, {x+width, y, radius_d_w, height}, sk_FLIP_HORIZONTAL);
+
+        // center (could just as easily draw an actual rectangle here...)
+        _sk_draw_bitmap_remapped(&gaussian->texture, surface, {radius_d_w-1, radius_d_h-1, 1, 1}, {x, y, width, height}, sk_FLIP_NONE);
+    }
 
 
     //
@@ -1260,6 +1445,98 @@ namespace splashkit_lib
             _sk_complete_render(surface, i);
         }
 
+    }
+
+    void sk_set_bitmap_pixel(sk_drawing_surface *surface, sk_color clr, int x, int y)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        // ensure surface exists
+
+        if (bitmap_be->surface == nullptr)
+        {
+            bitmap_be->surface = SDL_CreateRGBSurfaceWithFormat(0, surface->width, surface->height, 32, SDL_PIXELFORMAT_RGBA8888);
+        }
+
+        // ensure we can write to it
+
+        if (SDL_MUSTLOCK(bitmap_be->surface))
+        {
+            if (SDL_LockSurface(bitmap_be->surface))
+                return;
+        }
+
+        // write to it
+
+        int* pixels = (int*)bitmap_be->surface->pixels;
+        if (x >= 0 && x < surface->width && y >= 0 && y < surface->height)
+        {
+            int index = x + (bitmap_be->surface->pitch * y / 4);
+            pixels[index] = SDL_MapRGBA(bitmap_be->surface->format,
+                                        static_cast<Uint8>(clr.r * 255),
+                                        static_cast<Uint8>(clr.g * 255),
+                                        static_cast<Uint8>(clr.b * 255),
+                                        static_cast<Uint8>(clr.a * 255));
+        }
+    }
+
+    void sk_refresh_bitmap(sk_drawing_surface *surface)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be;
+        bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        // unlock surface
+
+        SDL_UnlockSurface(bitmap_be->surface);
+
+        // recreate all textures from the surface
+
+        for (unsigned int i = 0; i < _sk_num_open_windows; i++)
+        {
+            SDL_Renderer *renderer = _sk_open_windows[i]->renderer;
+
+            SDL_Texture *orig_tex = bitmap_be->texture[i];
+
+            // Create new texture
+            SDL_Texture *tex = SDL_CreateTextureFromSurface(_sk_open_windows[i]->renderer, bitmap_be->surface);
+            bitmap_be->texture[i] = tex;
+
+            // Destroy old
+            SDL_DestroyTexture(orig_tex);
+        }
+
+        // Set drawable to false
+        bitmap_be->drawable = false;
+    }
+
+    void sk_set_bitmap_tint(sk_drawing_surface *surface, sk_color clr)
+    {
+        // ensure we are operating on an SGDS_Bitmap
+
+        if (surface->kind != SGDS_Bitmap)
+            return;
+
+        sk_bitmap_be * bitmap_be;
+        bitmap_be = static_cast<sk_bitmap_be *>(surface->_data);
+
+        for (unsigned int i = 0; i < _sk_num_open_windows; i++)
+        {
+            SDL_SetTextureColorMod(bitmap_be->texture[i], static_cast<Uint8>(clr.r * 255),
+                                                          static_cast<Uint8>(clr.g * 255),
+                                                          static_cast<Uint8>(clr.b * 255)
+            );
+            SDL_SetTextureAlphaMod(bitmap_be->texture[i], static_cast<Uint8>(clr.a * 255));
+        }
     }
 
 

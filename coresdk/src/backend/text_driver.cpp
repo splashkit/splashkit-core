@@ -193,6 +193,20 @@ namespace splashkit_lib
         }
     }
 
+    int sk_text_height(sk_font_data* font, int font_size)
+    {
+        TTF_Font* ttf_font = _get_font(font, font_size);
+
+        if (ttf_font)
+        {
+            return TTF_FontHeight(ttf_font);
+        }
+        else
+        {
+            return 8;
+        }
+    }
+
     void sk_set_font_style(sk_font_data* font, int font_size, int style)
     {
         TTF_Font* ttf_font = _get_font(font, font_size);

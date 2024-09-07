@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1706101739,
+    "parsed_at": 1720129611,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1951,7 +1951,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1706101739,
+    "parsed_at": 1720129612,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2045,9 +2045,59 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1706101739,
+    "parsed_at": 1720129614,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
+      {
+        "signature": "bool contains(const string &text,const string &subtext);",
+        "name": "contains",
+        "method_name": null,
+        "unique_global_name": "contains",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns true if the string contains the substring.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the substring is found in the text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
       {
         "signature": "double convert_to_double(const string &text);",
         "name": "convert_to_double",
@@ -2106,6 +2156,56 @@
           "text": {
             "type": "string",
             "description": "The text to convert.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "int index_of(const string &text,const string &subtext);",
+        "name": "index_of",
+        "method_name": null,
+        "unique_global_name": "index_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the index of the first occurrence of the substring in the text.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The index of the first occurrence of the substring in the text, or -1 if the substring is not found.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "subtext": {
+            "type": "string",
+            "description": "The substring to search for",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -2220,6 +2320,156 @@
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "int length_of(const string &text);",
+        "name": "length_of",
+        "method_name": null,
+        "unique_global_name": "length_of",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the length of a string in characters.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The number of characters in the string.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to get the length of",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "name": "replace_all",
+        "method_name": null,
+        "unique_global_name": "replace_all",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Replace all occurrences of a substring in a string with another string.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The text with all occurrences of the substring replaced with the new text.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to search",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "substr": {
+            "type": "string",
+            "description": "The substring to find and replace",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "newText": {
+            "type": "string",
+            "description": "The string to replace the substring with",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "utilities",
+          "static": "utilities"
+        }
+      },
+      {
+        "signature": "vector<string> split(const string &text,char delimiter);",
+        "name": "split",
+        "method_name": null,
+        "unique_global_name": "split",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Split a string into an array of strings based on a delimiter.",
+        "brief": null,
+        "return": {
+          "type": "vector",
+          "description": "An array of strings",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": true,
+          "type_parameter": "string"
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to split",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "delimiter": {
+            "type": "char",
+            "description": "The character to split the text on",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
             "is_array": false,
             "array_dimension_sizes": [
 
@@ -2362,7 +2612,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1706101740,
+    "parsed_at": 1720129615,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -2507,7 +2757,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1706101741,
+    "parsed_at": 1720129618,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -3574,7 +3824,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101742,
+    "parsed_at": 1720129623,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -4945,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101742,
+    "parsed_at": 1720129626,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -5872,7 +6122,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101743,
+    "parsed_at": 1720129628,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -6456,7 +6706,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1706101744,
+    "parsed_at": 1720129634,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -8707,7 +8957,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1706101749,
+    "parsed_at": 1720129659,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -13907,7 +14157,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101750,
+    "parsed_at": 1720129664,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -15271,7 +15521,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1720129670,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -17366,7 +17616,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1720129671,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -17498,7 +17748,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101752,
+    "parsed_at": 1720129673,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -18074,7 +18324,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1708331003,
+    "parsed_at": 1720129680,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -20599,7 +20849,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1706101754,
+    "parsed_at": 1720129681,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -20688,11 +20938,3453 @@
 
     ]
   },
+  "interface": {
+    "group": "interface",
+    "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
+    "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
+    "parsed_at": 1720130943,
+    "path": "coresdk/src/coresdk/interface.h",
+    "functions": [
+      {
+        "signature": "void add_column(int width);",
+        "name": "add_column",
+        "method_name": null,
+        "unique_global_name": "add_column",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Adds a column to the current layout with width `width`.\n\n- Positive values of width just specify the width in pixels.\n- 0 means use the default control width - not always a good choice.\n- Negative values specify filling to the right _until_ `width + 1` pixels away from the edge.\n- e.g -1 fills entirely to the right, while -20 leaves a 19 pixel gap on the right.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "width": {
+            "type": "int",
+            "description": "Width of the column in pixels",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void add_column_relative(double width);",
+        "name": "add_column_relative",
+        "method_name": null,
+        "unique_global_name": "add_column_relative",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Adds a column to the current layout with width `width` percentage of the container's width.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "width": {
+            "type": "double",
+            "description": "Percentage of the container's width (between 0 and 1)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(bitmap bmp);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it, and no label.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(bitmap bmp,const rectangle& rect);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it at a specific position on screen.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the button in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(bitmap bmp,const rectangle& rect,drawing_options opts);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button_at_position_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it at a specific position on screen.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the button in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The drawing options",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position_with_options",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(bitmap bmp,drawing_options opts);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it, and no label.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The drawing options",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_options",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(const string& label,bitmap bmp);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it and a label.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool bitmap_button(const string& label,bitmap bmp,drawing_options opts);",
+        "name": "bitmap_button",
+        "method_name": null,
+        "unique_global_name": "bitmap_button_labeled_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a bitmap in it and a label.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to show inside the button",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "The drawing options",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled_with_options",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool button(const string& text,const rectangle& rect);",
+        "name": "button",
+        "method_name": null,
+        "unique_global_name": "button_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button at a specific position on screen.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show inside the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the button in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool button(const string& text);",
+        "name": "button",
+        "method_name": null,
+        "unique_global_name": "button",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button without a label.\nReturns whether the button was clicked.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show inside the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool button(const string& label,const string& text);",
+        "name": "button",
+        "method_name": null,
+        "unique_global_name": "button_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a button with a label.\nReturns whether the button was clicked.\n\nExample usage:\n```c++\n// Test if clicked:\nif (button(\"Button 1\", \"Click me!\"))\n{\n// do stuff..\n}\n```",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the button was clicked",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text to show inside the button",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool checkbox(const string& text,const bool& value,const rectangle& rect);",
+        "name": "checkbox",
+        "method_name": null,
+        "unique_global_name": "checkbox_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a checkbox at a specific position on screen.\nReturns the updated value of the checkbox.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "The updated value of the checkbox",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show next to the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "bool",
+            "description": "The current value of the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the checkbox in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool checkbox(const string& text,const bool& value);",
+        "name": "checkbox",
+        "method_name": null,
+        "unique_global_name": "checkbox",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a checkbox.\nReturns the updated value of the checkbox.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "The updated value of the checkbox",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show next to the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "bool",
+            "description": "The current value of the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool checkbox(const string& label,const string& text,const bool& value);",
+        "name": "checkbox",
+        "method_name": null,
+        "unique_global_name": "checkbox_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a checkbox with a label.\nReturns the updated value of the checkbox.\n\nExample usage:\n```c++\nmy_bool = checkbox(\"Checkbox 1\", \"Enabled?\", my_bool);\n```",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "The updated value of the checkbox",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "text": {
+            "type": "string",
+            "description": "The text to show next to the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "bool",
+            "description": "The current value of the checkbox",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color color_slider(const color& clr,const rectangle& rect);",
+        "name": "color_slider",
+        "method_name": null,
+        "unique_global_name": "color_slider_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of RGBA sliders to adjust a color, at a specific position on screen.\nReturns the updated color value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the slider in.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color color_slider(const color& clr);",
+        "name": "color_slider",
+        "method_name": null,
+        "unique_global_name": "color_slider",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of RGBA sliders to adjust a color.\nReturns the updated color value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color color_slider(const string& label,const color& clr);",
+        "name": "color_slider",
+        "method_name": null,
+        "unique_global_name": "color_slider_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of RGBA sliders to adjust a color, with a label.\nReturns the updated color value of the slider.\n\nExample usage:\n```c++\nmy_color = color_slider(\"Player Color\", my_color);\n```",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void disable_interface();",
+        "name": "disable_interface",
+        "method_name": null,
+        "unique_global_name": "disable_interface",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Disables the interface temporarily. Elements created after this function will appear disabled and cannot be interacted with.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void draw_interface();",
+        "name": "draw_interface",
+        "method_name": null,
+        "unique_global_name": "draw_interface",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Draws the user interface that all the previous calls (such as `start_panel`, `button`, etc) have created.\n\n**Make sure to call this!** Without calling it, the interface won't be visible.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void enable_interface();",
+        "name": "enable_interface",
+        "method_name": null,
+        "unique_global_name": "enable_interface",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Re-enables the interface, reverses the effects of disabling the interface.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void end_inset(const string& name);",
+        "name": "end_inset",
+        "method_name": null,
+        "unique_global_name": "end_inset",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Finishes the creation of an inset area.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The area's name - must match with `start_inset`",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void end_panel(const string& name);",
+        "name": "end_panel",
+        "method_name": null,
+        "unique_global_name": "end_panel",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Finishes the creation of a panel.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name shown in the panel's titlebar - must match with `start_panel`",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void end_popup(const string& name);",
+        "name": "end_popup",
+        "method_name": null,
+        "unique_global_name": "end_popup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Finishes the creation of a popup.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The popup's name - must match with `start_popup`",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void end_treenode(const string& label);",
+        "name": "end_treenode",
+        "method_name": null,
+        "unique_global_name": "end_treenode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Finishes the creation of a tree node.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The node's name - must match with `start_treenode`",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void enter_column();",
+        "name": "enter_column",
+        "method_name": null,
+        "unique_global_name": "enter_column",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Begins placing elements inside the current column. Must be paired with a call to `leave_column`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "int get_interface_label_width();",
+        "name": "get_interface_label_width",
+        "method_name": null,
+        "unique_global_name": "get_interface_label_width",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the width of element labels.\n\nDefault is 60 pixels.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The width of labels",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool header(const string& label);",
+        "name": "header",
+        "method_name": null,
+        "unique_global_name": "header",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a collapsable header with a label.\nReturns whether the header is expanded or not.\n\nNote: Unlike `start_panel` and other similar functions, there is\nno need to 'end' this one. Example usage:\n```c++\nif (header(\"Section A\"))\n{\n// elements inside header go here\n}\n```",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the header is expanded or not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in the header",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color hsb_color_slider(const color& clr,const rectangle& rect);",
+        "name": "hsb_color_slider",
+        "method_name": null,
+        "unique_global_name": "hsb_color_slider_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, at a specific position on screen.\nReturns the updated color value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the slider in.",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color hsb_color_slider(const color& clr);",
+        "name": "hsb_color_slider",
+        "method_name": null,
+        "unique_global_name": "hsb_color_slider",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color.\nReturns the updated color value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "color hsb_color_slider(const string& label,const color& clr);",
+        "name": "hsb_color_slider",
+        "method_name": null,
+        "unique_global_name": "hsb_color_slider_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, with a label.\nReturns the updated color value of the slider.\n\nExample usage:\n```c++\nmy_color = hsb_color_slider(\"Player Color\", my_color);\n```",
+        "brief": null,
+        "return": {
+          "type": "color",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The current value of the color slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool interface_enabled();",
+        "name": "interface_enabled",
+        "method_name": null,
+        "unique_global_name": "interface_enabled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns if the interface is currently enabled or not.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the interface is currently enabled or not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void interface_style_panel(const rectangle& initial_rectangle);",
+        "name": "interface_style_panel",
+        "method_name": null,
+        "unique_global_name": "interface_style_panel",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "A utility function to show a 'Style Panel', which will allows you to experiment with different interface styles.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "initial_rectangle": {
+            "type": "rectangle",
+            "description": "The initial position/size the panel starts off in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void label(const string& text);",
+        "name": "label",
+        "method_name": null,
+        "unique_global_name": "label",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a label with the given text.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The label to show",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void label(const string& text,const rectangle& rect);",
+        "name": "label",
+        "method_name": null,
+        "unique_global_name": "label_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a label at a specific position on screen.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The label to show",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the label in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool last_element_changed();",
+        "name": "last_element_changed",
+        "method_name": null,
+        "unique_global_name": "last_element_changed",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns if the last created element was changed at all (such as dragged, typed in, etc)",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the last created element was changed",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool last_element_confirmed();",
+        "name": "last_element_confirmed",
+        "method_name": null,
+        "unique_global_name": "last_element_confirmed",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns if the last created element was 'confirmed' (such as clicking a button, or hitting enter in a text box)",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the last created element was confirmed",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void leave_column();",
+        "name": "leave_column",
+        "method_name": null,
+        "unique_global_name": "leave_column",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Stops placing elements inside the current column and moves to the next one.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float number_box(const float& value,float step,const rectangle& rect);",
+        "name": "number_box",
+        "method_name": null,
+        "unique_global_name": "number_box_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a number entry box at a specific position on screen.\nReturns the updated value of the number box.",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "float",
+            "description": "The current value of the number box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "step": {
+            "type": "float",
+            "description": "The amount incremented when dragging on the box",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the slider in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float number_box(const float& value,float step);",
+        "name": "number_box",
+        "method_name": null,
+        "unique_global_name": "number_box",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a number entry box with a label.\nReturns the updated value of the number box.",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "float",
+            "description": "The current value of the number box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "step": {
+            "type": "float",
+            "description": "The amount incremented when dragging on the box",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float number_box(const string& label,const float& value,float step);",
+        "name": "number_box",
+        "method_name": null,
+        "unique_global_name": "number_box_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a number entry box with a label.\nReturns the updated value of the number box.\n\nExample usage:\n```c++\nmy_float = number_box(\"Percentage\", my_float, 1);\n```",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the number box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "float",
+            "description": "The current value of the number box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "step": {
+            "type": "float",
+            "description": "The amount incremented when dragging on the box",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void open_popup(const string& name);",
+        "name": "open_popup",
+        "method_name": null,
+        "unique_global_name": "open_popup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Makes the popup named `name` open/popup at the cursor's position.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The popup's name. Must match with the same name used in `start_popup`",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void paragraph(const string& text);",
+        "name": "paragraph",
+        "method_name": null,
+        "unique_global_name": "paragraph",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a paragraph of text that auto-wraps.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void paragraph(const string& text,const rectangle& rect);",
+        "name": "paragraph",
+        "method_name": null,
+        "unique_global_name": "paragraph_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a paragraph of text that auto-wraps at a specific position on screen.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "text": {
+            "type": "string",
+            "description": "The text to show",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the label in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void reset_layout();",
+        "name": "reset_layout",
+        "method_name": null,
+        "unique_global_name": "reset_layout",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Resets to the default layout of a single column with default height.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_accent_color(color clr,float contrast);",
+        "name": "set_interface_accent_color",
+        "method_name": null,
+        "unique_global_name": "set_interface_accent_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the color of accents in the interface, and the contrast of how strongly they appear when hovering/interacting.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of accents",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "contrast": {
+            "type": "float",
+            "description": "The strength of how much the accents show (between 0 and 1)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_border_color(color clr);",
+        "name": "set_interface_border_color",
+        "method_name": null,
+        "unique_global_name": "set_interface_border_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface's border color.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color to set borders to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_colors_auto(color main_clr,color accent_clr,float contrast,float accent_contrast,float border_contrast);",
+        "name": "set_interface_colors_auto",
+        "method_name": null,
+        "unique_global_name": "set_interface_colors_auto",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "A convenience function to set the majority of the interface's colors in one go.\nSome colors will be automatically chosen based on the parameters (such as text color).",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "main_clr": {
+            "type": "color",
+            "description": "The main color of the interface - also decides if the interface is light or dark mode",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "accent_clr": {
+            "type": "color",
+            "description": "The color used to accent the interface - this will appear in highlighted areas",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "contrast": {
+            "type": "float",
+            "description": "The contrast between the frames of elements/containers and their internal elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "accent_contrast": {
+            "type": "float",
+            "description": "How strongly the accent color is used, for instance when highlighting elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "border_contrast": {
+            "type": "float",
+            "description": "Simply the opacity of the borders",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_element_color(color clr,float contrast);",
+        "name": "set_interface_element_color",
+        "method_name": null,
+        "unique_global_name": "set_interface_element_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the main color of elements in the interface, and the contrast between their frame and internal pieces.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "contrast": {
+            "type": "float",
+            "description": "The contrast between the frame of elements and their internal pieces (between 0 and 1)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_element_shadows(int radius,color clr,point_2d offset);",
+        "name": "set_interface_element_shadows",
+        "method_name": null,
+        "unique_global_name": "set_interface_element_shadows",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the style of element's shadows. Use a fully transparent color to disable them.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "radius": {
+            "type": "int",
+            "description": "The radius of the shadow's blur",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the shadows (commonly black, but can do coloured and semi-transparent too)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "offset": {
+            "type": "point_2d",
+            "description": "The offset in x/y coordinates of the shadows from their casting elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_font(const string& fnt);",
+        "name": "set_interface_font",
+        "method_name": null,
+        "unique_global_name": "set_interface_font_font_as_string",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface's font.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "fnt": {
+            "type": "string",
+            "description": "The name of the font to be used",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "font_as_string",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_font(font fnt);",
+        "name": "set_interface_font",
+        "method_name": null,
+        "unique_global_name": "set_interface_font",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface's font.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "fnt": {
+            "type": "font",
+            "description": "The font to be used",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_font_size(int size);",
+        "name": "set_interface_font_size",
+        "method_name": null,
+        "unique_global_name": "set_interface_font_size",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface's font size.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "size": {
+            "type": "int",
+            "description": "The font size to be used",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_label_width(int width);",
+        "name": "set_interface_label_width",
+        "method_name": null,
+        "unique_global_name": "set_interface_label_width",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the width of element labels. This is the maximum width\nin pixels that a label can span in front of an element.\n\nDefault is 60 pixels.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "width": {
+            "type": "int",
+            "description": "The width of labels",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_panel_shadows(int radius,color clr,point_2d offset);",
+        "name": "set_interface_panel_shadows",
+        "method_name": null,
+        "unique_global_name": "set_interface_panel_shadows",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the style of panel's shadows. Use a fully transparent color to disable them.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "radius": {
+            "type": "int",
+            "description": "The radius of the shadow's blur",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the shadows (commonly black, but can do coloured and semi-transparent too)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "offset": {
+            "type": "point_2d",
+            "description": "The offset in x/y coordinates of the shadows from their casting elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_root_text_color(color clr);",
+        "name": "set_interface_root_text_color",
+        "method_name": null,
+        "unique_global_name": "set_interface_root_text_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets color of text drawn directly onto the main window",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color to set text drawn on the main window to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_shadows(int radius,color clr,point_2d offset);",
+        "name": "set_interface_shadows",
+        "method_name": null,
+        "unique_global_name": "set_interface_shadows",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the style of all interface shadows. Use a fully transparent color to disable them.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "radius": {
+            "type": "int",
+            "description": "The radius of the shadow's blur",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color of the shadows (commonly black, but can do coloured and semi-transparent too)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "offset": {
+            "type": "point_2d",
+            "description": "The offset in x/y coordinates of the shadows from their casting elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_spacing(int spacing,int padding);",
+        "name": "set_interface_spacing",
+        "method_name": null,
+        "unique_global_name": "set_interface_spacing",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the spacing within the interface.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "spacing": {
+            "type": "int",
+            "description": "The distance between elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "padding": {
+            "type": "int",
+            "description": "The padding within elements",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_style(interface_style style);",
+        "name": "set_interface_style",
+        "method_name": null,
+        "unique_global_name": "set_interface_style",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface style to one of the presets in the interface_style enum.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "style": {
+            "type": "interface_style",
+            "description": "The preset style to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_style(interface_style style,color clr);",
+        "name": "set_interface_style",
+        "method_name": null,
+        "unique_global_name": "set_interface_style_with_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface style to one of the presets in the interface_style enum.\nAlso accepts a color used to customize the interface.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "style": {
+            "type": "interface_style",
+            "description": "The preset style to use",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "clr": {
+            "type": "color",
+            "description": "The color to style the interface after",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_color",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_interface_text_color(color clr);",
+        "name": "set_interface_text_color",
+        "method_name": null,
+        "unique_global_name": "set_interface_text_color",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the interface's text color.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color to set text to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void set_layout_height(int height);",
+        "name": "set_layout_height",
+        "method_name": null,
+        "unique_global_name": "set_layout_height",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Sets the height of each row in the interface in pixels.\n0 resets to default.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "height": {
+            "type": "int",
+            "description": "Height of rows in pixels",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void single_line_layout();",
+        "name": "single_line_layout",
+        "method_name": null,
+        "unique_global_name": "single_line_layout",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts layouting all elements onto a single row. Reset with `reset_layout()`.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float slider(const float& value,float min_value,float max_value,const rectangle& rect);",
+        "name": "slider",
+        "method_name": null,
+        "unique_global_name": "slider_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a slider at a specific position on screen.\nReturns the updated value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "float",
+            "description": "The current value of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "min_value": {
+            "type": "float",
+            "description": "The minimum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_value": {
+            "type": "float",
+            "description": "The maximum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the slider in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float slider(const float& value,float min_value,float max_value);",
+        "name": "slider",
+        "method_name": null,
+        "unique_global_name": "slider",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a slider without a label.\nReturns the updated value of the slider.",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "float",
+            "description": "The current value of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "min_value": {
+            "type": "float",
+            "description": "The minimum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_value": {
+            "type": "float",
+            "description": "The maximum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "float slider(const string& label,const float& value,float min_value,float max_value);",
+        "name": "slider",
+        "method_name": null,
+        "unique_global_name": "slider_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a slider with a label.\nReturns the updated value of the slider.\n\nExample usage:\n```c++\nmy_float = slider(\"Percentage\", my_float, 0, 100);\n```",
+        "brief": null,
+        "return": {
+          "type": "float",
+          "description": "The updated value of the slider",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "float",
+            "description": "The current value of the slider",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "min_value": {
+            "type": "float",
+            "description": "The minimum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "max_value": {
+            "type": "float",
+            "description": "The maximum value of the slider",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void split_into_columns(int count);",
+        "name": "split_into_columns",
+        "method_name": null,
+        "unique_global_name": "split_into_columns",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Adds `count` columns to the current layout, with equal widths",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "count": {
+            "type": "int",
+            "description": "Number of columns to add",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void split_into_columns(int count,int last_width);",
+        "name": "split_into_columns",
+        "method_name": null,
+        "unique_global_name": "split_into_columns_with_last_width",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Adds `count` columns to the current layout, with equal widths.\nHas extra parameter `last_width`, which lets you specify a specific\nwidth (in pixels) for the last column.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "count": {
+            "type": "int",
+            "description": "Number of columns to add",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "last_width": {
+            "type": "int",
+            "description": "The width of the last column in pixels",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_last_width",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void split_into_columns_relative(int count,double last_width);",
+        "name": "split_into_columns_relative",
+        "method_name": null,
+        "unique_global_name": "split_into_columns_relative_with_last_width",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Adds `count` columns to the current layout, with equal widths.\nHas extra parameter `last_width`, which lets you specify a specific\nwidth (relative to the width of the container, between 0 and 1) for the last column.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "count": {
+            "type": "int",
+            "description": "Number of columns to add",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "last_width": {
+            "type": "double",
+            "description": "The width of the last column as percentage of the container's width (between 0 and 1)",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "with_last_width",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void start_custom_layout();",
+        "name": "start_custom_layout",
+        "method_name": null,
+        "unique_global_name": "start_custom_layout",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Clears the default layout so that a custom layout can be made.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void start_inset(const string& name,const rectangle& rect);",
+        "name": "start_inset",
+        "method_name": null,
+        "unique_global_name": "start_inset_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts the creation of an inset area inside an arbitrary rectangle.\n\nThe function **must** be accompanied by a call to `end_inset`\nwith the same name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the area",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle for the inset",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "void start_inset(const string& name,int height);",
+        "name": "start_inset",
+        "method_name": null,
+        "unique_global_name": "start_inset",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts the creation of an inset area inside a panel/popup.\n\nUse as follows:\n```c++\nstart_inset(\"Inset area\", 60);\n// elements inside area goes here\nend_inset(\"Inset area\");\n\n```\nThe function **must** be accompanied by a call to `end_inset`\nwith the same name.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the area",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "height": {
+            "type": "int",
+            "description": "Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool start_panel(const string& name,rectangle initial_rectangle);",
+        "name": "start_panel",
+        "method_name": null,
+        "unique_global_name": "start_panel",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts the creation of a draggable panel with a title bar.\nReturns whether the panel is visible or not.\n\nUse as follows:\n```c++\nif (start_panel(\"My panel\", rectangle_from(0,0,100,100)))\n{\n// Rest of interface goes here\nend_panel(\"My panel\");\n}\n```\nAfter calling this, you can then call functions to\nadd elements such as buttons and text boxes inside the panel.\nThe function **must** be accompanied by a call to `end_panel`,\nthat is only called if the panel is visible, and is passed the same `name`.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the panel is visible or not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name shown in the panel's titlebar",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "initial_rectangle": {
+            "type": "rectangle",
+            "description": "The initial position/size the panel starts off in",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool start_popup(const string& name);",
+        "name": "start_popup",
+        "method_name": null,
+        "unique_global_name": "start_popup",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts the creation of a popup.\nReturns whether the popup is visible or not.\n\nUsage is the same as `start_panel`, other than the 'starting rectangle' will be automatically calculated.\nThe function **must** be accompanied by a call to `end_popup`\nwith the same name.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the popup is visible or not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "name": {
+            "type": "string",
+            "description": "The name of the popup",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "bool start_treenode(const string& label);",
+        "name": "start_treenode",
+        "method_name": null,
+        "unique_global_name": "start_treenode",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Starts the creation of a tree node (such as those in a file tree view).\nReturns whether the tree node is expanded or not.\n\nUsage is the same as `start_panel`.\nThe function **must** be accompanied by a call to `end_treenode`\nwith the same name.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Whether the tree node is expanded or not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The name of the node",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "string text_box(const string& value);",
+        "name": "text_box",
+        "method_name": null,
+        "unique_global_name": "text_box",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The updated value of the text box",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "string",
+            "description": "The current value of the text box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "string text_box(const string& value,const rectangle& rect);",
+        "name": "text_box",
+        "method_name": null,
+        "unique_global_name": "text_box_at_position",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a text entry box at a specific position on screen.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The updated value of the text box",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "string",
+            "description": "The current value of the text box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "rect": {
+            "type": "rectangle",
+            "description": "The rectangle to display the button in",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_position",
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "string text_box(const string& label,const string& value);",
+        "name": "text_box",
+        "method_name": null,
+        "unique_global_name": "text_box_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The updated value of the text box",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label": {
+            "type": "string",
+            "description": "The label to show in front of the text box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "string",
+            "description": "The current value of the text box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "labeled",
+          "group": "interface",
+          "static": "interface"
+        }
+      }
+    ],
+    "typedefs": [
+
+    ],
+    "structs": [
+
+    ],
+    "enums": [
+
+    ],
+    "defines": [
+
+    ]
+  },
   "json": {
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1706101755,
+    "parsed_at": 1720129697,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -22444,7 +26136,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101757,
+    "parsed_at": 1720129704,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -23442,7 +27134,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101758,
+    "parsed_at": 1720129709,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -24981,7 +28673,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101759,
+    "parsed_at": 1720129712,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -25855,7 +29547,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1706101759,
+    "parsed_at": 1720129713,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -26104,7 +29796,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1706101760,
+    "parsed_at": 1720129716,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -26842,7 +30534,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101761,
+    "parsed_at": 1720129718,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -27329,7 +31021,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1708331007,
+    "parsed_at": 1720129721,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -28359,7 +32051,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1706101764,
+    "parsed_at": 1720129731,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -31503,7 +35195,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101764,
+    "parsed_at": 1720129732,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -31525,7 +35217,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101765,
+    "parsed_at": 1720129736,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -32845,7 +36537,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101766,
+    "parsed_at": 1720129739,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -33869,7 +37561,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101766,
+    "parsed_at": 1720129741,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -34334,7 +38026,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1706101766,
+    "parsed_at": 1720129742,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -34468,7 +38160,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1707472160,
+    "parsed_at": 1720129744,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -34935,7 +38627,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101769,
+    "parsed_at": 1720129753,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -37828,7 +41520,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101769,
+    "parsed_at": 1720129755,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -38614,7 +42306,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1706101770,
+    "parsed_at": 1720129757,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -38932,7 +42624,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1708331011,
+    "parsed_at": 1720129760,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -39941,7 +43633,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1707893359,
+    "parsed_at": 1720129781,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -46817,7 +50509,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1708331013,
+    "parsed_at": 1720129783,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -47237,7 +50929,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1706101778,
+    "parsed_at": 1720129791,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -49634,6 +53326,30 @@
         }
       },
       {
+        "signature": "font get_system_font();",
+        "name": "get_system_font",
+        "method_name": null,
+        "unique_global_name": "get_system_font",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Searches for and (if found) returns a default system font. Otherwise defaults to the in-built font.",
+        "brief": "Searches for and (if found) returns a default system font. Otherwise defaults to the in-built font.",
+        "return": {
+          "type": "font",
+          "description": "Returns the `font` found, or the in-built font if not",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "group": "graphics",
+          "static": "text"
+        }
+      },
+      {
         "signature": "bool has_font(font fnt);",
         "name": "has_font",
         "method_name": null,
@@ -50140,7 +53856,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101778,
+    "parsed_at": 1720129793,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -50675,7 +54391,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1706101779,
+    "parsed_at": 1720129796,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -51513,7 +55229,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101781,
+    "parsed_at": 1720129803,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -53920,7 +57636,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101781,
+    "parsed_at": 1720129805,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -54281,7 +57997,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1707472169,
+    "parsed_at": 1720129811,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -55005,6 +58721,41 @@
         }
       },
       {
+        "signature": "enum interface_style {FLAT_DARK_STYLE = 0,SHADED_DARK_STYLE = 1,FLAT_LIGHT_STYLE = 2,SHADED_LIGHT_STYLE = 3,BUBBLE = 4,BUBBLE_MULTICOLORED = 5};",
+        "name": "interface_style",
+        "description": "Use these interface styles as a way to quickly\ncustomize your interface.",
+        "brief": null,
+        "constants": {
+          "FLAT_DARK_STYLE": {
+            "description": "A flat, dark-mode interface.",
+            "number": 0
+          },
+          "SHADED_DARK_STYLE": {
+            "description": "A dark-mode interface with shadows and depth.",
+            "number": 1
+          },
+          "FLAT_LIGHT_STYLE": {
+            "description": "A flat, light-mode interface.",
+            "number": 2
+          },
+          "SHADED_LIGHT_STYLE": {
+            "description": "A light-mode interface with shadows and depth.",
+            "number": 3
+          },
+          "BUBBLE": {
+            "description": "A light-mode interface with a semi-transparent bubbly look.",
+            "number": 4
+          },
+          "BUBBLE_MULTICOLORED": {
+            "description": "A light-mode interface with a semi-transparent bubbly look - gives a multi-coloured result when provided a color.",
+            "number": 5
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
         "signature": "enum pin_modes {GPIO_INPUT = 0,GPIO_OUTPUT = 1,GPIO_ALT0 = 4,GPIO_ALT1 = 5,GPIO_ALT2 = 6,GPIO_ALT3 = 7,GPIO_ALT4 = 3,GPIO_ALT5 = 2,GPIO_DEFAULT_MODE = -1,};",
         "name": "pin_modes",
         "description": "GPIO Pin Modes:",
@@ -55277,7 +59028,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1708331014,
+    "parsed_at": 1720129812,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -55485,7 +59236,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1706101784,
+    "parsed_at": 1720129817,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -56918,7 +60669,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101785,
+    "parsed_at": 1720129819,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -57513,7 +61264,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1706101786,
+    "parsed_at": 1720129825,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -59232,7 +62983,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1706101788,
+    "parsed_at": 1720129831,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {

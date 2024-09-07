@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 project(splashkit)
 
 cmake_policy(SET CMP0083 NEW)
@@ -71,10 +71,18 @@ elseif(MSYS)
         return ()
     endif()
 
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SDL2 REQUIRED sdl2 sdl2_ttf sdl2_image sdl2_net sdl2_mixer sdl2_gfx libpng libcurl)
+
     set(LIB_FLAGS  "-L${SK_LIB}/${OS_PATH_SUFFIX} \
                     -L/${MINGW_PATH_PART}/lib \
                     -L/usr/lib \
-                    -lSDL2main")
+                    ${SDL2_LDFLAGS} \
+                    -lSDL2main \
+                    -Wl,-Bdynamic \
+                    -lws2_32 \
+                    -lcivetweb")
+                    
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -163,6 +171,7 @@ file(GLOB SOURCE_FILES
     "${SK_EXT}/sqlite/sqlite3.c"
     "${SK_EXT}/hash-library/*.cpp"
     "${SK_EXT}/easyloggingpp/*.cc"
+    "${SK_EXT}/microui/src/*.c"
 )
 
 # TEST FILE INCLUDES
@@ -188,28 +197,18 @@ include_directories("${SK_EXT}/civetweb/include")
 include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/hash-library")
 include_directories("${SK_EXT}/json")
-include_directories("${SK_EXT}/sqlite")
 include_directories("${SK_EXT}/catch")
+include_directories("${SK_EXT}/microui/src")
 
-# MAC OS AND WINDOWS DIRECTORY INCLUDES
-if (APPLE OR MSYS)
+# MAC OS DIRECTORY INCLUDES
+if (APPLE)
     include_directories("${SK_EXT}/SDL/include")
     include_directories("${SK_EXT}/SDL_gfx")
     include_directories("${SK_EXT}/SDL_image")
     include_directories("${SK_EXT}/SDL_mixer")
     include_directories("${SK_EXT}/SDL_net")
     include_directories("${SK_EXT}/SDL_ttf")
-endif()
-# MAC OS ONLY DIRECTORY INCLUDES
-if (APPLE)
     include_directories("${SK_EXT}/SDL_image/external/libpng-1.6.2")
-endif()
-# WINDOWS ONLY DIRECTORY INCLUDES
-if (MSYS)
-    include_directories(/${MINGW_PATH_PART}/include)
-    include_directories(/${MINGW_PATH_PART}/include/libpng16)
-    include_directories("${SK_LIB}/win_inc")
-    include_directories("${SK_EXT}/sqlite")
 endif()
 
 # MACRO DEFINITIONS #
@@ -218,27 +217,13 @@ add_definitions(-DELPP_THREAD_SAFE)
 #### END SETUP ####
 #### SplashKitBackend STATIC LIBRARY ####
 add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
-
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (MSYS)
-    add_definitions(-DWINDOWS)
-    link_directories("${SK_LIB}/${OS_PATH_SUFFIX}")
-    target_link_libraries(SplashKitBackend SDL2_mixer
-                                           SDL2_image
-                                           SDL2_net
-                                           libcivetweb
-                                           SDL2
-                                           SDL2_ttf
-                                           libcurl
-                                           libSDL2_gfx-1-0-0
-                                           libpng16-16
-                                           libsqlite
-                                           pthread
-                                           stdc++
-                                           ws2_32
-                                           )
-elseif(APPLE)
+    set_target_properties(SplashKitBackend PROPERTIES PREFIX "")
+    target_include_directories(SplashKitBackend PUBLIC ${SDL2_INCLUDE_DIRS})
+    target_compile_options(SplashKitBackend PUBLIC ${SDL2_CFLAGS_OTHER})
+elseif (APPLE)
     # To make a universal single static library from dependent
     # static libraries, run libtool on SplashKitBackend
     file(GLOB APPLE_STATIC_LIBS

@@ -12,8 +12,10 @@
 #define basics_hpp
 
 #include <string>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 namespace splashkit_lib
 {
@@ -88,6 +90,51 @@ namespace splashkit_lib
      * @return      The double value read from the text.
      */
     double convert_to_double(const string &text);
+
+        /**
+     * Returns the length of a string in characters.
+     *
+     * @param text      The text to get the length of
+     * @returns         The number of characters in the string.
+     */
+    int length_of(const string &text);
+
+    /**
+     * Returns true if the string contains the substring.
+     * 
+     * @param text      The text to search
+     * @param subtext   The substring to search for
+     * @returns         True if the substring is found in the text.
+     */
+    bool contains(const string &text, const string &subtext);
+
+    /**
+     * Returns the index of the first occurrence of the substring in the text.
+     * 
+     * @param text      The text to search
+     * @param subtext   The substring to search for
+     * @returns         The index of the first occurrence of the substring in the text, or -1 if the substring is not found.
+     */
+    int index_of(const string &text, const string &subtext);
+
+    /**
+     * Replace all occurrences of a substring in a string with another string.
+     * 
+     * @param text      The text to search
+     * @param substr    The substring to find and replace
+     * @param newText   The string to replace the substring with
+     * @returns         The text with all occurrences of the substring replaced with the new text.
+     */
+    string replace_all(const string &text, const string &substr, const string &newText);
+
+    /**
+     * Split a string into an array of strings based on a delimiter.
+     * 
+     * @param text      The text to split
+     * @param delimiter The character to split the text on
+     * @returns         An array of strings
+     */
+    vector<string> split(const string &text, char delimiter);
 }
 
 #endif /* basics_hpp */

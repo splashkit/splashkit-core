@@ -19,6 +19,7 @@
 #include "graphics.h"
 #include "images.h"
 #include "input.h"
+#include "interface.h"
 #include "json.h"
 #include "keyboard_input.h"
 #include "line_drawing.h"

@@ -134,6 +134,7 @@ file(GLOB SOURCE_FILES
     "${SK_GENERATED}/clib/*.cpp"
     "${SK_EXT}/civetweb/src/md5.inl"
     "${SK_EXT}/easyloggingpp/easylogging++.cc"
+    "${SK_EXT}/microui/src/*.c"
 )
 
 # SKSDK FILE INCLUDES
@@ -164,6 +165,7 @@ include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
+include_directories("${SK_EXT}/microui/src")
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
@@ -229,6 +231,7 @@ file(GLOB LINUX_INCLUDE_FILES
     "${SK_EXT}/easyloggingpp/*.h"
     "${SK_EXT}/json/*.hpp"
     "${SK_EXT}/catch/*.h"
+    "${SK_EXT}/microui/src/microui.h"
 )
 
 file(GLOB INL_FILES

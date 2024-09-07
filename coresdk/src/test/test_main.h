@@ -35,5 +35,6 @@ void run_tcp_networking_test();
 void run_gpio_tests();
 void run_terminal_test();
 void run_logging_test();
+void run_ui_test();
 
 #endif /* test_main_h */
