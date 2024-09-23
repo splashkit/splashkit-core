@@ -110,6 +110,15 @@ TEST_CASE("can communicate with server", "[networking]")
     {
         REQUIRE_FALSE(has_connection("non_existent_connection"));
     }
+    SECTION("can check for error connecting to server")
+    {
+        connection conn = open_connection("test_connection_3", TEST_IP, PORT, TCP);
+        REQUIRE_FALSE(is_connection_open(conn));
+
+        const string INVALID_IP = "invalid_ip";
+        connection conn2 = open_connection("test_connection_4", INVALID_IP, PORT, TCP);
+        REQUIRE_FALSE(is_connection_open(conn2));
+    }
 }
 TEST_CASE("can convert network data")
 {
@@ -117,31 +126,47 @@ TEST_CASE("can convert network data")
     {
         REQUIRE(hex_str_to_ipv4("0x7F000001") == "127.0.0.1");
         REQUIRE(hex_str_to_ipv4("0x00000000") == "0.0.0.0");
+        REQUIRE(hex_str_to_ipv4("0x00000000000000") == "0.0.0.0");
         REQUIRE(hex_str_to_ipv4("0xFFFFFFFF") == "255.255.255.255");
+        REQUIRE_THROWS(hex_str_to_ipv4(""));
+        REQUIRE_THROWS(hex_str_to_ipv4("0x"));
+        REQUIRE_THROWS(hex_str_to_ipv4("error"));
     }
     SECTION("can convert hexadecimal to decimal string")
     {
         REQUIRE(hex_to_dec_string("0x7F") == "127");
         REQUIRE(hex_to_dec_string("0x00") == "0");
         REQUIRE(hex_to_dec_string("0xFF") == "255");
+        REQUIRE(hex_to_dec_string("") == "0");
+        REQUIRE(hex_to_dec_string("0x") == "0");
+        REQUIRE(hex_to_dec_string("0xGG") == "0");
+        REQUIRE(hex_to_dec_string("error") == "0");
     }
     SECTION("can convert decimal to hexadecimal string")
     {
         REQUIRE(dec_to_hex(127) == "0x7F");
         REQUIRE(dec_to_hex(0) == "0x0");
         REQUIRE(dec_to_hex(255) == "0xFF");
+        REQUIRE(dec_to_hex(256) == "0x100");
     }
     SECTION("can convert ipv4 to hexidecimal")
     {
         REQUIRE(ipv4_to_hex("127.0.0.1") == "0x7F000001");
         REQUIRE(ipv4_to_hex("255.255.255.255") == "0xFFFFFFFF");
         REQUIRE(ipv4_to_hex("0.0.0.0") == "0x00000000");
+        REQUIRE(ipv4_to_hex("....") == "0x00000000");
+        REQUIRE(ipv4_to_hex("") == "0x00000000");
+        REQUIRE_THROWS(ipv4_to_hex("a.b.c.d"));
+        REQUIRE_THROWS(ipv4_to_hex("error"));
     }
     SECTION("can convert ipv4 to decimal")
     {
         REQUIRE(ipv4_to_dec("127.0.0.1") == 2130706433);
         REQUIRE(ipv4_to_dec("0.0.0.0") == 0);
         REQUIRE(ipv4_to_dec("255.255.255.255") == 4294967295);
+        REQUIRE(ipv4_to_dec("....") == 0);
+        REQUIRE_THROWS(ipv4_to_dec("a.b.c.d"));
+        REQUIRE_THROWS(ipv4_to_dec("error"));
     }
     SECTION("can convert decimal to ipv4")
     {
@@ -153,5 +178,6 @@ TEST_CASE("can convert network data")
     {
         REQUIRE(name_for_connection("splashkit.com", 3000) == "splashkit.com:3000");
         REQUIRE(name_for_connection("localhost", 3200) == "localhost:3200");
+        REQUIRE(name_for_connection("", 0) == ":0");
     }
 }
