@@ -129,7 +129,7 @@ namespace splashkit_lib
 
         // Circle and triangle intersect if the squared distance from circle
         // center to point p is less than the squared circle radius
-        return vector_magnitude_sqared(vector_point_to_point(c.center, p)) < c.radius * c.radius;
+        return vector_magnitude_squared(vector_point_to_point(c.center, p)) < c.radius * c.radius;
     }
 
     point_2d closest_point_on_triangle_from_circle(const circle &c, const triangle &tri)
