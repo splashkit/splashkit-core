@@ -139,48 +139,6 @@ namespace splashkit_lib
         return p;
     }
 
-    // bool circle_triangle_intersect_closest_point(const circle &c, const triangle &tri, point_2d &p)
-    // {
-    //         // Check if the sphere center is inside the triangle
-    //         if (point_in_triangle(c.center, tri))
-    //         {
-    //             p = c.center;
-    //             return true;
-    //         }
-
-    //         line line_1 = line_from(tri.points[0], tri.points[1]);
-    //         line line_2 = line_from(tri.points[1], tri.points[2]);
-    //         line line_3 = line_from(tri.points[2], tri.points[0]);
-
-    //         point_2d pt_line_1 = closest_point_on_line_from_circle(c, line_1);
-    //         point_2d pt_line_2 = closest_point_on_line_from_circle(c, line_2);
-    //         point_2d pt_line_3 = closest_point_on_line_from_circle(c, line_3);
-            
-    //         float dist_1 = point_point_distance(c.center, pt_line_1);
-    //         float dist_2 = point_point_distance(c.center, pt_line_2);
-    //         float dist_3 = point_point_distance(c.center, pt_line_3);
-
-    //         // Find the closest point on the triangle to the sphere center
-    //         float min_dist = dist_1;
-    //         p = pt_line_1;
-    //         if (dist_2 < min_dist)
-    //         {
-    //             min_dist = dist_2;
-    //             p = pt_line_2;
-    //         }
-    //         if (dist_3 < min_dist)
-    //         {
-    //             min_dist = dist_3;
-    //             p = pt_line_3;
-    //         }
-      
-    //         vector_2d v = vector_point_to_point(p, c.center);
-
-    //         // Circle and triangle intersect if the squared distance from circle
-    //         // center to point p is less than the squared circle radius
-    //         return dot_product(v, v) <= c.radius * c.radius;
-    // }
-
     float circle_radius(const circle c)
     {
         return c.radius;
