@@ -11,6 +11,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <easylogging++.h>
+
 namespace splashkit_lib
 {
     static bool _do_seed = true;
@@ -37,7 +39,7 @@ namespace splashkit_lib
     {
         if (min > max)
         {
-            std::cout << "Error: min value is greater than max value when calling rnd" << std::endl;
+            LOG(WARNING) << "Min value is greater than max value when calling rnd.";
             return rnd(max, min);
         }
 
