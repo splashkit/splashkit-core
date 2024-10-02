@@ -497,17 +497,14 @@ TEST_CASE("replace all occurrences of a substring in a string with another strin
     {
         REQUIRE(replace_all("splashkit library", "splashkit", "") == " library");
     }
-    // Following test cases are commented out because they cause infinite loops
-    // with the current implementation of replace_all
-
-    // SECTION("substring is empty")
-    // {
-    //     REQUIRE(replace_all("splashkit library", "", "SK") == "splashkit library");
-    // }
-    // SECTION("both string and substring are empty")
-    // {
-    //     REQUIRE(replace_all("", "", "SK") == "");
-    // }
+    SECTION("substring is empty")
+    {
+        REQUIRE(replace_all("splashkit library", "", "SK") == "splashkit library");
+    }
+    SECTION("both string and substring are empty")
+    {
+        REQUIRE(replace_all("", "", "SK") == "");
+    }
 }
 TEST_CASE("can split a string into an array of strings based on a delimiter")
 {
@@ -670,14 +667,11 @@ TEST_CASE("random number int between 0 and ubound is generated", "[rnd(int uboun
         int result = rnd(-1);
         REQUIRE(result == 0);
     }
-    // Following test case is commented out because it generates an
-    // unhadled arithmetic exception with the current implementation of rnd
-
-    // SECTION("ubound is 0")
-    // {
-    //     int result = rnd(0);
-    //     REQUIRE(result == 0);
-    // }
+    SECTION("ubound is 0")
+    {
+        int result = rnd(0);
+        REQUIRE(result == 0);
+    }
 }
 TEST_CASE("random number int between min and max is generated", "[rnd(int min, int max)]")
 {
@@ -702,16 +696,14 @@ TEST_CASE("random number int between min and max is generated", "[rnd(int min, i
     SECTION("min is 1 and max is 0")
     {
         int result = rnd(1, 0);
+        REQUIRE(result >= 0);
+        REQUIRE(result <= 1);
+    }
+    SECTION("min is 1 and max is 1")
+    {
+        int result = rnd(1, 1);
         REQUIRE(result == 1);
     }
-    // Following test case is commented out because it generates an
-    // unhadled arithmetic exception with the current implementation of rnd
-
-    // SECTION("min is 1 and max is 1")
-    // {
-    //     int result = rnd(1, 1);
-    //     REQUIRE(result == 1);
-    // }
 }
 TEST_CASE("gets the number of milliseconds that have passed since the program was started", "[current_ticks]")
 {
