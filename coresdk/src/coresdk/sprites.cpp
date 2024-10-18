@@ -1023,8 +1023,8 @@ namespace splashkit_lib
 
         if (s->position_at_anchor_point)
         {
-            s->position.x += s->anchor_point.x;
-            s->position.y += s->anchor_point.y;
+            s->position.x -= s->anchor_point.x;
+            s->position.y -= s->anchor_point.y;
         }
     }
 
