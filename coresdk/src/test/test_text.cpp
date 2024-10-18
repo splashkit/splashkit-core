@@ -117,6 +117,7 @@ void test_string_utils()
     cout << "To lower of " << mixedText << " is " << to_lowercase(mixedText) << endl;
     cout << "Trim of " << mixedText << " is " << trim(mixedText) << endl;
     cout << "Replace all of " << mixedText << " is " << replace_all(mixedText, " ", "_") << endl;
+    cout << "Replace all of " << mixedText << " when substring is empty is " << replace_all(mixedText, "", "_") << endl;
     
     vector<string> vec = split(mixedText, ' ');
 
