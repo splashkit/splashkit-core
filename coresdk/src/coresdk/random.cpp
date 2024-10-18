@@ -10,6 +10,9 @@
 #include "random.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
+#include <easylogging++.h>
+
 namespace splashkit_lib
 {
     static bool _do_seed = true;
@@ -21,6 +24,8 @@ namespace splashkit_lib
 
     int rnd(int ubound)
     {
+        if (ubound == 0) return 0;
+        
         if (_do_seed)
         {
             _do_seed = false;
@@ -32,6 +37,14 @@ namespace splashkit_lib
     
     int rnd(int min, int max)
     {
+        if (min > max)
+        {
+            LOG(WARNING) << "Min value is greater than max value when calling rnd.";
+            return rnd(max, min);
+        }
+
+        if (min == max) return min;
+        
         if (_do_seed)
         {
             _do_seed = false;
