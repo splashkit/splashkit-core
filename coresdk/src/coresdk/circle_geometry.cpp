@@ -108,6 +108,36 @@ namespace splashkit_lib
         return point_point_distance(point_at(c1_x, c1_y), point_at(c2_x, c2_y)) < c1_radius + c2_radius;
     }
 
+    bool circle_triangle_intersect(const circle &c, const triangle &tri)
+    {
+        point_2d p;
+        return circle_triangle_intersect(c, tri, p);
+    }
+
+    bool circle_triangle_intersect(const circle &c, const triangle &tri, point_2d &p)
+    {
+        // Check if the sphere center is inside the triangle
+        if (point_in_triangle(c.center, tri))
+        {
+            p = c.center;
+            return true;
+        }
+
+        int idx;
+        // Find the closest point on the triangle to the sphere center
+        p = closest_point_on_lines(c.center, lines_from(tri), idx);
+
+        // Circle and triangle intersect if the squared distance from circle
+        // center to point p is less than the squared circle radius
+        return vector_magnitude_squared(vector_point_to_point(c.center, p)) < c.radius * c.radius;
+    }
+
+    point_2d closest_point_on_triangle_from_circle(const circle &c, const triangle &tri)
+    {
+        point_2d p;
+        circle_triangle_intersect(c, tri, p);
+        return p;
+    }
 
     float circle_radius(const circle c)
     {

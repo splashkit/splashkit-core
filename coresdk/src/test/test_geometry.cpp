@@ -127,8 +127,122 @@ void test_rectangle()
     close_window(w1);
 }
 
+void test_lines()
+{
+    std::vector<line> lines;
+    lines.push_back(line_from(110, 100, 110, 150));
+    lines.push_back(line_from(120, 100, 120, 150));
+    lines.push_back(line_from(130, 100, 130, 150));
+
+    int line_idx = 0;
+
+    point_2d pt = point_at(100, 105);
+    point_2d closest = closest_point_on_lines(pt, lines, line_idx);
+    cout << "Closest point should be (110,105 on line 0): " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    pt = point_at(135, 108);
+    closest = closest_point_on_lines(pt, lines, line_idx);
+    cout << "Closest point should be (130,108 on line 2): " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    pt = point_at(121, 103);
+    closest = closest_point_on_lines(pt, lines, line_idx);
+    cout << "Closest point (should be 120,103 on line 1): " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    // no lines
+    closest = closest_point_on_lines(pt, {}, line_idx);
+    cout << "Closest point (should be 0,0 on line -1): " << point_to_string(closest) << " on line " << line_idx << endl;
+
+    circle c1 = circle_at(300, 300, 2);
+
+    lines.push_back(line_from(200, 200, 400, 400));
+    lines.push_back(line_from(200, 400, 400, 200));
+    lines.push_back(line_from(15, 15, 400, 30));
+    lines.push_back(line_from(100, 500, 500, 400));
+    lines.push_back(line_from(550, 700, 550, 790));
+    lines.push_back(line_from(30, 550, 230, 650));
+
+    window w1 = open_window("Line Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+
+        clear_screen(COLOR_WHEAT);
+
+        c1.center = mouse_position();
+
+        point_2d p1 = closest_point_on_lines(c1.center, lines, line_idx);
+
+        for (int i = 0; i < lines.size(); i++)
+        {
+            if (i == line_idx)
+                draw_line(COLOR_RED, lines[i]);
+            else
+                draw_line(COLOR_BLACK, lines[i]);
+        }
+        draw_circle(COLOR_RED, p1.x, p1.y, 5);
+        fill_circle(COLOR_RED, c1);
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
+void test_triangle()
+{
+    auto t1 = triangle_from(110, 110, 120, 150, 170, 190);
+    auto t2 = triangle_from(200, 200, 200, 500, 500, 500);
+    auto t3 = triangle_from(300, 20, 280, 240, 550, 60);
+    auto t4 = triangle_from(150, 700, 265, 600, 510, 610);
+    auto c1 = circle_at(300, 300, 50);
+
+    window w1 = open_window("Triangle Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        if (key_down(UP_KEY))
+            c1.radius += 0.05;
+
+        if (key_down(DOWN_KEY))
+            c1.radius -= 0.05;
+
+        clear_screen(COLOR_WHEAT);
+
+        c1.center = mouse_position();
+
+        point_2d p1, p2, p3, p4;
+
+        if (circle_triangle_intersect(c1, t1, p1))
+            fill_triangle(COLOR_TAN, t1);
+
+        if (circle_triangle_intersect(c1, t2, p2))
+            fill_triangle(COLOR_TAN, t2);
+
+        if (circle_triangle_intersect(c1, t3, p3))
+            fill_triangle(COLOR_TAN, t3);
+
+        if (circle_triangle_intersect(c1, t4, p4))
+            fill_triangle(COLOR_TAN, t4);
+
+        draw_triangle(COLOR_RED, t1);
+        draw_triangle(COLOR_RED, t2);
+        draw_triangle(COLOR_RED, t3);
+        draw_triangle(COLOR_RED, t4);
+
+        draw_circle(COLOR_RED, p1.x, p1.y, 5);
+        draw_circle(COLOR_RED, p2.x, p2.y, 5);
+        draw_circle(COLOR_RED, p3.x, p3.y, 5);
+        draw_circle(COLOR_RED, p4.x, p4.y, 5);
+
+        draw_circle(COLOR_RED, c1);
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
 void run_geometry_test()
 {
     test_rectangle();
     test_points();
+    test_lines();
+    test_triangle();
 }

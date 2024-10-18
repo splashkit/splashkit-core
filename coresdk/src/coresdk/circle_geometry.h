@@ -59,6 +59,40 @@ namespace splashkit_lib
     bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius);
 
     /**
+     * Detects if a circle intersects with a triangle.
+     * 
+     * @param c The circle to test
+     * @param tri The triangle to test
+     * @returns True if the circle and triangle intersect
+     */
+    bool circle_triangle_intersect(const circle &c, const triangle &tri);
+
+    /**
+     * Detects if a circle intersects with a triangle. The closest point on the
+     * triangle to the circle is assigned to p, even if the circle and triangle do not
+     * intersect. If the centre of the circle is inside the triangle,
+     * the point assigned to p is the centre of the circle.
+     * 
+     * @param c The circle to test
+     * @param tri The triangle to test
+     * @param p The point to set to the closest point on the triangle to the circle
+     * @returns True if the circle and triangle intersect
+     */
+    bool circle_triangle_intersect(const circle &c, const triangle &tri, point_2d &p);
+
+    /**
+     * Calculates the closest point on a triangle to a circle. If the circle and
+     * triangle do not intersect, the closest point on the triangle to the circle
+     * is returned. If the circle and triangle do intersect, the center of the
+     * circle is returned.
+     *
+     * @param c   The circle to test
+     * @param tri The triangle to test
+     * @returns   The closest point on the triangle to the circle
+     */
+    point_2d closest_point_on_triangle_from_circle(const circle &c, const triangle &tri);
+
+    /**
      *  Returns the center point of the circle.
      *
      * @param c   The circle to get the center point
