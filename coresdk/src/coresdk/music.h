@@ -103,7 +103,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_times_and_volume
      */
-    void play_music(music data, int times, float volume);
+    void play_music(music data, int times, double volume);
 
     /**
      * Plays a music file once at full volume.
@@ -251,7 +251,7 @@ namespace splashkit_lib
      * @attribute static music
      * @attribute setter volume
      */
-    void set_music_volume(float volume);
+    void set_music_volume(double volume);
 
     /**
      * Returns the volume of the currently playing `music`.
@@ -261,7 +261,7 @@ namespace splashkit_lib
      * @attribute static music
      * @attribute getter volume
      */
-    float music_volume();
+    double music_volume();
 
     /**
      * Returns the name that SplashKit uses to refer to this music data

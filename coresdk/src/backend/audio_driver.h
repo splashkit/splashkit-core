@@ -56,13 +56,13 @@ namespace splashkit_lib
 
     void sk_fade_music_out(int ms);
 
-    void sk_set_music_vol(float vol);
+    void sk_set_music_vol(double vol);
 
-    float sk_music_vol();
+    double sk_music_vol();
 
-    float sk_sound_volume(sk_sound_data *sound);
+    double sk_sound_volume(sk_sound_data *sound);
 
-    void sk_set_sound_volume(sk_sound_data *sound, float vol);
+    void sk_set_sound_volume(sk_sound_data *sound, double vol);
 
     void sk_pause_music();
     
