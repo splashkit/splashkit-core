@@ -493,6 +493,8 @@ function CenterPoint(const c: Circle): Point2D;
 function CircleAt(const pt: Point2D; radius: Double): Circle;
 function CircleAt(x: Double; y: Double; radius: Double): Circle;
 function CircleRadius(c: Circle): Single;
+function CircleTriangleIntersect(const c: Circle; const tri: Triangle): Boolean;
+function CircleTriangleIntersect(const c: Circle; const tri: Triangle; var p: Point2D): Boolean;
 function CircleX(const c: Circle): Single;
 function CircleY(const c: Circle): Single;
 function CirclesIntersect(c1: Circle; c2: Circle): Boolean;
@@ -500,6 +502,7 @@ function CirclesIntersect(c1X: Double; c1Y: Double; c1Radius: Double; c2X: Doubl
 function ClosestPointOnCircle(const fromPt: Point2D; const c: Circle): Point2D;
 function ClosestPointOnLineFromCircle(const c: Circle; const l: Line): Point2D;
 function ClosestPointOnRectFromCircle(const c: Circle; const rect: Rectangle): Point2D;
+function ClosestPointOnTriangleFromCircle(const c: Circle; const tri: Triangle): Point2D;
 function DistantPointOnCircle(const pt: Point2D; const c: Circle): Point2D;
 function DistantPointOnCircleHeading(const pt: Point2D; const c: Circle; const heading: Vector2D; var oppositePt: Point2D): Boolean;
 function RayCircleIntersectDistance(const rayOrigin: Point2D; const rayHeading: Vector2D; const c: Circle): Single;
@@ -835,40 +838,40 @@ function BitmapButton(bmp: Bitmap): Boolean;
 function BitmapButton(bmp: Bitmap; const rect: Rectangle): Boolean;
 function BitmapButton(bmp: Bitmap; const rect: Rectangle; opts: DrawingOptions): Boolean;
 function BitmapButton(bmp: Bitmap; opts: DrawingOptions): Boolean;
-function BitmapButton(const label: String; bmp: Bitmap): Boolean;
-function BitmapButton(const label: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
+function BitmapButton(const labelText: String; bmp: Bitmap): Boolean;
+function BitmapButton(const labelText: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
 function Button(const text: String; const rect: Rectangle): Boolean;
 function Button(const text: String): Boolean;
-function Button(const label: String; const text: String): Boolean;
+function Button(const labelText: String; const text: String): Boolean;
 function Checkbox(const text: String; const value: Boolean; const rect: Rectangle): Boolean;
 function Checkbox(const text: String; const value: Boolean): Boolean;
-function Checkbox(const label: String; const text: String; const value: Boolean): Boolean;
+function Checkbox(const labelText: String; const text: String; const value: Boolean): Boolean;
 function ColorSlider(const clr: Color; const rect: Rectangle): Color;
 function ColorSlider(const clr: Color): Color;
-function ColorSlider(const label: String; const clr: Color): Color;
+function ColorSlider(const labelText: String; const clr: Color): Color;
 procedure DisableInterface();
 procedure DrawInterface();
 procedure EnableInterface();
 procedure EndInset(const name: String);
 procedure EndPanel(const name: String);
 procedure EndPopup(const name: String);
-procedure EndTreenode(const label: String);
+procedure EndTreenode(const labelText: String);
 procedure EnterColumn();
 function GetInterfaceLabelWidth(): Integer;
-function Header(const label: String): Boolean;
+function Header(const labelText: String): Boolean;
 function HSBColorSlider(const clr: Color; const rect: Rectangle): Color;
 function HSBColorSlider(const clr: Color): Color;
-function HSBColorSlider(const label: String; const clr: Color): Color;
+function HSBColorSlider(const labelText: String; const clr: Color): Color;
 function InterfaceEnabled(): Boolean;
 procedure InterfaceStylePanel(const initialRectangle: Rectangle);
-procedure Label(const text: String);
-procedure Label(const text: String; const rect: Rectangle);
+procedure LabelElement(const text: String);
+procedure LabelElement(const text: String; const rect: Rectangle);
 function LastElementChanged(): Boolean;
 function LastElementConfirmed(): Boolean;
 procedure LeaveColumn();
 function NumberBox(const value: Single; step: Single; const rect: Rectangle): Single;
 function NumberBox(const value: Single; step: Single): Single;
-function NumberBox(const label: String; const value: Single; step: Single): Single;
+function NumberBox(const labelText: String; const value: Single; step: Single): Single;
 procedure OpenPopup(const name: String);
 procedure Paragraph(const text: String);
 procedure Paragraph(const text: String; const rect: Rectangle);
@@ -893,7 +896,7 @@ procedure SetLayoutHeight(height: Integer);
 procedure SingleLineLayout();
 function Slider(const value: Single; minValue: Single; maxValue: Single; const rect: Rectangle): Single;
 function Slider(const value: Single; minValue: Single; maxValue: Single): Single;
-function Slider(const label: String; const value: Single; minValue: Single; maxValue: Single): Single;
+function Slider(const labelText: String; const value: Single; minValue: Single; maxValue: Single): Single;
 procedure SplitIntoColumns(count: Integer);
 procedure SplitIntoColumns(count: Integer; lastWidth: Integer);
 procedure SplitIntoColumnsRelative(count: Integer; lastWidth: Double);
@@ -902,10 +905,10 @@ procedure StartInset(const name: String; const rect: Rectangle);
 procedure StartInset(const name: String; height: Integer);
 function StartPanel(const name: String; initialRectangle: Rectangle): Boolean;
 function StartPopup(const name: String): Boolean;
-function StartTreenode(const label: String): Boolean;
+function StartTreenode(const labelText: String): Boolean;
 function TextBox(const value: String): String;
 function TextBox(const value: String; const rect: Rectangle): String;
-function TextBox(const label: String; const value: String): String;
+function TextBox(const labelText: String; const value: String): String;
 function CreateJson(): Json;
 function CreateJson(jsonString: String): Json;
 procedure FreeAllJson();
@@ -1035,15 +1038,15 @@ function MusicName(data: Music): String;
 function MusicNamed(const name: String): Music;
 function MusicPlaying(): Boolean;
 function MusicValid(m: Music): Boolean;
-function MusicVolume(): Single;
+function MusicVolume(): Double;
 procedure PauseMusic();
 procedure PlayMusic(const name: String);
 procedure PlayMusic(const name: String; times: Integer);
 procedure PlayMusic(data: Music);
 procedure PlayMusic(data: Music; times: Integer);
-procedure PlayMusic(data: Music; times: Integer; volume: Single);
+procedure PlayMusic(data: Music; times: Integer; volume: Double);
 procedure ResumeMusic();
-procedure SetMusicVolume(volume: Single);
+procedure SetMusicVolume(volume: Double);
 procedure StopMusic();
 function AcceptAllNewConnections(): Boolean;
 function AcceptNewConnection(server: ServerSocket): Boolean;
@@ -1249,13 +1252,13 @@ procedure FreeSoundEffect(effect: SoundEffect);
 function HasSoundEffect(const name: String): Boolean;
 function LoadSoundEffect(const name: String; const filename: String): SoundEffect;
 procedure PlaySoundEffect(const name: String);
-procedure PlaySoundEffect(const name: String; volume: Single);
+procedure PlaySoundEffect(const name: String; volume: Double);
 procedure PlaySoundEffect(const name: String; times: Integer);
-procedure PlaySoundEffect(const name: String; times: Integer; volume: Single);
+procedure PlaySoundEffect(const name: String; times: Integer; volume: Double);
 procedure PlaySoundEffect(effect: SoundEffect);
-procedure PlaySoundEffect(effect: SoundEffect; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect; volume: Double);
 procedure PlaySoundEffect(effect: SoundEffect; times: Integer);
-procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Double);
 function SoundEffectFilename(effect: SoundEffect): String;
 function SoundEffectName(effect: SoundEffect): String;
 function SoundEffectNamed(const name: String): SoundEffect;
@@ -1532,7 +1535,7 @@ function VectorInRect(const v: Vector2D; const rect: Rectangle): Boolean;
 function VectorInvert(const v: Vector2D): Vector2D;
 function VectorLimit(const v: Vector2D; limit: Double): Vector2D;
 function VectorMagnitude(const v: Vector2D): Double;
-function VectorMagnitudeSqared(const v: Vector2D): Double;
+function VectorMagnitudeSquared(const v: Vector2D): Double;
 function VectorMultiply(const v1: Vector2D; s: Double): Vector2D;
 function VectorNormal(const v: Vector2D): Vector2D;
 function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; const velocity: Vector2D): Vector2D;
@@ -2705,6 +2708,8 @@ function __sklib__center_point__circle_ref(const c: __sklib_circle): __sklib_poi
 function __sklib__circle_at__point_2d_ref__double(const pt: __sklib_point_2d; radius: Double): __sklib_circle; cdecl; external;
 function __sklib__circle_at__double__double__double(x: Double; y: Double; radius: Double): __sklib_circle; cdecl; external;
 function __sklib__circle_radius__circle(c: __sklib_circle): Single; cdecl; external;
+function __sklib__circle_triangle_intersect__circle_ref__triangle_ref(const c: __sklib_circle; const tri: __sklib_triangle): LongInt; cdecl; external;
+function __sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref(const c: __sklib_circle; const tri: __sklib_triangle; var p: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__circle_x__circle_ref(const c: __sklib_circle): Single; cdecl; external;
 function __sklib__circle_y__circle_ref(const c: __sklib_circle): Single; cdecl; external;
 function __sklib__circles_intersect__circle__circle(c1: __sklib_circle; c2: __sklib_circle): LongInt; cdecl; external;
@@ -2712,6 +2717,7 @@ function __sklib__circles_intersect__double__double__double__double__double__dou
 function __sklib__closest_point_on_circle__point_2d_ref__circle_ref(const fromPt: __sklib_point_2d; const c: __sklib_circle): __sklib_point_2d; cdecl; external;
 function __sklib__closest_point_on_line_from_circle__circle_ref__line_ref(const c: __sklib_circle; const l: __sklib_line): __sklib_point_2d; cdecl; external;
 function __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(const c: __sklib_circle; const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
+function __sklib__closest_point_on_triangle_from_circle__circle_ref__triangle_ref(const c: __sklib_circle; const tri: __sklib_triangle): __sklib_point_2d; cdecl; external;
 function __sklib__distant_point_on_circle__point_2d_ref__circle_ref(const pt: __sklib_point_2d; const c: __sklib_circle): __sklib_point_2d; cdecl; external;
 function __sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref(const pt: __sklib_point_2d; const c: __sklib_circle; const heading: __sklib_vector_2d; var oppositePt: __sklib_point_2d): LongInt; cdecl; external;
 function __sklib__ray_circle_intersect_distance__point_2d_ref__vector_2d_ref__circle_ref(const rayOrigin: __sklib_point_2d; const rayHeading: __sklib_vector_2d; const c: __sklib_circle): Single; cdecl; external;
@@ -3047,40 +3053,40 @@ function __sklib__bitmap_button__bitmap(bmp: __sklib_ptr): LongInt; cdecl; exter
 function __sklib__bitmap_button__bitmap__rectangle_ref(bmp: __sklib_ptr; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__bitmap_button__bitmap__rectangle_ref__drawing_options(bmp: __sklib_ptr; const rect: __sklib_rectangle; opts: __sklib_drawing_options): LongInt; cdecl; external;
 function __sklib__bitmap_button__bitmap__drawing_options(bmp: __sklib_ptr; opts: __sklib_drawing_options): LongInt; cdecl; external;
-function __sklib__bitmap_button__string_ref__bitmap(const label: __sklib_string; bmp: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__bitmap_button__string_ref__bitmap__drawing_options(const label: __sklib_string; bmp: __sklib_ptr; opts: __sklib_drawing_options): LongInt; cdecl; external;
+function __sklib__bitmap_button__string_ref__bitmap(const labelText: __sklib_string; bmp: __sklib_ptr): LongInt; cdecl; external;
+function __sklib__bitmap_button__string_ref__bitmap__drawing_options(const labelText: __sklib_string; bmp: __sklib_ptr; opts: __sklib_drawing_options): LongInt; cdecl; external;
 function __sklib__button__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__button__string_ref(const text: __sklib_string): LongInt; cdecl; external;
-function __sklib__button__string_ref__string_ref(const label: __sklib_string; const text: __sklib_string): LongInt; cdecl; external;
+function __sklib__button__string_ref__string_ref(const labelText: __sklib_string; const text: __sklib_string): LongInt; cdecl; external;
 function __sklib__checkbox__string_ref__bool_ref__rectangle_ref(const text: __sklib_string; const value: LongInt; const rect: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__checkbox__string_ref__bool_ref(const text: __sklib_string; const value: LongInt): LongInt; cdecl; external;
-function __sklib__checkbox__string_ref__string_ref__bool_ref(const label: __sklib_string; const text: __sklib_string; const value: LongInt): LongInt; cdecl; external;
+function __sklib__checkbox__string_ref__string_ref__bool_ref(const labelText: __sklib_string; const text: __sklib_string; const value: LongInt): LongInt; cdecl; external;
 function __sklib__color_slider__color_ref__rectangle_ref(const clr: __sklib_color; const rect: __sklib_rectangle): __sklib_color; cdecl; external;
 function __sklib__color_slider__color_ref(const clr: __sklib_color): __sklib_color; cdecl; external;
-function __sklib__color_slider__string_ref__color_ref(const label: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
+function __sklib__color_slider__string_ref__color_ref(const labelText: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
 procedure __sklib__disable_interface(); cdecl; external;
 procedure __sklib__draw_interface(); cdecl; external;
 procedure __sklib__enable_interface(); cdecl; external;
 procedure __sklib__end_inset__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__end_panel__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__end_popup__string_ref(const name: __sklib_string); cdecl; external;
-procedure __sklib__end_treenode__string_ref(const label: __sklib_string); cdecl; external;
+procedure __sklib__end_treenode__string_ref(const labelText: __sklib_string); cdecl; external;
 procedure __sklib__enter_column(); cdecl; external;
 function __sklib__get_interface_label_width(): Integer; cdecl; external;
-function __sklib__header__string_ref(const label: __sklib_string): LongInt; cdecl; external;
+function __sklib__header__string_ref(const labelText: __sklib_string): LongInt; cdecl; external;
 function __sklib__hsb_color_slider__color_ref__rectangle_ref(const clr: __sklib_color; const rect: __sklib_rectangle): __sklib_color; cdecl; external;
 function __sklib__hsb_color_slider__color_ref(const clr: __sklib_color): __sklib_color; cdecl; external;
-function __sklib__hsb_color_slider__string_ref__color_ref(const label: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
+function __sklib__hsb_color_slider__string_ref__color_ref(const labelText: __sklib_string; const clr: __sklib_color): __sklib_color; cdecl; external;
 function __sklib__interface_enabled(): LongInt; cdecl; external;
 procedure __sklib__interface_style_panel__rectangle_ref(const initialRectangle: __sklib_rectangle); cdecl; external;
-procedure __sklib__label__string_ref(const text: __sklib_string); cdecl; external;
-procedure __sklib__label__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
+procedure __sklib__label_element__string_ref(const text: __sklib_string); cdecl; external;
+procedure __sklib__label_element__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
 function __sklib__last_element_changed(): LongInt; cdecl; external;
 function __sklib__last_element_confirmed(): LongInt; cdecl; external;
 procedure __sklib__leave_column(); cdecl; external;
 function __sklib__number_box__float_ref__float__rectangle_ref(const value: Single; step: Single; const rect: __sklib_rectangle): Single; cdecl; external;
 function __sklib__number_box__float_ref__float(const value: Single; step: Single): Single; cdecl; external;
-function __sklib__number_box__string_ref__float_ref__float(const label: __sklib_string; const value: Single; step: Single): Single; cdecl; external;
+function __sklib__number_box__string_ref__float_ref__float(const labelText: __sklib_string; const value: Single; step: Single): Single; cdecl; external;
 procedure __sklib__open_popup__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__paragraph__string_ref(const text: __sklib_string); cdecl; external;
 procedure __sklib__paragraph__string_ref__rectangle_ref(const text: __sklib_string; const rect: __sklib_rectangle); cdecl; external;
@@ -3105,7 +3111,7 @@ procedure __sklib__set_layout_height__int(height: Integer); cdecl; external;
 procedure __sklib__single_line_layout(); cdecl; external;
 function __sklib__slider__float_ref__float__float__rectangle_ref(const value: Single; minValue: Single; maxValue: Single; const rect: __sklib_rectangle): Single; cdecl; external;
 function __sklib__slider__float_ref__float__float(const value: Single; minValue: Single; maxValue: Single): Single; cdecl; external;
-function __sklib__slider__string_ref__float_ref__float__float(const label: __sklib_string; const value: Single; minValue: Single; maxValue: Single): Single; cdecl; external;
+function __sklib__slider__string_ref__float_ref__float__float(const labelText: __sklib_string; const value: Single; minValue: Single; maxValue: Single): Single; cdecl; external;
 procedure __sklib__split_into_columns__int(count: Integer); cdecl; external;
 procedure __sklib__split_into_columns__int__int(count: Integer; lastWidth: Integer); cdecl; external;
 procedure __sklib__split_into_columns_relative__int__double(count: Integer; lastWidth: Double); cdecl; external;
@@ -3114,10 +3120,10 @@ procedure __sklib__start_inset__string_ref__rectangle_ref(const name: __sklib_st
 procedure __sklib__start_inset__string_ref__int(const name: __sklib_string; height: Integer); cdecl; external;
 function __sklib__start_panel__string_ref__rectangle(const name: __sklib_string; initialRectangle: __sklib_rectangle): LongInt; cdecl; external;
 function __sklib__start_popup__string_ref(const name: __sklib_string): LongInt; cdecl; external;
-function __sklib__start_treenode__string_ref(const label: __sklib_string): LongInt; cdecl; external;
+function __sklib__start_treenode__string_ref(const labelText: __sklib_string): LongInt; cdecl; external;
 function __sklib__text_box__string_ref(const value: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__text_box__string_ref__rectangle_ref(const value: __sklib_string; const rect: __sklib_rectangle): __sklib_string; cdecl; external;
-function __sklib__text_box__string_ref__string_ref(const label: __sklib_string; const value: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__text_box__string_ref__string_ref(const labelText: __sklib_string; const value: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__create_json(): __sklib_ptr; cdecl; external;
 function __sklib__create_json__string(jsonString: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__free_all_json(); cdecl; external;
@@ -3247,15 +3253,15 @@ function __sklib__music_name__music(data: __sklib_ptr): __sklib_string; cdecl; e
 function __sklib__music_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
 function __sklib__music_playing(): LongInt; cdecl; external;
 function __sklib__music_valid__music(m: __sklib_ptr): LongInt; cdecl; external;
-function __sklib__music_volume(): Single; cdecl; external;
+function __sklib__music_volume(): Double; cdecl; external;
 procedure __sklib__pause_music(); cdecl; external;
 procedure __sklib__play_music__string_ref(const name: __sklib_string); cdecl; external;
 procedure __sklib__play_music__string_ref__int(const name: __sklib_string; times: Integer); cdecl; external;
 procedure __sklib__play_music__music(data: __sklib_ptr); cdecl; external;
 procedure __sklib__play_music__music__int(data: __sklib_ptr; times: Integer); cdecl; external;
-procedure __sklib__play_music__music__int__float(data: __sklib_ptr; times: Integer; volume: Single); cdecl; external;
+procedure __sklib__play_music__music__int__double(data: __sklib_ptr; times: Integer; volume: Double); cdecl; external;
 procedure __sklib__resume_music(); cdecl; external;
-procedure __sklib__set_music_volume__float(volume: Single); cdecl; external;
+procedure __sklib__set_music_volume__double(volume: Double); cdecl; external;
 procedure __sklib__stop_music(); cdecl; external;
 function __sklib__accept_all_new_connections(): LongInt; cdecl; external;
 function __sklib__accept_new_connection__server_socket(server: __sklib_ptr): LongInt; cdecl; external;
@@ -3461,13 +3467,13 @@ procedure __sklib__free_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; 
 function __sklib__has_sound_effect__string_ref(const name: __sklib_string): LongInt; cdecl; external;
 function __sklib__load_sound_effect__string_ref__string_ref(const name: __sklib_string; const filename: __sklib_string): __sklib_ptr; cdecl; external;
 procedure __sklib__play_sound_effect__string_ref(const name: __sklib_string); cdecl; external;
-procedure __sklib__play_sound_effect__string_ref__float(const name: __sklib_string; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__string_ref__double(const name: __sklib_string; volume: Double); cdecl; external;
 procedure __sklib__play_sound_effect__string_ref__int(const name: __sklib_string; times: Integer); cdecl; external;
-procedure __sklib__play_sound_effect__string_ref__int__float(const name: __sklib_string; times: Integer; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__string_ref__int__double(const name: __sklib_string; times: Integer; volume: Double); cdecl; external;
 procedure __sklib__play_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; external;
-procedure __sklib__play_sound_effect__sound_effect__float(effect: __sklib_ptr; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect__double(effect: __sklib_ptr; volume: Double); cdecl; external;
 procedure __sklib__play_sound_effect__sound_effect__int(effect: __sklib_ptr; times: Integer); cdecl; external;
-procedure __sklib__play_sound_effect__sound_effect__int__float(effect: __sklib_ptr; times: Integer; volume: Single); cdecl; external;
+procedure __sklib__play_sound_effect__sound_effect__int__double(effect: __sklib_ptr; times: Integer; volume: Double); cdecl; external;
 function __sklib__sound_effect_filename__sound_effect(effect: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__sound_effect_name__sound_effect(effect: __sklib_ptr): __sklib_string; cdecl; external;
 function __sklib__sound_effect_named__string_ref(const name: __sklib_string): __sklib_ptr; cdecl; external;
@@ -3744,7 +3750,7 @@ function __sklib__vector_in_rect__vector_2d_ref__rectangle_ref(const v: __sklib_
 function __sklib__vector_invert__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_limit__vector_2d_ref__double(const v: __sklib_vector_2d; limit: Double): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_magnitude__vector_2d_ref(const v: __sklib_vector_2d): Double; cdecl; external;
-function __sklib__vector_magnitude_sqared__vector_2d_ref(const v: __sklib_vector_2d): Double; cdecl; external;
+function __sklib__vector_magnitude_squared__vector_2d_ref(const v: __sklib_vector_2d): Double; cdecl; external;
 function __sklib__vector_multiply__vector_2d_ref__double(const v1: __sklib_vector_2d; s: Double): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_normal__vector_2d_ref(const v: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
 function __sklib__vector_out_of_circle_from_circle__circle_ref__circle_ref__vector_2d_ref(const src: __sklib_circle; const bounds: __sklib_circle; const velocity: __sklib_vector_2d): __sklib_vector_2d; cdecl; external;
@@ -4877,6 +4883,31 @@ begin
   __skreturn := __sklib__circle_radius__circle(__skparam__c);
   result := __skadapter__to_float(__skreturn);
 end;
+function CircleTriangleIntersect(const c: Circle; const tri: Triangle): Boolean;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__tri: __sklib_triangle;
+  __skreturn: LongInt;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skreturn := __sklib__circle_triangle_intersect__circle_ref__triangle_ref(__skparam__c, __skparam__tri);
+  result := __skadapter__to_bool(__skreturn);
+end;
+function CircleTriangleIntersect(const c: Circle; const tri: Triangle; var p: Point2D): Boolean;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__tri: __sklib_triangle;
+  __skparam__p: __sklib_point_2d;
+  __skreturn: LongInt;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skparam__p := __skadapter__to_sklib_point_2d(p);
+  __skreturn := __sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref(__skparam__c, __skparam__tri, __skparam__p);
+  p := __skadapter__to_point_2d(__skparam__p);
+  result := __skadapter__to_bool(__skreturn);
+end;
 function CircleX(const c: Circle): Single;
 var
   __skparam__c: __sklib_circle;
@@ -4956,6 +4987,17 @@ begin
   __skparam__c := __skadapter__to_sklib_circle(c);
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(__skparam__c, __skparam__rect);
+  result := __skadapter__to_point_2d(__skreturn);
+end;
+function ClosestPointOnTriangleFromCircle(const c: Circle; const tri: Triangle): Point2D;
+var
+  __skparam__c: __sklib_circle;
+  __skparam__tri: __sklib_triangle;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__c := __skadapter__to_sklib_circle(c);
+  __skparam__tri := __skadapter__to_sklib_triangle(tri);
+  __skreturn := __sklib__closest_point_on_triangle_from_circle__circle_ref__triangle_ref(__skparam__c, __skparam__tri);
   result := __skadapter__to_point_2d(__skreturn);
 end;
 function DistantPointOnCircle(const pt: Point2D; const c: Circle): Point2D;
@@ -8091,28 +8133,28 @@ begin
   __skreturn := __sklib__bitmap_button__bitmap__drawing_options(__skparam__bmp, __skparam__opts);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapButton(const label: String; bmp: Bitmap): Boolean;
+function BitmapButton(const labelText: String; bmp: Bitmap): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__bmp: __sklib_ptr;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
-  __skreturn := __sklib__bitmap_button__string_ref__bitmap(__skparam__label, __skparam__bmp);
+  __skreturn := __sklib__bitmap_button__string_ref__bitmap(__skparam__label_text, __skparam__bmp);
   result := __skadapter__to_bool(__skreturn);
 end;
-function BitmapButton(const label: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
+function BitmapButton(const labelText: String; bmp: Bitmap; opts: DrawingOptions): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__bmp: __sklib_ptr;
   __skparam__opts: __sklib_drawing_options;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__bmp := __skadapter__to_sklib_bitmap(bmp);
   __skparam__opts := __skadapter__to_sklib_drawing_options(opts);
-  __skreturn := __sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label, __skparam__bmp, __skparam__opts);
+  __skreturn := __sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label_text, __skparam__bmp, __skparam__opts);
   result := __skadapter__to_bool(__skreturn);
 end;
 function Button(const text: String; const rect: Rectangle): Boolean;
@@ -8135,15 +8177,15 @@ begin
   __skreturn := __sklib__button__string_ref(__skparam__text);
   result := __skadapter__to_bool(__skreturn);
 end;
-function Button(const label: String; const text: String): Boolean;
+function Button(const labelText: String; const text: String): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__text: __sklib_string;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__text := __skadapter__to_sklib_string(text);
-  __skreturn := __sklib__button__string_ref__string_ref(__skparam__label, __skparam__text);
+  __skreturn := __sklib__button__string_ref__string_ref(__skparam__label_text, __skparam__text);
   result := __skadapter__to_bool(__skreturn);
 end;
 function Checkbox(const text: String; const value: Boolean; const rect: Rectangle): Boolean;
@@ -8170,17 +8212,17 @@ begin
   __skreturn := __sklib__checkbox__string_ref__bool_ref(__skparam__text, __skparam__value);
   result := __skadapter__to_bool(__skreturn);
 end;
-function Checkbox(const label: String; const text: String; const value: Boolean): Boolean;
+function Checkbox(const labelText: String; const text: String; const value: Boolean): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__text: __sklib_string;
   __skparam__value: LongInt;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__text := __skadapter__to_sklib_string(text);
   __skparam__value := __skadapter__to_sklib_bool(value);
-  __skreturn := __sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label, __skparam__text, __skparam__value);
+  __skreturn := __sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label_text, __skparam__text, __skparam__value);
   result := __skadapter__to_bool(__skreturn);
 end;
 function ColorSlider(const clr: Color; const rect: Rectangle): Color;
@@ -8203,15 +8245,15 @@ begin
   __skreturn := __sklib__color_slider__color_ref(__skparam__clr);
   result := __skadapter__to_color(__skreturn);
 end;
-function ColorSlider(const label: String; const clr: Color): Color;
+function ColorSlider(const labelText: String; const clr: Color): Color;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__clr: __sklib_color;
   __skreturn: __sklib_color;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__clr := __skadapter__to_sklib_color(clr);
-  __skreturn := __sklib__color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+  __skreturn := __sklib__color_slider__string_ref__color_ref(__skparam__label_text, __skparam__clr);
   result := __skadapter__to_color(__skreturn);
 end;
 procedure DisableInterface();
@@ -8247,12 +8289,12 @@ begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __sklib__end_popup__string_ref(__skparam__name);
 end;
-procedure EndTreenode(const label: String);
+procedure EndTreenode(const labelText: String);
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
-  __sklib__end_treenode__string_ref(__skparam__label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
+  __sklib__end_treenode__string_ref(__skparam__label_text);
 end;
 procedure EnterColumn();
 begin
@@ -8265,13 +8307,13 @@ begin
   __skreturn := __sklib__get_interface_label_width();
   result := __skadapter__to_int(__skreturn);
 end;
-function Header(const label: String): Boolean;
+function Header(const labelText: String): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
-  __skreturn := __sklib__header__string_ref(__skparam__label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
+  __skreturn := __sklib__header__string_ref(__skparam__label_text);
   result := __skadapter__to_bool(__skreturn);
 end;
 function HSBColorSlider(const clr: Color; const rect: Rectangle): Color;
@@ -8294,15 +8336,15 @@ begin
   __skreturn := __sklib__hsb_color_slider__color_ref(__skparam__clr);
   result := __skadapter__to_color(__skreturn);
 end;
-function HSBColorSlider(const label: String; const clr: Color): Color;
+function HSBColorSlider(const labelText: String; const clr: Color): Color;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__clr: __sklib_color;
   __skreturn: __sklib_color;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__clr := __skadapter__to_sklib_color(clr);
-  __skreturn := __sklib__hsb_color_slider__string_ref__color_ref(__skparam__label, __skparam__clr);
+  __skreturn := __sklib__hsb_color_slider__string_ref__color_ref(__skparam__label_text, __skparam__clr);
   result := __skadapter__to_color(__skreturn);
 end;
 function InterfaceEnabled(): Boolean;
@@ -8319,21 +8361,21 @@ begin
   __skparam__initial_rectangle := __skadapter__to_sklib_rectangle(initialRectangle);
   __sklib__interface_style_panel__rectangle_ref(__skparam__initial_rectangle);
 end;
-procedure Label(const text: String);
+procedure LabelElement(const text: String);
 var
   __skparam__text: __sklib_string;
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
-  __sklib__label__string_ref(__skparam__text);
+  __sklib__label_element__string_ref(__skparam__text);
 end;
-procedure Label(const text: String; const rect: Rectangle);
+procedure LabelElement(const text: String; const rect: Rectangle);
 var
   __skparam__text: __sklib_string;
   __skparam__rect: __sklib_rectangle;
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
-  __sklib__label__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
+  __sklib__label_element__string_ref__rectangle_ref(__skparam__text, __skparam__rect);
 end;
 function LastElementChanged(): Boolean;
 var
@@ -8377,17 +8419,17 @@ begin
   __skreturn := __sklib__number_box__float_ref__float(__skparam__value, __skparam__step);
   result := __skadapter__to_float(__skreturn);
 end;
-function NumberBox(const label: String; const value: Single; step: Single): Single;
+function NumberBox(const labelText: String; const value: Single; step: Single): Single;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__value: Single;
   __skparam__step: Single;
   __skreturn: Single;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__value := __skadapter__to_sklib_float(value);
   __skparam__step := __skadapter__to_sklib_float(step);
-  __skreturn := __sklib__number_box__string_ref__float_ref__float(__skparam__label, __skparam__value, __skparam__step);
+  __skreturn := __sklib__number_box__string_ref__float_ref__float(__skparam__label_text, __skparam__value, __skparam__step);
   result := __skadapter__to_float(__skreturn);
 end;
 procedure OpenPopup(const name: String);
@@ -8596,19 +8638,19 @@ begin
   __skreturn := __sklib__slider__float_ref__float__float(__skparam__value, __skparam__min_value, __skparam__max_value);
   result := __skadapter__to_float(__skreturn);
 end;
-function Slider(const label: String; const value: Single; minValue: Single; maxValue: Single): Single;
+function Slider(const labelText: String; const value: Single; minValue: Single; maxValue: Single): Single;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__value: Single;
   __skparam__min_value: Single;
   __skparam__max_value: Single;
   __skreturn: Single;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__value := __skadapter__to_sklib_float(value);
   __skparam__min_value := __skadapter__to_sklib_float(minValue);
   __skparam__max_value := __skadapter__to_sklib_float(maxValue);
-  __skreturn := __sklib__slider__string_ref__float_ref__float__float(__skparam__label, __skparam__value, __skparam__min_value, __skparam__max_value);
+  __skreturn := __sklib__slider__string_ref__float_ref__float__float(__skparam__label_text, __skparam__value, __skparam__min_value, __skparam__max_value);
   result := __skadapter__to_float(__skreturn);
 end;
 procedure SplitIntoColumns(count: Integer);
@@ -8678,13 +8720,13 @@ begin
   __skreturn := __sklib__start_popup__string_ref(__skparam__name);
   result := __skadapter__to_bool(__skreturn);
 end;
-function StartTreenode(const label: String): Boolean;
+function StartTreenode(const labelText: String): Boolean;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skreturn: LongInt;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
-  __skreturn := __sklib__start_treenode__string_ref(__skparam__label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
+  __skreturn := __sklib__start_treenode__string_ref(__skparam__label_text);
   result := __skadapter__to_bool(__skreturn);
 end;
 function TextBox(const value: String): String;
@@ -8707,15 +8749,15 @@ begin
   __skreturn := __sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect);
   result := __skadapter__to_string(__skreturn);
 end;
-function TextBox(const label: String; const value: String): String;
+function TextBox(const labelText: String; const value: String): String;
 var
-  __skparam__label: __sklib_string;
+  __skparam__label_text: __sklib_string;
   __skparam__value: __sklib_string;
   __skreturn: __sklib_string;
 begin
-  __skparam__label := __skadapter__to_sklib_string(label);
+  __skparam__label_text := __skadapter__to_sklib_string(labelText);
   __skparam__value := __skadapter__to_sklib_string(value);
-  __skreturn := __sklib__text_box__string_ref__string_ref(__skparam__label, __skparam__value);
+  __skreturn := __sklib__text_box__string_ref__string_ref(__skparam__label_text, __skparam__value);
   result := __skadapter__to_string(__skreturn);
 end;
 function CreateJson(): Json;
@@ -9996,12 +10038,12 @@ begin
   __skreturn := __sklib__music_valid__music(__skparam__m);
   result := __skadapter__to_bool(__skreturn);
 end;
-function MusicVolume(): Single;
+function MusicVolume(): Double;
 var
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skreturn := __sklib__music_volume();
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 procedure PauseMusic();
 begin
@@ -10039,27 +10081,27 @@ begin
   __skparam__times := __skadapter__to_sklib_int(times);
   __sklib__play_music__music__int(__skparam__data, __skparam__times);
 end;
-procedure PlayMusic(data: Music; times: Integer; volume: Single);
+procedure PlayMusic(data: Music; times: Integer; volume: Double);
 var
   __skparam__data: __sklib_ptr;
   __skparam__times: Integer;
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
   __skparam__data := __skadapter__to_sklib_music(data);
   __skparam__times := __skadapter__to_sklib_int(times);
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__play_music__music__int__float(__skparam__data, __skparam__times, __skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__play_music__music__int__double(__skparam__data, __skparam__times, __skparam__volume);
 end;
 procedure ResumeMusic();
 begin
   __sklib__resume_music();
 end;
-procedure SetMusicVolume(volume: Single);
+procedure SetMusicVolume(volume: Double);
 var
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__set_music_volume__float(__skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__set_music_volume__double(__skparam__volume);
 end;
 procedure StopMusic();
 begin
@@ -12153,14 +12195,14 @@ begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __sklib__play_sound_effect__string_ref(__skparam__name);
 end;
-procedure PlaySoundEffect(const name: String; volume: Single);
+procedure PlaySoundEffect(const name: String; volume: Double);
 var
   __skparam__name: __sklib_string;
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
   __skparam__name := __skadapter__to_sklib_string(name);
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__play_sound_effect__string_ref__float(__skparam__name, __skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__play_sound_effect__string_ref__double(__skparam__name, __skparam__volume);
 end;
 procedure PlaySoundEffect(const name: String; times: Integer);
 var
@@ -12171,16 +12213,16 @@ begin
   __skparam__times := __skadapter__to_sklib_int(times);
   __sklib__play_sound_effect__string_ref__int(__skparam__name, __skparam__times);
 end;
-procedure PlaySoundEffect(const name: String; times: Integer; volume: Single);
+procedure PlaySoundEffect(const name: String; times: Integer; volume: Double);
 var
   __skparam__name: __sklib_string;
   __skparam__times: Integer;
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
   __skparam__name := __skadapter__to_sklib_string(name);
   __skparam__times := __skadapter__to_sklib_int(times);
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__play_sound_effect__string_ref__int__float(__skparam__name, __skparam__times, __skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__play_sound_effect__string_ref__int__double(__skparam__name, __skparam__times, __skparam__volume);
 end;
 procedure PlaySoundEffect(effect: SoundEffect);
 var
@@ -12189,14 +12231,14 @@ begin
   __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
   __sklib__play_sound_effect__sound_effect(__skparam__effect);
 end;
-procedure PlaySoundEffect(effect: SoundEffect; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect; volume: Double);
 var
   __skparam__effect: __sklib_ptr;
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
   __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__play_sound_effect__sound_effect__float(__skparam__effect, __skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__play_sound_effect__sound_effect__double(__skparam__effect, __skparam__volume);
 end;
 procedure PlaySoundEffect(effect: SoundEffect; times: Integer);
 var
@@ -12207,16 +12249,16 @@ begin
   __skparam__times := __skadapter__to_sklib_int(times);
   __sklib__play_sound_effect__sound_effect__int(__skparam__effect, __skparam__times);
 end;
-procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Single);
+procedure PlaySoundEffect(effect: SoundEffect; times: Integer; volume: Double);
 var
   __skparam__effect: __sklib_ptr;
   __skparam__times: Integer;
-  __skparam__volume: Single;
+  __skparam__volume: Double;
 begin
   __skparam__effect := __skadapter__to_sklib_sound_effect(effect);
   __skparam__times := __skadapter__to_sklib_int(times);
-  __skparam__volume := __skadapter__to_sklib_float(volume);
-  __sklib__play_sound_effect__sound_effect__int__float(__skparam__effect, __skparam__times, __skparam__volume);
+  __skparam__volume := __skadapter__to_sklib_double(volume);
+  __sklib__play_sound_effect__sound_effect__int__double(__skparam__effect, __skparam__times, __skparam__volume);
 end;
 function SoundEffectFilename(effect: SoundEffect): String;
 var
@@ -15078,13 +15120,13 @@ begin
   __skreturn := __sklib__vector_magnitude__vector_2d_ref(__skparam__v);
   result := __skadapter__to_double(__skreturn);
 end;
-function VectorMagnitudeSqared(const v: Vector2D): Double;
+function VectorMagnitudeSquared(const v: Vector2D): Double;
 var
   __skparam__v: __sklib_vector_2d;
   __skreturn: Double;
 begin
   __skparam__v := __skadapter__to_sklib_vector_2d(v);
-  __skreturn := __sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v);
+  __skreturn := __sklib__vector_magnitude_squared__vector_2d_ref(__skparam__v);
   result := __skadapter__to_double(__skreturn);
 end;
 function VectorMultiply(const v1: Vector2D; s: Double): Vector2D;

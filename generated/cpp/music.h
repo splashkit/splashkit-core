@@ -28,15 +28,15 @@ string music_name(music data);
 music music_named(const string &name);
 bool music_playing();
 bool music_valid(music m);
-float music_volume();
+double music_volume();
 void pause_music();
 void play_music(const string &name);
 void play_music(const string &name, int times);
 void play_music(music data);
 void play_music(music data, int times);
-void play_music(music data, int times, float volume);
+void play_music(music data, int times, double volume);
 void resume_music();
-void set_music_volume(float volume);
+void set_music_volume(double volume);
 void stop_music();
 
 #endif /* __music_h */

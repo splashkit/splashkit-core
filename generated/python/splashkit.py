@@ -1,19 +1,27 @@
 from ctypes import *
 from enum import Enum
 from platform import system
+import os
+
+search_paths = []
 
 if system() == 'Darwin':
-  # macOS uses .dylib extension
-  cdll.LoadLibrary("libSplashKit.dylib")
-  sklib = CDLL("libsplashkit.dylib")
+    # macOS uses .dylib extension
+    search_paths = ["/usr/local/lib/libSplashKit.dylib", os.path.expanduser("~") + "/.splashkit/lib/macos/libSplashKit.dylib"]
 elif system() == 'Linux':
-  # Linux uses .so extension
-  cdll.LoadLibrary("libSplashKit.so")
-  sklib = CDLL("libSplashKit.so")
+    # Linux uses .so extension
+    search_paths = ["/usr/local/lib/libSplashKit.so", os.path.expanduser("~") + "/.splashkit/lib/linux/libSplashKit.so"]
 else:
-  # Windows uses .dll extension:
-  cdll.LoadLibrary("libSplashKit.dll")
-  sklib = CDLL("libsplashkit.dll")
+    # Windows uses .dll extension
+    search_paths = ["C:/msys64/mingw64/lib/SplashKit.dll", "C:/msys64/home/" + os.getlogin() + "/.splashkit/lib/win64/SplashKit.dll"]
+
+# find path to use -> format above is: ["global/path", ".splashkit/path"]
+for path in search_paths:
+    if (os.path.isfile(path)):
+        # load the library
+        cdll.LoadLibrary(path)
+        sklib = CDLL(path)
+        break
 
 class _sklib_string(Structure):
     _fields_ = [
@@ -1223,7 +1231,7 @@ def __skadapter__update_from_vector_bool(v, __skreturn):
 
     sklib.__sklib__free__sklib_vector_bool(v)
 def __skadapter__to_sklib_string(s):
-    return _sklib_string(s)
+    return _sklib_string(s.replace('\r',''))
 
 sklib.__sklib__free__sklib_string.argtypes = [ _sklib_string ]
 sklib.__sklib__free__sklib_string.restype = None
@@ -1590,6 +1598,10 @@ sklib.__sklib__circle_at__double__double__double.argtypes = [ c_double, c_double
 sklib.__sklib__circle_at__double__double__double.restype = _sklib_circle
 sklib.__sklib__circle_radius__circle.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_radius__circle.restype = c_float
+sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref.argtypes = [ _sklib_circle, _sklib_triangle ]
+sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref.restype = c_bool
+sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref.argtypes = [ _sklib_circle, _sklib_triangle, POINTER(_sklib_point_2d) ]
+sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__circle_x__circle_ref.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_x__circle_ref.restype = c_float
 sklib.__sklib__circle_y__circle_ref.argtypes = [ _sklib_circle ]
@@ -1604,6 +1616,8 @@ sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.argtypes 
 sklib.__sklib__closest_point_on_line_from_circle__circle_ref__line_ref.restype = _sklib_point_2d
 sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.argtypes = [ _sklib_circle, _sklib_rectangle ]
 sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref.restype = _sklib_point_2d
+sklib.__sklib__closest_point_on_triangle_from_circle__circle_ref__triangle_ref.argtypes = [ _sklib_circle, _sklib_triangle ]
+sklib.__sklib__closest_point_on_triangle_from_circle__circle_ref__triangle_ref.restype = _sklib_point_2d
 sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_circle ]
 sklib.__sklib__distant_point_on_circle__point_2d_ref__circle_ref.restype = _sklib_point_2d
 sklib.__sklib__distant_point_on_circle_heading__point_2d_ref__circle_ref__vector_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_circle, _sklib_vector_2d, POINTER(_sklib_point_2d) ]
@@ -2326,10 +2340,10 @@ sklib.__sklib__interface_enabled.argtypes = [  ]
 sklib.__sklib__interface_enabled.restype = c_bool
 sklib.__sklib__interface_style_panel__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__interface_style_panel__rectangle_ref.restype = None
-sklib.__sklib__label__string_ref.argtypes = [ _sklib_string ]
-sklib.__sklib__label__string_ref.restype = None
-sklib.__sklib__label__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
-sklib.__sklib__label__string_ref__rectangle_ref.restype = None
+sklib.__sklib__label_element__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__label_element__string_ref.restype = None
+sklib.__sklib__label_element__string_ref__rectangle_ref.argtypes = [ _sklib_string, _sklib_rectangle ]
+sklib.__sklib__label_element__string_ref__rectangle_ref.restype = None
 sklib.__sklib__last_element_changed.argtypes = [  ]
 sklib.__sklib__last_element_changed.restype = c_bool
 sklib.__sklib__last_element_confirmed.argtypes = [  ]
@@ -2675,7 +2689,7 @@ sklib.__sklib__music_playing.restype = c_bool
 sklib.__sklib__music_valid__music.argtypes = [ c_void_p ]
 sklib.__sklib__music_valid__music.restype = c_bool
 sklib.__sklib__music_volume.argtypes = [  ]
-sklib.__sklib__music_volume.restype = c_float
+sklib.__sklib__music_volume.restype = c_double
 sklib.__sklib__pause_music.argtypes = [  ]
 sklib.__sklib__pause_music.restype = None
 sklib.__sklib__play_music__string_ref.argtypes = [ _sklib_string ]
@@ -2686,12 +2700,12 @@ sklib.__sklib__play_music__music.argtypes = [ c_void_p ]
 sklib.__sklib__play_music__music.restype = None
 sklib.__sklib__play_music__music__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__play_music__music__int.restype = None
-sklib.__sklib__play_music__music__int__float.argtypes = [ c_void_p, c_int, c_float ]
-sklib.__sklib__play_music__music__int__float.restype = None
+sklib.__sklib__play_music__music__int__double.argtypes = [ c_void_p, c_int, c_double ]
+sklib.__sklib__play_music__music__int__double.restype = None
 sklib.__sklib__resume_music.argtypes = [  ]
 sklib.__sklib__resume_music.restype = None
-sklib.__sklib__set_music_volume__float.argtypes = [ c_float ]
-sklib.__sklib__set_music_volume__float.restype = None
+sklib.__sklib__set_music_volume__double.argtypes = [ c_double ]
+sklib.__sklib__set_music_volume__double.restype = None
 sklib.__sklib__stop_music.argtypes = [  ]
 sklib.__sklib__stop_music.restype = None
 sklib.__sklib__accept_all_new_connections.argtypes = [  ]
@@ -3102,20 +3116,20 @@ sklib.__sklib__load_sound_effect__string_ref__string_ref.argtypes = [ _sklib_str
 sklib.__sklib__load_sound_effect__string_ref__string_ref.restype = c_void_p
 sklib.__sklib__play_sound_effect__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__play_sound_effect__string_ref.restype = None
-sklib.__sklib__play_sound_effect__string_ref__float.argtypes = [ _sklib_string, c_float ]
-sklib.__sklib__play_sound_effect__string_ref__float.restype = None
+sklib.__sklib__play_sound_effect__string_ref__double.argtypes = [ _sklib_string, c_double ]
+sklib.__sklib__play_sound_effect__string_ref__double.restype = None
 sklib.__sklib__play_sound_effect__string_ref__int.argtypes = [ _sklib_string, c_int ]
 sklib.__sklib__play_sound_effect__string_ref__int.restype = None
-sklib.__sklib__play_sound_effect__string_ref__int__float.argtypes = [ _sklib_string, c_int, c_float ]
-sklib.__sklib__play_sound_effect__string_ref__int__float.restype = None
+sklib.__sklib__play_sound_effect__string_ref__int__double.argtypes = [ _sklib_string, c_int, c_double ]
+sklib.__sklib__play_sound_effect__string_ref__int__double.restype = None
 sklib.__sklib__play_sound_effect__sound_effect.argtypes = [ c_void_p ]
 sklib.__sklib__play_sound_effect__sound_effect.restype = None
-sklib.__sklib__play_sound_effect__sound_effect__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__play_sound_effect__sound_effect__float.restype = None
+sklib.__sklib__play_sound_effect__sound_effect__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__play_sound_effect__sound_effect__double.restype = None
 sklib.__sklib__play_sound_effect__sound_effect__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__play_sound_effect__sound_effect__int.restype = None
-sklib.__sklib__play_sound_effect__sound_effect__int__float.argtypes = [ c_void_p, c_int, c_float ]
-sklib.__sklib__play_sound_effect__sound_effect__int__float.restype = None
+sklib.__sklib__play_sound_effect__sound_effect__int__double.argtypes = [ c_void_p, c_int, c_double ]
+sklib.__sklib__play_sound_effect__sound_effect__int__double.restype = None
 sklib.__sklib__sound_effect_filename__sound_effect.argtypes = [ c_void_p ]
 sklib.__sklib__sound_effect_filename__sound_effect.restype = _sklib_string
 sklib.__sklib__sound_effect_name__sound_effect.argtypes = [ c_void_p ]
@@ -3668,8 +3682,8 @@ sklib.__sklib__vector_limit__vector_2d_ref__double.argtypes = [ _sklib_vector_2d
 sklib.__sklib__vector_limit__vector_2d_ref__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_magnitude__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
 sklib.__sklib__vector_magnitude__vector_2d_ref.restype = c_double
-sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
-sklib.__sklib__vector_magnitude_sqared__vector_2d_ref.restype = c_double
+sklib.__sklib__vector_magnitude_squared__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
+sklib.__sklib__vector_magnitude_squared__vector_2d_ref.restype = c_double
 sklib.__sklib__vector_multiply__vector_2d_ref__double.argtypes = [ _sklib_vector_2d, c_double ]
 sklib.__sklib__vector_multiply__vector_2d_ref__double.restype = _sklib_vector_2d
 sklib.__sklib__vector_normal__vector_2d_ref.argtypes = [ _sklib_vector_2d ]
@@ -4349,6 +4363,18 @@ def circle_radius ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__circle_radius__circle(__skparam__c)
     return __skadapter__to_float(__skreturn)
+def circle_triangle_intersect ( c, tri ):
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref(__skparam__c, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def circle_triangle_intersect_get_closest_point ( c, tri, p ):
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__p = __skadapter__to_sklib_point_2d(p)
+    __skreturn = sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref(__skparam__c, __skparam__tri, byref(__skparam__p))
+    p = __skadapter__to_point_2d(__skparam__p)
+    return __skadapter__to_bool(__skreturn)
 def circle_x ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__circle_x__circle_ref(__skparam__c)
@@ -4385,6 +4411,11 @@ def closest_point_on_rect_from_circle ( c, rect ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__closest_point_on_rect_from_circle__circle_ref__rectangle_ref(__skparam__c, __skparam__rect)
+    return __skadapter__to_point_2d(__skreturn)
+def closest_point_on_triangle_from_circle ( c, tri ):
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__closest_point_on_triangle_from_circle__circle_ref__triangle_ref(__skparam__c, __skparam__tri)
     return __skadapter__to_point_2d(__skreturn)
 def distant_point_on_circle ( pt, c ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -5791,16 +5822,16 @@ def bitmap_button_with_options ( bmp, opts ):
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
     __skreturn = sklib.__sklib__bitmap_button__bitmap__drawing_options(__skparam__bmp, __skparam__opts)
     return __skadapter__to_bool(__skreturn)
-def bitmap_button_labeled ( label, bmp ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def bitmap_button_labeled ( label_text, bmp ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
-    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap(__skparam__label, __skparam__bmp)
+    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap(__skparam__label_text, __skparam__bmp)
     return __skadapter__to_bool(__skreturn)
-def bitmap_button_labeled_with_options ( label, bmp, opts ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def bitmap_button_labeled_with_options ( label_text, bmp, opts ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__opts = __skadapter__to_sklib_drawing_options(opts)
-    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label, __skparam__bmp, __skparam__opts)
+    __skreturn = sklib.__sklib__bitmap_button__string_ref__bitmap__drawing_options(__skparam__label_text, __skparam__bmp, __skparam__opts)
     return __skadapter__to_bool(__skreturn)
 def button_at_position ( text, rect ):
     __skparam__text = __skadapter__to_sklib_string(text)
@@ -5811,10 +5842,10 @@ def button ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skreturn = sklib.__sklib__button__string_ref(__skparam__text)
     return __skadapter__to_bool(__skreturn)
-def button_labeled ( label, text ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def button_labeled ( label_text, text ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__text = __skadapter__to_sklib_string(text)
-    __skreturn = sklib.__sklib__button__string_ref__string_ref(__skparam__label, __skparam__text)
+    __skreturn = sklib.__sklib__button__string_ref__string_ref(__skparam__label_text, __skparam__text)
     return __skadapter__to_bool(__skreturn)
 def checkbox_at_position ( text, value, rect ):
     __skparam__text = __skadapter__to_sklib_string(text)
@@ -5827,11 +5858,11 @@ def checkbox ( text, value ):
     __skparam__value = __skadapter__to_sklib_bool(value)
     __skreturn = sklib.__sklib__checkbox__string_ref__bool_ref(__skparam__text, __skparam__value)
     return __skadapter__to_bool(__skreturn)
-def checkbox_labeled ( label, text, value ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def checkbox_labeled ( label_text, text, value ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__value = __skadapter__to_sklib_bool(value)
-    __skreturn = sklib.__sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label, __skparam__text, __skparam__value)
+    __skreturn = sklib.__sklib__checkbox__string_ref__string_ref__bool_ref(__skparam__label_text, __skparam__text, __skparam__value)
     return __skadapter__to_bool(__skreturn)
 def color_slider_at_position ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
@@ -5842,10 +5873,10 @@ def color_slider ( clr ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skreturn = sklib.__sklib__color_slider__color_ref(__skparam__clr)
     return __skadapter__to_color(__skreturn)
-def color_slider_labeled ( label, clr ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def color_slider_labeled ( label_text, clr ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skreturn = sklib.__sklib__color_slider__string_ref__color_ref(__skparam__label, __skparam__clr)
+    __skreturn = sklib.__sklib__color_slider__string_ref__color_ref(__skparam__label_text, __skparam__clr)
     return __skadapter__to_color(__skreturn)
 def disable_interface (  ):
     sklib.__sklib__disable_interface()
@@ -5862,17 +5893,17 @@ def end_panel ( name ):
 def end_popup ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__end_popup__string_ref(__skparam__name)
-def end_treenode ( label ):
-    __skparam__label = __skadapter__to_sklib_string(label)
-    sklib.__sklib__end_treenode__string_ref(__skparam__label)
+def end_treenode ( label_text ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
+    sklib.__sklib__end_treenode__string_ref(__skparam__label_text)
 def enter_column (  ):
     sklib.__sklib__enter_column()
 def get_interface_label_width (  ):
     __skreturn = sklib.__sklib__get_interface_label_width()
     return __skadapter__to_int(__skreturn)
-def header ( label ):
-    __skparam__label = __skadapter__to_sklib_string(label)
-    __skreturn = sklib.__sklib__header__string_ref(__skparam__label)
+def header ( label_text ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
+    __skreturn = sklib.__sklib__header__string_ref(__skparam__label_text)
     return __skadapter__to_bool(__skreturn)
 def hsb_color_slider_at_position ( clr, rect ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
@@ -5883,10 +5914,10 @@ def hsb_color_slider ( clr ):
     __skparam__clr = __skadapter__to_sklib_color(clr)
     __skreturn = sklib.__sklib__hsb_color_slider__color_ref(__skparam__clr)
     return __skadapter__to_color(__skreturn)
-def hsb_color_slider_labeled ( label, clr ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def hsb_color_slider_labeled ( label_text, clr ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__clr = __skadapter__to_sklib_color(clr)
-    __skreturn = sklib.__sklib__hsb_color_slider__string_ref__color_ref(__skparam__label, __skparam__clr)
+    __skreturn = sklib.__sklib__hsb_color_slider__string_ref__color_ref(__skparam__label_text, __skparam__clr)
     return __skadapter__to_color(__skreturn)
 def interface_enabled (  ):
     __skreturn = sklib.__sklib__interface_enabled()
@@ -5894,13 +5925,13 @@ def interface_enabled (  ):
 def interface_style_panel ( initial_rectangle ):
     __skparam__initial_rectangle = __skadapter__to_sklib_rectangle(initial_rectangle)
     sklib.__sklib__interface_style_panel__rectangle_ref(__skparam__initial_rectangle)
-def label ( text ):
+def label_element ( text ):
     __skparam__text = __skadapter__to_sklib_string(text)
-    sklib.__sklib__label__string_ref(__skparam__text)
-def label_at_position ( text, rect ):
+    sklib.__sklib__label_element__string_ref(__skparam__text)
+def label_element_at_position ( text, rect ):
     __skparam__text = __skadapter__to_sklib_string(text)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
-    sklib.__sklib__label__string_ref__rectangle_ref(__skparam__text, __skparam__rect)
+    sklib.__sklib__label_element__string_ref__rectangle_ref(__skparam__text, __skparam__rect)
 def last_element_changed (  ):
     __skreturn = sklib.__sklib__last_element_changed()
     return __skadapter__to_bool(__skreturn)
@@ -5920,11 +5951,11 @@ def number_box ( value, step ):
     __skparam__step = __skadapter__to_sklib_float(step)
     __skreturn = sklib.__sklib__number_box__float_ref__float(__skparam__value, __skparam__step)
     return __skadapter__to_float(__skreturn)
-def number_box_labeled ( label, value, step ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def number_box_labeled ( label_text, value, step ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__value = __skadapter__to_sklib_float(value)
     __skparam__step = __skadapter__to_sklib_float(step)
-    __skreturn = sklib.__sklib__number_box__string_ref__float_ref__float(__skparam__label, __skparam__value, __skparam__step)
+    __skreturn = sklib.__sklib__number_box__string_ref__float_ref__float(__skparam__label_text, __skparam__value, __skparam__step)
     return __skadapter__to_float(__skreturn)
 def open_popup ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -6018,12 +6049,12 @@ def slider ( value, min_value, max_value ):
     __skparam__max_value = __skadapter__to_sklib_float(max_value)
     __skreturn = sklib.__sklib__slider__float_ref__float__float(__skparam__value, __skparam__min_value, __skparam__max_value)
     return __skadapter__to_float(__skreturn)
-def slider_labeled ( label, value, min_value, max_value ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def slider_labeled ( label_text, value, min_value, max_value ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__value = __skadapter__to_sklib_float(value)
     __skparam__min_value = __skadapter__to_sklib_float(min_value)
     __skparam__max_value = __skadapter__to_sklib_float(max_value)
-    __skreturn = sklib.__sklib__slider__string_ref__float_ref__float__float(__skparam__label, __skparam__value, __skparam__min_value, __skparam__max_value)
+    __skreturn = sklib.__sklib__slider__string_ref__float_ref__float__float(__skparam__label_text, __skparam__value, __skparam__min_value, __skparam__max_value)
     return __skadapter__to_float(__skreturn)
 def split_into_columns ( count ):
     __skparam__count = __skadapter__to_sklib_int(count)
@@ -6055,9 +6086,9 @@ def start_popup ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__start_popup__string_ref(__skparam__name)
     return __skadapter__to_bool(__skreturn)
-def start_treenode ( label ):
-    __skparam__label = __skadapter__to_sklib_string(label)
-    __skreturn = sklib.__sklib__start_treenode__string_ref(__skparam__label)
+def start_treenode ( label_text ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
+    __skreturn = sklib.__sklib__start_treenode__string_ref(__skparam__label_text)
     return __skadapter__to_bool(__skreturn)
 def text_box ( value ):
     __skparam__value = __skadapter__to_sklib_string(value)
@@ -6068,10 +6099,10 @@ def text_box_at_position ( value, rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect)
     return __skadapter__to_string(__skreturn)
-def text_box_labeled ( label, value ):
-    __skparam__label = __skadapter__to_sklib_string(label)
+def text_box_labeled ( label_text, value ):
+    __skparam__label_text = __skadapter__to_sklib_string(label_text)
     __skparam__value = __skadapter__to_sklib_string(value)
-    __skreturn = sklib.__sklib__text_box__string_ref__string_ref(__skparam__label, __skparam__value)
+    __skreturn = sklib.__sklib__text_box__string_ref__string_ref(__skparam__label_text, __skparam__value)
     return __skadapter__to_string(__skreturn)
 def create_json (  ):
     __skreturn = sklib.__sklib__create_json()
@@ -6656,7 +6687,7 @@ def music_valid ( m ):
     return __skadapter__to_bool(__skreturn)
 def music_volume (  ):
     __skreturn = sklib.__sklib__music_volume()
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def pause_music (  ):
     sklib.__sklib__pause_music()
 def play_music_named ( name ):
@@ -6676,13 +6707,13 @@ def play_music_with_times ( data, times ):
 def play_music_with_times_and_volume ( data, times, volume ):
     __skparam__data = __skadapter__to_sklib_music(data)
     __skparam__times = __skadapter__to_sklib_int(times)
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__play_music__music__int__float(__skparam__data, __skparam__times, __skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__play_music__music__int__double(__skparam__data, __skparam__times, __skparam__volume)
 def resume_music (  ):
     sklib.__sklib__resume_music()
 def set_music_volume ( volume ):
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__set_music_volume__float(__skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__set_music_volume__double(__skparam__volume)
 def stop_music (  ):
     sklib.__sklib__stop_music()
 def accept_all_new_connections (  ):
@@ -7633,8 +7664,8 @@ def play_sound_effect_named ( name ):
     sklib.__sklib__play_sound_effect__string_ref(__skparam__name)
 def play_sound_effect_named_with_volume ( name, volume ):
     __skparam__name = __skadapter__to_sklib_string(name)
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__play_sound_effect__string_ref__float(__skparam__name, __skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__play_sound_effect__string_ref__double(__skparam__name, __skparam__volume)
 def play_sound_effect_named_with_times ( name, times ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__times = __skadapter__to_sklib_int(times)
@@ -7642,15 +7673,15 @@ def play_sound_effect_named_with_times ( name, times ):
 def play_sound_effect_named_with_times_and_volume ( name, times, volume ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__times = __skadapter__to_sklib_int(times)
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__play_sound_effect__string_ref__int__float(__skparam__name, __skparam__times, __skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__play_sound_effect__string_ref__int__double(__skparam__name, __skparam__times, __skparam__volume)
 def play_sound_effect ( effect ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
     sklib.__sklib__play_sound_effect__sound_effect(__skparam__effect)
 def play_sound_effect_with_volume ( effect, volume ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__play_sound_effect__sound_effect__float(__skparam__effect, __skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__play_sound_effect__sound_effect__double(__skparam__effect, __skparam__volume)
 def play_sound_effect_with_times ( effect, times ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
     __skparam__times = __skadapter__to_sklib_int(times)
@@ -7658,8 +7689,8 @@ def play_sound_effect_with_times ( effect, times ):
 def play_sound_effect_with_times_and_volume ( effect, times, volume ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
     __skparam__times = __skadapter__to_sklib_int(times)
-    __skparam__volume = __skadapter__to_sklib_float(volume)
-    sklib.__sklib__play_sound_effect__sound_effect__int__float(__skparam__effect, __skparam__times, __skparam__volume)
+    __skparam__volume = __skadapter__to_sklib_double(volume)
+    sklib.__sklib__play_sound_effect__sound_effect__int__double(__skparam__effect, __skparam__times, __skparam__volume)
 def sound_effect_filename ( effect ):
     __skparam__effect = __skadapter__to_sklib_sound_effect(effect)
     __skreturn = sklib.__sklib__sound_effect_filename__sound_effect(__skparam__effect)
@@ -8956,9 +8987,9 @@ def vector_magnitude ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
     __skreturn = sklib.__sklib__vector_magnitude__vector_2d_ref(__skparam__v)
     return __skadapter__to_double(__skreturn)
-def vector_magnitude_sqared ( v ):
+def vector_magnitude_squared ( v ):
     __skparam__v = __skadapter__to_sklib_vector_2d(v)
-    __skreturn = sklib.__sklib__vector_magnitude_sqared__vector_2d_ref(__skparam__v)
+    __skreturn = sklib.__sklib__vector_magnitude_squared__vector_2d_ref(__skparam__v)
     return __skadapter__to_double(__skreturn)
 def vector_multiply ( v1, s ):
     __skparam__v1 = __skadapter__to_sklib_vector_2d(v1)

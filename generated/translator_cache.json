@@ -5195,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129626,
+    "parsed_at": 1729338084,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -5382,6 +5382,120 @@
           }
         },
         "attributes": {
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
+      {
+        "signature": "bool circle_triangle_intersect(const circle &c,const triangle &tri);",
+        "name": "circle_triangle_intersect",
+        "method_name": null,
+        "unique_global_name": "circle_triangle_intersect",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Detects if a circle intersects with a triangle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the circle and triangle intersect",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "tri": {
+            "type": "triangle",
+            "description": "The triangle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
+      {
+        "signature": "bool circle_triangle_intersect(const circle &c,const triangle &tri,point_2d &p);",
+        "name": "circle_triangle_intersect",
+        "method_name": null,
+        "unique_global_name": "circle_triangle_intersect_get_closest_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Detects if a circle intersects with a triangle. The closest point on the\ntriangle to the circle is assigned to p, even if the circle and triangle do not\nintersect. If the centre of the circle is inside the triangle,\nthe point assigned to p is the centre of the circle.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the circle and triangle intersect",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "tri": {
+            "type": "triangle",
+            "description": "The triangle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "p": {
+            "type": "point_2d",
+            "description": "The point to set to the closest point on the triangle to the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "get_closest_point",
           "group": "geometry",
           "static": "geometry"
         }
@@ -5747,6 +5861,56 @@
           "rect": {
             "type": "rectangle",
             "description": "The rectangle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
+      {
+        "signature": "point_2d closest_point_on_triangle_from_circle(const circle &c,const triangle &tri);",
+        "name": "closest_point_on_triangle_from_circle",
+        "method_name": null,
+        "unique_global_name": "closest_point_on_triangle_from_circle",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Calculates the closest point on a triangle to a circle. If the circle and\ntriangle do not intersect, the closest point on the triangle to the circle\nis returned. If the circle and triangle do intersect, the center of the\ncircle is returned.",
+        "brief": null,
+        "return": {
+          "type": "point_2d",
+          "description": "The closest point on the triangle to the circle",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "c": {
+            "type": "circle",
+            "description": "The circle to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "tri": {
+            "type": "triangle",
+            "description": "The triangle to test",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -20942,7 +21106,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1720130943,
+    "parsed_at": 1729338085,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -21223,7 +21387,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(const string& label,bitmap bmp);",
+        "signature": "bool bitmap_button(const string& label_text,bitmap bmp);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_labeled",
@@ -21240,7 +21404,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the button",
             "is_pointer": false,
@@ -21274,7 +21438,7 @@
         }
       },
       {
-        "signature": "bool bitmap_button(const string& label,bitmap bmp,drawing_options opts);",
+        "signature": "bool bitmap_button(const string& label_text,bitmap bmp,drawing_options opts);",
         "name": "bitmap_button",
         "method_name": null,
         "unique_global_name": "bitmap_button_labeled_with_options",
@@ -21291,7 +21455,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the button",
             "is_pointer": false,
@@ -21426,7 +21590,7 @@
         }
       },
       {
-        "signature": "bool button(const string& label,const string& text);",
+        "signature": "bool button(const string& label_text,const string& text);",
         "name": "button",
         "method_name": null,
         "unique_global_name": "button_labeled",
@@ -21443,7 +21607,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the button",
             "is_pointer": false,
@@ -21591,7 +21755,7 @@
         }
       },
       {
-        "signature": "bool checkbox(const string& label,const string& text,const bool& value);",
+        "signature": "bool checkbox(const string& label_text,const string& text,const bool& value);",
         "name": "checkbox",
         "method_name": null,
         "unique_global_name": "checkbox_labeled",
@@ -21608,7 +21772,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the checkbox",
             "is_pointer": false,
@@ -21743,7 +21907,7 @@
         }
       },
       {
-        "signature": "color color_slider(const string& label,const color& clr);",
+        "signature": "color color_slider(const string& label_text,const color& clr);",
         "name": "color_slider",
         "method_name": null,
         "unique_global_name": "color_slider_labeled",
@@ -21760,7 +21924,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the slider",
             "is_pointer": false,
@@ -21977,7 +22141,7 @@
         }
       },
       {
-        "signature": "void end_treenode(const string& label);",
+        "signature": "void end_treenode(const string& label_text);",
         "name": "end_treenode",
         "method_name": null,
         "unique_global_name": "end_treenode",
@@ -21994,7 +22158,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The node's name - must match with `start_treenode`",
             "is_pointer": false,
@@ -22062,7 +22226,7 @@
         }
       },
       {
-        "signature": "bool header(const string& label);",
+        "signature": "bool header(const string& label_text);",
         "name": "header",
         "method_name": null,
         "unique_global_name": "header",
@@ -22079,7 +22243,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in the header",
             "is_pointer": false,
@@ -22187,7 +22351,7 @@
         }
       },
       {
-        "signature": "color hsb_color_slider(const string& label,const color& clr);",
+        "signature": "color hsb_color_slider(const string& label_text,const color& clr);",
         "name": "hsb_color_slider",
         "method_name": null,
         "unique_global_name": "hsb_color_slider_labeled",
@@ -22204,7 +22368,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the slider",
             "is_pointer": false,
@@ -22299,10 +22463,10 @@
         }
       },
       {
-        "signature": "void label(const string& text);",
-        "name": "label",
+        "signature": "void label_element(const string& text);",
+        "name": "label_element",
         "method_name": null,
-        "unique_global_name": "label",
+        "unique_global_name": "label_element",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Creates a label with the given text.",
@@ -22336,10 +22500,10 @@
         }
       },
       {
-        "signature": "void label(const string& text,const rectangle& rect);",
-        "name": "label",
+        "signature": "void label_element(const string& text,const rectangle& rect);",
+        "name": "label_element",
         "method_name": null,
-        "unique_global_name": "label_at_position",
+        "unique_global_name": "label_element_at_position",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Creates a label at a specific position on screen.",
@@ -22573,7 +22737,7 @@
         }
       },
       {
-        "signature": "float number_box(const string& label,const float& value,float step);",
+        "signature": "float number_box(const string& label_text,const float& value,float step);",
         "name": "number_box",
         "method_name": null,
         "unique_global_name": "number_box_labeled",
@@ -22590,7 +22754,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the number box",
             "is_pointer": false,
@@ -23763,7 +23927,7 @@
         }
       },
       {
-        "signature": "float slider(const string& label,const float& value,float min_value,float max_value);",
+        "signature": "float slider(const string& label_text,const float& value,float min_value,float max_value);",
         "name": "slider",
         "method_name": null,
         "unique_global_name": "slider_labeled",
@@ -23780,7 +23944,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the slider",
             "is_pointer": false,
@@ -24191,7 +24355,7 @@
         }
       },
       {
-        "signature": "bool start_treenode(const string& label);",
+        "signature": "bool start_treenode(const string& label_text);",
         "name": "start_treenode",
         "method_name": null,
         "unique_global_name": "start_treenode",
@@ -24208,7 +24372,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The name of the node",
             "is_pointer": false,
@@ -24316,7 +24480,7 @@
         }
       },
       {
-        "signature": "string text_box(const string& label,const string& value);",
+        "signature": "string text_box(const string& label_text,const string& value);",
         "name": "text_box",
         "method_name": null,
         "unique_global_name": "text_box_labeled",
@@ -24333,7 +24497,7 @@
           "type_parameter": null
         },
         "parameters": {
-          "label": {
+          "label_text": {
             "type": "string",
             "description": "The label to show in front of the text box",
             "is_pointer": false,
@@ -31021,7 +31185,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129721,
+    "parsed_at": 1729338085,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -31631,7 +31795,7 @@
         }
       },
       {
-        "signature": "float music_volume();",
+        "signature": "double music_volume();",
         "name": "music_volume",
         "method_name": null,
         "unique_global_name": "music_volume",
@@ -31640,7 +31804,7 @@
         "description": "Returns the volume of the currently playing `music`.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "Returns the percentage of the currently playing `music`.",
           "is_pointer": false,
           "is_reference": false,
@@ -31864,7 +32028,7 @@
         }
       },
       {
-        "signature": "void play_music(music data,int times,float volume);",
+        "signature": "void play_music(music data,int times,double volume);",
         "name": "play_music",
         "method_name": "play",
         "unique_global_name": "play_music_with_times_and_volume",
@@ -31908,7 +32072,7 @@
             "type_parameter": null
           },
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "Indicates the percentage of the original volume to play the\n`music` at. This must be between `0` and `1`.",
             "is_pointer": false,
             "is_const": false,
@@ -31956,7 +32120,7 @@
         }
       },
       {
-        "signature": "void set_music_volume(float volume);",
+        "signature": "void set_music_volume(double volume);",
         "name": "set_music_volume",
         "method_name": null,
         "unique_global_name": "set_music_volume",
@@ -31974,7 +32138,7 @@
         },
         "parameters": {
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "Indicates the percentage of the original volume to play the\n`music` at. This must be between `0` and `1`.",
             "is_pointer": false,
             "is_const": false,
@@ -38160,7 +38324,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1720129744,
+    "parsed_at": 1729338085,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -42624,7 +42788,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129760,
+    "parsed_at": 1729338086,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -42910,7 +43074,7 @@
         }
       },
       {
-        "signature": "void play_sound_effect(const string &name,float volume);",
+        "signature": "void play_sound_effect(const string &name,double volume);",
         "name": "play_sound_effect",
         "method_name": null,
         "unique_global_name": "play_sound_effect_named_with_volume",
@@ -42941,7 +43105,7 @@
             "type_parameter": null
           },
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "The volume to play the `sound_effect`",
             "is_pointer": false,
             "is_const": false,
@@ -43012,7 +43176,7 @@
         }
       },
       {
-        "signature": "void play_sound_effect(const string &name,int times,float volume);",
+        "signature": "void play_sound_effect(const string &name,int times,double volume);",
         "name": "play_sound_effect",
         "method_name": null,
         "unique_global_name": "play_sound_effect_named_with_times_and_volume",
@@ -43056,7 +43220,7 @@
             "type_parameter": null
           },
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "Indicates the percentage of the original volume to play the\n`sound_effect` at. This must be between `0` and `1`.",
             "is_pointer": false,
             "is_const": false,
@@ -43116,7 +43280,7 @@
         }
       },
       {
-        "signature": "void play_sound_effect(sound_effect effect,float volume);",
+        "signature": "void play_sound_effect(sound_effect effect,double volume);",
         "name": "play_sound_effect",
         "method_name": "play",
         "unique_global_name": "play_sound_effect_with_volume",
@@ -43147,7 +43311,7 @@
             "type_parameter": null
           },
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "Indicates the percentage of the original volume to play the\n`sound_effect` at. This must be between `0` and `1`.",
             "is_pointer": false,
             "is_const": false,
@@ -43224,7 +43388,7 @@
         }
       },
       {
-        "signature": "void play_sound_effect(sound_effect effect,int times,float volume);",
+        "signature": "void play_sound_effect(sound_effect effect,int times,double volume);",
         "name": "play_sound_effect",
         "method_name": "play",
         "unique_global_name": "play_sound_effect_with_times_and_volume",
@@ -43268,7 +43432,7 @@
             "type_parameter": null
           },
           "volume": {
-            "type": "float",
+            "type": "double",
             "description": "Indicates the percentage of the original volume to play the\n`sound_effect` at. This must be between `0` and `1`.",
             "is_pointer": false,
             "is_const": false,
@@ -50929,7 +51093,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1720129791,
+    "parsed_at": 1729338086,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -57997,7 +58161,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1720129811,
+    "parsed_at": 1729338087,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -59236,7 +59400,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1720129817,
+    "parsed_at": 1729338088,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -59888,10 +60052,10 @@
         }
       },
       {
-        "signature": "double vector_magnitude_sqared(const vector_2d &v);",
-        "name": "vector_magnitude_sqared",
+        "signature": "double vector_magnitude_squared(const vector_2d &v);",
+        "name": "vector_magnitude_squared",
         "method_name": null,
-        "unique_global_name": "vector_magnitude_sqared",
+        "unique_global_name": "vector_magnitude_squared",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Returns the squared magnitude (or \"length\") of the vector.",
