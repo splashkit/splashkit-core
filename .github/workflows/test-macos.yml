@@ -4,6 +4,8 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      SDL_AUDIODRIVER: disk
     steps:
       - uses: actions/checkout@v4
         with:
