@@ -428,7 +428,8 @@ namespace splashkit_lib
             MU_OPT_NOINTERACT|MU_OPT_NOSCROLL
         );
         mu_get_current_container(ctx)->zindex = -1;
-        sk_interface_set_layout(1,{0},0);
+        int widths[] = {0};
+        sk_interface_set_layout(1,widths,0);
     }
 
     void sk_interface_end()
