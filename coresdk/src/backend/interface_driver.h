@@ -54,11 +54,11 @@ namespace splashkit_lib
     void sk_interface_push_ptr_id(void* ptr);
     void sk_interface_pop_id();
 
-    bool sk_interface_header(const string& label);
-    void sk_interface_label(const string& label);
+    bool sk_interface_header(const string& label_text);
+    void sk_interface_label(const string& label_text);
     void sk_interface_text(const string& text);
-    bool sk_interface_button(const string& label, int icon);
-    bool sk_interface_checkbox(const string& label, const bool& value);
+    bool sk_interface_button(const string& label_text, int icon);
+    bool sk_interface_checkbox(const string& label_text, const bool& value);
     float sk_interface_slider(const float& value, float min_value, float max_value);
     float sk_interface_number(const float& value, float step);
     std::string sk_interface_text_box(const std::string& value);
