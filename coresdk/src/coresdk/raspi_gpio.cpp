@@ -1,7 +1,8 @@
 // raspi_gpio.cpp
 //  splashkit
 // Created by Aditya Parmar on 20/01/2024.
-// Copyright © 2024 XQuestCode. All rights reserved.
+// Copyright © 2024 XQuestCode. All Rights Reserved.
+
 #include "raspi_gpio.h"
 #include "gpio_driver.h"
 #include <iostream>
@@ -22,6 +23,7 @@ namespace splashkit_lib
         cout << "Invalid board pin" << endl;
         return -1;
     }
+
     bool has_gpio()
     {
 #ifdef RASPBERRY_PI
@@ -48,11 +50,11 @@ namespace splashkit_lib
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -62,17 +64,19 @@ namespace splashkit_lib
         cout << "Unable to set mode - GPIO not supported on this platform" << endl;
 #endif
     }
+
+    // Get the mode of the given pin
     pin_modes raspi_get_mode(pins pin)
     {
 #ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -92,11 +96,11 @@ namespace splashkit_lib
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant write a HIGH Pin" << endl;
+            cout << "Can't write a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant write a Ground pin" << endl;
+            cout << "Can't write a Ground pin" << endl;
         }
         else
         {
@@ -119,7 +123,6 @@ namespace splashkit_lib
         }
         else if (bcmPin == -2)
         {
-
             cout << "Reading of PIN: " << pin << " would always be LOW" << endl;
             return GPIO_LOW;
         }
@@ -129,17 +132,19 @@ namespace splashkit_lib
         return GPIO_DEFAULT_VALUE;
 #endif
     }
+
+    // Set pull-up/down resistors on a given pin
     void raspi_set_pull_up_down(pins pin, pull_up_down pud)
     {
 #ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -149,17 +154,19 @@ namespace splashkit_lib
         cout << "Unable to set pull up/down - GPIO not supported on this platform" << endl;
 #endif
     }
+
+    // Set PWM range for the given pin
     void raspi_set_pwm_range(pins pin, int range)
     {
 #ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -169,17 +176,19 @@ namespace splashkit_lib
         cout << "Unable to set pwm range - GPIO not supported on this platform" << endl;
 #endif
     }
+
+    // Set PWM frequency for the given pin
     void raspi_set_pwm_frequency(pins pin, int frequency)
     {
 #ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -189,17 +198,19 @@ namespace splashkit_lib
         cout << "Unable to set pwm frequency - GPIO not supported on this platform" << endl;
 #endif
     }
+
+    // Set PWM duty cycle for the given pin
     void raspi_set_pwm_dutycycle(pins pin, int dutycycle)
     {
 #ifdef RASPBERRY_PI
         int bcmPin = boardToBCM(pin);
         if (bcmPin == -1)
         {
-            cout << "Cant modify a HIGH Pin" << endl;
+            cout << "Can't modify a HIGH Pin" << endl;
         }
         else if (bcmPin == -2)
         {
-            cout << "Cant modify a Ground pin" << endl;
+            cout << "Can't modify a Ground pin" << endl;
         }
         else
         {
@@ -207,6 +218,72 @@ namespace splashkit_lib
         }
 #else
         cout << "Unable to set pwm dutycycle - GPIO not supported on this platform" << endl;
+#endif
+    }
+
+    // Trigger a pulse on a pin
+    void raspi_trigger(pins pin, unsigned pulseLen, unsigned level)
+    {
+#ifdef RASPBERRY_PI
+        int bcmPin = boardToBCM(pin);
+        if (bcmPin != -1 && bcmPin != -2)
+        {
+            sk_gpio_trigger(bcmPin, pulseLen, level);
+        }
+        else
+        {
+            cout << "Invalid pin for triggering" << endl;
+        }
+#else
+        cout << "Unable to trigger - GPIO not supported on this platform" << endl;
+#endif
+    }
+
+    // I2C functions: Open, close, write, read
+    int raspi_i2c_open(unsigned bus, unsigned addr, unsigned flags)
+    {
+#ifdef RASPBERRY_PI
+        return sk_i2c_open(bus, addr, flags);
+#else
+        cout << "I2C not supported on this platform" << endl;
+        return -1;
+#endif
+    }
+
+    void raspi_i2c_close(unsigned handle)
+    {
+#ifdef RASPBERRY_PI
+        sk_i2c_close(handle);
+#else
+        cout << "I2C not supported on this platform" << endl;
+#endif
+    }
+
+    void raspi_i2c_write(unsigned handle, char *data, unsigned count)
+    {
+#ifdef RASPBERRY_PI
+        sk_i2c_write_device(handle, data, count);
+#else
+        cout << "I2C not supported on this platform" << endl;
+#endif
+    }
+
+    void raspi_i2c_read(unsigned handle, char *data, unsigned count)
+    {
+#ifdef RASPBERRY_PI
+        sk_i2c_read_device(handle, data, count);
+#else
+        cout << "I2C not supported on this platform" << endl;
+#endif
+    }
+
+    // Sleep for a given amount of seconds
+    void raspi_sleep(double seconds)
+    {
+#ifdef RASPBERRY_PI
+        sk_time_sleep(seconds);
+#else
+        cout << "Sleep not supported on this platform" << endl;
 #endif
     }
 
@@ -226,7 +303,7 @@ namespace splashkit_lib
         }
         sk_gpio_cleanup();
 #else
-        cout << "Unable to set cleanup - GPIO not supported on this platform" << endl;
+        cout << "Unable to cleanup - GPIO not supported on this platform" << endl;
 #endif
     }
 }
