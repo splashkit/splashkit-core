@@ -1376,7 +1376,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute setter x
      */
-    void sprite_set_x(sprite s, float value);
+    void sprite_set_x(sprite s, double value);
 
     /**
      * Returns the X position of the sprite.
@@ -1387,7 +1387,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute getter x
      */
-    float sprite_x(sprite s);
+    double sprite_x(sprite s);
 
     /**
      * Sets the Y position of the sprite.
@@ -1398,7 +1398,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute setter y
      */
-    void sprite_set_y(sprite s, float value);
+    void sprite_set_y(sprite s, double value);
 
     /**
      * Returns the Y position of the sprite.
@@ -1409,7 +1409,7 @@ namespace splashkit_lib
      * @attribute class sprite
      * @attribute getter y
      */
-    float sprite_y(sprite s);
+    double sprite_y(sprite s);
 
     //---------------------------------------------------------------------------
     // sprite position

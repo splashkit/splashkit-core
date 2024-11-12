@@ -1072,7 +1072,7 @@ namespace splashkit_lib
         s->velocity = vector_add(s->velocity, value);
     }
 
-    void sprite_set_x(sprite s, float value)
+    void sprite_set_x(sprite s, double value)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1083,7 +1083,7 @@ namespace splashkit_lib
         s->position.x = value;
     }
 
-    float sprite_x(sprite s)
+    double sprite_x(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1094,7 +1094,7 @@ namespace splashkit_lib
         return s->position.x;
     }
 
-    void sprite_set_y(sprite s, float value)
+    void sprite_set_y(sprite s, double value)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1105,7 +1105,7 @@ namespace splashkit_lib
         s->position.y = value;
     }
 
-    float sprite_y(sprite s)
+    double sprite_y(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
