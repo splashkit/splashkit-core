@@ -242,7 +242,7 @@ namespace splashkit_lib
     /**
      *  Returns the distance between two points.
      */
-    float point_point_distance(const point_2d &pt1, const point_2d &pt2)
+    double point_point_distance(const point_2d &pt1, const point_2d &pt2)
     {
         vector_2d temp = vector_point_to_point(pt1, pt2);
         return vector_magnitude(temp);
