@@ -80,3 +80,40 @@ TEST_CASE("bitmaps can be created and freed", "[bitmap]")
         }
     }
 }
+TEST_CASE("bitmap bounding details can be retrieved", "[bitmap]")
+{
+    bitmap bmp = load_bitmap("player", "player.png");
+    int width = 300, height = 42;
+    SECTION("can get bitmap width")
+    {
+        REQUIRE(bitmap_width(bmp) == width);
+    }
+    SECTION("can get bitmap height")
+    {
+        REQUIRE(bitmap_height(bmp) == height);
+    }
+    SECTION("can get bitmap center")
+    {
+        point_2d center = bitmap_center(bmp);
+        REQUIRE(center.x == width / 2.0);
+        REQUIRE(center.y == height / 2.0);
+    }
+    SECTION("can get bitmap bounding rectangle")
+    {
+        rectangle rect = bitmap_bounding_rectangle(bmp);
+        REQUIRE(rect.x == 0.0);
+        REQUIRE(rect.y == 0.0);
+        REQUIRE(rect.width == width);
+        REQUIRE(rect.height == height);
+    }
+    SECTION("can get bitmap cell circle")
+    {
+        point_2d pt = point_at(100.0, 100.0);
+        circle circ = bitmap_cell_circle(bmp, pt);
+        REQUIRE(circ.center.x == 100.0);
+        REQUIRE(circ.center.y == 100.0);
+        double center_corner_dist = sqrt(pow(width / 2.0, 2.0) + pow(height / 2.0, 2.0));
+        REQUIRE(circ.radius == center_corner_dist);
+    }
+    free_bitmap(bmp);
+}
