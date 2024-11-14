@@ -672,18 +672,16 @@ TEST_CASE("sprite values can be created, modified, and retrieved", "[sprite]")
             REQUIRE(sprite_value(sprt, "ammo") == 5.0f);
         }
     }
+    free_sprite(sprt);
 }
-
 void test_sprite_function(void *s)
 {
     sprite_set_dx(static_cast<sprite>(s), 10.0);
 }
-
 void test_sprite_float_function(void *s, float f)
 {
     sprite_set_dx(static_cast<sprite>(s), f);
 }
-
 TEST_CASE("sprite functions can be called", "[sprite]")
 {
     sprite sprt = create_sprite("background", background_bmp);
@@ -699,12 +697,85 @@ TEST_CASE("sprite functions can be called", "[sprite]")
         call_for_all_sprites(test_sprite_float_function, 20.0);
         REQUIRE(sprite_dx(sprt) == 20.0);
     }
+    free_sprite(sprt);
 }
-
-// sprite pack
-
-// events
-
+TEST_CASE("sprite pack functions can be used", "[sprite]")
+{
+    SECTION("can access default sprite pack")
+    {
+        REQUIRE(has_sprite_pack("default"));
+        REQUIRE(current_sprite_pack() == "default");
+    }
+    SECTION("can add sprite to default sprite pack")
+    {
+        sprite sprt = create_sprite("sprite_1", background_bmp);
+        REQUIRE(has_sprite("sprite_1"));
+        SECTION("can call sprite function")
+        {
+            REQUIRE(sprite_dx(sprt) == 0.0);
+            call_for_all_sprites(test_sprite_function);
+            REQUIRE(sprite_dx(sprt) == 10.0);
+        }
+        free_sprite(sprt);
+    }
+    SECTION("can create sprite pack")
+    {
+        create_sprite_pack("test_pack");
+        REQUIRE(has_sprite_pack("test_pack"));
+    }
+    SECTION("can change sprite pack")
+    {
+        select_sprite_pack("test_pack");
+        REQUIRE(current_sprite_pack() == "test_pack");
+    }
+    SECTION("can confirm that only sprites in current pack are affected")
+    {
+        sprite sprt = create_sprite("sprite_1", background_bmp);
+        REQUIRE(has_sprite("sprite_1"));
+        REQUIRE(sprite_dx(sprt) == 0.0);
+        select_sprite_pack("default");
+        sprite sprt2 = create_sprite("sprite_2", background_bmp);
+        REQUIRE(has_sprite("sprite_2"));
+        REQUIRE(sprite_dx(sprt2) == 0.0);
+        select_sprite_pack("test_pack");
+        call_for_all_sprites(test_sprite_function);
+        REQUIRE(sprite_dx(sprt) == 10.0);
+        sprite_set_dx(sprt, 90.0);
+        REQUIRE(sprite_dx(sprt2) == 0.0);
+        select_sprite_pack("default");
+        call_for_all_sprites(test_sprite_function);
+        REQUIRE(sprite_dx(sprt) == 90.0);
+        REQUIRE(sprite_dx(sprt2) == 10.0);
+        free_sprite(sprt);
+        free_sprite(sprt2);
+    }
+}
+void test_sprite_arrived_event(void *s, int evt)
+{
+    sprite_event_kind event = static_cast<sprite_event_kind>(evt);
+    if (event == SPRITE_ARRIVED_EVENT)
+    {
+        sprite_set_dy(static_cast<sprite>(s), 50.0);
+    }
+}
+TEST_CASE("sprite events can be created and handled", "[sprite]")
+{
+    sprite sprt = create_sprite("frog", frog_bmp);
+    REQUIRE(has_sprite("frog"));
+    SECTION("can add sprite event")
+    {
+        sprite_call_on_event(sprt, test_sprite_arrived_event);
+    }
+    SECTION("can trigger sprite event")
+    {
+        REQUIRE(sprite_dy(sprt) == 0.0);
+        sprite_set_velocity(sprt, vector_to(50.0, 50.0));
+        sprite_move_to(sprt, point_at(100.0, 100.0), 0.0f);
+        update_sprite(sprt);
+        REQUIRE(sprite_dy(sprt) == 50.0);
+    }
+    free_sprite(sprt);
+}
 TEST_CASE("bitmaps can be freed", "[bitmap]")
 {
     free_bitmap(rocket_bmp);
