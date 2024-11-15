@@ -359,13 +359,6 @@ TEST_CASE("can set sprite velocity components", "[sprite]")
         sprite_set_dy(sprt, -__DBL_MAX__);
         REQUIRE(sprite_dy(sprt) == -__DBL_MAX__);
     }
-    // SECTION("can set sprite velocity")
-    // {
-    //     sprite_set_velocity(sprt, vector_to(30.0, 40.0));
-    //     vector_2d vec = sprite_velocity(sprt);
-    //     REQUIRE(vec.x == 30.0);
-    //     REQUIRE(vec.y == 40.0);
-    // }
     free_sprite(sprt);
 }
 TEST_CASE("can perform sprite vector functions", "[sprite]")
