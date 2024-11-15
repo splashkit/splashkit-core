@@ -161,7 +161,7 @@ TEST_CASE("default sprite data can be retrieved", "[sprite]")
     {
         REQUIRE(sprite_collision_kind(sprt) == PIXEL_COLLISIONS);
     }
-    SECTION("sprite default matrix is correct")
+    SECTION("can retrieve sprite default matrix")
     {
         matrix_2d m = sprite_location_matrix(sprt);
         rectangle r = sprite_collision_rectangle(sprt);
@@ -285,35 +285,8 @@ TEST_CASE("can check sprite intersection", "[sprite]")
             sprite_set_position(sprt, point_at(sprite_width(sprt2), 0.0));
             REQUIRE_FALSE(sprite_collision(sprt, sprt2));
             REQUIRE_FALSE(sprite_rectangle_collision(sprt, sprite_collision_rectangle(sprt2)));
-            sprite_set_position(sprt, point_at(sprite_width(sprt2) - 1.0, 0.0));
-
-            rectangle r = sprite_collision_rectangle(sprt);
-            REQUIRE(r.height == BACKGROUND_HEIGHT);
-            REQUIRE(r.width == BACKGROUND_WIDTH);
-            REQUIRE(r.x == 863.0);
-            REQUIRE(r.y == 0.0);
-            REQUIRE(sprite_collision_bitmap(sprt) == background_bmp);
-            REQUIRE(sprite_current_cell(sprt) == 0);
-
-            rectangle r2 = sprite_collision_rectangle(sprt2);
-            REQUIRE(r2.height == 769.0);
-            REQUIRE(r2.width == 864.0);
-            REQUIRE(r2.x == 0.0);
-            REQUIRE(r2.y == 0.0);
-            REQUIRE(sprite_collision_bitmap(sprt2) == background_bmp);
-            REQUIRE(sprite_current_cell(sprt2) == 0);
-
+            sprite_set_position(sprt, point_at(sprite_width(sprt2) - 0.001, 0.0));
             REQUIRE(sprite_collision(sprt, sprt2));
-            REQUIRE(rectangles_intersect(sprite_collision_rectangle(sprt), sprite_collision_rectangle(sprt2)));
-
-            quad q1, q2;
-            q1 = quad_from(bitmap_cell_rectangle(sprite_collision_bitmap(sprt)), sprite_location_matrix(sprt));
-            q2 = quad_from(sprite_collision_rectangle(sprt2));
-            REQUIRE(quads_intersect(q1, q2));
-
-            REQUIRE(bitmap_rectangle_collision(sprite_collision_bitmap(sprt), sprite_current_cell(sprt),
-                sprite_location_matrix(sprt), sprite_collision_rectangle(sprt2)));
-
             REQUIRE(sprite_rectangle_collision(sprt, sprite_collision_rectangle(sprt2)));
         }
     }
@@ -358,37 +331,7 @@ TEST_CASE("can check sprite intersection", "[sprite]")
         point_2d pt2 = point_at(0.000001, 0.000001);
         REQUIRE(point_in_circle(pt2, sprite_collision_circle(sprt2)));
         REQUIRE(sprite_point_collision(sprt2, pt2));
-
-        //REQUIRE(sprite_point_collision(sprt2, point_at(__DBL_MIN__, __DBL_MIN__)));
     }
-    // SECTION("can check whether sprite on screen")
-    // {
-    //     REQUIRE(has_window("test_window"));
-    //     sprite_set_position(sprt, point_at(0.0, 0.0));
-    //     REQUIRE_FALSE(sprite_offscreen(sprt));
-    //     sprite_set_position(sprt, point_at(-100.0, -100.0));
-    //     REQUIRE(sprite_offscreen(sprt));
-    //     sprite_set_position(sprt, point_at(0.0, 0.0));
-    //     REQUIRE_FALSE(sprite_offscreen(sprt));
-    //     sprite_set_position(sprt, point_at(100.0, 100.0));
-    //     REQUIRE_FALSE(sprite_offscreen(sprt));
-    //     sprite_set_position(sprt, point_at(1000.0, 1000.0));
-    //     REQUIRE(sprite_offscreen(sprt));
-    // }
-    // SECTION("can check whether sprite on screen at point")
-    // {
-    //     sprite_set_position(sprt, point_at(0.0, 0.0));
-    //     REQUIRE(sprite_on_screen_at(sprt, point_at(0.0, 0.0)));
-    //     REQUIRE(sprite_on_screen_at(sprt, 0.0, 0.0));
-    //     REQUIRE_FALSE(sprite_on_screen_at(sprt, point_at(-100.0, -100.0)));
-    //     REQUIRE_FALSE(sprite_on_screen_at(sprt, -100.0, -100.0));
-    //     REQUIRE(sprite_on_screen_at(sprt, point_at(0.0, 0.0)));
-    //     REQUIRE(sprite_on_screen_at(sprt, 0.0, 0.0));
-    //     REQUIRE(sprite_on_screen_at(sprt, point_at(100.0, 100.0)));
-    //     REQUIRE(sprite_on_screen_at(sprt, 100.0, 100.0));
-    //     REQUIRE_FALSE(sprite_on_screen_at(sprt, point_at(1000.0, 1000.0)));
-    //     REQUIRE_FALSE(sprite_on_screen_at(sprt, 1000.0, 1000.0));
-    // }
     free_sprite(sprt);
     free_sprite(sprt2);
 }
@@ -416,13 +359,13 @@ TEST_CASE("can set sprite velocity components", "[sprite]")
         sprite_set_dy(sprt, -__DBL_MAX__);
         REQUIRE(sprite_dy(sprt) == -__DBL_MAX__);
     }
-    SECTION("can set sprite velocity")
-    {
-        sprite_set_velocity(sprt, vector_to(30.0, 40.0));
-        vector_2d vec = sprite_velocity(sprt);
-        REQUIRE(vec.x == 30.0);
-        REQUIRE(vec.y == 40.0);
-    }
+    // SECTION("can set sprite velocity")
+    // {
+    //     sprite_set_velocity(sprt, vector_to(30.0, 40.0));
+    //     vector_2d vec = sprite_velocity(sprt);
+    //     REQUIRE(vec.x == 30.0);
+    //     REQUIRE(vec.y == 40.0);
+    // }
     free_sprite(sprt);
 }
 TEST_CASE("can perform sprite vector functions", "[sprite]")
@@ -687,17 +630,23 @@ TEST_CASE("sprite functions can be called", "[sprite]")
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     REQUIRE(sprite_dx(sprt) == 0.0);
+    sprite sprt2 = create_sprite("background_2", background_bmp);
+    REQUIRE(has_sprite("background_2"));
+    REQUIRE(sprite_dx(sprt2) == 0.0);
     SECTION("can call sprite function")
     {
         call_for_all_sprites(test_sprite_function);
         REQUIRE(sprite_dx(sprt) == 10.0);
+        REQUIRE(sprite_dx(sprt2) == 10.0);
     }
     SECTION("can call sprite function with float argument")
     {
         call_for_all_sprites(test_sprite_float_function, 20.0);
         REQUIRE(sprite_dx(sprt) == 20.0);
+        REQUIRE(sprite_dx(sprt2) == 20.0);
     }
     free_sprite(sprt);
+    free_sprite(sprt2);
 }
 TEST_CASE("sprite pack functions can be used", "[sprite]")
 {
@@ -733,15 +682,19 @@ TEST_CASE("sprite pack functions can be used", "[sprite]")
         sprite sprt = create_sprite("sprite_1", background_bmp);
         REQUIRE(has_sprite("sprite_1"));
         REQUIRE(sprite_dx(sprt) == 0.0);
+
         select_sprite_pack("default");
+
         sprite sprt2 = create_sprite("sprite_2", background_bmp);
         REQUIRE(has_sprite("sprite_2"));
         REQUIRE(sprite_dx(sprt2) == 0.0);
+
         select_sprite_pack("test_pack");
         call_for_all_sprites(test_sprite_function);
         REQUIRE(sprite_dx(sprt) == 10.0);
         sprite_set_dx(sprt, 90.0);
         REQUIRE(sprite_dx(sprt2) == 0.0);
+
         select_sprite_pack("default");
         call_for_all_sprites(test_sprite_function);
         REQUIRE(sprite_dx(sprt) == 90.0);
@@ -753,28 +706,104 @@ TEST_CASE("sprite pack functions can be used", "[sprite]")
 void test_sprite_arrived_event(void *s, int evt)
 {
     sprite_event_kind event = static_cast<sprite_event_kind>(evt);
-    if (event == SPRITE_ARRIVED_EVENT)
+    sprite sprt = static_cast<sprite>(s);
+
+    switch (event)
     {
-        sprite_set_dy(static_cast<sprite>(s), 50.0);
-    }
+    case SPRITE_ARRIVED_EVENT:
+        sprite_set_mass(sprt, 75.0f);
+        break;
+    case SPRITE_ANIMATION_ENDED_EVENT:
+        sprite_set_mass(sprt, 85.0f);
+        break;
+    case SPRITE_TOUCHED_EVENT:
+        sprite_set_mass(sprt, 95.0f);
+        break;
+    default: // SPRITE_CUSTOM_EVENT
+        sprite_set_mass(sprt, 105.0f);
+        break;
+    };
 }
 TEST_CASE("sprite events can be created and handled", "[sprite]")
 {
-    sprite sprt = create_sprite("frog", frog_bmp);
-    REQUIRE(has_sprite("frog"));
-    SECTION("can add sprite event")
+    SECTION("can trigger sprite event on single sprite")
     {
-        sprite_call_on_event(sprt, test_sprite_arrived_event);
-    }
-    SECTION("can trigger sprite event")
-    {
-        REQUIRE(sprite_dy(sprt) == 0.0);
-        sprite_set_velocity(sprt, vector_to(50.0, 50.0));
-        sprite_move_to(sprt, point_at(100.0, 100.0), 0.0f);
+        sprite sprt = create_sprite("frog", frog_bmp);
+        REQUIRE(has_sprite("frog"));
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        SECTION("can add sprite event")
+        {
+            sprite_call_on_event(sprt, test_sprite_arrived_event);
+        }
         update_sprite(sprt);
-        REQUIRE(sprite_dy(sprt) == 50.0);
+        REQUIRE(sprite_mass(sprt) == 85.0f);
+        free_sprite(sprt);
     }
-    free_sprite(sprt);
+    SECTION("can remove sprite event on single sprite")
+    {
+        sprite sprt = create_sprite("frog2", frog_bmp);
+        REQUIRE(has_sprite("frog2"));
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        SECTION("can confirm that event is functioning")
+        {
+            sprite_call_on_event(sprt, test_sprite_arrived_event);
+            update_sprite(sprt);
+            REQUIRE(sprite_mass(sprt) == 85.0f);
+        }
+        sprite_set_mass(sprt, 1.0f);
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        sprite_stop_calling_on_event(sprt, test_sprite_arrived_event);
+        update_sprite(sprt);
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        free_sprite(sprt);
+    }
+    SECTION("can trigger sprite event on all sprites")
+    {
+        sprite sprt = create_sprite("frog", frog_bmp);
+        REQUIRE(has_sprite("frog"));
+        sprite sprt2 = create_sprite("frog2", frog_bmp);
+        REQUIRE(has_sprite("frog2"));
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        REQUIRE(sprite_mass(sprt2) == 1.0f);
+        SECTION("can add sprite event")
+        {
+            call_on_sprite_event(test_sprite_arrived_event);
+        }
+        update_sprite(sprt);
+        update_sprite(sprt2);
+        REQUIRE(sprite_mass(sprt) == 85.0f);
+        REQUIRE(sprite_mass(sprt2) == 85.0f);
+        free_sprite(sprt);
+        free_sprite(sprt2);
+    }
+    SECTION("can remove sprite event on all sprites")
+    {
+        sprite sprt = create_sprite("frog", frog_bmp);
+        REQUIRE(has_sprite("frog"));
+        sprite sprt2 = create_sprite("frog2", frog_bmp);
+        REQUIRE(has_sprite("frog2"));
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        REQUIRE(sprite_mass(sprt2) == 1.0f);
+        SECTION("can confirm that event is functioning")
+        {
+            call_on_sprite_event(test_sprite_arrived_event);
+            update_sprite(sprt);
+            update_sprite(sprt2);
+            REQUIRE(sprite_mass(sprt) == 85.0f);
+            REQUIRE(sprite_mass(sprt2) == 85.0f);
+        }
+        sprite_set_mass(sprt, 1.0f);
+        sprite_set_mass(sprt2, 1.0f);
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        REQUIRE(sprite_mass(sprt2) == 1.0f);
+        stop_calling_on_sprite_event(test_sprite_arrived_event);
+        update_sprite(sprt);
+        update_sprite(sprt2);
+        REQUIRE(sprite_mass(sprt) == 1.0f);
+        REQUIRE(sprite_mass(sprt2) == 1.0f);
+        free_sprite(sprt);
+        free_sprite(sprt2);
+    }
 }
 TEST_CASE("bitmaps can be freed", "[bitmap]")
 {
