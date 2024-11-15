@@ -5,11 +5,9 @@
 #include "catch.hpp"
 
 #include "types.h"
-#include "graphics.h"
-#include "resources.h"
+#include "point_geometry.h"
 
 using namespace splashkit_lib;
-
 
 TEST_CASE("can correctly perform point geometry", "[geometry]")
 {
