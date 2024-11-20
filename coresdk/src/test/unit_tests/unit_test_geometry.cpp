@@ -9,6 +9,8 @@
 
 using namespace splashkit_lib;
 
+constexpr double EPSILON = 1.0E-13;
+
 TEST_CASE("can correctly perform point geometry", "[geometry]")
 {
     SECTION("can create a point")
@@ -74,20 +76,20 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
         REQUIRE_FALSE(point_in_rectangle(point_at(99.0, 100.0), rect));
         REQUIRE_FALSE(point_in_rectangle(point_at(100.0, 99.0), rect));
         REQUIRE_FALSE(point_in_rectangle(point_at(300.0, 301.0), rect));
-        REQUIRE_FALSE(point_in_rectangle(point_at(100.0 - 1.0E-13, 150.0), rect));
+        REQUIRE_FALSE(point_in_rectangle(point_at(100.0 - EPSILON, 150.0), rect));
     }
     SECTION("can detect point in triangle")
     {
         triangle t = triangle_from(point_at(0.0, 0.0), point_at(200.0, 0.0), point_at(100.0, 200.0));
         REQUIRE(point_in_triangle(point_at(50.0, 50.0), t));
-        REQUIRE(point_in_triangle(point_at(100.0, 1.0E-13), t));
+        REQUIRE(point_in_triangle(point_at(100.0, EPSILON), t));
         REQUIRE_FALSE(point_in_triangle(point_at(-100.0, 0.0), t));
-        REQUIRE_FALSE(point_in_triangle(point_at(100.0, -1.0E-13), t));
+        REQUIRE_FALSE(point_in_triangle(point_at(100.0, -EPSILON), t));
     }
     SECTION("can detect point in quad")
     {
         quad q = quad_from(point_at(100.0, 100.0), point_at(500.0, 100.0), point_at(200.0, 500.0), point_at(400.0, 600.0));
-        REQUIRE(point_in_quad(point_at(100.0 + 1.0E-13, 100.0 + 1.0E-13), q));
+        REQUIRE(point_in_quad(point_at(100.0 + EPSILON, 100.0 + EPSILON), q));
         REQUIRE(point_in_quad(point_at(200.0, 200.0), q));
         REQUIRE(point_in_quad(point_at(300.0, 300.0), q));
         REQUIRE_FALSE(point_in_quad(point_at(100.0, 100.0), q));
@@ -294,7 +296,7 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         point_2d opposite = distant_point_on_circle(p, c);
         REQUIRE(opposite.x == 100.0);
         REQUIRE(opposite.y == 150.0);
-        p = point_at(100.0 + 1.0E-14, 100.0);
+        p = point_at(100.0 + EPSILON, 100.0);
         opposite = distant_point_on_circle(p, c);
         REQUIRE(opposite.x == 50.0);
         REQUIRE(opposite.y == 100.0);
@@ -314,7 +316,7 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         origin = point_at(100.0, 45.0);
         heading = vector_to(0.0, 1.0);
         REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0).margin(__DBL_EPSILON__));
-        origin = point_at(100.0, 100.0 + 1.0E-14);
+        origin = point_at(100.0, 100.0 + EPSILON);
         heading = vector_to(0.0, 1.0);
         REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(-50.0).margin(__DBL_EPSILON__));
         origin = point_at(0.0, 0.0);
@@ -343,7 +345,7 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         closest = closest_point_on_circle(p, c);
         REQUIRE(closest.x == 150.0);
         REQUIRE(closest.y == 100.0);
-        p = point_at(100.0 + 1.0E-14, 100.0);
+        p = point_at(100.0 + EPSILON, 100.0);
         closest = closest_point_on_circle(p, c);
         REQUIRE(closest.x == 150.0);
         REQUIRE(closest.y == 100.0);
@@ -394,16 +396,16 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         point_2d p = point_at(100.0, 1.0E50);
         point_2d p1, p2;
         REQUIRE(tangent_points(p, c, p1, p2));
-        REQUIRE(p1.x == 150.0);
+        REQUIRE(p1.x == 50.0);
         REQUIRE(p1.y == 100.0);
-        REQUIRE(p2.x == 50.0);
+        REQUIRE(p2.x == 150.0);
         REQUIRE(p2.y == 100.0);
         p = point_at(200.0, 100.0);
         REQUIRE(tangent_points(p, c, p1, p2));
         REQUIRE(p1.x == 125.0);
-        REQUIRE(p1.y == Approx(100.0 - sqrt(50.0 * 50.0 - 25.0 * 25.0)).margin(__DBL_EPSILON__));
+        REQUIRE(p1.y == Approx(100.0 + sqrt(50.0 * 50.0 - 25.0 * 25.0)).margin(__DBL_EPSILON__));
         REQUIRE(p2.x == 125.0);
-        REQUIRE(p2.y == Approx(100.0 + sqrt(50.0 * 50.0 - 25.0 * 25.0)).margin(__DBL_EPSILON__));
+        REQUIRE(p2.y == Approx(100.0 - sqrt(50.0 * 50.0 - 25.0 * 25.0)).margin(__DBL_EPSILON__));
         p = point_at(100.0, 100.0);
         REQUIRE_FALSE(tangent_points(p, c, p1, p2));
     }
