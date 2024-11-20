@@ -65,7 +65,7 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(100.0, 100.0)) == 0.0);
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 100.0)) == 100.0);
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(100.0, 200.0)) == 100.0);
-        REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 200.0)) == 100.0 * sqrt(2));
+        REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 200.0)) == 100.0 * sqrtf(2.0f));
     }
     SECTION("can detect point in rectangle")
     {
@@ -144,9 +144,9 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
     {
         point_2d pt1 = point_at(100.0, 100.0);
         point_2d pt2 = point_at(200.0, 200.0);
-        REQUIRE(point_point_angle(pt1, pt2) == Approx(45.0f).margin(0.0001f));
+        REQUIRE(point_point_angle(pt1, pt2) == Approx(45.0f).margin(__FLT_EPSILON__));
         pt2 = point_at(100.0, 200.0);
-        REQUIRE(point_point_angle(pt1, pt2) == Approx(90.0f).margin(0.0001f));
+        REQUIRE(point_point_angle(pt1, pt2) == Approx(90.0f).margin(__FLT_EPSILON__));
         pt2 = point_at(200.0, 100.0);
         REQUIRE(point_point_angle(pt1, pt2) == 0.0f);
     }
@@ -160,7 +160,7 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
         l = line_from(0.0, 0.0, 0.0, 200.0);
         REQUIRE(point_line_distance(pt, l) == 100.0f);
         l = line_from(0.0, 0.0, 200.0, 100.0);
-        REQUIRE(point_line_distance(pt, l) == Approx(static_cast<float>(sqrt(20.0 * 20.0 + 40.0 * 40.0))).margin(0.0001f));
+        REQUIRE(point_line_distance(pt, l) == Approx(sqrtf(20.0f * 20.0f + 40.0f * 40.0f)).margin(__FLT_EPSILON__));
     }
 }
 TEST_CASE("can perform circle geometry", "[geometry]")
@@ -204,6 +204,7 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         REQUIRE(circles_intersect(c2, c3));
         REQUIRE_FALSE(circles_intersect(c1, c3));
         REQUIRE_FALSE(circles_intersect(c1, c4));
+
         SECTION("can detect circle intersection using values")
         {
             REQUIRE(circles_intersect(100.0, 100.0, 50.0, 150.0, 100.0, 50.0));
@@ -306,22 +307,22 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         circle c = circle_at(100.0, 100.0, 50.0);
         point_2d origin = point_at(155.0, 100.0);
         vector_2d heading = vector_to(-1.0, 0.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0f).margin(__FLT_EPSILON__));
         origin = point_at(45.0, 100.0);
         heading = vector_to(1.0, 0.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0f).margin(__FLT_EPSILON__));
         origin = point_at(100.0, 155.0);
         heading = vector_to(0.0, -1.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0f).margin(__FLT_EPSILON__));
         origin = point_at(100.0, 45.0);
         heading = vector_to(0.0, 1.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(5.0f).margin(__FLT_EPSILON__));
         origin = point_at(100.0, 100.0 + EPSILON);
         heading = vector_to(0.0, 1.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(-50.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(-50.0f).margin(__FLT_EPSILON__));
         origin = point_at(0.0, 0.0);
         heading = vector_to(1.0, 1.0);
-        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(100 * sqrt(2.0) - 50.0).margin(__DBL_EPSILON__));
+        REQUIRE(ray_circle_intersect_distance(origin, heading, c) == Approx(100.0f * sqrt(2.0f) - 50.0f).margin(__FLT_EPSILON__));
         origin = point_at(0.0, 0.0);
         heading = vector_to(-1.0, 0.0);
         REQUIRE(ray_circle_intersect_distance(origin, heading, c) == -1.0f);
@@ -351,8 +352,8 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         REQUIRE(closest.y == 100.0);
         p = point_at(c.center.x, c.center.y);
         closest = closest_point_on_circle(p, c);
-        REQUIRE(closest.x == 100.0); // not on the circumference but the center
-        REQUIRE(closest.y == 100.0); // does not match the function description
+        REQUIRE(closest.x == 100.0);
+        REQUIRE(closest.y == 100.0);
     }
     SECTION("can calculate closest point on line from circle")
     {
@@ -627,7 +628,7 @@ TEST_CASE("can perform line geometry", "[line]")
     SECTION("can calculate line length")
     {
         line l = line_from(100.0, 100.0, 200.0, 200.0);
-        REQUIRE(line_length(l) == Approx(141.421356237f).margin(0.0001f));
+        REQUIRE(line_length(l) == Approx(100.0f * sqrtf(2.0f)).margin(__FLT_EPSILON__));
     }
     SECTION("can calculate lines from triangle")
     {
@@ -742,8 +743,8 @@ TEST_CASE("can perform line geometry", "[line]")
     {
         line l = line_from(100.0, 100.0, 200.0, 200.0);
         vector_2d normal = line_normal(l);
-        REQUIRE(normal.x == Approx(-sqrt(2.0) / 2.0).margin(0.0001));
-        REQUIRE(normal.y == Approx(sqrt(2.0) / 2.0).margin(0.0001));
+        REQUIRE(normal.x == Approx(-sqrt(2.0) / 2.0).margin(__DBL_EPSILON__));
+        REQUIRE(normal.y == Approx(sqrt(2.0) / 2.0).margin(__DBL_EPSILON__));
     }
     SECTION("can convert line to string")
     {
