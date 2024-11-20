@@ -386,4 +386,54 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }
 
+    bool resolve_collision(sprite s1, sprite s2, collision_resolution_kind kind)
+    {
+        // check if the sprites are colliding
+        if (!sprite_collision(s1, s2))
+        {
+            return false;
+        }
+
+        // get the bounding rectangles of the sprites
+        rectangle r1 = sprite_collision_rectangle(s1);
+        rectangle r2 = sprite_collision_rectangle(s2);
+
+        // get the intersection rectangle
+        rectangle inter = intersection(r1, r2);
+
+        switch(kind)
+        {
+        case TOP:
+            sprite_set_y(s1, sprite_y(s1) + inter.height);
+            break;
+        case BOTTOM:
+            sprite_set_y(s1, sprite_y(s1) - inter.height);
+            break;
+        case LEFT:
+            sprite_set_x(s1, sprite_x(s1) + inter.width);
+            break;
+        case RIGHT:
+            sprite_set_x(s1, sprite_x(s1) - inter.width);
+            break;
+        case TOP_LEFT:
+            sprite_set_x(s1, sprite_x(s1) + inter.width);
+            sprite_set_y(s1, sprite_y(s1) + inter.height);
+            break;
+        case TOP_RIGHT:
+            sprite_set_x(s1, sprite_x(s1) - inter.width);
+            sprite_set_y(s1, sprite_y(s1) + inter.height);
+            break;
+        case BOTTOM_LEFT:
+            sprite_set_x(s1, sprite_x(s1) + inter.width);
+            sprite_set_y(s1, sprite_y(s1) - inter.height);
+            break;
+        case BOTTOM_RIGHT:
+            sprite_set_x(s1, sprite_x(s1) - inter.width);
+            sprite_set_y(s1, sprite_y(s1) - inter.height);
+            break;
+        }
+
+        return true;
+    }
+
 }

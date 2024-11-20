@@ -476,5 +476,19 @@ namespace splashkit_lib
      */
     bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2);
 
+    enum collision_resolution_kind
+    {
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT,
+        TOP_LEFT,
+        TOP_RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT
+    };
+
+    bool resolve_collision(sprite collider, sprite collidee, collision_resolution_kind kind);
+
 }
 #endif /* collisions_h */
