@@ -534,7 +534,7 @@ namespace splashkit_lib
                 _move_sprite_by_direction_relative_to_size(collider, collider_direction,
                                                                 1.0 / pow(1.5, static_cast<double>(i)));
             }
-            else if (i == 0) // no collision in the first iteration
+            else if (i == 1) // no collision in the first iteration
             {
                 return false;
             }
