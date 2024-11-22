@@ -18,6 +18,35 @@
 namespace splashkit_lib
 {
     /**
+     *  This enumeration contains a list of directions that a
+     *  sprite can collide with another sprite. For example, a
+     *  collider sprite which is colliding with another sprite
+     *  on its top edge would have a collision direction of TOP.
+     *  
+     *  @constant TOP           The top of the sprite
+     *  @constant BOTTOM        The bottom of the sprite
+     *  @constant LEFT          The left of the sprite
+     *  @constant RIGHT         The right of the sprite
+     *  @constant TOP_LEFT      The top left of the sprite
+     *  @constant TOP_RIGHT     The top right of the sprite
+     *  @constant BOTTOM_LEFT   The bottom left of the sprite
+     *  @constant BOTTOM_RIGHT  The bottom right of the sprite
+     *  @constant NONE          No collision
+     */
+    enum collision_direction
+    {
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT,
+        TOP_LEFT,
+        TOP_RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT,
+        NONE,
+    };
+    
+    /**
      * Tests if a bitmap drawn using the passed in translation matrix would draw a pixel
      * at the passed in point. Use to check collisions between a point and a bitmap.
      *
@@ -476,19 +505,36 @@ namespace splashkit_lib
      */
     bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2);
 
-    enum collision_resolution_kind
-    {
-        TOP,
-        BOTTOM,
-        LEFT,
-        RIGHT,
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT
-    };
+    /**
+     * Returns the direction of the collision between two sprites
+     * relative to the collider sprite. If the sprites are not colliding,
+     * this function will return NONE.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the collider sprite.
+     *                  If the sprites are not colliding, this function will return NONE.
+     * 
+     * @attribute class sprite
+     */
+    collision_direction sprite_collision_direction(sprite collider, sprite collidee);
 
-    bool resolve_collision(sprite collider, sprite collidee, collision_resolution_kind kind);
+    /**
+     * Resolves the collision between two sprites by moving the
+     * collider sprite to the edge of the collidee sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprites are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the collider sprite.
+     *                  If NONE is passed, the function will not resolve the collision.
+     * @return          True if the sprites are colliding and the collision was resolved,
+     *                  false if the sprites are not colliding
+     * 
+     * @atrribute class sprite
+     */
+    bool resolve_sprite_collision(sprite collider, sprite collidee, collision_direction direction);
 
 }
 #endif /* collisions_h */

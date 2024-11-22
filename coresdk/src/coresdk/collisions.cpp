@@ -17,10 +17,25 @@
 #include "graphics.h"
 #include "utils.h"
 
+constexpr int DEFAULT_BRACKET_ITERATIONS = 50;
+
 using std::function;
 
 namespace splashkit_lib
 {
+    enum class _sprite_movement_direction
+    {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT,
+        UP_LEFT,
+        UP_RIGHT,
+        DOWN_LEFT,
+        DOWN_RIGHT,
+        NONE,
+    };
+    
     //#define DEBUG_STEP
 
     // Step over pixels in the two areas based on the supplied matrix
@@ -386,51 +401,305 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }
 
-    bool resolve_collision(sprite s1, sprite s2, collision_resolution_kind kind)
+    _sprite_movement_direction _opposite_direction(_sprite_movement_direction direction)
+    {
+        switch (direction)
+        {
+        case _sprite_movement_direction::UP:
+            return _sprite_movement_direction::DOWN;
+        case _sprite_movement_direction::DOWN:
+            return _sprite_movement_direction::UP;
+        case _sprite_movement_direction::LEFT:
+            return _sprite_movement_direction::RIGHT;
+        case _sprite_movement_direction::RIGHT:
+            return _sprite_movement_direction::LEFT;
+        case _sprite_movement_direction::UP_LEFT:
+            return _sprite_movement_direction::DOWN_RIGHT;
+        case _sprite_movement_direction::UP_RIGHT:
+            return _sprite_movement_direction::DOWN_LEFT;
+        case _sprite_movement_direction::DOWN_LEFT:
+            return _sprite_movement_direction::UP_RIGHT;
+        case _sprite_movement_direction::DOWN_RIGHT:
+            return _sprite_movement_direction::UP_LEFT;
+        };
+        return _sprite_movement_direction::NONE;
+    }
+
+    _sprite_movement_direction _direction_from_collision(collision_direction direction)
+    {
+        switch (direction)
+        {
+        case collision_direction::TOP:
+            return _sprite_movement_direction::DOWN;
+        case collision_direction::BOTTOM:
+            return _sprite_movement_direction::UP;
+        case collision_direction::LEFT:
+            return _sprite_movement_direction::RIGHT;
+        case collision_direction::RIGHT:
+            return _sprite_movement_direction::LEFT;
+        case collision_direction::TOP_LEFT:
+            return _sprite_movement_direction::DOWN_RIGHT;
+        case collision_direction::TOP_RIGHT:
+            return _sprite_movement_direction::DOWN_LEFT;
+        case collision_direction::BOTTOM_LEFT:
+            return _sprite_movement_direction::UP_RIGHT;
+        case collision_direction::BOTTOM_RIGHT:
+            return _sprite_movement_direction::UP_LEFT;
+        };
+        return _sprite_movement_direction::NONE;
+    }
+
+    void _move_sprite_by_direction(sprite sprt, _sprite_movement_direction direction, vector_2d amount)
+    {
+        if (amount.x == 0.0 && amount.y == 0.0)
+        {
+            return;
+        }
+        
+        switch (direction)
+        {
+        case _sprite_movement_direction::UP:
+            sprite_set_y(sprt, sprite_y(sprt) - amount.y);
+            break;
+        case _sprite_movement_direction::DOWN:
+            sprite_set_y(sprt, sprite_y(sprt) + amount.y);
+            break;
+        case _sprite_movement_direction::LEFT:
+            sprite_set_x(sprt, sprite_x(sprt) - amount.x);
+            break;
+        case _sprite_movement_direction::RIGHT:
+            sprite_set_x(sprt, sprite_x(sprt) + amount.x);
+            break;
+        case _sprite_movement_direction::UP_LEFT:
+            sprite_set_x(sprt, sprite_x(sprt) - amount.x);
+            sprite_set_y(sprt, sprite_y(sprt) - amount.y);
+            break;
+        case _sprite_movement_direction::UP_RIGHT:
+            sprite_set_x(sprt, sprite_x(sprt) + amount.x);
+            sprite_set_y(sprt, sprite_y(sprt) - amount.y);
+            break;
+        case _sprite_movement_direction::DOWN_LEFT:
+            sprite_set_x(sprt, sprite_x(sprt) - amount.x);
+            sprite_set_y(sprt, sprite_y(sprt) + amount.y);
+            break;
+        case _sprite_movement_direction::DOWN_RIGHT:
+            sprite_set_x(sprt, sprite_x(sprt) + amount.x);
+            sprite_set_y(sprt, sprite_y(sprt) + amount.y);
+            break;
+        };
+    }
+
+    void _move_sprite_by_direction_relative_to_size(sprite sprt, _sprite_movement_direction direction, double relative_amount = 1.0)
+    {
+        switch (direction)
+        {
+        case _sprite_movement_direction::UP:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::UP, vector_to(0.0, sprite_height(sprt) * relative_amount));
+            break;
+        case _sprite_movement_direction::DOWN:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::DOWN, vector_to(0.0, sprite_height(sprt) * relative_amount));
+            break;
+        case _sprite_movement_direction::LEFT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::LEFT, vector_to(sprite_width(sprt) * relative_amount, 0.0));
+            break;
+        case _sprite_movement_direction::RIGHT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::RIGHT, vector_to(sprite_width(sprt) * relative_amount, 0.0));
+            break;
+        case _sprite_movement_direction::UP_LEFT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::UP_LEFT, vector_to(sprite_width(sprt) * relative_amount,
+                                                                                                sprite_height(sprt) * relative_amount));
+            break;
+        case _sprite_movement_direction::UP_RIGHT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::UP_RIGHT, vector_to(sprite_width(sprt) * relative_amount,
+                                                                                                sprite_height(sprt) * relative_amount));
+            break;
+        case _sprite_movement_direction::DOWN_LEFT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::DOWN_LEFT, vector_to(sprite_width(sprt) * relative_amount,
+                                                                                                sprite_height(sprt) * relative_amount));
+            break;
+        case _sprite_movement_direction::DOWN_RIGHT:
+            _move_sprite_by_direction(sprt, _sprite_movement_direction::DOWN_RIGHT, vector_to(sprite_width(sprt) * relative_amount,
+                                                                                                sprite_height(sprt) * relative_amount));
+            break;
+        };
+    }
+
+    bool _bracket_sprite_collision( sprite collider, sprite collidee,
+        _sprite_movement_direction collider_direction, int iterations = DEFAULT_BRACKET_ITERATIONS)
+    {
+        for (int i = 1; i <= iterations; i++)
+        {
+            if (sprite_collision(collider, collidee))
+            {
+                _move_sprite_by_direction_relative_to_size(collider, collider_direction,
+                                                                1.0 / pow(1.5, static_cast<double>(i)));
+            }
+            else if (i == 0) // no collision in the first iteration
+            {
+                return false;
+            }
+            else
+            {
+                _move_sprite_by_direction_relative_to_size(collider, _opposite_direction(collider_direction),
+                                                                1.0 / pow(1.5, static_cast<double>(i)));
+            }
+        }
+        return true;
+    }
+
+    collision_direction _compare_sprite_collision_depth_horizontal(sprite collider, sprite collidee)
+    {
+        point_2d collider_center = center_point(collider);
+        point_2d collidee_center = center_point(collidee);
+
+        if (collider_center.x < collidee_center.x)
+        {
+            return collision_direction::RIGHT;
+        }
+        else
+        {
+            return collision_direction::LEFT;
+        }
+    }
+
+    collision_direction _compare_sprite_collision_depth_vertical(sprite collider, sprite collidee)
+    {
+        point_2d collider_center = center_point(collider);
+        point_2d collidee_center = center_point(collidee);
+
+        if (collider_center.y < collidee_center.y)
+        {
+            return collision_direction::BOTTOM;
+        }
+        else
+        {
+            return collision_direction::TOP;
+        }
+    }
+
+    collision_direction sprite_collision_direction(sprite collider, sprite collidee)
+    {
+        if (!sprite_collision(collider, collidee))
+        {
+            return collision_direction::NONE;
+        }
+        
+        rectangle collider_rect = sprite_collision_rectangle(collider);
+        rectangle collidee_rect = sprite_collision_rectangle(collidee);
+
+        vector<line> collider_lines = lines_from(collider_rect);
+        line collider_top_edge = collider_lines[0];
+        line collider_left_edge = collider_lines[1];
+        line collider_right_edge = collider_lines[2];
+        line collider_bottom_edge = collider_lines[3];
+
+        bool left_edge = line_intersects_rect(collider_left_edge, collidee_rect);
+        bool right_edge = line_intersects_rect(collider_right_edge, collidee_rect);
+        bool top_edge = line_intersects_rect(collider_top_edge, collidee_rect);
+        bool bottom_edge = line_intersects_rect(collider_bottom_edge, collidee_rect);
+
+        if (left_edge && right_edge && top_edge)
+        {
+            return collision_direction::TOP;
+        }
+        else if (left_edge && right_edge && bottom_edge)
+        {
+            return collision_direction::BOTTOM;
+        }
+        else if (top_edge && bottom_edge && right_edge)
+        {
+            return collision_direction::RIGHT;
+        }
+        else if (top_edge && bottom_edge && left_edge)
+        {
+            return collision_direction::LEFT;
+        }
+        else if (left_edge && right_edge)
+        {
+            // check if the collider is more to the left or right of the collidee
+            return _compare_sprite_collision_depth_horizontal(collider, collidee);
+        }
+        else if (top_edge && bottom_edge)
+        {
+            // check if the collider is more to the top or bottom of the collidee
+            return _compare_sprite_collision_depth_vertical(collider, collidee);
+        }
+        else if (left_edge && top_edge)
+        {
+            return collision_direction::TOP_LEFT;
+        }
+        else if (left_edge && bottom_edge)
+        {
+            return collision_direction::BOTTOM_LEFT;
+        }
+        else if (right_edge && top_edge)
+        {
+            return collision_direction::TOP_RIGHT;
+        }
+        else if (right_edge && bottom_edge)
+        {
+            return collision_direction::BOTTOM_RIGHT;
+        }
+        else if (left_edge)
+        {
+            return collision_direction::LEFT;
+        }
+        else if (right_edge)
+        {
+            return collision_direction::RIGHT;
+        }
+        else if (top_edge)
+        {
+            return collision_direction::TOP;
+        }
+        else if (bottom_edge)
+        {
+            return collision_direction::BOTTOM;
+        }
+
+        // collider contains collidee or collidee contains collider
+        // calculate the direction of the greatest distance between the two sprites
+        point_2d collider_center = center_point(collider);
+        point_2d collidee_center = center_point(collidee);
+        double x_distance = abs(collider_center.x - collidee_center.x);
+        double y_distance = abs(collider_center.y - collidee_center.y);
+
+        if (x_distance > y_distance)
+        {
+            return _compare_sprite_collision_depth_horizontal(collider, collidee);
+        }
+        else
+        {
+            return _compare_sprite_collision_depth_vertical(collider, collidee);
+        }
+    }
+
+    bool resolve_sprite_collision(sprite collider, sprite collidee, collision_direction direction)
     {
         // check if the sprites are colliding
-        if (!sprite_collision(s1, s2))
+        if (direction == collision_direction::NONE || !sprite_collision(collider, collidee))
         {
             return false;
         }
 
-        // get the bounding rectangles of the sprites
-        rectangle r1 = sprite_collision_rectangle(s1);
-        rectangle r2 = sprite_collision_rectangle(s2);
+        collision_test_kind collider_kind = sprite_collision_kind(collider);
+        collision_test_kind collidee_kind = sprite_collision_kind(collidee);
 
-        // get the intersection rectangle
-        rectangle inter = intersection(r1, r2);
-
-        switch(kind)
+        if (collider_kind == AABB_COLLISIONS && collidee_kind == AABB_COLLISIONS)
         {
-        case TOP:
-            sprite_set_y(s1, sprite_y(s1) + inter.height);
-            break;
-        case BOTTOM:
-            sprite_set_y(s1, sprite_y(s1) - inter.height);
-            break;
-        case LEFT:
-            sprite_set_x(s1, sprite_x(s1) + inter.width);
-            break;
-        case RIGHT:
-            sprite_set_x(s1, sprite_x(s1) - inter.width);
-            break;
-        case TOP_LEFT:
-            sprite_set_x(s1, sprite_x(s1) + inter.width);
-            sprite_set_y(s1, sprite_y(s1) + inter.height);
-            break;
-        case TOP_RIGHT:
-            sprite_set_x(s1, sprite_x(s1) - inter.width);
-            sprite_set_y(s1, sprite_y(s1) + inter.height);
-            break;
-        case BOTTOM_LEFT:
-            sprite_set_x(s1, sprite_x(s1) + inter.width);
-            sprite_set_y(s1, sprite_y(s1) - inter.height);
-            break;
-        case BOTTOM_RIGHT:
-            sprite_set_x(s1, sprite_x(s1) - inter.width);
-            sprite_set_y(s1, sprite_y(s1) - inter.height);
-            break;
+            // get the bounding rectangles of the sprites
+            rectangle collider_rect = sprite_collision_rectangle(collider);
+            rectangle collidee_rect = sprite_collision_rectangle(collidee);
+
+            // get the intersection rectangle
+            rectangle inter = intersection(collider_rect, collidee_rect);
+            vector_2d amount = vector_to(inter.width, inter.height);
+
+            _move_sprite_by_direction(collider, _direction_from_collision(direction), amount);
+        }
+        else // one or both of the sprites are using pixel collision
+        {
+            _bracket_sprite_collision(collider, collidee, _direction_from_collision(direction));
         }
 
         return true;
