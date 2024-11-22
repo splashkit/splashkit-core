@@ -16,9 +16,111 @@
 
 using namespace splashkit_lib;
 
+enum class sprite_perimeter_segment
+{
+    TOP_LEFT,
+    TOP_CENTER,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_CENTER,
+    BOTTOM_RIGHT,
+    LEFT_TOP,
+    LEFT_CENTER,
+    LEFT_BOTTOM,
+    RIGHT_TOP,
+    RIGHT_CENTER,
+    RIGHT_BOTTOM,
+};
+
+void draw_sprite_perimeter_segment(sprite s, sprite_perimeter_segment segment, color clr, int line_width)
+{
+    switch (segment)
+    {
+    case sprite_perimeter_segment::TOP_LEFT:
+        draw_line(clr, sprite_x(s), sprite_y(s), sprite_x(s) + sprite_width(s) / 3, sprite_y(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::TOP_CENTER:
+        draw_line(clr, sprite_x(s) + sprite_width(s) / 3, sprite_y(s), sprite_x(s) + 2 * sprite_width(s) / 3, sprite_y(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::TOP_RIGHT:
+        draw_line(clr, sprite_x(s) + 2 * sprite_width(s) / 3, sprite_y(s), sprite_x(s) + sprite_width(s), sprite_y(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::BOTTOM_LEFT:
+        draw_line(clr, sprite_x(s), sprite_y(s) + sprite_height(s), sprite_x(s) + sprite_width(s) / 3, sprite_y(s) + sprite_height(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::BOTTOM_CENTER:
+        draw_line(clr, sprite_x(s) + sprite_width(s) / 3, sprite_y(s) + sprite_height(s), sprite_x(s) + 2 * sprite_width(s) / 3, sprite_y(s) + sprite_height(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::BOTTOM_RIGHT:
+        draw_line(clr, sprite_x(s) + 2 * sprite_width(s) / 3, sprite_y(s) + sprite_height(s), sprite_x(s) + sprite_width(s), sprite_y(s) + sprite_height(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::LEFT_TOP:
+        draw_line(clr, sprite_x(s), sprite_y(s), sprite_x(s), sprite_y(s) + sprite_height(s) / 3, option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::LEFT_CENTER:
+        draw_line(clr, sprite_x(s), sprite_y(s) + sprite_height(s) / 3, sprite_x(s), sprite_y(s) + 2 * sprite_height(s) / 3, option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::LEFT_BOTTOM:
+        draw_line(clr, sprite_x(s), sprite_y(s) + 2 * sprite_height(s) / 3, sprite_x(s), sprite_y(s) + sprite_height(s), option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::RIGHT_TOP:
+        draw_line(clr, sprite_x(s) + sprite_width(s), sprite_y(s), sprite_x(s) + sprite_width(s), sprite_y(s) + sprite_height(s) / 3, option_line_width(line_width));
+        break;
+    case sprite_perimeter_segment::RIGHT_CENTER:
+        draw_line(clr, sprite_x(s) + sprite_width(s), sprite_y(s) + sprite_height(s) / 3, sprite_x(s) + sprite_width(s), sprite_y(s) + 2 * sprite_height(s) / 3, option_line_width(line_width));
+        break;
+    default: // case sprite_perimeter_segment::RIGHT_BOTTOM:
+        draw_line(clr, sprite_x(s) + sprite_width(s), sprite_y(s) + 2 * sprite_height(s) / 3, sprite_x(s) + sprite_width(s), sprite_y(s) + sprite_height(s), option_line_width(line_width));
+        break;
+    };
+}
+
+void draw_sprite_perimeter_by_collision(sprite s, collision_direction direction, color clr, int line_width)
+{
+    switch (direction)
+    {
+    case collision_direction::TOP:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::TOP_LEFT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::TOP_CENTER, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::TOP_RIGHT, clr, line_width);
+        break;
+    case collision_direction::BOTTOM:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::BOTTOM_LEFT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::BOTTOM_CENTER, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::BOTTOM_RIGHT, clr, line_width);
+        break;
+    case collision_direction::LEFT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::LEFT_TOP, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::LEFT_CENTER, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::LEFT_BOTTOM, clr, line_width);
+        break;
+    case collision_direction::RIGHT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::RIGHT_TOP, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::RIGHT_CENTER, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::RIGHT_BOTTOM, clr, line_width);
+        break;
+    case collision_direction::TOP_LEFT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::TOP_LEFT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::LEFT_TOP, clr, line_width);
+        break;
+    case collision_direction::TOP_RIGHT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::TOP_RIGHT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::RIGHT_TOP, clr, line_width);
+        break;
+    case collision_direction::BOTTOM_LEFT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::BOTTOM_LEFT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::LEFT_BOTTOM, clr, line_width);
+        break;
+    case collision_direction::BOTTOM_RIGHT:
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::BOTTOM_RIGHT, clr, line_width);
+        draw_sprite_perimeter_segment(s, sprite_perimeter_segment::RIGHT_BOTTOM, clr, line_width);
+        break;
+    };
+}
+
 void run_sprite_test()
 {
-    sprite sprt, s2;
+    sprite sprt, s2, s3, s4;
     triangle tri, init_tri;
     triangle tri_b, init_tri_b;
     rectangle r;
@@ -37,6 +139,18 @@ void run_sprite_test()
     sprite_set_move_from_anchor_point(s2, true);
     sprite_set_x(s2, 100);
     sprite_set_y(s2, 100);
+
+    s3 = create_sprite(bitmap_named("rocket_sprt.png"));
+    sprite_set_move_from_anchor_point(s3, true);
+    sprite_set_x(s3, 100);
+    sprite_set_y(s3, 400);
+
+    s4 = create_sprite(bitmap_named("rocket_sprt.png"));
+    sprite_set_move_from_anchor_point(s4, true);
+    sprite_set_x(s4, 400);
+    sprite_set_y(s4, 400);
+    sprite_set_collision_kind(s4, AABB_COLLISIONS);
+    sprite_set_scale(s4, 2.0f);
 
     r = rectangle_from(400, 100, 100, 50);
     q = quad_from(r);
@@ -97,6 +211,8 @@ void run_sprite_test()
 
         draw_sprite(sprt);
         draw_sprite(s2);
+        draw_sprite(s3);
+        draw_sprite(s4);
         
         if (sprite_rectangle_collision(sprt, r))
 		{
@@ -132,7 +248,22 @@ void run_sprite_test()
             draw_circle(COLOR_RED, sprite_collision_circle(s2));
 		}
 
+        if (sprite_collision(sprt, s3))
+        {
+            collision_direction dir = sprite_collision_direction(sprt, s3);
+            resolve_sprite_collision(sprt, s3, dir);
+            draw_sprite_perimeter_by_collision(sprt, dir, COLOR_RED, 3);
+        }
+
+        if (sprite_collision(sprt, s4))
+        {
+            collision_direction dir = sprite_collision_direction(sprt, s4);
+            resolve_sprite_collision(sprt, s4, dir);
+            draw_sprite_perimeter_by_collision(sprt, dir, COLOR_RED, 3);
+        }
+
         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(sprt));
+        draw_rectangle(COLOR_RED, sprite_collision_rectangle(s4));
 
         draw_line(COLOR_GREEN, line_from(center_point(sprt), matrix_multiply(rotation_matrix(sprite_rotation(sprt)), vector_multiply(sprite_velocity(sprt), 30.0))));
 
