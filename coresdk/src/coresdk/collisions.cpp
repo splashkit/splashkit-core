@@ -547,56 +547,36 @@ namespace splashkit_lib
         return true;
     }
 
-    collision_direction _compare_sprite_collision_depth_horizontal(sprite collider, sprite collidee)
+    collision_direction _compare_point_collision_depth_horizontal(point_2d collider, point_2d collidee)
     {
-        point_2d collider_center = center_point(collider);
-        point_2d collidee_center = center_point(collidee);
-
-        if (collider_center.x < collidee_center.x)
+        if (collider.x < collidee.x)
         {
             return collision_direction::RIGHT;
         }
-        else
-        {
-            return collision_direction::LEFT;
-        }
+        return collision_direction::LEFT;
     }
 
-    collision_direction _compare_sprite_collision_depth_vertical(sprite collider, sprite collidee)
+    collision_direction _compare_point_collision_depth_vertical(point_2d collider, point_2d collidee)
     {
-        point_2d collider_center = center_point(collider);
-        point_2d collidee_center = center_point(collidee);
-
-        if (collider_center.y < collidee_center.y)
+        if (collider.y < collidee.y)
         {
             return collision_direction::BOTTOM;
         }
-        else
-        {
-            return collision_direction::TOP;
-        }
+        return collision_direction::TOP;
     }
 
-    collision_direction sprite_collision_direction(sprite collider, sprite collidee)
+    collision_direction _rectangle_rectangle_collision_direction(rectangle collider, rectangle collidee)
     {
-        if (!sprite_collision(collider, collidee))
-        {
-            return collision_direction::NONE;
-        }
-        
-        rectangle collider_rect = sprite_collision_rectangle(collider);
-        rectangle collidee_rect = sprite_collision_rectangle(collidee);
-
-        vector<line> collider_lines = lines_from(collider_rect);
+        vector<line> collider_lines = lines_from(collider);
         line collider_top_edge = collider_lines[0];
         line collider_left_edge = collider_lines[1];
         line collider_right_edge = collider_lines[2];
         line collider_bottom_edge = collider_lines[3];
 
-        bool left_edge = line_intersects_rect(collider_left_edge, collidee_rect);
-        bool right_edge = line_intersects_rect(collider_right_edge, collidee_rect);
-        bool top_edge = line_intersects_rect(collider_top_edge, collidee_rect);
-        bool bottom_edge = line_intersects_rect(collider_bottom_edge, collidee_rect);
+        bool left_edge = line_intersects_rect(collider_left_edge, collidee);
+        bool right_edge = line_intersects_rect(collider_right_edge, collidee);
+        bool top_edge = line_intersects_rect(collider_top_edge, collidee);
+        bool bottom_edge = line_intersects_rect(collider_bottom_edge, collidee);
 
         if (left_edge && right_edge && top_edge)
         {
@@ -617,12 +597,12 @@ namespace splashkit_lib
         else if (left_edge && right_edge)
         {
             // check if the collider is more to the left or right of the collidee
-            return _compare_sprite_collision_depth_horizontal(collider, collidee);
+            return _compare_point_collision_depth_horizontal(rectangle_center(collider), rectangle_center(collidee));
         }
         else if (top_edge && bottom_edge)
         {
             // check if the collider is more to the top or bottom of the collidee
-            return _compare_sprite_collision_depth_vertical(collider, collidee);
+            return _compare_point_collision_depth_vertical(rectangle_center(collider), rectangle_center(collidee));
         }
         else if (left_edge && top_edge)
         {
@@ -659,19 +639,30 @@ namespace splashkit_lib
 
         // collider contains collidee or collidee contains collider
         // calculate the direction of the greatest distance between the two sprites
-        point_2d collider_center = center_point(collider);
-        point_2d collidee_center = center_point(collidee);
+        point_2d collider_center = rectangle_center(collider);
+        point_2d collidee_center = rectangle_center(collidee);
         double x_distance = abs(collider_center.x - collidee_center.x);
         double y_distance = abs(collider_center.y - collidee_center.y);
 
         if (x_distance > y_distance)
         {
-            return _compare_sprite_collision_depth_horizontal(collider, collidee);
+            return _compare_point_collision_depth_horizontal(collider_center, collidee_center);
         }
-        else
+        return _compare_point_collision_depth_vertical(collider_center, collidee_center);
+    }
+
+
+    collision_direction sprite_collision_direction(sprite collider, sprite collidee)
+    {
+        if (!sprite_collision(collider, collidee))
         {
-            return _compare_sprite_collision_depth_vertical(collider, collidee);
+            return collision_direction::NONE;
         }
+        
+        rectangle collider_rect = sprite_collision_rectangle(collider);
+        rectangle collidee_rect = sprite_collision_rectangle(collidee);
+
+        return _rectangle_rectangle_collision_direction(collider_rect, collidee_rect);
     }
 
     bool resolve_sprite_collision(sprite collider, sprite collidee, collision_direction direction)
