@@ -300,7 +300,7 @@ void sprite_collision_resolution_test()
     sprite_set_collision_kind(sprt_pixel, PIXEL_COLLISIONS);
 
     sprt_AABB = create_sprite("rocket_sprt.png");
-    sprite_set_x(sprt_AABB, 100.0);
+    sprite_set_x(sprt_AABB, 50.0);
     sprite_set_y(sprt_AABB, 400.0);
     sprite_set_collision_kind(sprt_AABB, AABB_COLLISIONS);
 
@@ -346,11 +346,8 @@ void sprite_collision_resolution_test()
         draw_rectangle(COLOR_RED, sprite_collision_rectangle(sprt_AABB));
         fill_rectangle(COLOR_GREEN, rect);
         fill_circle(COLOR_GREEN, circ);
-        draw_rectangle(COLOR_GREEN, rectangle_around(circ));
         fill_triangle(COLOR_GREEN, tri);
-        draw_rectangle(COLOR_GREEN, rectangle_around(tri));
         fill_quad(COLOR_GREEN, q);
-        draw_rectangle(COLOR_GREEN, rectangle_around(q));
         draw_sprite(sprt_pixel);
         draw_sprite(sprt_AABB);
 
@@ -407,7 +404,7 @@ void sprite_sprite_collision_resolution_direction_test()
     sprite collider, sprt_TOP, sprt_BOTTOM, sprt_LEFT, sprt_RIGHT, sprt_TOP_LEFT,
         sprt_TOP_RIGHT, sprt_BOTTOM_LEFT, sprt_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Sprite-Sprite Collision Resolution Fixed Direction", 600, 600);
 
     hide_mouse();
 
@@ -554,7 +551,7 @@ void sprite_rectangle_collision_resolution_direction_test()
     rectangle rect_TOP, rect_BOTTOM, rect_LEFT, rect_RIGHT, rect_TOP_LEFT,
         rect_TOP_RIGHT, rect_BOTTOM_LEFT, rect_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Sprite-Rectangle Collision Resolution Fixed Direction", 600, 600);
 
     hide_mouse();
 
@@ -670,7 +667,7 @@ void sprite_circle_collision_resolution_direction_test()
     circle circ_TOP, circ_BOTTOM, circ_LEFT, circ_RIGHT, circ_TOP_LEFT,
         circ_TOP_RIGHT, circ_BOTTOM_LEFT, circ_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Sprite-Circle Collision Resolution Fixed Direction", 600, 600);
 
     hide_mouse();
 
@@ -786,7 +783,7 @@ void sprite_triangle_collision_resolution_direction_test()
     triangle tri_TOP, tri_BOTTOM, tri_LEFT, tri_RIGHT, tri_TOP_LEFT,
         tri_TOP_RIGHT, tri_BOTTOM_LEFT, tri_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Sprite-Triangle Collision Resolution Fixed Direction", 600, 600);
 
     hide_mouse();
 
@@ -902,7 +899,7 @@ void sprite_quad_collision_resolution_direction_test()
     quad quad_TOP, quad_BOTTOM, quad_LEFT, quad_RIGHT, quad_TOP_LEFT,
         quad_TOP_RIGHT, quad_BOTTOM_LEFT, quad_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Sprite-Quad Collision Resolution Fixed Direction", 600, 600);
 
     hide_mouse();
 
@@ -1025,9 +1022,9 @@ void run_sprite_test()
 {
     // sprite_test();
     sprite_collision_resolution_test();
-    // sprite_sprite_collision_resolution_direction_test();
-    // sprite_rectangle_collision_resolution_direction_test();
-    // sprite_circle_collision_resolution_direction_test();
-    // sprite_triangle_collision_resolution_direction_test();
-    // sprite_quad_collision_resolution_direction_test();
+    sprite_sprite_collision_resolution_direction_test();
+    sprite_rectangle_collision_resolution_direction_test();
+    sprite_circle_collision_resolution_direction_test();
+    sprite_triangle_collision_resolution_direction_test();
+    sprite_quad_collision_resolution_direction_test();
 }
