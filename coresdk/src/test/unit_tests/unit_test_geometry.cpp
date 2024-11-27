@@ -731,6 +731,8 @@ TEST_CASE("can perform line geometry", "[line]")
         REQUIRE(line_intersects_rect(l, r));
         r = rectangle_from(300.0, 300.0, 200.0, 200.0);
         REQUIRE_FALSE(line_intersects_rect(l, r));
+        r = rectangle_from(50.0, 50.0, 500.0, 500.0);
+        REQUIRE(line_intersects_rect(l, r));
     }
     SECTION("can calculate line midpoint")
     {
