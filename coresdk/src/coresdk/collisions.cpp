@@ -559,46 +559,6 @@ namespace splashkit_lib
         return _sprite_movement_direction::NONE;
     }
 
-    // _sprite_movement_direction _direction_from_velocity(const vector_2d& velocity)
-    // {
-    //     double angle = vector_angle(velocity);
-
-    //     // split the angle into 8 directions (using atan2 in degrees)
-    //     if (angle >= 67.5 && angle < 112.5)
-    //     {
-    //         return _sprite_movement_direction::UP;
-    //     }
-    //     else if (angle >= 112.5 && angle < 157.5)
-    //     {
-    //         return _sprite_movement_direction::UP_LEFT;
-    //     }
-    //     else if (angle >= 157.5 || angle < -157.5)
-    //     {
-    //         return _sprite_movement_direction::LEFT;
-    //     }
-    //     else if (angle >= -157.5 && angle < -112.5)
-    //     {
-    //         return _sprite_movement_direction::DOWN_LEFT;
-    //     }
-    //     else if (angle >= -112.5 && angle < -67.5)
-    //     {
-    //         return _sprite_movement_direction::DOWN;
-    //     }
-    //     else if (angle >= -67.5 && angle < -22.5)
-    //     {
-    //         return _sprite_movement_direction::DOWN_RIGHT;
-    //     }
-    //     else if (angle >= -22.5 && angle < 22.5)
-    //     {
-    //         return _sprite_movement_direction::RIGHT;
-    //     }
-    //     else if (angle >= 22.5 && angle < 67.5)
-    //     {
-    //         return _sprite_movement_direction::UP_RIGHT;
-    //     }
-    //     return _sprite_movement_direction::NONE;
-    // }
-
     void _move_sprite_by_direction(sprite sprt, _sprite_movement_direction direction, const vector_2d& amount)
     {
         if (amount.x == 0.0 && amount.y == 0.0)
@@ -643,20 +603,8 @@ namespace splashkit_lib
     {
         rectangle col_rect = sprite_collision_rectangle(sprt);
 
-        double width = col_rect.width;
-        double height = col_rect.height;
-
-        double relative_width = width * relative_amount;
-        double relative_height = height * relative_amount;
-
-        // vector_2d vel = sprite_velocity(sprt);
-
-        // _sprite_movement_direction vel_direction = _direction_from_velocity(vel);
-
-        // bool up = vel_direction == _sprite_movement_direction::UP;
-        // bool down = vel_direction == _sprite_movement_direction::DOWN;
-        // bool left = vel_direction == _sprite_movement_direction::LEFT;
-        // bool right = vel_direction == _sprite_movement_direction::RIGHT;
+        double relative_width = col_rect.width * relative_amount;
+        double relative_height = col_rect.height * relative_amount;
 
         switch (direction)
         {
@@ -715,9 +663,6 @@ namespace splashkit_lib
             {
                 return false;
             }
-            {
-                return false;
-            }
         }
         return true;
     }
@@ -727,8 +672,7 @@ namespace splashkit_lib
     {
         for (int i = 1; i <= iterations; i++)
         {
-            if (!_bracket_sprite_collision(sprite_rectangle_collision(collider, collidee), i, collider,
-                                                                                    collider_direction))
+            if (!_bracket_sprite_collision(sprite_rectangle_collision(collider, collidee), i, collider, collider_direction))
             {
                 return false;
             }
@@ -898,19 +842,6 @@ namespace splashkit_lib
 
         // collider contains collidee
         return _calculate_containing_collision_direction(collider, collidee);
-
-
-        // // calculate the direction of the greatest distance between the two sprites
-        // point_2d collider_center = rectangle_center(collider);
-        // point_2d collidee_center = rectangle_center(collidee);
-        // double x_distance = abs(collider_center.x - collidee_center.x);
-        // double y_distance = abs(collider_center.y - collidee_center.y);
-
-        // if (x_distance < y_distance)
-        // {
-        //     return _compare_point_collision_depth_horizontal(collider_center, collidee_center);
-        // }
-        // return _compare_point_collision_depth_vertical(collider_center, collidee_center);
     }
 
     collision_direction sprite_collision_direction(sprite collider, sprite collidee)
