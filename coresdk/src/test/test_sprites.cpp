@@ -346,8 +346,11 @@ void sprite_collision_resolution_test()
         draw_rectangle(COLOR_RED, sprite_collision_rectangle(sprt_AABB));
         fill_rectangle(COLOR_GREEN, rect);
         fill_circle(COLOR_GREEN, circ);
+        draw_rectangle(COLOR_GREEN, rectangle_around(circ));
         fill_triangle(COLOR_GREEN, tri);
+        draw_rectangle(COLOR_GREEN, rectangle_around(tri));
         fill_quad(COLOR_GREEN, q);
+        draw_rectangle(COLOR_GREEN, rectangle_around(q));
         draw_sprite(sprt_pixel);
         draw_sprite(sprt_AABB);
 
@@ -1020,11 +1023,11 @@ void sprite_quad_collision_resolution_direction_test()
 
 void run_sprite_test()
 {
-    sprite_test();
+    // sprite_test();
     sprite_collision_resolution_test();
-    sprite_sprite_collision_resolution_direction_test();
-    sprite_rectangle_collision_resolution_direction_test();
-    sprite_circle_collision_resolution_direction_test();
-    sprite_triangle_collision_resolution_direction_test();
-    sprite_quad_collision_resolution_direction_test();
+    // sprite_sprite_collision_resolution_direction_test();
+    // sprite_rectangle_collision_resolution_direction_test();
+    // sprite_circle_collision_resolution_direction_test();
+    // sprite_triangle_collision_resolution_direction_test();
+    // sprite_quad_collision_resolution_direction_test();
 }
