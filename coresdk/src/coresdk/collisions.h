@@ -325,6 +325,26 @@ namespace splashkit_lib
      * @attribute method circle_collision
      */
     bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ);
+
+    bool bitmap_triangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const triangle &tri);
+
+    bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d& pt, const triangle &tri);
+
+    bool bitmap_triangle_collision(bitmap bmp, int cell, double x, double y, const triangle &tri);
+
+    bool bitmap_triangle_collision(bitmap bmp, double x, double y, const triangle &tri);
+
+    bool bitmap_triangle_collision(bitmap bmp, const point_2d& pt, const triangle &tri);
+
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
+
+    bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d& pt, const quad &q);
+
+    bool bitmap_quad_collision(bitmap bmp, int cell, double x, double y, const quad &q);
+
+    bool bitmap_quad_collision(bitmap bmp, double x, double y, const quad &q);
+
+    bool bitmap_quad_collision(bitmap bmp, const point_2d& pt, const quad &q);
     
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -402,6 +422,12 @@ namespace splashkit_lib
      * @attribute method rectangle_collision
      */
     bool sprite_rectangle_collision(sprite s, const rectangle& rect);
+
+    bool sprite_circle_collision(sprite s, const circle &c);
+
+    bool sprite_triangle_collision(sprite s, const triangle &t);
+
+    bool sprite_quad_collision(sprite s, const quad &q);
 
     /**
      * Tests if two given sprites `s1` and `s2` are collided
@@ -519,6 +545,14 @@ namespace splashkit_lib
      */
     collision_direction sprite_collision_direction(sprite collider, sprite collidee);
 
+    collision_direction sprite_collision_direction(sprite collider, const rectangle& collidee);
+
+    collision_direction sprite_collision_direction(sprite collider, const circle& collidee);
+
+    collision_direction sprite_collision_direction(sprite collider, const triangle& collidee);
+
+    collision_direction sprite_collision_direction(sprite collider, const quad& collidee);
+
     /**
      * Resolves the collision between two sprites by moving the
      * collider sprite to the edge of the collidee sprite. The direction of the
@@ -535,6 +569,14 @@ namespace splashkit_lib
      * @atrribute class sprite
      */
     bool resolve_sprite_collision(sprite collider, sprite collidee, collision_direction direction);
+
+    bool resolve_sprite_collision(sprite collider, const rectangle& collidee, collision_direction direction);
+
+    bool resolve_sprite_collision(sprite collider, const circle& collidee, collision_direction direction);
+
+    bool resolve_sprite_collision(sprite collider, const triangle& collidee, collision_direction direction);
+
+    bool resolve_sprite_collision(sprite collider, const quad& collidee, collision_direction direction);
 
 }
 #endif /* collisions_h */
