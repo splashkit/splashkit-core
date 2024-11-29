@@ -456,6 +456,10 @@ namespace splashkit_lib
         return quads_intersect(*static_cast<const quad*>(q1), *static_cast<const quad*>(q2));
     }
 
+    /** 
+     * Moves the object back and forth with decreasing step size for
+     * the given number of iterations.
+    */ 
     bool _bracket_object_collision(bool colliding, int i, void* collider, const rectangle& collider_aabb,
                                         std::function<void(void*, const vector_2d& amount)> move_func,
                                                                 _sprite_movement_direction collider_direction)
