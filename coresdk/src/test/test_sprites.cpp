@@ -322,7 +322,7 @@ void reset_quad(quad &q)
 {
     rectangle r = rectangle_from(300, 300, 100, 50);
     q = quad_from(r);
-    apply_matrix(matrix_multiply(translation_matrix(200.0, 50.0), rotation_matrix(45.0)), q);
+    apply_matrix(matrix_multiply(translation_matrix(0.0, -150.0), rotation_matrix(45.0)), q);
 }
 
 void resolve_and_draw(void* collider, const void* collidee,  object_type collider_type,
@@ -334,6 +334,7 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
     }
 
     rectangle perimeter;
+    bool collision = false;
     
     switch (collider_type)
     {
@@ -345,19 +346,19 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
         switch (collidee_type)
         {
         case object_type::SPRITE:
-            resolve_collision(s, *static_cast<const sprite*>(collidee), direction);
+            collision = resolve_collision(s, *static_cast<const sprite*>(collidee), direction);
             break;
         case object_type::RECTANGLE:
-            resolve_collision(s, *static_cast<const rectangle*>(collidee), direction);
+            collision = resolve_collision(s, *static_cast<const rectangle*>(collidee), direction);
             break;
         case object_type::CIRCLE:
-            resolve_collision(s, *static_cast<const circle*>(collidee), direction);
+            collision = resolve_collision(s, *static_cast<const circle*>(collidee), direction);
             break;
         case object_type::TRIANGLE:
-            resolve_collision(s, *static_cast<const triangle*>(collidee), direction);
+            collision = resolve_collision(s, *static_cast<const triangle*>(collidee), direction);
             break;
         case object_type::QUAD:
-            resolve_collision(s, *static_cast<const quad*>(collidee), direction);
+            collision = resolve_collision(s, *static_cast<const quad*>(collidee), direction);
             break;
         };
         break;
@@ -370,19 +371,19 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
         switch (collidee_type)
         {
         case object_type::SPRITE:
-            resolve_collision(*r, *static_cast<const sprite*>(collidee), direction);
+            collision = resolve_collision(*r, *static_cast<const sprite*>(collidee), direction);
             break;
         case object_type::RECTANGLE:
-            resolve_collision(*r, *static_cast<const rectangle*>(collidee), direction);
+            collision = resolve_collision(*r, *static_cast<const rectangle*>(collidee), direction);
             break;
         case object_type::CIRCLE:
-            resolve_collision(*r, *static_cast<const circle*>(collidee), direction);
+            collision = resolve_collision(*r, *static_cast<const circle*>(collidee), direction);
             break;
         case object_type::TRIANGLE:
-            resolve_collision(*r, *static_cast<const triangle*>(collidee), direction);
+            collision = resolve_collision(*r, *static_cast<const triangle*>(collidee), direction);
             break;
         case object_type::QUAD:
-            resolve_collision(*r, *static_cast<const quad*>(collidee), direction);
+            collision = resolve_collision(*r, *static_cast<const quad*>(collidee), direction);
             break;
         };
         break;
@@ -395,19 +396,19 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
         switch (collidee_type)
         {
         case object_type::SPRITE:
-            resolve_collision(*c, *static_cast<const sprite*>(collidee), direction);
+            collision = resolve_collision(*c, *static_cast<const sprite*>(collidee), direction);
             break;
         case object_type::RECTANGLE:
-            resolve_collision(*c, *static_cast<const rectangle*>(collidee), direction);
+            collision = resolve_collision(*c, *static_cast<const rectangle*>(collidee), direction);
             break;
         case object_type::CIRCLE:
-            resolve_collision(*c, *static_cast<const circle*>(collidee), direction);
+            collision = resolve_collision(*c, *static_cast<const circle*>(collidee), direction);
             break;
         case object_type::TRIANGLE:
-            resolve_collision(*c, *static_cast<const triangle*>(collidee), direction);
+            collision = resolve_collision(*c, *static_cast<const triangle*>(collidee), direction);
             break;
         case object_type::QUAD:
-            resolve_collision(*c, *static_cast<const quad*>(collidee), direction);
+            collision = resolve_collision(*c, *static_cast<const quad*>(collidee), direction);
             break;
         };
         break;
@@ -420,19 +421,19 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
         switch (collidee_type)
         {
         case object_type::SPRITE:
-            resolve_collision(*t, *static_cast<const sprite*>(collidee), direction);
+            collision = resolve_collision(*t, *static_cast<const sprite*>(collidee), direction);
             break;
         case object_type::RECTANGLE:
-            resolve_collision(*t, *static_cast<const rectangle*>(collidee), direction);
+            collision = resolve_collision(*t, *static_cast<const rectangle*>(collidee), direction);
             break;
         case object_type::CIRCLE:
-            resolve_collision(*t, *static_cast<const circle*>(collidee), direction);
+            collision = resolve_collision(*t, *static_cast<const circle*>(collidee), direction);
             break;
         case object_type::TRIANGLE:
-            resolve_collision(*t, *static_cast<const triangle*>(collidee), direction);
+            collision = resolve_collision(*t, *static_cast<const triangle*>(collidee), direction);
             break;
         case object_type::QUAD:
-            resolve_collision(*t, *static_cast<const quad*>(collidee), direction);
+            collision = resolve_collision(*t, *static_cast<const quad*>(collidee), direction);
             break;
         };
         break;
@@ -445,26 +446,29 @@ void resolve_and_draw(void* collider, const void* collidee,  object_type collide
         switch (collidee_type)
         {
         case object_type::SPRITE:
-            resolve_collision(*q, *static_cast<const sprite*>(collidee), direction);
+            collision = resolve_collision(*q, *static_cast<const sprite*>(collidee), direction);
             break;
         case object_type::RECTANGLE:
-            resolve_collision(*q, *static_cast<const rectangle*>(collidee), direction);
+            collision = resolve_collision(*q, *static_cast<const rectangle*>(collidee), direction);
             break;
         case object_type::CIRCLE:
-            resolve_collision(*q, *static_cast<const circle*>(collidee), direction);
+            collision = resolve_collision(*q, *static_cast<const circle*>(collidee), direction);
             break;
         case object_type::TRIANGLE:
-            resolve_collision(*q, *static_cast<const triangle*>(collidee), direction);
+            collision = resolve_collision(*q, *static_cast<const triangle*>(collidee), direction);
             break;
         case object_type::QUAD:
-            resolve_collision(*q, *static_cast<const quad*>(collidee), direction);
+            collision = resolve_collision(*q, *static_cast<const quad*>(collidee), direction);
             break;
         };
         break;
     }
     };
 
-    draw_rect_perimeter_by_collision(perimeter, direction, COLOR_RED, COLLISION_INDICATOR_WIDTH);
+    if (collision)
+    {
+        draw_rect_perimeter_by_collision(perimeter, direction, COLOR_RED, COLLISION_INDICATOR_WIDTH);
+    }
 }
 
 void multi_object_collision_resolution_test()
