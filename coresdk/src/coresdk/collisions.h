@@ -723,7 +723,7 @@ namespace splashkit_lib
      * 
      * @attribute class sprite
      */
-    collision_direction calculate_collision_direction(sprite collider, sprite collidee);
+    collision_direction calculate_collision_direction(const sprite collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a sprite
@@ -738,7 +738,7 @@ namespace splashkit_lib
      * 
      * @attribute class sprite
      */
-    collision_direction calculate_collision_direction(sprite collider, const rectangle& collidee);
+    collision_direction calculate_collision_direction(const sprite collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
@@ -753,7 +753,7 @@ namespace splashkit_lib
      * 
      * @attribute class sprite
      */
-    collision_direction calculate_collision_direction(sprite collider, const circle& collidee);
+    collision_direction calculate_collision_direction(const sprite collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
@@ -768,7 +768,7 @@ namespace splashkit_lib
      * 
      * @attribute class sprite
      */
-    collision_direction calculate_collision_direction(sprite collider, const triangle& collidee);
+    collision_direction calculate_collision_direction(const sprite collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
@@ -783,7 +783,7 @@ namespace splashkit_lib
      * 
      * @attribute class sprite
      */
-    collision_direction calculate_collision_direction(sprite collider, const quad& collidee);
+    collision_direction calculate_collision_direction(const sprite collider, const quad& collidee);
 
     /**
      * Returns the direction of the collision between a rectangle
@@ -798,7 +798,7 @@ namespace splashkit_lib
      * 
      * @attribute class rectangle
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, sprite collidee);
+    collision_direction calculate_collision_direction(const rectangle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a collider rectangle
@@ -872,7 +872,7 @@ namespace splashkit_lib
      * 
      * @attribute class circle
      */
-    collision_direction calculate_collision_direction(const circle& collider, sprite collidee);
+    collision_direction calculate_collision_direction(const circle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a circle
@@ -946,7 +946,7 @@ namespace splashkit_lib
      * 
      * @attribute class triangle
      */
-    collision_direction calculate_collision_direction(const triangle& collider, sprite collidee);
+    collision_direction calculate_collision_direction(const triangle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a triangle
@@ -1020,7 +1020,7 @@ namespace splashkit_lib
      * 
      * @attribute class quad
      */
-    collision_direction calculate_collision_direction(const quad& collider, sprite collidee);
+    collision_direction calculate_collision_direction(const quad& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a quad
@@ -1096,7 +1096,7 @@ namespace splashkit_lib
      * 
      * @atrribute class sprite
      */
-    bool resolve_collision(sprite collider, sprite collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const sprite collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a sprite and a rectangle by moving the
@@ -1181,7 +1181,7 @@ namespace splashkit_lib
      * 
      * @atrribute class rectangle
      */
-    bool resolve_collision(const rectangle& collider, sprite collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const sprite collidee, collision_direction direction);
 
     /**
      * Resolves the collision between two rectangles by moving the
@@ -1198,7 +1198,7 @@ namespace splashkit_lib
      * 
      * @atrribute class rectangle
      */
-    bool resolve_collision(const rectangle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const rectangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a rectangle and a circle by moving the
@@ -1215,7 +1215,7 @@ namespace splashkit_lib
      * 
      * @atrribute class rectangle
      */
-    bool resolve_collision(const rectangle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const circle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a rectangle and a triangle by moving the
@@ -1232,7 +1232,7 @@ namespace splashkit_lib
      * 
      * @atrribute class rectangle
      */
-    bool resolve_collision(const rectangle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const triangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a rectangle and a quad by moving the
@@ -1249,7 +1249,7 @@ namespace splashkit_lib
      * 
      * @atrribute class rectangle
      */
-    bool resolve_collision(const rectangle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const quad& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a circle and a sprite by moving the
@@ -1266,7 +1266,7 @@ namespace splashkit_lib
      * 
      * @atrribute class circle
      */
-    bool resolve_collision(const circle& collider, sprite collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const sprite collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a circle and a rectangle by moving the
@@ -1283,7 +1283,7 @@ namespace splashkit_lib
      * 
      * @atrribute class circle
      */
-    bool resolve_collision(const circle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const rectangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a collider circle and a collidee circle by moving the
@@ -1300,7 +1300,7 @@ namespace splashkit_lib
      * 
      * @atrribute class circle
      */
-    bool resolve_collision(const circle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const circle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a circle and a triangle by moving the
@@ -1317,7 +1317,7 @@ namespace splashkit_lib
      * 
      * @atrribute class circle
      */
-    bool resolve_collision(const circle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const triangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a circle and a quad by moving the
@@ -1334,7 +1334,7 @@ namespace splashkit_lib
      * 
      * @atrribute class circle
      */
-    bool resolve_collision(const circle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const quad& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a triangle and a sprite by moving the
@@ -1351,7 +1351,7 @@ namespace splashkit_lib
      * 
      * @atrribute class triangle
      */
-    bool resolve_collision(const triangle& collider, sprite collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const sprite collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a triangle and a rectangle by moving the
@@ -1368,7 +1368,7 @@ namespace splashkit_lib
      * 
      * @atrribute class triangle
      */
-    bool resolve_collision(const triangle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const rectangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a triangle and a circle by moving the
@@ -1385,7 +1385,7 @@ namespace splashkit_lib
      * 
      * @atrribute class triangle
      */
-    bool resolve_collision(const triangle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const circle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a collider triangle and a collidee triangle by moving the
@@ -1402,7 +1402,7 @@ namespace splashkit_lib
      * 
      * @atrribute class triangle
      */
-    bool resolve_collision(const triangle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const triangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a triangle and a quad by moving the
@@ -1419,7 +1419,7 @@ namespace splashkit_lib
      * 
      * @atrribute class triangle
      */
-    bool resolve_collision(const triangle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const quad& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a quad and a sprite by moving the
@@ -1436,7 +1436,7 @@ namespace splashkit_lib
      * 
      * @atrribute class quad
      */
-    bool resolve_collision(const quad& collider, sprite collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const sprite collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a quad and a rectangle by moving the
@@ -1453,7 +1453,7 @@ namespace splashkit_lib
      * 
      * @atrribute class quad
      */
-    bool resolve_collision(const quad& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const rectangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a quad and a circle by moving the
@@ -1470,7 +1470,7 @@ namespace splashkit_lib
      * 
      * @atrribute class quad
      */
-    bool resolve_collision(const quad& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const circle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a quad and a triangle by moving the
@@ -1487,7 +1487,7 @@ namespace splashkit_lib
      * 
      * @atrribute class quad
      */
-    bool resolve_collision(const quad& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const triangle& collidee, collision_direction direction);
 
     /**
      * Resolves the collision between a collider quad and a collidee quad by moving the
@@ -1504,7 +1504,7 @@ namespace splashkit_lib
      * 
      * @atrribute class quad
      */
-    bool resolve_collision(const quad& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const quad& collidee, collision_direction direction);
 
 }
 #endif /* collisions_h */

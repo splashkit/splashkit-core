@@ -208,7 +208,7 @@ namespace splashkit_lib
         return _sprite_movement_direction::NONE;
     }
 
-    void _move_sprite_by_vector(const void* sprt, const vector_2d& amount)
+    void _move_sprite_by_vector(void* sprt, const vector_2d& amount)
     {
         sprite s = *static_cast<const sprite*>(sprt);
         
@@ -216,49 +216,49 @@ namespace splashkit_lib
         sprite_set_y(s, sprite_y(s) + amount.y);
     }
 
-    void _move_rectangle_by_vector(const void* rect, const vector_2d& amount)
+    void _move_rectangle_by_vector(void* rect, const vector_2d& amount)
     {
-        rectangle r = *static_cast<const rectangle*>(rect);
+        rectangle* r = static_cast<rectangle*>(rect);
         
-        r.x += amount.x;
-        r.y += amount.y;
+        r->x += amount.x;
+        r->y += amount.y;
     }
 
-    void _move_circle_by_vector(const void* circ, const vector_2d& amount)
+    void _move_circle_by_vector(void* circ, const vector_2d& amount)
     {
-        circle c = *static_cast<const circle*>(circ);
+        circle* c = static_cast<circle*>(circ);
         
-        c.center.x += amount.x;
-        c.center.y += amount.y;
+        c->center.x += amount.x;
+        c->center.y += amount.y;
     }
 
-    void _move_triangle_by_vector(const void* tri, const vector_2d& amount)
+    void _move_triangle_by_vector(void* tri, const vector_2d& amount)
     {
-        triangle t = *static_cast<const triangle*>(tri);
-        
-        t.points[0].x += amount.x;
-        t.points[0].y += amount.y;
-        t.points[1].x += amount.x;
-        t.points[1].y += amount.y;
-        t.points[2].x += amount.x;
-        t.points[2].y += amount.y;
+        triangle* t = static_cast<triangle*>(tri);
+
+        t->points[0].x += amount.x;
+        t->points[0].y += amount.y;
+        t->points[1].x += amount.x;
+        t->points[1].y += amount.y;
+        t->points[2].x += amount.x;
+        t->points[2].y += amount.y;
     }
 
-    void _move_quad_by_vector(const void* q, const vector_2d& amount)
+    void _move_quad_by_vector(void* q, const vector_2d& amount)
     {
-        quad qd = *static_cast<const quad*>(q);
-        
-        qd.points[0].x += amount.x;
-        qd.points[0].y += amount.y;
-        qd.points[1].x += amount.x;
-        qd.points[1].y += amount.y;
-        qd.points[2].x += amount.x;
-        qd.points[2].y += amount.y;
-        qd.points[3].x += amount.x;
-        qd.points[3].y += amount.y;
+        quad* qd = static_cast<quad*>(q);
+
+        qd->points[0].x += amount.x;
+        qd->points[0].y += amount.y;
+        qd->points[1].x += amount.x;
+        qd->points[1].y += amount.y;
+        qd->points[2].x += amount.x;
+        qd->points[2].y += amount.y;
+        qd->points[3].x += amount.x;
+        qd->points[3].y += amount.y;
     }
 
-    void _move_object_by_direction(const void* obj, std::function<void(const void*, const vector_2d& amount)> move_func,
+    void _move_object_by_direction(void* obj, std::function<void(void*, const vector_2d& amount)> move_func,
                                                             _sprite_movement_direction direction, const vector_2d& amount)
     {
         if (amount.x == 0.0 && amount.y == 0.0)
@@ -295,8 +295,8 @@ namespace splashkit_lib
         };
     }
 
-    void _move_object_by_direction_relative_to_size(const void* obj, const rectangle& obj_aabb,
-        std::function<void(const void*, const vector_2d& amount)> move_func,
+    void _move_object_by_direction_relative_to_size(void* obj, const rectangle& obj_aabb,
+        std::function<void(void*, const vector_2d& amount)> move_func,
             _sprite_movement_direction direction, double relative_amount = 1.0)
     {
         double relative_width = obj_aabb.width * relative_amount;
@@ -456,8 +456,8 @@ namespace splashkit_lib
         return quads_intersect(*static_cast<const quad*>(q1), *static_cast<const quad*>(q2));
     }
 
-    bool _bracket_object_collision(bool colliding, int i, const void* collider, const rectangle& collider_aabb,
-                                        std::function<void(const void*, const vector_2d& amount)> move_func,
+    bool _bracket_object_collision(bool colliding, int i, void* collider, const rectangle& collider_aabb,
+                                        std::function<void(void*, const vector_2d& amount)> move_func,
                                                                 _sprite_movement_direction collider_direction)
     {
         if (colliding)
@@ -479,9 +479,9 @@ namespace splashkit_lib
         return true;
     }
 
-    bool _bracket_object_collision_generic(const void* collider, std::function<bool(const void*, const void*)> collision_func,
+    bool _bracket_object_collision_generic(void* collider, std::function<bool(const void*, const void*)> collision_func,
                                             const void* collidee, const rectangle& collider_aabb,
-                                            std::function<void(const void*, const vector_2d& amount)> move_func,
+                                            std::function<void(void*, const vector_2d& amount)> move_func,
                                             _sprite_movement_direction collider_direction, int iterations)
     {
         for (int i = 1; i <= iterations; i++)
@@ -495,7 +495,7 @@ namespace splashkit_lib
         return true;
     }
 
-    bool _bracket_sprite_sprite_collision(const void* collider, const void* collidee,
+    bool _bracket_sprite_sprite_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_sprite_collision_func, collidee,
@@ -503,7 +503,7 @@ namespace splashkit_lib
                                                 _move_sprite_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_sprite_rectangle_collision(const void* collider, const void* collidee,
+    bool _bracket_sprite_rectangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_rectangle_collision_func, collidee,
@@ -511,7 +511,7 @@ namespace splashkit_lib
                                                 _move_sprite_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_sprite_circle_collision(const void* collider, const void* collidee,
+    bool _bracket_sprite_circle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_circle_collision_func, collidee,
@@ -519,7 +519,7 @@ namespace splashkit_lib
                                                 _move_sprite_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_sprite_triangle_collision(const void* collider, const void* collidee,
+    bool _bracket_sprite_triangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_triangle_collision_func, collidee,
@@ -527,7 +527,7 @@ namespace splashkit_lib
                                                 _move_sprite_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_sprite_quad_collision(const void* collider, const void* collidee,
+    bool _bracket_sprite_quad_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_quad_collision_func, collidee,
@@ -535,7 +535,7 @@ namespace splashkit_lib
                                                 _move_sprite_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_rectangle_sprite_collision(const void* collider, const void* collidee,
+    bool _bracket_rectangle_sprite_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_sprite_collision_func, collidee,
@@ -543,7 +543,7 @@ namespace splashkit_lib
                                                 _move_rectangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_rectangle_rectangle_collision(const void* collider, const void* collidee,
+    bool _bracket_rectangle_rectangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_rectangle_collision_func, collidee,
@@ -551,7 +551,7 @@ namespace splashkit_lib
                                                 _move_rectangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_rectangle_circle_collision(const void* collider, const void* collidee,
+    bool _bracket_rectangle_circle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_circle_collision_func, collidee,
@@ -559,7 +559,7 @@ namespace splashkit_lib
                                                 _move_rectangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_rectangle_triangle_collision(const void* collider, const void* collidee,
+    bool _bracket_rectangle_triangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_triangle_collision_func, collidee,
@@ -567,7 +567,7 @@ namespace splashkit_lib
                                                 _move_rectangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_rectangle_quad_collision(const void* collider, const void* collidee,
+    bool _bracket_rectangle_quad_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_quad_collision_func, collidee,
@@ -575,7 +575,7 @@ namespace splashkit_lib
                                                 _move_rectangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_circle_sprite_collision(const void* collider, const void* collidee,
+    bool _bracket_circle_sprite_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_sprite_collision_func, collidee,
@@ -583,7 +583,7 @@ namespace splashkit_lib
                                                 _move_circle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_circle_rectangle_collision(const void* collider, const void* collidee,
+    bool _bracket_circle_rectangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_rectangle_collision_func, collidee,
@@ -591,7 +591,7 @@ namespace splashkit_lib
                                                 _move_circle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_circle_circle_collision(const void* collider, const void* collidee,
+    bool _bracket_circle_circle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_circle_collision_func, collidee,
@@ -599,7 +599,7 @@ namespace splashkit_lib
                                                 _move_circle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_circle_triangle_collision(const void* collider, const void* collidee,
+    bool _bracket_circle_triangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_triangle_collision_func, collidee,
@@ -607,7 +607,7 @@ namespace splashkit_lib
                                                 _move_circle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_circle_quad_collision(const void* collider, const void* collidee,
+    bool _bracket_circle_quad_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_quad_collision_func, collidee,
@@ -615,7 +615,7 @@ namespace splashkit_lib
                                                 _move_circle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_triangle_sprite_collision(const void* collider, const void* collidee,
+    bool _bracket_triangle_sprite_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_sprite_collision_func, collidee,
@@ -623,7 +623,7 @@ namespace splashkit_lib
                                                 _move_triangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_triangle_rectangle_collision(const void* collider, const void* collidee,
+    bool _bracket_triangle_rectangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_rectangle_collision_func, collidee,
@@ -631,7 +631,7 @@ namespace splashkit_lib
                                                 _move_triangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_triangle_circle_collision(const void* collider, const void* collidee,
+    bool _bracket_triangle_circle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_circle_collision_func, collidee,
@@ -639,7 +639,7 @@ namespace splashkit_lib
                                                 _move_triangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_triangle_triangle_collision(const void* collider, const void* collidee,
+    bool _bracket_triangle_triangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_triangle_collision_func, collidee,
@@ -647,7 +647,7 @@ namespace splashkit_lib
                                                 _move_triangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_triangle_quad_collision(const void* collider, const void* collidee,
+    bool _bracket_triangle_quad_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_quad_collision_func, collidee,
@@ -655,7 +655,7 @@ namespace splashkit_lib
                                                 _move_triangle_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_quad_sprite_collision(const void* collider, const void* collidee,
+    bool _bracket_quad_sprite_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_sprite_collision_func, collidee,
@@ -663,7 +663,7 @@ namespace splashkit_lib
                                                 _move_quad_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_quad_rectangle_collision(const void* collider, const void* collidee,
+    bool _bracket_quad_rectangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_rectangle_collision_func, collidee,
@@ -671,7 +671,7 @@ namespace splashkit_lib
                                                 _move_quad_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_quad_circle_collision(const void* collider, const void* collidee,
+    bool _bracket_quad_circle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_circle_collision_func, collidee,
@@ -679,7 +679,7 @@ namespace splashkit_lib
                                                 _move_quad_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_quad_triangle_collision(const void* collider, const void* collidee,
+    bool _bracket_quad_triangle_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_triangle_collision_func, collidee,
@@ -687,7 +687,7 @@ namespace splashkit_lib
                                                 _move_quad_by_vector, collider_direction, iterations);
     }
 
-    bool _bracket_quad_quad_collision(const void* collider, const void* collidee,
+    bool _bracket_quad_quad_collision(void* collider, const void* collidee,
                                       _sprite_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_quad_collision_func, collidee,
@@ -813,8 +813,8 @@ namespace splashkit_lib
         return _rectangle_rectangle_collision_direction(collider_rect, collidee_rect);
     }
 
-    void _resolve_object_AABB_collision(const void* collider, const rectangle& collider_rect, const rectangle& collidee_rect,
-                                collision_direction direction, std::function<void(const void*, const vector_2d& amount)> move_func)
+    void _resolve_object_AABB_collision(void* collider, const rectangle& collider_rect, const rectangle& collidee_rect,
+                                collision_direction direction, std::function<void(void*, const vector_2d& amount)> move_func)
     {
         // get the intersection rectangle
         rectangle inter = intersection(collider_rect, collidee_rect);
@@ -823,11 +823,11 @@ namespace splashkit_lib
         _move_object_by_direction(collider, move_func, _direction_from_collision(direction), amount);
     }
 
-    bool _resolve_object_collision(const void* collider, const void* collidee, collision_test_kind collider_kind,
+    bool _resolve_object_collision(void* collider, const void* collidee, collision_test_kind collider_kind,
         collision_test_kind collidee_kind, const rectangle& collider_rect, const rectangle& collidee_rect,
-            collision_direction direction, std::function<void(const void*, const vector_2d& amount)> move_func,
+            collision_direction direction, std::function<void(void*, const vector_2d& amount)> move_func,
                 std::function<bool(const void*, const void*)> collision_func,
-                    std::function<bool(const void*, const void*, _sprite_movement_direction, int)> bracket_func)
+                    std::function<bool(void*, const void*, _sprite_movement_direction, int)> bracket_func)
     {
         // check if the sprites are colliding
         if (direction == collision_direction::NONE || !collision_func(collider, collidee))
@@ -837,7 +837,7 @@ namespace splashkit_lib
 
         if (collider_kind == AABB_COLLISIONS && collidee_kind == AABB_COLLISIONS)
         {
-            _resolve_object_AABB_collision(collider, collider_rect, collidee_rect, direction, _move_sprite_by_vector);
+            _resolve_object_AABB_collision(collider, collider_rect, collidee_rect, direction, move_func);
         }
         else // one or both of the sprites are using pixel collision
         {
@@ -1198,37 +1198,37 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }
 
-    collision_direction calculate_collision_direction(sprite collider, sprite collidee)
+    collision_direction calculate_collision_direction(const sprite collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, sprite_collision_rectangle(collider),
                                                     sprite_collision_rectangle(collidee), _sprite_sprite_collision_func);
     }
 
-    collision_direction calculate_collision_direction(sprite collider, const rectangle& collidee)
+    collision_direction calculate_collision_direction(const sprite collider, const rectangle& collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, sprite_collision_rectangle(collider),
                                                         collidee, _sprite_rectangle_collision_func);
     }
 
-    collision_direction calculate_collision_direction(sprite collider, const circle& collidee)
+    collision_direction calculate_collision_direction(const sprite collider, const circle& collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, sprite_collision_rectangle(collider),
                                                         rectangle_around(collidee), _sprite_circle_collision_func);
     }
 
-    collision_direction calculate_collision_direction(sprite collider, const triangle& collidee)
+    collision_direction calculate_collision_direction(const sprite collider, const triangle& collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, sprite_collision_rectangle(collider),
                                                         rectangle_around(collidee), _sprite_triangle_collision_func);
     }
 
-    collision_direction calculate_collision_direction(sprite collider, const quad& collidee)
+    collision_direction calculate_collision_direction(const sprite collider, const quad& collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, sprite_collision_rectangle(collider),
                                                         rectangle_around(collidee), _sprite_quad_collision_func);
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, sprite collidee)
+    collision_direction calculate_collision_direction(const rectangle& collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, collider,
                                                         sprite_collision_rectangle(collidee), _rectangle_sprite_collision_func);
@@ -1257,7 +1257,7 @@ namespace splashkit_lib
                                                         rectangle_around(collidee), _rectangle_quad_collision_func);
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, sprite collidee)
+    collision_direction calculate_collision_direction(const circle& collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, rectangle_around(collider),
                                                         sprite_collision_rectangle(collidee), _circle_sprite_collision_func);
@@ -1287,7 +1287,7 @@ namespace splashkit_lib
                                                         rectangle_around(collidee), _circle_quad_collision_func);
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, sprite collidee)
+    collision_direction calculate_collision_direction(const triangle& collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, rectangle_around(collider),
                                                         sprite_collision_rectangle(collidee), _triangle_sprite_collision_func);
@@ -1317,7 +1317,7 @@ namespace splashkit_lib
                                                         rectangle_around(collidee), _triangle_quad_collision_func);
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, sprite collidee)
+    collision_direction calculate_collision_direction(const quad& collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(&collider, &collidee, rectangle_around(collider),
                                                         sprite_collision_rectangle(collidee), _quad_sprite_collision_func);
@@ -1347,7 +1347,7 @@ namespace splashkit_lib
                                                         rectangle_around(collidee), _quad_quad_collision_func);
     }
 
-    bool resolve_collision(sprite collider, sprite collidee, collision_direction direction)
+    bool resolve_collision(sprite collider, const sprite collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, sprite_collision_kind(collider),
             sprite_collision_kind(collidee), sprite_collision_rectangle(collider),
@@ -1387,158 +1387,158 @@ namespace splashkit_lib
                     _sprite_quad_collision_func, _bracket_sprite_quad_collision);
     }
 
-    bool resolve_collision(const rectangle& collider, sprite collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const sprite collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
             sprite_collision_kind(collidee), collider,
-                sprite_collision_rectangle(collidee), direction, _move_sprite_by_vector,
+                sprite_collision_rectangle(collidee), direction, _move_rectangle_by_vector,
                     _rectangle_sprite_collision_func, _bracket_rectangle_sprite_collision);
     }
 
-    bool resolve_collision(const rectangle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const rectangle& collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, collider, collidee, direction, _move_sprite_by_vector,
+            AABB_COLLISIONS, collider, collidee, direction, _move_rectangle_by_vector,
                 _rectangle_rectangle_collision_func, _bracket_rectangle_rectangle_collision);
     }
 
-    bool resolve_collision(const rectangle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const circle& collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, collider, rectangle_around(collidee), direction, _move_sprite_by_vector,
+            PIXEL_COLLISIONS, collider, rectangle_around(collidee), direction, _move_rectangle_by_vector,
                 _rectangle_circle_collision_func, _bracket_rectangle_circle_collision);
     }
 
-    bool resolve_collision(const rectangle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const triangle& collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, collider, rectangle_around(collidee), direction, _move_sprite_by_vector,
+            PIXEL_COLLISIONS, collider, rectangle_around(collidee), direction, _move_rectangle_by_vector,
                 _rectangle_triangle_collision_func, _bracket_rectangle_triangle_collision);
     }
 
-    bool resolve_collision(const rectangle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const quad& collidee, collision_direction direction)
     {
         return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, collider, rectangle_around(collidee), direction, _move_sprite_by_vector,
+            PIXEL_COLLISIONS, collider, rectangle_around(collidee), direction, _move_rectangle_by_vector,
                 _rectangle_quad_collision_func, _bracket_rectangle_quad_collision);
     }
 
-    bool resolve_collision(const circle& collider, sprite collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const sprite collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             sprite_collision_kind(collidee), rectangle_around(collider),
                 sprite_collision_rectangle(collidee), direction, _move_circle_by_vector,
                     _circle_sprite_collision_func, _bracket_circle_sprite_collision);
     }
 
-    bool resolve_collision(const circle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const rectangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             AABB_COLLISIONS, rectangle_around(collider),
                 collidee, direction, _move_circle_by_vector,
                     _circle_rectangle_collision_func, _bracket_circle_rectangle_collision);
     }
 
-    bool resolve_collision(const circle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const circle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_circle_by_vector,
                     _circle_circle_collision_func, _bracket_circle_circle_collision);
     }
 
-    bool resolve_collision(const circle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const triangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_circle_by_vector,
                     _circle_triangle_collision_func, _bracket_circle_triangle_collision);
     }
 
-    bool resolve_collision(const circle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const quad& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_circle_by_vector,
                     _circle_quad_collision_func, _bracket_circle_quad_collision);
     }
 
-    bool resolve_collision(const triangle& collider, sprite collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const sprite collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             sprite_collision_kind(collidee), rectangle_around(collider),
                 sprite_collision_rectangle(collidee), direction, _move_triangle_by_vector,
                     _triangle_sprite_collision_func, _bracket_triangle_sprite_collision);
     }
 
-    bool resolve_collision(const triangle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const rectangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             AABB_COLLISIONS, rectangle_around(collider),
                 collidee, direction, _move_triangle_by_vector,
                     _triangle_rectangle_collision_func, _bracket_triangle_rectangle_collision);
     }
 
-    bool resolve_collision(const triangle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const circle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_triangle_by_vector,
                     _triangle_circle_collision_func, _bracket_triangle_circle_collision);
     }
 
-    bool resolve_collision(const triangle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const triangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_triangle_by_vector,
                     _triangle_triangle_collision_func, _bracket_triangle_triangle_collision);
     }
 
-    bool resolve_collision(const triangle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const quad& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_triangle_by_vector,
                     _triangle_quad_collision_func, _bracket_triangle_quad_collision);
     }
 
-    bool resolve_collision(const quad& collider, sprite collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const sprite collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             sprite_collision_kind(collidee), rectangle_around(collider),
                 sprite_collision_rectangle(collidee), direction, _move_quad_by_vector,
                     _quad_sprite_collision_func, _bracket_quad_sprite_collision);
     }
 
-    bool resolve_collision(const quad& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const rectangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
             AABB_COLLISIONS, rectangle_around(collider),
                 collidee, direction, _move_quad_by_vector,
                     _quad_rectangle_collision_func, _bracket_quad_rectangle_collision);
     }
 
-    bool resolve_collision(const quad& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const circle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_quad_by_vector,
                     _quad_circle_collision_func, _bracket_quad_circle_collision);
     }
 
-    bool resolve_collision(const quad& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const triangle& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_quad_by_vector,
                     _quad_triangle_collision_func, _bracket_quad_triangle_collision);
     }
 
-    bool resolve_collision(const quad& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const quad& collidee, collision_direction direction)
     {
-        return _resolve_object_collision(&collider, &collidee, AABB_COLLISIONS,
-            AABB_COLLISIONS, rectangle_around(collider),
+        return _resolve_object_collision(&collider, &collidee, PIXEL_COLLISIONS,
+            PIXEL_COLLISIONS, rectangle_around(collider),
                 rectangle_around(collidee), direction, _move_quad_by_vector,
                     _quad_quad_collision_func, _bracket_quad_quad_collision);
     }
