@@ -9,8 +9,6 @@
 
 using namespace splashkit_lib;
 
-constexpr double EPSILON = 1.0E-13;
-
 TEST_CASE("can perform circle geometry", "[geometry]")
 {
    SECTION("can detect circle-quad intersection")
