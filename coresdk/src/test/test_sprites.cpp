@@ -15,6 +15,8 @@
 #include "window_manager.h"
 #include <iostream>
 
+constexpr int COLLISION_INDICATOR_WIDTH = 4;
+
 using namespace splashkit_lib;
 
 enum class object_type
@@ -24,6 +26,16 @@ enum class object_type
     CIRCLE,
     TRIANGLE,
     QUAD,
+};
+
+enum class collision_test_type
+{
+    MULTIPLE_DYNAMIC,
+    SPRITE_FIXED,
+    RECTANGLE_FIXED,
+    CIRCLE_FIXED,
+    TRIANGLE_FIXED,
+    QUAD_FIXED,
 };
 
 enum class sprite_perimeter_segment
@@ -313,15 +325,164 @@ void reset_quad(quad &q)
     apply_matrix(matrix_multiply(translation_matrix(200.0, 50.0), rotation_matrix(45.0)), q);
 }
 
+void resolve_and_draw(void* collider, const void* collidee,  object_type collider_type,
+                                object_type collidee_type, collision_direction direction)
+{
+    if (direction == collision_direction::NONE)
+    {
+        return;
+    }
+
+    rectangle perimeter;
+    
+    switch (collider_type)
+    {
+    case object_type::SPRITE:
+    {
+        sprite s = *static_cast<sprite*>(collider);
+        perimeter = sprite_collision_rectangle(s);
+
+        switch (collidee_type)
+        {
+        case object_type::SPRITE:
+            resolve_collision(s, *static_cast<const sprite*>(collidee), direction);
+            break;
+        case object_type::RECTANGLE:
+            resolve_collision(s, *static_cast<const rectangle*>(collidee), direction);
+            break;
+        case object_type::CIRCLE:
+            resolve_collision(s, *static_cast<const circle*>(collidee), direction);
+            break;
+        case object_type::TRIANGLE:
+            resolve_collision(s, *static_cast<const triangle*>(collidee), direction);
+            break;
+        case object_type::QUAD:
+            resolve_collision(s, *static_cast<const quad*>(collidee), direction);
+            break;
+        };
+        break;
+    }
+    case object_type::RECTANGLE:
+    {
+        rectangle* r = static_cast<rectangle*>(collider);
+        perimeter = *r;
+
+        switch (collidee_type)
+        {
+        case object_type::SPRITE:
+            resolve_collision(*r, *static_cast<const sprite*>(collidee), direction);
+            break;
+        case object_type::RECTANGLE:
+            resolve_collision(*r, *static_cast<const rectangle*>(collidee), direction);
+            break;
+        case object_type::CIRCLE:
+            resolve_collision(*r, *static_cast<const circle*>(collidee), direction);
+            break;
+        case object_type::TRIANGLE:
+            resolve_collision(*r, *static_cast<const triangle*>(collidee), direction);
+            break;
+        case object_type::QUAD:
+            resolve_collision(*r, *static_cast<const quad*>(collidee), direction);
+            break;
+        };
+        break;
+    }
+    case object_type::CIRCLE:
+    {
+        circle* c = static_cast<circle*>(collider);
+        perimeter = rectangle_around(*c);
+
+        switch (collidee_type)
+        {
+        case object_type::SPRITE:
+            resolve_collision(*c, *static_cast<const sprite*>(collidee), direction);
+            break;
+        case object_type::RECTANGLE:
+            resolve_collision(*c, *static_cast<const rectangle*>(collidee), direction);
+            break;
+        case object_type::CIRCLE:
+            resolve_collision(*c, *static_cast<const circle*>(collidee), direction);
+            break;
+        case object_type::TRIANGLE:
+            resolve_collision(*c, *static_cast<const triangle*>(collidee), direction);
+            break;
+        case object_type::QUAD:
+            resolve_collision(*c, *static_cast<const quad*>(collidee), direction);
+            break;
+        };
+        break;
+    }
+    case object_type::TRIANGLE:
+    {
+        triangle* t = static_cast<triangle*>(collider);
+        perimeter = rectangle_around(*t);
+
+        switch (collidee_type)
+        {
+        case object_type::SPRITE:
+            resolve_collision(*t, *static_cast<const sprite*>(collidee), direction);
+            break;
+        case object_type::RECTANGLE:
+            resolve_collision(*t, *static_cast<const rectangle*>(collidee), direction);
+            break;
+        case object_type::CIRCLE:
+            resolve_collision(*t, *static_cast<const circle*>(collidee), direction);
+            break;
+        case object_type::TRIANGLE:
+            resolve_collision(*t, *static_cast<const triangle*>(collidee), direction);
+            break;
+        case object_type::QUAD:
+            resolve_collision(*t, *static_cast<const quad*>(collidee), direction);
+            break;
+        };
+        break;
+    }
+    case object_type::QUAD:
+    {
+        quad* q = static_cast<quad*>(collider);
+        perimeter = rectangle_around(*q);
+
+        switch (collidee_type)
+        {
+        case object_type::SPRITE:
+            resolve_collision(*q, *static_cast<const sprite*>(collidee), direction);
+            break;
+        case object_type::RECTANGLE:
+            resolve_collision(*q, *static_cast<const rectangle*>(collidee), direction);
+            break;
+        case object_type::CIRCLE:
+            resolve_collision(*q, *static_cast<const circle*>(collidee), direction);
+            break;
+        case object_type::TRIANGLE:
+            resolve_collision(*q, *static_cast<const triangle*>(collidee), direction);
+            break;
+        case object_type::QUAD:
+            resolve_collision(*q, *static_cast<const quad*>(collidee), direction);
+            break;
+        };
+        break;
+    }
+    };
+
+    draw_rect_perimeter_by_collision(perimeter, direction, COLOR_RED, COLLISION_INDICATOR_WIDTH);
+}
+
 void multi_object_collision_resolution_test()
 {
     object_type collider_type = object_type::SPRITE;
-    sprite collider_sprt, sprt_pixel, sprt_AABB;
+    collision_test_type test_type = collision_test_type::MULTIPLE_DYNAMIC;
+
+    sprite collider_sprt, sprt_pixel, sprt_AABB, sprt_TOP, sprt_BOTTOM, sprt_LEFT,
+        sprt_RIGHT, sprt_TOP_LEFT, sprt_TOP_RIGHT, sprt_BOTTOM_LEFT, sprt_BOTTOM_RIGHT;
     bitmap bmp;
-    rectangle collider_rect, rect;
-    circle collider_circ, circ;
-    triangle collider_tri, tri;
-    quad collider_quad, q;
+    rectangle collider_rect, rect, rect_TOP, rect_BOTTOM, rect_LEFT, rect_RIGHT, rect_TOP_LEFT,
+        rect_TOP_RIGHT, rect_BOTTOM_LEFT, rect_BOTTOM_RIGHT;
+    circle collider_circ, circ, circ_TOP, circ_BOTTOM, circ_LEFT, circ_RIGHT, circ_TOP_LEFT,
+        circ_TOP_RIGHT, circ_BOTTOM_LEFT, circ_BOTTOM_RIGHT;
+    triangle collider_tri, tri, tri_TOP, tri_BOTTOM, tri_LEFT, tri_RIGHT, tri_TOP_LEFT,
+        tri_TOP_RIGHT, tri_BOTTOM_LEFT, tri_BOTTOM_RIGHT;
+    quad collider_quad, q, quad_TOP, quad_BOTTOM, quad_LEFT, quad_RIGHT, quad_TOP_LEFT,
+        quad_TOP_RIGHT, quad_BOTTOM_LEFT, quad_BOTTOM_RIGHT;
 
     open_window("Sprite Collision Resolution", 600, 600);
 
@@ -344,13 +505,97 @@ void multi_object_collision_resolution_test()
     sprite_set_y(sprt_AABB, 400.0);
     sprite_set_collision_kind(sprt_AABB, AABB_COLLISIONS);
 
+    sprt_TOP = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_TOP, 300.0);
+    sprite_set_y(sprt_TOP, 100.0);
+    sprite_set_collision_kind(sprt_TOP, PIXEL_COLLISIONS);
+
+    sprt_BOTTOM = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_BOTTOM, 300.0);
+    sprite_set_y(sprt_BOTTOM, 500.0);
+    sprite_set_collision_kind(sprt_BOTTOM, PIXEL_COLLISIONS);
+
+    sprt_LEFT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_LEFT, 100.0);
+    sprite_set_y(sprt_LEFT, 300.0);
+    sprite_set_collision_kind(sprt_LEFT, PIXEL_COLLISIONS);
+
+    sprt_RIGHT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_RIGHT, 500.0);
+    sprite_set_y(sprt_RIGHT, 300.0);
+    sprite_set_collision_kind(sprt_RIGHT, PIXEL_COLLISIONS);
+
+    sprt_TOP_LEFT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_TOP_LEFT, 100.0);
+    sprite_set_y(sprt_TOP_LEFT, 100.0);
+    sprite_set_collision_kind(sprt_TOP_LEFT, PIXEL_COLLISIONS);
+
+    sprt_TOP_RIGHT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_TOP_RIGHT, 500.0);
+    sprite_set_y(sprt_TOP_RIGHT, 100.0);
+    sprite_set_collision_kind(sprt_TOP_RIGHT, PIXEL_COLLISIONS);
+
+    sprt_BOTTOM_LEFT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_BOTTOM_LEFT, 100.0);
+    sprite_set_y(sprt_BOTTOM_LEFT, 500.0);
+    sprite_set_collision_kind(sprt_BOTTOM_LEFT, PIXEL_COLLISIONS);
+
+    sprt_BOTTOM_RIGHT = create_sprite("rocket_sprt.png");
+    sprite_set_x(sprt_BOTTOM_RIGHT, 500.0);
+    sprite_set_y(sprt_BOTTOM_RIGHT, 500.0);
+    sprite_set_collision_kind(sprt_BOTTOM_RIGHT, PIXEL_COLLISIONS);
+
     rect = rectangle_from(400.0, 450.0, 100.0, 50.0);
+    rect_TOP = rectangle_from(300.0, 100.0, 100.0, 50.0);
+    rect_BOTTOM = rectangle_from(300.0, 500.0, 100.0, 50.0);
+    rect_LEFT = rectangle_from(100.0, 300.0, 50.0, 100.0);
+    rect_RIGHT = rectangle_from(500.0, 300.0, 50.0, 100.0);
+    rect_TOP_LEFT = rectangle_from(100.0, 100.0, 50.0, 50.0);
+    rect_TOP_RIGHT = rectangle_from(500.0, 100.0, 50.0, 50.0);
+    rect_BOTTOM_LEFT = rectangle_from(100.0, 500.0, 50.0, 50.0);
+    rect_BOTTOM_RIGHT = rectangle_from(500.0, 500.0, 50.0, 50.0);
+
     circ = circle_at(400.0, 300.0, 50.0);
+    circ_TOP = circle_at(300.0, 100.0, 50.0);
+    circ_BOTTOM = circle_at(300.0, 500.0, 50.0);
+    circ_LEFT = circle_at(100.0, 300.0, 50.0);
+    circ_RIGHT = circle_at(500.0, 300.0, 50.0);
+    circ_TOP_LEFT = circle_at(100.0, 100.0, 50.0);
+    circ_TOP_RIGHT = circle_at(500.0, 100.0, 50.0);
+    circ_BOTTOM_LEFT = circle_at(100.0, 500.0, 50.0);
+    circ_BOTTOM_RIGHT = circle_at(500.0, 500.0, 50.0);
+
+    tri_TOP = triangle_from(300.0, 100.0, 400.0, 100.0, 350.0, 150.0);
+    tri_BOTTOM = triangle_from(300.0, 500.0, 400.0, 500.0, 350.0, 450.0);
+    tri_LEFT = triangle_from(100.0, 300.0, 100.0, 400.0, 150.0, 350.0);
+    tri_RIGHT = triangle_from(500.0, 300.0, 500.0, 400.0, 450.0, 350.0);
+    tri_TOP_LEFT = triangle_from(100.0, 150.0, 150.0, 100.0, 150.0, 150.0);
+    tri_TOP_RIGHT = triangle_from(500.0, 150.0, 450.0, 100.0, 450.0, 150.0);
+    tri_BOTTOM_LEFT = triangle_from(100.0, 450.0, 150.0, 500.0, 150.0, 450.0);
+    tri_BOTTOM_RIGHT = triangle_from(500.0, 450.0, 450.0, 500.0, 450.0, 450.0);
+
     tri = triangle_from(400.0, 100.0, 500.0, 100.0, 450.0, 50.0);
 
     rectangle r = rectangle_from(400, 100, 100, 50);
     q = quad_from(r);
     apply_matrix(matrix_multiply(translation_matrix(0.0, 50.0), rotation_matrix(45.0)), q);
+    r = rectangle_from(0.0, 0.0, 100.0, 50.0);
+    quad_TOP = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(300.0, 20.0)), quad_TOP);
+    quad_BOTTOM = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(300.0, 470.0)), quad_BOTTOM);
+    quad_LEFT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 270.0)), quad_LEFT);
+    quad_RIGHT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 270.0)), quad_RIGHT);
+    quad_TOP_LEFT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 20.0)), quad_TOP_LEFT);
+    quad_TOP_RIGHT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 20.0)), quad_TOP_RIGHT);
+    quad_BOTTOM_LEFT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 470.0)), quad_BOTTOM_LEFT);
+    quad_BOTTOM_RIGHT = quad_from(r);
+    apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 470.0)), quad_BOTTOM_RIGHT);
 
     while (! quit_requested())
     {
@@ -383,6 +628,30 @@ void multi_object_collision_resolution_test()
         {
             collider_type = object_type::QUAD;
             reset_quad(collider_quad);
+        }
+        if (key_typed(NUM_6_KEY))
+        {
+            test_type = collision_test_type::MULTIPLE_DYNAMIC;
+        }
+        if (key_typed(NUM_7_KEY))
+        {
+            test_type = collision_test_type::SPRITE_FIXED;
+        }
+        if (key_typed(NUM_8_KEY))
+        {
+            test_type = collision_test_type::RECTANGLE_FIXED;
+        }
+        if (key_typed(NUM_9_KEY))
+        {
+            test_type = collision_test_type::CIRCLE_FIXED;
+        }
+        if (key_typed(NUM_0_KEY))
+        {
+            test_type = collision_test_type::TRIANGLE_FIXED;
+        }
+        if (key_typed(MINUS_KEY))
+        {
+            test_type = collision_test_type::QUAD_FIXED;
         }
 
         if (collider_type == object_type::SPRITE)
@@ -499,854 +768,494 @@ void multi_object_collision_resolution_test()
             }
         }
 
-        draw_rectangle(COLOR_RED, sprite_collision_rectangle(sprt_AABB));
-        fill_rectangle(COLOR_GREEN, rect);
-        fill_circle(COLOR_GREEN, circ);
-        fill_triangle(COLOR_GREEN, tri);
-        fill_quad(COLOR_GREEN, q);
-        draw_sprite(sprt_pixel);
-        draw_sprite(sprt_AABB);
+                    
 
-        if (collider_type == object_type::SPRITE)
+        if (test_type == collision_test_type::MULTIPLE_DYNAMIC)
         {
-            collision_direction dir = calculate_collision_direction(collider_sprt, sprt_pixel);
-            if (resolve_collision(collider_sprt, sprt_pixel, dir))
-            {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+            draw_rectangle(COLOR_RED, sprite_collision_rectangle(sprt_AABB));
+            fill_rectangle(COLOR_GREEN, rect);
+            fill_circle(COLOR_GREEN, circ);
+            fill_triangle(COLOR_GREEN, tri);
+            fill_quad(COLOR_GREEN, q);
+            draw_sprite(sprt_pixel);
+            draw_sprite(sprt_AABB);
 
-            dir = calculate_collision_direction(collider_sprt, sprt_AABB);
-            if (resolve_collision(collider_sprt, sprt_AABB, dir))
+            if (collider_type == object_type::SPRITE) // sprite vs. multiple dynamic objects
             {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_sprt, &sprt_pixel, collider_type, object_type::SPRITE, calculate_collision_direction(collider_sprt, sprt_pixel));
+                resolve_and_draw(&collider_sprt, &sprt_AABB, collider_type, object_type::SPRITE, calculate_collision_direction(collider_sprt, sprt_AABB));
+                resolve_and_draw(&collider_sprt, &rect, collider_type, object_type::RECTANGLE, calculate_collision_direction(collider_sprt, rect));
+                resolve_and_draw(&collider_sprt, &circ, collider_type, object_type::CIRCLE, calculate_collision_direction(collider_sprt, circ));
+                resolve_and_draw(&collider_sprt, &tri, collider_type, object_type::TRIANGLE, calculate_collision_direction(collider_sprt, tri));
+                resolve_and_draw(&collider_sprt, &q, collider_type, object_type::QUAD, calculate_collision_direction(collider_sprt, q));
 
-            dir = calculate_collision_direction(collider_sprt, rect);
-            if (resolve_collision(collider_sprt, rect, dir))
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. multiple dynamic objects
             {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_rect, &sprt_pixel, collider_type, object_type::SPRITE, calculate_collision_direction(collider_rect, sprt_pixel));
+                resolve_and_draw(&collider_rect, &sprt_AABB, collider_type, object_type::SPRITE, calculate_collision_direction(collider_rect, sprt_AABB));
+                resolve_and_draw(&collider_rect, &rect, collider_type, object_type::RECTANGLE, calculate_collision_direction(collider_rect, rect));
+                resolve_and_draw(&collider_rect, &circ, collider_type, object_type::CIRCLE, calculate_collision_direction(collider_rect, circ));
+                resolve_and_draw(&collider_rect, &tri, collider_type, object_type::TRIANGLE, calculate_collision_direction(collider_rect, tri));
+                resolve_and_draw(&collider_rect, &q, collider_type, object_type::QUAD, calculate_collision_direction(collider_rect, q));
 
-            dir = calculate_collision_direction(collider_sprt, circ);
-            if (resolve_collision(collider_sprt, circ, dir))
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. multiple dynamic objects
             {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_circ, &sprt_pixel, collider_type, object_type::SPRITE, calculate_collision_direction(collider_circ, sprt_pixel));
+                resolve_and_draw(&collider_circ, &sprt_AABB, collider_type, object_type::SPRITE, calculate_collision_direction(collider_circ, sprt_AABB));
+                resolve_and_draw(&collider_circ, &rect, collider_type, object_type::RECTANGLE, calculate_collision_direction(collider_circ, rect));
+                resolve_and_draw(&collider_circ, &circ, collider_type, object_type::CIRCLE, calculate_collision_direction(collider_circ, circ));
+                resolve_and_draw(&collider_circ, &tri, collider_type, object_type::TRIANGLE, calculate_collision_direction(collider_circ, tri));
+                resolve_and_draw(&collider_circ, &q, collider_type, object_type::QUAD, calculate_collision_direction(collider_circ, q));
 
-            dir = calculate_collision_direction(collider_sprt, tri);
-            if (resolve_collision(collider_sprt, tri, dir))
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. multiple dynamic objects
             {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_tri, &sprt_pixel, collider_type, object_type::SPRITE, calculate_collision_direction(collider_tri, sprt_pixel));
+                resolve_and_draw(&collider_tri, &sprt_AABB, collider_type, object_type::SPRITE, calculate_collision_direction(collider_tri, sprt_AABB));
+                resolve_and_draw(&collider_tri, &rect, collider_type, object_type::RECTANGLE, calculate_collision_direction(collider_tri, rect));
+                resolve_and_draw(&collider_tri, &circ, collider_type, object_type::CIRCLE, calculate_collision_direction(collider_tri, circ));
+                resolve_and_draw(&collider_tri, &tri, collider_type, object_type::TRIANGLE, calculate_collision_direction(collider_tri, tri));
+                resolve_and_draw(&collider_tri, &q, collider_type, object_type::QUAD, calculate_collision_direction(collider_tri, q));
 
-            dir = calculate_collision_direction(collider_sprt, q);
-            if (resolve_collision(collider_sprt, q, dir))
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. multiple dynamic objects
             {
-                draw_rect_perimeter_by_collision(sprite_collision_rectangle(collider_sprt), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_quad, &sprt_pixel, collider_type, object_type::SPRITE, calculate_collision_direction(collider_quad, sprt_pixel));
+                resolve_and_draw(&collider_quad, &sprt_AABB, collider_type, object_type::SPRITE, calculate_collision_direction(collider_quad, sprt_AABB));
+                resolve_and_draw(&collider_quad, &rect, collider_type, object_type::RECTANGLE, calculate_collision_direction(collider_quad, rect));
+                resolve_and_draw(&collider_quad, &circ, collider_type, object_type::CIRCLE, calculate_collision_direction(collider_quad, circ));
+                resolve_and_draw(&collider_quad, &tri, collider_type, object_type::TRIANGLE, calculate_collision_direction(collider_quad, tri));
+                resolve_and_draw(&collider_quad, &q, collider_type, object_type::QUAD, calculate_collision_direction(collider_quad, q));
 
-            draw_sprite(collider_sprt);
-            draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
         }
-        else if (collider_type == object_type::RECTANGLE)
+        else if (test_type == collision_test_type::SPRITE_FIXED)
         {
-            collision_direction dir = calculate_collision_direction(collider_rect, sprt_pixel);
-            if (resolve_collision(collider_rect, sprt_pixel, dir))
-            {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+            draw_sprite(sprt_TOP);
+            draw_sprite(sprt_BOTTOM);
+            draw_sprite(sprt_LEFT);
+            draw_sprite(sprt_RIGHT);
+            draw_sprite(sprt_TOP_LEFT);
+            draw_sprite(sprt_TOP_RIGHT);
+            draw_sprite(sprt_BOTTOM_LEFT);
+            draw_sprite(sprt_BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_rect, sprt_AABB);
-            if (resolve_collision(collider_rect, sprt_AABB, dir))
+            if (collider_type == object_type::SPRITE) // sprite vs. fixed sprite objects
             {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_sprt, &sprt_TOP, collider_type, object_type::SPRITE, collision_direction::TOP);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM, collider_type, object_type::SPRITE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_sprt, &sprt_LEFT, collider_type, object_type::SPRITE, collision_direction::LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_RIGHT, collider_type, object_type::SPRITE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_sprt, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_rect, rect);
-            if (resolve_collision(collider_rect, rect, dir))
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. fixed sprite objects
             {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_rect, &sprt_TOP, collider_type, object_type::SPRITE, collision_direction::TOP);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM, collider_type, object_type::SPRITE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_rect, &sprt_LEFT, collider_type, object_type::SPRITE, collision_direction::LEFT);
+                resolve_and_draw(&collider_rect, &sprt_RIGHT, collider_type, object_type::SPRITE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_rect, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_rect, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_rect, circ);
-            if (resolve_collision(collider_rect, circ, dir))
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. fixed sprite objects
             {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_circ, &sprt_TOP, collider_type, object_type::SPRITE, collision_direction::TOP);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM, collider_type, object_type::SPRITE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_circ, &sprt_LEFT, collider_type, object_type::SPRITE, collision_direction::LEFT);
+                resolve_and_draw(&collider_circ, &sprt_RIGHT, collider_type, object_type::SPRITE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_circ, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_circ, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_rect, tri);
-            if (resolve_collision(collider_rect, tri, dir))
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed sprite objects
             {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_tri, &sprt_TOP, collider_type, object_type::SPRITE, collision_direction::TOP);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM, collider_type, object_type::SPRITE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_tri, &sprt_LEFT, collider_type, object_type::SPRITE, collision_direction::LEFT);
+                resolve_and_draw(&collider_tri, &sprt_RIGHT, collider_type, object_type::SPRITE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_tri, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_tri, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_rect, q);
-            if (resolve_collision(collider_rect, q, dir))
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. fixed sprite objects
             {
-                draw_rect_perimeter_by_collision(collider_rect, dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_quad, &sprt_TOP, collider_type, object_type::SPRITE, collision_direction::TOP);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM, collider_type, object_type::SPRITE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_quad, &sprt_LEFT, collider_type, object_type::SPRITE, collision_direction::LEFT);
+                resolve_and_draw(&collider_quad, &sprt_RIGHT, collider_type, object_type::SPRITE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_quad, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_quad, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, collision_direction::BOTTOM_RIGHT);
 
-            fill_rectangle(COLOR_ORANGE, collider_rect);
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
         }
-        else if (collider_type == object_type::CIRCLE)
+        else if (test_type == collision_test_type::RECTANGLE_FIXED)
         {
-            collision_direction dir = calculate_collision_direction(collider_circ, sprt_pixel);
-            if (resolve_collision(collider_circ, sprt_pixel, dir))
-            {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+            fill_rectangle(COLOR_GREEN, rect_TOP);
+            fill_rectangle(COLOR_GREEN, rect_BOTTOM);
+            fill_rectangle(COLOR_GREEN, rect_LEFT);
+            fill_rectangle(COLOR_GREEN, rect_RIGHT);
+            fill_rectangle(COLOR_GREEN, rect_TOP_LEFT);
+            fill_rectangle(COLOR_GREEN, rect_TOP_RIGHT);
+            fill_rectangle(COLOR_GREEN, rect_BOTTOM_LEFT);
+            fill_rectangle(COLOR_GREEN, rect_BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_circ, sprt_AABB);
-            if (resolve_collision(collider_circ, sprt_AABB, dir))
+            if (collider_type == object_type::SPRITE) // sprite vs. fixed rectangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_sprt, &rect_TOP, collider_type, object_type::RECTANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_sprt, &rect_LEFT, collider_type, object_type::RECTANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_sprt, &rect_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_sprt, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_circ, rect);
-            if (resolve_collision(collider_circ, rect, dir))
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. fixed rectangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_rect, &rect_TOP, collider_type, object_type::RECTANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_rect, &rect_LEFT, collider_type, object_type::RECTANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_rect, &rect_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_rect, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_rect, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_circ, circ);
-            if (resolve_collision(collider_circ, circ, dir))
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. fixed rectangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_circ, &rect_TOP, collider_type, object_type::RECTANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_circ, &rect_LEFT, collider_type, object_type::RECTANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_circ, &rect_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_circ, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_circ, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_circ, tri);
-            if (resolve_collision(collider_circ, tri, dir))
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed rectangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_tri, &rect_TOP, collider_type, object_type::RECTANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_tri, &rect_LEFT, collider_type, object_type::RECTANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_tri, &rect_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_tri, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_tri, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_circ, q);
-            if (resolve_collision(collider_circ, q, dir))
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. fixed rectangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_circ), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_quad, &rect_TOP, collider_type, object_type::RECTANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_quad, &rect_LEFT, collider_type, object_type::RECTANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_quad, &rect_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_quad, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_quad, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, collision_direction::BOTTOM_RIGHT);
 
-            fill_circle(COLOR_ORANGE, collider_circ);
-            draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
         }
-        else if (collider_type == object_type::TRIANGLE)
+        else if (test_type == collision_test_type::CIRCLE_FIXED)
         {
-            collision_direction dir = calculate_collision_direction(collider_tri, sprt_pixel);
-            if (resolve_collision(collider_tri, sprt_pixel, dir))
-            {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+            fill_circle(COLOR_GREEN, circ_TOP);
+            fill_circle(COLOR_GREEN, circ_BOTTOM);
+            fill_circle(COLOR_GREEN, circ_LEFT);
+            fill_circle(COLOR_GREEN, circ_RIGHT);
+            fill_circle(COLOR_GREEN, circ_TOP_LEFT);
+            fill_circle(COLOR_GREEN, circ_TOP_RIGHT);
+            fill_circle(COLOR_GREEN, circ_BOTTOM_LEFT);
+            fill_circle(COLOR_GREEN, circ_BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_tri, sprt_AABB);
-            if (resolve_collision(collider_tri, sprt_AABB, dir))
+            if (collider_type == object_type::SPRITE) // sprite vs. fixed circle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_sprt, &circ_TOP, collider_type, object_type::CIRCLE, collision_direction::TOP);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM, collider_type, object_type::CIRCLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_sprt, &circ_LEFT, collider_type, object_type::CIRCLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_sprt, &circ_RIGHT, collider_type, object_type::CIRCLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_sprt, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_tri, rect);
-            if (resolve_collision(collider_tri, rect, dir))
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. fixed circle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_rect, &circ_TOP, collider_type, object_type::CIRCLE, collision_direction::TOP);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM, collider_type, object_type::CIRCLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_rect, &circ_LEFT, collider_type, object_type::CIRCLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_rect, &circ_RIGHT, collider_type, object_type::CIRCLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_rect, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_rect, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_tri, circ);
-            if (resolve_collision(collider_tri, circ, dir))
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. fixed circle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_circ, &circ_TOP, collider_type, object_type::CIRCLE, collision_direction::TOP);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM, collider_type, object_type::CIRCLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_circ, &circ_LEFT, collider_type, object_type::CIRCLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_circ, &circ_RIGHT, collider_type, object_type::CIRCLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_circ, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_circ, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_tri, tri);
-            if (resolve_collision(collider_tri, tri, dir))
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed circle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_tri, &circ_TOP, collider_type, object_type::CIRCLE, collision_direction::TOP);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM, collider_type, object_type::CIRCLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_tri, &circ_LEFT, collider_type, object_type::CIRCLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_tri, &circ_RIGHT, collider_type, object_type::CIRCLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_tri, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_tri, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_tri, q);
-            if (resolve_collision(collider_tri, q, dir))
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. fixed circle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_tri), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_quad, &circ_TOP, collider_type, object_type::CIRCLE, collision_direction::TOP);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM, collider_type, object_type::CIRCLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_quad, &circ_LEFT, collider_type, object_type::CIRCLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_quad, &circ_RIGHT, collider_type, object_type::CIRCLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_quad, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_quad, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, collision_direction::BOTTOM_RIGHT);
 
-            fill_triangle(COLOR_ORANGE, collider_tri);
-            draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
         }
-        else if (collider_type == object_type::QUAD)
+        else if (test_type == collision_test_type::TRIANGLE_FIXED)
         {
-            collision_direction dir = calculate_collision_direction(collider_quad, sprt_pixel);
-            if (resolve_collision(collider_quad, sprt_pixel, dir))
-            {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+            fill_triangle(COLOR_GREEN, tri_TOP);
+            fill_triangle(COLOR_GREEN, tri_BOTTOM);
+            fill_triangle(COLOR_GREEN, tri_LEFT);
+            fill_triangle(COLOR_GREEN, tri_RIGHT);
+            fill_triangle(COLOR_GREEN, tri_TOP_LEFT);
+            fill_triangle(COLOR_GREEN, tri_TOP_RIGHT);
+            fill_triangle(COLOR_GREEN, tri_BOTTOM_LEFT);
+            fill_triangle(COLOR_GREEN, tri_BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_quad, sprt_AABB);
-            if (resolve_collision(collider_quad, sprt_AABB, dir))
+            if (collider_type == object_type::SPRITE) // sprite vs. fixed triangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_sprt, &tri_TOP, collider_type, object_type::TRIANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_sprt, &tri_LEFT, collider_type, object_type::TRIANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_sprt, &tri_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_sprt, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_quad, rect);
-            if (resolve_collision(collider_quad, rect, dir))
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. fixed triangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_rect, &tri_TOP, collider_type, object_type::TRIANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_rect, &tri_LEFT, collider_type, object_type::TRIANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_rect, &tri_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_rect, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_rect, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_quad, circ);
-            if (resolve_collision(collider_quad, circ, dir))
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. fixed triangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_circ, &tri_TOP, collider_type, object_type::TRIANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_circ, &tri_LEFT, collider_type, object_type::TRIANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_circ, &tri_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_circ, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_circ, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_quad, tri);
-            if (resolve_collision(collider_quad, tri, dir))
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed triangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_tri, &tri_TOP, collider_type, object_type::TRIANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_tri, &tri_LEFT, collider_type, object_type::TRIANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_tri, &tri_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_tri, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_tri, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_RIGHT);
 
-            dir = calculate_collision_direction(collider_quad, q);
-            if (resolve_collision(collider_quad, q, dir))
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. fixed triangle objects
             {
-                draw_rect_perimeter_by_collision(rectangle_around(collider_quad), dir, COLOR_RED, 4);
-            }
+                resolve_and_draw(&collider_quad, &tri_TOP, collider_type, object_type::TRIANGLE, collision_direction::TOP);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_quad, &tri_LEFT, collider_type, object_type::TRIANGLE, collision_direction::LEFT);
+                resolve_and_draw(&collider_quad, &tri_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::RIGHT);
+                resolve_and_draw(&collider_quad, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_quad, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, collision_direction::BOTTOM_RIGHT);
 
-            fill_quad(COLOR_ORANGE, collider_quad);
-            draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
         }
+        else if (test_type == collision_test_type::QUAD_FIXED)
+        {
+            fill_quad(COLOR_GREEN, quad_TOP);
+            fill_quad(COLOR_GREEN, quad_BOTTOM);
+            fill_quad(COLOR_GREEN, quad_LEFT);
+            fill_quad(COLOR_GREEN, quad_RIGHT);
+            fill_quad(COLOR_GREEN, quad_TOP_LEFT);
+            fill_quad(COLOR_GREEN, quad_TOP_RIGHT);
+            fill_quad(COLOR_GREEN, quad_BOTTOM_LEFT);
+            fill_quad(COLOR_GREEN, quad_BOTTOM_RIGHT);
+
+            if (collider_type == object_type::SPRITE) // sprite vs. fixed quad objects
+            {
+                resolve_and_draw(&collider_sprt, &quad_TOP, collider_type, object_type::QUAD, collision_direction::TOP);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM, collider_type, object_type::QUAD, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_sprt, &quad_LEFT, collider_type, object_type::QUAD, collision_direction::LEFT);
+                resolve_and_draw(&collider_sprt, &quad_RIGHT, collider_type, object_type::QUAD, collision_direction::RIGHT);
+                resolve_and_draw(&collider_sprt, &quad_TOP_LEFT, collider_type, object_type::QUAD, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &quad_TOP_RIGHT, collider_type, object_type::QUAD, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, collision_direction::BOTTOM_RIGHT);
+
+                draw_sprite(collider_sprt);
+                draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
+            }
+            else if (collider_type == object_type::RECTANGLE) // rect vs. fixed quad objects
+            {
+                resolve_and_draw(&collider_rect, &quad_TOP, collider_type, object_type::QUAD, collision_direction::TOP);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM, collider_type, object_type::QUAD, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_rect, &quad_LEFT, collider_type, object_type::QUAD, collision_direction::LEFT);
+                resolve_and_draw(&collider_rect, &quad_RIGHT, collider_type, object_type::QUAD, collision_direction::RIGHT);
+                resolve_and_draw(&collider_rect, &quad_TOP_LEFT, collider_type, object_type::QUAD, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_rect, &quad_TOP_RIGHT, collider_type, object_type::QUAD, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, collision_direction::BOTTOM_RIGHT);
+
+                fill_rectangle(COLOR_ORANGE, collider_rect);
+            }
+            else if (collider_type == object_type::CIRCLE) // circle vs. fixed quad objects
+            {
+                resolve_and_draw(&collider_circ, &quad_TOP, collider_type, object_type::QUAD, collision_direction::TOP);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM, collider_type, object_type::QUAD, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_circ, &quad_LEFT, collider_type, object_type::QUAD, collision_direction::LEFT);
+                resolve_and_draw(&collider_circ, &quad_RIGHT, collider_type, object_type::QUAD, collision_direction::RIGHT);
+                resolve_and_draw(&collider_circ, &quad_TOP_LEFT, collider_type, object_type::QUAD, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_circ, &quad_TOP_RIGHT, collider_type, object_type::QUAD, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, collision_direction::BOTTOM_RIGHT);
+
+                fill_circle(COLOR_ORANGE, collider_circ);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
+            }
+            else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed quad objects
+            {
+                resolve_and_draw(&collider_tri, &quad_TOP, collider_type, object_type::QUAD, collision_direction::TOP);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM, collider_type, object_type::QUAD, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_tri, &quad_LEFT, collider_type, object_type::QUAD, collision_direction::LEFT);
+                resolve_and_draw(&collider_tri, &quad_RIGHT, collider_type, object_type::QUAD, collision_direction::RIGHT);
+                resolve_and_draw(&collider_tri, &quad_TOP_LEFT, collider_type, object_type::QUAD, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_tri, &quad_TOP_RIGHT, collider_type, object_type::QUAD, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, collision_direction::BOTTOM_RIGHT);
+
+                fill_triangle(COLOR_ORANGE, collider_tri);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
+            }
+            else if (collider_type == object_type::QUAD) // quad vs. fixed quad objects
+            {
+                resolve_and_draw(&collider_quad, &quad_TOP, collider_type, object_type::QUAD, collision_direction::TOP);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM, collider_type, object_type::QUAD, collision_direction::BOTTOM);
+                resolve_and_draw(&collider_quad, &quad_LEFT, collider_type, object_type::QUAD, collision_direction::LEFT);
+                resolve_and_draw(&collider_quad, &quad_RIGHT, collider_type, object_type::QUAD, collision_direction::RIGHT);
+                resolve_and_draw(&collider_quad, &quad_TOP_LEFT, collider_type, object_type::QUAD, collision_direction::TOP_LEFT);
+                resolve_and_draw(&collider_quad, &quad_TOP_RIGHT, collider_type, object_type::QUAD, collision_direction::TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, collision_direction::BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, collision_direction::BOTTOM_RIGHT);
+
+                fill_quad(COLOR_ORANGE, collider_quad);
+                draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
+            }
+        } // end if
 
         refresh_screen(60);
-    }
+
+    } // end while
 
     show_mouse();
-
     close_all_windows();
 }
-
-// void sprite_sprite_collision_resolution_direction_test()
-// {
-//     sprite collider, sprt_TOP, sprt_BOTTOM, sprt_LEFT, sprt_RIGHT, sprt_TOP_LEFT,
-//         sprt_TOP_RIGHT, sprt_BOTTOM_LEFT, sprt_BOTTOM_RIGHT;
-
-//     open_window("Sprite-Sprite Collision Resolution Fixed Direction", 600, 600);
-
-//     hide_mouse();
-
-//     collider = create_sprite("rocket_sprt.png");
-//     sprite_set_x(collider, 300.0);
-//     sprite_set_y(collider, 300.0);
-//     sprite_set_collision_kind(collider, PIXEL_COLLISIONS);
-
-//     sprt_TOP = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_TOP, 300.0);
-//     sprite_set_y(sprt_TOP, 100.0);
-//     sprite_set_collision_kind(sprt_TOP, PIXEL_COLLISIONS);
-
-//     sprt_BOTTOM = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_BOTTOM, 300.0);
-//     sprite_set_y(sprt_BOTTOM, 500.0);
-//     sprite_set_collision_kind(sprt_BOTTOM, PIXEL_COLLISIONS);
-
-//     sprt_LEFT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_LEFT, 100.0);
-//     sprite_set_y(sprt_LEFT, 300.0);
-//     sprite_set_collision_kind(sprt_LEFT, PIXEL_COLLISIONS);
-
-//     sprt_RIGHT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_RIGHT, 500.0);
-//     sprite_set_y(sprt_RIGHT, 300.0);
-//     sprite_set_collision_kind(sprt_RIGHT, PIXEL_COLLISIONS);
-
-//     sprt_TOP_LEFT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_TOP_LEFT, 100.0);
-//     sprite_set_y(sprt_TOP_LEFT, 100.0);
-//     sprite_set_collision_kind(sprt_TOP_LEFT, PIXEL_COLLISIONS);
-
-//     sprt_TOP_RIGHT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_TOP_RIGHT, 500.0);
-//     sprite_set_y(sprt_TOP_RIGHT, 100.0);
-//     sprite_set_collision_kind(sprt_TOP_RIGHT, PIXEL_COLLISIONS);
-
-//     sprt_BOTTOM_LEFT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_BOTTOM_LEFT, 100.0);
-//     sprite_set_y(sprt_BOTTOM_LEFT, 500.0);
-//     sprite_set_collision_kind(sprt_BOTTOM_LEFT, PIXEL_COLLISIONS);
-
-//     sprt_BOTTOM_RIGHT = create_sprite("rocket_sprt.png");
-//     sprite_set_x(sprt_BOTTOM_RIGHT, 500.0);
-//     sprite_set_y(sprt_BOTTOM_RIGHT, 500.0);
-//     sprite_set_collision_kind(sprt_BOTTOM_RIGHT, PIXEL_COLLISIONS);
-
-//     while (! quit_requested())
-//     {
-//         process_events();
-
-//         clear_screen(COLOR_WHITE);
-
-//         if ( key_down(LEFT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) - 5.0);
-
-//         if ( key_down(RIGHT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) + 5.0);
-
-//         if ( key_down(LEFT_SHIFT_KEY) or key_down(RIGHT_SHIFT_KEY) )
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) + 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) - 0.1);
-//         }
-//         else
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) - 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) + 0.1);
-//         }
-
-//         update_sprite(collider);
-
-//         draw_sprite(sprt_TOP);
-//         draw_sprite(sprt_BOTTOM);
-//         draw_sprite(sprt_LEFT);
-//         draw_sprite(sprt_RIGHT);
-//         draw_sprite(sprt_TOP_LEFT);
-//         draw_sprite(sprt_TOP_RIGHT);
-//         draw_sprite(sprt_BOTTOM_LEFT);
-//         draw_sprite(sprt_BOTTOM_RIGHT);
-
-//         if (sprite_collision(collider, sprt_TOP))
-//         {
-//             resolve_collision(collider, sprt_TOP, collision_direction::TOP);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_BOTTOM))
-//         {
-//             resolve_collision(collider, sprt_BOTTOM, collision_direction::BOTTOM);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_LEFT))
-//         {
-//             resolve_collision(collider, sprt_LEFT, collision_direction::LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_RIGHT))
-//         {
-//             resolve_collision(collider, sprt_RIGHT, collision_direction::RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_TOP_LEFT))
-//         {
-//             resolve_collision(collider, sprt_TOP_LEFT, collision_direction::TOP_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_TOP_RIGHT))
-//         {
-//             resolve_collision(collider, sprt_TOP_RIGHT, collision_direction::TOP_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_BOTTOM_LEFT))
-//         {
-//             resolve_collision(collider, sprt_BOTTOM_LEFT, collision_direction::BOTTOM_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_collision(collider, sprt_BOTTOM_RIGHT))
-//         {
-//             resolve_collision(collider, sprt_BOTTOM_RIGHT, collision_direction::BOTTOM_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_RIGHT, COLOR_RED, 4);
-//         }
-
-//         draw_sprite(collider);
-//         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider));
-
-//         refresh_screen(60);
-//     }
-
-//     show_mouse();
-
-//     close_all_windows();
-// }
-
-// void sprite_rectangle_collision_resolution_direction_test()
-// {
-//     sprite collider;
-//     rectangle rect_TOP, rect_BOTTOM, rect_LEFT, rect_RIGHT, rect_TOP_LEFT,
-//         rect_TOP_RIGHT, rect_BOTTOM_LEFT, rect_BOTTOM_RIGHT;
-
-//     open_window("Sprite-Rectangle Collision Resolution Fixed Direction", 600, 600);
-
-//     hide_mouse();
-
-//     collider = create_sprite("rocket_sprt.png");
-//     sprite_set_x(collider, 300.0);
-//     sprite_set_y(collider, 300.0);
-//     sprite_set_collision_kind(collider, PIXEL_COLLISIONS);
-
-//     rect_TOP = rectangle_from(300.0, 100.0, 100.0, 50.0);
-//     rect_BOTTOM = rectangle_from(300.0, 500.0, 100.0, 50.0);
-//     rect_LEFT = rectangle_from(100.0, 300.0, 50.0, 100.0);
-//     rect_RIGHT = rectangle_from(500.0, 300.0, 50.0, 100.0);
-//     rect_TOP_LEFT = rectangle_from(100.0, 100.0, 50.0, 50.0);
-//     rect_TOP_RIGHT = rectangle_from(500.0, 100.0, 50.0, 50.0);
-//     rect_BOTTOM_LEFT = rectangle_from(100.0, 500.0, 50.0, 50.0);
-//     rect_BOTTOM_RIGHT = rectangle_from(500.0, 500.0, 50.0, 50.0);
-
-//     while (! quit_requested())
-//     {
-//         process_events();
-
-//         clear_screen(COLOR_WHITE);
-
-//         if ( key_down(LEFT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) - 5.0);
-
-//         if ( key_down(RIGHT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) + 5.0);
-
-//         if ( key_down(LEFT_SHIFT_KEY) or key_down(RIGHT_SHIFT_KEY) )
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) + 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) - 0.1);
-//         }
-//         else
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) - 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) + 0.1);
-//         }
-
-//         update_sprite(collider);
-
-//         fill_rectangle(COLOR_GREEN, rect_TOP);
-//         fill_rectangle(COLOR_GREEN, rect_BOTTOM);
-//         fill_rectangle(COLOR_GREEN, rect_LEFT);
-//         fill_rectangle(COLOR_GREEN, rect_RIGHT);
-//         fill_rectangle(COLOR_GREEN, rect_TOP_LEFT);
-//         fill_rectangle(COLOR_GREEN, rect_TOP_RIGHT);
-//         fill_rectangle(COLOR_GREEN, rect_BOTTOM_LEFT);
-//         fill_rectangle(COLOR_GREEN, rect_BOTTOM_RIGHT);
-
-//         if (sprite_rectangle_collision(collider, rect_TOP))
-//         {
-//             resolve_collision(collider, rect_TOP, collision_direction::TOP);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_BOTTOM))
-//         {
-//             resolve_collision(collider, rect_BOTTOM, collision_direction::BOTTOM);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_LEFT))
-//         {
-//             resolve_collision(collider, rect_LEFT, collision_direction::LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_RIGHT))
-//         {
-//             resolve_collision(collider, rect_RIGHT, collision_direction::RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_TOP_LEFT))
-//         {
-//             resolve_collision(collider, rect_TOP_LEFT, collision_direction::TOP_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_TOP_RIGHT))
-//         {
-//             resolve_collision(collider, rect_TOP_RIGHT, collision_direction::TOP_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_BOTTOM_LEFT))
-//         {
-//             resolve_collision(collider, rect_BOTTOM_LEFT, collision_direction::BOTTOM_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_rectangle_collision(collider, rect_BOTTOM_RIGHT))
-//         {
-//             resolve_collision(collider, rect_BOTTOM_RIGHT, collision_direction::BOTTOM_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_RIGHT, COLOR_RED, 4);
-//         }
-
-//         draw_sprite(collider);
-//         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider));
-
-//         refresh_screen(60);
-//     }
-
-//     show_mouse();
-
-//     close_all_windows();
-// }
-
-// void sprite_circle_collision_resolution_direction_test()
-// {
-//     sprite collider;
-//     circle circ_TOP, circ_BOTTOM, circ_LEFT, circ_RIGHT, circ_TOP_LEFT,
-//         circ_TOP_RIGHT, circ_BOTTOM_LEFT, circ_BOTTOM_RIGHT;
-
-//     open_window("Sprite-Circle Collision Resolution Fixed Direction", 600, 600);
-
-//     hide_mouse();
-
-//     collider = create_sprite("rocket_sprt.png");
-//     sprite_set_x(collider, 300.0);
-//     sprite_set_y(collider, 300.0);
-//     sprite_set_collision_kind(collider, PIXEL_COLLISIONS);
-
-//     circ_TOP = circle_at(300.0, 100.0, 50.0);
-//     circ_BOTTOM = circle_at(300.0, 500.0, 50.0);
-//     circ_LEFT = circle_at(100.0, 300.0, 50.0);
-//     circ_RIGHT = circle_at(500.0, 300.0, 50.0);
-//     circ_TOP_LEFT = circle_at(100.0, 100.0, 50.0);
-//     circ_TOP_RIGHT = circle_at(500.0, 100.0, 50.0);
-//     circ_BOTTOM_LEFT = circle_at(100.0, 500.0, 50.0);
-//     circ_BOTTOM_RIGHT = circle_at(500.0, 500.0, 50.0);
-
-//     while (! quit_requested())
-//     {
-//         process_events();
-
-//         clear_screen(COLOR_WHITE);
-
-//         if ( key_down(LEFT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) - 5.0);
-
-//         if ( key_down(RIGHT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) + 5.0);
-
-//         if ( key_down(LEFT_SHIFT_KEY) or key_down(RIGHT_SHIFT_KEY) )
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) + 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) - 0.1);
-//         }
-//         else
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) - 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) + 0.1);
-//         }
-
-//         update_sprite(collider);
-
-//         fill_circle(COLOR_GREEN, circ_TOP);
-//         fill_circle(COLOR_GREEN, circ_BOTTOM);
-//         fill_circle(COLOR_GREEN, circ_LEFT);
-//         fill_circle(COLOR_GREEN, circ_RIGHT);
-//         fill_circle(COLOR_GREEN, circ_TOP_LEFT);
-//         fill_circle(COLOR_GREEN, circ_TOP_RIGHT);
-//         fill_circle(COLOR_GREEN, circ_BOTTOM_LEFT);
-//         fill_circle(COLOR_GREEN, circ_BOTTOM_RIGHT);
-
-//         if (sprite_circle_collision(collider, circ_TOP))
-//         {
-//             resolve_collision(collider, circ_TOP, collision_direction::TOP);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_BOTTOM))
-//         {
-//             resolve_collision(collider, circ_BOTTOM, collision_direction::BOTTOM);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_LEFT))
-//         {
-//             resolve_collision(collider, circ_LEFT, collision_direction::LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_RIGHT))
-//         {
-//             resolve_collision(collider, circ_RIGHT, collision_direction::RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_TOP_LEFT))
-//         {
-//             resolve_collision(collider, circ_TOP_LEFT, collision_direction::TOP_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_TOP_RIGHT))
-//         {
-//             resolve_collision(collider, circ_TOP_RIGHT, collision_direction::TOP_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_BOTTOM_LEFT))
-//         {
-//             resolve_collision(collider, circ_BOTTOM_LEFT, collision_direction::BOTTOM_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_circle_collision(collider, circ_BOTTOM_RIGHT))
-//         {
-//             resolve_collision(collider, circ_BOTTOM_RIGHT, collision_direction::BOTTOM_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_RIGHT, COLOR_RED, 4);
-//         }
-
-//         draw_sprite(collider);
-//         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider));
-
-//         refresh_screen(60);
-//     }
-
-//     show_mouse();
-
-//     close_all_windows();
-// }
-
-// void sprite_triangle_collision_resolution_direction_test()
-// {
-//     sprite collider;
-//     triangle tri_TOP, tri_BOTTOM, tri_LEFT, tri_RIGHT, tri_TOP_LEFT,
-//         tri_TOP_RIGHT, tri_BOTTOM_LEFT, tri_BOTTOM_RIGHT;
-
-//     open_window("Sprite-Triangle Collision Resolution Fixed Direction", 600, 600);
-
-//     hide_mouse();
-
-//     collider = create_sprite("rocket_sprt.png");
-//     sprite_set_x(collider, 300.0);
-//     sprite_set_y(collider, 300.0);
-//     sprite_set_collision_kind(collider, PIXEL_COLLISIONS);
-
-//     tri_TOP = triangle_from(300.0, 100.0, 400.0, 100.0, 350.0, 150.0);
-//     tri_BOTTOM = triangle_from(300.0, 500.0, 400.0, 500.0, 350.0, 450.0);
-//     tri_LEFT = triangle_from(100.0, 300.0, 100.0, 400.0, 150.0, 350.0);
-//     tri_RIGHT = triangle_from(500.0, 300.0, 500.0, 400.0, 450.0, 350.0);
-//     tri_TOP_LEFT = triangle_from(100.0, 150.0, 150.0, 100.0, 150.0, 150.0);
-//     tri_TOP_RIGHT = triangle_from(500.0, 150.0, 450.0, 100.0, 450.0, 150.0);
-//     tri_BOTTOM_LEFT = triangle_from(100.0, 450.0, 150.0, 500.0, 150.0, 450.0);
-//     tri_BOTTOM_RIGHT = triangle_from(500.0, 450.0, 450.0, 500.0, 450.0, 450.0);
-
-//     while (! quit_requested())
-//     {
-//         process_events();
-
-//         clear_screen(COLOR_WHITE);
-
-//         if ( key_down(LEFT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) - 5.0);
-
-//         if ( key_down(RIGHT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) + 5.0);
-
-//         if ( key_down(LEFT_SHIFT_KEY) or key_down(RIGHT_SHIFT_KEY) )
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) + 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) - 0.1);
-//         }
-//         else
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) - 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) + 0.1);
-//         }
-
-//         update_sprite(collider);
-
-//         fill_triangle(COLOR_GREEN, tri_TOP);
-//         fill_triangle(COLOR_GREEN, tri_BOTTOM);
-//         fill_triangle(COLOR_GREEN, tri_LEFT);
-//         fill_triangle(COLOR_GREEN, tri_RIGHT);
-//         fill_triangle(COLOR_GREEN, tri_TOP_LEFT);
-//         fill_triangle(COLOR_GREEN, tri_TOP_RIGHT);
-//         fill_triangle(COLOR_GREEN, tri_BOTTOM_LEFT);
-//         fill_triangle(COLOR_GREEN, tri_BOTTOM_RIGHT);
-
-//         if (sprite_triangle_collision(collider, tri_TOP))
-//         {
-//             resolve_collision(collider, tri_TOP, collision_direction::TOP);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_BOTTOM))
-//         {
-//             resolve_collision(collider, tri_BOTTOM, collision_direction::BOTTOM);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_LEFT))
-//         {
-//             resolve_collision(collider, tri_LEFT, collision_direction::LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_RIGHT))
-//         {
-//             resolve_collision(collider, tri_RIGHT, collision_direction::RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_TOP_LEFT))
-//         {
-//             resolve_collision(collider, tri_TOP_LEFT, collision_direction::TOP_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_TOP_RIGHT))
-//         {
-//             resolve_collision(collider, tri_TOP_RIGHT, collision_direction::TOP_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_BOTTOM_LEFT))
-//         {
-//             resolve_collision(collider, tri_BOTTOM_LEFT, collision_direction::BOTTOM_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_triangle_collision(collider, tri_BOTTOM_RIGHT))
-//         {
-//             resolve_collision(collider, tri_BOTTOM_RIGHT, collision_direction::BOTTOM_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_RIGHT, COLOR_RED, 4);
-//         }
-
-//         draw_sprite(collider);
-//         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider));
-
-//         refresh_screen(60);
-//     }
-
-//     show_mouse();
-
-//     close_all_windows();
-// }
-
-// void sprite_quad_collision_resolution_direction_test()
-// {
-//     sprite collider;
-//     quad quad_TOP, quad_BOTTOM, quad_LEFT, quad_RIGHT, quad_TOP_LEFT,
-//         quad_TOP_RIGHT, quad_BOTTOM_LEFT, quad_BOTTOM_RIGHT;
-
-//     open_window("Sprite-Quad Collision Resolution Fixed Direction", 600, 600);
-
-//     hide_mouse();
-
-//     collider = create_sprite("rocket_sprt.png");
-//     sprite_set_x(collider, 300.0);
-//     sprite_set_y(collider, 300.0);
-//     sprite_set_collision_kind(collider, PIXEL_COLLISIONS);
-
-//     rectangle r = rectangle_from(0.0, 0.0, 100.0, 50.0);
-//     quad_TOP = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(300.0, 20.0)), quad_TOP);
-//     quad_BOTTOM = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(300.0, 470.0)), quad_BOTTOM);
-//     quad_LEFT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 270.0)), quad_LEFT);
-//     quad_RIGHT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 270.0)), quad_RIGHT);
-//     quad_TOP_LEFT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 20.0)), quad_TOP_LEFT);
-//     quad_TOP_RIGHT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 20.0)), quad_TOP_RIGHT);
-//     quad_BOTTOM_LEFT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(50.0, 470.0)), quad_BOTTOM_LEFT);
-//     quad_BOTTOM_RIGHT = quad_from(r);
-//     apply_matrix(matrix_multiply(rotation_matrix(45.0), translation_matrix(500.0, 470.0)), quad_BOTTOM_RIGHT);
-
-//     while (! quit_requested())
-//     {
-//         process_events();
-
-//         clear_screen(COLOR_WHITE);
-
-//         if ( key_down(LEFT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) - 5.0);
-
-//         if ( key_down(RIGHT_KEY) )
-//             sprite_set_rotation(collider, sprite_rotation(collider) + 5.0);
-
-//         if ( key_down(LEFT_SHIFT_KEY) or key_down(RIGHT_SHIFT_KEY) )
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) + 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_scale(collider, sprite_scale(collider) - 0.1);
-//         }
-//         else
-//         {
-//             if ( key_down(UP_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) - 0.1);
-
-//             if ( key_down(DOWN_KEY) )
-//                 sprite_set_dy(collider, sprite_dy(collider) + 0.1);
-//         }
-
-//         update_sprite(collider);
-
-//         fill_quad(COLOR_GREEN, quad_TOP);
-//         fill_quad(COLOR_GREEN, quad_BOTTOM);
-//         fill_quad(COLOR_GREEN, quad_LEFT);
-//         fill_quad(COLOR_GREEN, quad_RIGHT);
-//         fill_quad(COLOR_GREEN, quad_TOP_LEFT);
-//         fill_quad(COLOR_GREEN, quad_TOP_RIGHT);
-//         fill_quad(COLOR_GREEN, quad_BOTTOM_LEFT);
-//         fill_quad(COLOR_GREEN, quad_BOTTOM_RIGHT);
-
-//         if (sprite_quad_collision(collider, quad_TOP))
-//         {
-//             resolve_collision(collider, quad_TOP, collision_direction::TOP);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_BOTTOM))
-//         {
-//             resolve_collision(collider, quad_BOTTOM, collision_direction::BOTTOM);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_LEFT))
-//         {
-//             resolve_collision(collider, quad_LEFT, collision_direction::LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_RIGHT))
-//         {
-//             resolve_collision(collider, quad_RIGHT, collision_direction::RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_TOP_LEFT))
-//         {
-//             resolve_collision(collider, quad_TOP_LEFT, collision_direction::TOP_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_TOP_RIGHT))
-//         {
-//             resolve_collision(collider, quad_TOP_RIGHT, collision_direction::TOP_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::TOP_RIGHT, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_BOTTOM_LEFT))
-//         {
-//             resolve_collision(collider, quad_BOTTOM_LEFT, collision_direction::BOTTOM_LEFT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_LEFT, COLOR_RED, 4);
-//         }
-//         if (sprite_quad_collision(collider, quad_BOTTOM_RIGHT))
-//         {
-//             resolve_collision(collider, quad_BOTTOM_RIGHT, collision_direction::BOTTOM_RIGHT);
-//             draw_sprite_perimeter_by_collision(collider, collision_direction::BOTTOM_RIGHT, COLOR_RED, 4);
-//         }
-
-//         draw_sprite(collider);
-//         draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider));
-
-//         refresh_screen(60);
-//     }
-
-//     show_mouse();
-
-//     close_all_windows();
-// }
 
 void run_sprite_test()
 {
     sprite_test();
     multi_object_collision_resolution_test();
-    // sprite_collision_resolution_test();
-    // sprite_sprite_collision_resolution_direction_test();
-    // sprite_rectangle_collision_resolution_direction_test();
-    // sprite_circle_collision_resolution_direction_test();
-    // sprite_triangle_collision_resolution_direction_test();
-    // sprite_quad_collision_resolution_direction_test();
 }
