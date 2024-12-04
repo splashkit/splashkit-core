@@ -73,7 +73,16 @@ namespace splashkit_lib
                    const point_2d &p3,
                    const point_2d &p4);
 
-    // TODO_M
+    /**
+     * Returns a quad from the passed in segment and width.
+     * 
+     * @param segment_origin The origin of the segment
+     * @param segment_end    The end of the segment
+     * @param width          The width of the quad
+     * @return               A quad that represents the segment with the given width
+     * 
+     * @attribute suffix  from_segment
+     */
     quad quad_from(const point_2d& segment_origin, const point_2d& segment_end, double width);
 
     /**
