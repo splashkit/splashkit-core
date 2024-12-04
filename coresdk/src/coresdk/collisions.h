@@ -408,6 +408,9 @@ namespace splashkit_lib
      */
     bool sprite_rectangle_collision(sprite s, const rectangle& rect);
 
+    // TODO_M
+    bool sprite_ray_collision(sprite s, const point_2d& ray_origin, const vector_2d& ray_heading);
+
     /**
      * Tests if two given sprites `s1` and `s2` are collided
      * @param  s1 the first `sprite` to test

@@ -385,6 +385,11 @@ namespace splashkit_lib
         
         return bitmap_rectangle_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
     }
+
+    bool sprite_ray_collision(sprite s, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        return bitmap_ray_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), ray_origin, ray_heading);
+    }
     
     bool sprite_collision(sprite s1, sprite s2)
     {
