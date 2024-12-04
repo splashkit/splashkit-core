@@ -276,7 +276,7 @@ namespace splashkit_lib
         return bitmap_circle_collision(bmp, cell, translation_matrix(x, y), circ);
     }
 
-    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q)
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad& q)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
@@ -294,9 +294,10 @@ namespace splashkit_lib
                                     });
     }
 
-    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading)
+    bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& ray_origin, const vector_2d& ray_heading)
     {
-        point_2d bmp_center = point_offset_by(pt, vector_to(bitmap_center(bmp)));
+        point_2d bmp_position = matrix_multiply(translation, point_at(0.0, 0.0));
+        point_2d bmp_center = point_offset_by(bmp_position, vector_to(bitmap_center(bmp)));
         circle bmp_bounding_circle = bitmap_bounding_circle(bmp, bmp_center);
 
         vector_2d unit_ray_heading = unit_vector(ray_heading);
@@ -306,7 +307,27 @@ namespace splashkit_lib
         point_2d ray_end = point_offset_by(ray_origin, vector_multiply(unit_ray_heading, distance_to_center + bmp_bounding_circle.radius));
 
         quad ray_quad = quad_from(ray_origin, ray_end, RAY_QUAD_LINE_THICKNESS);
-        return bitmap_quad_collision(bmp, cell, translation_matrix(pt), ray_quad);
+        return bitmap_quad_collision(bmp, cell, translation, ray_quad);
+    }
+
+    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        return bitmap_ray_collision(bmp, cell, translation_matrix(pt), ray_origin, ray_heading);
+    }
+
+    bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        return bitmap_ray_collision(bmp, cell, translation_matrix(x, y), ray_origin, ray_heading);
+    }
+
+    bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        return bitmap_ray_collision(bmp, 0, translation_matrix(x, y), ray_origin, ray_heading);
+    }
+
+    bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        return bitmap_ray_collision(bmp, 0, translation_matrix(pt), ray_origin, ray_heading);
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
