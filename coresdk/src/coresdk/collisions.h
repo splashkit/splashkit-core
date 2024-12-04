@@ -316,19 +316,94 @@ namespace splashkit_lib
      */
     bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
     
-    // TODO_M
+    /**
+     * Tests if a bitmap cell drawn using a passed in translation, will
+     * intersect with a ray. You can use this to detect collisions between
+     * bitmaps and rays.
+     *
+     * @param  bmp         The bitmap to test
+     * @param  cell        The cell of the bitmap to check
+     * @param  translation The matrix used to transfrom the bitmap when drawing
+     * @param  ray_origin  The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return             True if a drawn pixel in the cell of the bitmap will
+     *                     intersect with the ray when drawn.
+     *
+     * @attribute suffix    for_cell_with_translation
+     *
+     * @attribute class bitmap
+     * @attribute method ray_collision
+     */
     bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& ray_origin, const vector_2d& ray_heading);
 
-    // TODO_M
+    /**
+     * Tests if a bitmap cell drawn at `pt` would intersect with a ray.
+     *
+     * @param  bmp        The bitmap to test
+     * @param  cell       The cell of the bitmap to check
+     * @param  pt         The location where the bitmap is drawn
+     * @param  ray_origin The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return            True if a drawn pixel in the cell of the bitmap will
+     *                    intersect with the ray when drawn.
+     *
+     * @attribute suffix    for_cell_at_point
+     *
+     * @attribute class bitmap
+     * @attribute method ray_collision
+     */
     bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading);
 
-    // TODO_M
+    /**
+     * Tests if a bitmap cell drawn at `x`, `y` would intersect with a ray.
+     *
+     * @param  bmp        The bitmap to test
+     * @param  cell       The cell of the bitmap to check
+     * @param  x          The x location where the bitmap is drawn
+     * @param  y          The y location where the bitmap is drawn
+     * @param  ray_origin The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return            True if a drawn pixel in the cell of the bitmap will
+     *                    intersect with the ray when drawn.
+     *
+     * @attribute suffix    for_cell
+     *
+     * @attribute class bitmap
+     * @attribute method ray_collision
+     */
     bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading);
 
-    // TODO_M
+    /**
+     * Tests if a bitmap drawn at `x`, `y` would intersect with a ray.
+     *
+     * @param  bmp        The bitmap to test
+     * @param  x          The x location where the bitmap is drawn
+     * @param  y          The y location where the bitmap is drawn
+     * @param  ray_origin The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return            True if a drawn pixel in the bitmap will
+     *                    intersect with the ray when drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method ray_collision
+     */
     bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading);
 
-    // TODO_M
+    /**
+     * Tests if a bitmap drawn at `pt` would intersect with a ray.
+     *
+     * @param  bmp        The bitmap to test
+     * @param  pt         The location where the bitmap is drawn
+     * @param  ray_origin The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return            True if a drawn pixel in the cell of the bitmap will
+     *                    intersect with the ray when drawn.
+     *
+     * @attribute suffix    at_point
+     *
+     * @attribute class bitmap
+     * @attribute method ray_collision
+     */
     bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading);
 
     /**
@@ -408,7 +483,17 @@ namespace splashkit_lib
      */
     bool sprite_rectangle_collision(sprite s, const rectangle& rect);
 
-    // TODO_M
+    /**
+     * Tests if a sprite is drawn along a given ray.
+     * 
+     * @param  s           The sprite to test
+     * @param  ray_origin  The origin of the ray
+     * @param  ray_heading The heading of the ray
+     * @return             True if the sprite is drawn along the ray
+     * 
+     * @attribute class sprite
+     * @attribute method ray_collision
+     */
     bool sprite_ray_collision(sprite s, const point_2d& ray_origin, const vector_2d& ray_heading);
 
     /**
