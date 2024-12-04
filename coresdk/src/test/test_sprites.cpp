@@ -16,7 +16,7 @@
 
 using namespace splashkit_lib;
 
-void run_sprite_test()
+void sprite_test()
 {
     sprite sprt, s2;
     triangle tri, init_tri;
@@ -148,11 +148,13 @@ void test_sprite_ray_collision()
 {
     window w1 = open_window("Sprite Ray Collision", 800, 600);
     sprite s1 = create_sprite("on_med.png");
-    sprite_set_position(s1, point_at(300.0, 300.0));
+    sprite_set_position(s1, point_at(200.0, 200.0));
+    sprite_set_rotation(s1, 45.0f);
     sprite s2 = create_sprite("rocket_sprt.png");
-    sprite_set_position(s2, point_at(500.0, 300.0));
+    sprite_set_position(s2, point_at(500.0, 100.0));
     sprite s3 = create_sprite("up_pole.png");
-    sprite_set_position(s3, point_at(700.0, 300.0));
+    sprite_set_position(s3, point_at(600.0, 300.0));
+    sprite_set_rotation(s3, 10.0f);
     point_2d ray_origin = point_at(100, 100);
     vector_2d ray_heading = vector_to(200, 200);
     
@@ -177,7 +179,7 @@ void test_sprite_ray_collision()
         draw_sprite(s1);
         if (collision_1)
         {
-            fill_circle(COLOR_RED, circle_at(sprite_collision_circle(s1).center, 8.0));
+            fill_circle(COLOR_RED, circle_at(sprite_collision_circle(s1).center, 30.0));
         }
 
         draw_sprite(s2);
@@ -205,4 +207,10 @@ void test_sprite_ray_collision()
         refresh_screen();
     }
     close_window(w1);
+}
+
+void run_sprite_test()
+{
+    sprite_test();
+    test_sprite_ray_collision();
 }
