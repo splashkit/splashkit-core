@@ -297,6 +297,8 @@ namespace splashkit_lib
      */
     bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ);
     
+    bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading);
+
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
      * location.

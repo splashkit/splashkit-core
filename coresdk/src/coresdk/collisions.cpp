@@ -274,6 +274,30 @@ namespace splashkit_lib
         return bitmap_circle_collision(bmp, cell, translation_matrix(x, y), circ);
     }
 
+    bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading)
+    {
+        // broad phase check
+        point_2d bmp_center = bitmap_center(bmp);
+        circle bmp_bounding_circle = bitmap_bounding_circle(bmp, bmp_center);
+        if (ray_circle_intersect_distance(ray_origin, ray_heading, bmp_bounding_circle) <= -1.0f)
+        {
+            return false;
+        }
+
+        constexpr double THICKNESS = 1.0;
+
+        // narrow phase check
+
+        // get point which will allow segment to fully pass through the bitmap
+        vector_2d unit_ray_heading = unit_vector(ray_heading);
+        point_2d ray_end = point_offset_by(bmp_center, vector_multiply(unit_ray_heading, bmp_bounding_circle.radius));
+
+        // get the quad for the ray
+        quad ray_quad = quad_from(ray_origin, ray_end, THICKNESS);
+
+        // bitmap-quad collision check
+    }
+
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
     {
         if (!rectangles_intersect(sprite_collision_rectangle(s), bitmap_cell_rectangle(bmp, point_at(x, y))))
