@@ -316,7 +316,8 @@ namespace splashkit_lib
      */
     bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
     
-    bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading);
+    // TODO_M
+    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading);
 
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
