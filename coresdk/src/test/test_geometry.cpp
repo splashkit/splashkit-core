@@ -307,9 +307,9 @@ void test_bitmap_ray_collision()
 
 void run_geometry_test()
 {
-    // test_rectangle();
-    // test_points();
-    // test_lines();
-    // test_triangle();
+    test_rectangle();
+    test_points();
+    test_lines();
+    test_triangle();
     test_bitmap_ray_collision();
 }
