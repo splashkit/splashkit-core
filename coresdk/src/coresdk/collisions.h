@@ -296,6 +296,25 @@ namespace splashkit_lib
      * @attribute method circle_collision
      */
     bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ);
+
+    /**
+     * Tests if a bitmap cell drawn using a passed in translation, will
+     * intersect with a quad. You can use this to detect collisions between
+     * bitmaps and quads.
+     *
+     * @param  bmp         The bitmap to test
+     * @param  cell        The cell of the bitmap to check
+     * @param  translation The matrix used to transfrom the bitmap when drawing
+     * @param  q           The quad to test
+     * @return             True if a drawn pixel in the cell of the bitmap will
+     *                     intersect with `q` when drawn.
+     *
+     * @attribute suffix    for_cell_with_translation
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
     
     bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading);
 

@@ -274,6 +274,24 @@ namespace splashkit_lib
         return bitmap_circle_collision(bmp, cell, translation_matrix(x, y), circ);
     }
 
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q)
+    {
+        if (INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            return false;
+        }
+        
+        quad q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
+        rectangle rect = rectangle_around(q);
+        
+        if ( not quads_intersect(q1, q) ) return false;
+        
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
+                                    {
+                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_quad(point_at(rect.x + ax, rect.y + ay), q);
+                                    });
+    }
+
     bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading)
     {
         // broad phase check
@@ -287,15 +305,13 @@ namespace splashkit_lib
         constexpr double THICKNESS = 1.0;
 
         // narrow phase check
+        vector_2d unit_ray_heading = unit_vector(ray_heading);
 
         // get point which will allow segment to fully pass through the bitmap
-        vector_2d unit_ray_heading = unit_vector(ray_heading);
         point_2d ray_end = point_offset_by(bmp_center, vector_multiply(unit_ray_heading, bmp_bounding_circle.radius));
 
-        // get the quad for the ray
         quad ray_quad = quad_from(ray_origin, ray_end, THICKNESS);
-
-        // bitmap-quad collision check
+        return bitmap_quad_collision(bmp, 0, translation_matrix(ray_origin), ray_quad);
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
