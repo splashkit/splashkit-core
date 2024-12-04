@@ -17,6 +17,8 @@
 #include "graphics.h"
 #include "utils.h"
 
+constexpr double RAY_QUAD_LINE_THICKNESS = 1.0;
+
 using std::function;
 
 namespace splashkit_lib
@@ -292,26 +294,19 @@ namespace splashkit_lib
                                     });
     }
 
-    bool bitmap_ray_collision(bitmap bmp, const point_2d& ray_origin, const vector_2d& ray_heading)
+    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading)
     {
-        // broad phase check
-        point_2d bmp_center = bitmap_center(bmp);
+        point_2d bmp_center = point_offset_by(pt, vector_to(bitmap_center(bmp)));
         circle bmp_bounding_circle = bitmap_bounding_circle(bmp, bmp_center);
-        if (ray_circle_intersect_distance(ray_origin, ray_heading, bmp_bounding_circle) <= -1.0f)
-        {
-            return false;
-        }
 
-        constexpr double THICKNESS = 1.0;
-
-        // narrow phase check
         vector_2d unit_ray_heading = unit_vector(ray_heading);
 
         // get point which will allow segment to fully pass through the bitmap
-        point_2d ray_end = point_offset_by(bmp_center, vector_multiply(unit_ray_heading, bmp_bounding_circle.radius));
+        double distance_to_center = vector_magnitude(vector_point_to_point(ray_origin, bmp_center));
+        point_2d ray_end = point_offset_by(ray_origin, vector_multiply(unit_ray_heading, distance_to_center + bmp_bounding_circle.radius));
 
-        quad ray_quad = quad_from(ray_origin, ray_end, THICKNESS);
-        return bitmap_quad_collision(bmp, 0, translation_matrix(ray_origin), ray_quad);
+        quad ray_quad = quad_from(ray_origin, ray_end, RAY_QUAD_LINE_THICKNESS);
+        return bitmap_quad_collision(bmp, cell, translation_matrix(pt), ray_quad);
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y)
