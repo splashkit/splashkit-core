@@ -73,6 +73,9 @@ namespace splashkit_lib
                    const point_2d &p3,
                    const point_2d &p4);
 
+    // TODO_M
+    quad quad_from(const point_2d& segment_origin, const point_2d& segment_end, double width);
+
     /**
      * Change a point in a quad.
      *
