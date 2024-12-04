@@ -267,10 +267,6 @@ void test_bitmap_ray_collision()
             ray_origin.x -= 1.0;
         if (key_down(RIGHT_KEY))
             ray_origin.x += 1.0;
-
-        ray_heading = vector_point_to_point(ray_origin, mouse_position());
-        vector_2d normal_heading = unit_vector(ray_heading);
-        draw_line(COLOR_BLACK, ray_origin, point_offset_by(ray_origin, vector_multiply(normal_heading, 800.0)));
         
         bool collision_1 = bitmap_ray_collision(bmp_1, 0, bmp_1_position, ray_origin, ray_heading);
         bool collision_2 = bitmap_ray_collision(bmp_2, 0, bmp_2_position, ray_origin, ray_heading);
@@ -293,6 +289,10 @@ void test_bitmap_ray_collision()
         {
             fill_circle(COLOR_RED, circle_at(bmp_3_center, 30.0));
         }
+
+        ray_heading = vector_point_to_point(ray_origin, mouse_position());
+        vector_2d normal_heading = unit_vector(ray_heading);
+        draw_line(COLOR_BLACK, ray_origin, point_offset_by(ray_origin, vector_multiply(normal_heading, 800.0)));
 
         circle mouse_circle = circle_at(mouse_position(), 3.0);
         draw_circle(COLOR_GREEN, mouse_circle);
