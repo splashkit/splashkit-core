@@ -178,5 +178,18 @@ namespace splashkit_lib
      */
     rectangle inset_rectangle(const rectangle &rect, float inset_amount);
 
+
+    bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect);
+
+
+    // Function to detect if a ray intersects a rectangle
+    // Parameters:
+    // - origin: The starting point of the ray
+    // - direction: The direction of the ray as a vector
+    // - rect: The rectangle to check for intersection
+    // - hit_point: The point where the ray intersects the rectangle (output)
+    // - hit_distance: The distance from the ray's origin to the intersection point (output)
+    bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect, point_2d &hit_point, double &hit_distance);
+
 }
 #endif /* rectangle_geometry_H */
