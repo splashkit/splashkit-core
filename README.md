@@ -1,10 +1,10 @@
-# SplashKit Core
+# SplashKit Core Library
 
-<p align="left">
-    <img width="150px" src="https://github.com/thoth-tech/.github/blob/main/images/splashkit.png"/>
-</p>
+<img width="150px" align="right" src="https://github.com/thoth-tech/.github/blob/main/images/splashkit.png" alt="SplashKit Logo"/>
 
-### [Splashkit](https://github.com/splashkit/splashkit-core) Stats
+**SplashKit Core** is the heart of the SplashKit SDK—a comprehensive library of functions and tools designed for beginner programmers to develop games and applications. SplashKit Core provides fundamental capabilities for handling graphics, input, audio, networking, and more, making it an ideal toolkit for introductory programming projects and game development.
+
+[splashkit/splashkit-core](https://github.com/splashkit/splashkit-core)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/splashkit/splashkit-core?label=Contributors&color=F5A623)](https://github.com/splashkit/splashkit-core/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/splashkit/splashkit-core?label=Issues&color=F5A623)](https://github.com/splashkit/splashkit-core/issues)
@@ -12,9 +12,7 @@
 [![Forks](https://img.shields.io/github/forks/splashkit/splashkit-core?label=Forks&color=F5A623)](https://github.com/splashkit/splashkit-core/network/members)
 [![Stars](https://img.shields.io/github/stars/splashkit/splashkit-core?label=Stars&color=F5A623)](https://github.com/splashkit/splashkit-core/stargazers)
 
-### [Thoth Tech](https://github.com/thoth-tech/splashkit-core) Stats
-
-Thoth Tech is a people-focused educational technology company dedicated to empowering students and educators through innovative tools. As a capstone company in Deakin University's capstone subjects, Thoth Tech provides real-world learning opportunities and contributes significantly to projects like SplashKit, enhancing its capabilities and resources.
+[thoth-tech/splashkit-core](https://github.com/thoth-tech/splashkit-core)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/thoth-tech/splashkit-core?label=Contributors&color=F5A623)](https://github.com/thoth-tech/splashkit-core/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/thoth-tech/splashkit-core?label=Issues&color=F5A623)](https://github.com/thoth-tech/splashkit-core/issues)
@@ -22,13 +20,15 @@ Thoth Tech is a people-focused educational technology company dedicated to empow
 [![Forks](https://img.shields.io/github/forks/thoth-tech/splashkit-core?label=Forks&color=F5A623)](https://github.com/thoth-tech/splashkit-core/network/members)
 [![Stars](https://img.shields.io/github/stars/thoth-tech/splashkit-core?label=Stars&color=F5A623)](https://github.com/thoth-tech/splashkit-core/stargazers)
 
+**\* SplashKit Development in Thoth Tech**
+
+Thoth Tech is a people-focused educational technology company within Deakin University's capstone program which provides real-world learning opportunities and allows students to contribute significantly to projects like SplashKit, enhancing its capabilities and resources.
+
 ### Current Build Status
 
 [![Test SplashKit Core Linux Actions Status](https://github.com/splashkit/splashkit-core/workflows/SplashKit%20Core%20Linux/badge.svg)](https://github.com/splashkit/splashkit-core/actions)
 [![Test SplashKit Core macOS Actions Status](https://github.com/splashkit/splashkit-core/workflows/SplashKit%20Core%20macOS/badge.svg)](https://github.com/splashkit/splashkit-core/actions)
 [![Test SplashKit Core Windows Actions Status](https://github.com/splashkit/splashkit-core/workflows/SplashKit%20Core%20Windows/badge.svg)](https://github.com/splashkit/splashkit-core/actions)
-
-**SplashKit Core** is the heart of the SplashKit SDK—a comprehensive library of functions and tools designed for beginner programmers to develop games and applications. SplashKit Core provides fundamental capabilities for handling graphics, input, audio, networking, and more, making it an ideal toolkit for introductory programming projects and game development.
 
 ## Features
 
