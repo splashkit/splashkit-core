@@ -324,8 +324,8 @@ namespace splashkit_lib
      * @param  bmp         The bitmap to test
      * @param  cell        The cell of the bitmap to check
      * @param  translation The matrix used to transfrom the bitmap when drawing
-     * @param  ray_origin  The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin      The origin of the ray
+     * @param  heading     The heading of the ray
      * @return             True if a drawn pixel in the cell of the bitmap will
      *                     intersect with the ray when drawn.
      *
@@ -334,7 +334,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method ray_collision
      */
-    bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if a bitmap cell drawn at `pt` would intersect with a ray.
@@ -342,8 +342,8 @@ namespace splashkit_lib
      * @param  bmp        The bitmap to test
      * @param  cell       The cell of the bitmap to check
      * @param  pt         The location where the bitmap is drawn
-     * @param  ray_origin The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin     The origin of the ray
+     * @param  heading    The heading of the ray
      * @return            True if a drawn pixel in the cell of the bitmap will
      *                    intersect with the ray when drawn.
      *
@@ -352,7 +352,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method ray_collision
      */
-    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if a bitmap cell drawn at `x`, `y` would intersect with a ray.
@@ -361,8 +361,8 @@ namespace splashkit_lib
      * @param  cell       The cell of the bitmap to check
      * @param  x          The x location where the bitmap is drawn
      * @param  y          The y location where the bitmap is drawn
-     * @param  ray_origin The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin     The origin of the ray
+     * @param  heading    The heading of the ray
      * @return            True if a drawn pixel in the cell of the bitmap will
      *                    intersect with the ray when drawn.
      *
@@ -371,7 +371,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method ray_collision
      */
-    bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if a bitmap drawn at `x`, `y` would intersect with a ray.
@@ -379,15 +379,15 @@ namespace splashkit_lib
      * @param  bmp        The bitmap to test
      * @param  x          The x location where the bitmap is drawn
      * @param  y          The y location where the bitmap is drawn
-     * @param  ray_origin The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin     The origin of the ray
+     * @param  heading    The heading of the ray 
      * @return            True if a drawn pixel in the bitmap will
      *                    intersect with the ray when drawn.
      *
      * @attribute class bitmap
      * @attribute method ray_collision
      */
-    bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if a bitmap drawn at `pt` would intersect with a ray.
@@ -404,7 +404,7 @@ namespace splashkit_lib
      * @attribute class bitmap
      * @attribute method ray_collision
      */
-    bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
@@ -487,14 +487,14 @@ namespace splashkit_lib
      * Tests if a sprite is drawn along a given ray.
      * 
      * @param  s           The sprite to test
-     * @param  ray_origin  The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin      The origin of the ray
+     * @param  heading     The heading of the ray
      * @return             True if the sprite is drawn along the ray
      * 
      * @attribute class sprite
      * @attribute method ray_collision
      */
-    bool sprite_ray_collision(sprite s, const point_2d& ray_origin, const vector_2d& ray_heading);
+    bool sprite_ray_collision(sprite s, const point_2d& origin, const vector_2d& heading);
 
     /**
      * Tests if two given sprites `s1` and `s2` are collided
