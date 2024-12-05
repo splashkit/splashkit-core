@@ -200,6 +200,8 @@ include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/microui/src")
 
+#include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../../generated/cpp") # added this one for testing
+
 # MAC OS DIRECTORY INCLUDES
 if (APPLE)
     include_directories("${SK_EXT}/SDL/include")
