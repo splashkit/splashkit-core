@@ -228,15 +228,17 @@ namespace splashkit_lib
     {
         point_2d hit_point;
         double hit_distance;
-
         return rectangle_ray_intersection(origin, heading, rect, hit_point, hit_distance);
     }
 
     bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &direction, const rectangle &rect, point_2d &hit_point, double &hit_distance)
     {
-        // // Define the range of intersection distances along the ray
-        // double min_intersection_distance = -screen_diagonal();
-        // double max_intersection_distance = screen_diagonal();
+        if (point_in_rectangle(origin, rect))
+        {
+            hit_point = origin;
+            hit_distance = 0.0;
+            return true;
+        }
 
         // Compute the inverse of the ray direction (for faster calculations)
         vector_2d inv_dir = vector_to(1.0 / direction.x, 1.0 / direction.y);
@@ -253,7 +255,7 @@ namespace splashkit_lib
         double max_intersection_distance = std::min(std::max(entry_distance_x, exit_distance_x), std::max(entry_distance_y, exit_distance_y));
 
         // If the ray misses the rectangle or the intersection is behind the ray's origin
-        if (min_intersection_distance > max_intersection_distance || max_intersection_distance < 0)
+        if (min_intersection_distance > max_intersection_distance || max_intersection_distance < 0.0)
         {
             return false;
         }

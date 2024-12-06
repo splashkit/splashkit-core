@@ -190,9 +190,10 @@ namespace splashkit_lib
 
     /**
      * Detects if a ray intersects a rectangle. If an intersection is found, the
-     * hit_point and hit_distance are set to the point of intersection and the
-     * distance from the ray's origin to the intersection point. If no intersection
-     * is found, hit_point and hit_distance are not modified.
+     * `hit_point` and `hit_distance` are set to the point of intersection and the
+     * distance from the ray's origin to the intersection point. If the ray's `origin`
+     * is contained within the rectangle, `hit_point` is set to the `origin` and `hit_distance`
+     * is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
      * 
      * @param origin        The starting point of the ray
      * @param heading       The direction of the ray as a vector
