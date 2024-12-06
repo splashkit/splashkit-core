@@ -7,7 +7,6 @@
 //
 
 #include "geometry.h"
-#include "graphics.h"
 #include <cmath>
 
 #include <vector>
@@ -121,10 +120,7 @@ namespace splashkit_lib
         }
         
         bool has_collision = false;
-
-        int width = screen_width();
-        int height = screen_height();
-        double closest_distance = std::sqrt(width * width + height * height); // Closest intersection distance
+        double closest_distance = __DBL_MAX__;
 
         // Iterate through each edge of the triangle
         for (int i = 0; i < 3; ++i)
