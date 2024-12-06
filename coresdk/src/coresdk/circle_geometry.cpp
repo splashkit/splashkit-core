@@ -98,6 +98,33 @@ namespace splashkit_lib
             return (v - sqrt(d));
     }
 
+    bool circle_ray_intersection(const point_2d &origin, const vector_2d &heading, const circle &circ)
+    {
+        point_2d hit_point;
+        double hit_distance;
+        return circle_ray_intersection(origin, heading, circ, hit_point, hit_distance);
+    }
+
+    bool circle_ray_intersection(const point_2d &origin, const vector_2d &heading, const circle &circ, point_2d &hit_point, double &hit_distance)
+    {
+        if (point_in_circle(origin, circ))
+        {
+            hit_point = origin;
+            hit_distance = 0.0;
+            return true;
+        }
+        
+        float distance = ray_circle_intersect_distance(origin, heading, circ);
+        if (distance < 0.0f)
+        {
+            return false;
+        }
+
+        hit_distance = static_cast<double>(distance);
+        hit_point = point_offset_by(origin, vector_multiply(heading, hit_distance));
+        return true;
+    }
+
     bool circles_intersect(circle c1, circle c2)
     {
         return point_point_distance(c1.center, c2.center) < c1.radius + c2.radius;
