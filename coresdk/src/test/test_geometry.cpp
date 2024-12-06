@@ -16,6 +16,15 @@ using namespace std;
 
 using namespace splashkit_lib;
 
+enum class shape_type
+{
+    RECTANGLE,
+    CIRCLE,
+    TRIANGLE,
+    QUAD,
+    NONE
+};
+
 void test_points()
 {
     point_2d p = point_at(10, 20);
@@ -239,10 +248,133 @@ void test_triangle()
     close_window(w1);
 }
 
+void ray_shape_intersection(const line& l, const point_2d& circ_center, color& clr)
+{
+    draw_line(COLOR_BLACK, l);
+    fill_circle(COLOR_RED, circle_at(circ_center, 5.0));
+    clr = COLOR_RED;
+}
+
+shape_type calculate_min_dist_shape(bool rect, bool circ, bool tri, bool quad, double rect_dist,
+                                    double circ_dist, double tri_dist, double quad_dist)
+{
+    double min_dist = __DBL_MAX__;
+    shape_type result = shape_type::NONE;
+
+    if (rect && rect_dist < min_dist)
+    {
+        min_dist = rect_dist;
+        result = shape_type::RECTANGLE;
+    }
+    if (circ && circ_dist < min_dist)
+    {
+        min_dist = circ_dist;
+        result = shape_type::CIRCLE;
+    }
+    if (tri && tri_dist < min_dist)
+    {
+        min_dist = tri_dist;
+        result = shape_type::TRIANGLE;
+    }
+    if (quad && quad_dist < min_dist)
+    {
+        min_dist = quad_dist;
+        result = shape_type::QUAD;
+    }
+
+    return result;
+}
+
+void test_rect_circ_tri_ray_intersection()
+{
+    auto r1 = rectangle_from(100.0, 100.0, 100.0, 100.0);
+    auto r1_color = COLOR_BLUE;
+    auto r1_hit_point = point_at(0.0, 0.0);
+    double r1_distance = 0.0;
+    bool r1_intersection = false;
+    auto c1 = circle_at(300.0, 200.0, 60.0);
+    auto c1_color = COLOR_BLUE;
+    auto c1_hit_point = point_at(0.0, 0.0);
+    double c1_distance = 0.0;
+    bool c1_intersection = false;
+    auto t1 = triangle_from(400.0, 400.0, 550.0, 410.0, 390.0, 550.0);
+    auto t1_color = COLOR_BLUE;
+    auto t1_hit_point = point_at(0.0, 0.0);
+    double t1_distance = 0.0;
+    bool t1_intersection = false;
+    auto q1 = quad_from(100.0, 300.0, 200.0, 350.0, 100.0, 550.0, 200.0, 500.0);
+    auto q1_color = COLOR_BLUE;
+    auto q1_hit_point = point_at(0.0, 0.0);
+    double q1_distance = 0.0;
+    bool q1_intersection = false;
+    auto player = point_at(300.0, 300.0);
+
+    window w1 = open_window("Ray Intersection Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        clear_screen(COLOR_WHEAT);
+
+        if (key_down(UP_KEY))
+            player.y -= 1;
+        if (key_down(DOWN_KEY))
+            player.y += 1;
+        if (key_down(LEFT_KEY))
+            player.x -= 1;
+        if (key_down(RIGHT_KEY))
+            player.x += 1;
+
+        vector_2d player_heading = vector_point_to_point(player, mouse_position());
+        vector_2d player_unit_heading = unit_vector(player_heading);
+
+        r1_intersection = rectangle_ray_intersection(player, player_unit_heading, r1, r1_hit_point, r1_distance);
+        c1_intersection = circle_ray_intersection(player, player_unit_heading, c1, c1_hit_point, c1_distance);
+        t1_intersection = triangle_ray_intersection(player, player_unit_heading, t1, t1_hit_point, t1_distance);
+        q1_intersection = quad_ray_intersection(player, player_unit_heading, q1, q1_hit_point, q1_distance);
+
+        r1_color = COLOR_BLUE;
+        c1_color = COLOR_BLUE;
+        t1_color = COLOR_BLUE;
+        q1_color = COLOR_BLUE;
+
+        shape_type min_dist_shape = calculate_min_dist_shape(r1_intersection, c1_intersection, t1_intersection, q1_intersection,
+                                                            r1_distance, c1_distance, t1_distance, q1_distance);
+
+        switch (min_dist_shape)
+        {
+            case shape_type::RECTANGLE:
+                ray_shape_intersection(line_from(player, r1_hit_point), r1_hit_point, r1_color);
+                break;
+            case shape_type::CIRCLE:
+                ray_shape_intersection(line_from(player, c1_hit_point), c1_hit_point, c1_color);
+                break;
+            case shape_type::TRIANGLE:
+                ray_shape_intersection(line_from(player, t1_hit_point), t1_hit_point, t1_color);
+                break;
+            case shape_type::QUAD:
+                ray_shape_intersection(line_from(player, q1_hit_point), q1_hit_point, q1_color);
+                break;
+            default: // shape_type::NONE:
+                draw_line(COLOR_BLACK, player, point_offset_by(player, vector_multiply(player_unit_heading, 1000.0)));
+        };
+
+        draw_rectangle(r1_color, r1);
+        draw_circle(c1_color, c1);
+        draw_triangle(t1_color, t1);
+        draw_quad(q1_color, q1);
+
+        draw_circle(COLOR_BLACK, circle_at(player, 5.0));
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
 void run_geometry_test()
 {
     test_rectangle();
     test_points();
     test_lines();
     test_triangle();
+    test_rect_circ_tri_ray_intersection();
 }
