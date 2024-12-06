@@ -7,6 +7,8 @@
 //
 
 #include "geometry.h"
+#include "graphics.h"
+#include <cmath>
 
 #include <vector>
 using std::vector;
@@ -100,6 +102,70 @@ namespace splashkit_lib
             or point_in_triangle(point_at(l, b), tri)
             or point_in_triangle(point_at(r, t), tri)
             or point_in_triangle(point_at(r, b), tri);
+    }
+
+    bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri)
+    {
+        point_2d hit_point;
+        double hit_distance;
+        return triangle_ray_intersection(origin, heading, tri, hit_point, hit_distance);
+    }
+
+    bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri, point_2d &hit_point, double &hit_distance)
+    {
+        if (point_in_triangle(origin, tri))
+        {
+            hit_point = origin;
+            hit_distance = 0.0;
+            return true;
+        }
+        
+        bool has_collision = false;
+
+        int width = screen_width();
+        int height = screen_height();
+        double closest_distance = std::sqrt(width * width + height * height); // Closest intersection distance
+
+        // Iterate through each edge of the triangle
+        for (int i = 0; i < 3; ++i)
+        {
+            point_2d start_point = tri.points[i];                  // Start point of the edge
+            point_2d end_point = tri.points[(i + 1) % 3];          // End point of the edge
+
+            vector_2d edge_vector = vector_point_to_point(start_point, end_point); // Edge vector
+            vector_2d origin_to_edge = vector_point_to_point(origin, start_point);
+
+            // Cross product to determine parallelism
+            double cross_ray_and_edge = (heading.x * edge_vector.y) - (heading.y * edge_vector.x);
+            if (std::fabs(cross_ray_and_edge) < 1e-8) continue; // Skip edges nearly parallel to the ray
+
+            // Calculate intersection parameters
+            double ray_parameter = ((origin_to_edge.x * edge_vector.y) - (origin_to_edge.y * edge_vector.x)) / cross_ray_and_edge;
+            double edge_parameter = ((origin_to_edge.x * heading.y) - (origin_to_edge.y * heading.x)) / cross_ray_and_edge;
+
+            // Check if intersection occurs within the edge and along the ray
+            if (ray_parameter >= 0.0 && edge_parameter >= 0.0 && edge_parameter <= 1.0)
+            {
+                // Compute the intersection point
+                vector_2d scaled_ray = vector_multiply(heading, ray_parameter);
+                point_2d current_intersection = point_offset_by(origin, scaled_ray);
+
+                // Check if this is the closest intersection
+                double distance_to_intersection = vector_magnitude(vector_point_to_point(origin, current_intersection));
+                if (distance_to_intersection < closest_distance)
+                {
+                    closest_distance = distance_to_intersection;
+                    hit_point = current_intersection;
+                    has_collision = true;
+                }
+            }
+        }
+
+        if (has_collision)
+        {
+            hit_distance = closest_distance;
+        }
+        return has_collision;
     }
 
     bool triangles_intersect(const triangle &t1, const triangle &t2)
