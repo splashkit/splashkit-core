@@ -91,11 +91,11 @@ namespace splashkit_lib
         bool result = false;
         double closest_distance = __DBL_MAX__;
 
-        for (triangle t : tris)
+        for (size_t i = 0; i < tris.size(); i++)
         {
             point_2d p;
             double d;
-            if (triangle_ray_intersection(origin, heading, t, p, d))
+            if (triangle_ray_intersection(origin, heading, tris[i], p, d))
             {
                 double distance_to_intersection = vector_magnitude(vector_point_to_point(origin, p));
                 if (distance_to_intersection < closest_distance)
