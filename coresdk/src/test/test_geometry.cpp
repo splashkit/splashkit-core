@@ -16,7 +16,7 @@ using namespace std;
 
 using namespace splashkit_lib;
 
-enum class shape_type
+enum class geometry_test_shape_type
 {
     RECTANGLE,
     CIRCLE,
@@ -255,31 +255,31 @@ void ray_shape_intersection(const line& l, const point_2d& circ_center, color& c
     clr = COLOR_RED;
 }
 
-shape_type calculate_min_dist_shape(bool rect, bool circ, bool tri, bool quad, double rect_dist,
+geometry_test_shape_type calculate_min_dist_shape(bool rect, bool circ, bool tri, bool quad, double rect_dist,
                                     double circ_dist, double tri_dist, double quad_dist)
 {
     double min_dist = __DBL_MAX__;
-    shape_type result = shape_type::NONE;
+    geometry_test_shape_type result = geometry_test_shape_type::NONE;
 
     if (rect && rect_dist < min_dist)
     {
         min_dist = rect_dist;
-        result = shape_type::RECTANGLE;
+        result = geometry_test_shape_type::RECTANGLE;
     }
     if (circ && circ_dist < min_dist)
     {
         min_dist = circ_dist;
-        result = shape_type::CIRCLE;
+        result = geometry_test_shape_type::CIRCLE;
     }
     if (tri && tri_dist < min_dist)
     {
         min_dist = tri_dist;
-        result = shape_type::TRIANGLE;
+        result = geometry_test_shape_type::TRIANGLE;
     }
     if (quad && quad_dist < min_dist)
     {
         min_dist = quad_dist;
-        result = shape_type::QUAD;
+        result = geometry_test_shape_type::QUAD;
     }
 
     return result;
@@ -337,21 +337,21 @@ void test_rect_circ_tri_ray_intersection()
         t1_color = COLOR_BLUE;
         q1_color = COLOR_BLUE;
 
-        shape_type min_dist_shape = calculate_min_dist_shape(r1_intersection, c1_intersection, t1_intersection, q1_intersection,
+        geometry_test_shape_type min_dist_shape = calculate_min_dist_shape(r1_intersection, c1_intersection, t1_intersection, q1_intersection,
                                                             r1_distance, c1_distance, t1_distance, q1_distance);
 
         switch (min_dist_shape)
         {
-            case shape_type::RECTANGLE:
+            case geometry_test_shape_type::RECTANGLE:
                 ray_shape_intersection(line_from(player, r1_hit_point), r1_hit_point, r1_color);
                 break;
-            case shape_type::CIRCLE:
+            case geometry_test_shape_type::CIRCLE:
                 ray_shape_intersection(line_from(player, c1_hit_point), c1_hit_point, c1_color);
                 break;
-            case shape_type::TRIANGLE:
+            case geometry_test_shape_type::TRIANGLE:
                 ray_shape_intersection(line_from(player, t1_hit_point), t1_hit_point, t1_color);
                 break;
-            case shape_type::QUAD:
+            case geometry_test_shape_type::QUAD:
                 ray_shape_intersection(line_from(player, q1_hit_point), q1_hit_point, q1_color);
                 break;
             default: // shape_type::NONE:
