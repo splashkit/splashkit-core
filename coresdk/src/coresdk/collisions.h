@@ -394,8 +394,8 @@ namespace splashkit_lib
      *
      * @param  bmp        The bitmap to test
      * @param  pt         The location where the bitmap is drawn
-     * @param  ray_origin The origin of the ray
-     * @param  ray_heading The heading of the ray
+     * @param  origin     The origin of the ray
+     * @param  heading    The heading of the ray
      * @return            True if a drawn pixel in the cell of the bitmap will
      *                    intersect with the ray when drawn.
      *
