@@ -88,7 +88,7 @@ namespace splashkit_lib
      * 
      * @param origin        The starting point of the ray
      * @param heading       The direction of the ray as a vector
-     * @param quad          The quad to check for intersection
+     * @param q             The quad to check for intersection
      * @returns             True if the ray intersects the quad, false otherwise
      */
     bool quad_ray_intersection(const point_2d &origin, const vector_2d &heading, const quad &q);
@@ -102,7 +102,7 @@ namespace splashkit_lib
      * 
      * @param origin        The starting point of the ray
      * @param heading       The direction of the ray as a vector
-     * @param quad          The quad to check for intersection
+     * @param q             The quad to check for intersection
      * @param hit_point     The point to set to where the ray intersects the quad
      * @param hit_distance  The double to set to the distance from the ray's origin to
      *                      the intersection point
