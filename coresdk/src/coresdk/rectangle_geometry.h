@@ -202,6 +202,8 @@ namespace splashkit_lib
      * @param hit_distance  The double to set to the distance from the ray's origin to
      *                      the intersection point
      * @returns             True if the ray intersects the rectangle, false otherwise
+     * 
+     * @attribute suffix    with_hit_point_and_distance
      */
     bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect, point_2d &hit_point, double &hit_distance);
 
