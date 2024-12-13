@@ -577,7 +577,7 @@ namespace splashkit_lib
      * Tests if a sprite is drawn within an given area (circle).
      *
      * @param  s    The sprite to test
-     * @param  rect The circle to check
+     * @param  c    The circle to check
      * @return      True if the sprite it drawn in the circle area
      *
      * @attribute class sprite
@@ -589,7 +589,7 @@ namespace splashkit_lib
      * Tests if a sprite is drawn within an given area (triangle).
      *
      * @param  s    The sprite to test
-     * @param  rect The triangle to check
+     * @param  t    The triangle to check
      * @return      True if the sprite it drawn in the triangle area
      *
      * @attribute class sprite
@@ -601,7 +601,7 @@ namespace splashkit_lib
      * Tests if a sprite is drawn within an given area (quad).
      *
      * @param  s    The sprite to test
-     * @param  rect The quad to check
+     * @param  q    The quad to check
      * @return      True if the sprite it drawn in the quad area
      *
      * @attribute class sprite
