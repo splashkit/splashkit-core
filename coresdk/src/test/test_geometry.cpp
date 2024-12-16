@@ -248,7 +248,7 @@ void test_triangle()
     close_window(w1);
 }
 
-void ray_shape_intersection(const line& l, const point_2d& circ_center, color& clr)
+void draw_ray_shape_intersection(const line& l, const point_2d& circ_center, color& clr)
 {
     draw_line(COLOR_BLACK, l);
     fill_circle(COLOR_RED, circle_at(circ_center, 5.0));
@@ -343,16 +343,16 @@ void test_rect_circ_tri_ray_intersection()
         switch (min_dist_shape)
         {
             case geometry_test_shape_type::RECTANGLE:
-                ray_shape_intersection(line_from(player, r1_hit_point), r1_hit_point, r1_color);
+                draw_ray_shape_intersection(line_from(player, r1_hit_point), r1_hit_point, r1_color);
                 break;
             case geometry_test_shape_type::CIRCLE:
-                ray_shape_intersection(line_from(player, c1_hit_point), c1_hit_point, c1_color);
+                draw_ray_shape_intersection(line_from(player, c1_hit_point), c1_hit_point, c1_color);
                 break;
             case geometry_test_shape_type::TRIANGLE:
-                ray_shape_intersection(line_from(player, t1_hit_point), t1_hit_point, t1_color);
+                draw_ray_shape_intersection(line_from(player, t1_hit_point), t1_hit_point, t1_color);
                 break;
             case geometry_test_shape_type::QUAD:
-                ray_shape_intersection(line_from(player, q1_hit_point), q1_hit_point, q1_color);
+                draw_ray_shape_intersection(line_from(player, q1_hit_point), q1_hit_point, q1_color);
                 break;
             default: // shape_type::NONE:
                 draw_line(COLOR_BLACK, player, point_offset_by(player, vector_multiply(player_unit_heading, 1000.0)));
