@@ -12,6 +12,8 @@
 #include <vector>
 using std::vector;
 
+constexpr double TRIANGLE_RAY_EPSILON = 1e-8;
+
 namespace splashkit_lib
 {
     triangle triangle_from(double x1, double y1, double x2, double y2, double x3, double y3)
@@ -111,7 +113,7 @@ namespace splashkit_lib
     }
 
     bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri, point_2d &hit_point, double &hit_distance)
-    {
+    {        
         if (point_in_triangle(origin, tri))
         {
             hit_point = origin;
@@ -129,11 +131,11 @@ namespace splashkit_lib
             point_2d end_point = tri.points[(i + 1) % 3];          // End point of the edge
 
             vector_2d edge_vector = vector_point_to_point(start_point, end_point); // Edge vector
-            vector_2d origin_to_edge = vector_point_to_point(origin, start_point);
+            vector_2d origin_to_edge = vector_point_to_point(origin, start_point); 
 
             // Cross product to determine parallelism
             double cross_ray_and_edge = (heading.x * edge_vector.y) - (heading.y * edge_vector.x);
-            if (std::fabs(cross_ray_and_edge) < 1e-8) continue; // Skip edges nearly parallel to the ray
+            if (std::fabs(cross_ray_and_edge) < TRIANGLE_RAY_EPSILON) continue; // Skip edges nearly parallel to the ray
 
             // Calculate intersection parameters
             double ray_parameter = ((origin_to_edge.x * edge_vector.y) - (origin_to_edge.y * edge_vector.x)) / cross_ray_and_edge;
