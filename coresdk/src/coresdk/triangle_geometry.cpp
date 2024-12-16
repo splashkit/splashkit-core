@@ -114,8 +114,10 @@ namespace splashkit_lib
 
     bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri, point_2d &hit_point, double &hit_distance)
     {        
-        // check whether heading is a zero vector
-        if (vector_magnitude_squared(heading) < __DBL_EPSILON__)
+        vector_2d unit_heading = unit_vector(heading);
+        
+        // check whether unit heading is a zero vector
+        if (vector_magnitude_squared(unit_heading) < __DBL_EPSILON__)
         {
             return false;
         }
@@ -140,18 +142,18 @@ namespace splashkit_lib
             vector_2d origin_to_edge = vector_point_to_point(origin, start_point); 
 
             // Cross product to determine parallelism
-            double cross_ray_and_edge = (heading.x * edge_vector.y) - (heading.y * edge_vector.x);
+            double cross_ray_and_edge = (unit_heading.x * edge_vector.y) - (unit_heading.y * edge_vector.x);
             if (std::fabs(cross_ray_and_edge) < TRIANGLE_RAY_EPSILON) continue; // Skip edges nearly parallel to the ray
 
             // Calculate intersection parameters
             double ray_parameter = ((origin_to_edge.x * edge_vector.y) - (origin_to_edge.y * edge_vector.x)) / cross_ray_and_edge;
-            double edge_parameter = ((origin_to_edge.x * heading.y) - (origin_to_edge.y * heading.x)) / cross_ray_and_edge;
+            double edge_parameter = ((origin_to_edge.x * unit_heading.y) - (origin_to_edge.y * unit_heading.x)) / cross_ray_and_edge;
 
             // Check if intersection occurs within the edge and along the ray
             if (ray_parameter >= 0.0 && edge_parameter >= 0.0 && edge_parameter <= 1.0)
             {
                 // Compute the intersection point
-                vector_2d scaled_ray = vector_multiply(heading, ray_parameter);
+                vector_2d scaled_ray = vector_multiply(unit_heading, ray_parameter);
                 point_2d current_intersection = point_offset_by(origin, scaled_ray);
 
                 // Check if this is the closest intersection

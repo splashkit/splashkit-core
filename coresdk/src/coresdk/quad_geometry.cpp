@@ -86,8 +86,10 @@ namespace splashkit_lib
 
     bool quad_ray_intersection(const point_2d &origin, const vector_2d &heading, const quad &q, point_2d &hit_point, double &hit_distance)
     {
-        // check whether heading is a zero vector
-        if (vector_magnitude_squared(heading) < __DBL_EPSILON__)
+        vector_2d unit_heading = unit_vector(heading);
+        
+        // check whether unit heading is a zero vector
+        if (vector_magnitude_squared(unit_heading) < __DBL_EPSILON__)
         {
             return false;
         }
@@ -101,7 +103,7 @@ namespace splashkit_lib
         {
             point_2d p;
             double d;
-            if (triangle_ray_intersection(origin, heading, tris[i], p, d))
+            if (triangle_ray_intersection(origin, unit_heading, tris[i], p, d))
             {
                 double distance_to_intersection = vector_magnitude(vector_point_to_point(origin, p));
                 if (distance_to_intersection < closest_distance)

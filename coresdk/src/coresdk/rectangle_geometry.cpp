@@ -233,8 +233,10 @@ namespace splashkit_lib
 
     bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect, point_2d &hit_point, double &hit_distance)
     {
-        // check whether heading is a zero vector
-        if (vector_magnitude_squared(heading) < __DBL_EPSILON__)
+        vector_2d unit_heading = unit_vector(heading);
+        
+        // check whether unit heading is a zero vector
+        if (vector_magnitude_squared(unit_heading) < __DBL_EPSILON__)
         {
             return false;
         }
@@ -247,7 +249,7 @@ namespace splashkit_lib
         }
 
         // Compute the inverse of the ray direction (for faster calculations)
-        vector_2d inv_dir = vector_to(1.0 / heading.x, 1.0 / heading.y);
+        vector_2d inv_dir = vector_to(1.0 / unit_heading.x, 1.0 / unit_heading.y);
 
         // Calculate entry and exit distances for the rectangle's x and y boundaries
         double entry_distance_x = (rect.x - origin.x) * inv_dir.x;
@@ -268,7 +270,7 @@ namespace splashkit_lib
 
         // Compute the point of intersection
         hit_distance = min_intersection_distance;
-        vector_2d hit_vector = vector_multiply(heading, min_intersection_distance);
+        vector_2d hit_vector = vector_multiply(unit_heading, min_intersection_distance);
         hit_point = point_at(origin.x + hit_vector.x, origin.y + hit_vector.y);
 
         return true;
