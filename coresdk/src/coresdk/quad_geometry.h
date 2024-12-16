@@ -74,16 +74,18 @@ namespace splashkit_lib
                    const point_2d &p4);
 
     /**
-     * Returns a quad from the passed in segment and width.
+     * Returns a quad from the passed in line and width.
+     * The quad will be a rectangle with the line as the diagonal,
+     * and the width as the width of the rectangle.
      * 
-     * @param segment_origin The origin of the segment
-     * @param segment_end    The end of the segment
+     * @param line_origin    The origin of the line
+     * @param line_end       The end of the line
      * @param width          The width of the quad
-     * @return               A quad that represents the segment with the given width
+     * @return               A quad that represents the line with the given width
      * 
-     * @attribute suffix  from_segment
+     * @attribute suffix  from_line
      */
-    quad quad_from(const point_2d& segment_origin, const point_2d& segment_end, double width);
+    quad quad_from(const point_2d& line_origin, const point_2d& line_end, double width);
 
     /**
      * Change a point in a quad.
