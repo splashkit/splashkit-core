@@ -305,6 +305,12 @@ void test_rect_circ_tri_ray_intersection()
     test_shape q1_shape;
     auto player = point_at(300.0, 300.0);
 
+    bool rect_true = rectangle_ray_intersection(point_at(90.0, 110.0), vector_to(1.0, 0.0), r1);
+    bool rect_false = rectangle_ray_intersection(point_at(90.0, 110.0), vector_to(__DBL_MIN__, 0.0), r1);
+
+    cout << "Rectangle ray intersection test (should be true): " << rect_true << endl;
+    cout << "Rectangle ray intersection test (should be false): " << rect_false << endl;
+
     window w1 = open_window("Ray Intersection Tests", 600, 800);
     while ( !window_close_requested(w1) ) {
         process_events();
