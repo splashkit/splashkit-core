@@ -86,6 +86,12 @@ namespace splashkit_lib
 
     bool quad_ray_intersection(const point_2d &origin, const vector_2d &heading, const quad &q, point_2d &hit_point, double &hit_distance)
     {
+        // check whether heading is a zero vector
+        if (vector_magnitude_squared(heading) < __DBL_EPSILON__)
+        {
+            return false;
+        }
+        
         vector<triangle> tris = triangles_from(q);
 
         bool result = false;
