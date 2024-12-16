@@ -321,12 +321,11 @@ void test_rect_circ_tri_ray_intersection()
             player.x += 1;
 
         vector_2d player_heading = vector_point_to_point(player, mouse_position());
-        vector_2d player_unit_heading = unit_vector(player_heading);
 
-        r1_shape.intersection = rectangle_ray_intersection(player, player_unit_heading, r1, r1_shape.hit_point, r1_shape.distance);
-        c1_shape.intersection = circle_ray_intersection(player, player_unit_heading, c1, c1_shape.hit_point, c1_shape.distance);
-        t1_shape.intersection = triangle_ray_intersection(player, player_unit_heading, t1, t1_shape.hit_point, t1_shape.distance);
-        q1_shape.intersection = quad_ray_intersection(player, player_unit_heading, q1, q1_shape.hit_point, q1_shape.distance);
+        r1_shape.intersection = rectangle_ray_intersection(player, player_heading, r1, r1_shape.hit_point, r1_shape.distance);
+        c1_shape.intersection = circle_ray_intersection(player, player_heading, c1, c1_shape.hit_point, c1_shape.distance);
+        t1_shape.intersection = triangle_ray_intersection(player, player_heading, t1, t1_shape.hit_point, t1_shape.distance);
+        q1_shape.intersection = quad_ray_intersection(player, player_heading, q1, q1_shape.hit_point, q1_shape.distance);
 
         r1_shape.clr = COLOR_BLUE;
         c1_shape.clr = COLOR_BLUE;
@@ -353,7 +352,7 @@ void test_rect_circ_tri_ray_intersection()
                 draw_ray_shape_intersection(line_from(player, q1_shape.hit_point), q1_shape.hit_point, q1_shape.clr);
                 break;
             default: // shape_type::NONE:
-                draw_line(COLOR_BLACK, player, point_offset_by(player, vector_multiply(player_unit_heading, 1000.0)));
+                draw_line(COLOR_BLACK, player, point_offset_by(player, vector_multiply(unit_vector(player_heading), 1000.0)));
         };
 
         draw_rectangle(r1_shape.clr, r1);
