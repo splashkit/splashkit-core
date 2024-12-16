@@ -296,6 +296,11 @@ namespace splashkit_lib
 
     bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& origin, const vector_2d& heading)
     {
+        if (INVALID_PTR(bmp, BITMAP_PTR))
+        {
+            return false;
+        }
+        
         point_2d bmp_position = matrix_multiply(translation, point_at(0.0, 0.0));
         point_2d bmp_center = point_offset_by(bmp_position, vector_to(bitmap_center(bmp)));
         circle bmp_bounding_circle = bitmap_bounding_circle(bmp, bmp_center);
