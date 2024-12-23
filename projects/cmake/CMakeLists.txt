@@ -20,6 +20,7 @@ endif()
 # Check for Raspberry Pi
 include(CheckIncludeFile)
 find_path(BCM_HOST_INCLUDE_DIR bcm_host.h PATHS "/opt/vc/include")
+
 #### SETUP ####
 if (APPLE)
     # MAC OS PROJECT FLAGS
@@ -66,7 +67,7 @@ elseif(MSYS)
         message("Using mingw64")
         set(OS_PATH_SUFFIX "win64")
         set(MINGW_PATH_PART "mingw64")
-    else ( )
+    else ()
         message(SEND_ERROR "Failed to detect windows architecture")
         return ()
     endif()
@@ -80,8 +81,7 @@ elseif(MSYS)
                     ${SDL2_LDFLAGS} \
                     -lSDL2main \
                     -Wl,-Bdynamic \
-                    -lws2_32 \
-                    -lcivetweb")
+                    -lws2_32")
                     
 # LINUX PROJECT FLAGS
 else()
@@ -103,7 +103,10 @@ else()
                    -lfreetype \
                    -lcurl \
                    -ldl \
-                   -lstdc++fs")
+                   -lstdc++fs \
+                   ${SK_EXT}/civetweb/libcivetweb.a \
+                   ${SK_EXT}/easyloggingpp/libeasylogging.a") 
+    # INCLUDED STATIC LIBRARIES FOR LINUX
 endif()
 
 if (BCM_HOST_INCLUDE_DIR)
@@ -118,19 +121,11 @@ if (BCM_HOST_INCLUDE_DIR)
     find_library(pigpiod_if2_LIBRARY NAMES libpigpiod_if2.so HINTS /usr/lib)
     if(pigpiod_if2_LIBRARY)
         set(pigpiod_if_LIBRARY ${pigpiod_if2_LIBRARY})
-        # target_link_libraries(SplashKitBackend ${LIB_FLAGS} pigpiod_if2)
     endif()
     
-    
-     
-    # Add necessary directories for Raspberry Pi
     include_directories(/usr/include)
-    # target_link_libraries(/usr/lib)
-    # target_link_libraries(SplashKitBackend ${LIB_FLAGS} pigpio)
     link_directories(/user/lib)
-    # include_directories("/opt/vc/include")
-    
-    # link_directories("/opt/vc/lib")
+
     set(LIB_FLAGS "-lSDL2 \
                    -lSDL2_mixer \
                    -lSDL2_ttf \
@@ -153,12 +148,10 @@ if (BCM_HOST_INCLUDE_DIR)
                    -lpigpiod_if2")
 # Add -Wall and -pthread options
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-    # Define RASPBERRY_PI
     add_definitions(-DRASPBERRY_PI)
 else()
     message("Raspberry Pi not detected")
 endif()
-
 
 # FLAGS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
@@ -176,7 +169,8 @@ file(GLOB SOURCE_FILES
 
 # TEST FILE INCLUDES
 file(GLOB TEST_SOURCE_FILES
-    "${SK_SRC}/test/*.cpp"
+    "${SK_SRC}/test/*.cpp",
+    "${SK_SRC}/test/test_particle_system.cpp"
 )
 
 file(GLOB UNIT_TEST_SOURCE_FILES
@@ -200,7 +194,7 @@ include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/microui/src")
 
-#include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../../generated/cpp") # added this one for testing
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../../generated/cpp") 
 
 # MAC OS DIRECTORY INCLUDES
 if (APPLE)
@@ -216,9 +210,10 @@ endif()
 # MACRO DEFINITIONS #
 add_definitions(-DELPP_THREAD_SAFE)
 
-#### END SETUP ####
 #### SplashKitBackend STATIC LIBRARY ####
 add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
+
+# ADDING REQUIRED LIBRARIES FOR SPLASHKITBACKEND
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
 if (MSYS)
@@ -226,8 +221,6 @@ if (MSYS)
     target_include_directories(SplashKitBackend PUBLIC ${SDL2_INCLUDE_DIRS})
     target_compile_options(SplashKitBackend PUBLIC ${SDL2_CFLAGS_OTHER})
 elseif (APPLE)
-    # To make a universal single static library from dependent
-    # static libraries, run libtool on SplashKitBackend
     file(GLOB APPLE_STATIC_LIBS
         "${SK_LIB}/mac/*.a"
     )
@@ -237,55 +230,36 @@ elseif (APPLE)
     )
 endif()
 
-
-# SET OUTPUT TO /path/to/splashkit/out/lib
 set_target_properties(SplashKitBackend
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${SK_OUT}/lib"
 )
 
-#### END SplashKitBackend STATIC LIBRARY ####
 #### sktest EXECUTABLE ####
 add_executable(sktest ${TEST_SOURCE_FILES})
-set_property(TARGET sktest PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
-target_link_libraries(sktest SplashKitBackend)
-target_link_libraries(sktest ${LIB_FLAGS})
-
-# target_link_options(sktest PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
+target_link_libraries(sktest SplashKitBackend ${LIB_FLAGS})
+target_link_libraries(sktest ${SK_EXT}/civetweb/libcivetweb.a ${SK_EXT}/easyloggingpp/libeasylogging.a)
 
 set_target_properties(sktest
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
 )
 
-# Copy resources folder in
 add_custom_command(TARGET sktest
     PRE_BUILD COMMAND
     ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources" $<TARGET_FILE_DIR:sktest>/Resources)
 
-# if (MSYS)
-#     add_custom_command(TARGET sktest
-#         PRE_BUILD COMMAND
-#         cmake -E copy ../../coresdk/lib/win64/*.dll ../../bin
-#         )
-# endif()
-
-#### END sktest EXECUTABLE ####
-
 #### skunit_tests EXECUTABLE ####
 add_executable(skunit_tests ${UNIT_TEST_SOURCE_FILES})
-set_property(TARGET skunit_tests PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
-# target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
-target_link_libraries(skunit_tests SplashKitBackend)
-target_link_libraries(skunit_tests ${LIB_FLAGS})
+target_link_libraries(skunit_tests SplashKitBackend ${LIB_FLAGS})
+target_link_libraries(skunit_tests ${SK_EXT}/civetweb/libcivetweb.a ${SK_EXT}/easyloggingpp/libeasylogging.a)
 
 set_target_properties(skunit_tests
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
         )
-#### END sktest EXECUTABLE ####
 
 install(TARGETS SplashKitBackend DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)
