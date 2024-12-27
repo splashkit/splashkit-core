@@ -488,7 +488,7 @@ void multi_object_collision_resolution_test()
     quad collider_quad, q, quad_TOP, quad_BOTTOM, quad_LEFT, quad_RIGHT, quad_TOP_LEFT,
         quad_TOP_RIGHT, quad_BOTTOM_LEFT, quad_BOTTOM_RIGHT;
 
-    open_window("Sprite Collision Resolution", 600, 600);
+    open_window("Object Collision Resolution", 600, 600);
 
     hide_mouse();
 

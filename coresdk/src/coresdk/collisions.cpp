@@ -24,7 +24,7 @@ using std::function;
 
 namespace splashkit_lib
 {
-    enum class _sprite_movement_direction
+    enum class _obj_movement_direction
     {
         UP,
         DOWN,
@@ -160,52 +160,52 @@ namespace splashkit_lib
                                     });
     }
 
-    _sprite_movement_direction _opposite_direction(_sprite_movement_direction direction)
+    _obj_movement_direction _opposite_direction(_obj_movement_direction direction)
     {
         switch (direction)
         {
-        case _sprite_movement_direction::UP:
-            return _sprite_movement_direction::DOWN;
-        case _sprite_movement_direction::DOWN:
-            return _sprite_movement_direction::UP;
-        case _sprite_movement_direction::LEFT:
-            return _sprite_movement_direction::RIGHT;
-        case _sprite_movement_direction::RIGHT:
-            return _sprite_movement_direction::LEFT;
-        case _sprite_movement_direction::UP_LEFT:
-            return _sprite_movement_direction::DOWN_RIGHT;
-        case _sprite_movement_direction::UP_RIGHT:
-            return _sprite_movement_direction::DOWN_LEFT;
-        case _sprite_movement_direction::DOWN_LEFT:
-            return _sprite_movement_direction::UP_RIGHT;
-        case _sprite_movement_direction::DOWN_RIGHT:
-            return _sprite_movement_direction::UP_LEFT;
+        case _obj_movement_direction::UP:
+            return _obj_movement_direction::DOWN;
+        case _obj_movement_direction::DOWN:
+            return _obj_movement_direction::UP;
+        case _obj_movement_direction::LEFT:
+            return _obj_movement_direction::RIGHT;
+        case _obj_movement_direction::RIGHT:
+            return _obj_movement_direction::LEFT;
+        case _obj_movement_direction::UP_LEFT:
+            return _obj_movement_direction::DOWN_RIGHT;
+        case _obj_movement_direction::UP_RIGHT:
+            return _obj_movement_direction::DOWN_LEFT;
+        case _obj_movement_direction::DOWN_LEFT:
+            return _obj_movement_direction::UP_RIGHT;
+        case _obj_movement_direction::DOWN_RIGHT:
+            return _obj_movement_direction::UP_LEFT;
         };
-        return _sprite_movement_direction::NONE;
+        return _obj_movement_direction::NONE;
     }
 
-    _sprite_movement_direction _direction_from_collision(collision_direction direction)
+    _obj_movement_direction _direction_from_collision(collision_direction direction)
     {
         switch (direction)
         {
         case collision_direction::TOP:
-            return _sprite_movement_direction::DOWN;
+            return _obj_movement_direction::DOWN;
         case collision_direction::BOTTOM:
-            return _sprite_movement_direction::UP;
+            return _obj_movement_direction::UP;
         case collision_direction::LEFT:
-            return _sprite_movement_direction::RIGHT;
+            return _obj_movement_direction::RIGHT;
         case collision_direction::RIGHT:
-            return _sprite_movement_direction::LEFT;
+            return _obj_movement_direction::LEFT;
         case collision_direction::TOP_LEFT:
-            return _sprite_movement_direction::DOWN_RIGHT;
+            return _obj_movement_direction::DOWN_RIGHT;
         case collision_direction::TOP_RIGHT:
-            return _sprite_movement_direction::DOWN_LEFT;
+            return _obj_movement_direction::DOWN_LEFT;
         case collision_direction::BOTTOM_LEFT:
-            return _sprite_movement_direction::UP_RIGHT;
+            return _obj_movement_direction::UP_RIGHT;
         case collision_direction::BOTTOM_RIGHT:
-            return _sprite_movement_direction::UP_LEFT;
+            return _obj_movement_direction::UP_LEFT;
         };
-        return _sprite_movement_direction::NONE;
+        return _obj_movement_direction::NONE;
     }
 
     void _move_sprite_by_vector(void* sprt, const vector_2d& amount)
@@ -259,7 +259,7 @@ namespace splashkit_lib
     }
 
     void _move_object_by_direction(void* obj, std::function<void(void*, const vector_2d& amount)> move_func,
-                                                            _sprite_movement_direction direction, const vector_2d& amount)
+                                                            _obj_movement_direction direction, const vector_2d& amount)
     {
         if (amount.x == 0.0 && amount.y == 0.0)
         {
@@ -268,28 +268,28 @@ namespace splashkit_lib
         
         switch (direction)
         {
-        case _sprite_movement_direction::UP:
+        case _obj_movement_direction::UP:
             move_func(obj, vector_to(0.0, -amount.y));
             break;
-        case _sprite_movement_direction::DOWN:
+        case _obj_movement_direction::DOWN:
             move_func(obj, vector_to(0.0, amount.y));
             break;
-        case _sprite_movement_direction::LEFT:
+        case _obj_movement_direction::LEFT:
             move_func(obj, vector_to(-amount.x, 0.0));
             break;
-        case _sprite_movement_direction::RIGHT:
+        case _obj_movement_direction::RIGHT:
             move_func(obj, vector_to(amount.x, 0.0));
             break;
-        case _sprite_movement_direction::UP_LEFT:
+        case _obj_movement_direction::UP_LEFT:
             move_func(obj, vector_to(-amount.x, -amount.y));
             break;
-        case _sprite_movement_direction::UP_RIGHT:
+        case _obj_movement_direction::UP_RIGHT:
             move_func(obj, vector_to(amount.x, -amount.y));
             break;
-        case _sprite_movement_direction::DOWN_LEFT:
+        case _obj_movement_direction::DOWN_LEFT:
             move_func(obj, vector_to(-amount.x, amount.y));
             break;
-        default: // _sprite_movement_direction::DOWN_RIGHT:
+        default: // _obj_movement_direction::DOWN_RIGHT:
             move_func(obj, vector_to(amount.x, amount.y));
             break;
         };
@@ -297,36 +297,36 @@ namespace splashkit_lib
 
     void _move_object_by_direction_relative_to_size(void* obj, const rectangle& obj_aabb,
         std::function<void(void*, const vector_2d& amount)> move_func,
-            _sprite_movement_direction direction, double relative_amount = 1.0)
+            _obj_movement_direction direction, double relative_amount = 1.0)
     {
         double relative_width = obj_aabb.width * relative_amount;
         double relative_height = obj_aabb.height * relative_amount;
 
         switch (direction)
         {
-        case _sprite_movement_direction::UP:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::UP, vector_to(0.0, relative_height));
+        case _obj_movement_direction::UP:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::UP, vector_to(0.0, relative_height));
             break;
-        case _sprite_movement_direction::DOWN:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::DOWN, vector_to(0.0, relative_height));
+        case _obj_movement_direction::DOWN:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::DOWN, vector_to(0.0, relative_height));
             break;
-        case _sprite_movement_direction::LEFT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::LEFT, vector_to(relative_width, 0.0));
+        case _obj_movement_direction::LEFT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::LEFT, vector_to(relative_width, 0.0));
             break;
-        case _sprite_movement_direction::RIGHT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::RIGHT, vector_to(relative_width, 0.0));
+        case _obj_movement_direction::RIGHT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::RIGHT, vector_to(relative_width, 0.0));
             break;
-        case _sprite_movement_direction::UP_LEFT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::UP_LEFT, vector_to(relative_width, relative_height));
+        case _obj_movement_direction::UP_LEFT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::UP_LEFT, vector_to(relative_width, relative_height));
             break;
-        case _sprite_movement_direction::UP_RIGHT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::UP_RIGHT, vector_to(relative_width, relative_height));
+        case _obj_movement_direction::UP_RIGHT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::UP_RIGHT, vector_to(relative_width, relative_height));
             break;
-        case _sprite_movement_direction::DOWN_LEFT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::DOWN_LEFT, vector_to(relative_width, relative_height));
+        case _obj_movement_direction::DOWN_LEFT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::DOWN_LEFT, vector_to(relative_width, relative_height));
             break;
-        default: // _sprite_movement_direction::DOWN_RIGHT:
-            _move_object_by_direction(obj, move_func, _sprite_movement_direction::DOWN_RIGHT, vector_to(relative_width, relative_height));
+        default: // _obj_movement_direction::DOWN_RIGHT:
+            _move_object_by_direction(obj, move_func, _obj_movement_direction::DOWN_RIGHT, vector_to(relative_width, relative_height));
             break;
         };
     }
@@ -462,7 +462,7 @@ namespace splashkit_lib
     */ 
     bool _bracket_object_collision(bool colliding, int i, void* collider, const rectangle& collider_aabb,
                                         std::function<void(void*, const vector_2d& amount)> move_func,
-                                                                _sprite_movement_direction collider_direction)
+                                                                _obj_movement_direction collider_direction)
     {
         if (colliding)
         {
@@ -486,7 +486,7 @@ namespace splashkit_lib
     bool _bracket_object_collision_generic(void* collider, std::function<bool(const void*, const void*)> collision_func,
                                             const void* collidee, const rectangle& collider_aabb,
                                             std::function<void(void*, const vector_2d& amount)> move_func,
-                                            _sprite_movement_direction collider_direction, int iterations)
+                                            _obj_movement_direction collider_direction, int iterations)
     {
         for (int i = 1; i <= iterations; i++)
         {
@@ -500,7 +500,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_sprite_sprite_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_sprite_collision_func, collidee,
                                                 sprite_collision_rectangle(*static_cast<const sprite*>(collider)),
@@ -508,7 +508,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_sprite_rectangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_rectangle_collision_func, collidee,
                                                 sprite_collision_rectangle(*static_cast<const sprite*>(collider)),
@@ -516,7 +516,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_sprite_circle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_circle_collision_func, collidee,
                                                 sprite_collision_rectangle(*static_cast<const sprite*>(collider)),
@@ -524,7 +524,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_sprite_triangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_triangle_collision_func, collidee,
                                                 sprite_collision_rectangle(*static_cast<const sprite*>(collider)),
@@ -532,7 +532,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_sprite_quad_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _sprite_quad_collision_func, collidee,
                                                 sprite_collision_rectangle(*static_cast<const sprite*>(collider)),
@@ -540,7 +540,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_rectangle_sprite_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_sprite_collision_func, collidee,
                                                 *static_cast<const rectangle*>(collider),
@@ -548,7 +548,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_rectangle_rectangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_rectangle_collision_func, collidee,
                                                 *static_cast<const rectangle*>(collider),
@@ -556,7 +556,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_rectangle_circle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_circle_collision_func, collidee,
                                                 *static_cast<const rectangle*>(collider),
@@ -564,7 +564,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_rectangle_triangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_triangle_collision_func, collidee,
                                                 *static_cast<const rectangle*>(collider),
@@ -572,7 +572,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_rectangle_quad_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _rectangle_quad_collision_func, collidee,
                                                 *static_cast<const rectangle*>(collider),
@@ -580,7 +580,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_circle_sprite_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_sprite_collision_func, collidee,
                                                 rectangle_around(*static_cast<const circle*>(collider)),
@@ -588,7 +588,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_circle_rectangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_rectangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const circle*>(collider)),
@@ -596,7 +596,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_circle_circle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_circle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const circle*>(collider)),
@@ -604,7 +604,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_circle_triangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_triangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const circle*>(collider)),
@@ -612,7 +612,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_circle_quad_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _circle_quad_collision_func, collidee,
                                                 rectangle_around(*static_cast<const circle*>(collider)),
@@ -620,7 +620,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_triangle_sprite_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_sprite_collision_func, collidee,
                                                 rectangle_around(*static_cast<const triangle*>(collider)),
@@ -628,7 +628,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_triangle_rectangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_rectangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const triangle*>(collider)),
@@ -636,7 +636,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_triangle_circle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_circle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const triangle*>(collider)),
@@ -644,7 +644,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_triangle_triangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_triangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const triangle*>(collider)),
@@ -652,7 +652,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_triangle_quad_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _triangle_quad_collision_func, collidee,
                                                 rectangle_around(*static_cast<const triangle*>(collider)),
@@ -660,7 +660,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_quad_sprite_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_sprite_collision_func, collidee,
                                                 rectangle_around(*static_cast<const quad*>(collider)),
@@ -668,7 +668,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_quad_rectangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_rectangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const quad*>(collider)),
@@ -676,7 +676,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_quad_circle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_circle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const quad*>(collider)),
@@ -684,7 +684,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_quad_triangle_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_triangle_collision_func, collidee,
                                                 rectangle_around(*static_cast<const quad*>(collider)),
@@ -692,7 +692,7 @@ namespace splashkit_lib
     }
 
     bool _bracket_quad_quad_collision(void* collider, const void* collidee,
-                                      _sprite_movement_direction collider_direction, int iterations)
+                                      _obj_movement_direction collider_direction, int iterations)
     {
         return _bracket_object_collision_generic(collider, _quad_quad_collision_func, collidee,
                                                 rectangle_around(*static_cast<const quad*>(collider)),
@@ -831,7 +831,7 @@ namespace splashkit_lib
         collision_test_kind collidee_kind, const rectangle& collider_rect, const rectangle& collidee_rect,
             collision_direction direction, std::function<void(void*, const vector_2d& amount)> move_func,
                 std::function<bool(const void*, const void*)> collision_func,
-                    std::function<bool(void*, const void*, _sprite_movement_direction, int)> bracket_func)
+                    std::function<bool(void*, const void*, _obj_movement_direction, int)> bracket_func)
     {
         // check if the sprites are colliding
         if (direction == collision_direction::NONE || !collision_func(collider, collidee))
