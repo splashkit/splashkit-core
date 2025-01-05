@@ -53,7 +53,6 @@ namespace splashkit_lib
             LOG(WARNING) << "Attempting to push clip rect to invalid window";
             return;
         }
-
         _push_clip(wnd->image, r);
     }
 
@@ -119,7 +118,7 @@ namespace splashkit_lib
 
         if ( img.clip_stack.size() > 0 )
         {
-            rectangle clip_rect = *img.clip_stack.end();
+            rectangle clip_rect = img.clip_stack.back();
             sk_set_clip_rect(&img.surface, clip_rect.x, clip_rect.y, clip_rect.width, clip_rect.height);
         }
         else
@@ -158,7 +157,7 @@ namespace splashkit_lib
     rectangle _current_clip(const image_data &img)
     {
         if (img.clip_stack.size() > 0)
-            return *img.clip_stack.end();
+            return img.clip_stack.back();
         else
             return rectangle_from(0, 0, img.surface.width, img.surface.height);
     }

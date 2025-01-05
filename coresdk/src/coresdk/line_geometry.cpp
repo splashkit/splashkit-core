@@ -109,11 +109,8 @@ namespace splashkit_lib
     point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &lines, int &line_idx)
     {
         line_idx = -1;
+        float min_dist = -1, dst;
         point_2d result = point_at_origin();
-
-        if (lines.size() < 1) return result;
-
-        float min_dist = std::numeric_limits<float>::max(), dst;
         point_2d pt;
 
         for (int i = 0; i < lines.size(); i++)
@@ -128,7 +125,7 @@ namespace splashkit_lib
                 result = pt;
             }
         }
-        return result;
+        return pt;
     }
 
     vector<line> lines_from(const triangle &t)

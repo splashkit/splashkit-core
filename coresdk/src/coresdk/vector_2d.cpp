@@ -116,7 +116,9 @@ namespace splashkit_lib
 
     double angle_between(const vector_2d &v1, const vector_2d &v2)
     {
-        return vector_angle( vector_subtract(v2, v1) );
+        double dot = dot_product(v1, v2);
+        double det = v1.x * v2.y - v1.y * v2.x;
+        return rad_to_deg(atan2(det, dot));
     }
 
     vector_2d vector_normal(const vector_2d &v)
