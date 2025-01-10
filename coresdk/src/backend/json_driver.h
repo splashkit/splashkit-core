@@ -112,7 +112,9 @@ namespace splashkit_lib
             }
             else
             {
-                result.insert(make_pair<string, string>(it.key(), it.value()));
+                //result.insert(make_pair<string, string>(it.key(), it.value())); (THIS IS CAUSING ERRORS DURING BUILD)
+                result.insert(std::make_pair(std::string(it.key()), std::string(it.value())));
+
             }
         }
 

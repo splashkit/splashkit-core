@@ -36,5 +36,6 @@ void run_gpio_tests();
 void run_terminal_test();
 void run_logging_test();
 void run_ui_test();
+void run_test_particle_system();
 
 #endif /* test_main_h */
