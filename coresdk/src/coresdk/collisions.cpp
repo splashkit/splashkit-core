@@ -24,8 +24,6 @@ using std::function;
 
 namespace splashkit_lib
 {
-    vector_2d vector_to(double x, double y);
-    
     enum class _obj_movement_direction
     {
         UP,
@@ -211,43 +209,43 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    bool _test_collision(A& a, B& b)
+    bool _test_collision(const A& a, const B& b)
     {
         return false;
     }
 
     template <>
-    bool _test_collision(sprite& s1, sprite& s2)
+    bool _test_collision(const sprite& s1, const sprite& s2)
     {
         return sprite_collision(s1, s2);
     }
 
     template <>
-    bool _test_collision(sprite& s, const rectangle& r)
+    bool _test_collision(const sprite& s, const rectangle& r)
     {
         return sprite_rectangle_collision(s, r);
     }
 
     template <>
-    bool _test_collision(sprite& s, const circle& c)
+    bool _test_collision(const sprite& s, const circle& c)
     {
         return sprite_circle_collision(s, c);
     }
 
     template <>
-    bool _test_collision(sprite& s, const triangle& t)
+    bool _test_collision(const sprite& s, const triangle& t)
     {
         return sprite_triangle_collision(s, t);
     }
 
     template <>
-    bool _test_collision(sprite& s, const quad& q)
+    bool _test_collision(const sprite& s, const quad& q)
     {
         return sprite_quad_collision(s, q);
     }
 
     template <>
-    bool _test_collision(const rectangle& r, sprite& s)
+    bool _test_collision(const rectangle& r, const sprite& s)
     {
         return sprite_rectangle_collision(s, r);
     }
@@ -277,7 +275,7 @@ namespace splashkit_lib
     }
 
     template <>
-    bool _test_collision(const circle& c, sprite& s)
+    bool _test_collision(const circle& c, const sprite& s)
     {
         return sprite_circle_collision(s, c);
     }
@@ -307,7 +305,7 @@ namespace splashkit_lib
     }
 
     template <>
-    bool _test_collision(const triangle& t, sprite& s)
+    bool _test_collision(const triangle& t, const sprite& s)
     {
         return sprite_triangle_collision(s, t);
     }
@@ -337,7 +335,7 @@ namespace splashkit_lib
     }
 
     template <>
-    bool _test_collision(const quad& q, sprite& s)
+    bool _test_collision(const quad& q, const sprite& s)
     {
         return sprite_quad_collision(s, q);
     }
@@ -417,62 +415,58 @@ namespace splashkit_lib
         obj.points[3].y += amount.y;
     }
 
-    // should be const ref parameter but then cant use sprite_collision_rectangle()
-    // as it requires a non-const parameter
     template <typename T>
-    rectangle _object_AABB(T& obj)
+    rectangle _object_AABB(const T& obj)
     {
-        return {0.0, 0.0, 0.0 0.0};
+        return rectangle_from(0.0, 0.0, 0.0, 0.0);
     }
 
     template <>
-    rectangle _object_AABB(sprite& obj)
+    rectangle _object_AABB(const sprite& obj)
     {
         return sprite_collision_rectangle(obj);
     }
 
     template <>
-    rectangle _object_AABB(rectangle& obj)
+    rectangle _object_AABB(const rectangle& obj)
     {
         return obj;
     }
 
     template <>
-    rectangle _object_AABB(circle& obj)
+    rectangle _object_AABB(const circle& obj)
     {
         return rectangle_around(obj);
     }
 
     template <>
-    rectangle _object_AABB(triangle& obj)
+    rectangle _object_AABB(const triangle& obj)
     {
         return rectangle_around(obj);
     }
 
     template <>
-    rectangle _object_AABB(quad& obj)
+    rectangle _object_AABB(const quad& obj)
     {
         return rectangle_around(obj);
     }
 
-    // should be const ref parameter but then cant use sprite_collision_kind()
-    // as it requires a non-const parameter
     template<typename T>
-    collision_test_kind _collision_kind(T& obj)
+    collision_test_kind _collision_kind(const T& obj)
     {
         return PIXEL_COLLISIONS;
     }
 
     template<>
-    collision_test_kind _collision_kind(rectangle& obj)
+    collision_test_kind _collision_kind(const rectangle& obj)
     {
         return AABB_COLLISIONS;
     }
 
     template<>
-    collision_test_kind _collision_kind(_sprite_data& obj)
+    collision_test_kind _collision_kind(const sprite& obj)
     {
-        return sprite_collision_kind(&obj);
+        return sprite_collision_kind(obj);
     }
 
     collision_direction _compare_point_collision_depth_horizontal(const point_2d& collider, const point_2d& collidee)
@@ -622,38 +616,31 @@ namespace splashkit_lib
     void _move_object_by_direction_relative_to_size(T& obj, _obj_movement_direction direction,
                                                                     double relative_amount = 1.0)
     {
+        if (direction == _obj_movement_direction::NONE)
+        {
+            return;
+        }
+
+        if (relative_amount == 0.0)
+        {
+            return;
+        }
+        
         rectangle obj_aabb = _object_AABB(obj);
         
         double relative_width = obj_aabb.width * relative_amount;
         double relative_height = obj_aabb.height * relative_amount;
 
-        switch (direction)
+        if (direction == _obj_movement_direction::UP || direction == _obj_movement_direction::DOWN)
         {
-        case _obj_movement_direction::UP:
-            _move_object_by_direction(obj,  _obj_movement_direction::UP, vector_to(0.0, relative_height));
-            break;
-        case _obj_movement_direction::DOWN:
-            _move_object_by_direction(obj, _obj_movement_direction::DOWN, vector_to(0.0, relative_height));
-            break;
-        case _obj_movement_direction::LEFT:
-            _move_object_by_direction(obj, _obj_movement_direction::LEFT, vector_to(relative_width, 0.0));
-            break;
-        case _obj_movement_direction::RIGHT:
-            _move_object_by_direction(obj, _obj_movement_direction::RIGHT, vector_to(relative_width, 0.0));
-            break;
-        case _obj_movement_direction::UP_LEFT:
-            _move_object_by_direction(obj, _obj_movement_direction::UP_LEFT, vector_to(relative_width, relative_height));
-            break;
-        case _obj_movement_direction::UP_RIGHT:
-            _move_object_by_direction(obj, _obj_movement_direction::UP_RIGHT, vector_to(relative_width, relative_height));
-            break;
-        case _obj_movement_direction::DOWN_LEFT:
-            _move_object_by_direction(obj, _obj_movement_direction::DOWN_LEFT, vector_to(relative_width, relative_height));
-            break;
-        default: // _obj_movement_direction::DOWN_RIGHT:
-            _move_object_by_direction(obj, _obj_movement_direction::DOWN_RIGHT, vector_to(relative_width, relative_height));
-            break;
-        };
+            relative_width = 0.0;
+        }
+        else if (direction == _obj_movement_direction::LEFT || direction == _obj_movement_direction::RIGHT)
+        {
+            relative_height = 0.0;
+        }
+
+        _move_object_by_direction(obj, direction, vector_to(relative_width, relative_height));
     }
 
     /** 
@@ -726,7 +713,7 @@ namespace splashkit_lib
 
         if (_collision_kind(collider) == AABB_COLLISIONS && _collision_kind(collidee) == AABB_COLLISIONS)
         {
-            _resolve_object_AABB_collision(collider, _object_AABB(collider), _object_AABB(collidee), direction);
+            _resolve_object_AABB_collision(collider, _object_AABB(collidee), direction);
         }
         else // one or both of the sprites are using pixel collision
         {
