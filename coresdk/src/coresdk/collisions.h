@@ -714,397 +714,402 @@ namespace splashkit_lib
     /**
      * Returns the direction of the collision between two sprites
      * relative to the collider sprite. If the sprites are not colliding,
-     * this function will return NONE.
+     * this function will return a zero vector.
      * 
      * @param collider  The sprite that is colliding
      * @param collidee  The sprite that is being collided with
-     * @return          The direction of the collision relative to the collider sprite.
-     *                  If the sprites are not colliding, this function will return NONE.
+     * @return          The direction of the collision relative to the collider sprite,
+     *                  expressed as a vector. If the sprites are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
      * @attribute suffix    between_sprites
      */
-    collision_direction calculate_collision_direction(const sprite collider, const sprite collidee);
+    vector_2d calculate_collision_direction(const sprite collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a sprite
      * and a rectangle relative to the sprite. If the sprite and
-     * rectangle are not colliding, this function will return NONE.
+     * rectangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The sprite that is colliding
      * @param collidee  The rectangle that is being collided with
-     * @return          The direction of the collision relative to the sprite.
-     *                  If the sprite and rectangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If the sprite and rectangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
      * @attribute suffix    between_sprite_and_rectangle
      */
-    collision_direction calculate_collision_direction(const sprite collider, const rectangle& collidee);
+    vector_2d calculate_collision_direction(const sprite collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
      * and a circle relative to the sprite. If the sprite and
-     * circle are not colliding, this function will return NONE.
+     * circle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The sprite that is colliding
      * @param collidee  The circle that is being collided with
-     * @return          The direction of the collision relative to the sprite.
-     *                  If the sprite and circle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If the sprite and circle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
      * @attribute suffix    between_sprite_and_circle
      */
-    collision_direction calculate_collision_direction(const sprite collider, const circle& collidee);
+    vector_2d calculate_collision_direction(const sprite collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
      * and a triangle relative to the sprite. If the sprite and
-     * triangle are not colliding, this function will return NONE.
+     * triangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The sprite that is colliding
      * @param collidee  The triangle that is being collided with
-     * @return          The direction of the collision relative to the sprite.
-     *                  If the sprite and triangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If the sprite and triangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
      * @attribute suffix    between_sprite_and_triangle
      */
-    collision_direction calculate_collision_direction(const sprite collider, const triangle& collidee);
+    vector_2d calculate_collision_direction(const sprite collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a sprite
      * and a quad relative to the sprite. If the sprite and
-     * quad are not colliding, this function will return NONE.
+     * quad are not colliding, this function will return a zero vector.
      * 
      * @param collider  The sprite that is colliding
      * @param collidee  The quad that is being collided with
-     * @return          The direction of the collision relative to the sprite.
-     *                  If the sprite and quad are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If the sprite and quad are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
      * @attribute suffix    between_sprite_and_quad
      */
-    collision_direction calculate_collision_direction(const sprite collider, const quad& collidee);
+    vector_2d calculate_collision_direction(const sprite collider, const quad& collidee);
 
     /**
      * Returns the direction of the collision between a rectangle
      * and a sprite relative to the rectangle. If the rectangle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The rectangle that is colliding
      * @param collidee  The sprite that is being collided with
-     * @return          The direction of the collision relative to the rectangle.
-     *                  If the rectangle and sprite are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If the rectangle and sprite are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_sprite
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, const sprite collidee);
+    vector_2d calculate_collision_direction(const rectangle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a collider rectangle
      * and a collidee rectangle relative to the collider rectangle. If the rectangles are not
-     * colliding, this function will return NONE.
+     * colliding, this function will return a zero vector.
      * 
      * @param collider  The rectangle that is colliding
      * @param collidee  The rectangle that is being collided with
-     * @return          The direction of the collision relative to the collider rectangle.
-     *                  If the rectangles are not colliding, this function will return NONE.
+     * @return          The direction of the collision relative to the collider rectangle,
+     *                  expressed as a vector. If the rectangles are not colliding, this function
+     *                  will return a zero vector.
      * 
      * @attribute class     rectangle
      * @attribute suffix    between_rectangles
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, const rectangle& collidee);
+    vector_2d calculate_collision_direction(const rectangle& collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a rectangle
      * and a circle relative to the rectangle. If the rectangle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The rectangle that is colliding
      * @param collidee  The circle that is being collided with
-     * @return          The direction of the collision relative to the rectangle.
-     *                  If the rectangle and circle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If the rectangle and circle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_circle
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, const circle& collidee);
+    vector_2d calculate_collision_direction(const rectangle& collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a rectangle
      * and a triangle relative to the rectangle. If the rectangle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The rectangle that is colliding
      * @param collidee  The triangle that is being collided with
-     * @return          The direction of the collision relative to the rectangle.
-     *                  If the rectangle and triangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If the rectangle and triangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_triangle
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, const triangle& collidee);
+    vector_2d calculate_collision_direction(const rectangle& collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a rectangle
      * and a quad relative to the rectangle. If the rectangle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The rectangle that is colliding
      * @param collidee  The quad that is being collided with
-     * @return          The direction of the collision relative to the rectangle.
-     *                  If the rectangle and quad are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If the rectangle and quad are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_quad
      */
-    collision_direction calculate_collision_direction(const rectangle& collider, const quad& collidee);
+    vector_2d calculate_collision_direction(const rectangle& collider, const quad& collidee);
 
     /**
      * Returns the direction of the collision between a circle
      * and a sprite relative to the circle. If the circle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The circle that is colliding
      * @param collidee  The sprite that is being collided with
-     * @return          The direction of the collision relative to the circle.
-     *                  If the circle and sprite are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a vector. If the circle and sprite are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     circle
      * @attribute suffix    between_circle_and_sprite
      */
-    collision_direction calculate_collision_direction(const circle& collider, const sprite collidee);
+    vector_2d calculate_collision_direction(const circle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a circle
      * and a rectangle relative to the circle. If the circle and
-     * rectangle are not colliding, this function will return NONE.
+     * rectangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The circle that is colliding
      * @param collidee  The rectangle that is being collided with
-     * @return          The direction of the collision relative to the circle.
-     *                  If the circle and rectangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a vector. If the circle and rectangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     circle
      * @attribute suffix    between_circle_and_rectangle
      */
-    collision_direction calculate_collision_direction(const circle& collider, const rectangle& collidee);
+    vector_2d calculate_collision_direction(const circle& collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a collider circle
      * and a collidee circle relative to the collider circle. If the circles are not
-     * colliding, this function will return NONE.
+     * colliding, this function will return a zero vector.
      * 
      * @param collider  The circle that is colliding
      * @param collidee  The circle that is being collided with
-     * @return          The direction of the collision relative to the collider circle.
-     *                  If the circles are not colliding, this function will return NONE.
+     * @return          The direction of the collision relative to the collider circle,
+     *                  expressed as a vector. If the circles are not colliding, this function
+     *                  will return a zero vector.
      * 
      * @attribute class     circle
      * @attribute suffix    between_circles
      */
-    collision_direction calculate_collision_direction(const circle& collider, const circle& collidee);
+    vector_2d calculate_collision_direction(const circle& collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a circle
      * and a triangle relative to the circle. If the circle and
-     * triangle are not colliding, this function will return NONE.
+     * triangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The circle that is colliding
      * @param collidee  The triangle that is being collided with
-     * @return          The direction of the collision relative to the circle.
-     *                  If the circle and triangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a vector. If the circle and triangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     circle
      * @attribute suffix    between_circle_and_triangle
      */
-    collision_direction calculate_collision_direction(const circle& collider, const triangle& collidee);
+    vector_2d calculate_collision_direction(const circle& collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a circle
      * and a quad relative to the circle. If the circle and
-     * quad are not colliding, this function will return NONE.
+     * quad are not colliding, this function will return a zero vector.
      * 
      * @param collider  The circle that is colliding
      * @param collidee  The quad that is being collided with
-     * @return          The direction of the collision relative to the circle.
-     *                  If the circle and quad are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a vector. If the circle and quad are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     circle
      * @attribute suffix    between_circle_and_quad
      */
-    collision_direction calculate_collision_direction(const circle& collider, const quad& collidee);
+    vector_2d calculate_collision_direction(const circle& collider, const quad& collidee);
 
     /**
      * Returns the direction of the collision between a triangle
      * and a sprite relative to the triangle. If the triangle and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The triangle that is colliding
      * @param collidee  The sprite that is being collided with
-     * @return          The direction of the collision relative to the triangle.
-     *                  If the triangle and sprite are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If the triangle and sprite are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
      * @attribute suffix    between_triangle_and_sprite
      */
-    collision_direction calculate_collision_direction(const triangle& collider, const sprite collidee);
+    vector_2d calculate_collision_direction(const triangle& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a triangle
      * and a rectangle relative to the triangle. If the triangle and
-     * rectangle are not colliding, this function will return NONE.
+     * rectangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The triangle that is colliding
      * @param collidee  The rectangle that is being collided with
-     * @return          The direction of the collision relative to the triangle.
-     *                  If the triangle and rectangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If the triangle and rectangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
      * @attribute suffix    between_triangle_and_rectangle
      */
-    collision_direction calculate_collision_direction(const triangle& collider, const rectangle& collidee);
+    vector_2d calculate_collision_direction(const triangle& collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a triangle
      * and a circle relative to the triangle. If the triangle and
-     * circle are not colliding, this function will return NONE.
+     * circle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The triangle that is colliding
      * @param collidee  The circle that is being collided with
-     * @return          The direction of the collision relative to the triangle.
-     *                  If the triangle and circle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If the triangle and circle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
      * @attribute suffix    between_triangle_and_circle
      */
-    collision_direction calculate_collision_direction(const triangle& collider, const circle& collidee);
+    vector_2d calculate_collision_direction(const triangle& collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a collider triangle
      * and a collidee triangle relative to the collider triangle. If the triangles are not
-     * colliding, this function will return NONE.
+     * colliding, this function will return a zero vector.
      * 
      * @param collider  The triangle that is colliding
      * @param collidee  The triangle that is being collided with
-     * @return          The direction of the collision relative to the collider triangle.
-     *                  If the triangles are not colliding, this function will return NONE.
+     * @return          The direction of the collision relative to the collider triangle,
+     *                  expressed as a vector. If the triangles are not colliding, this function
+     *                  will return a zero vector.
      * 
      * @attribute class     triangle
      * @attribute suffix    between_triangles
      */
-    collision_direction calculate_collision_direction(const triangle& collider, const triangle& collidee);
+    vector_2d calculate_collision_direction(const triangle& collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a triangle
      * and a quad relative to the triangle. If the triangle and
-     * quad are not colliding, this function will return NONE.
+     * quad are not colliding, this function will return a zero vector.
      * 
      * @param collider  The triangle that is colliding
      * @param collidee  The quad that is being collided with
-     * @return          The direction of the collision relative to the triangle.
-     *                  If the triangle and quad are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If the triangle and quad are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
      * @attribute suffix    between_triangle_and_quad
      */
-    collision_direction calculate_collision_direction(const triangle& collider, const quad& collidee);
+    vector_2d calculate_collision_direction(const triangle& collider, const quad& collidee);
 
     /**
      * Returns the direction of the collision between a quad
      * and a sprite relative to the quad. If the quad and
-     * sprite are not colliding, this function will return NONE.
+     * sprite are not colliding, this function will return a zero vector.
      * 
      * @param collider  The quad that is colliding
      * @param collidee  The sprite that is being collided with
-     * @return          The direction of the collision relative to the quad.
-     *                  If the quad and sprite are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a vector. If the quad and sprite are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     quad
      * @attribute suffix    between_quad_and_sprite
      */
-    collision_direction calculate_collision_direction(const quad& collider, const sprite collidee);
+    vector_2d calculate_collision_direction(const quad& collider, const sprite collidee);
 
     /**
      * Returns the direction of the collision between a quad
      * and a rectangle relative to the quad. If the quad and
-     * rectangle are not colliding, this function will return NONE.
+     * rectangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The quad that is colliding
      * @param collidee  The rectangle that is being collided with
-     * @return          The direction of the collision relative to the quad.
-     *                  If the quad and rectangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a vector. If the quad and rectangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     quad
      * @attribute suffix    between_quad_and_rectangle
      */
-    collision_direction calculate_collision_direction(const quad& collider, const rectangle& collidee);
+    vector_2d calculate_collision_direction(const quad& collider, const rectangle& collidee);
 
     /**
      * Returns the direction of the collision between a quad
      * and a circle relative to the quad. If the quad and
-     * circle are not colliding, this function will return NONE.
+     * circle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The quad that is colliding
      * @param collidee  The circle that is being collided with
-     * @return          The direction of the collision relative to the quad.
-     *                  If the quad and circle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a vector. If the quad and circle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     quad
      * @attribute suffix    between_quad_and_circle
      */
-    collision_direction calculate_collision_direction(const quad& collider, const circle& collidee);
+    vector_2d calculate_collision_direction(const quad& collider, const circle& collidee);
 
     /**
      * Returns the direction of the collision between a quad
      * and a triangle relative to the quad. If the quad and
-     * triangle are not colliding, this function will return NONE.
+     * triangle are not colliding, this function will return a zero vector.
      * 
      * @param collider  The quad that is colliding
      * @param collidee  The triangle that is being collided with
-     * @return          The direction of the collision relative to the quad.
-     *                  If the quad and triangle are not colliding,
-     *                  this function will return NONE.
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a vector. If the quad and triangle are not colliding,
+     *                  this function will return a zero vector.
      * 
      * @attribute class     quad
      * @attribute suffix    between_quad_and_triangle
      */
-    collision_direction calculate_collision_direction(const quad& collider, const triangle& collidee);
+    vector_2d calculate_collision_direction(const quad& collider, const triangle& collidee);
 
     /**
      * Returns the direction of the collision between a collider quad
      * and a collidee quad relative to the collider quad. If the quads are not
-     * colliding, this function will return NONE.
+     * colliding, this function will return a zero vector.
      * 
      * @param collider  The quad that is colliding
      * @param collidee  The quad that is being collided with
-     * @return          The direction of the collision relative to the collider quad.
-     *                  If the quads are not colliding, this function will return NONE.
+     * @return          The direction of the collision relative to the collider quad,
+     *                  expressed as a vector. If the quads are not colliding, this function
+     *                  will return a zero vector.
      * 
      * @attribute class     quad
      * @attribute suffix    between_quads
      */
-    collision_direction calculate_collision_direction(const quad& collider, const quad& collidee);
+    vector_2d calculate_collision_direction(const quad& collider, const quad& collidee);
 
     /**
      * Resolves the collision between two sprites by moving the
@@ -1114,15 +1119,16 @@ namespace splashkit_lib
      * 
      * @param collider  The sprite which will be altered if there is a collision
      * @param collidee  The sprite which will not be altered
-     * @param direction The direction of the collision relative to the collider sprite.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the collider sprite,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the sprites are colliding and the collision was resolved,
      *                  false if the sprites are not colliding
      * 
      * @atrribute class     sprite
      * @attribute suffix    between_sprites
      */
-    bool resolve_collision(sprite collider, const sprite collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const sprite collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a sprite and a rectangle by moving the
@@ -1132,15 +1138,16 @@ namespace splashkit_lib
      * 
      * @param collider  The sprite which will be altered if there is a collision
      * @param collidee  The rectangle which will not be altered
-     * @param direction The direction of the collision relative to the sprite.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
      * @return          True if the sprite and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     sprite
      * @attribute suffix    between_sprite_and_rectangle
      */
-    bool resolve_collision(sprite collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const rectangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a sprite and a circle by moving the
@@ -1150,15 +1157,16 @@ namespace splashkit_lib
      * 
      * @param collider  The sprite which will be altered if there is a collision
      * @param collidee  The circle which will not be altered
-     * @param direction The direction of the collision relative to the sprite.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
      * @return          True if the sprite and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     sprite
      * @attribute suffix    between_sprite_and_circle
      */
-    bool resolve_collision(sprite collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const circle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a sprite and a triangle by moving the
@@ -1168,15 +1176,16 @@ namespace splashkit_lib
      * 
      * @param collider  The sprite which will be altered if there is a collision
      * @param collidee  The triangle which will not be altered
-     * @param direction The direction of the collision relative to the sprite.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
      * @return          True if the sprite and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     sprite
      * @attribute suffix    between_sprite_and_triangle
      */
-    bool resolve_collision(sprite collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const triangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a sprite and a quad by moving the
@@ -1186,15 +1195,16 @@ namespace splashkit_lib
      * 
      * @param collider  The sprite which will be altered if there is a collision
      * @param collidee  The quad which will not be altered
-     * @param direction The direction of the collision relative to the sprite.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
      * @return          True if the sprite and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     sprite
      * @attribute suffix    between_sprite_and_quad
      */
-    bool resolve_collision(sprite collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(sprite collider, const quad& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a rectangle and a sprite by moving the
@@ -1204,15 +1214,16 @@ namespace splashkit_lib
      * 
      * @param collider  The rectangle which will be altered if there is a collision
      * @param collidee  The sprite which will not be altered
-     * @param direction The direction of the collision relative to the rectangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the rectangle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     rectangle
      * @attribute suffix    between_rectangle_and_sprite
      */
-    bool resolve_collision(rectangle& collider, const sprite collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const sprite collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between two rectangles by moving the
@@ -1222,15 +1233,16 @@ namespace splashkit_lib
      * 
      * @param collider  The rectangle which will be altered if there is a collision
      * @param collidee  The rectangle which will not be altered
-     * @param direction The direction of the collision relative to the collider rectangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the collider rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the rectangles are colliding and the collision was resolved,
      *                  false if the rectangles are not colliding
      * 
      * @atrribute class     rectangle
      * @attribute suffix    between_rectangles
      */
-    bool resolve_collision(rectangle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const rectangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a rectangle and a circle by moving the
@@ -1240,15 +1252,16 @@ namespace splashkit_lib
      * 
      * @param collider  The rectangle which will be altered if there is a collision
      * @param collidee  The circle which will not be altered
-     * @param direction The direction of the collision relative to the rectangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the rectangle and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     rectangle
      * @attribute suffix    between_rectangle_and_circle
      */
-    bool resolve_collision(rectangle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const circle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a rectangle and a triangle by moving the
@@ -1258,15 +1271,16 @@ namespace splashkit_lib
      * 
      * @param collider  The rectangle which will be altered if there is a collision
      * @param collidee  The triangle which will not be altered
-     * @param direction The direction of the collision relative to the rectangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the rectangle and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     rectangle
      * @attribute suffix    between_rectangle_and_triangle
      */
-    bool resolve_collision(rectangle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const triangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a rectangle and a quad by moving the
@@ -1276,15 +1290,16 @@ namespace splashkit_lib
      * 
      * @param collider  The rectangle which will be altered if there is a collision
      * @param collidee  The quad which will not be altered
-     * @param direction The direction of the collision relative to the rectangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the rectangle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     rectangle
      * @attribute suffix    between_rectangle_and_quad
      */
-    bool resolve_collision(rectangle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(rectangle& collider, const quad& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a circle and a sprite by moving the
@@ -1294,15 +1309,16 @@ namespace splashkit_lib
      * 
      * @param collider  The circle which will be altered if there is a collision
      * @param collidee  The sprite which will not be altered
-     * @param direction The direction of the collision relative to the circle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the circle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     circle
      * @attribute suffix    between_circle_and_sprite
      */
-    bool resolve_collision(circle& collider, const sprite collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const sprite collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a circle and a rectangle by moving the
@@ -1312,15 +1328,16 @@ namespace splashkit_lib
      * 
      * @param collider  The circle which will be altered if there is a collision
      * @param collidee  The rectangle which will not be altered
-     * @param direction The direction of the collision relative to the circle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the circle and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     circle
      * @attribute suffix    between_circle_and_rectangle
      */
-    bool resolve_collision(circle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const rectangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a collider circle and a collidee circle by moving the
@@ -1330,15 +1347,16 @@ namespace splashkit_lib
      * 
      * @param collider  The circle which will be altered if there is a collision
      * @param collidee  The circle which will not be altered
-     * @param direction The direction of the collision relative to the collider circle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the collider circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the circles are colliding and the collision was resolved,
      *                  false if the circles are not colliding
      * 
      * @atrribute class     circle
      * @attribute suffix    between_circles
      */
-    bool resolve_collision(circle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const circle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a circle and a triangle by moving the
@@ -1348,15 +1366,16 @@ namespace splashkit_lib
      * 
      * @param collider  The circle which will be altered if there is a collision
      * @param collidee  The triangle which will not be altered
-     * @param direction The direction of the collision relative to the circle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the circle and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     circle
      * @attribute suffix    between_circle_and_triangle
      */
-    bool resolve_collision(circle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const triangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a circle and a quad by moving the
@@ -1366,15 +1385,16 @@ namespace splashkit_lib
      * 
      * @param collider  The circle which will be altered if there is a collision
      * @param collidee  The quad which will not be altered
-     * @param direction The direction of the collision relative to the circle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the circle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     circle
      * @attribute suffix    between_circle_and_quad
      */
-    bool resolve_collision(circle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(circle& collider, const quad& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a triangle and a sprite by moving the
@@ -1384,15 +1404,16 @@ namespace splashkit_lib
      * 
      * @param collider  The triangle which will be altered if there is a collision
      * @param collidee  The sprite which will not be altered
-     * @param direction The direction of the collision relative to the triangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the triangle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     triangle
      * @attribute suffix    between_triangle_and_sprite
      */
-    bool resolve_collision(triangle& collider, const sprite collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const sprite collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a triangle and a rectangle by moving the
@@ -1402,15 +1423,16 @@ namespace splashkit_lib
      * 
      * @param collider  The triangle which will be altered if there is a collision
      * @param collidee  The rectangle which will not be altered
-     * @param direction The direction of the collision relative to the triangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the triangle and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     triangle
      * @attribute suffix    between_triangle_and_rectangle
      */
-    bool resolve_collision(triangle& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const rectangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a triangle and a circle by moving the
@@ -1420,15 +1442,16 @@ namespace splashkit_lib
      * 
      * @param collider  The triangle which will be altered if there is a collision
      * @param collidee  The circle which will not be altered
-     * @param direction The direction of the collision relative to the triangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the triangle and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     triangle
      * @attribute suffix    between_triangle_and_circle
      */
-    bool resolve_collision(triangle& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const circle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a collider triangle and a collidee triangle by moving the
@@ -1438,15 +1461,16 @@ namespace splashkit_lib
      * 
      * @param collider  The triangle which will be altered if there is a collision
      * @param collidee  The triangle which will not be altered
-     * @param direction The direction of the collision relative to the collider triangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the collider triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the triangles are colliding and the collision was resolved,
      *                  false if the triangles are not colliding
      * 
      * @atrribute class     triangle
      * @attribute suffix    between_triangles
      */
-    bool resolve_collision(triangle& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const triangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a triangle and a quad by moving the
@@ -1456,15 +1480,16 @@ namespace splashkit_lib
      * 
      * @param collider  The triangle which will be altered if there is a collision
      * @param collidee  The quad which will not be altered
-     * @param direction The direction of the collision relative to the triangle.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the triangle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     triangle
      * @attribute suffix    between_triangle_and_quad
      */
-    bool resolve_collision(triangle& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(triangle& collider, const quad& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a quad and a sprite by moving the
@@ -1474,15 +1499,16 @@ namespace splashkit_lib
      * 
      * @param collider  The quad which will be altered if there is a collision
      * @param collidee  The sprite which will not be altered
-     * @param direction The direction of the collision relative to the quad.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the quad and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     quad
      * @attribute suffix    between_quad_and_sprite
      */
-    bool resolve_collision(quad& collider, const sprite collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const sprite collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a quad and a rectangle by moving the
@@ -1492,15 +1518,16 @@ namespace splashkit_lib
      * 
      * @param collider  The quad which will be altered if there is a collision
      * @param collidee  The rectangle which will not be altered
-     * @param direction The direction of the collision relative to the quad.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the quad and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     quad
      * @attribute suffix    between_quad_and_rectangle
      */
-    bool resolve_collision(quad& collider, const rectangle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const rectangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a quad and a circle by moving the
@@ -1510,15 +1537,16 @@ namespace splashkit_lib
      * 
      * @param collider  The quad which will be altered if there is a collision
      * @param collidee  The circle which will not be altered
-     * @param direction The direction of the collision relative to the quad.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the quad and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     quad
      * @attribute suffix    between_quad_and_circle
      */
-    bool resolve_collision(quad& collider, const circle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const circle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a quad and a triangle by moving the
@@ -1528,15 +1556,16 @@ namespace splashkit_lib
      * 
      * @param collider  The quad which will be altered if there is a collision
      * @param collidee  The triangle which will not be altered
-     * @param direction The direction of the collision relative to the quad.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the quad and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      * 
      * @atrribute class     quad
      * @attribute suffix    between_quad_and_triangle
      */
-    bool resolve_collision(quad& collider, const triangle& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const triangle& collidee, const vector_2d& direction);
 
     /**
      * Resolves the collision between a collider quad and a collidee quad by moving the
@@ -1546,15 +1575,16 @@ namespace splashkit_lib
      * 
      * @param collider  The quad which will be altered if there is a collision
      * @param collidee  The quad which will not be altered
-     * @param direction The direction of the collision relative to the collider quad.
-     *                  If NONE is passed, the function will not resolve the collision.
+     * @param direction The direction of the collision relative to the collider quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
      * @return          True if the quads are colliding and the collision was resolved,
      *                  false if the quads are not colliding
      * 
      * @atrribute class     quad
      * @attribute suffix    between_quads
      */
-    bool resolve_collision(quad& collider, const quad& collidee, collision_direction direction);
+    bool resolve_collision(quad& collider, const quad& collidee, const vector_2d& direction);
 
 }
 #endif /* collisions_h */
