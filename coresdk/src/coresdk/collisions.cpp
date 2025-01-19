@@ -36,6 +36,35 @@ namespace splashkit_lib
         DOWN_RIGHT,
         NONE,
     };
+
+    /**
+     *  This enumeration contains a list of directions that an
+     *  object can collide with another object. For example, a
+     *  collider object which is colliding with another object
+     *  on its top edge would have a collision direction of TOP.
+     *  
+     *  @constant TOP           The top of the object
+     *  @constant BOTTOM        The bottom of the object
+     *  @constant LEFT          The left of the object
+     *  @constant RIGHT         The right of the object
+     *  @constant TOP_LEFT      The top left of the object
+     *  @constant TOP_RIGHT     The top right of the object
+     *  @constant BOTTOM_LEFT   The bottom left of the object
+     *  @constant BOTTOM_RIGHT  The bottom right of the object
+     *  @constant NONE          No collision
+     */
+    enum _collision_direction
+    {
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT,
+        TOP_LEFT,
+        TOP_RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_RIGHT,
+        NONE,
+    };
     
     //#define DEBUG_STEP
 
@@ -160,22 +189,22 @@ namespace splashkit_lib
                                     });
     }
 
-    collision_direction _direction_from_vector(const vector_2d &v)
+    _collision_direction _direction_from_vector(const vector_2d &v)
     {
         if (v.x == 0.0 and v.y == 0.0)
         {
-            return collision_direction::NONE;
+            return _collision_direction::NONE;
         }
 
         if (v.x == 0.0)
         {
             if (v.y > 0.0)
             {
-                return collision_direction::BOTTOM;
+                return _collision_direction::BOTTOM;
             }
             else
             {
-                return collision_direction::TOP;
+                return _collision_direction::TOP;
             }
         }
 
@@ -183,11 +212,11 @@ namespace splashkit_lib
         {
             if (v.x > 0.0)
             {
-                return collision_direction::RIGHT;
+                return _collision_direction::RIGHT;
             }
             else
             {
-                return collision_direction::LEFT;
+                return _collision_direction::LEFT;
             }
         }
 
@@ -195,47 +224,47 @@ namespace splashkit_lib
         {
             if (v.y > 0.0)
             {
-                return collision_direction::BOTTOM_RIGHT;
+                return _collision_direction::BOTTOM_RIGHT;
             }
             else
             {
-                return collision_direction::TOP_RIGHT;
+                return _collision_direction::TOP_RIGHT;
             }
         }
         else
         {
             if (v.y > 0.0)
             {
-                return collision_direction::BOTTOM_LEFT;
+                return _collision_direction::BOTTOM_LEFT;
             }
             else
             {
-                return collision_direction::TOP_LEFT;
+                return _collision_direction::TOP_LEFT;
             }
         }
     }
 
-    vector_2d _vector_from_direction(collision_direction direction)
+    vector_2d _vector_from_direction(_collision_direction direction)
     {
         switch (direction)
         {
-        case collision_direction::TOP:
+        case _collision_direction::TOP:
             return vector_to(0.0, -1.0);
-        case collision_direction::BOTTOM:
+        case _collision_direction::BOTTOM:
             return vector_to(0.0, 1.0);
-        case collision_direction::LEFT:
+        case _collision_direction::LEFT:
             return vector_to(-1.0, 0.0);
-        case collision_direction::RIGHT:
+        case _collision_direction::RIGHT:
             return vector_to(1.0, 0.0);
-        case collision_direction::TOP_LEFT:
+        case _collision_direction::TOP_LEFT:
             return vector_to(-1.0, -1.0);
-        case collision_direction::TOP_RIGHT:
+        case _collision_direction::TOP_RIGHT:
             return vector_to(1.0, -1.0);
-        case collision_direction::BOTTOM_LEFT:
+        case _collision_direction::BOTTOM_LEFT:
             return vector_to(-1.0, 1.0);
-        case collision_direction::BOTTOM_RIGHT:
+        case _collision_direction::BOTTOM_RIGHT:
             return vector_to(1.0, 1.0);
-        case collision_direction::NONE:
+        case _collision_direction::NONE:
             return vector_to(0.0, 0.0);
         }
         return vector_to(0, 0);
@@ -265,25 +294,25 @@ namespace splashkit_lib
         return _obj_movement_direction::NONE;
     }
 
-    _obj_movement_direction _direction_from_collision(collision_direction direction)
+    _obj_movement_direction _direction_from_collision(_collision_direction direction)
     {
         switch (direction)
         {
-        case collision_direction::TOP:
+        case _collision_direction::TOP:
             return _obj_movement_direction::DOWN;
-        case collision_direction::BOTTOM:
+        case _collision_direction::BOTTOM:
             return _obj_movement_direction::UP;
-        case collision_direction::LEFT:
+        case _collision_direction::LEFT:
             return _obj_movement_direction::RIGHT;
-        case collision_direction::RIGHT:
+        case _collision_direction::RIGHT:
             return _obj_movement_direction::LEFT;
-        case collision_direction::TOP_LEFT:
+        case _collision_direction::TOP_LEFT:
             return _obj_movement_direction::DOWN_RIGHT;
-        case collision_direction::TOP_RIGHT:
+        case _collision_direction::TOP_RIGHT:
             return _obj_movement_direction::DOWN_LEFT;
-        case collision_direction::BOTTOM_LEFT:
+        case _collision_direction::BOTTOM_LEFT:
             return _obj_movement_direction::UP_RIGHT;
-        case collision_direction::BOTTOM_RIGHT:
+        case _collision_direction::BOTTOM_RIGHT:
             return _obj_movement_direction::UP_LEFT;
         };
         return _obj_movement_direction::NONE;
@@ -550,25 +579,25 @@ namespace splashkit_lib
         return sprite_collision_kind(obj);
     }
 
-    collision_direction _compare_point_collision_depth_horizontal(const point_2d& collider, const point_2d& collidee)
+    _collision_direction _compare_point_collision_depth_horizontal(const point_2d& collider, const point_2d& collidee)
     {
         if (collider.x < collidee.x)
         {
-            return collision_direction::RIGHT;
+            return _collision_direction::RIGHT;
         }
-        return collision_direction::LEFT;
+        return _collision_direction::LEFT;
     }
 
-    collision_direction _compare_point_collision_depth_vertical(const point_2d& collider, const point_2d& collidee)
+    _collision_direction _compare_point_collision_depth_vertical(const point_2d& collider, const point_2d& collidee)
     {
         if (collider.y < collidee.y)
         {
-            return collision_direction::BOTTOM;
+            return _collision_direction::BOTTOM;
         }
-        return collision_direction::TOP;
+        return _collision_direction::TOP;
     }
 
-    collision_direction _calculate_containing_collision_direction(const rectangle& collider, const rectangle& collidee)
+    _collision_direction _calculate_containing__collision_direction(const rectangle& collider, const rectangle& collidee)
     {
         // calculate the direction of the greatest distance between the two sprites
         point_2d collider_center = rectangle_center(collider);
@@ -592,7 +621,7 @@ namespace splashkit_lib
         return _compare_point_collision_depth_vertical(collider_center, collidee_center);
     }
 
-    collision_direction _rectangle_rectangle_collision_direction(const rectangle& collider, const rectangle& collidee)
+    _collision_direction _rectangle_rectangle__collision_direction(const rectangle& collider, const rectangle& collidee)
     {
         vector<line> collider_lines = lines_from(collider);
         line collider_top_edge = collider_lines[0];
@@ -607,23 +636,23 @@ namespace splashkit_lib
 
         if (left_edge && right_edge && top_edge && bottom_edge) // collidee is equal size of collider
         {
-            return _calculate_containing_collision_direction(collider, collidee);
+            return _calculate_containing__collision_direction(collider, collidee);
         }
         if ((left_edge && right_edge && top_edge) || (top_edge && !(left_edge || right_edge || bottom_edge)))
         {
-            return collision_direction::TOP;
+            return _collision_direction::TOP;
         }
         if ((left_edge && right_edge && bottom_edge) || (bottom_edge && !(left_edge || right_edge || top_edge)))
         {
-            return collision_direction::BOTTOM;
+            return _collision_direction::BOTTOM;
         }
         if ((top_edge && bottom_edge && right_edge) || (right_edge && !(left_edge || top_edge || bottom_edge)))
         {
-            return collision_direction::RIGHT;
+            return _collision_direction::RIGHT;
         }
         if ((top_edge && bottom_edge && left_edge) || (left_edge && !(right_edge || top_edge || bottom_edge)))
         {
-            return collision_direction::LEFT;
+            return _collision_direction::LEFT;
         }
         if (left_edge && right_edge)
         {
@@ -637,23 +666,23 @@ namespace splashkit_lib
         }
         if (left_edge && top_edge)
         {
-            return collision_direction::TOP_LEFT;
+            return _collision_direction::TOP_LEFT;
         }
         if (left_edge && bottom_edge)
         {
-            return collision_direction::BOTTOM_LEFT;
+            return _collision_direction::BOTTOM_LEFT;
         }
         if (right_edge && top_edge)
         {
-            return collision_direction::TOP_RIGHT;
+            return _collision_direction::TOP_RIGHT;
         }
         if (right_edge && bottom_edge)
         {
-            return collision_direction::BOTTOM_RIGHT;
+            return _collision_direction::BOTTOM_RIGHT;
         }
 
         // collider contains collidee or collidee contains collider
-        return _calculate_containing_collision_direction(collider, collidee);
+        return _calculate_containing__collision_direction(collider, collidee);
     }
 
     template <typename T>
@@ -764,18 +793,18 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    collision_direction _calculate_object_collision_direction(const A& collider, const B& collidee)
+    _collision_direction _calculate_object__collision_direction(const A& collider, const B& collidee)
     {
         if (!_test_collision(collider, collidee))
         {
-            return collision_direction::NONE;
+            return _collision_direction::NONE;
         }
 
-        return _rectangle_rectangle_collision_direction(_object_AABB(collider), _object_AABB(collidee));
+        return _rectangle_rectangle__collision_direction(_object_AABB(collider), _object_AABB(collidee));
     }
 
     template <typename T>
-    void _resolve_object_AABB_collision(T& collider, const rectangle& collidee_rect, collision_direction direction)
+    void _resolve_object_AABB_collision(T& collider, const rectangle& collidee_rect, _collision_direction direction)
     {
         // get the intersection rectangle
         rectangle inter = intersection(_object_AABB(collider), collidee_rect);
@@ -787,9 +816,9 @@ namespace splashkit_lib
     template <typename A, typename B>
     bool _resolve_object_collision(A& collider, const B& collidee, vector_2d dir)
     {
-        collision_direction direction = _direction_from_vector(dir);
+        _collision_direction direction = _direction_from_vector(dir);
         
-        if (direction == collision_direction::NONE || !_test_collision(collider, collidee))
+        if (direction == _collision_direction::NONE || !_test_collision(collider, collidee))
         {
             return false;
         }
@@ -1157,129 +1186,129 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const sprite collidee)
+    vector_2d calculate__collision_direction(const sprite collider, const sprite collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const rectangle& collidee)
+    vector_2d calculate__collision_direction(const sprite collider, const rectangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const circle& collidee)
+    vector_2d calculate__collision_direction(const sprite collider, const circle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const triangle& collidee)
+    vector_2d calculate__collision_direction(const sprite collider, const triangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const quad& collidee)
+    vector_2d calculate__collision_direction(const sprite collider, const quad& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const sprite collidee)
+    vector_2d calculate__collision_direction(const rectangle& collider, const sprite collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const rectangle& collidee)
+    vector_2d calculate__collision_direction(const rectangle& collider, const rectangle& collidee)
     {
-        return _vector_from_direction(_rectangle_rectangle_collision_direction(collider, collidee));
+        return _vector_from_direction(_rectangle_rectangle__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const circle& collidee)
+    vector_2d calculate__collision_direction(const rectangle& collider, const circle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const triangle& collidee)
+    vector_2d calculate__collision_direction(const rectangle& collider, const triangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const quad& collidee)
+    vector_2d calculate__collision_direction(const rectangle& collider, const quad& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const sprite collidee)
+    vector_2d calculate__collision_direction(const circle& collider, const sprite collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const rectangle& collidee)
+    vector_2d calculate__collision_direction(const circle& collider, const rectangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const circle& collidee)
+    vector_2d calculate__collision_direction(const circle& collider, const circle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const triangle& collidee)
+    vector_2d calculate__collision_direction(const circle& collider, const triangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const quad& collidee)
+    vector_2d calculate__collision_direction(const circle& collider, const quad& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const sprite collidee)
+    vector_2d calculate__collision_direction(const triangle& collider, const sprite collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const rectangle& collidee)
+    vector_2d calculate__collision_direction(const triangle& collider, const rectangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const circle& collidee)
+    vector_2d calculate__collision_direction(const triangle& collider, const circle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const triangle& collidee)
+    vector_2d calculate__collision_direction(const triangle& collider, const triangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const quad& collidee)
+    vector_2d calculate__collision_direction(const triangle& collider, const quad& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const sprite collidee)
+    vector_2d calculate__collision_direction(const quad& collider, const sprite collidee)
     {   
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const rectangle& collidee)
+    vector_2d calculate__collision_direction(const quad& collider, const rectangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const circle& collidee)
+    vector_2d calculate__collision_direction(const quad& collider, const circle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const triangle& collidee)
+    vector_2d calculate__collision_direction(const quad& collider, const triangle& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const quad& collidee)
+    vector_2d calculate__collision_direction(const quad& collider, const quad& collidee)
     {
-        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
+        return _vector_from_direction(_calculate_object__collision_direction(collider, collidee));
     }
 
     bool resolve_collision(sprite collider, const sprite collidee, const vector_2d& direction)
