@@ -54,86 +54,15 @@ enum class sprite_perimeter_segment
     RIGHT_BOTTOM,
 };
 
-collision_direction direction_from_vector(const vector_2d &v)
-{
-    if (v.x == 0.0 and v.y == 0.0)
-    {
-        return collision_direction::NONE;
-    }
-
-    if (v.x == 0.0)
-    {
-        if (v.y > 0.0)
-        {
-            return collision_direction::BOTTOM;
-        }
-        else
-        {
-            return collision_direction::TOP;
-        }
-    }
-
-    if (v.y == 0.0)
-    {
-        if (v.x > 0.0)
-        {
-            return collision_direction::RIGHT;
-        }
-        else
-        {
-            return collision_direction::LEFT;
-        }
-    }
-
-    if (v.x > 0.0)
-    {
-        if (v.y > 0.0)
-        {
-            return collision_direction::BOTTOM_RIGHT;
-        }
-        else
-        {
-            return collision_direction::TOP_RIGHT;
-        }
-    }
-    else
-    {
-        if (v.y > 0.0)
-        {
-            return collision_direction::BOTTOM_LEFT;
-        }
-        else
-        {
-            return collision_direction::TOP_LEFT;
-        }
-    }
-}
-
-vector_2d vector_from_direction(collision_direction direction)
-{
-    switch (direction)
-    {
-    case collision_direction::TOP:
-        return vector_to(0.0, -1.0);
-    case collision_direction::BOTTOM:
-        return vector_to(0.0, 1.0);
-    case collision_direction::LEFT:
-        return vector_to(-1.0, 0.0);
-    case collision_direction::RIGHT:
-        return vector_to(1.0, 0.0);
-    case collision_direction::TOP_LEFT:
-        return vector_to(-1.0, -1.0);
-    case collision_direction::TOP_RIGHT:
-        return vector_to(1.0, -1.0);
-    case collision_direction::BOTTOM_LEFT:
-        return vector_to(-1.0, 1.0);
-    case collision_direction::BOTTOM_RIGHT:
-        return vector_to(1.0, 1.0);
-    case collision_direction::NONE:
-        return vector_to(0.0, 0.0);
-    }
-    return vector_to(0, 0);
-}
+const vector_2d DIRECTION_TOP = vector_to(0.0, -1.0);
+const vector_2d DIRECTION_BOTTOM = vector_to(0.0, 1.0);
+const vector_2d DIRECTION_LEFT = vector_to(-1.0, 0.0);
+const vector_2d DIRECTION_RIGHT = vector_to(1.0, 0.0);
+const vector_2d DIRECTION_TOP_LEFT = vector_to(-1.0, -1.0);
+const vector_2d DIRECTION_TOP_RIGHT = vector_to(1.0, -1.0);
+const vector_2d DIRECTION_BOTTOM_LEFT = vector_to(-1.0, 1.0);
+const vector_2d DIRECTION_BOTTOM_RIGHT = vector_to(1.0, 1.0);
+const vector_2d DIRECTION_NONE = vector_to(0.0, 0.0);
 
 void draw_rect_perimeter_segment(const rectangle& r, sprite_perimeter_segment segment, color clr, int line_width)
 {
@@ -186,37 +115,45 @@ void draw_rect_perimeter_segments(const rectangle& r, const std::vector<sprite_p
     }
 }
 
-void draw_rect_perimeter_by_collision(const rectangle& r, vector_2d dir, color clr, int line_width)
+void draw_rect_perimeter_by_collision(const rectangle& r, const vector_2d& dir, color clr, int line_width)
 {
-    collision_direction direction = direction_from_vector(dir);
-    
-    switch (direction)
+    if (vectors_equal(dir, DIRECTION_NONE))
     {
-    case collision_direction::TOP:
+        return;
+    }
+
+    if (vectors_equal(dir, DIRECTION_TOP))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_LEFT, sprite_perimeter_segment::TOP_CENTER, sprite_perimeter_segment::TOP_RIGHT}, clr, line_width);
-        break;
-    case collision_direction::BOTTOM:
+    }
+    else if (vectors_equal(dir, DIRECTION_BOTTOM))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_LEFT, sprite_perimeter_segment::BOTTOM_CENTER, sprite_perimeter_segment::BOTTOM_RIGHT}, clr, line_width);
-        break;
-    case collision_direction::LEFT:
+    }
+    else if (vectors_equal(dir, DIRECTION_LEFT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::LEFT_TOP, sprite_perimeter_segment::LEFT_CENTER, sprite_perimeter_segment::LEFT_BOTTOM}, clr, line_width);
-        break;
-    case collision_direction::RIGHT:
+    }
+    else if (vectors_equal(dir, DIRECTION_RIGHT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::RIGHT_TOP, sprite_perimeter_segment::RIGHT_CENTER, sprite_perimeter_segment::RIGHT_BOTTOM}, clr, line_width);
-        break;
-    case collision_direction::TOP_LEFT:
+    }
+    else if (vectors_equal(dir, DIRECTION_TOP_LEFT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_LEFT, sprite_perimeter_segment::LEFT_TOP}, clr, line_width);
-        break;
-    case collision_direction::TOP_RIGHT:
+    }
+    else if (vectors_equal(dir, DIRECTION_TOP_RIGHT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_RIGHT, sprite_perimeter_segment::RIGHT_TOP}, clr, line_width);
-        break;
-    case collision_direction::BOTTOM_LEFT:
+    }
+    else if (vectors_equal(dir, DIRECTION_BOTTOM_LEFT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_LEFT, sprite_perimeter_segment::LEFT_BOTTOM}, clr, line_width);
-        break;
-    case collision_direction::BOTTOM_RIGHT:
+    }
+    else if (vectors_equal(dir, DIRECTION_BOTTOM_RIGHT))
+    {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_RIGHT, sprite_perimeter_segment::RIGHT_BOTTOM}, clr, line_width);
-        break;
-    };
+    }
 }
 
 void sprite_test()
@@ -940,69 +877,69 @@ void multi_object_collision_resolution_test()
 
             if (collider_type == object_type::SPRITE) // sprite vs. fixed sprite objects
             {
-                resolve_and_draw(&collider_sprt, &sprt_TOP, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_sprt, &sprt_BOTTOM, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_sprt, &sprt_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_sprt, &sprt_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_sprt, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_sprt, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_sprt, &sprt_TOP, collider_type, object_type::SPRITE, DIRECTION_TOP);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM, collider_type, object_type::SPRITE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_sprt, &sprt_LEFT, collider_type, object_type::SPRITE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_RIGHT, collider_type, object_type::SPRITE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_sprt, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_RIGHT);
 
                 draw_sprite(collider_sprt);
                 draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
             }
             else if (collider_type == object_type::RECTANGLE) // rect vs. fixed sprite objects
             {
-                resolve_and_draw(&collider_rect, &sprt_TOP, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_rect, &sprt_BOTTOM, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_rect, &sprt_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_rect, &sprt_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_rect, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_rect, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_rect, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_rect, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_rect, &sprt_TOP, collider_type, object_type::SPRITE, DIRECTION_TOP);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM, collider_type, object_type::SPRITE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_rect, &sprt_LEFT, collider_type, object_type::SPRITE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_rect, &sprt_RIGHT, collider_type, object_type::SPRITE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_rect, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_rect, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_rectangle(COLOR_ORANGE, collider_rect);
             }
             else if (collider_type == object_type::CIRCLE) // circle vs. fixed sprite objects
             {
-                resolve_and_draw(&collider_circ, &sprt_TOP, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_circ, &sprt_BOTTOM, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_circ, &sprt_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_circ, &sprt_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_circ, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_circ, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_circ, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_circ, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_circ, &sprt_TOP, collider_type, object_type::SPRITE, DIRECTION_TOP);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM, collider_type, object_type::SPRITE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_circ, &sprt_LEFT, collider_type, object_type::SPRITE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_circ, &sprt_RIGHT, collider_type, object_type::SPRITE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_circ, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_circ, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_circle(COLOR_ORANGE, collider_circ);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
             }
             else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed sprite objects
             {
-                resolve_and_draw(&collider_tri, &sprt_TOP, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_tri, &sprt_BOTTOM, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_tri, &sprt_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_tri, &sprt_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_tri, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_tri, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_tri, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_tri, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_tri, &sprt_TOP, collider_type, object_type::SPRITE, DIRECTION_TOP);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM, collider_type, object_type::SPRITE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_tri, &sprt_LEFT, collider_type, object_type::SPRITE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_tri, &sprt_RIGHT, collider_type, object_type::SPRITE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_tri, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_tri, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_triangle(COLOR_ORANGE, collider_tri);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
             }
             else if (collider_type == object_type::QUAD) // quad vs. fixed sprite objects
             {
-                resolve_and_draw(&collider_quad, &sprt_TOP, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_quad, &sprt_BOTTOM, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_quad, &sprt_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_quad, &sprt_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_quad, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_quad, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_quad, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_quad, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_quad, &sprt_TOP, collider_type, object_type::SPRITE, DIRECTION_TOP);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM, collider_type, object_type::SPRITE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_quad, &sprt_LEFT, collider_type, object_type::SPRITE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_quad, &sprt_RIGHT, collider_type, object_type::SPRITE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_quad, &sprt_TOP_LEFT, collider_type, object_type::SPRITE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_quad, &sprt_TOP_RIGHT, collider_type, object_type::SPRITE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM_LEFT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &sprt_BOTTOM_RIGHT, collider_type, object_type::SPRITE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_quad(COLOR_ORANGE, collider_quad);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
@@ -1021,69 +958,69 @@ void multi_object_collision_resolution_test()
 
             if (collider_type == object_type::SPRITE) // sprite vs. fixed rectangle objects
             {
-                resolve_and_draw(&collider_sprt, &rect_TOP, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_sprt, &rect_BOTTOM, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_sprt, &rect_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_sprt, &rect_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_sprt, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_sprt, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_sprt, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_sprt, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_sprt, &rect_TOP, collider_type, object_type::RECTANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_sprt, &rect_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_sprt, &rect_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_sprt, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 draw_sprite(collider_sprt);
                 draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
             }
             else if (collider_type == object_type::RECTANGLE) // rect vs. fixed rectangle objects
             {
-                resolve_and_draw(&collider_rect, &rect_TOP, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_rect, &rect_BOTTOM, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_rect, &rect_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_rect, &rect_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_rect, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_rect, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_rect, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_rect, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_rect, &rect_TOP, collider_type, object_type::RECTANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_rect, &rect_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_rect, &rect_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_rect, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_rect, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_rectangle(COLOR_ORANGE, collider_rect);
             }
             else if (collider_type == object_type::CIRCLE) // circle vs. fixed rectangle objects
             {
-                resolve_and_draw(&collider_circ, &rect_TOP, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_circ, &rect_BOTTOM, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_circ, &rect_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_circ, &rect_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_circ, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_circ, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_circ, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_circ, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_circ, &rect_TOP, collider_type, object_type::RECTANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_circ, &rect_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_circ, &rect_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_circ, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_circ, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_circle(COLOR_ORANGE, collider_circ);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
             }
             else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed rectangle objects
             {
-                resolve_and_draw(&collider_tri, &rect_TOP, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_tri, &rect_BOTTOM, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_tri, &rect_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_tri, &rect_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_tri, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_tri, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_tri, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_tri, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_tri, &rect_TOP, collider_type, object_type::RECTANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_tri, &rect_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_tri, &rect_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_tri, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_tri, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_triangle(COLOR_ORANGE, collider_tri);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
             }
             else if (collider_type == object_type::QUAD) // quad vs. fixed rectangle objects
             {
-                resolve_and_draw(&collider_quad, &rect_TOP, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_quad, &rect_BOTTOM, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_quad, &rect_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_quad, &rect_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_quad, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_quad, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_quad, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_quad, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_quad, &rect_TOP, collider_type, object_type::RECTANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_quad, &rect_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_quad, &rect_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_quad, &rect_TOP_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_quad, &rect_TOP_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM_LEFT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &rect_BOTTOM_RIGHT, collider_type, object_type::RECTANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_quad(COLOR_ORANGE, collider_quad);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
@@ -1102,69 +1039,69 @@ void multi_object_collision_resolution_test()
 
             if (collider_type == object_type::SPRITE) // sprite vs. fixed circle objects
             {
-                resolve_and_draw(&collider_sprt, &circ_TOP, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_sprt, &circ_BOTTOM, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_sprt, &circ_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_sprt, &circ_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_sprt, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_sprt, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_sprt, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_sprt, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_sprt, &circ_TOP, collider_type, object_type::CIRCLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_sprt, &circ_LEFT, collider_type, object_type::CIRCLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_sprt, &circ_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_sprt, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_RIGHT);
 
                 draw_sprite(collider_sprt);
                 draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
             }
             else if (collider_type == object_type::RECTANGLE) // rect vs. fixed circle objects
             {
-                resolve_and_draw(&collider_rect, &circ_TOP, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_rect, &circ_BOTTOM, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_rect, &circ_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_rect, &circ_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_rect, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_rect, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_rect, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_rect, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_rect, &circ_TOP, collider_type, object_type::CIRCLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_rect, &circ_LEFT, collider_type, object_type::CIRCLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_rect, &circ_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_rect, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_rect, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_rectangle(COLOR_ORANGE, collider_rect);
             }
             else if (collider_type == object_type::CIRCLE) // circle vs. fixed circle objects
             {
-                resolve_and_draw(&collider_circ, &circ_TOP, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_circ, &circ_BOTTOM, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_circ, &circ_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_circ, &circ_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_circ, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_circ, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_circ, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_circ, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_circ, &circ_TOP, collider_type, object_type::CIRCLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_circ, &circ_LEFT, collider_type, object_type::CIRCLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_circ, &circ_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_circ, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_circ, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_circle(COLOR_ORANGE, collider_circ);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
             }
             else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed circle objects
             {
-                resolve_and_draw(&collider_tri, &circ_TOP, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_tri, &circ_BOTTOM, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_tri, &circ_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_tri, &circ_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_tri, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_tri, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_tri, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_tri, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_tri, &circ_TOP, collider_type, object_type::CIRCLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_tri, &circ_LEFT, collider_type, object_type::CIRCLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_tri, &circ_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_tri, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_tri, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_triangle(COLOR_ORANGE, collider_tri);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
             }
             else if (collider_type == object_type::QUAD) // quad vs. fixed circle objects
             {
-                resolve_and_draw(&collider_quad, &circ_TOP, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_quad, &circ_BOTTOM, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_quad, &circ_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_quad, &circ_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_quad, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_quad, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_quad, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_quad, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_quad, &circ_TOP, collider_type, object_type::CIRCLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_quad, &circ_LEFT, collider_type, object_type::CIRCLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_quad, &circ_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_quad, &circ_TOP_LEFT, collider_type, object_type::CIRCLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_quad, &circ_TOP_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM_LEFT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &circ_BOTTOM_RIGHT, collider_type, object_type::CIRCLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_quad(COLOR_ORANGE, collider_quad);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
@@ -1183,69 +1120,69 @@ void multi_object_collision_resolution_test()
 
             if (collider_type == object_type::SPRITE) // sprite vs. fixed triangle objects
             {
-                resolve_and_draw(&collider_sprt, &tri_TOP, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_sprt, &tri_BOTTOM, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_sprt, &tri_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_sprt, &tri_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_sprt, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_sprt, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_sprt, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_sprt, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_sprt, &tri_TOP, collider_type, object_type::TRIANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_sprt, &tri_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_sprt, &tri_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_sprt, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 draw_sprite(collider_sprt);
                 draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
             }
             else if (collider_type == object_type::RECTANGLE) // rect vs. fixed triangle objects
             {
-                resolve_and_draw(&collider_rect, &tri_TOP, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_rect, &tri_BOTTOM, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_rect, &tri_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_rect, &tri_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_rect, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_rect, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_rect, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_rect, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_rect, &tri_TOP, collider_type, object_type::TRIANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_rect, &tri_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_rect, &tri_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_rect, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_rect, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_rectangle(COLOR_ORANGE, collider_rect);
             }
             else if (collider_type == object_type::CIRCLE) // circle vs. fixed triangle objects
             {
-                resolve_and_draw(&collider_circ, &tri_TOP, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_circ, &tri_BOTTOM, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_circ, &tri_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_circ, &tri_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_circ, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_circ, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_circ, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_circ, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_circ, &tri_TOP, collider_type, object_type::TRIANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_circ, &tri_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_circ, &tri_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_circ, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_circ, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_circle(COLOR_ORANGE, collider_circ);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
             }
             else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed triangle objects
             {
-                resolve_and_draw(&collider_tri, &tri_TOP, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_tri, &tri_BOTTOM, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_tri, &tri_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_tri, &tri_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_tri, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_tri, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_tri, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_tri, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_tri, &tri_TOP, collider_type, object_type::TRIANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_tri, &tri_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_tri, &tri_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_tri, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_tri, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_triangle(COLOR_ORANGE, collider_tri);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
             }
             else if (collider_type == object_type::QUAD) // quad vs. fixed triangle objects
             {
-                resolve_and_draw(&collider_quad, &tri_TOP, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_quad, &tri_BOTTOM, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_quad, &tri_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_quad, &tri_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_quad, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_quad, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_quad, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_quad, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_quad, &tri_TOP, collider_type, object_type::TRIANGLE, DIRECTION_TOP);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_quad, &tri_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_LEFT);
+                resolve_and_draw(&collider_quad, &tri_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_quad, &tri_TOP_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_quad, &tri_TOP_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM_LEFT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &tri_BOTTOM_RIGHT, collider_type, object_type::TRIANGLE, DIRECTION_BOTTOM_RIGHT);
 
                 fill_quad(COLOR_ORANGE, collider_quad);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
@@ -1264,69 +1201,69 @@ void multi_object_collision_resolution_test()
 
             if (collider_type == object_type::SPRITE) // sprite vs. fixed quad objects
             {
-                resolve_and_draw(&collider_sprt, &quad_TOP, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_sprt, &quad_BOTTOM, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_sprt, &quad_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_sprt, &quad_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_sprt, &quad_TOP_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_sprt, &quad_TOP_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_sprt, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_sprt, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_sprt, &quad_TOP, collider_type, object_type::QUAD, DIRECTION_TOP);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM, collider_type, object_type::QUAD, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_sprt, &quad_LEFT, collider_type, object_type::QUAD, DIRECTION_LEFT);
+                resolve_and_draw(&collider_sprt, &quad_RIGHT, collider_type, object_type::QUAD, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_sprt, &quad_TOP_LEFT, collider_type, object_type::QUAD, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_sprt, &quad_TOP_RIGHT, collider_type, object_type::QUAD, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_sprt, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_RIGHT);
 
                 draw_sprite(collider_sprt);
                 draw_rectangle(COLOR_GREEN, sprite_collision_rectangle(collider_sprt));
             }
             else if (collider_type == object_type::RECTANGLE) // rect vs. fixed quad objects
             {
-                resolve_and_draw(&collider_rect, &quad_TOP, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_rect, &quad_BOTTOM, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_rect, &quad_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_rect, &quad_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_rect, &quad_TOP_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_rect, &quad_TOP_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_rect, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_rect, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_rect, &quad_TOP, collider_type, object_type::QUAD, DIRECTION_TOP);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM, collider_type, object_type::QUAD, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_rect, &quad_LEFT, collider_type, object_type::QUAD, DIRECTION_LEFT);
+                resolve_and_draw(&collider_rect, &quad_RIGHT, collider_type, object_type::QUAD, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_rect, &quad_TOP_LEFT, collider_type, object_type::QUAD, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_rect, &quad_TOP_RIGHT, collider_type, object_type::QUAD, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_rect, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_RIGHT);
 
                 fill_rectangle(COLOR_ORANGE, collider_rect);
             }
             else if (collider_type == object_type::CIRCLE) // circle vs. fixed quad objects
             {
-                resolve_and_draw(&collider_circ, &quad_TOP, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_circ, &quad_BOTTOM, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_circ, &quad_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_circ, &quad_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_circ, &quad_TOP_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_circ, &quad_TOP_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_circ, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_circ, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_circ, &quad_TOP, collider_type, object_type::QUAD, DIRECTION_TOP);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM, collider_type, object_type::QUAD, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_circ, &quad_LEFT, collider_type, object_type::QUAD, DIRECTION_LEFT);
+                resolve_and_draw(&collider_circ, &quad_RIGHT, collider_type, object_type::QUAD, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_circ, &quad_TOP_LEFT, collider_type, object_type::QUAD, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_circ, &quad_TOP_RIGHT, collider_type, object_type::QUAD, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_circ, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_RIGHT);
 
                 fill_circle(COLOR_ORANGE, collider_circ);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_circ));
             }
             else if (collider_type == object_type::TRIANGLE) // triangle vs. fixed quad objects
             {
-                resolve_and_draw(&collider_tri, &quad_TOP, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_tri, &quad_BOTTOM, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_tri, &quad_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_tri, &quad_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_tri, &quad_TOP_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_tri, &quad_TOP_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_tri, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_tri, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_tri, &quad_TOP, collider_type, object_type::QUAD, DIRECTION_TOP);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM, collider_type, object_type::QUAD, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_tri, &quad_LEFT, collider_type, object_type::QUAD, DIRECTION_LEFT);
+                resolve_and_draw(&collider_tri, &quad_RIGHT, collider_type, object_type::QUAD, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_tri, &quad_TOP_LEFT, collider_type, object_type::QUAD, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_tri, &quad_TOP_RIGHT, collider_type, object_type::QUAD, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_tri, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_RIGHT);
 
                 fill_triangle(COLOR_ORANGE, collider_tri);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_tri));
             }
             else if (collider_type == object_type::QUAD) // quad vs. fixed quad objects
             {
-                resolve_and_draw(&collider_quad, &quad_TOP, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP));
-                resolve_and_draw(&collider_quad, &quad_BOTTOM, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM));
-                resolve_and_draw(&collider_quad, &quad_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::LEFT));
-                resolve_and_draw(&collider_quad, &quad_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::RIGHT));
-                resolve_and_draw(&collider_quad, &quad_TOP_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_LEFT));
-                resolve_and_draw(&collider_quad, &quad_TOP_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::TOP_RIGHT));
-                resolve_and_draw(&collider_quad, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_LEFT));
-                resolve_and_draw(&collider_quad, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, vector_from_direction(collision_direction::BOTTOM_RIGHT));
+                resolve_and_draw(&collider_quad, &quad_TOP, collider_type, object_type::QUAD, DIRECTION_TOP);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM, collider_type, object_type::QUAD, DIRECTION_BOTTOM);
+                resolve_and_draw(&collider_quad, &quad_LEFT, collider_type, object_type::QUAD, DIRECTION_LEFT);
+                resolve_and_draw(&collider_quad, &quad_RIGHT, collider_type, object_type::QUAD, DIRECTION_RIGHT);
+                resolve_and_draw(&collider_quad, &quad_TOP_LEFT, collider_type, object_type::QUAD, DIRECTION_TOP_LEFT);
+                resolve_and_draw(&collider_quad, &quad_TOP_RIGHT, collider_type, object_type::QUAD, DIRECTION_TOP_RIGHT);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM_LEFT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_LEFT);
+                resolve_and_draw(&collider_quad, &quad_BOTTOM_RIGHT, collider_type, object_type::QUAD, DIRECTION_BOTTOM_RIGHT);
 
                 fill_quad(COLOR_ORANGE, collider_quad);
                 draw_rectangle(COLOR_GREEN, rectangle_around(collider_quad));
