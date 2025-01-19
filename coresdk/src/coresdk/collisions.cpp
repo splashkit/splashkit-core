@@ -160,6 +160,87 @@ namespace splashkit_lib
                                     });
     }
 
+    collision_direction _direction_from_vector(const vector_2d &v)
+    {
+        if (v.x == 0.0 and v.y == 0.0)
+        {
+            return collision_direction::NONE;
+        }
+
+        if (v.x == 0.0)
+        {
+            if (v.y > 0.0)
+            {
+                return collision_direction::BOTTOM;
+            }
+            else
+            {
+                return collision_direction::TOP;
+            }
+        }
+
+        if (v.y == 0.0)
+        {
+            if (v.x > 0.0)
+            {
+                return collision_direction::RIGHT;
+            }
+            else
+            {
+                return collision_direction::LEFT;
+            }
+        }
+
+        if (v.x > 0.0)
+        {
+            if (v.y > 0.0)
+            {
+                return collision_direction::BOTTOM_RIGHT;
+            }
+            else
+            {
+                return collision_direction::TOP_RIGHT;
+            }
+        }
+        else
+        {
+            if (v.y > 0.0)
+            {
+                return collision_direction::BOTTOM_LEFT;
+            }
+            else
+            {
+                return collision_direction::TOP_LEFT;
+            }
+        }
+    }
+
+    vector_2d _vector_from_direction(collision_direction direction)
+    {
+        switch (direction)
+        {
+        case collision_direction::TOP:
+            return vector_to(0.0, -1.0);
+        case collision_direction::BOTTOM:
+            return vector_to(0.0, 1.0);
+        case collision_direction::LEFT:
+            return vector_to(-1.0, 0.0);
+        case collision_direction::RIGHT:
+            return vector_to(1.0, 0.0);
+        case collision_direction::TOP_LEFT:
+            return vector_to(-1.0, -1.0);
+        case collision_direction::TOP_RIGHT:
+            return vector_to(1.0, -1.0);
+        case collision_direction::BOTTOM_LEFT:
+            return vector_to(-1.0, 1.0);
+        case collision_direction::BOTTOM_RIGHT:
+            return vector_to(1.0, 1.0);
+        case collision_direction::NONE:
+            return vector_to(0.0, 0.0);
+        }
+        return vector_to(0, 0);
+    }
+
     _obj_movement_direction _opposite_direction(_obj_movement_direction direction)
     {
         switch (direction)
@@ -704,8 +785,10 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    bool _resolve_object_collision(A& collider, const B& collidee, collision_direction direction)
+    bool _resolve_object_collision(A& collider, const B& collidee, vector_2d dir)
     {
+        collision_direction direction = _direction_from_vector(dir);
+        
         if (direction == collision_direction::NONE || !_test_collision(collider, collidee))
         {
             return false;
@@ -1074,252 +1157,252 @@ namespace splashkit_lib
         return bitmap_collision(bmp1, 0, translation_matrix(x1, y1), bmp2, 0, translation_matrix(x2, y2));
     }
 
-    collision_direction calculate_collision_direction(const sprite collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const sprite collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const sprite collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const rectangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const sprite collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const circle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const sprite collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const triangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const sprite collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const quad& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const rectangle& collider, const sprite collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const rectangle& collider, const rectangle& collidee)
     {
-        return _rectangle_rectangle_collision_direction(collider, collidee);
+        return _vector_from_direction(_rectangle_rectangle_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const rectangle& collider, const circle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const rectangle& collider, const triangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const rectangle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const rectangle& collider, const quad& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const circle& collider, const sprite collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const circle& collider, const rectangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const circle& collider, const circle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const circle& collider, const triangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const circle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const circle& collider, const quad& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const triangle& collider, const sprite collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const triangle& collider, const rectangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const triangle& collider, const circle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const triangle& collider, const triangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const triangle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const triangle& collider, const quad& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const quad& collider, const sprite collidee)
     {   
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const quad& collider, const rectangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const quad& collider, const circle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const quad& collider, const triangle& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    collision_direction calculate_collision_direction(const quad& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const quad& collider, const quad& collidee)
     {
-        return _calculate_object_collision_direction(collider, collidee);
+        return _vector_from_direction(_calculate_object_collision_direction(collider, collidee));
     }
 
-    bool resolve_collision(sprite collider, const sprite collidee, collision_direction direction)
-    {
-        return _resolve_object_collision(collider, collidee, direction);
-    }
-
-    bool resolve_collision(sprite collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(sprite collider, const sprite collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(sprite collider, const rectangle& collidee, const vector_2d& direction)
+    {
+        return _resolve_object_collision(collider, collidee, direction);
+    }
+
+    bool resolve_collision(sprite collider, const circle& collidee, const vector_2d& direction)
     {  
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(sprite collider, const triangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(sprite collider, const quad& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const sprite collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const sprite collidee, const vector_2d& direction)
     {  
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const rectangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const circle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const triangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(rectangle& collider, const quad& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const sprite collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const sprite collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const rectangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const circle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const triangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(circle& collider, const quad& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const sprite collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const sprite collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const rectangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const circle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const triangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(triangle& collider, const quad& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const sprite collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const sprite collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const rectangle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const rectangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const circle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const circle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const triangle& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const triangle& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const quad& collidee, collision_direction direction)
+    bool resolve_collision(quad& collider, const quad& collidee, const vector_2d& direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
