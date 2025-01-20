@@ -690,7 +690,7 @@ namespace splashkit_lib
      * @param collider  The sprite that is colliding
      * @param collidee  The sprite that is being collided with
      * @return          The direction of the collision relative to the collider sprite,
-     *                  expressed as a vector. If the sprites are not colliding,
+     *                  expressed as a unit vector. If the sprites are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
@@ -706,7 +706,7 @@ namespace splashkit_lib
      * @param collider  The sprite that is colliding
      * @param collidee  The rectangle that is being collided with
      * @return          The direction of the collision relative to the sprite,
-     *                  expressed as a vector. If the sprite and rectangle are not colliding,
+     *                  expressed as a unit vector. If the sprite and rectangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
@@ -722,7 +722,7 @@ namespace splashkit_lib
      * @param collider  The sprite that is colliding
      * @param collidee  The circle that is being collided with
      * @return          The direction of the collision relative to the sprite,
-     *                  expressed as a vector. If the sprite and circle are not colliding,
+     *                  expressed as a unit vector. If the sprite and circle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
@@ -738,7 +738,7 @@ namespace splashkit_lib
      * @param collider  The sprite that is colliding
      * @param collidee  The triangle that is being collided with
      * @return          The direction of the collision relative to the sprite,
-     *                  expressed as a vector. If the sprite and triangle are not colliding,
+     *                  expressed as a unit vector. If the sprite and triangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
@@ -754,7 +754,7 @@ namespace splashkit_lib
      * @param collider  The sprite that is colliding
      * @param collidee  The quad that is being collided with
      * @return          The direction of the collision relative to the sprite,
-     *                  expressed as a vector. If the sprite and quad are not colliding,
+     *                  expressed as a unit vector. If the sprite and quad are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     sprite
@@ -770,7 +770,7 @@ namespace splashkit_lib
      * @param collider  The rectangle that is colliding
      * @param collidee  The sprite that is being collided with
      * @return          The direction of the collision relative to the rectangle,
-     *                  expressed as a vector. If the rectangle and sprite are not colliding,
+     *                  expressed as a unit vector. If the rectangle and sprite are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
@@ -786,7 +786,7 @@ namespace splashkit_lib
      * @param collider  The rectangle that is colliding
      * @param collidee  The rectangle that is being collided with
      * @return          The direction of the collision relative to the collider rectangle,
-     *                  expressed as a vector. If the rectangles are not colliding, this function
+     *                  expressed as a unit vector. If the rectangles are not colliding, this function
      *                  will return a zero vector.
      * 
      * @attribute class     rectangle
@@ -802,7 +802,7 @@ namespace splashkit_lib
      * @param collider  The rectangle that is colliding
      * @param collidee  The circle that is being collided with
      * @return          The direction of the collision relative to the rectangle,
-     *                  expressed as a vector. If the rectangle and circle are not colliding,
+     *                  expressed as a unit vector. If the rectangle and circle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
@@ -818,7 +818,7 @@ namespace splashkit_lib
      * @param collider  The rectangle that is colliding
      * @param collidee  The triangle that is being collided with
      * @return          The direction of the collision relative to the rectangle,
-     *                  expressed as a vector. If the rectangle and triangle are not colliding,
+     *                  expressed as a unit vector. If the rectangle and triangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
@@ -834,7 +834,7 @@ namespace splashkit_lib
      * @param collider  The rectangle that is colliding
      * @param collidee  The quad that is being collided with
      * @return          The direction of the collision relative to the rectangle,
-     *                  expressed as a vector. If the rectangle and quad are not colliding,
+     *                  expressed as a unit vector. If the rectangle and quad are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     rectangle
@@ -850,7 +850,7 @@ namespace splashkit_lib
      * @param collider  The circle that is colliding
      * @param collidee  The sprite that is being collided with
      * @return          The direction of the collision relative to the circle,
-     *                  expressed as a vector. If the circle and sprite are not colliding,
+     *                  expressed as a unit vector. If the circle and sprite are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     circle
@@ -866,7 +866,7 @@ namespace splashkit_lib
      * @param collider  The circle that is colliding
      * @param collidee  The rectangle that is being collided with
      * @return          The direction of the collision relative to the circle,
-     *                  expressed as a vector. If the circle and rectangle are not colliding,
+     *                  expressed as a unit vector. If the circle and rectangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     circle
@@ -882,7 +882,7 @@ namespace splashkit_lib
      * @param collider  The circle that is colliding
      * @param collidee  The circle that is being collided with
      * @return          The direction of the collision relative to the collider circle,
-     *                  expressed as a vector. If the circles are not colliding, this function
+     *                  expressed as a unit vector. If the circles are not colliding, this function
      *                  will return a zero vector.
      * 
      * @attribute class     circle
@@ -898,7 +898,7 @@ namespace splashkit_lib
      * @param collider  The circle that is colliding
      * @param collidee  The triangle that is being collided with
      * @return          The direction of the collision relative to the circle,
-     *                  expressed as a vector. If the circle and triangle are not colliding,
+     *                  expressed as a unit vector. If the circle and triangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     circle
@@ -914,7 +914,7 @@ namespace splashkit_lib
      * @param collider  The circle that is colliding
      * @param collidee  The quad that is being collided with
      * @return          The direction of the collision relative to the circle,
-     *                  expressed as a vector. If the circle and quad are not colliding,
+     *                  expressed as a unit vector. If the circle and quad are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     circle
@@ -930,7 +930,7 @@ namespace splashkit_lib
      * @param collider  The triangle that is colliding
      * @param collidee  The sprite that is being collided with
      * @return          The direction of the collision relative to the triangle,
-     *                  expressed as a vector. If the triangle and sprite are not colliding,
+     *                  expressed as a unit vector. If the triangle and sprite are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
@@ -946,7 +946,7 @@ namespace splashkit_lib
      * @param collider  The triangle that is colliding
      * @param collidee  The rectangle that is being collided with
      * @return          The direction of the collision relative to the triangle,
-     *                  expressed as a vector. If the triangle and rectangle are not colliding,
+     *                  expressed as a unit vector. If the triangle and rectangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
@@ -962,7 +962,7 @@ namespace splashkit_lib
      * @param collider  The triangle that is colliding
      * @param collidee  The circle that is being collided with
      * @return          The direction of the collision relative to the triangle,
-     *                  expressed as a vector. If the triangle and circle are not colliding,
+     *                  expressed as a unit vector. If the triangle and circle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
@@ -978,7 +978,7 @@ namespace splashkit_lib
      * @param collider  The triangle that is colliding
      * @param collidee  The triangle that is being collided with
      * @return          The direction of the collision relative to the collider triangle,
-     *                  expressed as a vector. If the triangles are not colliding, this function
+     *                  expressed as a unit vector. If the triangles are not colliding, this function
      *                  will return a zero vector.
      * 
      * @attribute class     triangle
@@ -994,7 +994,7 @@ namespace splashkit_lib
      * @param collider  The triangle that is colliding
      * @param collidee  The quad that is being collided with
      * @return          The direction of the collision relative to the triangle,
-     *                  expressed as a vector. If the triangle and quad are not colliding,
+     *                  expressed as a unit vector. If the triangle and quad are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     triangle
@@ -1010,7 +1010,7 @@ namespace splashkit_lib
      * @param collider  The quad that is colliding
      * @param collidee  The sprite that is being collided with
      * @return          The direction of the collision relative to the quad,
-     *                  expressed as a vector. If the quad and sprite are not colliding,
+     *                  expressed as a unit vector. If the quad and sprite are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     quad
@@ -1026,7 +1026,7 @@ namespace splashkit_lib
      * @param collider  The quad that is colliding
      * @param collidee  The rectangle that is being collided with
      * @return          The direction of the collision relative to the quad,
-     *                  expressed as a vector. If the quad and rectangle are not colliding,
+     *                  expressed as a unit vector. If the quad and rectangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     quad
@@ -1042,7 +1042,7 @@ namespace splashkit_lib
      * @param collider  The quad that is colliding
      * @param collidee  The circle that is being collided with
      * @return          The direction of the collision relative to the quad,
-     *                  expressed as a vector. If the quad and circle are not colliding,
+     *                  expressed as a unit vector. If the quad and circle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     quad
@@ -1058,7 +1058,7 @@ namespace splashkit_lib
      * @param collider  The quad that is colliding
      * @param collidee  The triangle that is being collided with
      * @return          The direction of the collision relative to the quad,
-     *                  expressed as a vector. If the quad and triangle are not colliding,
+     *                  expressed as a unit vector. If the quad and triangle are not colliding,
      *                  this function will return a zero vector.
      * 
      * @attribute class     quad
@@ -1074,7 +1074,7 @@ namespace splashkit_lib
      * @param collider  The quad that is colliding
      * @param collidee  The quad that is being collided with
      * @return          The direction of the collision relative to the collider quad,
-     *                  expressed as a vector. If the quads are not colliding, this function
+     *                  expressed as a unit vector. If the quads are not colliding, this function
      *                  will return a zero vector.
      * 
      * @attribute class     quad
