@@ -58,10 +58,10 @@ const vector_2d DIRECTION_TOP = vector_to(0.0, -1.0);
 const vector_2d DIRECTION_BOTTOM = vector_to(0.0, 1.0);
 const vector_2d DIRECTION_LEFT = vector_to(-1.0, 0.0);
 const vector_2d DIRECTION_RIGHT = vector_to(1.0, 0.0);
-const vector_2d DIRECTION_TOP_LEFT = vector_to(-1.0, -1.0);
-const vector_2d DIRECTION_TOP_RIGHT = vector_to(1.0, -1.0);
-const vector_2d DIRECTION_BOTTOM_LEFT = vector_to(-1.0, 1.0);
-const vector_2d DIRECTION_BOTTOM_RIGHT = vector_to(1.0, 1.0);
+const vector_2d DIRECTION_TOP_LEFT = unit_vector(vector_to(-1.0, -1.0));
+const vector_2d DIRECTION_TOP_RIGHT = unit_vector(vector_to(1.0, -1.0));
+const vector_2d DIRECTION_BOTTOM_LEFT = unit_vector(vector_to(-1.0, 1.0));
+const vector_2d DIRECTION_BOTTOM_RIGHT = unit_vector(vector_to(1.0, 1.0));
 const vector_2d DIRECTION_NONE = vector_to(0.0, 0.0);
 
 void draw_rect_perimeter_segment(const rectangle& r, sprite_perimeter_segment segment, color clr, int line_width)
@@ -117,40 +117,40 @@ void draw_rect_perimeter_segments(const rectangle& r, const std::vector<sprite_p
 
 void draw_rect_perimeter_by_collision(const rectangle& r, const vector_2d& dir, color clr, int line_width)
 {
-    if (vectors_equal(dir, DIRECTION_NONE))
+    if (dir.x == DIRECTION_NONE.x && dir.y == DIRECTION_NONE.y)
     {
         return;
     }
 
-    if (vectors_equal(dir, DIRECTION_TOP))
+    if (dir.x == DIRECTION_TOP.x && dir.y == DIRECTION_TOP.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_LEFT, sprite_perimeter_segment::TOP_CENTER, sprite_perimeter_segment::TOP_RIGHT}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_BOTTOM))
+    else if (dir.x == DIRECTION_BOTTOM.x && dir.y == DIRECTION_BOTTOM.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_LEFT, sprite_perimeter_segment::BOTTOM_CENTER, sprite_perimeter_segment::BOTTOM_RIGHT}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_LEFT))
+    else if (dir.x == DIRECTION_LEFT.x && dir.y == DIRECTION_LEFT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::LEFT_TOP, sprite_perimeter_segment::LEFT_CENTER, sprite_perimeter_segment::LEFT_BOTTOM}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_RIGHT))
+    else if (dir.x == DIRECTION_RIGHT.x && dir.y == DIRECTION_RIGHT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::RIGHT_TOP, sprite_perimeter_segment::RIGHT_CENTER, sprite_perimeter_segment::RIGHT_BOTTOM}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_TOP_LEFT))
+    else if (dir.x == DIRECTION_TOP_LEFT.x && dir.y == DIRECTION_TOP_LEFT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_LEFT, sprite_perimeter_segment::LEFT_TOP}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_TOP_RIGHT))
+    else if (dir.x == DIRECTION_TOP_RIGHT.x && dir.y == DIRECTION_TOP_RIGHT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::TOP_RIGHT, sprite_perimeter_segment::RIGHT_TOP}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_BOTTOM_LEFT))
+    else if (dir.x == DIRECTION_BOTTOM_LEFT.x && dir.y == DIRECTION_BOTTOM_LEFT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_LEFT, sprite_perimeter_segment::LEFT_BOTTOM}, clr, line_width);
     }
-    else if (vectors_equal(dir, DIRECTION_BOTTOM_RIGHT))
+    else if (dir.x == DIRECTION_BOTTOM_RIGHT.x && dir.y == DIRECTION_BOTTOM_RIGHT.y)
     {
         draw_rect_perimeter_segments(r, {sprite_perimeter_segment::BOTTOM_RIGHT, sprite_perimeter_segment::RIGHT_BOTTOM}, clr, line_width);
     }
@@ -348,7 +348,7 @@ void reset_quad(quad &q)
 void resolve_and_draw(void* collider, const void* collidee,  object_type collider_type,
                                 object_type collidee_type, vector_2d direction)
 {
-    if (direction.x == 0.0 and direction.y == 0.0)
+    if (is_zero_vector(direction))
     {
         return;
     }

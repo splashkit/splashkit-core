@@ -37,22 +37,6 @@ namespace splashkit_lib
         NONE,
     };
 
-    /**
-     *  This enumeration contains a list of directions that an
-     *  object can collide with another object. For example, a
-     *  collider object which is colliding with another object
-     *  on its top edge would have a collision direction of TOP.
-     *  
-     *  @constant TOP           The top of the object
-     *  @constant BOTTOM        The bottom of the object
-     *  @constant LEFT          The left of the object
-     *  @constant RIGHT         The right of the object
-     *  @constant TOP_LEFT      The top left of the object
-     *  @constant TOP_RIGHT     The top right of the object
-     *  @constant BOTTOM_LEFT   The bottom left of the object
-     *  @constant BOTTOM_RIGHT  The bottom right of the object
-     *  @constant NONE          No collision
-     */
     enum _collision_direction
     {
         TOP,
@@ -191,57 +175,45 @@ namespace splashkit_lib
 
     _collision_direction _direction_from_vector(const vector_2d &v)
     {
-        if (v.x == 0.0 and v.y == 0.0)
+        if (is_zero_vector(v))
         {
             return _collision_direction::NONE;
         }
 
-        if (v.x == 0.0)
-        {
-            if (v.y > 0.0)
-            {
-                return _collision_direction::BOTTOM;
-            }
-            else
-            {
-                return _collision_direction::TOP;
-            }
-        }
+        vector_2d unit_v = unit_vector(v);
+        double angle = vector_angle(unit_v);
 
-        if (v.y == 0.0)
+        // North: -90, East: 0, South: 90, West: 180
+        // split into 8 directions
+        if (angle <= -67.5 && angle >= -112.5)
         {
-            if (v.x > 0.0)
-            {
-                return _collision_direction::RIGHT;
-            }
-            else
-            {
-                return _collision_direction::LEFT;
-            }
+            return _collision_direction::TOP;
         }
-
-        if (v.x > 0.0)
+        else if (angle <= -22.5 && angle >= -67.5)
         {
-            if (v.y > 0.0)
-            {
-                return _collision_direction::BOTTOM_RIGHT;
-            }
-            else
-            {
-                return _collision_direction::TOP_RIGHT;
-            }
+            return _collision_direction::TOP_RIGHT;
         }
-        else
+        else if (angle <= 22.5 && angle >= -22.5)
         {
-            if (v.y > 0.0)
-            {
-                return _collision_direction::BOTTOM_LEFT;
-            }
-            else
-            {
-                return _collision_direction::TOP_LEFT;
-            }
+            return _collision_direction::RIGHT;
         }
+        else if (angle <= 67.5 && angle >= 22.5)
+        {
+            return _collision_direction::BOTTOM_RIGHT;
+        }
+        else if (angle <= 112.5 && angle >= 67.5)
+        {
+            return _collision_direction::BOTTOM;
+        }
+        else if (angle <= 157.5 && angle >= 112.5)
+        {
+            return _collision_direction::BOTTOM_LEFT;
+        }
+        else if (angle <= -157.5 || angle >= 157.5)
+        {
+            return _collision_direction::LEFT;
+        }
+        return _collision_direction::TOP_LEFT;
     }
 
     vector_2d _vector_from_direction(_collision_direction direction)
@@ -257,17 +229,15 @@ namespace splashkit_lib
         case _collision_direction::RIGHT:
             return vector_to(1.0, 0.0);
         case _collision_direction::TOP_LEFT:
-            return vector_to(-1.0, -1.0);
+            return unit_vector(vector_to(-1.0, -1.0));
         case _collision_direction::TOP_RIGHT:
-            return vector_to(1.0, -1.0);
+            return unit_vector(vector_to(1.0, -1.0));
         case _collision_direction::BOTTOM_LEFT:
-            return vector_to(-1.0, 1.0);
+            return unit_vector(vector_to(-1.0, 1.0));
         case _collision_direction::BOTTOM_RIGHT:
-            return vector_to(1.0, 1.0);
-        case _collision_direction::NONE:
-            return vector_to(0.0, 0.0);
+            return unit_vector(vector_to(1.0, 1.0));
         }
-        return vector_to(0, 0);
+        return vector_to(0.0, 0.0);
     }
 
     _obj_movement_direction _opposite_direction(_obj_movement_direction direction)
@@ -814,9 +784,9 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    bool _resolve_object_collision(A& collider, const B& collidee, vector_2d dir)
+    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& dir)
     {
-        _collision_direction direction = _direction_from_vector(dir);
+        _collision_direction direction = _direction_from_vector(unit_vector(dir));
         
         if (direction == _collision_direction::NONE || !_test_collision(collider, collidee))
         {
