@@ -537,9 +537,7 @@ namespace splashkit_lib
             return;
         }
 
-        vector_2d unit_direction = unit_vector(direction);
-
-        _move_obj_by_vector(obj, vector_to(amount.x * unit_direction.x, amount.y * unit_direction.y));
+        _move_obj_by_vector(obj, vector_to(amount.x * direction.x, amount.y * direction.y));
     }
 
     template <typename T>
@@ -634,20 +632,22 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& dir)
+    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& direction)
     {
-        if (is_zero_vector(dir) || !_test_collision(collider, collidee))
+        if (is_zero_vector(direction) || !_test_collision(collider, collidee))
         {
             return false;
         }
 
+        vector_2d unit_dir = unit_vector(direction);
+
         if (_collision_kind(collider) == AABB_COLLISIONS && _collision_kind(collidee) == AABB_COLLISIONS)
         {
-            _resolve_object_AABB_collision(collider, _object_AABB(collidee), dir);
+            _resolve_object_AABB_collision(collider, _object_AABB(collidee), unit_dir);
         }
         else // one or both of the sprites are using pixel collision
         {
-            _bracket_obj_obj_collision(collider, collidee, dir, BRACKET_ITERATIONS);
+            _bracket_obj_obj_collision(collider, collidee, unit_dir, BRACKET_ITERATIONS);
         }
 
         return true;
