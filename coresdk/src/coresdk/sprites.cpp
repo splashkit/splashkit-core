@@ -1206,14 +1206,6 @@ namespace splashkit_lib
         {
             LOG(WARNING) << "Attempting to use invalid sprite";
         }
-        if (value == 0.0)
-        {
-            s->velocity = vector_to(0.0, 0.0);
-        }
-        else if (vector_magnitude(s->velocity) == 0.0)
-        {
-            s->velocity = vector_to(1.0, 0.0);
-        }
         s->velocity = vector_multiply(unit_vector(s->velocity), value);
     }
 
