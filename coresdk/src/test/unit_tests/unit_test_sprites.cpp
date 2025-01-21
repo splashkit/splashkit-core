@@ -477,7 +477,7 @@ TEST_CASE("sprite heading can be set and retrieved", "[sprite]")
     }
     SECTION("can set sprite heading")
     {
-        sprite_set_speed(sprt, 10.0f);
+        sprite_set_velocity(sprt, vector_to(10.0, 0.0));
         sprite_set_heading(sprt, 0.0f);
         REQUIRE(sprite_heading(sprt) == 0.0f);
         sprite_set_heading(sprt, 180.0f);
