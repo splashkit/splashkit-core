@@ -133,10 +133,6 @@ public:
     key_code get_key_up() const { return _key_up; }
 };
 
-// Define the static members
-sprite_delegates* sprite_delegates::current_instance = nullptr;
-key_callbacks* key_callbacks::current_instance = nullptr;
-
 class notifier_tracker {
 private:
     bool _was_notified = false;
@@ -170,6 +166,8 @@ public:
     }
 };
 
+sprite_delegates* sprite_delegates::current_instance = nullptr;
+key_callbacks* key_callbacks::current_instance = nullptr;
 notifier_tracker* notifier_tracker::current_instance = nullptr;
 
 class animation_script_cleanup {
