@@ -1,0 +1,5 @@
+require_relative 'utils/cli_parser'
+require_relative 'utils/lib_processor'
+require_relative 'utils/directory_manager'
+require_relative 'handlers/message_handler'
+require_relative 'extensions/string_extensions'

@@ -1,0 +1,405 @@
+{
+  "group": "resource_bundles",
+  "constructor": [
+    {
+      "type": "function",
+      "function_name": "set_resources_path",
+      "args": [
+        {
+          "type": "string",
+          "value": "set this value before running tests, use an absolute path"
+        }
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "cleanup_type": "resource",
+      "function_name": "free_resource_bundle",
+      "args": [
+        {
+          "type": "object",
+          "object_type": "string",
+          "variable_name": "bundle_name"
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "name": "free_resource_bundle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            },
+            {
+              "type": "string",
+              "value": "test.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "resource",
+          "store_result": "cleanup_resource",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Resource Bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_bitmap",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "FrogBmp"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_font_name_as_string",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "hara"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Resource Bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "has_resource_bundle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            },
+            {
+              "type": "string",
+              "value": "test.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "resource",
+          "store_result": "cleanup_resource",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Resource Bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Resource Bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "nonexistent"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "load_resource_bundle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            },
+            {
+              "type": "string",
+              "value": "test.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "resource",
+          "store_result": "cleanup_resource",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Resource Bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "WalkingScript"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_bitmap",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "FrogBmp"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_font_name_as_string",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "hara"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "error"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_timer_named",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "my timer"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "blah"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_resource_bundle",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Resource Bundle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_resource_bundle",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "test_bundle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    }
+  ]
+}

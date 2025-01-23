@@ -1,0 +1,3232 @@
+{
+  "group": "animations",
+  "constructor": [
+    {
+      "type": "function",
+      "function_name": "set_resources_path",
+      "args": [
+        {
+          "type": "string",
+          "value": "set this value before running tests, use an absolute path"
+        }
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "cleanup_type": "animation_script",
+      "function_name": "free_all_animation_scripts",
+      "args": []
+    },
+    {
+      "cleanup_type": "animation",
+      "function_name": "free_animation",
+      "args": [
+        {
+          "type": "object",
+          "object_type": "animation",
+          "variable_name": "animation"
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "name": "animation_count",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 1"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_count",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                }
+              ]
+            },
+            "value2": {
+              "type": "int",
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_current_cell",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 2"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 1"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_current_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            },
+            "value2": {
+              "type": "int",
+              "value": -1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_current_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 3"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 2"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "animation_current_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ],
+          "store_result": "current_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "current_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "current_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_ended",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 4"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 3"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_ended",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "loop",
+          "iterations": 50,
+          "loop_steps": [
+            {
+              "type": "function",
+              "function_name": "update_animation_percent",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                },
+                {
+                  "type": "float",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_ended",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_entered_frame",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 5"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 4"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation_percent",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "float",
+              "value": 20.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_entered_frame",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_entered_frame",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_frame_time",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 6"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 5"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "animation_frame_time",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ],
+          "store_result": "frame_time"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "variable",
+              "variable_name": "frame_time"
+            },
+            "value2": {
+              "type": "float",
+              "value": 0.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_index",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 7"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_index",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                },
+                {
+                  "type": "string",
+                  "value": "walkfront"
+                }
+              ]
+            },
+            "value2": {
+              "type": "int",
+              "value": -1
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": -1
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_index",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                },
+                {
+                  "type": "string",
+                  "value": "NonExistentAnimation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_name",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 8"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 6"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "animation_name",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ],
+          "store_result": "anim_name"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "anim_name"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_script_name",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 9"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Test Script 9"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_script_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "animation_script_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 10"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "animation_script_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 10"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_script"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_with_script",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 11"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 7"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_with_script",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_with_script_and_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 12"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 8"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_with_script_and_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            },
+            {
+              "type": "string",
+              "value": "walkleft"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkleft"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_index_with_script",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 13"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 9"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_index_with_script",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            },
+            {
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_index_with_script_and_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 14"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 10"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_index_with_script_and_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_with_script_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 15"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 11"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line",
+          "args": [
+            {
+              "type": "string",
+              "value": "c++ compiler is choosing the assign_animation_with_sound overload instead of assign_animation_with_script_named"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_with_script_named",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "string",
+              "value": "Test Script 15"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_with_script_named_and_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 16"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 12"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_with_script_named_and_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "string",
+              "value": "Test Script 16"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_index",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 17"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 13"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_index",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_index_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 18"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 14"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            {
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_index_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 19"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 15"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_animation_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 20"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 16"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "assign_animation_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_animation_from_index_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 21"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_from_index_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 17"
+            },
+            {
+              "type": "int",
+              "value": 0
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "walkfront"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_animation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 22"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 18"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_animation_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 23"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 19"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_animation_from_script_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 24"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_from_script_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 24"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_animation_from_script_named_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 25"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_from_script_named_with_sound",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 25"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          }
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_all_animation_scripts",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 26"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 27"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 26"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 27"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_all_animation_scripts",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 26"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 27"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_animation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 28"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 22"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line",
+          "args": [
+            {
+              "type": "string",
+              "value": "Should show Attempting to get name of invalid animation data. warning:"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": ""
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_ended",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_animation_script",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 29"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_animation_script",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          ]
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 29"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_animation_script_with_name",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 30"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 30"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_animation_script_with_name",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 30"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 30"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "has_animation_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 31"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_named",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                },
+                {
+                  "type": "string",
+                  "value": "walkfront"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "write_line",
+          "args": [
+            {
+              "type": "string",
+              "value": "Should show No Animation with name warning:"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_named",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_script"
+                },
+                {
+                  "type": "string",
+                  "value": "NonExistentAnimation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "has_animation_script",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 32"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 32"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_animation_script",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 32"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "load_animation_script",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 33"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "animation_script_name",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          ],
+          "store_result": "script_name"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Test Script 33"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "script_name"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_animation_script",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script"
+            }
+          ]
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_animation_script",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Script 33"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "restart_animation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 34"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 23"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "loop",
+          "iterations": 50,
+          "loop_steps": [
+            {
+              "type": "function",
+              "function_name": "update_animation_percent",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                },
+                {
+                  "type": "float",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "animation_ended",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ],
+          "store_result": "anim_ended"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "variable",
+              "variable_name": "anim_ended"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "restart_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_ended",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "restart_animation_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 35"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 24"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "restart_animation_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 3
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_current_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_animation_percent_with_sound",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 36"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 25"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation_percent_with_sound",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "float",
+              "value": 0.5
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_frame_time",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            },
+            "value2": {
+              "type": "float",
+              "value": 0.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_animation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 37"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 26"
+            },
+            {
+              "type": "string",
+              "value": "moonwalkback"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_equal",
+            "value1": {
+              "type": "int",
+              "value": 0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "animation_current_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_animation_percent",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "load_animation_script",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Script 38"
+            },
+            {
+              "type": "string",
+              "value": "kermit.txt"
+            }
+          ],
+          "store_result": "test_script"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "animation_script",
+          "store_result": "cleanup_animation_script"
+        },
+        {
+          "type": "function",
+          "function_name": "create_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_script",
+              "value": "Test Animation 27"
+            },
+            {
+              "type": "string",
+              "value": "walkfront"
+            }
+          ],
+          "store_result": "test_animation"
+        },
+        {
+          "type": "cleanup",
+          "cleanup_type": "animation",
+          "store_result": "cleanup_animation",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "update_animation_percent",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_animation"
+            },
+            {
+              "type": "float",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "greater_than",
+            "value1": {
+              "type": "function",
+              "function_name": "animation_frame_time",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_animation"
+                }
+              ]
+            },
+            "value2": {
+              "type": "float",
+              "value": 0.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

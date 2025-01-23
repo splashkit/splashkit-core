@@ -1,0 +1,7595 @@
+{
+  "group": "physics",
+  "cleanup": [
+    {
+      "cleanup_type": "window",
+      "function_name": "close_all_windows",
+      "args": []
+    },
+    {
+      "cleanup_type": "bitmap",
+      "function_name": "free_all_bitmaps",
+      "args": []
+    },
+    {
+      "cleanup_type": "sprite",
+      "function_name": "free_all_sprites",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "bitmap_circle_collision_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 1"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_circle_collision_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_circle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_circle_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 2"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_circle_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_circle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_circle_collision_for_cell_with_translation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 3"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_translation"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_circle_collision_for_cell_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_circle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_circle_collision_for_cell_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 4"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_circle_collision_for_cell_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_circle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_circle_collision_for_cell",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 5"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_circle_collision_for_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_circle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 6"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 7"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_collision_at_points",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 8"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 9"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_point1"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_point2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_at_points",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_collision_for_cells_with_translations",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 10"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 11"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "matrix1"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "matrix2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells_with_translations",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "matrix1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "matrix2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_collision_for_cells_at_points",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 12"
+            },
+            {
+              "type": "int",
+              "value": 50
+            },
+            {
+              "type": "int",
+              "value": 50
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 13"
+            },
+            {
+              "type": "int",
+              "value": 50
+            },
+            {
+              "type": "int",
+              "value": 50
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point1"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 125.0
+            },
+            {
+              "type": "double",
+              "value": 125.0
+            }
+          ],
+          "store_result": "test_point2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells_at_points",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_collision_for_cells",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 14"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 15"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_collision_for_cells",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap1"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap2"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 150.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision_with_translation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 16"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_translation"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            }
+          ],
+          "store_result": "test_point1"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 200.0
+            },
+            {
+              "type": "double",
+              "value": 200.0
+            }
+          ],
+          "store_result": "test_point2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point1"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 17"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_bmp_point"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 101.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bmp_point"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bmp_point"
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 201.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 200.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 18"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 150.0
+                },
+                {
+                  "type": "double",
+                  "value": 150.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision_for_cell_with_translation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 19"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_translation"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            }
+          ],
+          "store_result": "test_point1"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 200.0
+            },
+            {
+              "type": "double",
+              "value": 200.0
+            }
+          ],
+          "store_result": "test_point2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point1"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision_for_cell_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 20"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    }
+                  ]
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 100.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 100.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    }
+                  ]
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 200.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 200.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_point_collision_for_cell",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 21"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "rgba_color",
+              "args": [
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "draw_pixel_on_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_black",
+              "args": []
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_point_collision_for_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 51.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_rectangle_collision_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 22"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_rectangle_collision_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_rectangle_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 23"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_rectangle_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_rectangle_collision_for_cell_with_translation",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 24"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_translation"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_rectangle_collision_for_cell_with_translation",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_translation"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_rectangle_collision_for_cell_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 25"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_rectangle_collision_for_cell_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "bitmap_rectangle_collision_for_cell",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 26"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "bitmap_rectangle_collision_for_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_bitmap_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 27"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 1"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_bitmap_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_bitmap_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_bitmap_collision_with_cell_at_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 28"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 2"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_bitmap_collision_with_cell_at_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 50.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_bitmap_collision_with_cell",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 29"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 3"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_bitmap_collision_with_cell",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_bitmap"
+                },
+                {
+                  "type": "int",
+                  "value": 0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 30"
+            },
+            {
+              "type": "int",
+              "value": 50
+            },
+            {
+              "type": "int",
+              "value": 50
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 31"
+            },
+            {
+              "type": "int",
+              "value": 50
+            },
+            {
+              "type": "int",
+              "value": 50
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1",
+              "value": "Test Sprite 4"
+            }
+          ],
+          "store_result": "test_sprite1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2",
+              "value": "Test Sprite 5"
+            }
+          ],
+          "store_result": "test_sprite2"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite1"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite2"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite1"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite2"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite2"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_point_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 32"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 6"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_point_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 76.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 75.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_point_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "function",
+                  "function_name": "point_at",
+                  "args": [
+                    {
+                      "type": "double",
+                      "value": 200.0
+                    },
+                    {
+                      "type": "double",
+                      "value": 200.0
+                    }
+                  ]
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sprite_rectangle_collision",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 33"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "clear_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            },
+            {
+              "type": "function",
+              "function_name": "color_white",
+              "args": []
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "setup_collision_mask",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 7"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_collision_kind",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "enum",
+              "enum_type": "collision_test_kind",
+              "value": "pixel_collisions"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sprite_rectangle_collision",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sprite"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "apply_matrix_to_quad",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "identity_matrix",
+          "args": [],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "quad_from_points",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 200.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_quad",
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "apply_matrix_to_quad",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "ref",
+              "variable_name": "test_quad"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "array_access_field",
+              "variable_name": "test_quad",
+              "array_name": "points",
+              "index": 0,
+              "field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "array_access_field",
+              "variable_name": "test_quad",
+              "array_name": "points",
+              "index": 0,
+              "field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "apply_matrix_to_triangle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "triangle_from",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 1.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 1.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_triangle",
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "apply_matrix_to_triangle",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "ref",
+              "variable_name": "test_triangle"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "array_access_field",
+              "variable_name": "test_triangle",
+              "array_name": "points",
+              "index": 0,
+              "field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "array_access_field",
+              "variable_name": "test_triangle",
+              "array_name": "points",
+              "index": 0,
+              "field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "identity_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "identity_matrix",
+          "args": [],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "test_matrix",
+              "field": "elements",
+              "row": 0,
+              "col": 0
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "test_matrix",
+              "field": "elements",
+              "row": 1,
+              "col": 1
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "test_matrix",
+              "field": "elements",
+              "row": 0,
+              "col": 1
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "test_matrix",
+              "field": "elements",
+              "row": 1,
+              "col": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matrix_inverse",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "scale_rotate_translate_matrix",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 2.0
+                },
+                {
+                  "type": "double",
+                  "value": 2.0
+                }
+              ]
+            },
+            {
+              "type": "double",
+              "value": 45.0
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 10.0
+                },
+                {
+                  "type": "double",
+                  "value": 10.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_inverse",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            }
+          ],
+          "store_result": "inverse_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_matrix",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "inverse_matrix"
+            }
+          ],
+          "store_result": "result_matrix"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "result_matrix",
+              "field": "elements",
+              "row": 0,
+              "col": 0
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "result_matrix",
+              "field": "elements",
+              "row": 1,
+              "col": 1
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matrix_multiply_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 10.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 20.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 20.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 30.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matrix_multiply_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "scale_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_matrix1"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 10.0
+            }
+          ],
+          "store_result": "test_matrix2"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_matrix",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix2"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_matrix1"
+            }
+          ],
+          "store_result": "result_matrix"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 2.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "result_matrix",
+              "field": "elements",
+              "row": 0,
+              "col": 0
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 20.0
+            },
+            "value2": {
+              "type": "variable_matrix_access",
+              "variable_name": "result_matrix",
+              "field": "elements",
+              "row": 0,
+              "col": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matrix_multiply_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            },
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "scale_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "matrix_to_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "identity_matrix",
+          "args": [],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": " ------------------------------\\n|        1         0         0 |\\n|        0         1         0 |\\n|        0         0         1 |\\n ------------------------------"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "matrix_to_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_matrix"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rotation_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "rotation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 90.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "scale_matrix_from_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            },
+            {
+              "type": "double",
+              "value": 3.0
+            }
+          ],
+          "store_result": "test_scale"
+        },
+        {
+          "type": "function",
+          "function_name": "scale_matrix_from_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_scale"
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 2.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "scale_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.5
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "scale_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 2.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "scale_matrix_from_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            },
+            {
+              "type": "double",
+              "value": 3.0
+            }
+          ],
+          "store_result": "test_scale"
+        },
+        {
+          "type": "function",
+          "function_name": "scale_matrix_from_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_scale"
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 2.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "scale_rotate_translate_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 2.0
+            },
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_scale"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 10.0
+            }
+          ],
+          "store_result": "test_translate"
+        },
+        {
+          "type": "function",
+          "function_name": "scale_rotate_translate_matrix",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_scale"
+            },
+            {
+              "type": "double",
+              "value": 90.0
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_translate"
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 10.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 11.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "translation_matrix_to_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 20.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix_to_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 5.0
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 15.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 25.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "translation_matrix_from_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 20.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "translation_matrix_from_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 10.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 20.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "translation_matrix",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "translation_matrix",
+          "args": [
+            {
+              "type": "double",
+              "value": 10.0
+            },
+            {
+              "type": "double",
+              "value": 20.0
+            }
+          ],
+          "store_result": "test_matrix"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "matrix_multiply_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_matrix"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 10.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 20.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "angle_between",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 90.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "angle_between",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dot_product",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 11.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "dot_product",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "is_zero_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_zero_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_non_zero_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "is_zero_vector",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_zero_vector"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "is_zero_vector",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_non_zero_vector"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "ray_intersection_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_from_pt"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_heading"
+        },
+        {
+          "type": "function",
+          "function_name": "line_from_point_to_point",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 2.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 2.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_line"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "intersection_point",
+          "is_mutable": true
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "ray_intersection_point",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_from_pt"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_heading"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_line"
+                },
+                {
+                  "type": "ref",
+                  "variable_name": "intersection_point"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "intersection_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "intersection_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "unit_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "unit_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "test_unit_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.6
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_unit_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.8
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_unit_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_add",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_add",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector1"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_vector2"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 6.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_angle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 45.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "vector_angle",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_from_angle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_from_angle",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 1.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_from_line",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "line_from_point_to_point",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                }
+              ]
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 3.0
+                },
+                {
+                  "type": "double",
+                  "value": 4.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_line"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_from_line",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_line"
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_from_point_to_rect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_from_point_to_rect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_rect"
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_in_rect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_vector_inside"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            },
+            {
+              "type": "double",
+              "value": 150.0
+            }
+          ],
+          "store_result": "test_vector_outside"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "vector_in_rect",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector_inside"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rect"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "vector_in_rect",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector_outside"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rect"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_invert",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_invert",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "inverted_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "inverted_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "inverted_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_limit",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 6.0
+            },
+            {
+              "type": "double",
+              "value": 8.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_limit",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "limited_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "limited_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "limited_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_magnitude",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 5.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "vector_magnitude",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_magnitude_squared",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 25.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "vector_magnitude_squared",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_multiply",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_multiply",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            },
+            {
+              "type": "double",
+              "value": 2.0
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 6.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 8.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_normal",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_normal",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ],
+          "store_result": "normal_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -0.8
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "normal_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.6
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "normal_vector",
+              "variable_field": "y"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_out_of_circle_from_circle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "test_circle_src"
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 8.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "test_circle_bounds"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_velocity"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_out_of_circle_from_circle",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_circle_src"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_circle_bounds"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_velocity"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -3.42
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_out_of_circle_from_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 10.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_velocity"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_out_of_circle_from_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_circle"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_velocity"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -11.42
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_out_of_rect_from_circle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "circle_at_from_points",
+          "args": [
+            {
+              "type": "double",
+              "value": 75.0
+            },
+            {
+              "type": "double",
+              "value": 75.0
+            },
+            {
+              "type": "double",
+              "value": 25.0
+            }
+          ],
+          "store_result": "test_circle"
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_velocity"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_out_of_rect_from_circle",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_circle"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_rect"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_velocity"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -101.42
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_out_of_rect_from_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 75.0
+            },
+            {
+              "type": "double",
+              "value": 75.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_velocity"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_out_of_rect_from_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_rect"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_velocity"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -76.4
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            },
+            "value3": {
+              "type": "precision",
+              "value": 0.0001
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_out_of_rect_from_rect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 75.0
+            },
+            {
+              "type": "double",
+              "value": 75.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            },
+            {
+              "type": "double",
+              "value": 50.0
+            }
+          ],
+          "store_result": "test_src_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_bounds_rect"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_velocity"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_out_of_rect_from_rect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_src_rect"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_bounds_rect"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_velocity"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": -126.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_point_to_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "store_result": "test_start_point"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_end_point"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_point_to_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_start_point"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_end_point"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_subtract",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1.0
+            },
+            {
+              "type": "double",
+              "value": 1.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_subtract",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector1"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_vector2"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 2.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_to_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to_point",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_point"
+            }
+          ],
+          "store_result": "result_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "result_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_to",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 4.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_to_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Vec -> 3.000000:4.000000"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "vector_to_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vectors_equal",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "test_vector3"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "vectors_equal",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "vectors_equal",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector3"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "vectors_not_equal",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 4.0
+            }
+          ],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.0
+            },
+            {
+              "type": "double",
+              "value": 5.0
+            }
+          ],
+          "store_result": "test_vector3"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "vectors_not_equal",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "vectors_not_equal",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector1"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_vector3"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    }
+  ]
+}

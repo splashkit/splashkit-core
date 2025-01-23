@@ -1,0 +1,16 @@
+[package]
+name = "splashkit_backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+cc = "1.0"
+
+[lib]
+name = "splashkit_backend"
+crate-type = ["rlib"]
+
+links = "SplashKitBackend" 

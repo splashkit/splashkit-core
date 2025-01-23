@@ -1,0 +1,279 @@
+{
+  "group": "logging",
+  "cleanup": [
+    {
+      "cleanup_type": "logger",
+      "function_name": "close_log_process",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "close_log_process",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "init_custom_logger_name_override_mode",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_logging1"
+            },
+            {
+              "type": "bool",
+              "value": true
+            },
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_console_and_file"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "logger",
+          "store_result": "cleanup_logger"
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should appear in both console and file."
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "close_log_process",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "init_custom_logger",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "init_custom_logger",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_console"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "logger",
+          "store_result": "cleanup_logger"
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should appear in the console."
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should appear in the console."
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "init_custom_logger",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_file_only"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should only appear in the log file."
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should only appear in the log file."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "init_custom_logger_name_override_mode",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "init_custom_logger_name_override_mode",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_logging2"
+            },
+            {
+              "type": "bool",
+              "value": true
+            },
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_console_and_file"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "logger",
+          "store_result": "cleanup_logger"
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should appear in both console and file."
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "init_custom_logger_name_override_mode",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_logging3"
+            },
+            {
+              "type": "bool",
+              "value": false
+            },
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_file_only"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should only appear in the file."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "log",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "init_custom_logger_name_override_mode",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_logging4"
+            },
+            {
+              "type": "bool",
+              "value": true
+            },
+            {
+              "type": "enum",
+              "enum_type": "log_mode",
+              "value": "log_console_and_file"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "logger",
+          "store_result": "cleanup_logger"
+        },
+        {
+          "type": "function",
+          "function_name": "log",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "log_level",
+              "value": "info"
+            },
+            {
+              "type": "string",
+              "value": "This message should appear in both console and file."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "group": "terminal",
+  "tests": [
+    {
+      "name": "read_char",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Enter the letter A"
+        },
+        {
+          "type": "function",
+          "function_name": "read_char",
+          "args": [],
+          "store_result": "result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "char",
+              "value": "A"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "read_line",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Enter the text: Test Input"
+        },
+        {
+          "type": "function",
+          "function_name": "read_line",
+          "args": [],
+          "store_result": "result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Test Input"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "terminal_has_input",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Enter some text: Some Input"
+        },
+        {
+          "type": "function",
+          "function_name": "terminal_has_input",
+          "args": [],
+          "store_result": "result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "variable",
+              "variable_name": "result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "write",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print Test String:"
+        },
+        {
+          "type": "function",
+          "function_name": "write",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test String"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "write_int",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print 42:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_int",
+          "args": [
+            {
+              "type": "int",
+              "value": 42
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "write_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print 3.14:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_double",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.14
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "write_char",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print A:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_char",
+          "args": [
+            {
+              "type": "char",
+              "value": "A"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "write_line",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print Test Line:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_line",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Line"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "write_line_empty",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print empty line:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "write_line_int",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print 42:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_int",
+          "args": [
+            {
+              "type": "int",
+              "value": 42
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "write_line_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print 3.14:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_double",
+          "args": [
+            {
+              "type": "double",
+              "value": 3.14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "write_line_char",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "write_line_empty",
+          "args": []
+        },
+        {
+          "type": "message",
+          "message": "Should print A:"
+        },
+        {
+          "type": "function",
+          "function_name": "write_line_char",
+          "args": [
+            {
+              "type": "char",
+              "value": "A"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
