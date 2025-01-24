@@ -530,21 +530,22 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    void _move_object_by_direction(T& obj, const vector_2d& direction, const vector_2d& amount)
+    void _move_object_by_direction(T& obj, const vector_2d& movement_direction, const vector_2d& amount)
     {
         if (is_zero_vector(amount))
         {
             return;
         }
 
-        _move_obj_by_vector(obj, vector_to(amount.x * direction.x, amount.y * direction.y));
+        _move_obj_by_vector(obj, vector_to(amount.x * movement_direction.x,
+                                            amount.y * movement_direction.y));
     }
 
     template <typename T>
-    void _move_object_by_direction_relative_to_size(T& obj, const vector_2d& direction,
+    void _move_object_by_direction_relative_to_size(T& obj, const vector_2d& movement_direction,
                                                                     double relative_amount = 1.0)
     {
-        if (is_zero_vector(direction))
+        if (is_zero_vector(movement_direction))
         {
             return;
         }
@@ -559,16 +560,16 @@ namespace splashkit_lib
         double relative_width = obj_aabb.width * relative_amount;
         double relative_height = obj_aabb.height * relative_amount;
 
-        if (direction.x == 0.0)
+        if (movement_direction.x == 0.0)
         {
             relative_width = 0.0;
         }
-        else if (direction.y == 0.0)
+        else if (movement_direction.y == 0.0)
         {
             relative_height = 0.0;
         }
 
-        _move_object_by_direction(obj, direction, vector_to(relative_width, relative_height));
+        _move_object_by_direction(obj, movement_direction, vector_to(relative_width, relative_height));
     }
 
     /** 
@@ -581,7 +582,7 @@ namespace splashkit_lib
     {
         if (colliding)
         {
-            _move_object_by_direction_relative_to_size(collider, _opposite_direction(collider_direction),
+            _move_object_by_direction_relative_to_size(collider, collider_direction,
                                                         1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
         }
         else if (i == 1) // no collision in the first iteration
@@ -590,7 +591,7 @@ namespace splashkit_lib
         }
         else
         {
-            _move_object_by_direction_relative_to_size(collider, collider_direction,
+            _move_object_by_direction_relative_to_size(collider, _opposite_direction(collider_direction),
                                                         1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
         }
         return true;
@@ -622,24 +623,25 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    void _resolve_object_AABB_collision(T& collider, const rectangle& collidee_rect, const vector_2d& direction)
+    void _resolve_object_AABB_collision(T& collider, const rectangle& collidee_rect,
+                                                const vector_2d& collision_direction)
     {
         // get the intersection rectangle
         rectangle inter = intersection(_object_AABB(collider), collidee_rect);
         vector_2d amount = vector_to(inter.width, inter.height);
 
-        _move_object_by_direction(collider, direction, amount);
+        _move_object_by_direction(collider, _opposite_direction(collision_direction), amount);
     }
 
     template <typename A, typename B>
-    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& direction)
+    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& collision_direction)
     {
-        if (is_zero_vector(direction) || !_test_collision(collider, collidee))
+        if (is_zero_vector(collision_direction) || !_test_collision(collider, collidee))
         {
             return false;
         }
 
-        vector_2d unit_dir = unit_vector(direction);
+        vector_2d unit_dir = unit_vector(collision_direction);
 
         if (_collision_kind(collider) == AABB_COLLISIONS && _collision_kind(collidee) == AABB_COLLISIONS)
         {
@@ -647,7 +649,7 @@ namespace splashkit_lib
         }
         else // one or both of the sprites are using pixel collision
         {
-            _bracket_obj_obj_collision(collider, collidee, unit_dir, BRACKET_ITERATIONS);
+            _bracket_obj_obj_collision(collider, collidee, _opposite_direction(unit_dir), BRACKET_ITERATIONS);
         }
 
         return true;
