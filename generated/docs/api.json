@@ -86995,7 +86995,7 @@
         }
       },
       {
-        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "signature": "string replace_all(const string &text,const string &substr,const string &new_text);",
         "name": "replace_all",
         "method_name": null,
         "unique_global_name": "replace_all",
@@ -87038,7 +87038,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "newText": {
+          "new_text": {
             "type": "string",
             "description": "The string to replace the substring with",
             "is_pointer": false,
@@ -87058,17 +87058,17 @@
         },
         "signatures": {
           "cpp": [
-            "string replace_all(const string &text, const string &substr, const string &newText)"
+            "string replace_all(const string &text, const string &substr, const string &new_text)"
           ],
           "python": [
-            "def replace_all(text, substr, newText):"
+            "def replace_all(text, substr, new_text):"
           ],
           "pascal": [
-            "function ReplaceAll(const text: String; const substr: String; const newtext: String): String"
+            "function ReplaceAll(const text: String; const substr: String; const newText: String): String"
           ],
           "csharp": [
-            "public static string Utilities.ReplaceAll(string text, string substr, string newtext);",
-            "public static string SplashKit.ReplaceAll(string text, string substr, string newtext);"
+            "public static string Utilities.ReplaceAll(string text, string substr, string newText);",
+            "public static string SplashKit.ReplaceAll(string text, string substr, string newText);"
           ]
         }
       },

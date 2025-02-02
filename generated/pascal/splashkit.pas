@@ -438,7 +438,7 @@ function IsDouble(const text: String): Boolean;
 function IsInteger(const text: String): Boolean;
 function IsNumber(const text: String): Boolean;
 function LengthOf(const text: String): Integer;
-function ReplaceAll(const text: String; const substr: String; const newtext: String): String;
+function ReplaceAll(const text: String; const substr: String; const newText: String): String;
 function Split(const text: String; delimiter: Char): ArrayOfString;
 function ToLowercase(const text: String): String;
 function ToUppercase(const text: String): String;
@@ -2653,7 +2653,7 @@ function __sklib__is_double__string_ref(const text: __sklib_string): LongInt; cd
 function __sklib__is_integer__string_ref(const text: __sklib_string): LongInt; cdecl; external;
 function __sklib__is_number__string_ref(const text: __sklib_string): LongInt; cdecl; external;
 function __sklib__length_of__string_ref(const text: __sklib_string): Integer; cdecl; external;
-function __sklib__replace_all__string_ref__string_ref__string_ref(const text: __sklib_string; const substr: __sklib_string; const newtext: __sklib_string): __sklib_string; cdecl; external;
+function __sklib__replace_all__string_ref__string_ref__string_ref(const text: __sklib_string; const substr: __sklib_string; const newText: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__split__string_ref__char(const text: __sklib_string; delimiter: Char): __sklib_vector_string; cdecl; external;
 function __sklib__to_lowercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
 function __sklib__to_uppercase__string_ref(const text: __sklib_string): __sklib_string; cdecl; external;
@@ -4314,17 +4314,17 @@ begin
   __skreturn := __sklib__length_of__string_ref(__skparam__text);
   result := __skadapter__to_int(__skreturn);
 end;
-function ReplaceAll(const text: String; const substr: String; const newtext: String): String;
+function ReplaceAll(const text: String; const substr: String; const newText: String): String;
 var
   __skparam__text: __sklib_string;
   __skparam__substr: __sklib_string;
-  __skparam__newText: __sklib_string;
+  __skparam__new_text: __sklib_string;
   __skreturn: __sklib_string;
 begin
   __skparam__text := __skadapter__to_sklib_string(text);
   __skparam__substr := __skadapter__to_sklib_string(substr);
-  __skparam__newText := __skadapter__to_sklib_string(newtext);
-  __skreturn := __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText);
+  __skparam__new_text := __skadapter__to_sklib_string(newText);
+  __skreturn := __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__new_text);
   result := __skadapter__to_string(__skreturn);
 end;
 function Split(const text: String; delimiter: Char): ArrayOfString;

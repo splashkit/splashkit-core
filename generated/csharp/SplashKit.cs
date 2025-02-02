@@ -1177,7 +1177,7 @@ namespace SplashKitSDK
     private static extern int __sklib__length_of__string_ref(__sklib_string text);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__replace_all__string_ref__string_ref__string_ref", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(__sklib_string text, __sklib_string substr, __sklib_string newtext);
+    private static extern __sklib_string __sklib__replace_all__string_ref__string_ref__string_ref(__sklib_string text, __sklib_string substr, __sklib_string newText);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__split__string_ref__char", CharSet=CharSet.Ansi)]
     private static extern __sklib_vector_string __sklib__split__string_ref__char(__sklib_string text, char delimiter);
@@ -5235,19 +5235,19 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__text);
       return __skadapter__to_int(__skreturn);
     }
-    public static string ReplaceAll(string text, string substr, string newtext)
+    public static string ReplaceAll(string text, string substr, string newText)
     {
       __sklib_string __skparam__text;
       __sklib_string __skparam__substr;
-      __sklib_string __skparam__newText;
+      __sklib_string __skparam__new_text;
       __sklib_string __skreturn;
       __skparam__text = __skadapter__to_sklib_string(text);
       __skparam__substr = __skadapter__to_sklib_string(substr);
-      __skparam__newText = __skadapter__to_sklib_string(newtext);
-      __skreturn = __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__newText);
+      __skparam__new_text = __skadapter__to_sklib_string(newText);
+      __skreturn = __sklib__replace_all__string_ref__string_ref__string_ref(__skparam__text, __skparam__substr, __skparam__new_text);
     __skadapter__free__sklib_string(ref __skparam__text);
     __skadapter__free__sklib_string(ref __skparam__substr);
-    __skadapter__free__sklib_string(ref __skparam__newText);
+    __skadapter__free__sklib_string(ref __skparam__new_text);
       return __skadapter__to_string(__skreturn);
     }
     public static List<string> Split(string text, char delimiter)

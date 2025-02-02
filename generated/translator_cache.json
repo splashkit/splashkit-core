@@ -2045,7 +2045,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1720129614,
+    "parsed_at": 1738484101,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -2371,7 +2371,7 @@
         }
       },
       {
-        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "signature": "string replace_all(const string &text,const string &substr,const string &new_text);",
         "name": "replace_all",
         "method_name": null,
         "unique_global_name": "replace_all",
@@ -2414,7 +2414,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "newText": {
+          "new_text": {
             "type": "string",
             "description": "The string to replace the substring with",
             "is_pointer": false,
@@ -5195,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338084,
+    "parsed_at": 1738484102,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -21106,7 +21106,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1729338085,
+    "parsed_at": 1738484103,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -31185,7 +31185,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338085,
+    "parsed_at": 1738484104,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -42788,7 +42788,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338086,
+    "parsed_at": 1738484104,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -51093,7 +51093,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1729338086,
+    "parsed_at": 1738484105,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -58161,7 +58161,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1729338087,
+    "parsed_at": 1738484106,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -59400,7 +59400,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1729338088,
+    "parsed_at": 1738484107,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -60833,7 +60833,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129819,
+    "parsed_at": 1738484107,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -61428,7 +61428,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129825,
+    "parsed_at": 1738484108,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
