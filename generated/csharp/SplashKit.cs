@@ -1479,6 +1479,24 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__sklib_ptr bmp, int cell, double bmpX, double bmpY, double x, double y);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_point_2d origin, __sklib_vector_2d heading);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, double x, double y, __sklib_point_2d origin, __sklib_vector_2d heading);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_point_2d origin, __sklib_vector_2d heading);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_point_2d origin, __sklib_vector_2d heading);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_point_2d origin, __sklib_vector_2d heading);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_rectangle rect);
 
@@ -1508,6 +1526,9 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_point_collision__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_point_collision__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref(__sklib_ptr s, __sklib_point_2d origin, __sklib_vector_2d heading);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rectangle_collision__sprite__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__sklib_ptr s, __sklib_rectangle rect);
@@ -3129,6 +3150,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__string_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_connection_open__string_ref(__sklib_string name);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_valid_ipv4__string_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__is_valid_ipv4__string_ref(__sklib_string ip);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__last_connection__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__last_connection__string_ref(__sklib_string name);
 
@@ -3356,6 +3380,9 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__same_point__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__same_point__point_2d_ref__point_2d_ref(__sklib_point_2d pt1, __sklib_point_2d pt2);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__point_2d_ref__point_2d_ref__double", CharSet=CharSet.Ansi)]
+    private static extern __sklib_quad __sklib__quad_from__point_2d_ref__point_2d_ref__double(__sklib_point_2d lineOrigin, __sklib_point_2d lineEnd, double width);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref(__sklib_point_2d p1, __sklib_point_2d p2, __sklib_point_2d p3, __sklib_point_2d p4);
@@ -6278,6 +6305,100 @@ namespace SplashKitSDK
       __skreturn = __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool BitmapQuadCollision(Bitmap bmp, int cell, Matrix2D translation, Quad q)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_matrix_2d __skparam__translation;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRayCollision(Bitmap bmp, Point2D pt, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_point_2d __skparam__pt;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__pt, __skparam__origin, __skparam__heading);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRayCollision(Bitmap bmp, double x, double y, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__bmp;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRayCollision(Bitmap bmp, int cell, Matrix2D translation, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_matrix_2d __skparam__translation;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__origin, __skparam__heading);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRayCollision(Bitmap bmp, int cell, Point2D pt, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_point_2d __skparam__pt;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__origin, __skparam__heading);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapRayCollision(Bitmap bmp, int cell, double x, double y, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool BitmapRectangleCollision(Bitmap bmp, Point2D pt, Rectangle rect)
     {
       __sklib_ptr __skparam__bmp;
@@ -6410,6 +6531,18 @@ namespace SplashKitSDK
       __skparam__s = __skadapter__to_sklib_sprite(s);
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skreturn = __sklib__sprite_point_collision__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool SpriteRayCollision(Sprite s, Point2D origin, Vector2D heading)
+    {
+      __sklib_ptr __skparam__s;
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      int __skreturn;
+      __skparam__s = __skadapter__to_sklib_sprite(s);
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skreturn = __sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref(__skparam__s, __skparam__origin, __skparam__heading);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool SpriteRectangleCollision(Sprite s, Rectangle rect)
@@ -10873,6 +11006,15 @@ namespace SplashKitSDK
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool IsValidIpv4(string ip)
+    {
+      __sklib_string __skparam__ip;
+      int __skreturn;
+      __skparam__ip = __skadapter__to_sklib_string(ip);
+      __skreturn = __sklib__is_valid_ipv4__string_ref(__skparam__ip);
+    __skadapter__free__sklib_string(ref __skparam__ip);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static Connection LastConnection(string name)
     {
       __sklib_string __skparam__name;
@@ -11598,6 +11740,18 @@ namespace SplashKitSDK
       __skparam__pt2 = __skadapter__to_sklib_point_2d(pt2);
       __skreturn = __sklib__same_point__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
       return __skadapter__to_bool(__skreturn);
+    }
+    public static Quad QuadFrom(Point2D lineOrigin, Point2D lineEnd, double width)
+    {
+      __sklib_point_2d __skparam__line_origin;
+      __sklib_point_2d __skparam__line_end;
+      double __skparam__width;
+      __sklib_quad __skreturn;
+      __skparam__line_origin = __skadapter__to_sklib_point_2d(lineOrigin);
+      __skparam__line_end = __skadapter__to_sklib_point_2d(lineEnd);
+      __skparam__width = __skadapter__to_sklib_double(width);
+      __skreturn = __sklib__quad_from__point_2d_ref__point_2d_ref__double(__skparam__line_origin, __skparam__line_end, __skparam__width);
+      return __skadapter__to_quad(__skreturn);
     }
     public static Quad QuadFrom(Point2D p1, Point2D p2, Point2D p3, Point2D p4)
     {
@@ -18108,6 +18262,12 @@ public class Sprite : PointerWrapper
     }
 
 
+    public bool RayCollision(Point2D origin, Vector2D heading)
+    {
+        return SplashKit.SpriteRayCollision(this, origin, heading);
+    }
+
+
     public bool RectangleCollision(Rectangle rect)
     {
         return SplashKit.SpriteRectangleCollision(this, rect);
@@ -19042,6 +19202,42 @@ public class Bitmap : PointerWrapper
     public bool PointCollision(int cell, double bmpX, double bmpY, double x, double y)
     {
         return SplashKit.BitmapPointCollision(this, cell, bmpX, bmpY, x, y);
+    }
+
+
+    public bool QuadCollision(int cell, Matrix2D translation, Quad q)
+    {
+        return SplashKit.BitmapQuadCollision(this, cell, translation, q);
+    }
+
+
+    public bool RayCollision(Point2D pt, Point2D origin, Vector2D heading)
+    {
+        return SplashKit.BitmapRayCollision(this, pt, origin, heading);
+    }
+
+
+    public bool RayCollision(double x, double y, Point2D origin, Vector2D heading)
+    {
+        return SplashKit.BitmapRayCollision(this, x, y, origin, heading);
+    }
+
+
+    public bool RayCollision(int cell, Matrix2D translation, Point2D origin, Vector2D heading)
+    {
+        return SplashKit.BitmapRayCollision(this, cell, translation, origin, heading);
+    }
+
+
+    public bool RayCollision(int cell, Point2D pt, Point2D origin, Vector2D heading)
+    {
+        return SplashKit.BitmapRayCollision(this, cell, pt, origin, heading);
+    }
+
+
+    public bool RayCollision(int cell, double x, double y, Point2D origin, Vector2D heading)
+    {
+        return SplashKit.BitmapRayCollision(this, cell, x, y, origin, heading);
     }
 
 

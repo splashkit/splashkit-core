@@ -879,6 +879,59 @@ int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double
     bool __skreturn = bitmap_point_collision(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_quad q) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    matrix_2d __skparam__translation = __sklib__to_matrix_2d(translation);
+    quad __skparam__q = __sklib__to_quad(q);
+    bool __skreturn = bitmap_quad_collision(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__q);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref(__sklib_bitmap bmp, const __sklib_point_2d pt, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = bitmap_ray_collision(__skparam__bmp, __skparam__pt, __skparam__origin, __skparam__heading);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref(__sklib_bitmap bmp, double x, double y, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = bitmap_ray_collision(__skparam__bmp, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref(__sklib_bitmap bmp, int cell, const __sklib_matrix_2d translation, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    matrix_2d __skparam__translation = __sklib__to_matrix_2d(translation);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = bitmap_ray_collision(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__origin, __skparam__heading);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref(__sklib_bitmap bmp, int cell, const __sklib_point_2d pt, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    point_2d __skparam__pt = __sklib__to_point_2d(pt);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = bitmap_ray_collision(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__origin, __skparam__heading);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref(__sklib_bitmap bmp, int cell, double x, double y, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
+    int __skparam__cell = __sklib__to_int(cell);
+    double __skparam__x = __sklib__to_double(x);
+    double __skparam__y = __sklib__to_double(y);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = bitmap_ray_collision(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading);
+    return __sklib__to_int(__skreturn);
+}
 int __sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref(__sklib_bitmap bmp, const __sklib_point_2d pt, const __sklib_rectangle rect) {
     bitmap __skparam__bmp = __sklib__to_bitmap(bmp);
     point_2d __skparam__pt = __sklib__to_point_2d(pt);
@@ -954,6 +1007,13 @@ int __sklib__sprite_point_collision__sprite__point_2d_ref(__sklib_sprite s, cons
     sprite __skparam__s = __sklib__to_sprite(s);
     point_2d __skparam__pt = __sklib__to_point_2d(pt);
     bool __skreturn = sprite_point_collision(__skparam__s, __skparam__pt);
+    return __sklib__to_int(__skreturn);
+}
+int __sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref(__sklib_sprite s, const __sklib_point_2d origin, const __sklib_vector_2d heading) {
+    sprite __skparam__s = __sklib__to_sprite(s);
+    point_2d __skparam__origin = __sklib__to_point_2d(origin);
+    vector_2d __skparam__heading = __sklib__to_vector_2d(heading);
+    bool __skreturn = sprite_ray_collision(__skparam__s, __skparam__origin, __skparam__heading);
     return __sklib__to_int(__skreturn);
 }
 int __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__sklib_sprite s, const __sklib_rectangle rect) {
@@ -3673,6 +3733,11 @@ int __sklib__is_connection_open__string_ref(const __sklib_string name) {
     bool __skreturn = is_connection_open(__skparam__name);
     return __sklib__to_int(__skreturn);
 }
+int __sklib__is_valid_ipv4__string_ref(const __sklib_string ip) {
+    string __skparam__ip = __sklib__to_string(ip);
+    bool __skreturn = is_valid_ipv4(__skparam__ip);
+    return __sklib__to_int(__skreturn);
+}
 __sklib_connection __sklib__last_connection__string_ref(const __sklib_string name) {
     string __skparam__name = __sklib__to_string(name);
     connection __skreturn = last_connection(__skparam__name);
@@ -4103,6 +4168,13 @@ int __sklib__same_point__point_2d_ref__point_2d_ref(const __sklib_point_2d pt1, 
     point_2d __skparam__pt2 = __sklib__to_point_2d(pt2);
     bool __skreturn = same_point(__skparam__pt1, __skparam__pt2);
     return __sklib__to_int(__skreturn);
+}
+__sklib_quad __sklib__quad_from__point_2d_ref__point_2d_ref__double(const __sklib_point_2d line_origin, const __sklib_point_2d line_end, double width) {
+    point_2d __skparam__line_origin = __sklib__to_point_2d(line_origin);
+    point_2d __skparam__line_end = __sklib__to_point_2d(line_end);
+    double __skparam__width = __sklib__to_double(width);
+    quad __skreturn = quad_from(__skparam__line_origin, __skparam__line_end, __skparam__width);
+    return __sklib__to_sklib_quad(__skreturn);
 }
 __sklib_quad __sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref(const __sklib_point_2d p1, const __sklib_point_2d p2, const __sklib_point_2d p3, const __sklib_point_2d p4) {
     point_2d __skparam__p1 = __sklib__to_point_2d(p1);

@@ -1690,6 +1690,18 @@ sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.a
 sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.argtypes = [ c_void_p, c_int, c_double, c_double, c_double, c_double ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.restype = c_bool
+sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_quad ]
+sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref.restype = c_bool
+sklib.__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__point_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__double__double__rectangle_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_rectangle ]
@@ -1710,6 +1722,8 @@ sklib.__sklib__sprite_collision__sprite__sprite.argtypes = [ c_void_p, c_void_p 
 sklib.__sklib__sprite_collision__sprite__sprite.restype = c_bool
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.restype = c_bool
+sklib.__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_vector_2d ]
+sklib.__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref.restype = c_bool
 sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.restype = c_bool
 sklib.__sklib__alpha_of__color.argtypes = [ _sklib_color ]
@@ -2790,6 +2804,8 @@ sklib.__sklib__is_connection_open__connection.argtypes = [ c_void_p ]
 sklib.__sklib__is_connection_open__connection.restype = c_bool
 sklib.__sklib__is_connection_open__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__is_connection_open__string_ref.restype = c_bool
+sklib.__sklib__is_valid_ipv4__string_ref.argtypes = [ _sklib_string ]
+sklib.__sklib__is_valid_ipv4__string_ref.restype = c_bool
 sklib.__sklib__last_connection__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__last_connection__string_ref.restype = c_void_p
 sklib.__sklib__last_connection__server_socket.argtypes = [ c_void_p ]
@@ -2942,6 +2958,8 @@ sklib.__sklib__random_window_point__window.argtypes = [ c_void_p ]
 sklib.__sklib__random_window_point__window.restype = _sklib_point_2d
 sklib.__sklib__same_point__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__same_point__point_2d_ref__point_2d_ref.restype = c_bool
+sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__double.argtypes = [ _sklib_point_2d, _sklib_point_2d, c_double ]
+sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__double.restype = _sklib_quad
 sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d, _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__point_2d_ref__point_2d_ref.restype = _sklib_quad
 sklib.__sklib__quad_from__rectangle_ref.argtypes = [ _sklib_rectangle ]
@@ -4625,6 +4643,53 @@ def bitmap_point_collision_for_cell ( bmp, cell, bmp_x, bmp_y, x, y ):
     __skparam__y = __skadapter__to_sklib_double(y)
     __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
+def bitmap_quad_collision_for_cell_with_translation ( bmp, cell, translation, q ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_ray_collision_at_point ( bmp, pt, origin, heading ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__pt, __skparam__origin, __skparam__heading)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_ray_collision ( bmp, x, y, origin, heading ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_ray_collision_for_cell_with_translation ( bmp, cell, translation, origin, heading ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__bitmap_ray_collision__bitmap__int__matrix_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__origin, __skparam__heading)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_ray_collision_for_cell_at_point ( bmp, cell, pt, origin, heading ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__bitmap_ray_collision__bitmap__int__point_2d_ref__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__origin, __skparam__heading)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_ray_collision_for_cell ( bmp, cell, x, y, origin, heading ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__bitmap_ray_collision__bitmap__int__double__double__point_2d_ref__vector_2d_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__origin, __skparam__heading)
+    return __skadapter__to_bool(__skreturn)
 def bitmap_rectangle_collision_at_point ( bmp, pt, rect ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
@@ -4691,6 +4756,12 @@ def sprite_point_collision ( s, pt ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__sprite_point_collision__sprite__point_2d_ref(__skparam__s, __skparam__pt)
+    return __skadapter__to_bool(__skreturn)
+def sprite_ray_collision ( s, origin, heading ):
+    __skparam__s = __skadapter__to_sklib_sprite(s)
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skreturn = sklib.__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref(__skparam__s, __skparam__origin, __skparam__heading)
     return __skadapter__to_bool(__skreturn)
 def sprite_rectangle_collision ( s, rect ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
@@ -6869,6 +6940,10 @@ def is_connection_open_from_name ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__is_connection_open__string_ref(__skparam__name)
     return __skadapter__to_bool(__skreturn)
+def is_valid_ipv4 ( ip ):
+    __skparam__ip = __skadapter__to_sklib_string(ip)
+    __skreturn = sklib.__sklib__is_valid_ipv4__string_ref(__skparam__ip)
+    return __skadapter__to_bool(__skreturn)
 def last_connection_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__last_connection__string_ref(__skparam__name)
@@ -7224,6 +7299,12 @@ def same_point ( pt1, pt2 ):
     __skparam__pt2 = __skadapter__to_sklib_point_2d(pt2)
     __skreturn = sklib.__sklib__same_point__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2)
     return __skadapter__to_bool(__skreturn)
+def quad_from_from_line ( line_origin, line_end, width ):
+    __skparam__line_origin = __skadapter__to_sklib_point_2d(line_origin)
+    __skparam__line_end = __skadapter__to_sklib_point_2d(line_end)
+    __skparam__width = __skadapter__to_sklib_double(width)
+    __skreturn = sklib.__sklib__quad_from__point_2d_ref__point_2d_ref__double(__skparam__line_origin, __skparam__line_end, __skparam__width)
+    return __skadapter__to_quad(__skreturn)
 def quad_from_points ( p1, p2, p3, p4 ):
     __skparam__p1 = __skadapter__to_sklib_point_2d(p1)
     __skparam__p2 = __skadapter__to_sklib_point_2d(p2)

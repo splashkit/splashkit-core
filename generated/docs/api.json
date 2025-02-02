@@ -18450,6 +18450,85 @@
         }
       },
       {
+        "signature": "quad quad_from(const point_2d& line_origin,const point_2d& line_end,double width);",
+        "name": "quad_from",
+        "method_name": null,
+        "unique_global_name": "quad_from_from_line",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a quad from the passed in line and width.\nThe quad will be a rectangle with the line as the diagonal,\nand the width as the width of the rectangle.",
+        "brief": null,
+        "return": {
+          "type": "quad",
+          "description": "A quad that represents the line with the given width",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "line_origin": {
+            "type": "point_2d",
+            "description": "The origin of the line",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "line_end": {
+            "type": "point_2d",
+            "description": "The end of the line",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "width": {
+            "type": "double",
+            "description": "The width of the quad",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_line",
+          "group": "geometry",
+          "static": "geometry"
+        },
+        "signatures": {
+          "cpp": [
+            "quad quad_from(const point_2d &line_origin, const point_2d &line_end, double width)"
+          ],
+          "python": [
+            "def quad_from_from_line(line_origin, line_end, width):"
+          ],
+          "pascal": [
+            "function QuadFrom(const lineOrigin: Point2D; const lineEnd: Point2D; width: Double): Quad"
+          ],
+          "csharp": [
+            "public static Quad Geometry.QuadFrom(Point2D lineOrigin, Point2D lineEnd, double width);",
+            "public static Quad SplashKit.QuadFrom(Point2D lineOrigin, Point2D lineEnd, double width);"
+          ]
+        }
+      },
+      {
         "signature": "quad quad_from(const point_2d &p1,const point_2d &p2,const point_2d &p3,const point_2d &p4);",
         "name": "quad_from",
         "method_name": null,
@@ -55961,6 +56040,58 @@
         }
       },
       {
+        "signature": "bool is_valid_ipv4(const string &ip);",
+        "name": "is_valid_ipv4",
+        "method_name": null,
+        "unique_global_name": "is_valid_ipv4",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": null,
+        "brief": "Validates if a given string represents a valid IPv4 address.",
+        "return": {
+          "type": "bool",
+          "description": "bool Returns true if the string is a valid IPv4 address, false otherwise",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "ip": {
+            "type": "string",
+            "description": "The string containing the IP address to validate",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "networking",
+          "static": "networking"
+        },
+        "signatures": {
+          "cpp": [
+            "bool is_valid_ipv4(const string &ip)"
+          ],
+          "python": [
+            "def is_valid_ipv4(ip):"
+          ],
+          "pascal": [
+            "function IsValidIpv4(const ip: String): Boolean"
+          ],
+          "csharp": [
+            "public static bool Networking.IsValidIpv4(string ip);",
+            "public static bool SplashKit.IsValidIpv4(string ip);"
+          ]
+        }
+      },
+      {
         "signature": "connection last_connection(const string &name);",
         "name": "last_connection",
         "method_name": null,
@@ -62628,6 +62759,640 @@
         }
       },
       {
+        "signature": "bool bitmap_quad_collision(bitmap bmp,int cell,const matrix_2d &translation,const quad &q);",
+        "name": "bitmap_quad_collision",
+        "method_name": "quad_collision",
+        "unique_global_name": "bitmap_quad_collision_for_cell_with_translation",
+        "unique_method_name": "bitmap.quad_collision_for_cell_with_translation",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a quad. You can use this to detect collisions between\nbitmaps and quads.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `q` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "translation": {
+            "type": "matrix_2d",
+            "description": "The matrix used to transfrom the bitmap when drawing",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "q": {
+            "type": "quad",
+            "description": "The quad to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "quad_collision",
+          "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q)"
+          ],
+          "python": [
+            "def bitmap_quad_collision_for_cell_with_translation(bmp, cell, translation, q):"
+          ],
+          "pascal": [
+            "function BitmapQuadCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const q: Quad): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapQuadCollision(int cell, Matrix2D translation, Quad q);",
+            "public static bool SplashKit.BitmapQuadCollision(Bitmap bmp, int cell, Matrix2D translation, Quad q);"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,const point_2d& pt,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_at_point",
+        "unique_method_name": "bitmap.ray_collision_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `pt` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_ray_collision(bitmap bmp, const point_2d &pt, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def bitmap_ray_collision_at_point(bmp, pt, origin, heading):"
+          ],
+          "pascal": [
+            "function BitmapRayCollision(bmp: Bitmap; const pt: Point2D; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapRayCollision(Point2D pt, Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.BitmapRayCollision(Bitmap bmp, Point2D pt, Point2D origin, Vector2D heading);"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,double x,double y,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision",
+        "unique_method_name": "bitmap.ray_collision",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `x`, `y` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def bitmap_ray_collision(bmp, x, y, origin, heading):"
+          ],
+          "pascal": [
+            "function BitmapRayCollision(bmp: Bitmap; x: Double; y: Double; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapRayCollision(double x, double y, Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.BitmapRayCollision(Bitmap bmp, double x, double y, Point2D origin, Vector2D heading);"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,const matrix_2d& translation,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell_with_translation",
+        "unique_method_name": "bitmap.ray_collision_for_cell_with_translation",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a ray. You can use this to detect collisions between\nbitmaps and rays.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "translation": {
+            "type": "matrix_2d",
+            "description": "The matrix used to transfrom the bitmap when drawing",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def bitmap_ray_collision_for_cell_with_translation(bmp, cell, translation, origin, heading):"
+          ],
+          "pascal": [
+            "function BitmapRayCollision(bmp: Bitmap; cell: Integer; const translation: Matrix2D; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapRayCollision(int cell, Matrix2D translation, Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.BitmapRayCollision(Bitmap bmp, int cell, Matrix2D translation, Point2D origin, Vector2D heading);"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,const point_2d& pt,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell_at_point",
+        "unique_method_name": "bitmap.ray_collision_for_cell_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `pt` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell_at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d &pt, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def bitmap_ray_collision_for_cell_at_point(bmp, cell, pt, origin, heading):"
+          ],
+          "pascal": [
+            "function BitmapRayCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapRayCollision(int cell, Point2D pt, Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.BitmapRayCollision(Bitmap bmp, int cell, Point2D pt, Point2D origin, Vector2D heading);"
+          ]
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,double x,double y,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell",
+        "unique_method_name": "bitmap.ray_collision_for_cell",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `x`, `y` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        },
+        "signatures": {
+          "cpp": [
+            "bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def bitmap_ray_collision_for_cell(bmp, cell, x, y, origin, heading):"
+          ],
+          "pascal": [
+            "function BitmapRayCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Bitmap.BitmapRayCollision(int cell, double x, double y, Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.BitmapRayCollision(Bitmap bmp, int cell, double x, double y, Point2D origin, Vector2D heading);"
+          ]
+        }
+      },
+      {
         "signature": "bool bitmap_rectangle_collision(bitmap bmp,const point_2d& pt,const rectangle& rect);",
         "name": "bitmap_rectangle_collision",
         "method_name": "rectangle_collision",
@@ -63531,6 +64296,87 @@
           "csharp": [
             "public bool Sprite.SpritePointCollision(Point2D pt);",
             "public static bool SplashKit.SpritePointCollision(Sprite s, Point2D pt);"
+          ]
+        }
+      },
+      {
+        "signature": "bool sprite_ray_collision(sprite s,const point_2d& origin,const vector_2d& heading);",
+        "name": "sprite_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "sprite_ray_collision",
+        "unique_method_name": "sprite.ray_collision",
+        "suffix_name": null,
+        "description": "Tests if a sprite is drawn along a given ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the sprite is drawn along the ray",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "s": {
+            "type": "sprite",
+            "description": "The sprite to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "sprite",
+          "method": "ray_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "s"
+        },
+        "signatures": {
+          "cpp": [
+            "bool sprite_ray_collision(sprite s, const point_2d &origin, const vector_2d &heading)"
+          ],
+          "python": [
+            "def sprite_ray_collision(s, origin, heading):"
+          ],
+          "pascal": [
+            "function SpriteRayCollision(s: Sprite; const origin: Point2D; const heading: Vector2D): Boolean"
+          ],
+          "csharp": [
+            "public bool Sprite.SpriteRayCollision(Point2D origin, Vector2D heading);",
+            "public static bool SplashKit.SpriteRayCollision(Sprite s, Point2D origin, Vector2D heading);"
           ]
         }
       },

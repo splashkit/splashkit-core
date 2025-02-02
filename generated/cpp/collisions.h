@@ -31,6 +31,12 @@ bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, do
 bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt);
 bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d &pt);
 bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y);
+bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
+bool bitmap_ray_collision(bitmap bmp, const point_2d &pt, const point_2d &origin, const vector_2d &heading);
+bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d &origin, const vector_2d &heading);
+bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &origin, const vector_2d &heading);
+bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d &pt, const point_2d &origin, const vector_2d &heading);
+bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d &origin, const vector_2d &heading);
 bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect);
 bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle &rect);
 bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect);
@@ -41,6 +47,7 @@ bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, const point_2d &pt)
 bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, double x, double y);
 bool sprite_collision(sprite s1, sprite s2);
 bool sprite_point_collision(sprite s, const point_2d &pt);
+bool sprite_ray_collision(sprite s, const point_2d &origin, const vector_2d &heading);
 bool sprite_rectangle_collision(sprite s, const rectangle &rect);
 
 #endif /* __collisions_h */
