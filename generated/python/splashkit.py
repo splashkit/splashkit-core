@@ -3152,8 +3152,6 @@ sklib.__sklib__call_for_all_sprites__sprite_function_ptr.argtypes = [ SpriteFunc
 sklib.__sklib__call_for_all_sprites__sprite_function_ptr.restype = None
 sklib.__sklib__call_on_sprite_event__sprite_event_handler_ptr.argtypes = [ SpriteEventHandler ]
 sklib.__sklib__call_on_sprite_event__sprite_event_handler_ptr.restype = None
-sklib.__sklib__center_point__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__center_point__sprite.restype = _sklib_point_2d
 sklib.__sklib__create_sprite__bitmap.argtypes = [ c_void_p ]
 sklib.__sklib__create_sprite__bitmap.restype = c_void_p
 sklib.__sklib__create_sprite__bitmap__animation_script.argtypes = [ c_void_p, c_void_p ]
@@ -3224,6 +3222,8 @@ sklib.__sklib__sprite_bring_layer_to_front__sprite__int.argtypes = [ c_void_p, c
 sklib.__sklib__sprite_bring_layer_to_front__sprite__int.restype = None
 sklib.__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr.argtypes = [ c_void_p, SpriteEventHandler ]
 sklib.__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr.restype = None
+sklib.__sklib__sprite_center_point__sprite.argtypes = [ c_void_p ]
+sklib.__sklib__sprite_center_point__sprite.restype = _sklib_point_2d
 sklib.__sklib__sprite_circle__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_circle__sprite.restype = _sklib_circle
 sklib.__sklib__sprite_collision_bitmap__sprite.argtypes = [ c_void_p ]
@@ -7731,10 +7731,6 @@ def call_for_all_sprites ( fn ):
 def call_on_sprite_event ( handler ):
     __skparam__handler = __skadapter__to_sklib_sprite_event_handler(handler)
     sklib.__sklib__call_on_sprite_event__sprite_event_handler_ptr(__skparam__handler)
-def center_point ( s ):
-    __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skreturn = sklib.__sklib__center_point__sprite(__skparam__s)
-    return __skadapter__to_point_2d(__skreturn)
 def create_sprite ( layer ):
     __skparam__layer = __skadapter__to_sklib_bitmap(layer)
     __skreturn = sklib.__sklib__create_sprite__bitmap(__skparam__layer)
@@ -7876,6 +7872,10 @@ def sprite_call_on_event ( s, handler ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__handler = __skadapter__to_sklib_sprite_event_handler(handler)
     sklib.__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__skparam__s, __skparam__handler)
+def sprite_center_point ( s ):
+    __skparam__s = __skadapter__to_sklib_sprite(s)
+    __skreturn = sklib.__sklib__sprite_center_point__sprite(__skparam__s)
+    return __skadapter__to_point_2d(__skreturn)
 def sprite_circle ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_circle__sprite(__skparam__s)

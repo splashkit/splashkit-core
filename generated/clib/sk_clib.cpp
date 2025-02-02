@@ -4716,11 +4716,6 @@ void __sklib__call_on_sprite_event__sprite_event_handler_ptr(__sklib_sprite_even
     sprite_event_handler *__skparam__handler = handler;
     call_on_sprite_event(__skparam__handler);
 }
-__sklib_point_2d __sklib__center_point__sprite(__sklib_sprite s) {
-    sprite __skparam__s = __sklib__to_sprite(s);
-    point_2d __skreturn = center_point(__skparam__s);
-    return __sklib__to_sklib_point_2d(__skreturn);
-}
 __sklib_sprite __sklib__create_sprite__bitmap(__sklib_bitmap layer) {
     bitmap __skparam__layer = __sklib__to_bitmap(layer);
     sprite __skreturn = create_sprite(__skparam__layer);
@@ -4896,6 +4891,11 @@ void __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__sklib_spr
     sprite __skparam__s = __sklib__to_sprite(s);
     sprite_event_handler *__skparam__handler = handler;
     sprite_call_on_event(__skparam__s, __skparam__handler);
+}
+__sklib_point_2d __sklib__sprite_center_point__sprite(__sklib_sprite s) {
+    sprite __skparam__s = __sklib__to_sprite(s);
+    point_2d __skreturn = sprite_center_point(__skparam__s);
+    return __sklib__to_sklib_point_2d(__skreturn);
 }
 __sklib_circle __sklib__sprite_circle__sprite(__sklib_sprite s) {
     sprite __skparam__s = __sklib__to_sprite(s);

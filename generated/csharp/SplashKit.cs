@@ -3672,9 +3672,6 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__call_on_sprite_event__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__call_on_sprite_event__sprite_event_handler_ptr(SpriteEventHandler handler);
 
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__center_point__sprite", CharSet=CharSet.Ansi)]
-    private static extern __sklib_point_2d __sklib__center_point__sprite(__sklib_ptr s);
-
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__create_sprite__bitmap", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__create_sprite__bitmap(__sklib_ptr layer);
 
@@ -3779,6 +3776,9 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr", CharSet=CharSet.Ansi)]
     private static extern void __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__sklib_ptr s, SpriteEventHandler handler);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_center_point__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_point_2d __sklib__sprite_center_point__sprite(__sklib_ptr s);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_circle__sprite", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__sprite_circle__sprite(__sklib_ptr s);
@@ -12624,14 +12624,6 @@ namespace SplashKitSDK
       __skparam__handler = __skadapter__to_sklib_sprite_event_handler(handler);
       __sklib__call_on_sprite_event__sprite_event_handler_ptr(__skparam__handler);
     }
-    public static Point2D CenterPoint(Sprite s)
-    {
-      __sklib_ptr __skparam__s;
-      __sklib_point_2d __skreturn;
-      __skparam__s = __skadapter__to_sklib_sprite(s);
-      __skreturn = __sklib__center_point__sprite(__skparam__s);
-      return __skadapter__to_point_2d(__skreturn);
-    }
     public static Sprite CreateSprite(Bitmap layer)
     {
       __sklib_ptr __skparam__layer;
@@ -12926,6 +12918,14 @@ namespace SplashKitSDK
       __skparam__s = __skadapter__to_sklib_sprite(s);
       __skparam__handler = __skadapter__to_sklib_sprite_event_handler(handler);
       __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__skparam__s, __skparam__handler);
+    }
+    public static Point2D SpriteCenterPoint(Sprite s)
+    {
+      __sklib_ptr __skparam__s;
+      __sklib_point_2d __skreturn;
+      __skparam__s = __skadapter__to_sklib_sprite(s);
+      __skreturn = __sklib__sprite_center_point__sprite(__skparam__s);
+      return __skadapter__to_point_2d(__skreturn);
     }
     public static Circle SpriteCircle(Sprite s)
     {
@@ -18527,10 +18527,6 @@ public class Sprite : PointerWrapper
         return SplashKit.VectorFromTo(this, s2);
     }
 
-    public Point2D CenterPoint
-    {
-        get { return SplashKit.CenterPoint(this); }
-    }
     public Point2D AnchorPoint
     {
         get { return SplashKit.SpriteAnchorPoint(this); }
@@ -18539,6 +18535,10 @@ public class Sprite : PointerWrapper
     public bool AnimationHasEnded
     {
         get { return SplashKit.SpriteAnimationHasEnded(this); }
+    }
+    public Point2D SpriteCenterPoint
+    {
+        get { return SplashKit.SpriteCenterPoint(this); }
     }
     public Bitmap CollisionBitmap
     {

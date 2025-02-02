@@ -67826,61 +67826,6 @@
         }
       },
       {
-        "signature": "point_2d center_point(sprite s);",
-        "name": "center_point",
-        "method_name": null,
-        "unique_global_name": "center_point",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
-        "brief": null,
-        "return": {
-          "type": "point_2d",
-          "description": "The center point of the sprite",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "s": {
-            "type": "sprite",
-            "description": "The sprite to get the details from.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "class": "sprite",
-          "getter": "center_point",
-          "group": "sprites",
-          "static": "sprite",
-          "self": "s"
-        },
-        "signatures": {
-          "cpp": [
-            "point_2d center_point(sprite s)"
-          ],
-          "python": [
-            "def center_point(s):"
-          ],
-          "pascal": [
-            "function CenterPoint(s: Sprite): Point2D"
-          ],
-          "csharp": [
-            "public Point2D Sprite.CenterPoint { get }",
-            "public static Point2D SplashKit.CenterPoint(Sprite s);"
-          ]
-        }
-      },
-      {
         "signature": "sprite create_sprite(bitmap layer);",
         "name": "create_sprite",
         "method_name": null,
@@ -70050,6 +69995,61 @@
           "csharp": [
             "public void Sprite.SpriteCallOnEvent(SpriteEventHandler handler);",
             "public static void SplashKit.SpriteCallOnEvent(Sprite s, SpriteEventHandler handler);"
+          ]
+        }
+      },
+      {
+        "signature": "point_2d sprite_center_point(sprite s);",
+        "name": "sprite_center_point",
+        "method_name": null,
+        "unique_global_name": "sprite_center_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
+        "brief": null,
+        "return": {
+          "type": "point_2d",
+          "description": "The center point of the sprite",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "s": {
+            "type": "sprite",
+            "description": "The sprite to get the details from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "sprite",
+          "getter": "sprite_center_point",
+          "group": "sprites",
+          "static": "sprite",
+          "self": "s"
+        },
+        "signatures": {
+          "cpp": [
+            "point_2d sprite_center_point(sprite s)"
+          ],
+          "python": [
+            "def sprite_center_point(s):"
+          ],
+          "pascal": [
+            "function SpriteCenterPoint(s: Sprite): Point2D"
+          ],
+          "csharp": [
+            "public Point2D Sprite.SpriteCenterPoint { get }",
+            "public static Point2D SplashKit.SpriteCenterPoint(Sprite s);"
           ]
         }
       },

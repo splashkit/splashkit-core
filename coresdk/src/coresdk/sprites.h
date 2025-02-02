@@ -1227,9 +1227,9 @@ namespace splashkit_lib
      * @return      The center point of the sprite
      *
      * @attribute class sprite
-     * @attribute getter center_point
+     * @attribute getter sprite_center_point
      */
-    point_2d center_point(sprite s);
+    point_2d sprite_center_point(sprite s);
 
     /**
      * Returns the anchor point of the sprite. This is the point around which the

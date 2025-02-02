@@ -43797,7 +43797,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1720129781,
+    "parsed_at": 1738486001,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -43923,46 +43923,6 @@
         "attributes": {
           "group": "sprites",
           "static": "sprite"
-        }
-      },
-      {
-        "signature": "point_2d center_point(sprite s);",
-        "name": "center_point",
-        "method_name": null,
-        "unique_global_name": "center_point",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
-        "brief": null,
-        "return": {
-          "type": "point_2d",
-          "description": "The center point of the sprite",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "s": {
-            "type": "sprite",
-            "description": "The sprite to get the details from.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "class": "sprite",
-          "getter": "center_point",
-          "group": "sprites",
-          "static": "sprite",
-          "self": "s"
         }
       },
       {
@@ -45611,6 +45571,46 @@
           "self": "s",
           "group": "sprites",
           "static": "sprite"
+        }
+      },
+      {
+        "signature": "point_2d sprite_center_point(sprite s);",
+        "name": "sprite_center_point",
+        "method_name": null,
+        "unique_global_name": "sprite_center_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
+        "brief": null,
+        "return": {
+          "type": "point_2d",
+          "description": "The center point of the sprite",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "s": {
+            "type": "sprite",
+            "description": "The sprite to get the details from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "sprite",
+          "getter": "sprite_center_point",
+          "group": "sprites",
+          "static": "sprite",
+          "self": "s"
         }
       },
       {

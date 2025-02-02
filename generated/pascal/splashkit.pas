@@ -1270,7 +1270,6 @@ procedure StopSoundEffect(effect: SoundEffect);
 procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single);
 procedure CallForAllSprites(fn: SpriteFunction);
 procedure CallOnSpriteEvent(handler: SpriteEventHandler);
-function CenterPoint(s: Sprite): Point2D;
 function CreateSprite(layer: Bitmap): Sprite;
 function CreateSprite(layer: Bitmap; ani: AnimationScript): Sprite;
 function CreateSprite(const bitmapName: String): Sprite;
@@ -1306,6 +1305,7 @@ function SpriteAt(s: Sprite; const pt: Point2D): Boolean;
 procedure SpriteBringLayerForward(s: Sprite; visibleLayer: Integer);
 procedure SpriteBringLayerToFront(s: Sprite; visibleLayer: Integer);
 procedure SpriteCallOnEvent(s: Sprite; handler: SpriteEventHandler);
+function SpriteCenterPoint(s: Sprite): Point2D;
 function SpriteCircle(s: Sprite): Circle;
 function SpriteCollisionBitmap(s: Sprite): Bitmap;
 function SpriteCollisionCircle(s: Sprite): Circle;
@@ -3485,7 +3485,6 @@ procedure __sklib__stop_sound_effect__sound_effect(effect: __sklib_ptr); cdecl; 
 procedure __sklib__call_for_all_sprites__sprite_float_function_ptr__float(fn: SpriteFloatFunction; val: Single); cdecl; external;
 procedure __sklib__call_for_all_sprites__sprite_function_ptr(fn: SpriteFunction); cdecl; external;
 procedure __sklib__call_on_sprite_event__sprite_event_handler_ptr(handler: SpriteEventHandler); cdecl; external;
-function __sklib__center_point__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
 function __sklib__create_sprite__bitmap(layer: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__create_sprite__bitmap__animation_script(layer: __sklib_ptr; ani: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__create_sprite__string_ref(const bitmapName: __sklib_string): __sklib_ptr; cdecl; external;
@@ -3521,6 +3520,7 @@ function __sklib__sprite_at__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sk
 procedure __sklib__sprite_bring_layer_forward__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
 procedure __sklib__sprite_bring_layer_to_front__sprite__int(s: __sklib_ptr; visibleLayer: Integer); cdecl; external;
 procedure __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(s: __sklib_ptr; handler: SpriteEventHandler); cdecl; external;
+function __sklib__sprite_center_point__sprite(s: __sklib_ptr): __sklib_point_2d; cdecl; external;
 function __sklib__sprite_circle__sprite(s: __sklib_ptr): __sklib_circle; cdecl; external;
 function __sklib__sprite_collision_bitmap__sprite(s: __sklib_ptr): __sklib_ptr; cdecl; external;
 function __sklib__sprite_collision_circle__sprite(s: __sklib_ptr): __sklib_circle; cdecl; external;
@@ -12351,15 +12351,6 @@ begin
   __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
   __sklib__call_on_sprite_event__sprite_event_handler_ptr(__skparam__handler);
 end;
-function CenterPoint(s: Sprite): Point2D;
-var
-  __skparam__s: __sklib_ptr;
-  __skreturn: __sklib_point_2d;
-begin
-  __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skreturn := __sklib__center_point__sprite(__skparam__s);
-  result := __skadapter__to_point_2d(__skreturn);
-end;
 function CreateSprite(layer: Bitmap): Sprite;
 var
   __skparam__layer: __sklib_ptr;
@@ -12674,6 +12665,15 @@ begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skparam__handler := __skadapter__to_sklib_sprite_event_handler(handler);
   __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__skparam__s, __skparam__handler);
+end;
+function SpriteCenterPoint(s: Sprite): Point2D;
+var
+  __skparam__s: __sklib_ptr;
+  __skreturn: __sklib_point_2d;
+begin
+  __skparam__s := __skadapter__to_sklib_sprite(s);
+  __skreturn := __sklib__sprite_center_point__sprite(__skparam__s);
+  result := __skadapter__to_point_2d(__skreturn);
 end;
 function SpriteCircle(s: Sprite): Circle;
 var

@@ -1051,7 +1051,6 @@ void __sklib__stop_sound_effect__sound_effect(__sklib_sound_effect effect);
 void __sklib__call_for_all_sprites__sprite_float_function_ptr__float(__sklib_sprite_float_function *fn, float val);
 void __sklib__call_for_all_sprites__sprite_function_ptr(__sklib_sprite_function *fn);
 void __sklib__call_on_sprite_event__sprite_event_handler_ptr(__sklib_sprite_event_handler *handler);
-__sklib_point_2d __sklib__center_point__sprite(__sklib_sprite s);
 __sklib_sprite __sklib__create_sprite__bitmap(__sklib_bitmap layer);
 __sklib_sprite __sklib__create_sprite__bitmap__animation_script(__sklib_bitmap layer, __sklib_animation_script ani);
 __sklib_sprite __sklib__create_sprite__string_ref(const __sklib_string bitmap_name);
@@ -1087,6 +1086,7 @@ int __sklib__sprite_at__sprite__point_2d_ref(__sklib_sprite s, const __sklib_poi
 void __sklib__sprite_bring_layer_forward__sprite__int(__sklib_sprite s, int visible_layer);
 void __sklib__sprite_bring_layer_to_front__sprite__int(__sklib_sprite s, int visible_layer);
 void __sklib__sprite_call_on_event__sprite__sprite_event_handler_ptr(__sklib_sprite s, __sklib_sprite_event_handler *handler);
+__sklib_point_2d __sklib__sprite_center_point__sprite(__sklib_sprite s);
 __sklib_circle __sklib__sprite_circle__sprite(__sklib_sprite s);
 __sklib_bitmap __sklib__sprite_collision_bitmap__sprite(__sklib_sprite s);
 __sklib_circle __sklib__sprite_collision_circle__sprite(__sklib_sprite s);
