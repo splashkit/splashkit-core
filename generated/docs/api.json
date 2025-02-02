@@ -59717,7 +59717,7 @@
         "unique_global_name": "request_uri_stubs",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to http://localhost:8080/names/0 returns...\n\n[\"names\", \"0\"]",
+        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to `http://localhost:8080/names/0` returns...\n\n[\"names\", \"0\"]",
         "brief": null,
         "return": {
           "type": "vector",
@@ -60604,7 +60604,7 @@
         "unique_global_name": "split_uri_stubs",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to http://localhost:8080/names/0 returns...\n\n[\"names\", \"0\"]",
+        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to `http://localhost:8080/names/0` returns...\n\n[\"names\", \"0\"]",
         "brief": null,
         "return": {
           "type": "vector",
