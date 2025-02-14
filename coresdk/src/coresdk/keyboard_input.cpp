@@ -88,6 +88,7 @@ namespace splashkit_lib
         key_code keycode = static_cast<key_code>(code);
         if(not key_down(keycode))
         {
+            _key_pressed = true; 
             _keys_down[keycode] = true;
             _keys_just_typed[keycode] = true;
             _raise_key_event(_on_key_typed, keycode);
