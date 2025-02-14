@@ -231,7 +231,7 @@ namespace splashkit_lib
         result->last_update = timer_ticks(_sprite_timer);
 
         // Write_ln("adding for ", name, " ", Hex_str(obj));
-        _sprites[name] = result;
+        _sprites[sn] = result;
 
         current_pack().push_back(result);
 
@@ -1558,6 +1558,10 @@ namespace splashkit_lib
         // TODO: Temporarily do not call due to 70c30d4
         vector<void *> &pack = _sprite_packs[name];
         _call_for_all_sprites(pack, &_free_sprite);
+        if (name == _current_pack)
+        {
+            _current_pack = INITIAL_PACK_NAME;
+        }
 
         _sprite_packs.erase(name);
     }
