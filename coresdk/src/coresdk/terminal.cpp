@@ -10,6 +10,7 @@
 #include "types.h"
 #include <iostream>
 #include <map>
+#include <limits>
 
 using std::map;
 using std::pair;
@@ -83,7 +84,7 @@ namespace splashkit_lib
         cin.clear();  
         cin.sync();
         cin >> result;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
         return result;
     }
 
