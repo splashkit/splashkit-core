@@ -65,12 +65,14 @@ namespace splashkit_lib
 
     void write_line(char data)
     {
-        write_line(std::to_string(data));
+        write_line(std::string(1, data));
     }
 
     string read_line()
     {
         string result;
+        cin.clear(); 
+        cin.sync();
         getline(std::cin, result);
         return result;
     }
@@ -78,7 +80,10 @@ namespace splashkit_lib
     char read_char()
     {
         char result = 0;
+        cin.clear();  
+        cin.sync();
         cin >> result;
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return result;
     }
 
