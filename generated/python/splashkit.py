@@ -2947,7 +2947,7 @@ sklib.__sklib__point_on_line__point_2d_ref__line_ref__float.restype = c_bool
 sklib.__sklib__point_point_angle__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
 sklib.__sklib__point_point_angle__point_2d_ref__point_2d_ref.restype = c_float
 sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
-sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.restype = c_float
+sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref.restype = c_double
 sklib.__sklib__point_to_string__point_2d_ref.argtypes = [ _sklib_point_2d ]
 sklib.__sklib__point_to_string__point_2d_ref.restype = _sklib_string
 sklib.__sklib__random_bitmap_point__bitmap.argtypes = [ c_void_p ]
@@ -3257,9 +3257,9 @@ sklib.__sklib__sprite_current_cell__sprite.restype = c_int
 sklib.__sklib__sprite_current_cell_rectangle__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_current_cell_rectangle__sprite.restype = _sklib_rectangle
 sklib.__sklib__sprite_dx__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_dx__sprite.restype = c_float
+sklib.__sklib__sprite_dx__sprite.restype = c_double
 sklib.__sklib__sprite_dy__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_dy__sprite.restype = c_float
+sklib.__sklib__sprite_dy__sprite.restype = c_double
 sklib.__sklib__sprite_has_value__sprite__string.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_has_value__sprite__string.restype = c_bool
 sklib.__sklib__sprite_heading__sprite.argtypes = [ c_void_p ]
@@ -3340,10 +3340,10 @@ sklib.__sklib__sprite_set_collision_bitmap__sprite__bitmap.argtypes = [ c_void_p
 sklib.__sklib__sprite_set_collision_bitmap__sprite__bitmap.restype = None
 sklib.__sklib__sprite_set_collision_kind__sprite__collision_test_kind.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_set_collision_kind__sprite__collision_test_kind.restype = None
-sklib.__sklib__sprite_set_dx__sprite__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__sprite_set_dx__sprite__float.restype = None
-sklib.__sklib__sprite_set_dy__sprite__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__sprite_set_dy__sprite__float.restype = None
+sklib.__sklib__sprite_set_dx__sprite__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__sprite_set_dx__sprite__double.restype = None
+sklib.__sklib__sprite_set_dy__sprite__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__sprite_set_dy__sprite__double.restype = None
 sklib.__sklib__sprite_set_heading__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_heading__sprite__float.restype = None
 sklib.__sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_string, _sklib_vector_2d ]
@@ -3360,22 +3360,22 @@ sklib.__sklib__sprite_set_rotation__sprite__float.argtypes = [ c_void_p, c_float
 sklib.__sklib__sprite_set_rotation__sprite__float.restype = None
 sklib.__sklib__sprite_set_scale__sprite__float.argtypes = [ c_void_p, c_float ]
 sklib.__sklib__sprite_set_scale__sprite__float.restype = None
-sklib.__sklib__sprite_set_speed__sprite__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__sprite_set_speed__sprite__float.restype = None
+sklib.__sklib__sprite_set_speed__sprite__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__sprite_set_speed__sprite__double.restype = None
 sklib.__sklib__sprite_set_value__sprite__string_ref__float.argtypes = [ c_void_p, _sklib_string, c_float ]
 sklib.__sklib__sprite_set_value__sprite__string_ref__float.restype = None
 sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref.argtypes = [ c_void_p, _sklib_vector_2d ]
 sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref.restype = None
-sklib.__sklib__sprite_set_x__sprite__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__sprite_set_x__sprite__float.restype = None
-sklib.__sklib__sprite_set_y__sprite__float.argtypes = [ c_void_p, c_float ]
-sklib.__sklib__sprite_set_y__sprite__float.restype = None
+sklib.__sklib__sprite_set_x__sprite__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__sprite_set_x__sprite__double.restype = None
+sklib.__sklib__sprite_set_y__sprite__double.argtypes = [ c_void_p, c_double ]
+sklib.__sklib__sprite_set_y__sprite__double.restype = None
 sklib.__sklib__sprite_show_layer__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_show_layer__sprite__string_ref.restype = c_int
 sklib.__sklib__sprite_show_layer__sprite__int.argtypes = [ c_void_p, c_int ]
 sklib.__sklib__sprite_show_layer__sprite__int.restype = c_int
 sklib.__sklib__sprite_speed__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_speed__sprite.restype = c_float
+sklib.__sklib__sprite_speed__sprite.restype = c_double
 sklib.__sklib__sprite_start_animation__sprite__string_ref.argtypes = [ c_void_p, _sklib_string ]
 sklib.__sklib__sprite_start_animation__sprite__string_ref.restype = None
 sklib.__sklib__sprite_start_animation__sprite__string_ref__bool.argtypes = [ c_void_p, _sklib_string, c_bool ]
@@ -3409,9 +3409,9 @@ sklib.__sklib__sprite_visible_layer_id__sprite__int.restype = c_int
 sklib.__sklib__sprite_width__sprite.argtypes = [ c_void_p ]
 sklib.__sklib__sprite_width__sprite.restype = c_int
 sklib.__sklib__sprite_x__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_x__sprite.restype = c_float
+sklib.__sklib__sprite_x__sprite.restype = c_double
 sklib.__sklib__sprite_y__sprite.argtypes = [ c_void_p ]
-sklib.__sklib__sprite_y__sprite.restype = c_float
+sklib.__sklib__sprite_y__sprite.restype = c_double
 sklib.__sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr.argtypes = [ SpriteEventHandler ]
 sklib.__sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr.restype = None
 sklib.__sklib__update_all_sprites.argtypes = [  ]
@@ -6575,7 +6575,7 @@ def close_log_process (  ):
 def init_custom_logger ( mode ):
     __skparam__mode = __skadapter__to_sklib_log_mode(mode)
     sklib.__sklib__init_custom_logger__log_mode(__skparam__mode)
-def init_custom_logger__name_override_mode ( app_name, override_prev_log, mode ):
+def init_custom_logger_name_override_mode ( app_name, override_prev_log, mode ):
     __skparam__app_name = __skadapter__to_sklib_string(app_name)
     __skparam__override_prev_log = __skadapter__to_sklib_bool(override_prev_log)
     __skparam__mode = __skadapter__to_sklib_log_mode(mode)
@@ -7278,7 +7278,7 @@ def point_point_distance ( pt1, pt2 ):
     __skparam__pt1 = __skadapter__to_sklib_point_2d(pt1)
     __skparam__pt2 = __skadapter__to_sklib_point_2d(pt2)
     __skreturn = sklib.__sklib__point_point_distance__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def point_to_string ( pt ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__point_to_string__point_2d_ref(__skparam__pt)
@@ -7988,11 +7988,11 @@ def sprite_current_cell_rectangle ( s ):
 def sprite_dx ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_dx__sprite(__skparam__s)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def sprite_dy ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_dy__sprite(__skparam__s)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def sprite_has_value ( s, name ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -8173,12 +8173,12 @@ def sprite_set_collision_kind ( s, value ):
     sklib.__sklib__sprite_set_collision_kind__sprite__collision_test_kind(__skparam__s, __skparam__value)
 def sprite_set_dx ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__value = __skadapter__to_sklib_float(value)
-    sklib.__sklib__sprite_set_dx__sprite__float(__skparam__s, __skparam__value)
+    __skparam__value = __skadapter__to_sklib_double(value)
+    sklib.__sklib__sprite_set_dx__sprite__double(__skparam__s, __skparam__value)
 def sprite_set_dy ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__value = __skadapter__to_sklib_float(value)
-    sklib.__sklib__sprite_set_dy__sprite__float(__skparam__s, __skparam__value)
+    __skparam__value = __skadapter__to_sklib_double(value)
+    sklib.__sklib__sprite_set_dy__sprite__double(__skparam__s, __skparam__value)
 def sprite_set_heading ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__value = __skadapter__to_sklib_float(value)
@@ -8215,8 +8215,8 @@ def sprite_set_scale ( s, value ):
     sklib.__sklib__sprite_set_scale__sprite__float(__skparam__s, __skparam__value)
 def sprite_set_speed ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__value = __skadapter__to_sklib_float(value)
-    sklib.__sklib__sprite_set_speed__sprite__float(__skparam__s, __skparam__value)
+    __skparam__value = __skadapter__to_sklib_double(value)
+    sklib.__sklib__sprite_set_speed__sprite__double(__skparam__s, __skparam__value)
 def sprite_set_value_named ( s, name, val ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -8228,12 +8228,12 @@ def sprite_set_velocity ( s, value ):
     sklib.__sklib__sprite_set_velocity__sprite__vector_2d_ref(__skparam__s, __skparam__value)
 def sprite_set_x ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__value = __skadapter__to_sklib_float(value)
-    sklib.__sklib__sprite_set_x__sprite__float(__skparam__s, __skparam__value)
+    __skparam__value = __skadapter__to_sklib_double(value)
+    sklib.__sklib__sprite_set_x__sprite__double(__skparam__s, __skparam__value)
 def sprite_set_y ( s, value ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
-    __skparam__value = __skadapter__to_sklib_float(value)
-    sklib.__sklib__sprite_set_y__sprite__float(__skparam__s, __skparam__value)
+    __skparam__value = __skadapter__to_sklib_double(value)
+    sklib.__sklib__sprite_set_y__sprite__double(__skparam__s, __skparam__value)
 def sprite_show_layer_named ( s, name ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__name = __skadapter__to_sklib_string(name)
@@ -8247,7 +8247,7 @@ def sprite_show_layer ( s, id ):
 def sprite_speed ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_speed__sprite(__skparam__s)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def sprite_start_animation_named ( s, named ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__named = __skadapter__to_sklib_string(named)
@@ -8322,11 +8322,11 @@ def sprite_width ( s ):
 def sprite_x ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_x__sprite(__skparam__s)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def sprite_y ( s ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skreturn = sklib.__sklib__sprite_y__sprite(__skparam__s)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def stop_calling_on_sprite_event ( handler ):
     __skparam__handler = __skadapter__to_sklib_sprite_event_handler(handler)
     sklib.__sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr(__skparam__handler)
@@ -8705,35 +8705,35 @@ def free_all_timers (  ):
 def free_timer ( to_free ):
     __skparam__to_free = __skadapter__to_sklib_timer(to_free)
     sklib.__sklib__free_timer__timer(__skparam__to_free)
-def has_timer__named ( name ):
+def has_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__has_timer__string(__skparam__name)
     return __skadapter__to_bool(__skreturn)
-def pause_timer__named ( name ):
+def pause_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__pause_timer__string(__skparam__name)
 def pause_timer ( to_pause ):
     __skparam__to_pause = __skadapter__to_sklib_timer(to_pause)
     sklib.__sklib__pause_timer__timer(__skparam__to_pause)
-def reset_timer__named ( name ):
+def reset_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__reset_timer__string(__skparam__name)
 def reset_timer ( tmr ):
     __skparam__tmr = __skadapter__to_sklib_timer(tmr)
     sklib.__sklib__reset_timer__timer(__skparam__tmr)
-def resume_timer__named ( name ):
+def resume_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__resume_timer__string(__skparam__name)
 def resume_timer ( to_resume ):
     __skparam__to_resume = __skadapter__to_sklib_timer(to_resume)
     sklib.__sklib__resume_timer__timer(__skparam__to_resume)
-def start_timer__named ( name ):
+def start_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__start_timer__string(__skparam__name)
 def start_timer ( to_start ):
     __skparam__to_start = __skadapter__to_sklib_timer(to_start)
     sklib.__sklib__start_timer__timer(__skparam__to_start)
-def stop_timer__named ( name ):
+def stop_timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     sklib.__sklib__stop_timer__string(__skparam__name)
 def stop_timer ( to_stop ):
@@ -8743,7 +8743,7 @@ def timer_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__timer_named__string(__skparam__name)
     return __skadapter__to_timer(__skreturn)
-def timer_paused__named ( name ):
+def timer_paused_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__timer_paused__string(__skparam__name)
     return __skadapter__to_bool(__skreturn)
@@ -8751,7 +8751,7 @@ def timer_paused ( to_get ):
     __skparam__to_get = __skadapter__to_sklib_timer(to_get)
     __skreturn = sklib.__sklib__timer_paused__timer(__skparam__to_get)
     return __skadapter__to_bool(__skreturn)
-def timer_started__named ( name ):
+def timer_started_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__timer_started__string(__skparam__name)
     return __skadapter__to_bool(__skreturn)
@@ -8759,7 +8759,7 @@ def timer_started ( to_get ):
     __skparam__to_get = __skadapter__to_sklib_timer(to_get)
     __skreturn = sklib.__sklib__timer_started__timer(__skparam__to_get)
     return __skadapter__to_bool(__skreturn)
-def timer_ticks__named ( name ):
+def timer_ticks_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__timer_ticks__string(__skparam__name)
     return __skadapter__to_unsigned_int(__skreturn)
@@ -8961,7 +8961,7 @@ def triangle_from ( p1, p2, p3 ):
     __skparam__p3 = __skadapter__to_sklib_point_2d(p3)
     __skreturn = sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref(__skparam__p1, __skparam__p2, __skparam__p3)
     return __skadapter__to_triangle(__skreturn)
-def triangle_from__from_coordinates ( x1, y1, x2, y2, x3, y3 ):
+def triangle_from_coordinates ( x1, y1, x2, y2, x3, y3 ):
     __skparam__x1 = __skadapter__to_sklib_double(x1)
     __skparam__y1 = __skadapter__to_sklib_double(y1)
     __skparam__x2 = __skadapter__to_sklib_double(x2)

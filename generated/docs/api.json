@@ -18040,7 +18040,7 @@
         }
       },
       {
-        "signature": "float point_point_distance(const point_2d &pt1,const point_2d &pt2);",
+        "signature": "double point_point_distance(const point_2d &pt1,const point_2d &pt2);",
         "name": "point_point_distance",
         "method_name": null,
         "unique_global_name": "point_point_distance",
@@ -18049,7 +18049,7 @@
         "description": "Returns the distance between two points.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance between the two points",
           "is_pointer": false,
           "is_reference": false,
@@ -18093,13 +18093,13 @@
             "def point_point_distance(pt1, pt2):"
           ],
           "csharp": [
-            "public static float SplashKit.PointPointDistance(Point2D pt1, Point2D pt2);"
+            "public static double SplashKit.PointPointDistance(Point2D pt1, Point2D pt2);"
           ],
           "cpp": [
-            "float point_point_distance(const point_2d &pt1, const point_2d &pt2)"
+            "double point_point_distance(const point_2d &pt1, const point_2d &pt2)"
           ],
           "pascal": [
-            "function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Single"
+            "function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Double"
           ]
         }
       },
@@ -20113,7 +20113,7 @@
         "signature": "triangle triangle_from(double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "triangle_from",
         "method_name": null,
-        "unique_global_name": "triangle_from__from_coordinates",
+        "unique_global_name": "triangle_from_coordinates",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Generate a triangle from a set of points.",
@@ -20207,13 +20207,13 @@
           }
         },
         "attributes": {
-          "suffix": "_from_coordinates",
+          "suffix": "coordinates",
           "group": "geometry",
           "static": "geometry"
         },
         "signatures": {
           "python": [
-            "def triangle_from__from_coordinates(x1, y1, x2, y2, x3, y3):"
+            "def triangle_from_coordinates(x1, y1, x2, y2, x3, y3):"
           ],
           "csharp": [
             "public static Triangle SplashKit.TriangleFrom(double x1, double y1, double x2, double y2, double x3, double y3);"
@@ -53419,7 +53419,7 @@
         "signature": "void init_custom_logger (string app_name,bool override_prev_log,log_mode mode);",
         "name": "init_custom_logger",
         "method_name": null,
-        "unique_global_name": "init_custom_logger__name_override_mode",
+        "unique_global_name": "init_custom_logger_name_override_mode",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Initialises the logging mode between either writing to a file or both a file and the text-based console.",
@@ -53474,13 +53474,13 @@
           }
         },
         "attributes": {
-          "suffix": "_name_override_mode",
+          "suffix": "name_override_mode",
           "group": "logging",
           "static": "logging"
         },
         "signatures": {
           "python": [
-            "def init_custom_logger__name_override_mode(app_name, override_prev_log, mode):"
+            "def init_custom_logger_name_override_mode(app_name, override_prev_log, mode):"
           ],
           "csharp": [
             "public static void SplashKit.InitCustomLogger(string appName, bool overridePrevLog, LogMode mode);"
@@ -70970,7 +70970,7 @@
         }
       },
       {
-        "signature": "float sprite_dx(sprite s);",
+        "signature": "double sprite_dx(sprite s);",
         "name": "sprite_dx",
         "method_name": null,
         "unique_global_name": "sprite_dx",
@@ -70979,7 +70979,7 @@
         "description": "Returns the X value of the sprite's velocity.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The x component of the sprite's velocity.",
           "is_pointer": false,
           "is_reference": false,
@@ -71013,19 +71013,19 @@
             "def sprite_dx(s):"
           ],
           "csharp": [
-            "public float Sprite.Dx { get }",
-            "public static float SplashKit.SpriteDx(Sprite s);"
+            "public double Sprite.Dx { get }",
+            "public static double SplashKit.SpriteDx(Sprite s);"
           ],
           "cpp": [
-            "float sprite_dx(sprite s)"
+            "double sprite_dx(sprite s)"
           ],
           "pascal": [
-            "function SpriteDx(s: Sprite): Single"
+            "function SpriteDx(s: Sprite): Double"
           ]
         }
       },
       {
-        "signature": "float sprite_dy(sprite s);",
+        "signature": "double sprite_dy(sprite s);",
         "name": "sprite_dy",
         "method_name": null,
         "unique_global_name": "sprite_dy",
@@ -71034,7 +71034,7 @@
         "description": "Returns the Y value of the sprite's velocity.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The y component of the sprite's velocity.",
           "is_pointer": false,
           "is_reference": false,
@@ -71068,14 +71068,14 @@
             "def sprite_dy(s):"
           ],
           "csharp": [
-            "public float Sprite.Dy { get }",
-            "public static float SplashKit.SpriteDy(Sprite s);"
+            "public double Sprite.Dy { get }",
+            "public static double SplashKit.SpriteDy(Sprite s);"
           ],
           "cpp": [
-            "float sprite_dy(sprite s)"
+            "double sprite_dy(sprite s)"
           ],
           "pascal": [
-            "function SpriteDy(s: Sprite): Single"
+            "function SpriteDy(s: Sprite): Double"
           ]
         }
       },
@@ -73649,7 +73649,7 @@
         }
       },
       {
-        "signature": "void sprite_set_dx(sprite s,float value);",
+        "signature": "void sprite_set_dx(sprite s,double value);",
         "name": "sprite_set_dx",
         "method_name": null,
         "unique_global_name": "sprite_set_dx",
@@ -73680,7 +73680,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new x component of the sprite's velocity.",
             "is_pointer": false,
             "is_const": false,
@@ -73706,18 +73706,18 @@
           ],
           "csharp": [
             "public void Sprite.Dx { set }",
-            "public static void SplashKit.SpriteSetDx(Sprite s, float value);"
+            "public static void SplashKit.SpriteSetDx(Sprite s, double value);"
           ],
           "cpp": [
-            "void sprite_set_dx(sprite s, float value)"
+            "void sprite_set_dx(sprite s, double value)"
           ],
           "pascal": [
-            "procedure SpriteSetDx(s: Sprite; value: Single)"
+            "procedure SpriteSetDx(s: Sprite; value: Double)"
           ]
         }
       },
       {
-        "signature": "void sprite_set_dy(sprite s,float value);",
+        "signature": "void sprite_set_dy(sprite s,double value);",
         "name": "sprite_set_dy",
         "method_name": null,
         "unique_global_name": "sprite_set_dy",
@@ -73748,7 +73748,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new y component of the sprite's velocity.",
             "is_pointer": false,
             "is_const": false,
@@ -73774,13 +73774,13 @@
           ],
           "csharp": [
             "public void Sprite.Dy { set }",
-            "public static void SplashKit.SpriteSetDy(Sprite s, float value);"
+            "public static void SplashKit.SpriteSetDy(Sprite s, double value);"
           ],
           "cpp": [
-            "void sprite_set_dy(sprite s, float value)"
+            "void sprite_set_dy(sprite s, double value)"
           ],
           "pascal": [
-            "procedure SpriteSetDy(s: Sprite; value: Single)"
+            "procedure SpriteSetDy(s: Sprite; value: Double)"
           ]
         }
       },
@@ -74357,7 +74357,7 @@
         }
       },
       {
-        "signature": "void sprite_set_speed(sprite s,float value);",
+        "signature": "void sprite_set_speed(sprite s,double value);",
         "name": "sprite_set_speed",
         "method_name": null,
         "unique_global_name": "sprite_set_speed",
@@ -74388,7 +74388,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new speed of the sprite -- direction will remain the same.",
             "is_pointer": false,
             "is_const": false,
@@ -74414,13 +74414,13 @@
           ],
           "csharp": [
             "public void Sprite.Speed { set }",
-            "public static void SplashKit.SpriteSetSpeed(Sprite s, float value);"
+            "public static void SplashKit.SpriteSetSpeed(Sprite s, double value);"
           ],
           "cpp": [
-            "void sprite_set_speed(sprite s, float value)"
+            "void sprite_set_speed(sprite s, double value)"
           ],
           "pascal": [
-            "procedure SpriteSetSpeed(s: Sprite; value: Single)"
+            "procedure SpriteSetSpeed(s: Sprite; value: Double)"
           ]
         }
       },
@@ -74575,7 +74575,7 @@
         }
       },
       {
-        "signature": "void sprite_set_x(sprite s,float value);",
+        "signature": "void sprite_set_x(sprite s,double value);",
         "name": "sprite_set_x",
         "method_name": null,
         "unique_global_name": "sprite_set_x",
@@ -74606,7 +74606,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new x location.",
             "is_pointer": false,
             "is_const": false,
@@ -74632,18 +74632,18 @@
           ],
           "csharp": [
             "public void Sprite.X { set }",
-            "public static void SplashKit.SpriteSetX(Sprite s, float value);"
+            "public static void SplashKit.SpriteSetX(Sprite s, double value);"
           ],
           "cpp": [
-            "void sprite_set_x(sprite s, float value)"
+            "void sprite_set_x(sprite s, double value)"
           ],
           "pascal": [
-            "procedure SpriteSetX(s: Sprite; value: Single)"
+            "procedure SpriteSetX(s: Sprite; value: Double)"
           ]
         }
       },
       {
-        "signature": "void sprite_set_y(sprite s,float value);",
+        "signature": "void sprite_set_y(sprite s,double value);",
         "name": "sprite_set_y",
         "method_name": null,
         "unique_global_name": "sprite_set_y",
@@ -74674,7 +74674,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new sprite y.",
             "is_pointer": false,
             "is_const": false,
@@ -74700,13 +74700,13 @@
           ],
           "csharp": [
             "public void Sprite.Y { set }",
-            "public static void SplashKit.SpriteSetY(Sprite s, float value);"
+            "public static void SplashKit.SpriteSetY(Sprite s, double value);"
           ],
           "cpp": [
-            "void sprite_set_y(sprite s, float value)"
+            "void sprite_set_y(sprite s, double value)"
           ],
           "pascal": [
-            "procedure SpriteSetY(s: Sprite; value: Single)"
+            "procedure SpriteSetY(s: Sprite; value: Double)"
           ]
         }
       },
@@ -74848,7 +74848,7 @@
         }
       },
       {
-        "signature": "float sprite_speed(sprite s);",
+        "signature": "double sprite_speed(sprite s);",
         "name": "sprite_speed",
         "method_name": null,
         "unique_global_name": "sprite_speed",
@@ -74857,7 +74857,7 @@
         "description": "Returns the current speed (distance travelled per update) of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The speed of the sprite (pixels per update).",
           "is_pointer": false,
           "is_reference": false,
@@ -74891,14 +74891,14 @@
             "def sprite_speed(s):"
           ],
           "csharp": [
-            "public float Sprite.Speed { get }",
-            "public static float SplashKit.SpriteSpeed(Sprite s);"
+            "public double Sprite.Speed { get }",
+            "public static double SplashKit.SpriteSpeed(Sprite s);"
           ],
           "cpp": [
-            "float sprite_speed(sprite s)"
+            "double sprite_speed(sprite s)"
           ],
           "pascal": [
-            "function SpriteSpeed(s: Sprite): Single"
+            "function SpriteSpeed(s: Sprite): Double"
           ]
         }
       },
@@ -75970,7 +75970,7 @@
         }
       },
       {
-        "signature": "float sprite_x(sprite s);",
+        "signature": "double sprite_x(sprite s);",
         "name": "sprite_x",
         "method_name": null,
         "unique_global_name": "sprite_x",
@@ -75979,7 +75979,7 @@
         "description": "Returns the X position of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The x location of the sprite",
           "is_pointer": false,
           "is_reference": false,
@@ -76013,19 +76013,19 @@
             "def sprite_x(s):"
           ],
           "csharp": [
-            "public float Sprite.X { get }",
-            "public static float SplashKit.SpriteX(Sprite s);"
+            "public double Sprite.X { get }",
+            "public static double SplashKit.SpriteX(Sprite s);"
           ],
           "cpp": [
-            "float sprite_x(sprite s)"
+            "double sprite_x(sprite s)"
           ],
           "pascal": [
-            "function SpriteX(s: Sprite): Single"
+            "function SpriteX(s: Sprite): Double"
           ]
         }
       },
       {
-        "signature": "float sprite_y(sprite s);",
+        "signature": "double sprite_y(sprite s);",
         "name": "sprite_y",
         "method_name": null,
         "unique_global_name": "sprite_y",
@@ -76034,7 +76034,7 @@
         "description": "Returns the Y position of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The sprite's y location.",
           "is_pointer": false,
           "is_reference": false,
@@ -76068,14 +76068,14 @@
             "def sprite_y(s):"
           ],
           "csharp": [
-            "public float Sprite.Y { get }",
-            "public static float SplashKit.SpriteY(Sprite s);"
+            "public double Sprite.Y { get }",
+            "public static double SplashKit.SpriteY(Sprite s);"
           ],
           "cpp": [
-            "float sprite_y(sprite s)"
+            "double sprite_y(sprite s)"
           ],
           "pascal": [
-            "function SpriteY(s: Sprite): Single"
+            "function SpriteY(s: Sprite): Double"
           ]
         }
       },
@@ -77856,7 +77856,7 @@
         "signature": "bool has_timer(string name);",
         "name": "has_timer",
         "method_name": null,
-        "unique_global_name": "has_timer__named",
+        "unique_global_name": "has_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Checks if SplashKit has a timer with the indicated name.",
@@ -77885,13 +77885,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def has_timer__named(name):"
+            "def has_timer_named(name):"
           ],
           "csharp": [
             "public static bool SplashKit.HasTimer(string name);"
@@ -77908,7 +77908,7 @@
         "signature": "void pause_timer(string name);",
         "name": "pause_timer",
         "method_name": null,
-        "unique_global_name": "pause_timer__named",
+        "unique_global_name": "pause_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Pause the timer, getting ticks from a paused timer\nwill continue to return the same time.",
@@ -77937,13 +77937,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def pause_timer__named(name):"
+            "def pause_timer_named(name):"
           ],
           "csharp": [
             "public static void SplashKit.PauseTimer(string name);"
@@ -78015,7 +78015,7 @@
         "signature": "void reset_timer(string name);",
         "name": "reset_timer",
         "method_name": null,
-        "unique_global_name": "reset_timer__named",
+        "unique_global_name": "reset_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Resets the named timer",
@@ -78044,13 +78044,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def reset_timer__named(name):"
+            "def reset_timer_named(name):"
           ],
           "csharp": [
             "public static void SplashKit.ResetTimer(string name);"
@@ -78122,7 +78122,7 @@
         "signature": "void resume_timer(string name);",
         "name": "resume_timer",
         "method_name": null,
-        "unique_global_name": "resume_timer__named",
+        "unique_global_name": "resume_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Resumes the named timer.",
@@ -78151,13 +78151,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def resume_timer__named(name):"
+            "def resume_timer_named(name):"
           ],
           "csharp": [
             "public static void SplashKit.ResumeTimer(string name);"
@@ -78229,7 +78229,7 @@
         "signature": "void start_timer(string name);",
         "name": "start_timer",
         "method_name": null,
-        "unique_global_name": "start_timer__named",
+        "unique_global_name": "start_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Start a timer. The timer will then start recording the time that has passed.\nYou can check how long has past since the timer was started using the\n`timer_ticks` function.",
@@ -78258,13 +78258,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def start_timer__named(name):"
+            "def start_timer_named(name):"
           ],
           "csharp": [
             "public static void SplashKit.StartTimer(string name);"
@@ -78336,7 +78336,7 @@
         "signature": "void stop_timer(string name);",
         "name": "stop_timer",
         "method_name": null,
-        "unique_global_name": "stop_timer__named",
+        "unique_global_name": "stop_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Stop the timer. The time is reset to 0 and you must\nrecall start to begin the timer ticking again.",
@@ -78365,13 +78365,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def stop_timer__named(name):"
+            "def stop_timer_named(name):"
           ],
           "csharp": [
             "public static void SplashKit.StopTimer(string name);"
@@ -78494,7 +78494,7 @@
         "signature": "bool timer_paused(string name);",
         "name": "timer_paused",
         "method_name": null,
-        "unique_global_name": "timer_paused__named",
+        "unique_global_name": "timer_paused_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Indicates if the timer is paused.",
@@ -78523,13 +78523,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def timer_paused__named(name):"
+            "def timer_paused_named(name):"
           ],
           "csharp": [
             "public static bool SplashKit.TimerPaused(string name);"
@@ -78601,7 +78601,7 @@
         "signature": "bool timer_started(string name);",
         "name": "timer_started",
         "method_name": null,
-        "unique_global_name": "timer_started__named",
+        "unique_global_name": "timer_started_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Indicates if the timer is started.",
@@ -78630,13 +78630,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def timer_started__named(name):"
+            "def timer_started_named(name):"
           ],
           "csharp": [
             "public static bool SplashKit.TimerStarted(string name);"
@@ -78708,7 +78708,7 @@
         "signature": "unsigned int timer_ticks(string name);",
         "name": "timer_ticks",
         "method_name": null,
-        "unique_global_name": "timer_ticks__named",
+        "unique_global_name": "timer_ticks_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Gets the number of ticks (milliseconds) that have passed since the timer\nwas started/reset. When paused the timer's ticks will not advance until\nthe timer is once again resumed.",
@@ -78737,13 +78737,13 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         },
         "signatures": {
           "python": [
-            "def timer_ticks__named(name):"
+            "def timer_ticks_named(name):"
           ],
           "csharp": [
             "public static uint SplashKit.TimerTicks(string name);"

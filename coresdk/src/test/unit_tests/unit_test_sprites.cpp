@@ -127,7 +127,7 @@ TEST_CASE("default sprite data can be retrieved", "[sprite]")
     }
     SECTION("can retrieve sprite center point")
     {
-        point_2d center = center_point(sprt);
+        point_2d center = sprite_center_point(sprt);
         REQUIRE(center.x == ROCKET_WIDTH / 2.0);
         REQUIRE(center.y == ROCKET_HEIGHT / 2.0);
     }
@@ -252,7 +252,7 @@ TEST_CASE("sprite can be moved", "[sprite]")
             REQUIRE(sprite_height(sprt) == ROCKET_HEIGHT);
         }
         point_2d pos = sprite_position(sprt);
-        point_2d center = center_point(sprt);
+        point_2d center = sprite_center_point(sprt);
         REQUIRE(center.x == pos.x + ROCKET_WIDTH / 2.0);
         REQUIRE(center.y == pos.y + ROCKET_HEIGHT / 2.0);
     }
@@ -321,7 +321,7 @@ TEST_CASE("can check sprite intersection", "[sprite]")
 
         point_2d pt1 = point_at(0.1, 0.1);
         circle c = sprite_collision_circle(sprt2);
-        point_2d center = center_point(sprt2);
+        point_2d center = sprite_center_point(sprt2);
         REQUIRE(c.center.x == center.x);
         REQUIRE(c.center.y == center.y);
         REQUIRE(c.radius == sqrt(pow(BACKGROUND_WIDTH / 2.0, 2.0) + pow(BACKGROUND_HEIGHT / 2.0, 2.0)));
@@ -423,7 +423,7 @@ TEST_CASE("can perform sprite vector functions", "[sprite]")
     SECTION("can get vector from center of sprite to point")
     {
         vector_2d vec = vector_from_center_sprite_to_point(sprt, point_at(200.0, 200.0));
-        point_2d center = center_point(sprt);
+        point_2d center = sprite_center_point(sprt);
         REQUIRE(vec.x == 200.0 - center.x);
         REQUIRE(vec.y == 200.0 - center.y);
     }
@@ -433,8 +433,8 @@ TEST_CASE("can perform sprite vector functions", "[sprite]")
         sprite_set_move_from_anchor_point(sprt2, false);
         sprite_set_position(sprt2, point_at(200.0, 200.0));
         vector_2d vec = vector_from_to(sprt, sprt2);
-        point_2d center1 = center_point(sprt);
-        point_2d center2 = center_point(sprt2);
+        point_2d center1 = sprite_center_point(sprt);
+        point_2d center2 = sprite_center_point(sprt2);
         REQUIRE(vec.x == center2.x - center1.x);
         REQUIRE(vec.y == center2.y - center1.y);
         free_sprite(sprt2);

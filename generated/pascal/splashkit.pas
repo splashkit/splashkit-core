@@ -1167,7 +1167,7 @@ function PointOffsetFromOrigin(const offset: Vector2D): Point2D;
 function PointOnLine(const pt: Point2D; const l: Line): Boolean;
 function PointOnLine(const pt: Point2D; const l: Line; proximity: Single): Boolean;
 function PointPointAngle(const pt1: Point2D; const pt2: Point2D): Single;
-function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Single;
+function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Double;
 function PointToString(const pt: Point2D): String;
 function RandomBitmapPoint(bmp: Bitmap): Point2D;
 function RandomScreenPoint(): Point2D;
@@ -1322,8 +1322,8 @@ function SpriteCollisionKind(s: Sprite): CollisionTestKind;
 function SpriteCollisionRectangle(s: Sprite): Rectangle;
 function SpriteCurrentCell(s: Sprite): Integer;
 function SpriteCurrentCellRectangle(s: Sprite): Rectangle;
-function SpriteDx(s: Sprite): Single;
-function SpriteDy(s: Sprite): Single;
+function SpriteDx(s: Sprite): Double;
+function SpriteDy(s: Sprite): Double;
 function SpriteHasValue(s: Sprite; name: String): Boolean;
 function SpriteHeading(s: Sprite): Single;
 function SpriteHeight(s: Sprite): Integer;
@@ -1364,8 +1364,8 @@ procedure SpriteSendLayerToBack(s: Sprite; visibleLayer: Integer);
 procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2D);
 procedure SpriteSetCollisionBitmap(s: Sprite; bmp: Bitmap);
 procedure SpriteSetCollisionKind(s: Sprite; value: CollisionTestKind);
-procedure SpriteSetDx(s: Sprite; value: Single);
-procedure SpriteSetDy(s: Sprite; value: Single);
+procedure SpriteSetDx(s: Sprite; value: Double);
+procedure SpriteSetDy(s: Sprite; value: Double);
 procedure SpriteSetHeading(s: Sprite; value: Single);
 procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vector2D);
 procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2D);
@@ -1374,14 +1374,14 @@ procedure SpriteSetMoveFromAnchorPoint(s: Sprite; value: Boolean);
 procedure SpriteSetPosition(s: Sprite; const value: Point2D);
 procedure SpriteSetRotation(s: Sprite; value: Single);
 procedure SpriteSetScale(s: Sprite; value: Single);
-procedure SpriteSetSpeed(s: Sprite; value: Single);
+procedure SpriteSetSpeed(s: Sprite; value: Double);
 procedure SpriteSetValue(s: Sprite; const name: String; val: Single);
 procedure SpriteSetVelocity(s: Sprite; const value: Vector2D);
-procedure SpriteSetX(s: Sprite; value: Single);
-procedure SpriteSetY(s: Sprite; value: Single);
+procedure SpriteSetX(s: Sprite; value: Double);
+procedure SpriteSetY(s: Sprite; value: Double);
 function SpriteShowLayer(s: Sprite; const name: String): Integer;
 function SpriteShowLayer(s: Sprite; id: Integer): Integer;
-function SpriteSpeed(s: Sprite): Single;
+function SpriteSpeed(s: Sprite): Double;
 procedure SpriteStartAnimation(s: Sprite; const named: String);
 procedure SpriteStartAnimation(s: Sprite; const named: String; withSound: Boolean);
 procedure SpriteStartAnimation(s: Sprite; idx: Integer);
@@ -1398,8 +1398,8 @@ function SpriteVisibleLayer(s: Sprite; idx: Integer): Integer;
 function SpriteVisibleLayerCount(s: Sprite): Integer;
 function SpriteVisibleLayerId(s: Sprite; idx: Integer): Integer;
 function SpriteWidth(s: Sprite): Integer;
-function SpriteX(s: Sprite): Single;
-function SpriteY(s: Sprite): Single;
+function SpriteX(s: Sprite): Double;
+function SpriteY(s: Sprite): Double;
 procedure StopCallingOnSpriteEvent(handler: SpriteEventHandler);
 procedure UpdateAllSprites();
 procedure UpdateAllSprites(pct: Single);
@@ -3391,7 +3391,7 @@ function __sklib__point_offset_from_origin__vector_2d_ref(const offset: __sklib_
 function __sklib__point_on_line__point_2d_ref__line_ref(const pt: __sklib_point_2d; const l: __sklib_line): LongInt; cdecl; external;
 function __sklib__point_on_line__point_2d_ref__line_ref__float(const pt: __sklib_point_2d; const l: __sklib_line; proximity: Single): LongInt; cdecl; external;
 function __sklib__point_point_angle__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): Single; cdecl; external;
-function __sklib__point_point_distance__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): Single; cdecl; external;
+function __sklib__point_point_distance__point_2d_ref__point_2d_ref(const pt1: __sklib_point_2d; const pt2: __sklib_point_2d): Double; cdecl; external;
 function __sklib__point_to_string__point_2d_ref(const pt: __sklib_point_2d): __sklib_string; cdecl; external;
 function __sklib__random_bitmap_point__bitmap(bmp: __sklib_ptr): __sklib_point_2d; cdecl; external;
 function __sklib__random_screen_point(): __sklib_point_2d; cdecl; external;
@@ -3546,8 +3546,8 @@ function __sklib__sprite_collision_kind__sprite(s: __sklib_ptr): LongInt; cdecl;
 function __sklib__sprite_collision_rectangle__sprite(s: __sklib_ptr): __sklib_rectangle; cdecl; external;
 function __sklib__sprite_current_cell__sprite(s: __sklib_ptr): Integer; cdecl; external;
 function __sklib__sprite_current_cell_rectangle__sprite(s: __sklib_ptr): __sklib_rectangle; cdecl; external;
-function __sklib__sprite_dx__sprite(s: __sklib_ptr): Single; cdecl; external;
-function __sklib__sprite_dy__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_dx__sprite(s: __sklib_ptr): Double; cdecl; external;
+function __sklib__sprite_dy__sprite(s: __sklib_ptr): Double; cdecl; external;
 function __sklib__sprite_has_value__sprite__string(s: __sklib_ptr; name: __sklib_string): LongInt; cdecl; external;
 function __sklib__sprite_heading__sprite(s: __sklib_ptr): Single; cdecl; external;
 function __sklib__sprite_height__sprite(s: __sklib_ptr): Integer; cdecl; external;
@@ -3588,8 +3588,8 @@ procedure __sklib__sprite_send_layer_to_back__sprite__int(s: __sklib_ptr; visibl
 procedure __sklib__sprite_set_anchor_point__sprite__point_2d_ref(s: __sklib_ptr; const pt: __sklib_point_2d); cdecl; external;
 procedure __sklib__sprite_set_collision_bitmap__sprite__bitmap(s: __sklib_ptr; bmp: __sklib_ptr); cdecl; external;
 procedure __sklib__sprite_set_collision_kind__sprite__collision_test_kind(s: __sklib_ptr; value: LongInt); cdecl; external;
-procedure __sklib__sprite_set_dx__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
-procedure __sklib__sprite_set_dy__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_dx__sprite__double(s: __sklib_ptr; value: Double); cdecl; external;
+procedure __sklib__sprite_set_dy__sprite__double(s: __sklib_ptr; value: Double); cdecl; external;
 procedure __sklib__sprite_set_heading__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
 procedure __sklib__sprite_set_layer_offset__sprite__string_ref__vector_2d_ref(s: __sklib_ptr; const name: __sklib_string; const value: __sklib_vector_2d); cdecl; external;
 procedure __sklib__sprite_set_layer_offset__sprite__int__vector_2d_ref(s: __sklib_ptr; idx: Integer; const value: __sklib_vector_2d); cdecl; external;
@@ -3598,14 +3598,14 @@ procedure __sklib__sprite_set_move_from_anchor_point__sprite__bool(s: __sklib_pt
 procedure __sklib__sprite_set_position__sprite__point_2d_ref(s: __sklib_ptr; const value: __sklib_point_2d); cdecl; external;
 procedure __sklib__sprite_set_rotation__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
 procedure __sklib__sprite_set_scale__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
-procedure __sklib__sprite_set_speed__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_speed__sprite__double(s: __sklib_ptr; value: Double); cdecl; external;
 procedure __sklib__sprite_set_value__sprite__string_ref__float(s: __sklib_ptr; const name: __sklib_string; val: Single); cdecl; external;
 procedure __sklib__sprite_set_velocity__sprite__vector_2d_ref(s: __sklib_ptr; const value: __sklib_vector_2d); cdecl; external;
-procedure __sklib__sprite_set_x__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
-procedure __sklib__sprite_set_y__sprite__float(s: __sklib_ptr; value: Single); cdecl; external;
+procedure __sklib__sprite_set_x__sprite__double(s: __sklib_ptr; value: Double); cdecl; external;
+procedure __sklib__sprite_set_y__sprite__double(s: __sklib_ptr; value: Double); cdecl; external;
 function __sklib__sprite_show_layer__sprite__string_ref(s: __sklib_ptr; const name: __sklib_string): Integer; cdecl; external;
 function __sklib__sprite_show_layer__sprite__int(s: __sklib_ptr; id: Integer): Integer; cdecl; external;
-function __sklib__sprite_speed__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_speed__sprite(s: __sklib_ptr): Double; cdecl; external;
 procedure __sklib__sprite_start_animation__sprite__string_ref(s: __sklib_ptr; const named: __sklib_string); cdecl; external;
 procedure __sklib__sprite_start_animation__sprite__string_ref__bool(s: __sklib_ptr; const named: __sklib_string; withSound: LongInt); cdecl; external;
 procedure __sklib__sprite_start_animation__sprite__int(s: __sklib_ptr; idx: Integer); cdecl; external;
@@ -3622,8 +3622,8 @@ function __sklib__sprite_visible_layer__sprite__int(s: __sklib_ptr; idx: Integer
 function __sklib__sprite_visible_layer_count__sprite(s: __sklib_ptr): Integer; cdecl; external;
 function __sklib__sprite_visible_layer_id__sprite__int(s: __sklib_ptr; idx: Integer): Integer; cdecl; external;
 function __sklib__sprite_width__sprite(s: __sklib_ptr): Integer; cdecl; external;
-function __sklib__sprite_x__sprite(s: __sklib_ptr): Single; cdecl; external;
-function __sklib__sprite_y__sprite(s: __sklib_ptr): Single; cdecl; external;
+function __sklib__sprite_x__sprite(s: __sklib_ptr): Double; cdecl; external;
+function __sklib__sprite_y__sprite(s: __sklib_ptr): Double; cdecl; external;
 procedure __sklib__stop_calling_on_sprite_event__sprite_event_handler_ptr(handler: SpriteEventHandler); cdecl; external;
 procedure __sklib__update_all_sprites(); cdecl; external;
 procedure __sklib__update_all_sprites__float(pct: Single); cdecl; external;
@@ -11320,16 +11320,16 @@ begin
   __skreturn := __sklib__point_point_angle__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
   result := __skadapter__to_float(__skreturn);
 end;
-function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Single;
+function PointPointDistance(const pt1: Point2D; const pt2: Point2D): Double;
 var
   __skparam__pt1: __sklib_point_2d;
   __skparam__pt2: __sklib_point_2d;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__pt1 := __skadapter__to_sklib_point_2d(pt1);
   __skparam__pt2 := __skadapter__to_sklib_point_2d(pt2);
   __skreturn := __sklib__point_point_distance__point_2d_ref__point_2d_ref(__skparam__pt1, __skparam__pt2);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function PointToString(const pt: Point2D): String;
 var
@@ -12891,23 +12891,23 @@ begin
   __skreturn := __sklib__sprite_current_cell_rectangle__sprite(__skparam__s);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function SpriteDx(s: Sprite): Single;
+function SpriteDx(s: Sprite): Double;
 var
   __skparam__s: __sklib_ptr;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skreturn := __sklib__sprite_dx__sprite(__skparam__s);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function SpriteDy(s: Sprite): Single;
+function SpriteDy(s: Sprite): Double;
 var
   __skparam__s: __sklib_ptr;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skreturn := __sklib__sprite_dy__sprite(__skparam__s);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function SpriteHasValue(s: Sprite; name: String): Boolean;
 var
@@ -13305,23 +13305,23 @@ begin
   __skparam__value := __skadapter__to_sklib_collision_test_kind(value);
   __sklib__sprite_set_collision_kind__sprite__collision_test_kind(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetDx(s: Sprite; value: Single);
+procedure SpriteSetDx(s: Sprite; value: Double);
 var
   __skparam__s: __sklib_ptr;
-  __skparam__value: Single;
+  __skparam__value: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skparam__value := __skadapter__to_sklib_float(value);
-  __sklib__sprite_set_dx__sprite__float(__skparam__s, __skparam__value);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__sprite_set_dx__sprite__double(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetDy(s: Sprite; value: Single);
+procedure SpriteSetDy(s: Sprite; value: Double);
 var
   __skparam__s: __sklib_ptr;
-  __skparam__value: Single;
+  __skparam__value: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skparam__value := __skadapter__to_sklib_float(value);
-  __sklib__sprite_set_dy__sprite__float(__skparam__s, __skparam__value);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__sprite_set_dy__sprite__double(__skparam__s, __skparam__value);
 end;
 procedure SpriteSetHeading(s: Sprite; value: Single);
 var
@@ -13399,14 +13399,14 @@ begin
   __skparam__value := __skadapter__to_sklib_float(value);
   __sklib__sprite_set_scale__sprite__float(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetSpeed(s: Sprite; value: Single);
+procedure SpriteSetSpeed(s: Sprite; value: Double);
 var
   __skparam__s: __sklib_ptr;
-  __skparam__value: Single;
+  __skparam__value: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skparam__value := __skadapter__to_sklib_float(value);
-  __sklib__sprite_set_speed__sprite__float(__skparam__s, __skparam__value);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__sprite_set_speed__sprite__double(__skparam__s, __skparam__value);
 end;
 procedure SpriteSetValue(s: Sprite; const name: String; val: Single);
 var
@@ -13428,23 +13428,23 @@ begin
   __skparam__value := __skadapter__to_sklib_vector_2d(value);
   __sklib__sprite_set_velocity__sprite__vector_2d_ref(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetX(s: Sprite; value: Single);
+procedure SpriteSetX(s: Sprite; value: Double);
 var
   __skparam__s: __sklib_ptr;
-  __skparam__value: Single;
+  __skparam__value: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skparam__value := __skadapter__to_sklib_float(value);
-  __sklib__sprite_set_x__sprite__float(__skparam__s, __skparam__value);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__sprite_set_x__sprite__double(__skparam__s, __skparam__value);
 end;
-procedure SpriteSetY(s: Sprite; value: Single);
+procedure SpriteSetY(s: Sprite; value: Double);
 var
   __skparam__s: __sklib_ptr;
-  __skparam__value: Single;
+  __skparam__value: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
-  __skparam__value := __skadapter__to_sklib_float(value);
-  __sklib__sprite_set_y__sprite__float(__skparam__s, __skparam__value);
+  __skparam__value := __skadapter__to_sklib_double(value);
+  __sklib__sprite_set_y__sprite__double(__skparam__s, __skparam__value);
 end;
 function SpriteShowLayer(s: Sprite; const name: String): Integer;
 var
@@ -13468,14 +13468,14 @@ begin
   __skreturn := __sklib__sprite_show_layer__sprite__int(__skparam__s, __skparam__id);
   result := __skadapter__to_int(__skreturn);
 end;
-function SpriteSpeed(s: Sprite): Single;
+function SpriteSpeed(s: Sprite): Double;
 var
   __skparam__s: __sklib_ptr;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skreturn := __sklib__sprite_speed__sprite(__skparam__s);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 procedure SpriteStartAnimation(s: Sprite; const named: String);
 var
@@ -13635,23 +13635,23 @@ begin
   __skreturn := __sklib__sprite_width__sprite(__skparam__s);
   result := __skadapter__to_int(__skreturn);
 end;
-function SpriteX(s: Sprite): Single;
+function SpriteX(s: Sprite): Double;
 var
   __skparam__s: __sklib_ptr;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skreturn := __sklib__sprite_x__sprite(__skparam__s);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
-function SpriteY(s: Sprite): Single;
+function SpriteY(s: Sprite): Double;
 var
   __skparam__s: __sklib_ptr;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__s := __skadapter__to_sklib_sprite(s);
   __skreturn := __sklib__sprite_y__sprite(__skparam__s);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 procedure StopCallingOnSpriteEvent(handler: SpriteEventHandler);
 var
