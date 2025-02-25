@@ -248,6 +248,7 @@ TEST_CASE("can perform circle geometry", "[geometry]")
             REQUIRE_FALSE(circle_triangle_intersect(c2, t4));
         }
     }
+    #define M_PI    3.14159265358979323846264338327950288   /**< pi */
     SECTION("can calculate widest points along vector")
     {
         circle c = circle_at(100.0, 100.0, 50.0);
