@@ -94,8 +94,7 @@ namespace splashkit_lib
     }
 
 #define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
-size_t sz = collection.size();\
-for(size_t i = 0; i < sz; i++)\
+while(!collection.empty())\
 {\
 auto resource = collection.begin()->second;\
 if (VALID_PTR(resource, ptr_kind))\
@@ -104,7 +103,7 @@ fn(resource);\
 }\
 else\
 {\
-LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !";\
+LOG(WARNING) << "Splashkit contains invalid " #ptr_kind "!";\
 collection.erase(collection.begin());\
 }\
 }
