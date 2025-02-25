@@ -65,7 +65,7 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(100.0, 100.0)) == 0.0);
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 100.0)) == 100.0);
         REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(100.0, 200.0)) == 100.0);
-        REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 200.0)) == 100.0 * sqrtf(2.0f));
+        REQUIRE(point_point_distance(point_at(100.0, 100.0), point_at(200.0, 200.0)) == 100.0 * sqrt(2));
     }
     SECTION("can detect point in rectangle")
     {
