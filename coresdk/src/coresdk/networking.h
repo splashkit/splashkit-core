@@ -891,5 +891,14 @@ namespace splashkit_lib
      * @return ipv4 address string in X.X.X.X format
      */
     string my_ip();
+
+    /**
+     * @brief Validates if a given string represents a valid IPv4 address.
+     * 
+     * @param ip The string containing the IP address to validate
+     * @return bool Returns true if the string is a valid IPv4 address, false otherwise
+     */
+    bool is_valid_ipv4(const string &ip);
+
 }
 #endif //SPLASHKIT_NETWORKING_H

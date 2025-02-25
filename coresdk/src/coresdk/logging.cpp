@@ -65,7 +65,7 @@ namespace splashkit_lib
             {
                 write("INFO: ");
             }
-            else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+            if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
             {
                 custom_log_file << "INFO: ";
             }
@@ -79,7 +79,7 @@ namespace splashkit_lib
             {
                 write("DEBUG: ");
             }
-            else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+            if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
             {
                 custom_log_file << "DEBUG: ";
             }
@@ -93,7 +93,7 @@ namespace splashkit_lib
             {
                 write("WARNING: ");
             }
-            else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+            if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
             {
                 custom_log_file << "WARNING: ";
             }
@@ -107,7 +107,7 @@ namespace splashkit_lib
             {
                 write("ERROR: ");
             }
-            else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+            if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
             {
                 custom_log_file << "ERROR: ";
             }
@@ -117,7 +117,7 @@ namespace splashkit_lib
             {
                 write("FATAL: ");
             }
-            else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+            if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
             {
                 custom_log_file << "FATAL: ";
             }
@@ -134,7 +134,7 @@ namespace splashkit_lib
             write(" ");
             write_line(message);
         }
-        else if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
+        if (_log_mode == LOG_FILE_ONLY || _log_mode == LOG_CONSOLE_AND_FILE)
         {
             custom_log_file << str_time.substr(0, str_time.length() - 1);
             custom_log_file << " ";

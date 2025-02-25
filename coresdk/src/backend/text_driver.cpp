@@ -241,6 +241,7 @@ namespace splashkit_lib
                               sk_color clr )
     {
         internal_sk_init();
+        gfxPrimitivesSetFont(nullptr, 0, 0);
         unsigned int count = _sk_renderer_count(surface);
 
         for (unsigned int i = 0; i < count; i++)

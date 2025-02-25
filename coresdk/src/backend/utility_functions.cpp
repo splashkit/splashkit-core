@@ -129,7 +129,8 @@ namespace splashkit_lib
             if(elem.find(PATH_SEP) == 0 and not first)
                 elem.erase(0,1);
             result += elem;
-            if(elem.find_last_of(PATH_SEP) < elem.length() - 1)
+            size_t last_sep = elem.find_last_of(PATH_SEP);
+            if (last_sep == string::npos || last_sep < elem.length() - 1)
                 result += PATH_SEP;
 
             first = false;

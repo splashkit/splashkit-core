@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1720129611,
+    "parsed_at": 1738487274,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1951,7 +1951,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1720129612,
+    "parsed_at": 1738487274,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2045,7 +2045,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1720129614,
+    "parsed_at": 1738487275,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -2371,7 +2371,7 @@
         }
       },
       {
-        "signature": "string replace_all(const string &text,const string &substr,const string &newText);",
+        "signature": "string replace_all(const string &text,const string &substr,const string &new_text);",
         "name": "replace_all",
         "method_name": null,
         "unique_global_name": "replace_all",
@@ -2414,7 +2414,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "newText": {
+          "new_text": {
             "type": "string",
             "description": "The string to replace the substring with",
             "is_pointer": false,
@@ -2612,7 +2612,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1720129615,
+    "parsed_at": 1738487275,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -2757,7 +2757,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1720129618,
+    "parsed_at": 1738487275,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -3824,7 +3824,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129623,
+    "parsed_at": 1738487276,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -5195,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338084,
+    "parsed_at": 1738484102,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -6286,7 +6286,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129628,
+    "parsed_at": 1738487276,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -6870,7 +6870,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1720129634,
+    "parsed_at": 1738487278,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -8294,6 +8294,550 @@
         }
       },
       {
+        "signature": "bool bitmap_quad_collision(bitmap bmp,int cell,const matrix_2d &translation,const quad &q);",
+        "name": "bitmap_quad_collision",
+        "method_name": "quad_collision",
+        "unique_global_name": "bitmap_quad_collision_for_cell_with_translation",
+        "unique_method_name": "bitmap.quad_collision_for_cell_with_translation",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a quad. You can use this to detect collisions between\nbitmaps and quads.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with `q` when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "translation": {
+            "type": "matrix_2d",
+            "description": "The matrix used to transfrom the bitmap when drawing",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "q": {
+            "type": "quad",
+            "description": "The quad to test",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "quad_collision",
+          "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,const point_2d& pt,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_at_point",
+        "unique_method_name": "bitmap.ray_collision_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `pt` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,double x,double y,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision",
+        "unique_method_name": "bitmap.ray_collision",
+        "suffix_name": null,
+        "description": "Tests if a bitmap drawn at `x`, `y` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,const matrix_2d& translation,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell_with_translation",
+        "unique_method_name": "bitmap.ray_collision_for_cell_with_translation",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn using a passed in translation, will\nintersect with a ray. You can use this to detect collisions between\nbitmaps and rays.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "translation": {
+            "type": "matrix_2d",
+            "description": "The matrix used to transfrom the bitmap when drawing",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell_with_translation",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,const point_2d& pt,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell_at_point",
+        "unique_method_name": "bitmap.ray_collision_for_cell_at_point",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `pt` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell_at_point",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
+        "signature": "bool bitmap_ray_collision(bitmap bmp,int cell,double x,double y,const point_2d& origin,const vector_2d& heading);",
+        "name": "bitmap_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "bitmap_ray_collision_for_cell",
+        "unique_method_name": "bitmap.ray_collision_for_cell",
+        "suffix_name": null,
+        "description": "Tests if a bitmap cell drawn at `x`, `y` would intersect with a ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if a drawn pixel in the cell of the bitmap will\nintersect with the ray when drawn.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bmp": {
+            "type": "bitmap",
+            "description": "The bitmap to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "cell": {
+            "type": "int",
+            "description": "The cell of the bitmap to check",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "x": {
+            "type": "double",
+            "description": "The x location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "y": {
+            "type": "double",
+            "description": "The y location where the bitmap is drawn",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "bitmap",
+          "method": "ray_collision",
+          "suffix": "for_cell",
+          "group": "physics",
+          "static": "collisions",
+          "self": "bmp"
+        }
+      },
+      {
         "signature": "bool bitmap_rectangle_collision(bitmap bmp,const point_2d& pt,const rectangle& rect);",
         "name": "bitmap_rectangle_collision",
         "method_name": "rectangle_collision",
@@ -9051,6 +9595,72 @@
         }
       },
       {
+        "signature": "bool sprite_ray_collision(sprite s,const point_2d& origin,const vector_2d& heading);",
+        "name": "sprite_ray_collision",
+        "method_name": "ray_collision",
+        "unique_global_name": "sprite_ray_collision",
+        "unique_method_name": "sprite.ray_collision",
+        "suffix_name": null,
+        "description": "Tests if a sprite is drawn along a given ray.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "True if the sprite is drawn along the ray",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "s": {
+            "type": "sprite",
+            "description": "The sprite to test",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "origin": {
+            "type": "point_2d",
+            "description": "The origin of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "heading": {
+            "type": "vector_2d",
+            "description": "The heading of the ray",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "sprite",
+          "method": "ray_collision",
+          "group": "physics",
+          "static": "collisions",
+          "self": "s"
+        }
+      },
+      {
         "signature": "bool sprite_rectangle_collision(sprite s,const rectangle& rect);",
         "name": "sprite_rectangle_collision",
         "method_name": "rectangle_collision",
@@ -9121,7 +9731,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1720129659,
+    "parsed_at": 1738487280,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -14321,7 +14931,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129664,
+    "parsed_at": 1738487281,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -15685,7 +16295,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129670,
+    "parsed_at": 1738487282,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -17780,7 +18390,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1720129671,
+    "parsed_at": 1738487282,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -17912,7 +18522,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129673,
+    "parsed_at": 1738487282,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -18488,7 +19098,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1720129680,
+    "parsed_at": 1738487283,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -21013,7 +21623,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1720129681,
+    "parsed_at": 1738487283,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -21106,7 +21716,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1729338085,
+    "parsed_at": 1738484103,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -24548,7 +25158,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1720129697,
+    "parsed_at": 1738487284,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -26300,7 +26910,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129704,
+    "parsed_at": 1738487285,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -27298,7 +27908,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129709,
+    "parsed_at": 1738487286,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -28837,7 +29447,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129712,
+    "parsed_at": 1738487286,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -29711,7 +30321,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1720129713,
+    "parsed_at": 1740461579,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -29779,7 +30389,7 @@
         "signature": "void init_custom_logger (string app_name,bool override_prev_log,log_mode mode);",
         "name": "init_custom_logger",
         "method_name": null,
-        "unique_global_name": "init_custom_logger__name_override_mode",
+        "unique_global_name": "init_custom_logger_name_override_mode",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Initialises the logging mode between either writing to a file or both a file and the text-based console.",
@@ -29834,7 +30444,7 @@
           }
         },
         "attributes": {
-          "suffix": "_name_override_mode",
+          "suffix": "name_override_mode",
           "group": "logging",
           "static": "logging"
         }
@@ -29960,7 +30570,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1720129716,
+    "parsed_at": 1738487287,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -30698,7 +31308,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129718,
+    "parsed_at": 1738487287,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -31185,7 +31795,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338085,
+    "parsed_at": 1738484104,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -32215,7 +32825,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1720129731,
+    "parsed_at": 1738487288,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -33784,6 +34394,43 @@
         },
         "attributes": {
           "suffix": "from_name",
+          "group": "networking",
+          "static": "networking"
+        }
+      },
+      {
+        "signature": "bool is_valid_ipv4(const string &ip);",
+        "name": "is_valid_ipv4",
+        "method_name": null,
+        "unique_global_name": "is_valid_ipv4",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": null,
+        "brief": "Validates if a given string represents a valid IPv4 address.",
+        "return": {
+          "type": "bool",
+          "description": "bool Returns true if the string is a valid IPv4 address, false otherwise",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "ip": {
+            "type": "string",
+            "description": "The string containing the IP address to validate",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
           "group": "networking",
           "static": "networking"
         }
@@ -35359,7 +36006,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129732,
+    "parsed_at": 1738487288,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -35381,7 +36028,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129736,
+    "parsed_at": 1738487289,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -36701,7 +37348,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129739,
+    "parsed_at": 1740461579,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -37473,7 +38120,7 @@
         }
       },
       {
-        "signature": "float point_point_distance(const point_2d &pt1,const point_2d &pt2);",
+        "signature": "double point_point_distance(const point_2d &pt1,const point_2d &pt2);",
         "name": "point_point_distance",
         "method_name": null,
         "unique_global_name": "point_point_distance",
@@ -37482,7 +38129,7 @@
         "description": "Returns the distance between two points.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance between the two points",
           "is_pointer": false,
           "is_reference": false,
@@ -37725,9 +38372,73 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129741,
+    "parsed_at": 1738487289,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
+      {
+        "signature": "quad quad_from(const point_2d& line_origin,const point_2d& line_end,double width);",
+        "name": "quad_from",
+        "method_name": null,
+        "unique_global_name": "quad_from_from_line",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns a quad from the passed in line and width.\nThe quad will be a rectangle with the line as the diagonal,\nand the width as the width of the rectangle.",
+        "brief": null,
+        "return": {
+          "type": "quad",
+          "description": "A quad that represents the line with the given width",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "line_origin": {
+            "type": "point_2d",
+            "description": "The origin of the line",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "line_end": {
+            "type": "point_2d",
+            "description": "The end of the line",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "width": {
+            "type": "double",
+            "description": "The width of the quad",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "from_line",
+          "group": "geometry",
+          "static": "geometry"
+        }
+      },
       {
         "signature": "quad quad_from(const point_2d &p1,const point_2d &p2,const point_2d &p3,const point_2d &p4);",
         "name": "quad_from",
@@ -38190,7 +38901,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1720129742,
+    "parsed_at": 1738487290,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -38791,7 +39502,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129753,
+    "parsed_at": 1738487291,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -41684,7 +42395,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129755,
+    "parsed_at": 1738487291,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -42470,7 +43181,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1720129757,
+    "parsed_at": 1738487291,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -42788,7 +43499,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1729338086,
+    "parsed_at": 1738484104,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -43797,7 +44508,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1720129781,
+    "parsed_at": 1740461582,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -43923,46 +44634,6 @@
         "attributes": {
           "group": "sprites",
           "static": "sprite"
-        }
-      },
-      {
-        "signature": "point_2d center_point(sprite s);",
-        "name": "center_point",
-        "method_name": null,
-        "unique_global_name": "center_point",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
-        "brief": null,
-        "return": {
-          "type": "point_2d",
-          "description": "The center point of the sprite",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "s": {
-            "type": "sprite",
-            "description": "The sprite to get the details from.",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "class": "sprite",
-          "getter": "center_point",
-          "group": "sprites",
-          "static": "sprite",
-          "self": "s"
         }
       },
       {
@@ -45614,6 +46285,46 @@
         }
       },
       {
+        "signature": "point_2d sprite_center_point(sprite s);",
+        "name": "sprite_center_point",
+        "method_name": null,
+        "unique_global_name": "sprite_center_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Returns the center point of the passed in sprite. This is based on the sprite's\nPosition, Width and Height.",
+        "brief": null,
+        "return": {
+          "type": "point_2d",
+          "description": "The center point of the sprite",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "s": {
+            "type": "sprite",
+            "description": "The sprite to get the details from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "class": "sprite",
+          "getter": "sprite_center_point",
+          "group": "sprites",
+          "static": "sprite",
+          "self": "s"
+        }
+      },
+      {
         "signature": "circle sprite_circle(sprite s);",
         "name": "sprite_circle",
         "method_name": "circle",
@@ -45894,7 +46605,7 @@
         }
       },
       {
-        "signature": "float sprite_dx(sprite s);",
+        "signature": "double sprite_dx(sprite s);",
         "name": "sprite_dx",
         "method_name": null,
         "unique_global_name": "sprite_dx",
@@ -45903,7 +46614,7 @@
         "description": "Returns the X value of the sprite's velocity.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The x component of the sprite's velocity.",
           "is_pointer": false,
           "is_reference": false,
@@ -45934,7 +46645,7 @@
         }
       },
       {
-        "signature": "float sprite_dy(sprite s);",
+        "signature": "double sprite_dy(sprite s);",
         "name": "sprite_dy",
         "method_name": null,
         "unique_global_name": "sprite_dy",
@@ -45943,7 +46654,7 @@
         "description": "Returns the Y value of the sprite's velocity.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The y component of the sprite's velocity.",
           "is_pointer": false,
           "is_reference": false,
@@ -47945,7 +48656,7 @@
         }
       },
       {
-        "signature": "void sprite_set_dx(sprite s,float value);",
+        "signature": "void sprite_set_dx(sprite s,double value);",
         "name": "sprite_set_dx",
         "method_name": null,
         "unique_global_name": "sprite_set_dx",
@@ -47976,7 +48687,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new x component of the sprite's velocity.",
             "is_pointer": false,
             "is_const": false,
@@ -47998,7 +48709,7 @@
         }
       },
       {
-        "signature": "void sprite_set_dy(sprite s,float value);",
+        "signature": "void sprite_set_dy(sprite s,double value);",
         "name": "sprite_set_dy",
         "method_name": null,
         "unique_global_name": "sprite_set_dy",
@@ -48029,7 +48740,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new y component of the sprite's velocity.",
             "is_pointer": false,
             "is_const": false,
@@ -48503,7 +49214,7 @@
         }
       },
       {
-        "signature": "void sprite_set_speed(sprite s,float value);",
+        "signature": "void sprite_set_speed(sprite s,double value);",
         "name": "sprite_set_speed",
         "method_name": null,
         "unique_global_name": "sprite_set_speed",
@@ -48534,7 +49245,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new speed of the sprite -- direction will remain the same.",
             "is_pointer": false,
             "is_const": false,
@@ -48676,7 +49387,7 @@
         }
       },
       {
-        "signature": "void sprite_set_x(sprite s,float value);",
+        "signature": "void sprite_set_x(sprite s,double value);",
         "name": "sprite_set_x",
         "method_name": null,
         "unique_global_name": "sprite_set_x",
@@ -48707,7 +49418,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new x location.",
             "is_pointer": false,
             "is_const": false,
@@ -48729,7 +49440,7 @@
         }
       },
       {
-        "signature": "void sprite_set_y(sprite s,float value);",
+        "signature": "void sprite_set_y(sprite s,double value);",
         "name": "sprite_set_y",
         "method_name": null,
         "unique_global_name": "sprite_set_y",
@@ -48760,7 +49471,7 @@
             "type_parameter": null
           },
           "value": {
-            "type": "float",
+            "type": "double",
             "description": "The new sprite y.",
             "is_pointer": false,
             "is_const": false,
@@ -48889,7 +49600,7 @@
         }
       },
       {
-        "signature": "float sprite_speed(sprite s);",
+        "signature": "double sprite_speed(sprite s);",
         "name": "sprite_speed",
         "method_name": null,
         "unique_global_name": "sprite_speed",
@@ -48898,7 +49609,7 @@
         "description": "Returns the current speed (distance travelled per update) of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The speed of the sprite (pixels per update).",
           "is_pointer": false,
           "is_reference": false,
@@ -49756,7 +50467,7 @@
         }
       },
       {
-        "signature": "float sprite_x(sprite s);",
+        "signature": "double sprite_x(sprite s);",
         "name": "sprite_x",
         "method_name": null,
         "unique_global_name": "sprite_x",
@@ -49765,7 +50476,7 @@
         "description": "Returns the X position of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The x location of the sprite",
           "is_pointer": false,
           "is_reference": false,
@@ -49796,7 +50507,7 @@
         }
       },
       {
-        "signature": "float sprite_y(sprite s);",
+        "signature": "double sprite_y(sprite s);",
         "name": "sprite_y",
         "method_name": null,
         "unique_global_name": "sprite_y",
@@ -49805,7 +50516,7 @@
         "description": "Returns the Y position of the sprite.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The sprite's y location.",
           "is_pointer": false,
           "is_reference": false,
@@ -50673,7 +51384,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1720129783,
+    "parsed_at": 1738487294,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -51093,7 +51804,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1729338086,
+    "parsed_at": 1738484105,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -54020,7 +54731,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129793,
+    "parsed_at": 1738487294,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -54555,7 +55266,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1720129796,
+    "parsed_at": 1740461582,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -54665,7 +55376,7 @@
         "signature": "bool has_timer(string name);",
         "name": "has_timer",
         "method_name": null,
-        "unique_global_name": "has_timer__named",
+        "unique_global_name": "has_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Checks if SplashKit has a timer with the indicated name.",
@@ -54694,7 +55405,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -54703,7 +55414,7 @@
         "signature": "void pause_timer(string name);",
         "name": "pause_timer",
         "method_name": null,
-        "unique_global_name": "pause_timer__named",
+        "unique_global_name": "pause_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Pause the timer, getting ticks from a paused timer\nwill continue to return the same time.",
@@ -54732,7 +55443,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -54781,7 +55492,7 @@
         "signature": "void reset_timer(string name);",
         "name": "reset_timer",
         "method_name": null,
-        "unique_global_name": "reset_timer__named",
+        "unique_global_name": "reset_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Resets the named timer",
@@ -54810,7 +55521,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -54859,7 +55570,7 @@
         "signature": "void resume_timer(string name);",
         "name": "resume_timer",
         "method_name": null,
-        "unique_global_name": "resume_timer__named",
+        "unique_global_name": "resume_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Resumes the named timer.",
@@ -54888,7 +55599,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -54937,7 +55648,7 @@
         "signature": "void start_timer(string name);",
         "name": "start_timer",
         "method_name": null,
-        "unique_global_name": "start_timer__named",
+        "unique_global_name": "start_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Start a timer. The timer will then start recording the time that has passed.\nYou can check how long has past since the timer was started using the\n`timer_ticks` function.",
@@ -54966,7 +55677,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -55015,7 +55726,7 @@
         "signature": "void stop_timer(string name);",
         "name": "stop_timer",
         "method_name": null,
-        "unique_global_name": "stop_timer__named",
+        "unique_global_name": "stop_timer_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Stop the timer. The time is reset to 0 and you must\nrecall start to begin the timer ticking again.",
@@ -55044,7 +55755,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -55130,7 +55841,7 @@
         "signature": "bool timer_paused(string name);",
         "name": "timer_paused",
         "method_name": null,
-        "unique_global_name": "timer_paused__named",
+        "unique_global_name": "timer_paused_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Indicates if the timer is paused.",
@@ -55159,7 +55870,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -55208,7 +55919,7 @@
         "signature": "bool timer_started(string name);",
         "name": "timer_started",
         "method_name": null,
-        "unique_global_name": "timer_started__named",
+        "unique_global_name": "timer_started_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Indicates if the timer is started.",
@@ -55237,7 +55948,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -55286,7 +55997,7 @@
         "signature": "unsigned int timer_ticks(string name);",
         "name": "timer_ticks",
         "method_name": null,
-        "unique_global_name": "timer_ticks__named",
+        "unique_global_name": "timer_ticks_named",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Gets the number of ticks (milliseconds) that have passed since the timer\nwas started/reset. When paused the timer's ticks will not advance until\nthe timer is once again resumed.",
@@ -55315,7 +56026,7 @@
           }
         },
         "attributes": {
-          "suffix": "_named",
+          "suffix": "named",
           "group": "timers",
           "static": "timers"
         }
@@ -55393,7 +56104,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129803,
+    "parsed_at": 1738487295,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -57800,7 +58511,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129805,
+    "parsed_at": 1740461582,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -57907,7 +58618,7 @@
         "signature": "triangle triangle_from(double x1,double y1,double x2,double y2,double x3,double y3);",
         "name": "triangle_from",
         "method_name": null,
-        "unique_global_name": "triangle_from__from_coordinates",
+        "unique_global_name": "triangle_from_coordinates",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Generate a triangle from a set of points.",
@@ -58001,7 +58712,7 @@
           }
         },
         "attributes": {
-          "suffix": "_from_coordinates",
+          "suffix": "coordinates",
           "group": "geometry",
           "static": "geometry"
         }
@@ -58161,7 +58872,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1729338087,
+    "parsed_at": 1738484106,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -59192,7 +59903,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1720129812,
+    "parsed_at": 1738487295,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -59400,7 +60111,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1729338088,
+    "parsed_at": 1738484107,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -60833,7 +61544,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129819,
+    "parsed_at": 1738484107,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -61428,7 +62139,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1720129825,
+    "parsed_at": 1738487296,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -62221,7 +62932,7 @@
         "unique_global_name": "request_uri_stubs",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to http://localhost:8080/names/0 returns...\n\n[\"names\", \"0\"]",
+        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to `http://localhost:8080/names/0` returns...\n\n[\"names\", \"0\"]",
         "brief": null,
         "return": {
           "type": "vector",
@@ -62928,7 +63639,7 @@
         "unique_global_name": "split_uri_stubs",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to http://localhost:8080/names/0 returns...\n\n[\"names\", \"0\"]",
+        "description": "Returns an array of strings representing each stub of the URI.\n\nFor example a request sent to `http://localhost:8080/names/0` returns...\n\n[\"names\", \"0\"]",
         "brief": null,
         "return": {
           "type": "vector",
@@ -63147,7 +63858,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1720129831,
+    "parsed_at": 1738487297,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {
