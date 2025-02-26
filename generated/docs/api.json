@@ -15157,11 +15157,11 @@
         "unique_global_name": "closest_point_on_circle",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The closest point on the circle to the given point.",
+        "description": "Returns the closest point on a circle's circumference to\na given point. If the point is equal to the center of the circle,\nthe center point is returned.",
         "brief": null,
         "return": {
           "type": "point_2d",
-          "description": "The point on c that is closest to the from point",
+          "description": "The point on `c`'s circumference that is closest to\n`from_point`, or the center of the circle if the\npoint equals `c`'s center.",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -15183,7 +15183,7 @@
           },
           "c": {
             "type": "circle",
-            "description": "The circle you want to get a point on its circumference",
+            "description": "The circle",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -15285,11 +15285,11 @@
         "unique_global_name": "closest_point_on_rect_from_circle",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns the closest point on a rectangle to a circle.",
+        "description": "Returns the closest point on a rectangle's perimeter to a circle.",
         "brief": null,
         "return": {
           "type": "point_2d",
-          "description": "The point that is closest to `c` on `rect`",
+          "description": "The point that is closest to `c` on `rect`'s perimeter",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -19315,7 +19315,7 @@
         }
       },
       {
-        "signature": "float rectangle_bottom(const rectangle &rect);",
+        "signature": "double rectangle_bottom(const rectangle &rect);",
         "name": "rectangle_bottom",
         "method_name": null,
         "unique_global_name": "rectangle_bottom",
@@ -19324,7 +19324,7 @@
         "description": "The location of the bottom of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the top of the screen to the bottom of\nthe rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -19355,13 +19355,13 @@
             "def rectangle_bottom(rect):"
           ],
           "csharp": [
-            "public static float SplashKit.RectangleBottom(Rectangle rect);"
+            "public static double SplashKit.RectangleBottom(Rectangle rect);"
           ],
           "cpp": [
-            "float rectangle_bottom(const rectangle &rect)"
+            "double rectangle_bottom(const rectangle &rect)"
           ],
           "pascal": [
-            "function RectangleBottom(const rect: Rectangle): Single"
+            "function RectangleBottom(const rect: Rectangle): Double"
           ]
         }
       },
@@ -19650,7 +19650,7 @@
         }
       },
       {
-        "signature": "float rectangle_left(const rectangle &rect);",
+        "signature": "double rectangle_left(const rectangle &rect);",
         "name": "rectangle_left",
         "method_name": null,
         "unique_global_name": "rectangle_left",
@@ -19659,7 +19659,7 @@
         "description": "The location of the left edge of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the left of the screen to the left side of\nthe rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -19690,13 +19690,13 @@
             "def rectangle_left(rect):"
           ],
           "csharp": [
-            "public static float SplashKit.RectangleLeft(Rectangle rect);"
+            "public static double SplashKit.RectangleLeft(Rectangle rect);"
           ],
           "cpp": [
-            "float rectangle_left(const rectangle &rect)"
+            "double rectangle_left(const rectangle &rect)"
           ],
           "pascal": [
-            "function RectangleLeft(const rect: Rectangle): Single"
+            "function RectangleLeft(const rect: Rectangle): Double"
           ]
         }
       },
@@ -19765,7 +19765,7 @@
         }
       },
       {
-        "signature": "float rectangle_right(const rectangle &rect);",
+        "signature": "double rectangle_right(const rectangle &rect);",
         "name": "rectangle_right",
         "method_name": null,
         "unique_global_name": "rectangle_right",
@@ -19774,7 +19774,7 @@
         "description": "The location of the right edge of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the left of the screen to the right side\nof the rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -19805,13 +19805,13 @@
             "def rectangle_right(rect):"
           ],
           "csharp": [
-            "public static float SplashKit.RectangleRight(Rectangle rect);"
+            "public static double SplashKit.RectangleRight(Rectangle rect);"
           ],
           "cpp": [
-            "float rectangle_right(const rectangle &rect)"
+            "double rectangle_right(const rectangle &rect)"
           ],
           "pascal": [
-            "function RectangleRight(const rect: Rectangle): Single"
+            "function RectangleRight(const rect: Rectangle): Double"
           ]
         }
       },
@@ -19867,7 +19867,7 @@
         }
       },
       {
-        "signature": "float rectangle_top(const rectangle &rect);",
+        "signature": "double rectangle_top(const rectangle &rect);",
         "name": "rectangle_top",
         "method_name": null,
         "unique_global_name": "rectangle_top",
@@ -19876,7 +19876,7 @@
         "description": "The top of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "Its distance from the top of the screen.",
           "is_pointer": false,
           "is_reference": false,
@@ -19907,13 +19907,13 @@
             "def rectangle_top(rect):"
           ],
           "csharp": [
-            "public static float SplashKit.RectangleTop(Rectangle rect);"
+            "public static double SplashKit.RectangleTop(Rectangle rect);"
           ],
           "cpp": [
-            "float rectangle_top(const rectangle &rect)"
+            "double rectangle_top(const rectangle &rect)"
           ],
           "pascal": [
-            "function RectangleTop(const rect: Rectangle): Single"
+            "function RectangleTop(const rect: Rectangle): Double"
           ]
         }
       },

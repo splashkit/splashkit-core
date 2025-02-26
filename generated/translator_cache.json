@@ -2045,7 +2045,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1738487275,
+    "parsed_at": 1740541625,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -5195,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1738484102,
+    "parsed_at": 1740541626,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -5734,11 +5734,11 @@
         "unique_global_name": "closest_point_on_circle",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "The closest point on the circle to the given point.",
+        "description": "Returns the closest point on a circle's circumference to\na given point. If the point is equal to the center of the circle,\nthe center point is returned.",
         "brief": null,
         "return": {
           "type": "point_2d",
-          "description": "The point on c that is closest to the from point",
+          "description": "The point on `c`'s circumference that is closest to\n`from_point`, or the center of the circle if the\npoint equals `c`'s center.",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -5760,7 +5760,7 @@
           },
           "c": {
             "type": "circle",
-            "description": "The circle you want to get a point on its circumference",
+            "description": "The circle",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -5834,11 +5834,11 @@
         "unique_global_name": "closest_point_on_rect_from_circle",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Returns the closest point on a rectangle to a circle.",
+        "description": "Returns the closest point on a rectangle's perimeter to a circle.",
         "brief": null,
         "return": {
           "type": "point_2d",
-          "description": "The point that is closest to `c` on `rect`",
+          "description": "The point that is closest to `c` on `rect`'s perimeter",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -6870,7 +6870,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1738487278,
+    "parsed_at": 1740541627,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -30321,7 +30321,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1740461579,
+    "parsed_at": 1740541627,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -32825,7 +32825,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1738487288,
+    "parsed_at": 1740541628,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -37348,7 +37348,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740461579,
+    "parsed_at": 1740541629,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -38372,7 +38372,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1738487289,
+    "parsed_at": 1740541629,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -42395,7 +42395,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1738487291,
+    "parsed_at": 1740541630,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -42651,7 +42651,7 @@
         }
       },
       {
-        "signature": "float rectangle_bottom(const rectangle &rect);",
+        "signature": "double rectangle_bottom(const rectangle &rect);",
         "name": "rectangle_bottom",
         "method_name": null,
         "unique_global_name": "rectangle_bottom",
@@ -42660,7 +42660,7 @@
         "description": "The location of the bottom of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the top of the screen to the bottom of\nthe rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -42916,7 +42916,7 @@
         }
       },
       {
-        "signature": "float rectangle_left(const rectangle &rect);",
+        "signature": "double rectangle_left(const rectangle &rect);",
         "name": "rectangle_left",
         "method_name": null,
         "unique_global_name": "rectangle_left",
@@ -42925,7 +42925,7 @@
         "description": "The location of the left edge of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the left of the screen to the left side of\nthe rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -43003,7 +43003,7 @@
         }
       },
       {
-        "signature": "float rectangle_right(const rectangle &rect);",
+        "signature": "double rectangle_right(const rectangle &rect);",
         "name": "rectangle_right",
         "method_name": null,
         "unique_global_name": "rectangle_right",
@@ -43012,7 +43012,7 @@
         "description": "The location of the right edge of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "The distance from the left of the screen to the right side\nof the rectangle.",
           "is_pointer": false,
           "is_reference": false,
@@ -43077,7 +43077,7 @@
         }
       },
       {
-        "signature": "float rectangle_top(const rectangle &rect);",
+        "signature": "double rectangle_top(const rectangle &rect);",
         "name": "rectangle_top",
         "method_name": null,
         "unique_global_name": "rectangle_top",
@@ -43086,7 +43086,7 @@
         "description": "The top of the rectangle.",
         "brief": null,
         "return": {
-          "type": "float",
+          "type": "double",
           "description": "Its distance from the top of the screen.",
           "is_pointer": false,
           "is_reference": false,
@@ -44508,7 +44508,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1740461582,
+    "parsed_at": 1740541632,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -55266,7 +55266,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1740461582,
+    "parsed_at": 1740541633,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -58511,7 +58511,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740461582,
+    "parsed_at": 1740541633,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -62139,7 +62139,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1738487296,
+    "parsed_at": 1740541634,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
