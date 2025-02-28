@@ -982,4 +982,3 @@ TEST_CASE("can perform trigonometric calculations", "[trigonometry]")
         REQUIRE(tangent(360.0f) == Approx(0.0f).margin(__FLT_EPSILON__));
     }
 }
- 
