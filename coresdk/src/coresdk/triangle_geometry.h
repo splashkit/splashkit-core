@@ -46,7 +46,13 @@ namespace splashkit_lib
      */
     bool triangle_rectangle_intersect(const triangle &tri, const rectangle &rect);
 
-    // TODO
+    /**
+     * Returns true if the triangle intersects with the quad.
+     *
+     * @param  tri  The triangle to test
+     * @param  q The quad to test
+     * @return      True if the triangle and quad intersect
+     */
     bool triangle_quad_intersect(const triangle &tri, const quad &q);
 
     /**
