@@ -1,3 +1,7 @@
+# Debian Package for Linux
+
+Note: Needs to be reviewed before using.
+
 This directory contains files and scripts for building a Debian binary package
 (.deb) of the splashkit C++ library.
 
@@ -12,7 +16,7 @@ This script assembles a debian package using the following steps.
 1. Build the Splashkit C++ library (if not already)
 2. Construct the required directory structure
 3. Copy the control, copyright, libSplashKit.so debian-binary and splashkit.h
-   files to the correct locations (See Note) 
+   files to the correct locations (See Note)
 4. Assemble the deb file
 
 Note: The resulting directory can be used with `dpkg-deb --build` however that
@@ -40,7 +44,7 @@ This file contains the licencing information for the splashkit project.
 ## splashkit.h
 
 When installing the splashkit headers, the package installs them to
-`/usr/include/splashkit`, however by default compilers will only search the 
+`/usr/include/splashkit`, however by default compilers will only search the
 `/usr/include` directory and will not recurse into the splashkit sub directory.
 However we don't want to just dump all of splashkit's headers into the
 `/usr/include` directory as it would make splashkit significantly harder to
