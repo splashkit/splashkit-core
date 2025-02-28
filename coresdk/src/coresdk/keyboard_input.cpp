@@ -22,6 +22,7 @@ namespace splashkit_lib
     static map<key_code, bool> _keys_down;
     static map<key_code, bool> _keys_just_typed; // i.e. those that have just gone down
     static map<key_code, bool> _keys_released; // i.e. those that have just gone up
+    static bool _key_pressed = false;
 
     static vector<key_callback *> _on_key_down;
     static vector<key_callback *> _on_key_up;

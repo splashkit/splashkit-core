@@ -214,10 +214,11 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         int handle = -1;
-	handle = sk_spi_open(channel, speed, spi_flags);
+	    handle = sk_spi_open(channel, speed, spi_flags);
         return handle;
 #else
         cout << "Unable to open SPI interface - GPIO not supported on this platform" << endl;
+        return -1;
 #endif
     }
 
@@ -227,6 +228,7 @@ namespace splashkit_lib
         return sk_spi_close(handle);
 #else
         cout << "Unable to close SPI interface - GPIO not supported on this platform" << endl;
+        return -1;
 #endif
     }
 
@@ -236,6 +238,7 @@ namespace splashkit_lib
         return sk_spi_transfer(handle, sendBuf, recvBuf, count);
 #else
         cout << "Unable to transfer through SPI - GPIO not supported on this platform" << endl;
+        return -1;
 #endif
     }
 

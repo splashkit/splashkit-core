@@ -7,14 +7,13 @@
 
 #include <iostream>
 #include "raspi_gpio.h"
+
 using namespace std;
 using namespace splashkit_lib;
 
 
 void run_gpio_spi_tests()
 {
-
-
     cout << "Initializing GPIO" << endl;
     raspi_init();
 

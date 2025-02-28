@@ -112,7 +112,7 @@ namespace splashkit_lib
 	/**
      * @brief Opens SPI communication on selected channel.
      *
-     * This function opens SPI communication on a particular channel.
+     * This function opens SPI communication on a particular channel. It will return -1 if not using Raspberry Pi.
      *
      * @param channel    The SPI channel to use.
      * @param speed      The speed of data transfer (in baud).
@@ -122,7 +122,7 @@ namespace splashkit_lib
     int raspi_spi_open(int channel, int speed, int spi_flags);
 
     /**
-     * @brief Closes SPI communication on selected channel.
+     * @brief Closes SPI communication on selected channel. It will return -1 if not using Raspberry Pi.
      *
      * This function closes SPI communication on a particular channel.
      *
@@ -132,7 +132,7 @@ namespace splashkit_lib
     int raspi_spi_close(int handle);
 
     /**
-     * @brief Transfers data on specified SPI connection
+     * @brief Transfers data on specified SPI connection. It will return -1 if not using Raspberry Pi.
      *
      * This function transfers data through SPI, it sends data from sendBuf and receives it into recvBuf.
      *

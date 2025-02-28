@@ -270,7 +270,7 @@ void draw_game(game_data &game)
 {
     char str[15];
 
-    sprintf(str, "%d", game.player_data.score);
+    snprintf(str, sizeof str, "%d", game.player_data.score);
 
     draw_sprite(game.scene.background);
     draw_poles_array(game.poles_data);

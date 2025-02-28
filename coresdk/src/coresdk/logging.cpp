@@ -41,6 +41,8 @@ namespace splashkit_lib
             }
             _log_mode = mode;
             break;
+        case LOG_NONE:
+            break;
         }
     }
 
