@@ -29,6 +29,14 @@ enum class object_type
     QUAD,
 };
 
+/*
+* The type of collision test to perform.
+* MULTIPLE_DYNAMIC uses classify_collision_direction on each object to determine
+* the direction of the collision before calling resolve_collision.
+* The FIXED types do not use classify_collision_direction and instead use fixed
+* static collision directions determined by each object's position. For example,
+* the top-most object will always use a collision direction of DIRECTION_TOP.
+*/
 enum class collision_test_type
 {
     MULTIPLE_DYNAMIC,
