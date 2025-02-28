@@ -10,8 +10,6 @@
 
 using namespace splashkit_lib;
 
-constexpr int ROCKET_WIDTH = 36, ROCKET_HEIGHT = 72;
-
 TEST_CASE("bitmaps can be created and freed", "[bitmap]")
 {
     SECTION("can detect non-existent bitmap")
@@ -84,6 +82,7 @@ TEST_CASE("bitmaps can be created and freed", "[bitmap]")
 }
 TEST_CASE("bitmap bounding details can be retrieved", "[bitmap]")
 {
+    constexpr int ROCKET_WIDTH = 36, ROCKET_HEIGHT = 72;
     bitmap bmp = load_bitmap("rocket", "rocket_sprt.png");
     REQUIRE(bmp != nullptr);
     REQUIRE(bitmap_valid(bmp));

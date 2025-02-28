@@ -10,13 +10,13 @@
 using namespace splashkit_lib;
 
 constexpr int ROCKET_WIDTH = 36, ROCKET_HEIGHT = 72,
-    FROG_WIDTH = 294, FROG_HEIGHT = 422,
         BACKGROUND_WIDTH = 864, BACKGROUND_HEIGHT = 769;
 
 bitmap rocket_bmp, frog_bmp, background_bmp;
 
 TEST_CASE("bitmaps can be created", "[bitmap]")
 {
+    constexpr int FROG_WIDTH = 294, FROG_HEIGHT = 422;
     rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
     REQUIRE(bitmap_valid(rocket_bmp));
     REQUIRE(rocket_bmp != nullptr);

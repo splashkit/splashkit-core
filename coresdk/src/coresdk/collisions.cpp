@@ -17,8 +17,6 @@
 #include "graphics.h"
 #include "utils.h"
 
-constexpr double RAY_QUAD_LINE_THICKNESS = 1.0;
-
 using std::function;
 
 namespace splashkit_lib
@@ -296,6 +294,7 @@ namespace splashkit_lib
 
     bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& origin, const vector_2d& heading)
     {
+        constexpr double RAY_QUAD_LINE_THICKNESS = 1.0;
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
             return false;
