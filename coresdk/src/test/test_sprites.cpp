@@ -352,34 +352,24 @@ void reset_quad(quad &q)
     apply_matrix(matrix_multiply(translation_matrix(0.0, -150.0), rotation_matrix(45.0)), q);
 }
 
-template <typename T>
-void _move_obj_by_vector(T& obj, const vector_2d& amount)
-{
-    return;
-}
-
-template <>
 void _move_obj_by_vector(sprite& obj, const vector_2d& amount)
 {
     sprite_set_x(obj, sprite_x(obj) + amount.x);
     sprite_set_y(obj, sprite_y(obj) + amount.y);
 }
 
-template <>
 void _move_obj_by_vector(rectangle& obj, const vector_2d& amount)
 {
     obj.x += amount.x;
     obj.y += amount.y;
 }
 
-template <>
 void _move_obj_by_vector(circle& obj, const vector_2d& amount)
 {
     obj.center.x += amount.x;
     obj.center.y += amount.y;
 }
 
-template <>
 void _move_obj_by_vector(triangle& obj, const vector_2d& amount)
 {
     obj.points[0].x += amount.x;
@@ -390,7 +380,6 @@ void _move_obj_by_vector(triangle& obj, const vector_2d& amount)
     obj.points[2].y += amount.y;
 }
 
-template <>
 void _move_obj_by_vector(quad& obj, const vector_2d& amount)
 {
     obj.points[0].x += amount.x;
@@ -424,37 +413,26 @@ void move_obj_by_arrows(T& obj)
     }
 }
 
-template <typename T>
-rectangle _object_AABB(const T& obj)
-{
-    return rectangle_from(0.0, 0.0, 0.0, 0.0);
-}
-
-template <>
 rectangle _object_AABB(const sprite& obj)
 {
     return sprite_collision_rectangle(obj);
 }
 
-template <>
 rectangle _object_AABB(const rectangle& obj)
 {
     return obj;
 }
 
-template <>
 rectangle _object_AABB(const circle& obj)
 {
     return rectangle_around(obj);
 }
 
-template <>
 rectangle _object_AABB(const triangle& obj)
 {
     return rectangle_around(obj);
 }
 
-template <>
 rectangle _object_AABB(const quad& obj)
 {
     return rectangle_around(obj);
@@ -480,13 +458,6 @@ void resolve_and_draw(T1& collider, const T2& collidee, const vector_2d& directi
     }
 }
 
-template <typename T>
-void draw_object(T& obj, bool draw_AABB = false)
-{
-    return;
-}
-
-template <>
 void draw_object(sprite& obj, bool draw_AABB)
 {
     draw_sprite(obj);
@@ -496,7 +467,6 @@ void draw_object(sprite& obj, bool draw_AABB)
     }
 }
 
-template <>
 void draw_object(rectangle& obj, bool draw_AABB)
 {
     fill_rectangle(COLOR_ORANGE, obj);
@@ -506,7 +476,6 @@ void draw_object(rectangle& obj, bool draw_AABB)
     }
 }
 
-template <>
 void draw_object(circle& obj, bool draw_AABB)
 {
     fill_circle(COLOR_ORANGE, obj);
@@ -516,7 +485,6 @@ void draw_object(circle& obj, bool draw_AABB)
     }
 }
 
-template <>
 void draw_object(triangle& obj, bool draw_AABB)
 {
     fill_triangle(COLOR_ORANGE, obj);
@@ -526,7 +494,6 @@ void draw_object(triangle& obj, bool draw_AABB)
     }
 }
 
-template <>
 void draw_object(quad& obj, bool draw_AABB)
 {
     fill_quad(COLOR_ORANGE, obj);

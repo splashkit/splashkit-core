@@ -158,190 +158,149 @@ namespace splashkit_lib
         return vector_to(-dir.x, -dir.y);
     }
 
-    template <typename A, typename B>
-    bool _test_collision(const A &a, const B &b)
-    {
-        return false;
-    }
-
-    template <>
     bool _test_collision(const sprite &s1, const sprite &s2)
     {
         return sprite_collision(s1, s2);
     }
 
-    template <>
     bool _test_collision(const sprite &s, const rectangle &r)
     {
         return sprite_rectangle_collision(s, r);
     }
 
-    template <>
     bool _test_collision(const sprite &s, const circle &c)
     {
         return sprite_circle_collision(s, c);
     }
 
-    template <>
     bool _test_collision(const sprite &s, const triangle &t)
     {
         return sprite_triangle_collision(s, t);
     }
 
-    template <>
     bool _test_collision(const sprite &s, const quad &q)
     {
         return sprite_quad_collision(s, q);
     }
 
-    template <>
     bool _test_collision(const rectangle &r, const sprite &s)
     {
         return sprite_rectangle_collision(s, r);
     }
 
-    template <>
     bool _test_collision(const rectangle &r1, const rectangle &r2)
     {
         return rectangles_intersect(r1, r2);
     }
 
-    template <>
     bool _test_collision(const rectangle &r, const circle &c)
     {
         return rectangle_circle_intersect(r, c);
     }
 
-    template <>
     bool _test_collision(const rectangle &r, const triangle &t)
     {
         return triangle_rectangle_intersect(t, r);
     }
 
-    template <>
     bool _test_collision(const rectangle &r, const quad &q)
     {
         return quads_intersect(quad_from(r), q);
     }
 
-    template <>
     bool _test_collision(const circle &c, const sprite &s)
     {
         return sprite_circle_collision(s, c);
     }
 
-    template <>
     bool _test_collision(const circle &c, const rectangle &r)
     {
         return rectangle_circle_intersect(r, c);
     }
 
-    template <>
     bool _test_collision(const circle &c1, const circle &c2)
     {
         return circles_intersect(c1, c2);
     }
 
-    template <>
     bool _test_collision(const circle &c, const triangle &t)
     {
         return circle_triangle_intersect(c, t);
     }
 
-    template <>
     bool _test_collision(const circle &c, const quad &q)
     {
         return circle_quad_intersect(c, q);
     }
 
-    template <>
     bool _test_collision(const triangle &t, const sprite &s)
     {
         return sprite_triangle_collision(s, t);
     }
 
-    template <>
     bool _test_collision(const triangle &t, const rectangle &r)
     {
         return triangle_rectangle_intersect(t, r);
     }
 
-    template <>
     bool _test_collision(const triangle &t, const circle &c)
     {
         return circle_triangle_intersect(c, t);
     }
 
-    template <>
     bool _test_collision(const triangle &t1, const triangle &t2)
     {
         return triangles_intersect(t1, t2);
     }
 
-    template <>
     bool _test_collision(const triangle &t, const quad &q)
     {
         return triangle_quad_intersect(t, q);
     }
 
-    template <>
     bool _test_collision(const quad &q, const sprite &s)
     {
         return sprite_quad_collision(s, q);
     }
 
-    template <>
     bool _test_collision(const quad &q, const rectangle &r)
     {
         return quads_intersect(q, quad_from(r));
     }
 
-    template <>
     bool _test_collision(const quad &q, const circle &c)
     {
         return circle_quad_intersect(c, q);
     }
 
-    template <>
     bool _test_collision(const quad &q, const triangle &t)
     {
         return triangle_quad_intersect(t, q);
     }
 
-    template <>
     bool _test_collision(const quad &q1, const quad &q2)
     {
         return quads_intersect(q1, q2);
     }
 
-    template <typename T>
-    void _move_obj_by_vector(T &obj, const vector_2d &amount)
-    {
-        return;
-    }
-
-    template <>
     void _move_obj_by_vector(sprite &obj, const vector_2d &amount)
     {
         sprite_set_x(obj, sprite_x(obj) + amount.x);
         sprite_set_y(obj, sprite_y(obj) + amount.y);
     }
 
-    template <>
     void _move_obj_by_vector(rectangle &obj, const vector_2d &amount)
     {
         obj.x += amount.x;
         obj.y += amount.y;
     }
 
-    template <>
     void _move_obj_by_vector(circle &obj, const vector_2d &amount)
     {
         obj.center.x += amount.x;
         obj.center.y += amount.y;
     }
 
-    template <>
     void _move_obj_by_vector(triangle &obj, const vector_2d &amount)
     {
         obj.points[0].x += amount.x;
@@ -352,7 +311,6 @@ namespace splashkit_lib
         obj.points[2].y += amount.y;
     }
 
-    template <>
     void _move_obj_by_vector(quad &obj, const vector_2d &amount)
     {
         obj.points[0].x += amount.x;
@@ -365,37 +323,26 @@ namespace splashkit_lib
         obj.points[3].y += amount.y;
     }
 
-    template <typename T>
-    rectangle _object_AABB(const T &obj)
-    {
-        return rectangle_from(0.0, 0.0, 0.0, 0.0);
-    }
-
-    template <>
     rectangle _object_AABB(const sprite &obj)
     {
         return sprite_collision_rectangle(obj);
     }
 
-    template <>
     rectangle _object_AABB(const rectangle &obj)
     {
         return obj;
     }
 
-    template <>
     rectangle _object_AABB(const circle &obj)
     {
         return rectangle_around(obj);
     }
 
-    template <>
     rectangle _object_AABB(const triangle &obj)
     {
         return rectangle_around(obj);
     }
 
-    template <>
     rectangle _object_AABB(const quad &obj)
     {
         return rectangle_around(obj);
