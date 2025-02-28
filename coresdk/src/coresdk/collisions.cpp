@@ -30,18 +30,18 @@ namespace splashkit_lib
     const vector_2d _DIRECTION_BOTTOM_LEFT = unit_vector(vector_to(-1.0, 1.0));
     const vector_2d _DIRECTION_BOTTOM_RIGHT = unit_vector(vector_to(1.0, 1.0));
     const vector_2d _DIRECTION_NONE = vector_to(0.0, 0.0);
-    
-    //#define DEBUG_STEP
+
+    // #define DEBUG_STEP
 
     // Step over pixels in the two areas based on the supplied matrix
     //
     // See http://www.austincc.edu/cchrist1/GAME1343/TransformedCollision/TransformedCollision.htm
-    bool _step_through_pixels (
-                               double w1, double h1,
-                               const matrix_2d &matrix1,
-                               double w2, double h2,
-                               const matrix_2d &matrix2,
-                               function<bool(int, int, int, int)> end_fn )
+    bool _step_through_pixels(
+        double w1, double h1,
+        const matrix_2d &matrix1,
+        double w2, double h2,
+        const matrix_2d &matrix2,
+        function<bool(int, int, int, int)> end_fn)
     {
         bool a_is_1;
         double h_a, w_a;
@@ -49,7 +49,7 @@ namespace splashkit_lib
         matrix_2d transform_a_to_b;
 
         // Determine the smaller area to step through.
-        if ( w1 * h1 <= w2 * h2 ) // use bitmap 1 as the one to scan
+        if (w1 * h1 <= w2 * h2) // use bitmap 1 as the one to scan
         {
             a_is_1 = true;
             h_a = h1;
@@ -80,7 +80,7 @@ namespace splashkit_lib
 
         // Calculate the top left corner of A in B's local space
         // This variable will be reused to keep track of the start of each row
-        y_pos_in_b = matrix_multiply(transform_a_to_b, vector_to(0,0));
+        y_pos_in_b = matrix_multiply(transform_a_to_b, vector_to(0, 0));
 
         // When a point moves in A's local space, it moves in B's local space with a
         // fixed direction and distance proportional to the movement in A.
@@ -108,10 +108,9 @@ namespace splashkit_lib
                 y_b = trunc(pos_in_b.y);
 
                 // If the pixel lies within the bounds of B
-                if  ( (0 <= x_b) and (x_b < w_b) and (0 <= y_b) and (y_b < h_b) )
+                if ((0 <= x_b) and (x_b < w_b) and (0 <= y_b) and (y_b < h_b))
                 {
-                    if ( ( a_is_1 and end_fn(x_a, y_a, x_b, y_b) )
-                        or ( (not a_is_1) and end_fn(x_b, y_b, x_a, y_a)) )
+                    if ((a_is_1 and end_fn(x_a, y_a, x_b, y_b)) or ((not a_is_1) and end_fn(x_b, y_b, x_a, y_a)))
                     {
                         return true;
                     }
@@ -129,22 +128,22 @@ namespace splashkit_lib
         return false;
     }
 
-    bool _collision_within_bitmap_images_with_translation(bitmap bmp1, int c1, const matrix_2d& matrix1, bitmap bmp2, int c2, const matrix_2d& matrix2)
+    bool _collision_within_bitmap_images_with_translation(bitmap bmp1, int c1, const matrix_2d &matrix1, bitmap bmp2, int c2, const matrix_2d &matrix2)
     {
         return _step_through_pixels(bitmap_cell_width(bmp1), bitmap_cell_height(bmp1), matrix1,
                                     bitmap_cell_width(bmp2), bitmap_cell_height(bmp2), matrix2,
-                                    [&] (int ax, int ay, int bx, int by)
+                                    [&](int ax, int ay, int bx, int by)
                                     {
 #if DEBUG_STEP
                                         point_2d apt, bpt;
-                                        apt = matrix_multiply(matrix1, point_at(ax,ay));
-                                        if ( pixel_drawn_at_point(bmp1, c1, ax, ay) )
+                                        apt = matrix_multiply(matrix1, point_at(ax, ay));
+                                        if (pixel_drawn_at_point(bmp1, c1, ax, ay))
                                             draw_circle(COLOR_RED, apt.x, apt.y, 3);
-                                        bpt = matrix_multiply(matrix2, point_at(bx,by));
-                                        if ( pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                        bpt = matrix_multiply(matrix2, point_at(bx, by));
+                                        if (pixel_drawn_at_point(bmp2, c2, bx, by))
                                             draw_circle(COLOR_PINK, bpt.x, bpt.y, 2);
 
-                                        if ( pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by) )
+                                        if (pixel_drawn_at_point(bmp1, c1, ax, ay) and pixel_drawn_at_point(bmp2, c2, bx, by))
                                         {
                                             fill_circle(COLOR_GREEN, apt.x, apt.y, 1);
                                             fill_circle(COLOR_YELLOW, bpt.x, bpt.y, 3);
@@ -154,196 +153,196 @@ namespace splashkit_lib
                                     });
     }
 
-    vector_2d _opposite_direction(const vector_2d& dir)
+    vector_2d _opposite_direction(const vector_2d &dir)
     {
         return vector_to(-dir.x, -dir.y);
     }
 
     template <typename A, typename B>
-    bool _test_collision(const A& a, const B& b)
+    bool _test_collision(const A &a, const B &b)
     {
         return false;
     }
 
     template <>
-    bool _test_collision(const sprite& s1, const sprite& s2)
+    bool _test_collision(const sprite &s1, const sprite &s2)
     {
         return sprite_collision(s1, s2);
     }
 
     template <>
-    bool _test_collision(const sprite& s, const rectangle& r)
+    bool _test_collision(const sprite &s, const rectangle &r)
     {
         return sprite_rectangle_collision(s, r);
     }
 
     template <>
-    bool _test_collision(const sprite& s, const circle& c)
+    bool _test_collision(const sprite &s, const circle &c)
     {
         return sprite_circle_collision(s, c);
     }
 
     template <>
-    bool _test_collision(const sprite& s, const triangle& t)
+    bool _test_collision(const sprite &s, const triangle &t)
     {
         return sprite_triangle_collision(s, t);
     }
 
     template <>
-    bool _test_collision(const sprite& s, const quad& q)
+    bool _test_collision(const sprite &s, const quad &q)
     {
         return sprite_quad_collision(s, q);
     }
 
     template <>
-    bool _test_collision(const rectangle& r, const sprite& s)
+    bool _test_collision(const rectangle &r, const sprite &s)
     {
         return sprite_rectangle_collision(s, r);
     }
 
     template <>
-    bool _test_collision(const rectangle& r1, const rectangle& r2)
+    bool _test_collision(const rectangle &r1, const rectangle &r2)
     {
         return rectangles_intersect(r1, r2);
     }
 
     template <>
-    bool _test_collision(const rectangle& r, const circle& c)
+    bool _test_collision(const rectangle &r, const circle &c)
     {
         return rectangle_circle_intersect(r, c);
     }
 
     template <>
-    bool _test_collision(const rectangle& r, const triangle& t)
+    bool _test_collision(const rectangle &r, const triangle &t)
     {
         return triangle_rectangle_intersect(t, r);
     }
 
     template <>
-    bool _test_collision(const rectangle& r, const quad& q)
+    bool _test_collision(const rectangle &r, const quad &q)
     {
         return quads_intersect(quad_from(r), q);
     }
 
     template <>
-    bool _test_collision(const circle& c, const sprite& s)
+    bool _test_collision(const circle &c, const sprite &s)
     {
         return sprite_circle_collision(s, c);
     }
 
     template <>
-    bool _test_collision(const circle& c, const rectangle& r)
+    bool _test_collision(const circle &c, const rectangle &r)
     {
         return rectangle_circle_intersect(r, c);
     }
 
     template <>
-    bool _test_collision(const circle& c1, const circle& c2)
+    bool _test_collision(const circle &c1, const circle &c2)
     {
         return circles_intersect(c1, c2);
     }
 
     template <>
-    bool _test_collision(const circle& c, const triangle& t)
+    bool _test_collision(const circle &c, const triangle &t)
     {
         return circle_triangle_intersect(c, t);
     }
 
     template <>
-    bool _test_collision(const circle& c, const quad& q)
+    bool _test_collision(const circle &c, const quad &q)
     {
         return circle_quad_intersect(c, q);
     }
 
     template <>
-    bool _test_collision(const triangle& t, const sprite& s)
+    bool _test_collision(const triangle &t, const sprite &s)
     {
         return sprite_triangle_collision(s, t);
     }
 
     template <>
-    bool _test_collision(const triangle& t, const rectangle& r)
+    bool _test_collision(const triangle &t, const rectangle &r)
     {
         return triangle_rectangle_intersect(t, r);
     }
 
     template <>
-    bool _test_collision(const triangle& t, const circle& c)
+    bool _test_collision(const triangle &t, const circle &c)
     {
         return circle_triangle_intersect(c, t);
     }
 
     template <>
-    bool _test_collision(const triangle& t1, const triangle& t2)
+    bool _test_collision(const triangle &t1, const triangle &t2)
     {
         return triangles_intersect(t1, t2);
     }
 
     template <>
-    bool _test_collision(const triangle& t, const quad& q)
+    bool _test_collision(const triangle &t, const quad &q)
     {
         return triangle_quad_intersect(t, q);
     }
 
     template <>
-    bool _test_collision(const quad& q, const sprite& s)
+    bool _test_collision(const quad &q, const sprite &s)
     {
         return sprite_quad_collision(s, q);
     }
 
     template <>
-    bool _test_collision(const quad& q, const rectangle& r)
+    bool _test_collision(const quad &q, const rectangle &r)
     {
         return quads_intersect(q, quad_from(r));
     }
 
     template <>
-    bool _test_collision(const quad& q, const circle& c)
+    bool _test_collision(const quad &q, const circle &c)
     {
         return circle_quad_intersect(c, q);
     }
 
     template <>
-    bool _test_collision(const quad& q, const triangle& t)
+    bool _test_collision(const quad &q, const triangle &t)
     {
         return triangle_quad_intersect(t, q);
     }
 
     template <>
-    bool _test_collision(const quad& q1, const quad& q2)
+    bool _test_collision(const quad &q1, const quad &q2)
     {
         return quads_intersect(q1, q2);
     }
 
     template <typename T>
-    void _move_obj_by_vector(T& obj, const vector_2d& amount)
+    void _move_obj_by_vector(T &obj, const vector_2d &amount)
     {
         return;
     }
 
     template <>
-    void _move_obj_by_vector(sprite& obj, const vector_2d& amount)
+    void _move_obj_by_vector(sprite &obj, const vector_2d &amount)
     {
         sprite_set_x(obj, sprite_x(obj) + amount.x);
         sprite_set_y(obj, sprite_y(obj) + amount.y);
     }
 
     template <>
-    void _move_obj_by_vector(rectangle& obj, const vector_2d& amount)
+    void _move_obj_by_vector(rectangle &obj, const vector_2d &amount)
     {
         obj.x += amount.x;
         obj.y += amount.y;
     }
 
     template <>
-    void _move_obj_by_vector(circle& obj, const vector_2d& amount)
+    void _move_obj_by_vector(circle &obj, const vector_2d &amount)
     {
         obj.center.x += amount.x;
         obj.center.y += amount.y;
     }
 
     template <>
-    void _move_obj_by_vector(triangle& obj, const vector_2d& amount)
+    void _move_obj_by_vector(triangle &obj, const vector_2d &amount)
     {
         obj.points[0].x += amount.x;
         obj.points[0].y += amount.y;
@@ -354,7 +353,7 @@ namespace splashkit_lib
     }
 
     template <>
-    void _move_obj_by_vector(quad& obj, const vector_2d& amount)
+    void _move_obj_by_vector(quad &obj, const vector_2d &amount)
     {
         obj.points[0].x += amount.x;
         obj.points[0].y += amount.y;
@@ -367,60 +366,60 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    rectangle _object_AABB(const T& obj)
+    rectangle _object_AABB(const T &obj)
     {
         return rectangle_from(0.0, 0.0, 0.0, 0.0);
     }
 
     template <>
-    rectangle _object_AABB(const sprite& obj)
+    rectangle _object_AABB(const sprite &obj)
     {
         return sprite_collision_rectangle(obj);
     }
 
     template <>
-    rectangle _object_AABB(const rectangle& obj)
+    rectangle _object_AABB(const rectangle &obj)
     {
         return obj;
     }
 
     template <>
-    rectangle _object_AABB(const circle& obj)
+    rectangle _object_AABB(const circle &obj)
     {
         return rectangle_around(obj);
     }
 
     template <>
-    rectangle _object_AABB(const triangle& obj)
+    rectangle _object_AABB(const triangle &obj)
     {
         return rectangle_around(obj);
     }
 
     template <>
-    rectangle _object_AABB(const quad& obj)
+    rectangle _object_AABB(const quad &obj)
     {
         return rectangle_around(obj);
     }
 
-    template<typename T>
-    collision_test_kind _collision_kind(const T& obj)
+    template <typename T>
+    collision_test_kind _collision_kind(const T &obj)
     {
         return PIXEL_COLLISIONS;
     }
 
-    template<>
-    collision_test_kind _collision_kind(const rectangle& obj)
+    template <>
+    collision_test_kind _collision_kind(const rectangle &obj)
     {
         return AABB_COLLISIONS;
     }
 
-    template<>
-    collision_test_kind _collision_kind(const sprite& obj)
+    template <>
+    collision_test_kind _collision_kind(const sprite &obj)
     {
         return sprite_collision_kind(obj);
     }
 
-    vector_2d _compare_point_collision_depth_horizontal(const point_2d& collider, const point_2d& collidee)
+    vector_2d _compare_point_collision_depth_horizontal(const point_2d &collider, const point_2d &collidee)
     {
         if (collider.x < collidee.x)
         {
@@ -429,7 +428,7 @@ namespace splashkit_lib
         return _DIRECTION_LEFT;
     }
 
-    vector_2d _compare_point_collision_depth_vertical(const point_2d& collider, const point_2d& collidee)
+    vector_2d _compare_point_collision_depth_vertical(const point_2d &collider, const point_2d &collidee)
     {
         if (collider.y < collidee.y)
         {
@@ -438,7 +437,7 @@ namespace splashkit_lib
         return _DIRECTION_TOP;
     }
 
-    vector_2d _calculate_containing_collision_direction(const rectangle& collider, const rectangle& collidee)
+    vector_2d _calculate_containing_collision_direction(const rectangle &collider, const rectangle &collidee)
     {
         // calculate the direction of the greatest distance between the two sprites
         point_2d collider_center = rectangle_center(collider);
@@ -462,7 +461,7 @@ namespace splashkit_lib
         return _compare_point_collision_depth_vertical(collider_center, collidee_center);
     }
 
-    vector_2d _rectangle_rectangle_collision_direction(const rectangle& collider, const rectangle& collidee)
+    vector_2d _rectangle_rectangle_collision_direction(const rectangle &collider, const rectangle &collidee)
     {
         vector<line> collider_lines = lines_from(collider);
         line collider_top_edge = collider_lines[0];
@@ -527,7 +526,7 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    void _move_object_by_direction(T& obj, const vector_2d& movement_direction, const vector_2d& amount)
+    void _move_object_by_direction(T &obj, const vector_2d &movement_direction, const vector_2d &amount)
     {
         if (is_zero_vector(amount))
         {
@@ -535,12 +534,12 @@ namespace splashkit_lib
         }
 
         _move_obj_by_vector(obj, vector_to(amount.x * movement_direction.x,
-                                            amount.y * movement_direction.y));
+                                           amount.y * movement_direction.y));
     }
 
     template <typename T>
-    void _move_object_by_direction_relative_to_size(T& obj, const vector_2d& movement_direction,
-                                                                    double relative_amount = 1.0)
+    void _move_object_by_direction_relative_to_size(T &obj, const vector_2d &movement_direction,
+                                                    double relative_amount = 1.0)
     {
         if (is_zero_vector(movement_direction))
         {
@@ -551,9 +550,9 @@ namespace splashkit_lib
         {
             return;
         }
-        
+
         rectangle obj_aabb = _object_AABB(obj);
-        
+
         double relative_width = obj_aabb.width * relative_amount;
         double relative_height = obj_aabb.height * relative_amount;
 
@@ -569,19 +568,19 @@ namespace splashkit_lib
         _move_object_by_direction(obj, movement_direction, vector_to(relative_width, relative_height));
     }
 
-    /** 
+    /**
      * Moves the object back and forth with decreasing step size for
      * the given number of iterations.
-    */
+     */
     template <typename T>
-    bool _bracket_obj_collision_single(bool colliding, int i, T& collider,
-                                const vector_2d& collider_direction)
+    bool _bracket_obj_collision_single(bool colliding, int i, T &collider,
+                                       const vector_2d &collider_direction)
     {
         const double ITERATION_POWER = 1.5;
         if (colliding)
         {
             _move_object_by_direction_relative_to_size(collider, collider_direction,
-                                                        1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
+                                                       1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
         }
         else if (i == 1) // no collision in the first iteration
         {
@@ -590,19 +589,19 @@ namespace splashkit_lib
         else
         {
             _move_object_by_direction_relative_to_size(collider, _opposite_direction(collider_direction),
-                                                        1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
+                                                       1.0 / pow(ITERATION_POWER, static_cast<double>(i)));
         }
         return true;
     }
 
     template <typename A, typename B>
-    void _bracket_obj_obj_collision(A& collider, const B& collidee, const vector_2d& collider_direction,
+    void _bracket_obj_obj_collision(A &collider, const B &collidee, const vector_2d &collider_direction,
                                     int iterations)
     {
         for (int i = 1; i <= iterations; i++)
         {
             if (!_bracket_obj_collision_single(_test_collision(collider, collidee), i, collider,
-                                                                                collider_direction))
+                                               collider_direction))
             {
                 return;
             }
@@ -610,7 +609,7 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    vector_2d _calculate_object_collision_direction(const A& collider, const B& collidee)
+    vector_2d _calculate_object_collision_direction(const A &collider, const B &collidee)
     {
         if (!_test_collision(collider, collidee))
         {
@@ -621,8 +620,8 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    void _resolve_object_AABB_collision(T& collider, const rectangle& collidee_rect,
-                                                const vector_2d& collision_direction)
+    void _resolve_object_AABB_collision(T &collider, const rectangle &collidee_rect,
+                                        const vector_2d &collision_direction)
     {
         // get the intersection rectangle
         rectangle inter = intersection(_object_AABB(collider), collidee_rect);
@@ -632,7 +631,7 @@ namespace splashkit_lib
     }
 
     template <typename A, typename B>
-    bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& collision_direction)
+    bool _resolve_object_collision(A &collider, const B &collidee, const vector_2d &collision_direction)
     {
         const int BRACKET_ITERATIONS = 40;
         if (is_zero_vector(collision_direction) || !_test_collision(collider, collidee))
@@ -654,19 +653,19 @@ namespace splashkit_lib
         return true;
     }
 
-    bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& pt )
+    bool bitmap_point_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &pt)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
             return false;
         }
 
-        if ( not point_in_quad(pt, quad_from(bitmap_cell_rectangle(bmp), translation)) )
+        if (not point_in_quad(pt, quad_from(bitmap_cell_rectangle(bmp), translation)))
         {
             return false;
         }
 
-        return _step_through_pixels(1, 1, translation_matrix(pt.x, pt.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
+        return _step_through_pixels(1, 1, translation_matrix(pt.x, pt.y), bmp->cell_w, bmp->cell_h, translation, [&](int ax, int ay, int bx, int by)
                                     {
 #if DEBUG_STEP
                                         point_2d bpt;
@@ -674,16 +673,15 @@ namespace splashkit_lib
                                         if ( pixel_drawn_at_point(bmp, cell, bx, by) )
                                             fill_rectangle(COLOR_PINK, bpt.x, bpt.y, translation.elements[0][0], translation.elements[1][1] );
 #endif
-                                        return pixel_drawn_at_point(bmp, cell, bx, by);
-                                    });
+                                        return pixel_drawn_at_point(bmp, cell, bx, by); });
     }
 
-    bool bitmap_point_collision(bitmap bmp, const matrix_2d& translation, const point_2d& pt)
+    bool bitmap_point_collision(bitmap bmp, const matrix_2d &translation, const point_2d &pt)
     {
         return bitmap_point_collision(bmp, 0, translation, pt);
     }
 
-    bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d& pt)
+    bool bitmap_point_collision(bitmap bmp, const point_2d &bmp_pt, const point_2d &pt)
     {
         return bitmap_point_collision(bmp, translation_matrix(bmp_pt), pt);
     }
@@ -692,18 +690,18 @@ namespace splashkit_lib
     {
         return bitmap_point_collision(bmp, 0, translation_matrix(bmp_x, bmp_y), point_at(x, y));
     }
-    
-    bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d& pt)
+
+    bool bitmap_point_collision(bitmap bmp, int cell, const point_2d &bmp_pt, const point_2d &pt)
     {
         return bitmap_point_collision(bmp, cell, translation_matrix(bmp_pt), pt);
     }
-    
+
     bool bitmap_point_collision(bitmap bmp, int cell, double bmp_x, double bmp_y, double x, double y)
     {
         return bitmap_point_collision(bmp, cell, translation_matrix(bmp_x, bmp_y), point_at(x, y));
     }
 
-    bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d& translation, const rectangle& rect)
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const rectangle &rect)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
@@ -715,101 +713,98 @@ namespace splashkit_lib
         q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
         q2 = quad_from(rect);
 
-        if ( not quads_intersect(q1, q2) ) return false;
+        if (not quads_intersect(q1, q2))
+            return false;
 
-        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-                                    {
-                                        return pixel_drawn_at_point(bmp, cell, bx, by);
-                                    });
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&](int ax, int ay, int bx, int by)
+                                    { return pixel_drawn_at_point(bmp, cell, bx, by); });
     }
 
-    bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d& pt, const rectangle& rect)
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, const point_2d &pt, const rectangle &rect)
     {
         return bitmap_rectangle_collision(bmp, cell, translation_matrix(pt), rect);
     }
-    
-    bool bitmap_rectangle_collision(bitmap bmp, const point_2d& pt, const rectangle& rect)
+
+    bool bitmap_rectangle_collision(bitmap bmp, const point_2d &pt, const rectangle &rect)
     {
         return bitmap_rectangle_collision(bmp, 0, translation_matrix(pt), rect);
     }
-    
-    bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle& rect)
+
+    bool bitmap_rectangle_collision(bitmap bmp, double x, double y, const rectangle &rect)
     {
         return bitmap_rectangle_collision(bmp, 0, translation_matrix(x, y), rect);
     }
-    
-    bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle& rect)
+
+    bool bitmap_rectangle_collision(bitmap bmp, int cell, double x, double y, const rectangle &rect)
     {
         return bitmap_rectangle_collision(bmp, cell, translation_matrix(x, y), rect);
     }
-    
-    bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d& translation, const circle& circ)
+
+    bool bitmap_circle_collision(bitmap bmp, int cell, const matrix_2d &translation, const circle &circ)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
             return false;
         }
-        
+
         quad q1, q2;
-        
+
         q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
         rectangle rect = rectangle_around(circ);
         q2 = quad_from(rect);
-        
-        if ( not quads_intersect(q1, q2) ) return false;
-        
-        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-                                    {
-                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_circle(point_at(rect.x + ax, rect.y + ay), circ);
-                                    });
+
+        if (not quads_intersect(q1, q2))
+            return false;
+
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&](int ax, int ay, int bx, int by)
+                                    { return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_circle(point_at(rect.x + ax, rect.y + ay), circ); });
     }
-    
-    bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d& pt, const circle& circ)
+
+    bool bitmap_circle_collision(bitmap bmp, int cell, const point_2d &pt, const circle &circ)
     {
         return bitmap_circle_collision(bmp, cell, translation_matrix(pt), circ);
     }
 
-    bool bitmap_circle_collision(bitmap bmp, const point_2d& pt, const circle& circ)
+    bool bitmap_circle_collision(bitmap bmp, const point_2d &pt, const circle &circ)
     {
         return bitmap_circle_collision(bmp, 0, translation_matrix(pt), circ);
     }
-    
-    bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle& circ)
+
+    bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle &circ)
     {
         return bitmap_circle_collision(bmp, 0, translation_matrix(x, y), circ);
     }
-    
-    bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle& circ)
+
+    bool bitmap_circle_collision(bitmap bmp, int cell, double x, double y, const circle &circ)
     {
         return bitmap_circle_collision(bmp, cell, translation_matrix(x, y), circ);
     }
 
-    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad& q)
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q)
     {
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
             return false;
         }
-        
+
         quad q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
         rectangle rect = rectangle_around(q);
-        
-        if ( not quads_intersect(q1, q) ) return false;
-        
-        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-                                    {
-                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_quad(point_at(rect.x + ax, rect.y + ay), q);
-                                    });
+
+        if (not quads_intersect(q1, q))
+            return false;
+
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&](int ax, int ay, int bx, int by)
+                                    { return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_quad(point_at(rect.x + ax, rect.y + ay), q); });
     }
 
-    bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d& translation, const point_2d& origin, const vector_2d& heading)
+    bool bitmap_ray_collision(bitmap bmp, int cell, const matrix_2d &translation, const point_2d &origin, const vector_2d &heading)
     {
         constexpr double RAY_QUAD_LINE_THICKNESS = 1.0;
         if (INVALID_PTR(bmp, BITMAP_PTR))
         {
             return false;
         }
-        
+
         point_2d bmp_position = matrix_multiply(translation, point_at(0.0, 0.0));
         point_2d bmp_center = point_offset_by(bmp_position, vector_to(bitmap_center(bmp)));
         circle bmp_bounding_circle = bitmap_bounding_circle(bmp, bmp_center);
@@ -824,22 +819,22 @@ namespace splashkit_lib
         return bitmap_quad_collision(bmp, cell, translation, ray_quad);
     }
 
-    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d& pt, const point_2d& origin, const vector_2d& heading)
+    bool bitmap_ray_collision(bitmap bmp, int cell, const point_2d &pt, const point_2d &origin, const vector_2d &heading)
     {
         return bitmap_ray_collision(bmp, cell, translation_matrix(pt), origin, heading);
     }
 
-    bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d& origin, const vector_2d& heading)
+    bool bitmap_ray_collision(bitmap bmp, int cell, double x, double y, const point_2d &origin, const vector_2d &heading)
     {
         return bitmap_ray_collision(bmp, cell, translation_matrix(x, y), origin, heading);
     }
 
-    bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d& origin, const vector_2d& heading)
+    bool bitmap_ray_collision(bitmap bmp, double x, double y, const point_2d &origin, const vector_2d &heading)
     {
         return bitmap_ray_collision(bmp, 0, translation_matrix(x, y), origin, heading);
     }
 
-    bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& origin, const vector_2d& heading)
+    bool bitmap_ray_collision(bitmap bmp, const point_2d &pt, const point_2d &origin, const vector_2d &heading)
     {
         return bitmap_ray_collision(bmp, 0, translation_matrix(pt), origin, heading);
     }
@@ -850,22 +845,20 @@ namespace splashkit_lib
         {
             return false;
         }
-        
+
         quad q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
         rectangle rect = rectangle_around(tri);
 
-        if (! triangle_quad_intersect(tri, q1))
+        if (!triangle_quad_intersect(tri, q1))
         {
             return false;
         }
-        
-        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-                                    {
-                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_triangle(point_at(rect.x + ax, rect.y + ay), tri);
-                                    }); 
+
+        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&](int ax, int ay, int bx, int by)
+                                    { return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_triangle(point_at(rect.x + ax, rect.y + ay), tri); });
     }
 
-    bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d& pt, const triangle &tri)
+    bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d &pt, const triangle &tri)
     {
         return bitmap_triangle_collision(bmp, cell, translation_matrix(pt), tri);
     }
@@ -880,30 +873,12 @@ namespace splashkit_lib
         return bitmap_triangle_collision(bmp, 0, translation_matrix(x, y), tri);
     }
 
-    bool bitmap_triangle_collision(bitmap bmp, const point_2d& pt, const triangle &tri)
+    bool bitmap_triangle_collision(bitmap bmp, const point_2d &pt, const triangle &tri)
     {
         return bitmap_triangle_collision(bmp, 0, translation_matrix(pt), tri);
     }
 
-    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q)
-    {
-        if (INVALID_PTR(bmp, BITMAP_PTR))
-        {
-            return false;
-        }
-        
-        quad q1 = quad_from(bitmap_cell_rectangle(bmp), translation);
-        rectangle rect = rectangle_around(q);
-        
-        if ( not quads_intersect(q1, q) ) return false;
-        
-        return _step_through_pixels(rect.width, rect.height, translation_matrix(rect.x, rect.y), bmp->cell_w, bmp->cell_h, translation, [&] (int ax, int ay, int bx, int by)
-                                    {
-                                        return pixel_drawn_at_point(bmp, cell, bx, by) && point_in_quad(point_at(rect.x + ax, rect.y + ay), q);
-                                    });
-    }
-
-    bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d& pt, const quad &q)
+    bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d &pt, const quad &q)
     {
         return bitmap_quad_collision(bmp, cell, translation_matrix(pt), q);
     }
@@ -918,7 +893,7 @@ namespace splashkit_lib
         return bitmap_quad_collision(bmp, 0, translation_matrix(x, y), q);
     }
 
-    bool bitmap_quad_collision(bitmap bmp, const point_2d& pt, const quad &q)
+    bool bitmap_quad_collision(bitmap bmp, const point_2d &pt, const quad &q)
     {
         return bitmap_quad_collision(bmp, 0, translation_matrix(pt), q);
     }
@@ -936,11 +911,11 @@ namespace splashkit_lib
         }
 
         return _collision_within_bitmap_images_with_translation(
-                    sprite_collision_bitmap(s), sprite_current_cell(s),
-                    sprite_location_matrix(s),
-                    bmp,
-                    cell,
-                    translation_matrix(x, y));
+            sprite_collision_bitmap(s), sprite_current_cell(s),
+            sprite_location_matrix(s),
+            bmp,
+            cell,
+            translation_matrix(x, y));
     }
 
     bool sprite_bitmap_collision(sprite s, bitmap bmp, int cell, const point_2d &pt)
@@ -952,7 +927,7 @@ namespace splashkit_lib
     {
         return sprite_bitmap_collision(s, bmp, 0, x, y);
     }
-    
+
     bool sprite_point_collision(sprite s, const point_2d &pt)
     {
         if (!point_in_circle(pt, sprite_collision_circle(s)))
@@ -968,18 +943,18 @@ namespace splashkit_lib
             return bitmap_point_collision(sprite_collision_bitmap(s), sprite_location_matrix(s), pt);
         }
     }
-    
-    bool sprite_rectangle_collision(sprite s, const rectangle& rect)
+
+    bool sprite_rectangle_collision(sprite s, const rectangle &rect)
     {
         if (!rectangles_intersect(sprite_collision_rectangle(s), rect))
         {
             return false;
         }
-        
+
         return bitmap_rectangle_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), rect);
     }
 
-    bool sprite_ray_collision(sprite s, const point_2d& origin, const vector_2d& heading)
+    bool sprite_ray_collision(sprite s, const point_2d &origin, const vector_2d &heading)
     {
         return bitmap_ray_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), origin, heading);
     }
@@ -990,7 +965,7 @@ namespace splashkit_lib
         {
             return false;
         }
-        
+
         return bitmap_circle_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), c);
     }
 
@@ -1000,7 +975,7 @@ namespace splashkit_lib
         {
             return false;
         }
-        
+
         return bitmap_triangle_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), t);
     }
 
@@ -1010,30 +985,30 @@ namespace splashkit_lib
         {
             return false;
         }
-        
+
         return bitmap_quad_collision(sprite_collision_bitmap(s), sprite_current_cell(s), sprite_location_matrix(s), q);
     }
-    
+
     bool sprite_collision(sprite s1, sprite s2)
     {
         if (!rectangles_intersect(sprite_collision_rectangle(s1), sprite_collision_rectangle(s2)))
         {
             return false;
         }
-        
+
         if (sprite_collision_kind(s1) == AABB_COLLISIONS)
         {
             return sprite_rectangle_collision(s2, sprite_collision_rectangle(s1));
         }
-        
+
         if (sprite_collision_kind(s2) == AABB_COLLISIONS)
         {
             return sprite_rectangle_collision(s1, sprite_collision_rectangle(s2));
         }
-        
-        return _collision_within_bitmap_images_with_translation (
-                                                                 sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
-                                                                 sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2) );
+
+        return _collision_within_bitmap_images_with_translation(
+            sprite_collision_bitmap(s1), sprite_current_cell(s1), sprite_location_matrix(s1),
+            sprite_collision_bitmap(s2), sprite_current_cell(s2), sprite_location_matrix(s2));
     }
 
     bool bitmap_collision(bitmap bmp1, int cell1, const matrix_2d &matrix1, bitmap bmp2, int cell2, const matrix_2d &matrix2)
@@ -1041,7 +1016,7 @@ namespace splashkit_lib
         quad q1 = quad_from(bitmap_cell_rectangle(bmp1), matrix1);
         quad q2 = quad_from(bitmap_cell_rectangle(bmp2), matrix2);
 
-        if ( not quads_intersect(q1, q2) )
+        if (not quads_intersect(q1, q2))
         {
             return false;
         }
@@ -1075,247 +1050,247 @@ namespace splashkit_lib
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const rectangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const circle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const triangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const sprite collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const sprite collider, const quad &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const rectangle &collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const rectangle &collider, const rectangle &collidee)
     {
         return _rectangle_rectangle_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const rectangle &collider, const circle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const rectangle &collider, const triangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const rectangle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const rectangle &collider, const quad &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const circle &collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const circle &collider, const rectangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const circle &collider, const circle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const circle &collider, const triangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const circle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const circle &collider, const quad &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const sprite collidee)
+    vector_2d calculate_collision_direction(const triangle &collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const triangle &collider, const rectangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const triangle &collider, const circle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const triangle &collider, const triangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const triangle& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const triangle &collider, const quad &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const sprite collidee)
-    {   
-        return _calculate_object_collision_direction(collider, collidee);
-    }
-
-    vector_2d calculate_collision_direction(const quad& collider, const rectangle& collidee)
+    vector_2d calculate_collision_direction(const quad &collider, const sprite collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const circle& collidee)
+    vector_2d calculate_collision_direction(const quad &collider, const rectangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const triangle& collidee)
+    vector_2d calculate_collision_direction(const quad &collider, const circle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    vector_2d calculate_collision_direction(const quad& collider, const quad& collidee)
+    vector_2d calculate_collision_direction(const quad &collider, const triangle &collidee)
     {
         return _calculate_object_collision_direction(collider, collidee);
     }
 
-    bool resolve_collision(sprite collider, const sprite collidee, const vector_2d& direction)
+    vector_2d calculate_collision_direction(const quad &collider, const quad &collidee)
+    {
+        return _calculate_object_collision_direction(collider, collidee);
+    }
+
+    bool resolve_collision(sprite collider, const sprite collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const rectangle& collidee, const vector_2d& direction)
+    bool resolve_collision(sprite collider, const rectangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const circle& collidee, const vector_2d& direction)
-    {  
-        return _resolve_object_collision(collider, collidee, direction);
-    }
-
-    bool resolve_collision(sprite collider, const triangle& collidee, const vector_2d& direction)
+    bool resolve_collision(sprite collider, const circle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(sprite collider, const quad& collidee, const vector_2d& direction)
+    bool resolve_collision(sprite collider, const triangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const sprite collidee, const vector_2d& direction)
-    {  
-        return _resolve_object_collision(collider, collidee, direction);
-    }
-
-    bool resolve_collision(rectangle& collider, const rectangle& collidee, const vector_2d& direction)
+    bool resolve_collision(sprite collider, const quad &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const circle& collidee, const vector_2d& direction)
+    bool resolve_collision(rectangle &collider, const sprite collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const triangle& collidee, const vector_2d& direction)
+    bool resolve_collision(rectangle &collider, const rectangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(rectangle& collider, const quad& collidee, const vector_2d& direction)
+    bool resolve_collision(rectangle &collider, const circle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const sprite collidee, const vector_2d& direction)
+    bool resolve_collision(rectangle &collider, const triangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const rectangle& collidee, const vector_2d& direction)
+    bool resolve_collision(rectangle &collider, const quad &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const circle& collidee, const vector_2d& direction)
+    bool resolve_collision(circle &collider, const sprite collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const triangle& collidee, const vector_2d& direction)
+    bool resolve_collision(circle &collider, const rectangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(circle& collider, const quad& collidee, const vector_2d& direction)
+    bool resolve_collision(circle &collider, const circle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const sprite collidee, const vector_2d& direction)
+    bool resolve_collision(circle &collider, const triangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const rectangle& collidee, const vector_2d& direction)
+    bool resolve_collision(circle &collider, const quad &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const circle& collidee, const vector_2d& direction)
+    bool resolve_collision(triangle &collider, const sprite collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const triangle& collidee, const vector_2d& direction)
+    bool resolve_collision(triangle &collider, const rectangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(triangle& collider, const quad& collidee, const vector_2d& direction)
+    bool resolve_collision(triangle &collider, const circle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const sprite collidee, const vector_2d& direction)
+    bool resolve_collision(triangle &collider, const triangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const rectangle& collidee, const vector_2d& direction)
+    bool resolve_collision(triangle &collider, const quad &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const circle& collidee, const vector_2d& direction)
+    bool resolve_collision(quad &collider, const sprite collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const triangle& collidee, const vector_2d& direction)
+    bool resolve_collision(quad &collider, const rectangle &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
 
-    bool resolve_collision(quad& collider, const quad& collidee, const vector_2d& direction)
+    bool resolve_collision(quad &collider, const circle &collidee, const vector_2d &direction)
+    {
+        return _resolve_object_collision(collider, collidee, direction);
+    }
+
+    bool resolve_collision(quad &collider, const triangle &collidee, const vector_2d &direction)
+    {
+        return _resolve_object_collision(collider, collidee, direction);
+    }
+
+    bool resolve_collision(quad &collider, const quad &collidee, const vector_2d &direction)
     {
         return _resolve_object_collision(collider, collidee, direction);
     }
