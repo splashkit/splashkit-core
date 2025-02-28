@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "random.h"
 #include "web_client.h"
+#include "basics.h"
 
 #include <iostream>
 #include <string>
@@ -102,9 +103,38 @@ void test_font_auto_load()
 
 }
 
+void test_string_utils()
+{
+    string text = "HELLO WORLD";
+    string mixedText = "  Hello World!  ";
+
+    cout << "Length of " << text << " is " << length_of(text) << endl;
+    cout << "Contains 'WORLD' in " << text << " is " << contains(text, "WORLD") << endl;
+    cout << "Contains 'world' in " << text << " is " << contains(text, "world") << endl;
+    cout << "Index of 'WORLD' in " << text << " is " << index_of(text, "WORLD") << endl;
+    cout << "Index of 'world' in " << text << " is " << index_of(text, "world") << endl;
+    cout << "To upper of " << mixedText << " is " << to_uppercase(mixedText) << endl;
+    cout << "To lower of " << mixedText << " is " << to_lowercase(mixedText) << endl;
+    cout << "Trim of " << mixedText << " is " << trim(mixedText) << endl;
+    cout << "Replace all of " << mixedText << " is " << replace_all(mixedText, " ", "_") << endl;
+    cout << "Replace all of " << mixedText << " when substring is empty is " << replace_all(mixedText, "", "_") << endl;
+    
+    vector<string> vec = split(mixedText, ' ');
+
+    cout << "Splitting " << mixedText << " by ' ' gives: ";
+    for (string s : vec)
+    {
+        cout << " - " << s << endl;
+    }
+}
+
 void run_text_test()
 {
-    open_window("Test Text", 800, 600);
+    cout << "Testing string utils" << endl;
+
+    test_string_utils();
+
+    window w = open_window("Test Text", 800, 600);
     
     cout << "Testing text API" << endl;
     
@@ -121,6 +151,6 @@ void run_text_test()
     refresh_screen();
     delay(5000);
 
-    close_window(window_named("Test Text"));
+    close_window(w);
     free_all_fonts();
 }

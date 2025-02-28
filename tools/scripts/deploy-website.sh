@@ -39,7 +39,7 @@ fi
 git clone --branch "$BRANCH" "https://github.com/$USER/$REPO_NAME.git" "$SK_OUT/$REPO_NAME"
 
 # Copy the api.json to the website repository
-cp "$SK_GENERATED/docs/api.json" "$SK_OUT/$REPO_NAME/scripts/"
+cp "$SK_GENERATED/docs/api.json" "$SK_OUT/$REPO_NAME/scripts/json-files/"
 
 # Navigate to the website repository
 cd "$SK_OUT/$REPO_NAME" || exit
@@ -48,7 +48,7 @@ cd "$SK_OUT/$REPO_NAME" || exit
 git checkout "$BRANCH" || exit
 
 # Commit and push changes
-git add scripts/api.json
+git add scripts/json-files/api.json
 git commit -m "Update api.json"
 git push origin "$BRANCH"
 

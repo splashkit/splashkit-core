@@ -94,8 +94,7 @@ namespace splashkit_lib
     }
 
 #define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
-size_t sz = collection.size();\
-for(size_t i = 0; i < sz; i++)\
+while(!collection.empty())\
 {\
 auto resource = collection.begin()->second;\
 if (VALID_PTR(resource, ptr_kind))\
@@ -104,7 +103,7 @@ fn(resource);\
 }\
 else\
 {\
-LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !";\
+LOG(WARNING) << "Splashkit contains invalid " #ptr_kind "!";\
 collection.erase(collection.begin());\
 }\
 }
@@ -193,6 +192,8 @@ collection.erase(collection.begin());\
     double rad_to_deg(double radians);
     
     double deg_to_rad(double degrees);
+
+    double lin_interp(double v0, double v1, double t);
 
     // Notify the listeners that a resource has been freed. Implemented in resources.
     void notify_of_free(void *resource);

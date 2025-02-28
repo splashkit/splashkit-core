@@ -183,6 +183,7 @@ namespace splashkit_lib
     void close_all_windows()
     {
         FREE_ALL_FROM_MAP(_windows, WINDOW_PTR, close_window);
+        _sk_destroy_initial_window();
     }
 
     bool has_window(string caption)

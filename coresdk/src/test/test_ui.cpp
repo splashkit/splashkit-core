@@ -34,6 +34,13 @@ void run_ui_test()
     std::string text_box_val1 = "Type here!";
     std::string text_box_val2 = "And here!";
 
+    // A sprite to test bitmap buttons
+    animation_script player_animations = load_animation_script("player_animations", "player_animations.txt");
+    animation anim = create_animation(player_animations, "Fly");
+    bitmap player = load_bitmap("player", "player.png");
+    bitmap_set_cell_details(player, 300/4, 42, 4, 1, 4);
+    bool scale_image = true;
+
     while( not quit_requested() )
     {
         process_events();
@@ -41,7 +48,7 @@ void run_ui_test()
         clear_screen(COLOR_WHITE);
 
         // Show a window if it hasn't been closed.
-        if (start_panel("My Window", rectangle_from(100, 100, 240, 186)))
+        if (start_panel("My Window", rectangle_from(300, 4, 240, 186)))
         {
             if (header("Buttons!"))
             {
@@ -57,13 +64,21 @@ void run_ui_test()
                     write_line("Button1 pressed");
                 }
 
+                // Draw a disabled button
+                disable_interface();
+                if (button("Disabled:", "Disabled button"))
+                {
+                    write_line("I can't be pressed!");
+                }
+                enable_interface();
+
                 // Example of custom layout
                 start_custom_layout();
                 add_column(60);
                 add_column(60);
                 add_column(-1);
 
-                label("Second:");
+                label_element("Second:");
                 // Draw second label + button
                 if (button("Button2"))
                 {
@@ -80,6 +95,13 @@ void run_ui_test()
 
                 // Draw a checkbox
                 checkbox_val = checkbox("Did they work?", checkbox_val);
+
+                bitmap_button("Image!", player, option_scale_bmp(scale_image?0.45f:1.f,scale_image?0.45f:1.f, option_with_animation(anim)));
+                scale_image = checkbox("Scale icon?", scale_image);
+                update_animation(anim);
+
+                if ( animation_ended(anim) )
+                    assign_animation(anim, player_animations, "Fly");
             }
 
             // Show the popup if it's been opened
@@ -90,13 +112,13 @@ void run_ui_test()
                 set_interface_font(fontB);
                 set_interface_font_size(14);
 
-                label("Hi world!");
+                label_element("Hi world!");
 
                 // Switch back to the original font for
                 // second label.
                 set_interface_font(fontA);
 
-                label("Hello world!");
+                label_element("Hello world!");
 
                 // Reset text size
                 set_interface_font_size(12);
@@ -136,12 +158,12 @@ void run_ui_test()
 
             // Show if the window is currently reading text,
             // useful for testing that behaviour.
-            label("Is reading text: " + (std::string)(reading_text()?"Yea":"Nay"));
+            label_element("Is reading text: " + (std::string)(reading_text()?"Yea":"Nay"));
             end_panel("My Window");
         }
 
 
-        if (start_panel("Second Window", rectangle_from(200, 200, 240, 186)))
+        if (start_panel("Second Window", rectangle_from(300, 200, 240, 186)))
         {
             start_inset("TreeView", -25);
                 if (start_treenode("Node1"))
@@ -165,6 +187,18 @@ void run_ui_test()
 
             end_panel("Second Window");
         }
+
+        // show some elements on the window directly
+        paragraph("Here we can see that elements can also be drawn directly onto the main window! Including paragraphs of text like this.", {40, 20, 200, 64});
+        if (button("Button1", rectangle_from(40, 140, 64, 20)))
+        {
+            write_line("Button1 pressed");
+        }
+        val2 = slider(val2, 0, 40, {40, 170, 150, 20});
+        text_box_val2 = text_box(text_box_val2, rectangle_from(40, 200, 150, 20));
+
+        interface_style_panel(rectangle_from(0, 600-200, 600, 200));
+
         // Draw the interface
         draw_interface();
 

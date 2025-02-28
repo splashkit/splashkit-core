@@ -126,12 +126,12 @@ namespace splashkit_lib
 
     vector_2d vector_from_to(sprite s1, sprite s2)
     {
-        return vector_point_to_point(center_point(s1), center_point(s2));
+        return vector_point_to_point(sprite_center_point(s1), sprite_center_point(s2));
     }
 
     vector_2d vector_from_center_sprite_to_point(sprite s, const point_2d &pt)
     {
-        return vector_point_to_point(center_point(s), pt);
+        return vector_point_to_point(sprite_center_point(s), pt);
     }
 
     //-----------------------------------------------------------------------------
@@ -231,7 +231,7 @@ namespace splashkit_lib
         result->last_update = timer_ticks(_sprite_timer);
 
         // Write_ln("adding for ", name, " ", Hex_str(obj));
-        _sprites[name] = result;
+        _sprites[sn] = result;
 
         current_pack().push_back(result);
 
@@ -611,7 +611,7 @@ namespace splashkit_lib
         if ( not sprite_has_layer(s, idx) )
             return circle_at(0, 0, 0);
         else
-            return bitmap_cell_circle(s->layers[idx], center_point(s), sprite_scale(s));
+            return bitmap_cell_circle(s->layers[idx], sprite_center_point(s), sprite_scale(s));
     }
 
     int sprite_layer_height(sprite s, const string &name)
@@ -656,7 +656,7 @@ namespace splashkit_lib
         return sprite_layer_height(s, 0);
     }
 
-    point_2d center_point(sprite s)
+    point_2d sprite_center_point(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1023,8 +1023,8 @@ namespace splashkit_lib
 
         if (s->position_at_anchor_point)
         {
-            s->position.x += s->anchor_point.x;
-            s->position.y += s->anchor_point.y;
+            s->position.x -= s->anchor_point.x;
+            s->position.y -= s->anchor_point.y;
         }
     }
 
@@ -1072,7 +1072,7 @@ namespace splashkit_lib
         s->velocity = vector_add(s->velocity, value);
     }
 
-    void sprite_set_x(sprite s, float value)
+    void sprite_set_x(sprite s, double value)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1083,7 +1083,7 @@ namespace splashkit_lib
         s->position.x = value;
     }
 
-    float sprite_x(sprite s)
+    double sprite_x(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1094,7 +1094,7 @@ namespace splashkit_lib
         return s->position.x;
     }
 
-    void sprite_set_y(sprite s, float value)
+    void sprite_set_y(sprite s, double value)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1105,7 +1105,7 @@ namespace splashkit_lib
         s->position.y = value;
     }
 
-    float sprite_y(sprite s)
+    double sprite_y(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1141,7 +1141,7 @@ namespace splashkit_lib
         }
     }
 
-    void sprite_set_dx(sprite s, float value)
+    void sprite_set_dx(sprite s, double value)
     {
         if ( VALID_PTR(s, SPRITE_PTR) )
         {
@@ -1153,7 +1153,7 @@ namespace splashkit_lib
         }
     }
 
-    float sprite_dx(sprite s)
+    double sprite_dx(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1167,7 +1167,7 @@ namespace splashkit_lib
 
     }
 
-    void sprite_set_dy(sprite s, float value)
+    void sprite_set_dy(sprite s, double value)
     {
         if ( VALID_PTR(s, SPRITE_PTR) )
         {
@@ -1179,7 +1179,7 @@ namespace splashkit_lib
         }
     }
 
-    float sprite_dy(sprite s)
+    double sprite_dy(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
         {
@@ -1192,7 +1192,7 @@ namespace splashkit_lib
         }
     }
 
-    float sprite_speed(sprite s)
+    double sprite_speed(sprite s)
     {
         if ( INVALID_PTR(s, SPRITE_PTR) )
             return 0;
@@ -1200,10 +1200,13 @@ namespace splashkit_lib
             return vector_magnitude(s->velocity);
     }
 
-    void sprite_set_speed(sprite s, float value)
+    void sprite_set_speed(sprite s, double value)
     {
-        if ( VALID_PTR(s, SPRITE_PTR) )
-            s->velocity = vector_multiply(unit_vector(s->velocity), value);
+        if ( INVALID_PTR(s, SPRITE_PTR) )
+        {
+            LOG(WARNING) << "Attempting to use invalid sprite";
+        }
+        s->velocity = vector_multiply(unit_vector(s->velocity), value);
     }
 
     float sprite_heading(sprite s)
@@ -1259,7 +1262,7 @@ namespace splashkit_lib
         s->destination = pt;
         s->arrive_in_sec = taking_seconds;
         s->is_moving = true;
-        s->moving_vec = vector_multiply(unit_vector(vector_point_to_point(center_point(s), pt)), point_point_distance(center_point(s), pt) / taking_seconds);
+        s->moving_vec = vector_multiply(unit_vector(vector_point_to_point(sprite_center_point(s), pt)), point_point_distance(sprite_center_point(s), pt) / taking_seconds);
         s->last_update = timer_ticks(_sprite_timer);
     }
 
@@ -1337,7 +1340,7 @@ namespace splashkit_lib
                 value = 360 + (value + abs((long long)(trunc(value / 360) * 360)));
             }
 
-            if (value > 360)
+            if (value >= 360)
             {
                 value = value - trunc(value / 360) * 360;
             }
@@ -1558,6 +1561,10 @@ namespace splashkit_lib
         // TODO: Temporarily do not call due to 70c30d4
         vector<void *> &pack = _sprite_packs[name];
         _call_for_all_sprites(pack, &_free_sprite);
+        if (name == _current_pack)
+        {
+            _current_pack = INITIAL_PACK_NAME;
+        }
 
         _sprite_packs.erase(name);
     }
@@ -1650,7 +1657,7 @@ namespace splashkit_lib
         if ( INVALID_PTR(s, SPRITE_PTR) or INVALID_PTR(s->collision_bitmap, BITMAP_PTR) )
             return circle_at(0, 0, 0);
         else
-            return bitmap_cell_circle(s->collision_bitmap, center_point(s), sprite_scale(s));
+            return bitmap_cell_circle(s->collision_bitmap, sprite_center_point(s), sprite_scale(s));
     }
 
     collision_test_kind sprite_collision_kind(sprite s)

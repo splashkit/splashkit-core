@@ -128,7 +128,7 @@ namespace splashkit_lib
         return VALID_PTR(effect, AUDIO_PTR);
     }
 
-    void play_sound_effect(sound_effect effect, int times, float volume)
+    void play_sound_effect(sound_effect effect, int times, double volume)
     {
         if (not audio_ready()) return;
 
@@ -163,12 +163,12 @@ namespace splashkit_lib
         play_sound_effect(effect, times, 1.0f);
     }
 
-    void play_sound_effect(sound_effect effect, float volume)
+    void play_sound_effect(sound_effect effect, double volume)
     {
         play_sound_effect(effect, 1, volume);
     }
 
-    void play_sound_effect(const string &name, int times, float volume)
+    void play_sound_effect(const string &name, int times, double volume)
     {
         play_sound_effect(sound_effect_named(name), times, volume);
     }
@@ -183,7 +183,7 @@ namespace splashkit_lib
         play_sound_effect(sound_effect_named(name), 1, 1.0f);
     }
 
-    void play_sound_effect(const string &name, float volume)
+    void play_sound_effect(const string &name, double volume)
     {
         play_sound_effect(sound_effect_named(name), 1, volume);
     }

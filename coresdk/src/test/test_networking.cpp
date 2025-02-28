@@ -29,7 +29,38 @@ void run_encoding_decoding_tests()
     assert(my_ip() == "127.0.0.1");
 }
 
+void is_valid_ip_test()
+{
+    // Valid IP addresses - should return true
+    assert(is_valid_ipv4("192.168.1.1") == true);     // Common private IP
+    assert(is_valid_ipv4("127.0.0.1") == true);       // Localhost
+    assert(is_valid_ipv4("8.8.8.8") == true);         // Google DNS
+    assert(is_valid_ipv4("255.255.255.255") == true); // Maximum values
+    assert(is_valid_ipv4("0.0.0.0") == true);         // Minimum values
+    assert(is_valid_ipv4("172.16.254.1") == true);    // Valid class B private IP
+    assert(is_valid_ipv4("10.0.0.1") == true);        // Valid class A private IP
+
+    // Invalid IP addresses - should return false
+    assert(is_valid_ipv4("256.1.2.3") == false);       // First octet > 255
+    assert(is_valid_ipv4("1.256.2.3") == false);       // Second octet > 255
+    assert(is_valid_ipv4("1.2.256.3") == false);       // Third octet > 255
+    assert(is_valid_ipv4("1.2.3.256") == false);       // Fourth octet > 255
+    assert(is_valid_ipv4("192.168.1") == false);       // Missing octet
+    assert(is_valid_ipv4("192.168.1.1.1") == false);   // Too many octets
+    assert(is_valid_ipv4("192.168.1.") == false);      // Trailing dot
+    assert(is_valid_ipv4(".192.168.1") == false);      // Leading dot
+    assert(is_valid_ipv4("192.168..1") == false);      // Empty octet
+    assert(is_valid_ipv4("192.168.1.1a") == false);    // Invalid character
+    assert(is_valid_ipv4("") == false);                // Empty string
+    assert(is_valid_ipv4("abc.def.ghi.jkl") == false); // Letters
+    assert(is_valid_ipv4("192,168,1,1") == false);     // Wrong separator
+
+    std::cout << "All IP validation tests passed!" << std::endl;
+    std::cout << "-------------------------------------" << std::endl;
+}
+
 void run_networking_test()
 {
     run_encoding_decoding_tests();
+    is_valid_ip_test();
 }

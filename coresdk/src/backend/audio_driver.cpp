@@ -274,19 +274,19 @@ namespace splashkit_lib
         _current_music = NULL;
     }
 
-    void sk_set_music_vol(float vol)
+    void sk_set_music_vol(double vol)
     {
         internal_sk_init();
         Mix_VolumeMusic( static_cast<int>(MIX_MAX_VOLUME * vol) );
     }
 
-    float sk_music_vol()
+    double sk_music_vol()
     {
         internal_sk_init();
-        return Mix_VolumeMusic(-1) / static_cast<float>(MIX_MAX_VOLUME);
+        return Mix_VolumeMusic(-1) / static_cast<double>(MIX_MAX_VOLUME);
     }
 
-    float sk_sound_volume(sk_sound_data *sound)
+    double sk_sound_volume(sk_sound_data *sound)
     {
         if ( ! sound ) return 0.0f;
 
@@ -296,7 +296,7 @@ namespace splashkit_lib
                 if ( _current_music == sound ) return sk_music_vol();
                 break;
             case SGSD_SOUND_EFFECT:
-                return Mix_VolumeChunk(static_cast<Mix_Chunk *>(sound->_data), -1) / static_cast<float>(MIX_MAX_VOLUME);
+                return Mix_VolumeChunk(static_cast<Mix_Chunk *>(sound->_data), -1) / static_cast<double>(MIX_MAX_VOLUME);
             case SGSD_UNKNOWN:
                 break;
         }
@@ -304,7 +304,7 @@ namespace splashkit_lib
         return 0.0f;
     }
 
-    void sk_set_sound_volume(sk_sound_data *sound, float vol)
+    void sk_set_sound_volume(sk_sound_data *sound, double vol)
     {
         if ( !sound ) return;
 

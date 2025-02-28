@@ -67,6 +67,8 @@ namespace splashkit_lib
     void sk_draw_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz);
     void sk_fill_rect(sk_drawing_surface *surface, sk_color clr, double *data, int data_sz);
 
+    void sk_draw_blurred_rect(sk_drawing_surface *surface, sk_color clr, double x, double y, double width, double height, int blur_radius);
+
     void sk_draw_triangle(sk_drawing_surface *surface, sk_color clr, double x1, double y1, double x2, double y2, double x3, double y3);
     void sk_fill_triangle(sk_drawing_surface *surface, color clr, double x1, double y1, double x2, double y2, double x3, double y3);
 
@@ -77,6 +79,8 @@ namespace splashkit_lib
 
     void sk_set_bitmap_pixel(sk_drawing_surface *surface, sk_color clr, int x, int y);
     void sk_refresh_bitmap(sk_drawing_surface *surface);
+
+    void sk_set_bitmap_tint(sk_drawing_surface *surface, sk_color clr);
 
     void sk_draw_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius);
     void sk_fill_circle(sk_drawing_surface *surface, sk_color clr, double x, double y, double radius);
@@ -100,6 +104,7 @@ namespace splashkit_lib
 
     sk_window_be *_sk_get_window_with_id(unsigned int window_id);
     sk_window_be *_sk_get_window_with_pointer(pointer p);
+    void _sk_destroy_initial_window();
     
     
     unsigned int _sk_renderer_count(sk_drawing_surface *surface);

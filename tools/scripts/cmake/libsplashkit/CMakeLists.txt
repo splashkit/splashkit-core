@@ -2,7 +2,7 @@
 # CMake file for generating the splashkit core library
 #
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 project(splashkit)
 
 # SK Directories relative to cmake project
@@ -59,7 +59,7 @@ if (WIN32 OR MSYS OR MINGW)
         "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
     )
 elseif (APPLE)
-    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk")
+    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "12.3") # CACHE STRING "Minimum OS X deployment version")
     message(CMAKE_OSX_DEPLOYMENT_TARGET="${CMAKE_OSX_DEPLOYMENT_TARGET}")
     message(CMAKE_OSX_SYSROOT="${CMAKE_OSX_SYSROOT}")
@@ -134,6 +134,7 @@ file(GLOB SOURCE_FILES
     "${SK_GENERATED}/clib/*.cpp"
     "${SK_EXT}/civetweb/src/md5.inl"
     "${SK_EXT}/easyloggingpp/easylogging++.cc"
+    "${SK_EXT}/microui/src/*.c"
 )
 
 # SKSDK FILE INCLUDES
@@ -164,6 +165,7 @@ include_directories("${SK_EXT}/easyloggingpp")
 include_directories("${SK_EXT}/json")
 include_directories("${SK_EXT}/catch")
 include_directories("${SK_EXT}/hash-library")
+include_directories("${SK_EXT}/microui/src")
 include_directories(${SK_GENERATED}/cpp, ${SK_GENERATED}/clib)
 
 # MAC OS AND WINDOWS DIRECTORY INCLUDES
@@ -229,6 +231,7 @@ file(GLOB LINUX_INCLUDE_FILES
     "${SK_EXT}/easyloggingpp/*.h"
     "${SK_EXT}/json/*.hpp"
     "${SK_EXT}/catch/*.h"
+    "${SK_EXT}/microui/src/microui.h"
 )
 
 file(GLOB INL_FILES

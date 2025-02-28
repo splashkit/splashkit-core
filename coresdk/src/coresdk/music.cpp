@@ -131,7 +131,7 @@ namespace splashkit_lib
         }
     }
 
-    void play_music(music data, int times, float volume)
+    void play_music(music data, int times, double volume)
     {
         if ( !audio_ready() )
             return;
@@ -219,12 +219,12 @@ namespace splashkit_lib
         return sk_music_playing();
     }
 
-    void set_music_volume(float volume)
+    void set_music_volume(double volume)
     {
         sk_set_music_vol(volume);
     }
 
-    float music_volume()
+    double music_volume()
     {
         return sk_music_vol();
     }

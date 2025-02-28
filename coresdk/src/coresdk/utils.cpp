@@ -36,7 +36,7 @@ namespace splashkit_lib
             else
             {
                 unsigned int t;
-                for (t = 1; t < milliseconds / 50; t++)
+                for (t = 0; t < milliseconds / 50; t++)
                 {
                     if ( number_open_windows() > 0 )
                     {
@@ -134,6 +134,4 @@ namespace splashkit_lib
         set_current_window(old_current);
         close_window(dialog);
     }
-    
-    
 }

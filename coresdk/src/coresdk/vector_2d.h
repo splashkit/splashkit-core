@@ -166,7 +166,7 @@ namespace splashkit_lib
      * @param  v The vector
      * @return   Its squared magnitude
      */
-    double vector_magnitude_sqared(const vector_2d &v);
+    double vector_magnitude_squared(const vector_2d &v);
 
     /**
      * Returns the magnitude (or "length") of the vector.

@@ -64,6 +64,7 @@ string ipv4_to_hex(const string &a_ip);
 string ipv4_to_str(unsigned int ip);
 bool is_connection_open(connection con);
 bool is_connection_open(const string &name);
+bool is_valid_ipv4(const string &ip);
 connection last_connection(const string &name);
 connection last_connection(server_socket server);
 connection message_connection(message msg);

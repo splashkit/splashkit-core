@@ -177,7 +177,7 @@ namespace splashkit_lib
      * @attribute suffix  with_times_and_volume
      * @attribute self    effect
      */
-    void play_sound_effect(sound_effect effect, int times, float volume);
+    void play_sound_effect(sound_effect effect, int times, double volume);
 
     /**
      * Plays a sound effect once at full volume.
@@ -217,7 +217,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  with_volume
      */
-    void play_sound_effect(sound_effect effect, float volume);
+    void play_sound_effect(sound_effect effect, double volume);
 
     /**
      * Plays a sound effect for a specified number of times and playback volume.
@@ -229,7 +229,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  named_with_times_and_volume
      */
-    void play_sound_effect(const string &name, int times, float volume);
+    void play_sound_effect(const string &name, int times, double volume);
 
     /**
      * Plays a sound effect for a specified number of times at full volume.
@@ -258,7 +258,7 @@ namespace splashkit_lib
      *
      * @attribute suffix  named_with_volume
      */
-    void play_sound_effect(const string &name, float volume);
+    void play_sound_effect(const string &name, double volume);
 
     /**
      * Stops the `sound_effect` if it is currently playing
