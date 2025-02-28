@@ -11,7 +11,7 @@ TEST_CASE("can create a server", "[networking]")
     SECTION("can create a UDP server")
     {
         const string SERVER_NAME = "test_server";
-        
+
         server_socket server = create_server(SERVER_NAME, PORT, UDP);
         REQUIRE(server != nullptr);
         REQUIRE(has_server(SERVER_NAME));
@@ -24,7 +24,7 @@ TEST_CASE("can create a server", "[networking]")
     SECTION("can create a TCP server")
     {
         const string SERVER_NAME = "test_server_2";
-        
+
         server_socket server = create_server(SERVER_NAME, PORT, TCP);
         REQUIRE(server != nullptr);
         REQUIRE(has_server(SERVER_NAME));
@@ -64,7 +64,7 @@ TEST_CASE("can communicate with server", "[networking]")
             REQUIRE_FALSE(server_has_new_connection(SERVER_NAME));
             REQUIRE_FALSE(has_new_connections());
         }
-        
+
         connection conn = open_connection(CONNECTION_NAME, TEST_IP, PORT, TCP);
         REQUIRE(conn != nullptr);
 
@@ -82,7 +82,7 @@ TEST_CASE("can communicate with server", "[networking]")
     {
         const string SERVER_NAME = "test_server_4";
         const string CONNECTION_NAME = "test_connection_2";
-        
+
         server_socket server;
         SECTION("can create server with no connections")
         {
@@ -97,7 +97,7 @@ TEST_CASE("can communicate with server", "[networking]")
             REQUIRE_FALSE(server_has_new_connection(server));
             REQUIRE_FALSE(server_has_new_connection(SERVER_NAME));
         }
-        
+
         connection conn = open_connection(CONNECTION_NAME, TEST_IP, PORT, UDP);
         REQUIRE(conn != nullptr);
 
@@ -118,7 +118,7 @@ TEST_CASE("can communicate with server", "[networking]")
 }
 TEST_CASE("can convert network data")
 {
-    SECTION("can convert hexidecimal to ipv4")
+    SECTION("Testing hex_str_to_ipv4: can convert hexidecimal to ipv4")
     {
         REQUIRE(hex_str_to_ipv4("0x7F000001") == "127.0.0.1");
         REQUIRE(hex_str_to_ipv4("0x00000000") == "0.0.0.0");
@@ -128,7 +128,7 @@ TEST_CASE("can convert network data")
         REQUIRE_THROWS(hex_str_to_ipv4("0x"));
         REQUIRE_THROWS(hex_str_to_ipv4("error"));
     }
-    SECTION("can convert hexadecimal to decimal string")
+    SECTION("Testing hex_to_dec_string: can convert hexadecimal to decimal string")
     {
         REQUIRE(hex_to_dec_string("0x7F") == "127");
         REQUIRE(hex_to_dec_string("0x00") == "0");
@@ -138,14 +138,15 @@ TEST_CASE("can convert network data")
         REQUIRE(hex_to_dec_string("0xGG") == "0");
         REQUIRE(hex_to_dec_string("error") == "0");
     }
-    SECTION("can convert decimal to hexadecimal string")
+    SECTION("Testing dec_to_hex: can convert decimal to hexadecimal string")
     {
         REQUIRE(dec_to_hex(127) == "0x7F");
+        REQUIRE(dec_to_hex(ipv4_to_dec("127.0.0.1")) == "0x7F000001");
         REQUIRE(dec_to_hex(0) == "0x0");
         REQUIRE(dec_to_hex(255) == "0xFF");
         REQUIRE(dec_to_hex(256) == "0x100");
     }
-    SECTION("can convert ipv4 to hexidecimal")
+    SECTION("Testing ipv4_to_hex: can convert ipv4 to hexidecimal")
     {
         REQUIRE(ipv4_to_hex("127.0.0.1") == "0x7F000001");
         REQUIRE(ipv4_to_hex("255.255.255.255") == "0xFFFFFFFF");
@@ -155,7 +156,7 @@ TEST_CASE("can convert network data")
         REQUIRE_THROWS(ipv4_to_hex("a.b.c.d"));
         REQUIRE_THROWS(ipv4_to_hex("error"));
     }
-    SECTION("can convert ipv4 to decimal")
+    SECTION("Testing ipv4_to_dec: can convert ipv4 to decimal")
     {
         REQUIRE(ipv4_to_dec("127.0.0.1") == 2130706433);
         REQUIRE(ipv4_to_dec("0.0.0.0") == 0);
@@ -164,16 +165,48 @@ TEST_CASE("can convert network data")
         REQUIRE_THROWS(ipv4_to_dec("a.b.c.d"));
         REQUIRE_THROWS(ipv4_to_dec("error"));
     }
-    SECTION("can convert decimal to ipv4")
+    SECTION("Testing dec_to_ipv4: can convert decimal to ipv4")
     {
-        REQUIRE(ipv4_to_str(2130706433) == "127.0.0.1");
-        REQUIRE(ipv4_to_str(0) == "0.0.0.0");
-        REQUIRE(ipv4_to_str(4294967295) == "255.255.255.255");
+        REQUIRE(dec_to_ipv4(2130706433) == "127.0.0.1");
+        REQUIRE(dec_to_ipv4(ipv4_to_dec("127,0.0")) == "127.0.0.0");
+        REQUIRE(dec_to_ipv4(0) == "0.0.0.0");
+        REQUIRE(dec_to_ipv4(ipv4_to_dec("")) == "0.0.0.0");
+        REQUIRE(dec_to_ipv4(4294967295) == "255.255.255.255");
     }
-    SECTION("can create name for connection")
+    SECTION("Testing name_for_connection: can create name for connection")
     {
         REQUIRE(name_for_connection("splashkit.com", 3000) == "splashkit.com:3000");
         REQUIRE(name_for_connection("localhost", 3200) == "localhost:3200");
         REQUIRE(name_for_connection("", 0) == ":0");
+    }
+    SECTION("Testing my_ip: can get local ip address")
+    {
+        REQUIRE(my_ip() == "127.0.0.1");
+    }
+    SECTION("Testing is_valid_ipv4: can check valid ip address")
+    {
+        // Valid IP addresses
+        REQUIRE(is_valid_ipv4("192.168.1.1"));          // Common private IP
+        REQUIRE(is_valid_ipv4("127.0.0.1"));            // Localhost
+        REQUIRE(is_valid_ipv4("8.8.8.8"));              // Google DNS
+        REQUIRE(is_valid_ipv4("255.255.255.255"));      // Maximum values
+        REQUIRE(is_valid_ipv4("0.0.0.0"));              // Minimum values
+        REQUIRE(is_valid_ipv4("172.16.254.1"));         // Valid class B private IP
+        REQUIRE(is_valid_ipv4("10.0.0.1"));             // Valid class A private IP
+
+        // Invalid IP addresses
+        REQUIRE_FALSE(is_valid_ipv4("256.1.2.3"));       // First octet > 255
+        REQUIRE_FALSE(is_valid_ipv4("1.256.2.3"));       // Second octet > 255
+        REQUIRE_FALSE(is_valid_ipv4("1.2.256.3"));       // Third octet > 255
+        REQUIRE_FALSE(is_valid_ipv4("1.2.3.256"));       // Fourth octet > 255
+        REQUIRE_FALSE(is_valid_ipv4("192.168.1"));       // Missing octet
+        REQUIRE_FALSE(is_valid_ipv4("192.168.1.1.1"));   // Too many octets
+        REQUIRE_FALSE(is_valid_ipv4("192.168.1."));      // Trailing dot
+        REQUIRE_FALSE(is_valid_ipv4(".192.168.1"));      // Leading dot
+        REQUIRE_FALSE(is_valid_ipv4("192.168..1"));      // Empty octet
+        REQUIRE_FALSE(is_valid_ipv4("192.168.1.1a"));    // Invalid character
+        REQUIRE_FALSE(is_valid_ipv4(""));                // Empty string
+        REQUIRE_FALSE(is_valid_ipv4("abc.def.ghi.jkl")); // Letters
+        REQUIRE_FALSE(is_valid_ipv4("192,168,1,1"));     // Wrong separator
     }
 }
