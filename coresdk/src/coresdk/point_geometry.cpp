@@ -107,7 +107,7 @@ namespace splashkit_lib
         v = (dot00 * dot12 - dot01 * dot02) * inv_denom;
 
         // Check if point is in triangle
-        return ((u > 0.0) and (v > 0.0) and (u + v < 1.0));
+        return ((u >= 0) and (v >= 0) and (u + v <= 1));
     }
 
     bool point_in_rectangle(const point_2d &pt, const rectangle &rect)
