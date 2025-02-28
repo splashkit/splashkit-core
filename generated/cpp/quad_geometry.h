@@ -14,6 +14,7 @@
 using std::string;
 using std::vector;
 
+quad quad_from(const point_2d &line_origin, const point_2d &line_end, double width);
 quad quad_from(const point_2d &p1, const point_2d &p2, const point_2d &p3, const point_2d &p4);
 quad quad_from(const rectangle &rect);
 quad quad_from(const rectangle &rect, const matrix_2d &transform);

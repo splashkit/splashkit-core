@@ -357,7 +357,7 @@ namespace splashkit_lib
     /**
      * Returns an array of strings representing each stub of the URI.
      *
-     * For example a request sent to http://localhost:8080/names/0 returns...
+     * For example a request sent to `http://localhost:8080/names/0` returns...
      *
      *      ["names", "0"]
      *
@@ -373,7 +373,7 @@ namespace splashkit_lib
     /**
      * Returns an array of strings representing each stub of the URI.
      *
-     * For example a request sent to http://localhost:8080/names/0 returns...
+     * For example a request sent to `http://localhost:8080/names/0` returns...
      *
      *      ["names", "0"]
      *

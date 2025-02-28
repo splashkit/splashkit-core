@@ -239,10 +239,162 @@ void test_triangle()
     close_window(w1);
 }
 
+void test_tangent_points()
+{
+    circle c1 = circle_at(100, 100, 50);
+    point_2d pp = point_at(100, 25);
+    point_2d p11, p22;
+    tangent_points(pp, c1, p11, p22);
+    cout << "Tangent points for circle at 100,100,50 from 100,25 are " << point_to_string(p11) << " and " << point_to_string(p22) << endl;
+    
+    circle c = circle_at(300.0, 300.0, 150.0);
+    point_2d p, p1, p2;
+    tangent_points(p, c, p1, p2);
+
+    window w1 = open_window("Tangent Point Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        if (key_down(UP_KEY))
+            c.radius += 0.05;
+
+        if (key_down(DOWN_KEY))
+            c.radius -= 0.05;
+
+        clear_screen(COLOR_WHEAT);
+
+        p = mouse_position();
+
+        if(tangent_points(p, c, p1, p2))
+        {
+            draw_circle(COLOR_RED, c.center.x, c.center.y, 5);
+            draw_circle(COLOR_RED, p1.x, p1.y, 5);
+            draw_circle(COLOR_RED, p2.x, p2.y, 5);
+            draw_line(COLOR_RED, line_from(p1, c.center));
+            draw_line(COLOR_RED, line_from(p2, c.center));
+            draw_line(COLOR_RED, line_from(p, p1));
+            draw_line(COLOR_RED, line_from(p, p2));
+        }
+        draw_circle(COLOR_RED, c);
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
+void test_triangle_rectangle_intersect()
+{
+    auto t1 = triangle_from(110, 110, 120, 150, 170, 190);
+    auto t2 = triangle_from(200, 200, 200, 500, 500, 500);
+    auto t3 = triangle_from(300, 20, 280, 240, 550, 60);
+    auto t4 = triangle_from(150, 700, 265, 600, 510, 610);
+
+    window w1 = open_window("Triangle Tests", 600, 800);
+    while ( !window_close_requested(w1) ) {
+        process_events();
+
+        clear_screen(COLOR_WHEAT);
+
+        point_2d mouse = mouse_position();
+        auto r1 = rectangle_from(mouse.x - 25, mouse.y - 25, 50, 50);
+
+        if (triangle_rectangle_intersect(t1, r1))
+            fill_triangle(COLOR_TAN, t1);
+
+        if (triangle_rectangle_intersect(t2, r1))
+            fill_triangle(COLOR_TAN, t2);
+
+        if (triangle_rectangle_intersect(t3, r1))
+            fill_triangle(COLOR_TAN, t3);
+
+        if (triangle_rectangle_intersect(t4, r1))
+            fill_triangle(COLOR_TAN, t4);
+
+        draw_triangle(COLOR_RED, t1);
+        draw_triangle(COLOR_RED, t2);
+        draw_triangle(COLOR_RED, t3);
+        draw_triangle(COLOR_RED, t4);
+
+        draw_rectangle(COLOR_RED, r1);
+
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
+void test_bitmap_ray_collision()
+{
+    window w1 = open_window("Bitmap Ray Collision", 800, 600);
+    bitmap bmp_1 = load_bitmap("on_med", "on_med.png");
+    point_2d bmp_1_position = point_at(300.0, 300.0);
+    point_2d bmp_1_center = point_offset_by(bmp_1_position, vector_to(bitmap_center(bmp_1)));
+    bitmap bmp_2 = load_bitmap("rocket_sprt", "rocket_sprt.png");
+    point_2d bmp_2_position = point_at(500.0, 300.0);
+    point_2d bmp_2_center = point_offset_by(bmp_2_position, vector_to(bitmap_center(bmp_2)));
+    bitmap bmp_3 = load_bitmap("up_pole", "up_pole.png");
+    point_2d bmp_3_position = point_at(700.0, 300.0);
+    point_2d bmp_3_center = point_offset_by(bmp_3_position, vector_to(bitmap_center(bmp_3)));
+    point_2d ray_origin = point_at(100, 100);
+    vector_2d ray_heading = vector_to(200, 200);
+    
+    while ( !window_close_requested(w1) ) {
+        process_events();
+        
+        clear_screen(COLOR_WHITE);
+
+        if (key_down(UP_KEY))
+            ray_origin.y -= 1.0;
+        if (key_down(DOWN_KEY))
+            ray_origin.y += 1.0;
+        if (key_down(LEFT_KEY))
+            ray_origin.x -= 1.0;
+        if (key_down(RIGHT_KEY))
+            ray_origin.x += 1.0;
+        
+        bool collision_1 = bitmap_ray_collision(bmp_1, 0, bmp_1_position, ray_origin, ray_heading);
+        bool collision_2 = bitmap_ray_collision(bmp_2, 0, bmp_2_position, ray_origin, ray_heading);
+        bool collision_3 = bitmap_ray_collision(bmp_3, 0, bmp_3_position, ray_origin, ray_heading);
+
+        draw_bitmap(bmp_1, bmp_1_position.x, bmp_1_position.y);
+        if (collision_1)
+        {
+            fill_circle(COLOR_RED, circle_at(bmp_1_center, 30.0));
+        }
+
+        draw_bitmap(bmp_2, bmp_2_position.x, bmp_2_position.y);
+        if (collision_2)
+        {
+            fill_circle(COLOR_RED, circle_at(bmp_2_center, 8.0));
+        }
+
+        draw_bitmap(bmp_3, bmp_3_position.x, bmp_3_position.y);
+        if (collision_3)
+        {
+            fill_circle(COLOR_RED, circle_at(bmp_3_center, 30.0));
+        }
+
+        ray_heading = vector_point_to_point(ray_origin, mouse_position());
+        vector_2d normal_heading = unit_vector(ray_heading);
+        draw_line(COLOR_BLACK, ray_origin, point_offset_by(ray_origin, vector_multiply(normal_heading, 800.0)));
+
+        circle mouse_circle = circle_at(mouse_position(), 3.0);
+        draw_circle(COLOR_GREEN, mouse_circle);
+
+        circle ray_origin_circle = circle_at(ray_origin, 3.0);
+        draw_circle(COLOR_BLUE, ray_origin_circle);
+        
+        refresh_screen();
+    }
+    close_window(w1);
+}
+
 void run_geometry_test()
 {
     test_rectangle();
     test_points();
     test_lines();
     test_triangle();
+    test_tangent_points();
+    test_triangle_rectangle_intersect();
+    test_bitmap_ray_collision();
 }

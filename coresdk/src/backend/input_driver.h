@@ -59,6 +59,7 @@ namespace splashkit_lib
     void sk_move_window(sk_drawing_surface *surface, int x, int y);
 
     void sk_start_reading_text(window wind, double x, double y, double width, double height, string initial_text);
+    void _stop_reading_text(window wind);
 
     void sk_mouse_position(double &x, double &y);
     void sk_mouse_movement(double &x, double &y);

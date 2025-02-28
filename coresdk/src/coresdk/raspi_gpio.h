@@ -109,6 +109,41 @@ namespace splashkit_lib
      */
     pin_values raspi_read(pins pin);
 
+	/**
+     * @brief Opens SPI communication on selected channel.
+     *
+     * This function opens SPI communication on a particular channel. It will return -1 if not using Raspberry Pi.
+     *
+     * @param channel    The SPI channel to use.
+     * @param speed      The speed of data transfer (in baud).
+     * @param spi_flags  Optional flags for the SPI modes and settings.
+     * @returns          The handle referencing this particular connection.
+     */
+    int raspi_spi_open(int channel, int speed, int spi_flags);
+
+    /**
+     * @brief Closes SPI communication on selected channel. It will return -1 if not using Raspberry Pi.
+     *
+     * This function closes SPI communication on a particular channel.
+     *
+     * @param handle  A reference to the specific SPI connection to close.
+     * @returns       A value indicating success or failure.
+     */
+    int raspi_spi_close(int handle);
+
+    /**
+     * @brief Transfers data on specified SPI connection. It will return -1 if not using Raspberry Pi.
+     *
+     * This function transfers data through SPI, it sends data from sendBuf and receives it into recvBuf.
+     *
+     * @param handle   The reference for a specific SPI connection.
+     * @param sendBuf  The memory buffer for sending data.
+     * @param recvBuf  The memory buffer for receiving data.
+     * @param count    The number of bytes to be transferred.
+     * @returns        The number of bytes that have actually been transfered.
+     */
+    int raspi_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count);
+	
     /**
      * @brief Cleans up and releases any resources used by the GPIO library.
      *

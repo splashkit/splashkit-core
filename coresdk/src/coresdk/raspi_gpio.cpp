@@ -209,21 +209,45 @@ namespace splashkit_lib
         cout << "Unable to set pwm dutycycle - GPIO not supported on this platform" << endl;
 #endif
     }
+	
+	int raspi_spi_open(int channel, int speed, int spi_flags)
+    {
+#ifdef RASPBERRY_PI
+        int handle = -1;
+	    handle = sk_spi_open(channel, speed, spi_flags);
+        return handle;
+#else
+        cout << "Unable to open SPI interface - GPIO not supported on this platform" << endl;
+        return -1;
+#endif
+    }
+
+    int raspi_spi_close(int handle)
+    {
+#ifdef RASPBERRY_PI
+        return sk_spi_close(handle);
+#else
+        cout << "Unable to close SPI interface - GPIO not supported on this platform" << endl;
+        return -1;
+#endif
+    }
+
+    int raspi_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
+    {
+#ifdef RASPBERRY_PI
+        return sk_spi_transfer(handle, sendBuf, recvBuf, count);
+#else
+        cout << "Unable to transfer through SPI - GPIO not supported on this platform" << endl;
+        return -1;
+#endif
+    }
 
     // Cleanup GPIO resources
     void raspi_cleanup()
     {
 #ifdef RASPBERRY_PI
         cout << "Cleaning GPIO pins" << endl;
-        for (int i = 1; i <= 40; i++)
-        {
-            int bcmPin = boardToBCM(static_cast<pins>(i));
-            if (bcmPin > 0)
-            {
-                raspi_set_mode(static_cast<pins>(bcmPin), GPIO_INPUT);
-                raspi_write(static_cast<pins>(bcmPin), GPIO_LOW);
-            }
-        }
+        sk_clear_gpio_bank();
         sk_gpio_cleanup();
 #else
         cout << "Unable to set cleanup - GPIO not supported on this platform" << endl;

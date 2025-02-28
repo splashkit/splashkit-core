@@ -24,7 +24,7 @@ namespace splashkit_lib
 
     int rnd(int ubound)
     {
-        if (ubound == 0) return 0;
+        if (ubound <= 0) return 0;
         
         if (_do_seed)
         {
@@ -51,6 +51,7 @@ namespace splashkit_lib
             srand((unsigned)time(0));
         }
         
-        return min + rand() % (max - min);
+        int range = abs(max - min) + 1;
+        return min + (rand() % range);
     }
 }

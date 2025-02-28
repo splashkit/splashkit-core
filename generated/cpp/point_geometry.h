@@ -28,7 +28,7 @@ point_2d point_offset_from_origin(const vector_2d &offset);
 bool point_on_line(const point_2d &pt, const line &l);
 bool point_on_line(const point_2d &pt, const line &l, float proximity);
 float point_point_angle(const point_2d &pt1, const point_2d &pt2);
-float point_point_distance(const point_2d &pt1, const point_2d &pt2);
+double point_point_distance(const point_2d &pt1, const point_2d &pt2);
 string point_to_string(const point_2d &pt);
 point_2d random_bitmap_point(bitmap bmp);
 point_2d random_screen_point();

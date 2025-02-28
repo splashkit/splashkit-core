@@ -104,6 +104,7 @@ namespace splashkit_lib
 
     sk_window_be *_sk_get_window_with_id(unsigned int window_id);
     sk_window_be *_sk_get_window_with_pointer(pointer p);
+    void _sk_destroy_initial_window();
     
     
     unsigned int _sk_renderer_count(sk_drawing_surface *surface);
