@@ -136,7 +136,7 @@ namespace splashkit_lib
      *
      * This function transfers data through SPI, it sends data from sendBuf and receives it into recvBuf.
      *
-     * @param handle,  The reference for a specific SPI connection.
+     * @param handle   The reference for a specific SPI connection.
      * @param sendBuf  The memory buffer for sending data.
      * @param recvBuf  The memory buffer for receiving data.
      * @param count    The number of bytes to be transferred.
