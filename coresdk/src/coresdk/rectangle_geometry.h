@@ -207,5 +207,14 @@ namespace splashkit_lib
      */
     bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect, point_2d &hit_point, double &hit_distance);
 
+    /**
+     * Detects if a rectangle intersects with a circle.
+     *
+     * @param  rect The rectangle to test
+     * @param  c    The circle to test
+     * @return      True if the rectangle and circle intersect, false otherwise
+     */
+    bool rectangle_circle_intersect(const rectangle &rect, const circle &c);
+
 }
 #endif /* rectangle_geometry_H */

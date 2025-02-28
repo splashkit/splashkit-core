@@ -406,6 +406,177 @@ namespace splashkit_lib
      */
     bool bitmap_ray_collision(bitmap bmp, const point_2d& pt, const point_2d& origin, const vector_2d& heading);
 
+
+    /**
+     * Tests if a bitmap cell drawn using a passed in translation, will
+     * intersect with a triangle. You can use this to detect collisions between
+     * bitmaps and triangles.
+     *
+     * @param  bmp         The bitmap to test
+     * @param  cell        The cell of the bitmap to check
+     * @param  translation The matrix used to transfrom the bitmap when drawing
+     * @param  tri         The triangle to test
+     * @return             True if a drawn pixel in the cell of the bitmap will
+     *                     intersect with `tri` when drawn.
+     *
+     * @attribute suffix    for_cell_with_translation
+     *
+     * @attribute class bitmap
+     * @attribute method triangle_collision
+     */
+    bool bitmap_triangle_collision(bitmap bmp, int cell, const matrix_2d &translation, const triangle &tri);
+
+    /**
+     * Tests if a bitmap cell drawn at `pt` would intersect with a triangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  pt   The location where the bitmap is drawn
+     * @param  tri  The triangle to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `tri` when drawn.
+     *
+     * @attribute suffix    for_cell_at_point
+     *
+     * @attribute class bitmap
+     * @attribute method triangle_collision
+     */
+    bool bitmap_triangle_collision(bitmap bmp, int cell, const point_2d& pt, const triangle &tri);
+
+    /**
+     * Tests if a bitmap cell drawn at `x`, `y` would intersect with a triangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  tri  The triangle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `tri` when drawn.
+     *
+     * @attribute suffix    for_cell
+     *
+     * @attribute class bitmap
+     * @attribute method triangle_collision
+     */
+    bool bitmap_triangle_collision(bitmap bmp, int cell, double x, double y, const triangle &tri);
+
+    /**
+     * Tests if a bitmap drawn at `x`, `y` would intersect with a triangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  tri  The triangle to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `tri` when drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method triangle_collision
+     */
+    bool bitmap_triangle_collision(bitmap bmp, double x, double y, const triangle &tri);
+
+    /**
+     * Tests if a bitmap drawn at `pt` would intersect with a triangle.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  pt   The location where the bitmap is drawn
+     * @param  tri  The triangle to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `tri` when drawn.
+     *
+     * @attribute suffix    at_point
+     *
+     * @attribute class bitmap
+     * @attribute method triangle_collision
+     */
+    bool bitmap_triangle_collision(bitmap bmp, const point_2d& pt, const triangle &tri);
+
+    /**
+     * Tests if a bitmap cell drawn using a passed in translation, will
+     * intersect with a quad. You can use this to detect collisions between
+     * bitmaps and quads.
+     *
+     * @param  bmp         The bitmap to test
+     * @param  cell        The cell of the bitmap to check
+     * @param  translation The matrix used to transfrom the bitmap when drawing
+     * @param  q           The quad to test
+     * @return             True if a drawn pixel in the cell of the bitmap will
+     *                     intersect with `q` when drawn.
+     *
+     * @attribute suffix    for_cell_with_translation
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, int cell, const matrix_2d &translation, const quad &q);
+
+    /**
+     * Tests if a bitmap cell drawn at `pt` would intersect with a quad.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  pt   The location where the bitmap is drawn
+     * @param  q    The quad to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `q` when drawn.
+     *
+     * @attribute suffix    for_cell_at_point
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, int cell, const point_2d& pt, const quad &q);
+
+    /**
+     * Tests if a bitmap cell drawn at `x`, `y` would intersect with a quad.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  cell The cell of the bitmap to check
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  q    The quad to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `q` when drawn.
+     *
+     * @attribute suffix    for_cell
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, int cell, double x, double y, const quad &q);
+
+    /**
+     * Tests if a bitmap drawn at `x`, `y` would intersect with a quad.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  x    The x location where the bitmap is drawn
+     * @param  y    The y location where the bitmap is drawn
+     * @param  q    The quad to test
+     * @return      True if a drawn pixel in the bitmap will
+     *              intersect with `q` when drawn.
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, double x, double y, const quad &q);
+
+    /**
+     * Tests if a bitmap drawn at `pt` would intersect with a quad.
+     *
+     * @param  bmp  The bitmap to test
+     * @param  pt   The location where the bitmap is drawn
+     * @param  q    The quad to test
+     * @return      True if a drawn pixel in the cell of the bitmap will
+     *              intersect with `q` when drawn.
+     *
+     * @attribute suffix    at_point
+     *
+     * @attribute class bitmap
+     * @attribute method quad_collision
+     */
+    bool bitmap_quad_collision(bitmap bmp, const point_2d& pt, const quad &q);
+    
     /**
      * Tests if a sprite will collide with a bitmap drawn at the indicated
      * location.
@@ -495,6 +666,42 @@ namespace splashkit_lib
      * @attribute method ray_collision
      */
     bool sprite_ray_collision(sprite s, const point_2d& origin, const vector_2d& heading);
+
+    /**
+     * Tests if a sprite is drawn within an given area (circle).
+     *
+     * @param  s    The sprite to test
+     * @param  c    The circle to check
+     * @return      True if the sprite it drawn in the circle area
+     *
+     * @attribute class sprite
+     * @attribute method circle_collision
+     */
+    bool sprite_circle_collision(sprite s, const circle &c);
+
+    /**
+     * Tests if a sprite is drawn within an given area (triangle).
+     *
+     * @param  s    The sprite to test
+     * @param  t    The triangle to check
+     * @return      True if the sprite it drawn in the triangle area
+     *
+     * @attribute class sprite
+     * @attribute method triangle_collision
+     */
+    bool sprite_triangle_collision(sprite s, const triangle &t);
+
+    /**
+     * Tests if a sprite is drawn within an given area (quad).
+     *
+     * @param  s    The sprite to test
+     * @param  q    The quad to check
+     * @return      True if the sprite it drawn in the quad area
+     *
+     * @attribute class sprite
+     * @attribute method quad_collision
+     */
+    bool sprite_quad_collision(sprite s, const quad &q);
 
     /**
      * Tests if two given sprites `s1` and `s2` are collided
@@ -597,6 +804,881 @@ namespace splashkit_lib
      * @attribute method bitmap_collision
      */
     bool bitmap_collision(bitmap bmp1, double x1, double y1, bitmap bmp2, double x2, double y2);
+
+    /**
+     * Returns the direction of the collision between two sprites
+     * relative to the collider sprite. If the sprites are not colliding,
+     * this function will return a zero vector.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the collider sprite,
+     *                  expressed as a unit vector. If the sprites are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     sprite
+     * @attribute suffix    between_sprites
+     */
+    vector_2d calculate_collision_direction(const sprite collider, const sprite collidee);
+
+    /**
+     * Returns the direction of the collision between a sprite
+     * and a rectangle relative to the sprite. If the sprite and
+     * rectangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The rectangle that is being collided with
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a unit vector. If the sprite and rectangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     sprite
+     * @attribute suffix    between_sprite_and_rectangle
+     */
+    vector_2d calculate_collision_direction(const sprite collider, const rectangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a sprite
+     * and a circle relative to the sprite. If the sprite and
+     * circle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The circle that is being collided with
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a unit vector. If the sprite and circle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     sprite
+     * @attribute suffix    between_sprite_and_circle
+     */
+    vector_2d calculate_collision_direction(const sprite collider, const circle& collidee);
+
+    /**
+     * Returns the direction of the collision between a sprite
+     * and a triangle relative to the sprite. If the sprite and
+     * triangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The triangle that is being collided with
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a unit vector. If the sprite and triangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     sprite
+     * @attribute suffix    between_sprite_and_triangle
+     */
+    vector_2d calculate_collision_direction(const sprite collider, const triangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a sprite
+     * and a quad relative to the sprite. If the sprite and
+     * quad are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The sprite that is colliding
+     * @param collidee  The quad that is being collided with
+     * @return          The direction of the collision relative to the sprite,
+     *                  expressed as a unit vector. If the sprite and quad are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     sprite
+     * @attribute suffix    between_sprite_and_quad
+     */
+    vector_2d calculate_collision_direction(const sprite collider, const quad& collidee);
+
+    /**
+     * Returns the direction of the collision between a rectangle
+     * and a sprite relative to the rectangle. If the rectangle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The rectangle that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a unit vector. If the rectangle and sprite are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     rectangle
+     * @attribute suffix    between_rectangle_and_sprite
+     */
+    vector_2d calculate_collision_direction(const rectangle& collider, const sprite collidee);
+
+    /**
+     * Returns the direction of the collision between a collider rectangle
+     * and a collidee rectangle relative to the collider rectangle. If the rectangles are not
+     * colliding, this function will return a zero vector.
+     * 
+     * @param collider  The rectangle that is colliding
+     * @param collidee  The rectangle that is being collided with
+     * @return          The direction of the collision relative to the collider rectangle,
+     *                  expressed as a unit vector. If the rectangles are not colliding, this function
+     *                  will return a zero vector.
+     * 
+     * @attribute class     rectangle
+     * @attribute suffix    between_rectangles
+     */
+    vector_2d calculate_collision_direction(const rectangle& collider, const rectangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a rectangle
+     * and a circle relative to the rectangle. If the rectangle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The rectangle that is colliding
+     * @param collidee  The circle that is being collided with
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a unit vector. If the rectangle and circle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     rectangle
+     * @attribute suffix    between_rectangle_and_circle
+     */
+    vector_2d calculate_collision_direction(const rectangle& collider, const circle& collidee);
+
+    /**
+     * Returns the direction of the collision between a rectangle
+     * and a triangle relative to the rectangle. If the rectangle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The rectangle that is colliding
+     * @param collidee  The triangle that is being collided with
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a unit vector. If the rectangle and triangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     rectangle
+     * @attribute suffix    between_rectangle_and_triangle
+     */
+    vector_2d calculate_collision_direction(const rectangle& collider, const triangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a rectangle
+     * and a quad relative to the rectangle. If the rectangle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The rectangle that is colliding
+     * @param collidee  The quad that is being collided with
+     * @return          The direction of the collision relative to the rectangle,
+     *                  expressed as a unit vector. If the rectangle and quad are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     rectangle
+     * @attribute suffix    between_rectangle_and_quad
+     */
+    vector_2d calculate_collision_direction(const rectangle& collider, const quad& collidee);
+
+    /**
+     * Returns the direction of the collision between a circle
+     * and a sprite relative to the circle. If the circle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The circle that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a unit vector. If the circle and sprite are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     circle
+     * @attribute suffix    between_circle_and_sprite
+     */
+    vector_2d calculate_collision_direction(const circle& collider, const sprite collidee);
+
+    /**
+     * Returns the direction of the collision between a circle
+     * and a rectangle relative to the circle. If the circle and
+     * rectangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The circle that is colliding
+     * @param collidee  The rectangle that is being collided with
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a unit vector. If the circle and rectangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     circle
+     * @attribute suffix    between_circle_and_rectangle
+     */
+    vector_2d calculate_collision_direction(const circle& collider, const rectangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a collider circle
+     * and a collidee circle relative to the collider circle. If the circles are not
+     * colliding, this function will return a zero vector.
+     * 
+     * @param collider  The circle that is colliding
+     * @param collidee  The circle that is being collided with
+     * @return          The direction of the collision relative to the collider circle,
+     *                  expressed as a unit vector. If the circles are not colliding, this function
+     *                  will return a zero vector.
+     * 
+     * @attribute class     circle
+     * @attribute suffix    between_circles
+     */
+    vector_2d calculate_collision_direction(const circle& collider, const circle& collidee);
+
+    /**
+     * Returns the direction of the collision between a circle
+     * and a triangle relative to the circle. If the circle and
+     * triangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The circle that is colliding
+     * @param collidee  The triangle that is being collided with
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a unit vector. If the circle and triangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     circle
+     * @attribute suffix    between_circle_and_triangle
+     */
+    vector_2d calculate_collision_direction(const circle& collider, const triangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a circle
+     * and a quad relative to the circle. If the circle and
+     * quad are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The circle that is colliding
+     * @param collidee  The quad that is being collided with
+     * @return          The direction of the collision relative to the circle,
+     *                  expressed as a unit vector. If the circle and quad are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     circle
+     * @attribute suffix    between_circle_and_quad
+     */
+    vector_2d calculate_collision_direction(const circle& collider, const quad& collidee);
+
+    /**
+     * Returns the direction of the collision between a triangle
+     * and a sprite relative to the triangle. If the triangle and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The triangle that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a unit vector. If the triangle and sprite are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     triangle
+     * @attribute suffix    between_triangle_and_sprite
+     */
+    vector_2d calculate_collision_direction(const triangle& collider, const sprite collidee);
+
+    /**
+     * Returns the direction of the collision between a triangle
+     * and a rectangle relative to the triangle. If the triangle and
+     * rectangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The triangle that is colliding
+     * @param collidee  The rectangle that is being collided with
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a unit vector. If the triangle and rectangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     triangle
+     * @attribute suffix    between_triangle_and_rectangle
+     */
+    vector_2d calculate_collision_direction(const triangle& collider, const rectangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a triangle
+     * and a circle relative to the triangle. If the triangle and
+     * circle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The triangle that is colliding
+     * @param collidee  The circle that is being collided with
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a unit vector. If the triangle and circle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     triangle
+     * @attribute suffix    between_triangle_and_circle
+     */
+    vector_2d calculate_collision_direction(const triangle& collider, const circle& collidee);
+
+    /**
+     * Returns the direction of the collision between a collider triangle
+     * and a collidee triangle relative to the collider triangle. If the triangles are not
+     * colliding, this function will return a zero vector.
+     * 
+     * @param collider  The triangle that is colliding
+     * @param collidee  The triangle that is being collided with
+     * @return          The direction of the collision relative to the collider triangle,
+     *                  expressed as a unit vector. If the triangles are not colliding, this function
+     *                  will return a zero vector.
+     * 
+     * @attribute class     triangle
+     * @attribute suffix    between_triangles
+     */
+    vector_2d calculate_collision_direction(const triangle& collider, const triangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a triangle
+     * and a quad relative to the triangle. If the triangle and
+     * quad are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The triangle that is colliding
+     * @param collidee  The quad that is being collided with
+     * @return          The direction of the collision relative to the triangle,
+     *                  expressed as a unit vector. If the triangle and quad are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     triangle
+     * @attribute suffix    between_triangle_and_quad
+     */
+    vector_2d calculate_collision_direction(const triangle& collider, const quad& collidee);
+
+    /**
+     * Returns the direction of the collision between a quad
+     * and a sprite relative to the quad. If the quad and
+     * sprite are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The quad that is colliding
+     * @param collidee  The sprite that is being collided with
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a unit vector. If the quad and sprite are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     quad
+     * @attribute suffix    between_quad_and_sprite
+     */
+    vector_2d calculate_collision_direction(const quad& collider, const sprite collidee);
+
+    /**
+     * Returns the direction of the collision between a quad
+     * and a rectangle relative to the quad. If the quad and
+     * rectangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The quad that is colliding
+     * @param collidee  The rectangle that is being collided with
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a unit vector. If the quad and rectangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     quad
+     * @attribute suffix    between_quad_and_rectangle
+     */
+    vector_2d calculate_collision_direction(const quad& collider, const rectangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a quad
+     * and a circle relative to the quad. If the quad and
+     * circle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The quad that is colliding
+     * @param collidee  The circle that is being collided with
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a unit vector. If the quad and circle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     quad
+     * @attribute suffix    between_quad_and_circle
+     */
+    vector_2d calculate_collision_direction(const quad& collider, const circle& collidee);
+
+    /**
+     * Returns the direction of the collision between a quad
+     * and a triangle relative to the quad. If the quad and
+     * triangle are not colliding, this function will return a zero vector.
+     * 
+     * @param collider  The quad that is colliding
+     * @param collidee  The triangle that is being collided with
+     * @return          The direction of the collision relative to the quad,
+     *                  expressed as a unit vector. If the quad and triangle are not colliding,
+     *                  this function will return a zero vector.
+     * 
+     * @attribute class     quad
+     * @attribute suffix    between_quad_and_triangle
+     */
+    vector_2d calculate_collision_direction(const quad& collider, const triangle& collidee);
+
+    /**
+     * Returns the direction of the collision between a collider quad
+     * and a collidee quad relative to the collider quad. If the quads are not
+     * colliding, this function will return a zero vector.
+     * 
+     * @param collider  The quad that is colliding
+     * @param collidee  The quad that is being collided with
+     * @return          The direction of the collision relative to the collider quad,
+     *                  expressed as a unit vector. If the quads are not colliding, this function
+     *                  will return a zero vector.
+     * 
+     * @attribute class     quad
+     * @attribute suffix    between_quads
+     */
+    vector_2d calculate_collision_direction(const quad& collider, const quad& collidee);
+
+    /**
+     * Resolves the collision between two sprites by moving the
+     * collider sprite to the edge of the collidee sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprites are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the collider sprite,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the sprites are colliding and the collision was resolved,
+     *                  false if the sprites are not colliding
+     * 
+     * @atrribute class     sprite
+     * @attribute suffix    between_sprites
+     */
+    bool resolve_collision(sprite collider, const sprite collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a sprite and a rectangle by moving the
+     * sprite to the edge of the rectangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprite and
+     * rectangle are not colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The rectangle which will not be altered
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
+     * @return          True if the sprite and rectangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     sprite
+     * @attribute suffix    between_sprite_and_rectangle
+     */
+    bool resolve_collision(sprite collider, const rectangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a sprite and a circle by moving the
+     * sprite to the edge of the circle. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprite and
+     * circle are not colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The circle which will not be altered
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
+     * @return          True if the sprite and circle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     sprite
+     * @attribute suffix    between_sprite_and_circle
+     */
+    bool resolve_collision(sprite collider, const circle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a sprite and a triangle by moving the
+     * sprite to the edge of the triangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprite and
+     * triangle are not colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The triangle which will not be altered
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
+     * @return          True if the sprite and triangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     sprite
+     * @attribute suffix    between_sprite_and_triangle
+     */
+    bool resolve_collision(sprite collider, const triangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a sprite and a quad by moving the
+     * sprite to the edge of the quad. The direction of the
+     * resolution is determined by the `direction` parameter. If the sprite and
+     * quad are not colliding, this function will return false.
+     * 
+     * @param collider  The sprite which will be altered if there is a collision
+     * @param collidee  The quad which will not be altered
+     * @param direction The direction of the collision relative to the sprite,
+     *                  expressed as a vector. If a zero vector is passed,
+     *                  the function will not resolve the collision.
+     * @return          True if the sprite and quad are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     sprite
+     * @attribute suffix    between_sprite_and_quad
+     */
+    bool resolve_collision(sprite collider, const quad& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a rectangle and a sprite by moving the
+     * rectangle to the edge of the sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the rectangle and
+     * sprite are not colliding, this function will return false.
+     * 
+     * @param collider  The rectangle which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the rectangle and sprite are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     rectangle
+     * @attribute suffix    between_rectangle_and_sprite
+     */
+    bool resolve_collision(rectangle& collider, const sprite collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between two rectangles by moving the
+     * collider rectangle to the edge of the collidee rectangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the rectangles are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The rectangle which will be altered if there is a collision
+     * @param collidee  The rectangle which will not be altered
+     * @param direction The direction of the collision relative to the collider rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the rectangles are colliding and the collision was resolved,
+     *                  false if the rectangles are not colliding
+     * 
+     * @atrribute class     rectangle
+     * @attribute suffix    between_rectangles
+     */
+    bool resolve_collision(rectangle& collider, const rectangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a rectangle and a circle by moving the
+     * rectangle to the edge of the circle. The direction of the
+     * resolution is determined by the `direction` parameter. If the rectangle and
+     * circle are not colliding, this function will return false.
+     * 
+     * @param collider  The rectangle which will be altered if there is a collision
+     * @param collidee  The circle which will not be altered
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the rectangle and circle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     rectangle
+     * @attribute suffix    between_rectangle_and_circle
+     */
+    bool resolve_collision(rectangle& collider, const circle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a rectangle and a triangle by moving the
+     * rectangle to the edge of the triangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the rectangle and
+     * triangle are not colliding, this function will return false.
+     * 
+     * @param collider  The rectangle which will be altered if there is a collision
+     * @param collidee  The triangle which will not be altered
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the rectangle and triangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     rectangle
+     * @attribute suffix    between_rectangle_and_triangle
+     */
+    bool resolve_collision(rectangle& collider, const triangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a rectangle and a quad by moving the
+     * rectangle to the edge of the quad. The direction of the
+     * resolution is determined by the `direction` parameter. If the rectangle and
+     * quad are not colliding, this function will return false.
+     * 
+     * @param collider  The rectangle which will be altered if there is a collision
+     * @param collidee  The quad which will not be altered
+     * @param direction The direction of the collision relative to the rectangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the rectangle and quad are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     rectangle
+     * @attribute suffix    between_rectangle_and_quad
+     */
+    bool resolve_collision(rectangle& collider, const quad& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a circle and a sprite by moving the
+     * circle to the edge of the sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the circle and
+     * sprite are not colliding, this function will return false.
+     * 
+     * @param collider  The circle which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the circle and sprite are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     circle
+     * @attribute suffix    between_circle_and_sprite
+     */
+    bool resolve_collision(circle& collider, const sprite collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a circle and a rectangle by moving the
+     * circle to the edge of the rectangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the circle and
+     * rectangle are not colliding, this function will return false.
+     * 
+     * @param collider  The circle which will be altered if there is a collision
+     * @param collidee  The rectangle which will not be altered
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the circle and rectangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     circle
+     * @attribute suffix    between_circle_and_rectangle
+     */
+    bool resolve_collision(circle& collider, const rectangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a collider circle and a collidee circle by moving the
+     * collider circle to the edge of the collidee circle. The direction of the
+     * resolution is determined by the `direction` parameter. If the circles are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The circle which will be altered if there is a collision
+     * @param collidee  The circle which will not be altered
+     * @param direction The direction of the collision relative to the collider circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the circles are colliding and the collision was resolved,
+     *                  false if the circles are not colliding
+     * 
+     * @atrribute class     circle
+     * @attribute suffix    between_circles
+     */
+    bool resolve_collision(circle& collider, const circle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a circle and a triangle by moving the
+     * circle to the edge of the triangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the circle and
+     * triangle are not colliding, this function will return false.
+     * 
+     * @param collider  The circle which will be altered if there is a collision
+     * @param collidee  The triangle which will not be altered
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the circle and triangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     circle
+     * @attribute suffix    between_circle_and_triangle
+     */
+    bool resolve_collision(circle& collider, const triangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a circle and a quad by moving the
+     * circle to the edge of the quad. The direction of the
+     * resolution is determined by the `direction` parameter. If the circle and
+     * quad are not colliding, this function will return false.
+     * 
+     * @param collider  The circle which will be altered if there is a collision
+     * @param collidee  The quad which will not be altered
+     * @param direction The direction of the collision relative to the circle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the circle and quad are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     circle
+     * @attribute suffix    between_circle_and_quad
+     */
+    bool resolve_collision(circle& collider, const quad& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a triangle and a sprite by moving the
+     * triangle to the edge of the sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the triangle and
+     * sprite are not colliding, this function will return false.
+     * 
+     * @param collider  The triangle which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the triangle and sprite are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     triangle
+     * @attribute suffix    between_triangle_and_sprite
+     */
+    bool resolve_collision(triangle& collider, const sprite collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a triangle and a rectangle by moving the
+     * triangle to the edge of the rectangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the triangle and
+     * rectangle are not colliding, this function will return false.
+     * 
+     * @param collider  The triangle which will be altered if there is a collision
+     * @param collidee  The rectangle which will not be altered
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the triangle and rectangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     triangle
+     * @attribute suffix    between_triangle_and_rectangle
+     */
+    bool resolve_collision(triangle& collider, const rectangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a triangle and a circle by moving the
+     * triangle to the edge of the circle. The direction of the
+     * resolution is determined by the `direction` parameter. If the triangle and
+     * circle are not colliding, this function will return false.
+     * 
+     * @param collider  The triangle which will be altered if there is a collision
+     * @param collidee  The circle which will not be altered
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the triangle and circle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     triangle
+     * @attribute suffix    between_triangle_and_circle
+     */
+    bool resolve_collision(triangle& collider, const circle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a collider triangle and a collidee triangle by moving the
+     * collider triangle to the edge of the collidee triangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the triangles are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The triangle which will be altered if there is a collision
+     * @param collidee  The triangle which will not be altered
+     * @param direction The direction of the collision relative to the collider triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the triangles are colliding and the collision was resolved,
+     *                  false if the triangles are not colliding
+     * 
+     * @atrribute class     triangle
+     * @attribute suffix    between_triangles
+     */
+    bool resolve_collision(triangle& collider, const triangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a triangle and a quad by moving the
+     * triangle to the edge of the quad. The direction of the
+     * resolution is determined by the `direction` parameter. If the triangle and
+     * quad are not colliding, this function will return false.
+     * 
+     * @param collider  The triangle which will be altered if there is a collision
+     * @param collidee  The quad which will not be altered
+     * @param direction The direction of the collision relative to the triangle,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the triangle and quad are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     triangle
+     * @attribute suffix    between_triangle_and_quad
+     */
+    bool resolve_collision(triangle& collider, const quad& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a quad and a sprite by moving the
+     * quad to the edge of the sprite. The direction of the
+     * resolution is determined by the `direction` parameter. If the quad and
+     * sprite are not colliding, this function will return false.
+     * 
+     * @param collider  The quad which will be altered if there is a collision
+     * @param collidee  The sprite which will not be altered
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the quad and sprite are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     quad
+     * @attribute suffix    between_quad_and_sprite
+     */
+    bool resolve_collision(quad& collider, const sprite collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a quad and a rectangle by moving the
+     * quad to the edge of the rectangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the quad and
+     * rectangle are not colliding, this function will return false.
+     * 
+     * @param collider  The quad which will be altered if there is a collision
+     * @param collidee  The rectangle which will not be altered
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the quad and rectangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     quad
+     * @attribute suffix    between_quad_and_rectangle
+     */
+    bool resolve_collision(quad& collider, const rectangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a quad and a circle by moving the
+     * quad to the edge of the circle. The direction of the
+     * resolution is determined by the `direction` parameter. If the quad and
+     * circle are not colliding, this function will return false.
+     * 
+     * @param collider  The quad which will be altered if there is a collision
+     * @param collidee  The circle which will not be altered
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the quad and circle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     quad
+     * @attribute suffix    between_quad_and_circle
+     */
+    bool resolve_collision(quad& collider, const circle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a quad and a triangle by moving the
+     * quad to the edge of the triangle. The direction of the
+     * resolution is determined by the `direction` parameter. If the quad and
+     * triangle are not colliding, this function will return false.
+     * 
+     * @param collider  The quad which will be altered if there is a collision
+     * @param collidee  The triangle which will not be altered
+     * @param direction The direction of the collision relative to the quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the quad and triangle are colliding and the collision
+     *                  was resolved, false if they are not colliding
+     * 
+     * @atrribute class     quad
+     * @attribute suffix    between_quad_and_triangle
+     */
+    bool resolve_collision(quad& collider, const triangle& collidee, const vector_2d& direction);
+
+    /**
+     * Resolves the collision between a collider quad and a collidee quad by moving the
+     * collider quad to the edge of the collidee quad. The direction of the
+     * resolution is determined by the `direction` parameter. If the quads are not
+     * colliding, this function will return false.
+     * 
+     * @param collider  The quad which will be altered if there is a collision
+     * @param collidee  The quad which will not be altered
+     * @param direction The direction of the collision relative to the collider quad,
+     *                  expressed as a vector. If a zero vector is passed, the function will
+     *                  not resolve the collision.
+     * @return          True if the quads are colliding and the collision was resolved,
+     *                  false if the quads are not colliding
+     * 
+     * @atrribute class     quad
+     * @attribute suffix    between_quads
+     */
+    bool resolve_collision(quad& collider, const quad& collidee, const vector_2d& direction);
 
 }
 #endif /* collisions_h */

@@ -412,6 +412,18 @@ TEST_CASE("can perform circle geometry", "[geometry]")
         p = point_at(100.0, 100.0);
         REQUIRE_FALSE(tangent_points(p, c, p1, p2));
     }
+    SECTION("can detect circle-quad intersection")
+{
+        circle c = circle_at(100.0, 100.0, 50.0);
+        quad q = quad_from(rectangle_from(50.0, 50.0, 100.0, 100.0));
+        REQUIRE(circle_quad_intersect(c, q));
+        q = quad_from(rectangle_from(0.0, 0.0, 500.0, 500.0));
+        REQUIRE(circle_quad_intersect(c, q));
+        q = quad_from(rectangle_from(99.0, 99.0, 5.0, 5.0));
+        REQUIRE(circle_quad_intersect(c, q));
+        q = quad_from(rectangle_from(200.0, 200.0, 100.0, 100.0));
+        REQUIRE_FALSE(circle_quad_intersect(c, q));
+}
 }
 TEST_CASE("can perform rectangle geometry", "[rectangle]")
 {
@@ -548,6 +560,18 @@ TEST_CASE("can perform rectangle geometry", "[rectangle]")
         REQUIRE(inset.width == 100.0);
         REQUIRE(inset.height == 100.0);
     }
+    SECTION("can detect rectangle-circle intersection")
+    {
+        rectangle r = rectangle_from(100.0, 100.0, 100.0, 100.0);
+        circle c = circle_at(150.0, 150.0, 50.0);
+        REQUIRE(rectangle_circle_intersect(r, c));
+        c = circle_at(150.0, 150.0, 1.0);
+        REQUIRE(rectangle_circle_intersect(r, c));
+        c = circle_at(150.0, 150.0, 500.0);
+        REQUIRE(rectangle_circle_intersect(r, c));
+        c = circle_at(300.0, 300.0, 50.0);
+        REQUIRE_FALSE(rectangle_circle_intersect(r, c));
+    }
 }
 TEST_CASE("can perform triangle geometry", "[triangle]")
 {
@@ -595,6 +619,18 @@ TEST_CASE("can perform triangle geometry", "[triangle]")
     {
         triangle t = triangle_from(point_at(0.0, 0.0), point_at(200.0, 0.0), point_at(100.0, 200.0));
         REQUIRE(triangle_to_string(t) == "Triangle @Pt @0.000000:0.000000 - Pt @200.000000:0.000000 - Pt @100.000000:200.000000");
+    }
+    SECTION("can detect triangle-quad intersection")
+    {
+        triangle t = triangle_from(100.0, 100.0, 200.0, 100.0, 150.0, 150.0);
+        quad q = quad_from(rectangle_from(50.0, 50.0, 100.0, 100.0));
+        REQUIRE(triangle_quad_intersect(t, q));
+        q = quad_from(rectangle_from(0.0, 0.0, 500.0, 500.0));
+        REQUIRE(triangle_quad_intersect(t, q)); 
+        q = quad_from(rectangle_from(150.0, 101.0, 5.0, 5.0));
+        REQUIRE(triangle_quad_intersect(t, q));
+        q = quad_from(rectangle_from(200.0, 200.0, 100.0, 100.0));
+        REQUIRE_FALSE(triangle_quad_intersect(t, q));
     }
 }
 TEST_CASE("can perform line geometry", "[line]")
@@ -734,7 +770,7 @@ TEST_CASE("can perform line geometry", "[line]")
         r = rectangle_from(300.0, 300.0, 200.0, 200.0);
         REQUIRE_FALSE(line_intersects_rect(l, r));
         r = rectangle_from(50.0, 50.0, 500.0, 500.0);
-        REQUIRE_FALSE(line_intersects_rect(l, r));
+        REQUIRE(line_intersects_rect(l, r));
     }
     SECTION("can calculate line midpoint")
     {
@@ -770,6 +806,16 @@ TEST_CASE("can perform line geometry", "[line]")
         l = line_from(200.0, 200.0, 300.0, 300.0);
         lines = {l1, l2};
         REQUIRE_FALSE(line_intersects_lines(l, lines));
+    }
+    SECTION("can detect line-rectangle intersection")
+    {
+        line l = line_from(100.0, 100.0, 200.0, 200.0);
+        rectangle r = rectangle_from(150.0, 150.0, 100.0, 100.0);
+        REQUIRE(line_intersects_rect(l, r));
+        r = rectangle_from(90.0, 90.0, 200.0, 200.0);
+        REQUIRE(line_intersects_rect(l, r));
+        r = rectangle_from(250.0, 250.0, 100.0, 100.0);
+        REQUIRE_FALSE(line_intersects_rect(l, r));
     }
 }
 TEST_CASE("can perform quad geometry", "[quad]")
