@@ -195,6 +195,8 @@ collection.erase(collection.begin());\
 
     double lin_interp(double v0, double v1, double t);
 
+    vector<int8_t> base64_decode_data(const char* in);
+
     // Notify the listeners that a resource has been freed. Implemented in resources.
     void notify_of_free(void *resource);
 }
