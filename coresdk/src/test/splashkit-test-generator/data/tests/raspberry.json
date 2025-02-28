@@ -1,0 +1,782 @@
+{
+  "group": "raspberry",
+  "cleanup": [
+    {
+      "cleanup_type": "raspberry",
+      "function_name": "raspberry_cleanup",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "has_gpio",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "has_gpio",
+          "args": [],
+          "store_result": "test_gpio_capability"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_gpio_capability"
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_cleanup",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_write",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_cleanup",
+          "args": []
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_input"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "raspi_get_mode",
+              "args": [
+                {
+                  "type": "enum",
+                  "enum_type": "pins",
+                  "value": "pin_11"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_low"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "raspi_read",
+              "args": [
+                {
+                  "type": "enum",
+                  "enum_type": "pins",
+                  "value": "pin_11"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_get_mode",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_get_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "test_mode"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_mode"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_init",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_gpio",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_read",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_write",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_read",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "test_read_value"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_read_value"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_set_mode",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "raspi_get_mode",
+              "args": [
+                {
+                  "type": "enum",
+                  "enum_type": "pins",
+                  "value": "pin_11"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_set_pull_up_down",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_input"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pull_up_down",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pull_up_down",
+              "value": "pud_up"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_read",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "test_pin_value_up"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_pin_value_up"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pull_up_down",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pull_up_down",
+              "value": "pud_down"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_read",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "test_pin_value_down"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_low"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_pin_value_down"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_set_pwm_dutycycle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pwm_dutycycle",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            },
+            {
+              "type": "int",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_get_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            }
+          ],
+          "store_result": "mode"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "mode"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_set_pwm_frequency",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_alt5"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pwm_frequency",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_get_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_18"
+            }
+          ],
+          "store_result": "mode"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_alt5"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "mode"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_set_pwm_range",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pwm_range",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "int",
+              "value": 1024
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_pwm_dutycycle",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "int",
+              "value": 512
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_get_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "mode"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "mode"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "raspi_write",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "raspi_init",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "raspberry",
+          "store_result": "cleanup_raspberry"
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_set_mode",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_modes",
+              "value": "gpio_output"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_write",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            },
+            {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "raspi_read",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "pins",
+              "value": "pin_11"
+            }
+          ],
+          "store_result": "test_pin_value"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "enum",
+              "enum_type": "pin_values",
+              "value": "gpio_high"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_pin_value"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

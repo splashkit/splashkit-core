@@ -1,0 +1,12 @@
+[package]
+name = "splashkit_tests"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ctor = "0.2"
+splashkit_backend = { path = "../../data/language_files/rust" }
+
+[lints.rust]
+non_snake_case = "allow"
+unused_imports = "allow"

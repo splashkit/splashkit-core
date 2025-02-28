@@ -1,0 +1,3437 @@
+{
+  "group": "audio",
+  "constructor": [
+    {
+      "type": "function",
+      "function_name": "set_resources_path",
+      "args": [
+        {
+          "type": "string",
+          "value": "set this value before running tests, use an absolute path"
+        }
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "cleanup_type": "audio",
+      "function_name": "close_audio",
+      "args": []
+    },
+    {
+      "cleanup_type": "music",
+      "function_name": "free_all_music",
+      "args": []
+    },
+    {
+      "cleanup_type": "sound_effect",
+      "function_name": "free_all_sound_effects",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "audio_ready",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "audio_ready",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "close_audio",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "audio_ready",
+              "args": []
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "close_audio",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "open_audio",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "audio_ready",
+              "args": []
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "close_audio",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "fade_music_in_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "fade_music_in_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_music_in_named_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "fade_music_in_named_with_times",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_music_in",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "fade_music_in",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_music_in_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "fade_music_in_with_times",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_music_out",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "fade_music_out",
+          "args": [
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "delay",
+          "args": [
+            {
+              "type": "int",
+              "value": 1500
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_all_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_music1"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_music2"
+            },
+            {
+              "type": "string",
+              "value": "dancingFrog.wav"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_all_music",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_music",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "test_music1"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_music",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "test_music2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_music",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "has_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_music",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_music",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "load_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_valid",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_filename",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "path_to_resource",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "magical_night.ogg"
+                },
+                {
+                  "type": "enum",
+                  "enum_type": "resource_kind",
+                  "value": "sound_resource"
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "music_filename",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_music"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_name",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Test Music"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "music_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_music"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "music_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            }
+          ],
+          "store_result": "named_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "named_music"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_playing",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_valid",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_valid",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "music_valid",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_music"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "music_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "set_music_volume",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.5
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "music_volume",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "pause_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "pause_music",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_music_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_music_named_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music_named_with_times",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "int",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_music_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music_with_times",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            {
+              "type": "int",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_music_with_times_and_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music_with_times_and_volume",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "double",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.75
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "music_volume",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "resume_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "pause_music",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "resume_music",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_music_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "set_music_volume",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.5
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.5
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "music_volume",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "stop_music",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_music",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Music"
+            },
+            {
+              "type": "string",
+              "value": "magical_night.ogg"
+            }
+          ],
+          "store_result": "test_music"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "music",
+          "store_result": "cleanup_music"
+        },
+        {
+          "type": "function",
+          "function_name": "play_music",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_music"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "stop_music",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "music_playing",
+              "args": []
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_all_sound_effects_out",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound 1"
+            },
+            {
+              "type": "string",
+              "value": "comedy_boing.wav"
+            }
+          ],
+          "store_result": "test_sound1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound 2"
+            },
+            {
+              "type": "string",
+              "value": "comedy_boing.ogg"
+            }
+          ],
+          "store_result": "test_sound2"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "fade_all_sound_effects_out",
+          "args": [
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "delay",
+          "args": [
+            {
+              "type": "int",
+              "value": 1500
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound1"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "fade_sound_effect_out",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "fade_sound_effect_out",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            {
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "delay",
+          "args": [
+            {
+              "type": "int",
+              "value": 1500
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_all_sound_effects",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound 1"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound 2"
+            },
+            {
+              "type": "string",
+              "value": "comedy_boing.ogg"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_all_sound_effects",
+          "args": []
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound 1"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound 2"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_sound_effect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "has_sound_effect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "load_sound_effect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_named_with_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named_with_volume",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "double",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_named_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named_with_times",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "int",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_named_with_times_and_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named_with_times_and_volume",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "double",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_with_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "breakdance.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_with_volume",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            {
+              "type": "double",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_with_times",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_with_times",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            {
+              "type": "int",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "play_sound_effect_with_times_and_volume",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_with_times_and_volume",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            {
+              "type": "int",
+              "value": 2
+            },
+            {
+              "type": "double",
+              "value": 0.75
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_filename",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "path_to_resource",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "SwinGameStart.wav"
+                },
+                {
+                  "type": "enum",
+                  "enum_type": "resource_kind",
+                  "value": "sound_resource"
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "sound_effect_filename",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_name",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "sound_effect_name",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ],
+          "store_result": "named_sound"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "named_sound"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_playing_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing_named",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "stop_sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing_named",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_playing",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "stop_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "sound_effect_valid",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_sound"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "has_sound_effect",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "stop_sound_effect_named",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "stop_sound_effect_named",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing_named",
+              "args": [
+                {
+                  "type": "string",
+                  "value": "Test Sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "stop_sound_effect",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_audio",
+          "args": []
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "audio",
+          "store_result": "cleanup_audio"
+        },
+        {
+          "type": "function",
+          "function_name": "load_sound_effect",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Sound"
+            },
+            {
+              "type": "string",
+              "value": "SwinGameStart.wav"
+            }
+          ],
+          "store_result": "test_sound"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sound_effect",
+          "store_result": "cleanup_sound_effect"
+        },
+        {
+          "type": "function",
+          "function_name": "play_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "stop_sound_effect",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sound"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "sound_effect_playing",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_sound"
+                }
+              ]
+            },
+            "value2": null
+          }
+        }
+      ]
+    }
+  ]
+}

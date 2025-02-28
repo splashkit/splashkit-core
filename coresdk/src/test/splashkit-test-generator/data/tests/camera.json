@@ -1,0 +1,2354 @@
+{
+  "group": "camera",
+  "cleanup": [
+    {
+      "cleanup_type": "window",
+      "function_name": "close_all_windows",
+      "args": []
+    },
+    {
+      "cleanup_type": "sprite",
+      "function_name": "free_all_sprites",
+      "args": []
+    },
+    {
+      "cleanup_type": "bitmap",
+      "function_name": "free_all_bitmaps",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "camera_position",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 1"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "camera_position",
+          "args": [],
+          "store_result": "test_camera_position"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_camera_position",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_camera_position",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "camera_x",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 2"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_x",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "camera_y",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 3"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 200.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 200.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_y",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "center_camera_on_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 4"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 1"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 1"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "center_camera_on_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "vector_from_angle",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 50.0
+                },
+                {
+                  "type": "double",
+                  "value": 50.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": -267.8606182336807
+                },
+                {
+                  "type": "double",
+                  "value": -161.69777810573578
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_position",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "center_camera_on",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 5"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 2"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "create_sprite",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap",
+              "value": "Test Sprite 2"
+            }
+          ],
+          "store_result": "test_sprite"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "sprite",
+          "store_result": "cleanup_sprite"
+        },
+        {
+          "type": "function",
+          "function_name": "sprite_set_position",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "center_camera_on",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_sprite"
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": -300.0
+                },
+                {
+                  "type": "double",
+                  "value": -200.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_position",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "move_camera_by_vector",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 6"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_from_angle",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_vector"
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_by_vector",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_vector"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_x",
+              "args": []
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 0.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_y",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "move_camera_by",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 7"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_by",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_x",
+              "args": []
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_y",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "move_camera_to_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 8"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to_point",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_position",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "move_camera_to",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 9"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_x",
+              "args": []
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_y",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "point_in_window",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 10"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ],
+          "store_result": "test_window"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 400.0
+            },
+            {
+              "type": "double",
+              "value": 300.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "point_in_window",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_window"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1000.0
+            },
+            {
+              "type": "double",
+              "value": 1000.0
+            }
+          ],
+          "store_result": "test_point_outside"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "point_in_window",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_window"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_point_outside"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "point_on_screen",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 11"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 400.0
+            },
+            {
+              "type": "double",
+              "value": 300.0
+            }
+          ],
+          "store_result": "test_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "point_on_screen",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_point"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "point_at",
+          "args": [
+            {
+              "type": "double",
+              "value": 1000.0
+            },
+            {
+              "type": "double",
+              "value": 1000.0
+            }
+          ],
+          "store_result": "test_point_outside"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "point_on_screen",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_point_outside"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rect_in_window",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 12"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ],
+          "store_result": "test_window"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "rect_in_window",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_window"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 1000.0
+            },
+            {
+              "type": "double",
+              "value": 1000.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle_outside"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "rect_in_window",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_window"
+                },
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle_outside"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rect_on_screen",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 13"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "rect_on_screen",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 1000.0
+            },
+            {
+              "type": "double",
+              "value": 1000.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "rect_on_screen",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_rectangle"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "screen_center",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 14"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "screen_center",
+          "args": [],
+          "store_result": "test_center"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 400.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_center",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 300.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_center",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "screen_rectangle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 15"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "screen_rectangle",
+          "args": [],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 800.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_rectangle",
+              "variable_field": "width"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 600.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_rectangle",
+              "variable_field": "height"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_camera_position",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 16"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_position",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_camera_x",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 17"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_x",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_camera_y",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 18"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 100.0
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "camera_y",
+              "args": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_screen_point",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 19"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_screen_point",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 150.0
+                },
+                {
+                  "type": "double",
+                  "value": 150.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_screen_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 50.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_screen_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 50.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_screen_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_screen_rectangle",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 20"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "rectangle_from",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 200.0
+            },
+            {
+              "type": "double",
+              "value": 200.0
+            }
+          ],
+          "store_result": "test_rectangle"
+        },
+        {
+          "type": "function",
+          "function_name": "to_screen_rectangle",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_rectangle"
+            }
+          ],
+          "store_result": "screen_rectangle"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "cast_to": "float",
+              "function_name": "to_screen_x",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "rectangle_left",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "screen_rectangle"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "cast_to": "float",
+              "function_name": "to_screen_y",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "rectangle_top",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "screen_rectangle"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_screen_x",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 21"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_screen_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            }
+          ],
+          "store_result": "test_screen_x"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 50.0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_screen_x"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_screen_y",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 22"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_screen_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 150.0
+            }
+          ],
+          "store_result": "test_screen_y"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 50.0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_screen_y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_world",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 23"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_world",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 400.0
+                },
+                {
+                  "type": "double",
+                  "value": 300.0
+                }
+              ]
+            }
+          ],
+          "store_result": "test_world_point"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 500.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_world_point",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 400.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_world_point",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_world_x",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 24"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_world_x",
+          "args": [
+            {
+              "type": "double",
+              "value": 400.0
+            }
+          ],
+          "store_result": "test_world_x"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 500.0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_world_x"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "to_world_y",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 25"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "set_camera_position",
+          "args": [
+            {
+              "type": "function",
+              "function_name": "point_at",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 100.0
+                },
+                {
+                  "type": "double",
+                  "value": 100.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "to_world_y",
+          "args": [
+            {
+              "type": "double",
+              "value": 300.0
+            }
+          ],
+          "store_result": "test_world_y"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 400.0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_world_y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "vector_world_to_screen",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "vector_world_to_screen",
+          "args": [],
+          "store_result": "test_vector1"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "function",
+              "function_name": "vector_from_angle",
+              "args": [
+                {
+                  "type": "double",
+                  "value": 0.0
+                },
+                {
+                  "type": "double",
+                  "value": 0.0
+                }
+              ]
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_vector1"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "move_camera_to",
+          "args": [
+            {
+              "type": "double",
+              "value": 100.0
+            },
+            {
+              "type": "double",
+              "value": 100.0
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "vector_world_to_screen",
+          "args": [],
+          "store_result": "test_vector2"
+        },
+        {
+          "type": "function",
+          "function_name": "vector_to",
+          "args": [
+            {
+              "type": "double",
+              "value": -100.0
+            },
+            {
+              "type": "double",
+              "value": -100.0
+            }
+          ],
+          "store_result": "test_vector_to"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "variable_field",
+              "variable_name": "test_vector_to",
+              "variable_field": "x"
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector2",
+              "variable_field": "x"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "variable_field",
+              "variable_name": "test_vector_to",
+              "variable_field": "y"
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_vector2",
+              "variable_field": "y"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "window_area",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "open_window",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Window 26"
+            },
+            {
+              "type": "int",
+              "value": 800
+            },
+            {
+              "type": "int",
+              "value": 600
+            }
+          ],
+          "store_result": "test_window"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "window",
+          "store_result": "cleanup_window"
+        },
+        {
+          "type": "function",
+          "function_name": "window_area",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_window"
+            }
+          ],
+          "store_result": "test_area"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 800.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_area",
+              "variable_field": "width"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 600.0
+            },
+            "value2": {
+              "type": "variable_field",
+              "variable_name": "test_area",
+              "variable_field": "height"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

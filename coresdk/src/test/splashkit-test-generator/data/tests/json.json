@@ -1,0 +1,2669 @@
+{
+  "group": "json",
+  "constructor": [
+    {
+      "type": "function",
+      "function_name": "set_resources_path",
+      "args": [
+        {
+          "type": "string",
+          "value": "set this value before running tests, use an absolute path"
+        }
+      ]
+    }
+  ],
+  "cleanup": [
+    {
+      "cleanup_type": "json",
+      "function_name": "free_all_json",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "create_json",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_json_from_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json_from_string",
+          "args": [
+            {
+              "type": "string",
+              "value": "{\\\"name\\\":\\\"John\\\",\\\"age\\\":30,\\\"city\\\":\\\"New York\\\"}"
+            }
+          ],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "John"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_all_json",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json2"
+        },
+
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            },
+            {
+              "type": "string",
+              "value": "key"
+            },
+            {
+              "type": "string",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            },
+            {
+              "type": "string",
+              "value": "key"
+            },
+            {
+              "type": "string",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_count_keys",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            }
+          ],
+          "store_result": "count1"
+        },
+        {
+          "type": "function",
+          "function_name": "json_count_keys",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            }
+          ],
+          "store_result": "count2"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "count1"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 1
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "count2"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "free_all_json",
+          "args": []
+        },
+        {
+          "type": "function",
+          "function_name": "write_line",
+          "args": [
+            {
+              "type": "string",
+              "value": "Should show Invalid json object passed to json_count_keys warning"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_count_keys",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            }
+          ],
+          "store_result": "count1_after_free"
+        },
+        {
+          "type": "function",
+          "function_name": "json_count_keys",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            }
+          ],
+          "store_result": "count2_after_free"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "count1_after_free"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 0
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "count2_after_free"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "free_json",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "key"
+            },
+            {
+              "type": "string",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "free_json",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_count_keys",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "key1"
+            },
+            {
+              "type": "string",
+              "value": "value1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_integer",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "key2"
+            },
+            {
+              "type": "int",
+              "value": 42
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_count_keys",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          ],
+          "store_result": "key_count"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 2
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "key_count"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_from_color",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "color_bright_green",
+          "args": [],
+          "store_result": "test_color"
+        },
+        {
+          "type": "function",
+          "function_name": "json_from_color",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_color"
+            }
+          ],
+          "store_result": "test_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "color"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "#00ff00ff"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "color"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_from_file",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "json_from_file",
+          "args": [
+            {
+              "type": "string",
+              "value": "person.json"
+            }
+          ],
+          "store_result": "test_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "firstName"
+            }
+          ],
+          "store_result": "test_value"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "John"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_value"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_from_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "json_from_string",
+          "args": [
+            {
+              "type": "string",
+              "value": "{\\\"name\\\":\\\"John\\\",\\\"age\\\":30,\\\"city\\\":\\\"New York\\\"}"
+            }
+          ],
+          "store_result": "test_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "John"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 30
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_number_as_int",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "age"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "New York"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "city"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_has_key",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "key1"
+            },
+            {
+              "type": "string",
+              "value": "value1"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "key1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "key2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_array_of_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "numbers"
+            },
+            {
+              "type": "list",
+              "target_type": "double",
+              "value": [
+                {
+                  "type": "double",
+                  "value": 1.1
+                },
+                {
+                  "type": "double",
+                  "value": 2.2
+                },
+                {
+                  "type": "double",
+                  "value": 3.3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "double",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "numbers"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 1.1
+            },
+            "value2": {
+              "type": "array_access",
+              "array_name": "out_result",
+              "index": 0
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 2.2
+            },
+            "value2": {
+              "type": "array_access",
+              "array_name": "out_result",
+              "index": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_array_of_json",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json1"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json2"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            },
+            {
+              "type": "string",
+              "value": "key1"
+            },
+            {
+              "type": "string",
+              "value": "value1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            },
+            {
+              "type": "string",
+              "value": "key2"
+            },
+            {
+              "type": "string",
+              "value": "value2"
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "test_json_array",
+          "target_type": "json",
+          "variable_type": "list",
+          "value": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_json",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "array_key"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_json_array"
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "json",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_json",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "array_key"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 2
+            },
+            "value2": {
+              "type": "size",
+              "variable_name": "out_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_array_of_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_array"
+            },
+            {
+              "type": "list",
+              "target_type": "string",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "item1"
+                },
+                {
+                  "type": "string",
+                  "value": "item2"
+                },
+                {
+                  "type": "string",
+                  "value": "item3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "string",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_array"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 3
+            },
+            "value2": {
+              "type": "size",
+              "variable_name": "out_result"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "item1"
+            },
+            "value2": {
+              "type": "array_access",
+              "array_name": "out_result",
+              "index": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_array_of_bool",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "list",
+              "target_type": "bool",
+              "value": [
+                {
+                  "type": "bool",
+                  "value": true
+                },
+                {
+                  "type": "bool",
+                  "value": false
+                },
+                {
+                  "type": "bool",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "bool",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 3
+            },
+            "value2": {
+              "type": "size",
+              "variable_name": "out_result"
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "array_access",
+              "array_name": "out_result",
+              "index": 0
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "array_access",
+              "array_name": "out_result",
+              "index": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_bool",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_read_bool",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "bool",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "function",
+              "function_name": "json_read_bool",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_number",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_float",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "float",
+              "value": 42.5
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_number",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            }
+          ],
+          "store_result": "test_result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 42.5
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_number_as_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "double",
+              "value": 3.14
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_number_as_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            }
+          ],
+          "store_result": "test_result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.14
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_number_as_int",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_integer",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "int",
+              "value": 42
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_number_as_int",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            }
+          ],
+          "store_result": "test_result"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 42
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_object",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "nested_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "nested_json"
+            },
+            {
+              "type": "string",
+              "value": "test"
+            },
+            {
+              "type": "string",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_object",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "nestedObject"
+            },
+            {
+              "type": "variable",
+              "variable_name": "nested_json"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_object",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "nestedObject"
+            }
+          ],
+          "store_result": "read_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_null",
+            "value1": {
+              "type": "variable",
+              "variable_name": "read_json"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_read_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "string",
+              "value": "test_value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            }
+          ],
+          "store_result": "read_value"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "test_value"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "read_value"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_array_of_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "list",
+              "target_type": "string",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "value1"
+                },
+                {
+                  "type": "string",
+                  "value": "value2"
+                },
+                {
+                  "type": "string",
+                  "value": "value3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "string",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "list",
+              "target_type": "string",
+              "value": [
+                {
+                  "type": "string",
+                  "value": "value1"
+                },
+                {
+                  "type": "string",
+                  "value": "value2"
+                },
+                {
+                  "type": "string",
+                  "value": "value3"
+                }
+              ]
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "out_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_array_of_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "numbers"
+            },
+            {
+              "type": "list",
+              "target_type": "double",
+              "value": [
+                {
+                  "type": "double",
+                  "value": 1.1
+                },
+                {
+                  "type": "double",
+                  "value": 2.2
+                },
+                {
+                  "type": "double",
+                  "value": 3.3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "double",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "numbers"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "list",
+              "target_type": "double",
+              "value": [
+                {
+                  "type": "double",
+                  "value": 1.1
+                },
+                {
+                  "type": "double",
+                  "value": 2.2
+                },
+                {
+                  "type": "double",
+                  "value": 3.3
+                }
+              ]
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "out_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_array_of_bool",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "list",
+              "target_type": "bool",
+              "value": [
+                {
+                  "type": "bool",
+                  "value": true
+                },
+                {
+                  "type": "bool",
+                  "value": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "target_type": "bool",
+          "variable_type": "list",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "list",
+              "target_type": "bool",
+              "value": [
+                {
+                  "type": "bool",
+                  "value": true
+                },
+                {
+                  "type": "bool",
+                  "value": false
+                }
+              ]
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "out_result"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_array_of_json",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json1"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json2"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            },
+            {
+              "type": "string",
+              "value": "key1"
+            },
+            {
+              "type": "string",
+              "value": "value1"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            },
+            {
+              "type": "string",
+              "value": "key2"
+            },
+            {
+              "type": "string",
+              "value": "value2"
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "test_json_array",
+          "variable_type": "list",
+          "target_type": "json",
+          "value": [
+            {
+              "type": "variable",
+              "variable_name": "test_json1"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_json2"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_array_of_json",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "array_key"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_json_array"
+            }
+          ]
+        },
+        {
+          "type": "variable",
+          "variable_name": "out_result",
+          "variable_type": "list",
+          "target_type": "json",
+          "value": [],
+          "is_mutable": true
+        },
+        {
+          "type": "function",
+          "function_name": "json_read_array_of_json",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "array_key"
+            },
+            {
+              "type": "ref",
+              "variable_name": "out_result"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "value1"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "array_access",
+                  "array_name": "out_result",
+                  "index": 0
+                },
+                {
+                  "type": "string",
+                  "value": "key1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "value2"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "array_access",
+                  "array_name": "out_result",
+                  "index": 1
+                },
+                {
+                  "type": "string",
+                  "value": "key2"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_bool",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_bool",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_read_bool",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_number_integer",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_integer",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "age"
+            },
+            {
+              "type": "int",
+              "value": 30
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "int",
+              "value": 30
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_number_as_int",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "age"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_number_double",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_double",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "double",
+              "value": 3.14
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.14
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_number_as_double",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_number_float",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_number_float",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "float",
+              "value": 3.14
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "double",
+              "value": 3.140000104904175
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_number",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_object",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_nested_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_object",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "nested"
+            },
+            {
+              "type": "variable",
+              "variable_name": "test_nested_json"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "function",
+              "function_name": "json_has_key",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "nested"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_set_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test_key"
+            },
+            {
+              "type": "string",
+              "value": "test_value"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "test_value"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_json"
+                },
+                {
+                  "type": "string",
+                  "value": "test_key"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_to_color",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "color"
+            },
+            {
+              "type": "string",
+              "value": "#ff0000ff"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_to_color",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          ],
+          "store_result": "test_color"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "#ff0000ff"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "color_to_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "test_color"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_to_file",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "testKey"
+            },
+            {
+              "type": "string",
+              "value": "testValue"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_to_file",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "test.json"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_from_file",
+          "args": [
+            {
+              "type": "string",
+              "value": "test.json"
+            }
+          ],
+          "store_result": "loaded_json"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "testValue"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "json_read_string",
+              "args": [
+                {
+                  "type": "variable",
+                  "variable_name": "loaded_json"
+                },
+                {
+                  "type": "string",
+                  "value": "testKey"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "json_to_string",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "create_json",
+          "args": [],
+          "store_result": "test_json"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "json",
+          "store_result": "cleanup_json"
+        },
+        {
+          "type": "function",
+          "function_name": "json_set_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            },
+            {
+              "type": "string",
+              "value": "key"
+            },
+            {
+              "type": "string",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "json_to_string",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_json"
+            }
+          ],
+          "store_result": "test_json_string"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_equal",
+            "value1": {
+              "type": "string",
+              "value": ""
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "test_json_string"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

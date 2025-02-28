@@ -92,3 +92,38 @@ out/skm
 out/lib/
 tools/scripts/nuget-pkg/obj
 tools/scripts/test/obj
+
+
+### Test Generator Specific ###
+# Generated test directories
+**/splashkit-test-generator/**/bin
+**/splashkit-test-generator/**/obj
+**/splashkit-test-generator/**/target
+**/splashkit-test-generator/**/output
+**/splashkit-test-generator/**/logs
+**/splashkit-test-generator/**/.cargo
+**/splashkit-test-generator/**/TestResults
+**/splashkit-test-generator/**/.pytest_cache
+**/splashkit-test-generator/**/target
+**/splashkit-test-generator/**/build
+**/splashkit-test-generator/**/*.dylib
+**/splashkit-test-generator/**/*.dll
+**/splashkit-test-generator/**/*.so
+**/generated_tests/**/tests
+
+# Generated test files
+**/splashkit-test-generator/**/test
+splashkit_test.*
+test_main*
+!test_main.pas
+!test_main.cpp
+link*res
+lib.rs
+
+### Language Specific ###
+*.o
+*.ppu
+*.log
+__pycache__
+.pytest_cache
+splashkit_test_generator.sln

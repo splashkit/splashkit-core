@@ -1,0 +1,439 @@
+{
+  "group": "resources",
+  "cleanup": [
+    {
+      "cleanup_type": "bitmap",
+      "function_name": "free_all_bitmaps",
+      "args": []
+    }
+  ],
+  "tests": [
+    {
+      "name": "deregister_free_notifier",
+      "steps": [
+        {
+          "type": "variable",
+          "variable_type": "class_instance",
+          "variable_name": "free_notifier",
+          "class_name": "notifier_tracker",
+          "args": []
+        },
+        {
+          "type": "function",
+          "function_name": "register_free_notifier",
+          "args": [
+            {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "on_free"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 1"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap1"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "free_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap1"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "was_notified"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "deregister_free_notifier",
+          "args": [
+            {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "on_free"
+            }
+          ]
+        },
+        {
+          "type": "method_call",
+          "variable_name": "free_notifier",
+          "method_name": "reset"
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 2"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap2"
+        },
+        {
+          "type": "function",
+          "function_name": "free_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap2"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "false",
+            "value1": {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "was_notified"
+            },
+            "value2": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "path_to_resource",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "set_resources_path",
+          "args": [
+            {
+              "type": "string",
+              "value": "resources"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "path_to_resource",
+          "args": [
+            {
+              "type": "string",
+              "value": "test_image.png"
+            },
+            {
+              "type": "enum",
+              "enum_type": "resource_kind",
+              "value": "image_resource"
+            }
+          ],
+          "store_result": "image_path"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "resources/images/test_image.png"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "image_path"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "path_to_resources",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "path_to_resources",
+          "args": [],
+          "store_result": "resource_path"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "not_empty",
+            "value1": {
+              "type": "variable",
+              "variable_name": "resource_path"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "set_resources_path",
+          "args": [
+            {
+              "type": "string",
+              "value": "/new/resources"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "path_to_resources",
+          "args": [],
+          "store_result": "new_resource_path"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "/new/resources"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "new_resource_path"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "path_to_resources_for_kind",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "set_resources_path",
+          "args": [
+            {
+              "type": "string",
+              "value": "resources"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "path_to_resources_for_kind",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "resource_kind",
+              "value": "image_resource"
+            }
+          ],
+          "store_result": "image_path"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "resources/images/"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "image_path"
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "path_to_resources_for_kind",
+          "args": [
+            {
+              "type": "enum",
+              "enum_type": "resource_kind",
+              "value": "sound_resource"
+            }
+          ],
+          "store_result": "sound_path"
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "resources/sounds/"
+            },
+            "value2": {
+              "type": "variable",
+              "variable_name": "sound_path"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "register_free_notifier",
+      "steps": [
+        {
+          "type": "variable",
+          "variable_type": "class_instance",
+          "variable_name": "free_notifier",
+          "class_name": "notifier_tracker",
+          "args": []
+        },
+        {
+          "type": "function",
+          "function_name": "register_free_notifier",
+          "args": [
+            {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "on_free"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "function_name": "create_bitmap",
+          "args": [
+            {
+              "type": "string",
+              "value": "Test Bitmap 3"
+            },
+            {
+              "type": "int",
+              "value": 100
+            },
+            {
+              "type": "int",
+              "value": 100
+            }
+          ],
+          "store_result": "test_bitmap"
+        },
+        {
+          "type": "cleanup",
+          "args": [],
+          "cleanup_type": "bitmap",
+          "store_result": "cleanup_bitmap"
+        },
+        {
+          "type": "function",
+          "function_name": "free_bitmap",
+          "args": [
+            {
+              "type": "variable",
+              "variable_name": "test_bitmap"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "true",
+            "value1": {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "was_notified"
+            },
+            "value2": null
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "deregister_free_notifier",
+          "args": [
+            {
+              "type": "method_call",
+              "variable_name": "free_notifier",
+              "method_name": "on_free"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "set_resources_path",
+      "steps": [
+        {
+          "type": "function",
+          "function_name": "set_resources_path",
+          "args": [
+            {
+              "type": "string",
+              "value": "/resources"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "/resources"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "path_to_resources",
+              "args": []
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function_name": "set_resources_path",
+          "args": [
+            {
+              "type": "string",
+              "value": "/new/resources"
+            }
+          ]
+        },
+        {
+          "type": "assertion",
+          "compare": {
+            "compare_type": "equal",
+            "value1": {
+              "type": "string",
+              "value": "/new/resources"
+            },
+            "value2": {
+              "type": "function",
+              "function_name": "path_to_resources",
+              "args": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
