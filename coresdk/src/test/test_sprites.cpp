@@ -16,8 +16,6 @@
 #include <iostream>
 #include <vector>
 
-constexpr int COLLISION_INDICATOR_WIDTH = 4;
-
 using namespace splashkit_lib;
 
 enum class object_type
@@ -465,6 +463,7 @@ rectangle _object_AABB(const quad& obj)
 template <typename T1, typename T2>
 void resolve_and_draw(T1& collider, const T2& collidee, const vector_2d& direction)
 {
+    constexpr int COLLISION_INDICATOR_WIDTH = 4;
     if (is_zero_vector(direction))
     {
         return;
