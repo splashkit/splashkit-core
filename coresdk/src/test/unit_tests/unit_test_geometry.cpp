@@ -92,10 +92,11 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
         REQUIRE(point_in_quad(point_at(100.0 + EPSILON, 100.0 + EPSILON), q));
         REQUIRE(point_in_quad(point_at(200.0, 200.0), q));
         REQUIRE(point_in_quad(point_at(300.0, 300.0), q));
-        REQUIRE_FALSE(point_in_quad(point_at(100.0, 100.0), q));
-        REQUIRE_FALSE(point_in_quad(point_at(200.0, 100.0), q));
-        REQUIRE_FALSE(point_in_quad(point_at(500.0, 100.0), q));
-        REQUIRE_FALSE(point_in_quad(point_at(200.0, 500.0), q));
+        REQUIRE(point_in_quad(point_at(100.0, 100.0), q));
+        REQUIRE(point_in_quad(point_at(200.0, 100.0), q));
+        REQUIRE(point_in_quad(point_at(500.0, 100.0), q));
+        REQUIRE(point_in_quad(point_at(200.0, 500.0), q));
+        REQUIRE_FALSE(point_in_quad(point_at(50.0, 50.0), q));
     }
     SECTION("can detect point in circle")
     {

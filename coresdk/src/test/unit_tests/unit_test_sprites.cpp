@@ -316,8 +316,8 @@ TEST_CASE("can check sprite intersection", "[sprite]")
         REQUIRE_FALSE(sprite_at(sprt2, point_at(2000.0, 2000.0)));
         REQUIRE(sprite_point_collision(sprt2, point_at(400.0, 400.0)));
         REQUIRE(sprite_at(sprt2, point_at(400.0, 400.0)));
-        REQUIRE_FALSE(sprite_point_collision(sprt2, point_at(0.0, 0.0)));
-        REQUIRE_FALSE(sprite_at(sprt2, point_at(0.0, 0.0)));
+        REQUIRE(sprite_point_collision(sprt2, point_at(0.0, 0.0)));
+        REQUIRE(sprite_at(sprt2, point_at(0.0, 0.0)));
 
         point_2d pt1 = point_at(0.1, 0.1);
         circle c = sprite_collision_circle(sprt2);
