@@ -74,7 +74,7 @@ namespace splashkit_lib
         return static_cast<int>(pos);
     }
 
-    string replace_all(const string &text, const string &substr, const string &replacement)
+    string replace_all(const string &text, const string &substr, const string &new_text)
     {
         if (substr.empty())
             return text;
@@ -83,8 +83,8 @@ namespace splashkit_lib
         size_t pos = 0;
         while ((pos = result.find(substr, pos)) != string::npos)
         {
-            result.replace(pos, substr.length(), replacement);
-            pos += replacement.length();
+            result.replace(pos, substr.length(), new_text);
+            pos += new_text.length();
         }
         return result;
     }

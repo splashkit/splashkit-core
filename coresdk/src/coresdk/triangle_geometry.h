@@ -23,7 +23,7 @@ namespace splashkit_lib
      * @param  y3 The y coordinate for the third point
      * @return    A triangle at the indicated points
      *
-     * @attribute suffix  _from_coordinates
+     * @attribute suffix  coordinates
      */
     triangle triangle_from(double x1, double y1, double x2, double y2, double x3, double y3);
 

@@ -257,726 +257,726 @@ namespace splashkit_lib
 
     color color_gray()
     {
-        return rgba_color(0.5f, 0.5f, 0.5f, 1.0f);
+        return rgba_color(127/255.0, 127/255.0, 127/255.0, 1.0);
     }
 
     color color_light_grey()
     {
-        return rgba_color(0.784313f, 0.784313f, 0.784313f, 1.0f);
+        return rgba_color(200/255.0, 200/255.0, 200/255.0, 1.0);
     }
 
     color color_transparent()
     {
-        return rgba_color(1.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(255/255.0, 255/255.0, 255/255.0, 1.0);
     }
 
     color color_alice_blue()
     {
-        return rgba_color(240 / 255.0f, 248 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(240/255.0, 248/255.0, 255/255.0, 1.0);
     }
 
     color color_antique_white()
     {
-        return rgba_color(250 / 255.0f, 235 / 255.0f, 215 / 255.0f, 1.0f);
+        return rgba_color(250/255.0, 235/255.0, 215/255.0, 1.0);
     }
 
     color color_aqua()
     {
-        return rgba_color(0 / 255.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(0/255.0, 255/255.0, 255/255.0, 1.0);
     }
 
     color color_aquamarine()
     {
-        return rgba_color(127 / 255.0f, 1.0f, 212 / 255.0f, 1.0f);
+        return rgba_color(127/255.0, 255/255.0, 212/255.0, 1.0);
     }
 
     color color_azure()
     {
-        return rgba_color(240 / 255.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(240/255.0, 255/255.0, 255/255.0, 1.0);
     }
 
     color color_beige()
     {
-        return rgba_color(245 / 255.0f, 245 / 255.0f, 220 / 255.0f, 1.0f);
+        return rgba_color(245/255.0, 245/255.0, 220/255.0, 1.0);
     }
 
     color color_bisque()
     {
-        return rgba_color(1.0f, 228 / 255.0f, 196 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 228/255.0, 196/255.0, 1.0);
     }
 
     color color_black()
     {
-        return rgba_color(0 / 255.0f, 0 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 0/255.0, 0/255.0, 1.0);
     }
 
     color color_blanched_almond()
     {
-        return rgba_color(1.0f, 235 / 255.0f, 205 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 235/255.0, 205/255.0, 1.0);
     }
 
     color color_blue()
     {
-        return rgba_color(0 / 255.0f, 0 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(0/255.0, 0/255.0, 255/255.0, 1.0);
     }
 
     color color_blue_violet()
     {
-        return rgba_color(138 / 255.0f, 43 / 255.0f, 226 / 255.0f, 1.0f);
+        return rgba_color(138/255.0, 43/255.0, 226/255.0, 1.0);
     }
 
     color color_brown()
     {
-        return rgba_color(165 / 255.0f, 42 / 255.0f, 42 / 255.0f, 1.0f);
+        return rgba_color(165/255.0, 42/255.0, 42/255.0, 1.0);
     }
 
     color color_burly_wood()
     {
-        return rgba_color(222 / 255.0f, 184 / 255.0f, 135 / 255.0f, 1.0f);
+        return rgba_color(222/255.0, 184/255.0, 135/255.0, 1.0);
     }
 
     color color_cadet_blue()
     {
-        return rgba_color(95 / 255.0f, 158 / 255.0f, 160 / 255.0f, 1.0f);
+        return rgba_color(95/255.0, 158/255.0, 160/255.0, 1.0);
     }
 
     color color_chartreuse()
     {
-        return rgba_color(127 / 255.0f, 1.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(127/255.0, 255/255.0, 0/255.0, 1.0);
     }
 
     color color_chocolate()
     {
-        return rgba_color(210 / 255.0f, 105 / 255.0f, 30 / 255.0f, 1.0f);
+        return rgba_color(210/255.0, 105/255.0, 30/255.0, 1.0);
     }
 
     color color_coral()
     {
-        return rgba_color(1.0f, 127 / 255.0f, 80 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 127/255.0, 80/255.0, 1.0);
     }
 
     color color_cornflower_blue()
     {
-        return rgba_color(100 / 255.0f, 149 / 255.0f, 237 / 255.0f, 1.0f);
+        return rgba_color(100/255.0, 149/255.0, 237/255.0, 1.0);
     }
 
     color color_cornsilk()
     {
-        return rgba_color(1.0f, 248 / 255.0f, 220 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 248/255.0, 220/255.0, 1.0);
     }
 
     color color_crimson()
     {
-        return rgba_color(220 / 255.0f, 20 / 255.0f, 60 / 255.0f, 1.0f);
+        return rgba_color(220/255.0, 20/255.0, 60/255.0, 1.0);
     }
 
     color color_cyan()
     {
-        return rgba_color(0 / 255.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(0/255.0, 255/255.0, 255/255.0, 1.0);
     }
 
     color color_dark_blue()
     {
-        return rgba_color(0 / 255.0f, 0 / 255.0f, 139 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 0/255.0, 139/255.0, 1.0);
     }
 
     color color_dark_cyan()
     {
-        return rgba_color(0 / 255.0f, 139 / 255.0f, 139 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 139/255.0, 139/255.0, 1.0);
     }
 
     color color_dark_goldenrod()
     {
-        return rgba_color(184 / 255.0f, 134 / 255.0f, 11 / 255.0f, 1.0f);
+        return rgba_color(184/255.0, 134/255.0, 11/255.0, 1.0);
     }
 
     color color_dark_gray()
     {
-        return rgba_color(169 / 255.0f, 169 / 255.0f, 169 / 255.0f, 1.0f);
+        return rgba_color(169/255.0, 169/255.0, 169/255.0, 1.0);
     }
 
     color color_dark_green()
     {
-        return rgba_color(0 / 255.0f, 100 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 100/255.0, 0/255.0, 1.0);
     }
 
     color color_dark_khaki()
     {
-        return rgba_color(189 / 255.0f, 183 / 255.0f, 107 / 255.0f, 1.0f);
+        return rgba_color(189/255.0, 183/255.0, 107/255.0, 1.0);
     }
 
     color color_dark_magenta()
     {
-        return rgba_color(139 / 255.0f, 0 / 255.0f, 139 / 255.0f, 1.0f);
+        return rgba_color(139/255.0, 0/255.0, 139/255.0, 1.0);
     }
 
     color color_dark_olive_green()
     {
-        return rgba_color(85 / 255.0f, 107 / 255.0f, 47 / 255.0f, 1.0f);
+        return rgba_color(85/255.0, 107/255.0, 47/255.0, 1.0);
     }
 
     color color_dark_orange()
     {
-        return rgba_color(1.0f, 140 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 140/255.0, 0/255.0, 1.0);
     }
 
     color color_dark_orchid()
     {
-        return rgba_color(153 / 255.0f, 50 / 255.0f, 204 / 255.0f, 1.0f);
+        return rgba_color(153/255.0, 50/255.0, 204/255.0, 1.0);
     }
 
     color color_dark_red()
     {
-        return rgba_color(139 / 255.0f, 0 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(139/255.0, 0/255.0, 0/255.0, 1.0);
     }
 
     color color_dark_salmon()
     {
-        return rgba_color(233 / 255.0f, 150 / 255.0f, 122 / 255.0f, 1.0f);
+        return rgba_color(233/255.0, 150/255.0, 122/255.0, 1.0);
     }
 
     color color_dark_sea_green()
     {
-        return rgba_color(143 / 255.0f, 188 / 255.0f, 139 / 255.0f, 1.0f);
+        return rgba_color(143/255.0, 188/255.0, 139/255.0, 1.0);
     }
 
     color color_dark_slate_blue()
     {
-        return rgba_color(72 / 255.0f, 61 / 255.0f, 139 / 255.0f, 1.0f);
+        return rgba_color(72/255.0, 61/255.0, 139/255.0, 1.0);
     }
 
     color color_dark_slate_gray()
     {
-        return rgba_color(47 / 255.0f, 79 / 255.0f, 79 / 255.0f, 1.0f);
+        return rgba_color(47/255.0, 79/255.0, 79/255.0, 1.0);
     }
 
     color color_dark_turquoise()
     {
-        return rgba_color(0 / 255.0f, 206 / 255.0f, 209 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 206/255.0, 209/255.0, 1.0);
     }
 
     color color_dark_violet()
     {
-        return rgba_color(148 / 255.0f, 0 / 255.0f, 211 / 255.0f, 1.0f);
+        return rgba_color(148/255.0, 0/255.0, 211/255.0, 1.0);
     }
 
     color color_deep_pink()
     {
-        return rgba_color(1.0f, 20 / 255.0f, 147 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 20/255.0, 147/255.0, 1.0);
     }
 
     color color_deep_sky_blue()
     {
-        return rgba_color(0 / 255.0f, 191 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(0/255.0, 191/255.0, 255/255.0, 1.0);
     }
 
     color color_dim_gray()
     {
-        return rgba_color(105 / 255.0f, 105 / 255.0f, 105 / 255.0f, 1.0f);
+        return rgba_color(105/255.0, 105/255.0, 105/255.0, 1.0);
     }
 
     color color_dodger_blue()
     {
-        return rgba_color(30 / 255.0f, 144 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(30/255.0, 144/255.0, 255/255.0, 1.0);
     }
 
     color color_firebrick()
     {
-        return rgba_color(178 / 255.0f, 34 / 255.0f, 34 / 255.0f, 1.0f);
+        return rgba_color(178/255.0, 34/255.0, 34/255.0, 1.0);
     }
 
     color color_floral_white()
     {
-        return rgba_color(1.0f, 250 / 255.0f, 240 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 250/255.0, 240/255.0, 1.0);
     }
 
     color color_forest_green()
     {
-        return rgba_color(34 / 255.0f, 139 / 255.0f, 34 / 255.0f, 1.0f);
+        return rgba_color(34/255.0, 139/255.0, 34/255.0, 1.0);
     }
 
     color color_fuchsia()
     {
-        return rgba_color(1.0f, 0 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(255/255.0, 0/255.0, 255/255.0, 1.0);
     }
 
     color color_gainsboro()
     {
-        return rgba_color(220 / 255.0f, 220 / 255.0f, 220 / 255.0f, 1.0f);
+        return rgba_color(220/255.0, 220/255.0, 220/255.0, 1.0);
     }
 
     color color_ghost_white()
     {
-        return rgba_color(248 / 255.0f, 248 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(248/255.0, 248/255.0, 255/255.0, 1.0);
     }
 
     color color_gold()
     {
-        return rgba_color(1.0f, 215 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 215/255.0, 0/255.0, 1.0);
     }
 
     color color_goldenrod()
     {
-        return rgba_color(218 / 255.0f, 165 / 255.0f, 32 / 255.0f, 1.0f);
+        return rgba_color(218/255.0, 165/255.0, 32/255.0, 1.0);
     }
 
     color color_grey()
     {
-        return rgba_color(0.5f, 0.5f, 0.5f, 1.0f);
+        return rgba_color(127/255.0, 127/255.0, 127/255.0, 1.0);
     }
 
     color color_green()
     {
-        return rgba_color(0 / 255.0f, 0.5f, 0 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 127/255.0, 0/255.0, 1.0);
     }
 
     color color_bright_green()
     {
-        return rgba_color(0 / 255.0f, 1.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 255/255.0, 0/255.0, 1.0);
     }
 
     color color_green_yellow()
     {
-        return rgba_color(173 / 255.0f, 1.0f, 47 / 255.0f, 1.0f);
+        return rgba_color(173/255.0, 255/255.0, 47/255.0, 1.0);
     }
 
     color color_honeydew()
     {
-        return rgba_color(240 / 255.0f, 1.0f, 240 / 255.0f, 1.0f);
+        return rgba_color(240/255.0, 255/255.0, 240/255.0, 1.0);
     }
 
     color color_hot_pink()
     {
-        return rgba_color(1.0f, 105 / 255.0f, 180 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 105/255.0, 180/255.0, 1.0);
     }
 
     color color_indian_red()
     {
-        return rgba_color(205 / 255.0f, 92 / 255.0f, 92 / 255.0f, 1.0f);
+        return rgba_color(205/255.0, 92/255.0, 92/255.0, 1.0);
     }
 
     color color_indigo()
     {
-        return rgba_color(75 / 255.0f, 0 / 255.0f, 130 / 255.0f, 1.0f);
+        return rgba_color(75/255.0, 0/255.0, 130/255.0, 1.0);
     }
 
     color color_ivory()
     {
-        return rgba_color(1.0f, 1.0f, 240 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 255/255.0, 240/255.0, 1.0);
     }
 
     color color_khaki()
     {
-        return rgba_color(240 / 255.0f, 230 / 255.0f, 140 / 255.0f, 1.0f);
+        return rgba_color(240/255.0, 230/255.0, 140/255.0, 1.0);
     }
 
     color color_lavender()
     {
-        return rgba_color(230 / 255.0f, 230 / 255.0f, 250 / 255.0f, 1.0f);
+        return rgba_color(230/255.0, 230/255.0, 250/255.0, 1.0);
     }
 
     color color_lavender_blush()
     {
-        return rgba_color(1.0f, 240 / 255.0f, 245 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 240/255.0, 245/255.0, 1.0);
     }
 
     color color_lawn_green()
     {
-        return rgba_color(124 / 255.0f, 252 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(124/255.0, 252/255.0, 0/255.0, 1.0);
     }
 
     color color_lemon_chiffon()
     {
-        return rgba_color(1.0f, 250 / 255.0f, 205 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 250/255.0, 205/255.0, 1.0);
     }
 
     color color_light_blue()
     {
-        return rgba_color(173 / 255.0f, 216 / 255.0f, 230 / 255.0f, 1.0f);
+        return rgba_color(173/255.0, 216/255.0, 230/255.0, 1.0);
     }
 
     color color_light_coral()
     {
-        return rgba_color(240 / 255.0f, 0.5f, 0.5f, 1.0f);
+        return rgba_color(240/255.0, 127/255.0, 127/255.0, 1.0);
     }
 
     color color_light_cyan()
     {
-        return rgba_color(224 / 255.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(224/255.0, 255/255.0, 255/255.0, 1.0);
     }
 
     color color_light_goldenrod_yellow()
     {
-        return rgba_color(250 / 255.0f, 250 / 255.0f, 210 / 255.0f, 1.0f);
+        return rgba_color(250/255.0, 250/255.0, 210/255.0, 1.0);
     }
 
     color color_light_green()
     {
-        return rgba_color(144 / 255.0f, 238 / 255.0f, 144 / 255.0f, 1.0f);
+        return rgba_color(144/255.0, 238/255.0, 144/255.0, 1.0);
     }
 
     color color_light_gray()
     {
-        return rgba_color(211 / 255.0f, 211 / 255.0f, 211 / 255.0f, 1.0f);
+        return rgba_color(211/255.0, 211/255.0, 211/255.0, 1.0);
     }
 
     color color_light_pink()
     {
-        return rgba_color(1.0f, 182 / 255.0f, 193 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 182/255.0, 193/255.0, 1.0);
     }
 
     color color_light_salmon()
     {
-        return rgba_color(1.0f, 160 / 255.0f, 122 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 160/255.0, 122/255.0, 1.0);
     }
 
     color color_light_sea_green()
     {
-        return rgba_color(32 / 255.0f, 178 / 255.0f, 170 / 255.0f, 1.0f);
+        return rgba_color(32/255.0, 178/255.0, 170/255.0, 1.0);
     }
 
     color color_light_sky_blue()
     {
-        return rgba_color(135 / 255.0f, 206 / 255.0f, 250 / 255.0f, 1.0f);
+        return rgba_color(135/255.0, 206/255.0, 250/255.0, 1.0);
     }
 
     color color_light_slate_gray()
     {
-        return rgba_color(119 / 255.0f, 136 / 255.0f, 153 / 255.0f, 1.0f);
+        return rgba_color(119/255.0, 136/255.0, 153/255.0, 1.0);
     }
 
     color color_light_steel_blue()
     {
-        return rgba_color(176 / 255.0f, 196 / 255.0f, 222 / 255.0f, 1.0f);
+        return rgba_color(176/255.0, 196/255.0, 222/255.0, 1.0);
     }
 
     color color_light_yellow()
     {
-        return rgba_color(1.0f, 1.0f, 224 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 255/255.0, 224/255.0, 1.0);
     }
 
     color color_lime()
     {
-        return rgba_color(0 / 255.0f, 1.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 255/255.0, 0/255.0, 1.0);
     }
 
     color color_lime_green()
     {
-        return rgba_color(50 / 255.0f, 205 / 255.0f, 50 / 255.0f, 1.0f);
+        return rgba_color(50/255.0, 205/255.0, 50/255.0, 1.0);
     }
 
     color color_linen()
     {
-        return rgba_color(250 / 255.0f, 240 / 255.0f, 230 / 255.0f, 1.0f);
+        return rgba_color(250/255.0, 240/255.0, 230/255.0, 1.0);
     }
 
     color color_magenta()
     {
-        return rgba_color(1.0f, 0 / 255.0f, 1.0f, 1.0f);
+        return rgba_color(255/255.0, 0/255.0, 255/255.0, 1.0);
     }
 
     color color_maroon()
     {
-        return rgba_color(0.5f, 0 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(127/255.0, 0/255.0, 0/255.0, 1.0);
     }
 
     color color_medium_aquamarine()
     {
-        return rgba_color(102 / 255.0f, 205 / 255.0f, 170 / 255.0f, 1.0f);
+        return rgba_color(102/255.0, 205/255.0, 170/255.0, 1.0);
     }
 
     color color_medium_blue()
     {
-        return rgba_color(0 / 255.0f, 0 / 255.0f, 205 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 0/255.0, 205/255.0, 1.0);
     }
 
     color color_medium_orchid()
     {
-        return rgba_color(186 / 255.0f, 85 / 255.0f, 211 / 255.0f, 1.0f);
+        return rgba_color(186/255.0, 85/255.0, 211/255.0, 1.0);
     }
 
     color color_medium_purple()
     {
-        return rgba_color(147 / 255.0f, 112 / 255.0f, 219 / 255.0f, 1.0f);
+        return rgba_color(147/255.0, 112/255.0, 219/255.0, 1.0);
     }
 
     color color_medium_sea_green()
     {
-        return rgba_color(60 / 255.0f, 179 / 255.0f, 113 / 255.0f, 1.0f);
+        return rgba_color(60/255.0, 179/255.0, 113/255.0, 1.0);
     }
 
     color color_medium_slate_blue()
     {
-        return rgba_color(123 / 255.0f, 104 / 255.0f, 238 / 255.0f, 1.0f);
+        return rgba_color(123/255.0, 104/255.0, 238/255.0, 1.0);
     }
 
     color color_medium_spring_green()
     {
-        return rgba_color(0 / 255.0f, 250 / 255.0f, 154 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 250/255.0, 154/255.0, 1.0);
     }
 
     color color_medium_turquoise()
     {
-        return rgba_color(72 / 255.0f, 209 / 255.0f, 204 / 255.0f, 1.0f);
+        return rgba_color(72/255.0, 209/255.0, 204/255.0, 1.0);
     }
 
     color color_medium_violet_red()
     {
-        return rgba_color(199 / 255.0f, 21 / 255.0f, 133 / 255.0f, 1.0f);
+        return rgba_color(199/255.0, 21/255.0, 133/255.0, 1.0);
     }
 
     color color_midnight_blue()
     {
-        return rgba_color(25 / 255.0f, 25 / 255.0f, 112 / 255.0f, 1.0f);
+        return rgba_color(25/255.0, 25/255.0, 112/255.0, 1.0);
     }
 
     color color_mint_cream()
     {
-        return rgba_color(245 / 255.0f, 1.0f, 250 / 255.0f, 1.0f);
+        return rgba_color(245/255.0, 255/255.0, 250/255.0, 1.0);
     }
 
     color color_misty_rose()
     {
-        return rgba_color(1.0f, 228 / 255.0f, 225 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 228/255.0, 225/255.0, 1.0);
     }
 
     color color_moccasin()
     {
-        return rgba_color(1.0f, 228 / 255.0f, 181 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 228/255.0, 181/255.0, 1.0);
     }
 
     color color_navajo_white()
     {
-        return rgba_color(1.0f, 222 / 255.0f, 173 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 222/255.0, 173/255.0, 1.0);
     }
 
     color color_navy()
     {
-        return rgba_color(0 / 255.0f, 0 / 255.0f, 0.5f, 1.0f);
+        return rgba_color(0/255.0, 0/255.0, 127/255.0, 1.0);
     }
 
     color color_old_lace()
     {
-        return rgba_color(253 / 255.0f, 245 / 255.0f, 230 / 255.0f, 1.0f);
+        return rgba_color(253/255.0, 245/255.0, 230/255.0, 1.0);
     }
 
     color color_olive()
     {
-        return rgba_color(0.5f, 0.5f, 0 / 255.0f, 1.0f);
+        return rgba_color(127/255.0, 127/255.0, 0/255.0, 1.0);
     }
 
     color color_olive_drab()
     {
-        return rgba_color(107 / 255.0f, 142 / 255.0f, 35 / 255.0f, 1.0f);
+        return rgba_color(107/255.0, 142/255.0, 35/255.0, 1.0);
     }
 
     color color_orange()
     {
-        return rgba_color(1.0f, 165 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 165/255.0, 0/255.0, 1.0);
     }
 
     color color_orange_red()
     {
-        return rgba_color(1.0f, 69 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 69/255.0, 0/255.0, 1.0);
     }
 
     color color_orchid()
     {
-        return rgba_color(218 / 255.0f, 112 / 255.0f, 214 / 255.0f, 1.0f);
+        return rgba_color(218/255.0, 112/255.0, 214/255.0, 1.0);
     }
 
     color color_pale_goldenrod()
     {
-        return rgba_color(238 / 255.0f, 232 / 255.0f, 170 / 255.0f, 1.0f);
+        return rgba_color(238/255.0, 232/255.0, 170/255.0, 1.0);
     }
 
     color color_pale_green()
     {
-        return rgba_color(152 / 255.0f, 251 / 255.0f, 152 / 255.0f, 1.0f);
+        return rgba_color(152/255.0, 251/255.0, 152/255.0, 1.0);
     }
 
     color color_pale_turquoise()
     {
-        return rgba_color(175 / 255.0f, 238 / 255.0f, 238 / 255.0f, 1.0f);
+        return rgba_color(175/255.0, 238/255.0, 238/255.0, 1.0);
     }
 
     color color_pale_violet_red()
     {
-        return rgba_color(219 / 255.0f, 112 / 255.0f, 147 / 255.0f, 1.0f);
+        return rgba_color(219/255.0, 112/255.0, 147/255.0, 1.0);
     }
 
     color color_papaya_whip()
     {
-        return rgba_color(1.0f, 239 / 255.0f, 213 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 239/255.0, 213/255.0, 1.0);
     }
-    
+
     color color_peach_puff()
     {
-        return rgba_color(1.0f, 218 / 255.0f, 185 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 218/255.0, 185/255.0, 1.0);
     }
-    
+
     color color_peru()
     {
-        return rgba_color(205 / 255.0f, 133 / 255.0f, 63 / 255.0f, 1.0f);
+        return rgba_color(205/255.0, 133/255.0, 63/255.0, 1.0);
     }
-    
+
     color color_pink()
     {
-        return rgba_color(1.0f, 192 / 255.0f, 203 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 192/255.0, 203/255.0, 1.0);
     }
-    
+
     color color_plum()
     {
-        return rgba_color(221 / 255.0f, 160 / 255.0f, 221 / 255.0f, 1.0f);
+        return rgba_color(221/255.0, 160/255.0, 221/255.0, 1.0);
     }
-    
+
     color color_powder_blue()
     {
-        return rgba_color(176 / 255.0f, 224 / 255.0f, 230 / 255.0f, 1.0f);
+        return rgba_color(176/255.0, 224/255.0, 230/255.0, 1.0);
     }
-    
+
     color color_purple()
     {
-        return rgba_color(0.5f, 0 / 255.0f, 0.5f, 1.0f);
+        return rgba_color(127/255.0, 0/255.0, 127/255.0, 1.0);
     }
-    
+
     color color_red()
     {
-        return rgba_color(1.0f, 0 / 255.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 0/255.0, 0/255.0, 1.0);
     }
-    
+
     color color_rosy_brown()
     {
-        return rgba_color(188 / 255.0f, 143 / 255.0f, 143 / 255.0f, 1.0f);
+        return rgba_color(188/255.0, 143/255.0, 143/255.0, 1.0);
     }
-    
+
     color color_royal_blue()
     {
-        return rgba_color(65 / 255.0f, 105 / 255.0f, 225 / 255.0f, 1.0f);
+        return rgba_color(65/255.0, 105/255.0, 225/255.0, 1.0);
     }
-    
+
     color color_saddle_brown()
     {
-        return rgba_color(139 / 255.0f, 69 / 255.0f, 19 / 255.0f, 1.0f);
+        return rgba_color(139/255.0, 69/255.0, 19/255.0, 1.0);
     }
-    
+
     color color_salmon()
     {
-        return rgba_color(250 / 255.0f, 0.5f, 114 / 255.0f, 1.0f);
+        return rgba_color(250/255.0, 127/255.0, 114/255.0, 1.0);
     }
-    
+
     color color_sandy_brown()
     {
-        return rgba_color(244 / 255.0f, 164 / 255.0f, 96 / 255.0f, 1.0f);
+        return rgba_color(244/255.0, 164/255.0, 96/255.0, 1.0);
     }
-    
+
     color color_sea_green()
     {
-        return rgba_color(46 / 255.0f, 139 / 255.0f, 87 / 255.0f, 1.0f);
+        return rgba_color(46/255.0, 139/255.0, 87/255.0, 1.0);
     }
-    
+
     color color_sea_shell()
     {
-        return rgba_color(1.0f, 245 / 255.0f, 238 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 245/255.0, 238/255.0, 1.0);
     }
-    
+
     color color_sienna()
     {
-        return rgba_color(160 / 255.0f, 82 / 255.0f, 45 / 255.0f, 1.0f);
+        return rgba_color(160/255.0, 82/255.0, 45/255.0, 1.0);
     }
-    
+
     color color_silver()
     {
-        return rgba_color(192 / 255.0f, 192 / 255.0f, 192 / 255.0f, 1.0f);
+        return rgba_color(192/255.0, 192/255.0, 192/255.0, 1.0);
     }
-    
+
     color color_sky_blue()
     {
-        return rgba_color(135 / 255.0f, 206 / 255.0f, 235 / 255.0f, 1.0f);
+        return rgba_color(135/255.0, 206/255.0, 235/255.0, 1.0);
     }
-    
+
     color color_slate_blue()
     {
-        return rgba_color(106 / 255.0f, 90 / 255.0f, 205 / 255.0f, 1.0f);
+        return rgba_color(106/255.0, 90/255.0, 205/255.0, 1.0);
     }
-    
+
     color color_slate_gray()
     {
-        return rgba_color(112 / 255.0f, 0.5f, 144 / 255.0f, 1.0f);
+        return rgba_color(112/255.0, 127/255.0, 144/255.0, 1.0);
     }
-    
+
     color color_snow()
     {
-        return rgba_color(1.0f, 250 / 255.0f, 250 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 250/255.0, 250/255.0, 1.0);
     }
-    
+
     color color_spring_green()
     {
-        return rgba_color(0 / 255.0f, 1.0f, 127 / 255.0f, 1.0f);
+        return rgba_color(0/255.0, 255/255.0, 127/255.0, 1.0);
     }
-    
+
     color color_steel_blue()
     {
-        return rgba_color(70 / 255.0f, 130 / 255.0f, 180 / 255.0f, 1.0f);
+        return rgba_color(70/255.0, 130/255.0, 180/255.0, 1.0);
     }
-    
+
     color color_tan()
     {
-        return rgba_color(210 / 255.0f, 180 / 255.0f, 140 / 255.0f, 1.0f);
+        return rgba_color(210/255.0, 180/255.0, 140/255.0, 1.0);
     }
-    
+
     color color_teal()
     {
-        return rgba_color(0 / 255.0f, 0.5f, 0.5f, 1.0f);
+        return rgba_color(0/255.0, 127/255.0, 127/255.0, 1.0);
     }
-    
+
     color color_thistle()
     {
-        return rgba_color(216 / 255.0f, 191 / 255.0f, 216 / 255.0f, 1.0f);
+        return rgba_color(216/255.0, 191/255.0, 216/255.0, 1.0);
     }
-    
+
     color color_tomato()
     {
-        return rgba_color(1.0f, 99 / 255.0f, 71 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 99/255.0, 71/255.0, 1.0);
     }
-    
+
     color color_turquoise()
     {
-        return rgba_color(64 / 255.0f, 224 / 255.0f, 208 / 255.0f, 1.0f);
+        return rgba_color(64/255.0, 224/255.0, 208/255.0, 1.0);
     }
-    
+
     color color_violet()
     {
-        return rgba_color(238 / 255.0f, 130 / 255.0f, 238 / 255.0f, 1.0f);
+        return rgba_color(238/255.0, 130/255.0, 238/255.0, 1.0);
     }
-    
+
     color color_wheat()
     {
-        return rgba_color(245 / 255.0f, 222 / 255.0f, 179 / 255.0f, 1.0f);
+        return rgba_color(245/255.0, 222/255.0, 179/255.0, 1.0);
     }
-    
+
     color color_white()
     {
-        return rgba_color(1.0f, 1.0f, 1.0f, 1.0f);
+        return rgba_color(255/255.0, 255/255.0, 255/255.0, 1.0);
     }
-    
+
     color color_white_smoke()
     {
-        return rgba_color(245 / 255.0f, 245 / 255.0f, 245 / 255.0f, 1.0f);
+        return rgba_color(245/255.0, 245/255.0, 245/255.0, 1.0);
     }
-    
+
     color color_yellow()
     {
-        return rgba_color(1.0f, 1.0f, 0 / 255.0f, 1.0f);
+        return rgba_color(255/255.0, 255/255.0, 0/255.0, 1.0);
     }
-    
+
     color color_yellow_green()
     {
-        return rgba_color(154 / 255.0f, 205 / 255.0f, 50 / 255.0f, 1.0f);
+        return rgba_color(154/255.0, 205/255.0, 50/255.0, 1.0);
     }
-    
+
     color color_swinburne_red()
     {
-        return rgba_color(237 / 255.0f, 36 / 255.0f, 25 / 255.0f, 1.0f);
+        return rgba_color(237/255.0, 36/255.0, 25/255.0, 1.0);
     }
 }

@@ -21,6 +21,7 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+.env
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -91,3 +92,8 @@ out/skm
 out/lib/
 tools/scripts/nuget-pkg/obj
 tools/scripts/test/obj
+
+### Debian packaging ###
+tools/scripts/debian/libsplashkit-dev*
+tools/scripts/debian/data.tar.xz
+tools/scripts/debian/control.tar.xz

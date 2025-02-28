@@ -53,12 +53,12 @@ void setup_tests()
     add_test("Timers", run_timer_test);
     add_test("Windows", run_windows_tests);
     add_test("Cave Escape", test_cave_escape);
-    add_test("Networking", run_networking_test);
     add_test("Web Server", run_web_server_tests);
     add_test("RESTful Web Service", run_restful_web_service);
     add_test("UDP Networking Test", run_udp_networking_test);
     add_test("TCP Networking Test", run_tcp_networking_test);
     add_test("GPIO Tests", run_gpio_tests);
+    add_test("GPIO Tests - SPI", run_gpio_spi_tests);
     add_test("UI Tests", run_ui_test);
    
 }

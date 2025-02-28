@@ -1,0 +1,34 @@
+## Maintainer: Some One <some.one@some.email.com>
+
+_realname=splashkit
+pkgbase=mingw-w64-${_realname}
+pkgname=("${MINGW_PACKAGE_PREFIX}-${_realname}")
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="all-purpose software toolkit (mingw-w64)"
+arch=('x86_64')
+mingw_arch=('mingw64' 'ucrt64' 'clang64' 'clangarm64')
+url="https://github.com/splashkit/splashkit-core"
+license=('GNU General Public Licence')
+makedepends=("${MINGW_PACKAGE_PREFIX}-clang"
+             'git')
+
+build() {
+    cd "${srcdir}"
+    git clone --depth 1 --branch master "https://github.com/splashkit/skm.git"
+}
+
+package() {
+    # Create directories
+    install -d "${pkgdir}/${MINGW_PREFIX}/include/${_realname}"
+    install -d "${pkgdir}/${MINGW_PREFIX}/lib"
+    
+    # Copy headers
+    cp -r "${srcdir}/skm/clang++/include/"* "${pkgdir}/${MINGW_PREFIX}/include/${_realname}"
+    
+    # Copy Splashkit.dll
+    cp -f "${srcdir}/skm/lib/win64/SplashKit.dll" "${pkgdir}/${MINGW_PREFIX}/lib/"
+    
+    # Install splashkit.h
+    cp -f "${srcdir}/skm/global/install/splashkit.h" "${pkgdir}/${MINGW_PREFIX}/include/"
+} 

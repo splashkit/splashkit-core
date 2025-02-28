@@ -16,7 +16,7 @@ using namespace std;
 // Use https://abyz.me.uk/rpi/pigpio/pdif2.html for reference
 namespace splashkit_lib
 {
-        int pi;
+        int pi = -1;
 
         // Check if pigpio_init() has been called before any other GPIO functions
         bool check_pi()
@@ -96,12 +96,28 @@ namespace splashkit_lib
                 set_PWM_dutycycle(pi, pin, dutycycle);
         }
 
+        void sk_clear_gpio_bank()
+        {
+                check_pi();
+                clear_bank_1(pi, 0x0FFFFFFC);
+        }
+        int sk_spi_open(int channel, int speed, int spi_flags)
+        {
+                return spi_open(pi, channel, speed, spi_flags);
+        }
+        int sk_spi_close(int handle)
+        {
+                return spi_close(pi, handle);
+        }
+        int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
+        {
+                return spi_xfer(pi, handle, sendBuf, recvBuf, count);
+        }	
         // Cleanup the GPIO library
         void sk_gpio_cleanup()
         {
 
-                check_pi();
-
+                check_pi();	
                 pigpio_stop(pi);
         }
 }

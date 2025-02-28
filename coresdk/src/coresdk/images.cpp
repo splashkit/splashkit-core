@@ -132,6 +132,40 @@ namespace splashkit_lib
         return result;
     }
 
+    bitmap load_bitmap_base64(string name, const char * image)
+    {
+        if (has_bitmap(name)) return bitmap_named(name);
+
+        sk_drawing_surface surface;
+        bitmap result = nullptr;
+
+        surface = sk_load_bitmap_from_memory(base64_decode_data(image));
+        if ( not surface._data )
+        {
+            LOG(WARNING) <<  cat({ "Error loading image for ", name}) ;
+            return nullptr;
+        }
+
+        result = new _bitmap_data;
+        result->image.surface = surface;
+
+        result->id         = BITMAP_PTR;
+        result->cell_w     = surface.width;
+        result->cell_h     = surface.height;
+        result->cell_cols  = 1;
+        result->cell_rows  = 1;
+        result->cell_count = 1;
+        result->pixel_mask = nullptr;
+
+        result->name       = name;
+
+        setup_collision_mask(result);
+
+        _bitmaps[name] = result;
+
+        return result;
+    }
+
     bitmap create_bitmap(string name, int width, int height)
     {
         bitmap result = new(_bitmap_data);
@@ -388,7 +422,7 @@ namespace splashkit_lib
             return circle_at(0, 0, 0);
         }
 
-        return circle_at(pt, MAX(bmp->cell_w, bmp->cell_h) / 2.0f * scale);
+        return circle_at(pt, sqrt(pow(bmp->cell_w / 2.0, 2.0) + pow(bmp->cell_h / 2.0, 2.0)) * scale);
     }
 
     circle bitmap_cell_circle(bitmap bmp, const point_2d pt)
@@ -408,7 +442,7 @@ namespace splashkit_lib
             return circle_at(0,0,0);
         }
 
-        return circle_at(pt, MAX(bmp->image.surface.width, bmp->image.surface.height));
+        return circle_at(pt, sqrt(pow(bmp->image.surface.width / 2.0, 2.0) + pow(bmp->image.surface.height / 2.0, 2.0)));
     }
 
     int bitmap_cell_columns(bitmap bmp)
