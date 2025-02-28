@@ -872,16 +872,16 @@ namespace splashkit_lib
     unsigned int ipv4_to_dec(const string &a_ip);
 
     /**
-     * @brief Decodes an integer into it's ipv4 address representation
+     * @brief Decodes an integer into its ipv4 address representation
      *
-     * Decodes the supplied unsigned 32 bit integer into it's ipv4 address form
+     * Decodes the supplied unsigned 32-bit integer into its ipv4 address form
      * e.g. 2130706433 into 127.0.0.1
      *
      * @param ip integer to be decoded
      *
      * @returns ipv4 address string in X.X.X.X format
      */
-    string ipv4_to_str(unsigned int ip);
+    string dec_to_ipv4(unsigned int ip);
 
     /**
      * @brief Returns the ipv4 string for the current computer's ip

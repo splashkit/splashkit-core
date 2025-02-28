@@ -431,9 +431,9 @@ namespace splashkit_lib
             int ip = sk_network_address(&con);
             int port = sk_get_network_port(&con);
 
-            connection client = _create_connection(server->name + "->" + name_for_connection(ipv4_to_str(ip), port), TCP);
+            connection client = _create_connection(server->name + "->" + name_for_connection(dec_to_ipv4(ip), port), TCP);
             client->ip = ip;
-            client->string_ip = ipv4_to_str(ip);
+            client->string_ip = dec_to_ipv4(ip);
             client->port = port;
             client->socket = con;
 
@@ -445,7 +445,6 @@ namespace splashkit_lib
 
         return false;
     }
-
 
     bool accept_all_new_connections()
     {
@@ -570,7 +569,7 @@ namespace splashkit_lib
         }
         m->protocol = UDP;
         m->connection = nullptr;
-        m->host = ipv4_to_str(host);
+        m->host = dec_to_ipv4(host);
         m->port = port;
         messages.push_back(m);
     }
@@ -1273,7 +1272,7 @@ namespace splashkit_lib
         return hex_string.str();
     }
 
-    string ipv4_to_str(unsigned int ip)
+    string dec_to_ipv4(unsigned int ip)
     {
         uint32_t ipaddr = (uint32_t) ip;
         stringstream ip_string;

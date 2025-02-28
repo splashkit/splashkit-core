@@ -27,7 +27,20 @@ void test_simple_terminal()
     delay(1000);
 }
 
+void test_terminal_has_input()
+{
+    write_line("Testing terminal input...");
+    write_line("You have 2 seconds to either type something or nothing");
+    delay(2000);
+    if (terminal_has_input()) {
+        write_line("There is data waiting to be read");
+    } else {
+        write_line("All data has been read");
+    }
+}
+
 void run_terminal_test()
 {
     test_simple_terminal();
+    test_terminal_has_input();
 }

@@ -28,7 +28,6 @@ void run_sprite_test();
 void run_bundle_test();
 void run_camera_test();
 void test_cave_escape();
-void run_networking_test();
 void run_restful_web_service();
 void run_udp_networking_test();
 void run_tcp_networking_test();
