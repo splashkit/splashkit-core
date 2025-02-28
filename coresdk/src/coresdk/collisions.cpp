@@ -17,9 +17,6 @@
 #include "graphics.h"
 #include "utils.h"
 
-constexpr int BRACKET_ITERATIONS = 40;
-constexpr double ITERATION_POWER = 1.5;
-
 using std::function;
 
 namespace splashkit_lib
@@ -580,6 +577,7 @@ namespace splashkit_lib
     bool _bracket_obj_collision_single(bool colliding, int i, T& collider,
                                 const vector_2d& collider_direction)
     {
+        const double ITERATION_POWER = 1.5;
         if (colliding)
         {
             _move_object_by_direction_relative_to_size(collider, collider_direction,
@@ -636,6 +634,7 @@ namespace splashkit_lib
     template <typename A, typename B>
     bool _resolve_object_collision(A& collider, const B& collidee, const vector_2d& collision_direction)
     {
+        const int BRACKET_ITERATIONS = 40;
         if (is_zero_vector(collision_direction) || !_test_collision(collider, collidee))
         {
             return false;
