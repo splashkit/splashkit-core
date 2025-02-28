@@ -4580,10 +4580,10 @@ __sklib_rectangle __sklib__rectangle_around__triangle_ref(const __sklib_triangle
     rectangle __skreturn = rectangle_around(__skparam__t);
     return __sklib__to_sklib_rectangle(__skreturn);
 }
-float __sklib__rectangle_bottom__rectangle_ref(const __sklib_rectangle rect) {
+double __sklib__rectangle_bottom__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
-    float __skreturn = rectangle_bottom(__skparam__rect);
-    return __sklib__to_float(__skreturn);
+    double __skreturn = rectangle_bottom(__skparam__rect);
+    return __sklib__to_double(__skreturn);
 }
 __sklib_point_2d __sklib__rectangle_center__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
@@ -4611,10 +4611,10 @@ __sklib_rectangle __sklib__rectangle_from__double__double__double__double(double
     rectangle __skreturn = rectangle_from(__skparam__x, __skparam__y, __skparam__width, __skparam__height);
     return __sklib__to_sklib_rectangle(__skreturn);
 }
-float __sklib__rectangle_left__rectangle_ref(const __sklib_rectangle rect) {
+double __sklib__rectangle_left__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
-    float __skreturn = rectangle_left(__skparam__rect);
-    return __sklib__to_float(__skreturn);
+    double __skreturn = rectangle_left(__skparam__rect);
+    return __sklib__to_double(__skreturn);
 }
 __sklib_rectangle __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(const __sklib_rectangle rect, const __sklib_vector_2d offset) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
@@ -4622,20 +4622,20 @@ __sklib_rectangle __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(con
     rectangle __skreturn = rectangle_offset_by(__skparam__rect, __skparam__offset);
     return __sklib__to_sklib_rectangle(__skreturn);
 }
-float __sklib__rectangle_right__rectangle_ref(const __sklib_rectangle rect) {
+double __sklib__rectangle_right__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
-    float __skreturn = rectangle_right(__skparam__rect);
-    return __sklib__to_float(__skreturn);
+    double __skreturn = rectangle_right(__skparam__rect);
+    return __sklib__to_double(__skreturn);
 }
 __sklib_string __sklib__rectangle_to_string__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
     string __skreturn = rectangle_to_string(__skparam__rect);
     return __sklib__to_sklib_string(__skreturn);
 }
-float __sklib__rectangle_top__rectangle_ref(const __sklib_rectangle rect) {
+double __sklib__rectangle_top__rectangle_ref(const __sklib_rectangle rect) {
     rectangle __skparam__rect = __sklib__to_rectangle(rect);
-    float __skreturn = rectangle_top(__skparam__rect);
-    return __sklib__to_float(__skreturn);
+    double __skreturn = rectangle_top(__skparam__rect);
+    return __sklib__to_double(__skreturn);
 }
 int __sklib__rectangles_intersect__rectangle_ref__rectangle_ref(const __sklib_rectangle rect1, const __sklib_rectangle rect2) {
     rectangle __skparam__rect1 = __sklib__to_rectangle(rect1);

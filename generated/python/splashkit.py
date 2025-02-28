@@ -3087,7 +3087,7 @@ sklib.__sklib__rectangle_around__quad_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_around__triangle_ref.argtypes = [ _sklib_triangle ]
 sklib.__sklib__rectangle_around__triangle_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ _sklib_rectangle ]
-sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_float
+sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_center__rectangle_ref.restype = _sklib_point_2d
 sklib.__sklib__rectangle_from__point_2d__double__double.argtypes = [ _sklib_point_2d, c_double, c_double ]
@@ -3097,15 +3097,15 @@ sklib.__sklib__rectangle_from__point_2d__point_2d.restype = _sklib_rectangle
 sklib.__sklib__rectangle_from__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double ]
 sklib.__sklib__rectangle_from__double__double__double__double.restype = _sklib_rectangle
 sklib.__sklib__rectangle_left__rectangle_ref.argtypes = [ _sklib_rectangle ]
-sklib.__sklib__rectangle_left__rectangle_ref.restype = c_float
+sklib.__sklib__rectangle_left__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_rectangle, _sklib_vector_2d ]
 sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.restype = _sklib_rectangle
 sklib.__sklib__rectangle_right__rectangle_ref.argtypes = [ _sklib_rectangle ]
-sklib.__sklib__rectangle_right__rectangle_ref.restype = c_float
+sklib.__sklib__rectangle_right__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_to_string__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_to_string__rectangle_ref.restype = _sklib_string
 sklib.__sklib__rectangle_top__rectangle_ref.argtypes = [ _sklib_rectangle ]
-sklib.__sklib__rectangle_top__rectangle_ref.restype = c_float
+sklib.__sklib__rectangle_top__rectangle_ref.restype = c_double
 sklib.__sklib__rectangles_intersect__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
 sklib.__sklib__rectangles_intersect__rectangle_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__deregister_free_notifier__free_notifier_ptr.argtypes = [ FreeNotifier ]
@@ -7649,7 +7649,7 @@ def rectangle_around_triangle ( t ):
 def rectangle_bottom ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_bottom__rectangle_ref(__skparam__rect)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def rectangle_center ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_center__rectangle_ref(__skparam__rect)
@@ -7675,7 +7675,7 @@ def rectangle_from ( x, y, width, height ):
 def rectangle_left ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_left__rectangle_ref(__skparam__rect)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def rectangle_offset_by ( rect, offset ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skparam__offset = __skadapter__to_sklib_vector_2d(offset)
@@ -7684,7 +7684,7 @@ def rectangle_offset_by ( rect, offset ):
 def rectangle_right ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_right__rectangle_ref(__skparam__rect)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def rectangle_to_string ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_to_string__rectangle_ref(__skparam__rect)
@@ -7692,7 +7692,7 @@ def rectangle_to_string ( rect ):
 def rectangle_top ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_top__rectangle_ref(__skparam__rect)
-    return __skadapter__to_float(__skreturn)
+    return __skadapter__to_double(__skreturn)
 def rectangles_intersect ( rect1, rect2 ):
     __skparam__rect1 = __skadapter__to_sklib_rectangle(rect1)
     __skparam__rect2 = __skadapter__to_sklib_rectangle(rect2)
