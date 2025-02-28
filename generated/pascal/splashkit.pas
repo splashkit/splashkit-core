@@ -1237,16 +1237,16 @@ function RectangleAround(const c: Circle): Rectangle;
 function RectangleAround(const l: Line): Rectangle;
 function RectangleAround(const q: Quad): Rectangle;
 function RectangleAround(const t: Triangle): Rectangle;
-function RectangleBottom(const rect: Rectangle): Single;
+function RectangleBottom(const rect: Rectangle): Double;
 function RectangleCenter(const rect: Rectangle): Point2D;
 function RectangleFrom(pt: Point2D; width: Double; height: Double): Rectangle;
 function RectangleFrom(pt1: Point2D; pt2: Point2D): Rectangle;
 function RectangleFrom(x: Double; y: Double; width: Double; height: Double): Rectangle;
-function RectangleLeft(const rect: Rectangle): Single;
+function RectangleLeft(const rect: Rectangle): Double;
 function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2D): Rectangle;
-function RectangleRight(const rect: Rectangle): Single;
+function RectangleRight(const rect: Rectangle): Double;
 function RectangleToString(const rect: Rectangle): String;
-function RectangleTop(const rect: Rectangle): Single;
+function RectangleTop(const rect: Rectangle): Double;
 function RectanglesIntersect(const rect1: Rectangle; const rect2: Rectangle): Boolean;
 procedure DeregisterFreeNotifier(handler: FreeNotifier);
 function PathToResource(const filename: String; kind: ResourceKind): String;
@@ -3461,16 +3461,16 @@ function __sklib__rectangle_around__circle_ref(const c: __sklib_circle): __sklib
 function __sklib__rectangle_around__line_ref(const l: __sklib_line): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_around__quad_ref(const q: __sklib_quad): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_around__triangle_ref(const t: __sklib_triangle): __sklib_rectangle; cdecl; external;
-function __sklib__rectangle_bottom__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_bottom__rectangle_ref(const rect: __sklib_rectangle): Double; cdecl; external;
 function __sklib__rectangle_center__rectangle_ref(const rect: __sklib_rectangle): __sklib_point_2d; cdecl; external;
 function __sklib__rectangle_from__point_2d__double__double(pt: __sklib_point_2d; width: Double; height: Double): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_from__point_2d__point_2d(pt1: __sklib_point_2d; pt2: __sklib_point_2d): __sklib_rectangle; cdecl; external;
 function __sklib__rectangle_from__double__double__double__double(x: Double; y: Double; width: Double; height: Double): __sklib_rectangle; cdecl; external;
-function __sklib__rectangle_left__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_left__rectangle_ref(const rect: __sklib_rectangle): Double; cdecl; external;
 function __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(const rect: __sklib_rectangle; const offset: __sklib_vector_2d): __sklib_rectangle; cdecl; external;
-function __sklib__rectangle_right__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_right__rectangle_ref(const rect: __sklib_rectangle): Double; cdecl; external;
 function __sklib__rectangle_to_string__rectangle_ref(const rect: __sklib_rectangle): __sklib_string; cdecl; external;
-function __sklib__rectangle_top__rectangle_ref(const rect: __sklib_rectangle): Single; cdecl; external;
+function __sklib__rectangle_top__rectangle_ref(const rect: __sklib_rectangle): Double; cdecl; external;
 function __sklib__rectangles_intersect__rectangle_ref__rectangle_ref(const rect1: __sklib_rectangle; const rect2: __sklib_rectangle): LongInt; cdecl; external;
 procedure __sklib__deregister_free_notifier__free_notifier_ptr(handler: FreeNotifier); cdecl; external;
 function __sklib__path_to_resource__string_ref__resource_kind(const filename: __sklib_string; kind: LongInt): __sklib_string; cdecl; external;
@@ -12131,14 +12131,14 @@ begin
   __skreturn := __sklib__rectangle_around__triangle_ref(__skparam__t);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function RectangleBottom(const rect: Rectangle): Single;
+function RectangleBottom(const rect: Rectangle): Double;
 var
   __skparam__rect: __sklib_rectangle;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__rectangle_bottom__rectangle_ref(__skparam__rect);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function RectangleCenter(const rect: Rectangle): Point2D;
 var
@@ -12188,14 +12188,14 @@ begin
   __skreturn := __sklib__rectangle_from__double__double__double__double(__skparam__x, __skparam__y, __skparam__width, __skparam__height);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function RectangleLeft(const rect: Rectangle): Single;
+function RectangleLeft(const rect: Rectangle): Double;
 var
   __skparam__rect: __sklib_rectangle;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__rectangle_left__rectangle_ref(__skparam__rect);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function RectangleOffsetBy(const rect: Rectangle; const offset: Vector2D): Rectangle;
 var
@@ -12208,14 +12208,14 @@ begin
   __skreturn := __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__skparam__rect, __skparam__offset);
   result := __skadapter__to_rectangle(__skreturn);
 end;
-function RectangleRight(const rect: Rectangle): Single;
+function RectangleRight(const rect: Rectangle): Double;
 var
   __skparam__rect: __sklib_rectangle;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__rectangle_right__rectangle_ref(__skparam__rect);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function RectangleToString(const rect: Rectangle): String;
 var
@@ -12226,14 +12226,14 @@ begin
   __skreturn := __sklib__rectangle_to_string__rectangle_ref(__skparam__rect);
   result := __skadapter__to_string(__skreturn);
 end;
-function RectangleTop(const rect: Rectangle): Single;
+function RectangleTop(const rect: Rectangle): Double;
 var
   __skparam__rect: __sklib_rectangle;
-  __skreturn: Single;
+  __skreturn: Double;
 begin
   __skparam__rect := __skadapter__to_sklib_rectangle(rect);
   __skreturn := __sklib__rectangle_top__rectangle_ref(__skparam__rect);
-  result := __skadapter__to_float(__skreturn);
+  result := __skadapter__to_double(__skreturn);
 end;
 function RectanglesIntersect(const rect1: Rectangle; const rect2: Rectangle): Boolean;
 var
