@@ -587,4 +587,47 @@ namespace splashkit_lib
     double lin_interp(double v0, double v1, double t) {
         return v0 * (1.0 - t) + v1 * t;
     }
+
+    vector<int8_t> base64_decode_data(const char* in)
+    {
+        const string BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+        //Lookup decimal values for base64 string (base64 -> base10)
+        vector<uint8_t> map;
+        for (int i = 0; i < strlen(in); i++)
+        {
+            for(int j = 0; j < 64; j++)
+            {
+                if(in[i] == BASE64_CHARS[j])
+                {
+                    //Remove 00 prefix from byte by bit shifting
+                    map.push_back(j << 2);
+                }
+            }
+        }
+
+        vector<int8_t> out;
+        int8_t a;
+        int8_t b;
+        int lb = 0;
+        int rb = 6;
+        //Base64 encoded data should always be divisible  into chunks of four
+        for (int i = 0; i < map.size(); i++)
+        {
+            //Concatenate six bits of a and two bits of b to get val c
+            a = (map[i] << lb);
+            b = (map[i+1] >> rb);
+            out.push_back(a + b);
+            //Shift cursors to concatenate correct chunks
+            lb+=2;
+            rb-=2;
+            if(rb == 0)
+            {
+                lb = 0;
+                rb = 6;
+                ++i;
+            }
+        }
+        return out;
+    }
 }

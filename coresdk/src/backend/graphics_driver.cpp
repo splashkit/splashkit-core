@@ -2129,14 +2129,9 @@ namespace splashkit_lib
         return result;
     }
     
-    sk_drawing_surface sk_load_bitmap(const char * filename)
+    sk_drawing_surface sk_load_from_surface(SDL_Surface *surface)
     {
-        internal_sk_init();
         sk_drawing_surface result = { SGDS_Unknown, 0, 0, nullptr };
-        
-        SDL_Surface *surface;
-        
-        surface = IMG_Load(filename);
         
         if ( ! surface ) {
             std::cout << "error loading image " << IMG_GetError() << std::endl;
@@ -2171,7 +2166,23 @@ namespace splashkit_lib
         
         return result;
     }
-    
+
+    sk_drawing_surface sk_load_bitmap(const char * filename)
+    {
+        internal_sk_init();
+
+        return sk_load_from_surface(IMG_Load(filename));
+    }
+
+    sk_drawing_surface sk_load_bitmap_from_memory(const vector<int8_t>& img_data)
+    {
+        internal_sk_init();
+
+        SDL_RWops *rw = SDL_RWFromConstMem(&img_data[0], img_data.size());
+
+        return sk_load_from_surface(IMG_LoadTyped_RW(rw, 1, "PNG"));
+    }
+
     //x, y is the position to draw the bitmap to. As bitmaps scale around their centre, (x, y) is the top-left of the bitmap IF and ONLY IF scale = 1.
     //Angle is in degrees, 0 being right way up
     //Centre is the point to rotate around, relative to the bitmap centre (therefore (0,0) would rotate around the centre point)
