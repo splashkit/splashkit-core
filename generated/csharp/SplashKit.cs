@@ -1338,8 +1338,17 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_at__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_circle __sklib__circle_at__double__double__double(double x, double y, double radius);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_quad_intersect__circle_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__circle_quad_intersect__circle_ref__quad_ref(__sklib_circle c, __sklib_quad q);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_radius__circle", CharSet=CharSet.Ansi)]
     private static extern float __sklib__circle_radius__circle(__sklib_circle c);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_circle circ);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_circle circ, ref __sklib_point_2d hitPoint, ref double hitDistance);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__circle_triangle_intersect__circle_ref__triangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__circle_triangle_intersect__circle_ref__triangle_ref(__sklib_circle c, __sklib_triangle tri);
@@ -1479,8 +1488,20 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_point_collision__bitmap__int__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__sklib_ptr bmp, int cell, double bmpX, double bmpY, double x, double y);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__double__double__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_quad_collision__bitmap__double__double__quad_ref(__sklib_ptr bmp, double x, double y, __sklib_quad q);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_quad q);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_point_2d origin, __sklib_vector_2d heading);
@@ -1512,6 +1533,171 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_rectangle rect);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref(__sklib_ptr bmp, __sklib_point_2d pt, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref(__sklib_ptr bmp, double x, double y, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref(__sklib_ptr bmp, int cell, __sklib_matrix_2d translation, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref(__sklib_ptr bmp, int cell, __sklib_point_2d pt, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref(__sklib_ptr bmp, int cell, double x, double y, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__quad_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__quad_ref__quad_ref(__sklib_quad collider, __sklib_quad collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__circle_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__circle_ref__circle_ref(__sklib_circle collider, __sklib_circle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__circle_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__circle_ref__quad_ref(__sklib_circle collider, __sklib_quad collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__circle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__circle_ref__rectangle_ref(__sklib_circle collider, __sklib_rectangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__circle_ref__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__circle_ref__sprite(__sklib_circle collider, __sklib_ptr collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__circle_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__circle_ref__triangle_ref(__sklib_circle collider, __sklib_triangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__quad_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__quad_ref__circle_ref(__sklib_quad collider, __sklib_circle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__quad_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__quad_ref__rectangle_ref(__sklib_quad collider, __sklib_rectangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__quad_ref__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__quad_ref__sprite(__sklib_quad collider, __sklib_ptr collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__quad_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__quad_ref__triangle_ref(__sklib_quad collider, __sklib_triangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__rectangle_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__rectangle_ref__circle_ref(__sklib_rectangle collider, __sklib_circle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__rectangle_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__rectangle_ref__quad_ref(__sklib_rectangle collider, __sklib_quad collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__rectangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__rectangle_ref__rectangle_ref(__sklib_rectangle collider, __sklib_rectangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__rectangle_ref__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__rectangle_ref__sprite(__sklib_rectangle collider, __sklib_ptr collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__rectangle_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__rectangle_ref__triangle_ref(__sklib_rectangle collider, __sklib_triangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__sprite__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__sprite__circle_ref(__sklib_ptr collider, __sklib_circle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__sprite__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__sprite__quad_ref(__sklib_ptr collider, __sklib_quad collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__sprite__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__sprite__rectangle_ref(__sklib_ptr collider, __sklib_rectangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__sprite__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__sprite__sprite(__sklib_ptr collider, __sklib_ptr collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__sprite__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__sprite__triangle_ref(__sklib_ptr collider, __sklib_triangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__triangle_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__triangle_ref__circle_ref(__sklib_triangle collider, __sklib_circle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__triangle_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__triangle_ref__quad_ref(__sklib_triangle collider, __sklib_quad collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__triangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__triangle_ref__rectangle_ref(__sklib_triangle collider, __sklib_rectangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__triangle_ref__sprite", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__triangle_ref__sprite(__sklib_triangle collider, __sklib_ptr collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__calculate_collision_direction__triangle_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern __sklib_vector_2d __sklib__calculate_collision_direction__triangle_ref__triangle_ref(__sklib_triangle collider, __sklib_triangle collidee);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref(ref __sklib_quad collider, __sklib_quad collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref(ref __sklib_circle collider, __sklib_circle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref(ref __sklib_circle collider, __sklib_quad collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref(ref __sklib_circle collider, __sklib_rectangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__circle_ref__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__circle_ref__sprite__vector_2d_ref(ref __sklib_circle collider, __sklib_ptr collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref(ref __sklib_circle collider, __sklib_triangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref(ref __sklib_quad collider, __sklib_circle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref(ref __sklib_quad collider, __sklib_rectangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__quad_ref__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__quad_ref__sprite__vector_2d_ref(ref __sklib_quad collider, __sklib_ptr collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref(ref __sklib_quad collider, __sklib_triangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref(ref __sklib_rectangle collider, __sklib_circle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref(ref __sklib_rectangle collider, __sklib_quad collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref(ref __sklib_rectangle collider, __sklib_rectangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref(ref __sklib_rectangle collider, __sklib_ptr collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref(ref __sklib_rectangle collider, __sklib_triangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__sprite__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__sprite__circle_ref__vector_2d_ref(__sklib_ptr collider, __sklib_circle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__sprite__quad_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__sprite__quad_ref__vector_2d_ref(__sklib_ptr collider, __sklib_quad collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref(__sklib_ptr collider, __sklib_rectangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__sprite__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__sprite__sprite__vector_2d_ref(__sklib_ptr collider, __sklib_ptr collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref(__sklib_ptr collider, __sklib_triangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref(ref __sklib_triangle collider, __sklib_circle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref(ref __sklib_triangle collider, __sklib_quad collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref(ref __sklib_triangle collider, __sklib_rectangle collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref(ref __sklib_triangle collider, __sklib_ptr collidee, __sklib_vector_2d direction);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref(ref __sklib_triangle collider, __sklib_triangle collidee, __sklib_vector_2d direction);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__double__double(__sklib_ptr s, __sklib_ptr bmp, double x, double y);
 
@@ -1521,17 +1707,26 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(__sklib_ptr s, __sklib_ptr bmp, int cell, double x, double y);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_circle_collision__sprite__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__sprite_circle_collision__sprite__circle_ref(__sklib_ptr s, __sklib_circle c);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_collision__sprite__sprite", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_collision__sprite__sprite(__sklib_ptr s1, __sklib_ptr s2);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_point_collision__sprite__point_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_point_collision__sprite__point_2d_ref(__sklib_ptr s, __sklib_point_2d pt);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_quad_collision__sprite__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__sprite_quad_collision__sprite__quad_ref(__sklib_ptr s, __sklib_quad q);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref(__sklib_ptr s, __sklib_point_2d origin, __sklib_vector_2d heading);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_rectangle_collision__sprite__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__sklib_ptr s, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__sprite_triangle_collision__sprite__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__sprite_triangle_collision__sprite__triangle_ref(__sklib_ptr s, __sklib_triangle t);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__alpha_of__color", CharSet=CharSet.Ansi)]
     private static extern int __sklib__alpha_of__color(__sklib_color c);
@@ -3105,6 +3300,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_hex__unsigned_int", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__dec_to_hex__unsigned_int(uint aDec);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__dec_to_ipv4__unsigned_int", CharSet=CharSet.Ansi)]
+    private static extern __sklib_string __sklib__dec_to_ipv4__unsigned_int(uint ip);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__fetch_new_connection__server_socket", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__fetch_new_connection__server_socket(__sklib_ptr server);
 
@@ -3140,9 +3338,6 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_hex__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_string __sklib__ipv4_to_hex__string_ref(__sklib_string aIP);
-
-    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__ipv4_to_str__unsigned_int", CharSet=CharSet.Ansi)]
-    private static extern __sklib_string __sklib__ipv4_to_str__unsigned_int(uint ip);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__is_connection_open__connection", CharSet=CharSet.Ansi)]
     private static extern int __sklib__is_connection_open__connection(__sklib_ptr con);
@@ -3396,6 +3591,12 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_from__double__double__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_quad __sklib__quad_from__double__double__double__double__double__double__double__double(double xTopLeft, double yTopLeft, double xTopRight, double yTopRight, double xBottomLeft, double yBottomLeft, double xBottomRight, double yBottomRight);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_quad q, ref __sklib_point_2d hitPoint, ref double hitDistance);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__quads_intersect__quad_ref__quad_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__quads_intersect__quad_ref__quad_ref(__sklib_quad q1, __sklib_quad q2);
 
@@ -3443,6 +3644,15 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_set_pwm_range__pins__int", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_set_pwm_range__pins__int(int pin, int range);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_spi_close__int", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_spi_close__int(int handle);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_spi_open__int__int__int", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_spi_open__int__int__int(int channel, int speed, int spiFlags);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_spi_transfer__int__string__string__int", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_spi_transfer__int__string__string__int(int handle, __sklib_string sendbuf, __sklib_string recvbuf, int count);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_write__pins__pin_values", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_write__pins__pin_values(int pin, int value);
@@ -3579,6 +3789,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_center__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_point_2d __sklib__rectangle_center__rectangle_ref(__sklib_rectangle rect);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_circle_intersect__rectangle_ref__circle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__rectangle_circle_intersect__rectangle_ref__circle_ref(__sklib_rectangle rect, __sklib_circle c);
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_from__point_2d__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_from__point_2d__double__double(__sklib_point_2d pt, double width, double height);
 
@@ -3593,6 +3806,12 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_rectangle __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__sklib_rectangle rect, __sklib_vector_2d offset);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_rectangle rect);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_rectangle rect, ref __sklib_point_2d hitPoint, ref double hitDistance);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__rectangle_right__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern double __sklib__rectangle_right__rectangle_ref(__sklib_rectangle rect);
@@ -4430,6 +4649,15 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_from__double__double__double__double__double__double", CharSet=CharSet.Ansi)]
     private static extern __sklib_triangle __sklib__triangle_from__double__double__double__double__double__double(double x1, double y1, double x2, double y2, double x3, double y3);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_quad_intersect__triangle_ref__quad_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__triangle_quad_intersect__triangle_ref__quad_ref(__sklib_triangle tri, __sklib_quad q);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_triangle tri);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref(__sklib_point_2d origin, __sklib_vector_2d heading, __sklib_triangle tri, ref __sklib_point_2d hitPoint, ref double hitDistance);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref", CharSet=CharSet.Ansi)]
     private static extern int __sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref(__sklib_triangle tri, __sklib_rectangle rect);
@@ -5779,6 +6007,16 @@ namespace SplashKitSDK
       __skreturn = __sklib__circle_at__double__double__double(__skparam__x, __skparam__y, __skparam__radius);
       return __skadapter__to_circle(__skreturn);
     }
+    public static bool CircleQuadIntersect(Circle c, Quad q)
+    {
+      __sklib_circle __skparam__c;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__c = __skadapter__to_sklib_circle(c);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__circle_quad_intersect__circle_ref__quad_ref(__skparam__c, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static float CircleRadius(Circle c)
     {
       __sklib_circle __skparam__c;
@@ -5786,6 +6024,36 @@ namespace SplashKitSDK
       __skparam__c = __skadapter__to_sklib_circle(c);
       __skreturn = __sklib__circle_radius__circle(__skparam__c);
       return __skadapter__to_float(__skreturn);
+    }
+    public static bool CircleRayIntersection(Point2D origin, Vector2D heading, Circle circ)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_circle __skparam__circ;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skreturn = __sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref(__skparam__origin, __skparam__heading, __skparam__circ);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool CircleRayIntersection(Point2D origin, Vector2D heading, Circle circ, ref Point2D hitPoint, ref double hitDistance)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_circle __skparam__circ;
+      __sklib_point_2d __skparam__hit_point;
+      double __skparam__hit_distance;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__circ = __skadapter__to_sklib_circle(circ);
+      __skparam__hit_point = __skadapter__to_sklib_point_2d(hitPoint);
+      __skparam__hit_distance = __skadapter__to_sklib_double(hitDistance);
+      __skreturn = __sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__circ, ref __skparam__hit_point, ref __skparam__hit_distance);
+      hitPoint = __skadapter__to_point_2d(__skparam__hit_point);
+      hitDistance = __skadapter__to_double(__skparam__hit_distance);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool CircleTriangleIntersect(Circle c, Triangle tri)
     {
@@ -6305,6 +6573,32 @@ namespace SplashKitSDK
       __skreturn = __sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool BitmapQuadCollision(Bitmap bmp, Point2D pt, Quad q)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_point_2d __skparam__pt;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref(__skparam__bmp, __skparam__pt, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapQuadCollision(Bitmap bmp, double x, double y, Quad q)
+    {
+      __sklib_ptr __skparam__bmp;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__bitmap_quad_collision__bitmap__double__double__quad_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool BitmapQuadCollision(Bitmap bmp, int cell, Matrix2D translation, Quad q)
     {
       __sklib_ptr __skparam__bmp;
@@ -6317,6 +6611,36 @@ namespace SplashKitSDK
       __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
       __skparam__q = __skadapter__to_sklib_quad(q);
       __skreturn = __sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapQuadCollision(Bitmap bmp, int cell, Point2D pt, Quad q)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_point_2d __skparam__pt;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapQuadCollision(Bitmap bmp, int cell, double x, double y, Quad q)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__q);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool BitmapRayCollision(Bitmap bmp, Point2D pt, Point2D origin, Vector2D heading)
@@ -6469,6 +6793,646 @@ namespace SplashKitSDK
       __skreturn = __sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool BitmapTriangleCollision(Bitmap bmp, Point2D pt, Triangle tri)
+    {
+      __sklib_ptr __skparam__bmp;
+      __sklib_point_2d __skparam__pt;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref(__skparam__bmp, __skparam__pt, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapTriangleCollision(Bitmap bmp, double x, double y, Triangle tri)
+    {
+      __sklib_ptr __skparam__bmp;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapTriangleCollision(Bitmap bmp, int cell, Matrix2D translation, Triangle tri)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_matrix_2d __skparam__translation;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__translation = __skadapter__to_sklib_matrix_2d(translation);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapTriangleCollision(Bitmap bmp, int cell, Point2D pt, Triangle tri)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      __sklib_point_2d __skparam__pt;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool BitmapTriangleCollision(Bitmap bmp, int cell, double x, double y, Triangle tri)
+    {
+      __sklib_ptr __skparam__bmp;
+      int __skparam__cell;
+      double __skparam__x;
+      double __skparam__y;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__bmp = __skadapter__to_sklib_bitmap(bmp);
+      __skparam__cell = __skadapter__to_sklib_int(cell);
+      __skparam__x = __skadapter__to_sklib_double(x);
+      __skparam__y = __skadapter__to_sklib_double(y);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Quad collider, Quad collidee)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skreturn = __sklib__calculate_collision_direction__quad_ref__quad_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Circle collider, Circle collidee)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__circle_ref__circle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Circle collider, Quad collidee)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skreturn = __sklib__calculate_collision_direction__circle_ref__quad_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Circle collider, Rectangle collidee)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__circle_ref__rectangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Circle collider, Sprite collidee)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skreturn = __sklib__calculate_collision_direction__circle_ref__sprite(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Circle collider, Triangle collidee)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__circle_ref__triangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Quad collider, Circle collidee)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__quad_ref__circle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Quad collider, Rectangle collidee)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__quad_ref__rectangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Quad collider, Sprite collidee)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skreturn = __sklib__calculate_collision_direction__quad_ref__sprite(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Quad collider, Triangle collidee)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__quad_ref__triangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Rectangle collider, Circle collidee)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__rectangle_ref__circle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Rectangle collider, Quad collidee)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skreturn = __sklib__calculate_collision_direction__rectangle_ref__quad_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Rectangle collider, Rectangle collidee)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__rectangle_ref__rectangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Rectangle collider, Sprite collidee)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skreturn = __sklib__calculate_collision_direction__rectangle_ref__sprite(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Rectangle collider, Triangle collidee)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__rectangle_ref__triangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Sprite collider, Circle collidee)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__sprite__circle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Sprite collider, Quad collidee)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skreturn = __sklib__calculate_collision_direction__sprite__quad_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Sprite collider, Rectangle collidee)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__sprite__rectangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Sprite collider, Sprite collidee)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skreturn = __sklib__calculate_collision_direction__sprite__sprite(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Sprite collider, Triangle collidee)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__sprite__triangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Triangle collider, Circle collidee)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__triangle_ref__circle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Triangle collider, Quad collidee)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skreturn = __sklib__calculate_collision_direction__triangle_ref__quad_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Triangle collider, Rectangle collidee)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__triangle_ref__rectangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Triangle collider, Sprite collidee)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skreturn = __sklib__calculate_collision_direction__triangle_ref__sprite(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static Vector2D CalculateCollisionDirection(Triangle collider, Triangle collidee)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skreturn = __sklib__calculate_collision_direction__triangle_ref__triangle_ref(__skparam__collider, __skparam__collidee);
+      return __skadapter__to_vector_2d(__skreturn);
+    }
+    public static bool ResolveCollision(ref Quad collider, Quad collidee, Vector2D direction)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_quad(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Circle collider, Circle collidee, Vector2D direction)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_circle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Circle collider, Quad collidee, Vector2D direction)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_circle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Circle collider, Rectangle collidee, Vector2D direction)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_circle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Circle collider, Sprite collidee, Vector2D direction)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__circle_ref__sprite__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_circle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Circle collider, Triangle collidee, Vector2D direction)
+    {
+      __sklib_circle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_circle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_circle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Quad collider, Circle collidee, Vector2D direction)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_quad(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Quad collider, Rectangle collidee, Vector2D direction)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_quad(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Quad collider, Sprite collidee, Vector2D direction)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__quad_ref__sprite__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_quad(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Quad collider, Triangle collidee, Vector2D direction)
+    {
+      __sklib_quad __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_quad(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_quad(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Rectangle collider, Circle collidee, Vector2D direction)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_rectangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Rectangle collider, Quad collidee, Vector2D direction)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_rectangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Rectangle collider, Rectangle collidee, Vector2D direction)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_rectangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Rectangle collider, Sprite collidee, Vector2D direction)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_rectangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Rectangle collider, Triangle collidee, Vector2D direction)
+    {
+      __sklib_rectangle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_rectangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_rectangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(Sprite collider, Circle collidee, Vector2D direction)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__sprite__circle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(Sprite collider, Quad collidee, Vector2D direction)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__sprite__quad_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(Sprite collider, Rectangle collidee, Vector2D direction)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(Sprite collider, Sprite collidee, Vector2D direction)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__sprite__sprite__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(Sprite collider, Triangle collidee, Vector2D direction)
+    {
+      __sklib_ptr __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_sprite(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Triangle collider, Circle collidee, Vector2D direction)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_circle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_circle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_triangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Triangle collider, Quad collidee, Vector2D direction)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_quad __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_quad(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_triangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Triangle collider, Rectangle collidee, Vector2D direction)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_rectangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_rectangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_triangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Triangle collider, Sprite collidee, Vector2D direction)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_ptr __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_sprite(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_triangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool ResolveCollision(ref Triangle collider, Triangle collidee, Vector2D direction)
+    {
+      __sklib_triangle __skparam__collider;
+      __sklib_triangle __skparam__collidee;
+      __sklib_vector_2d __skparam__direction;
+      int __skreturn;
+      __skparam__collider = __skadapter__to_sklib_triangle(collider);
+      __skparam__collidee = __skadapter__to_sklib_triangle(collidee);
+      __skparam__direction = __skadapter__to_sklib_vector_2d(direction);
+      __skreturn = __sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref(ref __skparam__collider, __skparam__collidee, __skparam__direction);
+      collider = __skadapter__to_triangle(__skparam__collider);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool SpriteBitmapCollision(Sprite s, Bitmap bmp, double x, double y)
     {
       __sklib_ptr __skparam__s;
@@ -6513,6 +7477,16 @@ namespace SplashKitSDK
       __skreturn = __sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__x, __skparam__y);
       return __skadapter__to_bool(__skreturn);
     }
+    public static bool SpriteCircleCollision(Sprite s, Circle c)
+    {
+      __sklib_ptr __skparam__s;
+      __sklib_circle __skparam__c;
+      int __skreturn;
+      __skparam__s = __skadapter__to_sklib_sprite(s);
+      __skparam__c = __skadapter__to_sklib_circle(c);
+      __skreturn = __sklib__sprite_circle_collision__sprite__circle_ref(__skparam__s, __skparam__c);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool SpriteCollision(Sprite s1, Sprite s2)
     {
       __sklib_ptr __skparam__s1;
@@ -6531,6 +7505,16 @@ namespace SplashKitSDK
       __skparam__s = __skadapter__to_sklib_sprite(s);
       __skparam__pt = __skadapter__to_sklib_point_2d(pt);
       __skreturn = __sklib__sprite_point_collision__sprite__point_2d_ref(__skparam__s, __skparam__pt);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool SpriteQuadCollision(Sprite s, Quad q)
+    {
+      __sklib_ptr __skparam__s;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__s = __skadapter__to_sklib_sprite(s);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__sprite_quad_collision__sprite__quad_ref(__skparam__s, __skparam__q);
       return __skadapter__to_bool(__skreturn);
     }
     public static bool SpriteRayCollision(Sprite s, Point2D origin, Vector2D heading)
@@ -6553,6 +7537,16 @@ namespace SplashKitSDK
       __skparam__s = __skadapter__to_sklib_sprite(s);
       __skparam__rect = __skadapter__to_sklib_rectangle(rect);
       __skreturn = __sklib__sprite_rectangle_collision__sprite__rectangle_ref(__skparam__s, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool SpriteTriangleCollision(Sprite s, Triangle t)
+    {
+      __sklib_ptr __skparam__s;
+      __sklib_triangle __skparam__t;
+      int __skreturn;
+      __skparam__s = __skadapter__to_sklib_sprite(s);
+      __skparam__t = __skadapter__to_sklib_triangle(t);
+      __skreturn = __sklib__sprite_triangle_collision__sprite__triangle_ref(__skparam__s, __skparam__t);
       return __skadapter__to_bool(__skreturn);
     }
     public static int AlphaOf(Color c)
@@ -10882,6 +11876,14 @@ namespace SplashKitSDK
       __skreturn = __sklib__dec_to_hex__unsigned_int(__skparam__a_dec);
       return __skadapter__to_string(__skreturn);
     }
+    public static string DecToIpv4(uint ip)
+    {
+      uint __skparam__ip;
+      __sklib_string __skreturn;
+      __skparam__ip = __skadapter__to_sklib_unsigned_int(ip);
+      __skreturn = __sklib__dec_to_ipv4__unsigned_int(__skparam__ip);
+      return __skadapter__to_string(__skreturn);
+    }
     public static Connection FetchNewConnection(ServerSocket server)
     {
       __sklib_ptr __skparam__server;
@@ -10979,14 +11981,6 @@ namespace SplashKitSDK
       __skparam__a_ip = __skadapter__to_sklib_string(aIP);
       __skreturn = __sklib__ipv4_to_hex__string_ref(__skparam__a_ip);
     __skadapter__free__sklib_string(ref __skparam__a_ip);
-      return __skadapter__to_string(__skreturn);
-    }
-    public static string Ipv4ToStr(uint ip)
-    {
-      uint __skparam__ip;
-      __sklib_string __skreturn;
-      __skparam__ip = __skadapter__to_sklib_unsigned_int(ip);
-      __skreturn = __sklib__ipv4_to_str__unsigned_int(__skparam__ip);
       return __skadapter__to_string(__skreturn);
     }
     public static bool IsConnectionOpen(Connection con)
@@ -11807,6 +12801,36 @@ namespace SplashKitSDK
       __skreturn = __sklib__quad_from__double__double__double__double__double__double__double__double(__skparam__x_top_left, __skparam__y_top_left, __skparam__x_top_right, __skparam__y_top_right, __skparam__x_bottom_left, __skparam__y_bottom_left, __skparam__x_bottom_right, __skparam__y_bottom_right);
       return __skadapter__to_quad(__skreturn);
     }
+    public static bool QuadRayIntersection(Point2D origin, Vector2D heading, Quad q)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref(__skparam__origin, __skparam__heading, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool QuadRayIntersection(Point2D origin, Vector2D heading, Quad q, ref Point2D hitPoint, ref double hitDistance)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_quad __skparam__q;
+      __sklib_point_2d __skparam__hit_point;
+      double __skparam__hit_distance;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skparam__hit_point = __skadapter__to_sklib_point_2d(hitPoint);
+      __skparam__hit_distance = __skadapter__to_sklib_double(hitDistance);
+      __skreturn = __sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__q, ref __skparam__hit_point, ref __skparam__hit_distance);
+      hitPoint = __skadapter__to_point_2d(__skparam__hit_point);
+      hitDistance = __skadapter__to_double(__skparam__hit_distance);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static bool QuadsIntersect(Quad q1, Quad q2)
     {
       __sklib_quad __skparam__q1;
@@ -11929,6 +12953,42 @@ namespace SplashKitSDK
       __skparam__pin = __skadapter__to_sklib_pins(pin);
       __skparam__range = __skadapter__to_sklib_int(range);
       __sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range);
+    }
+    public static int RaspiSpiClose(int handle)
+    {
+      int __skparam__handle;
+      int __skreturn;
+      __skparam__handle = __skadapter__to_sklib_int(handle);
+      __skreturn = __sklib__raspi_spi_close__int(__skparam__handle);
+      return __skadapter__to_int(__skreturn);
+    }
+    public static int RaspiSpiOpen(int channel, int speed, int spiFlags)
+    {
+      int __skparam__channel;
+      int __skparam__speed;
+      int __skparam__spi_flags;
+      int __skreturn;
+      __skparam__channel = __skadapter__to_sklib_int(channel);
+      __skparam__speed = __skadapter__to_sklib_int(speed);
+      __skparam__spi_flags = __skadapter__to_sklib_int(spiFlags);
+      __skreturn = __sklib__raspi_spi_open__int__int__int(__skparam__channel, __skparam__speed, __skparam__spi_flags);
+      return __skadapter__to_int(__skreturn);
+    }
+    public static int RaspiSpiTransfer(int handle, string sendbuf, string recvbuf, int count)
+    {
+      int __skparam__handle;
+      __sklib_string __skparam__sendBuf;
+      __sklib_string __skparam__recvBuf;
+      int __skparam__count;
+      int __skreturn;
+      __skparam__handle = __skadapter__to_sklib_int(handle);
+      __skparam__sendBuf = __skadapter__to_sklib_string(sendbuf);
+      __skparam__recvBuf = __skadapter__to_sklib_string(recvbuf);
+      __skparam__count = __skadapter__to_sklib_int(count);
+      __skreturn = __sklib__raspi_spi_transfer__int__string__string__int(__skparam__handle, __skparam__sendBuf, __skparam__recvBuf, __skparam__count);
+    __skadapter__free__sklib_string(ref __skparam__sendBuf);
+    __skadapter__free__sklib_string(ref __skparam__recvBuf);
+      return __skadapter__to_int(__skreturn);
     }
     public static void RaspiWrite(Pins pin, PinValues value)
     {
@@ -12450,6 +13510,16 @@ namespace SplashKitSDK
       __skreturn = __sklib__rectangle_center__rectangle_ref(__skparam__rect);
       return __skadapter__to_point_2d(__skreturn);
     }
+    public static bool RectangleCircleIntersect(Rectangle rect, Circle c)
+    {
+      __sklib_rectangle __skparam__rect;
+      __sklib_circle __skparam__c;
+      int __skreturn;
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skparam__c = __skadapter__to_sklib_circle(c);
+      __skreturn = __sklib__rectangle_circle_intersect__rectangle_ref__circle_ref(__skparam__rect, __skparam__c);
+      return __skadapter__to_bool(__skreturn);
+    }
     public static Rectangle RectangleFrom(Point2D pt, double width, double height)
     {
       __sklib_point_2d __skparam__pt;
@@ -12503,6 +13573,36 @@ namespace SplashKitSDK
       __skparam__offset = __skadapter__to_sklib_vector_2d(offset);
       __skreturn = __sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__skparam__rect, __skparam__offset);
       return __skadapter__to_rectangle(__skreturn);
+    }
+    public static bool RectangleRayIntersection(Point2D origin, Vector2D heading, Rectangle rect)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_rectangle __skparam__rect;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skreturn = __sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref(__skparam__origin, __skparam__heading, __skparam__rect);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool RectangleRayIntersection(Point2D origin, Vector2D heading, Rectangle rect, ref Point2D hitPoint, ref double hitDistance)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_rectangle __skparam__rect;
+      __sklib_point_2d __skparam__hit_point;
+      double __skparam__hit_distance;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__rect = __skadapter__to_sklib_rectangle(rect);
+      __skparam__hit_point = __skadapter__to_sklib_point_2d(hitPoint);
+      __skparam__hit_distance = __skadapter__to_sklib_double(hitDistance);
+      __skreturn = __sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__rect, ref __skparam__hit_point, ref __skparam__hit_distance);
+      hitPoint = __skadapter__to_point_2d(__skparam__hit_point);
+      hitDistance = __skadapter__to_double(__skparam__hit_distance);
+      return __skadapter__to_bool(__skreturn);
     }
     public static double RectangleRight(Rectangle rect)
     {
@@ -15177,6 +16277,46 @@ namespace SplashKitSDK
       __skparam__y3 = __skadapter__to_sklib_double(y3);
       __skreturn = __sklib__triangle_from__double__double__double__double__double__double(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3);
       return __skadapter__to_triangle(__skreturn);
+    }
+    public static bool TriangleQuadIntersect(Triangle tri, Quad q)
+    {
+      __sklib_triangle __skparam__tri;
+      __sklib_quad __skparam__q;
+      int __skreturn;
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skparam__q = __skadapter__to_sklib_quad(q);
+      __skreturn = __sklib__triangle_quad_intersect__triangle_ref__quad_ref(__skparam__tri, __skparam__q);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool TriangleRayIntersection(Point2D origin, Vector2D heading, Triangle tri)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_triangle __skparam__tri;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skreturn = __sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref(__skparam__origin, __skparam__heading, __skparam__tri);
+      return __skadapter__to_bool(__skreturn);
+    }
+    public static bool TriangleRayIntersection(Point2D origin, Vector2D heading, Triangle tri, ref Point2D hitPoint, ref double hitDistance)
+    {
+      __sklib_point_2d __skparam__origin;
+      __sklib_vector_2d __skparam__heading;
+      __sklib_triangle __skparam__tri;
+      __sklib_point_2d __skparam__hit_point;
+      double __skparam__hit_distance;
+      int __skreturn;
+      __skparam__origin = __skadapter__to_sklib_point_2d(origin);
+      __skparam__heading = __skadapter__to_sklib_vector_2d(heading);
+      __skparam__tri = __skadapter__to_sklib_triangle(tri);
+      __skparam__hit_point = __skadapter__to_sklib_point_2d(hitPoint);
+      __skparam__hit_distance = __skadapter__to_sklib_double(hitDistance);
+      __skreturn = __sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__tri, ref __skparam__hit_point, ref __skparam__hit_distance);
+      hitPoint = __skadapter__to_point_2d(__skparam__hit_point);
+      hitDistance = __skadapter__to_double(__skparam__hit_distance);
+      return __skadapter__to_bool(__skreturn);
     }
     public static bool TriangleRectangleIntersect(Triangle tri, Rectangle rect)
     {
@@ -18250,6 +19390,12 @@ public class Sprite : PointerWrapper
     }
 
 
+    public bool CircleCollision(Circle c)
+    {
+        return SplashKit.SpriteCircleCollision(this, c);
+    }
+
+
     public bool SpriteCollision(Sprite s2)
     {
         return SplashKit.SpriteCollision(this, s2);
@@ -18262,6 +19408,12 @@ public class Sprite : PointerWrapper
     }
 
 
+    public bool QuadCollision(Quad q)
+    {
+        return SplashKit.SpriteQuadCollision(this, q);
+    }
+
+
     public bool RayCollision(Point2D origin, Vector2D heading)
     {
         return SplashKit.SpriteRayCollision(this, origin, heading);
@@ -18271,6 +19423,12 @@ public class Sprite : PointerWrapper
     public bool RectangleCollision(Rectangle rect)
     {
         return SplashKit.SpriteRectangleCollision(this, rect);
+    }
+
+
+    public bool TriangleCollision(Triangle t)
+    {
+        return SplashKit.SpriteTriangleCollision(this, t);
     }
 
 
@@ -19205,9 +20363,33 @@ public class Bitmap : PointerWrapper
     }
 
 
+    public bool QuadCollision(Point2D pt, Quad q)
+    {
+        return SplashKit.BitmapQuadCollision(this, pt, q);
+    }
+
+
+    public bool QuadCollision(double x, double y, Quad q)
+    {
+        return SplashKit.BitmapQuadCollision(this, x, y, q);
+    }
+
+
     public bool QuadCollision(int cell, Matrix2D translation, Quad q)
     {
         return SplashKit.BitmapQuadCollision(this, cell, translation, q);
+    }
+
+
+    public bool QuadCollision(int cell, Point2D pt, Quad q)
+    {
+        return SplashKit.BitmapQuadCollision(this, cell, pt, q);
+    }
+
+
+    public bool QuadCollision(int cell, double x, double y, Quad q)
+    {
+        return SplashKit.BitmapQuadCollision(this, cell, x, y, q);
     }
 
 
@@ -19268,6 +20450,36 @@ public class Bitmap : PointerWrapper
     public bool RectangleCollision(int cell, double x, double y, Rectangle rect)
     {
         return SplashKit.BitmapRectangleCollision(this, cell, x, y, rect);
+    }
+
+
+    public bool TriangleCollision(Point2D pt, Triangle tri)
+    {
+        return SplashKit.BitmapTriangleCollision(this, pt, tri);
+    }
+
+
+    public bool TriangleCollision(double x, double y, Triangle tri)
+    {
+        return SplashKit.BitmapTriangleCollision(this, x, y, tri);
+    }
+
+
+    public bool TriangleCollision(int cell, Matrix2D translation, Triangle tri)
+    {
+        return SplashKit.BitmapTriangleCollision(this, cell, translation, tri);
+    }
+
+
+    public bool TriangleCollision(int cell, Point2D pt, Triangle tri)
+    {
+        return SplashKit.BitmapTriangleCollision(this, cell, pt, tri);
+    }
+
+
+    public bool TriangleCollision(int cell, double x, double y, Triangle tri)
+    {
+        return SplashKit.BitmapTriangleCollision(this, cell, x, y, tri);
     }
 
 

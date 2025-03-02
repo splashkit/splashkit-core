@@ -23,6 +23,9 @@ void raspi_set_pull_up_down(pins pin, pull_up_down pud);
 void raspi_set_pwm_dutycycle(pins pin, int dutycycle);
 void raspi_set_pwm_frequency(pins pin, int frequency);
 void raspi_set_pwm_range(pins pin, int range);
+int raspi_spi_close(int handle);
+int raspi_spi_open(int channel, int speed, int spi_flags);
+int raspi_spi_transfer(int handle, string sendBuf, string recvBuf, int count);
 void raspi_write(pins pin, pin_values value);
 
 #endif /* __raspi_gpio_h */

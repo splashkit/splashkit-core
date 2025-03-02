@@ -1596,8 +1596,14 @@ sklib.__sklib__circle_at__point_2d_ref__double.argtypes = [ _sklib_point_2d, c_d
 sklib.__sklib__circle_at__point_2d_ref__double.restype = _sklib_circle
 sklib.__sklib__circle_at__double__double__double.argtypes = [ c_double, c_double, c_double ]
 sklib.__sklib__circle_at__double__double__double.restype = _sklib_circle
+sklib.__sklib__circle_quad_intersect__circle_ref__quad_ref.argtypes = [ _sklib_circle, _sklib_quad ]
+sklib.__sklib__circle_quad_intersect__circle_ref__quad_ref.restype = c_bool
 sklib.__sklib__circle_radius__circle.argtypes = [ _sklib_circle ]
 sklib.__sklib__circle_radius__circle.restype = c_float
+sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_circle ]
+sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref.restype = c_bool
+sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_circle, POINTER(_sklib_point_2d), POINTER(c_double) ]
+sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref.restype = c_bool
 sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref.argtypes = [ _sklib_circle, _sklib_triangle ]
 sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref.restype = c_bool
 sklib.__sklib__circle_triangle_intersect__circle_ref__triangle_ref__point_2d_ref.argtypes = [ _sklib_circle, _sklib_triangle, POINTER(_sklib_point_2d) ]
@@ -1690,8 +1696,16 @@ sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.a
 sklib.__sklib__bitmap_point_collision__bitmap__int__point_2d_ref__point_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.argtypes = [ c_void_p, c_int, c_double, c_double, c_double, c_double ]
 sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double.restype = c_bool
+sklib.__sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_quad ]
+sklib.__sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref.restype = c_bool
+sklib.__sklib__bitmap_quad_collision__bitmap__double__double__quad_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_quad ]
+sklib.__sklib__bitmap_quad_collision__bitmap__double__double__quad_ref.restype = c_bool
 sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_quad ]
 sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref.restype = c_bool
+sklib.__sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_quad ]
+sklib.__sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref.restype = c_bool
+sklib.__sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_quad ]
+sklib.__sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref.restype = c_bool
 sklib.__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_point_2d, _sklib_vector_2d ]
 sklib.__sklib__bitmap_ray_collision__bitmap__point_2d_ref__point_2d_ref__vector_2d_ref.restype = c_bool
 sklib.__sklib__bitmap_ray_collision__bitmap__double__double__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_point_2d, _sklib_vector_2d ]
@@ -1712,20 +1726,136 @@ sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__point_2d_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_rectangle ]
 sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref.restype = c_bool
+sklib.__sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_triangle ]
+sklib.__sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref.restype = c_bool
+sklib.__sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref.argtypes = [ c_void_p, c_double, c_double, _sklib_triangle ]
+sklib.__sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref.restype = c_bool
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref.argtypes = [ c_void_p, c_int, _sklib_matrix_2d, _sklib_triangle ]
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref.restype = c_bool
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref.argtypes = [ c_void_p, c_int, _sklib_point_2d, _sklib_triangle ]
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref.restype = c_bool
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref.argtypes = [ c_void_p, c_int, c_double, c_double, _sklib_triangle ]
+sklib.__sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref.restype = c_bool
+sklib.__sklib__calculate_collision_direction__quad_ref__quad_ref.argtypes = [ _sklib_quad, _sklib_quad ]
+sklib.__sklib__calculate_collision_direction__quad_ref__quad_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__circle_ref__circle_ref.argtypes = [ _sklib_circle, _sklib_circle ]
+sklib.__sklib__calculate_collision_direction__circle_ref__circle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__circle_ref__quad_ref.argtypes = [ _sklib_circle, _sklib_quad ]
+sklib.__sklib__calculate_collision_direction__circle_ref__quad_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__circle_ref__rectangle_ref.argtypes = [ _sklib_circle, _sklib_rectangle ]
+sklib.__sklib__calculate_collision_direction__circle_ref__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__circle_ref__sprite.argtypes = [ _sklib_circle, c_void_p ]
+sklib.__sklib__calculate_collision_direction__circle_ref__sprite.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__circle_ref__triangle_ref.argtypes = [ _sklib_circle, _sklib_triangle ]
+sklib.__sklib__calculate_collision_direction__circle_ref__triangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__quad_ref__circle_ref.argtypes = [ _sklib_quad, _sklib_circle ]
+sklib.__sklib__calculate_collision_direction__quad_ref__circle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__quad_ref__rectangle_ref.argtypes = [ _sklib_quad, _sklib_rectangle ]
+sklib.__sklib__calculate_collision_direction__quad_ref__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__quad_ref__sprite.argtypes = [ _sklib_quad, c_void_p ]
+sklib.__sklib__calculate_collision_direction__quad_ref__sprite.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__quad_ref__triangle_ref.argtypes = [ _sklib_quad, _sklib_triangle ]
+sklib.__sklib__calculate_collision_direction__quad_ref__triangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__rectangle_ref__circle_ref.argtypes = [ _sklib_rectangle, _sklib_circle ]
+sklib.__sklib__calculate_collision_direction__rectangle_ref__circle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__rectangle_ref__quad_ref.argtypes = [ _sklib_rectangle, _sklib_quad ]
+sklib.__sklib__calculate_collision_direction__rectangle_ref__quad_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__rectangle_ref__rectangle_ref.argtypes = [ _sklib_rectangle, _sklib_rectangle ]
+sklib.__sklib__calculate_collision_direction__rectangle_ref__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__rectangle_ref__sprite.argtypes = [ _sklib_rectangle, c_void_p ]
+sklib.__sklib__calculate_collision_direction__rectangle_ref__sprite.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__rectangle_ref__triangle_ref.argtypes = [ _sklib_rectangle, _sklib_triangle ]
+sklib.__sklib__calculate_collision_direction__rectangle_ref__triangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__sprite__circle_ref.argtypes = [ c_void_p, _sklib_circle ]
+sklib.__sklib__calculate_collision_direction__sprite__circle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__sprite__quad_ref.argtypes = [ c_void_p, _sklib_quad ]
+sklib.__sklib__calculate_collision_direction__sprite__quad_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__sprite__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
+sklib.__sklib__calculate_collision_direction__sprite__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
+sklib.__sklib__calculate_collision_direction__sprite__sprite.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__sprite__triangle_ref.argtypes = [ c_void_p, _sklib_triangle ]
+sklib.__sklib__calculate_collision_direction__sprite__triangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__triangle_ref__circle_ref.argtypes = [ _sklib_triangle, _sklib_circle ]
+sklib.__sklib__calculate_collision_direction__triangle_ref__circle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__triangle_ref__quad_ref.argtypes = [ _sklib_triangle, _sklib_quad ]
+sklib.__sklib__calculate_collision_direction__triangle_ref__quad_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__triangle_ref__rectangle_ref.argtypes = [ _sklib_triangle, _sklib_rectangle ]
+sklib.__sklib__calculate_collision_direction__triangle_ref__rectangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__triangle_ref__sprite.argtypes = [ _sklib_triangle, c_void_p ]
+sklib.__sklib__calculate_collision_direction__triangle_ref__sprite.restype = _sklib_vector_2d
+sklib.__sklib__calculate_collision_direction__triangle_ref__triangle_ref.argtypes = [ _sklib_triangle, _sklib_triangle ]
+sklib.__sklib__calculate_collision_direction__triangle_ref__triangle_ref.restype = _sklib_vector_2d
+sklib.__sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_quad), _sklib_quad, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_circle), _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_circle), _sklib_quad, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_circle), _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__circle_ref__sprite__vector_2d_ref.argtypes = [ POINTER(_sklib_circle), c_void_p, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__circle_ref__sprite__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_circle), _sklib_triangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_quad), _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_quad), _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__quad_ref__sprite__vector_2d_ref.argtypes = [ POINTER(_sklib_quad), c_void_p, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__quad_ref__sprite__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_quad), _sklib_triangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_rectangle), _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_rectangle), _sklib_quad, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_rectangle), _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref.argtypes = [ POINTER(_sklib_rectangle), c_void_p, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_rectangle), _sklib_triangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__sprite__circle_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__sprite__circle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__sprite__quad_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_quad, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__sprite__quad_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__sprite__sprite__vector_2d_ref.argtypes = [ c_void_p, c_void_p, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__sprite__sprite__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_triangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_triangle), _sklib_circle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_triangle), _sklib_quad, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_triangle), _sklib_rectangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref.argtypes = [ POINTER(_sklib_triangle), c_void_p, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref.restype = c_bool
+sklib.__sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref.argtypes = [ POINTER(_sklib_triangle), _sklib_triangle, _sklib_vector_2d ]
+sklib.__sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.argtypes = [ c_void_p, c_void_p, c_double, c_double ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__double__double.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.argtypes = [ c_void_p, c_void_p, c_int, _sklib_point_2d ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__point_2d_ref.restype = c_bool
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double.argtypes = [ c_void_p, c_void_p, c_int, c_double, c_double ]
 sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double.restype = c_bool
+sklib.__sklib__sprite_circle_collision__sprite__circle_ref.argtypes = [ c_void_p, _sklib_circle ]
+sklib.__sklib__sprite_circle_collision__sprite__circle_ref.restype = c_bool
 sklib.__sklib__sprite_collision__sprite__sprite.argtypes = [ c_void_p, c_void_p ]
 sklib.__sklib__sprite_collision__sprite__sprite.restype = c_bool
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.argtypes = [ c_void_p, _sklib_point_2d ]
 sklib.__sklib__sprite_point_collision__sprite__point_2d_ref.restype = c_bool
+sklib.__sklib__sprite_quad_collision__sprite__quad_ref.argtypes = [ c_void_p, _sklib_quad ]
+sklib.__sklib__sprite_quad_collision__sprite__quad_ref.restype = c_bool
 sklib.__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref.argtypes = [ c_void_p, _sklib_point_2d, _sklib_vector_2d ]
 sklib.__sklib__sprite_ray_collision__sprite__point_2d_ref__vector_2d_ref.restype = c_bool
 sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.argtypes = [ c_void_p, _sklib_rectangle ]
 sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref.restype = c_bool
+sklib.__sklib__sprite_triangle_collision__sprite__triangle_ref.argtypes = [ c_void_p, _sklib_triangle ]
+sklib.__sklib__sprite_triangle_collision__sprite__triangle_ref.restype = c_bool
 sklib.__sklib__alpha_of__color.argtypes = [ _sklib_color ]
 sklib.__sklib__alpha_of__color.restype = c_int
 sklib.__sklib__blue_of__color.argtypes = [ _sklib_color ]
@@ -2774,6 +2904,8 @@ sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.argtyp
 sklib.__sklib__create_server__string_ref__unsigned_short__connection_type.restype = c_void_p
 sklib.__sklib__dec_to_hex__unsigned_int.argtypes = [ c_uint ]
 sklib.__sklib__dec_to_hex__unsigned_int.restype = _sklib_string
+sklib.__sklib__dec_to_ipv4__unsigned_int.argtypes = [ c_uint ]
+sklib.__sklib__dec_to_ipv4__unsigned_int.restype = _sklib_string
 sklib.__sklib__fetch_new_connection__server_socket.argtypes = [ c_void_p ]
 sklib.__sklib__fetch_new_connection__server_socket.restype = c_void_p
 sklib.__sklib__has_connection__string_ref.argtypes = [ _sklib_string ]
@@ -2798,8 +2930,6 @@ sklib.__sklib__ipv4_to_dec__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__ipv4_to_dec__string_ref.restype = c_uint
 sklib.__sklib__ipv4_to_hex__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__ipv4_to_hex__string_ref.restype = _sklib_string
-sklib.__sklib__ipv4_to_str__unsigned_int.argtypes = [ c_uint ]
-sklib.__sklib__ipv4_to_str__unsigned_int.restype = _sklib_string
 sklib.__sklib__is_connection_open__connection.argtypes = [ c_void_p ]
 sklib.__sklib__is_connection_open__connection.restype = c_bool
 sklib.__sklib__is_connection_open__string_ref.argtypes = [ _sklib_string ]
@@ -2968,6 +3098,10 @@ sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.argtypes = [ _sklib_recta
 sklib.__sklib__quad_from__rectangle_ref__matrix_2d_ref.restype = _sklib_quad
 sklib.__sklib__quad_from__double__double__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double, c_double, c_double ]
 sklib.__sklib__quad_from__double__double__double__double__double__double__double__double.restype = _sklib_quad
+sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_quad ]
+sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref.restype = c_bool
+sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_quad, POINTER(_sklib_point_2d), POINTER(c_double) ]
+sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref.restype = c_bool
 sklib.__sklib__quads_intersect__quad_ref__quad_ref.argtypes = [ _sklib_quad, _sklib_quad ]
 sklib.__sklib__quads_intersect__quad_ref__quad_ref.restype = c_bool
 sklib.__sklib__set_quad_point__quad_ref__int__point_2d_ref.argtypes = [ POINTER(_sklib_quad), c_int, _sklib_point_2d ]
@@ -3000,6 +3134,12 @@ sklib.__sklib__raspi_set_pwm_frequency__pins__int.argtypes = [ c_int, c_int ]
 sklib.__sklib__raspi_set_pwm_frequency__pins__int.restype = None
 sklib.__sklib__raspi_set_pwm_range__pins__int.argtypes = [ c_int, c_int ]
 sklib.__sklib__raspi_set_pwm_range__pins__int.restype = None
+sklib.__sklib__raspi_spi_close__int.argtypes = [ c_int ]
+sklib.__sklib__raspi_spi_close__int.restype = c_int
+sklib.__sklib__raspi_spi_open__int__int__int.argtypes = [ c_int, c_int, c_int ]
+sklib.__sklib__raspi_spi_open__int__int__int.restype = c_int
+sklib.__sklib__raspi_spi_transfer__int__string__string__int.argtypes = [ c_int, _sklib_string, _sklib_string, c_int ]
+sklib.__sklib__raspi_spi_transfer__int__string__string__int.restype = c_int
 sklib.__sklib__raspi_write__pins__pin_values.argtypes = [ c_int, c_int ]
 sklib.__sklib__raspi_write__pins__pin_values.restype = None
 sklib.__sklib__draw_quad__color__quad_ref.argtypes = [ _sklib_color, _sklib_quad ]
@@ -3090,6 +3230,8 @@ sklib.__sklib__rectangle_bottom__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_bottom__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_center__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_center__rectangle_ref.restype = _sklib_point_2d
+sklib.__sklib__rectangle_circle_intersect__rectangle_ref__circle_ref.argtypes = [ _sklib_rectangle, _sklib_circle ]
+sklib.__sklib__rectangle_circle_intersect__rectangle_ref__circle_ref.restype = c_bool
 sklib.__sklib__rectangle_from__point_2d__double__double.argtypes = [ _sklib_point_2d, c_double, c_double ]
 sklib.__sklib__rectangle_from__point_2d__double__double.restype = _sklib_rectangle
 sklib.__sklib__rectangle_from__point_2d__point_2d.argtypes = [ _sklib_point_2d, _sklib_point_2d ]
@@ -3100,6 +3242,10 @@ sklib.__sklib__rectangle_left__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_left__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.argtypes = [ _sklib_rectangle, _sklib_vector_2d ]
 sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref.restype = _sklib_rectangle
+sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_rectangle ]
+sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref.restype = c_bool
+sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_rectangle, POINTER(_sklib_point_2d), POINTER(c_double) ]
+sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref.restype = c_bool
 sklib.__sklib__rectangle_right__rectangle_ref.argtypes = [ _sklib_rectangle ]
 sklib.__sklib__rectangle_right__rectangle_ref.restype = c_double
 sklib.__sklib__rectangle_to_string__rectangle_ref.argtypes = [ _sklib_rectangle ]
@@ -3658,6 +3804,12 @@ sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.argtypes 
 sklib.__sklib__triangle_from__point_2d_ref__point_2d_ref__point_2d_ref.restype = _sklib_triangle
 sklib.__sklib__triangle_from__double__double__double__double__double__double.argtypes = [ c_double, c_double, c_double, c_double, c_double, c_double ]
 sklib.__sklib__triangle_from__double__double__double__double__double__double.restype = _sklib_triangle
+sklib.__sklib__triangle_quad_intersect__triangle_ref__quad_ref.argtypes = [ _sklib_triangle, _sklib_quad ]
+sklib.__sklib__triangle_quad_intersect__triangle_ref__quad_ref.restype = c_bool
+sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_triangle ]
+sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref.restype = c_bool
+sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref.argtypes = [ _sklib_point_2d, _sklib_vector_2d, _sklib_triangle, POINTER(_sklib_point_2d), POINTER(c_double) ]
+sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref.restype = c_bool
 sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.argtypes = [ _sklib_triangle, _sklib_rectangle ]
 sklib.__sklib__triangle_rectangle_intersect__triangle_ref__rectangle_ref.restype = c_bool
 sklib.__sklib__triangle_to_string__triangle_ref.argtypes = [ _sklib_triangle ]
@@ -4377,10 +4529,31 @@ def circle_at_from_points ( x, y, radius ):
     __skparam__radius = __skadapter__to_sklib_double(radius)
     __skreturn = sklib.__sklib__circle_at__double__double__double(__skparam__x, __skparam__y, __skparam__radius)
     return __skadapter__to_circle(__skreturn)
+def circle_quad_intersect ( c, q ):
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__circle_quad_intersect__circle_ref__quad_ref(__skparam__c, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
 def circle_radius ( c ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skreturn = sklib.__sklib__circle_radius__circle(__skparam__c)
     return __skadapter__to_float(__skreturn)
+def circle_ray_intersection ( origin, heading, circ ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skreturn = sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref(__skparam__origin, __skparam__heading, __skparam__circ)
+    return __skadapter__to_bool(__skreturn)
+def circle_ray_intersection_with_hit_point_and_distance ( origin, heading, circ, hit_point, hit_distance ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__circ = __skadapter__to_sklib_circle(circ)
+    __skparam__hit_point = __skadapter__to_sklib_point_2d(hit_point)
+    __skparam__hit_distance = __skadapter__to_sklib_double(hit_distance)
+    __skreturn = sklib.__sklib__circle_ray_intersection__point_2d_ref__vector_2d_ref__circle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__circ, byref(__skparam__hit_point), byref(__skparam__hit_distance))
+    hit_point = __skadapter__to_point_2d(__skparam__hit_point)
+    hit_distance = __skadapter__to_double(__skparam__hit_distance)
+    return __skadapter__to_bool(__skreturn)
 def circle_triangle_intersect ( c, tri ):
     __skparam__c = __skadapter__to_sklib_circle(c)
     __skparam__tri = __skadapter__to_sklib_triangle(tri)
@@ -4643,12 +4816,40 @@ def bitmap_point_collision_for_cell ( bmp, cell, bmp_x, bmp_y, x, y ):
     __skparam__y = __skadapter__to_sklib_double(y)
     __skreturn = sklib.__sklib__bitmap_point_collision__bitmap__int__double__double__double__double(__skparam__bmp, __skparam__cell, __skparam__bmp_x, __skparam__bmp_y, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
+def bitmap_quad_collision_at_point ( bmp, pt, q ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__point_2d_ref__quad_ref(__skparam__bmp, __skparam__pt, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_quad_collision ( bmp, x, y, q ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__double__double__quad_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
 def bitmap_quad_collision_for_cell_with_translation ( bmp, cell, translation, q ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
     __skparam__cell = __skadapter__to_sklib_int(cell)
     __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
     __skparam__q = __skadapter__to_sklib_quad(q)
     __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__int__matrix_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_quad_collision_for_cell_at_point ( bmp, cell, pt, q ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__int__point_2d_ref__quad_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_quad_collision_for_cell ( bmp, cell, x, y, q ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__bitmap_quad_collision__bitmap__int__double__double__quad_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__q)
     return __skadapter__to_bool(__skreturn)
 def bitmap_ray_collision_at_point ( bmp, pt, origin, heading ):
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4725,6 +4926,336 @@ def bitmap_rectangle_collision_for_cell ( bmp, cell, x, y, rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__bitmap_rectangle_collision__bitmap__int__double__double__rectangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__rect)
     return __skadapter__to_bool(__skreturn)
+def bitmap_triangle_collision_at_point ( bmp, pt, tri ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__bitmap_triangle_collision__bitmap__point_2d_ref__triangle_ref(__skparam__bmp, __skparam__pt, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_triangle_collision ( bmp, x, y, tri ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__bitmap_triangle_collision__bitmap__double__double__triangle_ref(__skparam__bmp, __skparam__x, __skparam__y, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_triangle_collision_for_cell_with_translation ( bmp, cell, translation, tri ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__translation = __skadapter__to_sklib_matrix_2d(translation)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__bitmap_triangle_collision__bitmap__int__matrix_2d_ref__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__translation, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_triangle_collision_for_cell_at_point ( bmp, cell, pt, tri ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__pt = __skadapter__to_sklib_point_2d(pt)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__bitmap_triangle_collision__bitmap__int__point_2d_ref__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__pt, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def bitmap_triangle_collision_for_cell ( bmp, cell, x, y, tri ):
+    __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
+    __skparam__cell = __skadapter__to_sklib_int(cell)
+    __skparam__x = __skadapter__to_sklib_double(x)
+    __skparam__y = __skadapter__to_sklib_double(y)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__bitmap_triangle_collision__bitmap__int__double__double__triangle_ref(__skparam__bmp, __skparam__cell, __skparam__x, __skparam__y, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def calculate_collision_direction_between_quads ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__quad_ref__quad_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_circles ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__circle_ref__circle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_circle_and_quad ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__circle_ref__quad_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_circle_and_rectangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__circle_ref__rectangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_circle_and_sprite ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__circle_ref__sprite(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_circle_and_triangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__circle_ref__triangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_quad_and_circle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__quad_ref__circle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_quad_and_rectangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__quad_ref__rectangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_quad_and_sprite ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__quad_ref__sprite(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_quad_and_triangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__quad_ref__triangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_rectangle_and_circle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__rectangle_ref__circle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_rectangle_and_quad ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__rectangle_ref__quad_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_rectangles ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__rectangle_ref__rectangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_rectangle_and_sprite ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__rectangle_ref__sprite(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_rectangle_and_triangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__rectangle_ref__triangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_sprite_and_circle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__sprite__circle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_sprite_and_quad ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__sprite__quad_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_sprite_and_rectangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__sprite__rectangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_sprites ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__sprite__sprite(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_sprite_and_triangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__sprite__triangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_triangle_and_circle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__triangle_ref__circle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_triangle_and_quad ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__triangle_ref__quad_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_triangle_and_rectangle ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__triangle_ref__rectangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_triangle_and_sprite ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__triangle_ref__sprite(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def calculate_collision_direction_between_triangles ( collider, collidee ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skreturn = sklib.__sklib__calculate_collision_direction__triangle_ref__triangle_ref(__skparam__collider, __skparam__collidee)
+    return __skadapter__to_vector_2d(__skreturn)
+def resolve_collision_between_quads ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__quad_ref__quad_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_quad(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_circles ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__circle_ref__circle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_circle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_circle_and_quad ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__circle_ref__quad_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_circle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_circle_and_rectangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__circle_ref__rectangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_circle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_circle_and_sprite ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__circle_ref__sprite__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_circle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_circle_and_triangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_circle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__circle_ref__triangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_circle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_quad_and_circle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__quad_ref__circle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_quad(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_quad_and_rectangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__quad_ref__rectangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_quad(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_quad_and_sprite ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__quad_ref__sprite__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_quad(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_quad_and_triangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_quad(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__quad_ref__triangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_quad(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_rectangle_and_circle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__rectangle_ref__circle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_rectangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_rectangle_and_quad ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__rectangle_ref__quad_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_rectangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_rectangles ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__rectangle_ref__rectangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_rectangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_rectangle_and_sprite ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__rectangle_ref__sprite__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_rectangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_rectangle_and_triangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_rectangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__rectangle_ref__triangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_rectangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_sprite_and_circle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__sprite__circle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_sprite_and_quad ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__sprite__quad_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_sprite_and_rectangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__sprite__rectangle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_sprites ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__sprite__sprite__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_sprite_and_triangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_sprite(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__sprite__triangle_ref__vector_2d_ref(__skparam__collider, __skparam__collidee, __skparam__direction)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_triangle_and_circle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_circle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__triangle_ref__circle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_triangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_triangle_and_quad ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_quad(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__triangle_ref__quad_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_triangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_triangle_and_rectangle ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_rectangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__triangle_ref__rectangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_triangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_triangle_and_sprite ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_sprite(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__triangle_ref__sprite__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_triangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
+def resolve_collision_between_triangles ( collider, collidee, direction ):
+    __skparam__collider = __skadapter__to_sklib_triangle(collider)
+    __skparam__collidee = __skadapter__to_sklib_triangle(collidee)
+    __skparam__direction = __skadapter__to_sklib_vector_2d(direction)
+    __skreturn = sklib.__sklib__resolve_collision__triangle_ref__triangle_ref__vector_2d_ref(byref(__skparam__collider), __skparam__collidee, __skparam__direction)
+    collider = __skadapter__to_triangle(__skparam__collider)
+    return __skadapter__to_bool(__skreturn)
 def sprite_bitmap_collision ( s, bmp, x, y ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__bmp = __skadapter__to_sklib_bitmap(bmp)
@@ -4747,6 +5278,11 @@ def sprite_bitmap_collision_with_cell ( s, bmp, cell, x, y ):
     __skparam__y = __skadapter__to_sklib_double(y)
     __skreturn = sklib.__sklib__sprite_bitmap_collision__sprite__bitmap__int__double__double(__skparam__s, __skparam__bmp, __skparam__cell, __skparam__x, __skparam__y)
     return __skadapter__to_bool(__skreturn)
+def sprite_circle_collision ( s, c ):
+    __skparam__s = __skadapter__to_sklib_sprite(s)
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skreturn = sklib.__sklib__sprite_circle_collision__sprite__circle_ref(__skparam__s, __skparam__c)
+    return __skadapter__to_bool(__skreturn)
 def sprite_collision ( s1, s2 ):
     __skparam__s1 = __skadapter__to_sklib_sprite(s1)
     __skparam__s2 = __skadapter__to_sklib_sprite(s2)
@@ -4756,6 +5292,11 @@ def sprite_point_collision ( s, pt ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skreturn = sklib.__sklib__sprite_point_collision__sprite__point_2d_ref(__skparam__s, __skparam__pt)
+    return __skadapter__to_bool(__skreturn)
+def sprite_quad_collision ( s, q ):
+    __skparam__s = __skadapter__to_sklib_sprite(s)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__sprite_quad_collision__sprite__quad_ref(__skparam__s, __skparam__q)
     return __skadapter__to_bool(__skreturn)
 def sprite_ray_collision ( s, origin, heading ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
@@ -4767,6 +5308,11 @@ def sprite_rectangle_collision ( s, rect ):
     __skparam__s = __skadapter__to_sklib_sprite(s)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__sprite_rectangle_collision__sprite__rectangle_ref(__skparam__s, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def sprite_triangle_collision ( s, t ):
+    __skparam__s = __skadapter__to_sklib_sprite(s)
+    __skparam__t = __skadapter__to_sklib_triangle(t)
+    __skreturn = sklib.__sklib__sprite_triangle_collision__sprite__triangle_ref(__skparam__s, __skparam__t)
     return __skadapter__to_bool(__skreturn)
 def alpha_of ( c ):
     __skparam__c = __skadapter__to_sklib_color(c)
@@ -6882,6 +7428,10 @@ def dec_to_hex ( a_dec ):
     __skparam__a_dec = __skadapter__to_sklib_unsigned_int(a_dec)
     __skreturn = sklib.__sklib__dec_to_hex__unsigned_int(__skparam__a_dec)
     return __skadapter__to_string(__skreturn)
+def dec_to_ipv4 ( ip ):
+    __skparam__ip = __skadapter__to_sklib_unsigned_int(ip)
+    __skreturn = sklib.__sklib__dec_to_ipv4__unsigned_int(__skparam__ip)
+    return __skadapter__to_string(__skreturn)
 def fetch_new_connection ( server ):
     __skparam__server = __skadapter__to_sklib_server_socket(server)
     __skreturn = sklib.__sklib__fetch_new_connection__server_socket(__skparam__server)
@@ -6927,10 +7477,6 @@ def ipv4_to_dec ( a_ip ):
 def ipv4_to_hex ( a_ip ):
     __skparam__a_ip = __skadapter__to_sklib_string(a_ip)
     __skreturn = sklib.__sklib__ipv4_to_hex__string_ref(__skparam__a_ip)
-    return __skadapter__to_string(__skreturn)
-def ipv4_to_str ( ip ):
-    __skparam__ip = __skadapter__to_sklib_unsigned_int(ip)
-    __skreturn = sklib.__sklib__ipv4_to_str__unsigned_int(__skparam__ip)
     return __skadapter__to_string(__skreturn)
 def is_connection_open ( con ):
     __skparam__con = __skadapter__to_sklib_connection(con)
@@ -7332,6 +7878,22 @@ def quad_from ( x_top_left, y_top_left, x_top_right, y_top_right, x_bottom_left,
     __skparam__y_bottom_right = __skadapter__to_sklib_double(y_bottom_right)
     __skreturn = sklib.__sklib__quad_from__double__double__double__double__double__double__double__double(__skparam__x_top_left, __skparam__y_top_left, __skparam__x_top_right, __skparam__y_top_right, __skparam__x_bottom_left, __skparam__y_bottom_left, __skparam__x_bottom_right, __skparam__y_bottom_right)
     return __skadapter__to_quad(__skreturn)
+def quad_ray_intersection ( origin, heading, q ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref(__skparam__origin, __skparam__heading, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def quad_ray_intersection_with_hit_point_and_distance ( origin, heading, q, hit_point, hit_distance ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skparam__hit_point = __skadapter__to_sklib_point_2d(hit_point)
+    __skparam__hit_distance = __skadapter__to_sklib_double(hit_distance)
+    __skreturn = sklib.__sklib__quad_ray_intersection__point_2d_ref__vector_2d_ref__quad_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__q, byref(__skparam__hit_point), byref(__skparam__hit_distance))
+    hit_point = __skadapter__to_point_2d(__skparam__hit_point)
+    hit_distance = __skadapter__to_double(__skparam__hit_distance)
+    return __skadapter__to_bool(__skreturn)
 def quads_intersect ( q1, q2 ):
     __skparam__q1 = __skadapter__to_sklib_quad(q1)
     __skparam__q2 = __skadapter__to_sklib_quad(q2)
@@ -7394,6 +7956,23 @@ def raspi_set_pwm_range ( pin, range ):
     __skparam__pin = __skadapter__to_sklib_pins(pin)
     __skparam__range = __skadapter__to_sklib_int(range)
     sklib.__sklib__raspi_set_pwm_range__pins__int(__skparam__pin, __skparam__range)
+def raspi_spi_close ( handle ):
+    __skparam__handle = __skadapter__to_sklib_int(handle)
+    __skreturn = sklib.__sklib__raspi_spi_close__int(__skparam__handle)
+    return __skadapter__to_int(__skreturn)
+def raspi_spi_open ( channel, speed, spi_flags ):
+    __skparam__channel = __skadapter__to_sklib_int(channel)
+    __skparam__speed = __skadapter__to_sklib_int(speed)
+    __skparam__spi_flags = __skadapter__to_sklib_int(spi_flags)
+    __skreturn = sklib.__sklib__raspi_spi_open__int__int__int(__skparam__channel, __skparam__speed, __skparam__spi_flags)
+    return __skadapter__to_int(__skreturn)
+def raspi_spi_transfer ( handle, sendBuf, recvBuf, count ):
+    __skparam__handle = __skadapter__to_sklib_int(handle)
+    __skparam__sendBuf = __skadapter__to_sklib_string(sendbuf)
+    __skparam__recvBuf = __skadapter__to_sklib_string(recvbuf)
+    __skparam__count = __skadapter__to_sklib_int(count)
+    __skreturn = sklib.__sklib__raspi_spi_transfer__int__string__string__int(__skparam__handle, __skparam__sendBuf, __skparam__recvBuf, __skparam__count)
+    return __skadapter__to_int(__skreturn)
 def raspi_write ( pin, value ):
     __skparam__pin = __skadapter__to_sklib_pins(pin)
     __skparam__value = __skadapter__to_sklib_pin_values(value)
@@ -7654,6 +8233,11 @@ def rectangle_center ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_center__rectangle_ref(__skparam__rect)
     return __skadapter__to_point_2d(__skreturn)
+def rectangle_circle_intersect ( rect, c ):
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__c = __skadapter__to_sklib_circle(c)
+    __skreturn = sklib.__sklib__rectangle_circle_intersect__rectangle_ref__circle_ref(__skparam__rect, __skparam__c)
+    return __skadapter__to_bool(__skreturn)
 def rectangle_from_point_and_size ( pt, width, height ):
     __skparam__pt = __skadapter__to_sklib_point_2d(pt)
     __skparam__width = __skadapter__to_sklib_double(width)
@@ -7681,6 +8265,22 @@ def rectangle_offset_by ( rect, offset ):
     __skparam__offset = __skadapter__to_sklib_vector_2d(offset)
     __skreturn = sklib.__sklib__rectangle_offset_by__rectangle_ref__vector_2d_ref(__skparam__rect, __skparam__offset)
     return __skadapter__to_rectangle(__skreturn)
+def rectangle_ray_intersection ( origin, heading, rect ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skreturn = sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref(__skparam__origin, __skparam__heading, __skparam__rect)
+    return __skadapter__to_bool(__skreturn)
+def rectangle_ray_intersection_with_hit_point_and_distance ( origin, heading, rect, hit_point, hit_distance ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__rect = __skadapter__to_sklib_rectangle(rect)
+    __skparam__hit_point = __skadapter__to_sklib_point_2d(hit_point)
+    __skparam__hit_distance = __skadapter__to_sklib_double(hit_distance)
+    __skreturn = sklib.__sklib__rectangle_ray_intersection__point_2d_ref__vector_2d_ref__rectangle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__rect, byref(__skparam__hit_point), byref(__skparam__hit_distance))
+    hit_point = __skadapter__to_point_2d(__skparam__hit_point)
+    hit_distance = __skadapter__to_double(__skparam__hit_distance)
+    return __skadapter__to_bool(__skreturn)
 def rectangle_right ( rect ):
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
     __skreturn = sklib.__sklib__rectangle_right__rectangle_ref(__skparam__rect)
@@ -8970,6 +9570,27 @@ def triangle_from_coordinates ( x1, y1, x2, y2, x3, y3 ):
     __skparam__y3 = __skadapter__to_sklib_double(y3)
     __skreturn = sklib.__sklib__triangle_from__double__double__double__double__double__double(__skparam__x1, __skparam__y1, __skparam__x2, __skparam__y2, __skparam__x3, __skparam__y3)
     return __skadapter__to_triangle(__skreturn)
+def triangle_quad_intersect ( tri, q ):
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__q = __skadapter__to_sklib_quad(q)
+    __skreturn = sklib.__sklib__triangle_quad_intersect__triangle_ref__quad_ref(__skparam__tri, __skparam__q)
+    return __skadapter__to_bool(__skreturn)
+def triangle_ray_intersection ( origin, heading, tri ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skreturn = sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref(__skparam__origin, __skparam__heading, __skparam__tri)
+    return __skadapter__to_bool(__skreturn)
+def triangle_ray_intersection_with_hit_point_and_distance ( origin, heading, tri, hit_point, hit_distance ):
+    __skparam__origin = __skadapter__to_sklib_point_2d(origin)
+    __skparam__heading = __skadapter__to_sklib_vector_2d(heading)
+    __skparam__tri = __skadapter__to_sklib_triangle(tri)
+    __skparam__hit_point = __skadapter__to_sklib_point_2d(hit_point)
+    __skparam__hit_distance = __skadapter__to_sklib_double(hit_distance)
+    __skreturn = sklib.__sklib__triangle_ray_intersection__point_2d_ref__vector_2d_ref__triangle_ref__point_2d_ref__double_ref(__skparam__origin, __skparam__heading, __skparam__tri, byref(__skparam__hit_point), byref(__skparam__hit_distance))
+    hit_point = __skadapter__to_point_2d(__skparam__hit_point)
+    hit_distance = __skadapter__to_double(__skparam__hit_distance)
+    return __skadapter__to_bool(__skreturn)
 def triangle_rectangle_intersect ( tri, rect ):
     __skparam__tri = __skadapter__to_sklib_triangle(tri)
     __skparam__rect = __skadapter__to_sklib_rectangle(rect)
