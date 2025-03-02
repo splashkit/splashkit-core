@@ -142,7 +142,7 @@ namespace splashkit_lib
      * @param count    The number of bytes to be transferred.
      * @returns        The number of bytes that have actually been transfered.
      */
-    int raspi_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count);
+    int raspi_spi_transfer(int handle, string sendBuf, string recvBuf, int count);
 	
     /**
      * @brief Cleans up and releases any resources used by the GPIO library.

@@ -232,7 +232,7 @@ namespace splashkit_lib
 #endif
     }
 
-    int raspi_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
+    int raspi_spi_transfer(int handle, string sendBuf, string recvBuf, int count)
     {
 #ifdef RASPBERRY_PI
         return sk_spi_transfer(handle, sendBuf, recvBuf, count);
