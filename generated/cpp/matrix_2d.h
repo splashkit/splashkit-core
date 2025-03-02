@@ -9,6 +9,7 @@
 #include "types.h"
 #include <string>
 #include <vector>
+#include <cmath>
 #include <cstdint>
 using std::string;
 using std::vector;
@@ -16,6 +17,24 @@ using std::vector;
 typedef struct {
     double elements[3][3];
 } matrix_2d;
+
+inline bool operator==(const matrix_2d& lhs, const matrix_2d& rhs) {
+    return
+        lhs.elements[0][0] == rhs.elements[0][0] &&
+        lhs.elements[0][1] == rhs.elements[0][1] &&
+        lhs.elements[0][2] == rhs.elements[0][2] &&
+        lhs.elements[1][0] == rhs.elements[1][0] &&
+        lhs.elements[1][1] == rhs.elements[1][1] &&
+        lhs.elements[1][2] == rhs.elements[1][2] &&
+        lhs.elements[2][0] == rhs.elements[2][0] &&
+        lhs.elements[2][1] == rhs.elements[2][1] &&
+        lhs.elements[2][2] == rhs.elements[2][2];
+}
+
+inline bool operator!=(const matrix_2d& lhs, const matrix_2d& rhs) {
+    return !(lhs == rhs);
+}
+
 void apply_matrix(const matrix_2d &matrix, quad &q);
 void apply_matrix(const matrix_2d &m, triangle &tri);
 matrix_2d identity_matrix();

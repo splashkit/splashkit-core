@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include <cmath>
 #include <cstdint>
 using std::string;
 using std::vector;
@@ -126,22 +127,70 @@ typedef struct {
     double x;
     double y;
 } point_2d;
+
+inline bool operator==(const point_2d& lhs, const point_2d& rhs) {
+    return
+        lhs.x == rhs.x &&
+        lhs.y == rhs.y;
+}
+
+inline bool operator!=(const point_2d& lhs, const point_2d& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     point_2d center;
     double radius;
 } circle;
+
+inline bool operator==(const circle& lhs, const circle& rhs) {
+    return
+        lhs.center == rhs.center &&
+        lhs.radius == rhs.radius;
+}
+
+inline bool operator!=(const circle& lhs, const circle& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     float r;
     float g;
     float b;
     float a;
 } color;
+
+inline bool operator==(const color& lhs, const color& rhs) {
+    return
+        std::abs(lhs.r - rhs.r) < 0.004 &&
+        std::abs(lhs.g - rhs.g) < 0.004 &&
+        std::abs(lhs.b - rhs.b) < 0.004 &&
+        std::abs(lhs.a - rhs.a) < 0.004;
+}
+
+inline bool operator!=(const color& lhs, const color& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     double x;
     double y;
     double width;
     double height;
 } rectangle;
+
+inline bool operator==(const rectangle& lhs, const rectangle& rhs) {
+    return
+        lhs.x == rhs.x &&
+        lhs.y == rhs.y &&
+        lhs.width == rhs.width &&
+        lhs.height == rhs.height;
+}
+
+inline bool operator!=(const rectangle& lhs, const rectangle& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     void *dest;
     float scale_x;
@@ -158,19 +207,89 @@ typedef struct {
     int line_width;
     animation anim;
 } drawing_options;
+
+inline bool operator==(const drawing_options& lhs, const drawing_options& rhs) {
+    return
+        lhs.dest == rhs.dest &&
+        lhs.scale_x == rhs.scale_x &&
+        lhs.scale_y == rhs.scale_y &&
+        lhs.angle == rhs.angle &&
+        lhs.anchor_offset_x == rhs.anchor_offset_x &&
+        lhs.anchor_offset_y == rhs.anchor_offset_y &&
+        lhs.flip_x == rhs.flip_x &&
+        lhs.flip_y == rhs.flip_y &&
+        lhs.is_part == rhs.is_part &&
+        lhs.part == rhs.part &&
+        lhs.draw_cell == rhs.draw_cell &&
+        lhs.camera == rhs.camera &&
+        lhs.line_width == rhs.line_width &&
+        lhs.anim == rhs.anim;
+}
+
+inline bool operator!=(const drawing_options& lhs, const drawing_options& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     point_2d start_point;
     point_2d end_point;
 } line;
+
+inline bool operator==(const line& lhs, const line& rhs) {
+    return
+        lhs.start_point == rhs.start_point &&
+        lhs.end_point == rhs.end_point;
+}
+
+inline bool operator!=(const line& lhs, const line& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     point_2d points[4];
 } quad;
+
+inline bool operator==(const quad& lhs, const quad& rhs) {
+    return
+        lhs.points[0] == rhs.points[0] &&
+        lhs.points[1] == rhs.points[1] &&
+        lhs.points[2] == rhs.points[2] &&
+        lhs.points[3] == rhs.points[3];
+}
+
+inline bool operator!=(const quad& lhs, const quad& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     point_2d points[3];
 } triangle;
+
+inline bool operator==(const triangle& lhs, const triangle& rhs) {
+    return
+        lhs.points[0] == rhs.points[0] &&
+        lhs.points[1] == rhs.points[1] &&
+        lhs.points[2] == rhs.points[2];
+}
+
+inline bool operator!=(const triangle& lhs, const triangle& rhs) {
+    return !(lhs == rhs);
+}
+
 typedef struct {
     double x;
     double y;
 } vector_2d;
+
+inline bool operator==(const vector_2d& lhs, const vector_2d& rhs) {
+    return
+        lhs.x == rhs.x &&
+        lhs.y == rhs.y;
+}
+
+inline bool operator!=(const vector_2d& lhs, const vector_2d& rhs) {
+    return !(lhs == rhs);
+}
+
 
 #endif /* __types_h */

@@ -5195,7 +5195,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740904845,
+    "parsed_at": 1740908496,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -7073,7 +7073,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1740904847,
+    "parsed_at": 1740908499,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -11468,7 +11468,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the quads are colliding and the collision was resolved,\nfalse if the quads are not colliding\n\n@atrribute class     quad",
+          "description": "True if the quads are colliding and the collision was resolved,\nfalse if the quads are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11516,6 +11516,7 @@
           }
         },
         "attributes": {
+          "class": "quad",
           "suffix": "between_quads",
           "group": "physics",
           "static": "collisions"
@@ -11532,7 +11533,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the circles are colliding and the collision was resolved,\nfalse if the circles are not colliding\n\n@atrribute class     circle",
+          "description": "True if the circles are colliding and the collision was resolved,\nfalse if the circles are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11580,6 +11581,7 @@
           }
         },
         "attributes": {
+          "class": "circle",
           "suffix": "between_circles",
           "group": "physics",
           "static": "collisions"
@@ -11596,7 +11598,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the circle and quad are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     circle",
+          "description": "True if the circle and quad are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11644,6 +11646,7 @@
           }
         },
         "attributes": {
+          "class": "circle",
           "suffix": "between_circle_and_quad",
           "group": "physics",
           "static": "collisions"
@@ -11660,7 +11663,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the circle and rectangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     circle",
+          "description": "True if the circle and rectangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11708,6 +11711,7 @@
           }
         },
         "attributes": {
+          "class": "circle",
           "suffix": "between_circle_and_rectangle",
           "group": "physics",
           "static": "collisions"
@@ -11724,7 +11728,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the circle and sprite are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     circle",
+          "description": "True if the circle and sprite are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11772,6 +11776,7 @@
           }
         },
         "attributes": {
+          "class": "circle",
           "suffix": "between_circle_and_sprite",
           "group": "physics",
           "static": "collisions"
@@ -11788,7 +11793,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the circle and triangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     circle",
+          "description": "True if the circle and triangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11836,6 +11841,7 @@
           }
         },
         "attributes": {
+          "class": "circle",
           "suffix": "between_circle_and_triangle",
           "group": "physics",
           "static": "collisions"
@@ -11852,7 +11858,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the quad and circle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     quad",
+          "description": "True if the quad and circle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11900,6 +11906,7 @@
           }
         },
         "attributes": {
+          "class": "quad",
           "suffix": "between_quad_and_circle",
           "group": "physics",
           "static": "collisions"
@@ -11916,7 +11923,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the quad and rectangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     quad",
+          "description": "True if the quad and rectangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -11964,6 +11971,7 @@
           }
         },
         "attributes": {
+          "class": "quad",
           "suffix": "between_quad_and_rectangle",
           "group": "physics",
           "static": "collisions"
@@ -11980,7 +11988,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the quad and sprite are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     quad",
+          "description": "True if the quad and sprite are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12028,6 +12036,7 @@
           }
         },
         "attributes": {
+          "class": "quad",
           "suffix": "between_quad_and_sprite",
           "group": "physics",
           "static": "collisions"
@@ -12044,7 +12053,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the quad and triangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     quad",
+          "description": "True if the quad and triangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12092,6 +12101,7 @@
           }
         },
         "attributes": {
+          "class": "quad",
           "suffix": "between_quad_and_triangle",
           "group": "physics",
           "static": "collisions"
@@ -12108,7 +12118,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the rectangle and circle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     rectangle",
+          "description": "True if the rectangle and circle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12156,6 +12166,7 @@
           }
         },
         "attributes": {
+          "class": "rectangle",
           "suffix": "between_rectangle_and_circle",
           "group": "physics",
           "static": "collisions"
@@ -12172,7 +12183,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the rectangle and quad are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     rectangle",
+          "description": "True if the rectangle and quad are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12220,6 +12231,7 @@
           }
         },
         "attributes": {
+          "class": "rectangle",
           "suffix": "between_rectangle_and_quad",
           "group": "physics",
           "static": "collisions"
@@ -12236,7 +12248,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the rectangles are colliding and the collision was resolved,\nfalse if the rectangles are not colliding\n\n@atrribute class     rectangle",
+          "description": "True if the rectangles are colliding and the collision was resolved,\nfalse if the rectangles are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12284,6 +12296,7 @@
           }
         },
         "attributes": {
+          "class": "rectangle",
           "suffix": "between_rectangles",
           "group": "physics",
           "static": "collisions"
@@ -12300,7 +12313,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the rectangle and sprite are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     rectangle",
+          "description": "True if the rectangle and sprite are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12348,6 +12361,7 @@
           }
         },
         "attributes": {
+          "class": "rectangle",
           "suffix": "between_rectangle_and_sprite",
           "group": "physics",
           "static": "collisions"
@@ -12364,7 +12378,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the rectangle and triangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     rectangle",
+          "description": "True if the rectangle and triangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12412,6 +12426,7 @@
           }
         },
         "attributes": {
+          "class": "rectangle",
           "suffix": "between_rectangle_and_triangle",
           "group": "physics",
           "static": "collisions"
@@ -12428,7 +12443,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the sprite and circle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     sprite",
+          "description": "True if the sprite and circle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12476,6 +12491,7 @@
           }
         },
         "attributes": {
+          "class": "sprite",
           "suffix": "between_sprite_and_circle",
           "group": "physics",
           "static": "collisions"
@@ -12492,7 +12508,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the sprite and quad are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     sprite",
+          "description": "True if the sprite and quad are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12540,6 +12556,7 @@
           }
         },
         "attributes": {
+          "class": "sprite",
           "suffix": "between_sprite_and_quad",
           "group": "physics",
           "static": "collisions"
@@ -12556,7 +12573,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the sprite and rectangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     sprite",
+          "description": "True if the sprite and rectangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12604,6 +12621,7 @@
           }
         },
         "attributes": {
+          "class": "sprite",
           "suffix": "between_sprite_and_rectangle",
           "group": "physics",
           "static": "collisions"
@@ -12620,7 +12638,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the sprites are colliding and the collision was resolved,\nfalse if the sprites are not colliding\n\n@atrribute class     sprite",
+          "description": "True if the sprites are colliding and the collision was resolved,\nfalse if the sprites are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12668,6 +12686,7 @@
           }
         },
         "attributes": {
+          "class": "sprite",
           "suffix": "between_sprites",
           "group": "physics",
           "static": "collisions"
@@ -12684,7 +12703,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the sprite and triangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     sprite",
+          "description": "True if the sprite and triangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12732,6 +12751,7 @@
           }
         },
         "attributes": {
+          "class": "sprite",
           "suffix": "between_sprite_and_triangle",
           "group": "physics",
           "static": "collisions"
@@ -12748,7 +12768,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the triangle and circle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     triangle",
+          "description": "True if the triangle and circle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12796,6 +12816,7 @@
           }
         },
         "attributes": {
+          "class": "triangle",
           "suffix": "between_triangle_and_circle",
           "group": "physics",
           "static": "collisions"
@@ -12812,7 +12833,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the triangle and quad are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     triangle",
+          "description": "True if the triangle and quad are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12860,6 +12881,7 @@
           }
         },
         "attributes": {
+          "class": "triangle",
           "suffix": "between_triangle_and_quad",
           "group": "physics",
           "static": "collisions"
@@ -12876,7 +12898,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the triangle and rectangle are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     triangle",
+          "description": "True if the triangle and rectangle are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12924,6 +12946,7 @@
           }
         },
         "attributes": {
+          "class": "triangle",
           "suffix": "between_triangle_and_rectangle",
           "group": "physics",
           "static": "collisions"
@@ -12940,7 +12963,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the triangle and sprite are colliding and the collision\nwas resolved, false if they are not colliding\n\n@atrribute class     triangle",
+          "description": "True if the triangle and sprite are colliding and the collision\nwas resolved, false if they are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -12988,6 +13011,7 @@
           }
         },
         "attributes": {
+          "class": "triangle",
           "suffix": "between_triangle_and_sprite",
           "group": "physics",
           "static": "collisions"
@@ -13004,7 +13028,7 @@
         "brief": null,
         "return": {
           "type": "bool",
-          "description": "True if the triangles are colliding and the collision was resolved,\nfalse if the triangles are not colliding\n\n@atrribute class     triangle",
+          "description": "True if the triangles are colliding and the collision was resolved,\nfalse if the triangles are not colliding",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -13052,6 +13076,7 @@
           }
         },
         "attributes": {
+          "class": "triangle",
           "suffix": "between_triangles",
           "group": "physics",
           "static": "collisions"
@@ -36805,7 +36830,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1740904862,
+    "parsed_at": 1740908500,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -42352,7 +42377,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740904864,
+    "parsed_at": 1740908500,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -43168,7 +43193,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1740904864,
+    "parsed_at": 1740908501,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -46704,7 +46729,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740904866,
+    "parsed_at": 1740908501,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -63023,7 +63048,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1740904872,
+    "parsed_at": 1740908502,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {

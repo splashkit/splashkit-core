@@ -256,18 +256,16 @@ type InterfaceStyle = (
 type PinModes = (
   GPIO_INPUT = 0,
   GPIO_OUTPUT = 1,
+  GPIO_ALT5 = 2,
+  GPIO_ALT4 = 3,
   GPIO_ALT0 = 4,
   GPIO_ALT1 = 5,
   GPIO_ALT2 = 6,
-  GPIO_ALT3 = 7,
-  GPIO_ALT4 = 3,
-  GPIO_ALT5 = 2,
-  GPIO_DEFAULT_MODE = 1
+  GPIO_ALT3 = 7
 );
 type PinValues = (
   GPIO_LOW = 0,
-  GPIO_HIGH = 1,
-  GPIO_DEFAULT_VALUE = 1
+  GPIO_HIGH = 1
 );
 type Pins = (
   PIN_1 = 1,
@@ -328,26 +326,41 @@ type HttpMethod = (
 type Matrix2D = record
   elements: Array [0..2, 0..2] of Double;
 end;
+
+operator = (const left, right: Matrix2D): Boolean;
+operator <> (const left, right: Matrix2D): Boolean;
 type Point2D = record
   x: Double;
   y: Double;
 end;
+
+operator = (const left, right: Point2D): Boolean;
+operator <> (const left, right: Point2D): Boolean;
 type Circle = record
   center: Point2D;
   radius: Double;
 end;
+
+operator = (const left, right: Circle): Boolean;
+operator <> (const left, right: Circle): Boolean;
 type Color = record
   r: Single;
   g: Single;
   b: Single;
   a: Single;
 end;
+
+operator = (const left, right: Color): Boolean;
+operator <> (const left, right: Color): Boolean;
 type Rectangle = record
   x: Double;
   y: Double;
   width: Double;
   height: Double;
 end;
+
+operator = (const left, right: Rectangle): Boolean;
+operator <> (const left, right: Rectangle): Boolean;
 type DrawingOptions = record
   dest: Pointer;
   scaleX: Single;
@@ -364,20 +377,35 @@ type DrawingOptions = record
   lineWidth: Integer;
   anim: Animation;
 end;
+
+operator = (const left, right: DrawingOptions): Boolean;
+operator <> (const left, right: DrawingOptions): Boolean;
 type Line = record
   startPoint: Point2D;
   endPoint: Point2D;
 end;
+
+operator = (const left, right: Line): Boolean;
+operator <> (const left, right: Line): Boolean;
 type Quad = record
   points: Array [0..3] of Point2D;
 end;
+
+operator = (const left, right: Quad): Boolean;
+operator <> (const left, right: Quad): Boolean;
 type Triangle = record
   points: Array [0..2] of Point2D;
 end;
+
+operator = (const left, right: Triangle): Boolean;
+operator <> (const left, right: Triangle): Boolean;
 type Vector2D = record
   x: Double;
   y: Double;
 end;
+
+operator = (const left, right: Vector2D): Boolean;
+operator <> (const left, right: Vector2D): Boolean;
 type ArrayOfString = Array of String;
 type ArrayOfLine = Array of Line;
 type ArrayOfChar = Array of Char;
@@ -1733,6 +1761,152 @@ function WindowY(wnd: Window): Integer;
 implementation
 uses strings, math;
 
+operator = (const left, right: Matrix2D): Boolean;
+begin
+  result :=
+    (left.elements[0,0] = right.elements[0,0]) and
+    (left.elements[0,1] = right.elements[0,1]) and
+    (left.elements[0,2] = right.elements[0,2]) and
+    (left.elements[1,0] = right.elements[1,0]) and
+    (left.elements[1,1] = right.elements[1,1]) and
+    (left.elements[1,2] = right.elements[1,2]) and
+    (left.elements[2,0] = right.elements[2,0]) and
+    (left.elements[2,1] = right.elements[2,1]) and
+    (left.elements[2,2] = right.elements[2,2]);
+end;
+
+operator <> (const left, right: Matrix2D): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Point2D): Boolean;
+begin
+  result :=
+    (left.x = right.x) and
+    (left.y = right.y);
+end;
+
+operator <> (const left, right: Point2D): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Circle): Boolean;
+begin
+  result :=
+    (left.center = right.center) and
+    (left.radius = right.radius);
+end;
+
+operator <> (const left, right: Circle): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Color): Boolean;
+begin
+  result :=
+    (abs(left.r - right.r) < 0.004) and
+    (abs(left.g - right.g) < 0.004) and
+    (abs(left.b - right.b) < 0.004) and
+    (abs(left.a - right.a) < 0.004);
+end;
+
+operator <> (const left, right: Color): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Rectangle): Boolean;
+begin
+  result :=
+    (left.x = right.x) and
+    (left.y = right.y) and
+    (left.width = right.width) and
+    (left.height = right.height);
+end;
+
+operator <> (const left, right: Rectangle): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: DrawingOptions): Boolean;
+begin
+  result :=
+    (left.dest = right.dest) and
+    (left.scaleX = right.scaleX) and
+    (left.scaleY = right.scaleY) and
+    (left.angle = right.angle) and
+    (left.anchorOffsetX = right.anchorOffsetX) and
+    (left.anchorOffsetY = right.anchorOffsetY) and
+    (left.flipX = right.flipX) and
+    (left.flipY = right.flipY) and
+    (left.isPart = right.isPart) and
+    (left.part = right.part) and
+    (left.drawCell = right.drawCell) and
+    (left.camera = right.camera) and
+    (left.lineWidth = right.lineWidth) and
+    (left.anim = right.anim);
+end;
+
+operator <> (const left, right: DrawingOptions): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Line): Boolean;
+begin
+  result :=
+    (left.startPoint = right.startPoint) and
+    (left.endPoint = right.endPoint);
+end;
+
+operator <> (const left, right: Line): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Quad): Boolean;
+begin
+  result :=
+    (left.points[0] = right.points[0]) and
+    (left.points[1] = right.points[1]) and
+    (left.points[2] = right.points[2]) and
+    (left.points[3] = right.points[3]);
+end;
+
+operator <> (const left, right: Quad): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Triangle): Boolean;
+begin
+  result :=
+    (left.points[0] = right.points[0]) and
+    (left.points[1] = right.points[1]) and
+    (left.points[2] = right.points[2]);
+end;
+
+operator <> (const left, right: Triangle): Boolean;
+begin
+  result := not (left = right);
+end;
+
+operator = (const left, right: Vector2D): Boolean;
+begin
+  result :=
+    (left.x = right.x) and
+    (left.y = right.y);
+end;
+
+operator <> (const left, right: Vector2D): Boolean;
+begin
+  result := not (left = right);
+end;
+
 type __sklib_string = record
   str: PChar;
   size: Integer;
@@ -1814,7 +1988,8 @@ begin
 end;
 function __skadapter__to_string(s: __sklib_string): String;
 begin
-  result := StrPas(s.str);
+  SetLength(result, s.size);
+  Move(s.str^, result[1], s.size);
   __sklib__free__sklib_string(s);
 end;
 function __skadapter__to_sklib_int8_t(v: Char): Char;
@@ -2371,6 +2546,7 @@ function __skadapter__to_vector_string(const v: __sklib_vector_string): ArrayOfS
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2382,6 +2558,7 @@ procedure __skadapter__update_from_vector_string(var v: __sklib_vector_string; v
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2417,6 +2594,7 @@ function __skadapter__to_vector_line(const v: __sklib_vector_line): ArrayOfLine;
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2428,6 +2606,7 @@ procedure __skadapter__update_from_vector_line(var v: __sklib_vector_line; var _
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2463,6 +2642,7 @@ function __skadapter__to_vector_int8_t(const v: __sklib_vector_int8_t): ArrayOfC
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2474,6 +2654,7 @@ procedure __skadapter__update_from_vector_int8_t(var v: __sklib_vector_int8_t; v
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2509,6 +2690,7 @@ function __skadapter__to_vector_triangle(const v: __sklib_vector_triangle): Arra
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2520,6 +2702,7 @@ procedure __skadapter__update_from_vector_triangle(var v: __sklib_vector_triangl
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2555,6 +2738,7 @@ function __skadapter__to_vector_double(const v: __sklib_vector_double): ArrayOfD
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2566,6 +2750,7 @@ procedure __skadapter__update_from_vector_double(var v: __sklib_vector_double; v
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2601,6 +2786,7 @@ function __skadapter__to_vector_json(const v: __sklib_vector_json): ArrayOfJson;
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2612,6 +2798,7 @@ procedure __skadapter__update_from_vector_json(var v: __sklib_vector_json; var _
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2647,6 +2834,7 @@ function __skadapter__to_vector_bool(const v: __sklib_vector_bool): ArrayOfBoole
 var
   i: Integer;
 begin
+  result := nil;
   SetLength(result, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin
@@ -2658,6 +2846,7 @@ procedure __skadapter__update_from_vector_bool(var v: __sklib_vector_bool; var _
 var
   i: Integer;
 begin
+  __skreturn := nil;
   SetLength(__skreturn, v.size_from_lib);
   for i := 0 to v.size_from_lib - 1 do
   begin

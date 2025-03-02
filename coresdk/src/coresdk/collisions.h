@@ -35,7 +35,6 @@ namespace splashkit_lib
      */
     bool bitmap_point_collision(bitmap bmp, double bmp_x, double bmp_y, double x, double y);
 
-
     /**
      * Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
      * to check collisions between a point and a bitmap.
@@ -1200,7 +1199,7 @@ namespace splashkit_lib
      * @return          True if the sprites are colliding and the collision was resolved,
      *                  false if the sprites are not colliding
      *
-     * @atrribute class     sprite
+     * @attribute class     sprite
      * @attribute suffix    between_sprites
      */
     bool resolve_collision(sprite collider, const sprite collidee, const vector_2d &direction);
@@ -1219,7 +1218,7 @@ namespace splashkit_lib
      * @return          True if the sprite and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     sprite
+     * @attribute class     sprite
      * @attribute suffix    between_sprite_and_rectangle
      */
     bool resolve_collision(sprite collider, const rectangle &collidee, const vector_2d &direction);
@@ -1238,7 +1237,7 @@ namespace splashkit_lib
      * @return          True if the sprite and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     sprite
+     * @attribute class     sprite
      * @attribute suffix    between_sprite_and_circle
      */
     bool resolve_collision(sprite collider, const circle &collidee, const vector_2d &direction);
@@ -1257,7 +1256,7 @@ namespace splashkit_lib
      * @return          True if the sprite and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     sprite
+     * @attribute class     sprite
      * @attribute suffix    between_sprite_and_triangle
      */
     bool resolve_collision(sprite collider, const triangle &collidee, const vector_2d &direction);
@@ -1276,7 +1275,7 @@ namespace splashkit_lib
      * @return          True if the sprite and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     sprite
+     * @attribute class     sprite
      * @attribute suffix    between_sprite_and_quad
      */
     bool resolve_collision(sprite collider, const quad &collidee, const vector_2d &direction);
@@ -1295,7 +1294,7 @@ namespace splashkit_lib
      * @return          True if the rectangle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     rectangle
+     * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_sprite
      */
     bool resolve_collision(rectangle &collider, const sprite collidee, const vector_2d &direction);
@@ -1314,7 +1313,7 @@ namespace splashkit_lib
      * @return          True if the rectangles are colliding and the collision was resolved,
      *                  false if the rectangles are not colliding
      *
-     * @atrribute class     rectangle
+     * @attribute class     rectangle
      * @attribute suffix    between_rectangles
      */
     bool resolve_collision(rectangle &collider, const rectangle &collidee, const vector_2d &direction);
@@ -1333,7 +1332,7 @@ namespace splashkit_lib
      * @return          True if the rectangle and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     rectangle
+     * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_circle
      */
     bool resolve_collision(rectangle &collider, const circle &collidee, const vector_2d &direction);
@@ -1352,7 +1351,7 @@ namespace splashkit_lib
      * @return          True if the rectangle and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     rectangle
+     * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_triangle
      */
     bool resolve_collision(rectangle &collider, const triangle &collidee, const vector_2d &direction);
@@ -1371,7 +1370,7 @@ namespace splashkit_lib
      * @return          True if the rectangle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     rectangle
+     * @attribute class     rectangle
      * @attribute suffix    between_rectangle_and_quad
      */
     bool resolve_collision(rectangle &collider, const quad &collidee, const vector_2d &direction);
@@ -1390,7 +1389,7 @@ namespace splashkit_lib
      * @return          True if the circle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     circle
+     * @attribute class     circle
      * @attribute suffix    between_circle_and_sprite
      */
     bool resolve_collision(circle &collider, const sprite collidee, const vector_2d &direction);
@@ -1409,7 +1408,7 @@ namespace splashkit_lib
      * @return          True if the circle and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     circle
+     * @attribute class     circle
      * @attribute suffix    between_circle_and_rectangle
      */
     bool resolve_collision(circle &collider, const rectangle &collidee, const vector_2d &direction);
@@ -1428,7 +1427,7 @@ namespace splashkit_lib
      * @return          True if the circles are colliding and the collision was resolved,
      *                  false if the circles are not colliding
      *
-     * @atrribute class     circle
+     * @attribute class     circle
      * @attribute suffix    between_circles
      */
     bool resolve_collision(circle &collider, const circle &collidee, const vector_2d &direction);
@@ -1447,7 +1446,7 @@ namespace splashkit_lib
      * @return          True if the circle and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     circle
+     * @attribute class     circle
      * @attribute suffix    between_circle_and_triangle
      */
     bool resolve_collision(circle &collider, const triangle &collidee, const vector_2d &direction);
@@ -1466,7 +1465,7 @@ namespace splashkit_lib
      * @return          True if the circle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     circle
+     * @attribute class     circle
      * @attribute suffix    between_circle_and_quad
      */
     bool resolve_collision(circle &collider, const quad &collidee, const vector_2d &direction);
@@ -1485,7 +1484,7 @@ namespace splashkit_lib
      * @return          True if the triangle and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     triangle
+     * @attribute class     triangle
      * @attribute suffix    between_triangle_and_sprite
      */
     bool resolve_collision(triangle &collider, const sprite collidee, const vector_2d &direction);
@@ -1504,7 +1503,7 @@ namespace splashkit_lib
      * @return          True if the triangle and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     triangle
+     * @attribute class     triangle
      * @attribute suffix    between_triangle_and_rectangle
      */
     bool resolve_collision(triangle &collider, const rectangle &collidee, const vector_2d &direction);
@@ -1523,7 +1522,7 @@ namespace splashkit_lib
      * @return          True if the triangle and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     triangle
+     * @attribute class     triangle
      * @attribute suffix    between_triangle_and_circle
      */
     bool resolve_collision(triangle &collider, const circle &collidee, const vector_2d &direction);
@@ -1542,7 +1541,7 @@ namespace splashkit_lib
      * @return          True if the triangles are colliding and the collision was resolved,
      *                  false if the triangles are not colliding
      *
-     * @atrribute class     triangle
+     * @attribute class     triangle
      * @attribute suffix    between_triangles
      */
     bool resolve_collision(triangle &collider, const triangle &collidee, const vector_2d &direction);
@@ -1561,7 +1560,7 @@ namespace splashkit_lib
      * @return          True if the triangle and quad are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     triangle
+     * @attribute class     triangle
      * @attribute suffix    between_triangle_and_quad
      */
     bool resolve_collision(triangle &collider, const quad &collidee, const vector_2d &direction);
@@ -1580,7 +1579,7 @@ namespace splashkit_lib
      * @return          True if the quad and sprite are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     quad
+     * @attribute class     quad
      * @attribute suffix    between_quad_and_sprite
      */
     bool resolve_collision(quad &collider, const sprite collidee, const vector_2d &direction);
@@ -1599,7 +1598,7 @@ namespace splashkit_lib
      * @return          True if the quad and rectangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     quad
+     * @attribute class     quad
      * @attribute suffix    between_quad_and_rectangle
      */
     bool resolve_collision(quad &collider, const rectangle &collidee, const vector_2d &direction);
@@ -1618,7 +1617,7 @@ namespace splashkit_lib
      * @return          True if the quad and circle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     quad
+     * @attribute class     quad
      * @attribute suffix    between_quad_and_circle
      */
     bool resolve_collision(quad &collider, const circle &collidee, const vector_2d &direction);
@@ -1637,7 +1636,7 @@ namespace splashkit_lib
      * @return          True if the quad and triangle are colliding and the collision
      *                  was resolved, false if they are not colliding
      *
-     * @atrribute class     quad
+     * @attribute class     quad
      * @attribute suffix    between_quad_and_triangle
      */
     bool resolve_collision(quad &collider, const triangle &collidee, const vector_2d &direction);
@@ -1656,7 +1655,7 @@ namespace splashkit_lib
      * @return          True if the quads are colliding and the collision was resolved,
      *                  false if the quads are not colliding
      *
-     * @atrribute class     quad
+     * @attribute class     quad
      * @attribute suffix    between_quads
      */
     bool resolve_collision(quad &collider, const quad &collidee, const vector_2d &direction);
