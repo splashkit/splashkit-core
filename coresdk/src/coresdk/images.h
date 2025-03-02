@@ -35,21 +35,6 @@ namespace splashkit_lib
     bitmap load_bitmap(string name, string filename);
 
     /**
-     * Loads and returns a bitmap. The supplied `image` is a base64 encoded
-     * .png file. The supplied `name` indicates the
-     * name to use to refer to this Bitmap in SplashKit. The `bitmap` can then
-     * be retrieved by passing this `name` to the `bitmap_named` function.
-     *
-     * @param  name     The name of the bitmap resource in SplashKit
-     * @param  image    The base64 encoded image
-     * @return          The loaded bitmap
-     *
-     * @attribute class bitmap
-     * @attribute constructor true
-     */
-    bitmap load_bitmap_base64(string name, const char * image);
-
-    /**
      * Lets you test if bitmap value is valid. This will return true when it is a valid bitmap.
      * 
      * @param bmp the bitmap to test

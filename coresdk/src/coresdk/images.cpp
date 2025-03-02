@@ -132,40 +132,6 @@ namespace splashkit_lib
         return result;
     }
 
-    bitmap load_bitmap_base64(string name, const char * image)
-    {
-        if (has_bitmap(name)) return bitmap_named(name);
-
-        sk_drawing_surface surface;
-        bitmap result = nullptr;
-
-        surface = sk_load_bitmap_from_memory(base64_decode_data(image));
-        if ( not surface._data )
-        {
-            LOG(WARNING) <<  cat({ "Error loading image for ", name}) ;
-            return nullptr;
-        }
-
-        result = new _bitmap_data;
-        result->image.surface = surface;
-
-        result->id         = BITMAP_PTR;
-        result->cell_w     = surface.width;
-        result->cell_h     = surface.height;
-        result->cell_cols  = 1;
-        result->cell_rows  = 1;
-        result->cell_count = 1;
-        result->pixel_mask = nullptr;
-
-        result->name       = name;
-
-        setup_collision_mask(result);
-
-        _bitmaps[name] = result;
-
-        return result;
-    }
-
     bitmap create_bitmap(string name, int width, int height)
     {
         bitmap result = new(_bitmap_data);
