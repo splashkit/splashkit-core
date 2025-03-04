@@ -125,7 +125,6 @@ do_make
 cd "${APP_PATH}"
 
 if [[ `uname` == MINGW* ]]; then
-  rm ${SK_OUT}/skm/lib/win32/*.a
   rm ${SK_OUT}/skm/lib/win64/*.a
 fi
 
