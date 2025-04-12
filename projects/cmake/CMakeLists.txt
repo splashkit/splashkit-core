@@ -23,7 +23,7 @@ if (EXISTS "/sys/firmware/devicetree/base/model")
     file(READ "/sys/firmware/devicetree/base/model" DEVICE_MODEL)
 endif()
 
-if (ARCH MATCHES "armv7l|aarch64|armv6l" OR DEVICE_MODEL MATCHES "Raspberry Pi")
+if (ARCH MATCHES "armv7l|aarch64|armv6l" AND DEVICE_MODEL MATCHES "Raspberry Pi")
     message(STATUS "Raspberry Pi detected: ${ARCH} ${DEVICE_MODEL}")
     set(IS_RASPBERRY_PI TRUE)
     add_definitions(-DRASPBERRY_PI)
