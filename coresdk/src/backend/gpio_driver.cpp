@@ -205,7 +205,7 @@ namespace splashkit_lib
             return -1;
         }
     }
-    void sk_i2c_write_byte(int handle, int data)
+    int sk_i2c_write_byte(int handle, int data)
     {
         if (check_pi())
         {
@@ -214,6 +214,11 @@ namespace splashkit_lib
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
             }
+            return result;
+        }
+        else
+        {
+            return -1;
         }
     }
     int sk_i2c_read_device(int handle, char *buf, int count)

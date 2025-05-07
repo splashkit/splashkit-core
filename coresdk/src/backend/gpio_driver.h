@@ -202,7 +202,7 @@ namespace splashkit_lib
     int sk_i2c_open(int bus, int address, int flags);
     void sk_i2c_close(int handle);
     int sk_i2c_read_byte(int handle);
-    void sk_i2c_write_byte(int handle, int data);
+    int sk_i2c_write_byte(int handle, int data);
     int sk_i2c_read_device(int handle, char *buf, int count);
     void sk_i2c_write_device(int handle, char *buf, int count);
 
