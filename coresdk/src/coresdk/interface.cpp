@@ -990,7 +990,7 @@ namespace splashkit_lib
         _interface_sanity_check();
         enter_column();
 
-        sk_interface_push_ptr_id((void*)&clr);
+        sk_interface_push_temp_id();
 
         color temp_value = clr;
         if (hsb)
