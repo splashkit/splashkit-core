@@ -132,7 +132,7 @@ void run_ui_test()
                 val1 = slider("Slider", val1, -25, 25);
 
                 // Show two sliders without labels
-                val2 = slider(val2, 0, 100);
+                val2 = slider(val2, 0, 40);
                 val3 = slider(val3, -25, 25);
 
                 // Show checkbox that's checked when we drag the slider
