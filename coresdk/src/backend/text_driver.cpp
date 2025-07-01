@@ -7,14 +7,14 @@
 
 #include <iostream>
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL2_gfxPrimitives.h>
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 #endif
 
 #include "text_driver.h"

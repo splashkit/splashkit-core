@@ -5,10 +5,10 @@
 //  Copyright (c) 2013 Andrew Cain. All rights reserved.
 //
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
+#else
+#include <SDL2/SDL.h>
 #endif
 
 #include "core_driver.h"

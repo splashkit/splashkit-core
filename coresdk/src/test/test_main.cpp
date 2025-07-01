@@ -17,10 +17,10 @@
 #include <string>
 #include <vector>
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
+#else
+#include <SDL2/SDL.h>
 #endif
 
 using namespace std;

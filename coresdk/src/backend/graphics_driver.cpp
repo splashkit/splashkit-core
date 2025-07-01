@@ -9,14 +9,14 @@
 #include <limits.h>
 #include <iostream>
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
-#include <SDL2/SDL_image.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
 #include <SDL_image.h>
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
+#include <SDL2/SDL_image.h>
 #endif
 
 #include "png.h"

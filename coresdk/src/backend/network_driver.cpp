@@ -12,12 +12,12 @@
 
 #include <stdio.h>
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_net.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
 #include <SDL_net.h>
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_net.h>
 #endif
 
 #include <string.h>

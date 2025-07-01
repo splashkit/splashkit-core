@@ -9,10 +9,10 @@
 #ifndef graphics_driver_h
 #define graphics_driver_h
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
+#else
+#include <SDL2/SDL.h>
 #endif
 
 #include "backend_types.h"

@@ -18,20 +18,20 @@
 
 #include <cstdlib>
 
-#include <unistd.h>
-#include <sys/types.h>
+// #include <unistd.h>
+// #include <sys/types.h>
 
-#ifndef WINDOWS
-#include <pwd.h>
-#else
 #include <Windows.h>
 #include <Shlobj.h>
-#endif
+// #ifndef WINDOWS
+// #include <pwd.h>
+// #else
+// #endif
 
 #include <filesystem>
 
-using std::string;
 using std::locale;
+using std::string;
 using std::filesystem::recursive_directory_iterator;
 
 namespace splashkit_lib
@@ -47,13 +47,13 @@ namespace splashkit_lib
     bool file_exists(const string path)
     {
         struct stat buffer;
-        return (stat (path.c_str(), &buffer) == 0);
+        return (stat(path.c_str(), &buffer) == 0);
     }
 
     bool directory_exists(const string path)
     {
         struct stat buffer;
-        return (stat (path.c_str(), &buffer) == 0) and ( (buffer.st_mode & S_IFDIR) != 0);
+        return (stat(path.c_str(), &buffer) == 0) and ((buffer.st_mode & S_IFDIR) != 0);
     }
 
     string directory_of(const string filename)
@@ -65,37 +65,37 @@ namespace splashkit_lib
 
     string get_env_var(const string &name)
     {
-        char * val = getenv( name.c_str() );
+        char *val = getenv(name.c_str());
         return val == NULL ? string("") : string(val);
     }
 
     string path_to_user_home()
     {
-#ifndef WINDOWS
-        struct passwd *pw = getpwuid(getuid());
-        return string(pw->pw_dir);
-#else
+// #ifndef WINDOWS
+//         struct passwd *pw = getpwuid(getuid());
+//         return string(pw->pw_dir);
+// #else
         WCHAR path[MAX_PATH];
         if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, path)))
         {
             char ch[260];
             char DefChar = ' ';
-            WideCharToMultiByte(CP_ACP,0,path,-1, ch,260,&DefChar, NULL);
+            WideCharToMultiByte(CP_ACP, 0, path, -1, ch, 260, &DefChar, NULL);
 
             return string(ch);
         }
-        else
-        {
+        // else
+        // {
             return get_env_var("HOMEDRIVE") + get_env_var("HomePath");
-        }
-#endif
+        // }
+// #endif
     }
 
     string cat(std::initializer_list<string> list)
     {
         string result("");
 
-        for ( string elem : list )
+        for (string elem : list)
         {
             result += elem;
         }
@@ -103,31 +103,31 @@ namespace splashkit_lib
         return result;
     }
 
-    string to_lower (string str)
+    string to_lower(string str)
     {
         string result = "";
         locale loc;
 
-        for(auto elem : str)
-            result += std::tolower(elem,loc);
+        for (auto elem : str)
+            result += std::tolower(elem, loc);
 
         return result;
     }
 
     string path_from(std::initializer_list<string> list, string filename)
     {
-#ifdef WINDOWS
-#define PATH_SEP "\\"
-#else
+// #ifdef WINDOWS
+// #define PATH_SEP "\\"
+// #else
 #define PATH_SEP "/"
-#endif
+// #endif
 
         string result("");
         bool first = true;
-        for ( string elem : list )
+        for (string elem : list)
         {
-            if(elem.find(PATH_SEP) == 0 and not first)
-                elem.erase(0,1);
+            if (elem.find(PATH_SEP) == 0 and not first)
+                elem.erase(0, 1);
             result += elem;
             size_t last_sep = elem.find_last_of(PATH_SEP);
             if (last_sep == string::npos || last_sep < elem.length() - 1)
@@ -141,25 +141,25 @@ namespace splashkit_lib
 
     string base_fs_path()
     {
-        #if WINDOWS
-            return get_env_var("SYSTEMDRIVE") + "\\";
-        #else
-            return "/";
-        #endif
+// #if WINDOWS
+        return get_env_var("SYSTEMDRIVE") + "\\";
+// #else
+        return "/";
+// #endif
     }
 
     vector<string> scan_dir_recursive(const string &directory)
     {
         vector<string> result;
         result.push_back(directory);
-        
+
         // LOG(TRACE) << "Adding dir: " << directory;
 
         std::error_code ec;
 
-        for (const auto& dir_entry : recursive_directory_iterator(directory, {}, ec))
+        for (const auto &dir_entry : recursive_directory_iterator(directory, {}, ec))
         {
-            if(dir_entry.is_directory())
+            if (dir_entry.is_directory())
             {
                 // LOG(TRACE) << "Adding dir: " << dir_entry.path().generic_string();
                 result.push_back(dir_entry.path().generic_string());
@@ -169,7 +169,8 @@ namespace splashkit_lib
         return result;
     }
 
-    struct unknown_data {
+    struct unknown_data
+    {
         pointer_identifier id;
     };
 
@@ -189,7 +190,7 @@ namespace splashkit_lib
     {
         _window_data *result = static_cast<_window_data *>(w);
 
-        if (result and (result->id != WINDOW_PTR) )
+        if (result and (result->id != WINDOW_PTR))
         {
             LOG(WARNING) << "Attempted to access a Window that appears to be an invalid pointer\n";
             result = nullptr;
@@ -202,7 +203,7 @@ namespace splashkit_lib
     {
         _bitmap_data *result = static_cast<_bitmap_data *>(b);
 
-        if (result and (result->id != BITMAP_PTR) )
+        if (result and (result->id != BITMAP_PTR))
         {
             LOG(WARNING) << "Attempted to access a Bitmap that appears to be an invalid pointer\n";
             result = nullptr;
@@ -232,7 +233,7 @@ namespace splashkit_lib
         else
         {
             LOG(WARNING) << "Attempting to draw to a surface that does not exist.";
-            return  nullptr;
+            return nullptr;
         }
     }
 
@@ -241,14 +242,15 @@ namespace splashkit_lib
         // check cases where drawn without camera...
         switch (opts.camera)
         {
-            case DRAW_TO_SCREEN:
+        case DRAW_TO_SCREEN:
+            return;
+        case DRAW_TO_WORLD:
+            break;
+        case DRAW_DEFAULT:
+            pointer_identifier id = ptr_kind(opts.dest);
+            if (id != WINDOW_PTR)
                 return;
-            case DRAW_TO_WORLD:
-                break;
-            case DRAW_DEFAULT:
-                pointer_identifier id = ptr_kind(opts.dest);
-                if (id != WINDOW_PTR) return;
-                break;
+            break;
         }
 
         // update location using camera
@@ -264,8 +266,9 @@ namespace splashkit_lib
 
         for (i = 0; i < value.length(); i++)
         {
-            if( at_index >= index ) break; // past delimeter
-            if( value[i] == delimiter )
+            if (at_index >= index)
+                break; // past delimeter
+            if (value[i] == delimiter)
             {
                 at_index++;
             }
@@ -273,11 +276,12 @@ namespace splashkit_lib
 
         for (; i < value.length(); i++)
         {
-            if( value[i] != delimiter )
+            if (value[i] != delimiter)
             {
                 result += value[i];
             }
-            else break;
+            else
+                break;
         }
 
         return result;
@@ -288,15 +292,16 @@ namespace splashkit_lib
         int i, count, start;
         bool in_range;
 
-        //SetLength(result, 0);
+        // SetLength(result, 0);
         in_range = false;
         string result = "";
-        count = 1; //1 is the first index... not 0
+        count = 1; // 1 is the first index... not 0
 
         // Find the start of this delimited range
-        for ( i = 0; i < value.size(); i++)
+        for (i = 0; i < value.size(); i++)
         {
-            if (count == index) break;
+            if (count == index)
+                break;
 
             if ((not in_range) and (value[i] == ','))
                 count += 1;
@@ -306,7 +311,8 @@ namespace splashkit_lib
                 in_range = true;
         }
 
-        if (count != index) return result;
+        if (count != index)
+            return result;
 
         in_range = false;
         start = i;
@@ -329,7 +335,8 @@ namespace splashkit_lib
     int count_delimiter(string value, char delimiter)
     {
         int count = 0;
-        for_each(value.begin(), value.end(), [&](char ch){if(ch == delimiter) count++;});
+        for_each(value.begin(), value.end(), [&](char ch)
+                 {if(ch == delimiter) count++; });
         return count;
     }
 
@@ -339,7 +346,7 @@ namespace splashkit_lib
         bool in_range = false;
         int result = 0;
 
-        for ( i = 0; i < value.size(); i++ )
+        for (i = 0; i < value.size(); i++)
         {
             if ((not in_range) and (value[i] == delimiter))
                 result++;
@@ -354,7 +361,7 @@ namespace splashkit_lib
 
     bool try_str_to_int(string str, int &result)
     {
-        char temp;  //used to check nothing comes after the int
+        char temp; // used to check nothing comes after the int
 
         // scan the string, looking for a number ... followed by nothing
         // sscanf = string scan format
@@ -368,7 +375,7 @@ namespace splashkit_lib
         //          0 = did not read a number at the start
         //          1 = read a number, but no character followed it
         //          2 = read a number and a character... like "1 fred" (1 is the number, f is the character)
-        if ( sscanf(str.c_str(), " %d %c", &result, &temp) != 1 )
+        if (sscanf(str.c_str(), " %d %c", &result, &temp) != 1)
         {
             return false;
         }
@@ -380,9 +387,10 @@ namespace splashkit_lib
     {
         int result;
 
-        if (allow_empty and str.size() == 0) return empty_value;
+        if (allow_empty and str.size() == 0)
+            return empty_value;
 
-        if ( ! try_str_to_int(str, result) )
+        if (!try_str_to_int(str, result))
         {
             // scan found a number followed by something... so its not a whole number
             LOG(WARNING) << "Attempted to convert " + str + " to an integer.";
@@ -402,7 +410,7 @@ namespace splashkit_lib
 
     bool try_str_to_float(string str, float &result)
     {
-        char temp;  //used to check nothing comes after the int
+        char temp; // used to check nothing comes after the int
 
         // scan the string, looking for a number ... followed by nothing
         // sscanf = string scan format
@@ -416,7 +424,7 @@ namespace splashkit_lib
         //          0 = did not read a number at the start
         //          1 = read a number, but no character followed it
         //          2 = read a number and a character... like "1 fred" (1 is the number, f is the character)
-        if ( sscanf(str.c_str(), " %f %c", &result, &temp) != 1 )
+        if (sscanf(str.c_str(), " %f %c", &result, &temp) != 1)
         {
             return false;
         }
@@ -428,9 +436,10 @@ namespace splashkit_lib
     {
         float result;
 
-        if (allow_empty and str.size() == 0) return empty_value;
+        if (allow_empty and str.size() == 0)
+            return empty_value;
 
-        if ( not try_str_to_float(str, result) )
+        if (not try_str_to_float(str, result))
         {
             // scan found a number followed by something... so its not a whole number
             LOG(WARNING) << "Attempted to convert " + str + " to an real number (float).";
@@ -450,7 +459,7 @@ namespace splashkit_lib
 
     bool try_str_to_double(string str, double &result)
     {
-        char temp;  //used to check nothing comes after the int
+        char temp; // used to check nothing comes after the int
 
         // scan the string, looking for a number ... followed by nothing
         // sscanf = string scan format
@@ -464,7 +473,7 @@ namespace splashkit_lib
         //          0 = did not read a number at the start
         //          1 = read a number, but no character followed it
         //          2 = read a number and a character... like "1 fred" (1 is the number, f is the character)
-        if ( sscanf(str.c_str(), " %lf %c", &result, &temp) != 1 )
+        if (sscanf(str.c_str(), " %lf %c", &result, &temp) != 1)
         {
             return false;
         }
@@ -476,9 +485,10 @@ namespace splashkit_lib
     {
         double result;
 
-        if (allow_empty and str.size() == 0) return empty_value;
+        if (allow_empty and str.size() == 0)
+            return empty_value;
 
-        if ( not try_str_to_double(str, result) )
+        if (not try_str_to_double(str, result))
         {
             // scan found a number followed by something... so its not a whole number
             LOG(WARNING) << "Attempted to convert " + str + " to an real number (double).";
@@ -498,12 +508,14 @@ namespace splashkit_lib
 
     void to_upper(string &str)
     {
-        for (auto & c: str) c = toupper(c);
+        for (auto &c : str)
+            c = toupper(c);
     }
 
     int sign(int value)
     {
-        if (value < 0) return -1;
+        if (value < 0)
+            return -1;
         return 1;
     }
 
@@ -536,25 +548,25 @@ namespace splashkit_lib
 
             if (try_str_to_int(part, temp))
             {
-                //just "a" so...
+                // just "a" so...
                 result.push_back(temp);
             }
-            else //Should be range
+            else // Should be range
             {
                 dash_count = count_delimiter(part, '-');
 
-                if ((dash_count == 1) or ((dash_count == 2) and (part[1] != '-'))) //a-b or a--b
+                if ((dash_count == 1) or ((dash_count == 2) and (part[1] != '-'))) // a-b or a--b
                     low_part = str_to_int(extract_delimited(1, part, '-'));
-                else //assume -a...
+                else // assume -a...
                     low_part = -str_to_int(extract_delimited(2, part, '-'));
 
-                if (dash_count == 1) //a-b
+                if (dash_count == 1) // a-b
                     high_part = str_to_int(extract_delimited(2, part, '-'));
                 else if ((dash_count == 2) and (part[1] = '-')) //-a-b
                     high_part = str_to_int(extract_delimited(3, part, '-'));
-                else if (dash_count == 3) //assume -a--b
-                    high_part = -str_to_int(extract_delimited(4, part, '-')); //read last string
-                else if (dash_count == 2) //assume a--b
+                else if (dash_count == 3)                                     // assume -a--b
+                    high_part = -str_to_int(extract_delimited(4, part, '-')); // read last string
+                else if (dash_count == 2)                                     // assume a--b
                     high_part = -str_to_int(extract_delimited(3, part, '-'));
                 else
                 {
@@ -565,7 +577,7 @@ namespace splashkit_lib
 
                 for (j = 0; j <= abs(high_part - low_part); j++)
                 {
-                    //low_part + j * (-1 or +1)
+                    // low_part + j * (-1 or +1)
                     result.push_back(low_part + (j * sign(high_part - low_part)));
                 }
             }
@@ -584,7 +596,8 @@ namespace splashkit_lib
         return degrees * PI / 180;
     }
 
-    double lin_interp(double v0, double v1, double t) {
+    double lin_interp(double v0, double v1, double t)
+    {
         return v0 * (1.0 - t) + v1 * t;
     }
 

@@ -9,10 +9,10 @@
 #include "core_driver.h"
 #include "utils_driver.h"
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
+#else
+#include <SDL2/SDL.h>
 #endif
 namespace splashkit_lib
 {

@@ -7,10 +7,10 @@
  * Created by James Armstrong http://github.com/jarmstrong
  */
 
-#ifdef __linux__
-#include <SDL2/SDL.h>
-#else
+#ifdef __APPLE__
 #include <SDL.h>
+#else
+#include <SDL2/SDL.h>
 #endif
 
 #define CATCH_CONFIG_MAIN
