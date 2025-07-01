@@ -330,7 +330,7 @@ namespace splashkit_lib
 
         #if __linux__
             base_fp += "usr/share/fonts";
-        #elif WINDOWS
+        #elif _WIN32
             base_fp = get_env_var("SYSTEMROOT") + "\\Fonts";
             //LOG(TRACE) << "base fp: " << base_fp;
         #else

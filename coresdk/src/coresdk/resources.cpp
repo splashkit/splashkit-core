@@ -17,7 +17,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <windows.h>
 #endif
 
@@ -132,7 +132,7 @@ namespace splashkit_lib
                 if( _try_set_resource_path(exePath) ) return;
             }
 
-#elif WINDOWS
+#elif _WIN32
             if (GetModuleFileName( NULL, exePath, MAX_PATH ))
             {
                 if(_try_set_resource_path(exePath))

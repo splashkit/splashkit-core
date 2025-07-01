@@ -20,7 +20,7 @@
 using std::ofstream;
 using std::ios;
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <Windows.h>
 #endif
 namespace splashkit_lib
@@ -93,7 +93,7 @@ namespace splashkit_lib
 
         char *tmpname;
 
-#ifndef WINDOWS
+#ifndef _WIN32
         tmpname = strdup("/tmp/splashkit.file.XXXXXX");
         mkstemp(tmpname);
 #else
