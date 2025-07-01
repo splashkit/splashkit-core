@@ -18,15 +18,15 @@
 
 #include <cstdlib>
 
-// #include <unistd.h>
-// #include <sys/types.h>
+#include <unistd.h>
+#include <sys/types.h>
 
+#ifndef _WIN32
+#include <pwd.h>
+#else
 #include <Windows.h>
 #include <Shlobj.h>
-// #ifndef WINDOWS
-// #include <pwd.h>
-// #else
-// #endif
+#endif
 
 #include <filesystem>
 
@@ -71,10 +71,10 @@ namespace splashkit_lib
 
     string path_to_user_home()
     {
-// #ifndef WINDOWS
-//         struct passwd *pw = getpwuid(getuid());
-//         return string(pw->pw_dir);
-// #else
+#ifndef _WIN32
+        struct passwd *pw = getpwuid(getuid());
+        return string(pw->pw_dir);
+#else
         WCHAR path[MAX_PATH];
         if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_PROFILE, NULL, 0, path)))
         {
@@ -84,11 +84,11 @@ namespace splashkit_lib
 
             return string(ch);
         }
-        // else
-        // {
+        else
+        {
             return get_env_var("HOMEDRIVE") + get_env_var("HomePath");
-        // }
-// #endif
+        }
+#endif
     }
 
     string cat(std::initializer_list<string> list)
@@ -116,11 +116,11 @@ namespace splashkit_lib
 
     string path_from(std::initializer_list<string> list, string filename)
     {
-// #ifdef WINDOWS
-// #define PATH_SEP "\\"
-// #else
+#ifdef _WIN32
+#define PATH_SEP "\\"
+#else
 #define PATH_SEP "/"
-// #endif
+#endif
 
         string result("");
         bool first = true;
@@ -141,11 +141,11 @@ namespace splashkit_lib
 
     string base_fs_path()
     {
-// #if WINDOWS
+#if _WIN32
         return get_env_var("SYSTEMDRIVE") + "\\";
-// #else
+#else
         return "/";
-// #endif
+#endif
     }
 
     vector<string> scan_dir_recursive(const string &directory)
