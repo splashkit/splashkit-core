@@ -16,11 +16,12 @@
             "name": "Windows",
             "displayName": "Windows",
             "description": "Windows mingw64 gcc",
-            "generator": "MinGW Makefiles",
-            "binaryDir": "${sourceDir}/build",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}\\build",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_MAKE_PROGRAM": "C:\\msys64\\usr\\bin\\make.exe",
+                "CMAKE_C_COMPILER": "C:\\msys64\\mingw64\\bin\\gcc.exe",
+                "CMAKE_CXX_COMPILER": "C:\\msys64\\mingw64\\bin\\g++.exe",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
