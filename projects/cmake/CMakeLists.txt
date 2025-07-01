@@ -66,9 +66,9 @@ if (APPLE)
                    -ldl")
 # WINDOWS PROJECT FLAGS
 elseif(MSYS)
-        message("Using mingw64")
-        set(OS_PATH_SUFFIX "win64")
-        set(MINGW_PATH_PART "mingw64")
+    message("Using mingw64")
+    set(OS_PATH_SUFFIX "win64")
+    set(MINGW_PATH_PART "mingw64")
 
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(SDL2 REQUIRED sdl2 sdl2_ttf sdl2_image sdl2_net sdl2_mixer sdl2_gfx libpng libcurl)
