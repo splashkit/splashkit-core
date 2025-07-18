@@ -284,5 +284,15 @@ namespace splashkit_lib
      * @returns   true if the cleanup was successful, false otherwise.
      */
     bool remote_raspi_cleanup(connection pi);
+        
+    /**
+     * @brief Converts a GPIO Pin Value to an integer.
+     *
+     * Converts the specified pin value to an integer, to use in calculations.
+     *
+     * @param value  The pin to read the value from.
+     * @returns      The pin value as an integer.
+     */
+    int to_int(gpio_pin_value value);
 }
 #endif /* raspi_gpio_hpp */

@@ -379,4 +379,9 @@ namespace splashkit_lib
     {
         return sk_remote_gpio_cleanup(pi);
     }
+
+    int to_int(gpio_pin_value value)
+    {
+        return static_cast<int>(value);
+    }
 }
