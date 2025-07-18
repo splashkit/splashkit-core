@@ -1,8 +1,6 @@
 /**
- * Text and font Unit Tests
+ * Raspi GPIO Unit Tests
  */
-
-#include <vector>
 
 #include "catch.hpp"
 
