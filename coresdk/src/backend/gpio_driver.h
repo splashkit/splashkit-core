@@ -225,7 +225,7 @@ namespace splashkit_lib
     void sk_gpio_cleanup();
 
 #endif
-
+    int sk_gpio_init(const std::string &host);
     connection sk_remote_gpio_init(std::string name, const std::string &host, unsigned short int port);
     void sk_remote_gpio_set_mode(connection pi, int pin, int mode);
     int sk_remote_gpio_get_mode(connection pi, int pin);

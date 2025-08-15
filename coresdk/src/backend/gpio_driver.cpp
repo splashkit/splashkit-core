@@ -504,6 +504,17 @@ namespace splashkit_lib
 #endif
 
     // Remote GPIO Functions
+    int sk_gpio_init(const std::string &host)
+    {
+        int pi = pigpio_start(host.c_str(), NULL);
+        if (pi < 0) {
+            printf("Failed to connect to pigpio daemon\n");
+            return -1;
+        }
+        return pi;
+    }
+
+    // Remote GPIO Functions
     connection sk_remote_gpio_init(std::string name, const std::string &host, unsigned short int port)
     {
         return open_connection(name, host, port);
