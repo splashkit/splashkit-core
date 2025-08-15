@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(splashkit)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 cmake_policy(SET CMP0083 NEW)
 include(CheckPIESupported)
 check_pie_supported()
@@ -14,6 +16,10 @@ set(SK_BIN "${CMAKE_CURRENT_SOURCE_DIR}/../../bin")
 
 # FLAGS
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+
+# Includes for CTest/Catch2 integration
+include(CTest)
+include("${CMAKE_CURRENT_SOURCE_DIR}/catch/Catch.cmake")
 
 if (WIN32 OR MSYS OR MINGW)
   SET(MSYS "true")
@@ -143,6 +149,7 @@ if (NOT APPLE AND NOT MSYS)
             message("-- Pigpio libraries found")
             include_directories(${PIGPIOD_INCLUDE_DIR})
             add_definitions(-DRASPBERRY_PI)
+            add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
             # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
             set(LIB_FLAGS "-lSDL2 \
                            -lSDL2_mixer \
@@ -246,7 +253,6 @@ elseif (APPLE)
     )
 endif()
 
-
 # SET OUTPUT TO /path/to/splashkit/out/lib
 set_target_properties(SplashKitBackend
     PROPERTIES
@@ -273,6 +279,11 @@ add_custom_command(TARGET sktest
     PRE_BUILD COMMAND
     ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources" $<TARGET_FILE_DIR:sktest>/Resources)
 
+# Test if windows build works with folders inside Resources
+add_custom_command(TARGET sktest
+    PRE_BUILD COMMAND
+    ${CMAKE_COMMAND} -E copy_directory "${SK_SRC}/test/Resources/" $<TARGET_FILE_DIR:sktest>)
+
 # if (MSYS)
 #     add_custom_command(TARGET sktest
 #         PRE_BUILD COMMAND
@@ -287,6 +298,11 @@ add_executable(skunit_tests ${UNIT_TEST_SOURCE_FILES})
 set_property(TARGET skunit_tests PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
 # target_link_options(skunit_tests PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
+
+# Disable logs in skunit_tests (but not in sktest)
+# target_compile_options(skunit_tests PRIVATE -DELPP_DISABLE_LOGS)
+# target_compile_options(SplashKitBackend PRIVATE -DELPP_DISABLE_LOGS)
+
 target_link_libraries(skunit_tests SplashKitBackend)
 target_link_libraries(skunit_tests ${LIB_FLAGS})
 
@@ -294,6 +310,18 @@ set_target_properties(skunit_tests
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
         )
+
+# Copy resources folder into projects/cmake folder for CTest
+add_custom_command(
+    TARGET skunit_tests 
+    PRE_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${SK_SRC}/test/Resources" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
+)
+
+# Discover and register Catch2 tests
+catch_discover_tests(skunit_tests)
 #### END sktest EXECUTABLE ####
 
 if(PIGPIO_LIBS)

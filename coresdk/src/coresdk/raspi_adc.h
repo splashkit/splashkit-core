@@ -20,8 +20,23 @@
 
 namespace splashkit_lib
 {
-    // Forward declare adc_device as a pointer to internal struct _adc_data
-    typedef struct _adc_data* adc_device;
+    /**
+     * The `adc_device` type is used to refer to ADC (Analog-to-Digital Converter)
+     * devices that can be managed by the SplashKit ADC code, such as ADS7830.
+     * ADC devices are:
+     *
+     *   - loaded with `open_adc`,
+     *   - accessed using `adc_device_named` or checked with `has_adc_device`,
+     *   - read using `read_adc` to retrieve analog values from specific channels,
+     *   - and must be closed using `close_adc` (to release a specific
+     *     ADC device) or `close_all_adc` (to release all loaded ADC devices).
+     *
+     * ADC devices allow you to interface with external analog sensors or inputs,
+     * converting their signals into digital values for processing in your application.
+     *
+     * @attribute class adc_device
+     */
+    typedef struct _adc_data *adc_device;
 
     /**
      * Checks if an ADC device with the given name has been loaded.
@@ -81,7 +96,12 @@ namespace splashkit_lib
     /**
      * Closes an ADC device given its pointer.
      *
-     * @param adc The ADC device to close.
+     * @param adc  The ADC device to close.
+     *
+     * @attribute class       adc_device
+     * @attribute self        adc
+     * @attribute destructor  true
+     * @attribute method      close
      */
     void close_adc(adc_device adc);
 

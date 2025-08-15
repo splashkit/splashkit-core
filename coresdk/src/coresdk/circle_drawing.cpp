@@ -44,6 +44,16 @@ namespace splashkit_lib
         draw_circle(clr, x, y, radius, option_defaults());
     }
 
+    void draw_circle(color clr, const point_2d &pt, double radius, drawing_options opts)
+    {
+        draw_circle(clr, pt.x, pt.y, radius, opts);
+    }
+
+    void draw_circle(color clr, const point_2d &pt, double radius)
+    {
+        draw_circle(clr, pt.x, pt.y, radius, option_defaults());
+    }
+
     void draw_circle(color clr, const circle &c, drawing_options opts)
     {
         draw_circle(clr, c.center.x, c.center.y, c.radius, opts);
@@ -69,6 +79,16 @@ namespace splashkit_lib
     void fill_circle(color clr, double x, double y, double radius)
     {
         fill_circle(clr, x, y, radius, option_defaults());
+    }
+
+    void fill_circle(color clr, const point_2d &pt, double radius, drawing_options opts)
+    {
+        fill_circle(clr, pt.x, pt.y, radius, opts);
+    }
+
+    void fill_circle(color clr, const point_2d &pt, double radius)
+    {
+        fill_circle(clr, pt.x, pt.y, radius, option_defaults());
     }
 
     void fill_circle(color clr, const circle &c, drawing_options opts)

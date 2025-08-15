@@ -48,7 +48,10 @@ namespace splashkit_lib
      * @param wnd The window to add clipping to
      * @param r   The new clipping rectangle
      *
+     * @attribute class     window
      * @attribute suffix    for_window
+     * @attribute method    push_clip
+     * @attribute self      wnd
      */
     void push_clip(window wnd, const rectangle &r);
 
@@ -64,7 +67,10 @@ namespace splashkit_lib
      *
      * @param wnd The window to clear the clipping rectangle
      *
+     * @attribute class     window
      * @attribute suffix    for_window
+     * @attribute method    reset_clip
+     * @attribute self      wnd
      */
     void reset_clip(window wnd);
 
@@ -98,7 +104,10 @@ namespace splashkit_lib
      * @param wnd The window to change
      * @param r   The new clipping rectangle
      *
+     * @attribute class     window
      * @attribute suffix    for_window
+     * @attribute method    set_clip
+     * @attribute self      wnd
      */
     void set_clip(window wnd, const rectangle &r);
 
@@ -133,7 +142,10 @@ namespace splashkit_lib
      *
      * @param wnd The window to change
      *
+     * @attribute class     window
      * @attribute suffix    for_window
+     * @attribute method    pop_clip
+     * @attribute self      wnd
      */
     void pop_clip(window wnd);
 
@@ -153,7 +165,10 @@ namespace splashkit_lib
      * @param  wnd The window to get the clipping rectangle from
      * @return     The current clipping rectangle for the window
      *
+     * @attribute class     window
      * @attribute suffix    for_window
+     * @attribute method    current_clip
+     * @attribute self      wnd
      */
     rectangle current_clip(window wnd);
 

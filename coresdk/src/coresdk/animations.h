@@ -40,9 +40,10 @@ namespace splashkit_lib
      *
      * @param script_to_free The `animation_script` to be freed.
      *
-     * @attribute class     animation_script
-     * @attribute self      script_to_free
+     * @attribute class      animation_script
+     * @attribute self       script_to_free
      * @attribute destructor true
+     * @attribute method     free
      */
     void free_animation_script(animation_script script_to_free);
 
@@ -215,6 +216,7 @@ namespace splashkit_lib
      * @attribute class       animation
      * @attribute destructor  true
      * @attribute self        ani
+     * @attribute method      free
      */
     void free_animation(animation ani);
 

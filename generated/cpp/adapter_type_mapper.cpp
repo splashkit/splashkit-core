@@ -300,6 +300,18 @@ int __skadapter__to_sklib_interface_style(interface_style v) {
 interface_style __skadapter__to_interface_style(int v) {
     return static_cast<interface_style>(v);
 }
+int __skadapter__to_sklib_motor_direction(motor_direction v) {
+    return static_cast<int>(v);
+}
+motor_direction __skadapter__to_motor_direction(int v) {
+    return static_cast<motor_direction>(v);
+}
+int __skadapter__to_sklib_motor_driver_type(motor_driver_type v) {
+    return static_cast<int>(v);
+}
+motor_driver_type __skadapter__to_motor_driver_type(int v) {
+    return static_cast<motor_driver_type>(v);
+}
 int __skadapter__to_sklib_pull_up_down(pull_up_down v) {
     return static_cast<int>(v);
 }

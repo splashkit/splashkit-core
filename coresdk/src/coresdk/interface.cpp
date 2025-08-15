@@ -1134,32 +1134,37 @@ namespace splashkit_lib
 
     std::string text_box(const string& label_text, const std::string& value)
     {
+        return text_box(label_text, value, false);
+    }
+
+    std::string text_box(const string& label_text, const std::string& value, bool show_label)
+    {
         _interface_sanity_check();
 
-        enter_column();
-        _two_column_layout();
+        if (show_label)
+        {
+            enter_column();
+            _two_column_layout();
 
-        splashkit_lib::label_element(label_text);
-        std::string res = text_box(value);
+            splashkit_lib::label_element(label_text);
+        }
 
-        leave_column();
+        std::string res = sk_interface_text_box(label_text, value);
+
+        if (show_label)
+        {
+            leave_column();
+        }
 
         return res;
     }
 
-    std::string text_box(const string& value, const rectangle& rect)
+    std::string text_box(const string& label_text, const string& value, const rectangle& rect)
     {
         _interface_sanity_check();
 
         sk_interface_set_layout_next(rect, true);
-        return text_box(value);
-    }
-
-    std::string text_box(const std::string& value)
-    {
-        _interface_sanity_check();
-
-        return sk_interface_text_box(value);
+        return text_box(label_text, value, false);
     }
 
     bool last_element_changed()

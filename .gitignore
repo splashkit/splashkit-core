@@ -82,6 +82,11 @@ projects/cmake/Resources
 build.ninja
 rules.ninja
 install_manifest.txt
+CTestTestfile.cmake
+DartConfiguration.tcl
+skunit_tests_include-*.cmake
+skunit_tests_tests-*.cmake
+myeasylog.log
 
 tools/scripts/deploy/libsplashkit/*.dylib
 tools/scripts/deploy/libsplashkit/*.dll

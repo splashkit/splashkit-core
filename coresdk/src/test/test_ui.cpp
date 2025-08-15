@@ -146,13 +146,13 @@ void run_ui_test()
                 val3 = number_box("Number: ", val3, 1.0);
 
                 // Show two text boxes
-                text_box_val1 = text_box("Text:", text_box_val1);
+                text_box_val1 = text_box("V1", text_box_val1);
                 if (last_element_confirmed())
                 {
                     checkbox_val = true;
                 }
                 set_interface_font(fontB);
-                text_box_val2 = text_box("Text:", text_box_val2);
+                text_box_val2 = text_box("Text:", text_box_val2, true);
                 set_interface_font(fontA);
             }
 
@@ -195,7 +195,7 @@ void run_ui_test()
             write_line("Button1 pressed");
         }
         val2 = slider(val2, 0, 40, {40, 170, 150, 20});
-        text_box_val2 = text_box(text_box_val2, rectangle_from(40, 200, 150, 20));
+        text_box_val2 = text_box("V2", text_box_val2, rectangle_from(40, 200, 150, 20));
 
         interface_style_panel(rectangle_from(0, 600-200, 600, 200));
 

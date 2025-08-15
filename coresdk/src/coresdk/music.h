@@ -46,6 +46,7 @@ namespace splashkit_lib
      * @attribute class       music
      * @attribute destructor  true
      * @attribute self        effect
+     * @attribute method      free
      */
     void free_music(music effect);
 

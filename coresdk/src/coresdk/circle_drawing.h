@@ -39,6 +39,30 @@ namespace splashkit_lib
     void draw_circle(color clr, double x, double y, double radius);
 
     /**
+     *  Draw a circle at a point, with a specified radius, using the supplied drawing options. This will use `drawing_options` to determine
+     *  the destination.
+     *
+     * @param clr    The color of the circle
+     * @param pt     The location of the center of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    at_point_with_options
+     */
+    void draw_circle(color clr, const point_2d &pt, double radius, drawing_options opts);
+    
+    /**
+     *  Draw a circle at a point, with a specified radius, onto the current window.
+     *
+     * @param clr    The color of the circle
+     * @param pt     The location of the center of the circle
+     * @param radius The radius of the circle
+     * 
+     * @attribute suffix    at_point
+     */
+    void draw_circle(color clr, const point_2d &pt, double radius);
+
+    /**
      *  Draw a circle with the provided drawing options, which may include options related to
      *  the drawing destination.
      *
@@ -92,6 +116,30 @@ namespace splashkit_lib
      * @param radius The radius of the circle
      */
     void fill_circle(color clr, double x, double y, double radius);
+
+    /**
+     *  Fill a circle at a point, with a specified radius, using the supplied drawing options. This will use `drawing_options` to determine
+     *  the destination.
+     *
+     * @param clr    The color of the circle
+     * @param pt     The location of the center of the circle
+     * @param radius The radius of the circle
+     * @param opts   Drawing options to configure the drawing operation
+     *
+     * @attribute suffix    at_point_with_options
+     */
+    void fill_circle(color clr, const point_2d &pt, double radius, drawing_options opts);
+    
+    /**
+     *  Fill a circle at a point, with a specified radius, onto the current window.
+     *
+     * @param clr    The color of the circle
+     * @param pt     The location of the center of the circle
+     * @param radius The radius of the circle
+     * 
+     * @attribute suffix    at_point
+     */
+    void fill_circle(color clr, const point_2d &pt, double radius);
 
     /**
      *  Fill a circle with the provided drawing options, which may include options related to

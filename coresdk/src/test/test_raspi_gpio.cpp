@@ -1,8 +1,4 @@
-/***********************************************
-* XQuestCode || Aditya Parmar
-* Code with Creativity
-* 🚀 © 2024 Aditya Parmar. All Rights Reserved.
-***********************************************/
+// created by XQuestCode || Aditya Parmar
 #include <iostream>
 #include "networking.h"
 #include "raspi_gpio.h"

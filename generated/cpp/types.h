@@ -132,6 +132,13 @@ typedef enum {
     BUBBLE_MULTICOLORED = 5
 } interface_style;
 typedef enum {
+    MOTOR_FORWARD,
+    MOTOR_BACKWARD
+} motor_direction;
+typedef enum {
+    L298N = 0
+} motor_driver_type;
+typedef enum {
     PUD_OFF = 0,
     PUD_DOWN = 1,
     PUD_UP = 2

@@ -49,7 +49,7 @@ namespace splashkit_lib
 
     string point_to_string(const point_2d &pt)
     {
-        return "Pt @" + to_string(pt.x) + ":" + to_string(pt.y);
+        return "(" + to_string((int)nearbyint(pt.x)) + "," + to_string((int)nearbyint(pt.y)) + ")";
     }
 
     point_2d random_screen_point()

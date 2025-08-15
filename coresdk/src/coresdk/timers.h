@@ -39,8 +39,10 @@ namespace splashkit_lib
     /**
      * Free the memory used to store this timer.
      *
-     * @attribute class timer
+     * @attribute class      timer
      * @attribute destructor true
+     * @attribute self       to_free
+     * @attribute method     free
      *
      * @param to_free The time to be released.
      */

@@ -51,7 +51,10 @@ namespace splashkit_lib
      * @param  dest The window to draw onto.
      * @return      A drawing option that will draw to the indicated window.
      *
+     * @attribute class   window
      * @attribute suffix  window
+     * @attribute method  option_draw_to
+     * @attribute self    dest
      */
     drawing_options option_draw_to(window dest);
 
@@ -63,7 +66,10 @@ namespace splashkit_lib
      * @param  opts Values for the other options.
      * @return      A drawing option that will draw to the indicated window.
      *
+     * @attribute class   window
      * @attribute suffix  window_with_options
+     * @attribute method  option_draw_to
+     * @attribute self    dest
      */
     drawing_options option_draw_to(window dest, drawing_options opts);
 

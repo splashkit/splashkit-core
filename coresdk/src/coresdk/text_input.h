@@ -26,7 +26,10 @@ namespace splashkit_lib
      * @param wind The window where the text will be entered
      * @param rect The area where the text will be entered.
      *
+     * @attribute class   window
      * @attribute suffix  in_window
+     * @attribute method  start_reading_text
+     * @attribute self    wind
      */
     void start_reading_text(window wind, rectangle rect);
 
@@ -49,7 +52,10 @@ namespace splashkit_lib
      * @param rect The area where the text will be entered.
      * @param initial_text The initial text, which may be edited by the user.
      *
+     * @attribute class   window
      * @attribute suffix  in_window_with_initial_text
+     * @attribute method  start_reading_text
+     * @attribute self    wind
      */
     void start_reading_text(window wind, rectangle rect, string initial_text);
 
@@ -76,7 +82,10 @@ namespace splashkit_lib
      * @param wind  The window to check
      * @return      True when window is setup to read input from the user.
      *
+     * @attribute class   window
      * @attribute suffix  in_window
+     * @attribute method  reading_text
+     * @attribute self    wind
      */
     bool reading_text(window wind);
 
@@ -90,7 +99,10 @@ namespace splashkit_lib
      *
      * @param wind The window to end reading text
      *
+     * @attribute class   window
      * @attribute suffix  in_window
+     * @attribute method  end_reading_text
+     * @attribute self    wind
      */
     void end_reading_text(window wind);
 
@@ -107,7 +119,10 @@ namespace splashkit_lib
      * @param wind  The window to check
      * @return True when the use has cancelled text entry
      *
+     * @attribute class   window
      * @attribute suffix  in_window
+     * @attribute method  text_entry_cancelled
+     * @attribute self    wind
      */
     bool text_entry_cancelled(window wind);
 
@@ -124,7 +139,10 @@ namespace splashkit_lib
      * @param wind  The window to check
      * @return The user's text entry
      *
+     * @attribute class   window
      * @attribute suffix  in_window
+     * @attribute method  text_input
+     * @attribute self    wind
      */
     string text_input(window wind);
 }
