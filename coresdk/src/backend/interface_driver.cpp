@@ -636,10 +636,10 @@ namespace splashkit_lib
         return temp_value;
     }
 
-    std::string sk_interface_text_box(const std::string& value)
+    std::string sk_interface_text_box(const std::string& id, const std::string& value)
     {
-        const std::string* id = &value;
-        mu_Id m_id = mu_get_id(ctx, &id, sizeof(id));
+        // const std::string* id = &value; 
+        mu_Id m_id = mu_get_id(ctx, id.c_str(), id.length());
         mu_Rect r = mu_layout_next(ctx);
 
         // max 512 characters

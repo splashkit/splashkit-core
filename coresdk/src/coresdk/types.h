@@ -322,44 +322,44 @@ namespace splashkit_lib
      *
      * @constant PIN_1    3.3V Power Supply
      * @constant PIN_2    5V Power Supply
-     * @constant PIN_3    GPIO2 / SDA (I2C)
+     * @constant PIN_3    GPIO 2 / SDA (I2C)
      * @constant PIN_4    5V Power Supply
-     * @constant PIN_5    GPIO3 / SCL (I2C)
+     * @constant PIN_5    GPIO 3 / SCL (I2C)
      * @constant PIN_6    Ground
-     * @constant PIN_7    GPIO4
-     * @constant PIN_8    GPIO14 / TXD (UART)
+     * @constant PIN_7    GPIO 4 / GPCLK0
+     * @constant PIN_8    GPIO 14 / TXD (UART)
      * @constant PIN_9    Ground
-     * @constant PIN_10   GPIO15 / RXD (UART)
-     * @constant PIN_11   GPIO17
-     * @constant PIN_12   GPIO18 / PCM_CLK
-     * @constant PIN_13   GPIO27
+     * @constant PIN_10   GPIO 15 / RXD (UART)
+     * @constant PIN_11   GPIO 17
+     * @constant PIN_12   GPIO 18 / PCM_CLK
+     * @constant PIN_13   GPIO 27
      * @constant PIN_14   Ground
-     * @constant PIN_15   GPIO22
-     * @constant PIN_16   GPIO23
+     * @constant PIN_15   GPIO 22
+     * @constant PIN_16   GPIO 23
      * @constant PIN_17   3.3V Power Supply
-     * @constant PIN_18   GPIO24
-     * @constant PIN_19   GPIO10 / MOSI (SPI)
+     * @constant PIN_18   GPIO 24
+     * @constant PIN_19   GPIO 10 / MOSI (SPI)
      * @constant PIN_20   Ground
-     * @constant PIN_21   GPIO9 / MISO (SPI)
-     * @constant PIN_22   GPIO25
-     * @constant PIN_23   GPIO11 / SCLK (SPI)
-     * @constant PIN_24   GPIO8 / CE0 (SPI)
+     * @constant PIN_21   GPIO 9 / MISO (SPI)
+     * @constant PIN_22   GPIO 25
+     * @constant PIN_23   GPIO 11 / SCLK (SPI)
+     * @constant PIN_24   GPIO 8 / CE0 (SPI)
      * @constant PIN_25   Ground
-     * @constant PIN_26   GPIO7 / CE1 (SPI)
+     * @constant PIN_26   GPIO 7 / CE1 (SPI)
      * @constant PIN_27   ID_SD (I2C ID EEPROM)
      * @constant PIN_28   ID_SC (I2C ID EEPROM)
-     * @constant PIN_29   GPIO5
+     * @constant PIN_29   GPIO 5
      * @constant PIN_30   Ground
-     * @constant PIN_31   GPIO6
-     * @constant PIN_32   GPIO12
-     * @constant PIN_33   GPIO13
+     * @constant PIN_31   GPIO 6
+     * @constant PIN_32   GPIO 12 / PWM0
+     * @constant PIN_33   GPIO 13
      * @constant PIN_34   Ground
-     * @constant PIN_35   GPIO19 / MISO (PCM)
-     * @constant PIN_36   GPIO16 / CE0 (PCM)
-     * @constant PIN_37   GPIO26
-     * @constant PIN_38   GPIO20 / MOSI (PCM)
+     * @constant PIN_35   GPIO 19 / MISO (PCM)
+     * @constant PIN_36   GPIO 16 / CE0 (PCM_FS)
+     * @constant PIN_37   GPIO 26
+     * @constant PIN_38   GPIO 20 / MOSI (PCM_DIN)
      * @constant PIN_39   Ground
-     * @constant PIN_40   GPIO21 / SCLK (PCM)
+     * @constant PIN_40   GPIO 21 / SCLK (PCM_DOUT)
      */
     enum gpio_pin
     {
@@ -490,6 +490,17 @@ namespace splashkit_lib
     };
 
     /**
+     * Motor Movement Directions:
+     * @constant MOTOR_FORWARD  Motor moves forward.
+     * @constant MOTOR_BACKWARD Motor moves backward.
+     *  
+     * */
+      enum motor_direction {
+        MOTOR_FORWARD,
+        MOTOR_BACKWARD
+    };
+
+    /**
      * ADC Type:
      *
      * @constant ADS7830  8-Bit, 8-Channel Sampling A/D Converter with I2C Interface
@@ -498,6 +509,22 @@ namespace splashkit_lib
     {
        ADS7830 = 0,
     //    PCF8591 = 1,
+    };
+
+    /**
+     * Motor Driver Types:
+     * @constant L298N  Dual H-Bridge Motor Driver
+     */
+
+    enum motor_driver_type
+    {
+        L298N = 0,
+        // L293D = 1,
+        // TB6612FNG = 2,
+        // DRV8835 = 3,
+        // DRV8834 = 4,
+        // DRV8825 = 5,
+        // A4988 = 6,
     };
 
     /**

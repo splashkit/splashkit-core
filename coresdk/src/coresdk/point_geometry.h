@@ -70,6 +70,9 @@ namespace splashkit_lib
      *
      * @param  wind The window
      * @return      A point within the bounds of the window
+     * 
+     * @attribute class   window
+     * @attribute method  random_point
      */
     point_2d random_window_point(window wind);
 

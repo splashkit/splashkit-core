@@ -32,8 +32,10 @@ void test_circle_drawing(window w1)
     {
         process_events();
         
-        if ( timer_ticks(t) < 1500)
+        if ( timer_ticks(t) < 1000)
             draw_circle(random_rgb_color(128), rnd() * screen_width(), rnd() * screen_height(), 1 + rnd() * 50);
+        else if (timer_ticks(t) >= 1000 && timer_ticks(t) < 2000)
+            draw_circle(random_rgb_color(128), random_screen_point(), 1 + rnd() * 50);
         else
         {
             circle c = circle_at(rnd() * window_width(w1), rnd() * window_height("Test Shape Drawing"), 1 + rnd() * 50);

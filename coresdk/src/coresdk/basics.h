@@ -353,7 +353,7 @@ namespace splashkit_lib
      * @param number1 First number
      * @param number2 Second number
      *
-     * @returns Greatest common divisor of the two numbers, or 0 if either of the numbers is not a valid integer above 0
+     * @returns Greatest common divisor of the two numbers, or 0 if both numbers are 0
      */
     int greatest_common_divisor(int number1, int number2);
 
@@ -365,7 +365,7 @@ namespace splashkit_lib
      * @param number1 First number
      * @param number2 Second number
      *
-     * @returns Least common multiple of the two numbers, or 0 if either of the numbers is not a valid integer above 0
+     * @returns Least common multiple of the two numbers, or 0 if either of the numbers are 0
      */
     int least_common_multiple(int number1, int number2);
 

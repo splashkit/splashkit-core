@@ -59,7 +59,7 @@ if (WIN32 OR MSYS OR MINGW)
         "${SK_LIB}/${OS_PATH_SUFFIX}/*.dll"
     )
 elseif (APPLE)
-    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk")
+    set(CMAKE_OSX_SYSROOT "/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk")
     set(CMAKE_OSX_DEPLOYMENT_TARGET "12.3") # CACHE STRING "Minimum OS X deployment version")
     message(CMAKE_OSX_DEPLOYMENT_TARGET="${CMAKE_OSX_DEPLOYMENT_TARGET}")
     message(CMAKE_OSX_SYSROOT="${CMAKE_OSX_SYSROOT}")

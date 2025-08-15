@@ -17,24 +17,17 @@ namespace splashkit_lib
 {
     /**
      * The `adc_device` type is used to refer to ADC (Analog-to-Digital Converter)
-     * devices that can be managed by the SplashKit ADC code. ADC devices are:
+     * devices that can be managed by the SplashKit ADC code, such as ADS7830.
+     * ADC devices are:
      *
-     *   - loaded with `load_adc_device`,
-     *
+     *   - loaded with `open_adc`,
      *   - accessed using `adc_device_named` or checked with `has_adc_device`,
-     *
-     *   - read using `read_adc_channel` to retrieve analog values from specific channels,
-     *
-     *   - and must be released using `free_adc_device` (to release a specific
-     *     ADC device) or `free_all_adc_devices` (to release all loaded ADC devices).
+     *   - read using `read_adc` to retrieve analog values from specific channels,
+     *   - and must be closed using `close_adc` (to release a specific
+     *     ADC device) or `close_all_adc` (to release all loaded ADC devices).
      *
      * ADC devices allow you to interface with external analog sensors or inputs,
      * converting their signals into digital values for processing in your application.
-     *
-     * You can check if an ADC device is loaded using `has_adc_device`.
-     *
-     * Use `free_adc_device` to release resources associated with a specific ADC device,
-     * or `free_all_adc_devices` to clean up all ADC devices.
      *
      * @attribute class adc_device
      */
@@ -115,6 +108,7 @@ namespace splashkit_lib
      * @attribute class       adc_device
      * @attribute self        adc
      * @attribute destructor  true
+     * @attribute method      close
      */
     void close_adc(adc_device adc);
 

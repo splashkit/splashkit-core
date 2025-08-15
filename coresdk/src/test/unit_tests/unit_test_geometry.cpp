@@ -46,7 +46,7 @@ TEST_CASE("can correctly perform point geometry", "[geometry]")
     SECTION("can convert point to string")
     {
         point_2d pt = point_at(100.0, 200.0);
-        REQUIRE(point_to_string(pt) == "Pt @100.000000:200.000000");
+        REQUIRE(point_to_string(pt) == "(100,200)");
     }
     SECTION("can retrieve random point in bitmap")
     {
@@ -620,7 +620,7 @@ TEST_CASE("can perform triangle geometry", "[triangle]")
     SECTION("can convert triangle to string")
     {
         triangle t = triangle_from(point_at(0.0, 0.0), point_at(200.0, 0.0), point_at(100.0, 200.0));
-        REQUIRE(triangle_to_string(t) == "Triangle @Pt @0.000000:0.000000 - Pt @200.000000:0.000000 - Pt @100.000000:200.000000");
+        REQUIRE(triangle_to_string(t) == "Triangle @(0,0) - (200,0) - (100,200)");
     }
     SECTION("can detect triangle-quad intersection")
     {
@@ -791,7 +791,7 @@ TEST_CASE("can perform line geometry", "[line]")
     SECTION("can convert line to string")
     {
         line l = line_from(100.0, 100.0, 200.0, 200.0);
-        REQUIRE(line_to_string(l) == "Line from Pt @100.000000:100.000000 to Pt @200.000000:200.000000");
+        REQUIRE(line_to_string(l) == "Line from (100,100) to (200,200)");
     }
     SECTION("can detect line intersection with lines")
     {

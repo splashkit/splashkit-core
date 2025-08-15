@@ -60,6 +60,8 @@ void setup_tests()
     add_test("TCP Networking Test", run_tcp_networking_test);
     add_test("GPIO Tests", run_gpio_tests);
     add_test("ADC Tests", run_gpio_adc_tests);
+    add_test("Motor Driver Tests", run_motor_driver_tests);
+    add_test("Servo Driver Tests", run_servo_driver_tests);
     add_test("Remote GPIO Tests", run_remote_gpio_tests);
     add_test("GPIO Tests - SPI", run_gpio_spi_tests);
     add_test("UI Tests", run_ui_test);

@@ -1,0 +1,40 @@
+{
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "Linux",
+            "displayName": "Linux without coverage",
+            "description": "Linux gcc g++",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "Windows",
+            "displayName": "Windows",
+            "description": "Windows mingw64 gcc",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "macOS",
+            "displayName": "macOS",
+            "description": "macOS clang",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ]
+}

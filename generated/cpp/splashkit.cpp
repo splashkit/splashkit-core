@@ -598,6 +598,19 @@ void draw_circle(color clr, const circle &c, drawing_options opts) {
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
     __sklib__draw_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts);
 }
+void draw_circle(color clr, const point_2d &pt, double radius) {
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__draw_circle__color__point_2d_ref__double(__skparam__clr, __skparam__pt, __skparam__radius);
+}
+void draw_circle(color clr, const point_2d &pt, double radius, drawing_options opts) {
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__draw_circle__color__point_2d_ref__double__drawing_options(__skparam__clr, __skparam__pt, __skparam__radius, __skparam__opts);
+}
 void draw_circle(color clr, double x, double y, double radius) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
     double __skparam__x = __skadapter__to_double(x);
@@ -657,6 +670,19 @@ void fill_circle(color clr, const circle &c, drawing_options opts) {
     const __sklib_circle __skparam__c = __skadapter__to_sklib_circle(c);
     __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
     __sklib__fill_circle__color__circle_ref__drawing_options(__skparam__clr, __skparam__c, __skparam__opts);
+}
+void fill_circle(color clr, const point_2d &pt, double radius) {
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib__fill_circle__color__point_2d_ref__double(__skparam__clr, __skparam__pt, __skparam__radius);
+}
+void fill_circle(color clr, const point_2d &pt, double radius, drawing_options opts) {
+    __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
+    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
+    double __skparam__radius = __skadapter__to_double(radius);
+    __sklib_drawing_options __skparam__opts = __skadapter__to_sklib_drawing_options(opts);
+    __sklib__fill_circle__color__point_2d_ref__double__drawing_options(__skparam__clr, __skparam__pt, __skparam__radius, __skparam__opts);
 }
 void fill_circle(color clr, double x, double y, double radius) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);
@@ -3433,16 +3459,12 @@ bool start_treenode(const string &label_text) {
     __skadapter__free__sklib_string(__skparam__label_text);
     return __skadapter__to_bool(__skreturn);
 }
-string text_box(const string &value) {
-    const __sklib_string __skparam__value = __skadapter__to_sklib_string(value);
-    __sklib_string __skreturn = __sklib__text_box__string_ref(__skparam__value);
-    __skadapter__free__sklib_string(__skparam__value);
-    return __skadapter__to_string(__skreturn);
-}
-string text_box(const string &value, const rectangle &rect) {
+string text_box(const string &label_text, const string &value, const rectangle &rect) {
+    const __sklib_string __skparam__label_text = __skadapter__to_sklib_string(label_text);
     const __sklib_string __skparam__value = __skadapter__to_sklib_string(value);
     const __sklib_rectangle __skparam__rect = __skadapter__to_sklib_rectangle(rect);
-    __sklib_string __skreturn = __sklib__text_box__string_ref__rectangle_ref(__skparam__value, __skparam__rect);
+    __sklib_string __skreturn = __sklib__text_box__string_ref__string_ref__rectangle_ref(__skparam__label_text, __skparam__value, __skparam__rect);
+    __skadapter__free__sklib_string(__skparam__label_text);
     __skadapter__free__sklib_string(__skparam__value);
     return __skadapter__to_string(__skreturn);
 }
@@ -3450,6 +3472,15 @@ string text_box(const string &label_text, const string &value) {
     const __sklib_string __skparam__label_text = __skadapter__to_sklib_string(label_text);
     const __sklib_string __skparam__value = __skadapter__to_sklib_string(value);
     __sklib_string __skreturn = __sklib__text_box__string_ref__string_ref(__skparam__label_text, __skparam__value);
+    __skadapter__free__sklib_string(__skparam__label_text);
+    __skadapter__free__sklib_string(__skparam__value);
+    return __skadapter__to_string(__skreturn);
+}
+string text_box(const string &label_text, const string &value, bool show_label) {
+    const __sklib_string __skparam__label_text = __skadapter__to_sklib_string(label_text);
+    const __sklib_string __skparam__value = __skadapter__to_sklib_string(value);
+    int __skparam__show_label = __skadapter__to_int(show_label);
+    __sklib_string __skreturn = __sklib__text_box__string_ref__string_ref__bool(__skparam__label_text, __skparam__value, __skparam__show_label);
     __skadapter__free__sklib_string(__skparam__label_text);
     __skadapter__free__sklib_string(__skparam__value);
     return __skadapter__to_string(__skreturn);
@@ -4804,19 +4835,6 @@ color get_pixel(window wnd, double x, double y) {
     __sklib_color __skreturn = __sklib__get_pixel__window__double__double(__skparam__wnd, __skparam__x, __skparam__y);
     return __skadapter__to_color(__skreturn);
 }
-color get_pixel_from_window(window destination, const point_2d &pt) {
-    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
-    const __sklib_point_2d __skparam__pt = __skadapter__to_sklib_point_2d(pt);
-    __sklib_color __skreturn = __sklib__get_pixel_from_window__window__point_2d_ref(__skparam__destination, __skparam__pt);
-    return __skadapter__to_color(__skreturn);
-}
-color get_pixel_from_window(window destination, double x, double y) {
-    __sklib_window __skparam__destination = __skadapter__to_sklib_window(destination);
-    double __skparam__x = __skadapter__to_double(x);
-    double __skparam__y = __skadapter__to_double(y);
-    __sklib_color __skreturn = __sklib__get_pixel_from_window__window__double__double(__skparam__destination, __skparam__x, __skparam__y);
-    return __skadapter__to_color(__skreturn);
-}
 point_2d point_at(double x, double y) {
     double __skparam__x = __skadapter__to_double(x);
     double __skparam__y = __skadapter__to_double(y);
@@ -5091,6 +5109,11 @@ gpio_pin_mode raspi_get_mode(gpio_pin pin) {
     int __skreturn = __sklib__raspi_get_mode__gpio_pin(__skparam__pin);
     return __skadapter__to_gpio_pin_mode(__skreturn);
 }
+int raspi_get_servo_pulsewidth(gpio_pin pin) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skreturn = __sklib__raspi_get_servo_pulsewidth__gpio_pin(__skparam__pin);
+    return __skadapter__to_int(__skreturn);
+}
 void raspi_init() {
     __sklib__raspi_init();
 }
@@ -5123,6 +5146,11 @@ void raspi_set_pwm_range(gpio_pin pin, int range) {
     int __skparam__pin = __skadapter__to_int(pin);
     int __skparam__range = __skadapter__to_int(range);
     __sklib__raspi_set_pwm_range__gpio_pin__int(__skparam__pin, __skparam__range);
+}
+void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth) {
+    int __skparam__pin = __skadapter__to_int(pin);
+    int __skparam__pulsewidth = __skadapter__to_int(pulsewidth);
+    __sklib__raspi_set_servo_pulsewidth__gpio_pin__int(__skparam__pin, __skparam__pulsewidth);
 }
 int raspi_spi_close(int handle) {
     int __skparam__handle = __skadapter__to_int(handle);
@@ -5212,6 +5240,11 @@ void remote_raspi_write(connection pi, gpio_pin pin, gpio_pin_value value) {
     int __skparam__pin = __skadapter__to_int(pin);
     int __skparam__value = __skadapter__to_int(value);
     __sklib__remote_raspi_write__connection__gpio_pin__gpio_pin_value(__skparam__pi, __skparam__pin, __skparam__value);
+}
+int to_int(gpio_pin_value value) {
+    int __skparam__value = __skadapter__to_int(value);
+    int __skreturn = __sklib__to_int__gpio_pin_value(__skparam__value);
+    return __skadapter__to_int(__skreturn);
 }
 void draw_quad(color clr, const quad &q) {
     __sklib_color __skparam__clr = __skadapter__to_sklib_color(clr);

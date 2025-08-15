@@ -87,7 +87,8 @@ namespace splashkit_lib
      *
      * @attribute class      json
      * @attribute destructor true
-     * @attribute self j
+     * @attribute self       j
+     * @attribute method     free
      */
     void free_json(json j);
 

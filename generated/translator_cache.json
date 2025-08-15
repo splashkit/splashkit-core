@@ -3,7 +3,7 @@
     "group": "animations",
     "brief": "Animations in SplashKit can be used to move between cells in\nbitmaps and sprites. Each animation generates a number sequence\nthat can then be used when drawing bitmaps.",
     "description": null,
-    "parsed_at": 1745561942,
+    "parsed_at": 1753421298,
     "path": "coresdk/src/coresdk/animations.h",
     "functions": [
       {
@@ -1425,9 +1425,9 @@
       {
         "signature": "void free_animation(animation ani);",
         "name": "free_animation",
-        "method_name": null,
+        "method_name": "free",
         "unique_global_name": "free_animation",
-        "unique_method_name": null,
+        "unique_method_name": "animation.free",
         "suffix_name": null,
         "description": "Disposes of the resources used in the animation.",
         "brief": null,
@@ -1457,6 +1457,7 @@
         "attributes": {
           "class": "animation",
           "destructor": true,
+          "method": "free",
           "self": "ani",
           "group": "animations",
           "static": "animation"
@@ -1465,9 +1466,9 @@
       {
         "signature": "void free_animation_script(animation_script script_to_free);",
         "name": "free_animation_script",
-        "method_name": null,
+        "method_name": "free",
         "unique_global_name": "free_animation_script",
-        "unique_method_name": null,
+        "unique_method_name": "animation_script.free",
         "suffix_name": null,
         "description": "Frees loaded animation frames data. Use this when you will no\nlonger be using the animation for any purpose, including within\nsprite.",
         "brief": null,
@@ -1497,6 +1498,7 @@
         "attributes": {
           "class": "animation_script",
           "destructor": true,
+          "method": "free",
           "self": "script_to_free",
           "group": "animations",
           "static": "animation"
@@ -1951,7 +1953,7 @@
     "group": "audio",
     "brief": "SplashKit Audio allows you to load and play music and sound effects.",
     "description": "SplashKit's audio library allows you to easily load and play music and\nsound effects within your programs. To get started with audio the first\nthing you need to do is load a sound effect or music file. You can do this\nby calling the `load_sound_effect(string name)` function to the\n`load_music(string name)` function.",
-    "parsed_at": 1745561942,
+    "parsed_at": 1753421298,
     "path": "coresdk/src/coresdk/audio.h",
     "functions": [
       {
@@ -2045,7 +2047,7 @@
     "group": "utilities",
     "brief": "SplashKit provides some basic data manipulation functions to\nhelp make it easy to get some basic tasks performed.",
     "description": null,
-    "parsed_at": 1745561943,
+    "parsed_at": 1753421299,
     "path": "coresdk/src/coresdk/basics.h",
     "functions": [
       {
@@ -2442,7 +2444,7 @@
         "brief": "Calculates the greatest common divisor of two numbers",
         "return": {
           "type": "int",
-          "description": "Greatest common divisor of the two numbers, or 0 if either of the numbers is not a valid integer above 0",
+          "description": "Greatest common divisor of the two numbers, or 0 if both numbers are 0",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -2912,7 +2914,7 @@
         "brief": "Calculates the least common multiple of two numbers",
         "return": {
           "type": "int",
-          "description": "Least common multiple of the two numbers, or 0 if either of the numbers is not a valid integer above 0",
+          "description": "Least common multiple of the two numbers, or 0 if either of the numbers are 0",
           "is_pointer": false,
           "is_reference": false,
           "is_vector": false,
@@ -3378,7 +3380,7 @@
     "group": "resource_bundles",
     "brief": "SplashKit resource bundles allow you to quickly and easily load a\nnumber of resources in the `Resources` folder.",
     "description": "Supports the loading and freeing of game resource bundles. Resource types\ninclude images, sounds, music and animation files to name a few. Resource\nfiles must be saved in specific locations of a `Resources` folder for\nyour game.",
-    "parsed_at": 1745561943,
+    "parsed_at": 1753421299,
     "path": "coresdk/src/coresdk/bundles.h",
     "functions": [
       {
@@ -3523,7 +3525,7 @@
     "group": "camera",
     "brief": "SplashKit camera functionality allows you to move a virtual camera\naround in your world.",
     "description": "Splashkit camera functionality allows you to move a virtual camera around in\nyour world. This camera projects to the users window, allowing you to\ndraw things to the screen in your world coordinates.",
-    "parsed_at": 1745561944,
+    "parsed_at": 1753421300,
     "path": "coresdk/src/coresdk/camera.h",
     "functions": [
       {
@@ -4590,7 +4592,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561944,
+    "parsed_at": 1753421300,
     "path": "coresdk/src/coresdk/circle_drawing.h",
     "functions": [
       {
@@ -4709,6 +4711,145 @@
           "method": "draw",
           "self": "c",
           "suffix": "record_with_options",
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "void draw_circle(color clr,const point_2d &pt,double radius);",
+        "name": "draw_circle",
+        "method_name": null,
+        "unique_global_name": "draw_circle_at_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Draw a circle at a point, with a specified radius, onto the current window.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location of the center of the circle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_point",
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "void draw_circle(color clr,const point_2d &pt,double radius,drawing_options opts);",
+        "name": "draw_circle",
+        "method_name": null,
+        "unique_global_name": "draw_circle_at_point_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Draw a circle at a point, with a specified radius, using the supplied drawing options. This will use `drawing_options` to determine\nthe destination.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location of the center of the circle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_point_with_options",
           "group": "graphics"
         }
       },
@@ -5388,6 +5529,145 @@
         }
       },
       {
+        "signature": "void fill_circle(color clr,const point_2d &pt,double radius);",
+        "name": "fill_circle",
+        "method_name": null,
+        "unique_global_name": "fill_circle_at_point",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Fill a circle at a point, with a specified radius, onto the current window.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location of the center of the circle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_point",
+          "group": "graphics"
+        }
+      },
+      {
+        "signature": "void fill_circle(color clr,const point_2d &pt,double radius,drawing_options opts);",
+        "name": "fill_circle",
+        "method_name": null,
+        "unique_global_name": "fill_circle_at_point_with_options",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Fill a circle at a point, with a specified radius, using the supplied drawing options. This will use `drawing_options` to determine\nthe destination.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "clr": {
+            "type": "color",
+            "description": "The color of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pt": {
+            "type": "point_2d",
+            "description": "The location of the center of the circle",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "radius": {
+            "type": "double",
+            "description": "The radius of the circle",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "opts": {
+            "type": "drawing_options",
+            "description": "Drawing options to configure the drawing operation",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "at_point_with_options",
+          "group": "graphics"
+        }
+      },
+      {
         "signature": "void fill_circle(color clr,double x,double y,double radius);",
         "name": "fill_circle",
         "method_name": null,
@@ -5961,7 +6241,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561945,
+    "parsed_at": 1753421301,
     "path": "coresdk/src/coresdk/circle_geometry.h",
     "functions": [
       {
@@ -7255,7 +7535,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561945,
+    "parsed_at": 1753421301,
     "path": "coresdk/src/coresdk/clipping.h",
     "functions": [
       {
@@ -7321,9 +7601,9 @@
       {
         "signature": "rectangle current_clip(window wnd);",
         "name": "current_clip",
-        "method_name": null,
+        "method_name": "current_clip",
         "unique_global_name": "current_clip_for_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.current_clip_for_window",
         "suffix_name": null,
         "description": "Returns the rectangle of the current clip area for a window",
         "brief": null,
@@ -7351,6 +7631,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "current_clip",
+          "self": "wnd",
           "suffix": "for_window",
           "group": "graphics"
         }
@@ -7358,9 +7641,9 @@
       {
         "signature": "void pop_clip(window wnd);",
         "name": "pop_clip",
-        "method_name": null,
+        "method_name": "pop_clip",
         "unique_global_name": "pop_clip_for_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.pop_clip_for_window",
         "suffix_name": null,
         "description": "Remove the last clipping rectangle pushed to the window. This\nwill then apply the previously pushed clipping rectangle.",
         "brief": null,
@@ -7388,6 +7671,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "pop_clip",
+          "self": "wnd",
           "suffix": "for_window",
           "group": "graphics"
         }
@@ -7455,9 +7741,9 @@
       {
         "signature": "void push_clip(window wnd,const rectangle &r);",
         "name": "push_clip",
-        "method_name": null,
+        "method_name": "push_clip",
         "unique_global_name": "push_clip_for_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.push_clip_for_window",
         "suffix_name": null,
         "description": "Add the clipping rectangle of a window and uses the intersect between\nthe new rectangle and previous clip.\n\nWhen a clipping rectangle is provided, drawing operations will only\naffect the area specified in the current clipping rectangle.",
         "brief": null,
@@ -7498,6 +7784,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "push_clip",
+          "self": "wnd",
           "suffix": "for_window",
           "group": "graphics"
         }
@@ -7651,9 +7940,9 @@
       {
         "signature": "void reset_clip(window wnd);",
         "name": "reset_clip",
-        "method_name": null,
+        "method_name": "reset_clip",
         "unique_global_name": "reset_clip_for_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.reset_clip_for_window",
         "suffix_name": null,
         "description": "Reset the clipping rectangle on a window. This will clear all\nof the clipping rectangles pushed to the window.",
         "brief": null,
@@ -7681,6 +7970,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "reset_clip",
+          "self": "wnd",
           "suffix": "for_window",
           "group": "graphics"
         }
@@ -7774,9 +8066,9 @@
       {
         "signature": "void set_clip(window wnd,const rectangle &r);",
         "name": "set_clip",
-        "method_name": null,
+        "method_name": "set_clip",
         "unique_global_name": "set_clip_for_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.set_clip_for_window",
         "suffix_name": null,
         "description": "Set the clip rectangle of the window. This will clear any existing\nclipping rectangles pushed to the window, and use the supplied rectangle\nfor clipping.",
         "brief": null,
@@ -7817,6 +8109,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "set_clip",
+          "self": "wnd",
           "suffix": "for_window",
           "group": "graphics"
         }
@@ -7839,7 +8134,7 @@
     "group": "physics",
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.",
     "description": null,
-    "parsed_at": 1745561947,
+    "parsed_at": 1753421304,
     "path": "coresdk/src/coresdk/collisions.h",
     "functions": [
       {
@@ -14502,7 +14797,7 @@
     "group": "color",
     "brief": "SplashKit simplifies color manipulation in graphical applications for developers, ensuring ease of use and efficiency.",
     "description": null,
-    "parsed_at": 1745561950,
+    "parsed_at": 1753421307,
     "path": "coresdk/src/coresdk/color.h",
     "functions": [
       {
@@ -19702,7 +19997,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561950,
+    "parsed_at": 1753421308,
     "path": "coresdk/src/coresdk/drawing_options.h",
     "functions": [
       {
@@ -19818,9 +20113,9 @@
       {
         "signature": "drawing_options option_draw_to(window dest);",
         "name": "option_draw_to",
-        "method_name": null,
+        "method_name": "option_draw_to",
         "unique_global_name": "option_draw_to_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.option_draw_to_window",
         "suffix_name": null,
         "description": "Use this option to draw to a specified Window. Pass dest the Window you want to draw on.",
         "brief": null,
@@ -19848,6 +20143,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "option_draw_to",
+          "self": "dest",
           "suffix": "window",
           "group": "graphics"
         }
@@ -19855,9 +20153,9 @@
       {
         "signature": "drawing_options option_draw_to(window dest,drawing_options opts);",
         "name": "option_draw_to",
-        "method_name": null,
+        "method_name": "option_draw_to",
         "unique_global_name": "option_draw_to_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.option_draw_to_window_with_options",
         "suffix_name": null,
         "description": "Use this option to draw to a Bitmap. Pass dest the Bitmap you want to draw on to.\nPass opts the other options you want use.",
         "brief": null,
@@ -19898,6 +20196,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "option_draw_to",
+          "self": "dest",
           "suffix": "window_with_options",
           "group": "graphics"
         }
@@ -21066,7 +21367,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561951,
+    "parsed_at": 1753421309,
     "path": "coresdk/src/coresdk/ellipse_drawing.h",
     "functions": [
       {
@@ -23161,7 +23462,7 @@
     "group": "geometry",
     "brief": "SplashKit's geometry functions assist with geometry-related computations.",
     "description": null,
-    "parsed_at": 1745561951,
+    "parsed_at": 1753421309,
     "path": "coresdk/src/coresdk/geometry.h",
     "functions": [
       {
@@ -23293,7 +23594,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561952,
+    "parsed_at": 1753421309,
     "path": "coresdk/src/coresdk/graphics.h",
     "functions": [
       {
@@ -23804,9 +24105,9 @@
       {
         "signature": "void take_screenshot(window wind,const string &basename);",
         "name": "take_screenshot",
-        "method_name": null,
+        "method_name": "take_screenshot",
         "unique_global_name": "take_screenshot_of_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.take_screenshot_of_window",
         "suffix_name": null,
         "description": "Saves a screenshot of the current window to a bitmap file. The file will\nbe saved onto the user's desktop.",
         "brief": null,
@@ -23847,6 +24148,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "take_screenshot",
+          "self": "wind",
           "suffix": "of_window",
           "group": "graphics"
         }
@@ -23869,7 +24173,7 @@
     "group": "graphics",
     "brief": "SplashKit Images allow drawing of bitmaps and sprites to graphic windows.",
     "description": null,
-    "parsed_at": 1745561952,
+    "parsed_at": 1753421310,
     "path": "coresdk/src/coresdk/images.h",
     "functions": [
       {
@@ -26394,7 +26698,7 @@
     "group": "input",
     "brief": "Input handles user interaction and events such as keypresses.",
     "description": null,
-    "parsed_at": 1745561953,
+    "parsed_at": 1753421310,
     "path": "coresdk/src/coresdk/input.h",
     "functions": [
       {
@@ -26487,7 +26791,7 @@
     "group": "interface",
     "brief": "SplashKit Interface provides functions to create user interfaces, with elements such as draggable panels, buttons and text boxes.",
     "description": "SplashKit`s interface library provides various functions for creating\npanels, and drawing interface elements such as buttons, text boxes, and more",
-    "parsed_at": 1745561954,
+    "parsed_at": 1753421311,
     "path": "coresdk/src/coresdk/interface.h",
     "functions": [
       {
@@ -29773,13 +30077,13 @@
         }
       },
       {
-        "signature": "string text_box(const string& value);",
+        "signature": "string text_box(const string& label_text,const string& value,const rectangle& rect);",
         "name": "text_box",
         "method_name": null,
-        "unique_global_name": "text_box",
+        "unique_global_name": "text_box_at_position",
         "unique_method_name": null,
         "suffix_name": null,
-        "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.",
+        "description": "Creates a text entry box at a specific position on screen.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string, rectangle_from(0,0,100,100));\n```",
         "brief": null,
         "return": {
           "type": "string",
@@ -29790,9 +30094,9 @@
           "type_parameter": null
         },
         "parameters": {
-          "value": {
+          "label_text": {
             "type": "string",
-            "description": "The current value of the text box",
+            "description": "Unique identifier for the text box (not drawn)",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -29802,31 +30106,7 @@
             ],
             "is_vector": false,
             "type_parameter": null
-          }
-        },
-        "attributes": {
-          "group": "interface",
-          "static": "interface"
-        }
-      },
-      {
-        "signature": "string text_box(const string& value,const rectangle& rect);",
-        "name": "text_box",
-        "method_name": null,
-        "unique_global_name": "text_box_at_position",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Creates a text entry box at a specific position on screen.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
-        "brief": null,
-        "return": {
-          "type": "string",
-          "description": "The updated value of the text box",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
+          },
           "value": {
             "type": "string",
             "description": "The current value of the text box",
@@ -29864,7 +30144,7 @@
         "signature": "string text_box(const string& label_text,const string& value);",
         "name": "text_box",
         "method_name": null,
-        "unique_global_name": "text_box_labeled",
+        "unique_global_name": "text_box",
         "unique_method_name": null,
         "suffix_name": null,
         "description": "Creates a text entry box with a label.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string);\n```",
@@ -29880,7 +30160,7 @@
         "parameters": {
           "label_text": {
             "type": "string",
-            "description": "The label to show in front of the text box",
+            "description": "Unique identifier for the text box (not drawn)",
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
@@ -29897,6 +30177,69 @@
             "is_pointer": false,
             "is_const": true,
             "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "interface",
+          "static": "interface"
+        }
+      },
+      {
+        "signature": "string text_box(const string& label_text,const string& value,bool show_label);",
+        "name": "text_box",
+        "method_name": null,
+        "unique_global_name": "text_box_labeled",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Creates a text entry box with a label that can be shown.\nReturns the updated value of the text box.\n\nExample usage:\n```c++\nmy_string = text_box(\"Name\", my_string, true);\n```",
+        "brief": null,
+        "return": {
+          "type": "string",
+          "description": "The updated value of the text box",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "label_text": {
+            "type": "string",
+            "description": "Unique identifier for the text box (not drawn)",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "value": {
+            "type": "string",
+            "description": "The current value of the text box",
+            "is_pointer": false,
+            "is_const": true,
+            "is_reference": true,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "show_label": {
+            "type": "bool",
+            "description": "Whether to show the label or not",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
             "is_array": false,
             "array_dimension_sizes": [
 
@@ -29929,7 +30272,7 @@
     "group": "json",
     "brief": "SplashKit Json allows you to create and read JSON objects.",
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
-    "parsed_at": 1745561954,
+    "parsed_at": 1753421312,
     "path": "coresdk/src/coresdk/json.h",
     "functions": [
       {
@@ -30026,9 +30369,9 @@
       {
         "signature": "void free_json(json j);",
         "name": "free_json",
-        "method_name": null,
+        "method_name": "free",
         "unique_global_name": "free_json",
-        "unique_method_name": null,
+        "unique_method_name": "json.free",
         "suffix_name": null,
         "description": "Frees the SplashKit resources associated with the `json` object.",
         "brief": null,
@@ -30058,6 +30401,7 @@
         "attributes": {
           "class": "json",
           "destructor": true,
+          "method": "free",
           "self": "j",
           "group": "json",
           "static": "json"
@@ -31681,7 +32025,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561955,
+    "parsed_at": 1753421313,
     "path": "coresdk/src/coresdk/keyboard_input.h",
     "functions": [
       {
@@ -32679,7 +33023,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561956,
+    "parsed_at": 1753421314,
     "path": "coresdk/src/coresdk/line_drawing.h",
     "functions": [
       {
@@ -34218,7 +34562,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561956,
+    "parsed_at": 1753421314,
     "path": "coresdk/src/coresdk/line_geometry.h",
     "functions": [
       {
@@ -35092,7 +35436,7 @@
     "group": "logging",
     "brief": "SplashKit Logging facilitates streamlined logging with customizable severity levels and modes.",
     "description": "SplashKit Logging module,  allows users to initialize a custom logger with specified log levels and modes (console, file, or both). \nThe module provides functions to log messages at different severity levels (INFO, DEBUG, WARNING, ERROR, FATAL) with timestamped entries. \nUsers can close the logging process as needed, and the module handles customization for console and file output.",
-    "parsed_at": 1745561956,
+    "parsed_at": 1753421314,
     "path": "coresdk/src/coresdk/logging.h",
     "functions": [
       {
@@ -35341,7 +35685,7 @@
     "group": "physics",
     "brief": "Provides matrix functions to work on 2d coordinates.",
     "description": null,
-    "parsed_at": 1745561957,
+    "parsed_at": 1753421315,
     "path": "coresdk/src/coresdk/matrix_2d.h",
     "functions": [
       {
@@ -36079,7 +36423,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561957,
+    "parsed_at": 1753421315,
     "path": "coresdk/src/coresdk/mouse_input.h",
     "functions": [
       {
@@ -36566,7 +36910,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561957,
+    "parsed_at": 1753421315,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -36870,9 +37214,9 @@
       {
         "signature": "void free_music(music effect);",
         "name": "free_music",
-        "method_name": null,
+        "method_name": "free",
         "unique_global_name": "free_music",
-        "unique_method_name": null,
+        "unique_method_name": "music.free",
         "suffix_name": null,
         "description": "Releases the SplashKit resources associated with music.",
         "brief": null,
@@ -36902,6 +37246,7 @@
         "attributes": {
           "class": "music",
           "destructor": true,
+          "method": "free",
           "self": "effect",
           "group": "audio",
           "static": "audio"
@@ -37596,7 +37941,7 @@
     "group": "networking",
     "brief": "SplashKit's network-related functions allow you to communicate data\nacross networks.",
     "description": null,
-    "parsed_at": 1745561959,
+    "parsed_at": 1753421317,
     "path": "coresdk/src/coresdk/networking.h",
     "functions": [
       {
@@ -40888,7 +41233,7 @@
     "group": "physics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561959,
+    "parsed_at": 1753421317,
     "path": "coresdk/src/coresdk/physics.h",
     "functions": [
 
@@ -40910,7 +41255,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561959,
+    "parsed_at": 1753421317,
     "path": "coresdk/src/coresdk/point_drawing.h",
     "functions": [
       {
@@ -41482,9 +41827,9 @@
       {
         "signature": "void draw_pixel_on_window(window destination,color clr,const point_2d &pt);",
         "name": "draw_pixel_on_window",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_window_at_point",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_pixel_at_point",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given window.",
         "brief": null,
@@ -41539,16 +41884,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_pixel",
           "suffix": "at_point",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_window(window destination,color clr,const point_2d &pt,drawing_options opts);",
         "name": "draw_pixel_on_window",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_window_at_point_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_pixel_at_point_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given window with the given drawing options.",
         "brief": null,
@@ -41616,16 +41963,18 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_pixel",
           "suffix": "at_point_with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_window(window destination,color clr,double x,double y);",
         "name": "draw_pixel_on_window",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_pixel",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given window.",
         "brief": null,
@@ -41693,15 +42042,17 @@
         },
         "attributes": {
           "class": "window",
-          "group": "graphics"
+          "method": "draw_pixel",
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
         "signature": "void draw_pixel_on_window(window destination,color clr,double x,double y,drawing_options opts);",
         "name": "draw_pixel_on_window",
-        "method_name": null,
+        "method_name": "draw_pixel",
         "unique_global_name": "draw_pixel_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.draw_pixel_with_options",
         "suffix_name": null,
         "description": "Draws an individual pixel to the given window with the given drawing options.",
         "brief": null,
@@ -41782,8 +42133,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "draw_pixel",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -42097,120 +42450,6 @@
           "suffix": "from_window",
           "group": "graphics"
         }
-      },
-      {
-        "signature": "color get_pixel_from_window(window destination,const point_2d &pt);",
-        "name": "get_pixel_from_window",
-        "method_name": null,
-        "unique_global_name": "get_pixel_from_window_at_point_from_window",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the color of the pixel at the x,y location on the given\nwindow.",
-        "brief": null,
-        "return": {
-          "type": "color",
-          "description": "The color of the pixel at the supplied location",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "destination": {
-            "type": "window",
-            "description": "The window to draw the pixel on",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "pt": {
-            "type": "point_2d",
-            "description": "The position of the pixel",
-            "is_pointer": false,
-            "is_const": true,
-            "is_reference": true,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "suffix": "at_point_from_window",
-          "group": "graphics"
-        }
-      },
-      {
-        "signature": "color get_pixel_from_window(window destination,double x,double y);",
-        "name": "get_pixel_from_window",
-        "method_name": null,
-        "unique_global_name": "get_pixel_from_window_from_window",
-        "unique_method_name": null,
-        "suffix_name": null,
-        "description": "Returns the color of the pixel at the x,y location on the given\nwindow.",
-        "brief": null,
-        "return": {
-          "type": "color",
-          "description": "The color of the pixel at the supplied location",
-          "is_pointer": false,
-          "is_reference": false,
-          "is_vector": false,
-          "type_parameter": null
-        },
-        "parameters": {
-          "destination": {
-            "type": "window",
-            "description": "The window to draw the pixel on",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "x": {
-            "type": "double",
-            "description": "The distance from the left edge of the window to the pixel\nto read",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          },
-          "y": {
-            "type": "double",
-            "description": "The distance from the top of the window to the pixel to read",
-            "is_pointer": false,
-            "is_const": false,
-            "is_reference": false,
-            "is_array": false,
-            "array_dimension_sizes": [
-
-            ],
-            "is_vector": false,
-            "type_parameter": null
-          }
-        },
-        "attributes": {
-          "class": "window",
-          "suffix": "from_window",
-          "group": "graphics"
-        }
       }
     ],
     "typedefs": [
@@ -42230,7 +42469,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561960,
+    "parsed_at": 1753421318,
     "path": "coresdk/src/coresdk/point_geometry.h",
     "functions": [
       {
@@ -43152,9 +43391,9 @@
       {
         "signature": "point_2d random_window_point(window wind);",
         "name": "random_window_point",
-        "method_name": null,
+        "method_name": "random_point",
         "unique_global_name": "random_window_point",
-        "unique_method_name": null,
+        "unique_method_name": "window.random_point",
         "suffix_name": null,
         "description": "Returns a random point on the provided window.",
         "brief": null,
@@ -43182,8 +43421,11 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "random_point",
           "group": "geometry",
-          "static": "geometry"
+          "static": "geometry",
+          "self": "wind"
         }
       },
       {
@@ -43254,7 +43496,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561960,
+    "parsed_at": 1753421318,
     "path": "coresdk/src/coresdk/quad_geometry.h",
     "functions": [
       {
@@ -43936,7 +44178,7 @@
     "group": "utilities",
     "brief": "SplashKit random provides a simple implementation of random.",
     "description": "The SplashKit`s random library provides two rnd methods, a `rnd()` which generates\na random number between 0 and 1, and `rnd(int ubound)` which\ngenerates a random number between 0 and the value scpeficied in `ubound`.",
-    "parsed_at": 1745561960,
+    "parsed_at": 1753421318,
     "path": "coresdk/src/coresdk/random.h",
     "functions": [
       {
@@ -44070,7 +44312,7 @@
     "group": "raspberry",
     "brief": "Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1745561960,
+    "parsed_at": 1753421318,
     "path": "coresdk/src/coresdk/raspi_adc.h",
     "functions": [
       {
@@ -44113,9 +44355,9 @@
       {
         "signature": "void close_adc(adc_device adc);",
         "name": "close_adc",
-        "method_name": null,
+        "method_name": "close",
         "unique_global_name": "close_adc",
-        "unique_method_name": null,
+        "unique_method_name": "adc_device.close",
         "suffix_name": null,
         "description": "Closes an ADC device given its pointer.",
         "brief": null,
@@ -44145,6 +44387,7 @@
         "attributes": {
           "class": "adc_device",
           "destructor": true,
+          "method": "close",
           "self": "adc",
           "group": "raspberry",
           "static": "raspberry"
@@ -44489,7 +44732,7 @@
       {
         "signature": "typedef struct _adc_data *adc_device;",
         "name": "adc_device",
-        "description": "The `adc_device` type is used to refer to ADC (Analog-to-Digital Converter)\ndevices that can be managed by the SplashKit ADC code. ADC devices are:\n\n- loaded with `load_adc_device`,\n\n- accessed using `adc_device_named` or checked with `has_adc_device`,\n\n- read using `read_adc_channel` to retrieve analog values from specific channels,\n\n- and must be released using `free_adc_device` (to release a specific\nADC device) or `free_all_adc_devices` (to release all loaded ADC devices).\n\nADC devices allow you to interface with external analog sensors or inputs,\nconverting their signals into digital values for processing in your application.\n\nYou can check if an ADC device is loaded using `has_adc_device`.\n\nUse `free_adc_device` to release resources associated with a specific ADC device,\nor `free_all_adc_devices` to clean up all ADC devices.",
+        "description": "The `adc_device` type is used to refer to ADC (Analog-to-Digital Converter)\ndevices that can be managed by the SplashKit ADC code, such as ADS7830.\nADC devices are:\n\n- loaded with `open_adc`,\n- accessed using `adc_device_named` or checked with `has_adc_device`,\n- read using `read_adc` to retrieve analog values from specific channels,\n- and must be closed using `close_adc` (to release a specific\nADC device) or `close_all_adc` (to release all loaded ADC devices).\n\nADC devices allow you to interface with external analog sensors or inputs,\nconverting their signals into digital values for processing in your application.",
         "brief": null,
         "attributes": {
           "class": "adc_device",
@@ -44517,7 +44760,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1745561961,
+    "parsed_at": 1753421319,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -44589,6 +44832,43 @@
           "pin": {
             "type": "gpio_pin",
             "description": "The pin to get the mode for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "int raspi_get_servo_pulsewidth(gpio_pin pin);",
+        "name": "raspi_get_servo_pulsewidth",
+        "method_name": null,
+        "unique_global_name": "raspi_get_servo_pulsewidth",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function retrieves the pulse width for the specified pin.",
+        "brief": "Gets the pulse width for the specified pin.",
+        "return": {
+          "type": "int",
+          "description": "The pulse width of the pin.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "gpio_pin",
+            "description": "The pin to get the pulse width for.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -44900,6 +45180,56 @@
           "range": {
             "type": "int",
             "description": "The PWM range to set for the pin.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_set_servo_pulsewidth(gpio_pin pin,int pulsewidth);",
+        "name": "raspi_set_servo_pulsewidth",
+        "method_name": null,
+        "unique_global_name": "raspi_set_servo_pulsewidth",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "This function sets the pulse width for the specified pin.",
+        "brief": "Sets the pulse width for the specified pin.",
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "pin": {
+            "type": "gpio_pin",
+            "description": "The pin to set the pulse width for.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "pulsewidth": {
+            "type": "int",
+            "description": "The pulse width to set for the pin.",
             "is_pointer": false,
             "is_const": false,
             "is_reference": false,
@@ -45719,6 +46049,43 @@
           "group": "raspberry",
           "static": "raspberry"
         }
+      },
+      {
+        "signature": "int to_int(gpio_pin_value value);",
+        "name": "to_int",
+        "method_name": null,
+        "unique_global_name": "to_int",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Converts the specified pin value to an integer, to use in calculations.",
+        "brief": "Converts a GPIO Pin Value to an integer.",
+        "return": {
+          "type": "int",
+          "description": "The pin value as an integer.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "value": {
+            "type": "gpio_pin_value",
+            "description": "The pin to read the value from.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
       }
     ],
     "typedefs": [
@@ -45738,7 +46105,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561962,
+    "parsed_at": 1753421320,
     "path": "coresdk/src/coresdk/rectangle_drawing.h",
     "functions": [
       {
@@ -47502,9 +47869,9 @@
       {
         "signature": "void fill_quad_on_window(window destination,color clr,const quad &q,const drawing_options &opts);",
         "name": "fill_quad_on_window",
-        "method_name": null,
+        "method_name": "fill_quad",
         "unique_global_name": "fill_quad_on_window_with_options",
-        "unique_method_name": null,
+        "unique_method_name": "window.fill_quad_with_options",
         "suffix_name": null,
         "description": "Fill a quad on the supplied window using the supplied drawing options.",
         "brief": null,
@@ -47572,8 +47939,10 @@
         },
         "attributes": {
           "class": "window",
+          "method": "fill_quad",
           "suffix": "with_options",
-          "group": "graphics"
+          "group": "graphics",
+          "self": "destination"
         }
       },
       {
@@ -48631,7 +49000,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561962,
+    "parsed_at": 1753421320,
     "path": "coresdk/src/coresdk/rectangle_geometry.h",
     "functions": [
       {
@@ -49620,7 +49989,7 @@
     "group": "resources",
     "brief": "SplashKit resource functions allow you to locate resources in a\nproject's `Resources` folder.",
     "description": null,
-    "parsed_at": 1745561962,
+    "parsed_at": 1753421321,
     "path": "coresdk/src/coresdk/resources.h",
     "functions": [
       {
@@ -49938,7 +50307,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561963,
+    "parsed_at": 1753421321,
     "path": "coresdk/src/coresdk/sound.h",
     "functions": [
       {
@@ -50947,7 +51316,7 @@
     "group": "sprites",
     "brief": "SplashKit Sprites allows you to create images you can easily\nmove and animate.",
     "description": "SplashKit sprites are game elements that can be moved, and animated. Sprites\nare located at a position in the game, have a velocity, and an animation.\nThe sprite can also have arbitary data associated with it for game specific\npurposes.",
-    "parsed_at": 1745561965,
+    "parsed_at": 1753421324,
     "path": "coresdk/src/coresdk/sprites.h",
     "functions": [
       {
@@ -57823,7 +58192,7 @@
     "group": "terminal",
     "brief": "SplashKit Terminal allows you to read and write values to the\nterminal in a consistent manner.",
     "description": null,
-    "parsed_at": 1745561965,
+    "parsed_at": 1753421324,
     "path": "coresdk/src/coresdk/terminal.h",
     "functions": [
       {
@@ -58243,7 +58612,7 @@
     "group": "graphics",
     "brief": "SplashKit Text allows for drawing text in a variety of ways to\ngraphic windows.",
     "description": null,
-    "parsed_at": 1745561966,
+    "parsed_at": 1753421325,
     "path": "coresdk/src/coresdk/text.h",
     "functions": [
       {
@@ -61170,7 +61539,7 @@
     "group": "input",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561966,
+    "parsed_at": 1753421325,
     "path": "coresdk/src/coresdk/text_input.h",
     "functions": [
       {
@@ -61274,9 +61643,9 @@
       {
         "signature": "void end_reading_text(window wind);",
         "name": "end_reading_text",
-        "method_name": null,
+        "method_name": "end_reading_text",
         "unique_global_name": "end_reading_text_in_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.end_reading_text_in_window",
         "suffix_name": null,
         "description": "Ends reading text for the passed in window.",
         "brief": null,
@@ -61304,6 +61673,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "end_reading_text",
+          "self": "wind",
           "suffix": "in_window",
           "group": "input"
         }
@@ -61334,9 +61706,9 @@
       {
         "signature": "bool reading_text(window wind);",
         "name": "reading_text",
-        "method_name": null,
+        "method_name": "reading_text",
         "unique_global_name": "reading_text_in_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.reading_text_in_window",
         "suffix_name": null,
         "description": "Returns true when the window is reading text.",
         "brief": null,
@@ -61364,6 +61736,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "reading_text",
+          "self": "wind",
           "suffix": "in_window",
           "group": "input"
         }
@@ -61457,9 +61832,9 @@
       {
         "signature": "void start_reading_text(window wind,rectangle rect);",
         "name": "start_reading_text",
-        "method_name": null,
+        "method_name": "start_reading_text",
         "unique_global_name": "start_reading_text_in_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.start_reading_text_in_window",
         "suffix_name": null,
         "description": "Start reading text in the window within the bounds of the\nsupplied rectangle.",
         "brief": null,
@@ -61500,6 +61875,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "start_reading_text",
+          "self": "wind",
           "suffix": "in_window",
           "group": "input"
         }
@@ -61507,9 +61885,9 @@
       {
         "signature": "void start_reading_text(window wind,rectangle rect,string initial_text);",
         "name": "start_reading_text",
-        "method_name": null,
+        "method_name": "start_reading_text",
         "unique_global_name": "start_reading_text_in_window_with_initial_text",
-        "unique_method_name": null,
+        "unique_method_name": "window.start_reading_text_in_window_with_initial_text",
         "suffix_name": null,
         "description": "Start reading text in the window within the bounds of the\nsupplied rectangle. The text will start with an initial value.",
         "brief": null,
@@ -61563,6 +61941,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "start_reading_text",
+          "self": "wind",
           "suffix": "in_window_with_initial_text",
           "group": "input"
         }
@@ -61593,9 +61974,9 @@
       {
         "signature": "bool text_entry_cancelled(window wind);",
         "name": "text_entry_cancelled",
-        "method_name": null,
+        "method_name": "text_entry_cancelled",
         "unique_global_name": "text_entry_cancelled_in_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.text_entry_cancelled_in_window",
         "suffix_name": null,
         "description": "Did the user press escape and cancel the enterring of text?",
         "brief": null,
@@ -61623,6 +62004,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "text_entry_cancelled",
+          "self": "wind",
           "suffix": "in_window",
           "group": "input"
         }
@@ -61653,9 +62037,9 @@
       {
         "signature": "string text_input(window wind);",
         "name": "text_input",
-        "method_name": null,
+        "method_name": "text_input",
         "unique_global_name": "text_input_in_window",
-        "unique_method_name": null,
+        "unique_method_name": "window.text_input_in_window",
         "suffix_name": null,
         "description": "The text the user has currently enterred on the current window.",
         "brief": null,
@@ -61683,6 +62067,9 @@
           }
         },
         "attributes": {
+          "class": "window",
+          "method": "text_input",
+          "self": "wind",
           "suffix": "in_window",
           "group": "input"
         }
@@ -61705,7 +62092,7 @@
     "group": "timers",
     "brief": "Timers in SplashKit can be used to track the passing of time.",
     "description": null,
-    "parsed_at": 1745561967,
+    "parsed_at": 1753421326,
     "path": "coresdk/src/coresdk/timers.h",
     "functions": [
       {
@@ -61774,9 +62161,9 @@
       {
         "signature": "void free_timer(timer to_free);",
         "name": "free_timer",
-        "method_name": null,
+        "method_name": "free",
         "unique_global_name": "free_timer",
-        "unique_method_name": null,
+        "unique_method_name": "timer.free",
         "suffix_name": null,
         "description": "Free the memory used to store this timer.",
         "brief": null,
@@ -61806,9 +62193,10 @@
         "attributes": {
           "class": "timer",
           "destructor": true,
+          "method": "free",
+          "self": "to_free",
           "group": "timers",
-          "static": "timers",
-          "self": "to_free"
+          "static": "timers"
         }
       },
       {
@@ -62543,7 +62931,7 @@
     "group": "graphics",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561967,
+    "parsed_at": 1753421327,
     "path": "coresdk/src/coresdk/triangle_drawing.h",
     "functions": [
       {
@@ -64950,7 +65338,7 @@
     "group": "geometry",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561968,
+    "parsed_at": 1753421327,
     "path": "coresdk/src/coresdk/triangle_geometry.h",
     "functions": [
       {
@@ -65514,7 +65902,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1745561968,
+    "parsed_at": 1753421328,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -66235,7 +66623,7 @@
             "number": 2
           },
           "PIN_3": {
-            "description": "GPIO2 / SDA (I2C)",
+            "description": "GPIO 2 / SDA (I2C)",
             "number": 3
           },
           "PIN_4": {
@@ -66243,7 +66631,7 @@
             "number": 4
           },
           "PIN_5": {
-            "description": "GPIO3 / SCL (I2C)",
+            "description": "GPIO 3 / SCL (I2C)",
             "number": 5
           },
           "PIN_6": {
@@ -66251,11 +66639,11 @@
             "number": 6
           },
           "PIN_7": {
-            "description": "GPIO4",
+            "description": "GPIO 4 / GPCLK0",
             "number": 7
           },
           "PIN_8": {
-            "description": "GPIO14 / TXD (UART)",
+            "description": "GPIO 14 / TXD (UART)",
             "number": 8
           },
           "PIN_9": {
@@ -66263,19 +66651,19 @@
             "number": 9
           },
           "PIN_10": {
-            "description": "GPIO15 / RXD (UART)",
+            "description": "GPIO 15 / RXD (UART)",
             "number": 10
           },
           "PIN_11": {
-            "description": "GPIO17",
+            "description": "GPIO 17",
             "number": 11
           },
           "PIN_12": {
-            "description": "GPIO18 / PCM_CLK",
+            "description": "GPIO 18 / PCM_CLK",
             "number": 12
           },
           "PIN_13": {
-            "description": "GPIO27",
+            "description": "GPIO 27",
             "number": 13
           },
           "PIN_14": {
@@ -66283,11 +66671,11 @@
             "number": 14
           },
           "PIN_15": {
-            "description": "GPIO22",
+            "description": "GPIO 22",
             "number": 15
           },
           "PIN_16": {
-            "description": "GPIO23",
+            "description": "GPIO 23",
             "number": 16
           },
           "PIN_17": {
@@ -66295,11 +66683,11 @@
             "number": 17
           },
           "PIN_18": {
-            "description": "GPIO24",
+            "description": "GPIO 24",
             "number": 18
           },
           "PIN_19": {
-            "description": "GPIO10 / MOSI (SPI)",
+            "description": "GPIO 10 / MOSI (SPI)",
             "number": 19
           },
           "PIN_20": {
@@ -66307,19 +66695,19 @@
             "number": 20
           },
           "PIN_21": {
-            "description": "GPIO9 / MISO (SPI)",
+            "description": "GPIO 9 / MISO (SPI)",
             "number": 21
           },
           "PIN_22": {
-            "description": "GPIO25",
+            "description": "GPIO 25",
             "number": 22
           },
           "PIN_23": {
-            "description": "GPIO11 / SCLK (SPI)",
+            "description": "GPIO 11 / SCLK (SPI)",
             "number": 23
           },
           "PIN_24": {
-            "description": "GPIO8 / CE0 (SPI)",
+            "description": "GPIO 8 / CE0 (SPI)",
             "number": 24
           },
           "PIN_25": {
@@ -66327,7 +66715,7 @@
             "number": 25
           },
           "PIN_26": {
-            "description": "GPIO7 / CE1 (SPI)",
+            "description": "GPIO 7 / CE1 (SPI)",
             "number": 26
           },
           "PIN_27": {
@@ -66339,7 +66727,7 @@
             "number": 28
           },
           "PIN_29": {
-            "description": "GPIO5",
+            "description": "GPIO 5",
             "number": 29
           },
           "PIN_30": {
@@ -66347,15 +66735,15 @@
             "number": 30
           },
           "PIN_31": {
-            "description": "GPIO6",
+            "description": "GPIO 6",
             "number": 31
           },
           "PIN_32": {
-            "description": "GPIO12",
+            "description": "GPIO 12 / PWM0",
             "number": 32
           },
           "PIN_33": {
-            "description": "GPIO13",
+            "description": "GPIO 13",
             "number": 33
           },
           "PIN_34": {
@@ -66363,19 +66751,19 @@
             "number": 34
           },
           "PIN_35": {
-            "description": "GPIO19 / MISO (PCM)",
+            "description": "GPIO 19 / MISO (PCM)",
             "number": 35
           },
           "PIN_36": {
-            "description": "GPIO16 / CE0 (PCM)",
+            "description": "GPIO 16 / CE0 (PCM_FS)",
             "number": 36
           },
           "PIN_37": {
-            "description": "GPIO26",
+            "description": "GPIO 26",
             "number": 37
           },
           "PIN_38": {
-            "description": "GPIO20 / MOSI (PCM)",
+            "description": "GPIO 20 / MOSI (PCM_DIN)",
             "number": 38
           },
           "PIN_39": {
@@ -66383,7 +66771,7 @@
             "number": 39
           },
           "PIN_40": {
-            "description": "GPIO21 / SCLK (PCM)",
+            "description": "GPIO 21 / SCLK (PCM_DOUT)",
             "number": 40
           }
         },
@@ -66572,6 +66960,38 @@
         }
       },
       {
+        "signature": "enum motor_direction {MOTOR_FORWARD,MOTOR_BACKWARD};",
+        "name": "motor_direction",
+        "description": "Motor Movement Directions:",
+        "brief": null,
+        "constants": {
+          "MOTOR_FORWARD": {
+            "description": "Motor moves forward."
+          },
+          "MOTOR_BACKWARD": {
+            "description": "Motor moves backward."
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
+        "signature": "enum motor_driver_type {L298N = 0,// L293D = 1,// TB6612FNG = 2,// DRV8835 = 3,// DRV8834 = 4,// DRV8825 = 5,// A4988 = 6,};",
+        "name": "motor_driver_type",
+        "description": "Motor Driver Types:",
+        "brief": null,
+        "constants": {
+          "L298N": {
+            "description": "Dual H-Bridge Motor Driver",
+            "number": 0
+          }
+        },
+        "attributes": {
+          "group": "types"
+        }
+      },
+      {
         "signature": "enum pull_up_down {PUD_OFF = 0,PUD_DOWN = 1,PUD_UP = 2};",
         "name": "pull_up_down",
         "description": "GPIO Pull-up/Pull-down Configurations:",
@@ -66603,7 +67023,7 @@
     "group": "utilities",
     "brief": "SplashKit provides miscellaneous utilities for unclassified functionality.",
     "description": null,
-    "parsed_at": 1745561969,
+    "parsed_at": 1753421329,
     "path": "coresdk/src/coresdk/utils.h",
     "functions": [
       {
@@ -66811,7 +67231,7 @@
     "group": "physics",
     "brief": "Provides vector functions to work on vectors.",
     "description": null,
-    "parsed_at": 1745561969,
+    "parsed_at": 1753421329,
     "path": "coresdk/src/coresdk/vector_2d.h",
     "functions": [
       {
@@ -68244,7 +68664,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561969,
+    "parsed_at": 1753421329,
     "path": "coresdk/src/coresdk/web_client.h",
     "functions": [
       {
@@ -68839,7 +69259,7 @@
     "group": "networking",
     "brief": null,
     "description": null,
-    "parsed_at": 1745561970,
+    "parsed_at": 1753421330,
     "path": "coresdk/src/coresdk/web_server.h",
     "functions": [
       {
@@ -70558,7 +70978,7 @@
     "group": "windows",
     "brief": "Window Manager in SplashKit can be used create, and manipulate\ngraphics windows",
     "description": null,
-    "parsed_at": 1745561971,
+    "parsed_at": 1753421331,
     "path": "coresdk/src/coresdk/window_manager.h",
     "functions": [
       {

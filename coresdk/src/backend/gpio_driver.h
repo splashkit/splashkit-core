@@ -1,6 +1,6 @@
 // gpio_driver.h
 // This file is part of the SplashKit Core Library.
-// Copyright (©) 2024 Aditya Parmar. All Rights Reserved.
+// created by XQuestCode || Aditya Parmar
 
 #ifndef SPLASHKIT_GPIO_H
 #define SPLASHKIT_GPIO_H
@@ -211,6 +211,10 @@ namespace splashkit_lib
     void sk_i2c_write_byte_data(int handle, int reg, int data);
     int sk_i2c_read_word_data(int handle, int reg);
     void sk_i2c_write_word_data(int handle, int reg, int data);
+
+    // Servo functions
+    void sk_set_servo_pulsewidth(int pin, int pulsewidth);
+    int sk_get_servo_pulsewidth(int pin);
 
     void sk_gpio_cleanup();
 

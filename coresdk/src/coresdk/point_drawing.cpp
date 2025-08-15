@@ -123,14 +123,4 @@ namespace splashkit_lib
     {
         draw_pixel(clr, pt, option_draw_to(destination, opts));
     }
-    
-    color get_pixel_from_window(window destination, double x, double y)
-    {
-        return get_pixel(destination, x, y);
-    }
-    
-    color get_pixel_from_window(window destination, const point_2d &pt)
-    {
-        return get_pixel(destination, pt.x, pt.y);
-    }
 }

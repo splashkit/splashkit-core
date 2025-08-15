@@ -33,7 +33,5 @@ color get_pixel(const point_2d &pt);
 color get_pixel(double x, double y);
 color get_pixel(window wnd, const point_2d &pt);
 color get_pixel(window wnd, double x, double y);
-color get_pixel_from_window(window destination, const point_2d &pt);
-color get_pixel_from_window(window destination, double x, double y);
 
 #endif /* __point_drawing_h */

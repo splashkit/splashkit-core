@@ -88,8 +88,8 @@ void start_inset(const string &name, int height);
 bool start_panel(const string &name, rectangle initial_rectangle);
 bool start_popup(const string &name);
 bool start_treenode(const string &label_text);
-string text_box(const string &value);
-string text_box(const string &value, const rectangle &rect);
+string text_box(const string &label_text, const string &value, const rectangle &rect);
 string text_box(const string &label_text, const string &value);
+string text_box(const string &label_text, const string &value, bool show_label);
 
 #endif /* __interface_h */

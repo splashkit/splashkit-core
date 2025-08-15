@@ -10,31 +10,12 @@
 using namespace splashkit_lib;
 
 constexpr int ROCKET_WIDTH = 36, ROCKET_HEIGHT = 72,
-        BACKGROUND_WIDTH = 864, BACKGROUND_HEIGHT = 769;
+              BACKGROUND_WIDTH = 864, BACKGROUND_HEIGHT = 769;
 
-bitmap rocket_bmp, frog_bmp, background_bmp;
-
-TEST_CASE("bitmaps can be created", "[bitmap]")
-{
-    constexpr int FROG_WIDTH = 294, FROG_HEIGHT = 422;
-    rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
-    REQUIRE(bitmap_valid(rocket_bmp));
-    REQUIRE(rocket_bmp != nullptr);
-    REQUIRE(bitmap_width(rocket_bmp) == ROCKET_WIDTH);
-    REQUIRE(bitmap_height(rocket_bmp) == ROCKET_HEIGHT);
-    frog_bmp = load_bitmap("frog", "frog.png");
-    REQUIRE(bitmap_valid(frog_bmp));
-    REQUIRE(frog_bmp != nullptr);
-    REQUIRE(bitmap_width(frog_bmp) == FROG_WIDTH);
-    REQUIRE(bitmap_height(frog_bmp) == FROG_HEIGHT);
-    background_bmp = load_bitmap("background", "background.png");
-    REQUIRE(bitmap_valid(background_bmp));
-    REQUIRE(background_bmp != nullptr);
-    REQUIRE(bitmap_width(background_bmp) == BACKGROUND_WIDTH);
-    REQUIRE(bitmap_height(background_bmp) == BACKGROUND_HEIGHT);
-}
 TEST_CASE("sprites can be created and freed", "[sprite]")
 {
+    bitmap rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
+    bitmap frog_bmp = load_bitmap("frog", "frog.png");
     SECTION("can detect non-existent sprite")
     {
         REQUIRE_FALSE(has_sprite("non_existent"));
@@ -80,6 +61,7 @@ TEST_CASE("sprites can be created and freed", "[sprite]")
 }
 TEST_CASE("default sprite data can be retrieved", "[sprite]")
 {
+    bitmap rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
     sprite sprt = create_sprite("rocket", rocket_bmp);
     REQUIRE(sprite_width(sprt) == ROCKET_WIDTH);
     REQUIRE(sprite_height(sprt) == ROCKET_HEIGHT);
@@ -180,6 +162,8 @@ TEST_CASE("default sprite data can be retrieved", "[sprite]")
 }
 TEST_CASE("sprite can be moved", "[sprite]")
 {
+    bitmap rocket_bmp, frog_bmp, background_bmp;
+    rocket_bmp = load_bitmap("rocket_sprt", "rocket_sprt.png");
     sprite sprt = create_sprite("rocket", rocket_bmp);
     REQUIRE(has_sprite("rocket"));
 
@@ -260,6 +244,8 @@ TEST_CASE("sprite can be moved", "[sprite]")
 }
 TEST_CASE("can check sprite intersection", "[sprite]")
 {
+    bitmap frog_bmp = load_bitmap("frog", "frog.png");
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     sprite_set_move_from_anchor_point(sprt, false);
@@ -337,6 +323,7 @@ TEST_CASE("can check sprite intersection", "[sprite]")
 }
 TEST_CASE("can set sprite velocity components", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     sprite_set_move_from_anchor_point(sprt, false);
@@ -363,6 +350,7 @@ TEST_CASE("can set sprite velocity components", "[sprite]")
 }
 TEST_CASE("can perform sprite vector functions", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     sprite_set_move_from_anchor_point(sprt, false);
@@ -443,6 +431,7 @@ TEST_CASE("can perform sprite vector functions", "[sprite]")
 }
 TEST_CASE("sprite speed can be set and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     sprite_set_move_from_anchor_point(sprt, false);
@@ -467,6 +456,7 @@ TEST_CASE("sprite speed can be set and retrieved", "[sprite]")
 }
 TEST_CASE("sprite heading can be set and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     sprite_set_move_from_anchor_point(sprt, false);
@@ -499,6 +489,7 @@ TEST_CASE("sprite heading can be set and retrieved", "[sprite]")
 }
 TEST_CASE("sprite mass can be set and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     SECTION("can get default sprite mass")
@@ -522,6 +513,7 @@ TEST_CASE("sprite mass can be set and retrieved", "[sprite]")
 }
 TEST_CASE("sprite rotation can be set and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     SECTION("can get default sprite rotation")
@@ -547,6 +539,7 @@ TEST_CASE("sprite rotation can be set and retrieved", "[sprite]")
 }
 TEST_CASE("sprite scale can be set and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     SECTION("can get default sprite scale")
@@ -570,6 +563,7 @@ TEST_CASE("sprite scale can be set and retrieved", "[sprite]")
 }
 TEST_CASE("sprite values can be created, modified, and retrieved", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     SECTION("can get default sprite values")
@@ -620,6 +614,7 @@ void test_sprite_float_function(void *s, float f)
 }
 TEST_CASE("sprite functions can be called", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
     sprite sprt = create_sprite("background", background_bmp);
     REQUIRE(has_sprite("background"));
     REQUIRE(sprite_dx(sprt) == 0.0);
@@ -643,6 +638,8 @@ TEST_CASE("sprite functions can be called", "[sprite]")
 }
 TEST_CASE("sprite pack functions can be used", "[sprite]")
 {
+    bitmap background_bmp = load_bitmap("background", "background.png");
+    sprite sprt = create_sprite("sprite_1", background_bmp);
     SECTION("can access default sprite pack")
     {
         REQUIRE(has_sprite_pack("default"));
@@ -650,7 +647,6 @@ TEST_CASE("sprite pack functions can be used", "[sprite]")
     }
     SECTION("can add sprite to default sprite pack")
     {
-        sprite sprt = create_sprite("sprite_1", background_bmp);
         REQUIRE(has_sprite("sprite_1"));
         SECTION("can call sprite function")
         {
@@ -672,7 +668,6 @@ TEST_CASE("sprite pack functions can be used", "[sprite]")
     }
     SECTION("can confirm that only sprites in current pack are affected")
     {
-        sprite sprt = create_sprite("sprite_1", background_bmp);
         REQUIRE(has_sprite("sprite_1"));
         REQUIRE(sprite_dx(sprt) == 0.0);
 
@@ -719,6 +714,7 @@ void test_sprite_arrived_event(void *s, int evt)
 }
 TEST_CASE("sprite events can be created and handled", "[sprite]")
 {
+    bitmap frog_bmp = load_bitmap("frog", "frog.png");
     SECTION("can trigger sprite event on single sprite")
     {
         sprite sprt = create_sprite("frog", frog_bmp);
@@ -797,13 +793,4 @@ TEST_CASE("sprite events can be created and handled", "[sprite]")
         free_sprite(sprt);
         free_sprite(sprt2);
     }
-}
-TEST_CASE("bitmaps can be freed", "[bitmap]")
-{
-    free_bitmap(rocket_bmp);
-    REQUIRE_FALSE(has_bitmap("rocket_sprt"));
-    free_bitmap(frog_bmp);
-    REQUIRE_FALSE(has_bitmap("frog"));
-    free_bitmap(background_bmp);
-    REQUIRE_FALSE(has_bitmap("background"));
 }

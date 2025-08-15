@@ -1,4 +1,4 @@
-// 
+//
 //  raspi_gpio.cpp
 //  splashkit
 //
@@ -19,7 +19,7 @@ namespace splashkit_lib
 {
     // Each index points to PIN_1, PIN_2, PIN_3, etc.
     int BCMpinData[] = {
-        -1, -1, 2, -1, 3, -2, 4, 14, -2, 15, 17, 18, 27, -2, 22, 23, -1, 24, 10, -2, 9, 25, 11, 8, -2, 7, 0, 1, 5, -2, -6, 12, 13, -2, 19, 16, 26, 20, -2, 21};
+        -1, -1, 2, -1, 3, -2, 4, 14, -2, 15, 17, 18, 27, -2, 22, 23, -1, 24, 10, -2, 9, 25, 11, 8, -2, 7, 0, 1, 5, -2, 6, 12, 13, -2, 19, 16, 26, 20, -2, 21};
 
     int boardToBCM(gpio_pin pin)
     {
@@ -242,6 +242,60 @@ namespace splashkit_lib
         return "";
 #endif
     }
+    int raspi_get_servo_pulsewidth(gpio_pin pin)
+    {
+#ifdef RASPBERRY_PI
+        if (has_gpio())
+        {
+            gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
+            // if the pin is not a PWM pin, return
+            if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
+            {
+                LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
+                return -1;
+            }
+            int bcmPin = boardToBCM(pin);
+            // if the pin is not a PWM pin, return
+            if (bcmPin < 2)
+            {
+                LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
+                return -1;
+            }
+            return sk_get_servo_pulsewidth(bcmPin);
+        }
+        else
+        {
+            LOG(ERROR) << "Servo driver not supported on this platform";
+            return -1;
+        }
+#else
+        LOG(ERROR) << "Servo driver not supported on this platform";
+        return -1;
+#endif
+    }
+    void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth)
+    {
+#ifdef RASPBERRY_PI
+        if (has_gpio())
+        {
+            gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
+            // if the pin is not a PWM pin, return
+            if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
+            {
+                LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
+                return; // ← early return so we don’t drive an unsupported pin
+            }
+            int bcmPin = boardToBCM(pin);
+            sk_set_servo_pulsewidth(bcmPin, pulsewidth);
+        }
+        else
+        {
+            LOG(ERROR) << "Servo driver not supported on this platform";
+        }
+#else
+        LOG(ERROR) << "Servo driver not supported on this platform";
+#endif
+    }
 
     // Cleanup GPIO resources
     void raspi_cleanup()
@@ -324,5 +378,10 @@ namespace splashkit_lib
     bool remote_raspi_cleanup(connection pi)
     {
         return sk_remote_gpio_cleanup(pi);
+    }
+
+    int to_int(gpio_pin_value value)
+    {
+        return static_cast<int>(value);
     }
 }

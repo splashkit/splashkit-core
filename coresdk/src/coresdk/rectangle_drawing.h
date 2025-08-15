@@ -262,6 +262,7 @@ namespace splashkit_lib
      *
      * @attribute class   window
      * @attribute suffix  with_options
+     * @attribute method  fill_quad
      */
     void fill_quad_on_window(window destination, color clr, const quad &q, const drawing_options &opts);
     
