@@ -44312,7 +44312,7 @@
     "group": "raspberry",
     "brief": "Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1753421318,
+    "parsed_at": 1754282148,
     "path": "coresdk/src/coresdk/raspi_adc.h",
     "functions": [
       {
@@ -65902,7 +65902,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1753421328,
+    "parsed_at": 1754282149,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 
@@ -66526,19 +66526,19 @@
             "number": 3
           },
           "ADC_PIN_4": {
-            "description": "Analog Input Channel 4",
+            "description": "Analog Input Channel 4 (only available for ADS7830)",
             "number": 4
           },
           "ADC_PIN_5": {
-            "description": "Analog Input Channel 5",
+            "description": "Analog Input Channel 5 (only available for ADS7830)",
             "number": 5
           },
           "ADC_PIN_6": {
-            "description": "Analog Input Channel 6",
+            "description": "Analog Input Channel 6 (only available for ADS7830)",
             "number": 6
           },
           "ADC_PIN_7": {
-            "description": "Analog Input Channel 7",
+            "description": "Analog Input Channel 7 (only available for ADS7830)",
             "number": 7
           }
         },
@@ -66547,7 +66547,7 @@
         }
       },
       {
-        "signature": "enum adc_type {ADS7830 = 0,// PCF8591 = 1,};",
+        "signature": "enum adc_type {ADS7830 = 0,PCF8591 = 1,};",
         "name": "adc_type",
         "description": "ADC Type:",
         "brief": null,
@@ -66555,6 +66555,10 @@
           "ADS7830": {
             "description": "8-Bit, 8-Channel Sampling A/D Converter with I2C Interface",
             "number": 0
+          },
+          "PCF8591": {
+            "description": "8-Bit, 4-Channel Sampling A/D Converter with I2C Interface",
+            "number": 1
           }
         },
         "attributes": {

@@ -94385,19 +94385,19 @@
             "number": 3
           },
           "ADC_PIN_4": {
-            "description": "Analog Input Channel 4",
+            "description": "Analog Input Channel 4 (only available for ADS7830)",
             "number": 4
           },
           "ADC_PIN_5": {
-            "description": "Analog Input Channel 5",
+            "description": "Analog Input Channel 5 (only available for ADS7830)",
             "number": 5
           },
           "ADC_PIN_6": {
-            "description": "Analog Input Channel 6",
+            "description": "Analog Input Channel 6 (only available for ADS7830)",
             "number": 6
           },
           "ADC_PIN_7": {
-            "description": "Analog Input Channel 7",
+            "description": "Analog Input Channel 7 (only available for ADS7830)",
             "number": 7
           }
         },
@@ -94412,7 +94412,7 @@
         }
       },
       {
-        "signature": "enum adc_type {ADS7830 = 0,// PCF8591 = 1,};",
+        "signature": "enum adc_type {ADS7830 = 0,PCF8591 = 1,};",
         "name": "adc_type",
         "description": "ADC Type:",
         "brief": null,
@@ -94420,16 +94420,20 @@
           "ADS7830": {
             "description": "8-Bit, 8-Channel Sampling A/D Converter with I2C Interface",
             "number": 0
+          },
+          "PCF8591": {
+            "description": "8-Bit, 4-Channel Sampling A/D Converter with I2C Interface",
+            "number": 1
           }
         },
         "attributes": {
           "group": "types"
         },
         "signatures": {
-          "python": "public enum {AdcType.ads7830 = 0}",
-          "cpp": "class adc_type {ADS7830 = 0};",
-          "csharp": "public enum {AdcType.Ads7830 = 0}",
-          "pascal": "public enum {AdcType.Ads7830 = 0}"
+          "python": "public enum {AdcType.ads7830 = 0, AdcType.pcf8591 = 1}",
+          "cpp": "class adc_type {ADS7830 = 0, PCF8591 = 1};",
+          "csharp": "public enum {AdcType.Ads7830 = 0, AdcType.Pcf8591 = 1}",
+          "pascal": "public enum {AdcType.Ads7830 = 0, AdcType.Pcf8591 = 1}"
         }
       },
       {

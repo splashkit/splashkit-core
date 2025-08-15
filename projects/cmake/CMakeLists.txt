@@ -149,7 +149,7 @@ if (NOT APPLE AND NOT MSYS)
             message("-- Pigpio libraries found")
             include_directories(${PIGPIOD_INCLUDE_DIR})
             add_definitions(-DRASPBERRY_PI)
-            add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
+            # add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
             # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
             set(LIB_FLAGS "-lSDL2 \
                            -lSDL2_mixer \

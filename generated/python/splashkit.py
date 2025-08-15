@@ -218,6 +218,7 @@ class AdcPin(Enum):
     adc_pin_7 = 7
 class AdcType(Enum):
     ads7830 = 0
+    pcf8591 = 1
 class DrawingDest(Enum):
     draw_to_screen = 0
     draw_to_world = 1

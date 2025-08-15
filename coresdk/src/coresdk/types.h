@@ -466,10 +466,10 @@ namespace splashkit_lib
      * @constant ADC_PIN_1  Analog Input Channel 1
      * @constant ADC_PIN_2  Analog Input Channel 2
      * @constant ADC_PIN_3  Analog Input Channel 3
-     * @constant ADC_PIN_4  Analog Input Channel 4
-     * @constant ADC_PIN_5  Analog Input Channel 5
-     * @constant ADC_PIN_6  Analog Input Channel 6
-     * @constant ADC_PIN_7  Analog Input Channel 7
+     * @constant ADC_PIN_4  Analog Input Channel 4 (only available for ADS7830)
+     * @constant ADC_PIN_5  Analog Input Channel 5 (only available for ADS7830)
+     * @constant ADC_PIN_6  Analog Input Channel 6 (only available for ADS7830)
+     * @constant ADC_PIN_7  Analog Input Channel 7 (only available for ADS7830)
      */
     enum adc_pin
     {
@@ -504,11 +504,12 @@ namespace splashkit_lib
      * ADC Type:
      *
      * @constant ADS7830  8-Bit, 8-Channel Sampling A/D Converter with I2C Interface
+     * @constant PCF8591  8-Bit, 4-Channel Sampling A/D Converter with I2C Interface
      */
     enum adc_type
     {
-       ADS7830 = 0,
-    //    PCF8591 = 1,
+        ADS7830 = 0,
+        PCF8591 = 1,
     };
 
     /**

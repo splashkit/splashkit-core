@@ -126,7 +126,7 @@ namespace splashkit_lib
         bool first = true;
         for ( string elem : list )
         {
-            if(elem.find(PATH_SEP) == 0 and not first)
+            if(elem.find(PATH_SEP) == 0 && ! first)
                 elem.erase(0,1);
             result += elem;
             size_t last_sep = elem.find_last_of(PATH_SEP);

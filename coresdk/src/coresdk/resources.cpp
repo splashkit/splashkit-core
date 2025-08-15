@@ -35,8 +35,8 @@ namespace splashkit_lib
     // Free notifiers are called when resources are deleted.
     static vector<free_notifier *> _free_notifiers;
 
-    static bool     _has_resources_path = false;
-    static string   _resources_path = "";
+    static bool _has_resources_path = false;
+    static string _resources_path = "";
 
     void set_resources_path(const string &path)
     {
@@ -52,7 +52,7 @@ namespace splashkit_lib
         string tmpPath;
 
         // test in current location: cwd
-        tmpPath = path_from( { path, "Resources" } );
+        tmpPath = path_from({path, "Resources"});
         if (directory_exists(tmpPath))
         {
             set_resources_path(tmpPath);
@@ -60,7 +60,7 @@ namespace splashkit_lib
         }
 
         // in the parent directory: eg. bin
-        tmpPath = path_from( { path, "..", "Resources"} );
+        tmpPath = path_from({path, "..", "Resources"});
         if (directory_exists(tmpPath))
         {
             set_resources_path(tmpPath);
@@ -68,7 +68,15 @@ namespace splashkit_lib
         }
 
         // in the parent's parent: bin/Debug
-        tmpPath = path_from( { path, "..", "..", "Resources"});
+        tmpPath = path_from({path, "..", "..", "Resources"});
+        if (directory_exists(tmpPath))
+        {
+            set_resources_path(tmpPath);
+            return true;
+        }
+
+        // in the parent's, parent's, parent: bin/Debug
+        tmpPath = path_from({path, "..", "..", "..", "Resources"});
         if (directory_exists(tmpPath))
         {
             set_resources_path(tmpPath);
@@ -80,21 +88,22 @@ namespace splashkit_lib
 
     void _guess_resources_path()
     {
-        string      path;
-        char        cwd[PATH_MAX];
+        string path;
+        char cwd[PATH_MAX];
 
 #ifdef __APPLE__
-        char        bndlPath[PATH_MAX];
+        char bndlPath[PATH_MAX];
         CFBundleRef mainBundle = nullptr;
-        CFURLRef    mainBundleURL = nullptr;
+        CFURLRef mainBundleURL = nullptr;
         CFStringRef cfStringRef = nullptr;
 #else
-        char        exePath[PATH_MAX];
+        char exePath[PATH_MAX];
 #endif
 
-        if(getcwd(cwd, PATH_MAX))
+        if (getcwd(cwd, PATH_MAX))
         {
-            if ( _try_set_resource_path(cwd)) return;
+            if (_try_set_resource_path(cwd))
+                return;
 
 #ifdef __APPLE__
             // search bundle
@@ -105,7 +114,8 @@ namespace splashkit_lib
                 if (mainBundleURL)
                 {
                     // Release the main bundle when this goes out of scope...
-                    auto deleteMainBundleURL = finally( [mainBundleURL] { CFRelease(mainBundleURL); } );
+                    auto deleteMainBundleURL = finally([mainBundleURL]
+                                                       { CFRelease(mainBundleURL); });
 
                     cfStringRef = CFURLCopyFileSystemPath(mainBundleURL, kCFURLPOSIXPathStyle);
                     if (cfStringRef)
@@ -115,27 +125,27 @@ namespace splashkit_lib
 
                         // Default bundle location
                         path = string(bndlPath) + "/Contents/MacOS";
-                        if ( _try_set_resource_path(path) )
+                        if (_try_set_resource_path(path))
                         {
                             return;
                         }
                     }
                 }
-
             }
 
 #elif __linux__
-            if(readlink( "/proc/self/exe", exePath, PATH_MAX ))
+            if (readlink("/proc/self/exe", exePath, PATH_MAX))
             {
                 // Strips the executable name from the path
                 dirname(exePath);
-                if( _try_set_resource_path(exePath) ) return;
+                if (_try_set_resource_path(exePath))
+                    return;
             }
 
 #elif WINDOWS
-            if (GetModuleFileName( NULL, exePath, MAX_PATH ))
+            if (GetModuleFileName(NULL, exePath, MAX_PATH))
             {
-                if(_try_set_resource_path(exePath))
+                if (_try_set_resource_path(directory_of(exePath)))
                     return;
             }
 #endif
@@ -147,7 +157,8 @@ namespace splashkit_lib
 
     string path_to_resources()
     {
-        if ( ! _has_resources_path ) _guess_resources_path();
+        if (!_has_resources_path)
+            _guess_resources_path();
         return _resources_path;
     }
 
@@ -155,26 +166,35 @@ namespace splashkit_lib
     {
         string path = path_to_resources();
 
-        switch(kind)
+        switch (kind)
         {
-            case SOUND_RESOURCE:        return path_from({ path, "sounds" });
-            case MUSIC_RESOURCE:        return path_from({ path, "sounds" });
-            case BUNDLE_RESOURCE:       return path_from({ path, "bundles" });
-            case IMAGE_RESOURCE:        return path_from({ path, "images" });
-            case FONT_RESOURCE:         return path_from({ path, "fonts" });
-            case ANIMATION_RESOURCE:    return path_from({ path, "animations" });
-            case JSON_RESOURCE:         return path_from({ path, "json" });
-            case SERVER_RESOURCE:       return path_from({ path, "server" });
-            case OTHER_RESOURCE:        return path;
-            default:
-                LOG(WARNING) << "Attempting to get path to unknown resource kind.";
-                return path;
+        case SOUND_RESOURCE:
+            return path_from({path, "sounds"});
+        case MUSIC_RESOURCE:
+            return path_from({path, "sounds"});
+        case BUNDLE_RESOURCE:
+            return path_from({path, "bundles"});
+        case IMAGE_RESOURCE:
+            return path_from({path, "images"});
+        case FONT_RESOURCE:
+            return path_from({path, "fonts"});
+        case ANIMATION_RESOURCE:
+            return path_from({path, "animations"});
+        case JSON_RESOURCE:
+            return path_from({path, "json"});
+        case SERVER_RESOURCE:
+            return path_from({path, "server"});
+        case OTHER_RESOURCE:
+            return path;
+        default:
+            LOG(WARNING) << "Attempting to get path to unknown resource kind.";
+            return path;
         }
     }
-    
+
     string path_to_resource(const string &filename, resource_kind kind)
     {
-        return path_from( { path_to_resources(kind) }, filename );
+        return path_from({path_to_resources(kind)}, filename);
     }
 
     void register_free_notifier(free_notifier *fn)
@@ -190,11 +210,11 @@ namespace splashkit_lib
         }
     }
 
-    void notify_of_free( void *resource )
+    void notify_of_free(void *resource)
     {
-        for ( free_notifier *fn : _free_notifiers )
+        for (free_notifier *fn : _free_notifiers)
         {
-            fn ( resource );
+            fn(resource);
         }
     }
 }

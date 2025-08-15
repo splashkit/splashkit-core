@@ -17,15 +17,15 @@
 
 #include "backend_types.h"
 
-using std::ofstream;
 using std::ios;
+using std::ofstream;
 
 #ifdef WINDOWS
 #include <Windows.h>
 #endif
 namespace splashkit_lib
 {
-    sk_http_response *make_request (http_method request_type, string uri, unsigned short port, string body, const vector<string> &headers)
+    sk_http_response *make_request(http_method request_type, string uri, unsigned short port, string body, const vector<string> &headers)
     {
         sk_http_request request;
 
@@ -65,7 +65,7 @@ namespace splashkit_lib
 
     string http_response_to_string(http_response response)
     {
-        if ( ! VALID_PTR(response, HTTP_RESPONSE_PTR))
+        if (!VALID_PTR(response, HTTP_RESPONSE_PTR))
         {
             LOG(WARNING) << "Attempt to convert invalid http response to a string";
             return "";
@@ -78,14 +78,15 @@ namespace splashkit_lib
     {
         http_response response = http_get(url, port);
 
-        if ( !response )
+        if (!response)
         {
             return false;
         }
 
-        auto cleanup_response = finally( [&] { free_response(response); });
+        auto cleanup_response = finally([&]
+                                        { free_response(response); });
 
-        if ( static_cast<int>(response->code) < 200 || static_cast<int>(response->code) >= 300 )
+        if (static_cast<int>(response->code) < 200 || static_cast<int>(response->code) >= 300)
         {
             LOG(WARNING) << "Unable to download file from " << url << " got status " << response->code;
             return false;
@@ -98,14 +99,13 @@ namespace splashkit_lib
         mkstemp(tmpname);
 #else
         char fname[L_tmpnam];
-        tmpnam (fname);
+        tmpnam(fname);
         char tmppath[261] = {0};
         GetTempPath(260, tmppath);
 
         tmpname = strdup(tmppath);
-        string fpath = path_from({tmpname, fname});
+        string fpath = path_from({tmpname}, fname);
         tmpname = strdup(fpath.c_str());
-        LOG(WARNING) << tmpname;
 #endif
         save_response_to_file(response, tmpname);
 
@@ -118,7 +118,7 @@ namespace splashkit_lib
     bitmap download_bitmap(const string &name, const string &url, unsigned short port)
     {
         string path;
-        if ( not download_file(name, url, port, path) )
+        if (not download_file(name, url, port, path))
         {
             return nullptr;
         }
@@ -131,13 +131,13 @@ namespace splashkit_lib
     font download_font(const string &name, const string &url, unsigned short port)
     {
         string path;
-        if ( not download_file(name, url, port, path) )
+        if (not download_file(name, url, port, path))
         {
             return nullptr;
         }
 
         font result = load_font(name, path);
-        if ( VALID_PTR(result, FONT_PTR) )
+        if (VALID_PTR(result, FONT_PTR))
             result->was_downloaded = true; // ensure that font will delete file when it is released.
         return result;
     }
@@ -145,7 +145,7 @@ namespace splashkit_lib
     sound_effect download_sound_effect(const string &name, const string &url, unsigned short port)
     {
         string path;
-        if ( not download_file(name, url, port, path) )
+        if (not download_file(name, url, port, path))
         {
             return nullptr;
         }
@@ -158,7 +158,7 @@ namespace splashkit_lib
     music download_music(const string &name, const string &url, unsigned short port)
     {
         string path;
-        if ( not download_file(name, url, port, path) )
+        if (not download_file(name, url, port, path))
         {
             return nullptr;
         }
@@ -168,17 +168,17 @@ namespace splashkit_lib
         return result;
     }
 
-    void free_response (http_response response)
+    void free_response(http_response response)
     {
-        if ( VALID_PTR(response, HTTP_RESPONSE_PTR))
+        if (VALID_PTR(response, HTTP_RESPONSE_PTR))
         {
             notify_of_free(response);
             response->id = NONE_PTR;
-            if ( response->message )
+            if (response->message)
             {
-                delete(response->message);
+                delete (response->message);
             }
-            delete(response);
+            delete (response);
         }
         else
         {

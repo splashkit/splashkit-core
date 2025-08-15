@@ -25927,7 +25927,8 @@ namespace SplashKitSDK
   }
   public enum AdcType
   {
-    Ads7830 = 0
+    Ads7830 = 0,
+    Pcf8591 = 1
   }
   public enum DrawingDest
   {

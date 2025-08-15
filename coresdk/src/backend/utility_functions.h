@@ -22,7 +22,7 @@ using std::string;
 namespace splashkit_lib
 {
     // smallest positive value: less than that to be considered zero
-#define EPS   0.01
+#define EPS 0.01
     // and its square
 #define EPSEPS 0.0001
 
@@ -30,18 +30,18 @@ namespace splashkit_lib
 
     bool directory_exists(string path);
 
-#define VALID_PTR(p,pkind) ( (p) and p->id == pkind )
-#define INVALID_PTR(p,pkind) ( not VALID_PTR(p,pkind) )
+#define VALID_PTR(p, pkind) ((p) and p->id == pkind)
+#define INVALID_PTR(p, pkind) (not VALID_PTR(p, pkind))
 
-#define ASSIGNED(ptr) ( ptr != nullptr )
+#define ASSIGNED(ptr) (ptr != nullptr)
 
-#define MIN(a,b) ( a < b ? a : b )
-#define MAX(a,b) ( a > b ? a : b )
+#define MIN(a, b) (a < b ? a : b)
+#define MAX(a, b) (a > b ? a : b)
 
     template <typename T>
     bool erase_from_vector(vector<T> &v, T value)
     {
-        auto it = find (v.begin(), v.end(), value);
+        auto it = find(v.begin(), v.end(), value);
         if (it != v.end())
         {
             v.erase(it);
@@ -54,16 +54,18 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    int index_of (vector<T> vec, T value)
+    int index_of(vector<T> vec, T value)
     {
         auto result = find(vec.begin(), vec.end(), value);
 
-        if ( result == vec.end() ) return -1;
-        else return static_cast<int>(result - vec.begin());
+        if (result == vec.end())
+            return -1;
+        else
+            return static_cast<int>(result - vec.begin());
     }
 
     template <typename K, typename V>
-    bool key_of_value(const map<K,V> &map, const V &value, K &result)
+    bool key_of_value(const map<K, V> &map, const V &value, K &result)
     {
         auto find_result = std::find_if(std::begin(map),
                                         std::end(map),
@@ -84,7 +86,7 @@ namespace splashkit_lib
     }
 
     template <typename T>
-    void move_range(std::vector<T> & v, size_t start, size_t length, size_t dst)
+    void move_range(std::vector<T> &v, size_t start, size_t length, size_t dst)
     {
         const size_t final_dst = dst > start ? dst - length : dst;
 
@@ -93,37 +95,36 @@ namespace splashkit_lib
         v.insert(v.begin() + final_dst, tmp.begin(), tmp.end());
     }
 
-#define FREE_ALL_FROM_MAP(collection, ptr_kind, fn )\
-while(!collection.empty())\
-{\
-auto resource = collection.begin()->second;\
-if (VALID_PTR(resource, ptr_kind))\
-{\
-fn(resource);\
-}\
-else\
-{\
-LOG(WARNING) << "Splashkit contains invalid " #ptr_kind "!";\
-collection.erase(collection.begin());\
-}\
-}
+#define FREE_ALL_FROM_MAP(collection, ptr_kind, fn)                      \
+    while (!collection.empty())                                          \
+    {                                                                    \
+        auto resource = collection.begin()->second;                      \
+        if (VALID_PTR(resource, ptr_kind))                               \
+        {                                                                \
+            fn(resource);                                                \
+        }                                                                \
+        else                                                             \
+        {                                                                \
+            LOG(WARNING) << "Splashkit contains invalid " #ptr_kind "!"; \
+            collection.erase(collection.begin());                        \
+        }                                                                \
+    }
 
-#define FREE_ALL_FROM_VECTOR(collection, ptr_kind, fn )\
-size_t sz = collection.size();\
-for(size_t i = 0; i < sz; i++)\
-{\
-auto resource = *collection.begin();\
-if (VALID_PTR(resource, ptr_kind))\
-{\
-fn(resource);\
-}\
-else\
-{\
-LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !";\
-collection.erase(collection.begin());\
-}\
-}
-
+#define FREE_ALL_FROM_VECTOR(collection, ptr_kind, fn)                 \
+    size_t sz = collection.size();                                     \
+    for (size_t i = 0; i < sz; i++)                                    \
+    {                                                                  \
+        auto resource = *collection.begin();                           \
+        if (VALID_PTR(resource, ptr_kind))                             \
+        {                                                              \
+            fn(resource);                                              \
+        }                                                              \
+        else                                                           \
+        {                                                              \
+            LOG(WARNING) << "Splashkit contains invalid ##ptr_kind !"; \
+            collection.erase(collection.begin());                      \
+        }                                                              \
+    }
 
     string cat(std::initializer_list<string> list);
 
@@ -139,7 +140,11 @@ collection.erase(collection.begin());\
         FinalAction(F f) : clean_{f} {}
 
         /// When this goes out of scope the clean function is run... unless it was disabled.
-        ~FinalAction() { if(enabled_) clean_(); }
+        ~FinalAction()
+        {
+            if (enabled_)
+                clean_();
+        }
 
         /// Turn off the block to avoid calling the clean function
         void disable() { enabled_ = false; };
@@ -157,7 +162,7 @@ collection.erase(collection.begin());\
         return FinalAction<F>(f);
     }
 
-    string trim(const string& str);
+    string trim(const string &str);
     void to_upper(string &str);
 
     pointer_identifier ptr_kind(void *p);
@@ -170,6 +175,8 @@ collection.erase(collection.begin());\
 
     void process_range(string value_in, vector<int> &result);
 
+    string directory_of(string path);
+
     string extract_delimited(int index, string value, char delim);
     string extract_delimited_with_ranges(int index, string value);
 
@@ -179,18 +186,18 @@ collection.erase(collection.begin());\
     int str_to_int(string str, bool allow_empty = true, int empty_value = 0);
     float str_to_float(string str, bool allow_empty = true, float empty_value = 0.0f);
     double str_to_double(string str, bool allow_empty = true, double empty_value = 0.0);
-    
+
     bool try_str_to_int(string str, int &result);
     bool try_str_to_float(string str, float &result);
     bool try_str_to_double(string str, double &result);
-    
-    string to_lower (string str);
+
+    string to_lower(string str);
     string get_env_var(const string &name);
     string base_fs_path();
     vector<string> scan_dir_recursive(const string &directory);
-    
+
     double rad_to_deg(double radians);
-    
+
     double deg_to_rad(double degrees);
 
     double lin_interp(double v0, double v1, double t);

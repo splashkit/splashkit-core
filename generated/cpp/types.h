@@ -34,7 +34,8 @@ typedef enum {
     ADC_PIN_7 = 7
 } adc_pin;
 typedef enum {
-    ADS7830 = 0
+    ADS7830 = 0,
+    PCF8591 = 1
 } adc_type;
 typedef enum {
     DRAW_TO_SCREEN,

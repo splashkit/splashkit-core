@@ -229,7 +229,8 @@ type AdcPin = (
   ADC_PIN_7 = 7
 );
 type AdcType = (
-  ADS7830 = 0
+  ADS7830 = 0,
+  PCF8591 = 1
 );
 type DrawingDest = (
   DRAW_TO_SCREEN,
