@@ -296,5 +296,40 @@ set_target_properties(skunit_tests
         )
 #### END sktest EXECUTABLE ####
 
+if(PIGPIO_LIBS)
+    target_link_libraries(SplashKitBackend ${PIGPIO_LIBS})
+    target_link_libraries(sktest ${PIGPIO_LIBS})
+    target_link_libraries(skunit_tests ${PIGPIO_LIBS})
+endif()
+
+
+#This targets library after sktest is dealt with
+# Find the WiringPi headers.
+
+if (ARCH MATCHES "armv7l|aarch64|armv6l" OR DEVICE_MODEL MATCHES "Raspberry Pi")
+    find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.h HINTS /usr/include /usr/local/include)
+
+    # Find the WiringPi library.
+    find_library(WIRINGPI_LIBRARY NAMES wiringPi libwiringPi.so HINTS /usr/lib /usr/local/lib /home/jp/WiringPi/wiringPi)
+
+    if (WIRINGPI_LIBRARY)
+        message(STATUS "Found WiringPi library: ${WIRINGPI_LIBRARY}")
+
+        set_target_properties(SplashKitBackend PROPERTIES
+            IMPORTED_LOCATION "/home/jp/Documents/splashkit-core/out/lib/libSplashKitBackend.a"
+        )
+
+        target_link_libraries(sktest SplashKitBackend ${WIRINGPI_LIBRARY})
+    else()
+        message(FATAL_ERROR "WiringPi library not found. Cannot link.")
+    endif()
+
+    if(WIRINGPI_INCLUDE_DIR)
+        include_directories(${WIRINGPI_INCLUDE_DIR})
+    else()
+        message(FATAL_ERROR "WiringPi headers not found.")
+    endif()
+endif()
+
 install(TARGETS SplashKitBackend DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)

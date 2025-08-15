@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/joshp/OneDrive/Documents/University/SIT374/SplashKit_Core/splashkit-core/projects/cmake/skunit_tests_tests-b12d07c.cmake")
+  include("C:/Users/joshp/OneDrive/Documents/University/SIT374/SplashKit_Core/splashkit-core/projects/cmake/skunit_tests_tests-b12d07c.cmake")
+else()
+  add_test(skunit_tests_NOT_BUILT-b12d07c skunit_tests_NOT_BUILT-b12d07c)
+endif()
