@@ -10,6 +10,7 @@
 #include <cstdlib> // Add this line to include the necessary header for the exit() function
 
 #include <cstring>
+#include <pigpiod_if2.h>
 #ifdef RASPBERRY_PI
 #include "pigpiod_if2.h"
 #include <wiringPi.h>
@@ -62,7 +63,6 @@ namespace splashkit_lib
     // Initialize the GPIO library
     int sk_gpio_init()
     {
-        pi = pigpio_start(0, 0);
         if (wiringPiSetupGpio() == -1)
         {
             LOG(ERROR) << sk_gpio_error_message(pi);
