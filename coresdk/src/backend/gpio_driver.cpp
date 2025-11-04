@@ -10,9 +10,8 @@
 #include <cstdlib> // Add this line to include the necessary header for the exit() function
 
 #include <cstring>
-#include <pigpiod_if2.h>
 #ifdef RASPBERRY_PI
-#include "pigpiod_if2.h"
+// #include "pigpiod_if2.h"
 #include <wiringPi.h>
 #include <unordered_map>
 #include <wiringPiSPI.h>
