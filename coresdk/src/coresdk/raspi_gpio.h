@@ -118,7 +118,6 @@ namespace splashkit_lib
      *
      * @param channel    The SPI channel to use.
      * @param speed      The speed of data transfer (in baud).
-     * @param spi_flags  Optional flags for the SPI modes and settings.
      * @returns          The handle referencing this particular connection.
      */
     int raspi_spi_open(int channel, int speed);
