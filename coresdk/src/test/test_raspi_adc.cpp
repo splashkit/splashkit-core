@@ -1,16 +1,48 @@
-// //
-// //  test_raspi_adc.cpp
-// //  splashkit
-// //
+//
+//  test_raspi_adc.cpp
+//  splashkit
+//
+//  Created by Aditya Parmar (XQuestCode)
+//  Copyright © 2016 Andrew Cain. All rights reserved.
 
-// #include <iostream>
-// #include "raspi_gpio.h"
-// #include "input.h"
+#include <iostream>
+#include "raspi_gpio.h"
+#include "input.h"
 // #include "utils.h"
 // #include "input_driver.h"
 
-// using namespace std;
-// using namespace splashkit_lib;
+using namespace std;
+using namespace splashkit_lib;
+
+void run_gpio_adc_tests()
+{
+
+    cout << "Testing ADC with a ADS7830 and a potentiometer" << endl;
+    raspi_init();
+    cout << "Plug a potentiometer at A7 channel of the ADS7830" << endl;
+    cout << "Connect button between VCC and GPIO pin 11" << endl;
+    adc_device dev = open_adc("ADC1", 1, 0x48, ADS7830);
+    if (dev == nullptr)
+    {
+        cout << "Failed to open ADC device." << endl;
+        return;
+    }
+
+    raspi_set_mode(PIN_11, GPIO_INPUT);
+    raspi_set_pull_up_down(PIN_11, PUD_DOWN);
+
+    adc_pin channel = ADC_PIN_7; // Change this to the desired channel
+    int value = 0;
+    while (raspi_read(PIN_11) != GPIO_HIGH)
+    {
+        value = read_adc(dev, channel);
+        cout << "ADC value: " << value << endl;
+    }
+
+    close_adc(dev);
+    // raspi_cleanup();
+    cout << "ADC test completed." << endl;
+}
 
 // void run_gpio_adc_tests()
 // {
@@ -124,40 +156,3 @@
 //     raspi_cleanup();
 //     cout << "ADC test complete." << endl;
 // }
-
-/***********************************************
- * XQuestCode || Aditya Parmar
- *© 2024 Aditya Parmar. All Rights Reserved.
- ***********************************************/
-#include <iostream>
-#include "raspi_gpio.h"
-#include "input.h"
-
-using namespace std;
-using namespace splashkit_lib;
-
-void run_gpio_adc_tests()
-{
-
-    cout << "Testing ADC with a ADS7830 and a potentiometer" << endl;
-    raspi_init();
-    cout << "Plug a potentiometer at A0 channel of the ADS7830" << endl;
-    adc_device dev = open_adc("ADC1", 1, 0x48, ADS7830);
-    if (dev == nullptr)
-    {
-        cout << "Failed to open ADC device." << endl;
-        return;
-    }
-
-    adc_pin channel = ADC_PIN_0; // Change this to the desired channel
-    int value = 0;
-    while (!any_key_pressed())
-    {
-        value = read_adc(dev, channel);
-        cout << "ADC value: " << value << endl;
-    }
-
-    close_adc(dev);
-    raspi_cleanup();
-    cout << "ADC test completed." << endl;
-}

@@ -106,13 +106,12 @@ namespace splashkit_lib
         static int next_adc_id = 0;
         result->id = static_cast<splashkit_lib::pointer_identifier>(next_adc_id++);
 
-
         result->bus = bus;
         result->address = address;
         result->name = name;
         result->type = type;
 
-        //Open i2c connection
+        // Open i2c connection
         result->i2c_handle = sk_i2c_open(bus, address, 0);
 
         if (result->i2c_handle < 0)
@@ -165,7 +164,7 @@ namespace splashkit_lib
 
     adc_device open_adc(const string &name, int bus, int address, adc_type type_of_adc)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         if (has_adc_device(name))
         {
             LOG(WARNING) << "ADC device " << name << " already loaded.";
@@ -174,10 +173,10 @@ namespace splashkit_lib
 
         // Load and open the ADC device with WiringPi-backed I2C functions
         return _load_adc_device(name, bus, address, type_of_adc);
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
         return nullptr;
-    #endif
+#endif
     }
 
     // Open an ADC device with default parameters (bus 1, address 0x48)
@@ -198,12 +197,12 @@ namespace splashkit_lib
 #else
         LOG(ERROR) << "ADC not supported on this platform";
         return nullptr;
-    #endif
+#endif
     }
 
     int _read_adc_channel(adc_device dev, int channel)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         if (dev == nullptr)
         {
             LOG(WARNING) << "Invalid ADC device.";
@@ -216,17 +215,9 @@ namespace splashkit_lib
         switch (dev->type)
         {
         case ADS7830:
-            // For ADS7830, channel is directly used as command
-            command = channel;
-            break;
-        }
-        // Uncomment and complete when implementing other ADC types.
         case PCF8591:
-        {
-            // command = channel & 0x03;
             command = channel;
             break;
-        }
         default:
             LOG(WARNING) << "Unsupported ADC type for device " << dev->name;
             return -1;
@@ -236,7 +227,7 @@ namespace splashkit_lib
         if (sk_i2c_write_byte(dev->i2c_handle, command) < 0)
         {
             LOG(WARNING) << "Failed to write ADC channel command for channel " << channel
-                        << " on device " << dev->name;
+                         << " on device " << dev->name;
             return -1;
         }
 
@@ -248,26 +239,26 @@ namespace splashkit_lib
         if (value < 0)
         {
             LOG(WARNING) << "Error reading ADC channel " << channel
-                        << " from device " << dev->name;
+                         << " from device " << dev->name;
         }
 
         return value;
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
         return -1;
-    #endif
+#endif
     }
 
     // Read the ADC value from a given channel (0-7) using a device pointer.
     int read_adc(adc_device adc, adc_pin channel)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         if (adc == nullptr)
         {
             LOG(ERROR) << "ADC device not initialized.";
             return -1;
         }
-      
+
         int channel_num;
         switch (adc->type)
         {
@@ -309,16 +300,16 @@ namespace splashkit_lib
         }
 
         return _read_adc_channel(adc, channel_num);
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
         return -1;
-    #endif
+#endif
     }
 
     // Overload: read ADC value by providing the ADC device name.
     int read_adc(const string &name, adc_pin channel)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         adc_device dev = adc_device_named(name);
         if (dev == nullptr)
         {
@@ -334,70 +325,70 @@ namespace splashkit_lib
         }
 
         return _read_adc_channel(dev, channel_num);
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
         return -1;
-    #endif
+#endif
     }
 
     // Internal function to close and clean up ADC device
     void _close_adc_device(adc_device dev)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         if (dev)
         {
             sk_i2c_close(dev->i2c_handle);
             _adc_devices.erase(dev->name);
-            dev->id = NONE_PTR;  // Mark pointer invalid
+            dev->id = NONE_PTR; // Mark pointer invalid
             delete dev;
         }
         else
         {
             LOG(WARNING) << "Attempting to free an invalid ADC device";
         }
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
-    #endif
+#endif
     }
 
     // Close an ADC device given its pointer.
     void close_adc(adc_device adc)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         if (adc != nullptr)
             _close_adc_device(adc);
         else
             LOG(WARNING) << "Attempted to close unknown ADC device: " << adc->name;
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
-    #endif
+#endif
     }
 
     // Overload: close an ADC device by name.
     void close_adc(const string &name)
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         adc_device dev = adc_device_named(name);
         if (dev != nullptr)
             _close_adc_device(dev);
         else
             LOG(WARNING) << "Attempted to close unknown ADC device: " << name;
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
-    #endif
+#endif
     }
 
     // Close all ADC devices currently open.
     void close_all_adc()
     {
-    #ifdef RASPBERRY_PI
+#ifdef RASPBERRY_PI
         for (auto &entry : _adc_devices)
         {
             _close_adc_device(entry.second);
         }
         _adc_devices.clear();
-    #else
+#else
         LOG(ERROR) << "ADC not supported on this platform";
-    #endif
+#endif
     }
 }

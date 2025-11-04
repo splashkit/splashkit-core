@@ -63,7 +63,8 @@ void setup_tests()
     add_test("Motor Driver Tests", run_motor_driver_tests);
     add_test("Servo Driver Tests", run_servo_driver_tests);
     add_test("Remote GPIO Tests", run_remote_gpio_tests);
-    add_test("GPIO Tests - SPI", run_gpio_spi_tests);
+    add_test("GPIO SPI Tests - Basic", run_gpio_spi_tests);
+    add_test("GPIO SPI Tests - MAX7219 LED matrix", run_gpio_spi_led_matrix_tests);
     add_test("UI Tests", run_ui_test);
    
 }

@@ -228,7 +228,7 @@ namespace splashkit_lib
         std::vector<char> buf(send.begin(), send.end());
 
         //The buf variable is the data within the buf vector
-        bytes_transfered = sk_spi_transfer(handle, buf.data(), len);
+        bytes_transfered = sk_spi_transfer(handle, buf.data(), count);
 
         //The response is a combination of the data & size
         string response(buf.data(), buf.size());
@@ -298,8 +298,15 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         LOG(INFO) << "Cleaning GPIO pins";
-        sk_gpio_clear_bank_1();
-        sk_gpio_cleanup();
+        for (int i = 0; i < 40; i++)
+        {
+            if (BCMpinData[i] > 2)
+            {
+                raspi_write(raspi_get_pin(i+1), GPIO_LOW);
+            }
+        }
+        // sk_gpio_clear_bank_1();
+        // sk_gpio_cleanup();
 #else
         LOG(ERROR) << "Unable to set cleanup - GPIO not supported on this platform";
 #endif
