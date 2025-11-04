@@ -18,7 +18,7 @@ void run_gpio_spi_tests()
     raspi_init();
 
     cout << "Attempting to open SPI..." << endl;
-    int handle = raspi_spi_open(0, 1000000, 0);
+    int handle = raspi_spi_open(0, 1000000);
     if(handle >= 0)
     {
         cout << "SPI Connection Opened" << endl;
@@ -34,7 +34,7 @@ void run_gpio_spi_tests()
 
     cout << "Attempting transfer..." << endl;
     string response = raspi_spi_transfer(handle, buffer, 3, bytes_trans);
-    if(bytes_trans != 3)
+    if(bytes_trans != -1)
     {
         cout << "Transfer error, wrong number of bytes transferred." << endl;     
     }

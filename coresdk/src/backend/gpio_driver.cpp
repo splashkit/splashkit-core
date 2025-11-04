@@ -10,8 +10,21 @@
 #include <cstdlib> // Add this line to include the necessary header for the exit() function
 
 #include <cstring>
+#include <pigpiod_if2.h>
 #ifdef RASPBERRY_PI
 #include "pigpiod_if2.h"
+#include <wiringPi.h>
+#include <unordered_map>
+#include <wiringPiSPI.h>
+#include <wiringPiI2C.h>
+
+#endif
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
 #endif
 
 using namespace std;
@@ -22,8 +35,18 @@ using namespace std;
 //   Archive Link: https://web.archive.org/web/20240423160319/https://abyz.me.uk/rpi/pigpio/sif.html
 namespace splashkit_lib
 {
-#ifdef RASPBERRY_PI
+    //Add map to track items for remote gpio
+    std::unordered_map<int, int> r_pin_modes;
+    std::unordered_map<int, int> r_pwm_range;
+    std::string username;
+    std::string ip;
+
+    #ifdef RASPBERRY_PI
     int pi = -1;
+    //Add map to track items for RPi GPIO
+    std::unordered_map<int, int> pin_modes;
+    std::unordered_map<int, int> pwm_range;
+    std::unordered_map<int, int> handle_channel;
 
     // Check if pigpio_init() has been called before any other GPIO functions
     bool check_pi()
@@ -40,7 +63,12 @@ namespace splashkit_lib
     // Initialize the GPIO library
     int sk_gpio_init()
     {
-        pi = pigpio_start(0, 0);
+        if (wiringPiSetupGpio() == -1)
+        {
+            LOG(ERROR) << sk_gpio_error_message(pi);
+            return 1;
+        }
+        pi = wiringPiSetupGpio();
         return pi;
     }
 
@@ -49,10 +77,18 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = gpio_read(pi, pin);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return -1;
+            }
+            int result = digitalRead(pin);
+            //Verifies if a result is produced or not
             if (result < 0)
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
+                return -1;
             }
             return result;
         }
@@ -67,11 +103,19 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = gpio_write(pi, pin, value);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            //Checks if the value exists in the SplashKit library or not
+            if (value < -1 || value > 2)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
+            }
+            digitalWrite(pin, value);
         }
     }
 
@@ -80,75 +124,150 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = set_mode(pi, pin, mode);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            //Checks if the value exists in the SplashKit library or not
+            if (mode < 0 || mode > 7)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_MODE);
+                return;
+            }
+            pinMode(pin, mode); 
+            pin_modes[pin] = mode;
         }
     }
 
+    // Get the mode of a GPIO pin
     int sk_gpio_get_mode(int pin)
     {
         if (check_pi())
         {
             int result = get_mode(pi, pin);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+           //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return -1;
             }
-            return result;
+            int mode = pin_modes.count(pin) ? pin_modes[pin] : -1;
+            return mode;
         }
         else
         {
             return PI_BAD_GPIO;
         }
     }
+
     void sk_gpio_set_pull_up_down(int pin, int pud)
     {
-        if (check_pi())
+        //Checks whether the pins are in the correct range
+        if(check_pi())
         {
-            int result = set_pull_up_down(pi, pin, pud);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            //Checks if the pud exists in the SplashKit library or not
+            if (pud < 0 || pud > 2)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_PUD);
+                return;
+            }
+            pinMode(pin, INPUT);
+            pullUpDnControl(pin, pud);
         }
     }
 
+    //Needs to be set before frequency and dutycycle
     // PWM Functions
     void sk_set_pwm_range(int pin, int range)
     {
         if (check_pi())
         {
-            int result = set_PWM_range(pi, pin, range);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            //Checks whether newly set range is a reasonable value
+            if (range <= 25 || range > 4096) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
+                return;
+            }
+            //Save values to map to use for other functions (pigpio did this automatically)
+            pinMode(pin, PWM_OUTPUT); 
+            pin_modes[pin] = PWM_OUTPUT;
+            pwmSetMode(PWM_MODE_MS);
+            pwmSetRange(range);
+            pwm_range[pin] = range;
         }
     }
+
+    // Set frequency by setting both the range & clock
     void sk_set_pwm_frequency(int pin, int frequency)
     {
         if (check_pi())
         {
-            int result = set_PWM_frequency(pi, pin, frequency);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            int range = pwm_range[pin];
+            //Checks if range exists in the map of know PWM ranges
+            if (range < 25)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
+                return;
+            }
+            // Find out what the clock divisor is using base clock, frequency and range
+            double divisor = static_cast<double>(BASE_CLOCK) / (frequency * range);
+            int clock_divisor = static_cast<int>(divisor + 0.5);
+            //Checks if the new frequency is in a safe limit
+            if ((range / clock_divisor) > 38400)
+            {
+                LOG(ERROR) << sk_gpio_error_message(-1);
+                return;
+            }
+            pwmSetRange(range);
+            pwmSetClock(clock_divisor);
         }
     }
 
+    //Value must not be more than range (0% to 100%)
     void sk_set_pwm_dutycycle(int pin, int dutycycle)
     {
         if (check_pi())
         {
-            int result = set_PWM_dutycycle(pi, pin, dutycycle);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+            //Checks whether the pins are in the correct range
+            if (pin < 0 || pin > 40) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return;
             }
+            int range = pwm_range[pin];
+            //Checks if range exists in the map of know PWM ranges
+            if (range < 25)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
+                return;
+            }
+            //Check if dutycycle is less than range (percentage of cycle from 0 to 100% (range))
+            else if (range < dutycycle)
+            {
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYCYCLE);
+                return;
+            }
+            pwmWrite(pin, dutycycle);
         }
     }
 
@@ -156,46 +275,59 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            clear_bank_1(pi, PI4B_GPIO_BITMASK);
+            // Manually go through each pin and reset it to 0 (LOW)
+            for (int pin = 0; pin <= PI_SIZE; ++pin)
+            {
+                if (PI4B_GPIO_BITMASK && (1 << pin))
+                {
+                    int currentPin = pin;
+                    pinMode(pin, OUTPUT);
+                    digitalWrite(pin, LOW);
+                    pin_modes[pin] = LOW;
+                }
+            }
         }
     }
 
     // I2C Functions
     int sk_i2c_open(int bus, int address, int flags)
     {
-        if (check_pi())
-        {
-            int result = ::i2c_open(pi, bus, address, flags);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+        if (check_pi()) {
+            int handle = wiringPiI2CSetup(address);
+            if (handle < 0) {
+                LOG(ERROR) << "Failed to open I2C device at address " << address << "\n";
             }
-            return result;
+            return handle;
         }
-        else
-        {
-            return -1;
-        }
+        return -1;
     }
-    void sk_i2c_close(int handle)
-    {
-        if (check_pi())
-        {
-            int result = ::i2c_close(pi, handle);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
+    
+    int sk_i2c_close(int handle) {
+        if (check_pi()) {
+            if (handle >= 0) {
+                if (close(handle) == 0) {
+                    return 0; // Success
+                } else {
+                    LOG(ERROR) << "Failed to close I2C handle " << handle;
+                    return -1; // Error in close
+                }
+            } else {
+                LOG(WARNING) << "Invalid I2C handle: " << handle;
+                return -1;
             }
         }
+        return -1; // Not running on Pi
     }
+
     int sk_i2c_read_byte(int handle)
     {
+        // Assuming check_pi() ensures this is running on a Pi and initialized correctly
         if (check_pi())
         {
-            int result = ::i2c_read_byte(pi, handle);
+            int result = wiringPiI2CRead(handle);
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C Read Error: " << result;  // Replace with your error handling
             }
             return result;
         }
@@ -204,59 +336,32 @@ namespace splashkit_lib
             return -1;
         }
     }
+
     int sk_i2c_write_byte(int handle, int data)
     {
         if (check_pi())
         {
-            int result = ::i2c_write_byte(pi, handle, data);
+            int result = wiringPiI2CWrite(handle, data);
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C Write Error: " << result;  // Replace with your error handling if needed
             }
             return result;
         }
         else
         {
             return -1;
-        }
-    }
-    int sk_i2c_read_device(int handle, char *buf, int count)
-    {
-        if (check_pi())
-        {
-            int result = ::i2c_read_device(pi, handle, buf, count);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
-            }
-            return result;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-    void sk_i2c_write_device(int handle, char *buf, int count)
-    {
-        if (check_pi())
-        {
-            int result = ::i2c_write_device(pi, handle, buf, count);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
-            }
         }
     }
 
-    // Additional I2C Functions (new)
     int sk_i2c_read_byte_data(int handle, int reg)
     {
         if (check_pi())
         {
-            int result = ::i2c_read_byte_data(pi, handle, reg);
+            int result = wiringPiI2CReadReg8(handle, reg);
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C ReadReg Error (reg " << reg << "): " << result;
             }
             return result;
         }
@@ -270,10 +375,10 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = ::i2c_write_byte_data(pi, handle, reg, data);
+            int result = wiringPiI2CWriteReg8(handle, reg, data);
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C WriteReg Error (reg " << reg << ", data " << data << "): " << result;
             }
         }
     }
@@ -282,10 +387,10 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = ::i2c_read_word_data(pi, handle, reg);
+            int result = wiringPiI2CReadReg16(handle, reg);
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C ReadWord Error (reg " << reg << "): " << result;
             }
             return result;
         }
@@ -299,7 +404,7 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = ::i2c_write_word_data(pi, handle, reg, data);
+            int result = wiringPiI2CWriteReg16(handle, reg, data);
             if (result < 0)
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
@@ -312,30 +417,64 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            pigpio_stop(pi);
+            return;
         }
     }
-
-    int sk_spi_open(int channel, int speed, int spi_flags)
+    
+    // WiringPi's version of spi_open doesn't need the variable flag so I removed it
+    int sk_spi_open(int channel, int speed)
     {
-        if (check_pi())
-            return spi_open(pi, channel, speed, spi_flags);
+        if(check_pi())
+            if (channel < 0 || channel > 2) 
+            { 
+                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
+                return -1;
+            }
+            int handle = wiringPiSPISetup(channel, speed);
+            //Save handle to unordered map
+            handle_channel[handle] = channel;
+            return handle;
+        }
         else
+        {
             return -1;
+        }
     }
 
     int sk_spi_close(int handle)
     {
-        if (check_pi())
-            return spi_close(pi, handle);
+        if(check_pi())
+        {
+            //Close SPI & reset handle value to 0
+            close(handle); 
+            handle_channel[handle] = 0;
+            return 0;
+        }
         else
+        {
             return -1;
+        }
     }
 
     int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
     {
         if (check_pi())
-            return spi_xfer(pi, handle, send_buf, recv_buf, count);
+        {
+            // If handle is -1, it doesn't exist
+            if (handle == -1)
+            {
+                return -1;
+            }
+            unsigned char *u_buf = (unsigned char *)buf;
+            int channel = handle_channel[handle];
+            // Checks whether the channel is in the correct range or if it's not 0
+            if (channel >= 0 || channel < 2)
+            {
+                return -1;
+            }
+            int val = wiringPiSPIDataRW(channel, u_buf, count);
+            return val;
+        }
         else
             return -1;
     }

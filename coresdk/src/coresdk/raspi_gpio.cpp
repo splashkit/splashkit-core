@@ -199,11 +199,11 @@ namespace splashkit_lib
 #endif
     }
 
-    int raspi_spi_open(int channel, int speed, int spi_flags)
+    int raspi_spi_open(int channel, int speed)
     {
 #ifdef RASPBERRY_PI
         int handle = -1;
-        handle = sk_spi_open(channel, speed, spi_flags);
+        handle = sk_spi_open(channel, speed);
         return handle;
 #else
         LOG(ERROR) << "Unable to open SPI interface - GPIO not supported on this platform";
@@ -224,18 +224,14 @@ namespace splashkit_lib
     string raspi_spi_transfer(int handle, const string &send, int count, int &bytes_transfered)
     {
 #ifdef RASPBERRY_PI
-        int len = send.size() > count ? count : send.size();
-        char send_buf[len + 1]{};
-        for (int i = 0; i < len; i++)
-        {
-            send_buf[i] = send[i];
-        }
+        //Get an array (vector) of characters from send to make buffer
+        std::vector<char> buf(send.begin(), send.end());
 
-        char recv_buf[len + 1]{};
+        //The buf variable is the data within the buf vector
+        bytes_transfered = sk_spi_transfer(handle, buf.data(), len);
 
-        bytes_transfered = sk_spi_transfer(handle, send_buf, recv_buf, len);
-
-        string response(recv_buf);
+        //The response is a combination of the data & size
+        string response(buf.data(), buf.size());
         return response;
 #else
         LOG(ERROR) << "Unable to transfer through SPI - GPIO not supported on this platform";
