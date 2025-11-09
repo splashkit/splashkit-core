@@ -283,13 +283,19 @@ void run_joystick_max7219_led_matrix_test()
         // y = ((read_adc(dev, y_channel) / 255.0) * 7) + 1;
 
         // Moves when joystick is moved
-        dx = (((read_adc(dev, x_channel) - 127) / 255.0) * 7);
-        dy = (((read_adc(dev, y_channel) - 127) / 255.0) * 7);
+        dx = ((read_adc(dev, x_channel) - 127) / 255.0) * 7;
+        dy = ((read_adc(dev, y_channel) - 127) / 255.0) * 7;
         if ((x < 8 && dx > 1) || (x >= 2 && dx < -1))
             x += dx * speed;
         if ((y < 8 && dy > 1) || (y >= 2 && dy < -1))
             y += dy * speed;
+
         display_led_board((int)x, (int)y);
+
+        // Debugging
+        // dx = read_adc(dev, x_channel);
+        // dy = read_adc(dev, y_channel);
+        // cout << "x,y = " << dx << "," << dy << endl;
     }
 
     close_adc(dev);

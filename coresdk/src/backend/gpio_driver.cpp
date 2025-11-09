@@ -145,7 +145,6 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
-            int result = get_mode(pi, pin);
             // Checks whether the pins are in the correct range
             if (pin < 0 || pin > 40)
             {
