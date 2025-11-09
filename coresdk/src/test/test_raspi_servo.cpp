@@ -40,23 +40,23 @@ void run_servo_driver_tests()
     const int DELAY_MS = 20; // 20 ms per step
 
     // Sweep from 0° → 180°
-    write_line("Sweeping 0° → 180°...\n");
-    for (int deg = 0; deg <= 180; deg += STEP_DEG)
-    {
-        set_servo_angle(srv, deg);
-        delay(DELAY_MS); // splashkit’s millisecond delay :contentReference[oaicite:1]{index=1}
-    }
+    // write_line("Sweeping 0° → 180°...\n");
+    // for (int deg = 0; deg <= 180; deg += STEP_DEG)
+    // {
+    //     set_servo_angle(srv, deg);
+    //     delay(DELAY_MS); // splashkit’s millisecond delay :contentReference[oaicite:1]{index=1}
+    // }
 
-    // Hold at 180° for a second
-    delay(1000);
+    // // Hold at 180° for a second
+    // delay(1000);
 
-    // Sweep from 180° → 0°
-    write_line("Sweeping 180° → 0°...\n");
-    for (int deg = 180; deg >= 0; deg -= STEP_DEG)
-    {
-        set_servo_angle(srv, deg);
-        delay(DELAY_MS);
-    }
+    // // Sweep from 180° → 0°
+    // write_line("Sweeping 180° → 0°...\n");
+    // for (int deg = 180; deg >= 0; deg -= STEP_DEG)
+    // {
+    //     set_servo_angle(srv, deg);
+    //     delay(DELAY_MS);
+    // }
 
     // Stop pulses and clean up
     stop_servo(srv);

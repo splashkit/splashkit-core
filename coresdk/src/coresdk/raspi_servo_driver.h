@@ -71,14 +71,13 @@ namespace splashkit_lib
    */
   servo_device open_servo(const std::string &name, gpio_pin control_pin);
 
-  /**
-   * Convenience: map an angle (0…180°) into the 500…2500 µs range.
-   * This is a linear mapping, so it may not be accurate for all servos.
-   * @param dev  The servo device to control.
-   * @param angle_degrees  The angle in degrees (0…180).
-   */
-
-  void set_servo_angle(servo_device dev, double angle_degrees);
+  // /**
+  //  * Convenience: map an angle (0…180°) into the 500…2500 µs range.
+  //  * This is a linear mapping, so it may not be accurate for all servos.
+  //  * @param dev  The servo device to control.
+  //  * @param angle_degrees  The angle in degrees (0…180).
+  //  */
+  // void set_servo_angle(servo_device dev, double angle_degrees);
 
   /**
    * Stop sending pulses (servo will hold last position or drift).

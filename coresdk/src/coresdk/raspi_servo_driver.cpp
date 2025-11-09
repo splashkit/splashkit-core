@@ -65,22 +65,22 @@ namespace splashkit_lib
 #endif
   }
 
-  void set_servo_angle(servo_device dev, double angle)
-  {
-#ifdef RASPBERRY_PI
-    if (!dev || dev->id != SERVO_DRIVER_PTR)
-      return;
+//   void set_servo_angle(servo_device dev, double angle)
+//   {
+// #ifdef RASPBERRY_PI
+//     if (!dev || dev->id != SERVO_DRIVER_PTR)
+//       return;
 
-    // clamp to [0,180]
-    angle = std::clamp(angle, 0.0, 180.0);
-    unsigned pw = static_cast<unsigned>(
-        MIN_PW + (angle / 180.0) * (MAX_PW - MIN_PW));
-    // raspi_set_pwm_dutycycle(dev->pin, pw);
-    raspi_set_servo_pulsewidth(dev->pin, pw);
-#else
-    LOG(ERROR) << "Servo driver not supported on this platform";
-#endif
-  }
+//     // clamp to [0,180]
+//     angle = std::clamp(angle, 0.0, 180.0);
+//     unsigned pw = static_cast<unsigned>(
+//         MIN_PW + (angle / 180.0) * (MAX_PW - MIN_PW));
+//     // raspi_set_pwm_dutycycle(dev->pin, pw);
+//     raspi_set_servo_pulsewidth(dev->pin, pw);
+// #else
+//     LOG(ERROR) << "Servo driver not supported on this platform";
+// #endif
+//   }
 
   void stop_servo(servo_device dev)
   {
