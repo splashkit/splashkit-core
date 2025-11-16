@@ -168,6 +168,8 @@ namespace splashkit_lib
      * @param reg      The register to send the data to
      * @param data     The data to send.
      * @param bytes    The number of bytes to be transferred.
+     * 
+     * @attribute suffix data
      */
     void raspi_i2c_write(int handle, int reg, int data, int bytes);
 
