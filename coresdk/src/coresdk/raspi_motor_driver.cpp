@@ -17,26 +17,26 @@ namespace splashkit_lib
     struct _motor_data
     {
         pointer_identifier id;
-        std::string name;
+        string name;
         motor_driver_type type;
         gpio_pin in1, in2, en;
         motor_direction dir;
     };
 
-    static std::map<std::string, motor_device> _motor_devices;
+    static std::map<string, motor_device> _motor_devices;
 
-    bool has_motor_device(const std::string &name)
+    bool has_motor_device(const string &name)
     {
         return _motor_devices.count(name) > 0;
     }
 
-    motor_device motor_named(const std::string &name)
+    motor_device motor_named(const string &name)
     {
         auto it = _motor_devices.find(name);
         return it != _motor_devices.end() ? it->second : nullptr;
     }
 
-    motor_device open_motor(const std::string &name, motor_driver_type type, gpio_pin in1_pin, gpio_pin in2_pin, gpio_pin en_pin)
+    motor_device open_motor(const string &name, motor_driver_type type, gpio_pin in1_pin, gpio_pin in2_pin, gpio_pin en_pin)
     {
 #ifdef RASPBERRY_PI
         if (has_motor_device(name))
@@ -143,7 +143,7 @@ namespace splashkit_lib
 #endif
     }
 
-    void close_motor(const std::string &name)
+    void close_motor(const string &name)
     {
 #ifdef RASPBERRY_PI
         if (!has_motor_device(name))

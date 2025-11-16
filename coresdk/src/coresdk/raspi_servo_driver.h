@@ -53,7 +53,7 @@ namespace splashkit_lib
    * @param name  Your identifier for this servo.
    * @returns     true if the servo is open, false otherwise.
    */
-  bool has_servo_device(const std::string &name);
+  bool has_servo_device(const string &name);
 
   /**
    * Look up an already‐opened servo by name.
@@ -61,7 +61,7 @@ namespace splashkit_lib
    * @returns A valid servo_device, or nullptr if not found.
    *
    */
-  servo_device servo_named(const std::string &name);
+  servo_device servo_named(const string &name);
 
   /**
    * Open (and initialize) a servo on the given board pin.
@@ -69,7 +69,7 @@ namespace splashkit_lib
    * @param control_pin  Board‐numbered GPIO pin for the servo signal line.
    * @returns            A valid servo_device, or nullptr on failure.
    */
-  servo_device open_servo(const std::string &name, gpio_pin control_pin);
+  servo_device open_servo(const string &name, gpio_pin control_pin);
 
   // /**
   //  * Convenience: map an angle (0…180°) into the 500…2500 µs range.
@@ -93,7 +93,7 @@ namespace splashkit_lib
    * @note This will free the resources associated with the servo.
    */
   void close_servo(servo_device dev);
-  void close_servo(const std::string &name);
+  void close_servo(const string &name);
 
   /**
    * Close *all* servos.

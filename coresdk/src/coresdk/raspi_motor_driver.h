@@ -55,14 +55,14 @@ namespace splashkit_lib {
      * @param name  Identifier for the motor driver.
      * @returns     true if open, false otherwise.
      */
-    bool has_motor_device(const std::string &name);
+    bool has_motor_device(const string &name);
 
     /**
      * Retrieves an existing motor device handle by name.
      * @param name  Identifier for the motor driver.
      * @returns     motor_device pointer or nullptr.
      */
-    motor_device motor_named(const std::string &name);
+    motor_device motor_named(const string &name);
 
     /**
      * Opens a motor device with the specified parameters.
@@ -73,7 +73,7 @@ namespace splashkit_lib {
      * @param en_pin    GPIO pin for ENA.
      * @returns         A valid motor_device on success, or nullptr on failure.
      */
-    motor_device open_motor(const std::string &name, motor_driver_type type, gpio_pin in1_pin, gpio_pin in2_pin, gpio_pin en_pin);
+    motor_device open_motor(const string &name, motor_driver_type type, gpio_pin in1_pin, gpio_pin in2_pin, gpio_pin en_pin);
 
     /**
      * Sets the motor rotation direction.
@@ -105,7 +105,7 @@ namespace splashkit_lib {
      * Closes and frees a motor device by name.
      * @param name      Name of the motor device.
      */
-    void close_motor(const std::string &name);
+    void close_motor(const string &name);
 
     /**
      * Closes all opened motor devices.

@@ -36,7 +36,7 @@ namespace splashkit_lib
         // https://web.archive.org/web/20240901170108/https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-datasheet.pdf
         if (bcmPinResult < 2)
         {
-            std::string extra_text = " Pin is a";
+            string extra_text = " Pin is a";
             extra_text += (bcmPinResult >= 0) ? "n EEPROM Pin, using this could corrupt the bootloader." : (bcmPinResult == -1) ? " POWER line."
                                                                                                        : (bcmPinResult == -2)   ? " GROUND line."
                                                                                                                                 : "n Unknown Pin Type.";
@@ -225,7 +225,7 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         // Get an array (vector) of characters from send to make buffer
-        std::vector<char> buf(send.begin(), send.end());
+        vector<char> buf(send.begin(), send.end());
 
         // The buf variable is the data within the buf vector
         bytes_transfered = sk_spi_transfer(handle, buf.data(), count);
@@ -287,7 +287,7 @@ namespace splashkit_lib
 //         {
 //             gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
 //             // if the pin is not a PWM pin, return
-//             if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
+//             if (find(begin(pwmPins), end(pwmPins), pin) == end(pwmPins))
 //             {
 //                 LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
 //                 return -1;
@@ -318,7 +318,7 @@ namespace splashkit_lib
 //         {
 //             gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
 //             // if the pin is not a PWM pin, return
-//             if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
+//             if (find(begin(pwmPins), end(pwmPins), pin) == end(pwmPins))
 //             {
 //                 LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
 //                 return; // ← early return so we don’t drive an unsupported pin

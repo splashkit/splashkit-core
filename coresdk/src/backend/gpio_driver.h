@@ -225,7 +225,7 @@ namespace splashkit_lib
     void sk_gpio_cleanup();
 
 #endif
-    connection sk_remote_gpio_init(std::string name, const std::string &host, unsigned short int port);
+    connection sk_remote_gpio_init(string name, const string &host, unsigned short int port);
     void sk_remote_gpio_set_mode(connection pi, int pin, int mode);
     int sk_remote_gpio_get_mode(connection pi, int pin);
     void sk_remote_gpio_set_pull_up_down(connection pi, int pin, int pud);
@@ -238,7 +238,7 @@ namespace splashkit_lib
     bool sk_remote_gpio_cleanup(connection pi);
 
     int sk_gpio_send_cmd(connection pi, sk_pigpio_cmd_t &cmd);
-    std::string sk_gpio_error_message(int error_code);
+    string sk_gpio_error_message(int error_code);
 }
 
 #endif /* defined(gpio_driver) */

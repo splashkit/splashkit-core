@@ -27,6 +27,10 @@
 #endif
 
 using namespace std;
+using std::vector;
+using std::to_string;
+using std::unordered_map;
+
 // Use https://abyz.me.uk/rpi/pigpio/pdif2.html for local command reference
 //   Archive Link: https://web.archive.org/web/20240423160241/https://abyz.me.uk/rpi/pigpio/pdif2.html
 //
@@ -35,17 +39,17 @@ using namespace std;
 namespace splashkit_lib
 {
     // Add map to track items for remote gpio
-    std::unordered_map<int, int> r_pin_modes;
-    std::unordered_map<int, int> r_pwm_range;
-    std::string username;
-    std::string ip;
+    unordered_map<int, int> r_pin_modes;
+    unordered_map<int, int> r_pwm_range;
+    string username;
+    string ip;
 
 #ifdef RASPBERRY_PI
     int pi = -1;
     // Add map to track items for RPi GPIO
-    std::unordered_map<int, int> pin_modes;
-    std::unordered_map<int, int> pwm_range;
-    std::unordered_map<int, int> handle_channel;
+    unordered_map<int, int> pin_modes;
+    unordered_map<int, int> pwm_range;
+    unordered_map<int, int> handle_channel;
 
     // Check if pigpio_init() has been called before any other GPIO functions
     bool check_pi()
@@ -514,7 +518,7 @@ namespace splashkit_lib
 #endif
 
     // Remote GPIO Functions
-    connection sk_remote_gpio_init(std::string name, const std::string &host, unsigned short int port)
+    connection sk_remote_gpio_init(string name, const string &host, unsigned short int port)
     {
         return open_connection(name, host, port);
     }
@@ -630,7 +634,7 @@ namespace splashkit_lib
         {
             int num_send_bytes = sizeof(cmd);
 
-            std::vector<char> buffer(num_send_bytes);
+            vector<char> buffer(num_send_bytes);
             memcpy(buffer.data(), &cmd, num_send_bytes);
 
             if (sk_send_bytes(&pi->socket, buffer.data(), num_send_bytes))
@@ -681,7 +685,7 @@ namespace splashkit_lib
     // ... (all the way through the last definitions)
     // #define PI_CUSTOM_ERR_999    -3999
 
-    std::string sk_gpio_error_message(int error_code)
+    string sk_gpio_error_message(int error_code)
     {
         switch (error_code)
         {
@@ -1157,7 +1161,7 @@ namespace splashkit_lib
             return "Custom error: maximum error code.";
 
         default:
-            return "Unknown error code " + std::to_string(error_code);
+            return "Unknown error code " + to_string(error_code);
         }
     }
 
