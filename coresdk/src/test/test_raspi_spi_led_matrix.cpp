@@ -72,7 +72,7 @@ const unsigned char patterns[][8] = {
         0b00011000, // Row 5
         0b00011000, // Row 6
         0b01111110, // Row 7
-        0b01111110  // Row 8
+        0b00000000  // Row 8
     },
     // Number 2
     {
@@ -234,15 +234,15 @@ void display_led_board(int x, int y)
 
 void run_joystick_max7219_led_matrix_test()
 {
-    cout << "Testing Joystick (with ADC) to move \"dot\" on \"MAX7219\" LED matrix...\n\n";
+    cout << "Testing Joystick (with ADC) to move \"dot\" on \"MAX7219\" SPI LED matrix...\n\n";
     cout << "MAX7219 LED matrix connections:\n";
-    cout << "  DIN pin connected to GPIO pin 19 (MOSI)\n";
-    cout << "  CS pin connected to GPIO pin 24 (CE0)\n";
-    cout << "  CLK pin connected to GPIO pin 23 (SCLK)\n";
+    cout << "  DIN pin connected to GPIO pin 19 (GPIO10/MOSI)\n";
+    cout << "  CS pin connected to GPIO pin 24 (GPIO8/CE0)\n";
+    cout << "  CLK pin connected to GPIO pin 23 (GPIO11/SCLK)\n";
     cout << "Joystick connections:\n";
     cout << "  VRX pin connected to ADC pin 0 (channel 0)\n";
     cout << "  VRY pin connected to ADC pin 1 (channel 1)\n";
-    cout << "  SW pin (joystick button) connected to GPIO pin 11 (#GPIO 17)\n";
+    cout << "  SW pin (joystick button) connected to GPIO pin 11 (GPIO17)\n";
 
     // Set up button on pin 11 to end program
     raspi_set_mode(PIN_11, GPIO_INPUT);

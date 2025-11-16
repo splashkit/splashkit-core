@@ -113,7 +113,7 @@ namespace splashkit_lib
 
         // Open the I2C channel to the ADC device.
         // (For both ADS7830 and PCF8591, we assume the initialization is similar.)
-        result->i2c_handle = sk_i2c_open(bus, address, 0);
+        result->i2c_handle = sk_i2c_open(address);
         if (result->i2c_handle < 0)
         {
             LOG(WARNING) << "Error opening ADC device " << name
@@ -146,7 +146,7 @@ namespace splashkit_lib
             // ask the user to check the device connection
             LOG(WARNING) << "Error communicating with ADC device, check your ADC connection" << name
                          << " on bus " << bus << " at address " << address;
-            sk_i2c_close(result->i2c_handle);
+            // sk_i2c_close(result->i2c_handle);
             delete result;
             return nullptr;
         }
@@ -318,8 +318,8 @@ namespace splashkit_lib
 #ifdef RASPBERRY_PI
         if (dev)
         {
-            // Close the I2C connection
-            sk_i2c_close(dev->i2c_handle);
+            // // Close the I2C connection
+            // sk_i2c_close(dev->i2c_handle);
             // Remove the device from our map
             _adc_devices.erase(dev->name);
             dev->id = NONE_PTR; // Set pointer to a non-valid identifier

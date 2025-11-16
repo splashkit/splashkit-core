@@ -39,6 +39,7 @@ void run_servo_driver_tests();
 void run_remote_gpio_tests();
 void run_gpio_spi_tests();
 void run_gpio_spi_led_matrix_tests();
+void run_gpio_i2c_led_matrix_tests();
 void run_terminal_test();
 void run_logging_test();
 void run_ui_test();

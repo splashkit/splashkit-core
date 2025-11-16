@@ -288,7 +288,7 @@ namespace splashkit_lib
     }
 
     // I2C Functions
-    int sk_i2c_open(int bus, int address, int flags)
+    int sk_i2c_open(int address)
     {
         if (check_pi())
         {
@@ -302,30 +302,30 @@ namespace splashkit_lib
         return -1;
     }
 
-    int sk_i2c_close(int handle)
-    {
-        if (check_pi())
-        {
-            if (handle >= 0)
-            {
-                if (close(handle) == 0)
-                {
-                    return 0; // Success
-                }
-                else
-                {
-                    LOG(ERROR) << "Failed to close I2C handle " << handle;
-                    return -1; // Error in close
-                }
-            }
-            else
-            {
-                LOG(WARNING) << "Invalid I2C handle: " << handle;
-                return -1;
-            }
-        }
-        return -1; // Not running on Pi
-    }
+    // int sk_i2c_close(int handle)
+    // {
+    //     if (check_pi())
+    //     {
+    //         if (handle >= 0)
+    //         {
+    //             if (close(handle) == 0)
+    //             {
+    //                 return 0; // Success
+    //             }
+    //             else
+    //             {
+    //                 LOG(ERROR) << "Failed to close I2C handle " << handle;
+    //                 return -1; // Error in close
+    //             }
+    //         }
+    //         else
+    //         {
+    //             LOG(WARNING) << "Invalid I2C handle: " << handle;
+    //             return -1;
+    //         }
+    //     }
+    //     return -1; // Not running on Pi
+    // }
 
     int sk_i2c_read_byte(int handle)
     {
@@ -425,6 +425,7 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+            pi = -1;
             return;
         }
     }
@@ -455,7 +456,7 @@ namespace splashkit_lib
         if (check_pi())
         {
             // Close SPI & reset handle value to 0
-            close(handle);
+            // close(handle);
             handle_channel[handle] = 0;
             return 0;
         }
