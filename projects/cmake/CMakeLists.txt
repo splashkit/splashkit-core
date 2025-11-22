@@ -155,7 +155,7 @@ if (NOT APPLE AND NOT MSYS)
             add_definitions(-DRASPBERRY_PI_5)
 
             # Locate WiringPi libraries
-            find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.h HINTS /usr/include /usr/local/include)
+            find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.h wiringPiSPI.h wiringPiI2C.h HINTS /usr/include /usr/local/include)
             find_library(WIRINGPI_LIBRARY NAMES wiringPi libwiringPi.so HINTS /usr/lib /usr/local/lib)
 
             if(WIRINGPI_LIBRARY AND WIRINGPI_INCLUDE_DIR)

@@ -261,7 +261,7 @@ namespace splashkit_lib
         handle = sk_i2c_open(bus, address);
         return handle;
 #else
-        LOG(ERROR) << "Unable to open SPI interface - GPIO not supported on this platform";
+        LOG(ERROR) << "Unable to open I2C interface - GPIO not supported on this platform";
         return -1;
 #endif
     }

@@ -111,9 +111,7 @@ namespace splashkit_lib
             return 1;
         }
         pi = wiringPiSetupGpio();
-        LOG(INFO) << "Using rpi 5";
 #else
-        LOG(INFO) << "Using rpi 4";
         pi = pigpio_start(0, 0);
 #endif
         return pi;
