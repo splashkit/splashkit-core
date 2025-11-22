@@ -343,16 +343,16 @@ namespace splashkit_lib
         {
 #ifdef RASPBERRY_PI_5
             // Manually go through each pin and reset it to 0 (LOW)
-            for (int pin = 0; pin <= PI_SIZE; ++pin)
-            {
-                if (PI4B_GPIO_BITMASK && (1 << pin))
-                {
-                    int currentPin = pin;
-                    pinMode(pin, OUTPUT);
-                    digitalWrite(pin, LOW);
-                    pin_modes[pin] = LOW;
-                }
-            }
+            // for (int pin = 0; pin <= PI_SIZE; ++pin)
+            // {
+            //     if (PI4B_GPIO_BITMASK && (1 << pin))
+            //     {
+            //         int currentPin = pin;
+            //         pinMode(pin, OUTPUT);
+            //         digitalWrite(pin, LOW);
+            //         pin_modes[pin] = LOW;
+            //     }
+            // }
 #else
             clear_bank_1(pi, PI4B_GPIO_BITMASK);
 #endif

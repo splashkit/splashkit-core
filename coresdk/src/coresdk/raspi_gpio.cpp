@@ -533,7 +533,17 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         LOG(INFO) << "Cleaning GPIO pins";
+#ifdef RASPBERRY_PI_5
+        for (int i = 0; i < 40; i++)
+        {
+            if (BCMpinData[i] >= 2)
+            {
+                raspi_write(raspi_get_pin(i + 1), GPIO_LOW);
+            }
+        }
+#else
         sk_gpio_clear_bank_1();
+#endif
         sk_gpio_cleanup();
 #else
         LOG(ERROR) << "Unable to set cleanup - GPIO not supported on this platform";
