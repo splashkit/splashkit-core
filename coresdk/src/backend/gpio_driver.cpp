@@ -383,7 +383,7 @@ namespace splashkit_lib
         }
     }
 
-    int sk_i2c_close(int handle)
+    void sk_i2c_close(int handle)
     {
         if (check_pi())
         {
@@ -413,7 +413,6 @@ namespace splashkit_lib
             }
 #endif
         }
-        return -1; // Not running on Pi
     }
 
     int sk_i2c_read_byte(int handle)

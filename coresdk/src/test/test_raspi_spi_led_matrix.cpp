@@ -173,7 +173,7 @@ void run_pattern_max7219_led_matrix_test()
     raspi_set_mode(PIN_11, GPIO_INPUT);
     raspi_set_pull_up_down(PIN_11, PUD_UP);
 
-    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED, 0);
+    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED);
 
     // Initialising MAX7219
     max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)
@@ -255,7 +255,7 @@ void run_joystick_max7219_led_matrix_test()
     adc_pin y_channel = ADC_PIN_1; // Change this to the desired channel
 
     // Set up SPI
-    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED, 0);
+    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED);
 
     // Initialising MAX7219
     max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)

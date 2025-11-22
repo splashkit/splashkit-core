@@ -472,47 +472,6 @@ namespace splashkit_lib
         return alpha_font_table[ascii_char];
     }
 
-    int raspi_get_servo_pulsewidth(gpio_pin pin)
-    {
-#ifdef RASPBERRY_PI
-        int handle = -1;
-        handle = sk_i2c_open(bus, address);
-        return handle;
-#else
-        LOG(ERROR) << "Unable to open SPI interface - GPIO not supported on this platform";
-        return -1;
-#endif
-    }
-
-    void raspi_i2c_write(int handle, int data)
-    {
-#ifdef RASPBERRY_PI
-        sk_i2c_write_byte(handle, data);
-#else
-        LOG(ERROR) << "Unable to write to I2C device - GPIO not supported on this platform";
-#endif
-    }
-
-    void raspi_i2c_write(int handle, int reg, int data, int bytes)
-    {
-#ifdef RASPBERRY_PI
-        switch (bytes)
-        {
-        case 1:
-            sk_i2c_write_byte_data(handle, reg, data);
-            break;
-        case 2:
-            sk_i2c_write_word_data(handle, reg, data);
-            break;
-        default:
-            LOG(ERROR) << "Unable to write to I2C device - count must be 1 or 2.";
-            break;
-        }
-#else
-        LOG(ERROR) << "Unable to write to I2C device - GPIO not supported on this platform";
-#endif
-    }
-
     //     int raspi_get_servo_pulsewidth(gpio_pin pin)
     //     {
     // #ifdef RASPBERRY_PI
@@ -544,6 +503,7 @@ namespace splashkit_lib
     //         return -1;
     // #endif
     //     }
+
     //     void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth)
     //     {
     // #ifdef RASPBERRY_PI
@@ -573,13 +533,6 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         LOG(INFO) << "Cleaning GPIO pins";
-        // for (int i = 0; i < 40; i++)
-        // {
-        //     if (BCMpinData[i] > 2)
-        //     {
-        //         raspi_write(raspi_get_pin(i+1), GPIO_LOW);
-        //     }
-        // }
         sk_gpio_clear_bank_1();
         sk_gpio_cleanup();
 #else
