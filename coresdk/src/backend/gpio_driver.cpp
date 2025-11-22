@@ -182,7 +182,6 @@ namespace splashkit_lib
 
     void sk_gpio_set_pull_up_down(int pin, int pud)
     {
-        // Checks whether the pins are in the correct range
         if (check_pi(pin))
         {
             // Checks if the pud exists in the SplashKit library or not
@@ -451,7 +450,7 @@ namespace splashkit_lib
 #endif
             if (result < 0)
             {
-                LOG(ERROR) << "I2C WriteReg Error (reg " << reg << ", data " << data << "): " << result;
+                LOG(ERROR) << "I2C Write Error (reg " << reg << ", data " << data << "): " << result;
             }
         }
     }
@@ -467,7 +466,7 @@ namespace splashkit_lib
 #endif
             if (result < 0)
             {
-                LOG(ERROR) << "I2C ReadWord Error (reg " << reg << "): " << result;
+                LOG(ERROR) << "I2C Read Error (reg " << reg << "): " << result;
             }
             return result;
         }
@@ -488,7 +487,7 @@ namespace splashkit_lib
 #endif
             if (result < 0)
             {
-                LOG(ERROR) << sk_gpio_error_message(result);
+                LOG(ERROR) << "I2C Write Error (reg " << reg << ", data " << data << "): " << result;
             }
         }
     }
