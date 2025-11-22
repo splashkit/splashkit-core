@@ -180,6 +180,12 @@
 // Bitmask for valid user GPIO on the 4B board
 #define PI4B_GPIO_BITMASK 0x0FFFFFFC
 
+// Size of GPIO board
+#define PI_SIZE 40
+
+// Size of base clock
+#define BASE_CLOCK 19200000
+
 namespace splashkit_lib
 {
 

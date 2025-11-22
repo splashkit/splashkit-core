@@ -199,11 +199,11 @@ namespace splashkit_lib
 #endif
     }
 
-    int raspi_spi_open(int channel, int speed)
+    int raspi_spi_open(int channel, int speed, int spi_flags)
     {
 #ifdef RASPBERRY_PI
         int handle = -1;
-        handle = sk_spi_open(channel, speed);
+        handle = sk_spi_open(channel, speed, spi_flags);
         return handle;
 #else
         LOG(ERROR) << "Unable to open SPI interface - GPIO not supported on this platform";
@@ -229,7 +229,7 @@ namespace splashkit_lib
         vector<char> buf(send.begin(), send.end());
 
         // The buf variable is the data within the buf vector
-        bytes_transfered = sk_spi_transfer(handle, buf.data(), count);
+        bytes_transfered = sk_spi_transfer(handle, buf.data(), buf.data(), count);
 
         // The response is a combination of the data & size
         string response(buf.data(), buf.size());

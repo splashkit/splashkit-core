@@ -299,7 +299,9 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifndef RASPBERRY_PI_5
             clear_bank_1(pi, PI4B_GPIO_BITMASK);
+#endif
         }
     }
 
@@ -388,6 +390,7 @@ namespace splashkit_lib
         if (check_pi())
         {
 #ifdef RASPBERRY_PI_5
+            int result = wiringPiI2CRawRead(handle, (unsigned char *)buf, count);
 #else
             int result = ::i2c_read_device(pi, handle, buf, count);
 #endif
@@ -408,6 +411,7 @@ namespace splashkit_lib
         if (check_pi())
         {
 #ifdef RASPBERRY_PI_5
+            int result = wiringPiI2CRawWrite(handle, (unsigned char *)buf, count);
 #else
             int result = ::i2c_write_device(pi, handle, buf, count);
 #endif
@@ -558,14 +562,10 @@ namespace splashkit_lib
             {
                 return -1;
             }
-            recv_buf = (unsigned char *)send_buf;
+            unsigned char *buf = (unsigned char *)send_buf;
             int channel = handle_channel[handle];
-            // Checks whether the channel is in the correct range or if it's not 0
-            if (channel >= 0 || channel < 2)
-            {
-                return -1;
-            }
-            int val = wiringPiSPIDataRW(channel, recv_buf, count);
+            int val = wiringPiSPIDataRW(channel, buf, count);
+            recv_buf = (char *)buf;
             return val;
 #else
             return spi_xfer(pi, handle, send_buf, recv_buf, count);
