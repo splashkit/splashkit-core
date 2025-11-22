@@ -549,38 +549,31 @@ namespace splashkit_lib
         }
     }
 
-#ifdef RASPBERRY_PI_5
-    int sk_spi_transfer(int handle, char *buf, int count)
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
     {
         if (check_pi())
         {
-            // If handle is -1, it doesn't exist
+#ifdef RASPBERRY_PI_5
             if (handle == -1)
             {
                 return -1;
             }
-            unsigned char *u_buf = (unsigned char *)buf;
+            recv_buf = (unsigned char *)send_buf;
             int channel = handle_channel[handle];
             // Checks whether the channel is in the correct range or if it's not 0
-            // if (channel >= 0 || channel < 2)
-            // {
-            //     return -1;
-            // }
-            int val = wiringPiSPIDataRW(channel, u_buf, count);
+            if (channel >= 0 || channel < 2)
+            {
+                return -1;
+            }
+            int val = wiringPiSPIDataRW(channel, recv_buf, count);
             return val;
+#else
+            return spi_xfer(pi, handle, send_buf, recv_buf, count);
+#endif
         }
         else
             return -1;
     }
-#else
-    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
-    {
-        if (check_pi())
-            return spi_xfer(pi, handle, send_buf, recv_buf, count);
-        else
-            return -1;
-    }
-#endif
 
     //     void sk_set_servo_pulsewidth(int pin, int pulsewidth)
     //     {

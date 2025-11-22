@@ -196,11 +196,7 @@ namespace splashkit_lib
     void sk_gpio_clear_bank_1();
     int sk_spi_open(int channel, int speed, int spi_flags);
     int sk_spi_close(int handle);
-#ifdef RASPBERRY_PI_5
-    int sk_spi_transfer(int handle, char *buf, int count);
-#else
     int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count);
-#endif
 
     // I2C Functions
     int sk_i2c_open(int bus, int address);
