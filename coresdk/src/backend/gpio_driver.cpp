@@ -7,16 +7,16 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <cstdlib> // Add this line to include the necessary header for the exit() function
 
 #include <cstring>
 #ifdef RASPBERRY_PI
-// #include "pigpiod_if2.h"
+#include "pigpiod_if2.h"
 #include <wiringPi.h>
 #include <unordered_map>
 #include <wiringPiSPI.h>
 #include <wiringPiI2C.h>
-
 #endif
 
 #ifdef _WIN32
@@ -27,10 +27,6 @@
 #endif
 
 using namespace std;
-using std::vector;
-using std::to_string;
-using std::unordered_map;
-
 // Use https://abyz.me.uk/rpi/pigpio/pdif2.html for local command reference
 //   Archive Link: https://web.archive.org/web/20240423160241/https://abyz.me.uk/rpi/pigpio/pdif2.html
 //
@@ -51,6 +47,27 @@ namespace splashkit_lib
     unordered_map<int, int> pwm_range;
     unordered_map<int, int> handle_channel;
 
+    // Function to read /proc/cpuinfo and determine the Pi model
+    bool is_raspberry_pi_5()
+    {
+        ifstream model_file("/proc/device-tree/model");
+        string model_name;
+        if (model_file.is_open())
+        {
+            getline(model_file, model_name);
+            model_file.close();
+        }
+        if (model_name.find("Raspberry Pi 5") != std::string::npos)
+        {
+#define PI_5
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     // Check if pigpio_init() has been called before any other GPIO functions
     bool check_pi()
     {
@@ -63,20 +80,7 @@ namespace splashkit_lib
             return true;
     }
 
-    // Initialize the GPIO library
-    int sk_gpio_init()
-    {
-        if (wiringPiSetupGpio() == -1)
-        {
-            LOG(ERROR) << sk_gpio_error_message(pi);
-            return 1;
-        }
-        pi = wiringPiSetupGpio();
-        return pi;
-    }
-
-    // Read the value of a GPIO pin
-    int sk_gpio_read(int pin)
+    bool check_pi(int pin)
     {
         if (check_pi())
         {
@@ -84,14 +88,47 @@ namespace splashkit_lib
             if (pin < 0 || pin > 40)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return -1;
+                return false;
             }
-            int result = digitalRead(pin);
+            return true;
+        }
+        return false;
+    }
+
+    // Initialize the GPIO library
+    int sk_gpio_init()
+    {
+#ifdef RASPBERRY_PI_5
+        if (wiringPiSetupGpio() == -1)
+        {
+            LOG(ERROR) << sk_gpio_error_message(pi);
+            return 1;
+        }
+        pi = wiringPiSetupGpio();
+        LOG(INFO) << "Using rpi 5";
+#else
+        LOG(INFO) << "Using rpi 4";
+        pi = pigpio_start(0, 0);
+#endif
+        return pi;
+    }
+
+    // Read the value of a GPIO pin
+    int sk_gpio_read(int pin)
+    {
+        if (check_pi(pin))
+        {
+            int result;
+#ifdef RASPBERRY_PI_5
+            result = digitalRead(pin);
+#else
+
+            result = gpio_read(pi, pin);
+#endif
             // Verifies if a result is produced or not
             if (result < 0)
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
-                return -1;
             }
             return result;
         }
@@ -104,59 +141,74 @@ namespace splashkit_lib
     // Write a value to a GPIO pin
     void sk_gpio_write(int pin, int value)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
             // Checks if the value exists in the SplashKit library or not
             if (value < -1 || value > 2)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
                 return;
             }
+#ifdef RASPBERRY_PI_5
             digitalWrite(pin, value);
+#else
+            int result = gpio_write(pi, pin, value);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
     // Set the mode of a GPIO pin
     void sk_gpio_set_mode(int pin, int mode)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
             // Checks if the value exists in the SplashKit library or not
             if (mode < 0 || mode > 7)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_MODE);
                 return;
             }
+#ifdef RASPBERRY_PI_5
             pinMode(pin, mode);
             pin_modes[pin] = mode;
+#else
+            int result = set_mode(pi, pin, mode);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
     // Get the mode of a GPIO pin
     int sk_gpio_get_mode(int pin)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
+            int result;
+#ifdef RASPBERRY_PI_5
+            // result = pin_modes.count(pin) ? pin_modes[pin] : -1;
+            if (pin_modes.count(pin))
             {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return -1;
+                result = pin_modes[pin];
             }
-            int mode = pin_modes.count(pin) ? pin_modes[pin] : -1;
-            return mode;
+            else
+            {
+                result = -1;
+            }
+#else
+            result = get_mode(pi, pin);
+#endif
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+            return result;
         }
         else
         {
@@ -167,22 +219,24 @@ namespace splashkit_lib
     void sk_gpio_set_pull_up_down(int pin, int pud)
     {
         // Checks whether the pins are in the correct range
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
             // Checks if the pud exists in the SplashKit library or not
             if (pud < 0 || pud > 2)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_PUD);
                 return;
             }
+#ifdef RASPBERRY_PI_5
             pinMode(pin, INPUT);
             pullUpDnControl(pin, pud);
+#else
+            int result = set_pull_up_down(pi, pin, pud);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
@@ -190,40 +244,37 @@ namespace splashkit_lib
     //  PWM Functions
     void sk_set_pwm_range(int pin, int range)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
             // Checks whether newly set range is a reasonable value
             if (range <= 25 || range > 4096)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
                 return;
             }
+#ifdef RASPBERRY_PI_5
             // Save values to map to use for other functions (pigpio did this automatically)
             pinMode(pin, PWM_OUTPUT);
             pin_modes[pin] = PWM_OUTPUT;
             pwmSetMode(PWM_MODE_MS);
             pwmSetRange(range);
             pwm_range[pin] = range;
+#else
+            int result = set_PWM_range(pi, pin, range);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
     // Set frequency by setting both the range & clock
     void sk_set_pwm_frequency(int pin, int frequency)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
+#ifdef RASPBERRY_PI_5
             int range = pwm_range[pin];
             // Checks if range exists in the map of know PWM ranges
             if (range < 25)
@@ -242,20 +293,22 @@ namespace splashkit_lib
             }
             pwmSetRange(range);
             pwmSetClock(clock_divisor);
+#else
+            int result = set_PWM_frequency(pi, pin, frequency);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
     // Value must not be more than range (0% to 100%)
     void sk_set_pwm_dutycycle(int pin, int dutycycle)
     {
-        if (check_pi())
+        if (check_pi(pin))
         {
-            // Checks whether the pins are in the correct range
-            if (pin < 0 || pin > 40)
-            {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
-                return;
-            }
+#ifdef RASPBERRY_PI_5
             int range = pwm_range[pin];
             // Checks if range exists in the map of know PWM ranges
             if (range < 25)
@@ -270,6 +323,13 @@ namespace splashkit_lib
                 return;
             }
             pwmWrite(pin, dutycycle);
+#else
+            int result = set_PWM_dutycycle(pi, pin, dutycycle);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
         }
     }
 
@@ -277,6 +337,7 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             // Manually go through each pin and reset it to 0 (LOW)
             for (int pin = 0; pin <= PI_SIZE; ++pin)
             {
@@ -288,59 +349,81 @@ namespace splashkit_lib
                     pin_modes[pin] = LOW;
                 }
             }
+#else
+            clear_bank_1(pi, PI4B_GPIO_BITMASK);
+#endif
         }
     }
 
     // I2C Functions
-    int sk_i2c_open(int address)
+    int sk_i2c_open(int bus, int address)
     {
         if (check_pi())
         {
-            int handle = wiringPiI2CSetup(address);
-            if (handle < 0)
+#ifdef RASPBERRY_PI_5
+            int result = wiringPiI2CSetup(address);
+#else
+            int result = ::i2c_open(pi, bus, address, 0);
+#endif
+            if (result < 0)
             {
                 LOG(ERROR) << "Failed to open I2C device at address " << address << "\n";
             }
-            return handle;
+            return result;
         }
-        return -1;
+        else
+        {
+            return -1;
+        }
     }
 
-    // int sk_i2c_close(int handle)
-    // {
-    //     if (check_pi())
-    //     {
-    //         if (handle >= 0)
-    //         {
-    //             if (close(handle) == 0)
-    //             {
-    //                 return 0; // Success
-    //             }
-    //             else
-    //             {
-    //                 LOG(ERROR) << "Failed to close I2C handle " << handle;
-    //                 return -1; // Error in close
-    //             }
-    //         }
-    //         else
-    //         {
-    //             LOG(WARNING) << "Invalid I2C handle: " << handle;
-    //             return -1;
-    //         }
-    //     }
-    //     return -1; // Not running on Pi
-    // }
+    int sk_i2c_close(int handle)
+    {
+        if (check_pi())
+        {
+#ifdef RASPBERRY_PI_5
+            // if (handle >= 0)
+            // {
+            //     if (close(handle) == 0)
+            //     {
+            //         return 0; // Success
+            //     }
+            //     else
+            //     {
+            //         LOG(ERROR) << "Failed to close I2C handle " << handle;
+            //         return -1; // Error in close
+            //     }
+            // }
+            // else
+            // {
+            //     LOG(WARNING) << "Invalid I2C handle: " << handle;
+            //     return -1;
+            // }
+#else
+            int result = ::i2c_close(pi, handle);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
+#endif
+        }
+        return -1; // Not running on Pi
+    }
 
     int sk_i2c_read_byte(int handle)
     {
         // Assuming check_pi() ensures this is running on a Pi and initialized correctly
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CRead(handle);
             if (result < 0)
             {
                 LOG(ERROR) << "I2C Read Error: " << result; // Replace with your error handling
             }
+#else
+            int result = ::i2c_read_byte(pi, handle);
+#endif
             return result;
         }
         else
@@ -353,7 +436,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CWrite(handle, data);
+#else
+            int result = ::i2c_write_byte(pi, handle, data);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << "I2C Write Error: " << result; // Replace with your error handling if needed
@@ -370,7 +457,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CReadReg8(handle, reg);
+#else
+            int result = ::i2c_read_byte_data(pi, handle, reg);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << "I2C ReadReg Error (reg " << reg << "): " << result;
@@ -387,7 +478,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CWriteReg8(handle, reg, data);
+#else
+            int result = ::i2c_write_byte_data(pi, handle, reg, data);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << "I2C WriteReg Error (reg " << reg << ", data " << data << "): " << result;
@@ -399,7 +494,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CReadReg16(handle, reg);
+#else
+            int result = ::i2c_read_word_data(pi, handle, reg);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << "I2C ReadWord Error (reg " << reg << "): " << result;
@@ -416,7 +515,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             int result = wiringPiI2CWriteReg16(handle, reg, data);
+#else
+            int result = ::i2c_write_word_data(pi, handle, reg, data);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
@@ -429,8 +532,11 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             pi = -1;
-            return;
+#else
+            pigpio_stop(pi);
+#endif
         }
     }
 
@@ -439,6 +545,7 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             if (channel < 0 || channel > 2)
             {
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_GPIO);
@@ -448,6 +555,9 @@ namespace splashkit_lib
             // Save handle to unordered map
             handle_channel[handle] = channel;
             return handle;
+#else
+            return spi_open(pi, channel, speed, 0);
+#endif
         }
         else
         {
@@ -459,10 +569,14 @@ namespace splashkit_lib
     {
         if (check_pi())
         {
+#ifdef RASPBERRY_PI_5
             // Close SPI & reset handle value to 0
             // close(handle);
             handle_channel[handle] = 0;
             return 0;
+#else
+            return spi_close(pi, handle);
+#endif
         }
         else
         {
@@ -470,6 +584,7 @@ namespace splashkit_lib
         }
     }
 
+#ifdef RASPBERRY_PI_5
     int sk_spi_transfer(int handle, char *buf, int count)
     {
         if (check_pi())
@@ -492,28 +607,46 @@ namespace splashkit_lib
         else
             return -1;
     }
-    // void sk_set_servo_pulsewidth(int pin, int pulsewidth)
-    // {
-    //     if (!check_pi())
+#else
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
+    {
+        if (check_pi())
+            return spi_xfer(pi, handle, send_buf, recv_buf, count);
+        else
+            return -1;
+    }
+#endif
+
+    //     void sk_set_servo_pulsewidth(int pin, int pulsewidth)
+    //     {
+    // #ifdef RASPBERRY_PI_5
     //         return;
-    //     int result = set_servo_pulsewidth(pi, pin, pulsewidth);
-    //     if (result < 0)
-    //     {
-    //         LOG(ERROR) << sk_gpio_error_message(result);
+    // #else
+    //         if (!check_pi())
+    //             int result = set_servo_pulsewidth(pi, pin, pulsewidth);
+    //         if (result < 0)
+    //         {
+    //             LOG(ERROR) << sk_gpio_error_message(result);
+    //         }
+    // #endif
     //     }
-    // }
-    // int sk_get_servo_pulsewidth(int pin)
-    // {
-    //     if (!check_pi())
-    //         return -1;
-    //     int result = get_servo_pulsewidth(pi, pin);
-    //     if (result < 0)
+
+    //     int sk_get_servo_pulsewidth(int pin)
     //     {
-    //         LOG(ERROR) << sk_gpio_error_message(result);
+    // #ifdef RASPBERRY_PI_5
     //         return -1;
+    // #else
+    //         if (!check_pi())
+    //             return -1;
+    //         int result = get_servo_pulsewidth(pi, pin);
+    //         if (result < 0)
+    //         {
+    //             LOG(ERROR) << sk_gpio_error_message(result);
+    //             return -1;
+    //         }
+    //         return result;
+    // #endif
     //     }
-    //     return result;
-    // }
 
 #endif
 
@@ -1161,8 +1294,7 @@ namespace splashkit_lib
             return "Custom error: maximum error code.";
 
         default:
-            return "Unknown error code " + to_string(error_code);
+            return "Unknown error code " + std::to_string(error_code);
         }
     }
-
 }

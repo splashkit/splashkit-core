@@ -149,10 +149,11 @@ namespace splashkit_lib
     /**
      * Opens I2C communication on selected address. It will return -1 if not using Raspberry Pi.
      *
+     * @param bus    TThe I2C bus number.
      * @param address    The address of the I2C device.
      * @returns          The handle referencing this particular connection.
      */
-    int raspi_i2c_open(int address);
+    int raspi_i2c_open(int bus, int address);
 
     /**
      * Writes data to specified I2C connection.

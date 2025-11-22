@@ -160,8 +160,8 @@
 #define PI_NOT_ON_BCM2711 -145   // not available on BCM2711
 #define PI_ONLY_ON_BCM2711 -146  // only available on BCM2711
 
-#define PI_PIGIF_BAD_SEND  -2000
-#define PI_PIGIF_BAD_RECV  -2001
+#define PI_PIGIF_BAD_SEND -2000
+#define PI_PIGIF_BAD_RECV -2001
 #define PI_PIGIF_BAD_GETADDRINFO -2002
 #define PI_PIGIF_BAD_CONNECT -2003
 #define PI_PIGIF_BAD_SOCKET -2004
@@ -186,12 +186,11 @@
 // Size of base clock
 #define BASE_CLOCK 19200000
 
-
 namespace splashkit_lib
 {
 
 #ifdef RASPBERRY_PI
-
+    bool is_raspberry_pi_5();
     int sk_gpio_init();
     int sk_gpio_read(int pin);
     void sk_gpio_set_mode(int pin, int mode);
@@ -204,10 +203,14 @@ namespace splashkit_lib
     void sk_gpio_clear_bank_1();
     int sk_spi_open(int channel, int speed);
     int sk_spi_close(int handle);
+#ifdef RASPBERRY_PI_5
     int sk_spi_transfer(int handle, char *buf, int count);
+#else
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count);
+#endif
 
-    // I2C Functions
-    int sk_i2c_open(int address);
+// I2C Functions
+    int sk_i2c_open(int bus, int address);
     // int sk_i2c_close(int handle);
     int sk_i2c_read_byte(int handle);
     int sk_i2c_write_byte(int handle, int data);

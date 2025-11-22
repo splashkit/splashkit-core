@@ -215,7 +215,7 @@ void run_i2c_led_matrix_test()
 {
     cout << "Testing 8x8 LED matrix with HT16K33 I2C driver...\n";
 
-    int i2c_device = raspi_i2c_open(0x70);
+    int i2c_device = raspi_i2c_open(0, 0x70);
 
     ht16k33_init(i2c_device);
 
@@ -249,7 +249,7 @@ void run_joystick_i2c_led_matrix_test()
     adc_pin x_channel = ADC_PIN_0; // Change this to the desired channel
     adc_pin y_channel = ADC_PIN_1; // Change this to the desired channel
 
-    int i2c_device = raspi_i2c_open(0x70);
+    int i2c_device = raspi_i2c_open(0, 0x70);
 
     ht16k33_init(i2c_device);
 
@@ -560,7 +560,7 @@ void run_i2c_quad_14_seg_test()
 {
     cout << "Testing Quad 14-segment alphanumeric display with HT16K33 I2C driver...\n";
 
-    int i2c_device = raspi_i2c_open(0x70);
+    int i2c_device = raspi_i2c_open(0, 0x70);
 
     ht16k33_init(i2c_device);
 
@@ -575,7 +575,7 @@ void run_gpio_i2c_led_matrix_tests()
 {
     raspi_init();
 
-    run_i2c_led_matrix_test();
+    // run_i2c_led_matrix_test();
     // run_joystick_i2c_led_matrix_test();
     // run_i2c_quad_14_seg_test();
 

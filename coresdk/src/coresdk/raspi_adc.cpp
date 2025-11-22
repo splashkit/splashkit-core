@@ -111,9 +111,13 @@ namespace splashkit_lib
         result->name = name;
         result->type = type;
 
-        // Open the I2C channel to the ADC device.
-        // (For both ADS7830 and PCF8591, we assume the initialization is similar.)
+// Open the I2C channel to the ADC device.
+// (For both ADS7830 and PCF8591, we assume the initialization is similar.)
+#ifdef RASPBERRY_PI_5
         result->i2c_handle = sk_i2c_open(address);
+#else
+        result->i2c_handle = sk_i2c_open(bus, address);
+#endif
         if (result->i2c_handle < 0)
         {
             LOG(WARNING) << "Error opening ADC device " << name
