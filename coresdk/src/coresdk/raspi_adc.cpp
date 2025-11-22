@@ -31,8 +31,6 @@ namespace splashkit_lib
     // Static map to manage loaded ADC devices (keyed by name)
     static map<string, adc_device> _adc_devices;
 
-    static bool wiringPiInitialized = false;
-
     // a function to return address based on pin number of ads7830
     int _get_ads7830_pin_address(adc_pin pin)
     {
@@ -99,10 +97,8 @@ namespace splashkit_lib
         if (has_adc_device(name))
             return adc_device_named(name);
 
-        // Initialize WiringPi once
-        int val = sk_gpio_init();
-
         adc_device result = new _adc_data();
+        // result->id = ADC_PTR; // ADC_PTR is defined in backend_types.h (0x41444350)
         static int next_adc_id = 0;
         result->id = static_cast<splashkit_lib::pointer_identifier>(next_adc_id++);
 
@@ -146,7 +142,7 @@ namespace splashkit_lib
             // ask the user to check the device connection
             LOG(WARNING) << "Error communicating with ADC device, check your ADC connection" << name
                          << " on bus " << bus << " at address " << address;
-            // sk_i2c_close(result->i2c_handle);
+            sk_i2c_close(result->i2c_handle);
             delete result;
             return nullptr;
         }
@@ -162,13 +158,14 @@ namespace splashkit_lib
     adc_device open_adc(const string &name, int bus, int address, adc_type type_of_adc)
     {
 #ifdef RASPBERRY_PI
+        // Check if the device is already loaded
         if (has_adc_device(name))
         {
             LOG(WARNING) << "ADC device " << name << " already loaded.";
             return adc_device_named(name);
         }
 
-        // Load and open the ADC device with WiringPi-backed I2C functions
+        // Load the ADC device with the specified parameters
         return _load_adc_device(name, bus, address, type_of_adc);
 #else
         LOG(ERROR) << "ADC not supported on this platform";
@@ -318,8 +315,8 @@ namespace splashkit_lib
 #ifdef RASPBERRY_PI
         if (dev)
         {
-            // // Close the I2C connection
-            // sk_i2c_close(dev->i2c_handle);
+            // Close the I2C connection
+            sk_i2c_close(dev->i2c_handle);
             // Remove the device from our map
             _adc_devices.erase(dev->name);
             dev->id = NONE_PTR; // Set pointer to a non-valid identifier
@@ -352,10 +349,7 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         adc_device dev = adc_device_named(name);
-        if (dev != nullptr)
-            _close_adc_device(dev);
-        else
-            LOG(WARNING) << "Attempted to close unknown ADC device: " << name;
+        close_adc(dev);
 #else
         LOG(ERROR) << "ADC not supported on this platform";
 #endif

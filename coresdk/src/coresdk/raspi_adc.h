@@ -37,7 +37,7 @@ namespace splashkit_lib
      * Checks if an ADC device with the given name has been loaded.
      *
      * @param name  The name used to identify the ADC device.
-     * @returns     True if an ADC device with the supplied name exists.
+     * @returns     true if an ADC device with the supplied name exists.
      */
     bool has_adc_device(const string &name);
 
@@ -52,12 +52,12 @@ namespace splashkit_lib
     /**
      * Loads an ADC device on the specified I2C bus at a given address.
      *
-     * @param name  The name to assign this ADC device.
-     * @param bus   The I2C bus number.
+     * @param name    The name to assign this ADC device.
+     * @param bus     The I2C bus number.
      * @param address The I2C address of the ADC device.
      * @param type_of_adc    The type of ADC device (e.g., ADS7830, PCF8591).
      * @returns A valid adc_device on success, or nullptr on failure.
-     * 
+     *
      * @attribute class  adc_device
      * @attribute constructor true
      * @attribute suffix with_bus
@@ -79,10 +79,10 @@ namespace splashkit_lib
     /**
      * Reads an 8-bit value from the specified ADC channel on the device.
      *
-     * @param adc       The ADC device to read from.
-     * @param channel   The channel number to read (range depends on ADC type).
-     * @returns         The ADC conversion value (0–255), or -1 on error.
-     * 
+     * @param adc        The ADC device to read from.
+     * @param channel    The channel number to read (range depends on ADC type).
+     * @returns          The ADC conversion value (0–255), or -1 on error.
+     *
      * @attribute class   adc_device
      * @attribute self    adc
      * @attribute method  read
@@ -115,8 +115,8 @@ namespace splashkit_lib
     /**
      * Closes an ADC device given its name.
      *
-     * @param name The name of the ADC device to close.
-     * 
+     * @param name  The name of the ADC device to close.
+     *
      * @attribute suffix  named
      */
     void close_adc(const string &name);
