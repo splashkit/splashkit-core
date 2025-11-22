@@ -43,7 +43,7 @@ void setup_tests()
     add_test("Geometry", run_geometry_test);
     add_test("Graphics", run_graphics_test);
     add_test("Input", run_input_test);
-    add_test ("Logging", run_logging_test);
+    add_test("Logging", run_logging_test);
     add_test("Physics", run_physics_test);
     add_test("Resources", run_resources_tests);
     add_test("Shape drawing", run_shape_drawing_test);
@@ -67,7 +67,7 @@ void setup_tests()
     add_test("GPIO - SPI Basic Tests", run_gpio_spi_tests);
     add_test("GPIO - SPI MAX7219 LED matrix Tests", run_gpio_spi_led_matrix_tests);
     add_test("GPIO - I2C HT16K33 LED matrix Tests", run_gpio_i2c_led_matrix_tests);
-   
+    add_test("GPIO - I2C HT16K33 LED 14 Segment Tests", run_gpio_i2c_quad_14_seg_test);
 }
 
 int main(int argv, char **args)

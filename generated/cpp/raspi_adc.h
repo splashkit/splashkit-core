@@ -21,8 +21,8 @@ void close_adc(adc_device adc);
 void close_adc(const string &name);
 void close_all_adc();
 bool has_adc_device(const string &name);
-adc_device open_adc(const string &name, adc_type type);
-adc_device open_adc(const string &name, int bus, int address, adc_type type);
+adc_device open_adc(const string &name, adc_type type_of_adc);
+adc_device open_adc(const string &name, int bus, int address, adc_type type_of_adc);
 int read_adc(adc_device adc, adc_pin channel);
 int read_adc(const string &name, adc_pin channel);
 

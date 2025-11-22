@@ -36910,7 +36910,7 @@
     "group": "audio",
     "brief": null,
     "description": null,
-    "parsed_at": 1753421315,
+    "parsed_at": 1763278387,
     "path": "coresdk/src/coresdk/music.h",
     "functions": [
       {
@@ -37456,6 +37456,31 @@
         "attributes": {
           "group": "audio",
           "static": "audio"
+        }
+      },
+      {
+        "signature": "bool music_paused();",
+        "name": "music_paused",
+        "method_name": null,
+        "unique_global_name": "music_paused",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Checks whether music is currently paused.",
+        "brief": null,
+        "return": {
+          "type": "bool",
+          "description": "Returns true or false value representing whether music is currently paused.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+        },
+        "attributes": {
+          "getter": "paused",
+          "static": "audio",
+          "group": "audio"
         }
       },
       {
@@ -44312,7 +44337,7 @@
     "group": "raspberry",
     "brief": "Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1755863745,
+    "parsed_at": 1763278387,
     "path": "coresdk/src/coresdk/raspi_adc.h",
     "functions": [
       {
@@ -44493,7 +44518,7 @@
         }
       },
       {
-        "signature": "adc_device open_adc(const string &name,adc_type type);",
+        "signature": "adc_device open_adc(const string &name,adc_type type_of_adc);",
         "name": "open_adc",
         "method_name": null,
         "unique_global_name": "open_adc",
@@ -44523,7 +44548,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "type": {
+          "type_of_adc": {
             "type": "adc_type",
             "description": "The type of ADC device (e.g., ADS7830, PCF8591).",
             "is_pointer": false,
@@ -44545,7 +44570,7 @@
         }
       },
       {
-        "signature": "adc_device open_adc(const string &name,int bus,int address,adc_type type);",
+        "signature": "adc_device open_adc(const string &name,int bus,int address,adc_type type_of_adc);",
         "name": "open_adc",
         "method_name": null,
         "unique_global_name": "open_adc_with_bus",
@@ -44601,7 +44626,7 @@
             "is_vector": false,
             "type_parameter": null
           },
-          "type": {
+          "type_of_adc": {
             "type": "adc_type",
             "description": "The type of ADC device (e.g., ADS7830, PCF8591).",
             "is_pointer": false,
@@ -44760,7 +44785,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1755863866,
+    "parsed_at": 1763278388,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {
@@ -44918,6 +44943,183 @@
           }
         },
         "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "int raspi_i2c_open(int bus,int address);",
+        "name": "raspi_i2c_open",
+        "method_name": null,
+        "unique_global_name": "raspi_i2c_open",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Opens I2C communication on selected address. It will return -1 if not using Raspberry Pi.",
+        "brief": null,
+        "return": {
+          "type": "int",
+          "description": "The handle referencing this particular connection.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "bus": {
+            "type": "int",
+            "description": "The bus of the I2C device.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "address": {
+            "type": "int",
+            "description": "The address of the I2C device.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_i2c_write(int handle,int data);",
+        "name": "raspi_i2c_write",
+        "method_name": null,
+        "unique_global_name": "raspi_i2c_write",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Writes data to specified I2C connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "handle": {
+            "type": "int",
+            "description": "The reference for a specific I2C connection.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "data": {
+            "type": "int",
+            "description": "The data to send.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "group": "raspberry",
+          "static": "raspberry"
+        }
+      },
+      {
+        "signature": "void raspi_i2c_write(int handle,int reg,int data,int bytes);",
+        "name": "raspi_i2c_write",
+        "method_name": null,
+        "unique_global_name": "raspi_i2c_write_data",
+        "unique_method_name": null,
+        "suffix_name": null,
+        "description": "Writes 8-bit (1 byte) or 16-bit (2 bytes) data to specified I2C connection.",
+        "brief": null,
+        "return": {
+          "type": "void",
+          "description": null,
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "parameters": {
+          "handle": {
+            "type": "int",
+            "description": "The reference for a specific I2C connection.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "reg": {
+            "type": "int",
+            "description": "The register to send the data to",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "data": {
+            "type": "int",
+            "description": "The data to send.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          },
+          "bytes": {
+            "type": "int",
+            "description": "The number of bytes to be transferred.",
+            "is_pointer": false,
+            "is_const": false,
+            "is_reference": false,
+            "is_array": false,
+            "array_dimension_sizes": [
+
+            ],
+            "is_vector": false,
+            "type_parameter": null
+          }
+        },
+        "attributes": {
+          "suffix": "data",
           "group": "raspberry",
           "static": "raspberry"
         }
@@ -65902,7 +66104,7 @@
     "group": "types",
     "brief": "SplashKit Types simplifies data type creation and management for streamlined programming.",
     "description": null,
-    "parsed_at": 1755863746,
+    "parsed_at": 1763278388,
     "path": "coresdk/src/coresdk/types.h",
     "functions": [
 

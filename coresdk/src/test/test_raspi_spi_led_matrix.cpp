@@ -173,7 +173,7 @@ void run_pattern_max7219_led_matrix_test()
     raspi_set_mode(PIN_11, GPIO_INPUT);
     raspi_set_pull_up_down(PIN_11, PUD_UP);
 
-    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED);
+    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED, 0);
 
     // Initialising MAX7219
     max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)
@@ -194,12 +194,13 @@ void run_pattern_max7219_led_matrix_test()
     {
         for (int j = 1; j <= 8; j++)
         {
-            // Display "heart pattern" (patterns[1])
+            // Display patterns
             max7219_write(j, patterns[i][j - 1]);
         }
         delay(1000);
     }
-
+    
+    max7219_write(0x0C, 0x00); // Shutdown Register: Normal operation (not in shutdown mode)
     raspi_spi_close(handle);
 }
 
@@ -254,7 +255,7 @@ void run_joystick_max7219_led_matrix_test()
     adc_pin y_channel = ADC_PIN_1; // Change this to the desired channel
 
     // Set up SPI
-    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED);
+    int handle = raspi_spi_open(SPI_CHANNEL, SPI_SPEED, 0);
 
     // Initialising MAX7219
     max7219_write(0x09, 0x00); // Decode Mode: No decoding for digits (useful for 7-segment displays)
@@ -298,6 +299,7 @@ void run_joystick_max7219_led_matrix_test()
         // cout << "x,y = " << dx << "," << dy << endl;
     }
 
+    max7219_write(0x0C, 0x00); // Shutdown Register: Normal operation (not in shutdown mode)
     close_adc(dev);
     raspi_spi_close(handle);
 }

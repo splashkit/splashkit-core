@@ -3283,6 +3283,9 @@ namespace SplashKitSDK
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_named__string_ref", CharSet=CharSet.Ansi)]
     private static extern __sklib_ptr __sklib__music_named__string_ref(__sklib_string name);
 
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_paused", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__music_paused();
+
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__music_playing", CharSet=CharSet.Ansi)]
     private static extern int __sklib__music_playing();
 
@@ -3731,10 +3734,10 @@ namespace SplashKitSDK
     private static extern int __sklib__has_adc_device__string_ref(__sklib_string name);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_adc__string_ref__adc_type", CharSet=CharSet.Ansi)]
-    private static extern __sklib_ptr __sklib__open_adc__string_ref__adc_type(__sklib_string name, int type);
+    private static extern __sklib_ptr __sklib__open_adc__string_ref__adc_type(__sklib_string name, int typeOfAdc);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__open_adc__string_ref__int__int__adc_type", CharSet=CharSet.Ansi)]
-    private static extern __sklib_ptr __sklib__open_adc__string_ref__int__int__adc_type(__sklib_string name, int bus, int address, int type);
+    private static extern __sklib_ptr __sklib__open_adc__string_ref__int__int__adc_type(__sklib_string name, int bus, int address, int typeOfAdc);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__read_adc__adc_device__adc_pin", CharSet=CharSet.Ansi)]
     private static extern int __sklib__read_adc__adc_device__adc_pin(__sklib_ptr adc, int channel);
@@ -3756,6 +3759,15 @@ namespace SplashKitSDK
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_get_servo_pulsewidth__gpio_pin", CharSet=CharSet.Ansi)]
     private static extern int __sklib__raspi_get_servo_pulsewidth__gpio_pin(int pin);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_i2c_open__int__int", CharSet=CharSet.Ansi)]
+    private static extern int __sklib__raspi_i2c_open__int__int(int bus, int address);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_i2c_write__int__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_i2c_write__int__int(int handle, int data);
+
+    [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_i2c_write__int__int__int__int", CharSet=CharSet.Ansi)]
+    private static extern void __sklib__raspi_i2c_write__int__int__int__int(int handle, int reg, int data, int bytes);
 
     [DllImport("SplashKit", CallingConvention=CallingConvention.Cdecl, EntryPoint="__sklib__raspi_init", CharSet=CharSet.Ansi)]
     private static extern void __sklib__raspi_init();
@@ -16029,6 +16041,16 @@ namespace SplashKitSDK
       return __skadapter__to_music(__skreturn);
     }
     /// <summary>
+    /// Checks whether music is currently paused.
+    /// </summary>
+    /// <returns>Returns true or false value representing whether music is currently paused.</returns>
+    public static bool MusicPaused()
+    {
+      int __skreturn;
+      __skreturn = __sklib__music_paused();
+      return __skadapter__to_bool(__skreturn);
+    }
+    /// <summary>
     /// Checks whether music is currently playing.
     /// </summary>
     /// <returns>Returns true or false value representing whether music is currently playing.</returns>
@@ -18150,16 +18172,16 @@ namespace SplashKitSDK
     /// Opens an ADC device with the specified name and type. Defaults to bus 1 and address 0x48.
     /// </summary>
     /// <param name="name"> The name of the ADC device to open.</param>
-    /// <param name="type"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
+    /// <param name="typeOfAdc"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
     /// <returns>A valid adc_device on success, or nullptr on failure.</returns>
-    public static AdcDevice OpenAdc(string name, AdcType type)
+    public static AdcDevice OpenAdc(string name, AdcType typeOfAdc)
     {
       __sklib_string __skparam__name;
-      int __skparam__type;
+      int __skparam__type_of_adc;
       __sklib_ptr __skreturn;
       __skparam__name = __skadapter__to_sklib_string(name);
-      __skparam__type = __skadapter__to_sklib_adc_type(type);
-      __skreturn = __sklib__open_adc__string_ref__adc_type(__skparam__name, __skparam__type);
+      __skparam__type_of_adc = __skadapter__to_sklib_adc_type(typeOfAdc);
+      __skreturn = __sklib__open_adc__string_ref__adc_type(__skparam__name, __skparam__type_of_adc);
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_adc_device(__skreturn);
     }
@@ -18169,20 +18191,20 @@ namespace SplashKitSDK
     /// <param name="name"> The name to assign this ADC device.</param>
     /// <param name="bus"> The I2C bus number.</param>
     /// <param name="address"> The I2C address of the ADC device.</param>
-    /// <param name="type"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
+    /// <param name="typeOfAdc"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
     /// <returns>A valid adc_device on success, or nullptr on failure.</returns>
-    public static AdcDevice OpenAdc(string name, int bus, int address, AdcType type)
+    public static AdcDevice OpenAdc(string name, int bus, int address, AdcType typeOfAdc)
     {
       __sklib_string __skparam__name;
       int __skparam__bus;
       int __skparam__address;
-      int __skparam__type;
+      int __skparam__type_of_adc;
       __sklib_ptr __skreturn;
       __skparam__name = __skadapter__to_sklib_string(name);
       __skparam__bus = __skadapter__to_sklib_int(bus);
       __skparam__address = __skadapter__to_sklib_int(address);
-      __skparam__type = __skadapter__to_sklib_adc_type(type);
-      __skreturn = __sklib__open_adc__string_ref__int__int__adc_type(__skparam__name, __skparam__bus, __skparam__address, __skparam__type);
+      __skparam__type_of_adc = __skadapter__to_sklib_adc_type(typeOfAdc);
+      __skreturn = __sklib__open_adc__string_ref__int__int__adc_type(__skparam__name, __skparam__bus, __skparam__address, __skparam__type_of_adc);
     __skadapter__free__sklib_string(ref __skparam__name);
       return __skadapter__to_adc_device(__skreturn);
     }
@@ -18274,6 +18296,54 @@ namespace SplashKitSDK
       __skparam__pin = __skadapter__to_sklib_gpio_pin(pin);
       __skreturn = __sklib__raspi_get_servo_pulsewidth__gpio_pin(__skparam__pin);
       return __skadapter__to_int(__skreturn);
+    }
+    /// <summary>
+    /// Opens I2C communication on selected address. It will return -1 if not using Raspberry Pi.
+    /// </summary>
+    /// <param name="bus"> The bus of the I2C device.</param>
+    /// <param name="address"> The address of the I2C device.</param>
+    /// <returns>The handle referencing this particular connection.</returns>
+    public static int RaspiI2cOpen(int bus, int address)
+    {
+      int __skparam__bus;
+      int __skparam__address;
+      int __skreturn;
+      __skparam__bus = __skadapter__to_sklib_int(bus);
+      __skparam__address = __skadapter__to_sklib_int(address);
+      __skreturn = __sklib__raspi_i2c_open__int__int(__skparam__bus, __skparam__address);
+      return __skadapter__to_int(__skreturn);
+    }
+    /// <summary>
+    /// Writes data to specified I2C connection.
+    /// </summary>
+    /// <param name="handle"> The reference for a specific I2C connection.</param>
+    /// <param name="data"> The data to send.</param>
+    public static void RaspiI2cWrite(int handle, int data)
+    {
+      int __skparam__handle;
+      int __skparam__data;
+      __skparam__handle = __skadapter__to_sklib_int(handle);
+      __skparam__data = __skadapter__to_sklib_int(data);
+      __sklib__raspi_i2c_write__int__int(__skparam__handle, __skparam__data);
+    }
+    /// <summary>
+    /// Writes 8-bit (1 byte) or 16-bit (2 bytes) data to specified I2C connection.
+    /// </summary>
+    /// <param name="handle"> The reference for a specific I2C connection.</param>
+    /// <param name="reg"> The register to send the data to</param>
+    /// <param name="data"> The data to send.</param>
+    /// <param name="bytes"> The number of bytes to be transferred.</param>
+    public static void RaspiI2cWrite(int handle, int reg, int data, int bytes)
+    {
+      int __skparam__handle;
+      int __skparam__reg;
+      int __skparam__data;
+      int __skparam__bytes;
+      __skparam__handle = __skadapter__to_sklib_int(handle);
+      __skparam__reg = __skadapter__to_sklib_int(reg);
+      __skparam__data = __skadapter__to_sklib_int(data);
+      __skparam__bytes = __skadapter__to_sklib_int(bytes);
+      __sklib__raspi_i2c_write__int__int__int__int(__skparam__handle, __skparam__reg, __skparam__data, __skparam__bytes);
     }
     /// <summary>
     /// This function initializes the GPIO library for use. It should be called before any other GPIO functions.
@@ -27846,8 +27916,8 @@ public class AdcDevice : PointerWrapper
     /// Creates a new instance of AdcDevice using the provided parameters.
     /// </summary>
     /// <param name="name"> The name of the ADC device to open.</param>
-    /// <param name="type"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
-    public AdcDevice(string name, AdcType type) : base ( SplashKit.OpenAdc(name, type), false )
+    /// <param name="typeOfAdc"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
+    public AdcDevice(string name, AdcType typeOfAdc) : base ( SplashKit.OpenAdc(name, typeOfAdc), false )
     { }
     /// <summary>
     /// Creates a new instance of AdcDevice using the provided parameters.
@@ -27855,8 +27925,8 @@ public class AdcDevice : PointerWrapper
     /// <param name="name"> The name to assign this ADC device.</param>
     /// <param name="bus"> The I2C bus number.</param>
     /// <param name="address"> The I2C address of the ADC device.</param>
-    /// <param name="type"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
-    public AdcDevice(string name, int bus, int address, AdcType type) : base ( SplashKit.OpenAdc(name, bus, address, type), false )
+    /// <param name="typeOfAdc"> The type of ADC device (e.g., ADS7830, PCF8591).</param>
+    public AdcDevice(string name, int bus, int address, AdcType typeOfAdc) : base ( SplashKit.OpenAdc(name, bus, address, typeOfAdc), false )
     { }
     protected internal override void DoFree()
     {
@@ -32255,6 +32325,13 @@ public static class Audio{
     public static bool IsReady
     {
         get { return SplashKit.AudioReady(); }
+    }
+    /// <summary>
+    /// Gets or sets the Paused property of the Audio.
+    /// </summary>
+    public static bool Paused
+    {
+        get { return SplashKit.MusicPaused(); }
     }
     /// <summary>
     /// Gets or sets the Playing property of the Audio.

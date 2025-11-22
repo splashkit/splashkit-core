@@ -149,7 +149,7 @@ namespace splashkit_lib
     /**
      * Opens I2C communication on selected address. It will return -1 if not using Raspberry Pi.
      *
-     * @param bus    TThe I2C bus number.
+     * @param bus    The bus of the I2C device.
      * @param address    The address of the I2C device.
      * @returns          The handle referencing this particular connection.
      */
@@ -170,30 +170,38 @@ namespace splashkit_lib
      * @param reg      The register to send the data to
      * @param data     The data to send.
      * @param bytes    The number of bytes to be transferred.
-     * 
+     *
      * @attribute suffix data
      */
     void raspi_i2c_write(int handle, int reg, int data, int bytes);
 
-    // /**
-    //  * @brief Sets the pulse width for the specified pin.
-    //  *
-    //  * This function sets the pulse width for the specified pin.
-    //  *
-    //  * @param pin         The pin to set the pulse width for.
-    //  * @param pulsewidth  The pulse width to set for the pin.
-    //  */
-    // void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth);
+    /**
+     * Converts an ASCII character to a binary value to be used with the Quad 14-segment display module (HT16K33 backpack).
+     *
+     * @param ascii_char   The ascii character to be converted to a 16-bit binary value.
+     * @returns            The binary value used to display a character on the 14-segment display.
+     */
+    unsigned short get_alpha_font_14_seg(char ascii_char);
 
-    // /**
-    //  * @brief Gets the pulse width for the specified pin.
-    //  *
-    //  * This function retrieves the pulse width for the specified pin.
-    //  *
-    //  * @param pin  The pin to get the pulse width for.
-    //  * @returns    The pulse width of the pin.
-    //  */
-    // int raspi_get_servo_pulsewidth(gpio_pin pin);
+    /**
+     * @brief Sets the pulse width for the specified pin.
+     *
+     * This function sets the pulse width for the specified pin.
+     *
+     * @param pin         The pin to set the pulse width for.
+     * @param pulsewidth  The pulse width to set for the pin.
+     */
+    void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth);
+
+    /**
+     * @brief Gets the pulse width for the specified pin.
+     *
+     * This function retrieves the pulse width for the specified pin.
+     *
+     * @param pin  The pin to get the pulse width for.
+     * @returns    The pulse width of the pin.
+     */
+    int raspi_get_servo_pulsewidth(gpio_pin pin);
 
     /**
      * @brief Cleans up and releases any resources used by the GPIO library.

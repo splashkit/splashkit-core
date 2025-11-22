@@ -3093,6 +3093,8 @@ sklib.__sklib__music_name__music.argtypes = [ c_void_p ]
 sklib.__sklib__music_name__music.restype = _sklib_string
 sklib.__sklib__music_named__string_ref.argtypes = [ _sklib_string ]
 sklib.__sklib__music_named__string_ref.restype = c_void_p
+sklib.__sklib__music_paused.argtypes = [  ]
+sklib.__sklib__music_paused.restype = c_int32
 sklib.__sklib__music_playing.argtypes = [  ]
 sklib.__sklib__music_playing.restype = c_int32
 sklib.__sklib__music_valid__music.argtypes = [ c_void_p ]
@@ -3409,6 +3411,12 @@ sklib.__sklib__raspi_get_mode__gpio_pin.argtypes = [ c_int ]
 sklib.__sklib__raspi_get_mode__gpio_pin.restype = c_int
 sklib.__sklib__raspi_get_servo_pulsewidth__gpio_pin.argtypes = [ c_int ]
 sklib.__sklib__raspi_get_servo_pulsewidth__gpio_pin.restype = c_int
+sklib.__sklib__raspi_i2c_open__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_i2c_open__int__int.restype = c_int
+sklib.__sklib__raspi_i2c_write__int__int.argtypes = [ c_int, c_int ]
+sklib.__sklib__raspi_i2c_write__int__int.restype = None
+sklib.__sklib__raspi_i2c_write__int__int__int__int.argtypes = [ c_int, c_int, c_int, c_int ]
+sklib.__sklib__raspi_i2c_write__int__int__int__int.restype = None
 sklib.__sklib__raspi_init.argtypes = [  ]
 sklib.__sklib__raspi_init.restype = None
 sklib.__sklib__raspi_read__gpio_pin.argtypes = [ c_int ]
@@ -7713,6 +7721,9 @@ def music_named ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__music_named__string_ref(__skparam__name)
     return __skadapter__to_music(__skreturn)
+def music_paused (  ):
+    __skreturn = sklib.__sklib__music_paused()
+    return __skadapter__to_bool(__skreturn)
 def music_playing (  ):
     __skreturn = sklib.__sklib__music_playing()
     return __skadapter__to_bool(__skreturn)
@@ -8356,17 +8367,17 @@ def has_adc_device ( name ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skreturn = sklib.__sklib__has_adc_device__string_ref(__skparam__name)
     return __skadapter__to_bool(__skreturn)
-def open_adc ( name, type ):
+def open_adc ( name, type_of_adc ):
     __skparam__name = __skadapter__to_sklib_string(name)
-    __skparam__type = __skadapter__to_sklib_adc_type(type)
-    __skreturn = sklib.__sklib__open_adc__string_ref__adc_type(__skparam__name, __skparam__type)
+    __skparam__type_of_adc = __skadapter__to_sklib_adc_type(type_of_adc)
+    __skreturn = sklib.__sklib__open_adc__string_ref__adc_type(__skparam__name, __skparam__type_of_adc)
     return __skadapter__to_adc_device(__skreturn)
-def open_adc_with_bus ( name, bus, address, type ):
+def open_adc_with_bus ( name, bus, address, type_of_adc ):
     __skparam__name = __skadapter__to_sklib_string(name)
     __skparam__bus = __skadapter__to_sklib_int(bus)
     __skparam__address = __skadapter__to_sklib_int(address)
-    __skparam__type = __skadapter__to_sklib_adc_type(type)
-    __skreturn = sklib.__sklib__open_adc__string_ref__int__int__adc_type(__skparam__name, __skparam__bus, __skparam__address, __skparam__type)
+    __skparam__type_of_adc = __skadapter__to_sklib_adc_type(type_of_adc)
+    __skreturn = sklib.__sklib__open_adc__string_ref__int__int__adc_type(__skparam__name, __skparam__bus, __skparam__address, __skparam__type_of_adc)
     return __skadapter__to_adc_device(__skreturn)
 def read_adc ( adc, channel ):
     __skparam__adc = __skadapter__to_sklib_adc_device(adc)
@@ -8395,6 +8406,21 @@ def raspi_get_servo_pulsewidth ( pin ):
     __skparam__pin = __skadapter__to_sklib_gpio_pin(pin)
     __skreturn = sklib.__sklib__raspi_get_servo_pulsewidth__gpio_pin(__skparam__pin)
     return __skadapter__to_int(__skreturn)
+def raspi_i2c_open ( bus, address ):
+    __skparam__bus = __skadapter__to_sklib_int(bus)
+    __skparam__address = __skadapter__to_sklib_int(address)
+    __skreturn = sklib.__sklib__raspi_i2c_open__int__int(__skparam__bus, __skparam__address)
+    return __skadapter__to_int(__skreturn)
+def raspi_i2c_write ( handle, data ):
+    __skparam__handle = __skadapter__to_sklib_int(handle)
+    __skparam__data = __skadapter__to_sklib_int(data)
+    sklib.__sklib__raspi_i2c_write__int__int(__skparam__handle, __skparam__data)
+def raspi_i2c_write_data ( handle, reg, data, bytes ):
+    __skparam__handle = __skadapter__to_sklib_int(handle)
+    __skparam__reg = __skadapter__to_sklib_int(reg)
+    __skparam__data = __skadapter__to_sklib_int(data)
+    __skparam__bytes = __skadapter__to_sklib_int(bytes)
+    sklib.__sklib__raspi_i2c_write__int__int__int__int(__skparam__handle, __skparam__reg, __skparam__data, __skparam__bytes)
 def raspi_init (  ):
     sklib.__sklib__raspi_init()
 def raspi_read ( pin ):
