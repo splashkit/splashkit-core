@@ -12,11 +12,17 @@
 
 #include <cstring>
 #ifdef RASPBERRY_PI
-#include "pigpiod_if2.h"
+
+#ifdef RASPBERRY_PI_5
 #include <wiringPi.h>
 #include <unordered_map>
 #include <wiringPiSPI.h>
 #include <wiringPiI2C.h>
+
+#else
+#include "pigpiod_if2.h"
+
+#endif
 #endif
 
 #ifdef _WIN32
