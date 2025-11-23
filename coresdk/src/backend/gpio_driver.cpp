@@ -335,14 +335,14 @@ namespace splashkit_lib
         if (check_pi())
         {
 #ifdef RASPBERRY_PI_5
-            // Can add WiringPi i2c closing functionality later if needed
+            int result = close(handle);
 #else
             int result = ::i2c_close(pi, handle);
+#endif
             if (result < 0)
             {
                 LOG(ERROR) << sk_gpio_error_message(result);
             }
-#endif
         }
     }
 

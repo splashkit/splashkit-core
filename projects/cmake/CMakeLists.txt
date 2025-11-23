@@ -146,70 +146,62 @@ if (NOT APPLE AND NOT MSYS)
         endif()
     endif()
 
-    if(RASPBERRY_PI)
-        message("-- Raspberry Pi Detected")
-        add_definitions(-DRASPBERRY_PI)
+    # Use WiringPi for Raspberry Pi 5 (limited functionality)
+    if(RASPBERRY_PI_5)
+        # Locate WiringPi libraries
+        find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.hmake HINTS /usr/include /usr/local/include)
+        find_library(WIRINGPI_LIBRARY NAMES wiringPi libwiringPi.so HINTS /usr/lib /usr/local/lib)
 
-        if(RASPBERRY_PI_5) # Use WiringPi for Raspberry Pi 5 (limited functionality)
+        if(WIRINGPI_LIBRARY AND WIRINGPI_INCLUDE_DIR)
+            message("-- WiringPi library found: ${WIRINGPI_LIBRARY}")
+            set(WIRINGPI_LIBS ${WIRINGPI_LIBRARY})
+            include_directories(${WIRINGPI_INCLUDE_DIR})
+            add_definitions(-DRASPBERRY_PI)
             add_definitions(-DRASPBERRY_PI_5)
-
-            # Locate WiringPi libraries
-            find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.h wiringPiSPI.h wiringPiI2C.h HINTS /usr/include /usr/local/include)
-            find_library(WIRINGPI_LIBRARY NAMES wiringPi libwiringPi.so HINTS /usr/lib /usr/local/lib)
-
-            if(WIRINGPI_LIBRARY AND WIRINGPI_INCLUDE_DIR)
-                message("-- WiringPi library found: ${WIRINGPI_LIBRARY}")
-                set(WIRINGPI_LIBS ${WIRINGPI_LIBRARY})
-                include_directories(${WIRINGPI_INCLUDE_DIR})
-                add_definitions(-DRASPBERRY_PI)
-                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-            else()
-                message(WARNING "-- WiringPi library NOT found. Some features may be unavailable.")
-            endif()
-
-        else() # Use pigpio for Raspberry Pi 4 and below
-
-            # Locate Pigpio libraries
-            find_path(PIGPIOD_INCLUDE_DIR NAMES pigpiod_if2.h PATHS "/usr/include")
-            find_library(PIGPIOD_IF2_LIB NAMES pigpiod_if2 HINTS "/usr/lib")
-            find_library(PIGPIO_LIB NAMES pigpio HINTS "/usr/lib")
-            include(FindPackageHandleStandardArgs)
-            find_package_handle_standard_args(PIGPIO DEFAULT_MSG PIGPIOD_INCLUDE_DIR PIGPIOD_IF2_LIB PIGPIO_LIB)
-            if(PIGPIO_FOUND)
-                message("-- Pigpio libraries found")
-                include_directories(${PIGPIOD_INCLUDE_DIR})
-                add_definitions(-DRASPBERRY_PI)
-                # add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
-                # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
-                set(LIB_FLAGS "-lSDL2 \
-                            -lSDL2_mixer \
-                            -lSDL2_ttf \
-                            -lSDL2_gfx \
-                            -lSDL2_image \
-                            -lSDL2_net \
-                            -lpthread \
-                            -lbz2 \
-                            -lFLAC \
-                            -lvorbis \
-                            -lz \
-                            -lpng16 \
-                            -lvorbisfile \
-                            -logg \
-                            -lwebp \
-                            -lfreetype \
-                            -lcurl \
-                            -ldl \
-                            -lstdc++fs \
-                            -lpigpiod_if2")
-                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-                set(PIGPIO_LIBS ${PIGPIOD_IF2_LIB} ${PIGPIO_LIB})
-            else()
-                message(WARNING "-- Pigpio libraries NOT found. Some features may be unavailable.")
-            endif()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+        else()
+            message(WARNING "-- WiringPi library NOT found. Some features may be unavailable.")
         endif()
-        
-        
-
+    
+    # Use pigpio for Raspberry Pi 4 and below
+    elseif(RASPBERRY_PI)
+        message("-- Raspberry Pi Detected")
+        # Locate Pigpio libraries
+        find_path(PIGPIOD_INCLUDE_DIR NAMES pigpiod_if2.h PATHS "/usr/include")
+        find_library(PIGPIOD_IF2_LIB NAMES pigpiod_if2 HINTS "/usr/lib")
+        find_library(PIGPIO_LIB NAMES pigpio HINTS "/usr/lib")
+        include(FindPackageHandleStandardArgs)
+        find_package_handle_standard_args(PIGPIO DEFAULT_MSG PIGPIOD_INCLUDE_DIR PIGPIOD_IF2_LIB PIGPIO_LIB)
+        if(PIGPIO_FOUND)
+            message("-- Pigpio libraries found")
+            include_directories(${PIGPIOD_INCLUDE_DIR})
+            add_definitions(-DRASPBERRY_PI)
+            # add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
+            # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
+            set(LIB_FLAGS "-lSDL2 \
+                        -lSDL2_mixer \
+                        -lSDL2_ttf \
+                        -lSDL2_gfx \
+                        -lSDL2_image \
+                        -lSDL2_net \
+                        -lpthread \
+                        -lbz2 \
+                        -lFLAC \
+                        -lvorbis \
+                        -lz \
+                        -lpng16 \
+                        -lvorbisfile \
+                        -logg \
+                        -lwebp \
+                        -lfreetype \
+                        -lcurl \
+                        -ldl \
+                        -lstdc++fs \
+                        -lpigpiod_if2")
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+        else()
+            message(WARNING "-- Pigpio libraries NOT found. Some features may be unavailable.")
+        endif()
     else()
         message("Raspberry Pi not detected")
     endif()
