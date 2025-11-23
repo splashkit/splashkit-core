@@ -94,7 +94,7 @@ namespace splashkit_lib
             return;
         // input speed goes from 0 to 1
         // output speed goes from 0 to 255
-        int pwm_speed = static_cast<int>(speed * 255 * 2);
+        int pwm_speed = static_cast<int>(speed * 255);
         if (speed < 0)
         {
             speed = 0;
@@ -108,7 +108,6 @@ namespace splashkit_lib
                          << "greater than 1, setting to 1";
         }
 
-        raspi_set_pwm_range(dev->en, 255 * 2);
         raspi_set_pwm_dutycycle(dev->en, pwm_speed);
 #else
         LOG(ERROR) << "Motor driver not supported on this platform";

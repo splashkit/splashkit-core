@@ -91,7 +91,7 @@ elseif(MSYS)
                     -Wl,-Bdynamic \
                     -lws2_32 \
                     -lcivetweb")
-
+                    
 # LINUX PROJECT FLAGS
 else()
     set(LIB_FLAGS "-lSDL2 \
@@ -125,7 +125,6 @@ if (NOT APPLE AND NOT MSYS)
         file(READ "/proc/device-tree/model" DEVICE_MODEL)
         if(DEVICE_MODEL MATCHES "Raspberry Pi")
             set(RASPBERRY_PI TRUE)
-
             # Check if using Pi 5 (to use Wiring Pi)
             if(DEVICE_MODEL MATCHES "Raspberry Pi 5")
                 set(RASPBERRY_PI_5 TRUE)
@@ -139,7 +138,7 @@ if (NOT APPLE AND NOT MSYS)
             file(READ "/proc/cpuinfo" CPU_INFO)
             if(CPU_INFO MATCHES "BCM[0-9]+")
                 set(RASPBERRY_PI TRUE)
-
+                # Check if using Pi 5 (to use Wiring Pi)
                 if(CPU_INFO MATCHES "BCM2712")
                     set(RASPBERRY_PI_5 TRUE)
                 endif()
@@ -162,6 +161,8 @@ if (NOT APPLE AND NOT MSYS)
                 message("-- WiringPi library found: ${WIRINGPI_LIBRARY}")
                 set(WIRINGPI_LIBS ${WIRINGPI_LIBRARY})
                 include_directories(${WIRINGPI_INCLUDE_DIR})
+                add_definitions(-DRASPBERRY_PI)
+                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
             else()
                 message(WARNING "-- WiringPi library NOT found. Some features may be unavailable.")
             endif()
@@ -177,6 +178,8 @@ if (NOT APPLE AND NOT MSYS)
             if(PIGPIO_FOUND)
                 message("-- Pigpio libraries found")
                 include_directories(${PIGPIOD_INCLUDE_DIR})
+                add_definitions(-DRASPBERRY_PI)
+                # add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
                 # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
                 set(LIB_FLAGS "-lSDL2 \
                             -lSDL2_mixer \
@@ -198,13 +201,14 @@ if (NOT APPLE AND NOT MSYS)
                             -ldl \
                             -lstdc++fs \
                             -lpigpiod_if2")
+                set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
                 set(PIGPIO_LIBS ${PIGPIOD_IF2_LIB} ${PIGPIO_LIB})
             else()
                 message(WARNING "-- Pigpio libraries NOT found. Some features may be unavailable.")
             endif()
         endif()
         
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+        
 
     else()
         message("Raspberry Pi not detected")
@@ -265,7 +269,6 @@ endif()
 add_definitions(-DELPP_THREAD_SAFE)
 
 #### END SETUP ####
-
 #### SplashKitBackend STATIC LIBRARY ####
 add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})

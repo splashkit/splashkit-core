@@ -269,8 +269,8 @@ namespace splashkit_lib
             // Checks if range exists in the map of know PWM ranges
             if (range < 25)
             {
-                LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
-                return;
+                // Default to range of 255
+                sk_set_pwm_range(pin, 255);
             }
             // Check if dutycycle is less than range (percentage of cycle from 0 to 100% (range))
             else if (range < dutycycle)
