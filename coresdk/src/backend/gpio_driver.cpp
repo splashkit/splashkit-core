@@ -289,11 +289,19 @@ namespace splashkit_lib
         }
     }
 
-    void sk_gpio_clear_bank_1()
+    void sk_gpio_clear_bank_1(int BCMpinData[])
     {
         if (check_pi())
         {
-#ifndef RASPBERRY_PI_5
+#ifdef RASPBERRY_PI_5
+            for (int i = 0; i < 40; i++)
+            {
+                if (BCMpinData[i] >= 2)
+                {
+                    sk_gpio_write(i + 1, 0);
+                }
+            }
+#else
             clear_bank_1(pi, PI4B_GPIO_BITMASK);
 #endif
         }
@@ -568,36 +576,38 @@ namespace splashkit_lib
             return -1;
     }
 
-    //     void sk_set_servo_pulsewidth(int pin, int pulsewidth)
-    //     {
-    // #ifdef RASPBERRY_PI_5
-    //         return;
-    // #else
-    //         if (!check_pi())
-    //             int result = set_servo_pulsewidth(pi, pin, pulsewidth);
-    //         if (result < 0)
-    //         {
-    //             LOG(ERROR) << sk_gpio_error_message(result);
-    //         }
-    // #endif
-    //     }
+    void sk_set_servo_pulsewidth(int pin, int pulsewidth)
+    {
+#ifdef RASPBERRY_PI_5
+        LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
+        return;
+#else
+        if (!check_pi())
+            int result = set_servo_pulsewidth(pi, pin, pulsewidth);
+        if (result < 0)
+        {
+            LOG(ERROR) << sk_gpio_error_message(result);
+        }
+#endif
+    }
 
-    //     int sk_get_servo_pulsewidth(int pin)
-    //     {
-    // #ifdef RASPBERRY_PI_5
-    //         return -1;
-    // #else
-    //         if (!check_pi())
-    //             return -1;
-    //         int result = get_servo_pulsewidth(pi, pin);
-    //         if (result < 0)
-    //         {
-    //             LOG(ERROR) << sk_gpio_error_message(result);
-    //             return -1;
-    //         }
-    //         return result;
-    // #endif
-    //     }
+    int sk_get_servo_pulsewidth(int pin)
+    {
+#ifdef RASPBERRY_PI_5
+        LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
+        return -1;
+#else
+        if (!check_pi())
+            return -1;
+        int result = get_servo_pulsewidth(pi, pin);
+        if (result < 0)
+        {
+            LOG(ERROR) << sk_gpio_error_message(result);
+            return -1;
+        }
+        return result;
+#endif
+    }
 
 #endif
 

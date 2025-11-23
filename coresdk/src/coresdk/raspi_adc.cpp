@@ -98,10 +98,7 @@ namespace splashkit_lib
             return adc_device_named(name);
 
         adc_device result = new _adc_data();
-        // result->id = ADC_PTR; // ADC_PTR is defined in backend_types.h (0x41444350)
-        static int next_adc_id = 0;
-        result->id = static_cast<splashkit_lib::pointer_identifier>(next_adc_id++);
-
+        result->id = ADC_PTR; // ADC_PTR is defined in backend_types.h (0x41444350)
         result->bus = bus;
         result->address = address;
         result->name = name;
@@ -302,7 +299,7 @@ namespace splashkit_lib
             LOG(ERROR) << "ADC device \"" << name << "\" not found.";
             return -1;
         }
-
+        
         return read_adc(dev, channel);
 #else
         LOG(ERROR) << "ADC not supported on this platform";

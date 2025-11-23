@@ -14,7 +14,6 @@
 #include "types.h"
 #include "raspi_adc.h"
 
-using std::map;
 namespace splashkit_lib
 {
     /**

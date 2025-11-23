@@ -79,9 +79,9 @@ namespace splashkit_lib
     /**
      * Reads an 8-bit value from the specified ADC channel on the device.
      *
-     * @param adc        The ADC device to read from.
-     * @param channel    The channel number to read (range depends on ADC type).
-     * @returns          The ADC conversion value (0–255), or -1 on error.
+     * @param adc      The ADC device to read from.
+     * @param channel  The channel number to read (range depends on ADC type).
+     * @returns        The ADC conversion value (0–255), or -1 on error.
      *
      * @attribute class   adc_device
      * @attribute self    adc
