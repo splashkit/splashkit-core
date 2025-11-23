@@ -238,8 +238,8 @@ namespace splashkit_lib
                 LOG(ERROR) << sk_gpio_error_message(PI_BAD_DUTYRANGE);
                 return;
             }
-            // Find out what the clock divisor is using base clock, frequency and range
-            double divisor = static_cast<double>(BASE_CLOCK) / (frequency * range);
+            // Find out what the clock divisor is using base clock (19.2M Hz), frequency and range
+            double divisor = static_cast<double>(19200000) / (frequency * range);
             int clock_divisor = static_cast<int>(divisor + 0.5);
             // Checks if the new frequency is in a safe limit
             if ((range / clock_divisor) > 38400)
@@ -289,11 +289,12 @@ namespace splashkit_lib
         }
     }
 
-    void sk_gpio_clear_bank_1(int BCMpinData[])
+    void sk_gpio_clear_bank_1()
     {
         if (check_pi())
         {
 #ifdef RASPBERRY_PI_5
+            const int BCMpinData[] = {-1, -1, 2, -1, 3, -2, 4, 14, -2, 15, 17, 18, 27, -2, 22, 23, -1, 24, 10, -2, 9, 25, 11, 8, -2, 7, 0, 1, 5, -2, 6, 12, 13, -2, 19, 16, 26, 20, -2, 21};
             for (int i = 0; i < 40; i++)
             {
                 if (BCMpinData[i] >= 2)
@@ -554,7 +555,7 @@ namespace splashkit_lib
         }
     }
 
-    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
+    int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
     {
         if (check_pi())
         {
@@ -563,13 +564,13 @@ namespace splashkit_lib
             {
                 return -1;
             }
-            unsigned char *buf = (unsigned char *)send_buf;
+            unsigned char *buf = (unsigned char *)sendBuf;
             int channel = handle_channel[handle];
             int val = wiringPiSPIDataRW(channel, buf, count);
-            recv_buf = (char *)buf;
+            recvBuf = (char *)buf;
             return val;
 #else
-            return spi_xfer(pi, handle, send_buf, recv_buf, count);
+            return spi_xfer(pi, handle, sendBuf, recvBuf, count);
 #endif
         }
         else

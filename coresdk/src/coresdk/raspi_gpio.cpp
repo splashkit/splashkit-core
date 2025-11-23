@@ -468,7 +468,7 @@ namespace splashkit_lib
         {
             gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
             // if the pin is not a PWM pin, return
-            if (find(begin(pwmPins), end(pwmPins), pin) == end(pwmPins))
+            if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
             {
                 LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
                 return -1;
@@ -492,7 +492,6 @@ namespace splashkit_lib
         return -1;
 #endif
     }
-
     void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth)
     {
 #ifdef RASPBERRY_PI
@@ -500,7 +499,7 @@ namespace splashkit_lib
         {
             gpio_pin pwmPins[] = {PIN_12, PIN_32, PIN_33, PIN_35};
             // if the pin is not a PWM pin, return
-            if (find(begin(pwmPins), end(pwmPins), pin) == end(pwmPins))
+            if (std::find(std::begin(pwmPins), std::end(pwmPins), pin) == std::end(pwmPins))
             {
                 LOG(ERROR) << "Pin " << pin << " is not a PWM pin";
                 return; // ← early return so we don’t drive an unsupported pin
@@ -522,7 +521,7 @@ namespace splashkit_lib
     {
 #ifdef RASPBERRY_PI
         LOG(INFO) << "Cleaning GPIO pins";
-        sk_gpio_clear_bank_1(BCMpinData);
+        sk_gpio_clear_bank_1();
         sk_gpio_cleanup();
 #else
         LOG(ERROR) << "Unable to set cleanup - GPIO not supported on this platform";

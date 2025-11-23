@@ -1,9 +1,4 @@
-//
-//  test_raspi_gpio.cpp
-//  splashkit
-//
-//  Created by Aditya Parmar (XQuestCode)
-
+// created by XQuestCode || Aditya Parmar
 #include <iostream>
 #include "networking.h"
 #include "raspi_gpio.h"
@@ -14,45 +9,23 @@ using namespace splashkit_lib;
 
 void local_gpio_valid_tests()
 {
-    cout << "\n-- Testing valid GPIO calls --\n\n";
-    cout << "---------------------\n";
-    cout << "GPIO Pin Settings for tests:\n";
-    cout << " - GPIO Pin 7: Output (LED etc)\n";
-    cout << " - GPIO Pin 11: Input (button etc)\n\n";
+    cout << "\n-- Testing valid GPIO calls --\n" << endl;
+     
+    // Set GPIO pin 11 as an output
+    cout << "Setting GPIO pin 11 as an output" << endl;
+    raspi_set_mode(PIN_11, GPIO_OUTPUT);
 
-    // Set GPIO pin 7 as an output and pin 11 as an input
-    raspi_set_mode(PIN_7, GPIO_OUTPUT);
-    raspi_set_mode(PIN_11, GPIO_INPUT);
-    raspi_set_pull_up_down(PIN_11, PUD_DOWN);
+    // Read the initial value of GPIO pin 11
+    int defaultValue = raspi_read(PIN_11);
+    cout << "Value of Pin 11: " << defaultValue << endl;
 
-    cout << "Test 1: Writing HIGH to GPIO Pin 7:\n";
+    // Write HIGH to GPIO pin 11
+    cout << "Writing HIGH to GPIO pin 11" << endl;
+    raspi_write(PIN_11, GPIO_HIGH);
 
-    // Write HIGH to GPIO pin 7
-    raspi_write(PIN_7, GPIO_HIGH);
-    cout << "Press ENTER to continue: ";
-    cin.get(); // Wait for enter to be pressed
-
-    cout << "Test 2: Writing LOW to GPIO pin 7\n";
-
-    // Write LOW to GPIO pin 7
-    raspi_write(PIN_7, GPIO_LOW);
-    cout << "Press ENTER to continue: ";
-    cin.get(); // Wait for enter to be pressed
-
-    cout << "Test 3: Read value from GPIO pin 11\n";
-
-    cout << "Press ENTER to read input value: ";
-    cin.get(); // Wait for enter to be pressed
     // Read the value of GPIO pin 11
-    if (raspi_read(PIN_11))
-    {
-        cout << "HIGH value.\n";
-    }
-    else
-    {
-        cout << "Low value.\n";
-    }
-    cout << "End GPIO read/write tests\n";
+    int value = raspi_read(PIN_11);
+    cout << "GPIO 11 value: " << value << endl;
 }
 
 void local_gpio_invalid_tests()
@@ -61,32 +34,32 @@ void local_gpio_invalid_tests()
 
     // --- ERROR TEST: Invalid GPIO pin number ---
     cout << "Testing invalid GPIO pin number (PIN_60)" << endl;
-    raspi_set_mode(static_cast<gpio_pin>(60), GPIO_OUTPUT);
+    raspi_set_mode(static_cast<gpio_pin>(60), GPIO_OUTPUT);  
 
     // --- ERROR TEST: Invalid GPIO pin number (EEPROM pin) ---
     cout << "Testing invalid GPIO pin number (EEPROM pin)" << endl;
-    raspi_set_mode(PIN_27, GPIO_OUTPUT);
-
+    raspi_set_mode(PIN_27, GPIO_OUTPUT); 
+    
     // --- ERROR TEST: Invalid GPIO pin number (POWER line) ---
     cout << "Testing invalid GPIO pin number (PIN_17, POWER line)" << endl;
-    raspi_set_mode(PIN_17, GPIO_OUTPUT);
+    raspi_set_mode(PIN_17, GPIO_OUTPUT);  
 
     // --- ERROR TEST: Invalid GPIO pin number (GROUND line) ---
     cout << "Testing invalid GPIO pin number (PIN_6, GROUND line)" << endl;
-    raspi_set_mode(PIN_6, GPIO_OUTPUT);
+    raspi_set_mode(PIN_6, GPIO_OUTPUT);  
 
     // --- ERROR TEST: Invalid GPIO mode ---
     cout << "Testing invalid GPIO mode (mode 10)" << endl;
-    raspi_set_mode(PIN_11, static_cast<gpio_pin_mode>(10));
+    raspi_set_mode(PIN_11, static_cast<gpio_pin_mode>(10));  
 
     // --- ERROR TEST: Invalid GPIO write value ---
     cout << "Testing invalid GPIO value (writing 5)" << endl;
-    raspi_write(PIN_11, static_cast<gpio_pin_value>(5));
+    raspi_write(PIN_11, static_cast<gpio_pin_value>(5));  
 
     // --- ERROR TEST: Invalid pull-up/down configuration ---
     cout << "Testing invalid pull-up/down configuration (PUD value 3)" << endl;
-    raspi_set_pull_up_down(PIN_11, static_cast<pull_up_down>(3));
-
+    raspi_set_pull_up_down(PIN_11, static_cast<pull_up_down>(3));  
+    
     // --- ERROR TEST: Invalid PWM Duty Cycle
     cout << "Testing invalid PWM duty cycle configuration (Duty Cycle value 300)" << endl;
     raspi_set_pwm_dutycycle(PIN_11, 300);
@@ -106,7 +79,7 @@ void remote_gpio_valid_tests(connection pi)
     // Read the initial value of GPIO pin 11
     int defaultValue = remote_raspi_read(pi, PIN_11);
     cout << "Value of Pin 11: " << defaultValue << endl;
-
+    
     // Write HIGH to GPIO pin 11
     cout << "Writing HIGH to GPIO pin 11" << endl;
     remote_raspi_write(pi, PIN_11, GPIO_HIGH);
@@ -121,31 +94,31 @@ void remote_gpio_invalid_tests(connection pi)
 
     // --- ERROR TEST: Invalid GPIO pin number ---
     cout << "Testing invalid GPIO pin number (PIN_60)" << endl;
-    remote_raspi_set_mode(pi, static_cast<gpio_pin>(60), GPIO_OUTPUT);
+    remote_raspi_set_mode(pi, static_cast<gpio_pin>(60), GPIO_OUTPUT); 
 
     // --- ERROR TEST: Invalid GPIO pin number (EEPROM pin) ---
     cout << "Testing invalid GPIO pin number (EEPROM pin)" << endl;
-    remote_raspi_set_mode(pi, PIN_27, GPIO_OUTPUT);
-
+    remote_raspi_set_mode(pi, PIN_27, GPIO_OUTPUT); 
+     
     // --- ERROR TEST: Invalid GPIO pin number (POWER line) ---
     cout << "Testing invalid GPIO pin number (PIN_17, POWER line)" << endl;
-    remote_raspi_set_mode(pi, PIN_17, GPIO_OUTPUT);
-
+    remote_raspi_set_mode(pi, PIN_17, GPIO_OUTPUT); 
+    
     // --- ERROR TEST: Invalid GPIO pin number (GROUND line) ---
     cout << "Testing invalid GPIO pin number (PIN_6, GROUND line)" << endl;
-    remote_raspi_set_mode(pi, PIN_6, GPIO_OUTPUT);
-
+    remote_raspi_set_mode(pi, PIN_6, GPIO_OUTPUT); 
+    
     // --- ERROR TEST: Invalid GPIO mode ---
     cout << "Testing invalid GPIO mode (mode 10)" << endl;
-    remote_raspi_set_mode(pi, PIN_11, static_cast<gpio_pin_mode>(10));
+    remote_raspi_set_mode(pi, PIN_11, static_cast<gpio_pin_mode>(10));  
 
     // --- ERROR TEST: Invalid GPIO write value ---
     cout << "Testing invalid GPIO value (writing 5)" << endl;
-    remote_raspi_write(pi, PIN_11, static_cast<gpio_pin_value>(5));
+    remote_raspi_write(pi, PIN_11, static_cast<gpio_pin_value>(5));  
 
     // --- ERROR TEST: Invalid pull-up/down configuration ---
     cout << "Testing invalid pull-up/down configuration (PUD value 3)" << endl;
-    remote_raspi_set_pull_up_down(pi, PIN_11, static_cast<pull_up_down>(3));
+    remote_raspi_set_pull_up_down(pi, PIN_11, static_cast<pull_up_down>(3));  
 
     // --- ERROR TEST: Invalid PWM Duty Cycle
     cout << "Testing invalid PWM duty cycle configuration (Duty Cycle value 300)" << endl;
@@ -155,7 +128,13 @@ void remote_gpio_invalid_tests(connection pi)
     cout << "Testing invalid PWM range configuration (Range value 40001)" << endl;
     remote_raspi_set_pwm_range(pi, PIN_11, 40001);
 }
-
+void run_gpio_tests() 
+{
+    raspi_init();
+    local_gpio_valid_tests();
+    local_gpio_invalid_tests();
+    raspi_cleanup();
+}
 void run_remote_gpio_tests()
 {
 
@@ -172,12 +151,4 @@ void run_remote_gpio_tests()
     remote_gpio_invalid_tests(pi);
 
     remote_raspi_cleanup(pi);
-}
-
-void run_gpio_tests()
-{
-    raspi_init();
-    local_gpio_valid_tests();
-    // local_gpio_invalid_tests();
-    raspi_cleanup();
 }

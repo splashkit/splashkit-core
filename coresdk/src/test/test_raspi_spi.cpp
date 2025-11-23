@@ -34,7 +34,7 @@ void run_gpio_spi_tests()
 
     cout << "Attempting transfer..." << endl;
     string response = raspi_spi_transfer(handle, buffer, 3, bytes_trans);
-    if(bytes_trans != -1)
+    if(bytes_trans != 3)
     {
         cout << "Transfer error, wrong number of bytes transferred." << endl;     
     }

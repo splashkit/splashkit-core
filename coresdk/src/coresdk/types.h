@@ -415,7 +415,7 @@ namespace splashkit_lib
      * @constant GPIO_ALT2    Alternate function mode 2.
      * @constant GPIO_ALT3    Alternate function mode 3.
      * @constant GPIO_ALT4    Alternate function mode 4.
-     * @constant GPIO_PWM     Alternate function mode 5.
+     * @constant GPIO_ALT5     Alternate function mode 5.
      * @constant GPIO_DEFAULT_MODE  Default mode.
      */
     enum gpio_pin_mode
@@ -427,7 +427,7 @@ namespace splashkit_lib
         GPIO_ALT2 = 6,
         GPIO_ALT3 = 7,
         GPIO_ALT4 = 3,
-        GPIO_PWM = 2,
+        GPIO_ALT5 = 2,
         GPIO_DEFAULT_MODE = -1,
     };
 

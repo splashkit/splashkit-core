@@ -34,18 +34,17 @@ void run_motor_driver_tests()
     // Run forward at 50% speed
     write_line("\nRunning motor FORWARD @ 50% speed. Press any key to reverse direction.");
     set_motor_direction(dev, MOTOR_FORWARD);
-    
     // short burst to get motor "unstuck"
     set_motor_speed(dev, 1);
     delay(20);
 
     set_motor_speed(dev, 0.5);
     read_line();
-    
+
     // Reverse at 50% speed
     write_line("\nReversing motor @ 50% speed. Press any key to brake (stop), clean up and exit.");
-    stop_motor(dev); // Brake (both inputs HIGH)
     set_motor_direction(dev, MOTOR_BACKWARD);
+    // short burst to get motor "unstuck"
     set_motor_speed(dev, 1);
     delay(20);
     set_motor_speed(dev, 0.5);

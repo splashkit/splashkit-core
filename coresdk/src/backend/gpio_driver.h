@@ -179,12 +179,6 @@
 // Bitmask for valid user GPIO on the 4B board
 #define PI4B_GPIO_BITMASK 0x0FFFFFFC
 
-// Size of GPIO board
-#define PI_SIZE 40
-
-// Size of base clock
-#define BASE_CLOCK 19200000
-
 namespace splashkit_lib
 {
 
@@ -198,10 +192,10 @@ namespace splashkit_lib
     void sk_set_pwm_range(int pin, int range);
     void sk_set_pwm_frequency(int pin, int frequency);
     void sk_set_pwm_dutycycle(int pin, int dutycycle);
-    void sk_gpio_clear_bank_1(int BCMpinData[]);
+    void sk_gpio_clear_bank_1();
     int sk_spi_open(int channel, int speed, int spi_flags);
     int sk_spi_close(int handle);
-    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count);
+    int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count);
 
     // I2C Functions
     int sk_i2c_open(int bus, int address);
