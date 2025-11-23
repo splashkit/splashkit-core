@@ -76,11 +76,6 @@ namespace splashkit_lib
     int sk_gpio_init()
     {
 #ifdef RASPBERRY_PI_5
-        if (wiringPiSetupGpio() == -1)
-        {
-            LOG(ERROR) << sk_gpio_error_message(pi);
-            return 1;
-        }
         pi = wiringPiSetupGpio();
 #else
         pi = pigpio_start(0, 0);
@@ -96,7 +91,6 @@ namespace splashkit_lib
 #ifdef RASPBERRY_PI_5
             int result = digitalRead(pin);
 #else
-
             int result = gpio_read(pi, pin);
 #endif
             if (result < 0)
@@ -509,7 +503,6 @@ namespace splashkit_lib
         }
     }
 
-    // WiringPi's version of spi_open doesn't need the variable flag so I removed it
     int sk_spi_open(int channel, int speed, int spi_flags)
     {
         if (check_pi())

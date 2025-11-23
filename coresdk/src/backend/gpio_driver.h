@@ -6,7 +6,6 @@
 #define SPLASHKIT_GPIO_H
 
 #include "backend_types.h"
-#include "types.h"
 #include <stdint.h> // Include the appropriate header file for stdint.h
 
 // Relevant error codes from pigpio library
