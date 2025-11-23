@@ -195,7 +195,7 @@ namespace splashkit_lib
     void sk_gpio_clear_bank_1();
     int sk_spi_open(int channel, int speed, int spi_flags);
     int sk_spi_close(int handle);
-    int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count);
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count);
 
     // I2C Functions
     int sk_i2c_open(int bus, int address);

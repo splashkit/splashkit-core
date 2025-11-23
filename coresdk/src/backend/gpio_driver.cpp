@@ -10,17 +10,14 @@
 #include <cstdlib> // Add this line to include the necessary header for the exit() function
 
 #include <cstring>
-#ifdef RASPBERRY_PI
-
 #ifdef RASPBERRY_PI_5
 #include <wiringPi.h>
 #include <unordered_map>
 #include <wiringPiSPI.h>
 #include <wiringPiI2C.h>
-
 #else
+#ifdef RASPBERRY_PI
 #include "pigpiod_if2.h"
-
 #endif
 #endif
 
@@ -542,7 +539,7 @@ namespace splashkit_lib
         {
 #ifdef RASPBERRY_PI_5
             // Close SPI & reset handle value to 0
-            // close(handle);
+            close(handle);
             handle_channel[handle] = 0;
             return 0;
 #else
@@ -555,22 +552,23 @@ namespace splashkit_lib
         }
     }
 
-    int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count)
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count)
     {
         if (check_pi())
         {
 #ifdef RASPBERRY_PI_5
             if (handle == -1)
             {
+                LOG(ERROR) << sk_gpio_error_message(PI_SPI_XFER_FAILED);
                 return -1;
             }
-            unsigned char *buf = (unsigned char *)sendBuf;
+            unsigned char *buf = (unsigned char *)send_buf;
             int channel = handle_channel[handle];
             int val = wiringPiSPIDataRW(channel, buf, count);
-            recvBuf = (char *)buf;
+            recv_buf = (char *)buf;
             return val;
 #else
-            return spi_xfer(pi, handle, sendBuf, recvBuf, count);
+            return spi_xfer(pi, handle, send_buf, recv_buf, count);
 #endif
         }
         else
@@ -584,7 +582,8 @@ namespace splashkit_lib
         return;
 #else
         if (!check_pi())
-            int result = set_servo_pulsewidth(pi, pin, pulsewidth);
+            return;
+        int result = set_servo_pulsewidth(pi, pin, pulsewidth);
         if (result < 0)
         {
             LOG(ERROR) << sk_gpio_error_message(result);
