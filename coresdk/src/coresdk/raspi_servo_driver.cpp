@@ -75,7 +75,7 @@ namespace splashkit_lib
     angle = std::clamp(angle, 0.0, 180.0);
     unsigned pw = static_cast<unsigned>(
         MIN_PW + (angle / 180.0) * (MAX_PW - MIN_PW));
-    raspi_set_servo_pulsewidth(dev->pin, pw);
+    raspi_set_servo_pulsewidth(dev->pin, pw - 180);
 #else
     LOG(ERROR) << "Servo driver not supported on this platform";
 #endif
