@@ -604,16 +604,8 @@ namespace splashkit_lib
     {
         if (check_pi(pin, PWM_PIN))
         {
-#ifdef RASPBERRY_PI_5
-            sk_set_pwm_dutycycle(pin, pulsewidth);
             pwm_pulsewidth[pin] = pulsewidth;
-#else
-            int result = set_servo_pulsewidth(pi, pin, pulsewidth);
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
-            }
-#endif
+            sk_set_pwm_dutycycle(pin, pulsewidth);
         }
     }
 
@@ -621,17 +613,7 @@ namespace splashkit_lib
     {
         if (check_pi(pin, PWM_PIN))
         {
-#ifdef RASPBERRY_PI_5
-            int result = pwm_pulsewidth[pin];
-#else
-            int result = get_servo_pulsewidth(pi, pin);
-#endif
-            if (result < 0)
-            {
-                LOG(ERROR) << sk_gpio_error_message(result);
-                return -1;
-            }
-            return result;
+            return pwm_pulsewidth[pin];
         }
         return -1;
     }
