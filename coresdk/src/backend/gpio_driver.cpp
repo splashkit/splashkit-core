@@ -42,6 +42,11 @@ namespace splashkit_lib
     unordered_map<int, int> pwm_range;
     unordered_map<int, int> handle_channel;
 
+    const int BCMpinData[] = {-1, -1, 2, -1, 3, -2, 4, 14, -2, 15, 17, 18, 27, -2, 22, 23, -1, 24, 10, -2, 9, 25, 11, 8, -2, 7, 0, 1, 5, -2, 6, 12, 13, -2, 19, 16, 26, 20, -2, 21};
+
+    // Improve readability of pwm functions
+    const bool PWM_PIN = true;
+
     // Check if pigpio_init() has been called before any other GPIO functions
     bool check_pi()
     {
@@ -65,6 +70,30 @@ namespace splashkit_lib
                 return false;
             }
             return true;
+        }
+        return false;
+    }
+
+    bool check_pi(int pin, bool pwm_pin)
+    {
+        if (check_pi(pin))
+        {
+            if (pwm_pin)
+            {
+                // if the pin is not a PWM pin
+                if (pin != 12 && pin != 13 && pin != 18 && pin != 19)
+                {
+                    for (int i = 0; i < 40; i++)
+                    {
+                        if (pin == BCMpinData[i])
+                        {
+                            LOG(ERROR) << "Pin " << i + 1 << " is not a PWM pin";
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
         }
         return false;
     }
@@ -197,7 +226,7 @@ namespace splashkit_lib
     // PWM Functions
     void sk_set_pwm_range(int pin, int range)
     {
-        if (check_pi(pin))
+        if (check_pi(pin, PWM_PIN))
         {
             // Checks whether newly set range is a reasonable value
             if (range <= 25 || range > 4096)
@@ -225,7 +254,7 @@ namespace splashkit_lib
     // Set frequency by setting both the range & clock
     void sk_set_pwm_frequency(int pin, int frequency)
     {
-        if (check_pi(pin))
+        if (check_pi(pin, PWM_PIN))
         {
 #ifdef RASPBERRY_PI_5
             int range = pwm_range[pin];
@@ -259,7 +288,7 @@ namespace splashkit_lib
     // Value must not be more than range (0% to 100%)
     void sk_set_pwm_dutycycle(int pin, int dutycycle)
     {
-        if (check_pi(pin))
+        if (check_pi(pin, PWM_PIN))
         {
 #ifdef RASPBERRY_PI_5
             int range = pwm_range[pin];
@@ -577,36 +606,39 @@ namespace splashkit_lib
 
     void sk_set_servo_pulsewidth(int pin, int pulsewidth)
     {
-#ifdef RASPBERRY_PI_5
-        LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
-        return;
-#else
-        if (!check_pi())
-            return;
-        int result = set_servo_pulsewidth(pi, pin, pulsewidth);
-        if (result < 0)
+        if (check_pi(pin, PWM_PIN))
         {
-            LOG(ERROR) << sk_gpio_error_message(result);
-        }
+#ifdef RASPBERRY_PI_5
+            LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
+            return;
+#else
+            int result = set_servo_pulsewidth(pi, pin, pulsewidth);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+            }
 #endif
+        }
     }
 
     int sk_get_servo_pulsewidth(int pin)
     {
-#ifdef RASPBERRY_PI_5
-        LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
-        return -1;
-#else
-        if (!check_pi())
-            return -1;
-        int result = get_servo_pulsewidth(pi, pin);
-        if (result < 0)
+        if (check_pi(pin, PWM_PIN))
         {
-            LOG(ERROR) << sk_gpio_error_message(result);
+#ifdef RASPBERRY_PI_5
+            LOG(ERROR) << "Servo functionality not yet available on Raspberry Pi 5.";
             return -1;
-        }
-        return result;
+#else
+            int result = get_servo_pulsewidth(pi, pin);
+            if (result < 0)
+            {
+                LOG(ERROR) << sk_gpio_error_message(result);
+                return -1;
+            }
+            return result;
 #endif
+        }
+        return -1;
     }
 
 #endif

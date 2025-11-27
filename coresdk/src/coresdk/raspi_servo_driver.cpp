@@ -52,8 +52,8 @@ namespace splashkit_lib
     // configure as output
     raspi_set_mode(control_pin, GPIO_OUTPUT);
     // configure the pin for 50 Hz PWM, range = 20000 units ? 1 unit = 1 µs
-    raspi_set_pwm_frequency(control_pin, 50);
     raspi_set_pwm_range(control_pin, 20000);
+    raspi_set_pwm_frequency(control_pin, 50);
     // stop any pulses initially
     raspi_set_pwm_dutycycle(control_pin, 0);
 
@@ -75,7 +75,6 @@ namespace splashkit_lib
     angle = std::clamp(angle, 0.0, 180.0);
     unsigned pw = static_cast<unsigned>(
         MIN_PW + (angle / 180.0) * (MAX_PW - MIN_PW));
-    // raspi_set_pwm_dutycycle(dev->pin, pw);
     raspi_set_servo_pulsewidth(dev->pin, pw);
 #else
     LOG(ERROR) << "Servo driver not supported on this platform";
