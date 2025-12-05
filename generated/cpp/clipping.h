@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 rectangle current_clip();
 rectangle current_clip(bitmap bmp);

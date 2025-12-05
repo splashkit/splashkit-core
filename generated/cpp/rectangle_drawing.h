@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_quad(color clr, const quad &q);
 void draw_quad(color clr, const quad &q, const drawing_options &opts);

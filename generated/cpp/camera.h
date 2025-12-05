@@ -15,6 +15,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 point_2d camera_position();
 double camera_x();

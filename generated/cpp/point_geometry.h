@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 point_2d point_at(double x, double y);
 point_2d point_at_origin();

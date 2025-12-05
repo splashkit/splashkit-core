@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void add_column(int width);
 void add_column_relative(double width);

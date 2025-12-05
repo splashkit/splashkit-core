@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 struct _connection_data;
 typedef struct _connection_data *connection;

@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 point_2d center_point(const circle &c);
 circle circle_at(const point_2d &pt, double radius);

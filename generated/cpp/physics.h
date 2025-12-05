@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 
 #endif /* __physics_h */

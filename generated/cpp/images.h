@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 circle bitmap_bounding_circle(bitmap bmp, const point_2d &pt);
 rectangle bitmap_bounding_rectangle(bitmap bmp);

@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 rectangle inset_rectangle(const rectangle &rect, float inset_amount);
 rectangle intersection(const rectangle &rect1, const rectangle &rect2);

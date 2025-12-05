@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts);
 void end_reading_text();

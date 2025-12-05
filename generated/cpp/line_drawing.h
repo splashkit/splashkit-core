@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_line(color clr, const line &l);
 void draw_line(color clr, const line &l, drawing_options opts);

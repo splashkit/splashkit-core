@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 bool audio_ready();
 void close_audio();

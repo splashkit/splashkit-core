@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 struct _http_request_data;
 typedef struct _http_request_data *http_request;

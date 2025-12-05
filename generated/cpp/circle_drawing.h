@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_circle(color clr, const circle &c);
 void draw_circle(color clr, const circle &c, drawing_options opts);

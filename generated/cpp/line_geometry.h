@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 point_2d closest_point_on_line(const point_2d from_pt, const line &l);
 point_2d closest_point_on_lines(const point_2d from_pt, const vector<line> &lines, int &line_idx);

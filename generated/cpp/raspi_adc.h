@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 struct _adc_device_data;
 typedef struct _adc_device_data *adc_device;

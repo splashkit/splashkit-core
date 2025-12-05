@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 char read_char();
 string read_line();

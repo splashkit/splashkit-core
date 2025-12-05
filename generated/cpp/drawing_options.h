@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 drawing_options option_defaults();
 drawing_options option_draw_to(bitmap dest);

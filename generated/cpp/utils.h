@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 unsigned int current_ticks();
 void delay(int milliseconds);

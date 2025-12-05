@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 point_2d triangle_barycenter(const triangle &tri);
 triangle triangle_from(const point_2d &p1, const point_2d &p2, const point_2d &p3);

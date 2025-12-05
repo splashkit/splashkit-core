@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_triangle(color clr, const triangle &tri);
 void draw_triangle(color clr, const triangle &tri, drawing_options opts);

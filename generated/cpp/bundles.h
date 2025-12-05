@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void free_resource_bundle(const string name);
 bool has_resource_bundle(const string &name);

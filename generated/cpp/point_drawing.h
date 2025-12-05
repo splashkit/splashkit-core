@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_pixel(color clr, const point_2d &pt);
 void draw_pixel(color clr, const point_2d &pt, drawing_options opts);

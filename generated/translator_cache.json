@@ -44337,7 +44337,7 @@
     "group": "raspberry",
     "brief": "Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1764387906,
+    "parsed_at": 1764933340,
     "path": "coresdk/src/coresdk/raspi_adc.h",
     "functions": [
       {
@@ -44785,7 +44785,7 @@
     "group": "raspberry",
     "brief": "Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.",
     "description": null,
-    "parsed_at": 1764387907,
+    "parsed_at": 1764933340,
     "path": "coresdk/src/coresdk/raspi_gpio.h",
     "functions": [
       {

@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 void draw_ellipse(color clr, const rectangle rect);
 void draw_ellipse(color clr, const rectangle rect, drawing_options opts);

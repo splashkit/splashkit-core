@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 struct _sprite_data;
 typedef struct _sprite_data *sprite;

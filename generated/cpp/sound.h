@@ -12,6 +12,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 struct _sound_effect_data;
 typedef struct _sound_effect_data *sound_effect;

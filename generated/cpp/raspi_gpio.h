@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 unsigned short get_alpha_font_14_seg(char ascii_char);
 int gpio_pin_to_int(gpio_pin_value value);

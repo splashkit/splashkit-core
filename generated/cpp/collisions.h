@@ -15,6 +15,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 bool bitmap_circle_collision(bitmap bmp, const point_2d &pt, const circle &circ);
 bool bitmap_circle_collision(bitmap bmp, double x, double y, const circle &circ);

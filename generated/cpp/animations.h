@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 int animation_count(animation_script script);
 int animation_current_cell(animation anim);

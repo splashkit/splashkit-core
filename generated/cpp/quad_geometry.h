@@ -14,6 +14,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 quad quad_from(const point_2d &line_origin, const point_2d &line_end, double width);
 quad quad_from(const point_2d &p1, const point_2d &p2, const point_2d &p3, const point_2d &p4);

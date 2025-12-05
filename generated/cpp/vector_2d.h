@@ -13,6 +13,7 @@
 #include <cstdint>
 using std::string;
 using std::vector;
+using std::to_string;
 
 double angle_between(const vector_2d &v1, const vector_2d &v2);
 double dot_product(const vector_2d &v1, const vector_2d &v2);
