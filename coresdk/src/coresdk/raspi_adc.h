@@ -2,7 +2,7 @@
  * @header raspi_adc
  * @brief Provides support for using an ADC device with the GPIO pins on the Raspberry Pi.
  * @author Aditya Parmar
- * 
+ *
  * @attribute group  raspberry
  * @attribute static raspberry
  */

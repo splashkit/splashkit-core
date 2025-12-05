@@ -43,7 +43,7 @@ void setup_tests()
     add_test("Geometry", run_geometry_test);
     add_test("Graphics", run_graphics_test);
     add_test("Input", run_input_test);
-    add_test ("Logging", run_logging_test);
+    add_test("Logging", run_logging_test);
     add_test("Physics", run_physics_test);
     add_test("Resources", run_resources_tests);
     add_test("Shape drawing", run_shape_drawing_test);
@@ -58,14 +58,16 @@ void setup_tests()
     add_test("Network conversions", run_networking_test);
     add_test("UDP Networking Test", run_udp_networking_test);
     add_test("TCP Networking Test", run_tcp_networking_test);
-    add_test("GPIO Tests", run_gpio_tests);
-    add_test("ADC Tests", run_gpio_adc_tests);
-    add_test("Motor Driver Tests", run_motor_driver_tests);
-    add_test("Servo Driver Tests", run_servo_driver_tests);
-    add_test("Remote GPIO Tests", run_remote_gpio_tests);
-    add_test("GPIO Tests - SPI", run_gpio_spi_tests);
     add_test("UI Tests", run_ui_test);
-   
+    add_test("GPIO - Basic Tests", run_gpio_tests);
+    add_test("GPIO - Remote GPIO Tests", run_remote_gpio_tests);
+    add_test("GPIO - ADC Tests", run_gpio_adc_tests);
+    add_test("GPIO - Motor Driver Tests", run_motor_driver_tests);
+    add_test("GPIO - Servo Driver Tests", run_servo_driver_tests);
+    add_test("GPIO - SPI Basic Tests", run_gpio_spi_tests);
+    add_test("GPIO - SPI MAX7219 LED matrix Tests", run_gpio_spi_led_matrix_tests);
+    add_test("GPIO - I2C HT16K33 LED matrix Tests", run_gpio_i2c_led_matrix_tests);
+    add_test("GPIO - I2C HT16K33 LED 14 Segment Tests", run_gpio_i2c_quad_14_seg_test);
 }
 
 int main(int argv, char **args)

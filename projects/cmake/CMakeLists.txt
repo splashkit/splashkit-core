@@ -119,11 +119,16 @@ endif()
 # We now detect Raspberry Pi by checking for specific device model and CPU info.
 if (NOT APPLE AND NOT MSYS)
     set(RASPBERRY_PI FALSE)
+    set(RASPBERRY_PI_5 FALSE)
     # Method 1: Check for Raspberry Pi specific file
     if(EXISTS "/proc/device-tree/model")
         file(READ "/proc/device-tree/model" DEVICE_MODEL)
         if(DEVICE_MODEL MATCHES "Raspberry Pi")
             set(RASPBERRY_PI TRUE)
+            # Check if using Pi 5 (to use Wiring Pi)
+            if(DEVICE_MODEL MATCHES "Raspberry Pi 5")
+                set(RASPBERRY_PI_5 TRUE)
+            endif()
         endif()
     endif()
 
@@ -133,11 +138,33 @@ if (NOT APPLE AND NOT MSYS)
             file(READ "/proc/cpuinfo" CPU_INFO)
             if(CPU_INFO MATCHES "BCM[0-9]+")
                 set(RASPBERRY_PI TRUE)
+                # Check if using Pi 5 (to use Wiring Pi)
+                if(CPU_INFO MATCHES "BCM2712")
+                    set(RASPBERRY_PI_5 TRUE)
+                endif()
             endif()
         endif()
     endif()
 
-    if(RASPBERRY_PI)
+    # Use WiringPi for Raspberry Pi 5 (limited functionality)
+    if(RASPBERRY_PI_5)
+        # Locate WiringPi libraries
+        find_path(WIRINGPI_INCLUDE_DIR NAMES wiringPi.h HINTS /usr/include /usr/local/include)
+        find_library(WIRINGPI_LIBRARY NAMES wiringPi libwiringPi.so HINTS /usr/lib /usr/local/lib)
+
+        if(WIRINGPI_LIBRARY AND WIRINGPI_INCLUDE_DIR)
+            message("-- WiringPi library found: ${WIRINGPI_LIBRARY}")
+            set(WIRINGPI_LIBS ${WIRINGPI_LIBRARY})
+            include_directories(${WIRINGPI_INCLUDE_DIR})
+            add_definitions(-DRASPBERRY_PI)
+            add_definitions(-DRASPBERRY_PI_5)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+        else()
+            message(WARNING "-- WiringPi library NOT found. Some features may be unavailable.")
+        endif()
+    
+    # Use pigpio for Raspberry Pi 4 and below
+    elseif(RASPBERRY_PI)
         message("-- Raspberry Pi Detected")
         # Locate Pigpio libraries
         find_path(PIGPIOD_INCLUDE_DIR NAMES pigpiod_if2.h PATHS "/usr/include")
@@ -152,25 +179,25 @@ if (NOT APPLE AND NOT MSYS)
             # add_definitions(-DELPP_NO_DEFAULT_LOG_FILE)
             # Override LIB_FLAGS for Raspberry Pi to include pigpiod_if2
             set(LIB_FLAGS "-lSDL2 \
-                           -lSDL2_mixer \
-                           -lSDL2_ttf \
-                           -lSDL2_gfx \
-                           -lSDL2_image \
-                           -lSDL2_net \
-                           -lpthread \
-                           -lbz2 \
-                           -lFLAC \
-                           -lvorbis \
-                           -lz \
-                           -lpng16 \
-                           -lvorbisfile \
-                           -logg \
-                           -lwebp \
-                           -lfreetype \
-                           -lcurl \
-                           -ldl \
-                           -lstdc++fs \
-                           -lpigpiod_if2")
+                            -lSDL2_mixer \
+                            -lSDL2_ttf \
+                            -lSDL2_gfx \
+                            -lSDL2_image \
+                            -lSDL2_net \
+                            -lpthread \
+                            -lbz2 \
+                            -lFLAC \
+                            -lvorbis \
+                            -lz \
+                            -lpng16 \
+                            -lvorbisfile \
+                            -logg \
+                            -lwebp \
+                            -lfreetype \
+                            -lcurl \
+                            -ldl \
+                            -lstdc++fs \
+                            -lpigpiod_if2")
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
         else()
             message(WARNING "-- Pigpio libraries NOT found. Some features may be unavailable.")
@@ -238,6 +265,14 @@ add_definitions(-DELPP_THREAD_SAFE)
 add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 target_link_libraries(SplashKitBackend ${LIB_FLAGS})
 
+if(RASPBERRY_PI)
+    if(RASPBERRY_PI_5)
+        target_link_libraries(SplashKitBackend ${WIRINGPI_LIBS})
+    else()
+        target_link_libraries(SplashKitBackend ${PIGPIO_LIBS})
+    endif()
+endif()
+
 if (MSYS)
     set_target_properties(SplashKitBackend PROPERTIES PREFIX "")
     target_include_directories(SplashKitBackend PUBLIC ${SDL2_INCLUDE_DIRS})
@@ -267,6 +302,14 @@ set_property(TARGET sktest PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 
 target_link_libraries(sktest SplashKitBackend)
 target_link_libraries(sktest ${LIB_FLAGS})
+
+if(RASPBERRY_PI)
+    if(RASPBERRY_PI_5)
+        target_link_libraries(sktest ${WIRINGPI_LIBS})
+    else()
+        target_link_libraries(sktest ${PIGPIO_LIBS})
+    endif()
+endif()
 
 # target_link_options(sktest PUBLIC "LINKER:-U,___darwin_check_fd_set_overflow")
 
@@ -303,6 +346,14 @@ set_property(TARGET skunit_tests PROPERTY POSITION_INDEPENDENT_CODE FALSE)
 target_link_libraries(skunit_tests SplashKitBackend)
 target_link_libraries(skunit_tests ${LIB_FLAGS})
 
+if(RASPBERRY_PI)
+    if(RASPBERRY_PI_5)
+        target_link_libraries(skunit_tests ${WIRINGPI_LIBS})
+    else()
+        target_link_libraries(skunit_tests ${PIGPIO_LIBS})
+    endif()
+endif()
+
 set_target_properties(skunit_tests
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${SK_BIN}
@@ -319,7 +370,7 @@ add_custom_command(
 
 # Discover and register Catch2 tests
 catch_discover_tests(skunit_tests)
-#### END sktest EXECUTABLE ####
+#### END skunit_tests EXECUTABLE ####
 
 install(TARGETS SplashKitBackend DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include/SplashKitBackend)

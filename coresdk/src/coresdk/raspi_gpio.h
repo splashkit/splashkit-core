@@ -111,7 +111,7 @@ namespace splashkit_lib
      */
     gpio_pin_value raspi_read(gpio_pin pin);
 
-	/**
+    /**
      * @brief Opens SPI communication on selected channel.
      *
      * This function opens SPI communication on a particular channel. It will return -1 if not using Raspberry Pi.
@@ -147,6 +147,43 @@ namespace splashkit_lib
     string raspi_spi_transfer(int handle, const string &send, int count, int &bytes_transfered);
 
     /**
+     * Opens I2C communication on selected address. It will return -1 if not using Raspberry Pi.
+     *
+     * @param bus    The bus of the I2C device.
+     * @param address    The address of the I2C device.
+     * @returns          The handle referencing this particular connection.
+     */
+    int raspi_i2c_open(int bus, int address);
+
+    /**
+     * Writes data to specified I2C connection.
+     *
+     * @param handle   The reference for a specific I2C connection.
+     * @param data     The data to send.
+     */
+    void raspi_i2c_write(int handle, int data);
+
+    /**
+     * Writes 8-bit (1 byte) or 16-bit (2 bytes) data to specified I2C connection.
+     *
+     * @param handle   The reference for a specific I2C connection.
+     * @param reg      The register to send the data to
+     * @param data     The data to send.
+     * @param bytes    The number of bytes to be transferred.
+     *
+     * @attribute suffix data
+     */
+    void raspi_i2c_write(int handle, int reg, int data, int bytes);
+
+    /**
+     * Converts an ASCII character to a binary value to be used with the Quad 14-segment display module (HT16K33 backpack).
+     *
+     * @param ascii_char   The ascii character to be converted to a 16-bit binary value.
+     * @returns            The binary value used to display a character on the 14-segment display.
+     */
+    unsigned short get_alpha_font_14_seg(char ascii_char);
+
+    /**
      * @brief Sets the pulse width for the specified pin.
      *
      * This function sets the pulse width for the specified pin.
@@ -155,7 +192,6 @@ namespace splashkit_lib
      * @param pulsewidth  The pulse width to set for the pin.
      */
     void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth);
-
 
     /**
      * @brief Gets the pulse width for the specified pin.
@@ -166,7 +202,7 @@ namespace splashkit_lib
      * @returns    The pulse width of the pin.
      */
     int raspi_get_servo_pulsewidth(gpio_pin pin);
-	
+
     /**
      * @brief Cleans up and releases any resources used by the GPIO library.
      *
@@ -174,7 +210,7 @@ namespace splashkit_lib
      */
     void raspi_cleanup();
 
-	/**
+    /**
      * @brief Initialises a remote connection to a Raspberry Pi.
      *
      * This function initialises a connection to a remote Raspberry Pi using the specified name, host, and port.
@@ -185,8 +221,8 @@ namespace splashkit_lib
      * @returns      The connection object used to communicate with the remote Raspberry Pi.
      */
     connection remote_raspi_init(const string &name, const string &host, unsigned short int port);
-	
-	/**
+
+    /**
      * @brief Sets the mode of the specified pin on a remote Raspberry Pi.
      *
      * This function sets the mode of a specific pin on a remote Raspberry Pi.
@@ -196,8 +232,8 @@ namespace splashkit_lib
      * @param mode   The mode to set for the pin.
      */
     void remote_raspi_set_mode(connection pi, gpio_pin pin, gpio_pin_mode mode);
-	
-	/**
+
+    /**
      * @brief Gets the mode of the specified pin on a remote Raspberry Pi.
      *
      * This function retrieves the mode of a specific pin on a remote Raspberry Pi.
@@ -207,8 +243,8 @@ namespace splashkit_lib
      * @returns      The mode of the pin.
      */
     gpio_pin_mode remote_raspi_get_mode(connection pi, gpio_pin pin);
-	
-	/**
+
+    /**
      * @brief Sets the pull up/down mode for the specified pin on a remote Raspberry Pi.
      *
      * This function sets the pull-up/down mode of a specific pin on a remote Raspberry Pi.
@@ -218,8 +254,8 @@ namespace splashkit_lib
      * @param pud    The pull up/down mode to set for the pin.
      */
     void remote_raspi_set_pull_up_down(connection pi, gpio_pin pin, pull_up_down pud);
-	
-	/**
+
+    /**
      * @brief Writes a value to the specified pin on a remote Raspberry Pi.
      *
      * This function writes a specified value to a specific pin on a remote Raspberry Pi.
@@ -229,8 +265,8 @@ namespace splashkit_lib
      * @param value  The value to write to the pin.
      */
     void remote_raspi_write(connection pi, gpio_pin pin, gpio_pin_value value);
-	
-	/**
+
+    /**
      * @brief Reads the value from the specified pin on a remote Raspberry Pi.
      *
      * This function reads the value from a specific pin on a remote Raspberry Pi.
@@ -240,8 +276,8 @@ namespace splashkit_lib
      * @returns      The value read from the pin.
      */
     gpio_pin_value remote_raspi_read(connection pi, gpio_pin pin);
-	
-	/**
+
+    /**
      * @brief Sets the PWM range for the specified pin on a remote Raspberry Pi.
      *
      * This function sets the PWM range for a specific pin on a remote Raspberry Pi.
@@ -252,8 +288,8 @@ namespace splashkit_lib
      * @param range  The PWM range to set for the pin.
      */
     void remote_raspi_set_pwm_range(connection pi, gpio_pin pin, int range);
-	
-	/**
+
+    /**
      * @brief Sets the PWM frequency for the specified pin on a remote Raspberry Pi.
      *
      * This function sets the PWM frequency for a specific pin on a remote Raspberry Pi.
@@ -263,8 +299,8 @@ namespace splashkit_lib
      * @param frequency  The PWM frequency to set for the pin.
      */
     void remote_raspi_set_pwm_frequency(connection pi, gpio_pin pin, int frequency);
-	
-	/**
+
+    /**
      * @brief Sets the PWM duty cycle for the specified pin on a remote Raspberry Pi.
      *
      * This function sets the PWM duty cycle for a specific pin on a remote Raspberry Pi.
@@ -274,8 +310,8 @@ namespace splashkit_lib
      * @param dutycycle  The PWM duty cycle to set for the pin.
      */
     void remote_raspi_set_pwm_dutycycle(connection pi, gpio_pin pin, int dutycycle);
-	
-	/**
+
+    /**
      * @brief Cleans up and releases the connection to a remote Raspberry Pi.
      *
      * This function closes the connection to the remote Raspberry Pi and releases any resources associated with it.
@@ -284,7 +320,7 @@ namespace splashkit_lib
      * @returns   true if the cleanup was successful, false otherwise.
      */
     bool remote_raspi_cleanup(connection pi);
-        
+
     /**
      * @brief Converts a GPIO Pin Value to an integer.
      *

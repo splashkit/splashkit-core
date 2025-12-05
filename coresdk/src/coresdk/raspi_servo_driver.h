@@ -50,51 +50,77 @@ namespace splashkit_lib
 
   /**
    * Returns true if a servo with this name is already open.
+   * 
    * @param name  Your identifier for this servo.
    * @returns     true if the servo is open, false otherwise.
    */
-  bool has_servo_device(const std::string &name);
+  bool has_servo_device(const string &name);
 
   /**
    * Look up an already‐opened servo by name.
+   *
    * @param name  Your identifier for this servo.
    * @returns A valid servo_device, or nullptr if not found.
-   *
    */
-  servo_device servo_named(const std::string &name);
+  servo_device servo_named(const string &name);
 
   /**
    * Open (and initialize) a servo on the given board pin.
+   * 
    * @param name         Your identifier for this servo.
    * @param control_pin  Board‐numbered GPIO pin for the servo signal line.
    * @returns            A valid servo_device, or nullptr on failure.
+   * 
+   * @attribute class       servo_device
+   * @attribute constructor  true
    */
-  servo_device open_servo(const std::string &name, gpio_pin control_pin);
+  servo_device open_servo(const string &name, gpio_pin control_pin);
 
   /**
    * Convenience: map an angle (0…180°) into the 500…2500 µs range.
    * This is a linear mapping, so it may not be accurate for all servos.
+   * 
    * @param dev  The servo device to control.
    * @param angle_degrees  The angle in degrees (0…180).
+   * 
+   * @attribute class       servo_device
+   * @attribute self        dev
+   * @attribute method      set_angle
    */
-
   void set_servo_angle(servo_device dev, double angle_degrees);
 
   /**
    * Stop sending pulses (servo will hold last position or drift).
    * This is a convenience function that sets the pulse width to 0.
+   * 
    * @param dev  The servo device to control.
-   * @note This is not the same as closing the servo.
+   * 
+   * @attribute class       servo_device
+   * @attribute self        dev
+   * @attribute method      stop
    */
   void stop_servo(servo_device dev);
 
   /**
    * Close one servo (by handle) or by name.
+   * Closes a servo device given its pointer.
    * @param dev  The servo device to close.
-   * @note This will free the resources associated with the servo.
+   *
+   * @attribute class       servo_device
+   * @attribute self        dev
+   * @attribute destructor  true
+   * @attribute method      close
    */
   void close_servo(servo_device dev);
-  void close_servo(const std::string &name);
+
+  /**
+   * Closes a servo device given its name.
+   *
+   * @param name  The name of the servo device to close.
+   *
+   * @attribute suffix  named
+   */
+  void close_servo(const string &name);
 
   /**
    * Close *all* servos.

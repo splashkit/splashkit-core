@@ -159,8 +159,8 @@
 #define PI_NOT_ON_BCM2711 -145   // not available on BCM2711
 #define PI_ONLY_ON_BCM2711 -146  // only available on BCM2711
 
-#define PI_PIGIF_BAD_SEND  -2000
-#define PI_PIGIF_BAD_RECV  -2001
+#define PI_PIGIF_BAD_SEND -2000
+#define PI_PIGIF_BAD_RECV -2001
 #define PI_PIGIF_BAD_GETADDRINFO -2002
 #define PI_PIGIF_BAD_CONNECT -2003
 #define PI_PIGIF_BAD_SOCKET -2004
@@ -183,7 +183,6 @@ namespace splashkit_lib
 {
 
 #ifdef RASPBERRY_PI
-
     int sk_gpio_init();
     int sk_gpio_read(int pin);
     void sk_gpio_set_mode(int pin, int mode);
@@ -196,10 +195,10 @@ namespace splashkit_lib
     void sk_gpio_clear_bank_1();
     int sk_spi_open(int channel, int speed, int spi_flags);
     int sk_spi_close(int handle);
-    int sk_spi_transfer(int handle, char *sendBuf, char *recvBuf, int count);
+    int sk_spi_transfer(int handle, char *send_buf, char *recv_buf, int count);
 
     // I2C Functions
-    int sk_i2c_open(int bus, int address, int flags);
+    int sk_i2c_open(int bus, int address);
     void sk_i2c_close(int handle);
     int sk_i2c_read_byte(int handle);
     int sk_i2c_write_byte(int handle, int data);
