@@ -224,7 +224,8 @@ namespace splashkit_lib
     string raspi_spi_transfer(int handle, const string &send, int count, int &bytes_transfered)
     {
 #ifdef RASPBERRY_PI
-        int len = send.size() > count ? count : send.size();
+        int len = count; // Allows strings ending with a '0' binary value
+        // int len = send.size() > count ? count : send.size();
         char send_buf[len + 1]{};
         for (int i = 0; i < len; i++)
         {
@@ -479,7 +480,7 @@ namespace splashkit_lib
         return -1;
 #endif
     }
-    
+
     void raspi_set_servo_pulsewidth(gpio_pin pin, int pulsewidth)
     {
 #ifdef RASPBERRY_PI
