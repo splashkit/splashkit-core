@@ -73,6 +73,10 @@ namespace splashkit_lib
     string path_to_user_home()
     {
 #ifndef WINDOWS
+        string home = get_env_var("HOME");
+        if (home != "")
+            return home;
+
         struct passwd *pw = getpwuid(getuid());
         return string(pw->pw_dir);
 #else
