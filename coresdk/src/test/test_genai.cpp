@@ -20,7 +20,7 @@ void run_genai_test()
     string prompt = read_line();
 
     write("LLM\n> (generating...)");
-    string response = generate_reply(prompt);
+    string response = generate_reply(QWEN3_0_6B_INSTRUCT, prompt);
     write_line("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\033[K" + response);
 
     delay(300);
