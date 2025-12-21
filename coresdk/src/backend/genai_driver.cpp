@@ -27,6 +27,18 @@ namespace splashkit_lib
 
                 ggml_backend_load_all();
 
+                // Create custom logger with colouring
+                el::Configurations conf;
+                conf.setToDefault();
+                conf.setGlobally(el::ConfigurationType::Format, "%level -> %msg");
+                conf.setGlobally(el::ConfigurationType::Filename, "logs/splashkit.log");
+
+                // `el::Loggers::addFlag(el::LoggingFlag::ColoredTerminalOutput);` would be better but has global effect
+                conf.set(el::Level::Warning, el::ConfigurationType::Format, "\x1b[33m%level -> %msg\x1b[0m");
+                conf.set(el::Level::Error, el::ConfigurationType::Format, "\x1b[31m%level -> %msg\x1b[0m");
+
+                el::Loggers::reconfigureLogger("GenAI", conf);
+
                 initialized = true;
             }
         }
@@ -43,7 +55,7 @@ namespace splashkit_lib
 
             if (model == NULL)
             {
-                LOG(ERROR) << "Unable to load language model from " << path << " - please check if it exists.";
+                CLOG(ERROR, "GenAI") << "Unable to load language model from " << path << " - it may be corrupted or missing.";
                 return {false};
             }
 
@@ -103,7 +115,7 @@ namespace splashkit_lib
             // recieve the tokens
             if (llama_tokenize(mdl.vocab, prompt.data(), prompt.size(), prompt_tokens.data(), prompt_tokens.size(), true, true) < 0)
             {
-                LOG(ERROR) << "Failed to tokenize the prompt.";
+                CLOG(ERROR, "GenAI") << "Failed to tokenize the prompt.";
                 return {};
             }
 
@@ -122,7 +134,7 @@ namespace splashkit_lib
 
             if (ctx == NULL)
             {
-                LOG(ERROR) << "Failed to create the language model context.";
+                CLOG(ERROR, "GenAI") << "Failed to create the language model context.";
                 return {nullptr};
             }
 
@@ -149,7 +161,7 @@ namespace splashkit_lib
                 {
                     llama_free(ctx);
                     llama_sampler_free(smpl);
-                    LOG(ERROR) << "Failed to encode prompt.";
+                    CLOG(ERROR, "GenAI") << "Failed to encode prompt.";
                     return {nullptr};
                 }
 
@@ -182,7 +194,7 @@ namespace splashkit_lib
             // Decode current batch with the model
             if (llama_decode(ctx.ctx, ctx.batch))
             {
-                LOG(ERROR) << "Failed to process response from language model.";
+                CLOG(ERROR, "GenAI") << "Failed to process response from language model.";
                 return -1;
             }
 
@@ -199,7 +211,7 @@ namespace splashkit_lib
             int n = llama_token_to_piece(ctx.vocab, new_token_id, buf, sizeof(buf), 0, true);
             if (n < 0)
             {
-                LOG(ERROR) << "Failed to convert response token from language model.";
+                CLOG(ERROR, "GenAI") << "Failed to convert response token from language model.";
                 return -1;
             }
 
