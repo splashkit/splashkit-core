@@ -16,15 +16,18 @@ namespace splashkit_lib
 {
     typedef unsigned int uint;
 
-    namespace llamacpp {
-        struct model {
+    namespace llamacpp
+    {
+        struct model
+        {
             bool valid;
             llama_model* model;
             const llama_vocab* vocab;
             const char* tmpl;
         };
 
-        struct inference_settings {
+        struct inference_settings
+        {
             double temperature = 0.6;
             double top_p = 0.95;
             int top_k = 20;
@@ -32,12 +35,14 @@ namespace splashkit_lib
             double presence_penalty = 0;
         };
 
-        struct message {
+        struct message
+        {
             std::string role;
             std::string content;
         };
 
-        struct context {
+        struct context
+        {
             llama_context* ctx;
             llama_sampler* smpl;
             llama_batch batch;

@@ -14,7 +14,8 @@
 
 namespace splashkit_lib
 {
-    namespace llamacpp {
+    namespace llamacpp
+    {
 
         static void llama_log_callback_null(ggml_log_level level, const char * text, void * user_data){/* nothing, avoid unnecessary logging*/}
 
@@ -143,8 +144,7 @@ namespace splashkit_lib
             sparams.no_perf = true;
             llama_sampler * smpl = llama_sampler_chain_init(sparams);
 
-            // Setup some reasonable defaults
-            // TODO: Make these user adjustable
+            // Set up sampler
             llama_sampler_chain_add(smpl, llama_sampler_init_min_p(settings.min_p, 1));
             llama_sampler_chain_add(smpl, llama_sampler_init_temp(settings.temperature));
             llama_sampler_chain_add(smpl, llama_sampler_init_top_k(settings.top_k));
