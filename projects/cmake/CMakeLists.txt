@@ -292,10 +292,16 @@ find_package(OpenMP REQUIRED)
 
 ExternalProject_Get_Property(llama_ext INSTALL_DIR)
 
-set(LLAMA_LIB_FLAGS "${INSTALL_DIR}/lib/libllama.a"
-                     "${INSTALL_DIR}/lib/libggml.a"
-                     "${INSTALL_DIR}/lib/libggml-cpu.a"
-                     "${INSTALL_DIR}/lib/libggml-base.a")
+foreach(lib libllama libggml libggml-cpu libggml-base)
+    add_library(${lib} STATIC IMPORTED GLOBAL)
+    set_target_properties(${lib} PROPERTIES
+        IMPORTED_LOCATION
+            ${INSTALL_DIR}/lib/${lib}.a
+    )
+    add_dependencies(${lib} llama_ext)
+endforeach()
+
+set(LLAMA_LIB_FLAGS libllama libggml libggml-cpu libggml-base)
 
 # MACRO DEFINITIONS #
 add_definitions(-DELPP_THREAD_SAFE)
