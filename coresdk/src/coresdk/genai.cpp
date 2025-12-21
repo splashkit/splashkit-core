@@ -135,7 +135,13 @@ namespace splashkit_lib
         }
         llamacpp::llama_tokens tokens = llamacpp::tokenize_string(model, formatted);
 
-        llamacpp::context ctx = llamacpp::start_context(model, tokens, options.max_tokens);
+        llamacpp::context ctx = llamacpp::start_context(model, tokens, options.max_tokens, {
+            options.temperature,
+            options.top_p,
+            options.top_k,
+            options.min_p,
+            options.presence_penalty
+        });
         while (!llamacpp::context_step(ctx)){
             // just wait until it completes
             // we could also stream the text to the user through a callback

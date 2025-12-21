@@ -122,7 +122,7 @@ namespace splashkit_lib
             return prompt_tokens;
         }
 
-        context start_context(model& mdl, llama_tokens& starting_context, int max_length)
+        context start_context(model& mdl, llama_tokens& starting_context, int max_length, inference_settings settings)
         {
             // Create the context
             llama_context_params ctx_params = llama_context_default_params();
@@ -145,11 +145,12 @@ namespace splashkit_lib
 
             // Setup some reasonable defaults
             // TODO: Make these user adjustable
-            llama_sampler_chain_add(smpl, llama_sampler_init_min_p(0.00f, 1));
-            llama_sampler_chain_add(smpl, llama_sampler_init_temp(0.6f));
-            llama_sampler_chain_add(smpl, llama_sampler_init_top_k(20));
-            llama_sampler_chain_add(smpl, llama_sampler_init_top_p(0.95, 0));
-            //llama_sampler_chain_add(smpl, llama_sampler_init_penalties(64, 1, 0, 0));
+            llama_sampler_chain_add(smpl, llama_sampler_init_min_p(settings.min_p, 1));
+            llama_sampler_chain_add(smpl, llama_sampler_init_temp(settings.temperature));
+            llama_sampler_chain_add(smpl, llama_sampler_init_top_k(settings.top_k));
+            llama_sampler_chain_add(smpl, llama_sampler_init_top_p(settings.top_p, 0));
+            if (settings.presence_penalty > 0)
+                llama_sampler_chain_add(smpl, llama_sampler_init_penalties(64, 0, 0, settings.presence_penalty));
             llama_sampler_chain_add(smpl, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
 
             // Prepare batch and encode starting context

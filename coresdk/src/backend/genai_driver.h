@@ -24,6 +24,14 @@ namespace splashkit_lib
             const char* tmpl;
         };
 
+        struct inference_settings {
+            double temperature = 0.6;
+            double top_p = 0.95;
+            int top_k = 20;
+            double min_p = 0;
+            double presence_penalty = 0;
+        };
+
         struct message {
             std::string role;
             std::string content;
@@ -51,7 +59,7 @@ namespace splashkit_lib
         std::string format_chat(model& mdl, const std::vector<message>& messages);
         llama_tokens tokenize_string(model& mdl, const std::string& prompt);
 
-        context start_context(model& mdl, llama_tokens& starting_context, int max_length);
+        context start_context(model& mdl, llama_tokens& starting_context, int max_length, inference_settings settings);
         int context_step(context& ctx);
         void delete_context(context& ctx);
     }
