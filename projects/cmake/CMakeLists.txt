@@ -276,19 +276,16 @@ ExternalProject_Add(
         -DLLAMA_BUILD_EXAMPLES=OFF
         -DLLAMA_BUILD_SERVER=OFF
         -DLLAMA_CUBLAS=OFF
-        -DLLAMA_CLBLAST=OFF
         -DLLAMA_METAL=OFF
-        -DLLAMA_OPENCL=OFF
         -DBUILD_SHARED_LIBS=OFF
         -DLLAMA_BUILD_COMMON=OFF
         -DLLAMA_TOOLS_INSTALL=OFF
         -DCMAKE_BUILD_TYPE=Release
         -DGGML_STATIC=ON
-        -DLLAMA_STATIC=ON
+        -DGGML_OPENMP=OFF
+        -DLLAMA_OPENMP=OFF
         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 )
-
-find_package(OpenMP REQUIRED)
 
 ExternalProject_Get_Property(llama_ext INSTALL_DIR)
 
@@ -309,7 +306,7 @@ add_definitions(-DELPP_THREAD_SAFE)
 #### END SETUP ####
 #### SplashKitBackend STATIC LIBRARY ####
 add_library(SplashKitBackend STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
-target_link_libraries(SplashKitBackend ${LIB_FLAGS} ${LLAMA_LIB_FLAGS} OpenMP::OpenMP_CXX)
+target_link_libraries(SplashKitBackend ${LIB_FLAGS} ${LLAMA_LIB_FLAGS})
 
 if(RASPBERRY_PI)
     if(RASPBERRY_PI_5)
