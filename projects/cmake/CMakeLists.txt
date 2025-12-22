@@ -45,6 +45,7 @@ if (APPLE)
                    -framework AudioToolbox \
                    -framework CoreAudio \
                    -framework CoreVideo \
+                   -framework Accelerate \
                    -lSDL2 \
                    -lSDL2_mixer \
                    -lSDL2_ttf \
@@ -275,15 +276,15 @@ ExternalProject_Add(
         -DLLAMA_BUILD_TOOLS=OFF
         -DLLAMA_BUILD_EXAMPLES=OFF
         -DLLAMA_BUILD_SERVER=OFF
-        -DLLAMA_CUBLAS=OFF
-        -DLLAMA_METAL=OFF
+        -DGGML_BLAS=OFF
+        -DGGML_METAL=OFF
+        -DGGML_VULKAN=OFF
         -DBUILD_SHARED_LIBS=OFF
         -DLLAMA_BUILD_COMMON=OFF
         -DLLAMA_TOOLS_INSTALL=OFF
         -DCMAKE_BUILD_TYPE=Release
         -DGGML_STATIC=ON
         -DGGML_OPENMP=OFF
-        -DLLAMA_OPENMP=OFF
         -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 )
 
