@@ -289,16 +289,23 @@ ExternalProject_Add(
 
 ExternalProject_Get_Property(llama_ext INSTALL_DIR)
 
-foreach(lib libllama libggml libggml-cpu libggml-base)
+foreach(lib llama ggml ggml-cpu ggml-base)
     add_library(${lib} STATIC IMPORTED GLOBAL)
-    set_target_properties(${lib} PROPERTIES
-        IMPORTED_LOCATION
-            ${INSTALL_DIR}/lib/${lib}.a
-    )
+    if (MSYS AND NOT "${lib}" STREQUAL "llama") # llama still ends up as libllama.a on Windows, unsure why
+        set_target_properties(${lib} PROPERTIES
+            IMPORTED_LOCATION
+                ${INSTALL_DIR}/lib/${lib}.a # no lib prefix
+        )
+    else()
+        set_target_properties(${lib} PROPERTIES
+            IMPORTED_LOCATION
+                ${INSTALL_DIR}/lib/lib${lib}.a # lib prefix
+        )
+    endif()
     add_dependencies(${lib} llama_ext)
 endforeach()
 
-set(LLAMA_LIB_FLAGS libllama libggml libggml-cpu libggml-base)
+set(LLAMA_LIB_FLAGS llama ggml ggml-cpu ggml-base)
 
 # MACRO DEFINITIONS #
 add_definitions(-DELPP_THREAD_SAFE)
