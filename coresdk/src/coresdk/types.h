@@ -563,12 +563,12 @@ namespace splashkit_lib
      * @constant QWEN3_4B_BASE         Qwen3 4B Base model - slower but excellent for text commpletion/pattern based completion
      * @constant QWEN3_4B_INSTRUCT     Qwen3 4B Instruct model - slower but can follow complex instructions
      * @constant QWEN3_4B_THINKING     Qwen3 4B Thinking model - slower but can follow complex and specific instructions, but has a potentially long delay before starting to reply
-     * @constant GEMMA_270M_BASE       Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.
-     * @constant GEMMA_270M_BASE       Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.
-     * @constant GEMMA_1B_BASE         Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA_1B_INSTRUCT     Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA_4B_BASE         Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.
-     * @constant GEMMA_4B_INSTRUCT     Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_270M_BASE      Gemma3 270M Base model - tiny, extremely fast, and good for text completion. Very limited world knowledge.
+     * @constant GEMMA3_270M_INSTRUCT  Gemma3 270M Instruct model - tiny, extremely fast, and good for very simple instructions. Very limited world knowledge.
+     * @constant GEMMA3_1B_BASE        Gemma3 1B Base model - fast and good for text completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_1B_INSTRUCT    Gemma3 1B Instruct model - fast and can follow instructions. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_BASE        Gemma3 4B Base model - slower but good for text commpletion/pattern based completion. Has decent world knowledge and multi-lingual abilities.
+     * @constant GEMMA3_4B_INSTRUCT    Gemma3 4B Instruct model - slower but can follow complex instructions. Has decent world knowledge and multi-lingual abilities.
      */
     enum language_model
     {
