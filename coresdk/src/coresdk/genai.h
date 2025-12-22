@@ -43,6 +43,8 @@ namespace splashkit_lib
      * @param prompt The prompt for the language model to reply to.
      *
      * @returns The generated reply.
+     *
+     * @attribute suffix with_model
      */
     string generate_reply(language_model model, string prompt);
 
@@ -56,6 +58,8 @@ namespace splashkit_lib
      * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
      *
      * @returns The generated reply.
+     *
+     * @attribute suffix with_options
      */
     string generate_reply(string prompt, language_model_options options);
 
@@ -82,6 +86,8 @@ namespace splashkit_lib
      * @param text The input text for the language model to continue.
      *
      * @returns The generated reply.
+     *
+     * @attribute suffix with_model
      */
     string generate_text(language_model model, string text);
 
@@ -95,6 +101,8 @@ namespace splashkit_lib
      * @param options The generation options - use the `option_` functions to create this, for instance `option_language_model`
      *
      * @returns The generated reply.
+     *
+     * @attribute suffix with_options
      */
     string generate_text(string text, language_model_options options);
 
