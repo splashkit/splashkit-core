@@ -33,6 +33,8 @@ namespace splashkit_lib
             int top_k = 20;
             double min_p = 0;
             double presence_penalty = 0;
+            int max_length = 256;
+            uint32_t seed = 42;
         };
 
         struct message
@@ -64,7 +66,7 @@ namespace splashkit_lib
         std::string format_chat(model& mdl, const std::vector<message>& messages);
         llama_tokens tokenize_string(model& mdl, const std::string& prompt);
 
-        context start_context(model& mdl, llama_tokens& starting_context, int max_length, inference_settings settings);
+        context start_context(model& mdl, llama_tokens& starting_context, inference_settings settings);
         int context_step(context& ctx);
         void delete_context(context& ctx);
     }

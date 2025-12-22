@@ -123,11 +123,11 @@ namespace splashkit_lib
             return prompt_tokens;
         }
 
-        context start_context(model& mdl, llama_tokens& starting_context, int max_length, inference_settings settings)
+        context start_context(model& mdl, llama_tokens& starting_context, inference_settings settings)
         {
             // Create the context
             llama_context_params ctx_params = llama_context_default_params();
-            ctx_params.n_ctx = starting_context.size() + max_length - 1;
+            ctx_params.n_ctx = starting_context.size() + settings.max_length - 1;
             ctx_params.n_batch = starting_context.size();
             ctx_params.no_perf = true;
 
@@ -151,7 +151,7 @@ namespace splashkit_lib
             llama_sampler_chain_add(smpl, llama_sampler_init_top_p(settings.top_p, 0));
             if (settings.presence_penalty > 0)
                 llama_sampler_chain_add(smpl, llama_sampler_init_penalties(64, 0, 0, settings.presence_penalty));
-            llama_sampler_chain_add(smpl, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
+            llama_sampler_chain_add(smpl, llama_sampler_init_dist(settings.seed));
 
             // Prepare batch and encode starting context
             llama_batch batch = llama_batch_get_one(starting_context.data(), starting_context.size());

@@ -616,6 +616,7 @@ namespace splashkit_lib
         double min_p;
         double presence_penalty;
         string prompt_append;
+        int seed;
     };
 }
 #endif /* types_hpp */

@@ -135,12 +135,14 @@ namespace splashkit_lib
         }
         llamacpp::llama_tokens tokens = llamacpp::tokenize_string(model, formatted);
 
-        llamacpp::context ctx = llamacpp::start_context(model, tokens, options.max_tokens, {
+        llamacpp::context ctx = llamacpp::start_context(model, tokens, {
             options.temperature,
             options.top_p,
             options.top_k,
             options.min_p,
-            options.presence_penalty
+            options.presence_penalty,
+            options.max_tokens,
+            (uint32_t)options.seed
         });
         while (!llamacpp::context_step(ctx)){
             // just wait until it completes
@@ -198,6 +200,7 @@ namespace splashkit_lib
 
         language_model_options options = models[model];
         options.path =  home_path + options.path;
+        options.seed = 0;
 
         return options;
     }
