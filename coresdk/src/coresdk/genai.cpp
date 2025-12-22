@@ -10,6 +10,7 @@
 #include "utility_functions.h"
 #include "web_driver.h"
 #include "terminal.h"
+#include "core_driver.h"
 
 #include <filesystem>
 
@@ -17,6 +18,8 @@ using std::to_string;
 
 namespace splashkit_lib
 {
+    static vector<conversation> objects;
+
     const language_model DEFAULT_LANGUAGE_MODEL = QWEN3_0_6B_INSTRUCT;
 
     const int default_max_tokens_base = 256; // base has a higher likelihood of running forever for no reason, better to limit it early
@@ -109,17 +112,22 @@ namespace splashkit_lib
         return result;
     }
 
-    string __generate_common(string prompt, language_model_options options, bool format_chat)
+    llamacpp::model __get_model(language_model_options options)
     {
         llamacpp::init();
 
         if (options.url != "" && !ensure_exists_or_download(options.path, options.url, " ::: Downloading Language Model: " + options.name + " |"))
         {
             CLOG(ERROR, "GenAI") << "Failed to download language model - see error above.";
-            return "";
+            return {false};
         }
 
-        llamacpp::model model = llamacpp::create_model(options.path);
+        return llamacpp::create_model(options.path);
+    }
+
+    string __generate_common(string prompt, language_model_options options, bool format_chat)
+    {
+        llamacpp::model model = __get_model(options);
 
         if (!model.valid) return "";
 
@@ -127,13 +135,13 @@ namespace splashkit_lib
 
         if (format_chat)
         {
-            llamacpp::format_chat(model, {
+            formatted = llamacpp::format_chat(model, {
                 {
                     "user", prompt + options.prompt_append
-                }
-            });
+                },
+            }, true);
         }
-        llamacpp::llama_tokens tokens = llamacpp::tokenize_string(model, formatted);
+        llamacpp::llama_tokens tokens = llamacpp::tokenize_string(model, formatted, true);
 
         llamacpp::context ctx = llamacpp::start_context(model, tokens, {
             options.temperature,
@@ -144,12 +152,15 @@ namespace splashkit_lib
             options.max_tokens,
             (uint32_t)options.seed
         });
-        while (!llamacpp::context_step(ctx)){
-            // just wait until it completes
-            // we could also stream the text to the user through a callback
-        };
 
-        std::string result = ctx.ctx_string;
+        std::string result = "";
+        llamacpp::token_result token;
+
+        while (!llamacpp::context_step(ctx, &token))
+        {
+            if (token.type == llamacpp::token_result::CONTENT)
+                result += token.text;
+        };
 
         llamacpp::delete_context(ctx);
         llamacpp::delete_model(model);
@@ -187,6 +198,172 @@ namespace splashkit_lib
     {
         return __generate_common(text, options, false);
     }
+
+    // --------------------------------------------------------------
+
+    // Streaming conversation
+
+    #define CONVERSATION_CHECK(x, val) \
+        if (INVALID_PTR(c, CONVERSATION_PTR))\
+        {\
+            LOG(WARNING) << "Passed an invalid conversation object to " x;\
+            return val;\
+        }
+
+    conversation create_conversation()
+    {
+        return create_conversation(option_language_model(DEFAULT_LANGUAGE_MODEL));
+    }
+
+    conversation create_conversation(language_model model)
+    {
+        return create_conversation(option_language_model(model));
+    }
+
+    conversation create_conversation(language_model_options options)
+    {
+        internal_sk_init();
+
+        llamacpp::model model = __get_model(options);
+
+        if (!model.valid) return nullptr;
+
+        llamacpp::llama_tokens initial_tokens = llamacpp::tokenize_string(model, "", true);
+
+        sk_conversation* c = new sk_conversation();
+        c->id = CONVERSATION_PTR;
+        c->model = model;
+        c->context = llamacpp::start_context(model, initial_tokens, {
+            options.temperature,
+            options.top_p,
+            options.top_k,
+            options.min_p,
+            options.presence_penalty,
+            options.max_tokens,
+            (uint32_t)options.seed
+        });;
+
+        c->was_generating = false;
+        c->is_generating = true;
+
+        c->prompt_append = options.prompt_append;
+
+        objects.push_back(c);
+
+        return c;
+    };
+
+    void conversation_add_message(conversation c, const string& message)
+    {
+        CONVERSATION_CHECK("conversation_add_message", )
+
+        // end the language model's turn
+        if (c->was_generating)
+        {
+            c->was_generating = false;
+            llamacpp::manual_end_message(c->context);
+        }
+
+        // tokenize user's prompt and add to context
+        llamacpp::llama_tokens tokens = llamacpp::tokenize_string(c->model, llamacpp::format_chat(c->model, {
+            {"user", message + c->prompt_append}
+        }, true), false);
+        llamacpp::add_to_context(c->context, tokens);
+
+        // the model is ready to generate again
+        c->is_generating = true;
+    }
+
+    void __buffer_next_token(conversation c)
+    {
+        if (c->next_token.type != llamacpp::token_result::token_type::NONE)
+            return; // already buffered
+
+        // attempt to get next token that is non-meta
+        do
+        {
+            // if we reach the end of the message, return even if a meta token (shouldn't happen though)
+            if (llamacpp::context_step(c->context, &c->next_token))
+            {
+                c->is_generating = false;
+                return;
+            }
+        } while (c->next_token.type == llamacpp::token_result::token_type::META);
+    }
+
+    // These next three functions buffer the next token so that they can
+    // return information about it
+    bool conversation_is_replying(conversation c)
+    {
+        CONVERSATION_CHECK("conversation_is_replying", false)
+
+        __buffer_next_token(c);
+
+        return c->is_generating;
+    }
+
+    bool conversation_is_thinking(conversation c)
+    {
+        CONVERSATION_CHECK("conversation_is_thinking", false)
+
+        __buffer_next_token(c);
+
+        return c->next_token.type == llamacpp::token_result::token_type::THINKING;
+    }
+
+    string conversation_get_reply_piece(conversation c)
+    {
+        CONVERSATION_CHECK("conversation_get_reply_piece", "")
+
+        // if the user wants a token, we can resume generating even if we already finished
+        c->is_generating = true;
+        c->was_generating = true;
+
+        __buffer_next_token(c);
+
+        // token is consumed
+        c->next_token.type = llamacpp::token_result::token_type::NONE;
+
+        return c->next_token.text;
+    }
+
+    void __free_conversation_resource(conversation c)
+    {
+        llamacpp::delete_context(c->context);
+        llamacpp::delete_model(c->model);
+    }
+
+    void free_conversation(conversation c)
+    {
+        CONVERSATION_CHECK("free_conversation", )
+
+        __free_conversation_resource(c);
+
+        for (auto it = objects.begin(); it != objects.end(); it++)
+        {
+            if (*it == c)
+            {
+                notify_of_free(c);
+
+                delete *it;
+
+                it = objects.erase(it);
+                return;
+            }
+        }
+    }
+
+    void free_all_conversations()
+    {
+        for (conversation c : objects)
+        {
+            __free_conversation_resource(c);
+        }
+
+        objects.clear();
+    }
+
+    // --------------------------------------------------------------
 
     language_model_options option_language_model(language_model model)
     {
