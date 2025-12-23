@@ -17,7 +17,7 @@ using std::to_string;
 
 /**
 * Return the barycenter of the triangle. This is one way of calculating the
-*center point of a triangle.
+* center point of a triangle.
 * @param tri The triangle to get the center of
 * @return The point that is the barycenter of `tri`
 */;
@@ -58,16 +58,16 @@ bool triangle_quad_intersect(const triangle &tri, const quad &q);
 bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri);
 /**
 * Detects if a ray intersects a triangle. If an intersection is found, the
-*`hit_point` and `hit_distance` are set to the point of intersection and the
-*distance from the ray's origin to the intersection point. If the ray's `origin`
-*is contained within the triangle, `hit_point` is set to the `origin` and `hit_distance`
-*is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
+* `hit_point` and `hit_distance` are set to the point of intersection and the
+* distance from the ray's origin to the intersection point. If the ray's `origin`
+* is contained within the triangle, `hit_point` is set to the `origin` and `hit_distance`
+* is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
 * @param origin The starting point of the ray
 * @param heading The direction of the ray as a vector
 * @param tri The triangle to check for intersection
 * @param hit_point The point to set to where the ray intersects the triangle
 * @param hit_distance The double to set to the distance from the ray's origin to
-*the intersection point
+* the intersection point
 * @return True if the ray intersects the triangle, false otherwise
 */;
 bool triangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const triangle &tri, point_2d &hit_point, double &hit_distance);

@@ -51,14 +51,14 @@ bool reading_text();
 bool reading_text(window wind);
 /**
 * Start reading text in the current window within the bounds of the
-*supplied rectangle.
+* supplied rectangle.
 * @param rect The area where the text will be entered.
 *
 */;
 void start_reading_text(rectangle rect);
 /**
 * Start reading text in the current window within the bounds of the
-*supplied rectangle. The text will start with an initial value.
+* supplied rectangle. The text will start with an initial value.
 * @param rect The area where the text will be entered.
 * @param initial_text The initial text, which may be edited by the user.
 *
@@ -66,7 +66,7 @@ void start_reading_text(rectangle rect);
 void start_reading_text(rectangle rect, string initial_text);
 /**
 * Start reading text in the window within the bounds of the
-*supplied rectangle.
+* supplied rectangle.
 * @param wind The window where the text will be entered
 * @param rect The area where the text will be entered.
 *
@@ -74,7 +74,7 @@ void start_reading_text(rectangle rect, string initial_text);
 void start_reading_text(window wind, rectangle rect);
 /**
 * Start reading text in the window within the bounds of the
-*supplied rectangle. The text will start with an initial value.
+* supplied rectangle. The text will start with an initial value.
 * @param wind The window where the text will be entered
 * @param rect The area where the text will be entered.
 * @param initial_text The initial text, which may be edited by the user.

@@ -16,9 +16,9 @@ using std::to_string;
 
 /**
 * Checks if SplashKit audio currently ready to be used.
-*
-*Should this return `false`, you may want to use `open_audio`
-*to enable audio.
+* 
+* Should this return `false`, you may want to use `open_audio`
+* to enable audio.
 
 * @return Returns `true` if the audio has been initalised.
 */;

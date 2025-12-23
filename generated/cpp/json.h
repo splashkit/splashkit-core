@@ -19,15 +19,15 @@ struct _json_data;
 typedef struct _json_data *json;
 /**
 * The empty `json` object returned can be filled with data and read by the
-*functions and procedures prefixed with `json_add_` and `json_read_`
+* functions and procedures prefixed with `json_add_` and `json_read_`
 
 * @return Returns an empty `json` object.
 */;
 json create_json();
 /**
 * `string json_string` must be valid JSON.
-*The `json` object returned can be filled with data and read by the functions
-*and procedures prefixed with `json_add_` and `json_read_`
+* The `json` object returned can be filled with data and read by the functions
+* and procedures prefixed with `json_add_` and `json_read_`
 * @param json_string The JSON formatted `string` to be converted to a `json` object.
 * @return Returns a `json` object filled with data from the parameter `string`.
 */;
@@ -58,7 +58,7 @@ int json_count_keys(json j);
 json json_from_color(color clr);
 /**
 * Reads a `json` object from a JSON string stored in `Resources/json/filename`
-*and loads the data into the returned `json` object.
+* and loads the data into the returned `json` object.
 * @param filename The filename of the file to be written to `Resources/json/`.
 * @return Returns the `json` object loaded from the JSON file in `filename`.
 */;
@@ -78,7 +78,7 @@ json json_from_string(const string &j_string);
 bool json_has_key(json j, string key);
 /**
 * Reads an array of `double` values from the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object from which data will be returned for the given key.
 * @param key The `string` key used to find data in the `json` object.
 * @param out_result The array which will be filled with the data stored for `string` key.
@@ -87,7 +87,7 @@ bool json_has_key(json j, string key);
 void json_read_array(json j, string key, vector<double> &out_result);
 /**
 * Reads an array of `json` object values from the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object from which data will be returned for the given key.
 * @param key The `string` key used to find data in the `json` object.
 * @param out_result The array which will be filled with the data stored for `string` key.
@@ -96,7 +96,7 @@ void json_read_array(json j, string key, vector<double> &out_result);
 void json_read_array(json j, string key, vector<json> &out_result);
 /**
 * Reads an array of `string` values from the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object from which data will be returned for the given key.
 * @param key The `string` key used to find data in the `json` object.
 * @param out_result The array which will be filled with the data stored for `string` key.
@@ -105,7 +105,7 @@ void json_read_array(json j, string key, vector<json> &out_result);
 void json_read_array(json j, string key, vector<string> &out_result);
 /**
 * Reads an array of `bool` values from the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object from which data will be returned for the given key.
 * @param key The `string` key used to find data in the `json` object.
 * @param out_result The array which will be filled with the data stored for `string` key.
@@ -156,7 +156,7 @@ json json_read_object(json j, string key);
 string json_read_string(json j, string key);
 /**
 * Adds an array of `string` values to the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object where data will be inserted for the given key.
 * @param key The `string` key where data will be stored in the `json` object.
 * @param value The value to be inserted into the `json` object.
@@ -165,7 +165,7 @@ string json_read_string(json j, string key);
 void json_set_array(json j, string key, vector<string> value);
 /**
 * Adds an array of `double` values to the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object where data will be inserted for the given key.
 * @param key The `string` key where data will be stored in the `json` object.
 * @param value The value to be inserted into the `json` object.
@@ -174,7 +174,7 @@ void json_set_array(json j, string key, vector<string> value);
 void json_set_array(json j, string key, vector<double> value);
 /**
 * Adds an array of `bool` values to the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object where data will be inserted for the given key.
 * @param key The `string` key where data will be stored in the `json` object.
 * @param value The value to be inserted into the `json` object.
@@ -183,7 +183,7 @@ void json_set_array(json j, string key, vector<double> value);
 void json_set_array(json j, string key, vector<bool> value);
 /**
 * Adds an array of `json` object values to the `json` object for
-*the given `string` key.
+* the given `string` key.
 * @param j The `json` object where data will be inserted for the given key.
 * @param key The `string` key where data will be stored in the `json` object.
 * @param value The value to be inserted into the `json` object.

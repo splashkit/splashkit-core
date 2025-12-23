@@ -117,7 +117,7 @@ void raspi_set_pwm_dutycycle(gpio_pin pin, int dutycycle);
 void raspi_set_pwm_frequency(gpio_pin pin, int frequency);
 /**
 * This function sets the PWM range for the specified pin.
-*Valid values for the range are 25 - 40000
+* Valid values for the range are 25 - 40000
 * @param pin The pin to set the PWM range for.
 * @param range The PWM range to set for the pin.
 *
@@ -222,7 +222,7 @@ void remote_raspi_set_pwm_dutycycle(connection pi, gpio_pin pin, int dutycycle);
 void remote_raspi_set_pwm_frequency(connection pi, gpio_pin pin, int frequency);
 /**
 * This function sets the PWM range for a specific pin on a remote Raspberry Pi.
-*Valid values for the range are 25 - 40000
+* Valid values for the range are 25 - 40000
 * @param pi The connection object to the remote Raspberry Pi.
 * @param pin The pin to set the PWM range for.
 * @param range The PWM range to set for the pin.

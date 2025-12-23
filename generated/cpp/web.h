@@ -21,7 +21,7 @@ struct _http_response_data;
 typedef struct _http_response_data *http_response;
 /**
 * Download an image from a web server and load it into SplashKit so that
-*you can use it.
+* you can use it.
 * @param name The name of the bitmap resource when it is loaded
 * @param url The URL path to the image resoure
 * @param port The port to connect to on the server
@@ -30,7 +30,7 @@ typedef struct _http_response_data *http_response;
 bitmap download_bitmap(const string &name, const string &url, unsigned short port);
 /**
 * Download a font from a web server and load it into SplashKit so that
-*you can use it.
+* you can use it.
 * @param name The name of the font resource when it is loaded
 * @param url The URL path to the font resoure
 * @param port The port to connect to on the server
@@ -39,7 +39,7 @@ bitmap download_bitmap(const string &name, const string &url, unsigned short por
 font download_font(const string &name, const string &url, unsigned short port);
 /**
 * Download a music file from a web server and load it into SplashKit so
-*that you can use it.
+* that you can use it.
 * @param name The name of the music resource when it is loaded
 * @param url The URL path to the music resoure
 * @param port The port to connect to on the server
@@ -48,7 +48,7 @@ font download_font(const string &name, const string &url, unsigned short port);
 music download_music(const string &name, const string &url, unsigned short port);
 /**
 * Download a sound effect from a web server and load it into SplashKit so
-*that you can use it.
+* that you can use it.
 * @param name The name of the sound effect resource when it is loaded
 * @param url The URL path to the sound effect resoure
 * @param port The port to connect to on the server

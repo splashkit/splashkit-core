@@ -984,9 +984,9 @@ color color_teal();
 color color_thistle();
 /**
 * Returns a string representation of the color.
-*Format will be a hex string starting with a #,
-*followed by the red, green, blue, and alpha
-*values of the color.
+* Format will be a hex string starting with a #,
+* followed by the red, green, blue, and alpha
+* values of the color.
 * @param c The color
 * @return A hex string representing the color
 */;
@@ -1067,14 +1067,14 @@ color hsb_color(double hue, double saturation, double brightness);
 double hue_of(color c);
 /**
 * Creates and returns a random color where the color and its opacity are
-*random.
+* random.
 
 * @return A random color
 */;
 color random_color();
 /**
 * Creates and returns a random color where the color is random, but the
-*opacity is set to the passed in value.
+* opacity is set to the passed in value.
 * @param alpha The set alpha (opacity) value (between 0 and 255)
 * @return A random color with the set alpha
 */;
@@ -1087,7 +1087,7 @@ color random_rgb_color(int alpha);
 int red_of(color c);
 /**
 * Gets a color given its RGB components. Each of the components has
-*a value between 0 and 1.
+* a value between 0 and 1.
 * @param red The red component
 * @param green The green component
 * @param blue The blue component
@@ -1096,7 +1096,7 @@ int red_of(color c);
 color rgb_color(double red, double green, double blue);
 /**
 * Gets a color given its RGB components. Each of the components has
-*a value between 0 and 255.
+* a value between 0 and 255.
 * @param red The red component
 * @param green The green component
 * @param blue The blue component
@@ -1105,7 +1105,7 @@ color rgb_color(double red, double green, double blue);
 color rgb_color(int red, int green, int blue);
 /**
 * Gets a color given its color components. Each of the components has
-*a value between 0 and 1.0.
+* a value between 0 and 1.0.
 * @param red The red component (between 0 and 1.0)
 * @param green The green component (between 0 and 1.0)
 * @param blue The blue component (between 0 and 1.0)
@@ -1115,7 +1115,7 @@ color rgb_color(int red, int green, int blue);
 color rgba_color(double red, double green, double blue, double alpha);
 /**
 * Gets a color given its color components. Each of the components has
-*a value between 0 and 255.
+* a value between 0 and 255.
 * @param red The red component (between 0 and 255)
 * @param green The green component (between 0 and 255)
 * @param blue The blue component (between 0 and 255)
@@ -1131,9 +1131,9 @@ color rgba_color(int red, int green, int blue, int alpha);
 double saturation_of(color c);
 /**
 * Returns a color for the passed in color string.
-*The format must be #, followed by the hex values
-*for the red, green, blue, and alpha components
-*of the color.
+* The format must be #, followed by the hex values
+* for the red, green, blue, and alpha components
+* of the color.
 * @param str The hex string representing the color
 * @return The color represented in the string
 */;

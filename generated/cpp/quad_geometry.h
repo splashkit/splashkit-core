@@ -18,8 +18,8 @@ using std::to_string;
 
 /**
 * Returns a quad from the passed in line and width.
-*The quad will be a rectangle with the line as the diagonal,
-*and the width as the width of the rectangle.
+* The quad will be a rectangle with the line as the diagonal,
+* and the width as the width of the rectangle.
 * @param line_origin The origin of the line
 * @param line_end The end of the line
 * @param width The width of the quad
@@ -43,7 +43,7 @@ quad quad_from(const point_2d &p1, const point_2d &p2, const point_2d &p3, const
 quad quad_from(const rectangle &rect);
 /**
 * Returns a quad from the rectangle, then applies the transformation to
-*the quads points.
+* the quads points.
 * @param rect The rectangle to transform to a quad.
 * @param transform A transform to apply to the resulting quad.
 * @return A quad that represents the rectangle after the transformation.
@@ -72,16 +72,16 @@ quad quad_from(double x_top_left, double y_top_left, double x_top_right, double 
 bool quad_ray_intersection(const point_2d &origin, const vector_2d &heading, const quad &q);
 /**
 * Detects if a ray intersects a quad. If an intersection is found, the
-*`hit_point` and `hit_distance` are set to the point of intersection and the
-*distance from the ray's origin to the intersection point. If the ray's `origin`
-*is contained within the quad, `hit_point` is set to the `origin` and `hit_distance`
-*is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
+* `hit_point` and `hit_distance` are set to the point of intersection and the
+* distance from the ray's origin to the intersection point. If the ray's `origin`
+* is contained within the quad, `hit_point` is set to the `origin` and `hit_distance`
+* is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
 * @param origin The starting point of the ray
 * @param heading The direction of the ray as a vector
 * @param q The quad to check for intersection
 * @param hit_point The point to set to where the ray intersects the quad
 * @param hit_distance The double to set to the distance from the ray's origin to
-*the intersection point
+* the intersection point
 * @return True if the ray intersects the quad, false otherwise
 */;
 bool quad_ray_intersection(const point_2d &origin, const vector_2d &heading, const quad &q, point_2d &hit_point, double &hit_distance);
@@ -96,7 +96,7 @@ bool quads_intersect(const quad &q1, const quad &q2);
 * Change a point in a quad.
 * @param q The quad to change
 * @param idx The index of the point: 0 is top left, 1 is top right, 2 is
-*bottom left, and 3 is bottom right
+* bottom left, and 3 is bottom right
 * @param value The new value for that point in the quad
 *
 */;

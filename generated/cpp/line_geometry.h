@@ -27,7 +27,7 @@ point_2d closest_point_on_line(const point_2d from_pt, const line &l);
 * @param from_pt The point to test
 * @param lines The lines to check
 * @param line_idx After the call this will store the index of the line that
-*had the matching point.
+* had the matching point.
 * @return The point on one of the lines that is the closest point
 on these lines to the `from pt`.
 */;
@@ -63,7 +63,7 @@ line line_from(const vector_2d &v);
 line line_from(double x1, double y1, double x2, double y2);
 /**
 * Returns the point at which two lines would intersect. This point may lie
-*past the end of one or both lines.
+* past the end of one or both lines.
 * @param line1 The first line
 * @param line2 The other line
 * @param pt The resulting point where they intersect
@@ -99,7 +99,7 @@ bool line_intersects_rect(const line &l, const rectangle &rect);
 float line_length(const line &l);
 /**
 * Returns the squared length of the line. You can also get the
-*`line_length`.
+* `line_length`.
 * @param l The line
 * @return The squared length of the line
 */;

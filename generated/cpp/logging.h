@@ -50,7 +50,7 @@ void init_custom_logger(log_mode mode);
 void init_custom_logger(string app_name, bool override_prev_log, log_mode mode);
 /**
 * Send a message to the message log. The message will be written if the log level for
-*the program is set to display this.
+* the program is set to display this.
 * @param level The level of the message to log
 * @param message The message to be shown
 *

@@ -50,7 +50,7 @@ void close_window(const string &name);
 void close_window(window wind);
 /**
 * Returns the window that you are currently interacting with. This will be
-*the default window for drawing options, and events.
+* the default window for drawing options, and events.
 
 * @return The current window
 */;
@@ -111,10 +111,10 @@ int current_window_x();
 int current_window_y();
 /**
 * Determines if SplashKit has a window loaded with the supplied name.
-*This checks against all windows loaded, those loaded without a name
-*are assigned the filename as a default. If this returns `false`, you may
-*want to use `load_window` to load in a specific window and give
-*it the desired name.
+* This checks against all windows loaded, those loaded without a name
+* are assigned the filename as a default. If this returns `false`, you may
+* want to use `load_window` to load in a specific window and give
+* it the desired name.
 * @param caption The name of the window to check for.
 * @return Returns `true` if there is a window with the given `caption`
 which has has been loaded.
@@ -151,12 +151,12 @@ void move_window_to(const string &name, int x, int y);
 void move_window_to(window wind, int x, int y);
 /**
 * Opens a new graphics window. The supplied `caption` is used to
-*name and identify the window. The supplied `width` and `height` indicate
-*the size of the window. The window can be retrieved by passing `caption`
-*to the `window_named` function.
+* name and identify the window. The supplied `width` and `height` indicate
+* the size of the window. The window can be retrieved by passing `caption`
+* to the `window_named` function.
 * @param caption The title of the window. If a window with this caption
-*already exists, SplashKit will alter the caption to
-*ensure that it is unique.
+* already exists, SplashKit will alter the caption to
+* ensure that it is unique.
 * @param width The width of the window
 * @param height The height of the window
 * @return A new window
@@ -198,7 +198,7 @@ void resize_window(window wnd, int width, int height);
 void set_current_window(const string &name);
 /**
 * Change the current window. Use this so that you can draw to different
-*windows by default.
+* windows by default.
 * @param wind The new current window
 *
 */;
@@ -211,8 +211,8 @@ void set_current_window(window wind);
 string window_caption(window wind);
 /**
 * Checks all opened windows in the current program
-*to determin if a window with the name `name` is
-*currently open, and will close a window if one is found.
+* to determin if a window with the name `name` is
+* currently open, and will close a window if one is found.
 * @param name The name of the window to close
 * @return Returns `true` if the window has been asked to close.
 */;
@@ -268,7 +268,7 @@ bool window_is_fullscreen(const string &name);
 bool window_is_fullscreen(window wnd);
 /**
 * Returns an opened `window` with the given name `caption`, if a window with
-*name `caption` is found.
+* name `caption` is found.
 * @param caption the `string` name of the window.
 * @return Returns a `window` with the name specified by `caption`
 */;
@@ -330,7 +330,7 @@ int window_width(const string &name);
 int window_width(window wind);
 /**
 * Returns the window that the user currently has selected. This may be
-*different to the current window.
+* different to the current window.
 
 * @return The window the user has selected
 */;

@@ -18,7 +18,7 @@ struct _timer_data;
 typedef struct _timer_data *timer;
 /**
 * Create and return a new Timer. The timer will not be started, and will have
-*an initial 'ticks' of 0.
+* an initial 'ticks' of 0.
 * @param name The name of the timer for resource tracking
 * @return A new timer.
 */;
@@ -43,14 +43,14 @@ void free_timer(timer to_free);
 bool has_timer(string name);
 /**
 * Pause the timer, getting ticks from a paused timer
-*will continue to return the same time.
+* will continue to return the same time.
 * @param name The name of the timer
 *
 */;
 void pause_timer(string name);
 /**
 * Pause the timer, getting ticks from a paused timer
-*will continue to return the same time.
+* will continue to return the same time.
 * @param to_pause The timer
 *
 */;
@@ -81,30 +81,30 @@ void resume_timer(string name);
 void resume_timer(timer to_resume);
 /**
 * Start a timer. The timer will then start recording the time that has passed.
-*You can check how long has past since the timer was started using the
-*`timer_ticks` function.
+* You can check how long has past since the timer was started using the
+* `timer_ticks` function.
 * @param name The name of the timer
 *
 */;
 void start_timer(string name);
 /**
 * Start a timer. The timer will then start recording the time that has passed.
-*You can check how long has past since the timer was started using the
-*`timer_ticks` function.
+* You can check how long has past since the timer was started using the
+* `timer_ticks` function.
 * @param to_start The timer
 *
 */;
 void start_timer(timer to_start);
 /**
 * Stop the timer. The time is reset to 0 and you must
-*recall start to begin the timer ticking again.
+* recall start to begin the timer ticking again.
 * @param name The name of the timer
 *
 */;
 void stop_timer(string name);
 /**
 * Stop the timer. The time is reset to 0 and you must
-*recall start to begin the timer ticking again.
+* recall start to begin the timer ticking again.
 * @param to_stop The timer
 *
 */;
@@ -141,8 +141,8 @@ bool timer_started(string name);
 bool timer_started(timer to_get);
 /**
 * Gets the number of ticks (milliseconds) that have passed since the timer
-*was started/reset. When paused the timer's ticks will not advance until
-*the timer is once again resumed.
+* was started/reset. When paused the timer's ticks will not advance until
+* the timer is once again resumed.
 * @param name The name of the Timer
 * @return The number of milliseconds that have passed since the
 timer was created (excluding the time the timer was
@@ -151,8 +151,8 @@ paused)
 unsigned int timer_ticks(string name);
 /**
 * Gets the number of ticks (milliseconds) that have passed since the timer
-*was started/reset. When paused the timer's ticks will not advance until
-*the timer is once again resumed.
+* was started/reset. When paused the timer's ticks will not advance until
+* the timer is once again resumed.
 * @param to_get The timer
 * @return The number of milliseconds that have passed since the
 timer was created (excluding the time the timer was

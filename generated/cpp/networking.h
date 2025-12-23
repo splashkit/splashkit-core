@@ -83,7 +83,7 @@ void clear_messages(connection a_connection);
 void clear_messages(server_socket svr);
 /**
 * Close all of the connections you have opened. This does not close
-*connections to servers.
+* connections to servers.
 
 *
 */;
@@ -120,7 +120,7 @@ void close_message(message msg);
 bool close_server(const string &name);
 /**
 * Closes the server, all connections with clients will be shut and
-*the port will be closed.
+* the port will be closed.
 * @param svr The server to close
 * @return True if the close was successful
 */;
@@ -184,21 +184,21 @@ server_socket create_server(const string &name, unsigned short port);
 server_socket create_server(const string &name, unsigned short port, connection_type protocol);
 /**
 * Converts the supplied decimal integer into it's hexadecimal representation.
-*e.g. 0x7F000001 from 2130706433
+* e.g. 0x7F000001 from 2130706433
 * @param a_dec decimal to be converted to a hexadecimal number string
 * @return hexadecimal representation of the supplied decimal integer
 */;
 string dec_to_hex(unsigned int a_dec);
 /**
 * Decodes the supplied unsigned 32-bit integer into its ipv4 address form
-*e.g. 2130706433 into 127.0.0.1
+* e.g. 2130706433 into 127.0.0.1
 * @param ip integer to be decoded
 * @return ipv4 address string in X.X.X.X format
 */;
 string dec_to_ipv4(unsigned int ip);
 /**
 * Get the oldest new connections made to the server, and
-*reduces the new connection count by 1.
+* reduces the new connection count by 1.
 * @param server The server to check
 * @return The oldest new connection
 */;
@@ -247,36 +247,36 @@ bool has_new_connections();
 bool has_server(const string &name);
 /**
 * The supplied hexadecimal string is translated into ipv4 standard address string.
-*Function handles hex strings starting with or without 0x.
-*e.g. 127.0.0.1 from 0x7F000001
+* Function handles hex strings starting with or without 0x.
+* e.g. 127.0.0.1 from 0x7F000001
 * @param a_hex hexadecimal ipv4 string to convert
 * @return standard ipv4 address using format X.X.X.X
 */;
 string hex_str_to_ipv4(const string &a_hex);
 /**
 * The supplied hexadecimal string is converted into it's decimal representation
-*e.g. 7F into 127
+* e.g. 7F into 127
 * @param a_hex hexadecimal string to convert
 * @return decimal representation of supplied hex string
 */;
 string hex_to_dec_string(const string &a_hex);
 /**
 * Converts a hexadecimal representation of a MAC address back to its standard format.
-*e.g. 01:23:45:67:89:AB from 0x0123456789AB
+* e.g. 01:23:45:67:89:AB from 0x0123456789AB
 * @param hex_str hexadecimal string to convert
 * @return MAC address as a string in the format XX:XX:XX:XX:XX:XX
 */;
 string hex_to_mac(const string &hex_str);
 /**
 * Encodes the supplied ipv4 address string (in format X.X.X.X) into a single integer
-*e.g. 127.0.0.1 into 2130706433
+* e.g. 127.0.0.1 into 2130706433
 * @param a_ip ipv4 address to encode
 * @return encoded ipv4 string
 */;
 unsigned int ipv4_to_dec(const string &a_ip);
 /**
 * Converts an ipv4 address into it's hexadecimal representation
-*e.g. 0x7F000001 from 127.0.0.1
+* e.g. 0x7F000001 from 127.0.0.1
 * @param a_ip ip address to convert
 * @return hexadecimal representation of ipc4 string
 */;
@@ -319,7 +319,7 @@ connection last_connection(const string &name);
 connection last_connection(server_socket server);
 /**
 * Converts a MAC address into its hexadecimal representation.
-*e.g. 0x0123456789AB from 01:23:45:67:89:AB
+* e.g. 0x0123456789AB from 01:23:45:67:89:AB
 * @param mac_address MAC address to convert
 * @return hexadecimal representation of MAC address as a string
 */;
@@ -386,7 +386,7 @@ connection_type message_protocol(message msg);
 string my_ip();
 /**
 * Returns the name SplashKit would use for a connection made to a server
-*from a host to a port.
+* from a host to a port.
 * @param host The host name
 * @param port The port
 * @return The name SplashKit would use for this connection
@@ -394,9 +394,9 @@ string my_ip();
 string name_for_connection(const string host, const unsigned int port);
 /**
 * Get the number of new connections made to the server.
-*The count will increase as the server accepts new connections.
-*The count decreases each time you fetch a new connection, or
-*can be set to 0 if you reset the new connection count.
+* The count will increase as the server accepts new connections.
+* The count decreases each time you fetch a new connection, or
+* can be set to 0 if you reset the new connection count.
 * @param server The server to check
 * @return The number of new connections
 */;
@@ -480,7 +480,7 @@ void reconnect(const string &name);
 void release_all_connections();
 /**
 * Allows you to reset the new connection count to 0.
-*(The connections are kept)
+* (The connections are kept)
 * @param server The server to check
 *
 */;

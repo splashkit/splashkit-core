@@ -90,7 +90,7 @@ rectangle rectangle_from(const point_2d pt, const double width, const double hei
 rectangle rectangle_from(const point_2d pt1, const point_2d pt2);
 /**
 * Returns a rectangle from a given x,y location with the specified width
-*and height.
+* and height.
 * @param x The x coordinate of the rectangle
 * @param y The y coordinate of the rectangle
 * @param width The width of the rectangle
@@ -123,16 +123,16 @@ rectangle rectangle_offset_by(const rectangle &rect, const vector_2d &offset);
 bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect);
 /**
 * Detects if a ray intersects a rectangle. If an intersection is found, the
-*`hit_point` and `hit_distance` are set to the point of intersection and the
-*distance from the ray's origin to the intersection point. If the ray's `origin`
-*is contained within the rectangle, `hit_point` is set to the `origin` and `hit_distance`
-*is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
+* `hit_point` and `hit_distance` are set to the point of intersection and the
+* distance from the ray's origin to the intersection point. If the ray's `origin`
+* is contained within the rectangle, `hit_point` is set to the `origin` and `hit_distance`
+* is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
 * @param origin The starting point of the ray
 * @param heading The direction of the ray as a vector
 * @param rect The rectangle to check for intersection
 * @param hit_point The point to set to where the ray intersects the rectangle
 * @param hit_distance The double to set to the distance from the ray's origin to
-*the intersection point
+* the intersection point
 * @return True if the ray intersects the rectangle, false otherwise
 */;
 bool rectangle_ray_intersection(const point_2d &origin, const vector_2d &heading, const rectangle &rect, point_2d &hit_point, double &hit_distance);

@@ -118,7 +118,7 @@ vector<string> request_headers(http_request r);
 http_method request_method(http_request r);
 /**
 * Returns the value of a parameter from within the query string, or the supplied default
-*if no matching parameter is found.
+* if no matching parameter is found.
 * @param r A request object.
 * @param name The name of the parameter to fetch
 * @param default_value The value to return if the named parameter is not in the query string.
@@ -139,10 +139,10 @@ string request_query_string(http_request r);
 string request_uri(http_request r);
 /**
 * Returns an array of strings representing each stub of the URI.
-*
-*For example a request sent to `http://localhost:8080/names/0` returns...
-*
-*["names", "0"]
+* 
+* For example a request sent to `http://localhost:8080/names/0` returns...
+* 
+* ["names", "0"]
 * @param r The request for retrieving URI to split into stubs.
 * @return The array of stubs as strings.
 */;
@@ -232,10 +232,10 @@ void send_response(http_request r, http_status_code code, const string &message,
 void send_response(http_request r, json j);
 /**
 * Returns an array of strings representing each stub of the URI.
-*
-*For example a request sent to `http://localhost:8080/names/0` returns...
-*
-*["names", "0"]
+* 
+* For example a request sent to `http://localhost:8080/names/0` returns...
+* 
+* ["names", "0"]
 * @param uri The URI to split into stubs.
 * @return The array of stubs as strings.
 */;

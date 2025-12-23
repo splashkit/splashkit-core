@@ -52,25 +52,25 @@ void call_for_all_sprites(sprite_function *fn);
 void call_on_sprite_event(sprite_event_handler *handler);
 /**
 * Creates a sprite for the passed in bitmap image. The sprite will use the
-*cell information within the bitmap if it is animated at a later stage.
-*
-*This version of create_sprite will initialise the sprite to use
-*pixel level collisions, no animations, and have one layer named 'layer1'.
-*This version of the constructor will assign a default name to the sprite
-*for resource management purposes.
+* cell information within the bitmap if it is animated at a later stage.
+* 
+* This version of create_sprite will initialise the sprite to use
+* pixel level collisions, no animations, and have one layer named 'layer1'.
+* This version of the constructor will assign a default name to the sprite
+* for resource management purposes.
 * @param layer The bitmap for the sprite's image.
 * @return The new sprite with image.
 */;
 sprite create_sprite(bitmap layer);
 /**
 * Creates a sprite for the passed in bitmap image. The sprite will use the
-*cell information within the bitmap if it is animated at a later stage.
-*This version of `create_sprite` will initialise the sprite to use
-*pixel level collisions, the specified animation template, the layer have
-*name 'layer1'.
-*
-*This version of the constructor will assign a default name to the sprite
-*for resource management purposes.
+* cell information within the bitmap if it is animated at a later stage.
+* This version of `create_sprite` will initialise the sprite to use
+* pixel level collisions, the specified animation template, the layer have
+* name 'layer1'.
+* 
+* This version of the constructor will assign a default name to the sprite
+* for resource management purposes.
 * @param layer The bitmap for the sprite's image.
 * @param ani The animation script for the sprite's animations.
 * @return The new sprite with image and animation script.
@@ -78,21 +78,21 @@ sprite create_sprite(bitmap layer);
 sprite create_sprite(bitmap layer, animation_script ani);
 /**
 * Creates a sprite for the passed in bitmap image. The sprite will use the
-*cell information within the bitmap if it is animated at a later stage.
-*
-*This version of create_sprite will initialise the sprite to use
-*pixel level collisions, no animations, and have one layer named 'layer1'.
-*This version of the constructor will assign a default name to the sprite
-*for resource management purposes.
+* cell information within the bitmap if it is animated at a later stage.
+* 
+* This version of create_sprite will initialise the sprite to use
+* pixel level collisions, no animations, and have one layer named 'layer1'.
+* This version of the constructor will assign a default name to the sprite
+* for resource management purposes.
 * @param bitmap_name The name of the bitmap to use as the sprite's layer
 * @return The new sprite with image.
 */;
 sprite create_sprite(const string &bitmap_name);
 /**
 * Creates a sprite for the passed in bitmap image. The sprite will use the
-*cell information within the sprite if it is animated at a later stage.
-*This version of create_sprite will initialise the sprite to use pixel level
-*collisions, no animation, the layer have name 'layer1'.
+* cell information within the sprite if it is animated at a later stage.
+* This version of create_sprite will initialise the sprite to use pixel level
+* collisions, no animation, the layer have name 'layer1'.
 * @param name The name of the sprite for resource management.
 * @param layer The bitmap for the sprite's image.
 * @return The new sprite with image and name.
@@ -100,9 +100,9 @@ sprite create_sprite(const string &bitmap_name);
 sprite create_sprite(const string &name, bitmap layer);
 /**
 * Creates a sprite for the passed in bitmap image. The sprite will use the cell
-*information within the sprite if it is animated at a later stage. This
-*version of create_sprite will initialise the sprite to use pixel level
-*collisions, the specified animation template, the layer have name 'layer1'.
+* information within the sprite if it is animated at a later stage. This
+* version of create_sprite will initialise the sprite to use pixel level
+* collisions, the specified animation template, the layer have name 'layer1'.
 * @param name The name of the sprite for resource management.
 * @param layer The bitmap for the sprite's image.
 * @param ani The animation script for the sprite's animations.
@@ -111,18 +111,18 @@ sprite create_sprite(const string &name, bitmap layer);
 sprite create_sprite(const string &name, bitmap layer, animation_script ani);
 /**
 * Creates a sprite. The bitmap_name is used to indicate the bitmap the sprite
-*will use, and the animation_name is used to indicate which animation_script
-*to use.
+* will use, and the animation_name is used to indicate which animation_script
+* to use.
 * @param bitmap_name The name of the bitmap to use as the sprite's image.
 * @param animation_name The name of the animation script to use for this
-*sprite.
+* sprite.
 * @return The new sprite with the image and animation.
 */;
 sprite create_sprite(const string &bitmap_name, const string &animation_name);
 /**
 * Create a new sprite_pack with a given name. This pack can then be
-*selected and used to control which sprites are drawn/updated in
-*the calls to draw_all_sprites and update_all_sprites.
+* selected and used to control which sprites are drawn/updated in
+* the calls to draw_all_sprites and update_all_sprites.
 * @param name The name of the new sprite pack.
 *
 */;
@@ -135,16 +135,16 @@ void create_sprite_pack(const string &name);
 string current_sprite_pack();
 /**
 * draws all of the sprites in the current sprite pack. Packs can be
-*switched to select between different sets of sprites.
+* switched to select between different sets of sprites.
 
 *
 */;
 void draw_all_sprites();
 /**
 * Draws the sprite at its position in the game offset by a given amount. Only
-*use this method when you want to draw the sprite displaced from its location
-*in your game. Otherwise you should change the sprite's location and then
-*use the standard ''draw_sprite'' routine.
+* use this method when you want to draw the sprite displaced from its location
+* in your game. Otherwise you should change the sprite's location and then
+* use the standard ''draw_sprite'' routine.
 * @param s The sprite to draw.
 * @param offset The amount to offset the sprite.
 *
@@ -152,19 +152,19 @@ void draw_all_sprites();
 void draw_sprite(sprite s, const vector_2d &offset);
 /**
 * Draws the sprite at its location in the world. This is affected by the
-*position of the camera and the sprites current location.
-*
-*This is the standard routine for drawing sprites to the screen and should be
-*used in most cases.
+* position of the camera and the sprites current location.
+* 
+* This is the standard routine for drawing sprites to the screen and should be
+* used in most cases.
 * @param s The sprite to draw.
 *
 */;
 void draw_sprite(sprite s);
 /**
 * Draws the sprite at its position in the game offset by a given amount. Only
-*use this method when you want to draw the sprite displaced from its location
-*in your game. Otherwise you should change the sprite's location and then
-*use the standard `draw_sprite` routine.
+* use this method when you want to draw the sprite displaced from its location
+* in your game. Otherwise you should change the sprite's location and then
+* use the standard `draw_sprite` routine.
 * @param s The sprite to draw.
 * @param x_offset The amount to offset on the x axis.
 * @param y_offset The amount to offset on the y axis.
@@ -191,8 +191,8 @@ void free_sprite(sprite s);
 void free_sprite_pack(const string &name);
 /**
 * Determines if SplashKit has a sprite for the supplied name.
-*This checks against all sprites, those loaded without a name
-*are assigned a default.
+* This checks against all sprites, those loaded without a name
+* are assigned a default.
 * @param name The name of the sprite to locate.
 * @return True if you have created a sprite with this name.
 */;
@@ -205,39 +205,39 @@ bool has_sprite(const string &name);
 bool has_sprite_pack(const string &name);
 /**
 * moves the sprite as indicated by its velocity. You can call this directly ot
-*alternatively, this action is performed when the sprite is updated using
-*the ''update_sprite'' routine.
+* alternatively, this action is performed when the sprite is updated using
+* the ''update_sprite'' routine.
 * @param s The sprite to move.
 *
 */;
 void move_sprite(sprite s);
 /**
 * Moves the sprite a given distance based on the value passed in rather than
-*based on the sprite's velocity. Typically this method is used to apply
-*other movement actions to the sprite and the velocity of the sprite is
-*used the intended movement of the sprite.
+* based on the sprite's velocity. Typically this method is used to apply
+* other movement actions to the sprite and the velocity of the sprite is
+* used the intended movement of the sprite.
 * @param s The sprite to move.
 * @param distance The vector that represents the direction and distance to
-*move the sprite.
+* move the sprite.
 *
 */;
 void move_sprite(sprite s, const vector_2d &distance);
 /**
 * Moves the sprite a percentage of a given distance based on the value
-*passed in rather than based on the sprite's velocity. Typically this
-*method is used to apply other movement actions to the sprite and the
-*velocity of the sprite is used the intended movement of the sprite.
+* passed in rather than based on the sprite's velocity. Typically this
+* method is used to apply other movement actions to the sprite and the
+* velocity of the sprite is used the intended movement of the sprite.
 * @param s The sprite to move.
 * @param distance The vector that represents the direction and distance to
-*move the sprite.
+* move the sprite.
 * @param pct The percentage of the distance to move the sprite.
 *
 */;
 void move_sprite(sprite s, const vector_2d &distance, float pct);
 /**
 * Moves the sprite as indicated by a percentage of its velocity. You can call
-*this directly ot alternatively, this action is performed when the sprite is
-*updated using the ''update_sprite'' routines that require a percentage.
+* this directly ot alternatively, this action is performed when the sprite is
+* updated using the ''update_sprite'' routines that require a percentage.
 * @param s The sprite to move.
 * @param pct The percentage of the sprite's velocity to move.
 *
@@ -253,8 +253,8 @@ void move_sprite(sprite s, float pct);
 void move_sprite_to(sprite s, double x, double y);
 /**
 * Selects the named sprite_pack (if it has been created). The
-*selected sprite_pack determines which sprites are drawn and updated
-*with the draw_all_sprites and update_all_sprites code.
+* selected sprite_pack determines which sprites are drawn and updated
+* with the draw_all_sprites and update_all_sprites code.
 * @param name The name of the sprite pack to select.
 *
 */;
@@ -269,8 +269,8 @@ void select_sprite_pack(const string &name);
 int sprite_add_layer(sprite s, bitmap new_layer, const string &layer_name);
 /**
 * Alters the current velocity of the sprite, adding the passed in vector_2d to the current velocity.
-*When the sprite is updated (see `update_sprite`)
-*this vector_2d is used to move the sprite.
+* When the sprite is updated (see `update_sprite`)
+* this vector_2d is used to move the sprite.
 * @param s The sprite to change.
 * @param value The amount to add to the sprite's velocity.
 *
@@ -285,7 +285,7 @@ void sprite_add_to_velocity(sprite s, const vector_2d &value);
 void sprite_add_value(sprite s, const string &name);
 /**
 * Adds a new kind of value to the sprite, setting the initial value
-*to the value passed in.
+* to the value passed in.
 * @param s The sprite to change.
 * @param name The name of the new value to store in the sprite.
 * @param init_val The initial value.
@@ -294,15 +294,15 @@ void sprite_add_value(sprite s, const string &name);
 void sprite_add_value(sprite s, const string &name, float init_val);
 /**
 * Returns the anchor point of the sprite. This is the point around which the
-*sprite rotates. This is in sprite coordinates, so as if the sprite is drawn
-*at 0,0.
+* sprite rotates. This is in sprite coordinates, so as if the sprite is drawn
+* at 0,0.
 * @param s The sprite to get the details from.
 * @return The anchor point of the sprite.
 */;
 point_2d sprite_anchor_point(sprite s);
 /**
 * The sprite anchor position, is the location of the anchor point in world
-*coordinates, based upon the position of the sprite.
+* coordinates, based upon the position of the sprite.
 * @param s The sprite to find where the anchor is in world coordinates
 * @return The location of the sprite's anchor point positioned at the sprite's location
 */;
@@ -349,7 +349,7 @@ void sprite_bring_layer_to_front(sprite s, int visible_layer);
 void sprite_call_on_event(sprite s, sprite_event_handler *handler);
 /**
 * Returns the center point of the passed in sprite. This is based on the sprite's
-*Position, Width and Height.
+* Position, Width and Height.
 * @param s The sprite to get the details from.
 * @return The center point of the sprite
 */;
@@ -362,7 +362,7 @@ point_2d sprite_center_point(sprite s);
 circle sprite_circle(sprite s);
 /**
 * Returns the bitmap used by the sprite to determine if it has collided with
-*other objects in the game.
+* other objects in the game.
 * @param s The sprite to get the details from.
 * @return The bitmap used for collisions with this sprite.
 */;
@@ -375,7 +375,7 @@ bitmap sprite_collision_bitmap(sprite s);
 circle sprite_collision_circle(sprite s);
 /**
 * Returns the kind of collision used with this sprite. This is used when
-*determining if the sprite has collided with other objects in the game.
+* determining if the sprite has collided with other objects in the game.
 * @param s The sprite to get the details from.
 * @return The kind of collisions performed with this sprite.
 */;
@@ -388,14 +388,14 @@ collision_test_kind sprite_collision_kind(sprite s);
 rectangle sprite_collision_rectangle(sprite s);
 /**
 * Returns the current animation cell for an animated sprite. The cell is
-*updated when the sprite's animation data is updated.
+* updated when the sprite's animation data is updated.
 * @param s The sprite to get the details from.
 * @return The current cell animation of the sprite.
 */;
 int sprite_current_cell(sprite s);
 /**
 * Returns a rectangle of the current cell within the sprite's image. This is used
-*to determine what part of the bitmap should be used when the sprite is drawn.
+* to determine what part of the bitmap should be used when the sprite is drawn.
 * @param s The sprite to get the details from.
 * @return The current cell rectangle of the sprite.
 */;
@@ -551,7 +551,7 @@ int sprite_layer_width(sprite s, const string &name);
 int sprite_layer_width(sprite s, int idx);
 /**
 * Returns a matrix that can be used to transform points into the coordinate
-*space of the passed in sprite.
+* space of the passed in sprite.
 * @param s The sprite to get the details from.
 * @return A matrix that transforms points into the sprites coordinate
 space.
@@ -559,24 +559,24 @@ space.
 matrix_2d sprite_location_matrix(sprite s);
 /**
 * This indicates the mass of the sprite for any of the collide methods from
-*Physics. The mass of two colliding sprites will determine the relative
-*velocitys after the collision.
+* Physics. The mass of two colliding sprites will determine the relative
+* velocitys after the collision.
 * @param s The sprite to get the details from.
 * @return The mass of the sprite.
 */;
 float sprite_mass(sprite s);
 /**
 * Indicates if the sprite is moved from its anchor point, or from its top left.
-*When this returns true the location of the sprite will indicate its anchor point.
-*When this returns false the location of the sprite is its top left corner.
+* When this returns true the location of the sprite will indicate its anchor point.
+* When this returns false the location of the sprite is its top left corner.
 * @param s The sprite to get the details of.
 * @return True if the sprite moves from its anchor point.
 */;
 bool sprite_move_from_anchor_point(sprite s);
 /**
 * This void starts the sprite moving to the indicated
-*destination point, over a specified number of seconds. When the
-*sprite arrives it will raise the sprite_arrived event.
+* destination point, over a specified number of seconds. When the
+* sprite arrives it will raise the sprite_arrived event.
 * @param s The sprite to move.
 * @param pt The sprite's destination.
 * @param taking_seconds The time the sprite should take to get to pt.
@@ -585,7 +585,7 @@ bool sprite_move_from_anchor_point(sprite s);
 void sprite_move_to(sprite s, const point_2d &pt, float taking_seconds);
 /**
 * Returns the name of the sprite. This name is used for resource management
-*and can be used to interact with the sprite in various routines.
+* and can be used to interact with the sprite in various routines.
 * @param s The sprite to get the details from.
 * @return The name of the sprite.
 */;
@@ -604,7 +604,7 @@ sprite sprite_named(const string &name);
 bool sprite_offscreen(sprite s);
 /**
 * Returns true if a pixel of the `sprite` `s` is at the screen location
-*specified (`pt`), which is converted to a world location.
+* specified (`pt`), which is converted to a world location.
 * @param s The sprite to test.
 * @param pt The location in screen coordinates to check.
 * @return True if the sprite would draw something at this coordinate on
@@ -613,7 +613,7 @@ the screen when drawn.
 bool sprite_on_screen_at(sprite s, const point_2d &pt);
 /**
 * Returns true if a pixel of the `sprite` `s` is at the screen location
-*specified.
+* specified.
 * @param s The sprite to test.
 * @param x The x location in screen coordinates to check.
 * @param y The y location in screen coordinates to check.
@@ -629,40 +629,40 @@ bool sprite_on_screen_at(sprite s, double x, double y);
 point_2d sprite_position(sprite s);
 /**
 * Restart the sprite's current animation, this will play a sound if the
-*first cell of the animation is associated with a sound effect.
+* first cell of the animation is associated with a sound effect.
 * @param s The sprite to replay the animation of.
 *
 */;
 void sprite_replay_animation(sprite s);
 /**
 * Restart the sprite's current animation, this will play a sound if
-*with_sound is true and the first cell of the animation is associated
-*with a sound effect.
+* with_sound is true and the first cell of the animation is associated
+* with a sound effect.
 * @param s The sprite to replay the animation of.
 * @param with_sound If false, the animation will not play associated sound
-*effects when restarted.
+* effects when restarted.
 *
 */;
 void sprite_replay_animation(sprite s, bool with_sound);
 /**
 * This indicates the angle of rotation of the sprite. This will rotate any
-*images of the sprite before drawing, which can be very slow. avoid using
-*this method with bitmap based sprites where possible.
+* images of the sprite before drawing, which can be very slow. avoid using
+* this method with bitmap based sprites where possible.
 * @param s The sprite to get the details from.
 * @return The angle of the sprite rotation.
 */;
 float sprite_rotation(sprite s);
 /**
 * This indicates the scale of the sprite. This will scale any
-*images of the sprite before drawing, which can be very slow. avoid using
-*this method with bitmap based sprites where possible.
+* images of the sprite before drawing, which can be very slow. avoid using
+* this method with bitmap based sprites where possible.
 * @param s The sprite to get the details from.
 * @return The scale of the sprite.
 */;
 float sprite_scale(sprite s);
 /**
 * Returns the rectangle representing the location of the sprite on the
-*screen.
+* screen.
 * @param s The sprite to get the details from.
 * @return A rectangle indicating where the sprite is on the screen.
 */;
@@ -683,8 +683,8 @@ void sprite_send_layer_backward(sprite s, int visible_layer);
 void sprite_send_layer_to_back(sprite s, int visible_layer);
 /**
 * Allows you to set the anchor point for the sprite. This is the point around
-*which the sprite rotates. This is in sprite coordinates, as if the sprite
-*is drawn at 0,0.
+* which the sprite rotates. This is in sprite coordinates, as if the sprite
+* is drawn at 0,0.
 * @param s The sprite to change.
 * @param pt The new anchor point in sprite coordinates.
 *
@@ -692,8 +692,8 @@ void sprite_send_layer_to_back(sprite s, int visible_layer);
 void sprite_set_anchor_point(sprite s, const point_2d &pt);
 /**
 * Sets the bitmap used by the sprite to determine if it has collided with
-*other objects in the game. By default the collision_bitmap is set to the
-*bitmap from the sprite's first layer.
+* other objects in the game. By default the collision_bitmap is set to the
+* bitmap from the sprite's first layer.
 * @param s The sprite to change.
 * @param bmp The new collision bitmap for the sprite.
 *
@@ -701,7 +701,7 @@ void sprite_set_anchor_point(sprite s, const point_2d &pt);
 void sprite_set_collision_bitmap(sprite s, bitmap bmp);
 /**
 * Sets the kind of collision used with this sprite. This is used when
-*determining if the sprite has collided with other objects in the game.
+* determining if the sprite has collided with other objects in the game.
 * @param s The sprite to change.
 * @param value The new kind of collision test for this sprite.
 *
@@ -725,13 +725,13 @@ void sprite_set_dy(sprite s, double value);
 * Alters the direction the sprite is heading without changing the speed.
 * @param s The sprite to change.
 * @param value The new angle for the sprite's velocity -- distance remains the
-*same.
+* same.
 *
 */;
 void sprite_set_heading(sprite s, float value);
 /**
 * Sets the offset of the specified layer. The offset is used when the layer
-*is drawn in the sprite, and moves the image relative to the sprite.
+* is drawn in the sprite, and moves the image relative to the sprite.
 * @param s The sprite to change.
 * @param name The name of the layer to change.
 * @param value The new offset.
@@ -755,10 +755,10 @@ void sprite_set_layer_offset(sprite s, int idx, const vector_2d &value);
 void sprite_set_mass(sprite s, float value);
 /**
 * Allows you to indicate if the sprite is moved from its anchor point, or from its
-*top left.
-*
-*When set to true the location of the sprite will be its anchor point.
-*When set to false the location of the sprite is its top left corner.
+* top left.
+* 
+* When set to true the location of the sprite will be its anchor point.
+* When set to false the location of the sprite is its top left corner.
 * @param s The sprite to change.
 * @param value The value to set this option.
 *
@@ -802,7 +802,7 @@ void sprite_set_speed(sprite s, double value);
 void sprite_set_value(sprite s, const string &name, float val);
 /**
 * Sets the current velocity of the sprite. When the sprite is updated
-*(see `update_sprite`) this vector_2d is used to move the sprite.
+* (see `update_sprite`) this vector_2d is used to move the sprite.
 * @param s The sprite to change.
 * @param value The new sprite velocity.
 *
@@ -844,8 +844,8 @@ int sprite_show_layer(sprite s, int id);
 double sprite_speed(sprite s);
 /**
 * Start playing an animation from the sprite's animation template.
-*This will play a sound effect if the first cell of the animation
-*has a sound.
+* This will play a sound effect if the first cell of the animation
+* has a sound.
 * @param s The sprite to start the animation of.
 * @param named The name of the animation to start from the animation script.
 *
@@ -853,19 +853,19 @@ double sprite_speed(sprite s);
 void sprite_start_animation(sprite s, const string &named);
 /**
 * Start playing an animation from the sprite's animation template.
-*The with_sound parameter determines whether to play a sound effect
-*if the first cell of the animation has a sound.
+* The with_sound parameter determines whether to play a sound effect
+* if the first cell of the animation has a sound.
 * @param s The sprite to start the animation of.
 * @param named The name of the animation to start from the animation script.
 * @param with_sound If false, the animation will not play associated sound
-*effects when started.
+* effects when started.
 *
 */;
 void sprite_start_animation(sprite s, const string &named, bool with_sound);
 /**
 * Start playing an animation from the sprite's animation template.
-*This will play a sound effect if the first cell of the animation
-*has a sound.
+* This will play a sound effect if the first cell of the animation
+* has a sound.
 * @param s The sprite to start the animation of.
 * @param idx The index of the animation to start from the animation script.
 *
@@ -873,18 +873,18 @@ void sprite_start_animation(sprite s, const string &named, bool with_sound);
 void sprite_start_animation(sprite s, int idx);
 /**
 * Start playing an animation from the sprite's animation template.
-*The with_sound parameter determines whether to play a sound effect
-*if the first cell of the animation has a sound.
+* The with_sound parameter determines whether to play a sound effect
+* if the first cell of the animation has a sound.
 * @param s The sprite to start the animation of.
 * @param idx The index of the animation to start from the animation script.
 * @param with_sound If false, the animation will not play associated sound
-*effects when started.
+* effects when started.
 *
 */;
 void sprite_start_animation(sprite s, int idx, bool with_sound);
 /**
 * Removes an event handler from the sprite, stopping events from this
-*sprite calling the indicated method.
+* sprite calling the indicated method.
 * @param s The sprite to remove the handler from
 * @param handler The function to remove from this sprites handlers
 *
@@ -919,7 +919,7 @@ float sprite_value(sprite s, const string &name);
 int sprite_value_count(sprite s);
 /**
 * Returns the current velocity of the sprite. When the sprite is updated
-*(see `update_sprite`) this vector_2d is used to move the sprite.
+* (see `update_sprite`) this vector_2d is used to move the sprite.
 * @param s The sprite to get the details from.
 * @return The sprite's velocity.
 */;
@@ -953,8 +953,8 @@ int sprite_visible_layer(sprite s, int idx);
 int sprite_visible_layer_count(sprite s);
 /**
 * Returns the id of the layer at index `idx` that is currently visible.
-*Index 0 is the background, with larger indexes moving toward the foreground.
-*This returns -1 if there are no visible layers.
+* Index 0 is the background, with larger indexes moving toward the foreground.
+* This returns -1 if there are no visible layers.
 * @param s The sprite to get the details from.
 * @param idx The index of the visible layer.
 * @return The layer index of the visible layer.
@@ -992,34 +992,34 @@ void stop_calling_on_sprite_event(sprite_event_handler *handler);
 void update_all_sprites();
 /**
 * Update all of the sprites in the current sprite pack, passing in a
-*percentage value to indicate the percentage to update.
+* percentage value to indicate the percentage to update.
 * @param pct The percentage of the update to apply.
 *
 */;
 void update_all_sprites(float pct);
 /**
 * Update the position and animation details of the sprite.
-*This will play a sound effect if the new cell of the animation
-*has a sound.
+* This will play a sound effect if the new cell of the animation
+* has a sound.
 * @param s The sprite to update.
 *
 */;
 void update_sprite(sprite s);
 /**
 * Update the position and animation details of the sprite.
-*This will play a sound effect if the new cell of the animation
-*has a sound and with_sound is true.
+* This will play a sound effect if the new cell of the animation
+* has a sound and with_sound is true.
 * @param s The sprite to update
 * @param with_sound If false, animations will not play associated sound
-*effects when updated.
+* effects when updated.
 *
 */;
 void update_sprite(sprite s, bool with_sound);
 /**
 * Update the position and animation details of the sprite by a
-*given percentage of a single unit of movement/animation.
-*This will play a sound effect if the new cell of the animation
-*has a sound.
+* given percentage of a single unit of movement/animation.
+* This will play a sound effect if the new cell of the animation
+* has a sound.
 * @param s The sprite to update.
 * @param pct The percent to update.
 *
@@ -1027,39 +1027,39 @@ void update_sprite(sprite s, bool with_sound);
 void update_sprite(sprite s, float pct);
 /**
 * Update the position and animation details of the sprite by a
-*given percentage of a single unit of movement/animation.
-*This will play a sound effect if the new cell of the animation
-*has a sound and with_sound is true.
+* given percentage of a single unit of movement/animation.
+* This will play a sound effect if the new cell of the animation
+* has a sound and with_sound is true.
 * @param s The sprite to update.
 * @param pct The percent to update.
 * @param with_sound If false, animations will not play associated sound
-*effects when updated.
+* effects when updated.
 *
 */;
 void update_sprite(sprite s, float pct, bool with_sound);
 /**
 * Updates the animation details of the sprite.
-*This will play a sound effect if the new cell of the animation
-*has a sound.
+* This will play a sound effect if the new cell of the animation
+* has a sound.
 * @param s The sprite to update.
 *
 */;
 void update_sprite_animation(sprite s);
 /**
 * Update the animation details of the sprite.
-*This will play a sound effect if the new cell of the animation
-*has a sound and with_sound is true.
+* This will play a sound effect if the new cell of the animation
+* has a sound and with_sound is true.
 * @param s The sprite to update.
 * @param with_sound If false, animations will not play associated sound
-*effects when updated.
+* effects when updated.
 *
 */;
 void update_sprite_animation(sprite s, bool with_sound);
 /**
 * Update the animation details of the sprite by a
-*given percentage of a single unit of movement/animation.
-*This will play a sound effect if the new cell of the animation
-*has a sound.
+* given percentage of a single unit of movement/animation.
+* This will play a sound effect if the new cell of the animation
+* has a sound.
 * @param s The sprite to update.
 * @param pct The percent to update.
 *
@@ -1067,19 +1067,19 @@ void update_sprite_animation(sprite s, bool with_sound);
 void update_sprite_animation(sprite s, float pct);
 /**
 * Update the position and animation details of the sprite by a
-*given percentage of a single unit of movement/animation.
-*This will play a sound effect if the new cell of the animation
-*has a sound and with_sound is true.
+* given percentage of a single unit of movement/animation.
+* This will play a sound effect if the new cell of the animation
+* has a sound and with_sound is true.
 * @param s The sprite to update.
 * @param pct The percent to update.
 * @param with_sound If false, animations will not play associated sound
-*effects when updated.
+* effects when updated.
 *
 */;
 void update_sprite_animation(sprite s, float pct, bool with_sound);
 /**
 * Returns a `vector_2d` that is the difference in location from the center of
-*the sprite `s` to the point `pt`.
+* the sprite `s` to the point `pt`.
 * @param s The sprite that is at the start of the vector.
 * @param pt The point that is at the end of the vector.
 * @return A vector pointing from the sprite to the point.
@@ -1087,7 +1087,7 @@ void update_sprite_animation(sprite s, float pct, bool with_sound);
 vector_2d vector_from_center_sprite_to_point(sprite s, const point_2d &pt);
 /**
 * Returns a `vector_2d` that is the difference in the position of two sprites
-*(`s1` and `s2`).
+* (`s1` and `s2`).
 * @param s1 The sprite that is at the start of the vector.
 * @param s2 The sprite that is at the end of the vector.
 * @return A vector that points from s1 to s2.

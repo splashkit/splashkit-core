@@ -16,35 +16,35 @@ using std::to_string;
 
 /**
 * Converts the provided Base64 encoded string back to its original form.
-*For example, "TWFu" will be converted to "Man".
+* For example, "TWFu" will be converted to "Man".
 * @param input Base64 encoded string to decode
 * @return Decoded original string
 */;
 string base64_decode(const string &input);
 /**
 * Converts the provided string into its Base64 encoded representation.
-*For example, "Man" will be converted to "TWFu".
+* For example, "Man" will be converted to "TWFu".
 * @param input String to encode
 * @return Base64 encoded string
 */;
 string base64_encode(const string &input);
 /**
 * Converts the provided binary string into an unsigned integer.
-*For example, "1010" will be converted to 10.
+* For example, "1010" will be converted to 10.
 * @param bin Binary string to convert
 * @return Decimal (unsigned integer) representation of the binary string, or 0 if the string is not a valid binary string
 */;
 unsigned int bin_to_dec(const string &bin);
 /**
 * Converts the provided binary string into a hexadecimal string representation.
-*For example, "1010" will be converted to "A".
+* For example, "1010" will be converted to "A".
 * @param bin_str Binary string to convert
 * @return Hexadecimal string representation of the binary string, or an empty string if the string is not a valid binary string
 */;
 string bin_to_hex(const string &bin_str);
 /**
 * Converts the provided binary string into its octal string representation.
-*For example, "1010" will be converted to "12".
+* For example, "1010" will be converted to "12".
 * @param bin_str Binary string to convert
 * @return Octal string representation of the binary string, or an empty string if the string is not a valid binary string
 */;
@@ -58,30 +58,30 @@ string bin_to_oct(const string &bin_str);
 bool contains(const string &text, const string &subtext);
 /**
 * Convert the passed in string into a double. This can fail in an error if
-*the value is not a number, consider using `is_number` to check before
-*converting a string.
+* the value is not a number, consider using `is_number` to check before
+* converting a string.
 * @param text The text to convert.
 * @return The double value read from the text.
 */;
 double convert_to_double(const string &text);
 /**
 * Convert the passed in string into an integer. This can fail in an error if
-*the value is not an integer, consider using `is_integer` to check before
-*converting a string.
+* the value is not an integer, consider using `is_integer` to check before
+* converting a string.
 * @param text The text to convert.
 * @return The integer value read from the text.
 */;
 int convert_to_integer(const string &text);
 /**
 * Converts the provided unsigned integer into a binary string.
-*For example, 10 will be converted to "1010".
+* For example, 10 will be converted to "1010".
 * @param dec Decimal (unsigned integer) to convert
 * @return Binary string representation of the decimal
 */;
 string dec_to_bin(unsigned int dec);
 /**
 * Converts the provided decimal value into its octal string representation.
-*For example, 64 will be converted to "100".
+* For example, 64 will be converted to "100".
 * @param decimal_value Decimal (unsigned integer) to convert
 * @return Octal string representation of the decimal value, or "0" if the value is 0
 */;
@@ -95,7 +95,7 @@ string dec_to_oct(unsigned int decimal_value);
 int greatest_common_divisor(int number1, int number2);
 /**
 * Converts the provided hexadecimal string into its binary string representation.
-*For example, "A" will be converted to "1010".
+* For example, "A" will be converted to "1010".
 * @param hex_str Hexadecimal string to convert
 * @return Binary string representation of the hexadecimal string, or an empty string if the string is not a valid hexadecimal string
 */;
@@ -108,7 +108,7 @@ string hex_to_bin(const string &hex_str);
 unsigned int hex_to_dec(const string &hex_string);
 /**
 * Converts the provided hexadecimal string into its octal string representation.
-*For example, "A" will be converted to "12".
+* For example, "A" will be converted to "12".
 * @param hex_str Hexadecimal string to convert
 * @return Octal string representation of the hexadecimal string, or an empty string if the string is not a valid hexadecimal string
 */;
@@ -134,7 +134,7 @@ bool is_binary(const string &bin_str);
 bool is_double(const string &text);
 /**
 * A hexadecimal string is a string that contains only characters from '0' to '9'
-*and 'A' to 'F' (or 'a' to 'f').
+* and 'A' to 'F' (or 'a' to 'f').
 * @param hex_str Hexadecimal string to check
 * @return True if the string is a valid hexadecimal string, false otherwise
 */;
@@ -179,21 +179,21 @@ int least_common_multiple(int number1, int number2);
 int length_of(const string &text);
 /**
 * Converts the provided octal string into its binary string representation.
-*For example, "12" will be converted to "1010".
+* For example, "12" will be converted to "1010".
 * @param octal_str Octal string to convert
 * @return Binary string representation of the octal string, or an empty string if the string is not a valid octal string
 */;
 string oct_to_bin(const string &octal_str);
 /**
 * Converts the provided octal string into its decimal representation.
-*For example, "100" will be converted to 64.
+* For example, "100" will be converted to 64.
 * @param octal_string Octal string to convert
 * @return Decimal (unsigned integer) representation of the octal string, or 0 if the string is not a valid octal string
 */;
 unsigned int oct_to_dec(const string &octal_string);
 /**
 * Converts the provided octal string into its hexadecimal string representation.
-*For example, "12" will be converted to "A".
+* For example, "12" will be converted to "A".
 * @param oct_str Octal string to convert
 * @return Hexadecimal string representation of the octal string, or an empty string if the string is not a valid octal string
 */;
@@ -233,7 +233,7 @@ string to_lowercase(const string &text);
 string to_uppercase(const string &text);
 /**
 * Return a new string that removes the spaces from the start and end of
-*the input string.
+* the input string.
 * @param text The string to trim.
 * @return A new string with the contents of `text`, after removing spaces
 from the start and end.

@@ -29,7 +29,7 @@ typedef enum {
 typedef void (free_notifier)(void *pointer);
 /**
 * Remove the function from the list of functions receiving notification
-*of resource freeing.
+* of resource freeing.
 * @param handler The function to remove
 *
 */;
@@ -43,15 +43,15 @@ void deregister_free_notifier(free_notifier *handler);
 string path_to_resource(const string &filename, resource_kind kind);
 /**
 * Returns the path to the resources folder for the SplashKit program. This
-*will be auto detected at startup, but can be changed using
-*`set_resources_path`.
+* will be auto detected at startup, but can be changed using
+* `set_resources_path`.
 
 * @return Path to SplashKit Resources folder.
 */;
 string path_to_resources();
 /**
 * Returns the path to the folder containing a given resource kind. This is
-*the path SplashkKit will search when you load a resource.
+* the path SplashkKit will search when you load a resource.
 * @param kind The type of resource you want the path for.
 * @return The path to the folder containing this kind of resource.
 */;
@@ -64,7 +64,7 @@ string path_to_resources(resource_kind kind);
 void register_free_notifier(free_notifier *fn);
 /**
 * Sets the path to the SplashKit resources folder. Resource paths are then
-*located within this folder.
+* located within this folder.
 * @param path The file path to the SplashKit Resources folder.
 *
 */;

@@ -25,7 +25,7 @@ typedef struct _music_data *music;
 void fade_music_in(const string &name, int ms);
 /**
 * Fades music file matching the name to full volume over a specified number of milliseconds
-*and loops a specified number of times
+* and loops a specified number of times
 * @param name The name of the `music` file to play.
 * @param times Controls the number of times the music is played.
 * @param ms How many milliseconds it takes to fade the `music` to full volume
@@ -41,7 +41,7 @@ void fade_music_in(const string &name, int times, int ms);
 void fade_music_in(music data, int ms);
 /**
 * Fades music up to full volume over a specified number of milliseconds
-*for a specified number of times.
+* for a specified number of times.
 * @param data The name of the `music` to play.
 * @param times Controls the number of times the music is played.
 * @param ms How many milliseconds it takes to fade the `music` to full volume
@@ -68,10 +68,10 @@ void free_all_music();
 void free_music(music effect);
 /**
 * Determines if SplashKit has a music file loaded for the supplied name.
-*This checks against all music files loaded, those loaded without a name
-*are assigned the filename as a default. If this returns `false`, you may
-*want to use `load_music` to load in a specific sound effect and give
-*it the desired name.
+* This checks against all music files loaded, those loaded without a name
+* are assigned the filename as a default. If this returns `false`, you may
+* want to use `load_music` to load in a specific sound effect and give
+* it the desired name.
 * @param name The name to check if a music file is loaded.
 * @return Returns `true` if there is a music file with the given `name` has
 has been loaded.
@@ -79,9 +79,9 @@ has been loaded.
 bool has_music(const string &name);
 /**
 * Loads and returns a music value. The supplied `filename` is used to
-*locate the music file to load. The supplied `name` indicates the
-*name to use to refer to this Music value. The `music` can then be
-*retrieved by passing this `name` to the `music_named` function.
+* locate the music file to load. The supplied `name` indicates the
+* name to use to refer to this Music value. The `music` can then be
+* retrieved by passing this `name` to the `music_named` function.
 * @param name The name of the resource for SplashKit
 * @param filename The filename to load
 * @return A new music resource
@@ -167,7 +167,7 @@ void play_music(music data, int times);
 * @param data The name of the `music` to play.
 * @param times Controls the number of times the music is played.
 * @param volume Indicates the percentage of the original volume to play the
-*`music` at. This must be between `0` and `1`.
+* `music` at. This must be between `0` and `1`.
 *
 */;
 void play_music(music data, int times, double volume);
@@ -180,7 +180,7 @@ void resume_music();
 /**
 * Sets the volume of the currently playing `music`. Must be between 0 and 1, e.g. 0.1 is 10%.
 * @param volume Indicates the percentage of the original volume to play the
-*`music` at. This must be between `0` and `1`.
+* `music` at. This must be between `0` and `1`.
 *
 */;
 void set_music_volume(double volume);

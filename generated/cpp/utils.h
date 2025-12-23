@@ -18,16 +18,16 @@ using std::to_string;
 
 /**
 * Gets the number of milliseconds that have passed since the program was
-*started.
+* started.
 
 * @return The number of milliseconds passed
 */;
 unsigned int current_ticks();
 /**
 * Puts the program to sleep for a specified number of milliseconds. If this
-*is larger than 1 second, SplashKit will check to see if the user tries to
-*quit during the delay. If the user does quit, the delay function returns
-*without waiting.
+* is larger than 1 second, SplashKit will check to see if the user tries to
+* quit during the delay. If the user does quit, the delay function returns
+* without waiting.
 * @param milliseconds The number of milliseconds to wait
 *
 */;
@@ -43,7 +43,7 @@ void delay(int milliseconds);
 void display_dialog(const string &title, const string &msg, font output_font, int font_size);
 /**
 * Return a SplashKit resource of `resource_kind` with name `filename`
-*as a string.
+* as a string.
 * @param filename The filename of the resource.
 * @param kind The kind of resource.
 * @return The file loaded into a string.

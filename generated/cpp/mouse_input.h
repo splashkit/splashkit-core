@@ -25,14 +25,14 @@ typedef enum {
 } mouse_button;
 /**
 * Tells the mouse cursor to hide (no longer visible) if it is currently
-*showing. Use `ShowMouse` to make the mouse cursor visible again.
+* showing. Use `ShowMouse` to make the mouse cursor visible again.
 
 *
 */;
 void hide_mouse();
 /**
 * Returns true if the specified button was clicked since the last time
-*`process_events` was called.
+* `process_events` was called.
 * @param button The mouse button to check
 * @return True if the mouse button was clicked
 */;
@@ -45,7 +45,7 @@ bool mouse_clicked(mouse_button button);
 bool mouse_down(mouse_button button);
 /**
 * Returns the amount of accumulated mouse movement, since the last time
-*`process_events` was called, as a `vector_2d`.
+* `process_events` was called, as a `vector_2d`.
 
 * @return The movement of the mouse since the last process events
 */;
@@ -76,10 +76,10 @@ bool mouse_shown();
 bool mouse_up(mouse_button button);
 /**
 * Returns the amount the mouse wheel was scrolled since the last call
-*to `process_events`. The result is a vector containing the x and y
-*amounts scrolled. Scroll left generates a negative x, scroll right a
-*positive x. Scroll backward is negative y, scroll forward positive y.
-*Note that on MacOS the directions may be inverted by OS settings.
+* to `process_events`. The result is a vector containing the x and y
+* amounts scrolled. Scroll left generates a negative x, scroll right a
+* positive x. Scroll backward is negative y, scroll forward positive y.
+* Note that on MacOS the directions may be inverted by OS settings.
 
 * @return The distance and direction of the mouse scroll since the last
 `process_events`
@@ -114,14 +114,14 @@ void move_mouse(double x, double y);
 void move_mouse(point_2d point);
 /**
 * Tells the mouse cursor to be visible if it was previously hidden with
-*by a `HideMouse` or `SetMouseVisible`(False) call.
+* by a `HideMouse` or `SetMouseVisible`(False) call.
 
 *
 */;
 void show_mouse();
 /**
 * Used to explicitly set the mouse cursors visible state (if it is showing
-*in the window or not) based on the show parameter.
+* in the window or not) based on the show parameter.
 * @param show When true the mouse is shown, when false it is hidden
 *
 */;

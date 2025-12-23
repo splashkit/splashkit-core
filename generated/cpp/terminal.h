@@ -22,7 +22,7 @@ using std::to_string;
 char read_char();
 /**
 * Read a line of text from the terminal. The user will see the text as
-*they type it.
+* they type it.
 
 * @return The text entered by the user.
 */;

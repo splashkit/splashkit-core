@@ -17,11 +17,11 @@ using std::to_string;
 
 /**
 * Adds a column to the current layout with width `width`.
-*
-*- Positive values of width just specify the width in pixels.
-*- 0 means use the default control width - not always a good choice.
-*- Negative values specify filling to the right _until_ `width + 1` pixels away from the edge.
-*- e.g -1 fills entirely to the right, while -20 leaves a 19 pixel gap on the right.
+* 
+* - Positive values of width just specify the width in pixels.
+* - 0 means use the default control width - not always a good choice.
+* - Negative values specify filling to the right _until_ `width + 1` pixels away from the edge.
+* - e.g -1 fills entirely to the right, while -20 leaves a 19 pixel gap on the right.
 * @param width Width of the column in pixels
 *
 */;
@@ -34,14 +34,14 @@ void add_column(int width);
 void add_column_relative(double width);
 /**
 * Creates a button with a bitmap in it, and no label.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param bmp The bitmap to show inside the button
 * @return Whether the button was clicked
 */;
 bool bitmap_button(bitmap bmp);
 /**
 * Creates a button with a bitmap in it at a specific position on screen.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param bmp The bitmap to show inside the button
 * @param rect The rectangle to display the button in
 * @return Whether the button was clicked
@@ -49,7 +49,7 @@ bool bitmap_button(bitmap bmp);
 bool bitmap_button(bitmap bmp, const rectangle &rect);
 /**
 * Creates a button with a bitmap in it at a specific position on screen.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param bmp The bitmap to show inside the button
 * @param rect The rectangle to display the button in
 * @param opts The drawing options
@@ -58,7 +58,7 @@ bool bitmap_button(bitmap bmp, const rectangle &rect);
 bool bitmap_button(bitmap bmp, const rectangle &rect, drawing_options opts);
 /**
 * Creates a button with a bitmap in it, and no label.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param bmp The bitmap to show inside the button
 * @param opts The drawing options
 * @return Whether the button was clicked
@@ -66,7 +66,7 @@ bool bitmap_button(bitmap bmp, const rectangle &rect, drawing_options opts);
 bool bitmap_button(bitmap bmp, drawing_options opts);
 /**
 * Creates a button with a bitmap in it and a label.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param label_text The label to show in front of the button
 * @param bmp The bitmap to show inside the button
 * @return Whether the button was clicked
@@ -74,7 +74,7 @@ bool bitmap_button(bitmap bmp, drawing_options opts);
 bool bitmap_button(const string &label_text, bitmap bmp);
 /**
 * Creates a button with a bitmap in it and a label.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param label_text The label to show in front of the button
 * @param bmp The bitmap to show inside the button
 * @param opts The drawing options
@@ -83,7 +83,7 @@ bool bitmap_button(const string &label_text, bitmap bmp);
 bool bitmap_button(const string &label_text, bitmap bmp, drawing_options opts);
 /**
 * Creates a button at a specific position on screen.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param text The text to show inside the button
 * @param rect The rectangle to display the button in
 * @return Whether the button was clicked
@@ -91,23 +91,23 @@ bool bitmap_button(const string &label_text, bitmap bmp, drawing_options opts);
 bool button(const string &text, const rectangle &rect);
 /**
 * Creates a button without a label.
-*Returns whether the button was clicked.
+* Returns whether the button was clicked.
 * @param text The text to show inside the button
 * @return Whether the button was clicked
 */;
 bool button(const string &text);
 /**
 * Creates a button with a label.
-*Returns whether the button was clicked.
-*
-*Example usage:
-*```c++
-*// Test if clicked:
-*if (button("Button 1", "Click me!"))
-*{
-*// do stuff..
-*}
-*```
+* Returns whether the button was clicked.
+* 
+* Example usage:
+* ```c++
+* // Test if clicked:
+* if (button("Button 1", "Click me!"))
+* {
+* // do stuff..
+* }
+* ```
 * @param label_text The label to show in front of the button
 * @param text The text to show inside the button
 * @return Whether the button was clicked
@@ -115,7 +115,7 @@ bool button(const string &text);
 bool button(const string &label_text, const string &text);
 /**
 * Creates a checkbox at a specific position on screen.
-*Returns the updated value of the checkbox.
+* Returns the updated value of the checkbox.
 * @param text The text to show next to the checkbox
 * @param value The current value of the checkbox
 * @param rect The rectangle to display the checkbox in
@@ -124,7 +124,7 @@ bool button(const string &label_text, const string &text);
 bool checkbox(const string &text, const bool &value, const rectangle &rect);
 /**
 * Creates a checkbox.
-*Returns the updated value of the checkbox.
+* Returns the updated value of the checkbox.
 * @param text The text to show next to the checkbox
 * @param value The current value of the checkbox
 * @return The updated value of the checkbox
@@ -132,12 +132,12 @@ bool checkbox(const string &text, const bool &value, const rectangle &rect);
 bool checkbox(const string &text, const bool &value);
 /**
 * Creates a checkbox with a label.
-*Returns the updated value of the checkbox.
-*
-*Example usage:
-*```c++
-*my_bool = checkbox("Checkbox 1", "Enabled?", my_bool);
-*```
+* Returns the updated value of the checkbox.
+* 
+* Example usage:
+* ```c++
+* my_bool = checkbox("Checkbox 1", "Enabled?", my_bool);
+* ```
 * @param label_text The label to show in front of the checkbox
 * @param text The text to show next to the checkbox
 * @param value The current value of the checkbox
@@ -146,7 +146,7 @@ bool checkbox(const string &text, const bool &value);
 bool checkbox(const string &label_text, const string &text, const bool &value);
 /**
 * Creates a set of RGBA sliders to adjust a color, at a specific position on screen.
-*Returns the updated color value of the slider.
+* Returns the updated color value of the slider.
 * @param clr The current value of the color slider
 * @param rect The rectangle to display the slider in.
 * @return The updated value of the slider
@@ -154,19 +154,19 @@ bool checkbox(const string &label_text, const string &text, const bool &value);
 color color_slider(const color &clr, const rectangle &rect);
 /**
 * Creates a set of RGBA sliders to adjust a color.
-*Returns the updated color value of the slider.
+* Returns the updated color value of the slider.
 * @param clr The current value of the color slider
 * @return The updated value of the slider
 */;
 color color_slider(const color &clr);
 /**
 * Creates a set of RGBA sliders to adjust a color, with a label.
-*Returns the updated color value of the slider.
-*
-*Example usage:
-*```c++
-*my_color = color_slider("Player Color", my_color);
-*```
+* Returns the updated color value of the slider.
+* 
+* Example usage:
+* ```c++
+* my_color = color_slider("Player Color", my_color);
+* ```
 * @param label_text The label to show in front of the slider
 * @param clr The current value of the color slider
 * @return The updated value of the slider
@@ -180,8 +180,8 @@ color color_slider(const string &label_text, const color &clr);
 void disable_interface();
 /**
 * Draws the user interface that all the previous calls (such as `start_panel`, `button`, etc) have created.
-*
-***Make sure to call this!** Without calling it, the interface won't be visible.
+* 
+* **Make sure to call this!** Without calling it, the interface won't be visible.
 
 *
 */;
@@ -224,31 +224,31 @@ void end_treenode(const string &label_text);
 void enter_column();
 /**
 * Returns the width of element labels.
-*
-*Default is 60 pixels.
+* 
+* Default is 60 pixels.
 
 * @return The width of labels
 */;
 int get_interface_label_width();
 /**
 * Creates a collapsable header with a label.
-*Returns whether the header is expanded or not.
-*
-*Note: Unlike `start_panel` and other similar functions, there is
-*no need to 'end' this one. Example usage:
-*```c++
-*if (header("Section A"))
-*{
-*// elements inside header go here
-*}
-*```
+* Returns whether the header is expanded or not.
+* 
+* Note: Unlike `start_panel` and other similar functions, there is
+* no need to 'end' this one. Example usage:
+* ```c++
+* if (header("Section A"))
+* {
+* // elements inside header go here
+* }
+* ```
 * @param label_text The label to show in the header
 * @return Whether the header is expanded or not
 */;
 bool header(const string &label_text);
 /**
 * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, at a specific position on screen.
-*Returns the updated color value of the slider.
+* Returns the updated color value of the slider.
 * @param clr The current value of the color slider
 * @param rect The rectangle to display the slider in.
 * @return The updated value of the slider
@@ -256,19 +256,19 @@ bool header(const string &label_text);
 color hsb_color_slider(const color &clr, const rectangle &rect);
 /**
 * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color.
-*Returns the updated color value of the slider.
+* Returns the updated color value of the slider.
 * @param clr The current value of the color slider
 * @return The updated value of the slider
 */;
 color hsb_color_slider(const color &clr);
 /**
 * Creates a set of HSBA (hue, saturation, brightness, alpha) sliders to adjust a color, with a label.
-*Returns the updated color value of the slider.
-*
-*Example usage:
-*```c++
-*my_color = hsb_color_slider("Player Color", my_color);
-*```
+* Returns the updated color value of the slider.
+* 
+* Example usage:
+* ```c++
+* my_color = hsb_color_slider("Player Color", my_color);
+* ```
 * @param label_text The label to show in front of the slider
 * @param clr The current value of the color slider
 * @return The updated value of the slider
@@ -319,7 +319,7 @@ bool last_element_confirmed();
 void leave_column();
 /**
 * Creates a number entry box at a specific position on screen.
-*Returns the updated value of the number box.
+* Returns the updated value of the number box.
 * @param value The current value of the number box
 * @param step The amount incremented when dragging on the box
 * @param rect The rectangle to display the slider in
@@ -328,7 +328,7 @@ void leave_column();
 float number_box(const float &value, float step, const rectangle &rect);
 /**
 * Creates a number entry box with a label.
-*Returns the updated value of the number box.
+* Returns the updated value of the number box.
 * @param value The current value of the number box
 * @param step The amount incremented when dragging on the box
 * @return The updated value of the slider
@@ -336,12 +336,12 @@ float number_box(const float &value, float step, const rectangle &rect);
 float number_box(const float &value, float step);
 /**
 * Creates a number entry box with a label.
-*Returns the updated value of the number box.
-*
-*Example usage:
-*```c++
-*my_float = number_box("Percentage", my_float, 1);
-*```
+* Returns the updated value of the number box.
+* 
+* Example usage:
+* ```c++
+* my_float = number_box("Percentage", my_float, 1);
+* ```
 * @param label_text The label to show in front of the number box
 * @param value The current value of the number box
 * @param step The amount incremented when dragging on the box
@@ -388,7 +388,7 @@ void set_interface_accent_color(color clr, float contrast);
 void set_interface_border_color(color clr);
 /**
 * A convenience function to set the majority of the interface's colors in one go.
-*Some colors will be automatically chosen based on the parameters (such as text color).
+* Some colors will be automatically chosen based on the parameters (such as text color).
 * @param main_clr The main color of the interface - also decides if the interface is light or dark mode
 * @param accent_clr The color used to accent the interface - this will appear in highlighted areas
 * @param contrast The contrast between the frames of elements/containers and their internal elements
@@ -432,9 +432,9 @@ void set_interface_font(font fnt);
 void set_interface_font_size(int size);
 /**
 * Sets the width of element labels. This is the maximum width
-*in pixels that a label can span in front of an element.
-*
-*Default is 60 pixels.
+* in pixels that a label can span in front of an element.
+* 
+* Default is 60 pixels.
 * @param width The width of labels
 *
 */;
@@ -476,7 +476,7 @@ void set_interface_spacing(int spacing, int padding);
 void set_interface_style(interface_style style);
 /**
 * Sets the interface style to one of the presets in the interface_style enum.
-*Also accepts a color used to customize the interface.
+* Also accepts a color used to customize the interface.
 * @param style The preset style to use
 * @param clr The color to style the interface after
 *
@@ -490,7 +490,7 @@ void set_interface_style(interface_style style, color clr);
 void set_interface_text_color(color clr);
 /**
 * Sets the height of each row in the interface in pixels.
-*0 resets to default.
+* 0 resets to default.
 * @param height Height of rows in pixels
 *
 */;
@@ -503,7 +503,7 @@ void set_layout_height(int height);
 void single_line_layout();
 /**
 * Creates a slider at a specific position on screen.
-*Returns the updated value of the slider.
+* Returns the updated value of the slider.
 * @param value The current value of the slider
 * @param min_value The minimum value of the slider
 * @param max_value The maximum value of the slider
@@ -513,7 +513,7 @@ void single_line_layout();
 float slider(const float &value, float min_value, float max_value, const rectangle &rect);
 /**
 * Creates a slider without a label.
-*Returns the updated value of the slider.
+* Returns the updated value of the slider.
 * @param value The current value of the slider
 * @param min_value The minimum value of the slider
 * @param max_value The maximum value of the slider
@@ -522,12 +522,12 @@ float slider(const float &value, float min_value, float max_value, const rectang
 float slider(const float &value, float min_value, float max_value);
 /**
 * Creates a slider with a label.
-*Returns the updated value of the slider.
-*
-*Example usage:
-*```c++
-*my_float = slider("Percentage", my_float, 0, 100);
-*```
+* Returns the updated value of the slider.
+* 
+* Example usage:
+* ```c++
+* my_float = slider("Percentage", my_float, 0, 100);
+* ```
 * @param label_text The label to show in front of the slider
 * @param value The current value of the slider
 * @param min_value The minimum value of the slider
@@ -543,8 +543,8 @@ float slider(const string &label_text, const float &value, float min_value, floa
 void split_into_columns(int count);
 /**
 * Adds `count` columns to the current layout, with equal widths.
-*Has extra parameter `last_width`, which lets you specify a specific
-*width (in pixels) for the last column.
+* Has extra parameter `last_width`, which lets you specify a specific
+* width (in pixels) for the last column.
 * @param count Number of columns to add
 * @param last_width The width of the last column in pixels
 *
@@ -552,8 +552,8 @@ void split_into_columns(int count);
 void split_into_columns(int count, int last_width);
 /**
 * Adds `count` columns to the current layout, with equal widths.
-*Has extra parameter `last_width`, which lets you specify a specific
-*width (relative to the width of the container, between 0 and 1) for the last column.
+* Has extra parameter `last_width`, which lets you specify a specific
+* width (relative to the width of the container, between 0 and 1) for the last column.
 * @param count Number of columns to add
 * @param last_width The width of the last column as percentage of the container's width (between 0 and 1)
 *
@@ -567,9 +567,9 @@ void split_into_columns_relative(int count, double last_width);
 void start_custom_layout();
 /**
 * Starts the creation of an inset area inside an arbitrary rectangle.
-*
-*The function **must** be accompanied by a call to `end_inset`
-*with the same name.
+* 
+* The function **must** be accompanied by a call to `end_inset`
+* with the same name.
 * @param name The name of the area
 * @param rect The rectangle for the inset
 *
@@ -577,16 +577,16 @@ void start_custom_layout();
 void start_inset(const string &name, const rectangle &rect);
 /**
 * Starts the creation of an inset area inside a panel/popup.
-*
-*Use as follows:
-*```c++
-*start_inset("Inset area", 60);
-*// elements inside area goes here
-*end_inset("Inset area");
-*
-*```
-*The function **must** be accompanied by a call to `end_inset`
-*with the same name.
+* 
+* Use as follows:
+* ```c++
+* start_inset("Inset area", 60);
+* // elements inside area goes here
+* end_inset("Inset area");
+* 
+* ```
+* The function **must** be accompanied by a call to `end_inset`
+* with the same name.
 * @param name The name of the area
 * @param height Height of the inset area in pixels. -1 fills entire space. Use negative heights to fill _up to_ `height` away from the bottom
 *
@@ -594,20 +594,20 @@ void start_inset(const string &name, const rectangle &rect);
 void start_inset(const string &name, int height);
 /**
 * Starts the creation of a draggable panel with a title bar.
-*Returns whether the panel is visible or not.
-*
-*Use as follows:
-*```c++
-*if (start_panel("My panel", rectangle_from(0,0,100,100)))
-*{
-*// Rest of interface goes here
-*end_panel("My panel");
-*}
-*```
-*After calling this, you can then call functions to
-*add elements such as buttons and text boxes inside the panel.
-*The function **must** be accompanied by a call to `end_panel`,
-*that is only called if the panel is visible, and is passed the same `name`.
+* Returns whether the panel is visible or not.
+* 
+* Use as follows:
+* ```c++
+* if (start_panel("My panel", rectangle_from(0,0,100,100)))
+* {
+* // Rest of interface goes here
+* end_panel("My panel");
+* }
+* ```
+* After calling this, you can then call functions to
+* add elements such as buttons and text boxes inside the panel.
+* The function **must** be accompanied by a call to `end_panel`,
+* that is only called if the panel is visible, and is passed the same `name`.
 * @param name The name shown in the panel's titlebar
 * @param initial_rectangle The initial position/size the panel starts off in
 * @return Whether the panel is visible or not
@@ -615,34 +615,34 @@ void start_inset(const string &name, int height);
 bool start_panel(const string &name, rectangle initial_rectangle);
 /**
 * Starts the creation of a popup.
-*Returns whether the popup is visible or not.
-*
-*Usage is the same as `start_panel`, other than the 'starting rectangle' will be automatically calculated.
-*The function **must** be accompanied by a call to `end_popup`
-*with the same name.
+* Returns whether the popup is visible or not.
+* 
+* Usage is the same as `start_panel`, other than the 'starting rectangle' will be automatically calculated.
+* The function **must** be accompanied by a call to `end_popup`
+* with the same name.
 * @param name The name of the popup
 * @return Whether the popup is visible or not
 */;
 bool start_popup(const string &name);
 /**
 * Starts the creation of a tree node (such as those in a file tree view).
-*Returns whether the tree node is expanded or not.
-*
-*Usage is the same as `start_panel`.
-*The function **must** be accompanied by a call to `end_treenode`
-*with the same name.
+* Returns whether the tree node is expanded or not.
+* 
+* Usage is the same as `start_panel`.
+* The function **must** be accompanied by a call to `end_treenode`
+* with the same name.
 * @param label_text The name of the node
 * @return Whether the tree node is expanded or not
 */;
 bool start_treenode(const string &label_text);
 /**
 * Creates a text entry box at a specific position on screen.
-*Returns the updated value of the text box.
-*
-*Example usage:
-*```c++
-*my_string = text_box("Name", my_string, rectangle_from(0,0,100,100));
-*```
+* Returns the updated value of the text box.
+* 
+* Example usage:
+* ```c++
+* my_string = text_box("Name", my_string, rectangle_from(0,0,100,100));
+* ```
 * @param label_text Unique identifier for the text box (not drawn)
 * @param value The current value of the text box
 * @param rect The rectangle to display the button in
@@ -651,12 +651,12 @@ bool start_treenode(const string &label_text);
 string text_box(const string &label_text, const string &value, const rectangle &rect);
 /**
 * Creates a text entry box with a label.
-*Returns the updated value of the text box.
-*
-*Example usage:
-*```c++
-*my_string = text_box("Name", my_string);
-*```
+* Returns the updated value of the text box.
+* 
+* Example usage:
+* ```c++
+* my_string = text_box("Name", my_string);
+* ```
 * @param label_text Unique identifier for the text box (not drawn)
 * @param value The current value of the text box
 * @return The updated value of the text box
@@ -664,12 +664,12 @@ string text_box(const string &label_text, const string &value, const rectangle &
 string text_box(const string &label_text, const string &value);
 /**
 * Creates a text entry box with a label that can be shown.
-*Returns the updated value of the text box.
-*
-*Example usage:
-*```c++
-*my_string = text_box("Name", my_string, true);
-*```
+* Returns the updated value of the text box.
+* 
+* Example usage:
+* ```c++
+* my_string = text_box("Name", my_string, true);
+* ```
 * @param label_text Unique identifier for the text box (not drawn)
 * @param value The current value of the text box
 * @param show_label Whether to show the label or not

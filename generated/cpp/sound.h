@@ -43,10 +43,10 @@ void free_all_sound_effects();
 void free_sound_effect(sound_effect effect);
 /**
 * Determines if SplashKit has a sound effect loaded for the supplied name.
-*This checks against all sounds loaded, those loaded without a name
-*are assigned the filename as a default. If this returns `false`, you may
-*want to use `load_sound_effect` to load in a specific sound effect and give
-*it the desired name.
+* This checks against all sounds loaded, those loaded without a name
+* are assigned the filename as a default. If this returns `false`, you may
+* want to use `load_sound_effect` to load in a specific sound effect and give
+* it the desired name.
 * @param name The name to check if a sound effect is loaded.
 * @return Returns `true` if there is a sound effect with the given `name` has
 has been loaded.
@@ -54,9 +54,9 @@ has been loaded.
 bool has_sound_effect(const string &name);
 /**
 * The supplied `filename` is used to locate the sound effect to load. The
-*supplied `name` indicates the name to use to refer to this `sound_effect`.
-*The `sound_effect` can then be retrieved by passing this `name` to
-*the `sound_effect_named` function.
+* supplied `name` indicates the name to use to refer to this `sound_effect`.
+* The `sound_effect` can then be retrieved by passing this `name` to
+* the `sound_effect_named` function.
 * @param name The name used to refer to the sound effect.
 * @param filename The filename used to locate the sound effect to use.
 * @return A new `sound_effect` with the initialised values provided.
@@ -87,7 +87,7 @@ void play_sound_effect(const string &name, int times);
 * @param name The name of the effect to play.
 * @param times Controls the number of times the sound effect is played.
 * @param volume Indicates the percentage of the original volume to play the
-*`sound_effect` at. This must be between `0` and `1`.
+* `sound_effect` at. This must be between `0` and `1`.
 *
 */;
 void play_sound_effect(const string &name, int times, double volume);
@@ -101,7 +101,7 @@ void play_sound_effect(sound_effect effect);
 * Plays a sound effect once at playback volume.
 * @param effect The effect indicates which sound effect to start playing.
 * @param volume Indicates the percentage of the original volume to play the
-*`sound_effect` at. This must be between `0` and `1`.
+* `sound_effect` at. This must be between `0` and `1`.
 *
 */;
 void play_sound_effect(sound_effect effect, double volume);
@@ -114,11 +114,11 @@ void play_sound_effect(sound_effect effect, double volume);
 void play_sound_effect(sound_effect effect, int times);
 /**
 * This version of `play_sound_effect` allows you to control both the number
-*of times the `sound_effect` is repeated and its playback volume.
+* of times the `sound_effect` is repeated and its playback volume.
 * @param effect The effect indicates which sound effect to start playing.
 * @param times Controls the number of times the sound effect is played.
 * @param volume Indicates the percentage of the original volume to play the
-*`sound_effect` at. This must be between `0` and `1`.
+* `sound_effect` at. This must be between `0` and `1`.
 *
 */;
 void play_sound_effect(sound_effect effect, int times, double volume);
@@ -136,9 +136,9 @@ string sound_effect_filename(sound_effect effect);
 string sound_effect_name(sound_effect effect);
 /**
 * Retrieves a `sound_effect` that has been loaded into SplashKit. If the
-*sound effect has not been loaded, this will attempt to use the name to
-*locate the file for you. If a file can be found, the sound effect is loaded
-*and returned.
+* sound effect has not been loaded, this will attempt to use the name to
+* locate the file for you. If a file can be found, the sound effect is loaded
+* and returned.
 * @param name The name of the sound effect to return.
 * @return Returns the `sound_effect` that has been loaded with the specified
 `name` using `load_sound_effect`.

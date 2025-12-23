@@ -87,7 +87,7 @@ bool point_in_triangle(const point_2d &pt, const triangle &tri);
 float point_line_distance(const point_2d &pt, const line &l);
 /**
 * Calculate the `point_2d` that is offset from the `start_point` by the
-*`offset`
+* `offset`
 * @param start_point The starting point
 * @param offset The distance and direction to move
 * @return A new point as a result of moving by the offset from
@@ -110,8 +110,8 @@ point_2d point_offset_from_origin(const vector_2d &offset);
 bool point_on_line(const point_2d &pt, const line &l);
 /**
 * Returns true when the point `pt` is on the line `l`. The
-*proximity value is used to set the sensitivity -- higher values
-*effectively make the line thicker.
+* proximity value is used to set the sensitivity -- higher values
+* effectively make the line thicker.
 * @param pt The point to test
 * @param l The line to check
 * @param proximity The sensitivity to allow close approximities
@@ -158,7 +158,7 @@ point_2d random_screen_point();
 point_2d random_window_point(window wind);
 /**
 * Returns True of `pt1` is at the same point as `pt2`. This checks at an
-*integer level, indicating the two points refer to the same pixel.
+* integer level, indicating the two points refer to the same pixel.
 * @param pt1 The first point
 * @param pt2 The other point
 * @return True if the two points are at the same location
