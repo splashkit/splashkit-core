@@ -146,17 +146,96 @@ typedef enum {
     POWER_KEY = 320
 } key_code;
 typedef void (key_callback)(int code);
+/**
+* Checks to see if any key has been pressed since the last time
+*`process_events` was called.
+
+* @return True if any key was pressed.
+*/;
 bool any_key_pressed();
+/**
+* Remove the registered callback from receiving events related to key down actions.
+* @param callback The function to from from key down events
+*
+*/;
 void deregister_callback_on_key_down(key_callback *callback);
+/**
+* Remove the registered callback from receiving events related to key typed actions.
+* @param callback The function to from from key typed events
+*
+*/;
 void deregister_callback_on_key_typed(key_callback *callback);
+/**
+* Remove the registered callback from receiving events related to key up actions.
+* @param callback The function to from from key up events
+*
+*/;
 void deregister_callback_on_key_up(key_callback *callback);
+/**
+* Returns true when the key requested is being held down. This is updated
+*as part of the `process_events` call. Use the key codes from `key_code`
+*to specify the key to be checked.
+* @param key The key to check if it is down
+* @return True if the key is currently held down
+*/;
 bool key_down(key_code key);
+/**
+* The `key_name` function returns a string name for a given `key_code`. For
+*example, `COMMA_KEY` returns the string 'Comma'. This function could be used
+*to display more meaningful key names for configuring game controls, etc.
+* @param key The key to get the name of
+* @return The name of the key
+*/;
 string key_name(key_code key);
+/**
+* Returns true if the specified key was released since the last time
+*`process_events` was called. This occurs only once for the key that is
+*released and will not return true again until the key is pressed down and
+*released again.
+* @param key The key to check if it was released
+* @return True if the key was just released
+*/;
 bool key_released(key_code key);
+/**
+* Returns true when the key requested is just pressed down. This is updated
+*as part of the `process_events` call. Use the key codes from `key_code`
+*to specify the key to be checked. this will only occur once for that key that is
+*pressed and will not return true again until the key is released and presssed down again
+* @param key The key to check if it was typed
+* @return True if the key was just pressed down
+*/;
 bool key_typed(key_code key);
+/**
+* Returns false when the key requested is being held down. This is updated
+*as part of the `process_events` call. Use the key codes from `key_code`
+*to specify the key to be checked.
+* @param key The key to check if it is up
+* @return True if the key is currently up
+*/;
 bool key_up(key_code key);
+/**
+* Register the passed in callback function to receive notification of key down
+*calls. This will be called in response to `process_events`, for each key that
+*the user presses down.
+* @param callback The function to be called when a key is first pressed
+*
+*/;
 void register_callback_on_key_down(key_callback *callback);
+/**
+* Register the passed in callback function to receive notification of key typed
+*calls. This will be called in response to `process_events`, when the user initially
+*presses a key down.
+* @param callback The function to be called when a key is typed
+*
+*/;
 void register_callback_on_key_typed(key_callback *callback);
+/**
+* Register the passed in callback function to receive notification of key up
+*calls. This will be called in response to `process_events`, for each key that
+*the user releases.
+* @param callback The function to be called when a key is released
+*
+*/;
 void register_callback_on_key_up(key_callback *callback);
 
 #endif /* __keyboard_input_h */

@@ -15,27 +15,198 @@ using std::string;
 using std::vector;
 using std::to_string;
 
+/**
+* Returns the center point of the circle.
+* @param c The circle to get the center point
+* @return The center point of the circle
+*/;
 point_2d center_point(const circle &c);
+/**
+* Returns a circle at the indicated point and radius.
+* @param pt The location of the center of the circle
+* @param radius The radius of the circle
+* @return A circle at the indicatd point and radius
+*/;
 circle circle_at(const point_2d &pt, double radius);
+/**
+* Returns a circle at the indicated point and radius.
+* @param x The x location of the circle
+* @param y The y location of the circle
+* @param radius The radius of the circle
+* @return A circle at the indicatd point and radius
+*/;
 circle circle_at(double x, double y, double radius);
+/**
+* Detects if a circle intersects with a quad.
+* @param c The circle to test
+* @param q The quad to test
+* @return True if the circle and quad intersect, false otherwise
+*/;
 bool circle_quad_intersect(const circle &c, const quad &q);
+/**
+* Returns the circle radius.
+* @param c The circle
+* @return The radius of the circle
+*/;
 float circle_radius(const circle c);
+/**
+* Detects if a ray intersects a circle.
+* @param origin The starting point of the ray
+* @param heading The direction of the ray as a vector
+* @param circ The circle to check for intersection
+* @return True if the ray intersects the circle, false otherwise
+*/;
 bool circle_ray_intersection(const point_2d &origin, const vector_2d &heading, const circle &circ);
+/**
+* Detects if a ray intersects a circle. If an intersection is found, the
+*`hit_point` and `hit_distance` are set to the point of intersection and the
+*distance from the ray's origin to the intersection point. If the ray's `origin`
+*is contained within the circle, `hit_point` is set to the `origin` and `hit_distance`
+*is set to 0. If no intersection is found, `hit_point` and `hit_distance` are not modified.
+* @param origin The starting point of the ray
+* @param heading The direction of the ray as a vector
+* @param circ The circle to check for intersection
+* @param hit_point The point to set to where the ray intersects the circle
+* @param hit_distance The double to set to the distance from the ray's origin to
+*the intersection point
+* @return True if the ray intersects the circle, false otherwise
+*/;
 bool circle_ray_intersection(const point_2d &origin, const vector_2d &heading, const circle &circ, point_2d &hit_point, double &hit_distance);
+/**
+* Detects if a circle intersects with a triangle.
+* @param c The circle to test
+* @param tri The triangle to test
+* @return True if the circle and triangle intersect
+*/;
 bool circle_triangle_intersect(const circle &c, const triangle &tri);
+/**
+* Detects if a circle intersects with a triangle. The closest point on the
+*triangle to the circle is assigned to p, even if the circle and triangle do not
+*intersect. If the centre of the circle is inside the triangle,
+*the point assigned to p is the centre of the circle.
+* @param c The circle to test
+* @param tri The triangle to test
+* @param p The point to set to the closest point on the triangle to the circle
+* @return True if the circle and triangle intersect
+*/;
 bool circle_triangle_intersect(const circle &c, const triangle &tri, point_2d &p);
+/**
+* Returns the circle x value.
+* @param c The circle
+* @return The x location of the center of the circle
+*/;
 float circle_x(const circle &c);
+/**
+* Returns the circle y value.
+* @param c The circle
+* @return The y location of the center of the circle
+*/;
 float circle_y(const circle &c);
+/**
+* Detects if two circles intersect. This can be used to detect collisions between
+*bounding circles.
+* @param c1 The circle to test if intersects with c2
+* @param c2 The circle to test if intersects with c1
+* @return True if the two circles do intersect
+*/;
 bool circles_intersect(circle c1, circle c2);
+/**
+* Detects if two circles intersect. This can be used to detect collisions between
+*bounding circles. The circle data is passed in as individual values.
+* @param c1_x the x location of the first circle
+* @param c1_y the y location of the first circle
+* @param c1_radius the radius of the first circle
+* @param c2_x the x location of the second circle
+* @param c2_y the y location of the second circle
+* @param c2_radius the radius of the second circle
+* @return true when the two circles intersect
+*/;
 bool circles_intersect(double c1_x, double c1_y, double c1_radius, double c2_x, double c2_y, double c2_radius);
+/**
+* Returns the closest point on a circle's circumference to
+*a given point. If the point is equal to the center of the circle,
+*the center point is returned.
+* @param from_pt The point to test from
+* @param c The circle
+* @return The point on `c`'s circumference that is closest to
+`from_point`, or the center of the circle if the
+point equals `c`'s center.
+*/;
 point_2d closest_point_on_circle(const point_2d &from_pt, const circle &c);
+/**
+* Returns the closest point on a line to a circle.
+* @param c The circle
+* @param l The line
+* @return The point that is closest to `c` on `l`
+*/;
 point_2d closest_point_on_line_from_circle(const circle &c, const line &l);
+/**
+* Returns the closest point on a rectangle's perimeter to a circle.
+* @param c The circle
+* @param rect The rectangle
+* @return The point that is closest to `c` on `rect`'s perimeter
+*/;
 point_2d closest_point_on_rect_from_circle(const circle &c, const rectangle &rect);
+/**
+* Calculates the closest point on a triangle to a circle. If the circle and
+*triangle do not intersect, the closest point on the triangle to the circle
+*is returned. If the circle and triangle do intersect, the center of the
+*circle is returned.
+* @param c The circle to test
+* @param tri The triangle to test
+* @return The closest point on the triangle to the circle
+*/;
 point_2d closest_point_on_triangle_from_circle(const circle &c, const triangle &tri);
+/**
+* The furthest point on the circle to the given point.
+* @param pt The point to test from
+* @param c The circle you want to get a point on its circumference
+* @return The point on c that is furthest from `pt`
+*/;
 point_2d distant_point_on_circle(const point_2d &pt, const circle &c);
+/**
+* Determines the opposite side of a circle given a collision point and a
+*heading.
+* @param pt The point from which the test is being made
+* @param c The circle
+* @param heading The direction the point is heading
+* @param opposite_pt After the call, this is set to the point on the
+*opposite side of the circle from pt when it is
+*heading in the given direction.
+* @return True when the `opposite_pt` is calculated, false when
+the point would not collide with the circle when
+heading as indicated.
+*/;
 bool distant_point_on_circle_heading(const point_2d &pt, const circle &c, const vector_2d &heading, point_2d &opposite_pt);
+/**
+* Calculates the distance from a ray cast from a point to a given circle.
+* @param ray_origin The origin of the ray
+* @param ray_heading The direction of the ray
+* @param c The circle being tested
+* @return -1 if the ray does not hit the circle, otherwise the
+distance from the origin to the circle bounds.
+*/;
 float ray_circle_intersect_distance(const point_2d &ray_origin, const vector_2d &ray_heading, const circle &c);
+/**
+* Returns the two tangent points on the circle given the indicated point.
+* @param from_pt The source point
+* @param c The circle
+* @param p1 If this returns true, then `p1` contains one of the points
+* @param p2 If this returns true, then `p2` contains one of the points
+* @return True if `from_pt` is outside of the circle, and tangent
+points are calculated
+*/;
 bool tangent_points(const point_2d &from_pt, const circle &c, point_2d &p1, point_2d &p2);
+/**
+* Calculates the two points on a circles radius that lie along the given
+*vector. This represents the points on the circle when the vector is
+*placed at the circle's center point.
+* @param c The circle
+* @param along The vector representing the line along which the points lie.
+* @param pt1 After the call, this is set to one of the widest points
+* @param pt2 After the call, this is set to one of the widest points
+*
+*/;
 void widest_points(const circle &c, const vector_2d &along, point_2d &pt1, point_2d &pt2);
 
 #endif /* __circle_geometry_h */
